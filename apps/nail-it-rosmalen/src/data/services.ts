@@ -48,8 +48,8 @@ export const serviceCategories: ServiceCategory[] = [
     titleNl: 'Nieuwe set — op natuurlijke nagel',
     titleEn: 'New set — on natural nail',
     icon: 'heart',
-    blurbNl: 'Verstevigen zonder verlenging — BIAB-achtig, korter en natuurlijk.',
-    blurbEn: 'Reinforcement without extension — short, natural finish.',
+    blurbNl: 'Verstevigen zonder verlenging — met gel of acryl op de natuurlijke nagel.',
+    blurbEn: 'Reinforcement without extension — gel or acrylic on the natural nail.',
     services: [
       {
         id: 'nat-one-tone',
@@ -94,6 +94,30 @@ export const serviceCategories: ServiceCategory[] = [
         descEn: 'White or one colour / glitter.',
       },
       { id: 'fill-onetone-gelpolish', nameNl: 'One-tone + colour gelpolish', nameEn: 'One-Tone + colour gel polish', price: 54 },
+    ],
+  },
+  {
+    id: 'gellak-biab',
+    titleNl: 'Gellak & BIAB',
+    titleEn: 'Gel polish & BIAB',
+    icon: 'palette',
+    blurbNl: 'Kleur op je eigen nagels — zonder verlenging.',
+    blurbEn: 'Colour on your own nails — no extension.',
+    services: [
+      {
+        id: 'gellak',
+        nameNl: 'Gellak',
+        nameEn: 'Gel polish',
+        price: 36.5,
+      },
+      {
+        id: 'biab',
+        nameNl: 'BIAB',
+        nameEn: 'BIAB',
+        price: 41.5,
+        descNl: 'Builder in a Bottle — valt onder gellak-behandelingen.',
+        descEn: 'Builder in a Bottle — part of the gel polish range.',
+      },
     ],
   },
   {
