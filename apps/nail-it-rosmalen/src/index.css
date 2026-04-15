@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", "Cormorant Garamond", serif;
+  --font-script: "Caveat", "Fraunces", serif;
+
+  /* Warm ivory + parchment — softer than my-kim-nails' cream */
+  --color-cream: #F6F0E6;
+  --color-blush: #EADFD3;
+  --color-blush-soft: #F1E8DE;
+
+  /* Deep, slightly cool ink — grown-up and grounded */
+  --color-espresso: #231B1D;
+  --color-espresso-soft: #4A3D3F;
+
+  /* "gold" repurposed as a warm dusty plum/mauve — Nail It's signature */
+  --color-gold: #8A4B5B;
+  --color-gold-soft: #C79BA5;
+
+  /* "emerald" repurposed as a quiet forest moss — used sparingly */
+  --color-emerald: #334036;
+  --color-emerald-soft: #6B8471;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-cream text-espresso antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-serif text-espresso;
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 72, "SOFT" 30;
+  }
+  h1 { font-weight: 500; }
+  h2 { font-weight: 500; }
+  ::selection { background: var(--color-gold-soft); color: var(--color-espresso); }
+  *:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-espresso text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-espresso-soft;
+    min-height: 44px;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 bg-gold text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-gold-soft hover:text-espresso;
+    min-height: 44px;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-espresso/20 text-espresso px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:border-espresso/40 hover:bg-white;
+    min-height: 44px;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-espresso px-4 py-2 rounded-full text-sm font-medium hover:bg-black/5;
+    min-height: 40px;
+  }
+  .kicker {
+    @apply inline-block text-[11px] uppercase tracking-[0.24em] text-gold font-medium;
+  }
+  .card {
+    @apply bg-white/70 backdrop-blur-sm rounded-2xl border border-espresso/5 shadow-[0_1px_2px_rgba(35,27,29,0.04)];
+  }
+  .field {
+    @apply w-full px-4 py-3 rounded-xl border border-espresso/15 bg-white text-espresso placeholder:text-espresso/40 focus:border-gold focus:outline-none;
+    min-height: 48px;
+  }
+  .script {
+    font-family: var(--font-script);
+    letter-spacing: 0;
+    line-height: 1;
+  }
+  /* subtle double-rule divider used in section titles */
+  .rule {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-gold);
+  }
+  .rule::before, .rule::after {
+    content: "";
+    height: 1px;
+    width: 2rem;
+    background: currentColor;
+    opacity: 0.5;
+  }
+}
+
+/* safe area for iOS bottom CTA */
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+/* hide scrollbar for horizontal scrollers */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
