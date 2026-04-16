@@ -8,7 +8,7 @@ export type DayHours = {
   marked?: boolean;
 };
 
-const standard: DaySegment[] = [{ open: '09:00', close: '16:00' }];
+const standard: DaySegment[] = [{ open: '09:00', close: '17:00' }];
 
 export const hours: DayHours[] = [
   { dayIndex: 0, nl: 'Zondag', en: 'Sunday', segments: [] },

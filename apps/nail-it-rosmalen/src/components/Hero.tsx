@@ -9,7 +9,7 @@ export default function Hero({ t }: Props) {
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="/salon-4-chairs.webp"
+          src="/salon-2.webp"
           alt=""
           className="w-full h-full object-cover"
           fetchPriority="high"

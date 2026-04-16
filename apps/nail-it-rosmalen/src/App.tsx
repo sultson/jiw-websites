@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import UspStrip from './components/UspStrip';
 import About from './components/About';
 import Awards from './components/Awards';
+import Products from './components/Products';
 import Services from './components/Services';
 import Gallery from './components/Gallery';
 import Reviews from './components/Reviews';
@@ -26,6 +27,7 @@ export default function App() {
         <About t={t} />
         <Awards t={t} />
         <Services lang={lang} t={t} />
+        <Products t={t} />
         <Gallery t={t} />
         <Reviews lang={lang} t={t} />
         <Terms t={t} />
