@@ -32,7 +32,7 @@ export default function About({ t }: Props) {
         <div className="order-1 md:order-2">
           <div className="relative">
             <img
-              src="/store-front.webp"
+              src="/about-me.jpeg"
               alt="Nagelstudio Nail It in Hintham, Rosmalen"
               loading="lazy"
               className="rounded-sm w-full aspect-[4/5] object-cover shadow-[0_20px_60px_-30px_rgba(35,27,29,0.5)]"
