@@ -13,9 +13,19 @@ import Terms from './components/Terms';
 import Faq from './components/Faq';
 import Footer from './components/Footer';
 import StickyCallCta from './components/StickyCallCta';
+import AlgemeneVoorwaarden from './pages/AlgemeneVoorwaarden';
+import Privacyverklaring from './pages/Privacyverklaring';
 
 export default function App() {
   const { lang, setLang, t } = useLang();
+
+  if (typeof window !== 'undefined' && window.location.pathname === '/algemene-voorwaarden') {
+    return <AlgemeneVoorwaarden />;
+  }
+
+  if (typeof window !== 'undefined' && window.location.pathname === '/privacyverklaring') {
+    return <Privacyverklaring />;
+  }
 
   return (
     <div className="min-h-[100dvh] flex flex-col bg-cream">

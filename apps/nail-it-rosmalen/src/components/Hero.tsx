@@ -8,12 +8,15 @@ export default function Hero({ t }: Props) {
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0">
-        <img
-          src="/salon-2.webp"
-          alt=""
-          className="w-full h-full object-cover"
-          fetchPriority="high"
-        />
+        <picture>
+          <source media="(min-width: 768px)" srcSet="/salon-2.webp" />
+          <img
+            src="/salon-3.webp"
+            alt=""
+            className="w-full h-full object-cover"
+            fetchPriority="high"
+          />
+        </picture>
         {/* warmer, plum-tinted overlay — distinct from the cool espresso of my-kim-nails */}
         <div
           className="absolute inset-0"
