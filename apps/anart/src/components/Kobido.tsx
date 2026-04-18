@@ -1,10 +1,10 @@
 import { Check, ArrowRight } from 'lucide-react';
 
-type Props = { t: (k: string) => string };
+type Props = { t: (k: string) => string; onBook: () => void };
 
 const benefitKeys = ['b1', 'b2', 'b3', 'b4', 'b5', 'b6'] as const;
 
-export default function Kobido({ t }: Props) {
+export default function Kobido({ t, onBook }: Props) {
   return (
     <section id="kobido" className="py-20 md:py-28 bg-espresso text-cream overflow-hidden">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
@@ -35,16 +35,14 @@ export default function Kobido({ t }: Props) {
               ))}
             </ul>
 
-            <a
-              href="https://anart-studio.salonized.com/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={onBook}
               className="mt-10 inline-flex items-center gap-2 bg-gold text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:opacity-90"
               style={{ minHeight: 44 }}
             >
               {t('kobido.cta')}
               <ArrowRight size={16} />
-            </a>
+            </button>
           </div>
 
           {/* Video/foto placeholder */}

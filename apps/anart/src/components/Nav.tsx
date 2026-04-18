@@ -7,18 +7,19 @@ type Props = {
   lang: Lang;
   setLang: (l: Lang) => void;
   t: (k: string) => string;
+  onBook: () => void;
 };
 
 const links = [
   { href: '#behandelingen', key: 'nav.services' },
   { href: '#kobido',        key: 'nav.kobido' },
+  { href: '#tattoo',        key: 'nav.tattoo' },
   { href: '#fotos',         key: 'nav.gallery' },
   { href: '#recensies',     key: 'nav.reviews' },
   { href: '#bezoek',        key: 'nav.visit' },
-  { href: '#faq',           key: 'nav.faq' },
 ];
 
-export default function Nav({ lang, setLang, t }: Props) {
+export default function Nav({ lang, setLang, t, onBook }: Props) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -56,14 +57,9 @@ export default function Nav({ lang, setLang, t }: Props) {
 
           <div className="flex items-center gap-2 md:gap-3">
             <LangToggle lang={lang} setLang={setLang} compact />
-            <a
-              href="https://anart-studio.salonized.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold hidden md:inline-flex"
-            >
+            <button onClick={onBook} className="btn-gold hidden md:inline-flex">
               {t('nav.book')}
-            </a>
+            </button>
             <button
               onClick={() => setOpen(v => !v)}
               className="lg:hidden p-2 -mr-2 text-espresso"
@@ -88,14 +84,12 @@ export default function Nav({ lang, setLang, t }: Props) {
                 {t(l.key)}
               </a>
             ))}
-            <a
-              href="https://anart-studio.salonized.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold w-full mt-4 text-center"
+            <button
+              onClick={() => { setOpen(false); onBook(); }}
+              className="btn-gold w-full mt-4"
             >
               {t('nav.book')}
-            </a>
+            </button>
           </div>
         </div>
       )}

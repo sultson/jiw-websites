@@ -3,7 +3,7 @@ import { Sparkles, Heart, Scissors, Leaf, ChevronDown, Eye, Flower2, Hand, Gift,
 import { serviceCategories, formatPrice } from '../data/services';
 import type { Lang } from '../translations';
 
-type Props = { lang: Lang; t: (k: string) => string };
+type Props = { lang: Lang; t: (k: string) => string; onBook: () => void };
 
 const iconMap = {
   sparkles: Sparkles,
@@ -16,7 +16,7 @@ const iconMap = {
   gift:     Gift,
 };
 
-export default function Services({ lang, t }: Props) {
+export default function Services({ lang, t, onBook }: Props) {
   const [open, setOpen] = useState<string | null>('manicure');
 
   function name(cat: { titleNl: string; titleEn: string; titlePl: string }) {
@@ -90,15 +90,13 @@ export default function Services({ lang, t }: Props) {
                             <span className="font-serif text-lg text-espresso tabular-nums">
                               {formatPrice(s.price)}
                             </span>
-                            <a
-                              href="https://anart-studio.salonized.com/"
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <button
+                              onClick={onBook}
                               className="inline-flex items-center gap-1 text-xs font-medium text-espresso bg-white border border-espresso/15 rounded-full px-3 py-1.5 hover:border-gold hover:text-gold"
                             >
                               {t('services.book')}
                               <ArrowRight size={12} />
-                            </a>
+                            </button>
                           </div>
                         </li>
                       );

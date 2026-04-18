@@ -6,6 +6,7 @@ export const translations: Record<Lang, Dict> = {
   nl: {
     'nav.services':   'Behandelingen',
     'nav.kobido':     'Kobido',
+    'nav.tattoo':     'Tattoo',
     'nav.gallery':    "Foto's",
     'nav.reviews':    'Recensies',
     'nav.visit':      'Bezoek',
@@ -13,6 +14,15 @@ export const translations: Record<Lang, Dict> = {
     'nav.book':       'Boek afspraak',
     'nav.bookShort':  'Boek',
     'nav.call':       'Bel',
+
+    'tattoo.kicker':  'Tattoo studio',
+    'tattoo.title':   'Kunst op je huid.',
+    'tattoo.body':    'Naast nagels, wimpers en massage biedt AnArt Studio ook professionele tattoos. Van kleurrijke waterverf-stijlen tot strakke linework — elk ontwerp wordt met zorg en precisie uitgevoerd.',
+    'tattoo.s1':      'Waterverf tattoos',
+    'tattoo.s2':      'Linework & fine line',
+    'tattoo.s3':      'Zwart-grijs realistisch',
+    'tattoo.s4':      'Kleur tattoos',
+    'tattoo.cta':     'Vraag een tattoo aan',
 
     'hero.kicker':    'Kaatsheuvel',
     'hero.title':     'Stralend mooi, met zorg en aandacht.',
@@ -90,6 +100,7 @@ export const translations: Record<Lang, Dict> = {
   en: {
     'nav.services':   'Treatments',
     'nav.kobido':     'Kobido',
+    'nav.tattoo':     'Tattoo',
     'nav.gallery':    'Gallery',
     'nav.reviews':    'Reviews',
     'nav.visit':      'Visit',
@@ -97,6 +108,15 @@ export const translations: Record<Lang, Dict> = {
     'nav.book':       'Book now',
     'nav.bookShort':  'Book',
     'nav.call':       'Call',
+
+    'tattoo.kicker':  'Tattoo studio',
+    'tattoo.title':   'Art on your skin.',
+    'tattoo.body':    'Alongside nails, lashes and massage, AnArt Studio also offers professional tattoos. From colourful watercolour styles to precise linework — every design is executed with care and precision.',
+    'tattoo.s1':      'Watercolour tattoos',
+    'tattoo.s2':      'Linework & fine line',
+    'tattoo.s3':      'Black & grey realism',
+    'tattoo.s4':      'Colour tattoos',
+    'tattoo.cta':     'Request a tattoo',
 
     'hero.kicker':    'Kaatsheuvel',
     'hero.title':     'Radiant beauty, with care and attention.',
@@ -174,6 +194,7 @@ export const translations: Record<Lang, Dict> = {
   pl: {
     'nav.services':   'Zabiegi',
     'nav.kobido':     'Kobido',
+    'nav.tattoo':     'Tatuaż',
     'nav.gallery':    'Galeria',
     'nav.reviews':    'Opinie',
     'nav.visit':      'Odwiedź',
@@ -181,6 +202,15 @@ export const translations: Record<Lang, Dict> = {
     'nav.book':       'Zarezerwuj',
     'nav.bookShort':  'Rezerwuj',
     'nav.call':       'Zadzwoń',
+
+    'tattoo.kicker':  'Studio tatuażu',
+    'tattoo.title':   'Sztuka na twojej skórze.',
+    'tattoo.body':    'Oprócz paznokci, rzęs i masażu, AnArt Studio oferuje również profesjonalne tatuaże. Od kolorowych wzorów w stylu akwareli po precyzyjny linework — każdy projekt jest wykonywany z troską i precyzją.',
+    'tattoo.s1':      'Tatuaże akwarelowe',
+    'tattoo.s2':      'Linework & fine line',
+    'tattoo.s3':      'Czarno-szary realizm',
+    'tattoo.s4':      'Tatuaże kolorowe',
+    'tattoo.cta':     'Zapytaj o tatuaż',
 
     'hero.kicker':    'Kaatsheuvel',
     'hero.title':     'Piękno z troską i starannością.',

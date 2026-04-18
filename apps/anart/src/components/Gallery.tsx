@@ -28,7 +28,6 @@ const images: { src: string; alt: string; cls: string }[] = [
   { src: '/nagels_koraalrood_glitter_kort.webp',         alt: 'Koraalrood glitter korte nagels',        cls: 'aspect-square' },
   { src: '/nagels_klassieke_manicure_rood.webp',         alt: 'Klassieke rode manicure',                cls: 'aspect-square' },
   { src: '/nagels_manicure_behandeling_wit_gel.webp',    alt: 'Witte gel manicure behandeling',         cls: 'aspect-square' },
-  { src: '/salon_wachtruimte_gele_bank.webp',            alt: 'AnArt Studio wachtruimte',               cls: 'aspect-[4/3]' },
 ];
 
 export default function Gallery({ t }: Props) {

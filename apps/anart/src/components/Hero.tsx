@@ -1,19 +1,18 @@
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
-type Props = { t: (k: string) => string };
+type Props = { t: (k: string) => string; onBook: () => void };
 
-export default function Hero({ t }: Props) {
+export default function Hero({ t, onBook }: Props) {
   return (
     <section id="top" className="relative overflow-hidden">
-      {/* Achtergrondafbeelding — vervang /hero.webp door je eigen foto */}
       <div className="absolute inset-0 bg-espresso">
         <img
-          src="/salon_interieur_overzicht.webp"
+          src="/salon_massagebed_handdoeken.webp"
           alt=""
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-cover opacity-70"
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-espresso/20 via-espresso/40 to-espresso/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-espresso/20 via-espresso/45 to-espresso/85" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8 pt-20 pb-28 md:pt-32 md:pb-44 lg:pt-40 lg:pb-52">
@@ -29,25 +28,10 @@ export default function Hero({ t }: Props) {
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
-            <a
-              href="https://anart-studio.salonized.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold"
-            >
+            <button onClick={onBook} className="btn-gold">
               {t('hero.ctaBook')}
               <ArrowRight size={16} />
-            </a>
-            <a
-              href="https://www.treatwell.nl/salon/anart-studio/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 border border-cream/30 text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-cream/10"
-              style={{ minHeight: 44 }}
-            >
-              <ExternalLink size={16} />
-              {t('hero.ctaTreat')}
-            </a>
+            </button>
           </div>
 
           <div className="mt-10 flex items-center gap-5 text-cream/80 text-xs tracking-widest uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
