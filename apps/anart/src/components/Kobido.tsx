@@ -49,12 +49,14 @@ export default function Kobido({ t }: Props) {
 
           {/* Video/foto placeholder */}
           <div className="relative">
-            <div className="rounded-2xl overflow-hidden aspect-[4/5] bg-cream/10 flex items-center justify-center">
-              {/* Zodra je de video-link van Facebook hebt, voeg je hier een <video> of embed in */}
-              <p className="text-cream/30 italic text-sm text-center px-8">
-                Video wordt hier geplaatst.<br />
-                (Facebook Kobido-video)
-              </p>
+            <div className="rounded-2xl overflow-hidden aspect-[4/5]">
+              <img
+                src="/massage_kobido_gezichtsbehandeling.webp"
+                alt="Kobido gezichtsbehandeling bij AnArt Studio"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+              {/* Vervang de img hierboven door een <video> of Facebook-embed zodra je de video-link hebt */}
             </div>
             {/* Decoratieve achtergrondcirkel */}
             <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-gold/10 -z-0 pointer-events-none" />

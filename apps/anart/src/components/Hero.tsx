@@ -8,11 +8,10 @@ export default function Hero({ t }: Props) {
       {/* Achtergrondafbeelding — vervang /hero.webp door je eigen foto */}
       <div className="absolute inset-0 bg-espresso">
         <img
-          src="/hero.webp"
+          src="/salon_interieur_overzicht.webp"
           alt=""
           className="w-full h-full object-cover opacity-60"
           fetchPriority="high"
-          onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-espresso/20 via-espresso/40 to-espresso/80" />
       </div>

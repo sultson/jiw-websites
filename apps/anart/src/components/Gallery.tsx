@@ -13,7 +13,22 @@ type Props = { t: (k: string) => string };
  *   { src: '/nails-2.webp', alt: 'Gel extensions', cls: 'aspect-square' },
  */
 const images: { src: string; alt: string; cls: string }[] = [
-  // Hier komen jouw foto's — voorlopig leeg
+  { src: '/nagels_amandelvorm_nude_gel_extensies.webp',    alt: 'Nude gel extensions amandelvorm',        cls: 'aspect-[3/4]' },
+  { src: '/nagels_holografisch_glitter_steentjes.webp',   alt: 'Holografisch glitter met steentjes',     cls: 'aspect-square' },
+  { src: '/wimperextensie_closeup_volume.webp',           alt: 'Volume wimperextensions',                cls: 'aspect-square' },
+  { src: '/nagels_kleurrijke_abstracte_art.webp',        alt: 'Kleurrijke abstracte nail art',          cls: 'aspect-square' },
+  { src: '/nagels_paars_roze_nail_art.webp',             alt: 'Paars-roze nail art',                    cls: 'aspect-square' },
+  { src: '/wenkbrauwen_henna_behandeling.webp',          alt: 'Henna wenkbrauwen behandeling',          cls: 'aspect-square' },
+  { src: '/nagels_wit_bloemtjes_kerst_art.webp',         alt: 'Witte kerst nail art met bloemtjes',     cls: 'aspect-square' },
+  { src: '/nagels_rood_gel_zebraprint_art.webp',         alt: 'Rood gel met zebraprint nail art',       cls: 'aspect-square' },
+  { src: '/wimperextensies_spiegel_closeup.webp',        alt: 'Wimperextensions closeup spiegeleffect', cls: 'aspect-square' },
+  { src: '/nagels_roze_gel_met_ring.webp',               alt: 'Roze gel manicure',                      cls: 'aspect-square' },
+  { src: '/nagels_beige_gel_met_nail_art.webp',          alt: 'Beige gel met nail art details',         cls: 'aspect-square' },
+  { src: '/wimperextensie_vergelijking_light_2_3d.webp', alt: 'Vergelijking light vs 2-3D wimpers',     cls: 'aspect-[4/3]' },
+  { src: '/nagels_koraalrood_glitter_kort.webp',         alt: 'Koraalrood glitter korte nagels',        cls: 'aspect-square' },
+  { src: '/nagels_klassieke_manicure_rood.webp',         alt: 'Klassieke rode manicure',                cls: 'aspect-square' },
+  { src: '/nagels_manicure_behandeling_wit_gel.webp',    alt: 'Witte gel manicure behandeling',         cls: 'aspect-square' },
+  { src: '/salon_wachtruimte_gele_bank.webp',            alt: 'AnArt Studio wachtruimte',               cls: 'aspect-[4/3]' },
 ];
 
 export default function Gallery({ t }: Props) {
