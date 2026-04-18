@@ -1,13 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { translations, type Lang } from '../translations';
 
-// 'anart.lang' is de localStorage key — uniek per site zodat ze elkaar niet overschrijven
 const KEY = 'anart.lang';
 
 function initialLang(): Lang {
   if (typeof window === 'undefined') return 'nl';
   const stored = window.localStorage.getItem(KEY);
-  if (stored === 'nl' || stored === 'en') return stored;
+  if (stored === 'nl' || stored === 'en' || stored === 'pl') return stored;
   return 'nl';
 }
 
@@ -20,7 +19,10 @@ export function useLang() {
   }, [lang]);
 
   const setLang = useCallback((l: Lang) => setLangState(l), []);
-  const toggle = useCallback(() => setLangState(l => (l === 'nl' ? 'en' : 'nl')), []);
+  const toggle = useCallback(
+    () => setLangState(l => (l === 'nl' ? 'en' : l === 'en' ? 'pl' : 'nl')),
+    [],
+  );
 
   const t = useCallback(
     (key: string): string => translations[lang][key] ?? translations.nl[key] ?? key,

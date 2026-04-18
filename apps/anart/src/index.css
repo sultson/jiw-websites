@@ -1,38 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Fraunces", "Cormorant Garamond", serif;
+  --font-serif: "Cormorant Garamond", "Fraunces", Georgia, serif;
 
-  /* Kleuren — pas dit aan naar het merk van AnArt */
-  --color-cream: #F8F6F2;
-  --color-blush: #EDEBE6;
+  /* Warm off-white achtergrond */
+  --color-cream: #F4F1ED;
+  --color-blush: #EAE5DD;
+  --color-blush-soft: #F0ECE6;
 
-  --color-espresso: #1C1C1C;
-  --color-espresso-soft: #3D3D3D;
+  /* Bijna-zwart — zacht en warm */
+  --color-espresso: #1E1A18;
+  --color-espresso-soft: #3C3330;
 
-  /* Accentkleur — pas aan naar AnArt huisstijl */
-  --color-gold: #6B5B45;
-  --color-gold-soft: #A8957E;
-
-  --color-emerald: #2E3D30;
-  --color-emerald-soft: #5A7060;
+  /* Aubergine/pruim — AnArt's accentkleur */
+  --color-gold: #6B3B5E;
+  --color-gold-soft: #A87898;
 }
 
 @layer base {
   body {
     @apply font-sans bg-cream text-espresso antialiased;
-    font-feature-settings: "ss01", "cv11";
   }
   h1, h2, h3, h4, h5 {
     @apply font-serif text-espresso;
-    letter-spacing: -0.015em;
-    font-variation-settings: "opsz" 72, "SOFT" 30;
+    letter-spacing: -0.01em;
   }
-  h1 { font-weight: 500; }
-  h2 { font-weight: 500; }
-  ::selection { background: var(--color-gold-soft); color: var(--color-espresso); }
+  h1 { font-weight: 400; }
+  h2 { font-weight: 400; }
+  ::selection { background: var(--color-gold-soft); color: white; }
   *:focus-visible {
     outline: 2px solid var(--color-gold);
     outline-offset: 2px;
@@ -46,7 +43,7 @@
     min-height: 44px;
   }
   .btn-gold {
-    @apply inline-flex items-center justify-center gap-2 bg-gold text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-gold-soft hover:text-espresso;
+    @apply inline-flex items-center justify-center gap-2 bg-gold text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:opacity-90;
     min-height: 44px;
   }
   .btn-outline {
@@ -58,10 +55,10 @@
     min-height: 40px;
   }
   .kicker {
-    @apply inline-block text-[11px] uppercase tracking-[0.24em] text-gold font-medium;
+    @apply inline-block text-[11px] uppercase tracking-[0.22em] text-gold font-medium;
   }
   .card {
-    @apply bg-white/70 backdrop-blur-sm rounded-2xl border border-espresso/5 shadow-[0_1px_2px_rgba(28,28,28,0.04)];
+    @apply bg-white/70 backdrop-blur-sm rounded-2xl border border-espresso/5 shadow-[0_1px_2px_rgba(30,26,24,0.04)];
   }
   .field {
     @apply w-full px-4 py-3 rounded-xl border border-espresso/15 bg-white text-espresso placeholder:text-espresso/40 focus:border-gold focus:outline-none;
@@ -78,7 +75,7 @@
     height: 1px;
     width: 2rem;
     background: currentColor;
-    opacity: 0.5;
+    opacity: 0.4;
   }
 }
 
