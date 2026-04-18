@@ -9,7 +9,8 @@
     "lint": "pnpm -r lint",
     "clean": "pnpm -r clean",
     "dev:my-kim-nails": "pnpm --filter @jiw/my-kim-nails dev",
-    "dev:nail-it-rosmalen": "pnpm --filter @jiw/nail-it-rosmalen dev"
+    "dev:nail-it-rosmalen": "pnpm --filter @jiw/nail-it-rosmalen dev",
+    "dev:anart": "pnpm --filter @jiw/anart dev"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
