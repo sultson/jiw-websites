@@ -1,4 +1,4 @@
-import { MapPin, Clock, ExternalLink, Calendar } from 'lucide-react';
+import { MapPin, Clock, ExternalLink } from 'lucide-react';
 import { hours, formatHoursShort } from '../data/hours';
 import type { Lang } from '../translations';
 
@@ -41,33 +41,7 @@ export default function Visit({ lang, t }: Props) {
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <div className="shrink-0 w-10 h-10 rounded-full bg-blush flex items-center justify-center text-gold">
-                <Calendar size={18} />
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-wider text-espresso/50 mb-1">{t('visit.book')}</p>
-                <a
-                  href="https://anart-studio.salonized.com/bookings/new"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-gold hover:underline"
-                >
-                  Salonized
-                </a>
-                <span className="text-espresso/50 text-sm mx-2">·</span>
-                <a
-                  href="https://www.treatwell.nl/salon/anart-studio/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-gold hover:underline text-sm"
-                >
-                  Treatwell
-                </a>
-              </div>
-            </div>
-
-            <div className="flex gap-4">
+<div className="flex gap-4">
               <div className="shrink-0 w-10 h-10 rounded-full bg-blush flex items-center justify-center text-gold">
                 <Clock size={18} />
               </div>

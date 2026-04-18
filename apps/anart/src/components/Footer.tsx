@@ -1,4 +1,4 @@
-import { MapPin, Instagram, ExternalLink } from 'lucide-react';
+import { MapPin, Instagram, Facebook } from 'lucide-react';
 
 type Props = { t: (k: string) => string };
 
@@ -21,22 +21,6 @@ export default function Footer({ t }: Props) {
               <MapPin size={14} className="mt-0.5 shrink-0 text-gold-soft" />
               Peperstraat 14d, 5171 EC Kaatsheuvel
             </p>
-            <a
-              href="https://anart-studio.salonized.com/bookings/new"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-cream"
-            >
-              <ExternalLink size={14} className="text-gold-soft" /> Boek via Salonized
-            </a>
-            <a
-              href="https://www.treatwell.nl/salon/anart-studio/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-cream"
-            >
-              <ExternalLink size={14} className="text-gold-soft" /> Boek via Treatwell
-            </a>
           </div>
 
           <div className="space-y-2 text-sm">
@@ -48,6 +32,15 @@ export default function Footer({ t }: Props) {
               className="flex items-center gap-2 hover:text-cream"
             >
               <Instagram size={14} className="text-gold-soft" /> @annart.nl
+            </a>
+            {/* TODO: vervang door de echte Facebook-pagina URL van AnArt */}
+            <a
+              href="https://www.facebook.com/share/v/1AwTLWCQem/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-cream"
+            >
+              <Facebook size={14} className="text-gold-soft" /> Facebook
             </a>
             <div className="pt-2 space-y-1 text-espresso/50 text-xs">
               <a href="#behandelingen" className="block hover:text-cream/70">{t('nav.services')}</a>
