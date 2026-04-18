@@ -47,14 +47,16 @@ export default function Kobido({ t, onBook }: Props) {
 
           {/* Video/foto placeholder */}
           <div className="relative">
-            <div className="rounded-2xl overflow-hidden aspect-[4/5]">
-              <img
-                src="/massage_kobido_gezichtsbehandeling.webp"
-                alt="Kobido gezichtsbehandeling bij AnArt Studio"
-                loading="lazy"
-                className="w-full h-full object-cover"
+            <div className="rounded-2xl overflow-hidden aspect-[9/16] md:aspect-[4/5] bg-espresso/40">
+              <iframe
+                src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F1AwTLWCQem%2F&show_text=false&mute=0"
+                className="w-full h-full"
+                style={{ border: 0 }}
+                scrolling="no"
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                title="Kobido massage AnArt Studio"
               />
-              {/* Vervang de img hierboven door een <video> of Facebook-embed zodra je de video-link hebt */}
             </div>
             {/* Decoratieve achtergrondcirkel */}
             <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-gold/10 -z-0 pointer-events-none" />

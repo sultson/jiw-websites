@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import Lightbox from './Lightbox';
 
-type Props = { t: (k: string) => string; onBook: () => void };
+type Props = { t: (k: string) => string };
 
 const tattooImages = [
   { src: '/tattoo_feniks_waterverf_kleurrijk.webp',        alt: 'Feniks waterverf tattoo, kleurrijk' },
@@ -12,7 +12,7 @@ const tattooImages = [
   { src: '/tattoo_artist_schouder_conventie.webp',         alt: 'Tattoo op schouder' },
 ];
 
-export default function Tattoo({ t, onBook }: Props) {
+export default function Tattoo({ t }: Props) {
   const [idx, setIdx] = useState<number | null>(null);
 
   return (
@@ -40,14 +40,20 @@ export default function Tattoo({ t, onBook }: Props) {
               ))}
             </ul>
 
-            <button
-              onClick={onBook}
-              className="mt-10 inline-flex items-center gap-2 border border-cream/25 text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-cream/10"
-              style={{ minHeight: 44 }}
-            >
-              {t('tattoo.cta')}
-              <ArrowRight size={16} />
-            </button>
+            {/* Bel-callout */}
+            <div className="mt-10 rounded-2xl border border-cream/15 p-5 bg-cream/5">
+              <p className="font-serif text-lg text-cream">{t('tattoo.callout')}</p>
+              <p className="mt-2 text-sm text-cream/60 leading-relaxed">{t('tattoo.calloutSub')}</p>
+              <a
+                href="https://www.instagram.com/annart.nl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 border border-cream/25 text-cream px-5 py-2.5 rounded-full text-sm font-medium hover:bg-cream/10"
+              >
+                <Phone size={15} />
+                {t('tattoo.cta')}
+              </a>
+            </div>
           </div>
 
           {/* Fotogrid */}

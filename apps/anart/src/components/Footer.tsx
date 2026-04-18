@@ -62,6 +62,18 @@ export default function Footer({ t }: Props) {
           <p>{t('footer.rights')}</p>
           <p>Kaatsheuvel · Noord-Brabant</p>
         </div>
+
+        <div className="mt-6 pt-6 border-t border-cream/10 flex justify-center items-center gap-2 text-xs text-cream/40">
+          <a
+            href="https://jouwidealewebsite.nl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 hover:text-cream"
+          >
+            <img src="/jiw-logo.png" alt="jouwidealewebsite.nl" className="h-5 w-auto" />
+            <span>Gemaakt met liefde door jouwidealewebsite.nl</span>
+          </a>
+        </div>
       </div>
     </footer>
   );

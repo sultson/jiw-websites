@@ -22,7 +22,13 @@ export const translations: Record<Lang, Dict> = {
     'tattoo.s2':      'Linework & fine line',
     'tattoo.s3':      'Zwart-grijs realistisch',
     'tattoo.s4':      'Kleur tattoos',
-    'tattoo.cta':     'Vraag een tattoo aan',
+    'tattoo.callout':    'Bel ons om de mogelijkheden te bespreken',
+    'tattoo.calloutSub': 'Elk tattoo-ontwerp is maatwerk. Bel of stuur een berichtje via Instagram voor een kennismakingsgesprek.',
+    'tattoo.cta':     'Bel voor een afspraak',
+
+    'popular.kicker': 'Meest geboekt',
+    'popular.title':  'Populaire behandelingen',
+    'popular.all':    'Alle behandelingen',
 
     'hero.kicker':    'Kaatsheuvel',
     'hero.title':     'Stralend mooi, met zorg en aandacht.',
@@ -116,7 +122,13 @@ export const translations: Record<Lang, Dict> = {
     'tattoo.s2':      'Linework & fine line',
     'tattoo.s3':      'Black & grey realism',
     'tattoo.s4':      'Colour tattoos',
-    'tattoo.cta':     'Request a tattoo',
+    'tattoo.callout':    'Call us to discuss the possibilities',
+    'tattoo.calloutSub': 'Every tattoo design is custom made. Call or send a message on Instagram to plan a consultation.',
+    'tattoo.cta':     'Call for an appointment',
+
+    'popular.kicker': 'Most booked',
+    'popular.title':  'Popular treatments',
+    'popular.all':    'All treatments',
 
     'hero.kicker':    'Kaatsheuvel',
     'hero.title':     'Radiant beauty, with care and attention.',
@@ -210,7 +222,13 @@ export const translations: Record<Lang, Dict> = {
     'tattoo.s2':      'Linework & fine line',
     'tattoo.s3':      'Czarno-szary realizm',
     'tattoo.s4':      'Tatuaże kolorowe',
-    'tattoo.cta':     'Zapytaj o tatuaż',
+    'tattoo.callout':    'Zadzwoń, aby omówić możliwości',
+    'tattoo.calloutSub': 'Każdy tatuaż jest wykonywany na zamówienie. Zadzwoń lub napisz na Instagramie, aby umówić konsultację.',
+    'tattoo.cta':     'Zadzwoń po wizytę',
+
+    'popular.kicker': 'Najczęściej rezerwowane',
+    'popular.title':  'Popularne zabiegi',
+    'popular.all':    'Wszystkie zabiegi',
 
     'hero.kicker':    'Kaatsheuvel',
     'hero.title':     'Piękno z troską i starannością.',

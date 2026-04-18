@@ -3,12 +3,13 @@ import { useLang } from './hooks/useLang';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import UspStrip from './components/UspStrip';
+import PopularServices from './components/PopularServices';
 import About from './components/About';
 import Services from './components/Services';
 import Kobido from './components/Kobido';
-import Tattoo from './components/Tattoo';
 import Gallery from './components/Gallery';
 import Reviews from './components/Reviews';
+import Tattoo from './components/Tattoo';
 import Visit from './components/Visit';
 import Faq from './components/Faq';
 import Footer from './components/Footer';
@@ -28,12 +29,13 @@ export default function App() {
       <main className="flex-1">
         <Hero t={t} onBook={openBooking} />
         <UspStrip t={t} />
+        <PopularServices lang={lang} t={t} onBook={openBooking} />
         <About t={t} />
         <Services lang={lang} t={t} onBook={openBooking} />
         <Kobido t={t} onBook={openBooking} />
-        <Tattoo t={t} onBook={openBooking} />
         <Gallery t={t} />
         <Reviews lang={lang} t={t} />
+        <Tattoo t={t} />
         <Visit lang={lang} t={t} />
         <Faq t={t} />
       </main>
