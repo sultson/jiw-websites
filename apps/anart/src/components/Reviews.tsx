@@ -69,7 +69,7 @@ export default function Reviews({ lang, t }: Props) {
 
         <div className="mt-8 text-center">
           <a
-            href="https://www.treatwell.nl/salon/anart-studio/"
+            href="https://share.google/AX4Q5Q97rBG0ojjIH"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline inline-flex"

@@ -48,7 +48,7 @@ export default function Visit({ lang, t }: Props) {
               <div>
                 <p className="text-xs uppercase tracking-wider text-espresso/50 mb-1">{t('visit.book')}</p>
                 <a
-                  href="https://anart-studio.salonized.com/"
+                  href="https://anart-studio.salonized.com/bookings/new"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-medium text-gold hover:underline"

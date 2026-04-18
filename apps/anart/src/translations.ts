@@ -74,8 +74,8 @@ export const translations: Record<Lang, Dict> = {
 
     'reviews.kicker': 'Klanten vertellen',
     'reviews.title':  'Recensies',
-    'reviews.sub':    '54 recensies · 5 sterren op Treatwell.',
-    'reviews.all':    'Bekijk alle op Treatwell',
+    'reviews.sub':    'Echte recensies van Google.',
+    'reviews.all':    'Bekijk alle op Google',
 
     'visit.kicker':   'Bezoek ons',
     'visit.title':    'Kom langs in Kaatsheuvel',
@@ -174,8 +174,8 @@ export const translations: Record<Lang, Dict> = {
 
     'reviews.kicker': 'What clients say',
     'reviews.title':  'Reviews',
-    'reviews.sub':    '54 reviews · 5 stars on Treatwell.',
-    'reviews.all':    'View all on Treatwell',
+    'reviews.sub':    'Real reviews from Google.',
+    'reviews.all':    'View all on Google',
 
     'visit.kicker':   'Visit us',
     'visit.title':    'Come by in Kaatsheuvel',
@@ -274,8 +274,8 @@ export const translations: Record<Lang, Dict> = {
 
     'reviews.kicker': 'Co mówią klientki',
     'reviews.title':  'Opinie',
-    'reviews.sub':    '54 opinie · 5 gwiazdek na Treatwell.',
-    'reviews.all':    'Zobacz wszystkie na Treatwell',
+    'reviews.sub':    'Prawdziwe opinie z Google.',
+    'reviews.all':    'Zobacz wszystkie na Google',
 
     'visit.kicker':   'Odwiedź nas',
     'visit.title':    'Zapraszamy do Kaatsheuvel',

@@ -22,7 +22,7 @@ export default function Footer({ t }: Props) {
               Peperstraat 14d, 5171 EC Kaatsheuvel
             </p>
             <a
-              href="https://anart-studio.salonized.com/"
+              href="https://anart-studio.salonized.com/bookings/new"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-cream"

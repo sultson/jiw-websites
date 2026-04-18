@@ -50,7 +50,7 @@ export default function BookingModal({ open, onClose, t }: Props) {
 
         {/* Salonized iframe */}
         <iframe
-          src="https://anart-studio.salonized.com/"
+          src="https://anart-studio.salonized.com/bookings/new"
           title="Online boeken — AnArt Studio"
           className="w-full"
           style={{ height: 'calc(90dvh - 57px)', border: 0 }}
