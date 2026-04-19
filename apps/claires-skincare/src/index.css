@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Cormorant", serif;
+
+  --color-cream: #FAF7F2;
+  --color-blush: #F5E7E1;
+  --color-blush-soft: #FBEFEA;
+  --color-espresso: #2A211C;
+  --color-espresso-soft: #4A3E38;
+  --color-gold: #C9A96A;
+  --color-gold-soft: #E1CFA4;
+  --color-emerald: #3F5C4A;
+  --color-emerald-soft: #6D8C7A;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-cream text-espresso antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-serif text-espresso;
+    letter-spacing: -0.01em;
+  }
+  h1 { font-weight: 500; }
+  h2 { font-weight: 500; }
+  ::selection { background: var(--color-gold-soft); color: var(--color-espresso); }
+  *:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-espresso text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-espresso-soft;
+    min-height: 44px;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 bg-gold text-espresso px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-gold-soft;
+    min-height: 44px;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-espresso/20 text-espresso px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:border-espresso/40 hover:bg-white;
+    min-height: 44px;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-espresso px-4 py-2 rounded-full text-sm font-medium hover:bg-black/5;
+    min-height: 40px;
+  }
+  .kicker {
+    @apply inline-block text-[11px] uppercase tracking-[0.22em] text-gold font-medium;
+  }
+  .card {
+    @apply bg-white/70 backdrop-blur-sm rounded-2xl border border-espresso/5 shadow-[0_1px_2px_rgba(42,33,28,0.04)];
+  }
+  .field {
+    @apply w-full px-4 py-3 rounded-xl border border-espresso/15 bg-white text-espresso placeholder:text-espresso/40 focus:border-gold focus:outline-none;
+    min-height: 48px;
+  }
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
