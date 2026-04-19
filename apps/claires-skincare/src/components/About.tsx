@@ -18,7 +18,7 @@ export default function About({ t }: Props) {
         <div className="order-1 md:order-2">
           <div className="relative">
             <img
-              src="/photo-3.webp"
+              src="/claire-portrait.webp"
               alt="Claire's Skincare Studio Amsterdam"
               loading="lazy"
               className="rounded-2xl w-full aspect-[4/5] object-cover shadow-[0_20px_60px_-30px_rgba(42,33,28,0.5)]"

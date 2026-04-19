@@ -3,16 +3,15 @@ import Lightbox from './Lightbox';
 
 type Props = { t: (k: string) => string };
 
-// Voeg foto's toe aan /public/ en update deze lijst
 const images = [
-  { src: '/photo-2.webp',  alt: 'De studio van Claire\'s Skincare',  cls: 'row-span-2 aspect-[3/4]' },
-  { src: '/photo-5.webp',  alt: 'Behandelruimte totaaloverzicht',    cls: 'aspect-square' },
-  { src: '/photo-12.webp', alt: 'Claire\'s Skincare Studio gevel',   cls: 'aspect-square' },
-  { src: '/photo-6.webp',  alt: 'Behandelkamer met apparatuur',      cls: 'aspect-[4/3]' },
-  { src: '/photo-7.webp',  alt: 'Behandelkamer detail',              cls: 'aspect-[4/3]' },
-  { src: '/photo-4.webp',  alt: 'Producten en studio inrichting',    cls: 'aspect-square' },
-  { src: '/photo-9.webp',  alt: 'Emergin C productlijn',             cls: 'aspect-square' },
-  { src: '/photo-10.webp', alt: 'Emergin C serums en gua sha',       cls: 'aspect-[4/3]' },
+  { src: '/before-after-forehead.webp',        alt: 'Voor en na — voorhoofd behandeling',   cls: 'row-span-2 aspect-[3/4]' },
+  { src: '/before-after-skin-texture.webp',    alt: 'Voor en na — huidtextuur',             cls: 'aspect-[3/4]' },
+  { src: '/before-after-brow-lift.webp',       alt: 'Voor en na — wenkbrauwen',             cls: 'aspect-[3/4]' },
+  { src: '/before-after-pore-extraction.webp', alt: 'Voor en na — porie-reiniging',         cls: 'aspect-[3/4]' },
+  { src: '/before-after-oxygen-facial.webp',   alt: 'Voor en na — oxygen facial',           cls: 'aspect-[3/4]' },
+  { src: '/treatment-room-sage.webp',          alt: 'Behandelkamer met apparatuur',         cls: 'aspect-[4/3]' },
+  { src: '/before-after-mens-facial.webp',     alt: 'Voor en na — heren facial',            cls: 'aspect-[3/4]' },
+  { src: '/before-after-back-acne.webp',       alt: 'Voor en na — rug acne',                cls: 'aspect-[3/4]' },
 ];
 
 export default function Gallery({ t }: Props) {

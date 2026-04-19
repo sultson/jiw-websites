@@ -7,7 +7,7 @@ export default function Hero({ t, onBook }: Props) {
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="/photo-1.webp"
+          src="/studio-wide.webp"
           alt=""
           className="w-full h-full object-cover"
           fetchPriority="high"
