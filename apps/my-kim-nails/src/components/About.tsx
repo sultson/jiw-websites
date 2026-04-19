@@ -8,11 +8,6 @@ export default function About({ t }: Props) {
           <span className="kicker">{t('about.kicker')}</span>
           <h2 className="mt-3 font-serif text-4xl md:text-5xl leading-[1.05]">{t('about.title')}</h2>
           <p className="mt-6 text-espresso/75 leading-relaxed max-w-prose">{t('about.body')}</p>
-          <div className="mt-8 flex items-center gap-4 text-sm text-espresso/70">
-            <div className="h-px flex-1 bg-espresso/15 max-w-16" />
-            <span className="font-serif italic text-lg">MyKim & Kiana</span>
-            <div className="h-px flex-1 bg-espresso/15 max-w-16" />
-          </div>
         </div>
 
         <div className="order-1 md:order-2">

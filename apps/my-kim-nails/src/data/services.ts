@@ -47,32 +47,6 @@ export const serviceCategories: ServiceCategory[] = [
     ],
   },
   {
-    id: 'head-spa',
-    titleNl: 'Head Spa',
-    titleEn: 'Head Spa',
-    icon: 'leaf',
-    services: [
-      {
-        id: 'head-spa-classic',
-        nameNl: 'Head Spa — klassiek',
-        nameEn: 'Head Spa — classic',
-        price: 45,
-        durationMin: 45,
-        descNl: 'Hoofdhuid reiniging, massage & voeding.',
-        descEn: 'Scalp cleanse, massage & nourishment.',
-      },
-      {
-        id: 'head-spa-deluxe',
-        nameNl: 'Head Spa — deluxe',
-        nameEn: 'Head Spa — deluxe',
-        price: 65,
-        durationMin: 60,
-        descNl: 'Uitgebreide behandeling met nek- en schoudermassage.',
-        descEn: 'Extended treatment with neck & shoulder massage.',
-      },
-    ],
-  },
-  {
     id: 'extras',
     titleNl: "Extra's",
     titleEn: 'Extras',

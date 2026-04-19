@@ -3,10 +3,9 @@ import { useLang } from './hooks/useLang';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import UspStrip from './components/UspStrip';
-import HeadSpa from './components/HeadSpa';
+import Biab from './components/Biab';
 import Services from './components/Services';
 import Gallery from './components/Gallery';
-import Reviews from './components/Reviews';
 import About from './components/About';
 import Visit from './components/Visit';
 import Faq from './components/Faq';
@@ -31,10 +30,9 @@ export default function App() {
       <main className="flex-1">
         <Hero t={t} onBook={() => openBooking()} />
         <UspStrip t={t} />
-        <HeadSpa t={t} onBook={() => openBooking('head-spa-classic')} />
+        <Biab t={t} onBook={() => openBooking('biab')} />
         <Services lang={lang} t={t} onBook={openBooking} />
         <Gallery t={t} />
-        <Reviews lang={lang} t={t} />
         <About t={t} />
         <Visit lang={lang} t={t} />
         <Faq t={t} />

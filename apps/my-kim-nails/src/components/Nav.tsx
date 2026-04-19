@@ -12,9 +12,8 @@ type Props = {
 
 const links = [
   { href: '#behandelingen', key: 'nav.services' },
-  { href: '#head-spa', key: 'nav.headspa' },
+  { href: '#biab', key: 'nav.biab' },
   { href: '#fotos', key: 'nav.gallery' },
-  { href: '#recensies', key: 'nav.reviews' },
   { href: '#bezoek', key: 'nav.visit' },
   { href: '#faq', key: 'nav.faq' },
 ];
