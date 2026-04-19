@@ -63,7 +63,7 @@ export default function Reviews({ lang, t }: Props) {
 
         <div className="mt-8 text-center">
           <a
-            href="https://www.google.com/maps/place/Claire%27s+Skincare+Studio"
+            href="https://www.google.com/maps/place/Cl/@52.3771765,4.8682197,17z/data=!4m8!3m7!1s0x47c609d812f6473f:0x8f92171c89d71386!8m2!3d52.3771765!4d4.8707946!9m1!1b1!16s%2Fg%2F11h50kkyx_"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline inline-flex"

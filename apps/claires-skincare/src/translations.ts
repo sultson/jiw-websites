@@ -39,6 +39,8 @@ export const translations: Record<Lang, Dict> = {
     'services.book':   'Boek',
     'services.min':    'min',
 
+    'booking.close':   'Sluiten',
+
     'gallery.kicker':  'Resultaten',
     'gallery.title':   'Voor & na',
     'gallery.sub':     'Tik op een foto voor een grotere weergave.',
@@ -51,6 +53,10 @@ export const translations: Record<Lang, Dict> = {
     'about.kicker':   'Over Claire',
     'about.title':    'Vakkundigheid die je ziet.',
     'about.body':     'Claire is gecertificeerd schoonheidsspecialiste met een passie voor gezonde huid. In haar studio in de Frederik Hendrikbuurt werkt ze uitsluitend met Emergin C — een professioneel merk dat huidverbetering en natuurlijke huidlifting combineert. Elke behandeling begint met een grondige huidanalyse, zodat het resultaat écht persoonlijk is.',
+
+    'studio.kicker':  'De studio',
+    'studio.title':   'Een serene plek voor jouw huid.',
+    'studio.body':    'In de Frederik Hendrikbuurt vind je een lichte, rustige studio waar elke behandeling draait om jouw huid. Een warme ontvangst, professionele apparatuur en een intieme behandelkamer — alles is ingericht om je te laten ontspannen.',
 
     'visit.kicker':   'Bezoek ons',
     'visit.title':    'De studio in Amsterdam-West',
@@ -112,6 +118,8 @@ export const translations: Record<Lang, Dict> = {
     'services.book':   'Book',
     'services.min':    'min',
 
+    'booking.close':   'Close',
+
     'gallery.kicker':  'Results',
     'gallery.title':   'Before & after',
     'gallery.sub':     'Tap an image to view larger.',
@@ -124,6 +132,10 @@ export const translations: Record<Lang, Dict> = {
     'about.kicker':   'About Claire',
     'about.title':    'Expertise you can see.',
     'about.body':     'Claire is a certified aesthetician with a passion for healthy skin. In her studio in the Frederik Hendrikbuurt she works exclusively with Emergin C — a professional brand combining skin improvement with natural face lifting. Every treatment starts with a thorough skin analysis so results are truly personal.',
+
+    'studio.kicker':  'The studio',
+    'studio.title':   'A serene space for your skin.',
+    'studio.body':    'In the Frederik Hendrikbuurt you\'ll find a light, calm studio where every treatment revolves around your skin. A warm welcome, professional equipment and an intimate treatment room — everything is set up to help you unwind.',
 
     'visit.kicker':   'Visit us',
     'visit.title':    'The studio in Amsterdam-West',

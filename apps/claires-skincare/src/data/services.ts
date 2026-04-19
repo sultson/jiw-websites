@@ -91,7 +91,7 @@ export const serviceCategories: ServiceCategory[] = [
         nameEn: 'Microneedling',
         price: 150,
         durationMin: 75,
-        descNl: 'Stimuleert collageenproductie voor zichtbaar jonger ogend huid.',
+        descNl: 'Stimuleert collageenproductie voor zichtbaar jonger ogende huid.',
         descEn: 'Stimulates collagen production for visibly younger-looking skin.',
       },
     ],

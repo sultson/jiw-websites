@@ -9,7 +9,6 @@ const images = [
   { src: '/before-after-brow-lift.webp',       alt: 'Voor en na — wenkbrauwen',             cls: 'aspect-[3/4]' },
   { src: '/before-after-pore-extraction.webp', alt: 'Voor en na — porie-reiniging',         cls: 'aspect-[3/4]' },
   { src: '/before-after-oxygen-facial.webp',   alt: 'Voor en na — oxygen facial',           cls: 'aspect-[3/4]' },
-  { src: '/treatment-room-sage.webp',          alt: 'Behandelkamer met apparatuur',         cls: 'aspect-[4/3]' },
   { src: '/before-after-mens-facial.webp',     alt: 'Voor en na — heren facial',            cls: 'aspect-[3/4]' },
   { src: '/before-after-back-acne.webp',       alt: 'Voor en na — rug acne',                cls: 'aspect-[3/4]' },
 ];

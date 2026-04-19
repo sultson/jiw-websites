@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { Sparkles, Heart, Flower2, Leaf, Zap, ChevronDown, ArrowRight } from 'lucide-react';
+import { Sparkles, Heart, Flower2, Leaf, Zap, ChevronDown } from 'lucide-react';
 import { serviceCategories } from '../data/services';
 import type { Lang } from '../translations';
 
-type Props = { lang: Lang; t: (k: string) => string; onBook: () => void };
+type Props = { lang: Lang; t: (k: string) => string };
 
 const iconMap = { sparkles: Sparkles, heart: Heart, flower: Flower2, leaf: Leaf, zap: Zap };
 
-export default function Services({ lang, t, onBook }: Props) {
+export default function Services({ lang, t }: Props) {
   const [open, setOpen] = useState<string | null>('facials');
 
   return (
@@ -65,13 +65,6 @@ export default function Services({ lang, t, onBook }: Props) {
                           <span className="font-serif text-lg md:text-xl text-espresso tabular-nums">
                             €{s.price}
                           </span>
-                          <button
-                            onClick={onBook}
-                            className="inline-flex items-center gap-1 text-xs font-medium text-espresso bg-white border border-espresso/15 rounded-full px-3 py-1.5 hover:border-gold hover:text-gold"
-                          >
-                            {t('services.book')}
-                            <ArrowRight size={12} />
-                          </button>
                         </div>
                       </li>
                     ))}
