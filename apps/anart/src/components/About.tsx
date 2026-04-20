@@ -17,7 +17,6 @@ export default function About({ t }: Props) {
 
         <div className="order-1 md:order-2">
           <div className="relative">
-            {/* Vervang /salon.webp door een salonsfoto van Anna */}
             <div className="rounded-2xl w-full aspect-[4/5] bg-blush flex items-center justify-center overflow-hidden shadow-[0_20px_60px_-30px_rgba(30,26,24,0.4)]">
               <img
                 src="/salon_behandelkamer_bloemen_behang.webp"
@@ -26,7 +25,14 @@ export default function About({ t }: Props) {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="hidden md:block absolute -bottom-6 -left-6 w-32 h-32 rounded-2xl bg-gold -z-0" />
+            <div className="hidden md:block absolute -bottom-8 -left-8 w-40 h-48 rounded-2xl overflow-hidden shadow-[0_20px_60px_-30px_rgba(30,26,24,0.5)] ring-4 ring-cream">
+              <img
+                src="/salon_interieur_overzicht.webp"
+                alt="AnArt Studio — salon interieur"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Calendar } from 'lucide-react';
 
-type Props = { t: (k: string) => string; onBook: () => void };
+type Props = { t: (k: string) => string; onBook: () => void; hidden?: boolean };
 
-export default function StickyBookCta({ t, onBook }: Props) {
+export default function StickyBookCta({ t, onBook, hidden }: Props) {
   const [show, setShow] = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
 
@@ -25,7 +25,7 @@ export default function StickyBookCta({ t, onBook }: Props) {
     return () => io.disconnect();
   }, []);
 
-  if (!show || footerVisible) return null;
+  if (!show || hidden || footerVisible) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden px-4 safe-bottom pt-3 pointer-events-none">

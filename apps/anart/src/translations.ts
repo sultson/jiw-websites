@@ -98,6 +98,8 @@ export const translations: Record<Lang, Dict> = {
     'faq.q5':         'Welke talen spreken jullie?',
     'faq.a5':         'Nederlands, Engels en Pools.',
 
+    'booking.close':  'Sluiten',
+
     'footer.tagline': 'Beautystudio in Kaatsheuvel — nagels, wimpers, wenkbrauwen & Kobido.',
     'footer.rights':  '© AnArt Studio — Alle rechten voorbehouden.',
     'footer.follow':  'Volg ons',
@@ -198,6 +200,8 @@ export const translations: Record<Lang, Dict> = {
     'faq.q5':         'Which languages do you speak?',
     'faq.a5':         'Dutch, English and Polish.',
 
+    'booking.close':  'Close',
+
     'footer.tagline': 'Beauty studio in Kaatsheuvel — nails, lashes, brows & Kobido.',
     'footer.rights':  '© AnArt Studio — All rights reserved.',
     'footer.follow':  'Follow us',
@@ -297,6 +301,8 @@ export const translations: Record<Lang, Dict> = {
     'faq.a4':         'Odwołaj przez Salonized lub Treatwell, lub wyślij nam wiadomość. Prosimy o odwołanie co najmniej 24 godziny wcześniej.',
     'faq.q5':         'W jakich językach mówicie?',
     'faq.a5':         'Niderlandzki, angielski i polski.',
+
+    'booking.close':  'Zamknij',
 
     'footer.tagline': 'Studio beauty w Kaatsheuvel — paznokcie, rzęsy, brwi i Kobido.',
     'footer.rights':  '© AnArt Studio — Wszelkie prawa zastrzeżone.',

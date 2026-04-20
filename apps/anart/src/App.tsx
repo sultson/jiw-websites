@@ -19,8 +19,8 @@ import BookingModal from './components/BookingModal';
 export default function App() {
   const { lang, setLang, t } = useLang();
   const [bookingOpen, setBookingOpen] = useState(false);
-
   const openBooking = () => setBookingOpen(true);
+  const closeBooking = () => setBookingOpen(false);
 
   return (
     <div className="min-h-[100dvh] flex flex-col bg-cream">
@@ -29,9 +29,9 @@ export default function App() {
       <main className="flex-1">
         <Hero t={t} onBook={openBooking} />
         <UspStrip t={t} />
-        <PopularServices lang={lang} t={t} onBook={openBooking} />
+        <PopularServices lang={lang} t={t} />
         <About t={t} />
-        <Services lang={lang} t={t} onBook={openBooking} />
+        <Services lang={lang} t={t} />
         <Kobido t={t} onBook={openBooking} />
         <Gallery t={t} />
         <Reviews lang={lang} t={t} />
@@ -41,8 +41,9 @@ export default function App() {
       </main>
 
       <Footer t={t} />
-      <StickyBookCta t={t} onBook={openBooking} />
-      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} t={t} />
+
+      <StickyBookCta t={t} onBook={openBooking} hidden={bookingOpen} />
+      <BookingModal open={bookingOpen} onClose={closeBooking} t={t} />
     </div>
   );
 }

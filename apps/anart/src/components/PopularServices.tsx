@@ -1,8 +1,7 @@
-import { ArrowRight } from 'lucide-react';
 import { formatPrice } from '../data/services';
 import type { Lang } from '../translations';
 
-type Props = { lang: Lang; t: (k: string) => string; onBook: () => void };
+type Props = { lang: Lang; t: (k: string) => string };
 
 type PopularItem = {
   icon: string;
@@ -55,7 +54,7 @@ const popular: PopularItem[] = [
   },
 ];
 
-export default function PopularServices({ lang, t, onBook }: Props) {
+export default function PopularServices({ lang, t }: Props) {
   function name(item: PopularItem) {
     if (lang === 'en') return item.nameEn;
     if (lang === 'pl') return item.namePl;
@@ -90,17 +89,9 @@ export default function PopularServices({ lang, t, onBook }: Props) {
                   <p className="mt-1 text-xs text-espresso/55 leading-relaxed">{desc(item)}</p>
                 </div>
               </div>
-              <div className="mt-auto pt-3 border-t border-espresso/5 flex items-center justify-between">
-                <div>
-                  <p className="font-serif text-xl text-espresso">{formatPrice(item.price)}</p>
-                  <p className="text-xs text-espresso/45">{item.durationMin} {t('services.min')}</p>
-                </div>
-                <button
-                  onClick={onBook}
-                  className="inline-flex items-center gap-1 text-xs font-medium text-espresso bg-white border border-espresso/15 rounded-full px-3 py-1.5 hover:border-gold hover:text-gold"
-                >
-                  {t('services.book')} <ArrowRight size={12} />
-                </button>
+              <div className="mt-auto pt-3 border-t border-espresso/5">
+                <p className="font-serif text-xl text-espresso">{formatPrice(item.price)}</p>
+                <p className="text-xs text-espresso/45">{item.durationMin} {t('services.min')}</p>
               </div>
             </div>
           ))}
