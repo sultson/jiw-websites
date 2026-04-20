@@ -17,6 +17,9 @@
 }
 
 @layer base {
+  html, body {
+    overscroll-behavior-y: none;
+  }
   body {
     @apply font-sans bg-cream text-espresso antialiased;
     font-feature-settings: "ss01", "cv11";
