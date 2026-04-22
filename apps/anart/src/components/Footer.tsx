@@ -1,4 +1,4 @@
-import { MapPin, Instagram } from 'lucide-react';
+import { MapPin, Phone, Instagram } from 'lucide-react';
 
 type Props = { t: (k: string) => string };
 
@@ -21,6 +21,10 @@ export default function Footer({ t }: Props) {
               <MapPin size={14} className="mt-0.5 shrink-0 text-gold-soft" />
               Peperstraat 14d, 5171 EC Kaatsheuvel
             </p>
+            <a href="tel:+31633890157" className="flex items-center gap-2 hover:text-cream">
+              <Phone size={14} className="shrink-0 text-gold-soft" />
+              06 338 90 157
+            </a>
           </div>
 
           <div className="space-y-2 text-sm">
