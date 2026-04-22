@@ -6,6 +6,8 @@ type Props = { t: (k: string) => string };
 const images: { src: string; alt: string; cls: string }[] = [
   { src: '/resultaat-wenkbrauwen.webp',        alt: 'Before & after wenkbrauw behandeling',   cls: 'aspect-square' },
   { src: '/resultaat-oksels.webp',             alt: 'Before & after suikerontharing oksels',  cls: 'aspect-square' },
+  { src: '/resultaat-bovenlip.webp',           alt: 'Before & after bovenlip suikerontharing', cls: 'aspect-square' },
+  { src: '/resultaat-oksel-2.webp',            alt: 'Before & after suikerontharing oksel',   cls: 'aspect-square' },
   { src: '/suikerpasta-closeup.webp',          alt: 'Suikerpasta — 100% natuurlijk',          cls: 'aspect-[3/4]' },
   { src: '/checklist-suikerontharing.webp',    alt: 'Voor de behandeling checklist',          cls: 'aspect-square' },
 ];
