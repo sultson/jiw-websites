@@ -33,7 +33,7 @@ export default function App() {
         <Gallery t={t} />
         <Reviews lang={lang} t={t} />
         <Visit lang={lang} t={t} />
-        <Faq t={t} />
+        <Faq t={t} onBook={openBooking} />
       </main>
 
       <Footer t={t} />

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
 
-type Props = { t: (k: string) => string };
+type Props = { t: (k: string) => string; onBook: () => void };
 
-export default function Faq({ t }: Props) {
+export default function Faq({ t, onBook }: Props) {
   const [open, setOpen] = useState<number | null>(0);
   const items = [1, 2, 3, 4, 5];
 
@@ -32,7 +32,27 @@ export default function Faq({ t }: Props) {
                   />
                 </button>
                 {isOpen && (
-                  <p className="pb-5 text-espresso/70 leading-relaxed">{t(`faq.a${i}`)}</p>
+                  i === 2 ? (
+                    <p className="pb-5 text-espresso/70 leading-relaxed">
+                      {t('faq.a2.p1')}
+                      <button
+                        onClick={onBook}
+                        className="underline underline-offset-2 decoration-gold/60 hover:text-espresso transition-colors"
+                      >
+                        {t('faq.a2.book')}
+                      </button>
+                      {t('faq.a2.p2')}
+                      <a
+                        href="tel:+31638502903"
+                        className="underline underline-offset-2 decoration-gold/60 hover:text-espresso transition-colors"
+                      >
+                        06 38502903
+                      </a>
+                      .
+                    </p>
+                  ) : (
+                    <p className="pb-5 text-espresso/70 leading-relaxed">{t(`faq.a${i}`)}</p>
+                  )
                 )}
               </div>
             );
