@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Lightbox from './Lightbox';
 
 type Props = { t: (k: string) => string };
@@ -26,10 +26,34 @@ const images: { src: string; alt: string; cls: string }[] = [
   { src: '/nagels_koraalrood_glitter_kort.webp',         alt: 'Koraalrood glitter korte nagels',        cls: 'aspect-square' },
   { src: '/nagels_klassieke_manicure_rood.webp',         alt: 'Klassieke rode manicure',                cls: 'aspect-square' },
   { src: '/nagels_manicure_behandeling_wit_gel.webp',    alt: 'Witte gel manicure behandeling',         cls: 'aspect-square' },
+  { src: '/nagels_bordeaux_chrome_amandelvorm.webp',     alt: 'Bordeaux chrome amandelvorm nagels',     cls: 'aspect-[4/3]' },
+  { src: '/nagels_roze_french_tips_vierkant.webp',       alt: 'Roze french tips vierkante nagels',      cls: 'aspect-[4/3]' },
+  { src: '/nagels_blauw_holografisch_shimmer.webp',      alt: 'Blauw holografisch shimmer nagels',      cls: 'aspect-[4/3]' },
+  { src: '/nagels_klassieke_french_manicure.webp',       alt: 'Klassieke french manicure',              cls: 'aspect-[4/3]' },
+  { src: '/nagels_nude_bloem_accent.webp',               alt: 'Nude nagels met bloem accent',           cls: 'aspect-[4/3]' },
+  { src: '/nagels_roze_parel_chrome.webp',               alt: 'Roze parel chrome nagels',               cls: 'aspect-[4/3]' },
+  { src: '/nagels_pastel_gespikkeld_paasei.webp',        alt: 'Pastel gespikkelde paasei nagels',       cls: 'aspect-[4/3]' },
+  { src: '/nagels_neon_roze_french_tips.webp',           alt: 'Neon roze french tips',                  cls: 'aspect-[4/3]' },
+  { src: '/nagels_confetti_glitter_closeup.webp',        alt: 'Confetti glitter closeup',               cls: 'aspect-[4/3]' },
 ];
 
 export default function Gallery({ t }: Props) {
   const [idx, setIdx] = useState<number | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      },
+      { threshold: 0.25 },
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   if (images.length === 0) {
     return (
@@ -50,6 +74,23 @@ export default function Gallery({ t }: Props) {
           <span className="kicker">{t('gallery.kicker')}</span>
           <h2 className="mt-3 font-serif text-4xl md:text-5xl">{t('gallery.title')}</h2>
           <p className="mt-3 text-sm text-espresso/60">{t('gallery.sub')}</p>
+        </div>
+
+        <div className="mb-6 md:mb-8 max-w-3xl mx-auto">
+          <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-espresso/5 shadow-[0_20px_60px_-30px_rgba(30,26,24,0.4)]">
+            <video
+              ref={videoRef}
+              className="w-full h-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            >
+              <source src="/nagels_holografisch_boomerang.webm" type="video/webm" />
+              <source src="/nagels_holografisch_boomerang.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 auto-rows-auto">
