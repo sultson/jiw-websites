@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { Check, ArrowRight } from 'lucide-react';
 
 type Props = { t: (k: string) => string; onBook: () => void };
@@ -5,6 +6,22 @@ type Props = { t: (k: string) => string; onBook: () => void };
 const benefitKeys = ['b1', 'b2', 'b3', 'b4', 'b5', 'b6'] as const;
 
 export default function Kobido({ t, onBook }: Props) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      },
+      { threshold: 0.25 },
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="kobido" className="py-20 md:py-28 bg-espresso text-cream overflow-hidden">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
@@ -49,6 +66,7 @@ export default function Kobido({ t, onBook }: Props) {
           <div className="relative">
             <div className="rounded-2xl overflow-hidden aspect-square bg-espresso/40">
               <video
+                ref={videoRef}
                 className="w-full h-full object-cover"
                 poster="/kobido_poster.webp"
                 autoPlay

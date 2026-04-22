@@ -20,6 +20,9 @@
 }
 
 @layer base {
+  html {
+    background-color: var(--color-espresso);
+  }
   body {
     @apply font-sans bg-cream text-espresso antialiased;
   }

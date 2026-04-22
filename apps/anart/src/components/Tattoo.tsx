@@ -8,8 +8,7 @@ const tattooImages = [
   { src: '/tattoo_feniks_waterverf_kleurrijk.webp',        alt: 'Feniks waterverf tattoo, kleurrijk' },
   { src: '/tattoo_kleurrijke_tulpen_waterverf.webp',       alt: 'Kleurrijke tulpen waterverf tattoo' },
   { src: '/tattoo_biddende_handen_roos_zwart_grijs.webp',  alt: 'Biddende handen met roos, zwart-grijs' },
-  { src: '/tattoo_artist_linework_arm.webp',               alt: 'Linework tattoo op arm' },
-  { src: '/tattoo_artist_schouder_conventie.webp',         alt: 'Tattoo op schouder' },
+{ src: '/tattoo_artist_schouder_conventie.webp',         alt: 'Tattoo op schouder' },
 ];
 
 export default function Tattoo({ t }: Props) {

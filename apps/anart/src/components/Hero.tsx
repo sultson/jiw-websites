@@ -37,6 +37,8 @@ export default function Hero({ t, onBook }: Props) {
           <div className="mt-10 flex items-center gap-5 text-cream/80 text-xs tracking-widest uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
             <span>5 ★ · Treatwell</span>
             <span className="h-px w-8 bg-cream/30" />
+            <span>5 ★ · Google</span>
+            <span className="h-px w-8 bg-cream/30" />
             <span>Kaatsheuvel</span>
           </div>
         </div>
