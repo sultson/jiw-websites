@@ -24,8 +24,6 @@ const images: { src: string; alt: string; cls: string }[] = [
   { src: '/nagels_beige_gel_met_nail_art.webp',          alt: 'Beige gel met nail art details',         cls: 'aspect-square' },
   { src: '/wimperextensie_vergelijking_light_2_3d.webp', alt: 'Vergelijking light vs 2-3D wimpers',     cls: 'aspect-[4/3]' },
   { src: '/nagels_koraalrood_glitter_kort.webp',         alt: 'Koraalrood glitter korte nagels',        cls: 'aspect-square' },
-  { src: '/nagels_klassieke_manicure_rood.webp',         alt: 'Klassieke rode manicure',                cls: 'aspect-square' },
-  { src: '/nagels_manicure_behandeling_wit_gel.webp',    alt: 'Witte gel manicure behandeling',         cls: 'aspect-square' },
   { src: '/nagels_bordeaux_chrome_amandelvorm.webp',     alt: 'Bordeaux chrome amandelvorm nagels',     cls: 'aspect-[4/3]' },
   { src: '/nagels_roze_french_tips_vierkant.webp',       alt: 'Roze french tips vierkante nagels',      cls: 'aspect-[4/3]' },
   { src: '/nagels_blauw_holografisch_shimmer.webp',      alt: 'Blauw holografisch shimmer nagels',      cls: 'aspect-[4/3]' },
