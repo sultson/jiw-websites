@@ -6,13 +6,16 @@ type Props = { t: (k: string) => string };
 type Img = { src: string; alt: string; cls: string };
 
 const ontharingImages: Img[] = [
-  { src: '/resultaat-oksels.webp',    alt: 'Before & after suikerontharing oksels',  cls: 'aspect-square' },
-  { src: '/resultaat-bovenlip.webp',  alt: 'Before & after bovenlip suikerontharing', cls: 'aspect-square' },
-  { src: '/resultaat-oksel-2.webp',   alt: 'Before & after suikerontharing oksel',   cls: 'aspect-square' },
+  { src: '/resultaat-oksels.webp',          alt: 'Before & after suikerontharing oksels',   cls: 'aspect-square' },
+  { src: '/resultaat-bovenlip.webp',        alt: 'Before & after bovenlip suikerontharing',  cls: 'aspect-square' },
+  { src: '/resultaat-oksel-2.webp',         alt: 'Before & after suikerontharing oksel',    cls: 'aspect-square' },
+  { src: '/resultaat-bikini.webp',          alt: 'Before & after suikerontharing bikini',   cls: 'aspect-square' },
 ];
 
 const wenkbrauwImages: Img[] = [
-  { src: '/resultaat-wenkbrauwen.webp', alt: 'Before & after wenkbrauw behandeling', cls: 'aspect-square' },
+  { src: '/resultaat-wenkbrauwen.webp',     alt: 'Before & after wenkbrauw behandeling',    cls: 'aspect-square' },
+  { src: '/resultaat-wenkbrauw-gezicht.webp', alt: 'Before & after wenkbrauwen gezicht',    cls: 'aspect-square' },
+  { src: '/resultaat-wenkbrauw-closeup.webp', alt: 'Before & after wenkbrauw close-up',     cls: 'aspect-square' },
 ];
 
 type Tab = 'ontharing' | 'wenkbrauw';
