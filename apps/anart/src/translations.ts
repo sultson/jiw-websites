@@ -22,9 +22,10 @@ export const translations: Record<Lang, Dict> = {
     'tattoo.s2':      'Linework & fine line',
     'tattoo.s3':      'Zwart-grijs realistisch',
     'tattoo.s4':      'Kleur tattoos',
-    'tattoo.callout':    'Bel ons om de mogelijkheden te bespreken',
-    'tattoo.calloutSub': 'Elk tattoo-ontwerp is maatwerk. Bel of stuur een berichtje via Instagram voor een kennismakingsgesprek.',
-    'tattoo.cta':     'Bel voor een afspraak',
+    'tattoo.callout':    'Neem contact op om de mogelijkheden te bespreken',
+    'tattoo.calloutSub': 'Elk tattoo-ontwerp is maatwerk. Bel, app of stuur een DM via Instagram voor een kennismakingsgesprek.',
+    'tattoo.ctaCall': 'Bellen',
+    'tattoo.ctaDm':   'DM op Instagram',
 
     'popular.kicker': 'Meest geboekt',
     'popular.title':  'Populaire behandelingen',
@@ -32,7 +33,7 @@ export const translations: Record<Lang, Dict> = {
 
     'hero.kicker':    'Kaatsheuvel',
     'hero.title':     'Stralend mooi, met zorg en aandacht.',
-    'hero.sub':       'Nagels, wimpers, wenkbrauwen en Kobido-massage — in een moderne, comfortabele studio. Boek online via Salonized.',
+    'hero.sub':       'Nagels, wimpers, wenkbrauwen, Kobido-massage en tattoo — in een moderne, comfortabele studio. Boek online via Salonized.',
     'hero.ctaBook':   'Boek nu',
     'hero.ctaTreat':  'Bekijk op Treatwell',
 
@@ -47,7 +48,7 @@ export const translations: Record<Lang, Dict> = {
 
     'about.kicker':   'Over ons',
     'about.title':    'Zorg en comfort centraal.',
-    'about.body':     'AnArt Studio in Kaatsheuvel is een beautystudio waar zorg en comfort centraal staan. Anna van de Hout en haar team streven ernaar elke klant te laten stralen — met perfect verzorgde nagels, wimpers en wenkbrauwen. Modern, verzorgd en comfortabel — een fijne plek waar je je direct welkom voelt.',
+    'about.body':     'AnArt Studio in Kaatsheuvel is een beauty- en tattoostudio waar zorg en comfort centraal staan. Anna van de Hout en haar team streven ernaar elke klant te laten stralen — met perfect verzorgde nagels, wimpers, wenkbrauwen en prachtige tattoos. Modern, verzorgd en comfortabel — een fijne plek waar je je direct welkom voelt.',
     'about.owner':    'Anna van de Hout',
 
     'kobido.kicker':  'Bijzondere behandeling',
@@ -100,7 +101,7 @@ export const translations: Record<Lang, Dict> = {
 
     'booking.close':  'Sluiten',
 
-    'footer.tagline': 'Beautystudio in Kaatsheuvel — nagels, wimpers, wenkbrauwen & Kobido.',
+    'footer.tagline': 'Beauty- & tattoostudio in Kaatsheuvel — nagels, wimpers, wenkbrauwen, Kobido & tattoo.',
     'footer.rights':  '© AnArt Studio — Alle rechten voorbehouden.',
     'footer.follow':  'Volg ons',
   },
@@ -124,9 +125,10 @@ export const translations: Record<Lang, Dict> = {
     'tattoo.s2':      'Linework & fine line',
     'tattoo.s3':      'Black & grey realism',
     'tattoo.s4':      'Colour tattoos',
-    'tattoo.callout':    'Call us to discuss the possibilities',
-    'tattoo.calloutSub': 'Every tattoo design is custom made. Call or send a message on Instagram to plan a consultation.',
-    'tattoo.cta':     'Call for an appointment',
+    'tattoo.callout':    'Get in touch to discuss the possibilities',
+    'tattoo.calloutSub': 'Every tattoo design is custom made. Call, WhatsApp or DM us on Instagram to plan a consultation.',
+    'tattoo.ctaCall': 'Call',
+    'tattoo.ctaDm':   'DM on Instagram',
 
     'popular.kicker': 'Most booked',
     'popular.title':  'Popular treatments',
@@ -134,7 +136,7 @@ export const translations: Record<Lang, Dict> = {
 
     'hero.kicker':    'Kaatsheuvel',
     'hero.title':     'Radiant beauty, with care and attention.',
-    'hero.sub':       'Nails, lashes, brows and Kobido massage — in a modern, comfortable studio. Book online via Salonized.',
+    'hero.sub':       'Nails, lashes, brows, Kobido massage and tattoo — in a modern, comfortable studio. Book online via Salonized.',
     'hero.ctaBook':   'Book now',
     'hero.ctaTreat':  'View on Treatwell',
 
@@ -149,7 +151,7 @@ export const translations: Record<Lang, Dict> = {
 
     'about.kicker':   'About us',
     'about.title':    'Care and comfort at the heart of everything.',
-    'about.body':     'AnArt Studio in Kaatsheuvel is a beauty studio where care and comfort come first. Anna van de Hout and her team aim to make every client radiate — with perfectly groomed nails, lashes and brows. Modern, well-kept and comfortable — a place where you feel welcome from the moment you walk in.',
+    'about.body':     'AnArt Studio in Kaatsheuvel is a beauty and tattoo studio where care and comfort come first. Anna van de Hout and her team aim to make every client radiate — with perfectly groomed nails, lashes, brows and beautiful tattoos. Modern, well-kept and comfortable — a place where you feel welcome from the moment you walk in.',
     'about.owner':    'Anna van de Hout',
 
     'kobido.kicker':  'Signature treatment',
@@ -202,7 +204,7 @@ export const translations: Record<Lang, Dict> = {
 
     'booking.close':  'Close',
 
-    'footer.tagline': 'Beauty studio in Kaatsheuvel — nails, lashes, brows & Kobido.',
+    'footer.tagline': 'Beauty & tattoo studio in Kaatsheuvel — nails, lashes, brows, Kobido & tattoo.',
     'footer.rights':  '© AnArt Studio — All rights reserved.',
     'footer.follow':  'Follow us',
   },
@@ -226,9 +228,10 @@ export const translations: Record<Lang, Dict> = {
     'tattoo.s2':      'Linework & fine line',
     'tattoo.s3':      'Czarno-szary realizm',
     'tattoo.s4':      'Tatuaże kolorowe',
-    'tattoo.callout':    'Zadzwoń, aby omówić możliwości',
-    'tattoo.calloutSub': 'Każdy tatuaż jest wykonywany na zamówienie. Zadzwoń lub napisz na Instagramie, aby umówić konsultację.',
-    'tattoo.cta':     'Zadzwoń po wizytę',
+    'tattoo.callout':    'Skontaktuj się, aby omówić możliwości',
+    'tattoo.calloutSub': 'Każdy tatuaż jest wykonywany na zamówienie. Zadzwoń, napisz na WhatsApp lub wyślij DM na Instagramie.',
+    'tattoo.ctaCall': 'Zadzwoń',
+    'tattoo.ctaDm':   'DM na Instagramie',
 
     'popular.kicker': 'Najczęściej rezerwowane',
     'popular.title':  'Popularne zabiegi',
@@ -236,7 +239,7 @@ export const translations: Record<Lang, Dict> = {
 
     'hero.kicker':    'Kaatsheuvel',
     'hero.title':     'Piękno z troską i starannością.',
-    'hero.sub':       'Paznokcie, rzęsy, brwi i masaż Kobido — w nowoczesnym, komfortowym salonie. Rezerwuj online przez Salonized.',
+    'hero.sub':       'Paznokcie, rzęsy, brwi, masaż Kobido i tatuaż — w nowoczesnym, komfortowym salonie. Rezerwuj online przez Salonized.',
     'hero.ctaBook':   'Zarezerwuj',
     'hero.ctaTreat':  'Zobacz na Treatwell',
 
@@ -251,7 +254,7 @@ export const translations: Record<Lang, Dict> = {
 
     'about.kicker':   'O nas',
     'about.title':    'Troska i komfort na pierwszym miejscu.',
-    'about.body':     'AnArt Studio w Kaatsheuvel to salon beauty, w którym troska i komfort są najważniejsze. Anna van de Hout i jej zespół dążą do tego, aby każda klientka promieniała — dzięki pięknie zadbanym paznokciom, rzęsom i brwiom. Nowoczesne, zadbane i komfortowe — miejsce, w którym od razu czujesz się mile widziana.',
+    'about.body':     'AnArt Studio w Kaatsheuvel to salon beauty i studio tatuażu, w którym troska i komfort są najważniejsze. Anna van de Hout i jej zespół dążą do tego, aby każda klientka promieniała — dzięki pięknie zadbanym paznokciom, rzęsom, brwiom i wyjątkowym tatuażom. Nowoczesne, zadbane i komfortowe — miejsce, w którym od razu czujesz się mile widziana.',
     'about.owner':    'Anna van de Hout',
 
     'kobido.kicker':  'Wyjątkowy zabieg',
@@ -304,7 +307,7 @@ export const translations: Record<Lang, Dict> = {
 
     'booking.close':  'Zamknij',
 
-    'footer.tagline': 'Studio beauty w Kaatsheuvel — paznokcie, rzęsy, brwi i Kobido.',
+    'footer.tagline': 'Studio beauty & tatuażu w Kaatsheuvel — paznokcie, rzęsy, brwi, Kobido i tatuaże.',
     'footer.rights':  '© AnArt Studio — Wszelkie prawa zastrzeżone.',
     'footer.follow':  'Obserwuj nas',
   },
