@@ -4,12 +4,11 @@ import Lightbox from './Lightbox';
 type Props = { t: (k: string) => string };
 
 const images: { src: string; alt: string; cls: string }[] = [
-  /* Voeg foto's toe aan /public en zet de bestandsnamen hier in.
-     De eerste foto wordt groter weergegeven (col-span-2).
-     Voorbeeldformaat:
-     { src: '/resultaat-oksels.webp',    alt: 'Suikerontharing oksels',    cls: 'aspect-[3/4]' },
-     { src: '/resultaat-wenkbrauwen.webp', alt: 'Wenkbrauw behandeling',   cls: 'aspect-square' },
-  */
+  { src: '/resultaat-wenkbrauwen.webp',        alt: 'Before & after wenkbrauw behandeling',   cls: 'aspect-square' },
+  { src: '/resultaat-oksels.webp',             alt: 'Before & after suikerontharing oksels',  cls: 'aspect-square' },
+  { src: '/suikerpasta-closeup.webp',          alt: 'Suikerpasta — 100% natuurlijk',          cls: 'aspect-[3/4]' },
+  { src: '/suikeren-vs-harsen.webp',           alt: 'Suikeren vs harsen vergelijking',        cls: 'aspect-square' },
+  { src: '/checklist-suikerontharing.webp',    alt: 'Voor de behandeling checklist',          cls: 'aspect-square' },
 ];
 
 export default function Gallery({ t }: Props) {

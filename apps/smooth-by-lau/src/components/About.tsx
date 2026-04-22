@@ -46,8 +46,8 @@ export default function About({ t }: Props) {
             </div>
             <div className="hidden md:block absolute -bottom-8 -left-8 w-40 h-48 rounded-2xl overflow-hidden shadow-[0_20px_60px_-30px_rgba(44,26,16,0.4)] ring-4 ring-cream">
               <img
-                src="/salon-interieur.webp"
-                alt="Smooth By Lau salon"
+                src="/lau-certificaat.webp"
+                alt="Laura — ROYX PRO certificaat"
                 loading="lazy"
                 className="w-full h-full object-cover"
               />
