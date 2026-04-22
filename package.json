@@ -11,7 +11,8 @@
     "dev:my-kim-nails": "pnpm --filter @jiw/my-kim-nails dev",
     "dev:nail-it-rosmalen": "pnpm --filter @jiw/nail-it-rosmalen dev",
     "dev:anart": "pnpm --filter @jiw/anart dev",
-    "dev:claires-skincare": "pnpm --filter @jiw/claires-skincare dev"
+    "dev:claires-skincare": "pnpm --filter @jiw/claires-skincare dev",
+    "dev:smooth-by-lau": "pnpm --filter @jiw/smooth-by-lau dev"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
