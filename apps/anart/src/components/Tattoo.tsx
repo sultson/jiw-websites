@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Phone } from 'lucide-react';
+import { Phone, Instagram, MessageCircle } from 'lucide-react';
 import Lightbox from './Lightbox';
+
+const PHONE = '+31633890157';
 
 type Props = { t: (k: string) => string };
 
@@ -39,19 +41,37 @@ export default function Tattoo({ t }: Props) {
               ))}
             </ul>
 
-            {/* Bel-callout */}
+            {/* Callout */}
             <div className="mt-10 rounded-2xl border border-cream/15 p-5 bg-cream/5">
               <p className="font-serif text-lg text-cream">{t('tattoo.callout')}</p>
               <p className="mt-2 text-sm text-cream/60 leading-relaxed">{t('tattoo.calloutSub')}</p>
-              <a
-                href="https://www.instagram.com/annart.nl"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-2 border border-cream/25 text-cream px-5 py-2.5 rounded-full text-sm font-medium hover:bg-cream/10"
-              >
-                <Phone size={15} />
-                {t('tattoo.cta')}
-              </a>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <a
+                  href={`tel:${PHONE}`}
+                  className="inline-flex items-center gap-2 border border-cream/25 text-cream px-4 py-2.5 rounded-full text-sm font-medium hover:bg-cream/10"
+                >
+                  <Phone size={15} />
+                  {t('tattoo.ctaCall')}
+                </a>
+                <a
+                  href={`https://wa.me/${PHONE.replace('+', '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 border border-cream/25 text-cream px-4 py-2.5 rounded-full text-sm font-medium hover:bg-cream/10"
+                >
+                  <MessageCircle size={15} />
+                  WhatsApp
+                </a>
+                <a
+                  href="https://ig.me/m/annart.nl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 border border-cream/25 text-cream px-4 py-2.5 rounded-full text-sm font-medium hover:bg-cream/10"
+                >
+                  <Instagram size={15} />
+                  {t('tattoo.ctaDm')}
+                </a>
+              </div>
             </div>
           </div>
 
