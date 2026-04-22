@@ -57,6 +57,21 @@ export default function SugarWax({ t, onBook }: Props) {
           </div>
 
         </div>
+
+        <div className="mt-16 md:mt-20 max-w-2xl mx-auto">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-gold-soft mb-5 text-center">
+            {t('sugar.vs')}
+          </p>
+          <div className="rounded-2xl overflow-hidden shadow-[0_20px_60px_-20px_rgba(0,0,0,0.4)]">
+            <img
+              src="/suikeren-vs-harsen.webp"
+              alt="Suikeren vs harsen vergelijking"
+              className="w-full h-auto"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
       </div>
     </section>
   );
