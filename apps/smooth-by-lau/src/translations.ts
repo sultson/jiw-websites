@@ -54,9 +54,11 @@ export const translations: Record<Lang, Dict> = {
     'services.book':   'Boek',
     'services.min':    'min',
 
-    'gallery.kicker':  'Ons werk',
-    'gallery.title':   'Resultaten',
-    'gallery.sub':     'Tik op een foto voor een grotere weergave.',
+    'gallery.kicker':     'Ons werk',
+    'gallery.title':      'Resultaten',
+    'gallery.sub':        'Tik op een foto voor een grotere weergave.',
+    'gallery.ontharing':  'Ontharing',
+    'gallery.wenkbrauw':  'Wenkbrauwen',
 
     'reviews.kicker':  'Klanten vertellen',
     'reviews.title':   'Recensies',
@@ -145,9 +147,11 @@ export const translations: Record<Lang, Dict> = {
     'services.book':   'Book',
     'services.min':    'min',
 
-    'gallery.kicker':  'Our work',
-    'gallery.title':   'Results',
-    'gallery.sub':     'Tap an image to view larger.',
+    'gallery.kicker':     'Our work',
+    'gallery.title':      'Results',
+    'gallery.sub':        'Tap an image to view larger.',
+    'gallery.ontharing':  'Hair removal',
+    'gallery.wenkbrauw':  'Eyebrows',
 
     'reviews.kicker':  'What clients say',
     'reviews.title':   'Reviews',
