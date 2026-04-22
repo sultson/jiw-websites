@@ -25,11 +25,11 @@ export const translations: Record<Lang, Dict> = {
     'usp.welcome':     'Iedereen welkom',
     'usp.welcomeSub':  'Geen schaamte, just be you',
     'usp.salonized':   'Online boeken',
-    'usp.salonizedSub':'Via Salonized',
+    'usp.salonizedSub':'Makkelijk & direct',
 
     'about.kicker':    'Meet Lau',
     'about.title':     'Vertrouwen, comfort en jouw zelfvertrouwen.',
-    'about.body':      'Ik ben Laura, eigenaresse van Smooth By Lau in Waspik. Wat ooit begon als een passie voor suikerontharing is uitgegroeid tot een plek waar vrouwen en mannen zichzelf kunnen zijn — geen schaamte voor je lichaam, geen oordelen. Ik ben ROYX PRO gecertificeerd suikerexpert en werk met alleen de beste, 100% natuurlijke ingrediënten. Elke behandeling voer ik uit met persoonlijke aandacht, comfort en hygiëne als vanzelfsprekend.',
+    'about.body':      'Ik ben Laura, eigenaresse van Smooth By Lau in Waspik. Wat ooit begon als een passie voor suikerontharing is uitgegroeid tot een plek waar vrouwen en mannen zichzelf kunnen zijn — geen schaamte voor je lichaam, geen oordelen. Ik ben ROYX PRO gecertificeerd suikerexpert en werk met alleen de beste, 100% natuurlijke ingrediënten. Elke behandeling voer ik uit met persoonlijke aandacht, comfort en hygiëne als een vanzelfsprekendheid.',
     'about.owner':     'Laura — Smooth By Lau',
     'about.tag1':      'Iedereen welkom',
     'about.tag2':      'ROYX PRO expert',
@@ -50,7 +50,7 @@ export const translations: Record<Lang, Dict> = {
 
     'services.kicker': 'Prijslijst',
     'services.title':  'Behandelingen & tarieven',
-    'services.sub':    'Alle behandelingen worden uitgevoerd met 100% natuurlijke suikerpasta. Boek online via Salonized.',
+    'services.sub':    'Alle behandelingen worden uitgevoerd met 100% natuurlijke suikerpasta.',
     'services.book':   'Boek',
     'services.min':    'min',
 
@@ -70,20 +70,20 @@ export const translations: Record<Lang, Dict> = {
     'visit.email':     'E-mail',
     'visit.hours':     'Openingstijden',
     'visit.directions':'Route',
-    'visit.book':      'Online boeken via Salonized',
+    'visit.book':      'Online afspraak maken',
 
     'faq.kicker':      'Veelgestelde vragen',
     'faq.title':       'Goed om te weten',
     'faq.q1':          'Wat is suikerontharing precies?',
     'faq.a1':          'Suikerontharing is een 100% natuurlijke ontharing op basis van suiker, citroen en water. De suikerpasta is op lichaamstemperatuur, hecht alleen aan de haartjes (niet aan de huid) en verwijdert ze bij de wortel. Dat maakt het zachter én effectiever dan gewone wax.',
     'faq.q2':          'Hoe maak ik een afspraak?',
-    'faq.a2':          'Boek eenvoudig online via Salonized (de knop bovenaan de pagina). Je kunt ook bellen of appen op 06 38502903.',
+    'faq.a2':          'Klik op de "Boek afspraak" knop bovenaan de pagina. Je kunt ook bellen of appen op 06 38502903.',
     'faq.q3':          'Hoe lang blijft mijn huid glad?',
     'faq.a3':          'Gemiddeld 3 tot 6 weken, afhankelijk van je haargroei. Hoe vaker je suikert, hoe dunner de haren worden — en hoe langer het resultaat aanhoudt.',
     'faq.q4':          'Welke zones kunnen behandeld worden?',
     'faq.a4':          'Bijna alle lichaamszones: gezicht (kin, bovenlip, wangen, nek), oksels, benen, armen, bikini, Brazilian en rug. Ik doe ook wenkbrauwbehandelingen.',
     'faq.q5':          'Hoe annuleer ik een afspraak?',
-    'faq.a5':          'Via Salonized of stuur een berichtje. Annuleer bij voorkeur minimaal 24 uur van tevoren.',
+    'faq.a5':          'Stuur een berichtje of annuleer via de bevestigingsmail. Annuleer bij voorkeur minimaal 24 uur van tevoren.',
 
     'booking.close':   'Sluiten',
 
@@ -114,11 +114,11 @@ export const translations: Record<Lang, Dict> = {
     'usp.welcome':     'Everyone welcome',
     'usp.welcomeSub':  'No shame, just be you',
     'usp.salonized':   'Book online',
-    'usp.salonizedSub':'Via Salonized',
+    'usp.salonizedSub':'Easy & instant',
 
     'about.kicker':    'Meet Lau',
     'about.title':     'Trust, comfort and your confidence.',
-    'about.body':      "I'm Laura, owner of Smooth By Lau in Waspik. What started as a passion for sugar waxing has grown into a place where women and men can simply be themselves — no shame for your body, no judgement. I am a ROYX PRO certified sugar expert and work exclusively with 100% natural ingredients. Every treatment is carried out with personal attention, comfort and hygiene as standard.",
+    'about.body':      "I'm Laura, owner of Smooth By Lau in Waspik. What started as a passion for sugar waxing has grown into a place where women and men can simply be themselves — no shame for your body, no judgement. I am a ROYX PRO certified sugar expert and work exclusively with 100% natural ingredients. Every treatment is carried out with personal attention, comfort and hygiene as a matter of course.",
     'about.owner':     'Laura — Smooth By Lau',
     'about.tag1':      'Everyone welcome',
     'about.tag2':      'ROYX PRO expert',
@@ -139,7 +139,7 @@ export const translations: Record<Lang, Dict> = {
 
     'services.kicker': 'Price list',
     'services.title':  'Treatments & prices',
-    'services.sub':    'All treatments use 100% natural sugar paste. Book online via Salonized.',
+    'services.sub':    'All treatments use 100% natural sugar paste.',
     'services.book':   'Book',
     'services.min':    'min',
 
@@ -159,20 +159,20 @@ export const translations: Record<Lang, Dict> = {
     'visit.email':     'Email',
     'visit.hours':     'Opening hours',
     'visit.directions':'Get directions',
-    'visit.book':      'Book online via Salonized',
+    'visit.book':      'Book an appointment online',
 
     'faq.kicker':      'Frequently asked',
     'faq.title':       'Good to know',
     'faq.q1':          'What exactly is sugar waxing?',
     'faq.a1':          'Sugar waxing is a 100% natural hair removal method made from sugar, lemon and water. The sugar paste is at body temperature, adheres only to the hair (not the skin) and removes it at the root. This makes it gentler and more effective than regular wax.',
     'faq.q2':          'How do I book an appointment?',
-    'faq.a2':          'Book easily online via Salonized (button at the top of the page). You can also call or text 06 38502903.',
+    'faq.a2':          'Click the "Book now" button at the top of the page. You can also call or text 06 38502903.',
     'faq.q3':          'How long will my skin stay smooth?',
     'faq.a3':          'On average 3 to 6 weeks, depending on your hair growth. The more often you sugar wax, the thinner your hair becomes — and the longer the results last.',
     'faq.q4':          'Which areas can be treated?',
     'faq.a4':          'Almost all body areas: face (chin, upper lip, cheeks, neck), armpits, legs, arms, bikini, Brazilian and back. I also do eyebrow treatments.',
     'faq.q5':          'How do I cancel an appointment?',
-    'faq.a5':          'Via Salonized or send a message. Preferably at least 24 hours in advance.',
+    'faq.a5':          'Send a message or cancel via the confirmation email. Preferably at least 24 hours in advance.',
 
     'booking.close':   'Close',
 
