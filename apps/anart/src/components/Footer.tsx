@@ -33,6 +33,14 @@ export default function Footer({ t }: Props) {
             >
               <Instagram size={14} className="text-gold-soft" /> @annart.nl
             </a>
+            <a
+              href="https://www.instagram.com/martawel_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-cream"
+            >
+              <Instagram size={14} className="text-gold-soft" /> @martawel_
+            </a>
 <div className="pt-2 space-y-1 text-espresso/50 text-xs">
               <a href="#behandelingen" className="block hover:text-cream/70">{t('nav.services')}</a>
               <a href="#kobido"        className="block hover:text-cream/70">{t('nav.kobido')}</a>
