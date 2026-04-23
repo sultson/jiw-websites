@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #111827;
+  --color-graphite: #2F3742;
+  --color-paper: #F6F4EF;
+  --color-whitewash: #FFFDFC;
+  --color-navy: #14243B;
+  --color-navy-soft: #243958;
+  --color-roller: #F26722;
+  --color-roller-soft: #FFB15C;
+  --color-line: #D9D2C7;
+  --color-door: #23533F;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+    letter-spacing: 0;
+  }
+
+  ::selection {
+    background: var(--color-roller-soft);
+    color: var(--color-ink);
+  }
+
+  *:focus-visible {
+    outline: 3px solid var(--color-roller);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-roller px-5 py-3 text-sm font-bold text-white shadow-[0_14px_26px_-18px_rgba(242,103,34,0.95)] transition hover:bg-[#D95718];
+  }
+
+  .btn-dark {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-navy px-5 py-3 text-sm font-bold text-white transition hover:bg-navy-soft;
+  }
+
+  .btn-light {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-white/35 bg-white/10 px-5 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/20;
+  }
+
+  .btn-outline {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-navy/20 bg-whitewash px-5 py-3 text-sm font-bold text-navy transition hover:border-navy/45;
+  }
+
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-roller;
+  }
+
+  .section-pad {
+    @apply py-16 md:py-24;
+  }
+
+  .field {
+    @apply min-h-12 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-graphite/55 focus:border-roller focus:outline-none;
+  }
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.project-slide {
+  animation: project-slide 12s infinite;
+  opacity: 0;
+}
+
+.project-slide:first-child {
+  opacity: 1;
+}
+
+@keyframes project-slide {
+  0%,
+  28% {
+    opacity: 1;
+  }
+
+  33%,
+  95% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

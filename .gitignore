@@ -8,3 +8,4 @@ dist
 .turbo
 CLAUDE.local.md
 .local.test
+.local.research
