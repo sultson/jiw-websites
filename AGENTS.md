@@ -27,10 +27,14 @@ Each app also has its own `optimize-images` script using `sharp`.
 ## Conventions
 
 - **Package manager:** pnpm 10 (pinned via `packageManager` field). Never use npm/yarn — no per-app lockfiles.
-- **Native builds:** `pnpm.onlyBuiltDependencies` in root package.json allowlists `better-sqlite3`, `esbuild`, `protobufjs`, `sharp`. Add new native deps here, then `pnpm rebuild <dep>`.
+- **Native builds:** `pnpm.onlyBuiltDependencies` in root package.json allowlists `better-sqlite3`, `esbuild`, `protobufjs`, `sharp`, `workerd`. Add new native deps here, then `pnpm rebuild <dep>`.
 - **Duplicated components:** Nav, Hero, Gallery, Lightbox, Services, Footer, UspStrip, Faq, Reviews, LangToggle, About exist in both apps — candidates for `@jiw/shared-ui` extraction. `useLang` hook + translations pattern → `@jiw/i18n`.
 - **No root tsconfig yet.** Each app has its own `tsconfig.json`. Introduce `tsconfig.base.json` when extracting shared packages.
 - **Gitignore is root-only.** Don't reintroduce per-app `.gitignore`.
+
+## Cloudflare Workers
+
+New Cloudflare deployments should use Workers Static Assets with `wrangler.jsonc`, not Pages. Existing examples are `apps/smooth-by-lau/wrangler.jsonc` for a static site and `apps/rn-schilders/wrangler.jsonc` for a site with `/api/*` Worker routes. Build first with the app's Vite `build` script, validate with `pnpm --filter @jiw/<name> deploy:dry-run`, then deploy with `pnpm --filter @jiw/<name> deploy`. Use `pnpm deploy:workers:dry-run` and `pnpm deploy:workers` for all Worker-enabled apps; `pnpm deploy` is a pnpm built-in and will not run the root script unless called as `pnpm run deploy`. The Cloudflare account id currently used is `aec64586d4d04a644f4f9b8225d7ca28`, and local API credentials live in `.env` as `CLOUDFLARE_API_TOKEN`; never commit tokens or secrets. Wrangler does not auto-load the root `.env`, so export it first: `set -a && source .env && set +a` (or `export $(grep -v '^#' .env | xargs)`) before running any deploy command, otherwise wrangler fails with `Failed to fetch auth token`. For form handling, use `@jiw/cloudflare-forms` and the notes in `docs/cloudflare-forms.md` instead of creating one-off endpoints. RN Schilders stores private uploads in the shared R2 bucket `jiw-form-uploads-prod` under per-site prefixes and sends email via Cloudflare Email Service from `offerte@notify.rn-schilders.nl` to `info@rn-schilders.nl`. Smooth By Lau is deployed to the existing Worker `smooth-by-lau-waspik`, which serves `smoothbylau.nl`, `www.smoothbylau.nl`, and `smooth-by-lau-waspik.jouwidealewebsite.nl`. Wrangler may need `CLOUDFLARE_ACCOUNT_ID` exported for some commands because the account-scoped token can fail Wrangler's membership lookup.
 
 ## Adding a new client site
 
