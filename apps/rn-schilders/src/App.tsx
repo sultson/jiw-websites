@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import {
   ArrowRight,
   BadgeCheck,
@@ -6,8 +6,10 @@ import {
   Check,
   ChevronRight,
   Clock3,
+  FileText,
   Hammer,
   Home,
+  Loader2,
   Mail,
   MapPin,
   Menu,
@@ -27,15 +29,55 @@ import {
 const phoneDisplay = '06 45172726';
 const phoneHref = 'tel:+31645172726';
 const whatsappHref = 'https://wa.me/31645172726?text=Hallo%20RN%20Schilders%2C%20ik%20wil%20graag%20een%20gratis%20prijsindicatie%20aanvragen.';
-const email = 'info@rnschilders.nl';
+const email = 'info@rn-schilders.nl';
 const mapsHref = 'https://www.google.com/maps/search/?api=1&query=Kuipersweg+33+3449+JA+Woerden';
+const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || '';
+const attachmentAccept = '.jpg,.jpeg,.png,.webp,.heic,.heif,.pdf,image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf';
+const MAX_ATTACHMENTS = 5;
+const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024;
+const SUCCESS_AUTO_CLOSE_MS = 3200;
+
+function formatFileSize(bytes: number) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function isImageFile(file: File) {
+  return file.type.startsWith('image/') && !file.type.includes('heic') && !file.type.includes('heif');
+}
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (container: HTMLElement, options: TurnstileRenderOptions) => string;
+      remove: (widgetId: string) => void;
+      reset: (widgetId: string) => void;
+    };
+  }
+}
+
+type TurnstileRenderOptions = {
+  sitekey: string;
+  callback: (token: string) => void;
+  'expired-callback': () => void;
+  'error-callback': () => void;
+};
 
 type Service = {
   title: string;
   text: string;
   image: string;
+  width: number;
+  height: number;
   icon: typeof PaintRoller;
   bullets: string[];
+  detailTitle: string;
+  detailIntro: string;
+  detailSections: Array<{
+    title: string;
+    items: string[];
+  }>;
 };
 
 type Review = {
@@ -64,43 +106,137 @@ const services: Service[] = [
     title: 'Schilderwerk',
     text: 'Binnen en buiten strak afgewerkt met duurzame verfproducten, van muren en plafonds tot kozijnen, deuren en boeidelen.',
     image: '/schilderwerk.webp',
+    width: 1300,
+    height: 867,
     icon: PaintRoller,
     bullets: ['Binnen en buiten', 'Kozijnen en boeidelen', 'Onderhoudsplanning'],
+    detailTitle: 'Binnen- en buitenschilderwerk',
+    detailIntro:
+      'Schilderwerk bepaalt de uitstraling van uw woning of bedrijfspand, maar beschermt ook tegen vocht, UV en slijtage. RN Schilders werkt met grondige voorbereiding en hoogwaardige verfproducten voor een duurzaam eindresultaat.',
+    detailSections: [
+      {
+        title: 'Binnen',
+        items: ['Muren, plafonds, kozijnen, deuren en trappen', 'Schoonmaken, schuren, vullen en gronden', 'Kleuradvies en planning met minimale overlast'],
+      },
+      {
+        title: 'Buiten',
+        items: ['Inspectie van houtwerk en bestaande verflagen', 'Herstelwerk voordat er afgewerkt wordt', 'Bescherming tegen weer, vocht en zon'],
+      },
+    ],
   },
   {
     title: 'Kozijnen',
     text: 'Renovatie, plaatsing en herstel van houten en kunststof kozijnen, inclusief hang- en sluitwerk met PKVW-focus.',
     image: '/kozijnen-3.webp',
+    width: 1100,
+    height: 733,
     icon: Home,
     bullets: ['Hout en kunststof', 'Plaatsing en renovatie', 'PKVW hang- en sluitwerk'],
+    detailTitle: 'Houten en kunststof kozijnen',
+    detailIntro:
+      'RN Schilders helpt met levering, plaatsing, renovatie en onderhoud van kozijnen. De focus ligt op uitstraling, isolatie, veiligheid en een lange levensduur.',
+    detailSections: [
+      {
+        title: 'Houten kozijnen',
+        items: ['Warme, luxe uitstraling', 'Goed te herstellen en geschikt voor maatwerk', 'Sterke isolatie bij correcte plaatsing en onderhoud'],
+      },
+      {
+        title: 'Kunststof kozijnen',
+        items: ['Onderhoudsarm en kleurvast', 'Goede warmte- en geluidsisolatie', 'Weerbestendig en geschikt voor moderne renovaties'],
+      },
+      {
+        title: 'Veiligheid',
+        items: ['PKVW-gecertificeerd hang- en sluitwerk', 'Aandacht voor inbraakwering', 'Advies per woning of bedrijfspand'],
+      },
+    ],
   },
   {
     title: 'Spuitwerk',
     text: 'Egaal spuitwerk voor woningen, kantoren en bedrijfspanden wanneer tempo en een moderne afwerking belangrijk zijn.',
     image: '/spuitwerk.webp',
+    width: 1300,
+    height: 867,
     icon: Sparkles,
     bullets: ['Muren en plafonds', 'Kantoren en woningen', 'Glad eindresultaat'],
+    detailTitle: 'Professioneel spuitwerk',
+    detailIntro:
+      'Spuitwerk is een efficiënte techniek om wanden, plafonds en grote oppervlakken strak en egaal af te werken. Vooral bij grotere ruimtes geeft het een rustig en modern resultaat.',
+    detailSections: [
+      {
+        title: 'Toepassingen',
+        items: ['Woningen, nieuwbouw en renovaties', 'Kantoren, winkels en bedrijfspanden', 'Muren, plafonds en andere grote oppervlakken'],
+      },
+      {
+        title: 'Voorbereiding',
+        items: ['Reinigen en gladmaken van ondergronden', 'Herstellen van beschadigingen', 'Zorgvuldig afplakken van vloeren, ramen en deuren'],
+      },
+    ],
   },
   {
     title: 'Stucwerk',
     text: 'Gladde wanden en plafonds als sterke basis voor schilderwerk, renovatiestuc en reparaties in bestaande woningen.',
     image: '/stukadoor.webp',
+    width: 1100,
+    height: 762,
     icon: Ruler,
     bullets: ['Pleisterwerk', 'Nieuwbouw en renovatie', 'Reparaties'],
+    detailTitle: 'Strak stucwerk in Woerden',
+    detailIntro:
+      'Goed stucwerk is de basis voor een strak interieur. RN Schilders verzorgt pleisterwerk voor wanden en plafonds, inclusief voorbereiding en schadeherstel.',
+    detailSections: [
+      {
+        title: 'Werkzaamheden',
+        items: ['Wanden en plafonds glad afwerken', 'Ondergrond voorbereiden en beschadigingen herstellen', 'Geschikt voor renovatie en nieuwbouw'],
+      },
+      {
+        title: 'Combinatie',
+        items: ['Naadloos te combineren met schilderwerk', 'Ook geschikt als basis voor spuitwerk', 'Een vaste partij voor voorbereiding en afwerking'],
+      },
+    ],
   },
   {
     title: 'Houtrotherstel',
     text: 'Aangetast houtwerk duurzaam herstellen voordat vocht grotere schade veroorzaakt aan kozijnen, deuren of boeidelen.',
     image: '/houtrotherstel.webp',
+    width: 1200,
+    height: 675,
     icon: Wrench,
     bullets: ['Inspectie en herstel', 'Schuren en gronden', 'Bescherming op termijn'],
+    detailTitle: 'Houtrotherstel zonder onnodige vervanging',
+    detailIntro:
+      'Houtrot komt vaak voor bij kozijnen, deuren, boeidelen en ander buitenhout. Tijdig herstel voorkomt dat kleine vochtproblemen uitgroeien tot kostbare vervanging.',
+    detailSections: [
+      {
+        title: 'Aanpak',
+        items: ['Grondige inspectie van aangetast houtwerk', 'Beschadigd hout zorgvuldig verwijderen', 'Herstel met gespecialiseerde reparatieproducten'],
+      },
+      {
+        title: 'Afwerking',
+        items: ['Schuren, gronden en strak schilderen', 'Bescherming tegen vocht en temperatuurwisselingen', 'Preventief advies voor toekomstig onderhoud'],
+      },
+    ],
   },
   {
     title: 'Sloopwerk',
     text: 'Zorgvuldig voorbereid sloopwerk voor renovaties, zodat de ruimte schoon, veilig en klaar is voor de volgende stap.',
     image: '/sloopwerk.webp',
+    width: 1000,
+    height: 500,
     icon: Hammer,
     bullets: ['Voor renovatie', 'Veilig en netjes', 'Afvoer in overleg'],
+    detailTitle: 'Sloopwerk als voorbereiding op renovatie',
+    detailIntro:
+      'Sloopwerk is vaak de eerste fase van een verbouwing. RN Schilders verwijdert oude materialen veilig en zorgvuldig, zodat de ruimte klaar is voor herstel, stucwerk, schilderwerk of spuitwerk.',
+    detailSections: [
+      {
+        title: 'Voorbereiding',
+        items: ['Verwijderen van oude wanden, afwerkingen en plafondmaterialen', 'Werkruimte netjes en veilig houden', 'Materialen zorgvuldig loshalen en afvoeren in overleg'],
+      },
+      {
+        title: 'Aansluiting op afwerking',
+        items: ['Direct door naar herstelwerk', 'Stucwerk, schilderwerk en spuitwerk sluiten aan', 'Geschikt voor woningen en bedrijfspanden in de regio Woerden'],
+      },
+    ],
   },
 ];
 
@@ -137,13 +273,13 @@ function App() {
   const [quoteOpen, setQuoteOpen] = useState(false);
 
   return (
-    <div id="top" className="min-h-[100dvh] overflow-x-hidden bg-paper">
+    <div id="top" className="min-h-[100dvh] bg-paper">
       <Nav menuOpen={menuOpen} setMenuOpen={setMenuOpen} openQuote={() => setQuoteOpen(true)} />
-      <main>
+      <main className="pt-16 md:pt-20">
         <Hero openQuote={() => setQuoteOpen(true)} />
         <ProofStrip />
         <OwnerSection openQuote={() => setQuoteOpen(true)} />
-        <Services />
+        <Services openQuote={() => setQuoteOpen(true)} />
         <FeaturedWork openQuote={() => setQuoteOpen(true)} />
         <Reviews />
         <Process openQuote={() => setQuoteOpen(true)} />
@@ -175,10 +311,10 @@ function Nav({
   }, []);
 
   return (
-    <header className={`sticky top-0 z-50 transition ${scrolled ? 'bg-whitewash/95 shadow-sm backdrop-blur-md' : 'bg-whitewash/80 backdrop-blur-sm'}`}>
+    <header className={`fixed inset-x-0 top-0 z-50 transition ${scrolled ? 'bg-whitewash/95 shadow-sm backdrop-blur-md' : 'bg-whitewash/90 backdrop-blur-sm'}`}>
       <div className="shell flex h-16 items-center justify-between md:h-20">
         <a href="#top" className="flex min-w-0 items-center gap-3" aria-label="RN Schilders & Renovatie">
-          <img src="/logo.webp" alt="" className="h-10 w-10 rounded-md object-cover" />
+          <img src="/logo.webp" alt="" width={180} height={180} className="h-10 w-10 rounded-md object-cover" />
           <span className="min-w-0">
             <span className="block truncate font-display text-lg font-extrabold text-navy sm:text-xl">RN Schilders</span>
             <span className="block text-xs font-bold uppercase tracking-[0.12em] text-roller">Woerden</span>
@@ -250,25 +386,36 @@ function Hero({ openQuote }: { openQuote: () => void }) {
   return (
     <section className="relative min-h-[82dvh] overflow-hidden md:min-h-[calc(92dvh-5rem)]">
       <div className="absolute inset-0">
-        <img src="/workspace-hero.webp" alt="" className="h-full w-full object-cover" fetchPriority="high" />
+        <img
+          src="/workspace-hero.webp"
+          srcSet="/workspace-hero-mobile.webp 960w, /workspace-hero.webp 1800w"
+          sizes="100vw"
+          alt=""
+          width={1800}
+          height={1150}
+          className="hero-bg h-full w-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+        />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,36,59,0.94)_0%,rgba(20,36,59,0.78)_46%,rgba(20,36,59,0.28)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-paper to-transparent" />
       </div>
 
       <div className="shell relative flex min-h-[82dvh] items-center py-14 md:min-h-[calc(92dvh-5rem)] md:py-24">
         <div className="w-full max-w-3xl pb-12">
-          <p className="eyebrow max-w-full text-[10px] tracking-[0.14em] text-roller-soft sm:text-xs sm:tracking-[0.18em]">
+          <p className="hero-reveal hero-reveal-1 eyebrow max-w-full text-[10px] tracking-[0.14em] text-roller-soft sm:text-xs sm:tracking-[0.18em]">
             Schilder en renovatiebedrijf in Woerden
           </p>
-          <h1 className="mt-5 max-w-full text-[2.45rem] font-extrabold leading-[0.98] text-white sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="hero-reveal hero-reveal-2 mt-5 max-w-full text-[2.45rem] font-extrabold leading-[0.98] text-white sm:text-6xl md:text-7xl lg:text-8xl">
             <span className="block">RN Schilders</span>
             <span className="block">& Renovatie</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-white/88 sm:text-lg sm:leading-8 md:text-xl">
+          <p className="hero-reveal hero-reveal-3 mt-6 max-w-2xl text-base leading-7 text-white/88 sm:text-lg sm:leading-8 md:text-xl">
             Vakwerk dat zichtbaar blijft. Richard werkt zelf mee op de vloer, bewaakt de afwerking en regelt schilderwerk, kozijnen, stucwerk en renovatie vanuit één aanspreekpunt.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap">
+          <div className="hero-reveal hero-reveal-4 mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap">
             <button type="button" onClick={openQuote} className="btn-primary w-full md:w-auto">
               Gratis prijsindicatie
               <ArrowRight size={18} />
@@ -279,11 +426,11 @@ function Hero({ openQuote }: { openQuote: () => void }) {
             </a>
           </div>
 
-          <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 lg:grid-cols-4">
+          <div className="hero-reveal hero-reveal-5 mt-8 grid max-w-2xl grid-cols-2 gap-3 lg:grid-cols-4">
             {stats.map(([value, label]) => (
               <div key={label} className="min-w-0 rounded-md border border-white/15 bg-white/10 p-4 text-white backdrop-blur-sm">
                 <strong className="block font-display text-2xl font-extrabold">{value}</strong>
-                <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.1em] text-white/70 sm:text-xs">{label}</span>
+                <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.1em] text-white/85 sm:text-xs">{label}</span>
               </div>
             ))}
           </div>
@@ -323,11 +470,11 @@ function OwnerSection({ openQuote }: { openQuote: () => void }) {
     <section className="section-pad">
       <div className="shell grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div className="grid gap-4 sm:grid-cols-[0.72fr_1fr]">
-          <img src="/owner-richard.webp" alt="Richard van RN Schilders" className="aspect-[4/5] w-full rounded-lg object-cover sm:aspect-auto" />
+          <img src="/owner-richard.webp" alt="Richard van RN Schilders" width={300} height={300} className="aspect-[4/5] w-full rounded-lg object-cover sm:aspect-auto" loading="lazy" decoding="async" />
           <div className="grid gap-4">
-            <img src="/hoogwerker.webp" alt="RN Schilders aan het werk bij buitenschilderwerk" className="h-full min-h-52 rounded-lg object-cover" />
+            <img src="/hoogwerker.webp" alt="RN Schilders aan het werk bij buitenschilderwerk" width={810} height={540} className="h-full min-h-52 rounded-lg object-cover" loading="lazy" decoding="async" />
             <div className="rounded-lg bg-door p-5 text-white">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/65">Belofte</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/85">Belofte</p>
               <p className="mt-2 font-display text-2xl font-extrabold leading-tight">Strak werk, duidelijke afspraken en geen onnodige tussenpersonen.</p>
             </div>
           </div>
@@ -364,7 +511,9 @@ function OwnerSection({ openQuote }: { openQuote: () => void }) {
   );
 }
 
-function Services() {
+function Services({ openQuote }: { openQuote: () => void }) {
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+
   return (
     <section id="diensten" className="section-pad bg-whitewash">
       <div className="shell">
@@ -382,9 +531,22 @@ function Services() {
 
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => (
-            <article key={service.title} className="group overflow-hidden rounded-lg border border-line bg-white">
+            <button
+              key={service.title}
+              type="button"
+              onClick={() => setSelectedService(service)}
+              className="group overflow-hidden rounded-lg border border-line bg-white text-left transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-30px_rgba(20,36,59,0.65)] focus-visible:-translate-y-0.5"
+            >
               <div className="relative aspect-[16/10] overflow-hidden">
-                <img src={service.image} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]" loading="lazy" />
+                <img
+                  src={service.image}
+                  alt=""
+                  width={service.width}
+                  height={service.height}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div className="absolute left-4 top-4 rounded-md bg-navy p-3 text-white">
                   <service.icon size={22} />
                 </div>
@@ -400,12 +562,101 @@ function Services() {
                     </div>
                   ))}
                 </div>
+                <div className="mt-5 flex items-center gap-2 text-sm font-bold text-roller">
+                  Lees uitleg
+                  <ArrowRight size={16} />
+                </div>
               </div>
-            </article>
+            </button>
           ))}
         </div>
       </div>
+      <ServiceModal service={selectedService} onClose={() => setSelectedService(null)} openQuote={openQuote} />
     </section>
+  );
+}
+
+function ServiceModal({
+  service,
+  onClose,
+  openQuote,
+}: {
+  service: Service | null;
+  onClose: () => void;
+  openQuote: () => void;
+}) {
+  useEffect(() => {
+    if (!service) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [service, onClose]);
+
+  if (!service) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] overflow-y-auto bg-navy/70 p-4 backdrop-blur-sm md:p-6" role="dialog" aria-modal="true" aria-label={`${service.title} uitleg`}>
+      <div className="mx-auto my-4 max-w-4xl overflow-hidden rounded-lg bg-whitewash shadow-2xl md:my-10">
+        <div className="grid md:grid-cols-[0.85fr_1.15fr]">
+          <div className="relative min-h-64 bg-navy">
+            <img src={service.image} alt="" width={service.width} height={service.height} className="h-full w-full object-cover" />
+            <div className="absolute left-5 top-5 rounded-md bg-navy p-3 text-white">
+              <service.icon size={24} />
+            </div>
+          </div>
+          <div className="p-5 md:p-7">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="eyebrow">Onze diensten</p>
+                <h2 className="mt-2 font-display text-3xl font-extrabold leading-tight text-navy">{service.detailTitle}</h2>
+              </div>
+              <button type="button" onClick={onClose} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-line bg-white" aria-label="Sluiten">
+                <X size={22} />
+              </button>
+            </div>
+            <p className="mt-5 text-base leading-7 text-graphite">{service.detailIntro}</p>
+            <div className="mt-6 grid gap-5">
+              {service.detailSections.map((section) => (
+                <div key={section.title} className="rounded-md border border-line bg-white p-4">
+                  <h3 className="font-display text-xl font-extrabold text-navy">{section.title}</h3>
+                  <div className="mt-3 grid gap-2">
+                    {section.items.map((item) => (
+                      <div key={item} className="flex gap-2 text-sm leading-6 text-ink">
+                        <Check className="mt-1 shrink-0 text-roller" size={16} />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <button
+                type="button"
+                onClick={() => {
+                  onClose();
+                  openQuote();
+                }}
+                className="btn-primary"
+              >
+                Gratis prijsindicatie
+                <ArrowRight size={17} />
+              </button>
+              <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn-outline">
+                <MessageCircle size={17} />
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -419,7 +670,7 @@ function FeaturedWork({ openQuote }: { openQuote: () => void }) {
             <h2 className="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">
               Van versleten voordeur naar hoogglans visitekaartje.
             </h2>
-            <p className="mt-6 text-lg leading-8 text-white/78">
+            <p className="mt-6 text-lg leading-8 text-white/88">
               De sterkste verkoopkans zit in voor-en-na bewijs. Dit concept maakt projectverhalen groot en concreet, zodat bezoekers direct zien wat “strak vakwerk” betekent.
             </p>
 
@@ -445,8 +696,8 @@ function FeaturedWork({ openQuote }: { openQuote: () => void }) {
               ['/voordeur-na.webp', 'Na'],
             ].map(([src, label]) => (
               <figure key={label} className="overflow-hidden rounded-lg bg-white/8">
-                <img src={src} alt={`Voordeur ${label.toLowerCase()} behandeling`} className="aspect-[4/5] w-full object-cover" loading="lazy" />
-                <figcaption className="border-t border-white/10 px-4 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white/75">
+                <img src={src} alt={`Voordeur ${label.toLowerCase()} behandeling`} width={451} height={590} className="aspect-[4/5] w-full object-cover" loading="lazy" decoding="async" />
+                <figcaption className="border-t border-white/10 px-4 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white/85">
                   {label}
                 </figcaption>
               </figure>
@@ -457,11 +708,15 @@ function FeaturedWork({ openQuote }: { openQuote: () => void }) {
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           <ProjectSlideshow
             slides={['/interieur-slide-1.webp', '/interieur-slide-2.webp', '/interieur-slide-3.webp']}
+            imageWidth={720}
+            imageHeight={880}
             title="Interieur renovatie"
             text="Donkere luxe tint, strak afgewerkt en direct klaar voor gebruik."
           />
           <ProjectSlideshow
             slides={['/kantoor-slide-1.webp', '/kantoor-slide-2.webp', '/kantoor-slide-3.webp']}
+            imageWidth={720}
+            imageHeight={1072}
             title="Casco naar kantoor"
             text="Systeemwanden, isolatie, plafonds, stuc- en schilderwerk in één traject."
           />
@@ -471,7 +726,19 @@ function FeaturedWork({ openQuote }: { openQuote: () => void }) {
   );
 }
 
-function ProjectSlideshow({ slides, title, text }: { slides: string[]; title: string; text: string }) {
+function ProjectSlideshow({
+  slides,
+  imageWidth,
+  imageHeight,
+  title,
+  text,
+}: {
+  slides: string[];
+  imageWidth: number;
+  imageHeight: number;
+  title: string;
+  text: string;
+}) {
   return (
     <article className="grid overflow-hidden rounded-lg border border-white/10 bg-white/8 md:grid-cols-[0.72fr_1fr]">
       <div className="project-slideshow relative min-h-72 overflow-hidden bg-navy md:h-full">
@@ -480,15 +747,18 @@ function ProjectSlideshow({ slides, title, text }: { slides: string[]; title: st
             key={slide}
             src={slide}
             alt=""
+            width={imageWidth}
+            height={imageHeight}
             className="project-slide absolute inset-0 h-full w-full object-cover"
             style={{ animationDelay: `${index * 4}s` }}
             loading="lazy"
+            decoding="async"
           />
         ))}
       </div>
       <div className="p-6">
         <h3 className="font-display text-2xl font-extrabold">{title}</h3>
-        <p className="mt-3 leading-7 text-white/72">{text}</p>
+        <p className="mt-3 leading-7 text-white/88">{text}</p>
         <div className="mt-6 flex items-center gap-2 text-sm font-bold text-roller-soft">
           Bekijk projectaanpak
           <ArrowRight size={16} />
@@ -563,9 +833,9 @@ function Process({ openQuote }: { openQuote: () => void }) {
           </div>
 
           <div className="rounded-lg bg-navy p-6 text-white md:p-8">
-            <img src="/pkvw-logo.webp" alt="PKVW logo" className="h-14 w-auto rounded-md bg-white p-2" />
+            <img src="/pkvw-logo.webp" alt="PKVW logo" width={450} height={160} className="h-14 w-auto rounded-md bg-white p-2" />
             <h3 className="mt-8 font-display text-3xl font-extrabold leading-tight">Gratis offerte, snelle opname en duidelijke scope.</h3>
-            <p className="mt-4 leading-7 text-white/75">
+            <p className="mt-4 leading-7 text-white/88">
               De oude offertepagina had vooral contactgegevens. Deze versie geeft bezoekers direct een route: bellen, mailen of projectinformatie achterlaten.
             </p>
             <button type="button" onClick={openQuote} className="btn-primary mt-7 w-full sm:w-auto">
@@ -603,6 +873,8 @@ function Contact({ openQuote }: { openQuote: () => void }) {
             <iframe
               title="Kaart RN Schilders Woerden"
               src="https://www.google.com/maps?q=Kuipersweg%2033%203449%20JA%20Woerden&output=embed"
+              width="600"
+              height="420"
               className="h-full min-h-[420px] w-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -629,7 +901,7 @@ function ContactLine({
     <div className="flex gap-4 rounded-md border border-line bg-white p-4">
       <Icon className="mt-1 shrink-0 text-roller" size={21} />
       <div>
-        <p className="text-xs font-bold uppercase tracking-[0.14em] text-graphite/70">{label}</p>
+        <p className="text-xs font-bold uppercase tracking-[0.14em] text-graphite">{label}</p>
         <p className="mt-1 font-semibold text-navy">{value}</p>
       </div>
     </div>
@@ -643,13 +915,26 @@ function ContactLine({
   );
 }
 
+type FilePreview = { file: File; key: string; url: string | null };
+
 function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const serviceOptions = useMemo(() => services.map((service) => service.title), []);
+  const [previews, setPreviews] = useState<FilePreview[]>([]);
+  const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
+  const [attachmentNotice, setAttachmentNotice] = useState('');
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const isSubmitting = submitState === 'submitting';
+  const isSuccess = submitState === 'success';
+  const handleTurnstileToken = useCallback((token: string) => setTurnstileToken(token), []);
 
   useEffect(() => {
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
+      if (event.key === 'Escape' && !isSubmitting) onClose();
     };
     document.addEventListener('keydown', onKey);
     document.body.style.overflow = 'hidden';
@@ -657,7 +942,137 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = '';
     };
-  }, [open, onClose]);
+  }, [open, onClose, isSubmitting]);
+
+  const previewsRef = useRef<FilePreview[]>([]);
+  useEffect(() => {
+    previewsRef.current = previews;
+  }, [previews]);
+  useEffect(() => {
+    return () => {
+      for (const preview of previewsRef.current) {
+        if (preview.url) URL.revokeObjectURL(preview.url);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (open) return;
+    const t = setTimeout(() => {
+      setPreviews((prev) => {
+        for (const preview of prev) {
+          if (preview.url) URL.revokeObjectURL(preview.url);
+        }
+        return [];
+      });
+      setSubmitState('idle');
+      setSubmitMessage('');
+      setAttachmentNotice('');
+      setTurnstileToken('');
+      setTurnstileResetKey((value) => value + 1);
+      formRef.current?.reset();
+    }, 250);
+    return () => clearTimeout(t);
+  }, [open]);
+
+  useEffect(() => {
+    if (!isSuccess) return;
+    const t = setTimeout(onClose, SUCCESS_AUTO_CLOSE_MS);
+    return () => clearTimeout(t);
+  }, [isSuccess, onClose]);
+
+  const addFiles = (incoming: File[]) => {
+    setPreviews((prev) => {
+      const seen = new Set(prev.map((p) => p.key));
+      const next: FilePreview[] = [...prev];
+      let skippedDuplicate = 0;
+      let skippedSize = 0;
+      let skippedCap = 0;
+
+      for (const file of incoming) {
+        if (file.size === 0) continue;
+        const key = `${file.name}__${file.size}__${file.lastModified}`;
+        if (seen.has(key)) {
+          skippedDuplicate += 1;
+          continue;
+        }
+        if (file.size > MAX_ATTACHMENT_BYTES) {
+          skippedSize += 1;
+          continue;
+        }
+        if (next.length >= MAX_ATTACHMENTS) {
+          skippedCap += 1;
+          continue;
+        }
+        seen.add(key);
+        next.push({ file, key, url: isImageFile(file) ? URL.createObjectURL(file) : null });
+      }
+
+      const notices: string[] = [];
+      if (skippedCap > 0) notices.push(`Maximaal ${MAX_ATTACHMENTS} bestanden. ${skippedCap} bestand(en) overgeslagen.`);
+      if (skippedSize > 0) notices.push(`${skippedSize} bestand(en) groter dan 10 MB overgeslagen.`);
+      if (skippedDuplicate > 0) notices.push(`${skippedDuplicate} duplicaat overgeslagen.`);
+      setAttachmentNotice(notices.join(' '));
+
+      return next;
+    });
+  };
+
+  const removeFile = (key: string) => {
+    setPreviews((prev) => {
+      const target = prev.find((p) => p.key === key);
+      if (target?.url) URL.revokeObjectURL(target.url);
+      return prev.filter((p) => p.key !== key);
+    });
+    setAttachmentNotice('');
+  };
+
+  const submitQuote = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+
+    if (!turnstileSiteKey && !import.meta.env.DEV) {
+      setSubmitState('error');
+      setSubmitMessage('De spambeveiliging is nog niet ingesteld. Bel of mail RN Schilders direct.');
+      return;
+    }
+
+    if (turnstileSiteKey && !turnstileToken) {
+      setSubmitState('error');
+      setSubmitMessage('De spamcontrole is nog niet klaar. Probeer het formulier opnieuw te versturen.');
+      return;
+    }
+
+    setSubmitState('submitting');
+    setSubmitMessage('');
+
+    try {
+      const formData = new FormData(form);
+      formData.delete('files');
+      for (const preview of previews) {
+        formData.append('files', preview.file, preview.file.name);
+      }
+      if (turnstileToken) formData.set('cf-turnstile-response', turnstileToken);
+
+      const response = await fetch('/api/forms/offerte', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = (await response.json()) as { ok: boolean; message?: string };
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || 'De aanvraag kon niet worden verstuurd.');
+      }
+
+      setSubmitState('success');
+      setSubmitMessage('Bedankt. RN Schilders heeft uw aanvraag ontvangen en neemt zo snel mogelijk contact op.');
+    } catch (error) {
+      setSubmitState('error');
+      setSubmitMessage(error instanceof Error ? error.message : 'De aanvraag kon niet worden verstuurd. Bel of mail RN Schilders direct.');
+      setTurnstileToken('');
+      setTurnstileResetKey((value) => value + 1);
+    }
+  };
 
   if (!open) return null;
 
@@ -668,67 +1083,268 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
           <div>
             <p className="eyebrow">Offerte aanvragen</p>
             <h2 className="mt-2 font-display text-3xl font-extrabold text-navy">Vertel kort wat er moet gebeuren.</h2>
-            <p className="mt-2 text-sm leading-6 text-graphite">Voor het concept is dit formulier front-end only. In de live versie koppelen we dit aan e-mail of CRM.</p>
+            <p className="mt-2 text-sm leading-6 text-graphite">Stuur de belangrijkste projectinformatie en eventueel foto's mee. Richard ontvangt uw aanvraag direct per e-mail.</p>
           </div>
-          <button type="button" onClick={onClose} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-line bg-white" aria-label="Sluiten">
+          <button
+            type="button"
+            onClick={onClose}
+            disabled={isSubmitting}
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-line bg-white disabled:cursor-not-allowed disabled:opacity-40"
+            aria-label="Sluiten"
+          >
             <X size={22} />
           </button>
         </div>
 
-        <form
-          className="grid gap-5 p-5 md:grid-cols-2 md:p-7"
-          onSubmit={(event) => {
-            event.preventDefault();
-            onClose();
-          }}
-        >
-          <label className="grid gap-2 text-sm font-bold text-navy">
-            Naam
-            <input className="field" placeholder="Uw naam" autoComplete="name" />
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-navy">
-            Telefoonnummer
-            <input className="field" placeholder={phoneDisplay} autoComplete="tel" />
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-navy">
-            E-mailadres
-            <input className="field" type="email" placeholder={email} autoComplete="email" />
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-navy">
-            Dienst
-            <select className="field" defaultValue="">
-              <option value="" disabled>
-                Kies een dienst
-              </option>
-              {serviceOptions.map((option) => (
-                <option key={option}>{option}</option>
-              ))}
-              <option>Totaalrenovatie</option>
-            </select>
-          </label>
-          <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
-            Projectomschrijving
-            <textarea className="field min-h-32 resize-y" placeholder="Bijvoorbeeld: buitenschilderwerk kozijnen, houtrot bij voordeur, stucwerk woonkamer..." />
-          </label>
-          <label className="flex cursor-pointer items-center justify-between gap-4 rounded-md border border-dashed border-navy/25 bg-white p-4 text-sm font-bold text-navy md:col-span-2">
-            <span className="flex items-center gap-3">
-              <Upload size={20} className="text-roller" />
-              Foto’s meesturen
-            </span>
-            <span className="text-xs font-semibold uppercase tracking-[0.12em] text-graphite/65">Optioneel</span>
-            <input type="file" multiple className="sr-only" />
-          </label>
-          <div className="flex flex-col gap-3 md:col-span-2 md:flex-row md:items-center md:justify-between">
-            <p className="text-sm leading-6 text-graphite">Liever direct bellen? RN Schilders is bereikbaar via {phoneDisplay}.</p>
-            <button type="submit" className="btn-primary">
-              Verstuur aanvraag
-              <ArrowRight size={17} />
-            </button>
+        {isSuccess ? (
+          <div className="flex flex-col items-center gap-4 px-6 py-16 text-center md:px-10 md:py-20">
+            <div className="success-check flex h-20 w-20 items-center justify-center rounded-full bg-door text-white shadow-[0_18px_30px_-18px_rgba(35,83,63,0.9)]">
+              <Check size={44} strokeWidth={3} />
+            </div>
+            <h3 className="font-display text-2xl font-extrabold text-navy md:text-3xl">Aanvraag verstuurd</h3>
+            <p className="max-w-md text-sm leading-6 text-graphite">
+              {submitMessage || 'Bedankt. RN Schilders heeft uw aanvraag ontvangen en neemt zo snel mogelijk contact op.'}
+            </p>
+            <div className="mt-2 h-1 w-48 overflow-hidden rounded-full bg-line">
+              <div className="success-bar h-full bg-door" />
+            </div>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-graphite">Dit venster sluit automatisch</p>
           </div>
-        </form>
+        ) : (
+          <div className="relative">
+            <form
+              ref={formRef}
+              className={`grid gap-5 p-5 md:grid-cols-2 md:p-7 ${isSubmitting ? 'pointer-events-none select-none opacity-60' : ''}`}
+              onSubmit={submitQuote}
+              aria-busy={isSubmitting}
+            >
+              <label className="grid gap-2 text-sm font-bold text-navy">
+                Naam
+                <input className="field" name="name" placeholder="Uw naam" autoComplete="name" required />
+              </label>
+              <label className="grid gap-2 text-sm font-bold text-navy">
+                Telefoonnummer
+                <input className="field" name="phone" placeholder={phoneDisplay} autoComplete="tel" required />
+              </label>
+              <label className="grid gap-2 text-sm font-bold text-navy">
+                E-mailadres
+                <input className="field" name="email" type="email" placeholder={email} autoComplete="email" required />
+              </label>
+              <label className="grid gap-2 text-sm font-bold text-navy">
+                Dienst <span className="text-xs font-semibold text-graphite">optioneel</span>
+                <select className="field" name="service" defaultValue="">
+                  <option value="">
+                    Nog niet zeker
+                  </option>
+                  {serviceOptions.map((option) => (
+                    <option key={option}>{option}</option>
+                  ))}
+                  <option>Totaalrenovatie</option>
+                </select>
+              </label>
+              <label className="grid gap-2 text-sm font-bold text-navy">
+                Postcode of plaats <span className="text-xs font-semibold text-graphite">optioneel</span>
+                <input className="field" name="postalCode" placeholder="3449 JA Woerden" autoComplete="postal-code" />
+              </label>
+              <label className="grid gap-2 text-sm font-bold text-navy">
+                Gewenste planning
+                <input className="field" name="preferredTiming" placeholder="Bijvoorbeeld: binnen 4 weken" />
+              </label>
+              <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
+                Adres
+                <input className="field" name="address" placeholder="Straat en huisnummer, optioneel" autoComplete="street-address" />
+              </label>
+              <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
+                Projectomschrijving
+                <textarea
+                  className="field min-h-32 resize-y"
+                  name="message"
+                  placeholder="Bijvoorbeeld: buitenschilderwerk kozijnen, houtrot bij voordeur, stucwerk woonkamer..."
+                  required
+                  minLength={10}
+                />
+              </label>
+
+              <div className="md:col-span-2">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept={attachmentAccept}
+                  multiple
+                  className="sr-only"
+                  onChange={(event) => {
+                    const picked = Array.from(event.currentTarget.files ?? []);
+                    if (picked.length) addFiles(picked);
+                    event.currentTarget.value = '';
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={previews.length >= MAX_ATTACHMENTS}
+                  className="flex w-full items-center justify-between gap-4 rounded-md border border-dashed border-navy/25 bg-white p-4 text-left text-sm font-bold text-navy transition hover:border-roller/60 hover:bg-roller/5 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  <span className="flex items-center gap-3">
+                    <Upload size={20} className="text-roller" />
+                    {previews.length === 0 ? "Foto's of PDF meesturen" : 'Meer bestanden toevoegen'}
+                  </span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.12em] text-graphite">
+                    {previews.length}/{MAX_ATTACHMENTS}
+                  </span>
+                </button>
+                {attachmentNotice && (
+                  <p className="mt-2 text-xs font-semibold text-roller" role="status">
+                    {attachmentNotice}
+                  </p>
+                )}
+                {previews.length > 0 && (
+                  <ul className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+                    {previews.map((preview) => (
+                      <li key={preview.key} className="group relative overflow-hidden rounded-md border border-line bg-white">
+                        <div className="flex aspect-square items-center justify-center bg-paper">
+                          {preview.url ? (
+                            <img src={preview.url} alt={preview.file.name} className="h-full w-full object-cover" />
+                          ) : (
+                            <div className="flex flex-col items-center justify-center gap-2 p-3 text-center">
+                              <FileText size={28} className="text-roller" />
+                              <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-graphite">
+                                {preview.file.name.split('.').pop()?.toUpperCase() || 'Bestand'}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                        <div className="border-t border-line px-2 py-1.5">
+                          <p className="truncate text-xs font-semibold text-navy" title={preview.file.name}>
+                            {preview.file.name}
+                          </p>
+                          <p className="text-[10px] text-graphite">{formatFileSize(preview.file.size)}</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeFile(preview.key)}
+                          aria-label={`${preview.file.name} verwijderen`}
+                          className="absolute right-1.5 top-1.5 flex h-7 w-7 items-center justify-center rounded-full bg-navy/85 text-white shadow-md transition hover:bg-navy md:opacity-0 md:focus:opacity-100 md:group-hover:opacity-100"
+                        >
+                          <X size={14} />
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+
+              <div className="md:col-span-2">
+                {turnstileSiteKey ? (
+                  <TurnstileWidget siteKey={turnstileSiteKey} resetKey={turnstileResetKey} onTokenChange={handleTurnstileToken} />
+                ) : (
+                  <input type="hidden" name="cf-turnstile-response" value="dev" />
+                )}
+              </div>
+              {submitMessage && submitState === 'error' && (
+                <div
+                  className="rounded-md border border-roller/25 bg-roller/10 p-4 text-sm font-semibold text-roller md:col-span-2"
+                  role="status"
+                >
+                  {submitMessage}
+                </div>
+              )}
+              <div className="flex flex-col gap-3 md:col-span-2 md:flex-row md:items-center md:justify-between">
+                <p className="text-sm leading-6 text-graphite">
+                  Liever direct bellen? RN Schilders is bereikbaar via{' '}
+                  <a href={phoneHref} className="font-bold text-navy underline decoration-roller/50 underline-offset-4">
+                    {phoneDisplay}
+                  </a>
+                  .
+                </p>
+                <button type="submit" className="btn-primary disabled:cursor-not-allowed disabled:opacity-60" disabled={isSubmitting}>
+                  Verstuur aanvraag
+                  <ArrowRight size={17} />
+                </button>
+              </div>
+            </form>
+            {isSubmitting && (
+              <div
+                className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-b-lg bg-whitewash/85 backdrop-blur-[2px]"
+                role="status"
+                aria-live="polite"
+              >
+                <Loader2 size={40} className="animate-spin text-roller" />
+                <p className="text-sm font-bold text-navy">Aanvraag wordt verstuurd…</p>
+                <p className="text-xs text-graphite">Even geduld, dit duurt maximaal een paar seconden.</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
+}
+
+function TurnstileWidget({
+  siteKey,
+  resetKey,
+  onTokenChange,
+}: {
+  siteKey: string;
+  resetKey: number;
+  onTokenChange: (token: string) => void;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+  const hasResetSignalMountedRef = useRef(false);
+
+  useEffect(() => {
+    let timer: number | undefined;
+    let cancelled = false;
+
+    const renderWidget = () => {
+      if (cancelled || widgetIdRef.current || !containerRef.current || !window.turnstile?.render) return false;
+
+      widgetIdRef.current = window.turnstile.render(containerRef.current, {
+        sitekey: siteKey,
+        callback: onTokenChange,
+        'expired-callback': () => onTokenChange(''),
+        'error-callback': () => onTokenChange(''),
+      });
+      return true;
+    };
+
+    if (!renderWidget()) {
+      timer = window.setInterval(() => {
+        if (renderWidget() && timer) window.clearInterval(timer);
+      }, 150);
+    }
+
+    return () => {
+      cancelled = true;
+      if (timer) window.clearInterval(timer);
+      if (widgetIdRef.current) {
+        try {
+          window.turnstile?.remove?.(widgetIdRef.current);
+        } catch {
+          // Turnstile may already have removed the iframe while the modal is unmounting.
+        }
+        widgetIdRef.current = null;
+      }
+      onTokenChange('');
+    };
+  }, [onTokenChange, siteKey]);
+
+  useEffect(() => {
+    if (!hasResetSignalMountedRef.current) {
+      hasResetSignalMountedRef.current = true;
+      return;
+    }
+    if (!widgetIdRef.current) return;
+    try {
+      window.turnstile?.reset?.(widgetIdRef.current);
+    } catch {
+      return;
+    }
+    onTokenChange('');
+  }, [onTokenChange, resetKey]);
+
+  return <div ref={containerRef} />;
 }
 
 function MobileCta({ openQuote }: { openQuote: () => void }) {
@@ -758,13 +1374,13 @@ function MobileCta({ openQuote }: { openQuote: () => void }) {
 
 function Footer() {
   return (
-    <footer className="bg-ink py-10 text-white">
+    <footer className="bg-ink pb-28 pt-10 text-white md:pb-10">
       <div className="shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="font-display text-2xl font-extrabold">RN Schilders & Renovatie</p>
-          <p className="mt-2 text-sm text-white/62">Vakwerk dat zichtbaar blijft in Woerden en omgeving.</p>
+          <p className="mt-2 text-sm text-white/85">Vakwerk dat zichtbaar blijft in Woerden en omgeving.</p>
         </div>
-        <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/78">
+        <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/88">
           <a href="https://www.facebook.com/profile.php?id=61588338225794" target="_blank" rel="noreferrer" className="hover:text-white">
             Facebook
           </a>

@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --color-ink: #111827;
   --color-graphite: #2F3742;
@@ -11,8 +10,8 @@
   --color-whitewash: #FFFDFC;
   --color-navy: #14243B;
   --color-navy-soft: #243958;
-  --color-roller: #F26722;
-  --color-roller-soft: #FFB15C;
+  --color-roller: #B93A0A;
+  --color-roller-soft: #FFBD7A;
   --color-line: #D9D2C7;
   --color-door: #23533F;
 }
@@ -20,11 +19,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   body {
     @apply bg-paper text-ink font-sans antialiased;
     font-feature-settings: "ss01", "cv11";
+    overflow-x: clip;
   }
 
   h1, h2, h3 {
@@ -49,7 +50,7 @@
   }
 
   .btn-primary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-roller px-5 py-3 text-sm font-bold text-white shadow-[0_14px_26px_-18px_rgba(242,103,34,0.95)] transition hover:bg-[#D95718];
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-roller px-5 py-3 text-sm font-bold text-white shadow-[0_14px_26px_-18px_rgba(185,58,10,0.95)] transition hover:bg-[#9F3007];
   }
 
   .btn-dark {
@@ -73,7 +74,7 @@
   }
 
   .field {
-    @apply min-h-12 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-graphite/55 focus:border-roller focus:outline-none;
+    @apply min-h-12 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-graphite/70 focus:border-roller focus:outline-none;
   }
 }
 
@@ -81,9 +82,64 @@
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
+.hero-bg {
+  animation: hero-bg-in 900ms ease-out both;
+  transform-origin: 65% 45%;
+}
+
+.hero-reveal {
+  animation: hero-reveal 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.hero-reveal-1 {
+  animation-delay: 80ms;
+}
+
+.hero-reveal-2 {
+  animation-delay: 160ms;
+}
+
+.hero-reveal-3 {
+  animation-delay: 240ms;
+}
+
+.hero-reveal-4 {
+  animation-delay: 330ms;
+}
+
+.hero-reveal-5 {
+  animation-delay: 430ms;
+}
+
 .project-slide {
   animation: project-slide 12s infinite;
   opacity: 0;
+}
+
+@keyframes hero-bg-in {
+  from {
+    filter: saturate(0.92) contrast(0.98);
+    opacity: 0.88;
+    transform: scale(1.035);
+  }
+
+  to {
+    filter: saturate(1) contrast(1);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .project-slide:first-child {
@@ -103,5 +159,54 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+.success-check {
+  animation: success-pop 520ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+.success-bar {
+  width: 0%;
+  animation: success-bar 3200ms linear forwards;
+}
+
+@keyframes success-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  60% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes success-bar {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg,
+  .hero-reveal,
+  .project-slide,
+  .success-check,
+  .success-bar {
+    animation: none;
+  }
+
+  .success-bar {
+    width: 100%;
   }
 }
