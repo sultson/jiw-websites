@@ -45,8 +45,8 @@ export default function SugarWax({ t, onBook }: Props) {
             </button>
           </div>
 
-          <div className="hidden md:block relative">
-            <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-espresso-soft shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
+          <div className="relative">
+            <div className="aspect-[5/4] md:aspect-[3/4] rounded-2xl overflow-hidden bg-espresso-soft shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
               <img
                 src="/suikerontharing.webp"
                 alt="Suikerontharing behandeling"

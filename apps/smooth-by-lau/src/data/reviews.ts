@@ -12,8 +12,8 @@ export const reviews: Review[] = [
     id: 1,
     name: 'Sophie V.',
     rating: 5,
-    nl: 'Bij Lau voel je je direct op je gemak. Ze neemt de tijd, legt alles rustig uit en het resultaat is heerlijk — bijna geen irritatie en mijn huid zo zacht!',
-    en: 'You immediately feel at ease with Lau. She takes her time, explains everything calmly and the result is wonderful — barely any irritation and my skin so soft!',
+    nl: 'Bij Lau voel je je direct op je gemak. Ze neemt de tijd, legt alles rustig uit en het resultaat is heerlijk. Bijna geen irritatie en mijn huid zo zacht!',
+    en: 'You immediately feel at ease with Lau. She takes her time, explains everything calmly and the result is wonderful. Barely any irritation and my skin so soft!',
     source: 'Google',
   },
   {
@@ -44,8 +44,8 @@ export const reviews: Review[] = [
     id: 5,
     name: 'Laura P.',
     rating: 5,
-    nl: 'Ik was nog nooit bij een ontharing geweest — Lau heeft me zo goed geholpen en alles helder uitgelegd. Je voelt je écht welkom, zonder oordeel.',
-    en: "I had never had hair removal before — Lau helped me so well and explained everything clearly. You truly feel welcome, without judgement.",
+    nl: 'Ik was nog nooit bij een ontharing geweest. Lau heeft me zo goed geholpen en alles helder uitgelegd. Je voelt je écht welkom, zonder oordeel.',
+    en: "I had never had hair removal before. Lau helped me so well and explained everything clearly. You truly feel welcome, without judgement.",
     source: 'Google',
   },
   {

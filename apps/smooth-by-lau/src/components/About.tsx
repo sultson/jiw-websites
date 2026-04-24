@@ -39,7 +39,7 @@ export default function About({ t }: Props) {
             <div className="rounded-2xl w-full aspect-[4/5] bg-blush flex items-center justify-center overflow-hidden shadow-[0_20px_60px_-30px_rgba(44,26,16,0.35)]">
               <img
                 src="/lau-portret.webp"
-                alt="Laura — Smooth By Lau"
+                alt="Laura van Smooth By Lau"
                 loading="lazy"
                 className="w-full h-full object-cover"
               />
@@ -47,7 +47,7 @@ export default function About({ t }: Props) {
             <div className="hidden md:block absolute -bottom-8 -left-8 w-40 h-48 rounded-2xl overflow-hidden shadow-[0_20px_60px_-30px_rgba(44,26,16,0.4)] ring-4 ring-cream">
               <img
                 src="/lau-certificaat.webp"
-                alt="Laura — ROYX PRO certificaat"
+                alt="ROYX PRO certificaat van Laura"
                 loading="lazy"
                 className="w-full h-full object-cover"
               />
