@@ -67,7 +67,7 @@ export default function Reviews({ lang, t }: Props) {
 
         <div className="mt-8 text-center">
           <a
-            href="https://share.google/eBFgPgUrzQ3M12ReK"
+            href="https://www.google.com/maps/place/Smooth+By+Lau/@51.674239,4.95817,843m/data=!3m1!1e3!4m8!3m7!1s0x47c6910f0ccc297f:0xcac4d246f0b7562b!8m2!3d51.674239!4d4.95817!9m1!1b1!16s%2Fg%2F11y6npt717"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline inline-flex"
