@@ -314,7 +314,7 @@ function Nav({
     <header className={`fixed inset-x-0 top-0 z-50 transition ${scrolled ? 'bg-whitewash/95 shadow-sm backdrop-blur-md' : 'bg-whitewash/90 backdrop-blur-sm'}`}>
       <div className="shell flex h-16 items-center justify-between md:h-20">
         <a href="#top" className="flex min-w-0 items-center gap-3" aria-label="RN Schilders & Renovatie">
-          <img src="/logo.webp" alt="" width={180} height={180} className="h-10 w-10 rounded-md object-cover" />
+          <img src="/logo-mark.webp" alt="" width={800} height={679} className="h-11 w-11 object-contain" />
           <span className="min-w-0">
             <span className="block truncate font-display text-lg font-extrabold text-navy sm:text-xl">RN Schilders</span>
             <span className="block text-xs font-bold uppercase tracking-[0.12em] text-roller">Woerden</span>
@@ -398,7 +398,7 @@ function Hero({ openQuote }: { openQuote: () => void }) {
           fetchPriority="high"
           decoding="async"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,36,59,0.94)_0%,rgba(20,36,59,0.78)_46%,rgba(20,36,59,0.28)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,30,61,0.94)_0%,rgba(13,30,61,0.78)_46%,rgba(13,30,61,0.28)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-paper to-transparent" />
       </div>
 
@@ -451,7 +451,7 @@ function ProofStrip() {
   return (
     <section className="relative -mt-8 z-10">
       <div className="shell">
-        <div className="grid overflow-hidden rounded-lg border border-line bg-whitewash shadow-[0_24px_70px_-46px_rgba(20,36,59,0.55)] md:grid-cols-4">
+        <div className="grid overflow-hidden rounded-lg border border-line bg-whitewash shadow-[0_24px_70px_-46px_rgba(13,30,61,0.55)] md:grid-cols-4">
           {items.map(([Icon, title, text]) => (
             <div key={title} className="border-b border-line p-5 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
               <Icon className="text-roller" size={24} />
@@ -470,12 +470,20 @@ function OwnerSection({ openQuote }: { openQuote: () => void }) {
     <section className="section-pad">
       <div className="shell grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div className="grid gap-4 sm:grid-cols-[0.72fr_1fr]">
-          <img src="/owner-richard.webp" alt="Richard van RN Schilders" width={300} height={300} className="aspect-[4/5] w-full rounded-lg object-cover sm:aspect-auto" loading="lazy" decoding="async" />
+          <img src="/logo-mark.webp" alt="RN Schilders & Renovatie logo" width={800} height={679} className="aspect-[4/5] w-full rounded-lg object-contain p-4 sm:aspect-auto" loading="lazy" decoding="async" />
           <div className="grid gap-4">
             <img src="/hoogwerker.webp" alt="RN Schilders aan het werk bij buitenschilderwerk" width={810} height={540} className="h-full min-h-52 rounded-lg object-cover" loading="lazy" decoding="async" />
-            <div className="rounded-lg bg-door p-5 text-white">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/85">Belofte</p>
-              <p className="mt-2 font-display text-2xl font-extrabold leading-tight">Strak werk, duidelijke afspraken en geen onnodige tussenpersonen.</p>
+            <div className="rounded-lg border border-line bg-whitewash p-5">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-graphite">Belofte</p>
+              <img
+                src="/slogan.webp"
+                alt="Vakwerk met passie."
+                width={500}
+                height={341}
+                className="mt-2 h-auto w-full max-w-xs"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </div>
@@ -535,7 +543,7 @@ function Services({ openQuote }: { openQuote: () => void }) {
               key={service.title}
               type="button"
               onClick={() => setSelectedService(service)}
-              className="group overflow-hidden rounded-lg border border-line bg-white text-left transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-30px_rgba(20,36,59,0.65)] focus-visible:-translate-y-0.5"
+              className="group overflow-hidden rounded-lg border border-line bg-white text-left transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-30px_rgba(13,30,61,0.65)] focus-visible:-translate-y-0.5"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <img
@@ -1360,7 +1368,7 @@ function MobileCta({ openQuote }: { openQuote: () => void }) {
   if (!visible) return null;
 
   return (
-    <div className="safe-bottom fixed inset-x-0 bottom-0 z-40 grid grid-cols-[0.88fr_1.12fr] gap-2 bg-whitewash/94 px-4 pt-3 shadow-[0_-12px_30px_-24px_rgba(20,36,59,0.8)] backdrop-blur-md md:hidden">
+    <div className="safe-bottom fixed inset-x-0 bottom-0 z-40 grid grid-cols-[0.88fr_1.12fr] gap-2 bg-whitewash/94 px-4 pt-3 shadow-[0_-12px_30px_-24px_rgba(13,30,61,0.8)] backdrop-blur-md md:hidden">
       <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn-outline px-3">
         <MessageCircle size={17} />
         WhatsApp
@@ -1376,9 +1384,12 @@ function Footer() {
   return (
     <footer className="bg-ink pb-28 pt-10 text-white md:pb-10">
       <div className="shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="font-display text-2xl font-extrabold">RN Schilders & Renovatie</p>
-          <p className="mt-2 text-sm text-white/85">Vakwerk dat zichtbaar blijft in Woerden en omgeving.</p>
+        <div className="flex items-center gap-4">
+          <img src="/logo-mono.webp" alt="" width={470} height={457} className="h-14 w-14 shrink-0 object-contain" loading="lazy" decoding="async" />
+          <div>
+            <p className="font-display text-2xl font-extrabold">RN Schilders & Renovatie</p>
+            <p className="mt-2 text-sm text-white/85">Vakwerk dat zichtbaar blijft in Woerden en omgeving.</p>
+          </div>
         </div>
         <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/88">
           <a href="https://www.facebook.com/profile.php?id=61588338225794" target="_blank" rel="noreferrer" className="hover:text-white">
