@@ -388,11 +388,11 @@ function Hero({ openQuote }: { openQuote: () => void }) {
       <div className="absolute inset-0">
         <img
           src="/workspace-hero.webp"
-          srcSet="/workspace-hero-mobile.webp 960w, /workspace-hero.webp 1800w"
+          srcSet="/workspace-hero-mobile.webp 720w, /workspace-hero.webp 1536w"
           sizes="100vw"
           alt=""
-          width={1800}
-          height={1150}
+          width={1536}
+          height={1024}
           className="hero-bg h-full w-full object-cover"
           loading="eager"
           fetchPriority="high"
