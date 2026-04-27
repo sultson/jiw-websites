@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sparkles, Leaf, Flower2, Scissors, ChevronDown } from 'lucide-react';
+import { Sparkles, Leaf, Flower2, ChevronDown } from 'lucide-react';
 import { serviceCategories, formatPrice } from '../data/services';
 import type { Lang } from '../translations';
 
@@ -9,7 +9,6 @@ const iconMap = {
   sparkles: Sparkles,
   leaf:     Leaf,
   flower:   Flower2,
-  scissors: Scissors,
 };
 
 export default function Services({ lang, t }: Props) {

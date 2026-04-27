@@ -33,7 +33,7 @@ export const translations: Record<Lang, Dict> = {
 
     'hero.kicker':    'Kaatsheuvel',
     'hero.title':     'Stralend mooi, met zorg en aandacht.',
-    'hero.sub':       'Nagels, wimpers, wenkbrauwen, Kobido-massage en tattoo — in een moderne, comfortabele studio. Boek online via Salonized.',
+    'hero.sub':       'Nagels, wimpers, wenkbrauwen, Kobido-massage en tattoo — in een moderne, comfortabele studio.',
     'hero.ctaBook':   'Boek nu',
     'hero.ctaTreat':  'Bekijk op Treatwell',
 
@@ -65,7 +65,7 @@ export const translations: Record<Lang, Dict> = {
 
     'services.kicker':'Prijslijst',
     'services.title': 'Behandelingen & tarieven',
-    'services.sub':   'Prijzen conform Treatwell. Boek eenvoudig online via Salonized.',
+    'services.sub':   'Prijzen conform Treatwell.',
     'services.book':  'Boek',
     'services.min':   'min',
 
@@ -136,7 +136,7 @@ export const translations: Record<Lang, Dict> = {
 
     'hero.kicker':    'Kaatsheuvel',
     'hero.title':     'Radiant beauty, with care and attention.',
-    'hero.sub':       'Nails, lashes, brows, Kobido massage and tattoo — in a modern, comfortable studio. Book online via Salonized.',
+    'hero.sub':       'Nails, lashes, brows, Kobido massage and tattoo — in a modern, comfortable studio.',
     'hero.ctaBook':   'Book now',
     'hero.ctaTreat':  'View on Treatwell',
 
@@ -168,7 +168,7 @@ export const translations: Record<Lang, Dict> = {
 
     'services.kicker':'Price list',
     'services.title': 'Treatments & prices',
-    'services.sub':   'Prices as listed on Treatwell. Book online via Salonized.',
+    'services.sub':   'Prices as listed on Treatwell.',
     'services.book':  'Book',
     'services.min':   'min',
 

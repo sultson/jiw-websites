@@ -25,7 +25,7 @@ async function processOne(file: string) {
 
   const before = (await stat(full)).size;
   const quality = pickQuality(file);
-  const isLogo = file === 'logo.png';
+  const isLogo = /(^|-)logo\.png$/i.test(file);
 
   const meta = await sharp(full).metadata();
   const longest = Math.max(meta.width ?? 0, meta.height ?? 0);
@@ -49,7 +49,7 @@ async function processOne(file: string) {
     await unlink(full);
     await rename(tmp, full);
     const after = (await stat(full)).size;
-    console.log(`  logo.png        ${await human(before)} → ${await human(after)}  (PNG)`);
+    console.log(`  ${file.padEnd(22)} ${await human(before)} → ${await human(after)}  (PNG)`);
     return;
   }
 

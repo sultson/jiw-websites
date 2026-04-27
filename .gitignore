@@ -7,3 +7,5 @@ dist
 .vite
 .turbo
 CLAUDE.local.md
+.local.test
+.local.research

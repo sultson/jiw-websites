@@ -1,12 +1,14 @@
-import { ArrowRight, Leaf } from 'lucide-react';
+import { ArrowRight, Leaf, Check, X } from 'lucide-react';
 
 type Props = { t: (k: string) => string; onBook: () => void };
+
+const compareRows = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
 
 export default function SugarWax({ t, onBook }: Props) {
   const benefits = [1, 2, 3, 4, 5] as const;
 
   return (
-    <section id="suiker" className="py-20 md:py-28 bg-espresso text-cream overflow-hidden">
+    <section id="suiker" className="py-20 md:py-28 bg-[#3A2418] text-cream overflow-hidden">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
 
@@ -43,8 +45,8 @@ export default function SugarWax({ t, onBook }: Props) {
             </button>
           </div>
 
-          <div className="hidden md:block relative">
-            <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-espresso-soft shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
+          <div className="relative">
+            <div className="aspect-[5/4] md:aspect-[3/4] rounded-2xl overflow-hidden bg-espresso-soft shadow-[0_30px_80px_-20px_rgba(0,0,0,0.5)]">
               <img
                 src="/suikerontharing.webp"
                 alt="Suikerontharing behandeling"
@@ -58,17 +60,39 @@ export default function SugarWax({ t, onBook }: Props) {
 
         </div>
 
-        <div className="mt-16 md:mt-20 max-w-2xl mx-auto">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-gold-soft mb-5 text-center">
+        <div className="mt-20 md:mt-24 max-w-4xl mx-auto">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-gold-soft mb-6 text-center">
             {t('sugar.vs')}
           </p>
-          <div className="rounded-2xl overflow-hidden shadow-[0_20px_60px_-20px_rgba(0,0,0,0.4)]">
-            <img
-              src="/suikeren-vs-harsen.webp"
-              alt="Suikeren vs harsen vergelijking"
-              className="w-full h-auto"
-              loading="lazy"
-            />
+
+          <div className="rounded-2xl border border-cream/10 bg-espresso-soft/40 overflow-hidden shadow-[0_20px_60px_-20px_rgba(0,0,0,0.4)]">
+            <div className="grid grid-cols-2 bg-espresso-soft/60">
+              <div className="py-4 px-4 md:px-6 text-center border-r border-cream/10">
+                <span className="font-serif text-lg md:text-2xl text-gold-soft">
+                  {t('sugar.vs.sugar')}
+                </span>
+              </div>
+              <div className="py-4 px-4 md:px-6 text-center">
+                <span className="font-serif text-lg md:text-2xl text-cream/70">
+                  {t('sugar.vs.wax')}
+                </span>
+              </div>
+            </div>
+
+            <ul className="divide-y divide-cream/10">
+              {compareRows.map(i => (
+                <li key={i} className="grid grid-cols-2">
+                  <div className="py-4 px-4 md:px-6 flex items-start gap-2.5 md:gap-3 text-sm md:text-[15px] leading-relaxed text-cream/85 border-r border-cream/10">
+                    <Check size={16} className="mt-0.5 shrink-0 text-gold-soft" />
+                    <span>{t(`sugar.vs.r${i}a`)}</span>
+                  </div>
+                  <div className="py-4 px-4 md:px-6 flex items-start gap-2.5 md:gap-3 text-sm md:text-[15px] leading-relaxed text-cream/55">
+                    <X size={16} className="mt-0.5 shrink-0 text-cream/35" />
+                    <span>{t(`sugar.vs.r${i}b`)}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 

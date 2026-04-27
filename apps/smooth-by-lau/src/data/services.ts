@@ -12,7 +12,7 @@ export type ServiceCategory = {
   id: string;
   titleNl: string;
   titleEn: string;
-  icon: 'sparkles' | 'leaf' | 'flower' | 'scissors';
+  icon: 'sparkles' | 'leaf' | 'flower';
   services: Service[];
 };
 
@@ -24,7 +24,7 @@ export const serviceCategories: ServiceCategory[] = [
   {
     id: 'gezicht',
     titleNl: 'Suikerontharing Gezicht',
-    titleEn: 'Sugar Waxing — Face',
+    titleEn: 'Sugar Waxing · Face',
     icon: 'sparkles',
     services: [
       {
@@ -63,8 +63,8 @@ export const serviceCategories: ServiceCategory[] = [
   },
   {
     id: 'lichaam-dames',
-    titleNl: 'Suikerontharing Lichaam — Dames',
-    titleEn: 'Sugar Waxing — Body (Women)',
+    titleNl: 'Suikerontharing Lichaam',
+    titleEn: 'Sugar Waxing · Body',
     icon: 'leaf',
     services: [
       {
@@ -119,8 +119,8 @@ export const serviceCategories: ServiceCategory[] = [
         id: 'brazilian',
         nameNl: 'Brazilian',
         nameEn: 'Brazilian',
-        descNl: 'Volledige intieme ontharing — met oog voor comfort en privacy.',
-        descEn: 'Full intimate hair removal — with care for comfort and privacy.',
+        descNl: 'Volledige intieme ontharing, met oog voor comfort en privacy.',
+        descEn: 'Full intimate hair removal, with care for comfort and privacy.',
         price: 28, durationMin: 30,
       },
       {
@@ -167,57 +167,9 @@ export const serviceCategories: ServiceCategory[] = [
         id: 'hybrid-brows',
         nameNl: 'Hybrid Brows',
         nameEn: 'Hybrid Brows',
-        descNl: 'De meest complete wenkbrauwbehandeling — stylen, verven en verzorgen in één.',
-        descEn: 'The most complete eyebrow treatment — shaping, tinting and care in one.',
+        descNl: 'De meest complete wenkbrauwbehandeling: stylen, verven en verzorgen in één.',
+        descEn: 'The most complete eyebrow treatment: shaping, tinting and care in one.',
         price: 32, durationMin: 45,
-      },
-    ],
-  },
-  {
-    id: 'heren',
-    titleNl: 'Suikerontharing Heren',
-    titleEn: 'Sugar Waxing — Men',
-    icon: 'scissors',
-    services: [
-      {
-        id: 'heren-oksels',
-        nameNl: 'Oksels',
-        nameEn: 'Armpits',
-        descNl: 'Suikerontharing van beide oksels.',
-        descEn: 'Sugar waxing of both armpits.',
-        price: 21, durationMin: 20,
-      },
-      {
-        id: 'heren-rug',
-        nameNl: 'Rug',
-        nameEn: 'Back',
-        descNl: 'Suikerontharing van de volledige rug.',
-        descEn: 'Sugar waxing of the full back.',
-        price: 28, durationMin: 35,
-      },
-      {
-        id: 'heren-borst',
-        nameNl: 'Borst',
-        nameEn: 'Chest',
-        descNl: 'Suikerontharing van de borst.',
-        descEn: 'Sugar waxing of the chest.',
-        price: 25, durationMin: 30,
-      },
-      {
-        id: 'heren-onderbenen',
-        nameNl: 'Onderbenen',
-        nameEn: 'Lower legs',
-        descNl: 'Suikerontharing van knie tot enkel.',
-        descEn: 'Sugar waxing from knee to ankle.',
-        price: 25, durationMin: 30,
-      },
-      {
-        id: 'heren-wenkbrauwen',
-        nameNl: 'Wenkbrauwen',
-        nameEn: 'Eyebrows',
-        descNl: 'Verzorgde wenkbrauwvorm voor heren.',
-        descEn: 'Neat eyebrow shaping for men.',
-        price: 15, durationMin: 20,
       },
     ],
   },

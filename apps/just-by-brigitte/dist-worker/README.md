@@ -1,0 +1,1 @@
+This folder contains the built output assets for the worker "just-by-brigitte" generated at 2026-04-27T09:55:34.417Z.

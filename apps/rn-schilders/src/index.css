@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --color-ink: #0D1E3D;
+  --color-graphite: #2F3742;
+  --color-paper: #F6F4EF;
+  --color-whitewash: #FFFDFC;
+  --color-navy: #0D1E3D;
+  --color-navy-soft: #1B3158;
+  --color-roller: #FF6A00;
+  --color-roller-soft: #FFB073;
+  --color-line: #D9D2C7;
+  --color-door: #23533F;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+    overflow-x: clip;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+    letter-spacing: 0;
+  }
+
+  ::selection {
+    background: var(--color-roller-soft);
+    color: var(--color-ink);
+  }
+
+  *:focus-visible {
+    outline: 3px solid var(--color-roller);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-roller px-5 py-3 text-sm font-bold text-white shadow-[0_14px_26px_-18px_rgba(255,106,0,0.95)] transition hover:bg-[#E55B00];
+  }
+
+  .btn-dark {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-navy px-5 py-3 text-sm font-bold text-white transition hover:bg-navy-soft;
+  }
+
+  .btn-light {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-white/35 bg-white/10 px-5 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/20;
+  }
+
+  .btn-outline {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-navy/20 bg-whitewash px-5 py-3 text-sm font-bold text-navy transition hover:border-navy/45;
+  }
+
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-roller;
+  }
+
+  .section-pad {
+    @apply py-16 md:py-24;
+  }
+
+  .field {
+    @apply min-h-12 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-graphite/70 focus:border-roller focus:outline-none;
+  }
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.hero-bg {
+  animation: hero-bg-in 900ms ease-out both;
+  transform-origin: 65% 45%;
+}
+
+.hero-reveal {
+  animation: hero-reveal 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.hero-reveal-1 {
+  animation-delay: 80ms;
+}
+
+.hero-reveal-2 {
+  animation-delay: 160ms;
+}
+
+.hero-reveal-3 {
+  animation-delay: 240ms;
+}
+
+.hero-reveal-4 {
+  animation-delay: 330ms;
+}
+
+.hero-reveal-5 {
+  animation-delay: 430ms;
+}
+
+.project-slide {
+  animation: project-slide 12s infinite;
+  opacity: 0;
+}
+
+@keyframes hero-bg-in {
+  from {
+    filter: saturate(0.92) contrast(0.98);
+    opacity: 0.88;
+    transform: scale(1.035);
+  }
+
+  to {
+    filter: saturate(1) contrast(1);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-slide:first-child {
+  opacity: 1;
+}
+
+@keyframes project-slide {
+  0%,
+  28% {
+    opacity: 1;
+  }
+
+  33%,
+  95% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.success-check {
+  animation: success-pop 520ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+.success-bar {
+  width: 0%;
+  animation: success-bar 3200ms linear forwards;
+}
+
+@keyframes success-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  60% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes success-bar {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg,
+  .hero-reveal,
+  .project-slide,
+  .success-check,
+  .success-bar {
+    animation: none;
+  }
+
+  .success-bar {
+    width: 100%;
+  }
+}

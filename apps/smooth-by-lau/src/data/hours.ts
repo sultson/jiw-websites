@@ -17,6 +17,6 @@ export const hours: DayHours[] = [
 ];
 
 export function formatHoursShort(d: DayHours): string {
-  if (!d.open || !d.close) return '—';
+  if (!d.open || !d.close) return '–';
   return `${d.open} – ${d.close}`;
 }

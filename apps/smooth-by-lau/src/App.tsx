@@ -4,6 +4,7 @@ import Nav from './components/Nav';
 import Hero from './components/Hero';
 import UspStrip from './components/UspStrip';
 import About from './components/About';
+import PromiseSection from './components/Promise';
 import SugarWax from './components/SugarWax';
 import Services from './components/Services';
 import Gallery from './components/Gallery';
@@ -28,6 +29,7 @@ export default function App() {
         <Hero t={t} onBook={openBooking} />
         <UspStrip t={t} />
         <About t={t} />
+        <PromiseSection t={t} />
         <SugarWax t={t} onBook={openBooking} />
         <Services lang={lang} t={t} />
         <Gallery t={t} />
