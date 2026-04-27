@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Site Build Prompt Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #0d0d0c;
+    --paper: #f4efe6;
+    --paper-2: #ebe4d6;
+    --rule: #1a1a18;
+    --accent: #c4452d;
+    --accent-soft: #e8b4a3;
+    --muted: #6b665d;
+    --ok: #2d6a4f;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(13, 13, 12, 0.07) 1px, transparent 0);
+    background-size: 18px 18px;
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 32px 28px 80px;
+  }
+
+  /* Header */
+  header {
+    border-bottom: 2px solid var(--rule);
+    padding-bottom: 18px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  header h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 800;
+    font-size: clamp(34px, 5vw, 54px);
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 0.95;
+  }
+
+  header h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .meta {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .meta strong { color: var(--ink); }
+
+  /* Layout */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  .panel {
+    background: var(--paper-2);
+    border: 1.5px solid var(--rule);
+    padding: 22px 22px 24px;
+    position: relative;
+  }
+
+  .panel-tag {
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: var(--paper);
+    padding: 0 10px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+  }
+
+  .panel-tag .num {
+    color: var(--accent);
+    margin-right: 6px;
+  }
+
+  /* Form */
+  label {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 700;
+    margin-bottom: 6px;
+    margin-top: 18px;
+  }
+
+  label:first-of-type { margin-top: 0; }
+
+  label .hint {
+    display: block;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.45;
+  }
+
+  input[type="text"], textarea {
+    width: 100%;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 10px 12px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  input[type="text"]:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: #fff;
+  }
+
+  textarea {
+    resize: vertical;
+    line-height: 1.55;
+  }
+
+  textarea#prompt-template {
+    min-height: 360px;
+    font-size: 12px;
+  }
+
+  textarea#client-notes {
+    min-height: 180px;
+  }
+
+  /* Slug live preview */
+  .slug-preview {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    min-height: 16px;
+  }
+
+  .slug-preview span {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .slug-preview.invalid span { color: #a8321b; }
+
+  /* Buttons */
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    padding: 12px 18px;
+    border: 1.5px solid var(--rule);
+    background: var(--ink);
+    color: var(--paper);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+  }
+
+  button:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 var(--rule);
+  }
+
+  button:active {
+    transform: translate(0, 0);
+    box-shadow: 0 0 0 var(--rule);
+  }
+
+  button.ghost {
+    background: transparent;
+    color: var(--ink);
+  }
+
+  button.ghost:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  button.copied {
+    background: var(--ok) !important;
+    border-color: var(--ok) !important;
+    color: var(--paper) !important;
+  }
+
+  /* Preview */
+  .preview-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+
+  .preview-head .stats {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+  }
+
+  .preview-box {
+    background: var(--ink);
+    color: #d8d3c7;
+    padding: 16px 18px;
+    font-size: 11.5px;
+    line-height: 1.6;
+    max-height: 480px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: 1px solid var(--rule);
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .preview-box::-webkit-scrollbar { width: 10px; }
+  .preview-box::-webkit-scrollbar-track { background: #1a1a18; }
+  .preview-box::-webkit-scrollbar-thumb { background: #3a3a36; }
+
+  .preview-box .ph {
+    background: var(--accent);
+    color: var(--paper);
+    padding: 0 4px;
+    font-weight: 700;
+  }
+
+  .preview-box .filled {
+    background: var(--accent-soft);
+    color: var(--ink);
+    padding: 0 4px;
+    font-weight: 500;
+  }
+
+  /* Example block */
+  details.example {
+    margin-top: 20px;
+    border: 1px dashed var(--rule);
+    padding: 14px 16px;
+    background: var(--paper);
+  }
+
+  details.example summary {
+    cursor: pointer;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    user-select: none;
+    list-style: none;
+  }
+
+  details.example summary::-webkit-details-marker { display: none; }
+
+  details.example summary::before {
+    content: "▸ ";
+    color: var(--accent);
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  details.example[open] summary::before { content: "▾ "; }
+
+  details.example .ex-grid {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 6px 14px;
+    font-size: 12px;
+  }
+
+  details.example .ex-grid dt {
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  details.example .ex-grid dd {
+    margin: 0;
+    color: var(--ink);
+  }
+
+  details.example .ex-actions {
+    margin-top: 14px;
+    display: flex;
+    gap: 8px;
+  }
+
+  details.example .ex-actions button {
+    font-size: 10px;
+    padding: 8px 12px;
+  }
+
+  /* Footer note */
+  .footnote {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footnote span strong { color: var(--ink); }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--ink);
+    color: var(--paper);
+    padding: 12px 22px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    border: 1.5px solid var(--rule);
+    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.4);
+    z-index: 100;
+    box-shadow: 4px 4px 0 var(--rule);
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .toast.ok { background: var(--ok); border-color: var(--ok); }
+
+  /* Language chips */
+  .lang-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .lang-row label.chk {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    padding: 6px 10px;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .lang-row label.chk:has(input:checked) {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .lang-row label.chk input {
+    margin: 0;
+    accent-color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Site build <em>prompt</em><br/>builder.</h1>
+    <div class="meta">
+      <div>internal tool · v1</div>
+      <div><strong id="status-dot">●</strong> autosave on</div>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <!-- LEFT: inputs -->
+    <section class="panel">
+      <div class="panel-tag"><span class="num">01</span> inputs</div>
+
+      <label for="prompt-template">
+        Prompt template
+        <span class="hint">Use placeholders like [client-name], [client-slug], [client-notes], [languages], [google-maps-url], [google-doc-url]. Edit freely — your last version is remembered.</span>
+      </label>
+      <textarea id="prompt-template" spellcheck="false"></textarea>
+
+      <label for="client-name">
+        Client name
+        <span class="hint">As it should appear in copy. E.g. "Brigitte Beauty" or "Salon Rosmalen".</span>
+      </label>
+      <input type="text" id="client-name" placeholder="Brigitte Beauty" autocomplete="off" />
+
+      <label for="client-slug">
+        Client slug
+        <span class="hint">Max 2–3 words, lowercase, kebab-case. E.g. <code>brigitte-beauty</code>, <code>nail-it-rosmalen</code>. Used for folder + subdomain.</span>
+      </label>
+      <input type="text" id="client-slug" placeholder="brigitte-beauty" autocomplete="off" />
+      <div class="slug-preview" id="slug-preview"></div>
+
+      <label for="client-notes">
+        Client notes
+        <span class="hint">
+          Most valuable: Google Maps URL, Instagram page URL, Facebook page URL, Google Doc URL.<br/>
+          Also useful: freeform notes about what client cares about, brand vibe they want, services to highlight or skip, tone preferences, opening hours quirks, names of staff, anything they mentioned over phone/email.
+        </span>
+      </label>
+      <textarea id="client-notes" placeholder="Google Maps: https://maps.google.com/...&#10;Instagram: https://instagram.com/...&#10;Facebook: https://facebook.com/...&#10;Google Doc: https://docs.google.com/...&#10;&#10;Notes: Owner Brigitte runs solo. Wants warm, inviting feel — not corporate. Stopped doing eyelash extensions last year, don't feature. Prices via DM only."></textarea>
+
+      <label>
+        Languages
+        <span class="hint">Languages to ship. NL is always the site default. Selection is injected into the prompt as <code>[languages]</code>. Add more by editing this file's <code>.lang-row</code>.</span>
+      </label>
+      <div class="lang-row" id="lang-row">
+        <label class="chk"><input type="checkbox" value="nl" checked /> NL</label>
+        <label class="chk"><input type="checkbox" value="en" checked /> EN</label>
+        <label class="chk"><input type="checkbox" value="de" /> DE</label>
+        <label class="chk"><input type="checkbox" value="fr" /> FR</label>
+        <label class="chk"><input type="checkbox" value="es" /> ES</label>
+        <label class="chk"><input type="checkbox" value="it" /> IT</label>
+        <label class="chk"><input type="checkbox" value="ar" /> AR</label>
+        <label class="chk"><input type="checkbox" value="tr" /> TR</label>
+        <label class="chk"><input type="checkbox" value="pl" /> PL</label>
+      </div>
+
+      <details class="example">
+        <summary>Show example</summary>
+        <div class="ex-grid">
+          <dt>client-name</dt><dd>Brigitte Beauty</dd>
+          <dt>client-slug</dt><dd>brigitte-beauty</dd>
+          <dt>client-notes</dt><dd>Google Maps: https://maps.app.goo.gl/xyz123<br/>Instagram: https://instagram.com/brigittebeauty<br/>Facebook: https://facebook.com/brigittebeauty.salon<br/>Google Doc with prijslijst + photos: https://docs.google.com/document/d/abc<br/><br/>Notes: Solo operator. Located in Tilburg. Focus on gel nails + manicures. Stopped doing pedicures. Wants warm/inviting tone, Dutch copy. Speaks of "mijn dames" — keep that warmth. Salonized for booking.</dd>
+        </div>
+        <div class="ex-actions">
+          <button type="button" class="ghost" id="load-example">Load example into form</button>
+        </div>
+      </details>
+    </section>
+
+    <!-- RIGHT: preview + copy -->
+    <section class="panel">
+      <div class="panel-tag"><span class="num">02</span> output</div>
+
+      <div class="preview-head">
+        <label style="margin-top:0;">Filled prompt preview</label>
+        <div class="stats" id="stats">0 chars · 0 placeholders left</div>
+      </div>
+
+      <div class="preview-box" id="preview"></div>
+
+      <div class="actions">
+        <button type="button" id="copy-btn">Copy prompt</button>
+        <button type="button" class="ghost" id="reset-template">Reset template</button>
+        <button type="button" class="ghost" id="clear-fields">Clear fields</button>
+      </div>
+
+      <div class="footnote">
+        <span><strong>Pink</strong> = unfilled placeholder · <strong>peach</strong> = substituted value</span>
+        <span id="last-saved">never saved</span>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="toast" id="toast">copied</div>
+
+<script>
+  // ---- Default prompt template (the original brief) ----
+  const DEFAULT_TEMPLATE = `Your assignment is to craft a professional website for our new client, [client-name].
+
+Break it down into the 8 steps as described.
+Set a timer for self to keep track of effort inputted — this task in total should take you ca 20 min. Parallellize where possible.
+This task is assumed to be fully autonomously completed; expected end result is a ready-to-use site on the subdomain.
+
+Notes of client:
+[client-notes]
+
+<approach>Two phases. Freeze Phase I (INFO.md complete, all media downloaded and labelled) BEFORE starting Phase II. Mid-build research drift is what causes paternalistic filtering and missed assets.</approach>
+
+<phase_1 name="Research — gather all possible info about [client-name]">
+
+  <starting_points>
+    - [google-maps-url]
+    - [google-doc-url]
+    - any other links the client mentions
+  </starting_points>
+
+  <tools>
+    Make good use of apify mcp w actors. Recommended useful usually:
+      - compass/Google-Maps-Reviews-Scraper
+      - apify/instagram-scraper
+      - apify/facebook-posts-scraper
+    Recommended batch size up to you — 20–40 last posts etc okay.
+    For Google Drive content (Docs / Slides / Sheets) use the Drive MCP, NOT WebFetch — WebFetch can't see embedded media on auth'd Drive URLs.
+  </tools>
+
+  <output_layout>
+    Organize under apps/[client-slug]/.local.research/..
+    - INFO.md — consolidation of all findings (identity, address, phone, socials, services, reviews verbatim, sources w/ Apify run IDs)
+    - media/ — all images and videos, named with 2–5 words describing what they contain (e.g. brigitte-portrait.png, salon-interior.png, nails-blue-gellak.png). Download via the cdn URLs Apify returns.
+  </output_layout>
+
+  <google_doc_handling priority="critical">
+    Plain-text export silently strips embedded images. ALWAYS:
+
+      1. Check fileSize in get_file_metadata. If it's >>50 KB but text content is tiny, embedded media is present — that mismatch is your alarm bell.
+      2. Use Drive MCP download_file_content with exportMimeType=application/vnd.openxmlformats-officedocument.wordprocessingml.document
+      3. Decode the base64 blob, unzip, extract word/media/* (or ppt/media/* for Slides, xl/media/* for Sheets).
+      4. View every extracted image (Read tool renders images) and label semantically: portrait | salon | work-sample | logo | skip-old-service. Keep all that fit current scope.
+  </google_doc_handling>
+
+  <reviews_handling priority="critical">
+    Don't pre-curate. With small N (typical local business has ≤20 Google reviews), include real reviews (max 6 min 3):
+      - Reviews with text → full quote cards, verbatim.
+      - Textless 5★ reviews → compact name + stars tiles. They still convey signal.
+      - Reviews referencing services the client has stopped → still include, frame nuance in surrounding copy ("clients who came for X and previously for Y"), don't delete.
+    The original Google Maps URL the client provided is already the canonical reviews link if it contains \`!9m1!1b1\` — use it verbatim for the "Read on Google" CTA. Do NOT construct \`search.google.com/local/reviews?placeid=...\` style URLs; that endpoint is dead.
+  </reviews_handling>
+
+  <booking_system_check>
+    Determine if client uses Salonized or Treatwell.
+    - If yes → Phase II integrates the correct widget (pre-existing pattern in apps/.. for other clients).
+    - If no → phone/WhatsApp-first CTAs.
+  </booking_system_check>
+
+  <phase_1_completion_check before_proceeding="true">
+    - [ ] INFO.md exists and consolidates everything: identity, address, phone (verified format), socials, current services, all reviews verbatim with dates, source run IDs.
+    - [ ] media/ contains every usable image found, semantically named.
+    - [ ] Booking system decision recorded.
+    - [ ] Count check: "scrapers yielded N reviews, M images, K posts → INFO.md references all of them." If yield > used, justify or go back.
+  </phase_1_completion_check>
+
+</phase_1>
+
+<phase_2 name="Build the site">
+
+  <reference>
+    Have a look at related concepts in the repo (e.g. for a nail salon: nail-it-rosmalen, my-kim-nails, sgv-nails). Pick the closest template; differentiate via colour palette so sister-studios feel distinct.
+  </reference>
+
+  <i18n>
+    Languages to ship: [languages]. Use the existing translations.ts + useLang + LangToggle pattern from sibling apps (see apps/nail-it-rosmalen).
+  </i18n>
+
+  <content_rules priority="critical">
+    No hallucinated or made-up info. All copy must trace back to Phase I. Real reviews, real services, real address, real phone.
+    If Phase I didn't yield prices (e.g. no prijslijst), list services without prices and route to phone — don't invent numbers.
+    Hero image: prefer salon interior or owner portrait over a closeup work shot. Place > product, when both are available.
+  </content_rules>
+
+  <review_pass>
+    Identify problems. Purge text of AIisms — em-dashes, "whatnots", parts that feel too slobbery or non-Dutch for Dutch lang.
+    Examples to catch:
+      - em-dashes (—) in user-facing copy. Replace with period, colon, or rephrase. Em-dashes inside script-font signature decorations are fine.
+      - "Read on Google" CTA must lead to the actual Google Maps reviews tab (URL with !9m1!1b1), not generic Maps.
+      - Anglicisms in Dutch ("ervaar de vrijheid", "we believe in", "discover", "embrace").
+  </review_pass>
+
+  <image_optimisation>
+    Convert to webp via the existing scripts/optimize-images.ts. Not too harshly — quality 82 default, 70 only for heavy gallery shots — so perf stays ok without sacrificing the look.
+    After optimize-images runs, double-check component image refs — the script renames .jpg/.png → .webp and unlinks originals.
+  </image_optimisation>
+
+  <deploy>
+    Cloudflare. Create new wrangler.jsonc for [client-slug].jouwidealewebsite.nl as custom_domain. Build, run ship:dry-run, then ship.
+    Source the root .env first: \`set -a && source .env && set +a\` (and export CLOUDFLARE_ACCOUNT_ID for some commands).
+  </deploy>
+
+  <pre_ship_verification priority="critical">
+    Before declaring done, verify EVERY external URL going on the live page with \`curl -I\`:
+      - tel: links (right country code, no spaces)
+      - wa.me/ links (E.164 number, no plus)
+      - Instagram and Facebook profile URLs
+      - "Read on Google" reviews CTA
+      - Google Maps embed iframe src
+    Prefer URLs that already appear in scrape results — the scraper saw a real URL, that's authoritative. URLs you construct from a pattern are guesses; verify them or don't ship them.
+  </pre_ship_verification>
+
+  <post_ship_verification>
+    curl the live subdomain + 2–3 newly uploaded asset URLs to confirm HTTP 200. Click-through every external CTA mentally: tel, WhatsApp, IG, FB, reviews, map.
+  </post_ship_verification>
+
+</phase_2>
+
+<the_8_steps>
+  1. Recon templates in apps/.. + start research timer.
+  2. Phase I: scrape Google Maps reviews (compass actor).
+  3. Phase I: scrape Instagram (apify/instagram-scraper).
+  4. Phase I: scrape Facebook (apify/facebook-posts-scraper).
+  5. Phase I: fetch Google Doc as docx, unzip media, consolidate INFO.md, label all images, run completion check.
+  6. Phase II: scaffold app from closest template, populate from INFO.md only.
+  7. Phase II: image optimise → AIism / em-dash purge → review pass with verification of all external URLs.
+  8. Phase II: wrangler config + ship:dry-run + ship + post-ship 200-check.
+</the_8_steps>
+
+<failure_modes_to_avoid>
+  - "Got something back, declare step done." Cross-check artifact metadata (file size, post count, follower count) against what you actually extracted. Mismatch = something's missing.
+  - Constructing a URL when a real one is already in scrape results.
+  - Filtering small datasets (≤20 items) on personal editorial judgment. Show everything; nuance via copy.
+  - Deploying without curling the live URL or any external CTAs.
+  - Letting time pressure compress the verification step. Re-shipping costs more than 30 seconds of \`curl -I\`.
+</failure_modes_to_avoid>`;
+
+  // ---- Storage keys ----
+  // Bump TEMPLATE_VERSION whenever DEFAULT_TEMPLATE changes — on load,
+  // mismatched/missing versions force the cached template to be replaced
+  // with the new default so all users get the update on next visit.
+  const TEMPLATE_VERSION = 3;
+  const KEYS = {
+    template: 'pb_template',
+    template_version: 'pb_template_version',
+    name: 'pb_client_name',
+    slug: 'pb_client_slug',
+    notes: 'pb_client_notes',
+    langs: 'pb_languages',
+    saved_at: 'pb_saved_at'
+  };
+
+  // ---- Element refs ----
+  const $template = document.getElementById('prompt-template');
+  const $name = document.getElementById('client-name');
+  const $slug = document.getElementById('client-slug');
+  const $notes = document.getElementById('client-notes');
+  const $langRow = document.getElementById('lang-row');
+  const $langCheckboxes = $langRow.querySelectorAll('input[type="checkbox"]');
+  const $preview = document.getElementById('preview');
+  const $stats = document.getElementById('stats');
+  const $slugPreview = document.getElementById('slug-preview');
+  const $copyBtn = document.getElementById('copy-btn');
+  const $resetBtn = document.getElementById('reset-template');
+  const $clearBtn = document.getElementById('clear-fields');
+  const $loadExample = document.getElementById('load-example');
+  const $toast = document.getElementById('toast');
+  const $lastSaved = document.getElementById('last-saved');
+
+  // ---- Languages ----
+  function getSelectedLangs() {
+    return Array.from($langCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+  }
+
+  function formatLanguages(codes) {
+    if (codes.length === 0) return '';
+    const sorted = [...codes].sort((a, b) => {
+      if (a === 'nl') return -1;
+      if (b === 'nl') return 1;
+      return a.localeCompare(b);
+    });
+    return sorted.map(c => c === 'nl' ? `${c.toUpperCase()} (default)` : c.toUpperCase()).join(', ');
+  }
+
+  // ---- Load from localStorage ----
+  function load() {
+    const storedVersion = localStorage.getItem(KEYS.template_version);
+    const storedTemplate = localStorage.getItem(KEYS.template);
+    if (storedVersion === String(TEMPLATE_VERSION) && storedTemplate !== null) {
+      $template.value = storedTemplate;
+    } else {
+      // Older or no version stamp — overwrite with the new default so every
+      // user picks up template changes (e.g. the i18n block) on next load.
+      $template.value = DEFAULT_TEMPLATE;
+      localStorage.setItem(KEYS.template, DEFAULT_TEMPLATE);
+      localStorage.setItem(KEYS.template_version, String(TEMPLATE_VERSION));
+    }
+    $name.value = localStorage.getItem(KEYS.name) ?? '';
+    $slug.value = localStorage.getItem(KEYS.slug) ?? '';
+    $notes.value = localStorage.getItem(KEYS.notes) ?? '';
+    const storedLangs = localStorage.getItem(KEYS.langs);
+    if (storedLangs) {
+      try {
+        const arr = JSON.parse(storedLangs);
+        if (Array.isArray(arr)) {
+          $langCheckboxes.forEach(cb => { cb.checked = arr.includes(cb.value); });
+        }
+      } catch {}
+    }
+    updateLastSaved();
+  }
+
+  function updateLastSaved() {
+    const ts = localStorage.getItem(KEYS.saved_at);
+    if (!ts) { $lastSaved.textContent = 'never saved'; return; }
+    const d = new Date(parseInt(ts, 10));
+    const now = new Date();
+    const diff = (now - d) / 1000;
+    let label;
+    if (diff < 5) label = 'saved just now';
+    else if (diff < 60) label = `saved ${Math.floor(diff)}s ago`;
+    else if (diff < 3600) label = `saved ${Math.floor(diff/60)}m ago`;
+    else label = `saved ${d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}`;
+    $lastSaved.textContent = label;
+  }
+
+  // ---- Save (debounced) ----
+  let saveTimer = null;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      localStorage.setItem(KEYS.template, $template.value);
+      localStorage.setItem(KEYS.template_version, String(TEMPLATE_VERSION));
+      localStorage.setItem(KEYS.name, $name.value);
+      localStorage.setItem(KEYS.slug, $slug.value);
+      localStorage.setItem(KEYS.notes, $notes.value);
+      localStorage.setItem(KEYS.langs, JSON.stringify(getSelectedLangs()));
+      localStorage.setItem(KEYS.saved_at, Date.now().toString());
+      updateLastSaved();
+    }, 250);
+  }
+
+  // ---- Slug validation ----
+  function validateSlug(slug) {
+    if (!slug) return { ok: null, msg: '' };
+    const wordCount = slug.split('-').filter(Boolean).length;
+    const validShape = /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug);
+    if (!validShape) return { ok: false, msg: 'Use lowercase letters/numbers + single hyphens only.' };
+    if (wordCount > 4) return { ok: false, msg: `${wordCount} words — keep it to 2–3.` };
+    return { ok: true, msg: `✓ valid · ${wordCount} word${wordCount>1?'s':''} · will be used as apps/${slug}/ and ${slug}.jouwidealewebsite.nl` };
+  }
+
+  function renderSlugPreview() {
+    const v = validateSlug($slug.value.trim());
+    if (v.ok === null) {
+      $slugPreview.innerHTML = '';
+      $slugPreview.classList.remove('invalid');
+    } else if (v.ok) {
+      $slugPreview.innerHTML = `<span>${v.msg}</span>`;
+      $slugPreview.classList.remove('invalid');
+    } else {
+      $slugPreview.innerHTML = `<span>⚠ ${v.msg}</span>`;
+      $slugPreview.classList.add('invalid');
+    }
+  }
+
+  // ---- Build filled prompt (plain string) ----
+  function buildFilledPrompt() {
+    let out = $template.value;
+    const name = $name.value.trim();
+    const slug = $slug.value.trim();
+    const notes = $notes.value.trim();
+    const langs = formatLanguages(getSelectedLangs());
+
+    if (name) out = out.replaceAll('[client-name]', name);
+    if (slug) out = out.replaceAll('[client-slug]', slug);
+    if (notes) out = out.replaceAll('[client-notes]', notes);
+    if (langs) out = out.replaceAll('[languages]', langs);
+    return out;
+  }
+
+  // ---- Build preview HTML (with highlighting) ----
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
+  }
+
+  function renderPreview() {
+    const tpl = $template.value;
+    const name = $name.value.trim();
+    const slug = $slug.value.trim();
+    const notes = $notes.value.trim();
+
+    // Substitute with sentinel markers so we can style filled vs unfilled
+    let working = tpl;
+    if (name) working = working.replaceAll('[client-name]', `\u0001FILLED\u0002${name}\u0003`);
+    if (slug) working = working.replaceAll('[client-slug]', `\u0001FILLED\u0002${slug}\u0003`);
+    if (notes) working = working.replaceAll('[client-notes]', `\u0001FILLED\u0002${notes}\u0003`);
+
+    const langs = formatLanguages(getSelectedLangs());
+    if (langs) working = working.replaceAll('[languages]', `FILLED${langs}`);
+
+    let html = escapeHtml(working);
+
+    // Filled markers → peach span
+    html = html.replace(/\u0001FILLED\u0002([\s\S]*?)\u0003/g, (_, v) =>
+      `<span class="filled">${v}</span>`);
+
+    // Remaining unfilled placeholders (any [foo-bar])
+    html = html.replace(/\[[a-z0-9][a-z0-9-]*\]/gi, m => `<span class="ph">${m}</span>`);
+
+    $preview.innerHTML = html;
+
+    // Stats
+    const filled = buildFilledPrompt();
+    const remaining = (filled.match(/\[[a-z0-9][a-z0-9-]*\]/gi) || []).length;
+    $stats.textContent = `${filled.length.toLocaleString()} chars · ${remaining} placeholder${remaining===1?'':'s'} left`;
+  }
+
+  // ---- Toast ----
+  function toast(msg, isOk = true) {
+    $toast.textContent = msg;
+    $toast.classList.toggle('ok', isOk);
+    $toast.classList.add('show');
+    clearTimeout($toast._t);
+    $toast._t = setTimeout(() => $toast.classList.remove('show'), 1800);
+  }
+
+  // ---- Copy ----
+  async function copyPrompt() {
+    const text = buildFilledPrompt();
+    try {
+      await navigator.clipboard.writeText(text);
+      $copyBtn.classList.add('copied');
+      $copyBtn.textContent = 'Copied ✓';
+      toast(`copied ${text.length.toLocaleString()} chars`);
+      setTimeout(() => {
+        $copyBtn.classList.remove('copied');
+        $copyBtn.textContent = 'Copy prompt';
+      }, 1800);
+    } catch (e) {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); toast('copied (fallback)'); }
+      catch { toast('copy failed', false); }
+      document.body.removeChild(ta);
+    }
+  }
+
+  // ---- Wire up events ----
+  [$template, $name, $slug, $notes].forEach(el => {
+    el.addEventListener('input', () => {
+      renderPreview();
+      if (el === $slug) renderSlugPreview();
+      save();
+    });
+  });
+
+  $langCheckboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      renderPreview();
+      save();
+    });
+  });
+
+  $copyBtn.addEventListener('click', copyPrompt);
+
+  $resetBtn.addEventListener('click', () => {
+    if (!confirm('Reset prompt template to default? Your client name/slug/notes will be kept.')) return;
+    $template.value = DEFAULT_TEMPLATE;
+    renderPreview();
+    save();
+    toast('template reset');
+  });
+
+  $clearBtn.addEventListener('click', () => {
+    if (!confirm('Clear client name, slug, and notes? Template will be kept.')) return;
+    $name.value = '';
+    $slug.value = '';
+    $notes.value = '';
+    renderPreview();
+    renderSlugPreview();
+    save();
+    toast('fields cleared');
+  });
+
+  $loadExample.addEventListener('click', () => {
+    $name.value = 'Brigitte Beauty';
+    $slug.value = 'brigitte-beauty';
+    $notes.value = `Google Maps: https://maps.app.goo.gl/xyz123
+Instagram: https://instagram.com/brigittebeauty
+Facebook: https://facebook.com/brigittebeauty.salon
+Google Doc with prijslijst + photos: https://docs.google.com/document/d/abc
+
+Notes: Solo operator. Located in Tilburg. Focus on gel nails + manicures. Stopped doing pedicures last year — don't feature them. Wants warm/inviting tone, Dutch copy. Speaks of "mijn dames" — keep that warmth in the copy. Uses Salonized for booking.`;
+    renderPreview();
+    renderSlugPreview();
+    save();
+    toast('example loaded');
+  });
+
+  // ---- Init ----
+  load();
+  renderPreview();
+  renderSlugPreview();
+
+  // Refresh "saved Xs ago" label periodically
+  setInterval(updateLastSaved, 15000);
+</script>
+
+</body>
+</html>
