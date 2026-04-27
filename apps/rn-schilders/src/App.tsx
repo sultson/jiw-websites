@@ -1380,27 +1380,60 @@ function MobileCta({ openQuote }: { openQuote: () => void }) {
   );
 }
 
+function TrustooWidget() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://static.trustoo.nl/widget/widget_v2.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  return (
+    <div
+      className="trustoo-widget"
+      data-id="uOmxp_aP-RjJ2uxfXOoY5KO9OTh1N2Y-3cH8Hpx4ezRvSg"
+      data-language-code="nl"
+      data-country-code="NL"
+      data-badge="hidden"
+      data-quote="default"
+      data-size="small"
+      data-type="landscape"
+      data-border="shadow"
+      data-theme="light"
+      data-background="default"
+      data-google="default"
+    />
+  );
+}
+
 function Footer() {
   return (
     <footer className="bg-ink pb-28 pt-10 text-white md:pb-10">
-      <div className="shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center gap-4">
-          <img src="/logo-mono.webp" alt="" width={470} height={457} className="h-14 w-14 shrink-0 object-contain" loading="lazy" decoding="async" />
-          <div>
-            <p className="font-display text-2xl font-extrabold">RN Schilders & Renovatie</p>
-            <p className="mt-2 text-sm text-white/85">Vakwerk dat zichtbaar blijft in Woerden en omgeving.</p>
+      <div className="shell flex flex-col gap-8">
+        <TrustooWidget />
+        <div className="flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-4">
+            <img src="/logo-mono.webp" alt="" width={470} height={457} className="h-14 w-14 shrink-0 object-contain" loading="lazy" decoding="async" />
+            <div>
+              <p className="font-display text-2xl font-extrabold">RN Schilders & Renovatie</p>
+              <p className="mt-2 text-sm text-white/85">Vakwerk dat zichtbaar blijft in Woerden en omgeving.</p>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/88">
-          <a href="https://www.facebook.com/profile.php?id=61588338225794" target="_blank" rel="noreferrer" className="hover:text-white">
-            Facebook
-          </a>
-          <a href="https://www.instagram.com/rn.schilders/" target="_blank" rel="noreferrer" className="hover:text-white">
-            Instagram
-          </a>
-          <a href={`mailto:${email}`} className="hover:text-white">
-            {email}
-          </a>
+          <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/88">
+            <a href="https://www.facebook.com/profile.php?id=61588338225794" target="_blank" rel="noreferrer" className="hover:text-white">
+              Facebook
+            </a>
+            <a href="https://www.instagram.com/rn.schilders/" target="_blank" rel="noreferrer" className="hover:text-white">
+              Instagram
+            </a>
+            <a href={`mailto:${email}`} className="hover:text-white">
+              {email}
+            </a>
+          </div>
         </div>
       </div>
     </footer>
