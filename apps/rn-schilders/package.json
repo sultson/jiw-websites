@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite --port=3006 --host=0.0.0.0",
     "build": "vite build",
-    "deploy": "wrangler deploy",
-    "deploy:dry-run": "wrangler deploy --dry-run",
+    "ship": "wrangler deploy",
+    "ship:dry-run": "wrangler deploy --dry-run",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit && tsc --noEmit -p tsconfig.worker.json",
