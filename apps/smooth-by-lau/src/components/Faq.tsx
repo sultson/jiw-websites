@@ -33,8 +33,8 @@ export default function Faq({ t, onBook }: Props) {
                 </button>
                 {isOpen && (
                   i === 2 ? (
-                    <div className="pb-5 text-espresso/70 leading-relaxed">
-                      <p>
+                    <div className="pb-6 space-y-4">
+                      <p className="text-espresso/70 leading-relaxed">
                         {t('faq.a2.p1')}
                         <button
                           onClick={onBook}
@@ -44,10 +44,10 @@ export default function Faq({ t, onBook }: Props) {
                         </button>
                         {t('faq.a2.p2')}
                       </p>
-                      <div className="mt-3 flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-3">
                         <a
                           href="tel:+31638502903"
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blush text-espresso text-sm hover:bg-gold hover:text-cream transition-colors"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-espresso/20 text-sm text-espresso/80 hover:bg-espresso hover:text-cream transition-colors"
                         >
                           <Phone size={14} />
                           {t('faq.a2.call')}
@@ -56,7 +56,7 @@ export default function Faq({ t, onBook }: Props) {
                           href="https://wa.me/31638502903"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blush text-espresso text-sm hover:bg-gold hover:text-cream transition-colors"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-espresso/20 text-sm text-espresso/80 hover:bg-espresso hover:text-cream transition-colors"
                         >
                           <MessageCircle size={14} />
                           {t('faq.a2.whatsapp')}
