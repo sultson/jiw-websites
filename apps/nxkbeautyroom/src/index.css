@@ -526,6 +526,11 @@ h3 {
   text-align: center;
 }
 
+.section-heading h2 {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .section-heading p:last-child {
   max-width: 680px;
   margin: 18px auto 0;
@@ -880,12 +885,16 @@ h3 {
 }
 
 .reviews-section {
-  padding-bottom: clamp(34px, 4vw, 56px);
+  padding-bottom: clamp(8px, 1.4vw, 18px);
 }
 
 .visit-block {
-  padding-top: clamp(40px, 4.5vw, 62px);
+  padding-top: clamp(18px, 2vw, 30px);
   background: linear-gradient(180deg, rgba(234, 219, 214, 0.14), rgba(234, 219, 214, 0.28));
+}
+
+.visit-block .section-heading {
+  margin-bottom: 28px;
 }
 
 .visit-grid {
