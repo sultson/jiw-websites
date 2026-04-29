@@ -69,6 +69,10 @@ export function createFormWorker(config: LeadFormConfig): ExportedHandler<Cloudf
         return handleSubmission(request, env, settings);
       }
 
+      if (request.method === 'POST' && url.pathname === `${settings.formPath}/log`) {
+        return handleClientLog(request);
+      }
+
       if (request.method === 'GET' && url.pathname.startsWith(`${settings.formPath}/attachments/`)) {
         return handleAttachmentDownload(request, env, settings);
       }
@@ -95,20 +99,52 @@ async function handleSubmission(
   env: CloudflareFormsEnv,
   config: Required<LeadFormConfig>,
 ): Promise<Response> {
+  const cf = (request as Request & { cf?: Record<string, unknown> }).cf ?? {};
+  const reqMeta = {
+    ip: request.headers.get('CF-Connecting-IP'),
+    ua: request.headers.get('user-agent'),
+    referer: request.headers.get('referer'),
+    contentType: request.headers.get('content-type'),
+    contentLength: request.headers.get('content-length'),
+    country: cf.country,
+    asn: cf.asOrganization,
+    colo: cf.colo,
+  };
+
   try {
     const form = await request.formData();
     const fields = parseFields(form);
     const turnstileToken = getString(form, 'cf-turnstile-response');
+    const fileEntries = form.getAll('files').filter((value): value is File => value instanceof File && value.size > 0);
+    const fieldsPresent = {
+      hasName: Boolean(fields.name),
+      hasPhone: Boolean(fields.phone),
+      hasEmail: Boolean(fields.email),
+      messageLength: fields.message.length,
+      service: fields.service,
+      hasTurnstileToken: Boolean(turnstileToken),
+      fileCount: fileEntries.length,
+      totalFileBytes: fileEntries.reduce((sum, file) => sum + file.size, 0),
+    };
     const validationError = validateFields(fields);
 
-    if (validationError) return jsonError('validation', validationError, 400);
+    if (validationError) {
+      console.log('form_rejected', { reason: 'validation', message: validationError, ...fieldsPresent, ...reqMeta });
+      return jsonError('validation', validationError, 400);
+    }
 
     const turnstileValid = await validateTurnstile(env.TURNSTILE_SECRET_KEY, turnstileToken, request);
-    if (!turnstileValid) return jsonError('turnstile', 'De spamcontrole is verlopen. Probeer het formulier opnieuw te versturen.', 400);
+    if (!turnstileValid) {
+      console.log('form_rejected', { reason: 'turnstile', ...fieldsPresent, ...reqMeta });
+      return jsonError('turnstile', 'De spamcontrole is verlopen. Probeer het formulier opnieuw te versturen.', 400);
+    }
 
-    const files = form.getAll('files').filter((value): value is File => value instanceof File && value.size > 0);
+    const files = fileEntries;
     const attachmentError = validateAttachments(files, config);
-    if (attachmentError) return jsonError('attachments', attachmentError, 400);
+    if (attachmentError) {
+      console.log('form_rejected', { reason: 'attachments', message: attachmentError, ...fieldsPresent, ...reqMeta });
+      return jsonError('attachments', attachmentError, 400);
+    }
 
     const createdAt = new Date();
     const submissionId = crypto.randomUUID();
@@ -131,11 +167,40 @@ async function handleSubmission(
     const origin = new URL(request.url).origin;
     await sendLeadEmail(env, config, manifest, origin);
 
+    console.log('form_accepted', {
+      submissionId,
+      attachmentCount: attachments.length,
+      totalFileBytes: attachments.reduce((sum, attachment) => sum + attachment.size, 0),
+      ...reqMeta,
+    });
     return jsonResponse({ ok: true, submissionId });
   } catch (error) {
-    console.error('Form submission failed', error);
-    return jsonError('server', 'De aanvraag kon niet worden verwerkt. Bel of mail RN Schilders direct.', 500);
+    console.error('form_failed', { error: error instanceof Error ? { name: error.name, message: error.message, stack: error.stack } : error, ...reqMeta });
+    return jsonError(
+      'server',
+      `De aanvraag kon niet worden verwerkt. Neem direct telefonisch of per e-mail contact op met ${config.siteName}.`,
+      500,
+    );
   }
+}
+
+async function handleClientLog(request: Request): Promise<Response> {
+  try {
+    const payload = (await request.json().catch(() => null)) as Record<string, unknown> | null;
+    const cf = (request as Request & { cf?: Record<string, unknown> }).cf ?? {};
+    console.error('client_form_error', {
+      payload,
+      ip: request.headers.get('CF-Connecting-IP'),
+      ua: request.headers.get('user-agent'),
+      referer: request.headers.get('referer'),
+      country: cf.country,
+      colo: cf.colo,
+      asn: cf.asOrganization,
+    });
+  } catch (error) {
+    console.error('client_form_error_parse_failed', error);
+  }
+  return jsonResponse({ ok: true });
 }
 
 async function handleAttachmentDownload(
