@@ -1075,8 +1075,31 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
       setSubmitState('success');
       setSubmitMessage('Bedankt. RN Schilders heeft uw aanvraag ontvangen en neemt zo snel mogelijk contact op.');
     } catch (error) {
+      const err = error instanceof Error ? error : new Error(String(error));
+      const totalBytes = previews.reduce((sum, p) => sum + (p.file?.size ?? 0), 0);
+      const beacon = JSON.stringify({
+        name: err.name,
+        message: err.message,
+        online: typeof navigator !== 'undefined' ? navigator.onLine : null,
+        userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : null,
+        attachmentCount: previews.length,
+        attachmentBytes: totalBytes,
+        turnstilePresent: Boolean(turnstileToken),
+        href: typeof window !== 'undefined' ? window.location.href : null,
+        ts: new Date().toISOString(),
+      });
+      try {
+        const blob = new Blob([beacon], { type: 'application/json' });
+        if (typeof navigator !== 'undefined' && navigator.sendBeacon?.('/api/forms/offerte/log', blob)) {
+          // delivered
+        } else {
+          void fetch('/api/forms/offerte/log', { method: 'POST', body: beacon, headers: { 'content-type': 'application/json' }, keepalive: true }).catch(() => {});
+        }
+      } catch {
+        // swallow — beacon is best-effort
+      }
       setSubmitState('error');
-      setSubmitMessage(error instanceof Error ? error.message : 'De aanvraag kon niet worden verstuurd. Bel of mail RN Schilders direct.');
+      setSubmitMessage(err.message || 'De aanvraag kon niet worden verstuurd. Bel of mail RN Schilders direct.');
       setTurnstileToken('');
       setTurnstileResetKey((value) => value + 1);
     }
