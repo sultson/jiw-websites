@@ -62,6 +62,17 @@ export default function Hero({ t }: Props) {
             {t('hero.sub')}
           </p>
 
+          <div className="mt-6 grid max-w-[22rem] grid-cols-1 gap-2 text-cream/85 sm:max-w-xl sm:grid-cols-3">
+            {[t('hero.proofOwner'), t('hero.proofSince'), t('hero.proofRating')].map(item => (
+              <div
+                key={item}
+                className="rounded-lg border border-cream/15 bg-cream/10 px-3 py-2 text-xs font-medium backdrop-blur-sm"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+
           <div className="mt-9 flex flex-wrap gap-3">
             <a
               href="https://wa.me/31623669653"
@@ -83,8 +94,8 @@ export default function Hero({ t }: Props) {
             </a>
           </div>
 
-          <div className="mt-12 flex items-center gap-5 text-cream/75 text-xs tracking-[0.22em] uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
-            <span>5,0 ★ · Google</span>
+          <div className="mt-12 flex items-center gap-5 text-cream/75 text-xs tracking-[0.16em] uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
+            <span>{t('hero.socialProof')}</span>
             <span className="h-px w-8 bg-cream/30" />
             <span className="script text-cream/90 text-2xl normal-case tracking-normal -my-2">
               Jeanine

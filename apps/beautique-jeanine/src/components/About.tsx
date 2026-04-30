@@ -32,14 +32,19 @@ export default function About({ t }: Props) {
         <div className="order-1 md:order-2">
           <div className="relative">
             <img
-              src="/salon-exterior.webp"
-              alt="De vernieuwde salonruimte van Beautique Jeanine in Rotsterhaule"
+              src="/jeanine-salon-portrait.webp"
+              alt="Jeanine de Koning in de salon van Beautique Jeanine"
               loading="lazy"
               className="rounded-sm w-full aspect-[4/5] object-cover shadow-[0_20px_60px_-30px_rgba(42,33,32,0.5)]"
             />
             <div className="hidden md:block absolute -bottom-6 -left-6 w-32 h-32 rounded-sm bg-gold/90 -z-0" />
             <div className="hidden md:block absolute -top-4 -right-4 text-[10px] uppercase tracking-[0.3em] text-espresso/60 bg-cream px-3 py-1.5 border border-espresso/10">
               Rotsterhaule
+            </div>
+            <div className="absolute bottom-4 left-4 right-4 rounded-lg bg-cream/92 px-4 py-3 shadow-[0_12px_35px_-24px_rgba(42,33,32,0.55)]">
+              <p className="text-xs uppercase tracking-[0.2em] text-gold">{t('about.cardKicker')}</p>
+              <p className="mt-1 font-serif text-xl text-espresso">{t('about.cardTitle')}</p>
+              <p className="mt-1 text-xs text-espresso/60">{t('about.cardText')}</p>
             </div>
           </div>
         </div>

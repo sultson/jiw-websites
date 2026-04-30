@@ -19,12 +19,31 @@ const iconMap = {
   droplet: Droplet,
 };
 
+const focusCards = [
+  {
+    title: 'services.focusSkinTitle',
+    body: 'services.focusSkinBody',
+  },
+  {
+    title: 'services.focusLashesTitle',
+    body: 'services.focusLashesBody',
+  },
+  {
+    title: 'services.focusBeautyTitle',
+    body: 'services.focusBeautyBody',
+  },
+  {
+    title: 'services.focusProductsTitle',
+    body: 'services.focusProductsBody',
+  },
+];
+
 export default function Services({ lang, t }: Props) {
   const [open, setOpen] = useState<string | null>('skin');
 
   return (
     <section id="behandelingen" className="py-20 md:py-28 bg-blush-soft/60">
-      <div className="max-w-4xl mx-auto px-5 sm:px-8">
+      <div className="max-w-5xl mx-auto px-5 sm:px-8">
         <div className="text-center mb-12">
           <span className="rule kicker">{t('services.kicker')}</span>
           <h2 className="mt-4 font-serif text-4xl md:text-5xl">{t('services.title')}</h2>
@@ -89,6 +108,15 @@ export default function Services({ lang, t }: Props) {
               </div>
             );
           })}
+        </div>
+
+        <div className="mt-12 grid gap-4 md:grid-cols-2">
+          {focusCards.map(card => (
+            <article key={card.title} className="rounded-lg bg-white/80 p-5 md:p-6 border border-espresso/5">
+              <h3 className="font-serif text-2xl leading-tight">{t(card.title)}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-espresso/65">{t(card.body)}</p>
+            </article>
+          ))}
         </div>
 
         <div className="mt-10 text-center">
