@@ -11,6 +11,7 @@ import {
   Flower2,
   Instagram,
   MapPin,
+  MessageCircle,
   Phone,
   Plus,
   ShieldCheck,
@@ -25,6 +26,10 @@ import BookingModal from './components/BookingModal';
 const instagramUrl = 'https://www.instagram.com/nxkbeautyroom/';
 const facebookUrl = 'https://www.facebook.com/p/NxkBeautyroom-61559652624932/';
 const googleUrl = 'https://www.google.com/maps/search/?api=1&query=Nxkbeautyroom&query_place_id=ChIJlR2f4jhvyEcRP84WlUktn9Y';
+const phoneDisplay = '06 40568379';
+const phoneHref = 'tel:+31640568379';
+const whatsappUrl =
+  'https://wa.me/31640568379?text=Hallo%20Noa%2C%20ik%20wil%20graag%20een%20afspraak%20maken%20bij%20Nxkbeautyroom.';
 const directionsUrl =
   'https://www.google.com/maps/dir/?api=1&destination=Woldpromenade%2022%2C%208331%20JH%20Steenwijk';
 const mapsEmbedUrl =
@@ -203,10 +208,12 @@ function StickyBookCta({
   hidden,
   onBook,
   label,
+  whatsappLabel,
 }: {
   hidden: boolean;
   onBook: () => void;
   label: string;
+  whatsappLabel: string;
 }) {
   const [show, setShow] = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
@@ -232,10 +239,16 @@ function StickyBookCta({
 
   return (
     <div className="sticky-book">
-      <button type="button" onClick={onBook}>
-        <CalendarCheck size={18} />
-        {label}
-      </button>
+      <div className="sticky-book-actions">
+        <a href={whatsappUrl} target="_blank" rel="noreferrer">
+          <MessageCircle size={18} />
+          {whatsappLabel}
+        </a>
+        <button type="button" onClick={onBook}>
+          <CalendarCheck size={18} />
+          {label}
+        </button>
+      </div>
     </div>
   );
 }
@@ -308,7 +321,10 @@ function App() {
       <header className="site-header">
         <a href="#top" className="brand" aria-label="Nxkbeautyroom">
           <img src="/nxk-logo-facebook.webp" alt="" />
-          <span>Nxkbeautyroom</span>
+          <span className="brand-name" aria-hidden="true">
+            <strong>Nxk</strong>
+            <small>beautyroom</small>
+          </span>
         </a>
 
         <nav aria-label="Hoofdnavigatie">
@@ -321,9 +337,17 @@ function App() {
 
         <div className="header-actions">
           <LangToggle lang={lang} setLang={setLang} />
+          <a className="header-contact header-phone" href={phoneHref} aria-label={`${t('nav.call')} ${phoneDisplay}`}>
+            <Phone size={17} />
+            <span>{phoneDisplay}</span>
+          </a>
+          <a className="button small whatsapp-button" href={whatsappUrl} target="_blank" rel="noreferrer" aria-label={t('nav.whatsapp')}>
+            <MessageCircle size={17} />
+            <span>{t('nav.whatsapp')}</span>
+          </a>
           <button type="button" className="button small" onClick={() => setBookingOpen(true)}>
             <CalendarCheck size={17} />
-            {t('nav.book')}
+            <span>{t('nav.book')}</span>
           </button>
         </div>
       </header>
@@ -344,6 +368,10 @@ function App() {
                   {t('hero.cta')}
                   <ArrowRight size={18} />
                 </button>
+                <a className="button glass" href={whatsappUrl} target="_blank" rel="noreferrer">
+                  <MessageCircle size={19} />
+                  {t('hero.whatsapp')}
+                </a>
                 <a className="button glass" href="#behandelingen">
                   <Eye size={19} />
                   {t('hero.treatments')}
@@ -573,6 +601,25 @@ function App() {
               </div>
               <div className="visit-row">
                 <span className="visit-icon">
+                  <Phone size={18} />
+                </span>
+                <div>
+                  <small>{t('visit.contact')}</small>
+                  <p>
+                    <a className="phone-number" href={phoneHref}>
+                      {phoneDisplay}
+                    </a>
+                  </p>
+                  <div className="contact-links">
+                    <a href={phoneHref}>{t('visit.call')}</a>
+                    <a href={whatsappUrl} target="_blank" rel="noreferrer">
+                      {t('nav.whatsapp')}
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="visit-row">
+                <span className="visit-icon">
                   <CalendarCheck size={18} />
                 </span>
                 <div>
@@ -650,13 +697,21 @@ function App() {
               <p>{t('footer.tagline')}</p>
             </div>
             <div className="footer-list">
-              <small>{t('visit.kicker')}</small>
+              <small>{t('footer.contact')}</small>
               <p>
                 <MapPin size={15} />
                 {t('hero.address')}
               </p>
-              <button type="button" onClick={() => setBookingOpen(true)}>
+              <a href={phoneHref}>
                 <Phone size={15} />
+                {phoneDisplay}
+              </a>
+              <a href={whatsappUrl} target="_blank" rel="noreferrer">
+                <MessageCircle size={15} />
+                {t('nav.whatsapp')}
+              </a>
+              <button type="button" onClick={() => setBookingOpen(true)}>
+                <CalendarCheck size={15} />
                 {t('nav.book')}
               </button>
             </div>
@@ -690,7 +745,12 @@ function App() {
       </footer>
 
       <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} t={t} />
-      <StickyBookCta hidden={bookingOpen} onBook={() => setBookingOpen(true)} label={t('nav.book')} />
+      <StickyBookCta
+        hidden={bookingOpen}
+        onBook={() => setBookingOpen(true)}
+        label={t('nav.book')}
+        whatsappLabel={t('nav.whatsapp')}
+      />
 
       {openLightbox && (
         <div className="lightbox" role="dialog" aria-modal="true" aria-label={t('gallery.lightbox')} onClick={() => setGalleryIndex(null)}>

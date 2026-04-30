@@ -7,7 +7,7 @@ import {
   Droplet,
   ChevronDown,
 } from 'lucide-react';
-import { serviceCategories } from '../data/services';
+import { formatPrice, serviceCategories } from '../data/services';
 import type { Lang } from '../translations';
 
 type Props = { lang: Lang; t: (k: string) => string };
@@ -39,7 +39,7 @@ const focusCards = [
 ];
 
 export default function Services({ lang, t }: Props) {
-  const [open, setOpen] = useState<string | null>('skin');
+  const [open, setOpen] = useState<string | null>('facials');
 
   return (
     <section id="behandelingen" className="py-20 md:py-28 bg-blush-soft/60">
@@ -50,6 +50,7 @@ export default function Services({ lang, t }: Props) {
           <p className="mt-4 text-espresso/65 text-sm max-w-xl mx-auto leading-relaxed">
             {t('services.sub')}
           </p>
+          <p className="mt-3 text-xs text-espresso/50">{t('services.priceSource')}</p>
         </div>
 
         <div className="space-y-3">
@@ -88,21 +89,31 @@ export default function Services({ lang, t }: Props) {
 
                 {isOpen && (
                   <ul className="divide-y divide-espresso/5 border-t border-espresso/5">
-                    {cat.services.map(s => (
-                      <li
-                        key={s.id}
-                        className="px-5 md:px-7 py-4"
-                      >
-                        <p className="text-sm md:text-base text-espresso">
-                          {lang === 'nl' ? s.nameNl : s.nameEn}
-                        </p>
-                        {(s.descNl || s.descEn) && (
-                          <p className="text-xs text-espresso/55 mt-0.5">
-                            {lang === 'nl' ? s.descNl : s.descEn}
-                          </p>
-                        )}
-                      </li>
-                    ))}
+                    {cat.services.map(s => {
+                      const priceText =
+                        (lang === 'nl' ? s.priceLabelNl : s.priceLabelEn) ?? formatPrice(s.price);
+
+                      return (
+                        <li
+                          key={s.id}
+                          className="px-5 md:px-7 py-4 grid grid-cols-[minmax(0,1fr)_auto] gap-4 items-baseline"
+                        >
+                          <div className="min-w-0">
+                            <p className="text-sm md:text-base text-espresso">
+                              {lang === 'nl' ? s.nameNl : s.nameEn}
+                            </p>
+                            {(s.descNl || s.descEn) && (
+                              <p className="text-xs text-espresso/55 mt-0.5">
+                                {lang === 'nl' ? s.descNl : s.descEn}
+                              </p>
+                            )}
+                          </div>
+                          <span className="font-serif text-base md:text-lg text-espresso tabular-nums whitespace-nowrap">
+                            {priceText}
+                          </span>
+                        </li>
+                      );
+                    })}
                   </ul>
                 )}
               </div>

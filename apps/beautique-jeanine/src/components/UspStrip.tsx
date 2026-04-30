@@ -1,4 +1,4 @@
-import { Star, Clock, ShieldCheck, Facebook } from 'lucide-react';
+import { Star, Clock, ShieldCheck, Sparkles } from 'lucide-react';
 
 type Props = { t: (k: string) => string };
 
@@ -7,7 +7,7 @@ export default function UspStrip({ t }: Props) {
     { icon: Star, title: t('usp.rating'), sub: t('usp.ratingSub') },
     { icon: Clock, title: t('usp.experience'), sub: t('usp.experienceSub') },
     { icon: ShieldCheck, title: t('usp.hygiene'), sub: t('usp.hygieneSub') },
-    { icon: Facebook, title: t('usp.social'), sub: t('usp.socialSub') },
+    { icon: Sparkles, title: t('usp.social'), sub: t('usp.socialSub') },
   ];
 
   return (

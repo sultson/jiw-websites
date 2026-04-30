@@ -185,7 +185,7 @@ const facts = [
 export default function App() {
   const [lang, setLang] = useState<Lang>('nl');
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeStory, setActiveStory] = useState(1);
+  const [activeStory, setActiveStory] = useState(0);
   const t = useMemo(() => translations[lang], [lang]);
   const reviewText = (review: (typeof reviews)[number]) => (lang === 'nl' ? review.text : review.en);
   const selectedStory = salonStories[activeStory];
@@ -324,9 +324,6 @@ export default function App() {
                 <a href={dmUrl} target="_blank" rel="noreferrer" className="btn-primary">
                   <MessageCircle size={16} /> {t.heroCta}
                 </a>
-                <a href={salonHighlightUrl} target="_blank" rel="noreferrer" className="btn-outline">
-                  <Instagram size={16} /> {t.salonHighlightCta}
-                </a>
               </div>
             </div>
             <div className="story-showcase">
@@ -337,10 +334,9 @@ export default function App() {
                     id="salon-video"
                     src={selectedStory.src}
                     poster={selectedStory.poster}
-                    autoPlay
                     controls
                     muted
-                    loop
+                    preload="metadata"
                     playsInline
                     className="h-full w-full object-cover"
                   />
