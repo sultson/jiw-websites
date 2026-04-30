@@ -447,7 +447,15 @@ function Stars() {
   );
 }
 
-function BookingModal({ open, onClose, label }: { open: boolean; onClose: () => void; label: string }) {
+function BookingModal({
+  open,
+  onClose,
+  label,
+}: {
+  open: boolean;
+  onClose: () => void;
+  label: string;
+}) {
   useEffect(() => {
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
@@ -469,7 +477,9 @@ function BookingModal({ open, onClose, label }: { open: boolean; onClose: () => 
         <button type="button" className="booking-close" onClick={onClose} aria-label="Sluiten">
           <X size={20} />
         </button>
-        <iframe src={bookingEmbedUrl} title="Online boeken" allow="payment" />
+        <div className="booking-widget-shell">
+          <iframe src={bookingEmbedUrl} title="Online boeken" allow="payment; geolocation" />
+        </div>
       </div>
     </div>
   );

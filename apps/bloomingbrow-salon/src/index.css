@@ -1006,9 +1006,19 @@
   background: white;
 }
 
-.booking-frame iframe {
+.booking-widget-shell,
+.booking-widget-shell .salonized-booking,
+.booking-widget-shell iframe {
   width: 100%;
   height: 100%;
+}
+
+.booking-widget-shell {
+  overflow: hidden;
+  background: white;
+}
+
+.booking-widget-shell iframe {
   border: 0;
   background: white;
 }
