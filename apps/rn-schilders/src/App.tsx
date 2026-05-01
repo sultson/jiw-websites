@@ -1732,12 +1732,17 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] overflow-y-auto bg-navy/70 p-4 backdrop-blur-sm md:p-6" role="dialog" aria-modal="true" aria-label="Offerte aanvragen">
-      <div className="mx-auto my-4 max-w-3xl rounded-lg bg-whitewash shadow-2xl md:my-10">
-        <div className="flex items-start justify-between gap-4 border-b border-line p-5 md:p-7">
+    <div
+      className="fixed inset-0 z-[100] flex items-end justify-center overflow-hidden bg-navy/70 pt-10 backdrop-blur-sm md:items-center md:p-6"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Offerte aanvragen"
+    >
+      <div className="quote-sheet relative flex max-h-[calc(100dvh-2.5rem)] w-full flex-col overflow-hidden rounded-t-2xl bg-whitewash shadow-2xl md:max-h-[calc(100dvh-3rem)] md:max-w-3xl md:rounded-lg">
+        <div className="flex shrink-0 items-start justify-between gap-4 border-b border-line p-5 md:p-7">
           <div>
             <p className="eyebrow">Offerte aanvragen</p>
-            <h2 className="mt-2 font-display text-3xl font-extrabold text-navy">Vertel kort wat er moet gebeuren.</h2>
+            <h2 className="mt-2 font-display text-2xl font-extrabold leading-tight text-navy md:text-3xl">Vertel kort wat er moet gebeuren.</h2>
             <p className="mt-2 text-sm leading-6 text-graphite">Stuur de belangrijkste projectinformatie en eventueel foto's mee. Richard ontvangt uw aanvraag direct per e-mail.</p>
           </div>
           <button
@@ -1752,7 +1757,7 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
         </div>
 
         {isSuccess ? (
-          <div className="flex flex-col items-center gap-4 px-6 py-16 text-center md:px-10 md:py-20">
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 overflow-y-auto px-6 py-16 text-center md:px-10 md:py-20">
             <div className="success-check flex h-20 w-20 items-center justify-center rounded-full bg-door text-white shadow-[0_18px_30px_-18px_rgba(35,83,63,0.9)]">
               <Check size={44} strokeWidth={3} />
             </div>
@@ -1766,7 +1771,7 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-graphite">Dit venster sluit automatisch</p>
           </div>
         ) : (
-          <div className="relative">
+          <div className="relative min-h-0 flex-1 overflow-y-auto overscroll-contain safe-bottom">
             <form
               ref={formRef}
               className={`grid gap-5 p-5 md:grid-cols-2 md:p-7 ${isSubmitting ? 'pointer-events-none select-none opacity-60' : ''}`}
