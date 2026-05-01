@@ -12,6 +12,7 @@ import {
   Loader2,
   Mail,
   MapPin,
+  Maximize2,
   Menu,
   MessageCircle,
   MessageSquare,
@@ -89,6 +90,21 @@ type Review = {
   name: string;
   date: string;
   quote: string;
+};
+
+type ShowcaseImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  title: string;
+  label: string;
+};
+
+type ShowcaseGroup = {
+  title: string;
+  text: string;
+  images: ShowcaseImage[];
 };
 
 type TermsSection = {
@@ -277,6 +293,164 @@ const processSteps = [
   ['Netjes uitgevoerd', 'Richard werkt zelf mee op de vloer en bewaakt voorbereiding, planning en afwerking.'],
   ['Oplevering', 'Samen controleren we het resultaat en eventuele restpunten worden direct helder gemaakt.'],
 ] as const;
+
+const roofWindowStory: ShowcaseImage[] = [
+  {
+    src: '/showcase-roof-window-before.webp',
+    alt: 'Dakkapel en dakraam vóór afwerking',
+    width: 1024,
+    height: 1536,
+    title: 'Dakraamhoek',
+    label: 'Voor',
+  },
+  {
+    src: '/showcase-roof-window-after.webp',
+    alt: 'Dakkapel en dakraam na afwerking',
+    width: 1024,
+    height: 1536,
+    title: 'Dakraamhoek',
+    label: 'Na',
+  },
+  {
+    src: '/showcase-roof-window-after-detail.webp',
+    alt: 'Afgewerkte dakkapel vanaf straatniveau',
+    width: 1024,
+    height: 1536,
+    title: 'Afwerking buiten',
+    label: 'Detail',
+  },
+];
+
+const showcaseGroups: ShowcaseGroup[] = [
+  {
+    title: 'Kozijnen en licht',
+    text: 'Buitenaanzicht, hoekdetails en glaspartijen bij elkaar, zodat u de aansluiting en afwerking goed kunt beoordelen.',
+    images: [
+      {
+        src: '/showcase-window-corner-1.webp',
+        alt: 'Hoekkozijn met meerdere glasvlakken aan een woning',
+        width: 1800,
+        height: 1498,
+        title: 'Hoekkozijn',
+        label: 'Buiten',
+      },
+      {
+        src: '/showcase-window-corner-2.webp',
+        alt: 'Wit hoekkozijn met donkere raamdetails',
+        width: 400,
+        height: 395,
+        title: 'Kozijndetail',
+        label: 'Detail',
+      },
+      {
+        src: '/showcase-damaged-wood-detail.webp',
+        alt: 'Beschadigd houtwerk aan buitenzijde',
+        width: 1024,
+        height: 1536,
+        title: 'Houtwerk',
+        label: 'Te herstellen',
+      },
+    ],
+  },
+  {
+    title: 'Interieurafwerking',
+    text: 'Vloer, plafond, haardombouw en wandafwerking als losse onderdelen van een rustig eindbeeld.',
+    images: [
+      {
+        src: '/showcase-flooring-finish.webp',
+        alt: 'Afgewerkte visgraatvloer in een lichte woonruimte',
+        width: 900,
+        height: 1600,
+        title: 'Vloer',
+        label: 'Afgewerkt',
+      },
+      {
+        src: '/showcase-ceiling-tiles-finish.webp',
+        alt: 'Donker plafond met strakke plafondplaten en inbouwspots',
+        width: 1408,
+        height: 1056,
+        title: 'Plafond',
+        label: 'Afgewerkt',
+      },
+      {
+        src: '/showcase-fireplace-lighting.webp',
+        alt: 'Moderne haardombouw met geïntegreerde verlichting',
+        width: 1320,
+        height: 1309,
+        title: 'Haardombouw',
+        label: 'Lichtdetail',
+      },
+      {
+        src: '/showcase-room-good-as-new.webp',
+        alt: 'Afgewerkte kamer met groene wand, lichte vloer en inbouwspots',
+        width: 1320,
+        height: 1641,
+        title: 'Kamer',
+        label: 'Eindbeeld',
+      },
+    ],
+  },
+  {
+    title: 'Deuren en details',
+    text: 'Afwerking valt op bij randen, profielen en zichtlijnen. Juist daarom krijgen deze details ruimte.',
+    images: [
+      {
+        src: '/showcase-door-dark-finish.webp',
+        alt: 'Donker afgelakte binnendeur met paneelverdeling',
+        width: 1320,
+        height: 1640,
+        title: 'Binnendeur',
+        label: 'Lakwerk',
+      },
+      {
+        src: '/showcase-door-hall-finish.webp',
+        alt: 'Witte binnendeur in hal met groene wand',
+        width: 1320,
+        height: 1629,
+        title: 'Hal',
+        label: 'Afgewerkt',
+      },
+    ],
+  },
+  {
+    title: 'Tijdens uitvoering',
+    text: 'Niet alleen het eindresultaat telt. Deze beelden laten zien hoe ruimtes stap voor stap worden voorbereid.',
+    images: [
+      {
+        src: '/showcase-work-progress-wall.webp',
+        alt: 'Werk in uitvoering bij een wand en vloer',
+        width: 906,
+        height: 1600,
+        title: 'Wandvoorbereiding',
+        label: 'Binnen',
+      },
+      {
+        src: '/showcase-work-progress-frame-1.webp',
+        alt: 'Metalen frames tijdens renovatiewerk',
+        width: 960,
+        height: 1280,
+        title: 'Framewerk',
+        label: 'Opbouw',
+      },
+      {
+        src: '/showcase-work-progress-frame-2.webp',
+        alt: 'Ruimte met framewerk en raam tijdens uitvoering',
+        width: 1280,
+        height: 960,
+        title: 'Indeling',
+        label: 'In uitvoering',
+      },
+      {
+        src: '/showcase-work-progress-frame-3.webp',
+        alt: 'Binnenruimte met steiger en materiaal tijdens renovatie',
+        width: 1280,
+        height: 960,
+        title: 'Werkruimte',
+        label: 'Materiaal',
+      },
+    ],
+  },
+];
 
 const termsSections: TermsSection[] = [
   {
@@ -732,7 +906,7 @@ function Services({ openQuote }: { openQuote: () => void }) {
             </h2>
           </div>
           <p className="max-w-md text-base leading-7 text-graphite">
-            De zes oude servicepagina’s worden hier samengebracht in een scanbare structuur die mobiel direct duidelijk is.
+            Van schilderwerk tot renovatie: alle werkzaamheden staan kort bij elkaar, met extra uitleg wanneer u wilt doorlezen.
           </p>
         </div>
 
@@ -878,7 +1052,7 @@ function FeaturedWork({ openQuote }: { openQuote: () => void }) {
               Van versleten voordeur naar hoogglans visitekaartje.
             </h2>
             <p className="mt-6 text-lg leading-8 text-white/88">
-              De sterkste verkoopkans zit in voor-en-na bewijs. Dit concept maakt projectverhalen groot en concreet, zodat bezoekers direct zien wat “strak vakwerk” betekent.
+              Foto’s maken het verschil tussen beloven en laten zien. Daarom krijgt recent werk hier de ruimte: voorbereiding, herstel en afwerking naast elkaar.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -928,6 +1102,8 @@ function FeaturedWork({ openQuote }: { openQuote: () => void }) {
             text="Systeemwanden, isolatie, plafonds, stuc- en schilderwerk in één traject."
           />
         </div>
+
+        <WorkShowcase openQuote={openQuote} />
       </div>
     </section>
   );
@@ -972,6 +1148,173 @@ function ProjectSlideshow({
         </div>
       </div>
     </article>
+  );
+}
+
+function WorkShowcase({ openQuote }: { openQuote: () => void }) {
+  const allImages = useMemo(() => [...roofWindowStory, ...showcaseGroups.flatMap((group) => group.images)], []);
+  const [selectedImage, setSelectedImage] = useState<ShowcaseImage | null>(null);
+
+  useEffect(() => {
+    if (!selectedImage) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setSelectedImage(null);
+    };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [selectedImage]);
+
+  return (
+    <div className="mt-14 rounded-lg border border-white/10 bg-white/[0.06] p-4 sm:p-6 lg:p-8">
+      <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+        <div>
+          <p className="eyebrow text-roller-soft">Werk in beeld</p>
+          <h3 className="mt-3 font-display text-3xl font-extrabold leading-tight text-white md:text-4xl">
+            Details gegroepeerd zoals u ze beoordeelt.
+          </h3>
+          <p className="mt-4 leading-7 text-white/82">
+            Geen losse collage, maar beelden per onderwerp: kozijnen, interieurafwerking, deuren en werk in uitvoering.
+          </p>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {roofWindowStory.map((image) => (
+            <button
+              key={image.src}
+              type="button"
+              onClick={() => setSelectedImage(image)}
+              className="group overflow-hidden rounded-lg border border-white/10 bg-white/8 text-left transition hover:-translate-y-0.5 hover:bg-white/12 focus-visible:-translate-y-0.5"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="absolute left-3 top-3 rounded-md bg-navy/88 px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+                  {image.label}
+                </span>
+                <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-md bg-white/90 text-navy opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
+                  <Maximize2 size={17} />
+                </span>
+              </div>
+              <div className="p-4">
+                <strong className="block font-display text-lg font-extrabold text-white">{image.title}</strong>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-8 grid gap-5 lg:grid-cols-2">
+        {showcaseGroups.map((group) => (
+          <article key={group.title} className="rounded-lg border border-white/10 bg-navy/35 p-4 sm:p-5">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <h4 className="font-display text-2xl font-extrabold text-white">{group.title}</h4>
+                <p className="mt-2 max-w-xl text-sm leading-6 text-white/75">{group.text}</p>
+              </div>
+              <span className="shrink-0 rounded-md border border-white/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white/70">
+                {group.images.length} beelden
+              </span>
+            </div>
+            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {group.images.map((image, index) => (
+                <button
+                  key={image.src}
+                  type="button"
+                  onClick={() => setSelectedImage(image)}
+                  className={`group relative overflow-hidden rounded-lg bg-white/8 text-left ${index === 0 && group.images.length > 2 ? 'col-span-2 row-span-2 sm:col-span-2' : ''}`}
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    className={`w-full object-cover transition duration-500 group-hover:scale-[1.04] ${index === 0 && group.images.length > 2 ? 'aspect-[4/3] h-full sm:aspect-[16/10]' : 'aspect-square'}`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent p-3 pt-10">
+                    <span className="block text-xs font-bold uppercase tracking-[0.12em] text-roller-soft">{image.label}</span>
+                    <span className="mt-1 block font-display text-sm font-extrabold text-white sm:text-base">{image.title}</span>
+                  </span>
+                  <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-md bg-white/90 text-navy opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
+                    <Maximize2 size={17} />
+                  </span>
+                </button>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="mt-8 flex flex-col gap-4 rounded-lg bg-whitewash p-5 text-navy sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h4 className="font-display text-2xl font-extrabold">Ook zo’n project laten beoordelen?</h4>
+          <p className="mt-2 text-sm leading-6 text-graphite">
+            Stuur foto’s mee met uw aanvraag. Dan kan RN Schilders sneller inschatten wat er nodig is.
+          </p>
+        </div>
+        <button type="button" onClick={openQuote} className="btn-primary shrink-0">
+          Foto’s meesturen
+          <Upload size={17} />
+        </button>
+      </div>
+
+      {selectedImage && <ImageLightbox image={selectedImage} images={allImages} onSelect={setSelectedImage} onClose={() => setSelectedImage(null)} />}
+    </div>
+  );
+}
+
+function ImageLightbox({
+  image,
+  images,
+  onSelect,
+  onClose,
+}: {
+  image: ShowcaseImage;
+  images: ShowcaseImage[];
+  onSelect: (image: ShowcaseImage) => void;
+  onClose: () => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-[100] overflow-y-auto bg-navy/88 p-4 backdrop-blur-sm md:p-6" role="dialog" aria-modal="true" aria-label={image.title}>
+      <div className="mx-auto grid min-h-[calc(100dvh-2rem)] max-w-6xl content-center gap-4 md:min-h-[calc(100dvh-3rem)]">
+        <div className="flex items-center justify-between gap-3 text-white">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-roller-soft">{image.label}</p>
+            <h2 className="mt-1 font-display text-2xl font-extrabold md:text-3xl">{image.title}</h2>
+          </div>
+          <button type="button" onClick={onClose} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-white text-navy" aria-label="Sluiten">
+            <X size={22} />
+          </button>
+        </div>
+        <div className="overflow-hidden rounded-lg bg-black/30">
+          <img src={image.src} alt={image.alt} width={image.width} height={image.height} className="max-h-[72dvh] w-full object-contain" />
+        </div>
+        <div className="flex gap-2 overflow-x-auto pb-2">
+          {images.map((item) => (
+            <button
+              key={item.src}
+              type="button"
+              onClick={() => onSelect(item)}
+              className={`h-16 w-16 shrink-0 overflow-hidden rounded-md border transition md:h-20 md:w-20 ${item.src === image.src ? 'border-roller bg-roller' : 'border-white/15 bg-white/10 opacity-70 hover:opacity-100'}`}
+              aria-label={`${item.title}: ${item.label}`}
+            >
+              <img src={item.src} alt="" width={item.width} height={item.height} className="h-full w-full object-cover" loading="lazy" decoding="async" />
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
