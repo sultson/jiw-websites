@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
 import {
   ArrowRight,
   BadgeCheck,
@@ -930,11 +930,29 @@ function ContactLine({
 
 type FilePreview = { file: File; key: string; url: string | null };
 
+type QuoteFieldName =
+  | 'firstName'
+  | 'lastName'
+  | 'phone'
+  | 'email'
+  | 'service'
+  | 'serviceOther'
+  | 'postalCode'
+  | 'streetName'
+  | 'houseNumber'
+  | 'city'
+  | 'preferredExecutionDate'
+  | 'message';
+
+type QuoteFieldErrors = Partial<Record<QuoteFieldName, string>>;
+
 function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const serviceOptions = useMemo(() => services.map((service) => service.title), []);
   const [previews, setPreviews] = useState<FilePreview[]>([]);
   const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<QuoteFieldErrors>({});
+  const [serviceValue, setServiceValue] = useState('');
   const [turnstileToken, setTurnstileToken] = useState('');
   const [turnstileResetKey, setTurnstileResetKey] = useState(0);
   const [attachmentNotice, setAttachmentNotice] = useState('');
@@ -982,6 +1000,8 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
       });
       setSubmitState('idle');
       setSubmitMessage('');
+      setFieldErrors({});
+      setServiceValue('');
       setAttachmentNotice('');
       setTurnstileToken('');
       setTurnstileResetKey((value) => value + 1);
@@ -995,6 +1015,57 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
     const t = setTimeout(onClose, SUCCESS_AUTO_CLOSE_MS);
     return () => clearTimeout(t);
   }, [isSuccess, onClose]);
+
+  const clearFieldError = (field: QuoteFieldName) => {
+    setFieldErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  };
+
+  const handleFieldChange = (field: QuoteFieldName) => (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    clearFieldError(field);
+    if (field === 'service') {
+      setServiceValue(event.currentTarget.value);
+      clearFieldError('serviceOther');
+    }
+  };
+
+  const validateQuoteForm = (form: HTMLFormElement): QuoteFieldErrors => {
+    const formData = new FormData(form);
+    const getValue = (field: QuoteFieldName) => String(formData.get(field) ?? '').trim();
+    const errors: QuoteFieldErrors = {};
+    const requiredFields: Array<[QuoteFieldName, string]> = [
+      ['firstName', 'Vul uw voornaam in.'],
+      ['lastName', 'Vul uw achternaam in.'],
+      ['postalCode', 'Vul uw postcode in.'],
+      ['streetName', 'Vul uw straatnaam in.'],
+      ['houseNumber', 'Vul uw huisnummer in.'],
+      ['city', 'Vul uw plaatsnaam in.'],
+      ['service', 'Kies een dienst.'],
+      ['preferredExecutionDate', 'Kies een gewenste uitvoeringsdatum.'],
+      ['phone', 'Vul uw telefoonnummer in.'],
+      ['email', 'Vul uw e-mailadres in.'],
+      ['message', 'Beschrijf kort wat er moet gebeuren.'],
+    ];
+
+    for (const [field, message] of requiredFields) {
+      if (!getValue(field)) errors[field] = message;
+    }
+
+    if (getValue('service') === 'other' && !getValue('serviceOther')) {
+      errors.serviceOther = 'Vul de gewenste dienst in.';
+    }
+
+    const emailValue = getValue('email');
+    if (emailValue && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+      errors.email = 'Vul een geldig e-mailadres in.';
+    }
+
+    return errors;
+  };
 
   const addFiles = (incoming: File[]) => {
     setPreviews((prev) => {
@@ -1045,6 +1116,14 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const submitQuote = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
+    const validationErrors = validateQuoteForm(form);
+
+    if (Object.keys(validationErrors).length > 0) {
+      setFieldErrors(validationErrors);
+      setSubmitState('error');
+      setSubmitMessage('Controleer de gemarkeerde velden.');
+      return;
+    }
 
     if (!shouldUseTurnstile && !isLocalForm && !import.meta.env.DEV) {
       setSubmitState('error');
@@ -1060,6 +1139,7 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
 
     setSubmitState('submitting');
     setSubmitMessage('');
+    setFieldErrors({});
 
     try {
       const formData = new FormData(form);
@@ -1155,52 +1235,94 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
               className={`grid gap-5 p-5 md:grid-cols-2 md:p-7 ${isSubmitting ? 'pointer-events-none select-none opacity-60' : ''}`}
               onSubmit={submitQuote}
               aria-busy={isSubmitting}
+              noValidate
             >
               <label className="grid gap-2 text-sm font-bold text-navy">
-                Naam
-                <input className="field" name="name" placeholder="Uw naam" autoComplete="name" required />
+                <span>Voornaam <RequiredMark /></span>
+                <input className="field" name="firstName" placeholder="Voornaam" autoComplete="given-name" required onChange={handleFieldChange('firstName')} aria-invalid={Boolean(fieldErrors.firstName)} aria-describedby={fieldErrors.firstName ? 'firstName-error' : undefined} />
+                <FieldError id="firstName-error" message={fieldErrors.firstName} />
               </label>
               <label className="grid gap-2 text-sm font-bold text-navy">
-                Telefoonnummer
-                <input className="field" name="phone" placeholder={phoneDisplay} autoComplete="tel" required />
+                <span>Achternaam <RequiredMark /></span>
+                <input className="field" name="lastName" placeholder="Achternaam" autoComplete="family-name" required onChange={handleFieldChange('lastName')} aria-invalid={Boolean(fieldErrors.lastName)} aria-describedby={fieldErrors.lastName ? 'lastName-error' : undefined} />
+                <FieldError id="lastName-error" message={fieldErrors.lastName} />
               </label>
               <label className="grid gap-2 text-sm font-bold text-navy">
-                E-mailadres
-                <input className="field" name="email" type="email" placeholder={email} autoComplete="email" required />
+                <span>Postcode <RequiredMark /></span>
+                <input className="field" name="postalCode" placeholder="3449 JA" autoComplete="postal-code" required onChange={handleFieldChange('postalCode')} aria-invalid={Boolean(fieldErrors.postalCode)} aria-describedby={fieldErrors.postalCode ? 'postalCode-error' : undefined} />
+                <FieldError id="postalCode-error" message={fieldErrors.postalCode} />
               </label>
               <label className="grid gap-2 text-sm font-bold text-navy">
-                Dienst <span className="text-xs font-semibold text-graphite">optioneel</span>
-                <select className="field" name="service" defaultValue="">
-                  <option value="">
-                    Nog niet zeker
-                  </option>
+                <span>Plaatsnaam <RequiredMark /></span>
+                <input className="field" name="city" placeholder="Woerden" autoComplete="address-level2" required onChange={handleFieldChange('city')} aria-invalid={Boolean(fieldErrors.city)} aria-describedby={fieldErrors.city ? 'city-error' : undefined} />
+                <FieldError id="city-error" message={fieldErrors.city} />
+              </label>
+              <label className="grid gap-2 text-sm font-bold text-navy">
+                <span>Straatnaam <RequiredMark /></span>
+                <input className="field" name="streetName" placeholder="Kuipersweg" autoComplete="address-line1" required onChange={handleFieldChange('streetName')} aria-invalid={Boolean(fieldErrors.streetName)} aria-describedby={fieldErrors.streetName ? 'streetName-error' : undefined} />
+                <FieldError id="streetName-error" message={fieldErrors.streetName} />
+              </label>
+              <label className="grid gap-2 text-sm font-bold text-navy">
+                <span>Huisnummer <RequiredMark /></span>
+                <input className="field" name="houseNumber" placeholder="33" autoComplete="address-line2" required onChange={handleFieldChange('houseNumber')} aria-invalid={Boolean(fieldErrors.houseNumber)} aria-describedby={fieldErrors.houseNumber ? 'houseNumber-error' : undefined} />
+                <FieldError id="houseNumber-error" message={fieldErrors.houseNumber} />
+              </label>
+              <label className="grid gap-2 text-sm font-bold text-navy">
+                <span>Dienst <RequiredMark /></span>
+                <select className="field" name="service" value={serviceValue} required onChange={handleFieldChange('service')} aria-invalid={Boolean(fieldErrors.service)} aria-describedby={fieldErrors.service ? 'service-error' : undefined}>
+                  <option value="">Kies een dienst</option>
                   {serviceOptions.map((option) => (
-                    <option key={option}>{option}</option>
+                    <option key={option} value={option}>{option}</option>
                   ))}
-                  <option>Totaalrenovatie</option>
+                  <option value="Totaalrenovatie">Totaalrenovatie</option>
+                  <option value="other">Anders</option>
                 </select>
+                <FieldError id="service-error" message={fieldErrors.service} />
+              </label>
+              {serviceValue === 'other' && (
+                <label className="grid gap-2 text-sm font-bold text-navy">
+                  <span>Dienst toelichting <RequiredMark /></span>
+                  <input className="field" name="serviceOther" placeholder="Welke dienst zoekt u?" required onChange={handleFieldChange('serviceOther')} aria-invalid={Boolean(fieldErrors.serviceOther)} aria-describedby={fieldErrors.serviceOther ? 'serviceOther-error' : undefined} />
+                  <FieldError id="serviceOther-error" message={fieldErrors.serviceOther} />
+                </label>
+              )}
+              <label className="grid gap-2 text-sm font-bold text-navy">
+                <span>Gewenste uitvoeringsdatum <RequiredMark /></span>
+                <input className="field" name="preferredExecutionDate" type="date" required onChange={handleFieldChange('preferredExecutionDate')} aria-invalid={Boolean(fieldErrors.preferredExecutionDate)} aria-describedby={fieldErrors.preferredExecutionDate ? 'preferredExecutionDate-error' : undefined} />
+                <FieldError id="preferredExecutionDate-error" message={fieldErrors.preferredExecutionDate} />
               </label>
               <label className="grid gap-2 text-sm font-bold text-navy">
-                Postcode of plaats <span className="text-xs font-semibold text-graphite">optioneel</span>
-                <input className="field" name="postalCode" placeholder="3449 JA Woerden" autoComplete="postal-code" />
+                <span>Telefoonnummer <RequiredMark /></span>
+                <input className="field" name="phone" placeholder={phoneDisplay} autoComplete="tel" required onChange={handleFieldChange('phone')} aria-invalid={Boolean(fieldErrors.phone)} aria-describedby={fieldErrors.phone ? 'phone-error' : undefined} />
+                <FieldError id="phone-error" message={fieldErrors.phone} />
               </label>
               <label className="grid gap-2 text-sm font-bold text-navy">
-                Gewenste planning
-                <input className="field" name="preferredTiming" placeholder="Bijvoorbeeld: binnen 4 weken" />
+                <span>E-mailadres <RequiredMark /></span>
+                <input className="field" name="email" type="email" placeholder={email} autoComplete="email" required onChange={handleFieldChange('email')} aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? 'email-error' : undefined} />
+                <FieldError id="email-error" message={fieldErrors.email} />
               </label>
+              <div className="rounded-md border border-line bg-white p-4 md:col-span-2">
+                <input type="hidden" name="urgent" value="Nee" />
+                <label className="flex items-start gap-3 text-sm font-bold text-navy">
+                  <input type="checkbox" name="urgent" value="Ja" className="mt-1 h-4 w-4 rounded border-line text-roller focus:ring-roller" />
+                  <span>
+                    Spoed
+                    <span className="block text-xs font-semibold leading-5 text-graphite">Aanvinken als de aanvraag urgent is.</span>
+                  </span>
+                </label>
+              </div>
               <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
-                Adres
-                <input className="field" name="address" placeholder="Straat en huisnummer, optioneel" autoComplete="street-address" />
-              </label>
-              <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
-                Projectomschrijving
+                <span>Projectomschrijving <RequiredMark /></span>
                 <textarea
                   className="field min-h-32 resize-y"
                   name="message"
                   placeholder="Bijvoorbeeld: buitenschilderwerk kozijnen, houtrot bij voordeur, stucwerk woonkamer..."
                   required
-                  minLength={10}
+                  onChange={handleFieldChange('message')}
+                  aria-invalid={Boolean(fieldErrors.message)}
+                  aria-describedby={fieldErrors.message ? 'message-error' : undefined}
                 />
+                <FieldError id="message-error" message={fieldErrors.message} />
               </label>
 
               <div className="md:col-span-2">
@@ -1315,6 +1437,19 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
         )}
       </div>
     </div>
+  );
+}
+
+function RequiredMark() {
+  return <span className="text-roller" aria-hidden="true">*</span>;
+}
+
+function FieldError({ id, message }: { id: string; message?: string }) {
+  if (!message) return null;
+  return (
+    <p id={id} className="text-xs font-semibold text-roller" role="alert">
+      {message}
+    </p>
   );
 }
 

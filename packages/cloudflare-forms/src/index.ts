@@ -16,6 +16,11 @@ export type LeadFormConfig = {
   senderName: string;
   subjectPrefix: string;
   confirmationFollowUpSentence?: string;
+  requiredFields?: LeadFormRequiredField[];
+  emailFields?: LeadFormEmailField[];
+  subjectFields?: string[];
+  messageField?: string;
+  serviceOtherField?: string;
   attachmentMaxFiles?: number;
   attachmentMaxFileBytes?: number;
   attachmentMaxTotalBytes?: number;
@@ -23,15 +28,30 @@ export type LeadFormConfig = {
   allowedFileExtensions?: string[];
 };
 
-type SubmissionFields = {
+export type LeadFormRequiredField = {
   name: string;
-  phone: string;
+  label: string;
+  message?: string;
+  when?: {
+    field: string;
+    equals: string;
+  };
+};
+
+export type LeadFormEmailField = {
+  name: string;
+  label: string;
+  when?: {
+    field: string;
+    equals: string;
+  };
+};
+
+type SubmissionFields = {
+  firstName: string;
+  lastName: string;
   email: string;
-  service: string;
-  postalCode: string;
-  message: string;
-  address: string;
-  preferredTiming: string;
+  fields: Record<string, string>;
 };
 
 type StoredAttachment = {
@@ -87,6 +107,11 @@ function withDefaults(config: LeadFormConfig): Required<LeadFormConfig> {
   return {
     ownerName: 'Eigenaar',
     confirmationFollowUpSentence: 'We nemen binnen 24 tot 48 uur contact met u op.',
+    requiredFields: [],
+    emailFields: [],
+    subjectFields: [],
+    messageField: 'message',
+    serviceOtherField: 'serviceOther',
     attachmentMaxFiles: 5,
     attachmentMaxFileBytes: 10 * 1024 * 1024,
     attachmentMaxTotalBytes: 50 * 1024 * 1024,
@@ -118,17 +143,18 @@ async function handleSubmission(
     const fields = parseFields(form);
     const turnstileToken = getString(form, 'cf-turnstile-response');
     const fileEntries = form.getAll('files').filter((value): value is File => value instanceof File && value.size > 0);
+    const message = getFieldValue(fields, config.messageField);
     const fieldsPresent = {
-      hasName: Boolean(fields.name),
-      hasPhone: Boolean(fields.phone),
+      hasFirstName: Boolean(fields.firstName),
+      hasLastName: Boolean(fields.lastName),
       hasEmail: Boolean(fields.email),
-      messageLength: fields.message.length,
-      service: fields.service,
+      messageLength: message.length,
+      service: getDisplayFieldValue(fields, 'service', config),
       hasTurnstileToken: Boolean(turnstileToken),
       fileCount: fileEntries.length,
       totalFileBytes: fileEntries.reduce((sum, file) => sum + file.size, 0),
     };
-    const validationError = validateFields(fields);
+    const validationError = validateFields(fields, config);
 
     if (validationError) {
       console.log('form_rejected', { reason: 'validation', message: validationError, ...fieldsPresent, ...reqMeta });
@@ -242,23 +268,32 @@ async function handleAttachmentDownload(
 }
 
 function parseFields(form: FormData): SubmissionFields {
+  const fields: Record<string, string> = {};
+
+  form.forEach((value, key) => {
+    if (key !== 'files' && key !== 'cf-turnstile-response' && key !== 'firstName' && key !== 'lastName' && key !== 'email' && typeof value === 'string') {
+      fields[key] = value.trim();
+    }
+  });
+
   return {
-    name: getString(form, 'name'),
-    phone: getString(form, 'phone'),
+    firstName: getString(form, 'firstName'),
+    lastName: getString(form, 'lastName'),
     email: getString(form, 'email'),
-    service: getString(form, 'service'),
-    postalCode: getString(form, 'postalCode'),
-    message: getString(form, 'message'),
-    address: getString(form, 'address'),
-    preferredTiming: getString(form, 'preferredTiming'),
+    fields,
   };
 }
 
-function validateFields(fields: SubmissionFields): string | null {
-  if (!fields.name) return 'Vul uw naam in.';
-  if (!fields.phone) return 'Vul uw telefoonnummer in.';
+function validateFields(fields: SubmissionFields, config: Required<LeadFormConfig>): string | null {
+  if (!fields.firstName) return 'Vul uw voornaam in.';
+  if (!fields.lastName) return 'Vul uw achternaam in.';
   if (!fields.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) return 'Vul een geldig e-mailadres in.';
-  if (!fields.message || fields.message.length < 10) return 'Beschrijf kort wat er moet gebeuren.';
+
+  for (const field of config.requiredFields) {
+    if (!conditionMatches(fields, field.when)) continue;
+    if (!getFieldValue(fields, field.name)) return field.message ?? `Vul ${field.label.toLowerCase()} in.`;
+  }
+
   return null;
 }
 
@@ -373,14 +408,17 @@ async function sendLeadEmail(
   origin: string,
 ): Promise<void> {
   const { fields } = manifest;
-  const subjectParts = [config.subjectPrefix, fields.service, fields.postalCode].filter(Boolean);
+  const subjectParts = [
+    config.subjectPrefix,
+    ...config.subjectFields.map((field) => getDisplayFieldValue(fields, field, config)),
+  ].filter(Boolean);
   const subject = subjectParts.map(cleanHeader).join(' - ');
 
   try {
     await env.LEAD_EMAIL.send({
       from: { email: env.LEAD_SENDER, name: config.senderName },
       to: env.LEAD_RECIPIENT,
-      replyTo: { email: fields.email, name: cleanHeader(fields.name) },
+      replyTo: { email: fields.email, name: cleanHeader(getFullName(fields)) },
       subject,
       text: renderTextEmail(config, manifest, origin),
       html: renderHtmlEmail(config, manifest, origin),
@@ -393,24 +431,21 @@ async function sendLeadEmail(
 
 function renderConfirmationTextEmail(config: Required<LeadFormConfig>, manifest: SubmissionManifest): string {
   const { fields } = manifest;
+  const fullName = getFullName(fields);
+  const message = getFieldValue(fields, config.messageField);
+  const rows = renderEmailRows(config, fields);
 
   return [
-    `Beste ${fields.name},`,
+    `Beste ${fullName},`,
     '',
     `Uw offerteaanvraag voor ${config.siteName} is verstuurd.`,
     config.confirmationFollowUpSentence,
     '',
     'Uw aanvraag:',
-    `Naam: ${fields.name}`,
-    `Telefoon: ${fields.phone}`,
-    `E-mail: ${fields.email}`,
-    `Dienst: ${fields.service || '-'}`,
-    `Postcode/plaats: ${fields.postalCode || '-'}`,
-    `Adres: ${fields.address || '-'}`,
-    `Gewenste planning: ${fields.preferredTiming || '-'}`,
+    ...rows.map(([label, value]) => `${label}: ${value || '-'}`),
     '',
     'Projectomschrijving:',
-    fields.message,
+    message || '-',
     '',
     `Referentie: ${manifest.submissionId}`,
   ].join('\n');
@@ -418,27 +453,20 @@ function renderConfirmationTextEmail(config: Required<LeadFormConfig>, manifest:
 
 function renderConfirmationHtmlEmail(config: Required<LeadFormConfig>, manifest: SubmissionManifest): string {
   const { fields } = manifest;
-  const rows = [
-    ['Naam', fields.name],
-    ['Telefoon', fields.phone],
-    ['E-mail', fields.email],
-    ['Dienst', fields.service || '-'],
-    ['Postcode/plaats', fields.postalCode || '-'],
-    ['Adres', fields.address || '-'],
-    ['Gewenste planning', fields.preferredTiming || '-'],
-  ];
+  const rows = renderEmailRows(config, fields);
+  const message = getFieldValue(fields, config.messageField);
 
   return `<!doctype html>
 <html>
   <body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;">
-    <p>Beste ${escapeHtml(fields.name)},</p>
+    <p>Beste ${escapeHtml(getFullName(fields))},</p>
     <p>Uw offerteaanvraag voor ${escapeHtml(config.siteName)} is verstuurd. ${escapeHtml(config.confirmationFollowUpSentence)}</p>
     <h1 style="font-size: 20px;">Uw aanvraag</h1>
     <table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
       ${rows.map(([label, value]) => `<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}
     </table>
     <h2 style="font-size: 16px;">Projectomschrijving</h2>
-    <p>${escapeHtml(fields.message).replace(/\n/g, '<br>')}</p>
+    <p>${escapeHtml(message || '-').replace(/\n/g, '<br>')}</p>
     <p style="font-size: 12px; color: #667085;">Referentie ${escapeHtml(manifest.submissionId)}.</p>
   </body>
 </html>`;
@@ -446,6 +474,8 @@ function renderConfirmationHtmlEmail(config: Required<LeadFormConfig>, manifest:
 
 function renderTextEmail(config: Required<LeadFormConfig>, manifest: SubmissionManifest, origin: string): string {
   const { fields } = manifest;
+  const rows = renderEmailRows(config, fields);
+  const message = getFieldValue(fields, config.messageField);
   const attachmentLines = manifest.attachments.length
     ? manifest.attachments.map((attachment) => `- ${attachment.name}: ${attachmentUrl(config, manifest, attachment, origin)}`).join('\n')
     : 'Geen bijlagen meegestuurd.';
@@ -453,16 +483,10 @@ function renderTextEmail(config: Required<LeadFormConfig>, manifest: SubmissionM
   return [
     `Nieuwe offerteaanvraag voor ${config.siteName}`,
     '',
-    `Naam: ${fields.name}`,
-    `Telefoon: ${fields.phone}`,
-    `E-mail: ${fields.email}`,
-    `Dienst: ${fields.service || '-'}`,
-    `Postcode/plaats: ${fields.postalCode || '-'}`,
-    `Adres: ${fields.address || '-'}`,
-    `Gewenste planning: ${fields.preferredTiming || '-'}`,
+    ...rows.map(([label, value]) => `${label}: ${value || '-'}`),
     '',
     'Projectomschrijving:',
-    fields.message,
+    message || '-',
     '',
     'Bijlagen:',
     attachmentLines,
@@ -474,15 +498,8 @@ function renderTextEmail(config: Required<LeadFormConfig>, manifest: SubmissionM
 
 function renderHtmlEmail(config: Required<LeadFormConfig>, manifest: SubmissionManifest, origin: string): string {
   const { fields } = manifest;
-  const rows = [
-    ['Naam', fields.name],
-    ['Telefoon', fields.phone],
-    ['E-mail', fields.email],
-    ['Dienst', fields.service || '-'],
-    ['Postcode/plaats', fields.postalCode || '-'],
-    ['Adres', fields.address || '-'],
-    ['Gewenste planning', fields.preferredTiming || '-'],
-  ];
+  const rows = renderEmailRows(config, fields);
+  const message = getFieldValue(fields, config.messageField);
   const attachments = manifest.attachments.length
     ? `<ul>${manifest.attachments
         .map((attachment) => `<li><a href="${escapeHtml(attachmentUrl(config, manifest, attachment, origin))}">${escapeHtml(attachment.name)}</a></li>`)
@@ -497,12 +514,44 @@ function renderHtmlEmail(config: Required<LeadFormConfig>, manifest: SubmissionM
       ${rows.map(([label, value]) => `<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}
     </table>
     <h2 style="font-size: 16px;">Projectomschrijving</h2>
-    <p>${escapeHtml(fields.message).replace(/\n/g, '<br>')}</p>
+    <p>${escapeHtml(message || '-').replace(/\n/g, '<br>')}</p>
     <h2 style="font-size: 16px;">Bijlagen</h2>
     ${attachments}
     <p style="font-size: 12px; color: #667085;">Inzending ${escapeHtml(manifest.submissionId)} ontvangen op ${escapeHtml(manifest.createdAt)}.</p>
   </body>
 </html>`;
+}
+
+function renderEmailRows(config: Required<LeadFormConfig>, fields: SubmissionFields): [string, string][] {
+  const baseRows: [string, string][] = [
+    ['Voornaam', fields.firstName],
+    ['Achternaam', fields.lastName],
+    ['E-mail', fields.email],
+  ];
+  const configuredRows = config.emailFields
+    .filter((field) => conditionMatches(fields, field.when))
+    .map((field): [string, string] => [field.label, getDisplayFieldValue(fields, field.name, config) || '-']);
+  return [...baseRows, ...configuredRows];
+}
+
+function getFullName(fields: SubmissionFields): string {
+  return [fields.firstName, fields.lastName].filter(Boolean).join(' ');
+}
+
+function getDisplayFieldValue(fields: SubmissionFields, name: string, config: Required<LeadFormConfig>): string {
+  const value = getFieldValue(fields, name);
+  if (name === 'service' && value === 'other') return getFieldValue(fields, config.serviceOtherField);
+  return value;
+}
+
+function getFieldValue(fields: SubmissionFields, name: string): string {
+  if (name === 'firstName' || name === 'lastName' || name === 'email') return fields[name];
+  return fields.fields[name] ?? '';
+}
+
+function conditionMatches(fields: SubmissionFields, condition?: { field: string; equals: string }): boolean {
+  if (!condition) return true;
+  return getFieldValue(fields, condition.field) === condition.equals;
 }
 
 function attachmentUrl(

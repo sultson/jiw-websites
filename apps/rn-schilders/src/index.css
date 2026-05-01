@@ -76,6 +76,10 @@
   .field {
     @apply min-h-12 w-full rounded-md border border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-graphite/70 focus:border-roller focus:outline-none;
   }
+
+  .field[aria-invalid="true"] {
+    @apply border-roller bg-roller/5;
+  }
 }
 
 .safe-bottom {

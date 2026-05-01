@@ -30,8 +30,9 @@ Cloudflare Email Service sending can be used directly from Workers with a `send_
 
 1. Add `@jiw/cloudflare-forms` as a workspace dependency for the app.
 2. Add `worker/index.ts` using `createFormWorker`, including a site-specific Dutch `confirmationFollowUpSentence` for the sender confirmation email.
-3. Add `wrangler.jsonc` with Static Assets, R2, `send_email`, and site vars.
-4. Create a Turnstile widget and commit only the public `VITE_TURNSTILE_SITE_KEY`.
-5. Upload `TURNSTILE_SECRET_KEY` with `wrangler secret put`.
-6. Add or update the R2 lifecycle rule for the app prefix.
-7. Verify the sender domain in Cloudflare Email Service before live cutover.
+3. Form submissions must include `firstName`, `lastName`, and `email`. Configure all client-specific required fields, conditional fields, subject fields, and email row order through `requiredFields`, `subjectFields`, and `emailFields`.
+4. Add `wrangler.jsonc` with Static Assets, R2, `send_email`, and site vars.
+5. Create a Turnstile widget and commit only the public `VITE_TURNSTILE_SITE_KEY`.
+6. Upload `TURNSTILE_SECRET_KEY` with `wrangler secret put`.
+7. Add or update the R2 lifecycle rule for the app prefix.
+8. Verify the sender domain in Cloudflare Email Service before live cutover.
