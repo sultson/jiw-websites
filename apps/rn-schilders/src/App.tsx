@@ -91,6 +91,11 @@ type Review = {
   quote: string;
 };
 
+type TermsSection = {
+  title: string;
+  items: Array<string | { text: string; subitems: string[] }>;
+};
+
 const navLinks = [
   ['Diensten', '#diensten'],
   ['Werk', '#werk'],
@@ -273,22 +278,209 @@ const processSteps = [
   ['Oplevering', 'Samen controleren we het resultaat en eventuele restpunten worden direct helder gemaakt.'],
 ] as const;
 
+const termsSections: TermsSection[] = [
+  {
+    title: 'Artikel 1 — Definities',
+    items: [
+      'In deze algemene voorwaarden wordt verstaan onder:',
+      'a. Opdrachtnemer: RN Schilders & Renovatie, gevestigd te Woerden, ingeschreven bij de KvK onder nummer 98075357.',
+      'b. Opdrachtgever: de natuurlijke persoon of vereniging van eigenaren, niet handelend in de uitoefening van beroep of bedrijf, die met opdrachtnemer een overeenkomst sluit.',
+      'c. Overeenkomst: alle tussen partijen gemaakte afspraken met betrekking tot de uitvoering van werkzaamheden en/of het leveren van materialen.',
+      'd. Werkzaamheden: alle werkzaamheden die opdrachtnemer aanbiedt, waaronder schilderwerk (binnen en buiten), renovatie, dakkapellen, vloeren leggen en egaliseren, kunststof kozijnen, houtrotreparatie en aanverwante werkzaamheden.',
+    ],
+  },
+  {
+    title: 'Artikel 2 — Toepasselijkheid',
+    items: [
+      '1. Deze algemene voorwaarden zijn van toepassing op alle aanbiedingen, offertes en overeenkomsten tussen opdrachtnemer en opdrachtgever.',
+      '2. Afwijkingen van deze voorwaarden zijn uitsluitend geldig indien deze schriftelijk zijn overeengekomen.',
+      '3. Deze voorwaarden worden bij elke offerte aan opdrachtgever ter beschikking gesteld.',
+    ],
+  },
+  {
+    title: 'Artikel 3 — Aanbieding en totstandkoming overeenkomst',
+    items: [
+      '1. Een overeenkomst komt tot stand nadat opdrachtgever de offerte schriftelijk (per e-mail, WhatsApp of ondertekend) heeft geaccepteerd.',
+      '2. Iedere offerte is vrijblijvend en geldig gedurende 30 dagen, tenzij anders vermeld.',
+      '3. Indien opdrachtnemer met instemming van opdrachtgever met de werkzaamheden begint zonder schriftelijke bevestiging, geldt de laatste verstrekte offerte als overeenkomst.',
+    ],
+  },
+  {
+    title: 'Artikel 4 — Wettelijke bedenktijd',
+    items: [
+      '1. Bij overeenkomsten die op afstand of buiten de verkoopruimte tot stand komen (bijvoorbeeld via telefoon, WhatsApp, e-mail of bij opdrachtgever thuis), heeft opdrachtgever recht op een bedenktijd van 14 dagen na het sluiten van de overeenkomst.',
+      '2. Indien opdrachtgever wenst dat opdrachtnemer binnen deze 14 dagen start met de werkzaamheden en/of de inkoop van benodigde materialen, dient opdrachtgever hier uitdrukkelijk schriftelijk mee in te stemmen. Opdrachtgever erkent in dat geval dat het herroepingsrecht vervalt zodra de werkzaamheden volledig zijn uitgevoerd.',
+      {
+        text: '3. Indien opdrachtgever de overeenkomst binnen de bedenktijd herroept terwijl opdrachtnemer reeds — met toestemming van opdrachtgever — is begonnen met de werkzaamheden, materiaalinkoop of personeelsreservering, is opdrachtgever verplicht de volgende kosten volledig te vergoeden:',
+        subitems: [
+          'a. de werkelijke kosten van reeds ingekochte of bestelde materialen, ongeacht of deze retour kunnen worden gestuurd;',
+          'b. de tot dat moment uitgevoerde werkzaamheden, berekend op basis van het overeengekomen uurtarief of een evenredig deel van de aanneemsom;',
+          'c. eventuele voorbereidende werkzaamheden zoals inspecties, opmetingen en bestellingen;',
+          'd. reeds gereserveerde of ingehuurde mankracht die door de korte termijn niet meer elders kan worden ingezet.',
+        ],
+      },
+      '4. Indien opdrachtgever géén toestemming heeft gegeven om binnen de bedenktijd te starten, zal opdrachtnemer pas na afloop van de bedenktijd aanvangen met werkzaamheden of materiaalinkoop. Dit betekent tevens dat opdrachtnemer pas ná afloop van de bedenktijd de planning kan opmaken en de beschikbaarheid van personeel kan vaststellen. De definitieve startdatum kan hierdoor afwijken van een eerder genoemde indicatieve datum.',
+    ],
+  },
+  {
+    title: 'Artikel 5 — Uitvoering van de werkzaamheden',
+    items: [
+      '1. Opdrachtgever zorgt ervoor dat opdrachtnemer tijdig kan beschikken over de benodigde toegang, vergunningen en gegevens voor de uitvoering van de werkzaamheden.',
+      '2. Opdrachtgever stelt kosteloos elektriciteit, water en sanitair ter beschikking gedurende de werkzaamheden.',
+      '3. Opdrachtnemer is gerechtigd werkzaamheden geheel of gedeeltelijk door derden te laten uitvoeren.',
+      '4. Een overeengekomen uitvoeringstermijn is geen fatale termijn. Bij overschrijding krijgt opdrachtnemer de gelegenheid om alsnog binnen redelijke termijn na te komen.',
+      '5. Indien opdrachtgever in gebreke blijft met de in dit artikel genoemde verplichtingen, heeft opdrachtnemer het recht de uitvoering op te schorten en de daaruit voortvloeiende kosten in rekening te brengen.',
+    ],
+  },
+  {
+    title: 'Artikel 6 — Prijzen',
+    items: [
+      '1. Alle prijzen zijn inclusief BTW, tenzij anders vermeld in de offerte.',
+      '2. Reis- en parkeerkosten en kosten voor vergunningaanvragen zijn niet bij de prijs inbegrepen, tenzij uitdrukkelijk vermeld.',
+      '3. Indien tussen het sluiten van de overeenkomst en de uitvoering meer dan drie maanden is verstreken, is opdrachtnemer gerechtigd prijswijzigingen door te berekenen.',
+    ],
+  },
+  {
+    title: 'Artikel 7 — Betaling',
+    items: [
+      {
+        text: '1. Tenzij anders overeengekomen in de offerte, hanteert opdrachtnemer voor grotere projecten de volgende betalingsregeling:',
+        subitems: ['• 35% bij acceptatie van de offerte;', '• 55% bij aanvang van de werkzaamheden;', '• 10% binnen 14 dagen na oplevering.'],
+      },
+      '2. Voor kleinere opdrachten kan opdrachtnemer afwijken van deze regeling. De geldende betalingstermijnen worden in dat geval in de offerte vermeld.',
+      '3. Bij niet-tijdige betaling is opdrachtgever van rechtswege in verzuim. Vanaf dat moment is opdrachtgever de wettelijke rente verschuldigd over het openstaande bedrag.',
+      '4. Bij verzuim is opdrachtgever tevens buitengerechtelijke incassokosten verschuldigd conform de Wet normering buitengerechtelijke incassokosten.',
+      '5. Bij niet-tijdige betaling van een termijn is opdrachtnemer gerechtigd de werkzaamheden op te schorten totdat volledig is betaald.',
+    ],
+  },
+  {
+    title: 'Artikel 8 — Garantie',
+    items: [
+      '1. Opdrachtnemer biedt op uitgevoerd schilderwerk een garantie van 5 jaar na oplevering.',
+      '2. Op renovatie- en verbouwingswerkzaamheden geldt een garantie van 5 jaar na oplevering.',
+      {
+        text: '3. De garantie geldt uitsluitend indien:',
+        subitems: [
+          'a. opdrachtgever het werk normaal en zorgvuldig gebruikt;',
+          'b. opdrachtgever het werk regelmatig en deugdelijk onderhoudt volgens de aanwijzingen van opdrachtnemer;',
+          'c. de gebreken niet het gevolg zijn van normale slijtage, externe invloeden, onjuist gebruik of door opdrachtgever of derden uitgevoerde wijzigingen;',
+          'd. opdrachtgever zijn betalingsverplichtingen volledig is nagekomen.',
+        ],
+      },
+      '4. Garantieaanspraken dienen binnen 14 dagen na ontdekking schriftelijk bij opdrachtnemer te worden gemeld.',
+      '5. Onder garantie wordt verstaan: kosteloos herstel van het gebrek door opdrachtnemer. Vervanging is uitsluitend mogelijk indien herstel redelijkerwijs niet mogelijk is. De totale kosten voor herstel onder deze garantie zijn beperkt tot een maximum van € 2.500,00 per opdracht.',
+    ],
+  },
+  {
+    title: 'Artikel 9 — Oplevering en klachten',
+    items: [
+      '1. Na voltooiing van de werkzaamheden vindt een oplevering plaats waarbij opdrachtnemer en opdrachtgever gezamenlijk het werk inspecteren. Eventuele gebreken worden vastgelegd op het opleveringsformulier dat door beide partijen wordt ondertekend.',
+      '2. Het werk wordt geacht te zijn opgeleverd op het moment dat het opleveringsformulier door beide partijen is ondertekend. Opdrachtnemer zal eventuele op het formulier vastgelegde gebreken binnen een redelijke termijn herstellen.',
+      '3. Indien opdrachtgever niet aanwezig is bij de oplevering, weigert het werk te inspecteren of weigert het opleveringsformulier te ondertekenen, wordt het werk geacht te zijn aanvaard zodra opdrachtnemer schriftelijk heeft meegedeeld dat het werk gereed is en opdrachtgever niet binnen 14 dagen schriftelijk gebreken heeft gemeld.',
+      '4. Ingebruikname van (een gedeelte van) het werk geldt als aanvaarding van dat gedeelte.',
+      '5. Klachten over gebreken die bij oplevering redelijkerwijs zichtbaar waren maar niet zijn gemeld op het opleveringsformulier, kunnen achteraf niet meer worden ingediend.',
+      '6. Verborgen gebreken die pas na oplevering zichtbaar worden, dienen binnen 14 dagen na ontdekking schriftelijk te worden gemeld. Daarna vervalt het recht om hierover te klagen.',
+      '7. Een klacht over een onderdeel van het werk geeft geen recht op opschorting van betaling van het geheel.',
+    ],
+  },
+  {
+    title: 'Artikel 10 — Aansprakelijkheid',
+    items: [
+      '1. Opdrachtnemer dient bij gebreken in de gelegenheid te worden gesteld deze te herstellen, voordat opdrachtgever zich op andere rechten kan beroepen.',
+      '2. De aansprakelijkheid van opdrachtnemer is beperkt tot het netto factuurbedrag van de betreffende opdracht, tot een maximum van € 2.500,00.',
+      '3. Indien opdrachtnemer voor de schade is verzekerd, is de aansprakelijkheid beperkt tot het bedrag dat door de verzekeraar wordt uitgekeerd, vermeerderd met het eigen risico.',
+      '4. Opdrachtnemer is niet aansprakelijk voor gevolgschade, gederfde winst, gemiste besparingen of schade door bedrijfsstagnatie.',
+      {
+        text: '5. Opdrachtnemer is niet aansprakelijk voor schade die het gevolg is van:',
+        subitems: [
+          'a. door opdrachtgever ter beschikking gestelde of voorgeschreven materialen;',
+          'b. een ondeugdelijke ondergrond waarvoor opdrachtnemer heeft gewaarschuwd;',
+          'c. handelen of nalaten van opdrachtgever of derden;',
+          'd. overschrijding van de uitvoeringstermijn.',
+        ],
+      },
+      '6. Iedere aansprakelijkheid vervalt één jaar na het ontstaan van de schade, dan wel één jaar nadat opdrachtgever de schade redelijkerwijs heeft kunnen vaststellen.',
+    ],
+  },
+  {
+    title: 'Artikel 11 — Overmacht',
+    items: [
+      '1. Onder overmacht wordt verstaan: omstandigheden die nakoming van de overeenkomst verhinderen en die niet aan opdrachtnemer zijn toe te rekenen, waaronder maar niet beperkt tot: extreme weersomstandigheden, ziekte, stakingen, brand, storingen bij toeleveranciers, overheidsmaatregelen en transportproblemen.',
+      '2. Bij overmacht heeft opdrachtnemer het recht de uitvoering op te schorten. Indien de overmacht langer dan één maand voortduurt, zijn beide partijen gerechtigd de overeenkomst te ontbinden zonder schadevergoeding.',
+      '3. Indien opdrachtnemer bij intreden van de overmacht reeds gedeeltelijk aan zijn verplichtingen heeft voldaan, is opdrachtnemer gerechtigd dit deel afzonderlijk te factureren.',
+    ],
+  },
+  {
+    title: 'Artikel 12 — Eigendomsvoorbehoud',
+    items: [
+      '1. Alle door opdrachtnemer geleverde goederen blijven eigendom van opdrachtnemer tot volledige betaling van alle vorderingen, inclusief rente en kosten.',
+      '2. Tot aan volledige betaling is opdrachtgever niet bevoegd de goederen te verpanden of te vervreemden.',
+    ],
+  },
+  {
+    title: 'Artikel 13 — Opzegging en annulering',
+    items: [
+      '1. Opdrachtgever kan de overeenkomst te allen tijde opzeggen.',
+      {
+        text: '2. Bij opzegging is opdrachtgever, tenzij anders overeengekomen in de offerte, de volledige kosten verschuldigd van:',
+        subitems: [
+          'a. reeds ingekochte of bestelde materialen, ongeacht of deze retour kunnen worden gestuurd;',
+          'b. reeds gereserveerde of ingehuurde mankracht die door de korte termijn niet meer elders kan worden ingezet;',
+          'c. reeds verrichte voorbereidende werkzaamheden zoals inspecties, opmetingen en bestellingen;',
+          'd. reeds uitgevoerde werkzaamheden, berekend op basis van het overeengekomen uurtarief of een evenredig deel van de aanneemsom.',
+        ],
+      },
+      '3. Indien opdrachtgever conform artikel 4 lid 2 uitdrukkelijk schriftelijk toestemming heeft gegeven om binnen de bedenktijd te starten, gelden de bovengenoemde kosten direct vanaf het moment van acceptatie van de offerte. In dat geval vervalt het herroepingsrecht voor zover de werkzaamheden zijn uitgevoerd.',
+      '4. De opzeggingskosten zijn direct opeisbaar zodra opdrachtgever de opzegging heeft kenbaar gemaakt.',
+      '5. Wordt de uitvoering van het werk onmogelijk door een oorzaak die niet aan opdrachtnemer kan worden toegerekend, dan is opdrachtnemer gerechtigd de overeenkomst op te zeggen en de tot dan toe gemaakte kosten in rekening te brengen.',
+    ],
+  },
+  {
+    title: 'Artikel 14 — Toepasselijk recht en geschillen',
+    items: [
+      '1. Op alle overeenkomsten tussen opdrachtnemer en opdrachtgever is uitsluitend Nederlands recht van toepassing.',
+      '2. Geschillen worden voorgelegd aan de bevoegde rechter van de Rechtbank Midden-Nederland, locatie Utrecht.',
+    ],
+  },
+  {
+    title: 'Artikel 15 — Slotbepalingen',
+    items: [
+      '1. Indien een bepaling van deze algemene voorwaarden nietig of vernietigbaar blijkt, blijven de overige bepalingen onverminderd van kracht.',
+      '2. Opdrachtnemer is gerechtigd deze algemene voorwaarden te wijzigen. De gewijzigde voorwaarden gelden voor alle nieuwe overeenkomsten.',
+    ],
+  },
+];
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [quoteOpen, setQuoteOpen] = useState(false);
+  const [pathname, setPathname] = useState(() => (typeof window === 'undefined' ? '/' : window.location.pathname));
+  const isTermsPage = pathname === '/algemene-voorwaarden';
+
+  useEffect(() => {
+    const onLocationChange = () => setPathname(window.location.pathname);
+    window.addEventListener('popstate', onLocationChange);
+    return () => window.removeEventListener('popstate', onLocationChange);
+  }, []);
 
   return (
     <div id="top" className="min-h-[100dvh] bg-paper">
-      <Nav menuOpen={menuOpen} setMenuOpen={setMenuOpen} openQuote={() => setQuoteOpen(true)} />
+      <Nav menuOpen={menuOpen} setMenuOpen={setMenuOpen} openQuote={() => setQuoteOpen(true)} isTermsPage={isTermsPage} />
       <main className="pt-16 md:pt-20">
-        <Hero openQuote={() => setQuoteOpen(true)} />
-        <ProofStrip />
-        <OwnerSection openQuote={() => setQuoteOpen(true)} />
-        <Services openQuote={() => setQuoteOpen(true)} />
-        <FeaturedWork openQuote={() => setQuoteOpen(true)} />
-        <Reviews />
-        <Process openQuote={() => setQuoteOpen(true)} />
-        <Contact openQuote={() => setQuoteOpen(true)} />
+        {isTermsPage ? (
+          <TermsPage openQuote={() => setQuoteOpen(true)} />
+        ) : (
+          <>
+            <Hero openQuote={() => setQuoteOpen(true)} />
+            <ProofStrip />
+            <OwnerSection openQuote={() => setQuoteOpen(true)} />
+            <Services openQuote={() => setQuoteOpen(true)} />
+            <FeaturedWork openQuote={() => setQuoteOpen(true)} />
+            <Reviews />
+            <Process openQuote={() => setQuoteOpen(true)} />
+            <Contact openQuote={() => setQuoteOpen(true)} />
+          </>
+        )}
       </main>
       <Footer />
       <MobileCta openQuote={() => setQuoteOpen(true)} />
@@ -301,10 +493,12 @@ function Nav({
   menuOpen,
   setMenuOpen,
   openQuote,
+  isTermsPage,
 }: {
   menuOpen: boolean;
   setMenuOpen: (open: boolean) => void;
   openQuote: () => void;
+  isTermsPage: boolean;
 }) {
   const [scrolled, setScrolled] = useState(false);
 
@@ -318,7 +512,7 @@ function Nav({
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition ${scrolled ? 'bg-whitewash/95 shadow-sm backdrop-blur-md' : 'bg-whitewash/90 backdrop-blur-sm'}`}>
       <div className="shell flex h-16 items-center justify-between md:h-20">
-        <a href="#top" className="flex min-w-0 items-center gap-3" aria-label="RN Schilders & Renovatie">
+        <a href={isTermsPage ? '/' : '#top'} className="flex min-w-0 items-center gap-3" aria-label="RN Schilders & Renovatie">
           <img src="/logo-mark.webp" alt="" width={800} height={679} className="h-11 w-11 object-contain" />
           <span className="min-w-0">
             <span className="block truncate font-display text-lg font-extrabold text-navy sm:text-xl">RN Schilders</span>
@@ -328,7 +522,7 @@ function Nav({
 
         <nav className="hidden items-center gap-7 lg:flex">
           {navLinks.map(([label, href]) => (
-            <a key={href} href={href} className="text-sm font-semibold text-graphite transition hover:text-navy">
+            <a key={href} href={isTermsPage ? `/${href}` : href} className="text-sm font-semibold text-graphite transition hover:text-navy">
               {label}
             </a>
           ))}
@@ -361,7 +555,7 @@ function Nav({
               {navLinks.map(([label, href]) => (
                 <a
                   key={href}
-                  href={href}
+                  href={isTermsPage ? `/${href}` : href}
                   onClick={() => setMenuOpen(false)}
                   className="flex items-center justify-between rounded-md px-2 py-3 font-display text-xl font-bold text-navy"
                 >
@@ -1520,6 +1714,102 @@ function TurnstileWidget({
   return <div ref={containerRef} />;
 }
 
+function TermsPage({ openQuote }: { openQuote: () => void }) {
+  return (
+    <section className="bg-paper">
+      <div className="bg-navy text-white">
+        <div className="shell grid gap-8 py-10 md:grid-cols-[1fr_auto] md:items-center md:py-14">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-roller-soft">Versie april 2026</p>
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">Algemene Voorwaarden RN Schilders & Renovatie</h1>
+            <div className="mt-6 grid gap-2 text-sm leading-6 text-white/88 sm:grid-cols-2">
+              <p>Kuipersweg 33, 3449 JA Woerden</p>
+              <p>KvK: 98075357 | BTW: NL005307357B55</p>
+              <p>
+                <a href={`mailto:${email}`} className="underline decoration-roller-soft/70 underline-offset-4">
+                  {email}
+                </a>
+              </p>
+              <p>
+                <a href={phoneHref} className="underline decoration-roller-soft/70 underline-offset-4">
+                  0645 17 27 26
+                </a>
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center justify-center rounded-lg border border-white/12 bg-white/8 p-6">
+            <img src="/logo-mono.webp" alt="RN Schilders & Renovatie logo" width={470} height={457} className="h-32 w-32 object-contain md:h-40 md:w-40" />
+          </div>
+        </div>
+      </div>
+
+      <div className="shell py-10 md:py-16">
+        <div className="grid gap-8 lg:grid-cols-[17rem_1fr] lg:items-start">
+          <aside className="rounded-lg border border-line bg-whitewash p-5 lg:sticky lg:top-24">
+            <div className="flex items-center gap-3">
+              <FileText className="text-roller" size={22} />
+              <p className="font-display text-lg font-extrabold text-navy">Document</p>
+            </div>
+            <p className="mt-3 text-sm leading-6 text-graphite">
+              Deze pagina bevat de algemene voorwaarden van RN Schilders & Renovatie.
+            </p>
+            <div className="mt-5 grid gap-3">
+              <a href="/" className="btn-outline w-full px-4">
+                Terug naar website
+              </a>
+              <button type="button" onClick={openQuote} className="btn-primary w-full px-4">
+                Offerte aanvragen
+              </button>
+            </div>
+          </aside>
+
+          <article className="rounded-lg border border-line bg-whitewash p-5 shadow-[0_24px_70px_-54px_rgba(13,30,61,0.55)] md:p-8">
+            <div className="border-b border-line pb-6">
+              <p className="text-sm font-semibold leading-6 text-graphite">
+                RN Schilders & Renovatie | Kuipersweg 33, 3449 JA Woerden | KvK 98075357 | BTW NL005307357B55
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-8">
+              {termsSections.map((section) => (
+                <section key={section.title} className="scroll-mt-24">
+                  <h2 className="font-display text-2xl font-extrabold leading-tight text-navy md:text-3xl">{section.title}</h2>
+                  <div className="mt-4 grid gap-3">
+                    {section.items.map((item, index) =>
+                      typeof item === 'string' ? (
+                        <p key={`${section.title}-${index}`} className="text-base leading-8 text-graphite">
+                          {item}
+                        </p>
+                      ) : (
+                        <div key={`${section.title}-${index}`} className="grid gap-3">
+                          <p className="text-base leading-8 text-graphite">{item.text}</p>
+                          <div className="grid gap-2 pl-4 sm:pl-6">
+                            {item.subitems.map((subitem) => (
+                              <p key={subitem} className="text-base leading-8 text-graphite">
+                                {subitem}
+                              </p>
+                            ))}
+                          </div>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                </section>
+              ))}
+            </div>
+
+            <div className="mt-10 border-t border-line pt-6">
+              <p className="text-sm font-semibold leading-6 text-graphite">
+                RN Schilders & Renovatie | Kuipersweg 33, 3449 JA Woerden | KvK 98075357 | BTW NL005307357B55
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function MobileCta({ openQuote }: { openQuote: () => void }) {
   const [visible, setVisible] = useState(false);
 
@@ -1597,6 +1887,9 @@ function Footer() {
             </a>
             <a href={`mailto:${email}`} className="hover:text-white">
               {email}
+            </a>
+            <a href="/algemene-voorwaarden" className="hover:text-white">
+              Algemene voorwaarden
             </a>
           </div>
         </div>
