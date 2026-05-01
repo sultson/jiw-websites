@@ -437,31 +437,78 @@
 
       <label for="prompt-template">
         Prompt template
-        <span class="hint">Use placeholders like [client-name], [client-slug], [client-notes], [languages], [google-maps-url], [google-doc-url]. Edit freely — your last version is remembered.</span>
+        <span class="hint">Use placeholders from the new default prompt, such as [salon name], [city], [business type], [client-subdomain], [client-notes], [languages]. Edit freely — your last version is remembered.</span>
       </label>
       <textarea id="prompt-template" spellcheck="false"></textarea>
 
       <label for="client-name">
-        Client name
+        Salon name
         <span class="hint">As it should appear in copy. E.g. "Brigitte Beauty" or "Salon Rosmalen".</span>
       </label>
       <input type="text" id="client-name" placeholder="Brigitte Beauty" autocomplete="off" />
 
       <label for="client-slug">
-        Client slug
+        Client subdomain
         <span class="hint">Max 2–3 words, lowercase, kebab-case. E.g. <code>brigitte-beauty</code>, <code>nail-it-rosmalen</code>. Used for folder + subdomain.</span>
       </label>
       <input type="text" id="client-slug" placeholder="brigitte-beauty" autocomplete="off" />
       <div class="slug-preview" id="slug-preview"></div>
 
+      <label for="client-city">
+        City
+        <span class="hint">City or local service area used for local SEO and the client notes block.</span>
+      </label>
+      <input type="text" id="client-city" placeholder="Tilburg" autocomplete="off" />
+
+      <label for="business-type">
+        Business type
+        <span class="hint">Short category. E.g. nagelsalon, schoonheidssalon, huidkliniek.</span>
+      </label>
+      <input type="text" id="business-type" placeholder="nagelsalon" autocomplete="off" />
+
+      <label for="google-info">
+        Google
+        <span class="hint">Rating, review count and/or Google Maps URL.</span>
+      </label>
+      <input type="text" id="google-info" placeholder="4.9 stars, 18 reviews — https://maps.app.goo.gl/..." autocomplete="off" />
+
+      <label for="instagram-info">
+        Instagram
+        <span class="hint">Official profile URL or handle.</span>
+      </label>
+      <input type="text" id="instagram-info" placeholder="https://instagram.com/brigittebeauty" autocomplete="off" />
+
+      <label for="facebook-info">
+        Facebook
+        <span class="hint">Official profile URL plus likes/followers if known.</span>
+      </label>
+      <input type="text" id="facebook-info" placeholder="https://facebook.com/brigittebeauty.salon" autocomplete="off" />
+
+      <label for="booking-info">
+        Booking
+        <span class="hint">Booking system, booking URL, or the best known appointment route.</span>
+      </label>
+      <input type="text" id="booking-info" placeholder="Salonized — https://..." autocomplete="off" />
+
+      <label for="website-info">
+        Website
+        <span class="hint">Existing website if any.</span>
+      </label>
+      <input type="text" id="website-info" placeholder="https://..." autocomplete="off" />
+
+      <label for="known-treatments">
+        Treatments
+        <span class="hint">Known treatments/services from the intake or sources.</span>
+      </label>
+      <input type="text" id="known-treatments" placeholder="BIAB, gellak, nail art" autocomplete="off" />
+
       <label for="client-notes">
-        Client notes
+        Supplied notes
         <span class="hint">
-          Most valuable: Google Maps URL, Instagram page URL, Facebook page URL, Google Doc URL.<br/>
-          Also useful: freeform notes about what client cares about, brand vibe they want, services to highlight or skip, tone preferences, opening hours quirks, names of staff, anything they mentioned over phone/email.
+          Freeform leftovers: Google Doc/Drive URLs, owner details, brand vibe, services to highlight or skip, tone preferences, opening hours quirks, staff names, phone/email notes.
         </span>
       </label>
-      <textarea id="client-notes" placeholder="Google Maps: https://maps.google.com/...&#10;Instagram: https://instagram.com/...&#10;Facebook: https://facebook.com/...&#10;Google Doc: https://docs.google.com/...&#10;&#10;Notes: Owner Brigitte runs solo. Wants warm, inviting feel — not corporate. Stopped doing eyelash extensions last year, don't feature. Prices via DM only."></textarea>
+      <textarea id="client-notes" placeholder="Google Doc: https://docs.google.com/...&#10;&#10;Owner runs solo. Wants warm, inviting feel — not corporate. Stopped doing eyelash extensions last year, don't feature. Prices via DM only."></textarea>
 
       <label>
         Languages
@@ -482,9 +529,16 @@
       <details class="example">
         <summary>Show example</summary>
         <div class="ex-grid">
-          <dt>client-name</dt><dd>Brigitte Beauty</dd>
-          <dt>client-slug</dt><dd>brigitte-beauty</dd>
-          <dt>client-notes</dt><dd>Google Maps: https://maps.app.goo.gl/xyz123<br/>Instagram: https://instagram.com/brigittebeauty<br/>Facebook: https://facebook.com/brigittebeauty.salon<br/>Google Doc with prijslijst + photos: https://docs.google.com/document/d/abc<br/><br/>Notes: Solo operator. Located in Tilburg. Focus on gel nails + manicures. Stopped doing pedicures. Wants warm/inviting tone, Dutch copy. Speaks of "mijn dames" — keep that warmth. Salonized for booking.</dd>
+          <dt>salon name</dt><dd>Brigitte Beauty</dd>
+          <dt>client-subdomain</dt><dd>brigitte-beauty</dd>
+          <dt>city</dt><dd>Tilburg</dd>
+          <dt>business type</dt><dd>nagelsalon</dd>
+          <dt>google</dt><dd>4.9 stars, 18 reviews — https://maps.app.goo.gl/xyz123</dd>
+          <dt>instagram</dt><dd>https://instagram.com/brigittebeauty</dd>
+          <dt>facebook</dt><dd>https://facebook.com/brigittebeauty.salon</dd>
+          <dt>booking</dt><dd>Salonized</dd>
+          <dt>treatments</dt><dd>gel nails, manicures, BIAB</dd>
+          <dt>client-notes</dt><dd>Google Doc: https://docs.google.com/document/d/abc<br/><br/>Solo operator. Stopped doing pedicures. Wants warm/inviting tone, Dutch copy. Speaks of "mijn dames" — keep that warmth.</dd>
         </div>
         <div class="ex-actions">
           <button type="button" class="ghost" id="load-example">Load example into form</button>
@@ -521,152 +575,409 @@
 <div class="toast" id="toast">copied</div>
 
 <script>
-  // ---- Default prompt template (the original brief) ----
-  const DEFAULT_TEMPLATE = `Your assignment is to craft a professional website for our new client, [client-name].
 
-Break it down into the 8 steps as described.
-Set a timer for self to keep track of effort inputted — this task in total should take you ca 20 min. Parallellize where possible.
-This task is assumed to be fully autonomously completed; expected end result is a ready-to-use site on the subdomain.
+  const DEFAULT_PROMPT = `<assignment>
+Craft a professional website for the new client.
 
-Notes of client:
+Break it down into the 8 steps below.
+Set a timer for yourself to keep track of effort inputted. This task in total should take ca. 20 min per first concept.
+Parallelize where possible.
+This task is assumed to be fully autonomously completed.
+Expected end result is a ready-to-use site on the subdomain.
+</assignment>
+
+<client_notes>
+SALON: [salon name]
+CITY: [city]
+TYPE: [business type]
+GOOGLE: [rating + review count]
+INSTAGRAM: [instagram url/handle]
+FACEBOOK: [facebook url + likes/followers if known]
+BOOKING: [booking info if known]
+WEBSITE: [existing website if any]
+TREATMENTS: [known treatments]
+SUBDOMAIN: [client-subdomain].jouwidealewebsite.nl
+
+SUPPLIED NOTES:
 [client-notes]
 
-<approach>Two phases. Freeze Phase I (INFO.md complete, all media downloaded and labelled) BEFORE starting Phase II. Mid-build research drift is what causes paternalistic filtering and missed assets.</approach>
+PERSONALIZATION HOOKS:
+- Use real trust signals from Google, Instagram and Facebook.
+- A professional website should bundle socials, services, reviews, prices, booking/contact and local SEO.
+- The site should feel made for this exact owner, not for a generic salon.
+</client_notes>
 
-<phase_1 name="Research — gather all possible info about [client-name]">
+<website_quality_and_conversion priority="critical">
+The public website must never read like a research report.
+Research, source attribution and caveats belong in INFO.md only.
 
-  <starting_points>
-    - [google-maps-url]
-    - [google-doc-url]
-    - any other links the client mentions
-  </starting_points>
+The website itself must sound like the salon/owner proudly publishes it:
+- warm
+- commercial
+- concrete
+- local
+- conversion-focused
+- owner-first
+- mobile-first
 
-  <tools>
-    Make good use of apify mcp w actors. Recommended useful usually:
-      - compass/Google-Maps-Reviews-Scraper
-      - apify/instagram-scraper
-      - apify/facebook-posts-scraper
-    Recommended batch size up to you — 20–40 last posts etc okay.
-    For Google Drive content (Docs / Slides / Sheets) use the Drive MCP, NOT WebFetch — WebFetch can't see embedded media on auth'd Drive URLs.
-  </tools>
+Do not write “public information says”, “sources show”, “research found”, or similar research-language in the public site.
 
-  <output_layout>
-    Organize under apps/[client-slug]/.local.research/..
-    - INFO.md — consolidation of all findings (identity, address, phone, socials, services, reviews verbatim, sources w/ Apify run IDs)
-    - media/ — all images and videos, named with 2–5 words describing what they contain (e.g. brigitte-portrait.png, salon-interior.png, nails-blue-gellak.png). Download via the cdn URLs Apify returns.
-  </output_layout>
+Make a real sales website for the salon:
+- strong first impression above the fold
+- clear promise
+- real owner/salon-specific details
+- real services
+- real prices where verified
+- real reviews
+- strong CTA
+- no placeholder copy
+- no generic praise unless directly supported
+</website_quality_and_conversion>
 
-  <google_doc_handling priority="critical">
-    Plain-text export silently strips embedded images. ALWAYS:
+<image_quality_rules priority="critical">
+Use only images that make the salon feel real and desirable.
 
-      1. Check fileSize in get_file_metadata. If it's >>50 KB but text content is tiny, embedded media is present — that mismatch is your alarm bell.
-      2. Use Drive MCP download_file_content with exportMimeType=application/vnd.openxmlformats-officedocument.wordprocessingml.document
-      3. Decode the base64 blob, unzip, extract word/media/* (or ppt/media/* for Slides, xl/media/* for Sheets).
-      4. View every extracted image (Read tool renders images) and label semantically: portrait | salon | work-sample | logo | skip-old-service. Keep all that fit current scope.
-  </google_doc_handling>
+Visible site images should show one of:
+- real work by the salon
+- salon/interior
+- owner/team
+- treatment/product
+- logo as a modest brand detail
 
-  <reviews_handling priority="critical">
-    Don't pre-curate. With small N (typical local business has ≤20 Google reviews), include real reviews (max 6 min 3):
-      - Reviews with text → full quote cards, verbatim.
-      - Textless 5★ reviews → compact name + stars tiles. They still convey signal.
-      - Reviews referencing services the client has stopped → still include, frame nuance in surrounding copy ("clients who came for X and previously for Y"), don't delete.
-    The original Google Maps URL the client provided is already the canonical reviews link if it contains \`!9m1!1b1\` — use it verbatim for the "Read on Google" CTA. Do NOT construct \`search.google.com/local/reviews?placeid=...\` style URLs; that endpoint is dead.
-  </reviews_handling>
+Do not use:
+- abstract textures
+- generic stock-like beauty images
+- Canva-style quote graphics
+- random wall text
+- decorative branding images
+- low-value filler images
+- seasonal promo graphics as permanent site imagery
 
-  <booking_system_check>
-    Determine if client uses Salonized or Treatwell.
-    - If yes → Phase II integrates the correct widget (pre-existing pattern in apps/.. for other clients).
-    - If no → phone/WhatsApp-first CTAs.
-  </booking_system_check>
+Before deploy, inspect every visible image in:
+- hero
+- about section
+- gallery
+- service visuals
 
-  <phase_1_completion_check before_proceeding="true">
-    - [ ] INFO.md exists and consolidates everything: identity, address, phone (verified format), socials, current services, all reviews verbatim with dates, source run IDs.
-    - [ ] media/ contains every usable image found, semantically named.
-    - [ ] Booking system decision recorded.
-    - [ ] Count check: "scrapers yielded N reviews, M images, K posts → INFO.md references all of them." If yield > used, justify or go back.
-  </phase_1_completion_check>
+Ask:
+“Would this image help the owner feel proud to send the site to a client?”
+If not, remove or replace it.
 
+Never stretch one low-resolution social image as a full hero background.
+If no image is strong enough for a full hero, use a collage/mosaic of real work images.
+</image_quality_rules>
+
+<booking_and_cta_rules priority="critical">
+Always determine whether the client has an online booking option.
+
+Check for:
+- Salonized
+- Treatwell
+- Planity
+- Fresha
+- Calendly
+- Booksy
+- own booking link
+- booking widget
+- Instagram bio booking link
+- website booking button
+
+If an online booking option exists:
+- make “Boek online” / “Maak afspraak” the primary CTA
+- use the real verified booking link or widget
+- WhatsApp, phone and Instagram DM are secondary contact options
+
+If no online booking option exists:
+- use the best proven direct contact route as primary CTA
+- if Instagram bio says “DM for booking”, include Instagram DM prominently
+- if WhatsApp/phone is verified, use WhatsApp as primary or strong secondary CTA
+- do not invent booking functionality
+- do not create fake forms unless the client already has that flow
+
+CTA hierarchy must match the real booking flow.
+</booking_and_cta_rules>
+
+<pricing_rules priority="critical">
+Actively check for prices in:
+- Instagram posts
+- Instagram stories/highlights
+- reels/video frames
+- Facebook posts
+- Google/website/menu/service pages
+- Drive/Docs if supplied
+- image text inside social graphics
+
+If prices are visible in stories, highlights or images:
+- extract treatment + exact price
+- include verified prices on the site
+- document the source in INFO.md
+- distinguish fixed prices from temporary promotions
+
+Do not show temporary actions as fixed prices:
+- Black Friday
+- opening discount
+- welcome offer
+- limited-time sale
+- “20% korting” campaign
+
+Temporary offers may be mentioned only if clearly current and useful, but never as the permanent price list.
+
+If no prices are found:
+- list services without prices
+- route to booking/contact for current pricing
+- do not invent prices
+</pricing_rules>
+
+<approach>
+Two phases.
+
+Freeze Phase I before starting Phase II:
+- INFO.md complete.
+- All usable media downloaded and semantically labelled.
+- Source counts reconciled.
+- Booking decision recorded.
+- Owner personalization details recorded.
+- Price handling recorded.
+- Image quality decision recorded.
+
+Do not start Phase II until Phase I passes all completion gates.
+</approach>
+
+<phase_1 name="Research">
+Starting points:
+- Google Maps URL
+- Instagram URL
+- Facebook URL
+- website URL
+- booking URL
+- Google Doc/Drive URLs if supplied
+- any other client links
+
+Use Apify MCP actors where useful:
+- compass/Google-Maps-Reviews-Scraper
+- apify/instagram-scraper
+- apify/facebook-posts-scraper
+
+For Google Drive content, use Drive MCP, not WebFetch.
+
+Organize under:
+apps/[client-subdomain]/.local.research/
+
+Required:
+- INFO.md
+- media/
+
+INFO.md must include:
+- identity
+- address
+- verified phone
+- socials
+- services/products
+- prices and price source handling
+- booking-system decision
+- reviews verbatim with dates
+- source URLs
+- Apify actor names, run IDs and dataset IDs
+- scrape count checks
+- media inventory with reason for use/skip
+- Owner Personality And Signature
+
+Critical gates:
+- Google review count reconciled.
+- Instagram post count reconciled.
+- Facebook count reconciled or mismatch explained.
+- Instagram stories/highlights checked for prices where relevant.
+- Every social scraper has requested limit, returned count, visible count if available, actor run ID and dataset ID.
+- If scraper counts conflict, fetch full dataset and run one higher-limit follow-up scrape.
+- Compare Instagram and Facebook posts by date, caption and media.
+- Evaluate Facebook as both content source and trust source.
+- Research owner uniqueness using only sourced material.
+- Identify at least 3 concrete sourced details that make owner/salon personal, or explain why fewer were available.
+- Download all usable media and semantically name every file.
+- Record dimensions, file size and use/skip reason for each media item.
+- Hero candidates must be at least 1600px wide for full-width use.
+- If no hero image qualifies, use collage/mosaic.
+- Plain-text Google Doc export is not enough if embedded images may exist. Download DOCX, unzip and inspect word/media/*.
+- Include real reviews verbatim. Do not pre-curate small review datasets.
+- Do not construct dead Google review URLs.
 </phase_1>
 
 <phase_2 name="Build the site">
+Reference sibling concepts in apps/..:
+- smooth-by-lau
+- anart
+- nail-it-rosmalen
+- other relevant sibling sites
 
-  <reference>
-    IMPRTANT: Have a look at related concepts in the repo (e.g. for a nail salon: smooth-by-lau, anart, nail-it-rosmalen). These are your guiding lights in terms of sections, expected depth, quality; differentiate via colour palette so sister-studios feel distinct. - follow their design principles and approaches to content distribution
-  </reference>
+Use a proven structure, but make the salon visually and verbally distinct.
 
-  <i18n>
-    Languages to ship: [languages]. Use the existing translations.ts + useLang + LangToggle pattern from sibling apps (see apps/nail-it-rosmalen).
-  </i18n>
+Default structure:
+- nav
+- hero
+- trust strip
+- about / owner story
+- services
+- prices if verified
+- gallery
+- reviews
+- visit/contact
+- FAQ
+- footer
 
-  <content_rules priority="critical">
-    No hallucinated or made-up info. All copy must trace back to Phase I. Real reviews, real services, real address, real phone.
-    If Phase I didn't yield prices (e.g. no prijslijst), list services without prices and route to phone — don't invent numbers.
-    Hero image: prefer salon interior or owner portrait over a closeup work shot. Place > product, when both are available.
-  </content_rules>
+Differentiate with:
+- colour palette
+- typography
+- real imagery
+- owner story
+- service emphasis
+- CTA flow
+- local wording
+- review framing
 
-  <review_pass>
-    Identify problems. Purge text of AIisms — em-dashes, "whatnots", parts that feel too slobbery or non-Dutch for Dutch lang.
-    Examples to catch:
-      - em-dashes (—) in user-facing copy. Replace with period, colon, or rephrase. Em-dashes inside script-font signature decorations are fine.
-      - "Read on Google" CTA must lead to the actual Google Maps reviews tab (URL with !9m1!1b1), not generic Maps.
-      - Anglicisms in Dutch ("ervaar de vrijheid", "we believe in", "discover", "embrace").
-  </review_pass>
+i18n:
+- Languages to ship: [languages].
+- NL is always the default language when selected.
+- Use existing translations.ts + useLang + LangToggle pattern from sibling apps.
 
-  <image_optimisation>
-    Convert to webp via the existing scripts/optimize-images.ts. Not too harshly — quality 82 default, 70 only for heavy gallery shots — so perf stays ok without sacrificing the look.
-    After optimize-images runs, double-check component image refs — the script renames .jpg/.png → .webp and unlinks originals.
-  </image_optimisation>
+Content rules:
+- No hallucinated info.
+- Real reviews only.
+- Real services only.
+- Real address only.
+- Real phone only.
+- Real prices only.
+- Real booking flow only.
+- If no prices were found, do not show prices.
+- If opening hours were not found, do not invent hours.
 
-  <deploy>
-    Cloudflare. Create new wrangler.jsonc for [client-slug].jouwidealewebsite.nl as custom_domain. Build, run ship:dry-run, then ship.
-    Source the root .env first: \`set -a && source .env && set +a\` (and export CLOUDFLARE_ACCOUNT_ID for some commands).
-  </deploy>
+Copy rules:
+- Public copy should feel like it comes from the salon, not from the researcher.
+- Translate sourced owner details into hero subcopy, about section, service intro, review framing, CTA tone and visual rhythm.
+- Use concrete details over generic adjectives.
+- Avoid AI-ish phrasing, overclaiming and English/Dutch anglicisms.
+- Purge em-dashes from user-facing copy.
 
-  <pre_ship_verification priority="critical">
-    Before declaring done, verify EVERY external URL going on the live page with \`curl -I\`:
-      - tel: links (right country code, no spaces)
-      - wa.me/ links (E.164 number, no plus)
-      - Instagram and Facebook profile URLs
-      - "Read on Google" reviews CTA
-      - Google Maps embed iframe src
-    Prefer URLs that already appear in scrape results — the scraper saw a real URL, that's authoritative. URLs you construct from a pattern are guesses; verify them or don't ship them.
-  </pre_ship_verification>
+SEO per treatment:
+- Add SEO-rich treatment content without inventing specifics.
+Allowed:
+- generic explanation of known treatment category
+- local search phrasing
+- mention that the treatment is offered/found in research
+- route to contact/booking for current options
+Not allowed unless sourced:
+- exact duration
+- exact price
+- medical/result claims
+- specific technique details
+- guarantees
+- availability claims
 
-  <post_ship_verification>
-    curl the live subdomain + 2–3 newly uploaded asset URLs to confirm HTTP 200. Click-through every external CTA mentally: tel, WhatsApp, IG, FB, reviews, map.
-  </post_ship_verification>
+Social proof:
+- Google rating and review count may be prominent.
+- Facebook likes/followers may be modest trust signals.
+- Do not present likes as reviews, bookings or clients.
+- Link to verified official social profiles only.
 
+Mini QA before deploy:
+- desktop hero screenshot checked
+- mobile hero screenshot checked
+- treatments/prices screenshot checked
+- gallery screenshot checked
+- all visible images inspected
+- text does not overflow buttons/cards
+- primary CTA works
+- booking link works if present
+- WhatsApp link works if used
+- tel link works if used
+- Instagram link works
+- Facebook link works if used
+- Google reviews/map links work
+- no fake prices
+- no fake opening hours
+- no unsupported booking claims
+- no research-report copy visible on the site
+
+Before deploy ask:
+“Would the owner be proud to send this site to customers?”
+If no, fix copy/images/CTA before shipping.
 </phase_2>
 
+<deploy>
+Use Cloudflare Workers Static Assets with wrangler.jsonc.
+
+Configure:
+- worker name
+- custom_domain: [client-subdomain].jouwidealewebsite.nl
+
+Commands:
+- build
+- ship:dry-run
+- ship
+
+Source root .env first:
+set -a && source .env && set +a
+
+Export CLOUDFLARE_ACCOUNT_ID if needed.
+
+Before declaring done:
+- curl live subdomain
+- curl 2-3 uploaded asset URLs
+- verify external CTAs with curl where possible
+- mentally click through tel, WhatsApp, Instagram, Facebook, reviews, map and booking
+</deploy>
+
 <the_8_steps>
-  1. Recon templates in apps/.. + start research timer.
-  2. Phase I: scrape Google Maps reviews (compass actor).
-  3. Phase I: scrape Instagram (apify/instagram-scraper).
-  4. Phase I: scrape Facebook (apify/facebook-posts-scraper).
-  5. Phase I: fetch Google Doc as docx, unzip media, consolidate INFO.md, label all images, run completion check.
-  6. Phase II: scaffold app from closest template, populate from INFO.md only.
-  7. Phase II: image optimise → AIism / em-dash purge → review pass with verification of all external URLs.
-  8. Phase II: wrangler config + ship:dry-run + ship + post-ship 200-check.
+1. Recon templates in apps/.. + start research timer.
+2. Phase I: scrape Google Maps reviews.
+3. Phase I: scrape Instagram posts, stories/highlights where relevant, and pass social count gate.
+4. Phase I: scrape Facebook and pass social count gate.
+5. Phase I: fetch Drive/Google Doc media if supplied, consolidate INFO.md, label images, record prices/booking, run completion check.
+6. Phase II: scaffold app from closest template, populate from INFO.md only.
+7. Phase II: image optimize, owner personalization, SEO per treatment, price display, CTA hierarchy, AIism/em-dash purge, URL verification, mini QA.
+8. Phase II: wrangler config, build, ship:dry-run, ship, post-ship 200-check.
 </the_8_steps>
 
 <failure_modes_to_avoid>
-  - "Got something back, declare step done." Cross-check artifact metadata (file size, post count, follower count) against what you actually extracted. Mismatch = something's missing.
-  - Constructing a URL when a real one is already in scrape results.
-  - Filtering small datasets (≤20 items) on personal editorial judgment. Show everything; nuance via copy.
-  - Deploying without curling the live URL or any external CTAs.
-  - Letting time pressure compress the verification step. Re-shipping costs more than 30 seconds of \`curl -I\`.
+- Treating partial scraper output as success.
+- Starting Phase II with unresolved Instagram/Facebook count mismatches.
+- Missing prices that are visible in stories/highlights/images.
+- Presenting temporary promos as fixed prices.
+- Using one low-resolution social image as a full hero background.
+- Using abstract textures, stock-like graphics or Canva filler as visible site imagery.
+- Making the salon feel generic when owner-specific details exist.
+- Writing the website like a research report.
+- Constructing URLs when scrape results already contain real URLs.
+- Filtering small review datasets on personal taste.
+- Inventing prices, opening hours, treatment details or booking systems.
+- Making DM/WhatsApp primary when a verified online booking option exists.
+- Deploying without curling live URL and external CTAs.
 </failure_modes_to_avoid>`;
+
+
+
+
+
+  // ---- Default prompt template ----
+  const DEFAULT_TEMPLATE = DEFAULT_PROMPT;
 
   // ---- Storage keys ----
   // Bump TEMPLATE_VERSION whenever DEFAULT_TEMPLATE changes — on load,
   // mismatched/missing versions force the cached template to be replaced
   // with the new default so all users get the update on next visit.
-  const TEMPLATE_VERSION = 4;
+  const TEMPLATE_VERSION = 6;
   const KEYS = {
     template: 'pb_template',
     template_version: 'pb_template_version',
     name: 'pb_client_name',
     slug: 'pb_client_slug',
+    city: 'pb_client_city',
+    type: 'pb_business_type',
+    google: 'pb_google_info',
+    instagram: 'pb_instagram_info',
+    facebook: 'pb_facebook_info',
+    booking: 'pb_booking_info',
+    website: 'pb_website_info',
+    treatments: 'pb_known_treatments',
     notes: 'pb_client_notes',
     langs: 'pb_languages',
     saved_at: 'pb_saved_at'
@@ -676,6 +987,14 @@ Notes of client:
   const $template = document.getElementById('prompt-template');
   const $name = document.getElementById('client-name');
   const $slug = document.getElementById('client-slug');
+  const $city = document.getElementById('client-city');
+  const $type = document.getElementById('business-type');
+  const $google = document.getElementById('google-info');
+  const $instagram = document.getElementById('instagram-info');
+  const $facebook = document.getElementById('facebook-info');
+  const $booking = document.getElementById('booking-info');
+  const $website = document.getElementById('website-info');
+  const $treatments = document.getElementById('known-treatments');
   const $notes = document.getElementById('client-notes');
   const $langRow = document.getElementById('lang-row');
   const $langCheckboxes = $langRow.querySelectorAll('input[type="checkbox"]');
@@ -719,6 +1038,14 @@ Notes of client:
     }
     $name.value = localStorage.getItem(KEYS.name) ?? '';
     $slug.value = localStorage.getItem(KEYS.slug) ?? '';
+    $city.value = localStorage.getItem(KEYS.city) ?? '';
+    $type.value = localStorage.getItem(KEYS.type) ?? '';
+    $google.value = localStorage.getItem(KEYS.google) ?? '';
+    $instagram.value = localStorage.getItem(KEYS.instagram) ?? '';
+    $facebook.value = localStorage.getItem(KEYS.facebook) ?? '';
+    $booking.value = localStorage.getItem(KEYS.booking) ?? '';
+    $website.value = localStorage.getItem(KEYS.website) ?? '';
+    $treatments.value = localStorage.getItem(KEYS.treatments) ?? '';
     $notes.value = localStorage.getItem(KEYS.notes) ?? '';
     const storedLangs = localStorage.getItem(KEYS.langs);
     if (storedLangs) {
@@ -755,6 +1082,14 @@ Notes of client:
       localStorage.setItem(KEYS.template_version, String(TEMPLATE_VERSION));
       localStorage.setItem(KEYS.name, $name.value);
       localStorage.setItem(KEYS.slug, $slug.value);
+      localStorage.setItem(KEYS.city, $city.value);
+      localStorage.setItem(KEYS.type, $type.value);
+      localStorage.setItem(KEYS.google, $google.value);
+      localStorage.setItem(KEYS.instagram, $instagram.value);
+      localStorage.setItem(KEYS.facebook, $facebook.value);
+      localStorage.setItem(KEYS.booking, $booking.value);
+      localStorage.setItem(KEYS.website, $website.value);
+      localStorage.setItem(KEYS.treatments, $treatments.value);
       localStorage.setItem(KEYS.notes, $notes.value);
       localStorage.setItem(KEYS.langs, JSON.stringify(getSelectedLangs()));
       localStorage.setItem(KEYS.saved_at, Date.now().toString());
@@ -770,6 +1105,27 @@ Notes of client:
     if (!validShape) return { ok: false, msg: 'Use lowercase letters/numbers + single hyphens only.' };
     if (wordCount > 4) return { ok: false, msg: `${wordCount} words — keep it to 2–3.` };
     return { ok: true, msg: `✓ valid · ${wordCount} word${wordCount>1?'s':''} · will be used as apps/${slug}/ and ${slug}.jouwidealewebsite.nl` };
+  }
+
+  const PLACEHOLDER_RE = /\[[^\]\n]+\]/g;
+  const FILLED_START = '\u0001FILLED\u0002';
+  const FILLED_END = '\u0003';
+
+  function getReplacementMap() {
+    return [
+      ['[salon name]', $name.value.trim()],
+      ['[client-subdomain]', $slug.value.trim()],
+      ['[city]', $city.value.trim()],
+      ['[business type]', $type.value.trim()],
+      ['[rating + review count]', $google.value.trim()],
+      ['[instagram url/handle]', $instagram.value.trim()],
+      ['[facebook url + likes/followers if known]', $facebook.value.trim()],
+      ['[booking info if known]', $booking.value.trim()],
+      ['[existing website if any]', $website.value.trim()],
+      ['[known treatments]', $treatments.value.trim()],
+      ['[client-notes]', $notes.value.trim()],
+      ['[languages]', formatLanguages(getSelectedLangs())]
+    ];
   }
 
   function renderSlugPreview() {
@@ -789,15 +1145,9 @@ Notes of client:
   // ---- Build filled prompt (plain string) ----
   function buildFilledPrompt() {
     let out = $template.value;
-    const name = $name.value.trim();
-    const slug = $slug.value.trim();
-    const notes = $notes.value.trim();
-    const langs = formatLanguages(getSelectedLangs());
-
-    if (name) out = out.replaceAll('[client-name]', name);
-    if (slug) out = out.replaceAll('[client-slug]', slug);
-    if (notes) out = out.replaceAll('[client-notes]', notes);
-    if (langs) out = out.replaceAll('[languages]', langs);
+    getReplacementMap().forEach(([placeholder, value]) => {
+      if (value) out = out.replaceAll(placeholder, value);
+    });
     return out;
   }
 
@@ -810,18 +1160,12 @@ Notes of client:
 
   function renderPreview() {
     const tpl = $template.value;
-    const name = $name.value.trim();
-    const slug = $slug.value.trim();
-    const notes = $notes.value.trim();
 
     // Substitute with sentinel markers so we can style filled vs unfilled
     let working = tpl;
-    if (name) working = working.replaceAll('[client-name]', `\u0001FILLED\u0002${name}\u0003`);
-    if (slug) working = working.replaceAll('[client-slug]', `\u0001FILLED\u0002${slug}\u0003`);
-    if (notes) working = working.replaceAll('[client-notes]', `\u0001FILLED\u0002${notes}\u0003`);
-
-    const langs = formatLanguages(getSelectedLangs());
-    if (langs) working = working.replaceAll('[languages]', `FILLED${langs}`);
+    getReplacementMap().forEach(([placeholder, value]) => {
+      if (value) working = working.replaceAll(placeholder, `${FILLED_START}${value}${FILLED_END}`);
+    });
 
     let html = escapeHtml(working);
 
@@ -829,14 +1173,14 @@ Notes of client:
     html = html.replace(/\u0001FILLED\u0002([\s\S]*?)\u0003/g, (_, v) =>
       `<span class="filled">${v}</span>`);
 
-    // Remaining unfilled placeholders (any [foo-bar])
-    html = html.replace(/\[[a-z0-9][a-z0-9-]*\]/gi, m => `<span class="ph">${m}</span>`);
+    // Remaining unfilled placeholders.
+    html = html.replace(PLACEHOLDER_RE, m => `<span class="ph">${m}</span>`);
 
     $preview.innerHTML = html;
 
     // Stats
     const filled = buildFilledPrompt();
-    const remaining = (filled.match(/\[[a-z0-9][a-z0-9-]*\]/gi) || []).length;
+    const remaining = (filled.match(PLACEHOLDER_RE) || []).length;
     $stats.textContent = `${filled.length.toLocaleString()} chars · ${remaining} placeholder${remaining===1?'':'s'} left`;
   }
 
@@ -874,7 +1218,22 @@ Notes of client:
   }
 
   // ---- Wire up events ----
-  [$template, $name, $slug, $notes].forEach(el => {
+  const $fieldInputs = [
+    $template,
+    $name,
+    $slug,
+    $city,
+    $type,
+    $google,
+    $instagram,
+    $facebook,
+    $booking,
+    $website,
+    $treatments,
+    $notes
+  ];
+
+  $fieldInputs.forEach(el => {
     el.addEventListener('input', () => {
       renderPreview();
       if (el === $slug) renderSlugPreview();
@@ -892,7 +1251,7 @@ Notes of client:
   $copyBtn.addEventListener('click', copyPrompt);
 
   $resetBtn.addEventListener('click', () => {
-    if (!confirm('Reset prompt template to default? Your client name/slug/notes will be kept.')) return;
+    if (!confirm('Reset prompt template to default? Your client fields will be kept.')) return;
     $template.value = DEFAULT_TEMPLATE;
     renderPreview();
     save();
@@ -900,9 +1259,17 @@ Notes of client:
   });
 
   $clearBtn.addEventListener('click', () => {
-    if (!confirm('Clear client name, slug, and notes? Template will be kept.')) return;
+    if (!confirm('Clear all client fields? Template will be kept.')) return;
     $name.value = '';
     $slug.value = '';
+    $city.value = '';
+    $type.value = '';
+    $google.value = '';
+    $instagram.value = '';
+    $facebook.value = '';
+    $booking.value = '';
+    $website.value = '';
+    $treatments.value = '';
     $notes.value = '';
     renderPreview();
     renderSlugPreview();
@@ -913,12 +1280,17 @@ Notes of client:
   $loadExample.addEventListener('click', () => {
     $name.value = 'Brigitte Beauty';
     $slug.value = 'brigitte-beauty';
-    $notes.value = `Google Maps: https://maps.app.goo.gl/xyz123
-Instagram: https://instagram.com/brigittebeauty
-Facebook: https://facebook.com/brigittebeauty.salon
-Google Doc with prijslijst + photos: https://docs.google.com/document/d/abc
+    $city.value = 'Tilburg';
+    $type.value = 'nagelsalon';
+    $google.value = '4.9 stars, 18 reviews — https://maps.app.goo.gl/xyz123';
+    $instagram.value = 'https://instagram.com/brigittebeauty';
+    $facebook.value = 'https://facebook.com/brigittebeauty.salon';
+    $booking.value = 'Salonized';
+    $website.value = '';
+    $treatments.value = 'gel nails, manicures, BIAB';
+    $notes.value = `Google Doc: https://docs.google.com/document/d/abc
 
-Notes: Solo operator. Located in Tilburg. Focus on gel nails + manicures. Stopped doing pedicures last year — don't feature them. Wants warm/inviting tone, Dutch copy. Speaks of "mijn dames" — keep that warmth in the copy. Uses Salonized for booking.`;
+Solo operator. Stopped doing pedicures last year — don't feature them. Wants warm/inviting tone, Dutch copy. Speaks of "mijn dames" — keep that warmth in the copy.`;
     renderPreview();
     renderSlugPreview();
     save();
