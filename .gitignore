@@ -11,4 +11,5 @@ CLAUDE.local.md
 .local.test
 .local.research
 .local.qa
+.wrangler
 .wrangler-local

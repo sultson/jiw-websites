@@ -37,6 +37,11 @@ const MAX_ATTACHMENTS = 5;
 const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024;
 const SUCCESS_AUTO_CLOSE_MS = 3200;
 
+function isLocalFormHost() {
+  if (typeof window === 'undefined') return false;
+  return ['localhost', '127.0.0.1', '[::1]', '::1'].includes(window.location.hostname);
+}
+
 function formatFileSize(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
@@ -937,6 +942,8 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const isSubmitting = submitState === 'submitting';
   const isSuccess = submitState === 'success';
+  const isLocalForm = isLocalFormHost();
+  const shouldUseTurnstile = Boolean(turnstileSiteKey && !isLocalForm);
   const handleTurnstileToken = useCallback((token: string) => setTurnstileToken(token), []);
 
   useEffect(() => {
@@ -1039,13 +1046,13 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
     event.preventDefault();
     const form = event.currentTarget;
 
-    if (!turnstileSiteKey && !import.meta.env.DEV) {
+    if (!shouldUseTurnstile && !isLocalForm && !import.meta.env.DEV) {
       setSubmitState('error');
       setSubmitMessage('De spambeveiliging is nog niet ingesteld. Bel of mail RN Schilders direct.');
       return;
     }
 
-    if (turnstileSiteKey && !turnstileToken) {
+    if (shouldUseTurnstile && !turnstileToken) {
       setSubmitState('error');
       setSubmitMessage('De spamcontrole is nog niet klaar. Probeer het formulier opnieuw te versturen.');
       return;
@@ -1265,7 +1272,7 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
               </div>
 
               <div className="md:col-span-2">
-                {turnstileSiteKey ? (
+                {shouldUseTurnstile ? (
                   <TurnstileWidget siteKey={turnstileSiteKey} resetKey={turnstileResetKey} onTokenChange={handleTurnstileToken} />
                 ) : (
                   <input type="hidden" name="cf-turnstile-response" value="dev" />

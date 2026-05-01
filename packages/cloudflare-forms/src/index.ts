@@ -15,6 +15,7 @@ export type LeadFormConfig = {
   ownerName?: string;
   senderName: string;
   subjectPrefix: string;
+  confirmationFollowUpSentence?: string;
   attachmentMaxFiles?: number;
   attachmentMaxFileBytes?: number;
   attachmentMaxTotalBytes?: number;
@@ -85,6 +86,7 @@ export function createFormWorker(config: LeadFormConfig): ExportedHandler<Cloudf
 function withDefaults(config: LeadFormConfig): Required<LeadFormConfig> {
   return {
     ownerName: 'Eigenaar',
+    confirmationFollowUpSentence: 'We nemen binnen 24 tot 48 uur contact met u op.',
     attachmentMaxFiles: 5,
     attachmentMaxFileBytes: 10 * 1024 * 1024,
     attachmentMaxTotalBytes: 50 * 1024 * 1024,
@@ -166,6 +168,7 @@ async function handleSubmission(
 
     const origin = new URL(request.url).origin;
     await sendLeadEmail(env, config, manifest, origin);
+    await sendConfirmationEmail(env, config, manifest);
 
     console.log('form_accepted', {
       submissionId,
@@ -279,6 +282,7 @@ function isAllowedFile(file: File, config: Required<LeadFormConfig>): boolean {
 }
 
 async function validateTurnstile(secret: string, token: string, request: Request): Promise<boolean> {
+  if (isLocalRequest(request)) return true;
   if (secret === 'dev') return token === 'dev';
   if (!secret || !token) return false;
 
@@ -297,6 +301,17 @@ async function validateTurnstile(secret: string, token: string, request: Request
 
   const result = await response.json<TurnstileResponse>();
   return result.success;
+}
+
+function isLocalRequest(request: Request): boolean {
+  const hostname = new URL(request.url).hostname;
+  const host = request.headers.get('host')?.split(':')[0] ?? '';
+  const ip = request.headers.get('CF-Connecting-IP') ?? '';
+  return isLoopback(hostname) || isLoopback(host) || isLoopback(ip);
+}
+
+function isLoopback(value: string): boolean {
+  return value === 'localhost' || value === '127.0.0.1' || value === '::1' || value === '[::1]';
 }
 
 async function storeAttachments(bucket: R2Bucket, files: File[], prefix: string): Promise<StoredAttachment[]> {
@@ -326,6 +341,31 @@ async function storeAttachments(bucket: R2Bucket, files: File[], prefix: string)
   return attachments;
 }
 
+async function sendConfirmationEmail(
+  env: CloudflareFormsEnv,
+  config: Required<LeadFormConfig>,
+  manifest: SubmissionManifest,
+): Promise<void> {
+  const { fields } = manifest;
+
+  try {
+    await env.LEAD_EMAIL.send({
+      from: { email: env.LEAD_SENDER, name: config.senderName },
+      to: fields.email,
+      replyTo: env.LEAD_RECIPIENT,
+      subject: cleanHeader(`Uw offerteaanvraag is ontvangen - ${config.siteName}`),
+      text: renderConfirmationTextEmail(config, manifest),
+      html: renderConfirmationHtmlEmail(config, manifest),
+    });
+  } catch (error) {
+    console.error('Confirmation email failed', {
+      error,
+      submissionId: manifest.submissionId,
+      recipient: fields.email,
+    });
+  }
+}
+
 async function sendLeadEmail(
   env: CloudflareFormsEnv,
   config: Required<LeadFormConfig>,
@@ -349,6 +389,59 @@ async function sendLeadEmail(
     console.error('Lead email failed', error);
     throw new Error('Email delivery failed');
   }
+}
+
+function renderConfirmationTextEmail(config: Required<LeadFormConfig>, manifest: SubmissionManifest): string {
+  const { fields } = manifest;
+
+  return [
+    `Beste ${fields.name},`,
+    '',
+    `Uw offerteaanvraag voor ${config.siteName} is verstuurd.`,
+    config.confirmationFollowUpSentence,
+    '',
+    'Uw aanvraag:',
+    `Naam: ${fields.name}`,
+    `Telefoon: ${fields.phone}`,
+    `E-mail: ${fields.email}`,
+    `Dienst: ${fields.service || '-'}`,
+    `Postcode/plaats: ${fields.postalCode || '-'}`,
+    `Adres: ${fields.address || '-'}`,
+    `Gewenste planning: ${fields.preferredTiming || '-'}`,
+    '',
+    'Projectomschrijving:',
+    fields.message,
+    '',
+    `Referentie: ${manifest.submissionId}`,
+  ].join('\n');
+}
+
+function renderConfirmationHtmlEmail(config: Required<LeadFormConfig>, manifest: SubmissionManifest): string {
+  const { fields } = manifest;
+  const rows = [
+    ['Naam', fields.name],
+    ['Telefoon', fields.phone],
+    ['E-mail', fields.email],
+    ['Dienst', fields.service || '-'],
+    ['Postcode/plaats', fields.postalCode || '-'],
+    ['Adres', fields.address || '-'],
+    ['Gewenste planning', fields.preferredTiming || '-'],
+  ];
+
+  return `<!doctype html>
+<html>
+  <body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;">
+    <p>Beste ${escapeHtml(fields.name)},</p>
+    <p>Uw offerteaanvraag voor ${escapeHtml(config.siteName)} is verstuurd. ${escapeHtml(config.confirmationFollowUpSentence)}</p>
+    <h1 style="font-size: 20px;">Uw aanvraag</h1>
+    <table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
+      ${rows.map(([label, value]) => `<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}
+    </table>
+    <h2 style="font-size: 16px;">Projectomschrijving</h2>
+    <p>${escapeHtml(fields.message).replace(/\n/g, '<br>')}</p>
+    <p style="font-size: 12px; color: #667085;">Referentie ${escapeHtml(manifest.submissionId)}.</p>
+  </body>
+</html>`;
 }
 
 function renderTextEmail(config: Required<LeadFormConfig>, manifest: SubmissionManifest, origin: string): string {
