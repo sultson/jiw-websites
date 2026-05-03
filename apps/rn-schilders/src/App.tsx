@@ -1142,10 +1142,6 @@ function ProjectSlideshow({
       <div className="p-6">
         <h3 className="font-display text-2xl font-extrabold">{title}</h3>
         <p className="mt-3 leading-7 text-white/88">{text}</p>
-        <div className="mt-6 flex items-center gap-2 text-sm font-bold text-roller-soft">
-          Bekijk projectaanpak
-          <ArrowRight size={16} />
-        </div>
       </div>
     </article>
   );
