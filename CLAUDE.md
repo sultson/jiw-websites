@@ -6,7 +6,7 @@ pnpm workspaces monorepo for JIW client websites.
 
 ```
 apps/         client sites (each a Vite + React 19 + TS 5.8 + Tailwind v4 app)
-  my-kim-nails/        dev port 3000 — has backend (express + better-sqlite3 + @google/genai)
+  my-kim-nails/        dev port 3000 — frontend-only
   nail-it-rosmalen/    dev port 3002 — frontend-only
   sgv-nails/           placeholder (INFO.md only, not yet scaffolded)
 packages/     reserved for future @jiw/* shared packages (shared-ui, i18n) — empty
@@ -27,7 +27,7 @@ Each app also has its own `optimize-images` script using `sharp`.
 ## Conventions
 
 - **Package manager:** pnpm 10 (pinned via `packageManager` field). Never use npm/yarn — no per-app lockfiles.
-- **Native builds:** `pnpm.onlyBuiltDependencies` in root package.json allowlists `better-sqlite3`, `esbuild`, `protobufjs`, `sharp`, `workerd`. Add new native deps here, then `pnpm rebuild <dep>`.
+- **Native builds:** `pnpm.onlyBuiltDependencies` in root package.json allowlists `esbuild`, `protobufjs`, `sharp`, `workerd`. Add new native deps here, then `pnpm rebuild <dep>`.
 - **Duplicated components:** Nav, Hero, Gallery, Lightbox, Services, Footer, UspStrip, Faq, Reviews, LangToggle, About exist in both apps — candidates for `@jiw/shared-ui` extraction. `useLang` hook + translations pattern → `@jiw/i18n`.
 - **No root tsconfig yet.** Each app has its own `tsconfig.json`. Introduce `tsconfig.base.json` when extracting shared packages.
 - **Gitignore is root-only.** Don't reintroduce per-app `.gitignore`.
