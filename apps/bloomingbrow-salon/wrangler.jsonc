@@ -12,6 +12,14 @@
   },
   "routes": [
     {
+      "pattern": "bloomingbrow.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.bloomingbrow.nl",
+      "custom_domain": true
+    },
+    {
       "pattern": "bloomingbrow-salon.jouwidealewebsite.nl",
       "custom_domain": true
     }

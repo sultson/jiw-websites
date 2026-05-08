@@ -5,6 +5,8 @@ import {
   Check,
   ChevronDown,
   ExternalLink,
+  Flower2,
+  Heart,
   Instagram,
   Mail,
   MapPin,
@@ -49,6 +51,7 @@ type Copy = {
   aboutTitle: string;
   aboutLead: string;
   aboutBody: string[];
+  aboutSignoff: string;
   aboutTags: string[];
   signatureKicker: string;
   signatureTitle: string;
@@ -60,6 +63,15 @@ type Copy = {
   min: string;
   processKicker: string;
   processTitle: string;
+  resultsKicker: string;
+  resultsTitle: string;
+  resultsSub: string;
+  powderTab: string;
+  hybridTab: string;
+  trainingKicker: string;
+  trainingTitle: string;
+  trainingSub: string;
+  trainingItems: { title: string; sub: string }[];
   galleryKicker: string;
   galleryTitle: string;
   gallerySub: string;
@@ -75,6 +87,9 @@ type Copy = {
   hours: string;
   faqKicker: string;
   faqTitle: string;
+  ctaKicker: string;
+  ctaTitle: string;
+  ctaSub: string;
   footer: string;
 };
 
@@ -86,45 +101,60 @@ const copy: Record<Lang, Copy> = {
     heroKicker: 'PMU brows en browstyling in Schagen',
     heroTitle: 'Brows die jouw gezicht laten spreken.',
     heroSub:
-      'Bij Bloomingbrow salon maakt Bloem zachte, strakke en draagbare brows die passen bij jouw gezicht. Van shape en hybrid tint tot powderbrows: rustig gezet, precies uitgemeten en altijd met aandacht voor jou.',
-    heroTrust: ['5,0 op Google', '22 reviews', 'Online boeken'],
+      'Ik kijk niet alleen naar je wenkbrauwen, maar naar je hele gezicht. In mijn salon in Schagen neem ik de tijd voor vorm, kleur en uitleg, zodat je brows verzorgd voelen en echt bij jou passen.',
+    heroTrust: ['5,0 op Google', 'Persoonlijke aandacht', 'Online boeken'],
     proof: [
       { value: '5,0', label: 'Google rating' },
-      { value: '22', label: 'Reviews' },
-      { value: '2025', label: 'Eigen salon' },
+      { value: 'PMU', label: 'Gecertificeerd' },
+      { value: '1-op-1', label: 'Persoonlijk' },
       { value: '6 dagen', label: 'Per week open' },
     ],
-    introKicker: 'Bloomingbrow salon',
-    introTitle: 'Een browstudio waar je niet alleen mooier weggaat, maar ook zekerder binnenkomt.',
+    introKicker: 'Welkom bij Bloomingbrow',
+    introTitle: 'Een salon waar je niet alleen mooier weggaat, maar ook stralender binnenkomt.',
     introText:
-      'Bloomingbrow is klein, persoonlijk en precies. Bloem neemt de tijd om te kijken naar je gezicht, je natuurlijke haargroei en wat jij mooi vindt, zodat je brows niet gemaakt ogen maar verzorgd, fris en in balans.',
-    introPoints: ['Persoonlijke browmapping', 'Rustige uitleg voor elke stap', 'PMU en styling op een plek'],
-    aboutKicker: 'Bloem Boekel',
-    aboutTitle: 'Jong, ambitieus en precies de specialist die je bij je gezicht wilt laten werken.',
+      'Bloomingbrow is klein, persoonlijk en precies. Bloem neemt de tijd om naar jouw gezicht, je natuurlijke haargroei en je voorkeur te kijken. Zo ogen je brows nooit gemaakt, maar verzorgd, fris en in balans.',
+    introPoints: ['Persoonlijke browmapping', 'Rustige uitleg bij elke stap', 'Lashes, brows en PMU op één plek'],
+    aboutKicker: 'Meet your PMU artist',
+    aboutTitle: 'Hi, ik ben Bloem 🌸',
     aboutLead:
-      'Bloem bouwde Bloomingbrow vanuit haar liefde voor beauty en verzorging. Je voelt dat aan alles: de rustige ontvangst, de nette voorbereiding, de duidelijke uitleg en het geduld waarmee ze elke vorm opbouwt.',
+      'Ik ben Bloem Boekel, 22, en ik woon in het mooie Schagen. Een half jaar geleden zette ik een van de spannendste stappen van mijn leven: mijn eigen salon openen.',
     aboutBody: [
-      'In haar salon aan het Tanjagroenplein draait het niet om snel even wenkbrauwen doen. Bloem kijkt naar symmetrie, kleur, huid, gezichtsuitdrukking en vooral naar wat jij spannend of belangrijk vindt. Daardoor voelt een afspraak persoonlijk, ook als je voor de eerste keer PMU laat zetten.',
-      'Haar kracht zit in zachte perfectie: brows die zichtbaar verschil maken zonder hard te worden. Strakker in de ochtend, frisser op foto, minder bijtekenen en meer vertrouwen in je eigen gezicht.',
-      'Sinds 2025 staat ze met haar eigen naam op de deur. Dat maakt Bloomingbrow geen grote, anonieme salon, maar een plek waar Bloem zelf de lat legt en waar elke tevreden klant ook haar reputatie draagt.',
+      'Al van jongs af aan ben ik gek op beauty en verzorging. Ik vind het geweldig hoe een beetje aandacht al zoveel verschil kan maken. Dat gevoel wil ik doorgeven.',
+      'In mijn salon kan ik mijn creativiteit en passie kwijt. Elke klant geeft me nieuwe energie. Ik vind het bijzonder dat mensen mij vertrouwen met hun look en dat ik ze help om zich nog mooier, zelfverzekerder en stralender te voelen. Dat blijft speciaal.',
+      'Het afgelopen half jaar is voorbij gevlogen. Ik heb veel geleerd, mooie mensen ontmoet, en ik hoop nog lang door te groeien om nog meer mensen blij te maken.',
     ],
-    aboutTags: ['Allround brow stylist', 'PMU powderbrows', 'Hybrid tint', 'Lashlift', 'Schagen'],
-    signatureKicker: 'Meest gekozen',
-    signatureTitle: 'Voor een zachte, verzorgde browlook die blijft hangen.',
+    aboutSignoff: 'Op naar nog veel meer mooie momenten en glans ✨ Liefs, Bloem',
+    aboutTags: ['Allround browstylist', 'Powderbrows basic course', 'PMU', 'Schagen'],
+    signatureKicker: 'Wat ik aanbied',
+    signatureTitle: 'Vier behandelingen, één doel: jouw look in balans.',
     signatureSub:
-      'Kies een snelle touch-up voor meer definitie, of ga voor powderbrows als je elke dag wakker wilt worden met vorm.',
+      'Voor strakke shape, frisse kleur, gelifte wimpers of langer wakker worden met vorm. Kies wat bij jou past.',
     priceKicker: 'Behandelingen en prijzen',
-    priceTitle: 'Alles wat je nodig hebt om direct te kiezen.',
+    priceTitle: 'Alle prijzen overzichtelijk bij elkaar.',
     priceSub:
-      'Actuele prijzen overzichtelijk bij elkaar. Boek online je moment, dan zie je meteen de beschikbare tijden.',
+      'Boek online jouw moment, dan zie je meteen de beschikbare tijden. Twijfel je over wat past? App me even.',
     popular: 'Populair',
     min: 'min',
     processKicker: 'Jouw afspraak',
     processTitle: 'Rustig, duidelijk en precies.',
-    galleryKicker: 'Sfeer en resultaten',
-    galleryTitle: 'Een kijkje in de wereld van Bloomingbrow.',
+    resultsKicker: 'Echte klanten · echte resultaten',
+    resultsTitle: 'Brows die in jouw gezicht thuishoren.',
+    resultsSub:
+      'Een greep uit recente powderbrows en hybrid tint resultaten: geen filters, geen retouche, alleen mooi werk.',
+    powderTab: 'Powderbrows',
+    hybridTab: 'Hybrid tint',
+    trainingKicker: 'Opgeleid en bijgehouden',
+    trainingTitle: 'Het werk van Bloem rust op échte certificering.',
+    trainingSub:
+      'Voor PMU op je gezicht hoor je te weten wie er werkt. Bloem volgde haar opleidingen bij gecertificeerde academies en houdt haar werkwijze, kleurkennis en hygiëne actueel.',
+    trainingItems: [
+      { title: 'Allround browstylist', sub: 'Browmapping, shape, hybrid tint, browlamination' },
+      { title: 'Powderbrows basic course', sub: 'PMU pigment, machine en huidkennis' },
+    ],
+    galleryKicker: 'In de salon',
+    galleryTitle: 'Een kijkje in Bloomingbrow.',
     gallerySub:
-      'Van Bloem zelf tot browresultaten en de salon: de uitstraling blijft zacht, vrouwelijk en professioneel.',
+      'Van de salon en behandelingen tot de kleine details: de uitstraling blijft zacht, vrouwelijk en professioneel.',
     reviewsKicker: 'Google reviews',
     reviewsTitle: 'Klanten voelen zich op hun gemak en zien het verschil.',
     reviewsSub:
@@ -132,60 +162,79 @@ const copy: Record<Lang, Copy> = {
     allReviews: 'Bekijk reviews',
     visitKicker: 'Schagen',
     visitTitle: 'Boek jouw browmoment aan het Tanjagroenplein.',
-    visitSub: 'Je vindt Bloomingbrow salon aan Tanjagroenplein 6 in Schagen. Volgens de salon: achter de Picobello, parkeren voor de deur.',
+    visitSub:
+      'Bloomingbrow salon zit aan Tanjagroenplein 6 in Schagen, achter de Picobello. Parkeren kan voor de deur.',
     route: 'Route openen',
     contact: 'Contact',
     hours: 'Openingstijden',
     faqKicker: 'Goed om te weten',
     faqTitle: 'Veelgestelde vragen',
-    footer: 'Bloomingbrow salon - PMU brows, browstyling en lashes in Schagen.',
+    ctaKicker: 'Zin in een nieuwe look?',
+    ctaTitle: 'Boek met mij. Ik kijk er naar uit.',
+    ctaSub: 'Boek online of stuur me even een appje. Ik denk graag mee over wat bij jou past.',
+    footer: 'Bloomingbrow salon · PMU brows, browstyling en lashes in Schagen.',
   },
   en: {
     nav: ['About Bloem', 'Treatments', 'Results', 'Reviews', 'Visit'],
     book: 'Book now',
     app: 'WhatsApp Bloem',
     heroKicker: 'PMU brows and brow styling in Schagen',
-    heroTitle: 'Brows that softly frame your face.',
+    heroTitle: 'Brows that let your face speak.',
     heroSub:
-      'At Bloomingbrow salon, Bloem creates soft, polished and wearable brows that suit your face. From shaping and hybrid tint to powder brows: calm, precise and fully personal.',
-    heroTrust: ['5.0 on Google', '22 reviews', 'Online booking'],
+      'I don\'t just look at your brows, I look at your whole face. In my salon in Schagen I take the time for shape, colour and explanation, so your brows feel groomed and truly suit you.',
+    heroTrust: ['5.0 on Google', 'Personal attention', 'Online booking'],
     proof: [
       { value: '5.0', label: 'Google rating' },
-      { value: '22', label: 'Reviews' },
-      { value: '2025', label: 'Own salon' },
+      { value: 'PMU', label: 'Certified' },
+      { value: '1-on-1', label: 'Personal' },
       { value: '6 days', label: 'Open weekly' },
     ],
-    introKicker: 'Bloomingbrow salon',
-    introTitle: 'A brow studio where you leave prettier and arrive more confident.',
+    introKicker: 'Welcome to Bloomingbrow',
+    introTitle: 'A studio where you leave prettier and arrive feeling lighter.',
     introText:
-      'Bloomingbrow is small, personal and precise. Bloem takes time to look at your face, natural brow growth and personal taste, so the result feels polished instead of overdone.',
-    introPoints: ['Personal brow mapping', 'Calm step-by-step guidance', 'PMU and styling in one place'],
-    aboutKicker: 'Bloem Boekel',
-    aboutTitle: 'Young, ambitious and exactly the specialist you want near your face.',
+      'Bloomingbrow is small, personal and precise. Bloem takes time to look at your face, natural growth and your wishes. So brows look groomed and balanced, never overdone.',
+    introPoints: ['Personal brow mapping', 'Calm, step-by-step explanation', 'Lashes, brows and PMU in one place'],
+    aboutKicker: 'Meet your PMU artist',
+    aboutTitle: 'Hi, I\'m Bloem 🌸',
     aboutLead:
-      'Bloem built Bloomingbrow from her love for beauty and care. You feel it in the welcome, preparation, clear explanation and patience behind every shape.',
+      'I\'m Bloem Boekel, 22, and I live in beautiful Schagen. Half a year ago I took one of the most exciting steps of my life: opening my own salon.',
     aboutBody: [
-      'At her salon on Tanjagroenplein, brows are never rushed. Bloem studies symmetry, colour, skin, facial expression and what matters to you, so even a first PMU appointment feels personal and calm.',
-      'Her strength is soft perfection: brows that make a visible difference without looking harsh. Cleaner mornings, fresher photos, less filling in and more confidence in your own face.',
-      'Since 2025, her own name is on the door. Bloomingbrow is not a large anonymous salon, but a place where Bloem sets the standard herself.',
+      'I\'ve loved beauty and skincare since I was little. I love how a bit of attention can make such a difference. That\'s the feeling I want to pass on.',
+      'In my salon I get to channel my creativity and passion. Every client gives me new energy. It\'s special that people trust me with their look and let me help them feel even more beautiful, confident and radiant.',
+      'The past six months have flown by. I\'ve learned so much, met wonderful people, and I hope to keep growing so I can make many more clients smile.',
     ],
-    aboutTags: ['All-round brow stylist', 'PMU powder brows', 'Hybrid tint', 'Lash lift', 'Schagen'],
-    signatureKicker: 'Most booked',
-    signatureTitle: 'For a soft, groomed brow look that lasts.',
+    aboutSignoff: 'Here\'s to many more lovely moments and glow ✨ Love, Bloem',
+    aboutTags: ['All-round brow stylist', 'Powder brows basic course', 'PMU', 'Schagen'],
+    signatureKicker: 'What I offer',
+    signatureTitle: 'Four treatments, one goal: your look in balance.',
     signatureSub:
-      'Choose a quick touch-up for more definition, or powder brows if you want to wake up with shape every day.',
+      'For a clean shape, fresh colour, lifted lashes or waking up with shape. Pick what suits you.',
     priceKicker: 'Treatments and prices',
-    priceTitle: 'Everything you need to choose directly.',
+    priceTitle: 'All prices in one clear overview.',
     priceSub:
-      'Current prices in one clear overview. Book online to see available time slots immediately.',
+      'Book online and you\'ll see live availability. Not sure what suits you? Send me a quick message.',
     popular: 'Popular',
     min: 'min',
     processKicker: 'Your appointment',
     processTitle: 'Calm, clear and precise.',
-    galleryKicker: 'Atmosphere and results',
+    resultsKicker: 'Real clients · real results',
+    resultsTitle: 'Brows that belong on your face.',
+    resultsSub:
+      'A look at recent powder brows and hybrid tint results: no filters, no retouching, just clean work.',
+    powderTab: 'Powder brows',
+    hybridTab: 'Hybrid tint',
+    trainingKicker: 'Trained and up to date',
+    trainingTitle: 'Bloem\'s work rests on real certification.',
+    trainingSub:
+      'For PMU on your face, you should know who is working on you. Bloem trained at certified academies and keeps her technique, colour knowledge and hygiene current.',
+    trainingItems: [
+      { title: 'All-round brow stylist', sub: 'Brow mapping, shape, hybrid tint, brow lamination' },
+      { title: 'Powder brows basic course', sub: 'PMU pigment, machine and skin knowledge' },
+    ],
+    galleryKicker: 'Inside the salon',
     galleryTitle: 'A look inside Bloomingbrow.',
     gallerySub:
-      'From Bloem herself to brow results and the salon: soft, feminine and professional.',
+      'From the salon and treatments to the small details: soft, feminine and professional throughout.',
     reviewsKicker: 'Google reviews',
     reviewsTitle: 'Clients feel at ease and see the difference.',
     reviewsSub:
@@ -193,67 +242,87 @@ const copy: Record<Lang, Copy> = {
     allReviews: 'View reviews',
     visitKicker: 'Schagen',
     visitTitle: 'Book your brow moment at Tanjagroenplein.',
-    visitSub: 'Bloomingbrow salon is located at Tanjagroenplein 6 in Schagen. According to the salon: behind Picobello, parking at the door.',
+    visitSub:
+      'Bloomingbrow salon is at Tanjagroenplein 6 in Schagen, behind Picobello. Parking right at the door.',
     route: 'Open route',
     contact: 'Contact',
     hours: 'Opening hours',
     faqKicker: 'Good to know',
     faqTitle: 'Frequently asked questions',
-    footer: 'Bloomingbrow salon - PMU brows, brow styling and lashes in Schagen.',
+    ctaKicker: 'Ready for a new look?',
+    ctaTitle: 'Book with me. I can\'t wait.',
+    ctaSub: 'Book online or send me a quick message. I\'m happy to think along about what suits you.',
+    footer: 'Bloomingbrow salon · PMU brows, brow styling and lashes in Schagen.',
   },
 };
 
 const signatureTreatments = {
   nl: [
     {
-      title: 'Powderbrows new set',
-      text: 'Voor wie elke ochtend vorm wil zonder hard getekende wenkbrauwen. Bloem tekent eerst rustig uit en stemt de kleur af op jouw gezicht.',
-      price: '€250',
+      title: 'Powderbrows',
+      text: 'Voor wie elke ochtend wakker wil worden met vorm. Bloem mapt eerst rustig uit en stemt de kleur af op jouw gezicht.',
+      price: 'vanaf €250',
       duration: '240 min',
-      image: '/brows-pmu-collage-2026-04-03.webp',
+      image: '/powderbrows-result-1.webp',
       badge: 'PMU',
     },
     {
-      title: 'Hybrid tint incl. shape',
-      text: 'Meer definitie doordat zowel haartjes als huid worden meegenomen. Ideaal als je brows voller en strakker mogen ogen.',
+      title: 'Hybrid brows',
+      text: 'Hybrid tint inclusief shape. Meer definitie doordat zowel haartjes als huid worden meegenomen, voor een vollere, strakkere en draagbare look.',
       price: '€37,50',
       duration: '60 min',
-      image: '/brows-hybrid-result-2026-04-13.webp',
+      image: '/hybrid-tint-result-5.webp',
       badge: 'Brow styling',
     },
     {
-      title: 'Browlamination + hybrid tint & shape',
-      text: 'Voor een gelifte, volle browlook met styling, kleur en shape in een behandeling.',
-      price: '€45',
-      duration: '90 min',
-      image: '/brow-lamination-result.webp',
-      badge: 'Full brow',
+      title: 'Harsen & verven',
+      text: 'De klassieker: shape met hars en een nette kleur. Voor een opgeruimde, frisse browlook in een kort half uurtje.',
+      price: '€30,00',
+      duration: '45 min',
+      image: '/harsen-verven-result.webp',
+      badge: 'Shape & tint',
+    },
+    {
+      title: 'Lashlift',
+      text: 'Een lift én verven van je eigen wimpers, voor open ogen en een wakker gezicht zonder mascara.',
+      price: '€45,00',
+      duration: '60 min',
+      image: '/lashlift-result.webp',
+      badge: 'Lashes',
     },
   ],
   en: [
     {
-      title: 'Powder brows new set',
+      title: 'Powder brows',
       text: 'For anyone who wants to wake up with shape every morning. Bloem maps first and matches the colour to your face.',
-      price: '€250',
+      price: 'from €250',
       duration: '240 min',
-      image: '/brows-pmu-collage-2026-04-03.webp',
+      image: '/powderbrows-result-1.webp',
       badge: 'PMU',
     },
     {
-      title: 'Hybrid tint incl. shape',
-      text: 'More definition because both hair and skin are tinted. Ideal when your brows can look fuller and cleaner.',
+      title: 'Hybrid brows',
+      text: 'Hybrid tint including shape. More definition because both hair and skin are tinted, for a fuller, cleaner and very wearable look.',
       price: '€37.50',
       duration: '60 min',
-      image: '/brows-hybrid-result-2026-04-13.webp',
+      image: '/hybrid-tint-result-5.webp',
       badge: 'Brow styling',
     },
     {
-      title: 'Brow lamination + hybrid tint & shape',
-      text: 'For a lifted, fuller brow look with styling, colour and shape in one treatment.',
-      price: '€45',
-      duration: '90 min',
-      image: '/brow-lamination-result.webp',
-      badge: 'Full brow',
+      title: 'Shape & tint',
+      text: 'The classic: shape with wax and a neat tint. For a tidy, fresh brow look in a quick half hour.',
+      price: '€30.00',
+      duration: '45 min',
+      image: '/harsen-verven-result.webp',
+      badge: 'Shape & tint',
+    },
+    {
+      title: 'Lash lift',
+      text: 'A lift and tint of your own lashes, for open eyes and an awake face without mascara.',
+      price: '€45.00',
+      duration: '60 min',
+      image: '/lashlift-result.webp',
+      badge: 'Lashes',
     },
   ],
 };
@@ -364,13 +433,29 @@ const processSteps = {
   ],
 };
 
+const powderResults = [
+  '/powderbrows-result-2.webp',
+  '/powderbrows-result-3.webp',
+  '/powderbrows-result-4.webp',
+];
+
+const hybridResults = [
+  '/hybrid-tint-result-1.webp',
+  '/hybrid-tint-result-2.webp',
+  '/hybrid-tint-result-3.webp',
+  '/hybrid-tint-result-4.webp',
+  '/hybrid-tint-result-6.webp',
+];
+
 const gallery = [
-  ['/owner-brand-cards-2026-04-09.webp', 'Bloem met Bloomingbrow visitekaartjes'],
-  ['/brows-hybrid-result-2026-04-13.webp', 'Hybrid brow resultaat'],
-  ['/owner-bloem-intro-2025-12-05.webp', 'Bloem Boekel in de salon'],
-  ['/brows-pmu-collage-2026-04-03.webp', 'Powderbrows resultaat'],
-  ['/lash-lift-result.webp', 'Lashlift resultaat'],
-  ['/salon-treatment-room.webp', 'Behandelruimte'],
+  ['/brand-shelf.webp', 'Sfeer in de salon'],
+  ['/pmu-overhead.webp', 'PMU behandeling'],
+  ['/bloem-with-cards.webp', 'Bloomingbrow visitekaartjes'],
+  ['/brow-result-closeup.webp', 'Brow resultaat'],
+  ['/hybrid-detail.webp', 'Hybrid tint detail'],
+  ['/brand-business-card.webp', 'Bloomingbrow brand card'],
+  ['/wax-application.webp', 'Harsen behandeling'],
+  ['/products-conditioning.webp', 'Brow Code producten'],
 ];
 
 const reviews = [
@@ -410,11 +495,11 @@ const faqs = {
   nl: [
     {
       q: 'Welke behandeling past bij mij?',
-      a: 'Wil je vooral een nette vorm, kies dan shape of shape & verven. Wil je meer huidafdruk en definitie, dan is hybrid tint mooi. Wil je langer wakker worden met vorm, dan zijn powderbrows de meest complete keuze.',
+      a: 'Wil je vooral een nette vorm, kies dan shape of shape & verven. Wil je meer huidafdruk en definitie, dan is hybrid tint mooi. Wil je langer wakker worden met vorm, dan zijn powderbrows de meest complete keuze. Twijfel je? Stuur een appje, dan denk ik mee.',
     },
     {
       q: 'Kan ik powderbrows boeken als ik oude PMU heb?',
-      a: 'Stuur altijd eerst een duidelijke foto van je wenkbrauwen zonder make-up. Bloem kan dan beoordelen of er overheen gewerkt kan worden.',
+      a: 'Stuur altijd eerst een duidelijke foto van je wenkbrauwen zonder make-up. Dan kan ik beoordelen of er overheen gewerkt kan worden, of dat een touch up uit een andere salon beter past.',
     },
     {
       q: 'Waar zit de salon precies?',
@@ -424,15 +509,15 @@ const faqs = {
   en: [
     {
       q: 'Which treatment should I choose?',
-      a: 'For a clean shape, choose shape or shape & tint. For more skin stain and definition, hybrid tint is a good option. For longer lasting shape, powder brows are the most complete choice.',
+      a: 'For a clean shape, choose shape or shape & tint. For more skin stain and definition, hybrid tint is a good option. For longer-lasting shape, powder brows are the most complete choice. Not sure? Send a message and I\'ll think along.',
     },
     {
       q: 'Can I book powder brows if I have old PMU?',
-      a: 'Always send a clear photo of your brows without make-up first. Bloem can then check whether she can work over it.',
+      a: 'Always send a clear photo of your brows without make-up first. I can then check whether I can work over it, or whether a touch up from another salon is the better path.',
     },
     {
       q: 'Where is the salon located?',
-      a: 'Bloomingbrow salon is located at Tanjagroenplein 6 in Schagen, behind Picobello. Parking is available at the door.',
+      a: 'Bloomingbrow salon is located at Tanjagroenplein 6 in Schagen, behind Picobello. Parking is available right at the door.',
     },
   ],
 };
@@ -512,6 +597,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
+  const [resultsTab, setResultsTab] = useState<'powder' | 'hybrid'>('powder');
   const c = copy[lang];
   const signature = signatureTreatments[lang];
   const categories = serviceCategories[lang];
@@ -538,12 +624,14 @@ export default function App() {
     return () => document.body.classList.remove('menu-open');
   }, [menuOpen]);
 
+  const activeResults = resultsTab === 'powder' ? powderResults : hybridResults;
+
   return (
     <div className="site-shell">
       <header className="site-nav">
         <a href="#top" className="brand" aria-label="Bloomingbrow salon">
           <span>Blooming<span>brow</span></span>
-          <small>Salon Schagen</small>
+          <small>Salon Schagen · est. 2025</small>
         </a>
 
         <nav className="nav-links" aria-label="Hoofdnavigatie">
@@ -588,7 +676,7 @@ export default function App() {
 
       <main id="top">
         <section className="hero-section">
-          <img src="/owner-brand-cards-2026-04-09.webp" alt="" className="hero-bg" fetchPriority="high" />
+          <img src="/bloem-portrait-hero.webp" alt="" className="hero-bg" fetchPriority="high" />
           <div className="hero-shade" />
           <div className="hero-content">
             <div className="hero-copy">
@@ -614,18 +702,18 @@ export default function App() {
 
             <div className="hero-collage" aria-hidden="true">
               <div className="hero-photo hero-photo-main">
-                <img src="/owner-brand-cards-2026-04-09.webp" alt="" />
+                <img src="/bloem-portrait-hero.webp" alt="" />
               </div>
               <div className="hero-photo hero-photo-portrait">
-                <img src="/owner-bloem-intro-2025-12-05.webp" alt="" />
+                <img src="/brow-result-closeup.webp" alt="" />
               </div>
               <div className="hero-photo hero-photo-result">
-                <img src="/brows-hybrid-result-2026-04-13.webp" alt="" />
+                <img src="/brand-business-card.webp" alt="" />
               </div>
               <div className="hero-note">
                 <Stars />
                 <strong>5,0 Google</strong>
-                <span>{lang === 'nl' ? '22 reviews' : '22 reviews'}</span>
+                <span>{lang === 'nl' ? 'Bij Bloem zelf' : 'With Bloem herself'}</span>
               </div>
             </div>
           </div>
@@ -660,9 +748,9 @@ export default function App() {
 
         <section id="over" className="about-section">
           <div className="about-images">
-            <img src="/owner-bloem-intro-2025-12-05.webp" alt="Bloem Boekel in haar salon" loading="lazy" />
+            <img src="/bloem-portrait-tablet.webp" alt="Bloem Boekel in haar salon" loading="lazy" />
             <div className="about-mini">
-              <img src="/owner-brand-cards-2026-04-09.webp" alt="Bloem met Bloomingbrow visitekaartjes" loading="lazy" />
+              <img src="/bloem-with-brushes.webp" alt="Bloem met browbrushes" loading="lazy" />
               <span>{lang === 'nl' ? 'Zacht, precies, persoonlijk' : 'Soft, precise, personal'}</span>
             </div>
           </div>
@@ -673,6 +761,10 @@ export default function App() {
             {c.aboutBody.map(paragraph => (
               <p key={paragraph}>{paragraph}</p>
             ))}
+            <p className="about-signoff">
+              <Heart size={16} />
+              {c.aboutSignoff}
+            </p>
             <div className="tag-row">
               {c.aboutTags.map(tag => (
                 <span key={tag}>{tag}</span>
@@ -710,6 +802,41 @@ export default function App() {
                   </button>
                 </div>
               </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="resultaten" className="results-section">
+          <div className="section-head center">
+            <span className="kicker">{c.resultsKicker}</span>
+            <h2>{c.resultsTitle}</h2>
+            <p>{c.resultsSub}</p>
+          </div>
+          <div className="results-tabs" role="tablist">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={resultsTab === 'powder'}
+              className={resultsTab === 'powder' ? 'active' : ''}
+              onClick={() => setResultsTab('powder')}
+            >
+              {c.powderTab}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={resultsTab === 'hybrid'}
+              className={resultsTab === 'hybrid' ? 'active' : ''}
+              onClick={() => setResultsTab('hybrid')}
+            >
+              {c.hybridTab}
+            </button>
+          </div>
+          <div className="results-grid">
+            {activeResults.map(src => (
+              <figure key={src} className="result-card">
+                <img src={src} alt="" loading="lazy" />
+              </figure>
             ))}
           </div>
         </section>
@@ -756,6 +883,31 @@ export default function App() {
           </div>
         </section>
 
+        <section className="training-section">
+          <div className="training-grid">
+            <div className="training-copy">
+              <span className="kicker">{c.trainingKicker}</span>
+              <h2>{c.trainingTitle}</h2>
+              <p>{c.trainingSub}</p>
+              <div className="training-list">
+                {c.trainingItems.map(item => (
+                  <div key={item.title} className="training-item">
+                    <Award size={20} />
+                    <div>
+                      <strong>{item.title}</strong>
+                      <span>{item.sub}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="training-images">
+              <img src="/certificate-allround.webp" alt="Certificate Allround Browstylist - Bloem Boekel" loading="lazy" />
+              <img src="/certificate-powderbrows.webp" alt="Certificate Powder Brows Basic Course - Bloem Boekel" loading="lazy" />
+            </div>
+          </div>
+        </section>
+
         <section className="process-section">
           <div className="section-head center">
             <span className="kicker">{c.processKicker}</span>
@@ -772,7 +924,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="resultaten" className="gallery-section">
+        <section className="gallery-section">
           <div className="section-head center">
             <span className="kicker kicker-light">{c.galleryKicker}</span>
             <h2>{c.galleryTitle}</h2>
@@ -901,6 +1053,25 @@ export default function App() {
                 </article>
               );
             })}
+          </div>
+        </section>
+
+        <section className="closing-cta">
+          <div className="closing-cta-inner">
+            <Flower2 size={28} />
+            <span className="kicker kicker-light">{c.ctaKicker}</span>
+            <h2>{c.ctaTitle}</h2>
+            <p>{c.ctaSub}</p>
+            <div className="closing-cta-actions">
+              <button type="button" className="btn btn-gold" onClick={openBooking}>
+                <CalendarCheck size={18} />
+                {c.book}
+              </button>
+              <a className="btn btn-light" href={whatsappUrl} target="_blank" rel="noreferrer">
+                <MessageCircle size={18} />
+                {c.app}
+              </a>
+            </div>
           </div>
         </section>
       </main>
