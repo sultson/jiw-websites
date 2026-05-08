@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rnschilders.jouwidealewebsite.nl/sitemap.xml
+Sitemap: https://rn-schilders.nl/sitemap.xml
