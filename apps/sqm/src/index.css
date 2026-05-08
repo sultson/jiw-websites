@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand colours */
+  --color-charcoal: #2A323D;
+  --color-charcoal-soft: #3D4754;
+  --color-charcoal-ink: #1A2029;
+  --color-cream: #F5F1EB;
+  --color-cream-soft: #FAF7F2;
+  --color-stone: #D6D3CE;
+  --color-stone-soft: #E5E2DD;
+  --color-orange: #DC5A1E;
+  --color-orange-soft: #F37A3F;
+  --color-orange-deep: #B84819;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-cream);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply font-sans bg-cream text-charcoal antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-display text-charcoal-ink;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+  h1 { letter-spacing: -0.035em; font-weight: 800; }
+  ::selection { background: var(--color-orange); color: var(--color-cream); }
+  *:focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  /* Reduce motion respect */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-charcoal-ink text-cream px-6 py-3.5 rounded-sm text-sm font-semibold tracking-wide hover:bg-charcoal transition-colors;
+    min-height: 48px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .btn-orange {
+    @apply inline-flex items-center justify-center gap-2 bg-orange text-cream px-6 py-3.5 rounded-sm text-sm font-semibold tracking-wide hover:bg-orange-deep transition-colors;
+    min-height: 48px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-charcoal/25 text-charcoal-ink px-6 py-3.5 rounded-sm text-sm font-semibold tracking-wide hover:border-charcoal hover:bg-charcoal-ink hover:text-cream transition-colors;
+    min-height: 48px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-charcoal-ink/80 px-3 py-2 rounded-sm text-sm font-medium hover:text-charcoal-ink transition-colors;
+    min-height: 40px;
+  }
+  .kicker {
+    @apply inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-orange font-semibold;
+  }
+  .kicker::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.7;
+  }
+  .field {
+    @apply w-full px-4 py-3 rounded-sm border border-charcoal/15 bg-cream-soft text-charcoal-ink placeholder:text-charcoal/40 focus:border-orange focus:bg-white focus:outline-none transition-colors;
+    min-height: 48px;
+  }
+  .field-area {
+    @apply w-full px-4 py-3 rounded-sm border border-charcoal/15 bg-cream-soft text-charcoal-ink placeholder:text-charcoal/40 focus:border-orange focus:bg-white focus:outline-none transition-colors;
+    min-height: 120px;
+  }
+  .label {
+    @apply block text-xs font-semibold uppercase tracking-[0.16em] text-charcoal/70 mb-1.5;
+  }
+  .panel {
+    @apply bg-cream-soft border border-charcoal/8;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-charcoal/70 bg-stone-soft px-2.5 py-1 rounded-sm;
+  }
+  .pill-orange {
+    @apply inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold bg-orange/10 text-orange px-2.5 py-1 rounded-sm;
+  }
+}
+
+/* Blueprint grid (used as decorative background in select sections) */
+.bg-blueprint {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-charcoal) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-charcoal) 6%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bg-blueprint-fade {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-charcoal) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-charcoal) 5%, transparent) 1px, transparent 1px),
+    radial-gradient(ellipse at top, transparent 30%, var(--color-cream) 75%);
+  background-size: 32px 32px, 32px 32px, 100% 100%;
+}
+
+.diag-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-orange) 0,
+    var(--color-orange) 8px,
+    transparent 8px,
+    transparent 18px
+  );
+}
+
+.safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Subtle entrance animation */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise-in { animation: rise-in 0.6s ease-out both; }
+.rise-in-delay-1 { animation: rise-in 0.6s ease-out 0.08s both; }
+.rise-in-delay-2 { animation: rise-in 0.6s ease-out 0.16s both; }
+.rise-in-delay-3 { animation: rise-in 0.6s ease-out 0.24s both; }
