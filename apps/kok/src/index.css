@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand palette: pulled from the logo (deep charcoal on warm paper) with one warm ochre accent. */
+  --color-paper: #F8F6F1;
+  --color-paper-soft: #FCFAF6;
+  --color-paper-deep: #EFEBE2;
+  --color-ink: #1A1D22;
+  --color-ink-soft: #2D3138;
+  --color-ink-mute: #4A4F58;
+  --color-stone: #D8D3CB;
+  --color-stone-soft: #E8E4DD;
+  --color-ochre: #C5934A;
+  --color-ochre-deep: #A8783A;
+  --color-ochre-soft: #E0BC7E;
+  --color-ochre-glow: #F2E1BE;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-paper);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply font-sans bg-paper text-ink antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-display text-ink;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+  }
+  h1 { letter-spacing: -0.04em; font-weight: 800; }
+  ::selection { background: var(--color-ink); color: var(--color-paper); }
+  *:focus-visible {
+    outline: 2px solid var(--color-ochre);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-ink text-paper px-6 py-3.5 rounded-sm text-sm font-semibold tracking-wide hover:bg-ink-soft transition-colors;
+    min-height: 48px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .btn-ochre {
+    @apply inline-flex items-center justify-center gap-2 bg-ochre text-ink px-6 py-3.5 rounded-sm text-sm font-semibold tracking-wide hover:bg-ochre-deep hover:text-paper transition-colors;
+    min-height: 48px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/25 text-ink px-6 py-3.5 rounded-sm text-sm font-semibold tracking-wide hover:border-ink hover:bg-ink hover:text-paper transition-colors;
+    min-height: 48px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-ink/80 px-3 py-2 rounded-sm text-sm font-medium hover:text-ink transition-colors;
+    min-height: 40px;
+  }
+  .kicker {
+    @apply inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-ochre-deep font-semibold;
+  }
+  .kicker::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.7;
+  }
+  .field {
+    @apply w-full px-4 py-3 rounded-sm border border-ink/15 bg-paper-soft text-ink placeholder:text-ink/40 focus:border-ochre focus:bg-white focus:outline-none transition-colors;
+    min-height: 48px;
+  }
+  .field-area {
+    @apply w-full px-4 py-3 rounded-sm border border-ink/15 bg-paper-soft text-ink placeholder:text-ink/40 focus:border-ochre focus:bg-white focus:outline-none transition-colors;
+    min-height: 120px;
+  }
+  .label {
+    @apply block text-xs font-semibold uppercase tracking-[0.16em] text-ink/70 mb-1.5;
+  }
+  .panel {
+    @apply bg-paper-soft border border-ink/8;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold text-ink/70 bg-stone-soft px-2.5 py-1 rounded-sm;
+  }
+  .pill-ochre {
+    @apply inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.2em] font-semibold bg-ochre/15 text-ochre-deep px-2.5 py-1 rounded-sm;
+  }
+}
+
+/* Decorative paint-stroke divider, used sparingly */
+.brushstroke {
+  background-image: linear-gradient(90deg, transparent 0%, var(--color-ink) 8%, var(--color-ink) 92%, transparent 100%);
+  height: 2px;
+}
+
+/* Hatched paint-roller texture, used on swatches that would otherwise sit too close to the paper background. */
+.swatch-hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, var(--color-ink) 18%, transparent) 0,
+    color-mix(in srgb, var(--color-ink) 18%, transparent) 1px,
+    transparent 1px,
+    transparent 6px
+  );
+  background-color: #EFE6D8;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
+.bg-grain {
+  background-image:
+    radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--color-ink) 4%, transparent) 0, transparent 60%),
+    radial-gradient(circle at 80% 70%, color-mix(in srgb, var(--color-ochre) 5%, transparent) 0, transparent 50%);
+}
+
+.safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise-in { animation: rise-in 0.6s ease-out both; }
+.rise-in-delay-1 { animation: rise-in 0.6s ease-out 0.08s both; }
+.rise-in-delay-2 { animation: rise-in 0.6s ease-out 0.16s both; }
+.rise-in-delay-3 { animation: rise-in 0.6s ease-out 0.24s both; }
