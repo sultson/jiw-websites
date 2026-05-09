@@ -1,0 +1,42 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "de-vest-schilderwerken",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": true
+  },
+  "routes": [
+    {
+      "pattern": "de-vest.jouwidealewebsite.nl",
+      "custom_domain": true
+    }
+    // Production custom domains to be added when DNS is wired:
+    // { "pattern": "devestschilderwerken.nl",     "custom_domain": true },
+    // { "pattern": "www.devestschilderwerken.nl", "custom_domain": true }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["offerte@notify.jouwidealewebsite.nl"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "de-vest",
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_SENDER": "offerte@notify.jouwidealewebsite.nl"
+  }
+}
