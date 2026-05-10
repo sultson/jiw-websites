@@ -16,7 +16,8 @@
     "dev:claires-skincare": "pnpm --filter @jiw/claires-skincare dev",
     "dev:smooth-by-lau": "pnpm --filter @jiw/smooth-by-lau dev",
     "dev:rn-schilders": "pnpm --filter @jiw/rn-schilders dev",
-    "dev:beautique-jeanine": "pnpm --filter @jiw/beautique-jeanine dev"
+    "dev:beautique-jeanine": "pnpm --filter @jiw/beautique-jeanine dev",
+    "dev:xenon": "pnpm --filter @jiw/xenon dev"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
