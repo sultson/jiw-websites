@@ -51,15 +51,6 @@ export default function Visit({ t, onBook }: Props) {
               </p>
             </div>
 
-            <div>
-              <p className="text-[11px] tracking-[0.28em] uppercase text-ink-mute">
-                {t('visit.access.title')}
-              </p>
-              <p className="mt-3 text-base text-ink leading-relaxed">
-                {t('visit.access.note')}
-              </p>
-            </div>
-
             <button type="button" onClick={onBook} className="btn-copper">
               {t('nav.book')}
             </button>
