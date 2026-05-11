@@ -6,19 +6,18 @@ export default function Hendrien({ t }: Props) {
       <div className="mx-auto max-w-[1280px] px-5 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <figure className="lg:col-span-5">
-            <div className="aspect-[4/5] bg-paper-soft border border-ink-line flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <img
-                  src="/logo/manly-mark.png"
-                  alt=""
-                  className="w-[58%] max-w-[280px] opacity-95"
-                />
-              </div>
-              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-[10px] tracking-[0.32em] uppercase text-ink-mute">
+            <div className="aspect-[4/5] bg-paper-soft border border-ink-line relative overflow-hidden">
+              <img
+                src="/work/hendrien.webp"
+                alt="Hendrien — Manly Clinic"
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-[10px] tracking-[0.32em] uppercase text-white/85">
                 <span>est.</span>
                 <span>Den Haag</span>
               </div>
-              <div className="absolute top-6 left-6 text-[10px] tracking-[0.32em] uppercase text-ink-mute">
+              <div className="absolute top-6 left-6 text-[10px] tracking-[0.32em] uppercase text-white/85">
                 MC.
               </div>
             </div>

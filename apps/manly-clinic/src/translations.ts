@@ -65,8 +65,8 @@ const nl: Record<string, string> = {
   // About / Hendrien (IV)
   'about.kicker': 'Hendrien',
   'about.title': 'Eén specialist. Eén focus.',
-  'about.body1': 'Manly Clinic draait om Hendrien. Zij bouwde de kliniek vanuit één principe: mannenhuid vraagt om een eigen expertise, op een eigen plek.',
-  'about.body2': 'Geen afgeleide aandacht, geen halve uitleg. Je intake is bij haar, je behandeling is bij haar, en je vragen ook.',
+  'about.body1': 'Manly Clinic draait om Hendrien. Hij bouwde de kliniek vanuit één principe: mannenhuid vraagt om een eigen expertise, op een eigen plek.',
+  'about.body2': 'Geen afgeleide aandacht, geen halve uitleg. Je intake is bij hem, je behandeling is bij hem, en je vragen ook.',
   'about.tag': 'Eigenaar en behandelaar',
 
   // Reviews (V)
@@ -177,8 +177,8 @@ const en: Record<string, string> = {
 
   'about.kicker': 'Hendrien',
   'about.title': 'One specialist. One focus.',
-  'about.body1': 'Manly Clinic is built around Hendrien. She started the clinic on one principle: male skin needs its own expertise, in its own place.',
-  'about.body2': 'No split attention, no half answers. Your intake is with her, your treatment is with her, your questions too.',
+  'about.body1': 'Manly Clinic is built around Hendrien. He started the clinic on one principle: male skin needs its own expertise, in its own place.',
+  'about.body2': 'No split attention, no half answers. Your intake is with him, your treatment is with him, your questions too.',
   'about.tag': 'Owner and practitioner',
 
   'reviews.kicker': 'Reviews',
