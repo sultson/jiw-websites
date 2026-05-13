@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mvdd-totaalonderhoud.jouwidealewebsite.nl/sitemap.xml
