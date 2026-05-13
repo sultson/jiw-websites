@@ -1,0 +1,18 @@
+export const site = {
+  name: 'BBN Totaalbouw',
+  ownerName: 'Burhan',
+  phone: '06 85 38 37 48',
+  phoneRaw: '+31685383748',
+  phoneOffice: '010 261 5382',
+  phoneOfficeRaw: '+31102615382',
+  email: 'bbntotaalbouw@gmail.com',
+  address: 'Klaverstraat 7, Rotterdam',
+  city: 'Rotterdam',
+  area: 'Rotterdam en omgeving (100 km)',
+  hours: 'Ma–Za 09:00 – 17:00',
+  yearsExperience: 12,
+  teamSize: 5,
+  trustooRating: 9.1,
+  trustooReviewCount: 13,
+  certifications: ['VCA', 'NOA', 'Neerlandsch Stucgilde', 'Vlok Erkend'],
+};

@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bbn-red: #dc1f26;
+  --color-bbn-red-dark: #a8161c;
+  --color-bbn-ink: #0a0a0a;
+  --color-bbn-ash: #161616;
+  --color-bbn-line: #232323;
+
+  --font-display: "Oswald", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bbn-ink);
+  color: #f5f5f5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+}
+
+.diag-stripe {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-bbn-red) 0,
+    var(--color-bbn-red) 14px,
+    var(--color-bbn-ink) 14px,
+    var(--color-bbn-ink) 28px
+  );
+}
+
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker {
+  animation: ticker 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker { animation: none; }
+}
