@@ -1,0 +1,17 @@
+export const site = {
+  name: 'Sezo Klussen',
+  ownerName: 'Sezer',
+  phone: '06 18 76 36 56',
+  phoneRaw: '+31618763656',
+  whatsappRaw: '31618763656',
+  city: 'Rotterdam',
+  area: 'Rotterdam en omgeving',
+  hours: 'Ma–Za 08:00 – 18:00',
+  yearsActive: 7,
+  rating: 4.8,
+  reviewCount: 7,
+  reviewSource: 'Werkspot',
+  reviewUrl: 'https://www.werkspot.nl/profiel/sezo-klussen-bedrijf/reviews',
+  kvk: '74161474',
+  trust: ['Geverifieerd op Werkspot', 'KvK 74161474', 'Met garantie'],
+};
