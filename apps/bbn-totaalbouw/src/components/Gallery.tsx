@@ -28,11 +28,11 @@ export default function Gallery() {
             <p className="mb-3 text-sm font-bold uppercase tracking-wider text-bbn-red">
               Recent werk
             </p>
-            <h2 className="headline text-4xl text-white sm:text-5xl lg:text-6xl">
+            <h2 className="headline text-4xl text-zinc-900 sm:text-5xl lg:text-6xl">
               Projecten in beeld
             </h2>
           </div>
-          <p className="text-sm text-zinc-400">Tik op een foto voor groot.</p>
+          <p className="text-sm text-zinc-500">Tik op een foto voor groot.</p>
         </div>
 
         <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Categorieën">
@@ -52,7 +52,7 @@ export default function Gallery() {
                   'inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wider transition ' +
                   (isActive
                     ? 'border-bbn-red bg-bbn-red text-white'
-                    : 'border-bbn-line bg-bbn-ink text-zinc-300 hover:border-bbn-red hover:text-white')
+                    : 'border-bbn-line bg-bbn-ink text-zinc-700 hover:border-bbn-red hover:text-bbn-red')
                 }
               >
                 <span>{c.label}</span>
@@ -76,7 +76,7 @@ export default function Gallery() {
                 loading="lazy"
                 className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-bbn-ink/90 via-bbn-ink/0 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent" />
               <span className="absolute bottom-2 left-2 right-2 text-left text-xs font-semibold uppercase tracking-wider text-white">
                 {p.label}
               </span>

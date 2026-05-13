@@ -24,7 +24,7 @@ export default function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all ${
-        scrolled ? 'bg-bbn-ink/90 backdrop-blur border-b border-bbn-line' : 'bg-transparent'
+        scrolled ? 'bg-white/85 backdrop-blur border-b border-bbn-line' : 'bg-transparent'
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
@@ -38,7 +38,7 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm font-medium uppercase tracking-wide text-zinc-300 hover:text-bbn-red transition"
+              className="text-sm font-medium uppercase tracking-wide text-zinc-700 hover:text-bbn-red transition"
             >
               {l.label}
             </a>
@@ -56,7 +56,7 @@ export default function Nav() {
           <button
             type="button"
             onClick={() => setOpen(v => !v)}
-            className="rounded-md border border-bbn-line p-2 text-white lg:hidden"
+            className="rounded-md border border-bbn-line bg-white p-2 text-zinc-900 lg:hidden"
             aria-label={open ? 'Menu sluiten' : 'Menu openen'}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -65,14 +65,14 @@ export default function Nav() {
       </div>
 
       {open && (
-        <div className="border-t border-bbn-line bg-bbn-ink lg:hidden">
+        <div className="border-t border-bbn-line bg-white lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col px-4 py-3 sm:px-6">
             {links.map(l => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="py-3 text-base font-semibold uppercase tracking-wide text-zinc-200 hover:text-bbn-red"
+                className="py-3 text-base font-semibold uppercase tracking-wide text-zinc-800 hover:text-bbn-red"
               >
                 {l.label}
               </a>

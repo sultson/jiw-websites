@@ -33,14 +33,14 @@ export default function About() {
             <p className="mb-3 text-sm font-bold uppercase tracking-wider text-bbn-red">
               Over BBN Totaalbouw
             </p>
-            <h2 className="headline text-4xl text-white sm:text-5xl lg:text-6xl">
+            <h2 className="headline text-4xl text-zinc-900 sm:text-5xl lg:text-6xl">
               Vakwerk uit Rotterdam.
             </h2>
-            <p className="mt-5 text-lg text-zinc-300">
+            <p className="mt-5 text-lg text-zinc-600">
               {site.yearsExperience} jaar ervaring. {site.teamSize} vaste vakmensen. Eén
               aanspreekpunt: {site.ownerName}.
             </p>
-            <p className="mt-4 text-base text-zinc-400">
+            <p className="mt-4 text-base text-zinc-500">
               Wij staan voor strak, professioneel en duurzaam vakwerk. Kwalitatieve materialen,
               gladde afwerking, nette oplevering. Klanttevredenheid op nummer één.
             </p>
@@ -49,7 +49,7 @@ export default function About() {
               {site.certifications.map(c => (
                 <span
                   key={c}
-                  className="rounded-md border border-bbn-line bg-bbn-ash px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-zinc-200"
+                  className="rounded-md border border-bbn-line bg-bbn-ash px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-zinc-700"
                 >
                   {c}
                 </span>
@@ -62,15 +62,15 @@ export default function About() {
               {items.map(({ icon: Icon, title, text }) => (
                 <div
                   key={title}
-                  className="rounded-xl border border-bbn-line bg-bbn-ash p-6"
+                  className="rounded-xl border border-bbn-line bg-bbn-ash p-6 shadow-sm shadow-zinc-900/5"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-bbn-red/15 text-bbn-red">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-bbn-red/10 text-bbn-red">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="mt-4 text-lg font-bold uppercase tracking-wide text-white">
+                  <h3 className="mt-4 text-lg font-bold uppercase tracking-wide text-zinc-900">
                     {title}
                   </h3>
-                  <p className="mt-2 text-sm text-zinc-400">{text}</p>
+                  <p className="mt-2 text-sm text-zinc-500">{text}</p>
                 </div>
               ))}
             </div>

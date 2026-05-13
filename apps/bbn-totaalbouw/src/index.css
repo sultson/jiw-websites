@@ -3,9 +3,10 @@
 @theme {
   --color-bbn-red: #dc1f26;
   --color-bbn-red-dark: #a8161c;
-  --color-bbn-ink: #0a0a0a;
-  --color-bbn-ash: #161616;
-  --color-bbn-line: #232323;
+  --color-bbn-ink: #f4f5f7;
+  --color-bbn-ash: #ffffff;
+  --color-bbn-line: #e4e4e8;
+  --color-bbn-text: #0a0a0a;
 
   --font-display: "Oswald", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
@@ -17,8 +18,9 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-bbn-ink);
-  color: #f5f5f5;
+  background:
+    linear-gradient(180deg, #f7f8fa 0%, #eef0f3 60%, #f3f4f6 100%) fixed;
+  color: var(--color-bbn-text);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -41,8 +43,8 @@ h1, h2, h3, h4 {
     -45deg,
     var(--color-bbn-red) 0,
     var(--color-bbn-red) 14px,
-    var(--color-bbn-ink) 14px,
-    var(--color-bbn-ink) 28px
+    #ffffff 14px,
+    #ffffff 28px
   );
 }
 
@@ -51,9 +53,9 @@ h1, h2, h3, h4 {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
   background-size: 3px 3px;
-  mix-blend-mode: overlay;
+  mix-blend-mode: multiply;
 }
 
 @keyframes ticker {

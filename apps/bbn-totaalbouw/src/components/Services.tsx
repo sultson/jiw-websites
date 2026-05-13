@@ -9,10 +9,10 @@ export default function Services() {
           <p className="mb-3 text-sm font-bold uppercase tracking-wider text-bbn-red">
             Wat wij doen
           </p>
-          <h2 className="headline text-4xl text-white sm:text-5xl lg:text-6xl">
+          <h2 className="headline text-4xl text-zinc-900 sm:text-5xl lg:text-6xl">
             Alles onder één dak
           </h2>
-          <p className="mt-4 text-lg text-zinc-300">
+          <p className="mt-4 text-lg text-zinc-600">
             Van het strakste stucwerk tot een complete renovatie. Vijf vakmensen, één
             aanspreekpunt.
           </p>
@@ -22,17 +22,17 @@ export default function Services() {
           {services.map((s, i) => (
             <article
               key={s.key}
-              className="group relative overflow-hidden rounded-xl border border-bbn-line bg-bbn-ash p-6 transition hover:border-bbn-red/60"
+              className="group relative overflow-hidden rounded-xl border border-bbn-line bg-bbn-ash p-6 shadow-sm shadow-zinc-900/5 transition hover:border-bbn-red/60 hover:shadow-md hover:shadow-zinc-900/10"
             >
-              <div className="absolute right-0 top-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full bg-bbn-red/20 blur-2xl transition group-hover:bg-bbn-red/40" />
+              <div className="absolute right-0 top-0 h-16 w-16 -translate-y-8 translate-x-8 rounded-full bg-bbn-red/15 blur-2xl transition group-hover:bg-bbn-red/30" />
               <p className="text-xs font-bold text-bbn-red">0{i + 1}</p>
-              <h3 className="mt-2 text-2xl font-bold uppercase tracking-wide text-white">
+              <h3 className="mt-2 text-2xl font-bold uppercase tracking-wide text-zinc-900">
                 {s.title}
               </h3>
-              <p className="mt-2 text-sm text-zinc-400">{s.blurb}</p>
+              <p className="mt-2 text-sm text-zinc-500">{s.blurb}</p>
               <ul className="mt-5 space-y-2">
                 {s.bullets.map(b => (
-                  <li key={b} className="flex items-start gap-2 text-sm text-zinc-200">
+                  <li key={b} className="flex items-start gap-2 text-sm text-zinc-700">
                     <Check className="mt-0.5 h-4 w-4 shrink-0 text-bbn-red" />
                     {b}
                   </li>
