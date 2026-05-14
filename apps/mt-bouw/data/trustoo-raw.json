@@ -1,0 +1,565 @@
+{
+  "source": "https://trustoo.nl/zuid-holland/rijswijk/schilder/yasso/",
+  "scrapedAt": "2026-05-14T13:05:50.174372Z",
+  "providerId": 70858,
+  "reviewsApi": "https://trustoo.nl/api/providers/get-reviews/70858/{page}/{limit}",
+  "allReviewsRaw": [
+    {
+      "review_id": 150757,
+      "rating": 8,
+      "created": "2026-05-12T19:09:08+00:00",
+      "name": "Joop",
+      "body": "Goed gewerkt en alle werkzaamheden tot tevredenheid verricht.",
+      "response": null
+    },
+    {
+      "review_id": 150505,
+      "rating": 8,
+      "created": "2026-05-11T14:57:34+00:00",
+      "name": "Henny Ivo",
+      "body": "Op dit ogenblik zijn de schilders bij ons bezig. Wij zijn heel tevreden omdat er goed geluisterd wordt naar wat onze wensen zijn. Behangwerk is echt mooi gedaan en het verfwerk ook. \n",
+      "response": null
+    },
+    {
+      "review_id": 150348,
+      "rating": 10,
+      "created": "2026-05-10T12:58:33+00:00",
+      "name": "Daan",
+      "body": "Het was gezellig met Tarik en zijn team. Ze deden goed werk en ik ben tevreden",
+      "response": null
+    },
+    {
+      "review_id": 149072,
+      "rating": 10,
+      "created": "2026-05-02T19:20:33+00:00",
+      "name": "Rene",
+      "body": "Toen ik een offerte opvroeg was MT bouw de eerste die me belde. Er kon gelijk een afspraak gemaakt worden om langs te komen. Ik had ook een aantal problemen met houtrot. Vervolgens kreeg ik een nette offerteprijs.\nTarek en zijn team konden vrij snel komen en het houtrot is vakkundig verwijderd en gerepareerd en tijdens het verven zag hij nog een paar plekken, wat hij me heeft laten zien en ook heeft verwijderd, waardoor alles er weer als nieuw uitziet. Het schilderwerk zelf is strak en zorgvuldig uitgevoerd, met oog voor detail. Er is duidelijk met kwaliteit en professionaliteit gewerkt.\n\nDaarnaast werd alles netjes achtergelaten. Kortom: Een scherpe offerte en Tarek en zijn team hebben goed werk geleverd, ik zou hem zeker aanbevelen.",
+      "response": null
+    },
+    {
+      "review_id": 148330,
+      "rating": 10,
+      "created": "2026-04-28T07:07:56+00:00",
+      "name": "Albert ",
+      "body": "Tarek kwam met zijn team ons huis verven en dat van de buren. Hij zag wat er gerepareerd moest worden en pakte dit zelfstandig aan. Hij gebruikte goede materialen en we zijn erg blij met het resultaat. Mochten we weer iets te verven hebben, dat zal dan binnen zijn, zal ik weer contact zoeken met Tarek en zijn team.",
+      "response": "Dankjewel Albert "
+    },
+    {
+      "review_id": 147996,
+      "rating": 4,
+      "created": "2026-04-25T12:47:34+00:00",
+      "name": "Adrian",
+      "body": "Ik zou de algehele ervaring als onder gemiddeld beoordelen. Helaas voldeed de uiteindelijke kwaliteit van het schilderwerk aan het raam niet aan mijn verwachtingen. Het oppervlak vertoont zichtbare opgedroogde verfdruppels, waardoor het er niet egaal en glad uitziet. Daarnaast zijn er enkele kleine scheurtjes die vooraf niet zijn gevuld.\nIk heb deze punten gemeld bij de schilder, maar ik heb geen reactie of opvolging ontvangen. Ook zaten er verfspatten op het glas van het raam, die ik zelf heb moeten schoonmaken nadat het werk was afgerond.\nAl met al komt het werk wat gehaast over en had ik meer oog voor detail verwacht. Ik hoop dat deze feedback helpt om de kwaliteit van toekomstige werkzaamheden te verbeteren.",
+      "response": "Jammer om te horen dat het schilderwerk niet naar wens is uitgevoerd. Dat is niet hoe wij willen werken.\nWe lossen dit graag netjes met je op. Neem gerust contact op, dan kijken we samen naar een passende oplossing."
+    },
+    {
+      "review_id": 144956,
+      "rating": 10,
+      "created": "2026-04-07T10:09:26+00:00",
+      "name": "H. v. Ofwegen.",
+      "body": "Doet wat er beloofd is , vriendelijk en snel.",
+      "response": "Hartelijk bedankt "
+    },
+    {
+      "review_id": 143550,
+      "rating": 10,
+      "created": "2026-03-29T17:39:20+00:00",
+      "name": "Andrei",
+      "body": "Tarek and his team have fulfilled what was promised and the painting , glass replacement and window wood repair was done to a high standard. He is a man who keeps his word and worked even outside normal working hours to make sure the job gets done within the timeframe. I will make use of his services again in the future. ",
+      "response": "Thanks so much andrei for buteafol words"
+    },
+    {
+      "review_id": 141943,
+      "rating": 10,
+      "created": "2026-03-20T09:24:36+00:00",
+      "name": "Ger Ligtvoet ",
+      "body": "Tarek is een professionele schilder. Een vakman! En nog aardig ook. \n\nGer Ligtvoet ",
+      "response": "Hartelijk bedankt "
+    },
+    {
+      "review_id": 139549,
+      "rating": 10,
+      "created": "2026-03-06T10:30:58+00:00",
+      "name": "SA deRotte",
+      "body": "Heeft goed werk verricht Zeer vriendelijke man",
+      "response": null
+    },
+    {
+      "review_id": 138682,
+      "rating": 10,
+      "created": "2026-03-01T14:23:45+00:00",
+      "name": "Tanja",
+      "body": "Dit is een goed schildersbedrijf. De reactie op mijn aanvraag en de offerte volgden snel, wat erg prettig was. Ik wist dat er houtrot aanwezig was en dat dit vervangen zou worden. Tijdens de werkzaamheden werd extra houtrot geconstateerd. Dit werd goed gecommuniceerd en ook zorgvuldig behandeld en vakkundig hersteld. \n\nDe eigenaar is vriendelijk en professioneel, net als de persoon die er ook bij was. Er werd hard gewerkt en alles werd netjes afgewerkt. Ik ben in ieder geval dik tevreden. Zeker een aanrader!",
+      "response": null
+    },
+    {
+      "review_id": 125764,
+      "rating": 10,
+      "created": "2025-12-10T19:24:34+00:00",
+      "name": "John",
+      "body": "Yasso is een betrouwbaar en integer bedrijf. Uitstekende communicatie en snelle afhandeling. Met name Tarek wil ik bedanken voor zijn aanbeveling van de prachtige muurkleuren; het appartement ziet er nu prachtig uit! Ik beveel het van harte aan!",
+      "response": null
+    },
+    {
+      "review_id": 117913,
+      "rating": 8,
+      "created": "2025-10-26T10:28:47+00:00",
+      "name": "Sam",
+      "body": "Uitstekend klant service, professioneel houding goed waarde voor de prijs. Echt warm en hulpzame ploeg, weet hoe naar de klant te luisteren, en werkaamheden aan te passen.",
+      "response": null
+    },
+    {
+      "review_id": 116036,
+      "rating": 10,
+      "created": "2025-10-14T18:11:13+00:00",
+      "name": "joris",
+      "body": "Tarek en zijn team hebben uitstekend werk geleverd.  Netjes wat hout reparaties gedaan. Deuren netjes gelakt en alle kozijnen straks in de verf. Ook het wijzigen van kleur was geen probleem. De offerte van te voren was duidelijk. We hebben samen al het schilderwerk nogmaals nagelopen, tot dat ik helemaal tevreden was. Tarek is een hele aardige man die met je meedenkt. Echt een aanrader.",
+      "response": null
+    },
+    {
+      "review_id": 112367,
+      "rating": 10,
+      "created": "2025-09-22T11:38:57+00:00",
+      "name": "Marc Thuijls",
+      "body": "Goed schildersbedrijf. Zijn bij ons bezig met het schilderen van houtwerk buiten. Werken netjes en houtwerk ziet er prima uit. Te vervangen, slechte stukken hout worden vervangen na overleg. Komen afspraken na en houden ons goed op de hoogte.\nIk kan dit bedrijjf zeker aanraden.",
+      "response": null
+    },
+    {
+      "review_id": 110698,
+      "rating": 10,
+      "created": "2025-09-12T08:52:54+00:00",
+      "name": "Tibor",
+      "body": "Enthousiaste en hardwerkende schilder die de huizen van onze VvE grondig onder handen neemt. Schuren, eventuele reparatie, gronden en twee keer aflakken maakt het houtwerk weer stralend en vlak. Niets dan lof voor deze schilder met z´n maten.",
+      "response": null
+    },
+    {
+      "review_id": 110113,
+      "rating": 10,
+      "created": "2025-09-09T07:17:37+00:00",
+      "name": "Hendrika ",
+      "body": "Perfect schilderwerk, vriendelijke mensen",
+      "response": null
+    },
+    {
+      "review_id": 110074,
+      "rating": 10,
+      "created": "2025-09-09T04:05:42+00:00",
+      "name": "Peter",
+      "body": "Yasso  heeft in september al ons buiten schilderwerk opnieuw gedaan en het ziet er weer perfect uit.\n\nVoorafgaand gaf hij ons goed en duidelijk advies over de inschatting van het werk.\n\nYasso tarek werkt netjes, is zeer vriendelijk en prettig in de omgang. Hij maakt duidelijke afspraken en komt die na. Wij zullen Ab dan ook bij iedereen aanbevelen.\n\nPeter\nAlles ziet er weer superstrak uit",
+      "response": null
+    },
+    {
+      "review_id": 109762,
+      "rating": 2,
+      "created": "2025-09-07T04:22:40+00:00",
+      "name": "Bert van Toor",
+      "body": "We hadden Yasso gevraagd voor het buitenschilderwerk van ons huis en enig binnenschilderwerk.Yasso schildert zo snel mogelijk, als je niet oplet schildert hij over roest, rot en vuil en als hij schuurt of laat schuren schildert hij over het stof heen. Je moet hem of zijn mensen zelf een emmer met schoonmaakspullen brengen, anders gebeurt het niet. Het schilderwerk ziet er op een aantal plaatsen slecht uit, het is vaak niet glad, er zijn stukken overgeslagen en het is niet altijd strak, doordat niet overal tape gebruikt is. Yasso is altijd vrolijk, maar is onbetrouwbaar, komt afspraken niet altijd na  en spreekt zichzelf nogal eens tegen. Zijn mensen spreken weinig tot geen Nederlands en pakken soms gewoon onze spullen om te gebruiken. Er wordt weinig overlegd, zo werden ongevraagd het zink van onze dakkapellen en het sluitmechaniek van de benedenramen geschilderd. Verfpotten werden open achtergelaten voor de volgende dag met soms al vuil in de pot. Ik sluit niet uit dat sommige verfklusjes goed gaan, maar als het gaat om vakmanschap en kwaliteit dan moet je niet bij Yasso zijn. ",
+      "response": null
+    },
+    {
+      "review_id": 105973,
+      "rating": 10,
+      "created": "2025-08-13T10:26:01+00:00",
+      "name": "C van Klaarbergen ",
+      "body": "3 raamkozijnen aan de buitenkant schoongemaakt, geschuurd, gegrond en gelakt. Snel en netjes gewerkt.  Voorzichtig geweest met mijn spullen en planten en erg vriendelijk.  Yasso bedankt ",
+      "response": null
+    },
+    {
+      "review_id": 105153,
+      "rating": 10,
+      "created": "2025-08-07T20:44:32+00:00",
+      "name": "Marco",
+      "body": "Yasso schilder. Komt afspraken na en is op tijd. Werkt vlot, netjes en ruimt eigen afval op.\n\nHeeft een gezellige babbel zonder dat dit ten koste gaat van zijn werkzaamheden. Blij met het resultaat!\n\n\nErg tevreden over het resultaat en de nette manier van werken",
+      "response": null
+    },
+    {
+      "review_id": 104012,
+      "rating": 10,
+      "created": "2025-07-30T18:42:56+00:00",
+      "name": "Sergio",
+      "body": "Tarek geweldig werk en geweldig persoon!\nKwam elke dag met een glimlach en leverde mooi werk.\n\nDacht goed mee en hielp zelfs mee mijn tuinmeubels verplaatsen.\n\nIemand met een goed hart.\n\nDankjewel Tarek!\n\nTot snel bij de volgende klus",
+      "response": null
+    },
+    {
+      "review_id": 103684,
+      "rating": 10,
+      "created": "2025-07-28T18:11:07+00:00",
+      "name": "Yvonne ",
+      "body": "Had nog maar net de aanvraag voor schilderwerk online gezet, en ‘s middags kon Tarek van Yasso schilderwerk al langs komen voor een offerte.\nIk had geluk dat hij al snel kon beginnen!\nHad hiervoor namelijk eerst prutsers voor de klus ( Je kan beter een echte schilder vragen blijkt maar weer)\nMaar Tarek heeft met zijn collega Hasim  alles keurig netjes kunnen herstellen!!\nWat een geweldige aardige man is Tarek, niets is te veel voor hem.\nMooi super strak schilderwerk geleverd,en alles doet hij met een grote Lach 😁.\nHeb gelijk ook weer gevraagd voor 2 volgende klussen. Deze man laat ik niet meer gaan😊😉\nZoek je iemand dan kan ik van harte Tarek aanbevelen!!!!\ngroetjes Yvonne ",
+      "response": null
+    },
+    {
+      "review_id": 103207,
+      "rating": 4,
+      "created": "2025-07-24T21:03:22+00:00",
+      "name": "Lisette van Nunen-Goes",
+      "body": "Tarek en Hasim zijn aardige mensen. Hun werk daarentegen valt tegen. Ze zijn vrijwel altijd een halfuur tot uur later dan afgesproken, werkten in het begin slechts halve dagen totdat ze in tijdnood kwamen; hun werk werd daarom haastig en slordig. Veel verfvlekken op de bakstenen, (en op planten, bloempotten, grond etc), dingen niet netjes afgewerkt, stukken tape op de ramen achtergelaten en vooral veel rommel tijdens het werken. Onze hele tuin was twee weken lang bezaaid met stukken tape, schuurpapier en gereedschap. Tuintafel ruim een week gebruikt voor alle spullen, totdat ik het zelf aan de kant heb gezet en erachter kwam dat er allemaal kringen op de tafel zitten. Als ik ze aansprak of wees op dingen probeerden ze het netjes op te lossen, maar hun oplossing bestond onder andere uit verf verwijderen van bakstenen met een staalborstel waardoor er nu allemaal schuurplekken op de stenen zitten (en op sommige plekken de kozijnen weer beschadigd zijn). Uiteindelijk heeft het twee keer zo lang geduurd als afgesproken en hebben we al die tijd tegen hun spullen en afval aan moeten kijken, met een tegenvallend eindresultaat.",
+      "response": null
+    },
+    {
+      "review_id": 93934,
+      "rating": 8,
+      "created": "2025-05-20T15:32:58+00:00",
+      "name": "Karel",
+      "body": "Harde werkers.Beleefde mannen.\nWerken snel. \nYasso moet wel goede afspraken maken nav de offerte en de betalingen.",
+      "response": null
+    },
+    {
+      "review_id": 93108,
+      "rating": 10,
+      "created": "2025-05-15T12:40:38+00:00",
+      "name": "Maya Hoes",
+      "body": "Het werk ziet er netjes uit!  Heel aardige man en heel behulpzaam Zeker een aanrader!",
+      "response": null
+    },
+    {
+      "review_id": 92135,
+      "rating": 10,
+      "created": "2025-05-07T15:26:08+00:00",
+      "name": "Jim",
+      "body": "Goede ervaring met Yasso, voor en achter in een week geschilderd. Ook super vriendelijk en voor een schappelijke prijs. ",
+      "response": null
+    },
+    {
+      "review_id": 86050,
+      "rating": 10,
+      "created": "2025-03-27T15:03:14+00:00",
+      "name": "Mukesh",
+      "body": "Zeer professionele schilder doet zijn werk goed\nWerkt nerjes en secuur ",
+      "response": null
+    },
+    {
+      "review_id": 84321,
+      "rating": 8,
+      "created": "2025-03-14T17:10:02+00:00",
+      "name": "M Brandwijk",
+      "body": "Yasso is een vriendelijke man. Ze hebben continu doorgewerkt met 3 man . Ruimen netjes de troep op. Als er iets is wordt het gelijk opgelost. Goed geschuurd en netjes geverfd. Kortom zou Yasso zeker aanbevelen.",
+      "response": null
+    },
+    {
+      "review_id": 76349,
+      "rating": 10,
+      "created": "2025-01-17T13:39:45+00:00",
+      "name": "Joe",
+      "body": "Super snelle reactie op mijn aanvraag en professioneel. Heb zelf geprobeerd te verven maar dat ging mis. Tarek kon de dag erna al helpen. Supernetjes te werk gegaan, zeer tevreden over het resultaat",
+      "response": null
+    },
+    {
+      "review_id": 65180,
+      "rating": 8,
+      "created": "2024-10-18T19:58:16+00:00",
+      "name": "Mevr. F. Hannink",
+      "body": "Tarek kon snel komen, wat voor ons heel prettig wS. Er werd hard gewerkt met prima resultaat. Qua communicatie moetwn er nog wat puntjes op de i.",
+      "response": null
+    },
+    {
+      "review_id": 61849,
+      "rating": 10,
+      "created": "2024-09-23T13:06:47+00:00",
+      "name": "Sylvia",
+      "body": "Schildersbedrijf Yasso reageert snel, is erg vriendelijk, werkt netjes en komt afspraken na. ",
+      "response": null
+    },
+    {
+      "review_id": 60876,
+      "rating": 2,
+      "created": "2024-09-15T10:05:05+00:00",
+      "name": "Jeanet Mourik",
+      "body": "Zeer slechte ervaring met Schilders Bedrijf Yasso, komt afspraken niet na, komt gewoon vier dagen niet op dagen zonder iets te laten weten. Tot 2x toe de deadline niet gehaald gevolg woning niet klaar opgeleverd.\nZeer slecht schilder werkt geleverd deuren 2 kleuren de ene kant mat de andere kant glimmend, de boven randje niet geschilderd. Muren ook sommige stukken twee kleuren een gedeelte 1x geverfd andere gedeelte 2x keer door kleur verschil.  Gaat verven terwijl alles nog onder het stof zit van het schilderen hier door is het schilderwerk niet glad.  Voor het bedrag wat we moesten betalen hadden een veel betere kwaliteit schilderwerk mogen en kunnen verwachten en dat noemt zich een schilder 20 jaar ervaring heeft werkt met zzpers die o% verstand van schilderen nog nog nooit een schilder op z'n chaotisch wijze zien werken. Als je hem er over aansprak werd die boos en vraagt wat ik verwacht van van hem nou gewoon kwaliteit werk zeker voor wat wij voor het schilderwerk van onze hele woning binnen moesten betalen",
+      "response": null
+    },
+    {
+      "review_id": 59368,
+      "rating": 8,
+      "created": "2024-09-02T09:06:42+00:00",
+      "name": "Ton",
+      "body": "Uitstekend, vakkundig en snel werk afgeleverd tegen een goede prijs. Zeer tevreden en een aanrader voor schilderwerk uit te laten voeren.",
+      "response": null
+    },
+    {
+      "review_id": 56480,
+      "rating": 10,
+      "created": "2024-08-03T15:27:52+00:00",
+      "name": "Fam. Jorissen ",
+      "body": "Goed werk afgeleverd en snel\ntevreden",
+      "response": null
+    },
+    {
+      "review_id": 56137,
+      "rating": 10,
+      "created": "2024-07-31T05:21:36+00:00",
+      "name": "Saskia",
+      "body": "In het begin hadden wij even een probleem, maar na een telefoontje van Yasso is dit helemaal opgelost. De communicatie gaat over de app en is duidelijk en met regelmaat. Ze konden snel aan de slag en hebben met 3 man in vier dagen tijd het huis van mijn moeder geschilderd. Ze is erg blij dat het er weer mooi uitziet. Ze zijn erg beleefd en netjes, ruimen hun spullen aan het einde vd dag op. Ik zou Yasso aanbevelen aan anderen. Toffe gast en ze hebben mooi werk afgeleverd! Bedankt Yasso! ",
+      "response": null
+    },
+    {
+      "review_id": 49260,
+      "rating": 10,
+      "created": "2024-05-25T16:24:22+00:00",
+      "name": "Hande ",
+      "body": "Wat een hardewerker. Hij werkt heel netjes en goed . Tarek houdt zich aan zijn afspraken . We zijn heek tevreden met eind resultaat. ",
+      "response": null
+    },
+    {
+      "review_id": 45753,
+      "rating": 10,
+      "created": "2024-04-12T15:50:31+00:00",
+      "name": "Elise Polman",
+      "body": "We zijn erg blij met het schilderwerk van meneer Yasso en zijn collega’s. Erg vriendelijke man en heel mooi netjes werk geleverd. Ze hebben ook oud kapot houtwerk voor ons hersteld. \nZe zijn heel nauwkeurig en goed in hun vak. Yasso is betrouwbaar en betaalbaar en werkt snel. We kregen ook updates via de app en de communicatie kan grotendeels Nederlands en anders Engels. Absolute aanrader!",
+      "response": null
+    },
+    {
+      "review_id": 45290,
+      "rating": 10,
+      "created": "2024-04-08T08:39:32+00:00",
+      "name": "Rob ",
+      "body": "In het begin wat stroef contact qua communicatie maar dat werd snel beter. Uitstekend, snel en vakkundig werk geleverd tegen een goede prijs. \nAl met al zeer tevreden en zeker een aanrader om door hen je schilderwerk te laten doen. ",
+      "response": null
+    },
+    {
+      "review_id": 44949,
+      "rating": 10,
+      "created": "2024-04-03T20:43:18+00:00",
+      "name": "Niki",
+      "body": "Ik heb recent de buitenkant van mijn huis laten schilderen en ik ben tevreden met het resultaat. De schilder kwam alle afspraken na en bood een uitstekende prijs-kwaliteitverhouding, iets wat je tegenwoordig niet altijd meer ziet. Hoewel er een paar kleine puntjes waren die bijgewerkt moesten worden, was het geleverde werk over het algemeen van hoge kwaliteit, en ik heb er het volste vertrouwen in dat deze kleine zaken ook tot in de perfectie zullen worden afgehandeld. Naast het professionele werk zijn het ook nog eens fijne personen om over de vloer te hebben, wat de hele ervaring nog beter maakte. Ik kan deze schilder zeker aanraden aan iedereen die op zoek is naar een betrouwbare en kundige schilder voor hun huis. Een absolute topper in zijn vakgebied!\n\n---",
+      "response": null
+    },
+    {
+      "review_id": 44706,
+      "rating": 8,
+      "created": "2024-04-01T18:34:41+00:00",
+      "name": "Suzanne Maas",
+      "body": "Yasso is een vriendelijke, gezellige man. Hij reageert snel op berichten en kon snel starten met de klus. Yasso en zijn mannen werken zeer snel. Soms gaat dat een klein beetje ten koste van de zorgvuldigheid. Maar ze herstellen dat snel.",
+      "response": null
+    },
+    {
+      "review_id": 41867,
+      "rating": 10,
+      "created": "2024-02-28T14:43:59+00:00",
+      "name": "Robert",
+      "body": "Tarek h/o Yasso ontmoette ik bij een vriend van mij waar hij aan het schilderen was. Ik had meteen vertrouwen in hem. Volgende dag stond hij al op de stoep om naar mijn situatie te kijken.\nHij hoefde niet mijn gehele huis te schilderen en dat vond hij prima. Mijn buurman had er ook oren naar. Binnen een dag had hij twee prijsopgaven opgestuurd die wij beiden, gezien de goede prijsstelling meteen hebben geaccepteerd zodat hij ook gelijk aan de slag kon.\nTarek en zijn team zijn harde werkers, iedere dag van 9.00 tot 18.00 en een evaluatie plus een aanpak voor de volgende dag. Met Tarek is het prima communiceren in Engels icm Nederlands en was nooit beroerd om\ndingen te bespreken en te verduidelijken. Succes Tarek en Team! ",
+      "response": null
+    },
+    {
+      "review_id": 40438,
+      "rating": 8,
+      "created": "2024-02-12T19:09:29+00:00",
+      "name": "Jenny Rietdijk",
+      "body": "De schilder had snel tijd, was betaalbaar en liet  het netjes achter. Elke dag een evaluatie via app aangezien ik niet thuis was.\nKleine dingen die niet helemaal naar wens waren of die pas later opvielen kwam hij netjes oplossen naar volle tevredenheid.\nZijn Nederlands is nog niet heel goed maar in het Engels was het prima ",
+      "response": null
+    },
+    {
+      "review_id": 38487,
+      "rating": 10,
+      "created": "2024-01-17T10:05:22+00:00",
+      "name": "Hans",
+      "body": "Reageert snel en komt persoonlijk het werk opnemen. Prijsofferte realistisch.",
+      "response": null
+    },
+    {
+      "review_id": 31782,
+      "rating": 10,
+      "created": "2023-09-29T12:33:31+00:00",
+      "name": "Dana",
+      "body": "Yasso kwam in de ochtend werken, heel vriendelijke man mijn kinderen waren helemaal gek op hem neem zijn werk heel serieus en werkt heel professioneel ik raad heel veel mensen om hem als schilder te nemen , alleen maar positief beeld heb over deze man te zeggen en ik geef hem als cijfers een dik 10 ",
+      "response": null
+    },
+    {
+      "review_id": 31011,
+      "rating": 8,
+      "created": "2023-09-15T09:16:50+00:00",
+      "name": "S.Greijdanus",
+      "body": "Lag al in bederoken\nMaar ook telefoon in slaapkamer\nYasso gesproken",
+      "response": null
+    },
+    {
+      "review_id": 29815,
+      "rating": 10,
+      "created": "2023-08-23T14:43:13+00:00",
+      "name": "Ellis Hoogendoorn van Buren ",
+      "body": "Beide heren zijn harde & vriendelijke werkers. Het schilderwerk was echt slecht, maar zij hebben er wat moois van gemaakt. Precies waar wij op hoopten. Bij een nieuwe schilder klus zullen wij ze zeker opnieuw vragen.",
+      "response": null
+    },
+    {
+      "review_id": 28693,
+      "rating": 8,
+      "created": "2023-07-31T19:13:46+00:00",
+      "name": "Familie van Leeuwen",
+      "body": "Tarek en zijn collega's hebben het buitenwerk van onze woning vakkundig geschilderd. Erg vriendelijk, stemt de werkzaamheden goed af en is bereid om mee te denken. De mannen konden de klus vlot oppakken, dat vonden wij erg prettig.\n\nHeel erg bedankt voor alles!",
+      "response": null
+    },
+    {
+      "review_id": 28432,
+      "rating": 4,
+      "created": "2023-07-25T20:29:03+00:00",
+      "name": "Tol  van der",
+      "body": "Trustoo werkt niet. Contact via whatsapp video bellen niet gewenst en Engels sprekend of gebrekkig Nederlands ",
+      "response": null
+    },
+    {
+      "review_id": 28139,
+      "rating": 10,
+      "created": "2023-07-19T14:32:04+00:00",
+      "name": "Joke",
+      "body": "Goede schilder werkt door geeft goed advies\nBen blij en zeer tevreden dat ik voor yasso heb gekozen.\nBij aanmelding reageerd hij gelijk ",
+      "response": null
+    },
+    {
+      "review_id": 27813,
+      "rating": 10,
+      "created": "2023-07-13T07:53:19+00:00",
+      "name": "Marianne",
+      "body": "Als je eenn kundige en betrokken schilder schilder nodig hebt - dan moet je bij Tarek en zijn team zijn! Ik had vrij snel een schilder nodig om mijn nieuwe woning te laten schilderen: muren, deuren, kozijnen – dit alles is supersnel en vooral ook mooi en nauwkeurig gedaan. Tarek is vriendelijk, denkt met je mee en gaat flexibel in op je wensen.\n\nIk beveel Tarek en zijn team dan ook 100% aan!\n",
+      "response": null
+    },
+    {
+      "review_id": 27366,
+      "rating": 10,
+      "created": "2023-07-04T19:29:24+00:00",
+      "name": "A. van den Herik",
+      "body": "T",
+      "response": null
+    },
+    {
+      "review_id": 25558,
+      "rating": 10,
+      "created": "2023-05-31T20:35:05+00:00",
+      "name": "Berger",
+      "body": "Tarek en zijn team hebben keurig schilderwerk geleverd erg tevreden met eindresultaat. Erg vriendelijk en zeer prettig ervaren.",
+      "response": null
+    },
+    {
+      "review_id": 21857,
+      "rating": 10,
+      "created": "2023-03-09T15:57:53+00:00",
+      "name": "Sjan kup",
+      "body": "Mo Tarek, was een goede schilder.\nHij kwam van ver, maar had meteen tijd.\nBedankt Mo.",
+      "response": null
+    },
+    {
+      "review_id": 21548,
+      "rating": 10,
+      "created": "2023-03-02T17:19:59+00:00",
+      "name": "Kowal",
+      "body": "I am very happy with Yaso.  Perfect job done on time.  Tarek is a very good person.  He fully helps, explains and advises.",
+      "response": null
+    },
+    {
+      "review_id": 17254,
+      "rating": 10,
+      "created": "2022-11-29T16:55:08+00:00",
+      "name": "Rucka",
+      "body": "Heel goed ",
+      "response": null
+    },
+    {
+      "review_id": 17183,
+      "rating": 10,
+      "created": "2022-11-28T08:26:41+00:00",
+      "name": "Qiwen Chen",
+      "body": "Yasso helped me paint the wall and he did a very good work. The wall is nicely painted. Very professional and high quality. I would definitely recommend him!",
+      "response": null
+    },
+    {
+      "review_id": 10974,
+      "rating": 10,
+      "created": "2022-05-11T19:30:56+00:00",
+      "name": "Thea Vergeer",
+      "body": "Fijn samen gewerkt.\nSnel en zorgvuldig gewerkt.\nWij zijn heel tevreden over de kwaliteit.",
+      "response": null
+    }
+  ],
+  "totalReviewsFromApi": 58,
+  "avgRatingFromApi": 4.51725,
+  "photoUrls": [
+    "https://static.trustoo.nl/https://static.trustoo.nl/pros/70858/l_219b24921f.webp",
+    "https://static.trustoo.nl/pros/70858/l_09137caed2.webp",
+    "https://static.trustoo.nl/pros/70858/l_0cd2499404.webp",
+    "https://static.trustoo.nl/pros/70858/l_10c3544b9f.webp",
+    "https://static.trustoo.nl/pros/70858/l_11ae7bfab3.webp",
+    "https://static.trustoo.nl/pros/70858/l_219b24921f.webp",
+    "https://static.trustoo.nl/pros/70858/l_2b8233a584.webp",
+    "https://static.trustoo.nl/pros/70858/l_50dca7a409.webp",
+    "https://static.trustoo.nl/pros/70858/l_597043aa7a.webp",
+    "https://static.trustoo.nl/pros/70858/l_5dfbc62fc3.webp",
+    "https://static.trustoo.nl/pros/70858/l_608110679b.webp",
+    "https://static.trustoo.nl/pros/70858/l_7745c85691.webp",
+    "https://static.trustoo.nl/pros/70858/l_8256e9b1b2.webp",
+    "https://static.trustoo.nl/pros/70858/l_8360a4dc3f.webp",
+    "https://static.trustoo.nl/pros/70858/l_942b722c56.webp",
+    "https://static.trustoo.nl/pros/70858/l_9a8be84450.webp",
+    "https://static.trustoo.nl/pros/70858/l_9dc3b725a3.webp",
+    "https://static.trustoo.nl/pros/70858/l_a283bcce9f.webp",
+    "https://static.trustoo.nl/pros/70858/l_a5cdafc8c2.webp",
+    "https://static.trustoo.nl/pros/70858/l_a6ea3f4e5e.webp",
+    "https://static.trustoo.nl/pros/70858/l_b74fa2cd50.webp",
+    "https://static.trustoo.nl/pros/70858/l_ba73c00bf0.webp",
+    "https://static.trustoo.nl/pros/70858/l_c7991eb408.webp",
+    "https://static.trustoo.nl/pros/70858/l_d5a1c76d15.webp",
+    "https://static.trustoo.nl/pros/70858/l_da93f873d1.webp",
+    "https://static.trustoo.nl/pros/70858/l_df8839773a.webp",
+    "https://static.trustoo.nl/pros/70858/l_e0e1b7e44b.webp",
+    "https://static.trustoo.nl/pros/70858/l_e8040bcad5.webp",
+    "https://static.trustoo.nl/pros/70858/l_fdf40ca512.webp",
+    "https://static.trustoo.nl/pros/70858/s_09137caed2.webp",
+    "https://static.trustoo.nl/pros/70858/s_0cd2499404.webp",
+    "https://static.trustoo.nl/pros/70858/s_10c3544b9f.webp",
+    "https://static.trustoo.nl/pros/70858/s_11ae7bfab3.webp",
+    "https://static.trustoo.nl/pros/70858/s_219b24921f.webp",
+    "https://static.trustoo.nl/pros/70858/s_2b8233a584.webp",
+    "https://static.trustoo.nl/pros/70858/s_50dca7a409.webp",
+    "https://static.trustoo.nl/pros/70858/s_597043aa7a.webp",
+    "https://static.trustoo.nl/pros/70858/s_5dfbc62fc3.webp",
+    "https://static.trustoo.nl/pros/70858/s_608110679b.webp",
+    "https://static.trustoo.nl/pros/70858/s_7745c85691.webp",
+    "https://static.trustoo.nl/pros/70858/s_8256e9b1b2.webp",
+    "https://static.trustoo.nl/pros/70858/s_8360a4dc3f.webp",
+    "https://static.trustoo.nl/pros/70858/s_942b722c56.webp",
+    "https://static.trustoo.nl/pros/70858/s_9a8be84450.webp",
+    "https://static.trustoo.nl/pros/70858/s_9dc3b725a3.webp",
+    "https://static.trustoo.nl/pros/70858/s_a283bcce9f.webp",
+    "https://static.trustoo.nl/pros/70858/s_a5cdafc8c2.webp",
+    "https://static.trustoo.nl/pros/70858/s_a6ea3f4e5e.webp",
+    "https://static.trustoo.nl/pros/70858/s_b74fa2cd50.webp",
+    "https://static.trustoo.nl/pros/70858/s_ba73c00bf0.webp",
+    "https://static.trustoo.nl/pros/70858/s_c7991eb408.webp",
+    "https://static.trustoo.nl/pros/70858/s_d5a1c76d15.webp",
+    "https://static.trustoo.nl/pros/70858/s_da93f873d1.webp",
+    "https://static.trustoo.nl/pros/70858/s_df8839773a.webp",
+    "https://static.trustoo.nl/pros/70858/s_e0e1b7e44b.webp",
+    "https://static.trustoo.nl/pros/70858/s_e8040bcad5.webp",
+    "https://static.trustoo.nl/pros/70858/s_fdf40ca512.webp"
+  ],
+  "photoFilenamesOrdered": [
+    "219b24921f.webp",
+    "8360a4dc3f.webp",
+    "10c3544b9f.webp",
+    "e0e1b7e44b.webp",
+    "5dfbc62fc3.webp",
+    "942b722c56.webp",
+    "d5a1c76d15.webp",
+    "09137caed2.webp",
+    "0cd2499404.webp",
+    "11ae7bfab3.webp",
+    "2b8233a584.webp",
+    "50dca7a409.webp",
+    "597043aa7a.webp",
+    "608110679b.webp",
+    "7745c85691.webp",
+    "8256e9b1b2.webp",
+    "9a8be84450.webp",
+    "9dc3b725a3.webp",
+    "a283bcce9f.webp",
+    "a5cdafc8c2.webp",
+    "a6ea3f4e5e.webp",
+    "b74fa2cd50.webp",
+    "ba73c00bf0.webp",
+    "c7991eb408.webp",
+    "da93f873d1.webp",
+    "df8839773a.webp",
+    "e8040bcad5.webp",
+    "fdf40ca512.webp"
+  ],
+  "pageMarkdownExcerpt": null,
+  "bizTextExcerpt": "Over onsErvaringReviews\nNeem contact op via:\nmail_outlineStuur bericht\nphone_callbackTerugbelverzoek\nformat_paintOntvang schilderadvies\nlanguageBekijk website\nIntroductie\nBent u op zoek naar een ervaren schilder die samen met u voor een topresultaat gaat? Dan bent u bij Yasso aan het juiste adres. Persoonlijk contact en communicatie staat bij ons centraal. Neem contact op via mijn bedrijfsprofiel of vraag een offerte aan voor mijn scherpe tarief.\nExpertise\nSchilderen binnen en buitenSchilderwerk Buiten\nTrustoo awards\ninfo_outline\nTop Pro’s leveren consistent geweldige kwaliteit, waardoor ze tot de allerbeste dienstverleners op Trustoo behoren.\nVorige awards\nTop Pro 2025\nTop Score 2025\nTop Pro 2024\nTop Score 2024\nFoto'sAlle bekijken (28)\nOpeningstijden\nVandaag geopend - Sluit om 17:00\nMaandag\n-\n09:00 tot 17:00\nDinsdag\n-\n09:00 tot 17:15\nWoensdag\n-\n09:00 tot 17:00\nDonderdag\n-\n09:00 tot 17:00\nVrijdag\n-\n09:00 tot 17:00\nZaterdag\n-\n09:00 tot 17:00\nZondag\n-\n09:00 tot 17:00\nWaarom voor ons kiezen?\ncheck_circleGeweldige ervaring, gebruik van de beste materialen van Nederland,\nGarantie\ninfo_outline\nverified_userWij bieden garantie\nErvaring & vakmanschap\ntimelapse6 jaar in bedrijfstar58 reviewspeople_outline2 medewerkerstimeline21 jaar ervaring\nLid van\nSchilderslabel\nChecklist\ninfo_outline\nEmail en telefoon gecontroleerd door eigenaar.KVK gegevens gecontroleerd.Langer dan 1 jaar Premium Partner.Bankrekening geverifieerd.5 of meer goede reviews in de laatste 2 maanden.\nReviews\ninfo_outline\nUitstekend•4,5\n58 reviews\nKlanten over dit bedrijf:\n+\n\nUitstekend vakmanschap en kwaliteit (6)\n\n+\n\nMeedenken met de klant (4)\n\n+\n\nSnelle reactie op aanvraag en offerte (2)\n\n+\n\nNetjes achterlaten werkplek (2)\n\nAdrian\n25 apr. 2026 Trustoo.nl\nIk zou de algehele ervaring als onder gemiddeld beoordelen. Helaas voldeed de uiteindelijke kwaliteit van het schilderwerk aan het raam niet aan mijn verwachtingen. Het oppervlak vertoont zichtbare opgedroogde verfdruppels, waardoor het er niet egaal en glad uitziet. Daarnaast zijn er enkele kleine scheurtjes die vooraf niet zijn gevuld. Ik heb deze punten gemeld bij de schilder, maar ik heb geen reactie of opvolging ontvangen. Ook zaten er verfspatten op het glas van het raam, die ik zelf heb moeten schoonmaken nadat het werk was afgerond. Al met al komt het werk wat gehaast over en had ik meer oog voor detail verwacht. Ik hoop dat deze feedback helpt om de kwaliteit van toekomstige werkzaamheden te verbeteren.\nAntwoord van MT BOUW\nJammer om te horen dat het schilderwerk niet naar wens is uitgevoerd. Dat is niet hoe wij willen werken. We lossen dit graag netjes met je op. Neem gerust contact op, dan kijken we samen naar een passende oplossing.\nH. v. Ofwegen.\n7 apr. 2026 Trustoo.nl\nDoet wat er beloofd is , vriendelijk en snel.\nAntwoord van MT BOUW\nHartelijk bedankt\nAndrei\n29 mrt. 2026 Trustoo.nl\nTarek and his team have fulfilled what was promised and the painting , glass replacement and window wood repair was done to a high standard. He is a man who keeps his word and worked even outside normal working hours to make sure the job gets done within the timeframe. I will make use of his services again in the future.\nAntwoord van MT BOUW\nThanks so much andrei for buteafol words\nGer Ligtvoet \n20 mrt. 2026 Trustoo.nl\nTarek is een professionele schilder. Een vakman! En nog aardig ook. Ger Ligtvoet\nAntwoord van MT BOUW\nHartelijk bedankt\nSA deRotte\n6 mrt. 2026 Trustoo.nl\nHeeft goed werk verricht Zeer vriendelijke man\n123...12\nToon bronnen\nOntvang prijsopgave\nCheck beschikbaarheid\ncheckGratis en vrijblijvendGratis en vrijblijvend\nKom in contact met MT BOUW\nOntvang prijsopgave\nCheck beschikbaarheid\ncheckGratis en vrijblijvendGratis en vrijblijvend\nNeem contact op via:\nmail_outlineStuur bericht\nphone_callbackTerugbelverzoek\nformat_paintOntvang schilderadvies\nlanguageBekijk website\n"
+}

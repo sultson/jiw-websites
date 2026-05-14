@@ -1,0 +1,107 @@
+{
+  "name": "MT BOUW",
+  "tradeName": "Yasso",
+  "ownerFirstName": "Tarek",
+  "ownerAliases": [
+    "Tarik",
+    "Tarek",
+    "Mo Tarek",
+    "meneer Yasso"
+  ],
+  "city": "Rijswijk",
+  "province": "Zuid-Holland",
+  "profileUrl": "https://trustoo.nl/zuid-holland/rijswijk/schilder/yasso/",
+  "website": "https://www.yassopinters.com/",
+  "phone": null,
+  "email": null,
+  "address": null,
+  "kvk": null,
+  "btw": null,
+  "foundedYearsInBusiness": 6,
+  "totalEmployees": 2,
+  "yearsExperience": 21,
+  "languages": [
+    "Nederlands",
+    "Engels"
+  ],
+  "responseTime": "Reageert snel",
+  "overallRatingOutOf5": 4.51725,
+  "overallRatingOutOf10": 9.03,
+  "displayedRating": "9,3",
+  "totalReviews": 58,
+  "services": [
+    "Schilderwerk binnen (interieur)",
+    "Schilderwerk buiten (exterieur)",
+    "Houtrotreparatie",
+    "Behangwerk",
+    "Glaszetten / glas vervangen",
+    "Kozijnen schilderen / lakken"
+  ],
+  "serviceArea": [
+    "Rijswijk",
+    "Den Haag",
+    "Voorburg",
+    "Nootdorp",
+    "Leidschendam",
+    "Wateringen",
+    "Delft"
+  ],
+  "description": "Bent u op zoek naar een ervaren schilder die samen met u voor een topresultaat gaat? Dan bent u bij Yasso aan het juiste adres. Persoonlijk contact en communicatie staat bij ons centraal. Neem contact op via mijn bedrijfsprofiel of vraag een offerte aan voor mijn scherpe tarief.",
+  "expertise": [
+    "Schilderen binnen en buiten",
+    "Schilderwerk buiten"
+  ],
+  "awards": [
+    "Top Pro 2026",
+    "Top Score 2026",
+    "Top Pro 2025",
+    "Top Score 2025",
+    "Top Pro 2024",
+    "Top Score 2024"
+  ],
+  "memberships": [
+    "Schilderslabel"
+  ],
+  "verifications": [
+    "Email en telefoon gecontroleerd door eigenaar",
+    "KVK gegevens gecontroleerd",
+    "Langer dan 1 jaar Premium Partner",
+    "Bankrekening geverifieerd",
+    "5 of meer goede reviews in de laatste 2 maanden"
+  ],
+  "openingHours": {
+    "maandag": "09:00 - 17:00",
+    "dinsdag": "09:00 - 17:15",
+    "woensdag": "09:00 - 17:00",
+    "donderdag": "09:00 - 17:00",
+    "vrijdag": "09:00 - 17:00",
+    "zaterdag": "09:00 - 17:00",
+    "zondag": "09:00 - 17:00"
+  },
+  "whyChooseUs": "Geweldige ervaring, gebruik van de beste materialen van Nederland",
+  "guarantee": "Wij bieden garantie",
+  "customerHighlights": [
+    {
+      "label": "Uitstekend vakmanschap en kwaliteit",
+      "count": 6
+    },
+    {
+      "label": "Meedenken met de klant",
+      "count": 4
+    },
+    {
+      "label": "Snelle reactie op aanvraag en offerte",
+      "count": 2
+    },
+    {
+      "label": "Netjes achterlaten werkplek",
+      "count": 2
+    }
+  ],
+  "photoCount": 28,
+  "badges": [
+    "Top Pro",
+    "Top Score",
+    "Premium Partner"
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "source": "https://trustoo.nl/zuid-holland/rijswijk/schilder/yasso/",
+  "providerId": 70858,
+  "stats": {
+    "reviewsCaptured": 58,
+    "avgRatingOutOf5": 4.52,
+    "displayedRatingOutOf10": 9.3,
+    "distribution_outOf10": {
+      "10": 42,
+      "8": 11,
+      "4": 3,
+      "2": 2
+    },
+    "photosCaptured": 28,
+    "yearsInBusiness": 6,
+    "yearsExperience": 21,
+    "employees": 2,
+    "awards": [
+      "Top Pro 2024",
+      "Top Score 2024",
+      "Top Pro 2025",
+      "Top Score 2025",
+      "Top Pro 2026",
+      "Top Score 2026"
+    ],
+    "memberships": [
+      "Schilderslabel"
+    ],
+    "badges": [
+      "Premium Partner",
+      "Top Pro",
+      "Top Score"
+    ]
+  },
+  "topThemes": [
+    {
+      "rank": 1,
+      "label": "Snel (fast response, fast on site)",
+      "count": 26
+    },
+    {
+      "rank": 2,
+      "label": "Netjes (tidy, clean job)",
+      "count": 20
+    },
+    {
+      "rank": 3,
+      "label": "Vriendelijk / aardig (friendly)",
+      "count": 16
+    },
+    {
+      "rank": 4,
+      "label": "Tevreden (satisfied)",
+      "count": 16
+    },
+    {
+      "rank": 5,
+      "label": "Mooi resultaat / kwaliteit (great result, quality)",
+      "count": 13
+    }
+  ],
+  "runnerUpThemes": [
+    {
+      "label": "Aanrader / aanbevelen",
+      "count": 12
+    },
+    {
+      "label": "Team",
+      "count": 12
+    },
+    {
+      "label": "Afspraken nakomen",
+      "count": 9
+    },
+    {
+      "label": "Professioneel",
+      "count": 9
+    },
+    {
+      "label": "Vakman / vakkundig",
+      "count": 7
+    },
+    {
+      "label": "Scherpe offerte / goede prijs",
+      "count": 6
+    },
+    {
+      "label": "Communicatie",
+      "count": 5
+    }
+  ],
+  "trustooAggregatedTags": [
+    {
+      "label": "Uitstekend vakmanschap en kwaliteit",
+      "count": 6
+    },
+    {
+      "label": "Meedenken met de klant",
+      "count": 4
+    },
+    {
+      "label": "Snelle reactie op aanvraag en offerte",
+      "count": 2
+    },
+    {
+      "label": "Netjes achterlaten werkplek",
+      "count": 2
+    }
+  ],
+  "workingStyle": [
+    "Fast first contact — Tarek often the first painter to call back after a request",
+    "Owner-led small team — Tarek (a.k.a. Tarik, 'Mo Tarek', 'meneer Yasso'), usually with Hasim",
+    "Proactive about hidden issues — spots extra houtrot/cracks mid-job, shows the customer, fixes",
+    "Works long days to hit deadlines (mentioned in multiple reviews)",
+    "Multilingual — answers Dutch reviews in Dutch and English reviews in English",
+    "Owns mistakes — replies to every critical review with apology and offer to fix",
+    "Family-friendly on site — good with household / children"
+  ],
+  "recurringComplaintsToAddress": [
+    "Sometimes feels rushed (paint drips on glass, missed cracks)",
+    "Punctuality and communication slips (showing up late or not at all on some jobs)",
+    "Counter-message for site copy: 'afspraken nakomen, duidelijke planning, oog voor detail'"
+  ],
+  "criticalReviews_2_to_4_outOf10": [
+    {
+      "reviewer": "Adrian",
+      "date": "2026-04-25",
+      "rating": 4,
+      "summary": "paint drips on glass, small cracks not filled, felt rushed, no follow-up"
+    },
+    {
+      "reviewer": "Bert van Toor",
+      "date": "2025-09-07",
+      "rating": 2,
+      "summary": "rushed work, complaints about quality and attention"
+    },
+    {
+      "reviewer": "Lisette van Nunen-Goes",
+      "date": "2025-07-24",
+      "rating": 4,
+      "summary": "30-60 min late repeatedly, sloppy at start of job"
+    },
+    {
+      "reviewer": "Jeanet Mourik",
+      "date": "2024-09-15",
+      "rating": 2,
+      "summary": "no-show 4 days without notice, missed deadlines twice"
+    },
+    {
+      "reviewer": "Tol van der",
+      "date": "2023-07-25",
+      "rating": 4,
+      "summary": "frustration with Trustoo platform contact, language barrier"
+    }
+  ],
+  "servicesMentionedByCustomers": [
+    {
+      "rank": 1,
+      "label": "Buitenschilderwerk (exterior painting)",
+      "reviewCount": 5
+    },
+    {
+      "rank": 1,
+      "label": "Kozijnen / ramen (window frames)",
+      "reviewCount": 5
+    },
+    {
+      "rank": 3,
+      "label": "Houtrotreparatie (wood rot repair)",
+      "reviewCount": 4
+    },
+    {
+      "rank": 4,
+      "label": "Houtwerk algemeen (woodwork)",
+      "reviewCount": 3
+    },
+    {
+      "rank": 5,
+      "label": "Glas vervangen / glaszetten (glass replacement)",
+      "reviewCount": 2
+    },
+    {
+      "rank": 5,
+      "label": "Schuren & grondverven (sanding & priming)",
+      "reviewCount": 2
+    },
+    {
+      "rank": 5,
+      "label": "VvE / appartementencomplexen",
+      "reviewCount": 2
+    },
+    {
+      "rank": 8,
+      "label": "Binnenschilderwerk (interior painting) — listed on profile",
+      "reviewCount": 1
+    },
+    {
+      "rank": 8,
+      "label": "Behangwerk (wallpaper) — listed on profile",
+      "reviewCount": 1
+    }
+  ],
+  "recommendedServiceCopy": "Lead with buitenschilderwerk + houtrot/kozijnreparatie. Treat binnenschilderwerk, behangwerk and glaszetten as add-on services.",
+  "serviceArea": [
+    "Rijswijk",
+    "Den Haag",
+    "Voorburg",
+    "Nootdorp",
+    "Leidschendam",
+    "Wateringen",
+    "Delft"
+  ],
+  "notExtractedFromTrustoo": {
+    "reason": "Gated behind contact form on Trustoo",
+    "fields": [
+      "phone",
+      "email",
+      "KvK number",
+      "BTW number",
+      "street address"
+    ],
+    "note": "Fetch from yassopinters.com or the KvK register before launching the site."
+  }
+}
