@@ -66,12 +66,7 @@ export default function Hero() {
               <a href={`tel:${site.phoneRaw}`} className="btn btn-ghost">
                 <Phone size={18} />
                 Bel direct
-              </a>
-              <a
-                href={`tel:${site.phoneRaw}`}
-                className="hidden sm:inline-flex font-semibold text-ink hover:text-gold-deep transition-colors"
-              >
-                {site.phone}
+                <span className="hidden sm:inline">{site.phone}</span>
               </a>
             </div>
 
