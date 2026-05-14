@@ -43,7 +43,7 @@ export default function Hero() {
       <div className="container-page relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-center">
           <div className="md:col-span-7">
-            <p className="eyebrow mb-5">Kluusenbedrijf in Rotterdam</p>
+            <p className="eyebrow mb-5">Klussenbedrijf in Rotterdam</p>
 
             <h1 className="font-display text-5xl md:text-7xl leading-[1.02] tracking-tight text-ink">
               Vakwerk.{' '}

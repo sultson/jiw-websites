@@ -67,7 +67,7 @@ export default function About() {
             <div className="relative flex items-center justify-center rounded-2xl bg-paper border border-line p-10 md:p-14 aspect-[4/5] shadow-[0_20px_60px_-20px_rgba(20,24,29,0.35)]">
               <img
                 src="/sezo-logo-full.png"
-                alt="Sezo Kluusenbedrijf — stucwerk, tegelzet, verf en renovatie"
+                alt="Sezo Klussenbedrijf — stucwerk, tegelzet, verf en renovatie"
                 className="w-full max-w-sm h-auto object-contain"
                 loading="lazy"
                 decoding="async"

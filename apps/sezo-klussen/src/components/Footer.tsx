@@ -122,7 +122,7 @@ export default function Footer() {
                 <img src="/sezo-logo-compact.png" alt="" className="h-8 w-auto" />
                 <span className="font-display text-xl">{site.name}</span>
               </div>
-              <p className="mt-3 text-bone/70 text-sm">Kluusenbedrijf uit Rotterdam</p>
+              <p className="mt-3 text-bone/70 text-sm">Klussenbedrijf uit Rotterdam</p>
             </div>
 
             <nav aria-label="Snel naar">

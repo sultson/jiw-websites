@@ -16,7 +16,7 @@ function Wordmark() {
       <img src="/sezo-logo-compact.png" alt="" className="h-9 w-auto md:h-10" />
       <span className="hidden sm:flex flex-col leading-none">
         <span className="font-sans text-[10px] tracking-[0.28em] text-stone uppercase">
-          Kluusenbedrijf
+          Klussenbedrijf
         </span>
       </span>
     </a>
