@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jp-schilderwerken.jouwidealewebsite.nl/sitemap.xml
