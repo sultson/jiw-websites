@@ -1221,7 +1221,7 @@ function Hero({ openQuote }: { openQuote: () => void }) {
       <div className="absolute inset-0">
         <img
           src="/workspace-hero.webp"
-          srcSet="/workspace-hero-mobile.webp 720w, /workspace-hero.webp 1536w"
+          srcSet="/workspace-hero-mobile.webp 669w, /workspace-hero.webp 1536w"
           sizes="100vw"
           alt=""
           width={1536}
@@ -1542,20 +1542,7 @@ function FeaturedWork({ openQuote }: { openQuote: () => void }) {
             </button>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-3">
-            {[
-              ['/voordeur-voor.webp', 'Voor'],
-              ['/voordeur-tijdens.webp', 'Tijdens'],
-              ['/voordeur-na.webp', 'Na'],
-            ].map(([src, label]) => (
-              <figure key={label} className="overflow-hidden rounded-lg bg-white/8">
-                <img src={src} alt={`Voordeur ${label.toLowerCase()} behandeling`} width={451} height={590} className="aspect-[4/5] w-full object-cover" loading="lazy" decoding="async" />
-                <figcaption className="border-t border-white/10 px-4 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white/85">
-                  {label}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          <DoorRenovationSlider />
         </div>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -1578,6 +1565,92 @@ function FeaturedWork({ openQuote }: { openQuote: () => void }) {
         <WorkShowcase openQuote={openQuote} />
       </div>
     </section>
+  );
+}
+
+const doorStages = [
+  { src: '/voordeur-voor.webp', label: 'Voor', sub: 'Verweerd hout, peelende verflagen.' },
+  { src: '/voordeur-tijdens.webp', label: 'Tijdens', sub: 'Schuren, plamuren, gronden.' },
+  { src: '/voordeur-na.webp', label: 'Na', sub: 'Hoogglans afwerking, weer jarenlang beschermd.' },
+] as const;
+
+function DoorRenovationSlider() {
+  const [pos, setPos] = useState(0);
+  const [scrubbing, setScrubbing] = useState(false);
+  const active = Math.min(2, Math.round(pos / 100));
+
+  const release = () => {
+    setScrubbing(false);
+    setPos((value) => Math.round(value / 100) * 100);
+  };
+
+  return (
+    <div className="mx-auto w-full max-w-md overflow-hidden rounded-lg bg-white/8 ring-1 ring-white/10">
+      <div className="relative aspect-[4/5] w-full bg-navy">
+        {doorStages.map((stage, i) => {
+          const opacity = Math.max(0, 1 - Math.abs(pos / 100 - i));
+          return (
+            <img
+              key={stage.src}
+              src={stage.src}
+              alt={`Voordeur ${stage.label.toLowerCase()} behandeling`}
+              width={451}
+              height={590}
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{ opacity, transition: scrubbing ? 'none' : 'opacity 240ms ease-out' }}
+              loading="lazy"
+              decoding="async"
+              draggable={false}
+            />
+          );
+        })}
+        <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-between p-4">
+          <span className="rounded-md bg-navy/75 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-roller-soft backdrop-blur-sm">
+            {doorStages[active].label}
+          </span>
+          <span className="rounded-md bg-navy/75 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80 backdrop-blur-sm">
+            {active + 1} / {doorStages.length}
+          </span>
+        </div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/95 via-navy/55 to-transparent px-5 pb-5 pt-14">
+          <p className="text-sm font-semibold leading-snug text-white/92">{doorStages[active].sub}</p>
+        </div>
+      </div>
+
+      <div className="px-4 pt-4 pb-5">
+        <div className="flex gap-2">
+          {doorStages.map((stage, i) => (
+            <button
+              key={stage.label}
+              type="button"
+              onClick={() => setPos(i * 100)}
+              aria-pressed={active === i}
+              className={`flex-1 rounded-md px-2 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${active === i ? 'bg-roller text-white shadow-[0_8px_18px_-8px_rgba(255,106,0,0.9)]' : 'bg-white/8 text-white/70 hover:bg-white/15 hover:text-white'}`}
+            >
+              {stage.label}
+            </button>
+          ))}
+        </div>
+
+        <input
+          type="range"
+          min={0}
+          max={200}
+          step={1}
+          value={pos}
+          onChange={(event) => setPos(Number(event.currentTarget.value))}
+          onPointerDown={() => setScrubbing(true)}
+          onPointerUp={release}
+          onPointerCancel={release}
+          onTouchStart={() => setScrubbing(true)}
+          onTouchEnd={release}
+          onBlur={release}
+          aria-label="Sleep om voor, tijdens en na te vergelijken"
+          aria-valuetext={`${doorStages[active].label}: ${doorStages[active].sub}`}
+          className="door-slider mt-4"
+        />
+      </div>
+    </div>
   );
 }
 
