@@ -1,0 +1,159 @@
+{
+  "source_url": "https://trustoo.nl/zuid-holland/rotterdam/schilder/colors/",
+  "fetched_at": "2026-05-14",
+  "business": {
+    "name": "Color's",
+    "service_provider_id": 236350,
+    "profile_url": "colors",
+    "category": "Schilders",
+    "owner_first_name": "Nigel",
+    "description": "Op zoek naar een goede schilder?\n\nBij Color's is uw klus in goede handen!\nIk sta bekend om mijn persoonlijke contact en kwaliteitswerk.\nNeem contact op voor een offerte op maat!",
+    "established": "2022-08-01",
+    "years_in_business": 3,
+    "years_experience": 10,
+    "nr_employees": 4,
+    "website": "colorsschilderwerk.nl",
+    "phone_internal": "0627743895",
+    "phone_display_national": "010 321 1389",
+    "phone_display_international": "+31 10 321 1389",
+    "displayRealPhoneNumber": 0,
+    "address": {
+      "street": "Bellamystraat",
+      "street_number": "153",
+      "city": "Rotterdam",
+      "region": "Zuid-Holland",
+      "country_code": "NL"
+    },
+    "email_public": null,
+    "kvk_number_public": null,
+    "trustoo_checkmarks": {
+      "bank": true,
+      "claimed": true,
+      "commerce_kvk": true,
+      "email_phone_owner_verified": true
+    },
+    "claimed_at": "2026-04-10T14:17:58+00:00",
+    "has_warranties": true,
+    "response_rate_pct": 100,
+    "response_time_p80_hours": 1,
+    "fast_response_label": "Reageert binnen 1 uur",
+    "opening_hours": {
+      "mon": "08:00-17:00",
+      "tue": "08:00-17:00",
+      "wed": "08:00-17:00",
+      "thu": "08:00-17:00",
+      "fri": "08:00-17:00",
+      "sat": "08:00-17:00",
+      "sun": "closed"
+    },
+    "avatar_url_large": "https://static.trustoo.nl/pros/236350/l_0e0b9a5d32.webp",
+    "avatar_url_small": "https://static.trustoo.nl/pros/236350/s_0e0b9a5d32.webp"
+  },
+  "scores": {
+    "trustoo_overall_score_0_10": 9.2,
+    "trustoo_total_score_normalized": 0.92388888888889,
+    "score_review_normalized": 0.90277777777778,
+    "google_avg_rating_5": 5.0,
+    "trustoo_avg_rating_5": 5.0,
+    "nr_ratings_total": 11,
+    "review_sources": [
+      { "source": "trustoo", "nrRatings": 1, "rating_5": 5.0 },
+      { "source": "google", "nrRatings": 10, "rating_5": 5.0 }
+    ]
+  },
+  "expertise_keywords": [
+    "Wanden Schilderen/spuiten",
+    "Deuren schilderen/spuiten",
+    "Kozijnen schilderen/spuiten",
+    "Plafonds Schilderen/spuiten",
+    "Behang/renovlies behang",
+    "Renovatie",
+    "Schilderen binnen",
+    "Schilderen buiten",
+    "Timmerwerk",
+    "Stucwerk",
+    "Vloerleggen",
+    "Nieuwbouw",
+    "Schilderwerk Buiten",
+    "Schilderwerk Binnen",
+    "Behangen"
+  ],
+  "price_indication_eur_per_hour": {
+    "service_min": 25,
+    "service_max": 60,
+    "service_avg_min": 35,
+    "service_avg_max": 50
+  },
+  "reviews": [
+    {
+      "id": 36771,
+      "source": "trustoo",
+      "rating_10": 10,
+      "rating_5": 5,
+      "name": "Rijschool startis",
+      "date": "2023-12-18",
+      "body": "Goed personeel ... Keurig gewerkt en afgewerkt .. vriendelijk ... En professioneel ",
+      "response_from_company": "Dank uw wel voor de vertouwen in Colors schilderbedrijf "
+    },
+    {
+      "id": 7762670,
+      "source": "google",
+      "rating_10": 10,
+      "rating_5": 5,
+      "name": "chantal T",
+      "date": "2025-09-09",
+      "body": "Zeer betrouwbare schilder. Komt afspraken na en goede/snelle communicatie.\n\nHeeft de raamkozijnen keurig afgewerkt en geschilderd.\nHet zit nu steeds prachtig en ik zou hem zeker voor een nieuwe klus opnieuw vragen.\nEerlijke prijs en kwaliteit bij Nigel/Colors."
+    },
+    {
+      "id": 7762671,
+      "source": "google",
+      "rating_10": 10,
+      "rating_5": 5,
+      "name": "Margaret Deignan",
+      "date": "2025-09-03",
+      "body": "Ik ben zeer tevreden over het schilderwerk. Mijn huis ziet er prachtig uit. De medewerkers van Colours zijn professioneel, vriendelijk en denken met je mee."
+    },
+    {
+      "id": 7762673,
+      "source": "google",
+      "rating_10": 10,
+      "rating_5": 5,
+      "name": "susanne van nieuwland",
+      "date": "2025-07-12",
+      "body": "Goede vakkundige schilder die zijn woord houdt, afspraken nakomt en goede, eerlijke prijzen hanteert. Wij zijn zeer tevreden over zijn diensten en als persoon ook erg prettig. Wij bevelen Colors zeker aan!"
+    },
+    {
+      "id": 7762672,
+      "source": "google",
+      "rating_10": 10,
+      "rating_5": 5,
+      "name": "Denise Van de kamp",
+      "date": "2025-07-12",
+      "body": "Helemaal tevreden! Dit is inmiddels het tweede huis dat hij voor ons schilderde, en weer heel netjes en precies uitgevoerd. Vriendelijke en betrouwbare schilder. Zeker aan te raden!"
+    }
+  ],
+  "reviews_note": "Trustoo telt 11 reviews in totaal (1 op Trustoo, 10 via Google). De Trustoo-API levert publiek de volledige Trustoo-review plus 4 'aggregated review snippets' van Google. De overige 6 Google-reviews zijn niet als losse tekst zichtbaar op de Trustoo-profielpagina (Google geeft alleen recente snippets door).",
+  "photos": [
+    { "url": "https://static.trustoo.nl/pros/236350/918de50f2c.jpg", "w": 1125, "h": 1548, "orig": "IMG_7562.jpeg" },
+    { "url": "https://static.trustoo.nl/pros/236350/61113e16f4.jpg", "w": 3024, "h": 4032, "orig": "IMG_6794.jpeg" },
+    { "url": "https://static.trustoo.nl/pros/236350/def7b0b7c5.webp", "w": 1024, "h": 1024, "orig": "file_000000008518620ebfb90511cf00d06b.webp" },
+    { "url": "https://static.trustoo.nl/pros/236350/0e0b9a5d32.webp", "w": 2062, "h": 3664, "orig": "IMG_6963.webp" },
+    { "url": "https://static.trustoo.nl/pros/236350/0ffc083114.webp", "w": 3072, "h": 4096, "orig": "IMG_20250216_101826500.webp" },
+    { "url": "https://static.trustoo.nl/pros/236350/a1f41a16b9.webp", "w": 4080, "h": 3072, "orig": "IMG_20260120_083036238.webp" },
+    { "url": "https://static.trustoo.nl/pros/236350/ce078ca2a0.webp", "w": 4080, "h": 3072, "orig": "IMG_20260225_171113979.webp" },
+    { "url": "https://static.trustoo.nl/pros/236350/795ca9e3ad.webp", "w": 4096, "h": 3072, "orig": "IMG_20251217_092639652.webp" },
+    { "url": "https://static.trustoo.nl/pros/236350/f350a23bd3.webp", "w": 4080, "h": 3072, "orig": "IMG_20251204_092352923.webp" },
+    { "url": "https://static.trustoo.nl/pros/236350/12696af607.webp", "w": 3072, "h": 4080, "orig": "IMG_20251010_151020045.webp" },
+    { "url": "https://static.trustoo.nl/pros/236350/c517b8ea2c.webp", "w": 3072, "h": 4096, "orig": "IMG_20251217_162548152.webp" },
+    { "url": "https://static.trustoo.nl/pros/236350/f8de65be6d.webp", "w": 3072, "h": 4096, "orig": "IMG_20250321_103739575.webp" },
+    { "url": "https://static.trustoo.nl/pros/236350/14ac7671d3.webp", "w": 3072, "h": 4080, "orig": "IMG_20250925_162245195.webp" },
+    { "url": "https://static.trustoo.nl/pros/236350/ec94275116.webp", "w": 3072, "h": 4096, "orig": "IMG_20250328_152014238.webp" }
+  ],
+  "recurring_themes_top5": [
+    "Afspraken nakomen / betrouwbaarheid (Chantal, Susanne, Denise)",
+    "Netjes en precies afgewerkt schilderwerk (Chantal, Denise, Rijschool startis)",
+    "Vriendelijk en prettig persoonlijk contact (Margaret, Susanne, Denise, Rijschool startis)",
+    "Vakkundig en professioneel werk (Margaret, Susanne, Rijschool startis)",
+    "Eerlijke prijzen / goede prijs-kwaliteit (Chantal, Susanne)"
+  ]
+}

@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+
+  /* Brand palette — anchored in Color's rainbow brush logo. */
+  --color-ink: #1c1c1e;          /* matches logo wordmark exactly */
+  --color-ink-soft: #2a2a2e;     /* subtle hover, surfaces */
+  --color-bone: #f6f1e7;         /* warm cream base */
+  --color-bone-soft: #ede4d2;    /* cards, dividers */
+  --color-paper: #ffffff;
+
+  /* Logo accent colors — extracted from colors-full.png */
+  --color-rood: #ed0a21;         /* primary red — main CTA */
+  --color-rood-deep: #b8081a;
+  --color-oranje: #f7441c;       /* orange accent */
+  --color-geel: #feb526;         /* yellow accent */
+  --color-groen: #72c137;        /* green accent */
+  --color-blauw: #015da0;        /* blue accent */
+  --color-teal: #53afb8;         /* teal accent */
+
+  --color-stone: #4a4f5c;        /* muted body text */
+  --color-line: #ddd0b6;         /* hairline on cream */
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    background: var(--color-bone);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: var(--color-bone);
+    line-height: 1.55;
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    color: var(--color-ink);
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  img, svg, video { display: block; max-width: 100%; height: auto; }
+
+  ::selection { background: var(--color-geel); color: var(--color-ink); }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-page { padding-inline: 2rem; }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-rood);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 120ms ease, background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+    will-change: transform;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+
+  .btn-primary {
+    background: var(--color-rood);
+    color: #ffffff;
+    box-shadow: 0 10px 28px -10px rgba(232, 40, 30, 0.55);
+  }
+  .btn-primary:hover { background: var(--color-rood-deep); color: #ffffff; }
+
+  .btn-dark {
+    background: var(--color-ink);
+    color: var(--color-bone);
+  }
+  .btn-dark:hover { background: var(--color-ink-soft); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-ink);
+  }
+  .btn-ghost:hover { background: var(--color-ink); color: var(--color-bone); }
+
+  .hairline {
+    height: 1px;
+    background: var(--color-line);
+    width: 100%;
+  }
+
+  .section {
+    padding-block: 5rem;
+  }
+  @media (min-width: 768px) {
+    .section { padding-block: 7rem; }
+  }
+
+  /* Rainbow strip — playful accent inspired by the logo brush stroke. */
+  .rainbow-strip {
+    height: 6px;
+    background: linear-gradient(90deg,
+      var(--color-teal) 0%,
+      var(--color-blauw) 20%,
+      var(--color-groen) 40%,
+      var(--color-geel) 60%,
+      var(--color-oranje) 80%,
+      var(--color-rood) 100%
+    );
+    border-radius: 999px;
+  }
+
+  /* Custom range slider for the before/after slider */
+  .stage-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    outline: none;
+  }
+  .stage-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--color-rood);
+    border: 3px solid #ffffff;
+    cursor: grab;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  }
+  .stage-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--color-rood);
+    border: 3px solid #ffffff;
+    cursor: grab;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  }
+}

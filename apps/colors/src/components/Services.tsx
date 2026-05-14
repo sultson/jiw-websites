@@ -1,0 +1,66 @@
+import {
+  Home,
+  Sun,
+  Wrench,
+  Layers,
+  Paintbrush,
+  Droplets,
+  Square,
+  Sparkles,
+  type LucideIcon,
+} from 'lucide-react';
+import { services, sectionTitles } from '../content';
+
+const iconByKey: Record<string, LucideIcon> = {
+  binnen: Home,
+  buiten: Sun,
+  houtrot: Wrench,
+  behangen: Layers,
+  sauzen: Paintbrush,
+  lakken: Droplets,
+  kozijnen: Square,
+  voorbereiding: Sparkles,
+};
+
+const accentByIndex = ['text-rood', 'text-blauw', 'text-oranje', 'text-groen', 'text-teal', 'text-geel', 'text-rood', 'text-blauw'];
+
+function Services() {
+  return (
+    <section id="diensten" className="section bg-bone">
+      <div className="container-page">
+        <div className="max-w-2xl">
+          <span className="eyebrow">{sectionTitles.services.eyebrow}</span>
+          <h2 className="mt-4 font-display text-4xl md:text-5xl leading-tight text-ink">
+            {sectionTitles.services.title}
+          </h2>
+          <p className="mt-5 text-stone text-base md:text-lg leading-relaxed">
+            Van plafond tot kozijn, van behang tot houtrot. Alles wat een huis nodig heeft.
+          </p>
+        </div>
+
+        <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
+          {services.map((service, i) => {
+            const Icon = iconByKey[service.key] ?? Paintbrush;
+            const accent = accentByIndex[i % accentByIndex.length];
+            return (
+              <article
+                key={service.key}
+                className="group flex flex-col gap-4 p-6 rounded-2xl bg-bone border border-line transition-all duration-200 hover:-translate-y-1 hover:border-rood hover:shadow-[0_16px_40px_-20px_rgba(0,0,0,0.25)]"
+              >
+                <span className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-ink ${accent} transition-colors duration-200 group-hover:bg-rood group-hover:text-bone`}>
+                  <Icon size={22} strokeWidth={1.7} />
+                </span>
+                <h3 className="font-display text-xl text-ink leading-tight">
+                  {service.title}
+                </h3>
+                <p className="text-stone text-sm leading-relaxed">{service.body}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Services;
