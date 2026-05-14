@@ -115,11 +115,6 @@
   animation-delay: 430ms;
 }
 
-.project-slide {
-  animation: project-slide 12s infinite;
-  opacity: 0;
-}
-
 @keyframes hero-bg-in {
   from {
     filter: saturate(0.92) contrast(0.98);
@@ -143,26 +138,6 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-.project-slide:first-child {
-  opacity: 1;
-}
-
-@keyframes project-slide {
-  0%,
-  28% {
-    opacity: 1;
-  }
-
-  33%,
-  95% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
   }
 }
 
@@ -279,7 +254,6 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-bg,
   .hero-reveal,
-  .project-slide,
   .quote-sheet,
   .success-check,
   .success-bar {

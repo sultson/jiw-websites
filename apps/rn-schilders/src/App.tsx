@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent } from 'react';
 import {
   ArrowRight,
   BadgeCheck,
   CalendarCheck,
   Check,
+  ChevronLeft,
   ChevronRight,
   Clock3,
   FileText,
@@ -80,6 +81,7 @@ type Service = {
   seoDescription: string;
   pageLead: string;
   image: string;
+  images?: string[];
   width: number;
   height: number;
   icon: typeof PaintRoller;
@@ -171,7 +173,12 @@ const services: Service[] = [
       'Schilderwerk in Woerden voor woningen en bedrijfspanden. Binnen- en buitenschilderwerk, kozijnen, deuren en onderhoud met gratis prijsindicatie.',
     pageLead:
       'Zoekt u een schilder in Woerden die voorbereiding, afwerking en planning serieus neemt? RN Schilders verzorgt binnen- en buitenschilderwerk voor woningen en bedrijfspanden, met Richard als vast aanspreekpunt op het werk.',
-    image: '/schilderwerk.webp',
+    image: '/schilderwerk.webp?v=20260514',
+    images: [
+      '/schilderwerk.webp?v=20260514',
+      '/schilderwerk-2.webp?v=20260514',
+      '/schilderwerk-3.webp?v=20260514',
+    ],
     width: 1300,
     height: 867,
     icon: PaintRoller,
@@ -199,7 +206,7 @@ const services: Service[] = [
       'Kozijnen in Woerden laten renoveren, herstellen of plaatsen. Houten en kunststof kozijnen, houtwerk, isolatie en PKVW hang- en sluitwerk.',
     pageLead:
       'RN Schilders helpt in Woerden met kozijnen die weer strak, veilig en goed beschermd moeten zijn. Van herstel en schilderwerk tot plaatsing en advies over hang- en sluitwerk.',
-    image: '/kozijnen-3.webp',
+    image: '/kozijnen-3.webp?v=20260514',
     width: 1100,
     height: 733,
     icon: Home,
@@ -231,9 +238,13 @@ const services: Service[] = [
       'Professioneel spuitwerk in Woerden voor woningen, kantoren en bedrijfspanden. Strakke muren en plafonds met zorgvuldige voorbereiding.',
     pageLead:
       'Spuitwerk is geschikt wanneer grote oppervlakken strak, egaal en efficiënt afgewerkt moeten worden. RN Schilders verzorgt spuitwerk in Woerden met aandacht voor voorbereiding, afplakken en een rustig eindbeeld.',
-    image: '/spuitwerk.webp',
-    width: 1300,
-    height: 867,
+    image: '/spuitwerk-1.webp?v=20260514',
+    images: [
+      '/spuitwerk-1.webp?v=20260514',
+      '/spuitwerk-2.webp?v=20260514',
+    ],
+    width: 1536,
+    height: 1024,
     icon: Sparkles,
     bullets: ['Muren en plafonds', 'Kantoren en woningen', 'Glad eindresultaat'],
     detailTitle: 'Professioneel spuitwerk',
@@ -259,9 +270,13 @@ const services: Service[] = [
       'Stucwerk in Woerden voor renovatie, reparatie, wanden en plafonds. Sterke basis voor schilderwerk of spuitwerk door RN Schilders.',
     pageLead:
       'Goed stucwerk maakt het verschil in de afwerking van een woning of bedrijfsruimte. RN Schilders verzorgt stucwerk in Woerden als basis voor strak schilderwerk, spuitwerk en renovatie.',
-    image: '/stukadoor.webp',
-    width: 1100,
-    height: 762,
+    image: '/stucwerk-1.webp?v=20260514',
+    images: [
+      '/stucwerk-1.webp?v=20260514',
+      '/stucwerk-2.webp?v=20260514',
+    ],
+    width: 1536,
+    height: 1024,
     icon: Ruler,
     bullets: ['Pleisterwerk', 'Nieuwbouw en renovatie', 'Reparaties'],
     detailTitle: 'Strak stucwerk in Woerden',
@@ -315,7 +330,11 @@ const services: Service[] = [
       'Sloopwerk in Woerden als voorbereiding op renovatie, stucwerk, schilderwerk of spuitwerk. Netjes, veilig en met korte lijnen.',
     pageLead:
       'Bij renovatie begint kwaliteit vaak met een nette voorbereiding. RN Schilders verzorgt sloopwerk in Woerden wanneer ruimtes klaar moeten worden gemaakt voor herstel, stucwerk, schilderwerk of spuitwerk.',
-    image: '/sloopwerk.webp',
+    image: '/sloopwerk.webp?v=20260514',
+    images: [
+      '/sloopwerk.webp?v=20260514',
+      '/sloopwerk-2.webp?v=20260514',
+    ],
     width: 1000,
     height: 500,
     icon: Hammer,
@@ -1220,8 +1239,8 @@ function Hero({ openQuote }: { openQuote: () => void }) {
     <section className="relative min-h-[82dvh] overflow-hidden md:min-h-[calc(92dvh-5rem)]">
       <div className="absolute inset-0">
         <img
-          src="/workspace-hero.webp"
-          srcSet="/workspace-hero-mobile.webp 669w, /workspace-hero.webp 1536w"
+          src="/workspace-hero.webp?v=20260514"
+          srcSet="/workspace-hero-mobile.webp?v=20260514 669w, /workspace-hero.webp?v=20260514 1536w"
           sizes="100vw"
           alt=""
           width={1536}
@@ -1305,7 +1324,7 @@ function OwnerSection({ openQuote }: { openQuote: () => void }) {
         <div className="grid gap-4 sm:grid-cols-[0.72fr_1fr]">
           <img src="/logo-mark.webp" alt="RN Schilders & Renovatie logo" width={800} height={679} className="aspect-[4/5] w-full rounded-lg object-contain p-4 sm:aspect-auto" loading="lazy" decoding="async" />
           <div className="grid gap-4">
-            <img src="/hoogwerker.webp" alt="RN Schilders aan het werk bij buitenschilderwerk" width={810} height={540} className="h-full min-h-52 rounded-lg object-cover" loading="lazy" decoding="async" />
+            <img src="/hoogwerker.webp?v=20260514" alt="RN Schilders aan het werk bij buitenschilderwerk" width={810} height={540} className="h-full min-h-52 rounded-lg object-cover" loading="lazy" decoding="async" />
             <div className="rounded-lg border border-line bg-whitewash p-5">
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-graphite">Belofte</p>
               <img
@@ -1371,45 +1390,60 @@ function Services({ openQuote }: { openQuote: () => void }) {
         </div>
 
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service) => (
-            <button
-              key={service.title}
-              type="button"
-              onClick={() => setSelectedService(service)}
-              className="group overflow-hidden rounded-lg border border-line bg-white text-left transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-30px_rgba(13,30,61,0.65)] focus-visible:-translate-y-0.5"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <img
-                  src={service.image}
-                  alt=""
-                  width={service.width}
-                  height={service.height}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute left-4 top-4 rounded-md bg-navy p-3 text-white">
-                  <service.icon size={22} />
+          {services.map((service) => {
+            const open = () => setSelectedService(service);
+            const slides = service.images && service.images.length > 1 ? service.images : null;
+            return (
+              <div
+                key={service.title}
+                role="button"
+                tabIndex={0}
+                onClick={open}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    open();
+                  }
+                }}
+                className="group cursor-pointer overflow-hidden rounded-lg border border-line bg-white text-left transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-30px_rgba(13,30,61,0.65)] focus-visible:-translate-y-0.5"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  {slides ? (
+                    <ProjectCarousel slides={slides} className="absolute inset-0 h-full w-full bg-navy" imageWidth={service.width} imageHeight={service.height} />
+                  ) : (
+                    <img
+                      src={service.image}
+                      alt=""
+                      width={service.width}
+                      height={service.height}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                  <div className="pointer-events-none absolute left-4 top-4 z-10 rounded-md bg-navy p-3 text-white">
+                    <service.icon size={22} />
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-display text-2xl font-extrabold text-navy">{service.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-graphite">{service.text}</p>
+                  <div className="mt-5 grid gap-2">
+                    {service.bullets.map((bullet) => (
+                      <div key={bullet} className="flex items-center gap-2 text-sm font-semibold text-ink">
+                        <Check size={16} className="text-roller" />
+                        {bullet}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-5 flex items-center gap-2 text-sm font-bold text-roller">
+                    Lees uitleg
+                    <ArrowRight size={16} />
+                  </div>
                 </div>
               </div>
-              <div className="p-5">
-                <h3 className="font-display text-2xl font-extrabold text-navy">{service.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-graphite">{service.text}</p>
-                <div className="mt-5 grid gap-2">
-                  {service.bullets.map((bullet) => (
-                    <div key={bullet} className="flex items-center gap-2 text-sm font-semibold text-ink">
-                      <Check size={16} className="text-roller" />
-                      {bullet}
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-5 flex items-center gap-2 text-sm font-bold text-roller">
-                  Lees uitleg
-                  <ArrowRight size={16} />
-                </div>
-              </div>
-            </button>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-8 rounded-lg border border-line bg-white p-5">
@@ -1457,9 +1491,13 @@ function ServiceModal({
     <div className="fixed inset-0 z-[100] overflow-y-auto bg-navy/70 p-4 backdrop-blur-sm md:p-6" role="dialog" aria-modal="true" aria-label={`${service.title} uitleg`}>
       <div className="mx-auto my-4 max-w-4xl overflow-hidden rounded-lg bg-whitewash shadow-2xl md:my-10">
         <div className="grid md:grid-cols-[0.85fr_1.15fr]">
-          <div className="relative min-h-64 bg-navy">
-            <img src={service.image} alt="" width={service.width} height={service.height} className="h-full w-full object-cover" />
-            <div className="absolute left-5 top-5 rounded-md bg-navy p-3 text-white">
+          <div className="relative min-h-64 bg-navy md:aspect-auto">
+            {service.images && service.images.length > 1 ? (
+              <ProjectCarousel slides={service.images} className="absolute inset-0 h-full w-full bg-navy" imageWidth={service.width} imageHeight={service.height} />
+            ) : (
+              <img src={service.image} alt="" width={service.width} height={service.height} className="h-full w-full object-cover" />
+            )}
+            <div className="pointer-events-none absolute left-5 top-5 z-10 rounded-md bg-navy p-3 text-white">
               <service.icon size={24} />
             </div>
           </div>
@@ -1568,16 +1606,35 @@ function FeaturedWork({ openQuote }: { openQuote: () => void }) {
   );
 }
 
-const doorStages = [
-  { src: '/voordeur-voor.webp', label: 'Voor', sub: 'Verweerd hout, peelende verflagen.' },
-  { src: '/voordeur-tijdens.webp', label: 'Tijdens', sub: 'Schuren, plamuren, gronden.' },
-  { src: '/voordeur-na.webp', label: 'Na', sub: 'Hoogglans afwerking, weer jarenlang beschermd.' },
+type Stage = { src: string; label: string; sub: string; alt: string };
+
+const doorStages: readonly Stage[] = [
+  { src: '/voordeur-voor.webp', label: 'Voor', sub: 'Verweerd hout, peelende verflagen.', alt: 'Voordeur voor behandeling' },
+  { src: '/voordeur-tijdens.webp', label: 'Tijdens', sub: 'Schuren, plamuren, gronden.', alt: 'Voordeur tijdens behandeling' },
+  { src: '/voordeur-na.webp', label: 'Na', sub: 'Hoogglans afwerking, weer jarenlang beschermd.', alt: 'Voordeur na behandeling' },
 ] as const;
 
-function DoorRenovationSlider() {
+const dakraamStages: readonly Stage[] = [
+  { src: '/showcase-roof-window-before.webp', label: 'Voor', sub: 'Versleten dakkapel met losse verflagen en houtwerk dat aandacht vraagt.', alt: 'Dakkapel en dakraamhoek voor afwerking' },
+  { src: '/showcase-roof-window-after.webp', label: 'Na', sub: 'Strakke afwerking, herstelde naden en duurzaam beschermd hout.', alt: 'Dakkapel en dakraamhoek na afwerking' },
+  { src: '/showcase-roof-window-after-detail.webp', label: 'Detail', sub: 'Vanaf straatniveau valt op hoe schoon de aansluitingen zijn afgewerkt.', alt: 'Afgewerkte dakkapel vanaf straatniveau' },
+] as const;
+
+function StageSlider({
+  stages,
+  ariaLabel,
+  imageWidth,
+  imageHeight,
+}: {
+  stages: readonly Stage[];
+  ariaLabel: string;
+  imageWidth: number;
+  imageHeight: number;
+}) {
+  const max = (stages.length - 1) * 100;
   const [pos, setPos] = useState(0);
   const [scrubbing, setScrubbing] = useState(false);
-  const active = Math.min(2, Math.round(pos / 100));
+  const active = Math.min(stages.length - 1, Math.round(pos / 100));
 
   const release = () => {
     setScrubbing(false);
@@ -1587,15 +1644,15 @@ function DoorRenovationSlider() {
   return (
     <div className="mx-auto w-full max-w-md overflow-hidden rounded-lg bg-white/8 ring-1 ring-white/10">
       <div className="relative aspect-[4/5] w-full bg-navy">
-        {doorStages.map((stage, i) => {
+        {stages.map((stage, i) => {
           const opacity = Math.max(0, 1 - Math.abs(pos / 100 - i));
           return (
             <img
               key={stage.src}
               src={stage.src}
-              alt={`Voordeur ${stage.label.toLowerCase()} behandeling`}
-              width={451}
-              height={590}
+              alt={stage.alt}
+              width={imageWidth}
+              height={imageHeight}
               className="absolute inset-0 h-full w-full object-cover"
               style={{ opacity, transition: scrubbing ? 'none' : 'opacity 240ms ease-out' }}
               loading="lazy"
@@ -1606,20 +1663,20 @@ function DoorRenovationSlider() {
         })}
         <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-between p-4">
           <span className="rounded-md bg-navy/75 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-roller-soft backdrop-blur-sm">
-            {doorStages[active].label}
+            {stages[active].label}
           </span>
           <span className="rounded-md bg-navy/75 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white/80 backdrop-blur-sm">
-            {active + 1} / {doorStages.length}
+            {active + 1} / {stages.length}
           </span>
         </div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/95 via-navy/55 to-transparent px-5 pb-5 pt-14">
-          <p className="text-sm font-semibold leading-snug text-white/92">{doorStages[active].sub}</p>
+          <p className="text-sm font-semibold leading-snug text-white/92">{stages[active].sub}</p>
         </div>
       </div>
 
       <div className="px-4 pt-4 pb-5">
         <div className="flex gap-2">
-          {doorStages.map((stage, i) => (
+          {stages.map((stage, i) => (
             <button
               key={stage.label}
               type="button"
@@ -1635,7 +1692,7 @@ function DoorRenovationSlider() {
         <input
           type="range"
           min={0}
-          max={200}
+          max={max}
           step={1}
           value={pos}
           onChange={(event) => setPos(Number(event.currentTarget.value))}
@@ -1645,11 +1702,122 @@ function DoorRenovationSlider() {
           onTouchStart={() => setScrubbing(true)}
           onTouchEnd={release}
           onBlur={release}
-          aria-label="Sleep om voor, tijdens en na te vergelijken"
-          aria-valuetext={`${doorStages[active].label}: ${doorStages[active].sub}`}
+          aria-label={ariaLabel}
+          aria-valuetext={`${stages[active].label}: ${stages[active].sub}`}
           className="door-slider mt-4"
         />
       </div>
+    </div>
+  );
+}
+
+function DoorRenovationSlider() {
+  return <StageSlider stages={doorStages} ariaLabel="Sleep om voor, tijdens en na te vergelijken" imageWidth={451} imageHeight={590} />;
+}
+
+function DakraamhoekSlider() {
+  return <StageSlider stages={dakraamStages} ariaLabel="Sleep om dakraamhoek voor, na en detail te vergelijken" imageWidth={1024} imageHeight={1280} />;
+}
+
+function ProjectCarousel({
+  slides,
+  alt = '',
+  className = 'absolute inset-0',
+  imageWidth,
+  imageHeight,
+  autoplayMs = 5000,
+  loadingFirst = 'lazy',
+}: {
+  slides: string[];
+  alt?: string;
+  className?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  autoplayMs?: number;
+  loadingFirst?: 'eager' | 'lazy';
+}) {
+  const total = slides.length;
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const resumeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const next = useCallback(() => setIndex((i) => (i + 1) % total), [total]);
+  const prev = useCallback(() => setIndex((i) => (i - 1 + total) % total), [total]);
+
+  const pauseTemporarily = useCallback(() => {
+    setPaused(true);
+    if (resumeRef.current) clearTimeout(resumeRef.current);
+    resumeRef.current = setTimeout(() => setPaused(false), 10000);
+  }, []);
+
+  useEffect(() => {
+    if (paused || total < 2) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % total);
+    }, autoplayMs);
+    return () => window.clearInterval(id);
+  }, [paused, total, autoplayMs]);
+
+  useEffect(() => () => {
+    if (resumeRef.current) clearTimeout(resumeRef.current);
+  }, []);
+
+  if (total === 0) return null;
+
+  const stop = (event: ReactMouseEvent | ReactKeyboardEvent) => {
+    event.stopPropagation();
+  };
+
+  return (
+    <div className={`overflow-hidden ${className}`}>
+      {slides.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={alt}
+          width={imageWidth}
+          height={imageHeight}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${i === index ? 'opacity-100' : 'opacity-0'}`}
+          loading={i === 0 ? loadingFirst : 'lazy'}
+          decoding="async"
+          draggable={false}
+        />
+      ))}
+      {total > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={(event) => { stop(event); prev(); pauseTemporarily(); }}
+            onKeyDown={stop}
+            aria-label="Vorige beeld"
+            className="absolute left-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-md bg-navy/65 text-white backdrop-blur-sm transition hover:bg-navy/90 focus-visible:bg-navy/90"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <button
+            type="button"
+            onClick={(event) => { stop(event); next(); pauseTemporarily(); }}
+            onKeyDown={stop}
+            aria-label="Volgende beeld"
+            className="absolute right-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-md bg-navy/65 text-white backdrop-blur-sm transition hover:bg-navy/90 focus-visible:bg-navy/90"
+          >
+            <ChevronRight size={18} />
+          </button>
+          <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center gap-1.5">
+            {slides.map((src, i) => (
+              <button
+                key={src}
+                type="button"
+                onClick={(event) => { stop(event); setIndex(i); pauseTemporarily(); }}
+                onKeyDown={stop}
+                aria-label={`Beeld ${i + 1}`}
+                aria-current={i === index}
+                className={`h-2 rounded-full transition-all ${i === index ? 'w-6 bg-white' : 'w-2 bg-white/55 hover:bg-white/85'}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -1669,20 +1837,8 @@ function ProjectSlideshow({
 }) {
   return (
     <article className="grid overflow-hidden rounded-lg border border-white/10 bg-white/8 md:grid-cols-[0.72fr_1fr]">
-      <div className="project-slideshow relative min-h-72 overflow-hidden bg-navy md:h-full">
-        {slides.map((slide, index) => (
-          <img
-            key={slide}
-            src={slide}
-            alt=""
-            width={imageWidth}
-            height={imageHeight}
-            className="project-slide absolute inset-0 h-full w-full object-cover"
-            style={{ animationDelay: `${index * 4}s` }}
-            loading="lazy"
-            decoding="async"
-          />
-        ))}
+      <div className="relative aspect-[4/5] bg-navy md:aspect-auto md:h-full">
+        <ProjectCarousel slides={slides} imageWidth={imageWidth} imageHeight={imageHeight} />
       </div>
       <div className="p-6">
         <h3 className="font-display text-2xl font-extrabold">{title}</h3>
@@ -1711,47 +1867,17 @@ function WorkShowcase({ openQuote }: { openQuote: () => void }) {
 
   return (
     <div className="mt-14 rounded-lg border border-white/10 bg-white/[0.06] p-4 sm:p-6 lg:p-8">
-      <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+      <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
         <div>
           <p className="eyebrow text-roller-soft">Werk in beeld</p>
           <h3 className="mt-3 font-display text-3xl font-extrabold leading-tight text-white md:text-4xl">
-            Details gegroepeerd zoals u ze beoordeelt.
+            Dakraamhoek: van versleten tot strak afgewerkt.
           </h3>
           <p className="mt-4 leading-7 text-white/82">
-            Geen losse collage, maar beelden per onderwerp: kozijnen, interieurafwerking, deuren en werk in uitvoering.
+            Sleep door de stappen om te zien hoe een dakraamhoek wordt hersteld en netjes wordt afgewerkt. Daaronder vindt u meer werk per onderwerp gegroepeerd.
           </p>
         </div>
-        <div className="grid gap-3 sm:grid-cols-3">
-          {roofWindowStory.map((image) => (
-            <button
-              key={image.src}
-              type="button"
-              onClick={() => setSelectedImage(image)}
-              className="group overflow-hidden rounded-lg border border-white/10 bg-white/8 text-left transition hover:-translate-y-0.5 hover:bg-white/12 focus-visible:-translate-y-0.5"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="absolute left-3 top-3 rounded-md bg-navy/88 px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
-                  {image.label}
-                </span>
-                <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-md bg-white/90 text-navy opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
-                  <Maximize2 size={17} />
-                </span>
-              </div>
-              <div className="p-4">
-                <strong className="block font-display text-lg font-extrabold text-white">{image.title}</strong>
-              </div>
-            </button>
-          ))}
-        </div>
+        <DakraamhoekSlider />
       </div>
 
       <div className="mt-8 grid gap-5 lg:grid-cols-2">
@@ -2821,7 +2947,7 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
           </div>
 
           <div className="overflow-hidden rounded-lg border border-white/10 bg-white/8">
-            <img src="/hoogwerker.webp" alt={`Schilderwerk voor ${location.title}`} width={810} height={540} className="aspect-[4/3] w-full object-cover" loading="eager" decoding="async" />
+            <img src="/hoogwerker.webp?v=20260514" alt={`Schilderwerk voor ${location.title}`} width={810} height={540} className="aspect-[4/3] w-full object-cover" loading="eager" decoding="async" />
             <div className="grid gap-3 p-5">
               {location.areas.slice(0, 4).map((area) => (
                 <div key={area} className="flex items-center gap-3 text-sm font-semibold text-white/88">

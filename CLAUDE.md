@@ -31,6 +31,7 @@ Each app also has its own `optimize-images` script using `sharp`.
 - **Duplicated components:** Nav, Hero, Gallery, Lightbox, Services, Footer, UspStrip, Faq, Reviews, LangToggle, About exist in both apps — candidates for `@jiw/shared-ui` extraction. `useLang` hook + translations pattern → `@jiw/i18n`.
 - **No root tsconfig yet.** Each app has its own `tsconfig.json`. Introduce `tsconfig.base.json` when extracting shared packages.
 - **Gitignore is root-only.** Don't reintroduce per-app `.gitignore`.
+- **Cache-busting:** when replacing a `public/` asset in place, append `?v=YYYYMMDD` to every reference (component src/srcSet, og:image, preload, schema.org) so browsers and Cloudflare's edge refetch immediately.
 
 ## Cloudflare Workers
 
