@@ -60,18 +60,10 @@ export default function Nav({ lang, setLang, t, onIntake, onSpoed }: Props) {
           <a
             href="#top"
             aria-label="Xenon Security"
-            className="flex items-center gap-2.5"
+            className="flex items-center"
             onClick={() => handleNav('#top')}
           >
-            <LogoMark variant="compact" className="h-9 w-9" />
-            <span className="hidden sm:flex flex-col leading-none">
-              <span className="font-display text-silver text-[15px] tracking-[0.14em] font-bold">
-                XENON
-              </span>
-              <span className="font-display text-steel-mute text-[10px] tracking-[0.32em] uppercase mt-0.5">
-                Security
-              </span>
-            </span>
+            <LogoMark variant="full" className="h-8 sm:h-10" />
           </a>
 
           <nav className="hidden lg:flex items-center gap-7 text-sm">
@@ -128,10 +120,7 @@ export default function Nav({ lang, setLang, t, onIntake, onSpoed }: Props) {
           <div className="absolute inset-0 bg-night-deep/80 backdrop-blur-sm" onClick={() => setOpen(false)} aria-hidden />
           <div className="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-night-soft border-l border-mist flex flex-col">
             <div className="h-16 sm:h-20 flex items-center justify-between px-5 border-b border-mist">
-              <div className="flex items-center gap-2.5">
-                <LogoMark variant="compact" className="h-8 w-8" />
-                <span className="font-display text-silver text-[14px] tracking-[0.14em] font-bold">XENON</span>
-              </div>
+              <LogoMark variant="full" className="h-8" />
               <button
                 type="button"
                 onClick={() => setOpen(false)}

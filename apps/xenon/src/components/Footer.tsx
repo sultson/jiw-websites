@@ -14,15 +14,7 @@ export default function Footer({ t, onIntake }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
           {/* Brand block */}
           <div className="lg:col-span-5">
-            <div className="flex items-center gap-3">
-              <LogoMark variant="compact" className="h-10 w-10" />
-              <div className="leading-none">
-                <div className="font-display text-silver text-[16px] tracking-[0.14em] font-bold">XENON</div>
-                <div className="font-display text-steel-mute text-[10.5px] tracking-[0.32em] uppercase mt-1">
-                  Security
-                </div>
-              </div>
-            </div>
+            <LogoMark variant="full" className="h-12" />
             <p className="mt-5 text-steel/80 text-[14px] max-w-md leading-relaxed">
               {t('footer.tagline')}. Camerabeveiliging, portiers en gastheren, nachtportiers, verkeersregelaars, winkelbeveiliging, persoonlijke inzet en spoedhulp. {t('trust.hours')}.
             </p>

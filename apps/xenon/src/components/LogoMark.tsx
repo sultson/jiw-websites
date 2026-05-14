@@ -14,6 +14,17 @@ export default function LogoMark({
     : '/logo/xenon-full-white.png';
   const alt = variant === 'compact' ? 'Xenon Security' : 'Xenon Security · Advanced Dutch Protection';
 
+  if (variant === 'full') {
+    return (
+      <img
+        src={src}
+        alt={alt}
+        draggable={false}
+        className={`block w-auto select-none ${className}`}
+      />
+    );
+  }
+
   return (
     <span className={`relative inline-block overflow-hidden ${className}`}>
       <img

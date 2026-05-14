@@ -17,10 +17,9 @@
     {
       "pattern": "xenon.jouwidealewebsite.nl",
       "custom_domain": true
-    }
-    // Production custom domain to be added when DNS is wired:
-    // { "pattern": "xenonsecurity.nl",     "custom_domain": true },
-    // { "pattern": "www.xenonsecurity.nl", "custom_domain": true }
+    },
+    { "pattern": "xenonsecurity.nl",     "custom_domain": true },
+    { "pattern": "www.xenonsecurity.nl", "custom_domain": true }
   ],
   "r2_buckets": [
     {

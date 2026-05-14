@@ -1,5 +1,4 @@
 import { ArrowRight, AlertOctagon, Phone } from 'lucide-react';
-import LogoMark from './LogoMark';
 
 type Props = {
   t: (key: string) => string;
@@ -34,12 +33,7 @@ export default function Hero({ t, onIntake, onSpoed }: Props) {
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start lg:items-center min-h-[92vh] sm:min-h-[88vh] lg:min-h-[78vh]">
           {/* Left: copy */}
           <div className="lg:col-span-7 xl:col-span-7 max-w-2xl">
-            <div className="rise-in flex items-center gap-3">
-              <LogoMark variant="compact" className="h-9 w-9" withScan />
-              <span className="kicker !text-xenon-bright">{t('hero.kicker')}</span>
-            </div>
-
-            <h1 className="rise-in-delay-1 mt-6 sm:mt-8 text-[34px] sm:text-[44px] lg:text-[58px] xl:text-[68px] leading-[1.05] text-silver font-display font-bold">
+            <h1 className="rise-in mt-2 text-[34px] sm:text-[44px] lg:text-[58px] xl:text-[68px] leading-[1.05] text-silver font-display font-bold">
               {t('hero.title')}
             </h1>
 
