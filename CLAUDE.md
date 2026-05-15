@@ -2,6 +2,10 @@
 
 pnpm workspaces monorepo for JIW client websites.
 
+## Time boxes & scope
+
+A time box ("get it done in 20 min", "spin up agents") sets effort *intensity*, not scope: work continuously and in parallel for the whole window, never coast or stop early. It is never a licence to drop stated requirements, skip listed sources, or ship half-done work — completeness of the goal outranks the clock. If time and scope collide, parallelize harder and keep going; if something genuinely cannot fit, finish everything else and flag the gap loudly rather than silently cutting it. "Ran low on time" is not a reason to deliver less than asked.
+
 ## Layout
 
 ```
