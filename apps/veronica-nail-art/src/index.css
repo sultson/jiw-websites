@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+
+  /* Soft warm porcelain */
+  --color-cream: #F8F4EF;
+  --color-blush: #EEE4DD;
+  --color-blush-soft: #F3EBE4;
+
+  /* Charcoal ink, like the salon's fluted wall */
+  --color-ink: #20212A;
+  --color-ink-soft: #34353F;
+
+  /* Brushed gold, the signature accent */
+  --color-gold: #B0863A;
+  --color-gold-soft: #D8B772;
+
+  /* Soft lilac, the polish on the wall */
+  --color-mauve: #B58CAE;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ink);
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans bg-cream text-ink antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-serif text-ink;
+    letter-spacing: -0.01em;
+  }
+  h1 { font-weight: 400; }
+  h2 { font-weight: 400; }
+  ::selection { background: var(--color-gold); color: white; }
+  *:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-ink text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-ink-soft transition-colors;
+    min-height: 44px;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 bg-gold text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:opacity-90 transition-opacity;
+    min-height: 44px;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/20 text-ink px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:border-ink/40 hover:bg-white transition-colors;
+    min-height: 44px;
+  }
+  .kicker {
+    @apply inline-block text-[11px] uppercase tracking-[0.22em] text-gold font-semibold;
+  }
+  .card {
+    @apply bg-white/70 backdrop-blur-sm rounded-2xl border border-ink/5 shadow-[0_1px_2px_rgba(32,33,42,0.04)];
+  }
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
