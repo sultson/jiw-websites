@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Surfaces ─────────────────────────────── */
+  --color-white: #FFFFFF;
+  --color-bone: #F4F1EA;        /* warm alternating section bg (stuctopper move) */
+  --color-bone-deep: #ECE7DC;   /* slightly deeper bone for nested panels */
+  --color-mist: #F6F7F9;        /* cool light panel */
+
+  /* ── Ink ──────────────────────────────────── */
+  --color-ink: #161B22;         /* headings, near-black */
+  --color-ink-soft: #3A424E;    /* body text */
+  --color-ink-mute: #6B7480;    /* muted / captions */
+
+  /* ── Brand cobalt (Thijs Timmerwerk logo blue) ── */
+  --color-cobalt: #1A4FB4;
+  --color-cobalt-bright: #2D63D0;
+  --color-cobalt-deep: #133C8C;
+  --color-cobalt-ink: #0C1B3A;  /* deepest navy — dark sections */
+  --color-cobalt-ink-soft: #142647;
+
+  /* ── Spark orange (energy accent, used sparingly) ── */
+  --color-spark: #F76300;
+  --color-spark-soft: #FF7C26;
+
+  /* ── Lines ────────────────────────────────── */
+  --color-line: #E4E0D6;        /* warm hairline on bone */
+  --color-line-cool: #E6E8EC;   /* cool hairline on white */
+}
+
+@layer base {
+  html {
+    background-color: var(--color-white);
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans bg-white text-ink-soft antialiased;
+    font-size: 16px;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-display text-ink;
+    letter-spacing: -0.025em;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+  h1 { letter-spacing: -0.04em; font-weight: 800; line-height: 0.98; }
+  p { text-wrap: pretty; }
+  ::selection { background: var(--color-cobalt); color: #fff; }
+  *:focus-visible {
+    outline: 2px solid var(--color-cobalt);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ── Buttons ──────────────────────────────── */
+  .btn,
+  .btn-cobalt,
+  .btn-spark,
+  .btn-ink,
+  .btn-outline,
+  .btn-ghost-light {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-[15px] font-bold transition-all duration-200;
+    min-height: 52px;
+  }
+  .btn-cobalt {
+    @apply bg-cobalt text-white shadow-[0_10px_28px_-10px_rgba(26,79,180,0.6)] hover:bg-cobalt-deep hover:-translate-y-0.5;
+  }
+  .btn-spark {
+    @apply bg-spark text-white shadow-[0_10px_28px_-10px_rgba(247,99,0,0.6)] hover:bg-spark-soft hover:-translate-y-0.5;
+  }
+  .btn-ink {
+    @apply bg-ink text-white hover:bg-cobalt-ink hover:-translate-y-0.5;
+  }
+  .btn-outline {
+    @apply border border-ink/20 text-ink bg-transparent hover:border-ink hover:bg-ink hover:text-white;
+  }
+  .btn-ghost-light {
+    @apply border border-white/25 text-white bg-white/0 hover:bg-white hover:text-ink;
+  }
+
+  /* ── Eyebrow / kicker ─────────────────────── */
+  .kicker {
+    @apply inline-flex items-center gap-2.5 text-[12px] uppercase font-bold;
+    letter-spacing: 0.18em;
+    color: var(--color-cobalt);
+  }
+  .kicker::before {
+    content: "";
+    width: 1.5rem;
+    height: 2px;
+    background: var(--color-spark);
+    border-radius: 2px;
+  }
+  .kicker-light { color: #fff; }
+  .kicker-light::before { background: var(--color-spark); }
+
+  /* ── Chips / badges ───────────────────────── */
+  .chip,
+  .chip-cobalt,
+  .chip-spark,
+  .chip-ink {
+    @apply inline-flex items-center gap-1.5 text-[12px] font-bold uppercase px-3 py-1.5 rounded-full;
+    letter-spacing: 0.08em;
+  }
+  .chip-cobalt { @apply bg-cobalt/10 text-cobalt; }
+  .chip-spark  { @apply bg-spark/12 text-spark; }
+  .chip-ink    { @apply bg-ink/8 text-ink; }
+
+  /* ── Form fields ──────────────────────────── */
+  .field,
+  .field-area {
+    @apply w-full px-4 py-3 rounded-xl border border-line-cool bg-mist text-ink placeholder:text-ink-mute/70 focus:border-cobalt focus:bg-white focus:outline-none transition-colors;
+    min-height: 52px;
+  }
+  .field-area {
+    min-height: 132px;
+    padding-top: 0.85rem;
+  }
+  .label {
+    @apply block text-[12px] font-bold uppercase text-ink-soft mb-2;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── Surface cards ────────────────────────── */
+  .card {
+    @apply bg-white border border-line-cool rounded-2xl;
+  }
+}
+
+/* ── Section rhythm ───────────────────────────── */
+.section { padding-block: clamp(4.5rem, 9vw, 8.5rem); }
+
+/* anchor-scroll offset so sticky nav never covers a section heading */
+section[id],
+footer[id] { scroll-margin-top: 84px; }
+.shell { max-width: 1240px; margin-inline: auto; padding-inline: 1.25rem; }
+@media (min-width: 640px) { .shell { padding-inline: 2rem; } }
+
+/* ── Display headline scale ───────────────────── */
+.display-xl { font-size: clamp(2.7rem, 7vw, 5.5rem); line-height: 0.98; letter-spacing: -0.04em; }
+.display-lg { font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.03; letter-spacing: -0.035em; }
+.display-md { font-size: clamp(1.55rem, 3vw, 2.15rem); line-height: 1.1; letter-spacing: -0.03em; }
+
+/* the stuctopper signature: the period after a headline lands in the accent */
+.dot-spark::after { content: "."; color: var(--color-spark); }
+.dot-cobalt::after { content: "."; color: var(--color-cobalt); }
+
+/* ── Marquee strip ────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 42s linear infinite;
+  width: max-content;
+  display: flex;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* ── Scroll reveal ────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-in { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.32s; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ── Before / After comparison slider ─────────── */
+.ba-range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+.ba-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 3px solid var(--color-cobalt);
+  box-shadow: 0 4px 16px rgba(12,27,58,0.3);
+  cursor: ew-resize;
+}
+.ba-range::-moz-range-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 3px solid var(--color-cobalt);
+  box-shadow: 0 4px 16px rgba(12,27,58,0.3);
+  cursor: ew-resize;
+}
+
+/* ── Decorative grid (blueprint) ──────────────── */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(22,27,34,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(22,27,34,0.04) 1px, transparent 1px);
+  background-size: 38px 38px;
+}
+.bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 38px 38px;
+}
+
+/* ── Utilities ────────────────────────────────── */
+.safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* gentle infinite float for decorative marks */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float-soft { animation: float-soft 6s ease-in-out infinite; }
