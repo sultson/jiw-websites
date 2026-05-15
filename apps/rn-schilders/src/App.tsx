@@ -28,8 +28,8 @@ import {
   X,
 } from 'lucide-react';
 
-const phoneDisplay = '06 45172726';
-const phoneHref = 'tel:+31645172726';
+const phoneDisplay = '085 060 6309';
+const phoneHref = 'tel:+31850606309';
 const whatsappHref = 'https://wa.me/31645172726?text=Hallo%20RN%20Schilders%2C%20ik%20wil%20graag%20een%20gratis%20prijsindicatie%20aanvragen.';
 const email = 'info@rn-schilders.nl';
 const mapsHref = 'https://www.google.com/maps/search/?api=1&query=Kuipersweg+33+3449+JA+Woerden';
@@ -3091,7 +3091,7 @@ function TermsPage({ openQuote }: { openQuote: () => void }) {
               </p>
               <p>
                 <a href={phoneHref} className="underline decoration-roller-soft/70 underline-offset-4">
-                  0645 17 27 26
+                  085 060 6309
                 </a>
               </p>
             </div>
