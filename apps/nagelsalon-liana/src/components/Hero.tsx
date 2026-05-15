@@ -10,10 +10,10 @@ export default function Hero({ t }: Props) {
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0 bg-espresso">
         <img
-          src="/hero.webp"
+          src="/hero.webp?v=20260515"
           alt=""
           className="w-full h-full object-cover opacity-60"
-          style={{ objectPosition: '70% center', transform: 'scaleX(-1)' }}
+          style={{ objectPosition: 'right center' }}
           fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-espresso/30 via-espresso/55 to-espresso/95" />
