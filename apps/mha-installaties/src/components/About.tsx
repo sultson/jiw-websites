@@ -21,15 +21,6 @@ export default function About() {
                 </p>
               ))}
             </div>
-
-            {/* Signature block */}
-            <div className="mt-10">
-              <span className="gold-gradient block h-[2px] w-12 rounded-full" />
-              <p className="mt-4 font-display text-3xl font-bold tracking-tight text-bone md:text-4xl">
-                {about.signature}
-              </p>
-              <span className="gold-gradient mt-4 block h-[2px] w-12 rounded-full" />
-            </div>
           </div>
 
           {/* Right: image with accent + floating rating stat */}

@@ -64,57 +64,62 @@ export default function Nav() {
   };
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled
-          ? 'bg-ink/95 backdrop-blur-md border-b border-line'
-          : 'bg-transparent border-b border-transparent'
-      }`}
-    >
-      <div className="container-page flex h-[72px] items-center justify-between gap-6">
-        <Wordmark />
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+          scrolled
+            ? 'bg-ink/95 backdrop-blur-md border-b border-line'
+            : 'bg-transparent border-b border-transparent'
+        }`}
+      >
+        <div className="container-page flex h-[72px] items-center justify-between gap-6">
+          <Wordmark />
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Hoofdmenu">
-          {links.map((link) => (
+          <nav className="hidden items-center gap-8 md:flex" aria-label="Hoofdmenu">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-bone-soft transition-colors hover:text-gold"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="hidden items-center gap-5 md:flex">
             <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-bone-soft transition-colors hover:text-gold"
+              href={business.phone.href}
+              className="flex items-center gap-2 text-sm font-medium text-bone transition-colors hover:text-gold"
             >
-              {link.label}
+              <Phone size={16} className="text-gold" aria-hidden="true" />
+              {business.phone.display}
             </a>
-          ))}
-        </nav>
+            <button type="button" onClick={open} className="btn btn-gold">
+              Prijsindicatie
+            </button>
+          </div>
 
-        <div className="hidden items-center gap-5 md:flex">
-          <a
-            href={business.phone.href}
-            className="flex items-center gap-2 text-sm font-medium text-bone transition-colors hover:text-gold"
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-bone transition-colors hover:border-gold hover:text-gold md:hidden"
+            aria-label="Menu openen"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
-            <Phone size={16} className="text-gold" aria-hidden="true" />
-            {business.phone.display}
-          </a>
-          <button type="button" onClick={open} className="btn btn-gold">
-            Prijsindicatie
+            <Menu size={22} aria-hidden="true" />
           </button>
         </div>
+      </header>
 
-        <button
-          type="button"
-          onClick={() => setMenuOpen(true)}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-bone transition-colors hover:border-gold hover:text-gold md:hidden"
-          aria-label="Menu openen"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-        >
-          <Menu size={22} aria-hidden="true" />
-        </button>
-      </div>
-
-      {/* Mobile overlay */}
+      {/* Mobile overlay — kept as a sibling of <header>, not a child. When the
+          header is scrolled it gets a backdrop-blur, and a backdrop-filter on
+          an ancestor becomes the containing block for fixed descendants. That
+          would clip this overlay to the 72px header and expose the page. */}
       <div
         id="mobile-menu"
-        className={`fixed inset-0 z-50 bg-ink transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-50 bg-ink/98 backdrop-blur-xl transition-opacity duration-300 md:hidden ${
           menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
         }`}
         aria-hidden={!menuOpen}
@@ -183,6 +188,6 @@ export default function Nav() {
           </nav>
         </div>
       </div>
-    </header>
+    </>
   );
 }

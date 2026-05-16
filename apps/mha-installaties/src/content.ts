@@ -34,12 +34,12 @@ export const business = {
     youtube: 'https://www.youtube.com/@installatietechni8',
   },
   hours: [
-    { day: 'Maandag', time: '08:00 tot 18:00' },
-    { day: 'Dinsdag', time: '08:00 tot 18:00' },
-    { day: 'Woensdag', time: '08:00 tot 18:00' },
-    { day: 'Donderdag', time: '08:00 tot 18:00' },
-    { day: 'Vrijdag', time: '08:00 tot 18:00' },
-    { day: 'Zaterdag', time: '09:00 tot 16:00' },
+    { day: 'Maandag', time: '17:00 tot 20:00' },
+    { day: 'Dinsdag', time: '17:00 tot 20:00' },
+    { day: 'Woensdag', time: '17:00 tot 20:00' },
+    { day: 'Donderdag', time: '17:00 tot 20:00' },
+    { day: 'Vrijdag', time: '17:00 tot 20:00' },
+    { day: 'Zaterdag', time: '08:00 tot 13:00' },
     { day: 'Zondag', time: 'Op afspraak' },
   ],
   serviceArea: [
@@ -174,24 +174,38 @@ export const werkwijze = [
 // About
 export const about = {
   paragraphs: [
-    'MHA Installaties is het installatiebedrijf van Youssef uit Roermond. Met vakmanschap en oog voor detail zorgen we dat uw woning veilig, warm en comfortabel blijft.',
+    'Met vakmanschap en oog voor detail zorgen we dat uw woning veilig, warm en comfortabel blijft.',
     'Of het nu gaat om onderhoud aan de cv-ketel, een lekkage, vloerverwarming of een complete badkamer: u heeft één aanspreekpunt dat het werk van begin tot eind netjes regelt.',
     'U krijgt heldere communicatie, een eerlijke prijs en werk dat klopt. Veiligheid staat voorop en uw woning leveren we schoon weer op.',
   ],
   image: '/work/installateur.webp',
-  imageAlt: 'Youssef van MHA Installaties aan het werk',
-  signature: 'Youssef',
+  imageAlt: 'Installateur van MHA Installaties aan het werk',
 };
 
-// Before/after project
-export const beforeAfter = {
-  title: 'Keukenleidingen verplaatst',
-  body: 'Oude leidingen in de keuken gedemonteerd en strak opnieuw aangelegd. Klaar voor een nieuwe inrichting.',
-  before: { src: '/work/keuken-voor.webp', alt: 'Keukenleidingen voor de werkzaamheden' },
-  after: { src: '/work/keuken-na.webp', alt: 'Keukenleidingen netjes opnieuw aangelegd' },
-  beforeLabel: 'Na',
-  afterLabel: 'Voor',
-};
+// Before/after projects — drag-to-compare sliders
+export const beforeAfters = [
+  {
+    title: 'Keukenleidingen verplaatst',
+    body: 'Oude leidingen in de keuken gedemonteerd en strak opnieuw aangelegd. Klaar voor een nieuwe inrichting.',
+    before: { src: '/work/keuken-voor.webp', alt: 'Keukenleidingen voor de werkzaamheden' },
+    after: { src: '/work/keuken-na.webp', alt: 'Keukenleidingen netjes opnieuw aangelegd' },
+    beforeLabel: 'Na',
+    afterLabel: 'Voor',
+    // Frame classes — landscape photos, so a wide frame fits without cropping.
+    frame: 'aspect-[4/3] sm:aspect-[16/10]',
+  },
+  {
+    title: 'CV-ketel vervangen',
+    body: 'Oude opstelling vervangen door een nieuwe cv-ketel. Strak gemonteerd, leidingwerk netjes weggewerkt en veilig opgeleverd.',
+    before: { src: '/work/boiler-na.webp', alt: 'Nieuwe cv-ketel netjes gemonteerd' },
+    after: { src: '/work/boiler-voor.jpeg', alt: 'Cv-ketelopstelling voor de werkzaamheden' },
+    beforeLabel: 'Na',
+    afterLabel: 'Voor',
+    // Portrait photos (3:4) — match the frame to them and cap the width so the
+    // full boiler stays visible without cropping top or bottom.
+    frame: 'aspect-[3/4] mx-auto max-w-[22rem] sm:max-w-[26rem]',
+  },
+];
 
 // Work gallery
 export const gallery = [

@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { X, ChevronLeft, ChevronRight, MoveHorizontal, ZoomIn } from 'lucide-react';
-import { sectionTitles, beforeAfter, gallery } from '../content';
+import { sectionTitles, beforeAfters, gallery } from '../content';
 
 /* ------------------------------------------------------------------ */
 /* Before / after comparison slider                                   */
 /* ------------------------------------------------------------------ */
 
-function BeforeAfter() {
+type BeforeAfterData = (typeof beforeAfters)[number];
+
+function BeforeAfter({ data }: { data: BeforeAfterData }) {
   const [pos, setPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const draggingRef = useRef(false);
@@ -68,8 +70,8 @@ function BeforeAfter() {
     <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
       {/* Copy */}
       <div className="lg:col-span-4">
-        <h3 className="text-2xl md:text-3xl">{beforeAfter.title}</h3>
-        <p className="mt-4 text-bone-soft">{beforeAfter.body}</p>
+        <h3 className="text-2xl md:text-3xl">{data.title}</h3>
+        <p className="mt-4 text-bone-soft">{data.body}</p>
         <p className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-mute">
           <MoveHorizontal size={16} className="text-gold" aria-hidden="true" />
           Sleep om voor en na te vergelijken
@@ -80,12 +82,12 @@ function BeforeAfter() {
       <div className="lg:col-span-8">
         <div
           ref={containerRef}
-          className="relative aspect-[4/3] w-full select-none overflow-hidden rounded-2xl border border-line bg-ink-3 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)] sm:aspect-[16/10]"
+          className={`relative w-full select-none overflow-hidden rounded-2xl border border-line bg-ink-3 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)] ${data.frame}`}
         >
           {/* Before (base layer) */}
           <img
-            src={beforeAfter.before.src}
-            alt={beforeAfter.before.alt}
+            src={data.before.src}
+            alt={data.before.alt}
             loading="lazy"
             decoding="async"
             draggable={false}
@@ -98,8 +100,8 @@ function BeforeAfter() {
             style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
           >
             <img
-              src={beforeAfter.after.src}
-              alt={beforeAfter.after.alt}
+              src={data.after.src}
+              alt={data.after.alt}
               loading="lazy"
               decoding="async"
               draggable={false}
@@ -109,10 +111,10 @@ function BeforeAfter() {
 
           {/* Corner labels */}
           <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-ink/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-bright backdrop-blur-sm">
-            {beforeAfter.afterLabel}
+            {data.afterLabel}
           </span>
           <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-ink/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-bone-soft backdrop-blur-sm">
-            {beforeAfter.beforeLabel}
+            {data.beforeLabel}
           </span>
 
           {/* Divider + handle */}
@@ -123,11 +125,11 @@ function BeforeAfter() {
             <div
               role="slider"
               tabIndex={0}
-              aria-label={`Vergelijk ${beforeAfter.afterLabel.toLowerCase()} en ${beforeAfter.beforeLabel.toLowerCase()}`}
+              aria-label={`Vergelijk ${data.afterLabel.toLowerCase()} en ${data.beforeLabel.toLowerCase()}`}
               aria-valuemin={0}
               aria-valuemax={100}
               aria-valuenow={Math.round(pos)}
-              aria-valuetext={`${Math.round(pos)}% ${beforeAfter.afterLabel.toLowerCase()} zichtbaar`}
+              aria-valuetext={`${Math.round(pos)}% ${data.afterLabel.toLowerCase()} zichtbaar`}
               onPointerDown={startDrag}
               onKeyDown={onKeyDown}
               className="absolute top-1/2 left-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize touch-none place-items-center rounded-full bg-gradient-to-br from-[#c89e48] via-[#f2e394] to-[#b98c41] text-ink shadow-[0_8px_24px_-6px_rgba(0,0,0,0.7)] transition-transform duration-150 hover:scale-105"
@@ -326,9 +328,11 @@ export default function Work() {
           </h2>
         </div>
 
-        {/* Part A — before/after */}
-        <div className="mt-12 md:mt-16">
-          <BeforeAfter />
+        {/* Part A — before/after sliders */}
+        <div className="mt-12 space-y-14 md:mt-16 md:space-y-20">
+          {beforeAfters.map((item) => (
+            <BeforeAfter key={item.title} data={item} />
+          ))}
         </div>
 
         <div className="hairline my-12 md:my-16" />
