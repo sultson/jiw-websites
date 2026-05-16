@@ -19,6 +19,7 @@ import {
   MessageSquare,
   PaintRoller,
   Phone,
+  Play,
   Ruler,
   ShieldCheck,
   Sparkles,
@@ -113,6 +114,13 @@ type LocationPage = {
     question: string;
     answer: string;
   }>;
+  heroImage?: { src: string; alt: string; width: number; height: number };
+  projectStory?: {
+    eyebrow: string;
+    title: string;
+    intro: string[];
+    images: Array<{ src: string; alt: string; width: number; height: number; caption: string }>;
+  };
 };
 
 type WorkAreaGroup = {
@@ -156,13 +164,6 @@ const navLinks = [
   ['Contact', '#contact'],
 ] as const;
 
-const stats = [
-  ['15+', 'jaar ervaring'],
-  ['5.0', 'Google score'],
-  ['8', 'recente reviews'],
-  ['1', 'vast aanspreekpunt'],
-] as const;
-
 const services: Service[] = [
   {
     title: 'Schilderwerk',
@@ -178,6 +179,9 @@ const services: Service[] = [
       '/schilderwerk.webp?v=20260514',
       '/schilderwerk-2.webp?v=20260514',
       '/schilderwerk-3.webp?v=20260514',
+      '/schilderwerk-4.webp',
+      '/schilderwerk-5.webp',
+      '/schilderwerk-6.webp',
     ],
     width: 1300,
     height: 867,
@@ -207,6 +211,12 @@ const services: Service[] = [
     pageLead:
       'RN Schilders helpt in Woerden met kozijnen die weer strak, veilig en goed beschermd moeten zijn. Van herstel en schilderwerk tot plaatsing en advies over hang- en sluitwerk.',
     image: '/kozijnen-3.webp?v=20260514',
+    images: [
+      '/kozijnen-3.webp?v=20260514',
+      '/kozijnen-7.webp',
+      '/kozijnen-6.webp',
+      '/kozijnen-5.webp',
+    ],
     width: 1100,
     height: 733,
     icon: Home,
@@ -238,10 +248,10 @@ const services: Service[] = [
       'Professioneel spuitwerk in Woerden voor woningen, kantoren en bedrijfspanden. Strakke muren en plafonds met zorgvuldige voorbereiding.',
     pageLead:
       'Spuitwerk is geschikt wanneer grote oppervlakken strak, egaal en efficiënt afgewerkt moeten worden. RN Schilders verzorgt spuitwerk in Woerden met aandacht voor voorbereiding, afplakken en een rustig eindbeeld.',
-    image: '/spuitwerk-1.webp?v=20260514',
+    image: '/spuitwerk-1.webp?v=20260516',
     images: [
-      '/spuitwerk-1.webp?v=20260514',
-      '/spuitwerk-2.webp?v=20260514',
+      '/spuitwerk-1.webp?v=20260516',
+      '/spuitwerk-2.webp?v=20260516',
     ],
     width: 1536,
     height: 1024,
@@ -274,6 +284,7 @@ const services: Service[] = [
     images: [
       '/stucwerk-1.webp?v=20260514',
       '/stucwerk-2.webp?v=20260514',
+      '/stucwerk-3.webp',
     ],
     width: 1536,
     height: 1024,
@@ -303,6 +314,10 @@ const services: Service[] = [
     pageLead:
       'Houtrot hoeft niet altijd tot vervanging te leiden. RN Schilders herstelt aangetast houtwerk in Woerden en werkt het daarna duurzaam af, zodat kozijnen, deuren en boeidelen weer beschermd zijn.',
     image: '/houtrotherstel.webp',
+    images: [
+      '/houtrotherstel.webp',
+      '/houtrotherstel-2.webp',
+    ],
     width: 1200,
     height: 675,
     icon: Wrench,
@@ -334,6 +349,7 @@ const services: Service[] = [
     images: [
       '/sloopwerk.webp?v=20260514',
       '/sloopwerk-2.webp?v=20260514',
+      '/sloopwerk-3.webp',
     ],
     width: 1000,
     height: 500,
@@ -636,6 +652,85 @@ const locationPages: LocationPage[] = [
       },
     ],
   },
+  {
+    title: 'Ridderkerk',
+    slug: 'schilder-ridderkerk',
+    seoTitle: 'Schilder Ridderkerk | RN Schilders & Renovatie',
+    seoDescription:
+      'Schilder in Ridderkerk voor buitenschilderwerk aan gevels, boeidelen, dakranden en sierlijsten. Veilig uitgevoerd vanaf een nette steigeropbouw.',
+    lead:
+      'In Ridderkerk verzorgt RN Schilders buitenschilderwerk aan woningen, van gevels en boeidelen tot de hogere dakranden en sierlijsten. Een veilige steigeropbouw maakt elk onderdeel goed bereikbaar, zodat het werk strak en duurzaam wordt afgewerkt.',
+    routeNote:
+      'Bij een opname wordt gekeken naar de staat van gevelhout, boeidelen, dakranden, kozijnen en bestaande verflagen, en naar de manier waarop het pand veilig bereikbaar wordt gemaakt.',
+    localFit:
+      'Zo ontstaat een duidelijke offerte voor buitenschilderwerk en houtrotherstel, met een planning waarin steiger, voorbereiding en afwerking op elkaar aansluiten.',
+    areas: ['Ridderkerk', 'Bolnes', 'Slikkerveer', 'Drievliet', 'Rijsoord'],
+    featuredServices: ['Schilderwerk', 'Houtrotherstel', 'Kozijnen'],
+    commonRequests: [
+      'Buitenschilderwerk aan gevels, boeidelen en dakranden van woningen in Ridderkerk en Bolnes.',
+      'Houtrotherstel aan kozijnen, dorpels en gevelhout voordat het schilderwerk wordt afgewerkt.',
+      'Schilderwerk op hoogte dat veilig wordt uitgevoerd vanaf een vakkundig geplaatste steiger.',
+    ],
+    serviceLinks: [
+      { label: 'Buitenschilderwerk in Ridderkerk', serviceTitle: 'Schilderwerk' },
+      { label: 'Houtrotherstel in Ridderkerk', serviceTitle: 'Houtrotherstel' },
+      { label: 'Kozijnen schilderen in Ridderkerk', serviceTitle: 'Kozijnen' },
+    ],
+    faqs: [
+      {
+        question: 'Werkt RN Schilders ook buiten de directe regio Woerden?',
+        answer: 'Ja. Voor projecten zoals buitenschilderwerk in Ridderkerk komt RN Schilders ook in de regio Rotterdam. Stuur uw adres en wat beeldmateriaal mee, dan volgt een duidelijke inschatting.',
+      },
+      {
+        question: 'Hoe wordt schilderwerk op hoogte veilig uitgevoerd?',
+        answer: 'Hogere gevels, dakranden en boeidelen worden bereikbaar gemaakt met een stevige steigeropbouw. Daardoor kan elk onderdeel rustig, veilig en met aandacht voor de afwerking worden geschilderd.',
+      },
+    ],
+    heroImage: {
+      src: '/ridderkerk-3.webp',
+      alt: 'Woning in Ridderkerk in de steigers voor buitenschilderwerk',
+      width: 1800,
+      height: 1346,
+    },
+    projectStory: {
+      eyebrow: 'Project in beeld',
+      title: 'Weer mooi in de steigers gezet.',
+      intro: [
+        'Dankzij een veilige en nette steigeropbouw kan RN Schilders zich volledig richten op strak en duurzaam schilderwerk. Van gevels en boeidelen tot de hogere dakranden en sierlijsten is alles weer goed bereikbaar gemaakt, zodat er veilig, efficiënt en met kwaliteit gewerkt wordt.',
+        'Met dank aan M83 Steiger Service voor het vakkundig plaatsen van de steigers en het meedenken op locatie. Op naar een strak eindresultaat.',
+      ],
+      images: [
+        {
+          src: '/ridderkerk-2.webp',
+          alt: 'Steigers rond de voorgevel van een woning in Ridderkerk',
+          width: 1346,
+          height: 1800,
+          caption: 'Steigers rond de voorgevel',
+        },
+        {
+          src: '/ridderkerk-1.webp',
+          alt: 'Steiger langs de dakrand van een woning in Ridderkerk',
+          width: 1346,
+          height: 1800,
+          caption: 'Dakranden goed bereikbaar',
+        },
+        {
+          src: '/ridderkerk-3.webp',
+          alt: 'Steigeropbouw langs de zijgevel van een woning in Ridderkerk',
+          width: 1800,
+          height: 1346,
+          caption: 'Veilig werken langs de gevel',
+        },
+        {
+          src: '/ridderkerk-4.webp',
+          alt: 'Woning in Ridderkerk volledig in de steigers gezien vanuit de tuin',
+          width: 1800,
+          height: 1346,
+          caption: 'Het pand klaar voor afwerking',
+        },
+      ],
+    },
+  },
 ];
 
 const workAreaGroups: WorkAreaGroup[] = [
@@ -658,6 +753,11 @@ const workAreaGroups: WorkAreaGroup[] = [
     title: 'Utrecht zuid en oost',
     text: 'In IJsselstein, Houten, De Bilt, Bilthoven en Zeist gaat het vaak om schilderwerk dat samenhangt met kozijnherstel, stucwerk of spuitwerk in bewoonde woningen.',
     slugs: ['schilder-ijsselstein', 'schilder-houten', 'schilder-de-bilt-bilthoven', 'schilder-zeist'],
+  },
+  {
+    title: 'Regio Rotterdam',
+    text: 'Ook buiten de directe regio voert RN Schilders projecten uit, zoals buitenschilderwerk in Ridderkerk waarbij gevels, boeidelen en dakranden vanaf een nette steigeropbouw worden aangepakt.',
+    slugs: ['schilder-ridderkerk'],
   },
 ];
 
@@ -783,6 +883,38 @@ const showcaseGroups: ShowcaseGroup[] = [
         title: 'Kamer',
         label: 'Eindbeeld',
       },
+      {
+        src: '/showcase-ceiling-tiles-downlights.webp',
+        alt: 'Zwart systeemplafond met strakke inbouwspots',
+        width: 1200,
+        height: 1600,
+        title: 'Systeemplafond',
+        label: 'Inbouwspots',
+      },
+      {
+        src: '/showcase-fireplace-mantel.webp',
+        alt: 'Moderne hoekhaard met houten schouwblad',
+        width: 880,
+        height: 1173,
+        title: 'Schouwombouw',
+        label: 'Afgewerkt',
+      },
+      {
+        src: '/showcase-ceiling-corner-pillar.webp',
+        alt: 'Plafondhoek met crème pilaar tegen een groene wand',
+        width: 1013,
+        height: 1800,
+        title: 'Plafondhoek',
+        label: 'Afgewerkt',
+      },
+      {
+        src: '/showcase-skirting-detail.webp',
+        alt: 'Witte plint en deurkozijn op een vinylvloer',
+        width: 1800,
+        height: 1350,
+        title: 'Plint en kozijn',
+        label: 'Detail',
+      },
     ],
   },
   {
@@ -804,6 +936,46 @@ const showcaseGroups: ShowcaseGroup[] = [
         height: 1629,
         title: 'Hal',
         label: 'Afgewerkt',
+      },
+      {
+        src: '/showcase-door-black-arched-glass.webp',
+        alt: 'Hoogglans zwarte boogdeur met ribbelglas',
+        width: 1350,
+        height: 1800,
+        title: 'Booglichtdeur',
+        label: 'Hoogglans',
+      },
+      {
+        src: '/showcase-door-anthracite.webp',
+        alt: 'Antracietgrijze voordeur in een licht gevelpand',
+        width: 1350,
+        height: 1800,
+        title: 'Voordeur',
+        label: 'Antraciet',
+      },
+      {
+        src: '/showcase-door-green-panelled.webp',
+        alt: 'Groene paneeldeur met klimrozen langs de gevel',
+        width: 880,
+        height: 1173,
+        title: 'Paneeldeur',
+        label: 'Buiten',
+      },
+      {
+        src: '/showcase-door-sage-green.webp',
+        alt: 'Saliegroene voordeur van een rijtjeswoning',
+        width: 880,
+        height: 1173,
+        title: 'Voordeur',
+        label: 'Lakwerk',
+      },
+      {
+        src: '/showcase-door-brick-entrance.webp',
+        alt: 'Bakstenen entreepartij met zwarte stalen deuren',
+        width: 1024,
+        height: 1536,
+        title: 'Entreepartij',
+        label: 'Buiten',
       },
     ],
   },
@@ -842,6 +1014,38 @@ const showcaseGroups: ShowcaseGroup[] = [
         height: 960,
         title: 'Werkruimte',
         label: 'Materiaal',
+      },
+      {
+        src: '/showcase-progress-ceiling-paint.webp',
+        alt: 'Schilder op een ladder werkt het plafond wit',
+        width: 1112,
+        height: 944,
+        title: 'Plafond schilderen',
+        label: 'In uitvoering',
+      },
+      {
+        src: '/showcase-progress-attic.webp',
+        alt: 'Zolderrenovatie met gipsplaten en zichtbare balken',
+        width: 960,
+        height: 1280,
+        title: 'Zolderrenovatie',
+        label: 'Opbouw',
+      },
+      {
+        src: '/showcase-progress-commercial.webp',
+        alt: 'Bedrijfsruimte in opbouw met grijze wanden',
+        width: 1536,
+        height: 1024,
+        title: 'Bedrijfsruimte',
+        label: 'In opbouw',
+      },
+      {
+        src: '/showcase-progress-door-prep.webp',
+        alt: 'Grijze binnendeur met verfblik op een trapje',
+        width: 1013,
+        height: 1800,
+        title: 'Deur voorbereiden',
+        label: 'Schuren',
       },
     ],
   },
@@ -1126,8 +1330,9 @@ function App() {
           <>
             <Hero openQuote={() => setQuoteOpen(true)} />
             <ProofStrip />
-            <OwnerSection openQuote={() => setQuoteOpen(true)} />
+            <OwnerSection />
             <Services openQuote={() => setQuoteOpen(true)} />
+            <WorkMarquee />
             <FeaturedWork openQuote={() => setQuoteOpen(true)} />
             <Reviews />
             <Process openQuote={() => setQuoteOpen(true)} />
@@ -1264,7 +1469,7 @@ function Hero({ openQuote }: { openQuote: () => void }) {
             <span className="block">& Renovatie</span>
           </h1>
           <p className="hero-reveal hero-reveal-3 mt-6 max-w-2xl text-base leading-7 text-white/88 sm:text-lg sm:leading-8 md:text-xl">
-            Vakwerk dat zichtbaar blijft. Richard werkt zelf mee op de vloer, bewaakt de afwerking en regelt schilderwerk, kozijnen, stucwerk en renovatie vanuit één aanspreekpunt.
+            Vakwerk dat zichtbaar blijft. Richard werkt zelf mee en regelt schilderwerk, kozijnen, stucwerk en renovatie vanuit één aanspreekpunt.
           </p>
 
           <div className="hero-reveal hero-reveal-4 mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap">
@@ -1278,14 +1483,6 @@ function Hero({ openQuote }: { openQuote: () => void }) {
             </a>
           </div>
 
-          <div className="hero-reveal hero-reveal-5 mt-8 grid max-w-2xl grid-cols-2 gap-3 lg:grid-cols-4">
-            {stats.map(([value, label]) => (
-              <div key={label} className="min-w-0 rounded-md border border-white/15 bg-white/10 p-4 text-white backdrop-blur-sm">
-                <strong className="block font-display text-2xl font-extrabold">{value}</strong>
-                <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.1em] text-white/85 sm:text-xs">{label}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -1296,7 +1493,7 @@ function ProofStrip() {
   const items = [
     [BadgeCheck, 'Eigenaar werkt mee', 'Kwaliteit wordt op locatie bewaakt.'],
     [ShieldCheck, 'PKVW aandacht', 'Veilig hang- en sluitwerk voor kozijnen.'],
-    [CalendarCheck, 'Heldere planning', 'Snel schakelen en afspraken nakomen.'],
+    [CalendarCheck, '15+ jaar ervaring', 'Ervaring met woningen en bedrijfspanden.'],
     [Star, '5.0 op Google', 'Alle recente beoordelingen zijn vijf sterren.'],
   ] as const;
 
@@ -1317,54 +1514,19 @@ function ProofStrip() {
   );
 }
 
-function OwnerSection({ openQuote }: { openQuote: () => void }) {
+function OwnerSection() {
   return (
     <section className="section-pad">
       <div className="shell grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-        <div className="grid gap-4 sm:grid-cols-[0.72fr_1fr]">
-          <img src="/logo-mark.webp" alt="RN Schilders & Renovatie logo" width={800} height={679} className="aspect-[4/5] w-full rounded-lg object-contain p-4 sm:aspect-auto" loading="lazy" decoding="async" />
-          <div className="grid gap-4">
-            <img src="/hoogwerker.webp?v=20260514" alt="RN Schilders aan het werk bij buitenschilderwerk" width={810} height={540} className="h-full min-h-52 rounded-lg object-cover" loading="lazy" decoding="async" />
-            <div className="rounded-lg border border-line bg-whitewash p-5">
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-graphite">Belofte</p>
-              <img
-                src="/slogan.webp"
-                alt="Vakwerk met passie."
-                width={500}
-                height={341}
-                className="mt-2 h-auto w-full max-w-xs"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
-        </div>
+        <img src="/hoogwerker.webp?v=20260514" alt="RN Schilders aan het werk bij buitenschilderwerk" width={810} height={540} className="aspect-[4/3] w-full rounded-lg object-cover" loading="lazy" decoding="async" />
 
         <div>
-          <p className="eyebrow">Waarom dit vertrouwen geeft</p>
-          <h2 className="mt-4 max-w-2xl text-4xl font-extrabold leading-tight text-navy md:text-5xl">
+          <h2 className="max-w-2xl text-4xl font-extrabold leading-tight text-navy md:text-5xl">
             Niet alleen een schilder, maar een meewerkend eigenaar op uw project.
           </h2>
           <p className="mt-6 text-lg leading-8 text-graphite">
             RN Schilders & Renovatie is gebouwd rond Richard: meer dan vijftien jaar ervaring, direct contact en zelf aanwezig bij de uitvoering. Voor u betekent dat één aanspreekpunt, duidelijke afspraken en iemand die voorbereiding, planning en eindresultaat zelf controleert.
           </p>
-          <div className="mt-7 grid gap-3 sm:grid-cols-2">
-            {['Schilderwerk binnen en buiten', 'Kozijnen, houtrot en hang- en sluitwerk', 'Stucwerk, spuitwerk en renovatie', 'Gratis offerte met duidelijke scope'].map((item) => (
-              <div key={item} className="flex gap-3 rounded-md border border-line bg-whitewash p-4">
-                <Check className="mt-0.5 shrink-0 text-roller" size={19} />
-                <span className="text-sm font-semibold leading-6 text-ink">{item}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <button type="button" onClick={openQuote} className="btn-dark">
-              Plan een opname
-              <ArrowRight size={17} />
-            </button>
-            <a href="#werk" className="btn-outline">
-              Bekijk recent werk
-            </a>
-          </div>
         </div>
       </div>
     </section>
@@ -1377,16 +1539,11 @@ function Services({ openQuote }: { openQuote: () => void }) {
   return (
     <section id="diensten" className="section-pad bg-whitewash">
       <div className="shell">
-        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="eyebrow">Diensten</p>
-            <h2 className="mt-4 max-w-3xl text-4xl font-extrabold leading-tight text-navy md:text-5xl">
-              Alles voor een woning of pand dat weer strak, fris en goed beschermd is.
-            </h2>
-          </div>
-          <p className="max-w-md text-base leading-7 text-graphite">
-            Van schilderwerk tot renovatie: alle werkzaamheden staan kort bij elkaar, met extra uitleg wanneer u wilt doorlezen.
-          </p>
+        <div>
+          <p className="eyebrow">Diensten</p>
+          <h2 className="mt-4 max-w-3xl text-4xl font-extrabold leading-tight text-navy md:text-5xl">
+            Onze werkzaamheden
+          </h2>
         </div>
 
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -1421,9 +1578,6 @@ function Services({ openQuote }: { openQuote: () => void }) {
                       decoding="async"
                     />
                   )}
-                  <div className="pointer-events-none absolute left-4 top-4 z-10 rounded-md bg-navy p-3 text-white">
-                    <service.icon size={22} />
-                  </div>
                 </div>
                 <div className="p-5">
                   <h3 className="font-display text-2xl font-extrabold text-navy">{service.title}</h3>
@@ -1446,17 +1600,6 @@ function Services({ openQuote }: { openQuote: () => void }) {
           })}
         </div>
 
-        <div className="mt-8 rounded-lg border border-line bg-white p-5">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-graphite">Diensten in Woerden</p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            {services.map((service) => (
-              <a key={service.slug} href={getServicePath(service)} className="btn-outline px-4 py-2">
-                {service.title} Woerden
-                <ChevronRight size={16} />
-              </a>
-            ))}
-          </div>
-        </div>
       </div>
       <ServiceModal service={selectedService} onClose={() => setSelectedService(null)} openQuote={openQuote} />
     </section>
@@ -1602,6 +1745,271 @@ function FeaturedWork({ openQuote }: { openQuote: () => void }) {
 
         <WorkShowcase openQuote={openQuote} />
       </div>
+    </section>
+  );
+}
+
+type MarqueeItem =
+  | { type: 'image'; src: string; alt: string; caption: string; width: number; height: number }
+  | { type: 'video'; src: string; poster: string; caption: string; width: number; height: number };
+
+const marqueeItems: MarqueeItem[] = [
+  {
+    type: 'video',
+    src: '/carousel-werk-video.mp4',
+    poster: '/carousel-werk-video-poster.webp',
+    caption: 'Plafondproject van dichtbij',
+    width: 464,
+    height: 832,
+  },
+  {
+    type: 'image',
+    src: '/carousel-facade-boom-lift.webp',
+    alt: 'Buitenschilderwerk aan een gevel vanuit een hoogwerker',
+    caption: 'Buitenschilderwerk met hoogwerker',
+    width: 800,
+    height: 533,
+  },
+  {
+    type: 'image',
+    src: '/carousel-staircase.webp',
+    alt: 'Strak wit gelakte trap van bovenaf gezien',
+    caption: 'Strak gelakte trap',
+    width: 1320,
+    height: 1389,
+  },
+  {
+    type: 'image',
+    src: '/carousel-terracotta-walls.webp',
+    alt: 'Interieurhoek met terracotta en crème geschilderde wanden',
+    caption: 'Warme wandkleuren binnen',
+    width: 1350,
+    height: 1800,
+  },
+  {
+    type: 'image',
+    src: '/carousel-beam-ceiling.webp',
+    alt: 'Woonkamer met wit geschilderd balkenplafond',
+    caption: 'Wit afgewerkt balkenplafond',
+    width: 880,
+    height: 660,
+  },
+  {
+    type: 'image',
+    src: '/carousel-garden-shed.webp',
+    alt: 'Moderne tuinberging met zwarte en houten gevelbekleding',
+    caption: 'Tuinberging in hout en zwart',
+    width: 1350,
+    height: 1800,
+  },
+  {
+    type: 'image',
+    src: '/carousel-floor-coating.webp',
+    alt: 'Vloercoating aangebracht in een bedrijfshal',
+    caption: 'Vloercoating in een bedrijfshal',
+    width: 1800,
+    height: 1350,
+  },
+  {
+    type: 'image',
+    src: '/carousel-ceiling-tiles.webp',
+    alt: 'Zwart akoestisch plafond met inbouwspots',
+    caption: 'Akoestisch plafond met inbouwspots',
+    width: 1200,
+    height: 1600,
+  },
+  {
+    type: 'image',
+    src: '/carousel-badkamer-zolder.webp',
+    alt: 'Zolderbadkamer in renovatie met turquoise tegelwerk',
+    caption: 'Zolderbadkamer in renovatie',
+    width: 1350,
+    height: 1800,
+  },
+  {
+    type: 'video',
+    src: '/carousel-werk-video-2.mp4',
+    poster: '/carousel-werk-video-2-poster.webp',
+    caption: 'Spuitwerk in een nieuwbouwwoning',
+    width: 576,
+    height: 1024,
+  },
+  {
+    type: 'image',
+    src: '/carousel-taupe-wanden.webp',
+    alt: 'Strak gesausde taupe wanden met witte structuurplafond',
+    caption: 'Strak gesausde wanden',
+    width: 1350,
+    height: 1800,
+  },
+  {
+    type: 'image',
+    src: '/carousel-serre.webp',
+    alt: 'Serre met zwarte kozijnen, glasdak en visgraatvloer',
+    caption: 'Serre met zwarte kozijnen',
+    width: 1800,
+    height: 1350,
+  },
+  {
+    type: 'image',
+    src: '/carousel-stalen-deur.webp',
+    alt: 'Stalen binnendeur in voorbereiding tijdens renovatie',
+    caption: 'Stalen binnendeur in voorbereiding',
+    width: 1320,
+    height: 1746,
+  },
+  {
+    type: 'video',
+    src: '/carousel-werk-video-3.mp4',
+    poster: '/carousel-werk-video-3-poster.webp',
+    caption: 'Renovatie in voorbereiding',
+    width: 480,
+    height: 848,
+  },
+  {
+    type: 'image',
+    src: '/carousel-diepblauw-spuitwerk.webp',
+    alt: 'Diepblauw gespoten wanden in een nieuwbouwwoning',
+    caption: 'Diepblauw spuitwerk',
+    width: 1013,
+    height: 1800,
+  },
+  {
+    type: 'image',
+    src: '/carousel-roze-accentwand.webp',
+    alt: 'Kamer met een zacht roze accentwand',
+    caption: 'Roze accentwand',
+    width: 1320,
+    height: 1790,
+  },
+];
+
+function MarqueeCard({ item, onPlay }: { item: MarqueeItem; onPlay: (video: { src: string; poster: string }) => void }) {
+  const base =
+    'relative w-[74vw] max-w-[320px] shrink-0 overflow-hidden rounded-lg border border-line bg-white sm:w-[340px]';
+
+  if (item.type === 'video') {
+    return (
+      <button
+        type="button"
+        onClick={() => onPlay({ src: item.src, poster: item.poster })}
+        aria-label={`Video bekijken: ${item.caption}`}
+        className={`group ${base}`}
+      >
+        <div className="aspect-[4/3] w-full overflow-hidden">
+          <img
+            src={item.poster}
+            alt={item.caption}
+            width={item.width}
+            height={item.height}
+            className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/15 to-navy/35" />
+        <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-md bg-navy/85 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+          <Play size={11} fill="currentColor" />
+          Video
+        </span>
+        <span className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-roller text-white shadow-[0_10px_26px_-8px_rgba(255,106,0,0.9)] transition group-hover:scale-110">
+          <Play size={22} fill="currentColor" className="ml-0.5" />
+        </span>
+        <span className="absolute inset-x-3 bottom-3 text-left text-sm font-bold text-white">{item.caption}</span>
+      </button>
+    );
+  }
+
+  return (
+    <figure className={base}>
+      <div className="aspect-[4/3] w-full overflow-hidden">
+        <img
+          src={item.src}
+          alt={item.alt}
+          width={item.width}
+          height={item.height}
+          className="h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent" />
+      <figcaption className="absolute inset-x-3 bottom-3 text-sm font-bold text-white">{item.caption}</figcaption>
+    </figure>
+  );
+}
+
+function VideoLightbox({ src, poster, onClose }: { src: string; poster: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-navy/90 p-4 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Video van uitgevoerd werk"
+      onClick={onClose}
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Sluiten"
+        className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-md bg-white text-navy"
+      >
+        <X size={22} />
+      </button>
+      <video
+        src={src}
+        poster={poster}
+        controls
+        autoPlay
+        playsInline
+        className="max-h-[82dvh] w-auto max-w-full rounded-lg"
+        onClick={(event) => event.stopPropagation()}
+      />
+    </div>
+  );
+}
+
+function WorkMarquee() {
+  const [activeVideo, setActiveVideo] = useState<{ src: string; poster: string } | null>(null);
+  const loop = [...marqueeItems, ...marqueeItems];
+
+  return (
+    <section className="section-pad overflow-hidden">
+      <div className="shell">
+        <p className="eyebrow">In uitvoering</p>
+        <div className="mt-4 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <h2 className="max-w-2xl text-4xl font-extrabold leading-tight text-navy md:text-5xl">
+            Een doorlopende blik op recent werk.
+          </h2>
+          <p className="max-w-md text-base leading-7 text-graphite">
+            Van buitenschilderwerk tot afgewerkte interieurs. Beweeg over de strook om te pauzeren.
+          </p>
+        </div>
+      </div>
+
+      <div className="marquee-viewport mt-10 w-full md:mt-12" aria-label="Doorlopende weergave van uitgevoerd werk">
+        <div className="marquee-track gap-5 pl-5">
+          {loop.map((item, index) => (
+            <MarqueeCard key={`${item.src}-${index}`} item={item} onPlay={setActiveVideo} />
+          ))}
+        </div>
+      </div>
+
+      {activeVideo && (
+        <VideoLightbox src={activeVideo.src} poster={activeVideo.poster} onClose={() => setActiveVideo(null)} />
+      )}
     </section>
   );
 }
@@ -2002,7 +2410,6 @@ function Reviews() {
                 ))}
               </div>
               <p className="mt-4 font-display text-4xl font-extrabold text-navy">5.0 op Google</p>
-              <p className="mt-2 text-sm leading-6 text-graphite">Gebaseerd op acht openbare beoordelingen uit maart 2026.</p>
             </div>
           </div>
 
@@ -2947,7 +3354,15 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
           </div>
 
           <div className="overflow-hidden rounded-lg border border-white/10 bg-white/8">
-            <img src="/hoogwerker.webp?v=20260514" alt={`Schilderwerk voor ${location.title}`} width={810} height={540} className="aspect-[4/3] w-full object-cover" loading="eager" decoding="async" />
+            <img
+              src={location.heroImage?.src ?? '/hoogwerker.webp?v=20260514'}
+              alt={location.heroImage?.alt ?? `Schilderwerk voor ${location.title}`}
+              width={location.heroImage?.width ?? 810}
+              height={location.heroImage?.height ?? 540}
+              className="aspect-[4/3] w-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
             <div className="grid gap-3 p-5">
               {location.areas.slice(0, 4).map((area) => (
                 <div key={area} className="flex items-center gap-3 text-sm font-semibold text-white/88">
@@ -2959,6 +3374,38 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
           </div>
         </div>
       </section>
+
+      {location.projectStory && (
+        <section className="section-pad bg-whitewash">
+          <div className="shell">
+            <p className="eyebrow">{location.projectStory.eyebrow}</p>
+            <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight text-navy md:text-4xl">
+              {location.projectStory.title}
+            </h2>
+            <div className="mt-5 grid max-w-3xl gap-4 text-base leading-8 text-graphite">
+              {location.projectStory.intro.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {location.projectStory.images.map((image) => (
+                <figure key={image.src} className="overflow-hidden rounded-lg border border-line bg-white">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    className="aspect-[4/3] w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption className="px-4 py-3 text-sm font-semibold text-graphite">{image.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="section-pad">
         <div className="shell grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">

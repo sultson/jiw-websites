@@ -251,16 +251,42 @@
   box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.35), 0 8px 18px -6px rgba(0, 0, 0, 0.7);
 }
 
+/* Edge-to-edge auto-scrolling carousel (na Onze werkzaamheden) */
+.marquee-viewport {
+  overflow: hidden;
+}
+
+@keyframes marquee-ltr {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-ltr 64s linear infinite;
+}
+
+.marquee-viewport:hover .marquee-track,
+.marquee-viewport:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-bg,
   .hero-reveal,
   .quote-sheet,
   .success-check,
-  .success-bar {
+  .success-bar,
+  .marquee-track {
     animation: none;
   }
 
   .success-bar {
     width: 100%;
+  }
+
+  .marquee-viewport {
+    overflow-x: auto;
   }
 }
