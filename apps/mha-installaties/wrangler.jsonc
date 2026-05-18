@@ -15,6 +15,14 @@
   },
   "routes": [
     {
+      "pattern": "mhainstallaties.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.mhainstallaties.nl",
+      "custom_domain": true
+    },
+    {
       "pattern": "mha-installaties.jouwidealewebsite.nl",
       "custom_domain": true
     }
@@ -28,13 +36,13 @@
   "send_email": [
     {
       "name": "LEAD_EMAIL",
-      "allowed_sender_addresses": ["offerte@notify.jouwidealewebsite.nl"]
+      "allowed_sender_addresses": ["offerte@notify.mhainstallaties.nl"]
     }
   ],
   "vars": {
     "SITE_ID": "mha-installaties",
     "LEAD_RECIPIENT": "mhainstallaties@gmail.com",
-    "LEAD_SENDER": "offerte@notify.jouwidealewebsite.nl",
+    "LEAD_SENDER": "offerte@notify.mhainstallaties.nl",
     "TURNSTILE_SECRET_KEY": "dev"
   }
 }
