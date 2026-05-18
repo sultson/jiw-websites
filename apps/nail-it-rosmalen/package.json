@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite --port=3002 --host=0.0.0.0",
     "build": "vite build",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
