@@ -1,0 +1,63 @@
+import { useState } from 'react';
+import { Plus, Phone, MessageCircle } from 'lucide-react';
+
+type Props = { t: (k: string) => string };
+
+export default function Faq({ t }: Props) {
+  const [open, setOpen] = useState<number | null>(1);
+  const items = [1, 2, 3, 4, 5];
+
+  return (
+    <section id="faq" className="py-20 md:py-28 bg-blush-soft/60">
+      <div className="max-w-3xl mx-auto px-5 sm:px-8">
+        <div className="text-center mb-12">
+          <span className="kicker">{t('faq.kicker')}</span>
+          <h2 className="mt-3 font-serif text-4xl md:text-5xl">{t('faq.title')}</h2>
+        </div>
+
+        <div className="space-y-2">
+          {items.map(i => {
+            const isOpen = open === i;
+            return (
+              <div key={i} className="border-b border-ink/10">
+                <button
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="w-full flex items-center justify-between gap-6 py-5 text-left"
+                  aria-expanded={isOpen}
+                >
+                  <span className="font-serif text-lg md:text-xl text-ink">{t(`faq.q${i}`)}</span>
+                  <Plus
+                    size={20}
+                    className={`shrink-0 text-pink transition-transform ${isOpen ? 'rotate-45' : ''}`}
+                  />
+                </button>
+                {isOpen && (
+                  <p className="pb-5 text-ink/70 leading-relaxed">{t(`faq.a${i}`)}</p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-10 card px-6 py-6 text-center">
+          <p className="text-sm text-ink/70">{t('faq.ctaText')}</p>
+          <div className="mt-4 flex flex-wrap gap-3 justify-center">
+            <a href="tel:+31631674344" className="btn-pink">
+              <Phone size={16} />
+              {t('faq.ctaCall')}
+            </a>
+            <a
+              href="https://wa.me/31631674344"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline"
+            >
+              <MessageCircle size={16} />
+              {t('faq.ctaWa')}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

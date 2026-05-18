@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Dancing+Script:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-script: "Dancing Script", "Playfair Display", cursive;
+
+  /* Soft warm white & blush, from the branding sheet background */
+  --color-cream: #FBF7F5;
+  --color-blush: #F7E2E7;
+  --color-blush-soft: #FCEEF1;
+
+  /* Deep petrol navy, the brand's "n" letter color */
+  --color-ink: #0C3D52;
+  --color-ink-soft: #1B5670;
+
+  /* Warm signature pink, the logo ring color */
+  --color-pink: #E55878;
+  --color-pink-soft: #F2A2B2;
+
+  /* Petal accents from the logo */
+  --color-coral: #ED6543;
+  --color-teal: #0E9C7B;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ink);
+  }
+  body {
+    @apply font-sans bg-cream text-ink antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-serif text-ink;
+    letter-spacing: -0.01em;
+  }
+  h1 { font-weight: 500; }
+  h2 { font-weight: 500; }
+  ::selection { background: var(--color-pink); color: white; }
+  *:focus-visible {
+    outline: 2px solid var(--color-pink);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .btn-pink {
+    @apply inline-flex items-center justify-center gap-2 bg-pink text-white px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:opacity-90 transition-opacity;
+    min-height: 46px;
+  }
+  .btn-ink {
+    @apply inline-flex items-center justify-center gap-2 bg-ink text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-ink-soft transition-colors;
+    min-height: 46px;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/20 text-ink px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:border-ink/40 hover:bg-white transition-colors;
+    min-height: 46px;
+  }
+  .kicker {
+    @apply inline-block text-[11px] uppercase tracking-[0.24em] text-pink font-semibold;
+  }
+  .card {
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl border border-ink/5 shadow-[0_1px_2px_rgba(12,61,82,0.04)];
+  }
+  .script {
+    font-family: var(--font-script);
+  }
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
