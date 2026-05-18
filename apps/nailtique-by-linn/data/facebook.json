@@ -1,0 +1,60 @@
+{
+  "source": "https://www.facebook.com/p/Nailtique-by-Linn-61572992205896/",
+  "scrapedAt": "2026-05-18",
+  "scrapers": ["apify/facebook-pages-scraper", "apify/facebook-posts-scraper"],
+  "page": {
+    "name": "Nailtique by Linn",
+    "title": "Nailtique by Linn | Valburg",
+    "category": "Beauty, cosmetic & personal care",
+    "categories": ["Page", "Beauty, cosmetic & personal care"],
+    "intro": "BIAB Nails | Gellac | Tand Kristallen\nOne by one Wimperextentions | Volume Wimperextentions | Browlamination\nGecertificeerd",
+    "introRaw": "𝑩𝑰𝑨𝑩 𝑵𝒂𝒊𝒍𝒔 | 𝑮𝒆𝒍𝒍𝒂𝒄 | 𝑻𝒂𝒏𝒅 𝑲𝒓𝒊𝒔𝒕𝒂𝒍𝒍𝒆𝒏\n𝑶𝒏𝒆 𝒃𝒚 𝒐𝒏𝒆 𝑾𝒊𝒎𝒑𝒆𝒓𝒆𝒙𝒕𝒆𝒏𝒕𝒊𝒐𝒏𝒔 | 𝑽𝒐𝒍𝒖𝒎𝒆 𝑾𝒊𝒎𝒑𝒆𝒓𝒆𝒙𝒕𝒆𝒏𝒕𝒊𝒐𝒏𝒔 | 𝑩𝒓𝒐𝒘𝒍𝒂𝒎𝒊𝒏𝒂𝒕𝒊𝒐𝒏\n𝘎𝘦𝘤𝘦𝘳𝘵𝘪𝘧𝘪𝘤𝘦𝘦𝘳𝘥🩷",
+    "address": "Molensteen 13, Valburg, Netherlands, 6675GJ",
+    "city": "Valburg",
+    "phone": null,
+    "email": null,
+    "website": null,
+    "businessHours": null,
+    "priceRange": null,
+    "likes": 47,
+    "followers": 47,
+    "rating": "Not yet rated (1 Review)",
+    "ratingCount": 1,
+    "creationDate": "February 19, 2025",
+    "adStatus": "This Page isn't currently running ads.",
+    "profilePictureUrl": "https://scontent.fsac1-2.fna.fbcdn.net/v/t39.30808-1/500343567_122130377246766406_2923352087415168389_n.jpg",
+    "services": [
+      "BIAB Nails",
+      "Gellac",
+      "Tand Kristallen (tooth crystals)",
+      "One by one Wimperextensions (classic lash extensions)",
+      "Volume Wimperextensions (volume lash extensions)",
+      "Browlamination"
+    ]
+  },
+  "posts": [
+    {
+      "postId": "122170973300766406",
+      "date": "2026-03-25",
+      "url": "https://www.facebook.com/61572992205896/posts/122170973300766406",
+      "text": "ACTIE!💅\n\nWil jij ook 20% korting ontvangen op je afspraak?\n\nTagg jou bestie hieronder, plan een afspraak in via DM of whatsapp🌸",
+      "imageOcr": "BRING A FRIEND ACTIE. Samen naar je nagelafspraak is toch veel leuker? Actie! Neem jouw vriendin, moeder, zus of collega mee naar jouw behandeling en profiteer samen van een leuke korting! Jullie krijgen allebei 20% korting op jullie behandeling. Tag jouw bestie hieronder die dit moet zien! (Dit geldt ook voor bestaande klanten)",
+      "likes": 1,
+      "shares": 1
+    },
+    {
+      "postId": "122166321476766406",
+      "date": "2026-02-12",
+      "url": "https://www.facebook.com/61572992205896/posts/122166321476766406",
+      "text": "BROWLAMINATION🤍\n\nYes! Vanaf nu kun je bij mij terecht voor browlamination!\n\nOm dit te vieren krijg je de hele maand februari deze behandeling voor een speciale prijs:\n\n🤎 €20 zonder verven\n🤎 €25 inclusief verven\n\nWat is browlamination?\nBrowlamination is een behandeling waarbij de wenkbrauwhaartjes in de juiste richting worden geplaatst en gefixeerd. Hierdoor lijken je wenkbrauwen voller, strakker en perfect gestyled — wekenlang! Ideaal als je eigen haartjes nét wat meer volume of vorm mogen krijgen ✨\n\nWil jij fluffy, volle wenkbrauwen zonder elke dag te stylen?\nStuur mij een DM om jouw afspraak in te plannen 💌",
+      "likes": 1,
+      "shares": 2,
+      "prices": {
+        "browlaminationWithoutTinting": "€20",
+        "browlaminationWithTinting": "€25",
+        "note": "February promo price"
+      }
+    }
+  ],
+  "notes": "Small new page (created Feb 2025, 47 likes). No phone, email, opening hours or website listed on Facebook. Bookings are made via DM or WhatsApp. Address confirmed: Molensteen 13, 6675 GJ Valburg. Owner appears to be named Linn; works solo (\"bij mij\")."
+}

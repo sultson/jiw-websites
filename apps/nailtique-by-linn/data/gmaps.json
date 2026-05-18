@@ -1,0 +1,89 @@
+{
+  "name": "Nailtique by Linn",
+  "category": "Schoonheidssalon",
+  "address": {
+    "full": "Molensteen 13, 6675 GJ Valburg, Nederland",
+    "street": "Molensteen 13",
+    "postalCode": "6675 GJ",
+    "city": "Valburg",
+    "country": "Nederland"
+  },
+  "location": { "lat": 51.9074379, "lng": 5.790268 },
+  "plusCode": "WQ4R+X4 Valburg, Nederland",
+  "phone": "+31 6 28428339",
+  "phoneUnformatted": "+31628428339",
+  "website": null,
+  "social": {
+    "instagram": "https://www.instagram.com/nailtiquebylinn"
+  },
+  "googleMapsUrl": "https://maps.google.com/?cid=14591839085104193649",
+  "rating": 5,
+  "reviewsCount": 7,
+  "reviewsDistribution": {
+    "oneStar": 0,
+    "twoStar": 0,
+    "threeStar": 0,
+    "fourStar": 0,
+    "fiveStar": 7
+  },
+  "openingHours": [
+    { "day": "maandag", "hours": "09:00 - 16:30" },
+    { "day": "dinsdag", "hours": "09:00 - 16:00" },
+    { "day": "woensdag", "hours": "09:00 - 16:00" },
+    { "day": "donderdag", "hours": "09:00 - 16:30" },
+    { "day": "vrijdag", "hours": "09:00 - 15:00" },
+    { "day": "zaterdag", "hours": "Gesloten" },
+    { "day": "zondag", "hours": "Gesloten" }
+  ],
+  "additionalInfo": {
+    "afspraakAanbevolen": true,
+    "toilet": true
+  },
+  "owner": "Lindsay",
+  "reviews": [
+    {
+      "name": "Martine B.",
+      "rating": 5,
+      "date": "2025-12-23",
+      "text": "Ik ga al enige tijd naar Nailtique by Linn voor mijn nagels. Lindsay werkt ontzettend nauwkeurig, heeft oog voor detail en mijn nagels zien er elke keer weer prachtig uit en blijven supergoed zitten. Daarnaast is Lindsay een schat van een meid en werkt ze professioneel. Absoluut een aanrader voor iedereen die op zoek is naar kwaliteit, gezelligheid en mooie nagels!"
+    },
+    {
+      "name": "Julia Mulder",
+      "rating": 5,
+      "date": "2025-12-28",
+      "text": "Doe nu nog niet zo heel lang mijn nagels bij Lindsay, ben bij veel verschillende nagelstudio's geweest maar vind de studio van Lindsay super mooi en netjes. Ik zou mijn nagels bij geen andere studio meer willen doen, de nagels zien er fantastisch uit en ze neemt uitgebreid de tijd voor je zodat je met een grote glimlach weer kunt vertrekken. Heel meedenkend is ze ook!"
+    },
+    {
+      "name": "Joyce T",
+      "rating": 5,
+      "date": "2025-12-23",
+      "text": "Ik ga al een aantal maanden naar Lindsay voor mijn wimpers, waar ik ben begonnen met one by one, ben ik overgestapt naar Hybride op haar advies. Lindsay denkt mee in wat bij jou past als persoon, ook werkt ze heel netjes en zorgvuldig."
+    },
+    {
+      "name": "Lex van Loon",
+      "rating": 5,
+      "date": "2025-12-28",
+      "text": "Super gezellige salon, mooie kwaliteit, werkt zorgvuldig en altijd gezellig! Heel blij altijd met het resultaat!"
+    },
+    {
+      "name": "Barbara van Brakel",
+      "rating": 5,
+      "date": "2025-12-24",
+      "text": "Ik ben erg blij met het advies en de manier waarop Lindsay werkt. Fijne en gezellige salon, waar de klant centraal staat!"
+    },
+    {
+      "name": "Mirjam de Roos",
+      "rating": 5,
+      "date": "2025-12-23",
+      "text": "Weet waar ze mee bezig is, vakkundig advies. Mooie en ruime salon waarin ze verschillende behandelingen aanbiedt."
+    },
+    {
+      "name": "Melissa van Goor",
+      "rating": 5,
+      "date": "2025-12-23",
+      "text": "Allermooiste nagels."
+    }
+  ],
+  "scrapedAt": "2026-05-18T21:56:50.600Z",
+  "source": "compass/crawler-google-places (Apify)"
+}
