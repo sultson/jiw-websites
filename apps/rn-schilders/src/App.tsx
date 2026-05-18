@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent } from 'react';
 import {
   ArrowRight,
   BadgeCheck,
@@ -177,11 +177,11 @@ const services: Service[] = [
     image: '/schilderwerk.webp?v=20260514',
     images: [
       '/schilderwerk.webp?v=20260514',
-      '/schilderwerk-2.webp?v=20260514',
+      '/schilderwerk-2.webp?v=20260517',
       '/schilderwerk-3.webp?v=20260514',
-      '/schilderwerk-4.webp',
+      '/schilderwerk-4.webp?v=20260517',
       '/schilderwerk-5.webp',
-      '/schilderwerk-6.webp',
+      '/schilderwerk-6.webp?v=20260517',
     ],
     width: 1300,
     height: 867,
@@ -213,8 +213,8 @@ const services: Service[] = [
     image: '/kozijnen-3.webp?v=20260514',
     images: [
       '/kozijnen-3.webp?v=20260514',
-      '/kozijnen-7.webp',
-      '/kozijnen-6.webp',
+      '/kozijnen-7.webp?v=20260517',
+      '/kozijnen-6.webp?v=20260517',
       '/kozijnen-5.webp',
     ],
     width: 1100,
@@ -316,7 +316,7 @@ const services: Service[] = [
     image: '/houtrotherstel.webp',
     images: [
       '/houtrotherstel.webp',
-      '/houtrotherstel-2.webp',
+      '/houtrotherstel-2.webp?v=20260517',
     ],
     width: 1200,
     height: 675,
@@ -349,7 +349,7 @@ const services: Service[] = [
     images: [
       '/sloopwerk.webp?v=20260514',
       '/sloopwerk-2.webp?v=20260514',
-      '/sloopwerk-3.webp',
+      '/sloopwerk-3.webp?v=20260517',
     ],
     width: 1000,
     height: 500,
@@ -791,7 +791,7 @@ const processSteps = [
 
 const roofWindowStory: ShowcaseImage[] = [
   {
-    src: '/showcase-roof-window-before.webp',
+    src: '/showcase-roof-window-before.webp?v=20260517',
     alt: 'Dakkapel en dakraam vóór afwerking',
     width: 1024,
     height: 1536,
@@ -799,7 +799,7 @@ const roofWindowStory: ShowcaseImage[] = [
     label: 'Voor',
   },
   {
-    src: '/showcase-roof-window-after.webp',
+    src: '/showcase-roof-window-after.webp?v=20260517',
     alt: 'Dakkapel en dakraam na afwerking',
     width: 1024,
     height: 1536,
@@ -807,7 +807,7 @@ const roofWindowStory: ShowcaseImage[] = [
     label: 'Na',
   },
   {
-    src: '/showcase-roof-window-after-detail.webp',
+    src: '/showcase-roof-window-after-detail.webp?v=20260517',
     alt: 'Afgewerkte dakkapel vanaf straatniveau',
     width: 1024,
     height: 1536,
@@ -838,7 +838,7 @@ const showcaseGroups: ShowcaseGroup[] = [
         label: 'Detail',
       },
       {
-        src: '/showcase-damaged-wood-detail.webp',
+        src: '/showcase-damaged-wood-detail.webp?v=20260517',
         alt: 'Beschadigd houtwerk aan buitenzijde',
         width: 1024,
         height: 1536,
@@ -860,7 +860,7 @@ const showcaseGroups: ShowcaseGroup[] = [
         label: 'Afgewerkt',
       },
       {
-        src: '/showcase-ceiling-tiles-finish.webp',
+        src: '/showcase-ceiling-tiles-finish.webp?v=20260517',
         alt: 'Donker plafond met strakke plafondplaten en inbouwspots',
         width: 1408,
         height: 1056,
@@ -868,7 +868,7 @@ const showcaseGroups: ShowcaseGroup[] = [
         label: 'Afgewerkt',
       },
       {
-        src: '/showcase-fireplace-lighting.webp',
+        src: '/showcase-fireplace-lighting.webp?v=20260517',
         alt: 'Moderne haardombouw met geïntegreerde verlichting',
         width: 1320,
         height: 1309,
@@ -876,7 +876,7 @@ const showcaseGroups: ShowcaseGroup[] = [
         label: 'Lichtdetail',
       },
       {
-        src: '/showcase-room-good-as-new.webp',
+        src: '/showcase-room-good-as-new.webp?v=20260517',
         alt: 'Afgewerkte kamer met groene wand, lichte vloer en inbouwspots',
         width: 1320,
         height: 1641,
@@ -922,7 +922,7 @@ const showcaseGroups: ShowcaseGroup[] = [
     text: 'Afwerking valt op bij randen, profielen en zichtlijnen. Juist daarom krijgen deze details ruimte.',
     images: [
       {
-        src: '/showcase-door-dark-finish.webp',
+        src: '/showcase-door-dark-finish.webp?v=20260517',
         alt: 'Donker afgelakte binnendeur met paneelverdeling',
         width: 1320,
         height: 1640,
@@ -930,7 +930,7 @@ const showcaseGroups: ShowcaseGroup[] = [
         label: 'Lakwerk',
       },
       {
-        src: '/showcase-door-hall-finish.webp',
+        src: '/showcase-door-hall-finish.webp?v=20260517',
         alt: 'Witte binnendeur in hal met groene wand',
         width: 1320,
         height: 1629,
@@ -970,7 +970,7 @@ const showcaseGroups: ShowcaseGroup[] = [
         label: 'Lakwerk',
       },
       {
-        src: '/showcase-door-brick-entrance.webp',
+        src: '/showcase-door-brick-entrance.webp?v=20260517',
         alt: 'Bakstenen entreepartij met zwarte stalen deuren',
         width: 1024,
         height: 1536,
@@ -1032,7 +1032,7 @@ const showcaseGroups: ShowcaseGroup[] = [
         label: 'Opbouw',
       },
       {
-        src: '/showcase-progress-commercial.webp',
+        src: '/showcase-progress-commercial.webp?v=20260517',
         alt: 'Bedrijfsruimte in opbouw met grijze wanden',
         width: 1536,
         height: 1024,
@@ -1329,9 +1329,9 @@ function App() {
         ) : (
           <>
             <Hero openQuote={() => setQuoteOpen(true)} />
+            <Services openQuote={() => setQuoteOpen(true)} />
             <ProofStrip />
             <OwnerSection />
-            <Services openQuote={() => setQuoteOpen(true)} />
             <WorkMarquee />
             <FeaturedWork openQuote={() => setQuoteOpen(true)} />
             <Reviews />
@@ -1411,15 +1411,31 @@ function Nav({
           <div className="shell py-5">
             <div className="grid gap-1">
               {navLinks.map(([label, href]) => (
-                <a
-                  key={href}
-                  href={resolveNavHref(href, isTermsPage)}
-                  onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-between rounded-md px-2 py-3 font-display text-xl font-bold text-navy"
-                >
-                  {label}
-                  <ChevronRight size={18} />
-                </a>
+                <Fragment key={href}>
+                  <a
+                    href={resolveNavHref(href, isTermsPage)}
+                    onClick={() => setMenuOpen(false)}
+                    className="flex items-center justify-between rounded-md px-2 py-3 font-display text-xl font-bold text-navy"
+                  >
+                    {label}
+                    <ChevronRight size={18} />
+                  </a>
+                  {label === 'Diensten' && (
+                    <div className="mb-1 ml-2 grid gap-0.5 border-l-2 border-line pl-3">
+                      {services.map((service) => (
+                        <a
+                          key={service.slug}
+                          href={getServicePath(service)}
+                          onClick={() => setMenuOpen(false)}
+                          className="flex items-center justify-between rounded-md px-2 py-2 text-base font-semibold text-graphite"
+                        >
+                          {service.title}
+                          <ChevronRight size={16} className="text-roller" />
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </Fragment>
               ))}
             </div>
             <button
@@ -1456,7 +1472,7 @@ function Hero({ openQuote }: { openQuote: () => void }) {
           decoding="async"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,30,61,0.94)_0%,rgba(13,30,61,0.78)_46%,rgba(13,30,61,0.28)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-paper to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-whitewash to-transparent" />
       </div>
 
       <div className="shell relative flex min-h-[82dvh] items-center py-14 md:min-h-[calc(92dvh-5rem)] md:py-24">
@@ -1537,7 +1553,7 @@ function Services({ openQuote }: { openQuote: () => void }) {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   return (
-    <section id="diensten" className="section-pad bg-whitewash">
+    <section id="diensten" className="bg-whitewash pb-16 pt-2 md:pb-24 md:pt-4">
       <div className="shell">
         <div>
           <p className="eyebrow">Diensten</p>
@@ -1728,14 +1744,14 @@ function FeaturedWork({ openQuote }: { openQuote: () => void }) {
 
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           <ProjectSlideshow
-            slides={['/interieur-slide-1.webp', '/interieur-slide-2.webp', '/interieur-slide-3.webp']}
+            slides={['/interieur-slide-1.webp?v=20260517', '/interieur-slide-2.webp?v=20260517', '/interieur-slide-3.webp?v=20260517']}
             imageWidth={720}
             imageHeight={880}
             title="Interieur renovatie"
             text="Donkere luxe tint, strak afgewerkt en direct klaar voor gebruik."
           />
           <ProjectSlideshow
-            slides={['/kantoor-slide-1.webp', '/kantoor-slide-2.webp', '/kantoor-slide-3.webp']}
+            slides={['/kantoor-slide-1.webp?v=20260517', '/kantoor-slide-2.webp?v=20260517', '/kantoor-slide-3.webp?v=20260517']}
             imageWidth={720}
             imageHeight={1072}
             title="Casco naar kantoor"
@@ -1772,7 +1788,7 @@ const marqueeItems: MarqueeItem[] = [
   },
   {
     type: 'image',
-    src: '/carousel-staircase.webp',
+    src: '/carousel-staircase.webp?v=20260517',
     alt: 'Strak wit gelakte trap van bovenaf gezien',
     caption: 'Strak gelakte trap',
     width: 1320,
@@ -1852,7 +1868,7 @@ const marqueeItems: MarqueeItem[] = [
   },
   {
     type: 'image',
-    src: '/carousel-stalen-deur.webp',
+    src: '/carousel-stalen-deur.webp?v=20260517',
     alt: 'Stalen binnendeur in voorbereiding tijdens renovatie',
     caption: 'Stalen binnendeur in voorbereiding',
     width: 1320,
@@ -1876,7 +1892,7 @@ const marqueeItems: MarqueeItem[] = [
   },
   {
     type: 'image',
-    src: '/carousel-roze-accentwand.webp',
+    src: '/carousel-roze-accentwand.webp?v=20260517',
     alt: 'Kamer met een zacht roze accentwand',
     caption: 'Roze accentwand',
     width: 1320,
@@ -2017,15 +2033,15 @@ function WorkMarquee() {
 type Stage = { src: string; label: string; sub: string; alt: string };
 
 const doorStages: readonly Stage[] = [
-  { src: '/voordeur-voor.webp', label: 'Voor', sub: 'Verweerd hout, peelende verflagen.', alt: 'Voordeur voor behandeling' },
-  { src: '/voordeur-tijdens.webp', label: 'Tijdens', sub: 'Schuren, plamuren, gronden.', alt: 'Voordeur tijdens behandeling' },
-  { src: '/voordeur-na.webp', label: 'Na', sub: 'Hoogglans afwerking, weer jarenlang beschermd.', alt: 'Voordeur na behandeling' },
+  { src: '/voordeur-voor.webp?v=20260517', label: 'Voor', sub: 'Verweerd hout, peelende verflagen.', alt: 'Voordeur voor behandeling' },
+  { src: '/voordeur-tijdens.webp?v=20260517', label: 'Tijdens', sub: 'Schuren, plamuren, gronden.', alt: 'Voordeur tijdens behandeling' },
+  { src: '/voordeur-na.webp?v=20260517', label: 'Na', sub: 'Hoogglans afwerking, weer jarenlang beschermd.', alt: 'Voordeur na behandeling' },
 ] as const;
 
 const dakraamStages: readonly Stage[] = [
-  { src: '/showcase-roof-window-before.webp', label: 'Voor', sub: 'Versleten dakkapel met losse verflagen en houtwerk dat aandacht vraagt.', alt: 'Dakkapel en dakraamhoek voor afwerking' },
-  { src: '/showcase-roof-window-after.webp', label: 'Na', sub: 'Strakke afwerking, herstelde naden en duurzaam beschermd hout.', alt: 'Dakkapel en dakraamhoek na afwerking' },
-  { src: '/showcase-roof-window-after-detail.webp', label: 'Detail', sub: 'Vanaf straatniveau valt op hoe schoon de aansluitingen zijn afgewerkt.', alt: 'Afgewerkte dakkapel vanaf straatniveau' },
+  { src: '/showcase-roof-window-before.webp?v=20260517', label: 'Voor', sub: 'Versleten dakkapel met losse verflagen en houtwerk dat aandacht vraagt.', alt: 'Dakkapel en dakraamhoek voor afwerking' },
+  { src: '/showcase-roof-window-after.webp?v=20260517', label: 'Na', sub: 'Strakke afwerking, herstelde naden en duurzaam beschermd hout.', alt: 'Dakkapel en dakraamhoek na afwerking' },
+  { src: '/showcase-roof-window-after-detail.webp?v=20260517', label: 'Detail', sub: 'Vanaf straatniveau valt op hoe schoon de aansluitingen zijn afgewerkt.', alt: 'Afgewerkte dakkapel vanaf straatniveau' },
 ] as const;
 
 function StageSlider({
@@ -3671,6 +3687,49 @@ function TrustooWidget() {
   );
 }
 
+const socials = [
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61587764523860",
+    hover: "hover:bg-[#1877F2] hover:border-[#1877F2]",
+    path: "M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879v-6.988H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.772-1.63 1.562V12h2.773l-.443 2.891h-2.33v6.988C18.343 21.129 22 16.991 22 12c0-5.523-4.477-10-10-10z",
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/rn.schilders/",
+    hover: "hover:bg-gradient-to-tr hover:from-[#F58529] hover:via-[#DD2A7B] hover:to-[#8134AF] hover:border-transparent",
+    path: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.07 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.849.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z",
+  },
+  {
+    name: "TikTok",
+    href: "https://www.tiktok.com/@rn.schilders",
+    hover: "hover:bg-[#fe2c55] hover:border-[#fe2c55]",
+    path: "M19.589 6.686a4.793 4.793 0 01-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 01-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 013.183-4.51v-3.5a6.329 6.329 0 00-5.394 10.692 6.33 6.33 0 0010.857-4.424V8.687a8.182 8.182 0 004.773 1.526V6.79a4.831 4.831 0 01-1.003-.104z",
+  },
+];
+
+function SocialLinks() {
+  return (
+    <div className="flex gap-3">
+      {socials.map((s) => (
+        <a
+          key={s.name}
+          href={s.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={s.name}
+          title={s.name}
+          className={`flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/85 transition-colors hover:text-white ${s.hover}`}
+        >
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+            <path d={s.path} />
+          </svg>
+        </a>
+      ))}
+    </div>
+  );
+}
+
 function Footer() {
   return (
     <footer className="bg-ink pb-28 pt-10 text-white md:pb-10">
@@ -3684,27 +3743,24 @@ function Footer() {
               <p className="mt-2 text-sm text-white/85">Vakwerk dat zichtbaar blijft in Woerden en omgeving.</p>
             </div>
           </div>
-          <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/88">
-            {services.map((service) => (
-              <a key={service.slug} href={getServicePath(service)} className="hover:text-white">
-                {service.title} Woerden
+          <div className="flex flex-col gap-4 md:items-end">
+            <SocialLinks />
+            <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/88 md:justify-end">
+              {services.map((service) => (
+                <a key={service.slug} href={getServicePath(service)} className="hover:text-white">
+                  {service.title} Woerden
+                </a>
+              ))}
+              <a href="/werkgebied" className="hover:text-white">
+                Werkgebied
               </a>
-            ))}
-            <a href="/werkgebied" className="hover:text-white">
-              Werkgebied
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61588338225794" target="_blank" rel="noreferrer" className="hover:text-white">
-              Facebook
-            </a>
-            <a href="https://www.instagram.com/rn.schilders/" target="_blank" rel="noreferrer" className="hover:text-white">
-              Instagram
-            </a>
-            <a href={`mailto:${email}`} className="hover:text-white">
-              {email}
-            </a>
-            <a href="/algemene-voorwaarden" className="hover:text-white">
-              Algemene voorwaarden
-            </a>
+              <a href={`mailto:${email}`} className="hover:text-white">
+                {email}
+              </a>
+              <a href="/algemene-voorwaarden" className="hover:text-white">
+                Algemene voorwaarden
+              </a>
+            </div>
           </div>
         </div>
       </div>
