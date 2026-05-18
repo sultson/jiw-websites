@@ -17,7 +17,8 @@
     "dev:smooth-by-lau": "pnpm --filter @jiw/smooth-by-lau dev",
     "dev:rn-schilders": "pnpm --filter @jiw/rn-schilders dev",
     "dev:beautique-jeanine": "pnpm --filter @jiw/beautique-jeanine dev",
-    "dev:xenon": "pnpm --filter @jiw/xenon dev"
+    "dev:xenon": "pnpm --filter @jiw/xenon dev",
+    "dev:adriaan-totaalonderhoud": "pnpm --filter @jiw/adriaan-totaalonderhoud dev"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
