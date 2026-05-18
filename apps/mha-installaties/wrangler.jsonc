@@ -33,7 +33,7 @@
   ],
   "vars": {
     "SITE_ID": "mha-installaties",
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_RECIPIENT": "mhainstallaties@gmail.com",
     "LEAD_SENDER": "offerte@notify.jouwidealewebsite.nl",
     "TURNSTILE_SECRET_KEY": "dev"
   }
