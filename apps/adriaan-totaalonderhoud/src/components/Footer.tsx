@@ -185,7 +185,7 @@ export default function Footer() {
           <span className="hairline mt-10 block" aria-hidden="true" />
           <div className="mt-6 flex flex-col gap-3 text-xs text-mute sm:flex-row sm:items-center sm:justify-between">
             <p>
-              © {year} {brand.name}
+              © {year} {brand.name} · KVK {business.kvk}
             </p>
             <span>
               {t(ui.builtBy)}{' '}

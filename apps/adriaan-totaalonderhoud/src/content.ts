@@ -23,6 +23,7 @@ export const brand: Brand = {
 
 export const business = {
   owner: 'Adriaan',
+  kvk: '42037082',
   address: {
     street: 'Zuidhoven 9-N',
     postalCode: '6042 PB',
