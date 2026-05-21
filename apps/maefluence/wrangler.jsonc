@@ -1,0 +1,19 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "maefluence",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    {
+      "pattern": "maefluence.jouwidealewebsite.nl",
+      "custom_domain": true
+    }
+  ]
+}

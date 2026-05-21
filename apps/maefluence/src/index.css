@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Italiana", "Cormorant Garamond", Georgia, serif;
+
+  /* Maefluence palette */
+  --color-bone: #F5F4F0;        /* primary bg — warm off-white */
+  --color-mist: #D9D9D9;         /* dividers, subtle surfaces */
+  --color-coffee: #544541;       /* main text — warm dark brown */
+  --color-coffee-soft: #6B5B57;
+  --color-cocoa: #2A2220;        /* deep near-black for footer / contrast surfaces */
+  --color-sand: #C2B19C;         /* accent — warm beige/taupe */
+  --color-sand-soft: #D9CCB8;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bone);
+  }
+  body {
+    @apply font-sans bg-bone text-coffee antialiased;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+  }
+  h1, h2, h3 {
+    @apply font-display text-coffee;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.05;
+  }
+  h4, h5 {
+    @apply font-serif text-coffee;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+  }
+  p { line-height: 1.7; }
+  ::selection { background: var(--color-sand-soft); color: var(--color-coffee); }
+  *:focus-visible {
+    outline: 1px solid var(--color-sand);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  a { color: inherit; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-coffee text-bone px-7 py-3.5 rounded-full text-[12px] uppercase tracking-[0.22em] font-semibold hover:bg-coffee-soft transition;
+    min-height: 48px;
+  }
+  .btn-sand {
+    @apply inline-flex items-center justify-center gap-2 bg-sand text-coffee px-7 py-3.5 rounded-full text-[12px] uppercase tracking-[0.22em] font-semibold hover:bg-sand-soft transition;
+    min-height: 48px;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-coffee text-coffee px-7 py-3.5 rounded-full text-[12px] uppercase tracking-[0.22em] font-semibold hover:bg-coffee hover:text-bone transition;
+    min-height: 48px;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-coffee text-[12px] uppercase tracking-[0.22em] font-semibold underline-offset-4 hover:underline transition;
+  }
+  .kicker {
+    @apply inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-coffee font-semibold;
+  }
+  .kicker::before {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--color-sand);
+  }
+  .kicker-dark {
+    @apply inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-sand-soft font-semibold;
+  }
+  .kicker-dark::before {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--color-sand);
+  }
+  .display-xl {
+    @apply font-display text-[clamp(3rem,8vw,7rem)] leading-[1] tracking-tight;
+  }
+  .display-lg {
+    @apply font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.05];
+  }
+  .display-md {
+    @apply font-display text-[clamp(2rem,4vw,3.25rem)] leading-[1.1];
+  }
+  .rule-thin {
+    height: 1px;
+    background: var(--color-coffee);
+    opacity: 0.25;
+  }
+  .card-soft {
+    @apply bg-white/60 backdrop-blur-sm rounded-3xl border border-coffee/15;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Marquee-style scrolling row used in portfolio strip */
+@keyframes drift-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.drift {
+  animation: drift-x 60s linear infinite;
+}
+.drift:hover { animation-play-state: paused; }
+
+/* Fade-in on mount */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+.rise-1 { animation-delay: .05s; }
+.rise-2 { animation-delay: .15s; }
+.rise-3 { animation-delay: .25s; }
+.rise-4 { animation-delay: .35s; }
+
+/* Gentle horizontal nudge — used on the "Sleep door →" hint */
+@keyframes nudge-x {
+  0%, 100% { transform: translateX(0); opacity: 0.7; }
+  50%      { transform: translateX(6px); opacity: 1; }
+}
+.nudge-x { animation: nudge-x 2.2s ease-in-out infinite; }
