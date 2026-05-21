@@ -18,11 +18,26 @@ function Wordmark({ onClick }: { onClick?: () => void }) {
       onClick={onClick}
       className="group flex items-center gap-2.5"
     >
-      <img
-        src="/logo-mark.png"
-        alt=""
-        className="h-10 w-auto shrink-0 md:h-12"
-      />
+      <picture>
+        <source
+          type="image/avif"
+          srcSet="/logo-mark-96.avif 96w, /logo-mark-192.avif 192w"
+          sizes="48px"
+        />
+        <source
+          type="image/webp"
+          srcSet="/logo-mark-96.webp 96w, /logo-mark-192.webp 192w"
+          sizes="48px"
+        />
+        <img
+          src="/logo-mark-96.webp"
+          alt=""
+          width={48}
+          height={48}
+          className="h-10 w-auto shrink-0 md:h-12"
+          decoding="async"
+        />
+      </picture>
       <span className="text-gradient-gold font-bold uppercase leading-none tracking-[0.05em] text-[1.35rem] md:text-[1.6rem]">
         MHA Installaties
       </span>
@@ -122,7 +137,7 @@ export default function Nav() {
         className={`fixed inset-0 z-50 bg-ink/98 backdrop-blur-xl transition-opacity duration-300 md:hidden ${
           menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
         }`}
-        aria-hidden={!menuOpen}
+        inert={!menuOpen}
       >
         <div className="flex h-full flex-col">
           <div className="container-page flex h-[72px] shrink-0 items-center justify-between">

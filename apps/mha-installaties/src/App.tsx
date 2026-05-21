@@ -1,3 +1,4 @@
+import { Suspense, lazy, useEffect, useState } from 'react';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import UspStrip from './components/UspStrip';
@@ -8,9 +9,24 @@ import Work from './components/Work';
 import Reviews from './components/Reviews';
 import Werkzaamheden from './components/Werkzaamheden';
 import Footer from './components/Footer';
-import OfferteModal from './components/OfferteModal';
 import OfferteFab from './components/OfferteFab';
-import { OfferteProvider } from './contexts/OfferteContext';
+import { OfferteProvider, useOfferte } from './contexts/OfferteContext';
+
+const OfferteModal = lazy(() => import('./components/OfferteModal'));
+
+function DeferredOfferteModal() {
+  const { isOpen } = useOfferte();
+  const [hasOpened, setHasOpened] = useState(false);
+  useEffect(() => {
+    if (isOpen) setHasOpened(true);
+  }, [isOpen]);
+  if (!hasOpened) return null;
+  return (
+    <Suspense fallback={null}>
+      <OfferteModal />
+    </Suspense>
+  );
+}
 
 export default function App() {
   return (
@@ -28,7 +44,7 @@ export default function App() {
       </main>
       <Footer />
       <OfferteFab />
-      <OfferteModal />
+      <DeferredOfferteModal />
     </OfferteProvider>
   );
 }

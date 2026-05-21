@@ -1,5 +1,6 @@
 import { Star } from 'lucide-react';
 import { about, reviewsMeta, sectionTitles } from '../content';
+import Pic from './Pic';
 
 export default function About() {
   return (
@@ -31,12 +32,15 @@ export default function About() {
               className="gold-gradient absolute -right-4 -top-4 h-28 w-28 rounded-2xl opacity-90 md:-right-6 md:-top-6 md:h-36 md:w-36"
             />
 
-            <div className="relative overflow-hidden rounded-2xl border border-line shadow-2xl shadow-black/40">
-              <img
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line shadow-2xl shadow-black/40">
+              <Pic
                 src={about.image}
                 alt={about.imageAlt}
+                width={400}
+                height={500}
+                sizes="(max-width: 768px) calc(100vw - 2.5rem), 41vw"
                 loading="lazy"
-                className="aspect-[4/5] w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover"
               />
             </div>
 

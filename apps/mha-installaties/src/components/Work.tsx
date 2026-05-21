@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { X, ChevronLeft, ChevronRight, MoveHorizontal, ZoomIn } from 'lucide-react';
 import { sectionTitles, beforeAfters, gallery } from '../content';
+import Pic from './Pic';
 
 /* ------------------------------------------------------------------ */
 /* Before / after comparison slider                                   */
@@ -85,11 +86,13 @@ function BeforeAfter({ data }: { data: BeforeAfterData }) {
           className={`relative w-full select-none overflow-hidden rounded-2xl border border-line bg-ink-3 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)] ${data.frame}`}
         >
           {/* Before (base layer) */}
-          <img
+          <Pic
             src={data.before.src}
             alt={data.before.alt}
+            width={800}
+            height={600}
+            sizes="(max-width: 1024px) 100vw, 64vw"
             loading="lazy"
-            decoding="async"
             draggable={false}
             className="absolute inset-0 h-full w-full object-cover"
           />
@@ -99,11 +102,13 @@ function BeforeAfter({ data }: { data: BeforeAfterData }) {
             className="absolute inset-0 h-full w-full overflow-hidden"
             style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
           >
-            <img
+            <Pic
               src={data.after.src}
               alt={data.after.alt}
+              width={800}
+              height={600}
+              sizes="(max-width: 1024px) 100vw, 64vw"
               loading="lazy"
-              decoding="async"
               draggable={false}
               className="absolute inset-0 h-full w-full object-cover"
             />
@@ -219,11 +224,13 @@ function Lightbox({
         className="flex max-h-full max-w-3xl flex-col items-center"
         onClick={(e) => e.stopPropagation()}
       >
-        <img
+        <Pic
           src={img.src}
           alt={img.alt}
+          width={1200}
+          height={900}
+          sizes="(max-width: 768px) calc(100vw - 2rem), min(768px, calc(100vw - 4rem))"
           loading="eager"
-          decoding="async"
           className="max-h-[78vh] w-auto rounded-xl object-contain"
         />
         <figcaption className="mt-4 flex items-center gap-3 text-sm text-bone-soft">
@@ -279,11 +286,13 @@ function GalleryTile({
       className={`group relative overflow-hidden rounded-xl border border-line bg-ink-3 sm:rounded-2xl ${tileSpans[index] ?? ''}`}
       aria-label={`Bekijk: ${item.caption}`}
     >
-      <img
+      <Pic
         src={item.src}
         alt={item.alt}
+        width={600}
+        height={400}
+        sizes="(max-width: 768px) 50vw, (max-width: 1240px) 33vw, 400px"
         loading="lazy"
-        decoding="async"
         className="h-full min-h-[9rem] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
       />
 

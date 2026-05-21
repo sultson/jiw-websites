@@ -42,6 +42,8 @@ const formWorker = createFormWorker({
   attachmentMaxTotalBytes: 60 * 1024 * 1024,
 });
 
+const ROBOTS_TXT = `User-agent: *\nAllow: /\n\nSitemap: https://mhainstallaties.nl/sitemap.xml\n`;
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -49,6 +51,18 @@ export default {
     if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
       url.pathname = url.pathname.slice(0, -1);
       return Response.redirect(url.toString(), 301);
+    }
+
+    // Serve robots.txt from the worker so Cloudflare's managed AI-audit
+    // robots transform (which injects non-standard `Content-Signal:` lines
+    // Lighthouse rejects) doesn't overwrite our clean version.
+    if (url.pathname === '/robots.txt') {
+      return new Response(ROBOTS_TXT, {
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'Cache-Control': 'public, max-age=3600',
+        },
+      });
     }
 
     if (url.pathname.startsWith('/api/')) {

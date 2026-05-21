@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Play, X } from 'lucide-react';
 import { werkzaamheden } from '../content';
+import Pic from './Pic';
 
 type Item = (typeof werkzaamheden.items)[number];
 
@@ -21,15 +22,17 @@ function Card({ item, onPlay }: { item: Item; onPlay: (id: string) => void }) {
       <button
         type="button"
         onClick={() => onPlay(item.tiktokId)}
-        aria-label={`Bekijk video: ${item.label}`}
+        aria-label={`TikTok ${item.label}`}
         className={`group ${base} cursor-pointer`}
       >
         <div className="aspect-[4/3] w-full overflow-hidden">
-          <img
+          <Pic
             src={item.src}
             alt={item.label}
+            width={360}
+            height={270}
+            sizes="(max-width: 640px) 78vw, 360px"
             loading="lazy"
-            decoding="async"
             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
         </div>
@@ -51,11 +54,13 @@ function Card({ item, onPlay }: { item: Item; onPlay: (id: string) => void }) {
   return (
     <figure className={base}>
       <div className="aspect-[4/3] w-full overflow-hidden">
-        <img
+        <Pic
           src={item.src}
           alt={item.label}
+          width={360}
+          height={270}
+          sizes="(max-width: 640px) 78vw, 360px"
           loading="lazy"
-          decoding="async"
           className="h-full w-full object-cover"
         />
       </div>

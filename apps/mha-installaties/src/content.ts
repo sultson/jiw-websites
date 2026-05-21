@@ -59,7 +59,7 @@ export const hero = {
   sub: 'MHA Installaties verzorgt cv-ketels, vloerverwarming, badkamers, ventilatie en storingen in en rond Roermond. Snel ter plaatse, eerlijk advies en netjes opgeleverd.',
   ctaPrimary: 'Gratis prijsindicatie',
   ctaSecondary: 'Bel direct',
-  image: '/hero.webp',
+  image: '/hero',
   imageAlt: 'Installateur van MHA Installaties sluit een cv-ketel aan',
 };
 
@@ -170,7 +170,7 @@ export const about = {
     'Of het nu gaat om onderhoud aan de cv-ketel, een lekkage, vloerverwarming of een complete badkamer: u heeft één aanspreekpunt dat het werk van begin tot eind netjes regelt.',
     'U krijgt heldere communicatie, een eerlijke prijs en werk dat klopt. Veiligheid staat voorop en uw woning leveren we schoon weer op.',
   ],
-  image: '/work/installateur.webp',
+  image: '/work/installateur',
   imageAlt: 'Installateur van MHA Installaties aan het werk',
 };
 
@@ -179,8 +179,8 @@ export const beforeAfters = [
   {
     title: 'Keukenleidingen verplaatst',
     body: 'Oude leidingen in de keuken gedemonteerd en strak opnieuw aangelegd. Klaar voor een nieuwe inrichting.',
-    before: { src: '/work/keuken-voor.webp', alt: 'Keukenleidingen voor de werkzaamheden' },
-    after: { src: '/work/keuken-na.webp', alt: 'Keukenleidingen netjes opnieuw aangelegd' },
+    before: { src: '/work/keuken-voor', alt: 'Keukenleidingen voor de werkzaamheden' },
+    after: { src: '/work/keuken-na', alt: 'Keukenleidingen netjes opnieuw aangelegd' },
     beforeLabel: 'Na',
     afterLabel: 'Voor',
     // Frame classes — landscape photos, so a wide frame fits without cropping.
@@ -189,8 +189,8 @@ export const beforeAfters = [
   {
     title: 'CV-ketel vervangen',
     body: 'Oude opstelling vervangen door een nieuwe cv-ketel. Strak gemonteerd, leidingwerk netjes weggewerkt en veilig opgeleverd.',
-    before: { src: '/work/boiler-na.webp', alt: 'Nieuwe cv-ketel netjes gemonteerd' },
-    after: { src: '/work/boiler-voor.jpeg', alt: 'Cv-ketelopstelling voor de werkzaamheden' },
+    before: { src: '/work/boiler-na', alt: 'Nieuwe cv-ketel netjes gemonteerd' },
+    after: { src: '/work/boiler-voor', alt: 'Cv-ketelopstelling voor de werkzaamheden' },
     beforeLabel: 'Na',
     afterLabel: 'Voor',
     // Portrait photos (3:4) — match the frame to them and cap the width so the
@@ -201,12 +201,12 @@ export const beforeAfters = [
 
 // Work gallery
 export const gallery = [
-  { src: '/work/verwarming.webp', alt: 'Aangelegde verwarmingsinstallatie met isolatie', caption: 'Verwarmingsinstallatie' },
-  { src: '/work/leidingwerk.webp', alt: 'Strak weggewerkt leidingwerk', caption: 'Leidingwerk' },
-  { src: '/work/badkamer.webp', alt: 'Badkamer en toilet werkzaamheden', caption: 'Badkamer & sanitair' },
-  { src: '/work/lekkage.webp', alt: 'Lekkage aan een kraan verholpen', caption: 'Lekkage verholpen' },
-  { src: '/work/montagewerk.webp', alt: 'Montage en installatiewerk', caption: 'Montagewerk' },
-  { src: '/work/bedrijfsbus.webp', alt: 'De bedrijfsbus van MHA Installaties', caption: 'Onderweg in Limburg' },
+  { src: '/work/verwarming', alt: 'Aangelegde verwarmingsinstallatie met isolatie', caption: 'Verwarmingsinstallatie' },
+  { src: '/work/leidingwerk', alt: 'Strak weggewerkt leidingwerk', caption: 'Leidingwerk' },
+  { src: '/work/badkamer', alt: 'Badkamer en toilet werkzaamheden', caption: 'Badkamer & sanitair' },
+  { src: '/work/lekkage', alt: 'Lekkage aan een kraan verholpen', caption: 'Lekkage verholpen' },
+  { src: '/work/montagewerk', alt: 'Montage en installatiewerk', caption: 'Montagewerk' },
+  { src: '/work/bedrijfsbus', alt: 'De bedrijfsbus van MHA Installaties', caption: 'Onderweg in Limburg' },
 ];
 
 // Real Google reviews (5,0 over 16 reviews)
@@ -294,20 +294,20 @@ export const werkzaamheden: {
   tiktokFollowers: '10,1k',
   tiktokUrl: 'https://www.tiktok.com/@installatietechni8',
   items: [
-    { type: 'image', src: '/werk/cv-ketel.webp', label: 'CV-ketel plaatsen' },
-    { type: 'video', src: '/werk/social/7597896644809559329.webp', label: 'CV-ketel vervangen', tiktokId: '7597896644809559329' },
-    { type: 'image', src: '/werk/vloerverwarming.webp', label: 'Vloerverwarming aanleggen' },
-    { type: 'video', src: '/werk/social/7466911724503895318.webp', label: 'CV-ketel onderhoud', tiktokId: '7466911724503895318' },
-    { type: 'image', src: '/werk/radiator.webp', label: 'Radiatoren plaatsen' },
-    { type: 'video', src: '/werk/social/7506578892879105312.webp', label: 'Nieuwe cv-ketel', tiktokId: '7506578892879105312' },
-    { type: 'image', src: '/werk/verdeler.webp', label: 'Cv-verdeler installeren' },
-    { type: 'image', src: '/werk/badkamer.webp', label: 'Badkamer en sanitair' },
-    { type: 'video', src: '/werk/social/7499208676780166422.webp', label: 'CV-ketel geïnstalleerd', tiktokId: '7499208676780166422' },
-    { type: 'image', src: '/werk/ventilatie.webp', label: 'Ventilatie onderhouden' },
-    { type: 'video', src: '/werk/social/7517776740278652182.webp', label: 'Leidingwerk en gas', tiktokId: '7517776740278652182' },
-    { type: 'image', src: '/werk/leidingwerk.webp', label: 'Leidingwerk' },
-    { type: 'video', src: '/werk/social/7609399771618413857.webp', label: 'Afvoer en leidingen', tiktokId: '7609399771618413857' },
-    { type: 'image', src: '/werk/gaswerk.webp', label: 'Gas en aansluitingen' },
+    { type: 'image', src: '/werk/cv-ketel', label: 'CV-ketel plaatsen' },
+    { type: 'video', src: '/werk/social/7597896644809559329', label: 'CV-ketel vervangen', tiktokId: '7597896644809559329' },
+    { type: 'image', src: '/werk/vloerverwarming', label: 'Vloerverwarming aanleggen' },
+    { type: 'video', src: '/werk/social/7466911724503895318', label: 'CV-ketel onderhoud', tiktokId: '7466911724503895318' },
+    { type: 'image', src: '/werk/radiator', label: 'Radiatoren plaatsen' },
+    { type: 'video', src: '/werk/social/7506578892879105312', label: 'Nieuwe cv-ketel', tiktokId: '7506578892879105312' },
+    { type: 'image', src: '/werk/verdeler', label: 'Cv-verdeler installeren' },
+    { type: 'image', src: '/werk/badkamer', label: 'Badkamer en sanitair' },
+    { type: 'video', src: '/werk/social/7499208676780166422', label: 'CV-ketel geïnstalleerd', tiktokId: '7499208676780166422' },
+    { type: 'image', src: '/werk/ventilatie', label: 'Ventilatie onderhouden' },
+    { type: 'video', src: '/werk/social/7517776740278652182', label: 'Leidingwerk en gas', tiktokId: '7517776740278652182' },
+    { type: 'image', src: '/werk/leidingwerk', label: 'Leidingwerk' },
+    { type: 'video', src: '/werk/social/7609399771618413857', label: 'Afvoer en leidingen', tiktokId: '7609399771618413857' },
+    { type: 'image', src: '/werk/gaswerk', label: 'Gas en aansluitingen' },
   ],
 };
 

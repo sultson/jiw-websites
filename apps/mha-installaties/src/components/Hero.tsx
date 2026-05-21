@@ -1,6 +1,7 @@
 import { Phone, Star, Check } from 'lucide-react';
 import { useOfferte } from '../contexts/OfferteContext';
 import { business, hero, heroChips, reviewsMeta } from '../content';
+import Pic from './Pic';
 
 function Stars({ size = 16 }: { size?: number }) {
   return (
@@ -86,12 +87,16 @@ export default function Hero() {
                 aria-hidden="true"
               />
 
-              <div className="relative overflow-hidden rounded-2xl border border-line shadow-2xl shadow-black/50">
-                <img
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line shadow-2xl shadow-black/50">
+                <Pic
                   src={hero.image}
                   alt={hero.imageAlt}
+                  width={400}
+                  height={500}
+                  sizes="(max-width: 768px) calc(100vw - 2.5rem), 41vw"
                   loading="eager"
-                  className="aspect-[4/5] w-full object-cover object-[38%_center]"
+                  fetchPriority="high"
+                  className="absolute inset-0 h-full w-full object-cover object-[38%_center]"
                 />
               </div>
 

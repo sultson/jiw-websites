@@ -166,11 +166,27 @@ export default function Footer() {
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {/* Brand */}
             <div>
-              <img
-                src="/logo-full.png"
-                alt={business.name}
-                className="h-10 w-auto"
-              />
+              <picture>
+                <source
+                  type="image/avif"
+                  srcSet="/logo-full-192.avif 192w, /logo-full-384.avif 384w"
+                  sizes="85px"
+                />
+                <source
+                  type="image/webp"
+                  srcSet="/logo-full-192.webp 192w, /logo-full-384.webp 384w"
+                  sizes="85px"
+                />
+                <img
+                  src="/logo-full-192.webp"
+                  alt={business.name}
+                  width={170}
+                  height={80}
+                  className="h-10 w-auto"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <p className="mt-4 text-sm font-medium text-gold">{business.tagline}</p>
               <p className="mt-2 max-w-xs text-sm text-bone-soft">
                 Loodgieter en installateur in {address.city} en omstreken.
