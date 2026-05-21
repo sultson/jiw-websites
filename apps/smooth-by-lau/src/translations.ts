@@ -93,6 +93,7 @@ export const translations: Record<Lang, Dict> = {
     'gallery.kicker':     'Mijn werk',
     'gallery.title':      'Resultaten',
     'gallery.sub':        'Tik op een foto voor een grotere weergave.',
+    'gallery.alle':       'Alle',
     'gallery.ontharing':  'Ontharing',
     'gallery.wenkbrauw':  'Wenkbrauwen',
 
@@ -224,6 +225,7 @@ export const translations: Record<Lang, Dict> = {
     'gallery.kicker':     'My work',
     'gallery.title':      'Results',
     'gallery.sub':        'Tap an image to view larger.',
+    'gallery.alle':       'All',
     'gallery.ontharing':  'Hair removal',
     'gallery.wenkbrauw':  'Eyebrows',
 

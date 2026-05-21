@@ -13,19 +13,24 @@ const ontharingImages: Img[] = [
 ];
 
 const wenkbrauwImages: Img[] = [
-  { src: '/resultaat-wenkbrauwen.webp',     alt: 'Before & after wenkbrauw behandeling',    cls: 'aspect-square' },
-  { src: '/resultaat-wenkbrauw-closeup.webp', alt: 'Before & after wenkbrauw close-up',     cls: 'aspect-square' },
-  { src: '/resultaat-oksel-2.webp',         alt: 'Before & after wenkbrauw behandeling',    cls: 'aspect-square' },
-  { src: '/resultaat-wenkbrauwen-4.webp',   alt: 'Before & after wenkbrauw behandeling',    cls: 'aspect-square' },
+  { src: '/resultaat-wenkbrauwen.webp',       alt: 'Wenkbrauw behandeling resultaat',        cls: 'aspect-square' },
+  { src: '/sbl-after.webp',                   alt: 'Wenkbrauw behandeling resultaat',        cls: 'aspect-square' },
+  { src: '/resultaat-wenkbrauw-closeup.webp', alt: 'Wenkbrauw behandeling close-up',         cls: 'aspect-square' },
+  { src: '/sbl-before.webp',                  alt: 'Wenkbrauw behandeling resultaat',        cls: 'aspect-square' },
+  { src: '/resultaat-oksel-2.webp',           alt: 'Wenkbrauw behandeling resultaat',        cls: 'aspect-square' },
+  { src: '/resultaat-wenkbrauwen-4.webp',     alt: 'Wenkbrauw behandeling resultaat',        cls: 'aspect-square' },
 ];
 
-type Tab = 'ontharing' | 'wenkbrauw';
+type Tab = 'alle' | 'ontharing' | 'wenkbrauw';
 
 export default function Gallery({ t }: Props) {
-  const [tab, setTab] = useState<Tab>('ontharing');
+  const [tab, setTab] = useState<Tab>('alle');
   const [idx, setIdx] = useState<number | null>(null);
 
-  const images = tab === 'ontharing' ? ontharingImages : wenkbrauwImages;
+  const images =
+    tab === 'ontharing' ? ontharingImages
+    : tab === 'wenkbrauw' ? wenkbrauwImages
+    : [...wenkbrauwImages, ...ontharingImages];
 
   return (
     <section id="fotos" className="py-20 md:py-28">
@@ -38,7 +43,7 @@ export default function Gallery({ t }: Props) {
 
         <div className="flex justify-center mb-8">
           <div className="inline-flex rounded-full border border-espresso/15 p-1 bg-cream shadow-sm">
-            {(['ontharing', 'wenkbrauw'] as Tab[]).map(key => (
+            {(['alle', 'ontharing', 'wenkbrauw'] as Tab[]).map(key => (
               <button
                 key={key}
                 onClick={() => { setTab(key); setIdx(null); }}
