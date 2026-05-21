@@ -144,9 +144,6 @@ export default function Footer() {
                 ))}
               </ul>
 
-              <p className="mt-6 text-sm text-mute">
-                Spoed of storingen zijn ook buiten openingstijden mogelijk.
-              </p>
             </div>
           </div>
 

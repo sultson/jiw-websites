@@ -33,15 +33,7 @@ export const business = {
     tiktok: 'https://www.tiktok.com/@installatietechni8',
     youtube: 'https://www.youtube.com/@installatietechni8',
   },
-  hours: [
-    { day: 'Maandag', time: '17:00 tot 20:00' },
-    { day: 'Dinsdag', time: '17:00 tot 20:00' },
-    { day: 'Woensdag', time: '17:00 tot 20:00' },
-    { day: 'Donderdag', time: '17:00 tot 20:00' },
-    { day: 'Vrijdag', time: '17:00 tot 20:00' },
-    { day: 'Zaterdag', time: '08:00 tot 13:00' },
-    { day: 'Zondag', time: 'Op afspraak' },
-  ],
+  hours: [{ day: 'Maandag t/m zondag', time: '24/7 bereikbaar' }],
   serviceArea: [
     'Roermond',
     'Swalmen',
