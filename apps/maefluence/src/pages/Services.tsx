@@ -67,13 +67,7 @@ export default function Services({ t }: Props) {
                   </ul>
 
                   <div className={`mt-8 pt-6 border-t ${highlight ? 'border-bone/15' : 'border-coffee/20'}`}>
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-display text-4xl">{t(`services.${s.id}.price`)}</span>
-                    </div>
-                    <p className={`mt-1 text-[11px] uppercase tracking-[0.2em] ${highlight ? 'text-bone/75' : 'text-coffee/80'}`}>
-                      {t(`services.${s.id}.priceSuffix`)}
-                    </p>
-                    <p className={`mt-4 text-xs ${highlight ? 'text-bone/75' : 'text-coffee/80'}`}>
+                    <p className={`text-xs ${highlight ? 'text-bone/75' : 'text-coffee/80'}`}>
                       {t(`services.${s.id}.term`)}
                     </p>
                   </div>
@@ -87,9 +81,8 @@ export default function Services({ t }: Props) {
             <h3 className="font-display text-2xl lg:text-3xl mb-6">{t('services.addons.title')}</h3>
             <ul className="divide-y divide-coffee/10">
               {(['a1', 'a2', 'a3'] as const).map(k => (
-                <li key={k} className="flex items-center justify-between py-4 text-sm lg:text-base">
-                  <span className="text-coffee/85">{t(`services.addons.${k}`)}</span>
-                  <span className="font-serif text-xl text-coffee">{t(`services.addons.${k}.price`)}</span>
+                <li key={k} className="py-4 text-sm lg:text-base text-coffee/85">
+                  {t(`services.addons.${k}`)}
                 </li>
               ))}
             </ul>
@@ -131,28 +124,31 @@ export default function Services({ t }: Props) {
                   ))}
                 </ul>
               </div>
-
-              <div className="rounded-2xl bg-coffee text-bone p-6">
-                <p className="text-sm">{t('services.ugc.price1')}</p>
-                <p className="text-sm text-bone/70 mt-2">{t('services.ugc.price2')}</p>
-              </div>
             </div>
           </div>
 
-          {/* UGC examples — card-like video tiles, same look as the snippets rail */}
-          <div className="mt-16 lg:mt-24 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-md sm:max-w-none mx-auto">
-            {ugcExamples.map(item => (
-              <div
-                key={item.id}
-                className="relative overflow-hidden rounded-3xl bg-coffee/15 aspect-[9/16]"
-              >
-                <LazyVideo
-                  src={item.src}
-                  poster={item.poster}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
-            ))}
+        </div>
+
+        {/* UGC examples — horizontal scroll rail; centers when 3 items fit, swipes on mobile */}
+        <div className="mt-16 lg:mt-24 mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="overflow-x-auto no-scrollbar pb-2" style={{ scrollSnapType: 'x mandatory' }}>
+            <div className="flex gap-6 min-w-full" style={{ justifyContent: 'safe center' }}>
+              {ugcExamples.map(item => (
+                <div
+                  key={item.id}
+                  className="shrink-0 w-[11.25rem] md:w-[13.5rem] lg:w-[24rem]"
+                  style={{ scrollSnapAlign: 'start' }}
+                >
+                  <div className="relative overflow-hidden rounded-3xl bg-coffee/15 h-[20rem] md:h-[24rem] lg:h-[42.66rem]">
+                    <LazyVideo
+                      src={item.src}
+                      poster={item.poster}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

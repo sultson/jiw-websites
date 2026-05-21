@@ -135,7 +135,7 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     'contact.kicker': 'Contact',
     'contact.title': 'Laten we kennismaken.',
-    'contact.lead': 'De makkelijkste manier om te starten: een gezellige kennismaking via Cal.com. Liever bellen, mailen of een DM? Ook prima.',
+    'contact.lead': 'De makkelijkste manier om te starten: een gezellige online kennismaking. Liever bellen, mailen of een DM? Ook prima.',
     'contact.book': 'Plan een 30 min kennismaking',
     'contact.email': 'Mail',
     'contact.tel': 'Bel of WhatsApp',
@@ -288,7 +288,7 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     'contact.kicker': 'Contact',
     'contact.title': 'Let’s meet.',
-    'contact.lead': 'The easiest way to start: a relaxed 30 min intro on Cal.com. Prefer a call, email or DM? Also great.',
+    'contact.lead': 'The easiest way to start: a relaxed online intro. Prefer a call, email or DM? Also great.',
     'contact.book': 'Book a 30 min intro',
     'contact.email': 'Email',
     'contact.tel': 'Call or WhatsApp',
