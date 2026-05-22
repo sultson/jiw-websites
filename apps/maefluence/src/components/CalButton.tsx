@@ -6,7 +6,7 @@ type Props = {
   className?: string;
 };
 
-const CAL_LINK = 'jouw-ideale-website-ut6jew/30min';
+const CAL_LINK = 'maefluence-unawet/30min';
 const CAL_NAMESPACE = '30min';
 
 let calInitPromise: Promise<void> | null = null;

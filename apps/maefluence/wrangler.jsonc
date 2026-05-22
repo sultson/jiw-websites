@@ -12,6 +12,14 @@
   },
   "routes": [
     {
+      "pattern": "maefluence.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.maefluence.nl",
+      "custom_domain": true
+    },
+    {
       "pattern": "maefluence.jouwidealewebsite.nl",
       "custom_domain": true
     }
