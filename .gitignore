@@ -18,3 +18,5 @@ apps/kok/data
 apps/de-vest/data
 apps/manly-clinic/data
 apps/xenon/data
+apps/*/scraped-media
+/*.png
