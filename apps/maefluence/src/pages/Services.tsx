@@ -87,6 +87,47 @@ export default function Services({ t }: Props) {
               ))}
             </ul>
           </div>
+
+          {/* Websites */}
+          <div className="mt-8 rounded-3xl bg-bone border border-coffee/20 p-8 lg:p-12">
+            <h3 className="font-display text-2xl lg:text-3xl">
+              {t('services.websites.title')}
+              <span className="block mt-1 italic font-serif text-xl lg:text-2xl text-sand">
+                {t('services.websites.tag')}
+              </span>
+            </h3>
+            <p className="mt-6 text-sm lg:text-base text-coffee/85 leading-relaxed">
+              {t('services.websites.intro1')}
+            </p>
+            <p className="mt-4 text-sm lg:text-base text-coffee/85 leading-relaxed">
+              {t('services.websites.intro2')}
+            </p>
+
+            <div className="mt-10 grid md:grid-cols-2 gap-10 lg:gap-14">
+              <div>
+                <h4 className="font-serif text-xl mb-5">{t('services.websites.why.title')}</h4>
+                <ul className="space-y-3 text-sm text-coffee/85">
+                  {(['1', '2', '3'] as const).map(k => (
+                    <li key={k} className="flex items-start gap-3">
+                      <Check size={14} className="mt-1 text-sand shrink-0" strokeWidth={1.5} />
+                      <span>{t(`services.websites.why.${k}`)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-serif text-xl mb-5">{t('services.websites.includes.title')}</h4>
+                <ul className="space-y-3 text-sm text-coffee/85">
+                  {(['i1', 'i2', 'i3', 'i4'] as const).map(k => (
+                    <li key={k} className="flex items-start gap-3">
+                      <Check size={14} className="mt-1 text-sand shrink-0" strokeWidth={1.5} />
+                      <span>{t(`services.websites.${k}`)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

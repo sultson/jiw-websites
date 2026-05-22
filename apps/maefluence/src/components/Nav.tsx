@@ -92,15 +92,18 @@ export default function Nav({ lang, setLang, t, route, go }: Props) {
             <LangToggle lang={lang} setLang={setLang} />
           </div>
 
-          <button
-            type="button"
-            onClick={() => setOpen(o => !o)}
-            className={`md:hidden p-2 -mr-2 transition ${textColor}`}
-            aria-label={open ? 'Sluit menu' : 'Open menu'}
-            aria-expanded={open}
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <div className={`md:hidden flex items-center gap-2 transition ${textColor}`}>
+            <LangToggle lang={lang} setLang={setLang} />
+            <button
+              type="button"
+              onClick={() => setOpen(o => !o)}
+              className="p-2 -mr-2"
+              aria-label={open ? 'Sluit menu' : 'Open menu'}
+              aria-expanded={open}
+            >
+              {open ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
       </header>
 

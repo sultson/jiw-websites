@@ -7,11 +7,11 @@ type Props = {
 
 export default function LangToggle({ lang, setLang }: Props) {
   return (
-    <div className="inline-flex items-center text-[11px] tracking-[0.32em] uppercase text-coffee/80">
+    <div className="inline-flex items-center text-[11px] tracking-[0.32em] uppercase">
       <button
         type="button"
         onClick={() => setLang('nl')}
-        className={`px-2 py-1 transition ${lang === 'nl' ? 'text-coffee' : 'hover:text-coffee'}`}
+        className={`px-2 py-1 transition ${lang === 'nl' ? 'opacity-100' : 'opacity-55 hover:opacity-100'}`}
         aria-pressed={lang === 'nl'}
       >
         NL
@@ -20,7 +20,7 @@ export default function LangToggle({ lang, setLang }: Props) {
       <button
         type="button"
         onClick={() => setLang('en')}
-        className={`px-2 py-1 transition ${lang === 'en' ? 'text-coffee' : 'hover:text-coffee'}`}
+        className={`px-2 py-1 transition ${lang === 'en' ? 'opacity-100' : 'opacity-55 hover:opacity-100'}`}
         aria-pressed={lang === 'en'}
       >
         EN
