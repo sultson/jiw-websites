@@ -36,13 +36,13 @@
   "send_email": [
     {
       "name": "LEAD_EMAIL",
-      "allowed_sender_addresses": ["offerte@notify.jouwidealewebsite.nl"]
+      "allowed_sender_addresses": ["offerte@notify.adriaantotaalonderhoud.nl"]
     }
   ],
   "vars": {
     "SITE_ID": "adriaan-totaalonderhoud",
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
-    "LEAD_SENDER": "offerte@notify.jouwidealewebsite.nl",
+    "LEAD_RECIPIENT": "info@adriaantotaalonderhoud.nl",
+    "LEAD_SENDER": "offerte@notify.adriaantotaalonderhoud.nl",
     "TURNSTILE_SECRET_KEY": "dev"
   }
 }
