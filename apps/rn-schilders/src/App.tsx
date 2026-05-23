@@ -1493,9 +1493,9 @@ function Hero({ openQuote }: { openQuote: () => void }) {
               Gratis prijsindicatie
               <ArrowRight size={18} />
             </button>
-            <a href={phoneHref} className="btn-light w-full md:w-auto">
+            <a href={phoneHref} draggable={false} className="btn-light w-full md:w-auto">
               <Phone size={18} />
-              {phoneDisplay}
+              <span className="select-text cursor-text">{phoneDisplay}</span>
             </a>
           </div>
 
@@ -2542,14 +2542,14 @@ function ContactLine({
       <Icon className="mt-1 shrink-0 text-roller" size={21} />
       <div>
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-graphite">{label}</p>
-        <p className="mt-1 font-semibold text-navy">{value}</p>
+        <p className="mt-1 font-semibold text-navy"><span className="select-text cursor-text">{value}</span></p>
       </div>
     </div>
   );
 
   if (!href) return content;
   return (
-    <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined}>
+    <a href={href} draggable={false} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noreferrer' : undefined}>
       {content}
     </a>
   );
@@ -3043,7 +3043,7 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
               <div className="flex flex-col gap-3 md:col-span-2 md:flex-row md:items-center md:justify-between">
                 <p className="text-sm leading-6 text-graphite">
                   Liever direct bellen? RN Schilders is bereikbaar via{' '}
-                  <a href={phoneHref} className="font-bold text-navy underline decoration-roller/50 underline-offset-4">
+                  <a href={phoneHref} draggable={false} className="font-bold text-navy underline decoration-roller/50 underline-offset-4">
                     {phoneDisplay}
                   </a>
                   .
@@ -3172,9 +3172,9 @@ function ServicePage({ service, openQuote }: { service: Service; openQuote: () =
                 Gratis prijsindicatie
                 <ArrowRight size={17} />
               </button>
-              <a href={phoneHref} className="btn-light">
+              <a href={phoneHref} draggable={false} className="btn-light">
                 <Phone size={17} />
-                {phoneDisplay}
+                <span className="select-text cursor-text">{phoneDisplay}</span>
               </a>
             </div>
           </div>
@@ -3291,9 +3291,9 @@ function WorkAreaPage({ openQuote }: { openQuote: () => void }) {
                 Offerte aanvragen
                 <ArrowRight size={17} />
               </button>
-              <a href={phoneHref} className="btn-light">
+              <a href={phoneHref} draggable={false} className="btn-light">
                 <Phone size={17} />
-                {phoneDisplay}
+                <span className="select-text cursor-text">{phoneDisplay}</span>
               </a>
             </div>
           </div>
@@ -3435,9 +3435,9 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
               <button type="button" onClick={openQuote} className="btn-primary w-full">
                 Offerte aanvragen
               </button>
-              <a href={phoneHref} className="btn-outline w-full">
+              <a href={phoneHref} draggable={false} className="btn-outline w-full">
                 <Phone size={17} />
-                {phoneDisplay}
+                <span className="select-text cursor-text">{phoneDisplay}</span>
               </a>
             </div>
           </aside>
@@ -3553,7 +3553,7 @@ function TermsPage({ openQuote }: { openQuote: () => void }) {
                 </a>
               </p>
               <p>
-                <a href={phoneHref} className="underline decoration-roller-soft/70 underline-offset-4">
+                <a href={phoneHref} draggable={false} className="underline decoration-roller-soft/70 underline-offset-4">
                   085 060 6309
                 </a>
               </p>
