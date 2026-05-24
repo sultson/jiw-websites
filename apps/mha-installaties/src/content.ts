@@ -72,10 +72,17 @@ export const reviewsMeta = {
 };
 
 // USP chips under the hero
-export const heroChips = ['Vaak dezelfde dag', 'Eerlijke prijs vooraf', 'Netjes opgeleverd'];
+export const heroChips = ['Vaak dezelfde dag', 'Eerlijke prijs vooraf', '10+ jaar ervaring'];
 
 // USP cards
-export const usps = [
+type Usp = {
+  title: string;
+  body: string;
+  /** Optional badge image (base path, no extension) shown instead of the Lucide icon. */
+  badge?: { src: string; alt: string };
+};
+
+export const usps: Usp[] = [
   {
     title: 'Snel ter plaatse',
     body: 'Bij storingen en lekkages reageren we snel, vaak nog dezelfde dag.',
@@ -85,12 +92,12 @@ export const usps = [
     body: 'Van cv-ketel tot badkamer. U regelt alles met Youssef, persoonlijk.',
   },
   {
-    title: 'Eerlijk advies',
-    body: 'Duidelijke prijs en uitleg vooraf. Geen verrassingen op de factuur.',
-  },
-  {
-    title: 'Netjes en veilig',
-    body: 'Secuur werk, met aandacht voor veiligheid, en schoon opgeleverd.',
+    title: 'Koolmonoxide-vrij',
+    body: 'Werkzaam volgens het CO-vrij keurmerk van de Rijksoverheid. Een veilige installatie, gecontroleerd op koolmonoxide.',
+    badge: {
+      src: '/keurmerk-co-vrij',
+      alt: 'CO-vrij keurmerk Rijksoverheid: koolmonoxidevrije en veilige installatie',
+    },
   },
 ];
 
