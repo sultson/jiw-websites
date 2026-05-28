@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Italiana&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Italiana", "Cormorant Garamond", serif;
+
+  /* Editorial gray, per brief */
+  --color-paper: #F1F1F1;
+  --color-paper-soft: #E7E7E7;
+  --color-white-warm: #FAFAFA;
+
+  /* Primary text — true black per brief */
+  --color-ink: #0A0A0A;
+  --color-ink-soft: #2A2A2A;
+  --color-mute: #6E6E6E;
+
+  /* Signature accent — soft champagne, picks up the salon's clean/herfst tones */
+  --color-champagne: #B89274;
+  --color-champagne-soft: #D8BFA6;
+  --color-blush: #E8D7C7;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ink);
+  }
+  body {
+    @apply font-sans bg-paper text-ink antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-serif text-ink;
+    letter-spacing: -0.015em;
+  }
+  h1 { font-weight: 400; }
+  h2 { font-weight: 400; }
+  ::selection { background: var(--color-ink); color: var(--color-paper); }
+  *:focus-visible {
+    outline: 2px solid var(--color-champagne);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-ink text-paper px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-ink-soft;
+    min-height: 44px;
+  }
+  .btn-champagne {
+    @apply inline-flex items-center justify-center gap-2 bg-champagne text-white px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:opacity-90;
+    min-height: 44px;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/20 text-ink px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:border-ink/40 hover:bg-white;
+    min-height: 44px;
+  }
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2 border border-white/35 text-white px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-white/10;
+    min-height: 44px;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-ink px-4 py-2 rounded-full text-sm font-medium hover:bg-black/5;
+    min-height: 40px;
+  }
+  .kicker {
+    @apply inline-block text-[11px] uppercase tracking-[0.32em] text-champagne font-medium;
+  }
+  .card {
+    @apply bg-white rounded-xl border border-ink/8 shadow-[0_1px_2px_rgba(0,0,0,0.04)];
+  }
+  .field {
+    @apply w-full px-4 py-3 rounded-xl border border-ink/15 bg-white text-ink placeholder:text-ink/40 focus:border-champagne focus:outline-none;
+    min-height: 48px;
+  }
+  .hairline {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(10,10,10,0.18), transparent);
+  }
+}
+
+@keyframes marquee-rtl {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.marquee-viewport {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-rtl 60s linear infinite;
+  will-change: transform;
+}
+.marquee-viewport:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
