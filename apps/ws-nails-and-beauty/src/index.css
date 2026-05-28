@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
+
+  /* Soft porcelain backdrop, like a fresh manicure on linen */
+  --color-porcelain: #FBF7F2;
+  --color-porcelain-2: #F4ECE2;
+  --color-blush: #F0DDD0;
+  --color-blush-soft: #F8EAE0;
+
+  /* Deep mauve, the signature shade */
+  --color-plum: #2A1820;
+  --color-plum-soft: #4B2C3A;
+
+  /* Rose champagne, used like the gleam of gel */
+  --color-rose: #C8806B;
+  --color-rose-soft: #D9A693;
+
+  /* Subtle accent for chips and underlines */
+  --color-ink: #1C1115;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-plum);
+  }
+  body {
+    @apply font-sans bg-porcelain text-plum antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-serif text-plum;
+    letter-spacing: -0.015em;
+  }
+  h1 { font-weight: 400; }
+  h2 { font-weight: 400; }
+  ::selection { background: var(--color-rose); color: white; }
+  *:focus-visible {
+    outline: 2px solid var(--color-rose);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-plum text-porcelain px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-plum-soft;
+    min-height: 44px;
+  }
+  .btn-rose {
+    @apply inline-flex items-center justify-center gap-2 bg-rose text-porcelain px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:opacity-90;
+    min-height: 44px;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-plum/20 text-plum px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:border-plum/40 hover:bg-white;
+    min-height: 44px;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-plum px-4 py-2 rounded-full text-sm font-medium hover:bg-black/5;
+    min-height: 40px;
+  }
+  .kicker {
+    @apply inline-block text-[11px] uppercase tracking-[0.24em] text-rose font-medium;
+  }
+  .card {
+    @apply bg-white/75 backdrop-blur-sm rounded-2xl border border-plum/5 shadow-[0_1px_2px_rgba(42,24,32,0.04)];
+  }
+  .field {
+    @apply w-full px-4 py-3 rounded-xl border border-plum/15 bg-white text-plum placeholder:text-plum/40 focus:border-rose focus:outline-none;
+    min-height: 48px;
+  }
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Hero collage tiles */
+.hero-tile {
+  position: absolute;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.55), 0 4px 20px -10px rgba(0, 0, 0, 0.35);
+  background: var(--color-porcelain-2);
+  will-change: transform;
+}
+.hero-tile img, .hero-tile video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Subtle floating animation, perf-cheap (transform-only) */
+@keyframes drift-a { 0%,100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(0,-8px,0); } }
+@keyframes drift-b { 0%,100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(0,6px,0); } }
+@keyframes drift-c { 0%,100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(4px,-4px,0); } }
+.hero-anim-a { animation: drift-a 11s ease-in-out infinite; }
+.hero-anim-b { animation: drift-b 13s ease-in-out infinite; }
+.hero-anim-c { animation: drift-c 15s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-anim-a, .hero-anim-b, .hero-anim-c { animation: none; }
+}
+
+/* Marquee */
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee-x 60s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
