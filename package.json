@@ -14,12 +14,14 @@
     "dev:nail-it-rosmalen": "pnpm --filter @jiw/nail-it-rosmalen dev",
     "dev:anart": "pnpm --filter @jiw/anart dev",
     "dev:claires-skincare": "pnpm --filter @jiw/claires-skincare dev",
+    "dev:salon-lazoa": "pnpm --filter @jiw/salon-lazoa dev",
     "dev:smooth-by-lau": "pnpm --filter @jiw/smooth-by-lau dev",
     "dev:rn-schilders": "pnpm --filter @jiw/rn-schilders dev",
     "dev:beautique-jeanine": "pnpm --filter @jiw/beautique-jeanine dev",
     "dev:xenon": "pnpm --filter @jiw/xenon dev",
     "dev:adriaan-totaalonderhoud": "pnpm --filter @jiw/adriaan-totaalonderhoud dev",
-    "dev:maefluence": "pnpm --filter @jiw/maefluence dev"
+    "dev:maefluence": "pnpm --filter @jiw/maefluence dev",
+    "dev:zk-beauty": "pnpm --filter @jiw/zk-beauty dev"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

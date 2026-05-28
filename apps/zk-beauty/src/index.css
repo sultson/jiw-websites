@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif:   "Cormorant Garamond", Georgia, serif;
+  --font-display: "Italiana", "Cormorant Garamond", Georgia, serif;
+
+  /* Ivory cream — matches the salon brand-mark background */
+  --color-ivory:        #F8F4ED;
+  --color-ivory-soft:   #F2EBE0;
+  --color-sand:         #E5D6C2;
+  --color-sand-soft:    #EFE5D5;
+
+  /* Warm near-black */
+  --color-ink:          #1A1816;
+  --color-ink-soft:     #2D2A26;
+  --color-ink-mute:     #6B6358;
+
+  /* Warm gold accent — the gold rule in the brand-mark */
+  --color-gold:         #B8956A;
+  --color-gold-soft:    #D4B68D;
+  --color-gold-deep:    #8E6F4D;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ivory);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply font-sans bg-ivory text-ink antialiased;
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    @apply text-ink;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    line-height: 1.05;
+  }
+  ::selection { background: var(--color-gold); color: var(--color-ivory); }
+  *:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-ink text-ivory px-7 py-3.5 rounded-full text-xs font-medium tracking-[0.18em] uppercase hover:bg-ink-soft transition-colors;
+    min-height: 48px;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 bg-gold text-ivory px-7 py-3.5 rounded-full text-xs font-medium tracking-[0.18em] uppercase hover:bg-gold-deep transition-colors;
+    min-height: 48px;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/25 text-ink px-6 py-3 rounded-full text-xs font-medium tracking-[0.18em] uppercase hover:border-ink/55 hover:bg-ink hover:text-ivory transition-colors;
+    min-height: 44px;
+  }
+  .btn-ivory {
+    @apply inline-flex items-center justify-center gap-2 bg-ivory text-ink px-6 py-3 rounded-full text-xs font-medium tracking-[0.18em] uppercase hover:bg-sand-soft transition-colors;
+    min-height: 44px;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-ink px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase hover:bg-ink/5 transition-colors;
+  }
+  .kicker {
+    @apply inline-block text-[10px] font-medium tracking-[0.32em] uppercase text-gold-deep;
+  }
+  .card {
+    @apply bg-ivory rounded-2xl border border-ink/8 shadow-[0_2px_4px_rgba(26,24,22,0.04)];
+  }
+
+  /* Editorial section header — gold rule + small caps kicker */
+  .gold-rule {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: var(--color-gold);
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .gold-rule::before, .gold-rule::after {
+    content: "";
+    height: 1px;
+    width: 2.25rem;
+    background: currentColor;
+    opacity: 0.55;
+  }
+
+  /* Logo monogram used in nav */
+  .zk-mark {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+}
+
+/* ---- Marquee (auto-scrolling row) ---- */
+@keyframes marquee-x {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 48s linear infinite;
+  will-change: transform;
+}
+.marquee-viewport:hover .marquee-track,
+.marquee-viewport:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
