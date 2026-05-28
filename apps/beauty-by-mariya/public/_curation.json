@@ -1,0 +1,600 @@
+{
+  "generatedAt": "2026-05-26T17:57:07.096Z",
+  "files": [
+    {
+      "file": "hero-01.webp",
+      "category": "hero",
+      "source": {
+        "account": "gel.lakkk",
+        "shortCode": "C1RXEYpNw9Z"
+      },
+      "alt": {
+        "nl": "Glanzende zwarte gelnagels met sparkle",
+        "en": "Glossy black gel nails with glitter accent"
+      }
+    },
+    {
+      "file": "hero-02.webp",
+      "category": "hero",
+      "source": {
+        "account": "levytska.permanent",
+        "shortCode": "DWQqGumiMeb"
+      },
+      "alt": {
+        "nl": "Permanente make-up lippen close-up",
+        "en": "Permanent makeup lips close-up"
+      }
+    },
+    {
+      "file": "hero-03.webp",
+      "category": "hero",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "Cz4duOHLFAk"
+      },
+      "alt": {
+        "nl": "Lange blonde highlights styling",
+        "en": "Long blonde highlights styling"
+      }
+    },
+    {
+      "file": "hero-04.webp",
+      "category": "hero",
+      "source": {
+        "account": "gel.lakkk",
+        "shortCode": "CzMDfI9NR-x"
+      },
+      "alt": {
+        "nl": "Donkere bordeaux nagels met shimmer",
+        "en": "Deep burgundy nails with shimmer"
+      }
+    },
+    {
+      "file": "hero-05.webp",
+      "category": "hero",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "CwdjIgHNXf2"
+      },
+      "alt": {
+        "nl": "Brow lamination behandeling",
+        "en": "Brow lamination treatment"
+      }
+    },
+    {
+      "file": "hero-06.webp",
+      "category": "hero",
+      "source": {
+        "account": "gel.lakkk",
+        "shortCode": "CqIZ4iutVrp"
+      },
+      "alt": {
+        "nl": "Natuurlijke nude manicure",
+        "en": "Natural nude manicure"
+      }
+    },
+    {
+      "file": "hero.webp",
+      "category": "hero-feature",
+      "source": {
+        "account": "gel.lakkk",
+        "shortCode": "C1RW1G5NaEq"
+      },
+      "alt": {
+        "nl": "Winterse nagelkunst met sneeuwvlokken en glitter",
+        "en": "Winter nail art with snowflakes and glitter"
+      }
+    },
+    {
+      "file": "team-mariya.webp",
+      "category": "team",
+      "source": {
+        "account": "levytska.permanent",
+        "shortCode": "DXT1YcqCLXe"
+      },
+      "alt": {
+        "nl": "Mariya, eigenaresse en PMU-specialist",
+        "en": "Mariya, owner and PMU specialist"
+      },
+      "note": "real face shot (in branded shirt)"
+    },
+    {
+      "file": "team-maryna.webp",
+      "category": "team",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "C3p35tfNNoS",
+        "type": "video-frame"
+      },
+      "alt": {
+        "nl": "Maryna, nagelstyliste bij Beauty by Mariya",
+        "en": "Maryna, nail technician at Beauty by Mariya"
+      },
+      "note": "real face shot extracted from video (Beauty by Mariya jacket)"
+    },
+    {
+      "file": "team-svitlana.webp",
+      "category": "team",
+      "source": {
+        "account": "kohut.cosmetology",
+        "shortCode": "DXoLAF3guaB",
+        "type": "video-frame"
+      },
+      "alt": {
+        "nl": "Svitlana, schoonheidsspecialist",
+        "en": "Svitlana, beautician and skin therapist"
+      },
+      "note": "real face shot extracted from her Q&A video (caption cropped out)"
+    },
+    {
+      "file": "team-lyuba.webp",
+      "category": "team",
+      "source": {
+        "account": "lyubanovosad",
+        "shortCode": "DUwLrEMCKam",
+        "type": "video-frame"
+      },
+      "alt": {
+        "nl": "Lyuba, haarstyliste en colorist",
+        "en": "Lyuba, hairstylist and colorist"
+      },
+      "note": "real face shot extracted from kitchen video"
+    },
+    {
+      "file": "gal-nails-01.webp",
+      "category": "gallery-nails",
+      "source": {
+        "account": "gel.lakkk",
+        "shortCode": "CzMD4Y6t6SE"
+      },
+      "alt": {
+        "nl": "Donker plum cat-eye nagels",
+        "en": "Deep plum cat-eye nails"
+      }
+    },
+    {
+      "file": "gal-nails-02.webp",
+      "category": "gallery-nails",
+      "source": {
+        "account": "gel.lakkk",
+        "shortCode": "CqNLaKKNZHg"
+      },
+      "alt": {
+        "nl": "Klassieke bordeauxrode korte nagels",
+        "en": "Classic burgundy short nails"
+      }
+    },
+    {
+      "file": "gal-nails-03.webp",
+      "category": "gallery-nails",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "Cr8QssDr4E8"
+      },
+      "alt": {
+        "nl": "Felroze fuchsia manicure",
+        "en": "Bright fuchsia magnetic manicure"
+      }
+    },
+    {
+      "file": "gal-nails-04.webp",
+      "category": "gallery-nails",
+      "source": {
+        "account": "gel.lakkk",
+        "shortCode": "CzMDlvPNgYs"
+      },
+      "alt": {
+        "nl": "Romige nude amandelnagels",
+        "en": "Creamy nude almond nails"
+      }
+    },
+    {
+      "file": "gal-nails-05.webp",
+      "category": "gallery-nails",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "C7WZzo8tJEJ"
+      },
+      "alt": {
+        "nl": "Roze magnetic manicure op denim",
+        "en": "Soft pink magnetic manicure on denim"
+      }
+    },
+    {
+      "file": "gal-nails-06.webp",
+      "category": "gallery-nails",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "DBuJZ3TtjUG"
+      },
+      "alt": {
+        "nl": "Felrode magnetic nagels met nailart",
+        "en": "Bright red magnetic nails with art accent"
+      }
+    },
+    {
+      "file": "gal-nails-07.webp",
+      "category": "gallery-nails",
+      "source": {
+        "account": "gel.lakkk",
+        "shortCode": "CwFdr5tt9vm"
+      },
+      "alt": {
+        "nl": "Helder oranje pedicure",
+        "en": "Vibrant orange pedicure"
+      }
+    },
+    {
+      "file": "gal-nails-08.webp",
+      "category": "gallery-nails",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "C9kyjnGNAd2"
+      },
+      "alt": {
+        "nl": "Herfstige nailart met blad- en pompoenmotief",
+        "en": "Autumn nail art with leaf and pumpkin motif"
+      }
+    },
+    {
+      "file": "gal-brows-01.webp",
+      "category": "gallery-brows",
+      "source": {
+        "account": "levytska.permanent",
+        "shortCode": "DWQqGumiMeb"
+      },
+      "alt": {
+        "nl": "PMU lippen met natuurlijke glans",
+        "en": "PMU lips with natural glossy finish"
+      }
+    },
+    {
+      "file": "gal-brows-02.webp",
+      "category": "gallery-brows",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "CwdjIgHNXf2"
+      },
+      "alt": {
+        "nl": "Brow lamination resultaat",
+        "en": "Brow lamination result"
+      }
+    },
+    {
+      "file": "gal-brows-03.webp",
+      "category": "gallery-brows",
+      "source": {
+        "account": "levytska.permanent",
+        "shortCode": "DVt_aZsiPh0"
+      },
+      "alt": {
+        "nl": "Wenkbrauwarchitectuur, voorbereiding",
+        "en": "Brow architecture, preparation"
+      }
+    },
+    {
+      "file": "gal-brows-04.webp",
+      "category": "gallery-brows",
+      "source": {
+        "account": "levytska.permanent",
+        "shortCode": "DW-sbs2iBLn"
+      },
+      "alt": {
+        "nl": "Voor en na PMU-laser behandeling",
+        "en": "Before and after PMU laser treatment"
+      }
+    },
+    {
+      "file": "gal-brows-05.webp",
+      "category": "gallery-brows",
+      "source": {
+        "account": "levytska.permanent",
+        "shortCode": "DWHkIPsiIDF"
+      },
+      "alt": {
+        "nl": "PMU verwijdering, vergelijking",
+        "en": "PMU removal comparison"
+      }
+    },
+    {
+      "file": "gal-brows-06.webp",
+      "category": "gallery-brows",
+      "source": {
+        "account": "levytska.permanent",
+        "shortCode": "DWmuki8iCQG"
+      },
+      "alt": {
+        "nl": "Specialist aan het werk met PMU-machine",
+        "en": "Specialist working with PMU machine"
+      }
+    },
+    {
+      "file": "gal-hair-01.webp",
+      "category": "gallery-hair",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "Cz4duOHLFAk"
+      },
+      "alt": {
+        "nl": "Stralende blonde highlights",
+        "en": "Bright blonde highlights"
+      }
+    },
+    {
+      "file": "gal-hair-02.webp",
+      "category": "gallery-hair",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "CsiEV_6Nn9w"
+      },
+      "alt": {
+        "nl": "Levendige roodbruine haarkleuring",
+        "en": "Vibrant copper red color"
+      }
+    },
+    {
+      "file": "gal-hair-03.webp",
+      "category": "gallery-hair",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "CqS1TP3jnQ8"
+      },
+      "alt": {
+        "nl": "Davines kleuring, vurig rood",
+        "en": "Davines color, fiery red portrait"
+      }
+    },
+    {
+      "file": "gal-hair-04.webp",
+      "category": "gallery-hair",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "CsUOGTPLRhk"
+      },
+      "alt": {
+        "nl": "AirTouch balayage",
+        "en": "AirTouch balayage"
+      }
+    },
+    {
+      "file": "gal-hair-05.webp",
+      "category": "gallery-hair",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "C8kHgJ7NI5Z"
+      },
+      "alt": {
+        "nl": "Subtiele blonde balayage",
+        "en": "Subtle blonde balayage"
+      }
+    },
+    {
+      "file": "gal-hair-06.webp",
+      "category": "gallery-hair",
+      "source": {
+        "account": "lyubanovosad",
+        "shortCode": "DSgCduhCEZA"
+      },
+      "alt": {
+        "nl": "Aslook met fijne highlights",
+        "en": "Ashy look with fine highlights"
+      }
+    },
+    {
+      "file": "gal-beauty-01.webp",
+      "category": "gallery-beauty",
+      "source": {
+        "account": "kohut.cosmetology",
+        "shortCode": "DW3OCFRApg4",
+        "type": "video-frame"
+      },
+      "alt": {
+        "nl": "Klei-masker behandeling in de salon",
+        "en": "Clay mask treatment in progress"
+      }
+    },
+    {
+      "file": "gal-beauty-02.webp",
+      "category": "gallery-beauty",
+      "source": {
+        "account": "kohut.cosmetology",
+        "shortCode": "DYi-FLvCYOO",
+        "type": "video-frame"
+      },
+      "alt": {
+        "nl": "Behandelplek met Demax skincare producten",
+        "en": "Workstation with Demax skincare products"
+      }
+    },
+    {
+      "file": "gal-beauty-03.webp",
+      "category": "gallery-beauty",
+      "source": {
+        "account": "kohut.cosmetology",
+        "shortCode": "DM7KNbSMzGG"
+      },
+      "alt": {
+        "nl": "Demax verzorgingsproducten op houten tray",
+        "en": "Demax skincare products on wooden tray"
+      }
+    },
+    {
+      "file": "gal-beauty-04.webp",
+      "category": "gallery-beauty",
+      "source": {
+        "account": "kohut.cosmetology",
+        "shortCode": "DYRFfcjgr60"
+      },
+      "alt": {
+        "nl": "Wimper close-up",
+        "en": "Eyelash close-up"
+      }
+    },
+    {
+      "file": "reel-01.mp4",
+      "category": "reel",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "DCo6npMNhf9"
+      },
+      "alt": {
+        "nl": "Magnetic nail art demo",
+        "en": "Magnetic nail art demo"
+      },
+      "poster": "reel-01-poster.webp"
+    },
+    {
+      "file": "reel-02.mp4",
+      "category": "reel",
+      "source": {
+        "account": "gel.lakkk",
+        "shortCode": "CzMEnnjNoVq"
+      },
+      "alt": {
+        "nl": "Glanzende nail finish",
+        "en": "Glossy nail finish"
+      },
+      "poster": "reel-02-poster.webp"
+    },
+    {
+      "file": "reel-03.mp4",
+      "category": "reel",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "CyYRMCyLJX4"
+      },
+      "alt": {
+        "nl": "Elegante manicure",
+        "en": "Elegant manicure"
+      },
+      "poster": "reel-03-poster.webp"
+    },
+    {
+      "file": "reel-04.mp4",
+      "category": "reel",
+      "source": {
+        "account": "levytska.permanent",
+        "shortCode": "DVHUxVdiM-P"
+      },
+      "alt": {
+        "nl": "Wenkbrauwen styling",
+        "en": "Brow styling"
+      },
+      "poster": "reel-04-poster.webp"
+    },
+    {
+      "file": "reel-05.mp4",
+      "category": "reel",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "C6TNgAUL34Y"
+      },
+      "alt": {
+        "nl": "AirTouch hair coloring",
+        "en": "AirTouch hair coloring"
+      },
+      "poster": "reel-05-poster.webp"
+    },
+    {
+      "file": "reel-06.mp4",
+      "category": "reel",
+      "source": {
+        "account": "lyubanovosad",
+        "shortCode": "DT3we2uCFum"
+      },
+      "alt": {
+        "nl": "Sfeerbeeld",
+        "en": "Lifestyle moment"
+      },
+      "poster": "reel-06-poster.webp"
+    },
+    {
+      "file": "reel-07.mp4",
+      "category": "reel",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "DFfX8kmtB8E"
+      },
+      "alt": {
+        "nl": "Salon kleuren showcase",
+        "en": "Salon color showcase"
+      },
+      "poster": "reel-07-poster.webp"
+    },
+    {
+      "file": "reel-08.mp4",
+      "category": "reel",
+      "source": {
+        "account": "beauty_bymariya",
+        "shortCode": "DC1sFebN0Gp"
+      },
+      "alt": {
+        "nl": "Nagels in warm licht",
+        "en": "Nails in warm light"
+      },
+      "poster": "reel-08-poster.webp"
+    },
+    {
+      "file": "reel-09.mp4",
+      "category": "reel",
+      "source": {
+        "account": "kohut.cosmetology",
+        "shortCode": "DYWgRlGCpPC"
+      },
+      "alt": {
+        "nl": "Kosmetologie behandelkamer",
+        "en": "Cosmetology treatment room"
+      },
+      "poster": "reel-09-poster.webp"
+    },
+    {
+      "file": "reel-10.mp4",
+      "category": "reel",
+      "source": {
+        "account": "gel.lakkk",
+        "shortCode": "Cpn5djfjI5k"
+      },
+      "alt": {
+        "nl": "Nagel design proces",
+        "en": "Nail design in progress"
+      },
+      "poster": "reel-10-poster.webp"
+    },
+    {
+      "file": "favicon.png",
+      "category": "favicon",
+      "source": {
+        "account": "gel.lakkk",
+        "shortCode": "C1RXEYpNw9Z"
+      },
+      "alt": {
+        "nl": "Favicon",
+        "en": "Favicon"
+      }
+    },
+    {
+      "file": "og-image.jpg",
+      "category": "social",
+      "source": {
+        "account": "gel.lakkk",
+        "shortCode": "C1RW1G5NaEq"
+      },
+      "alt": {
+        "nl": "Beauty by Mariya — Eindhoven",
+        "en": "Beauty by Mariya — Eindhoven"
+      }
+    },
+    {
+      "file": "jiw-logo.png",
+      "category": "branding",
+      "source": {
+        "account": "jiw",
+        "shortCode": "logo"
+      },
+      "alt": {
+        "nl": "Jouw Ideale Website logo",
+        "en": "Jouw Ideale Website logo"
+      }
+    }
+  ]
+}

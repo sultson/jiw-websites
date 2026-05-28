@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+
+  /* Warm pearl backdrop */
+  --color-pearl: #FAF6F1;
+  --color-blush: #F1E1D6;
+  --color-blush-soft: #F7ECE2;
+
+  /* Deep berry-mauve, like a velvet ribbon */
+  --color-ink: #2D1A22;
+  --color-ink-soft: #4A2C3C;
+
+  /* Rose-gold signature */
+  --color-rose: #B98176;
+  --color-rose-soft: #CA9A87;
+  --color-champagne: #DBB59A;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ink);
+  }
+  body {
+    @apply font-sans bg-pearl text-ink antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-serif text-ink;
+    letter-spacing: -0.01em;
+  }
+  h1 { font-weight: 400; }
+  h2 { font-weight: 400; }
+  ::selection { background: var(--color-rose); color: white; }
+  *:focus-visible {
+    outline: 2px solid var(--color-rose);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-ink text-pearl px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-ink-soft;
+    min-height: 44px;
+  }
+  .btn-rose {
+    @apply inline-flex items-center justify-center gap-2 bg-rose text-pearl px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:opacity-90;
+    min-height: 44px;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/20 text-ink px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:border-ink/40 hover:bg-white;
+    min-height: 44px;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-ink px-4 py-2 rounded-full text-sm font-medium hover:bg-black/5;
+    min-height: 40px;
+  }
+  .kicker {
+    @apply inline-block text-[11px] uppercase tracking-[0.22em] text-rose font-medium;
+  }
+  .card {
+    @apply bg-white/70 backdrop-blur-sm rounded-2xl border border-ink/5 shadow-[0_1px_2px_rgba(45,26,34,0.04)];
+  }
+  .field {
+    @apply w-full px-4 py-3 rounded-xl border border-ink/15 bg-white text-ink placeholder:text-ink/40 focus:border-rose focus:outline-none;
+    min-height: 48px;
+  }
+  .rule {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-rose);
+  }
+  .rule::before, .rule::after {
+    content: "";
+    height: 1px;
+    width: 2rem;
+    background: currentColor;
+    opacity: 0.4;
+  }
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Marquee animation for horizontal video reel */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 60s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
