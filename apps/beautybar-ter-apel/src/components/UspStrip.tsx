@@ -1,0 +1,35 @@
+import { Star, Brush, ShieldCheck, Clock } from 'lucide-react';
+
+type Props = { t: (k: string) => string };
+
+export default function UspStrip({ t }: Props) {
+  const items = [
+    { icon: Star, title: t('usp.rating'), sub: t('usp.ratingSub') },
+    { icon: Brush, title: t('usp.handpainted'), sub: t('usp.handpaintedSub') },
+    { icon: Clock, title: t('usp.experience'), sub: t('usp.experienceSub') },
+    { icon: ShieldCheck, title: t('usp.hygiene'), sub: t('usp.hygieneSub') },
+  ];
+
+  return (
+    <section className="relative -mt-12 md:-mt-16 z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 bg-white rounded-2xl p-3 md:p-4 shadow-[0_10px_40px_-20px_rgba(42,25,34,0.25)] border border-ink/5">
+          {items.map(({ icon: Icon, title, sub }) => (
+            <div
+              key={title}
+              className="flex items-start gap-3 p-3 rounded-xl md:hover:bg-cream"
+            >
+              <div className="shrink-0 w-10 h-10 rounded-full bg-blush flex items-center justify-center text-rose">
+                <Icon size={18} />
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-medium text-ink leading-tight">{title}</p>
+                <p className="text-xs text-ink/60 mt-0.5">{sub}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
