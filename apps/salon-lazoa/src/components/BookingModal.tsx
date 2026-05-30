@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { X, ExternalLink, Phone, MessageCircle, Calendar } from 'lucide-react';
+import { X, ExternalLink, Phone, MessageCircle } from 'lucide-react';
+import { BrushUnderline } from './Marks';
 
 type Props = { open: boolean; onClose: () => void; t: (k: string) => string };
 
@@ -23,35 +24,37 @@ export default function BookingModal({ open, onClose, t }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] bg-ink/75 backdrop-blur-sm flex items-end md:items-center justify-center md:p-6"
+      className="fixed inset-0 z-[100] bg-sumi/80 flex items-end md:items-center justify-center md:p-6"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={t('nav.book')}
     >
       <div
-        className="relative w-full max-w-md bg-paper rounded-t-2xl md:rounded-2xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-md bg-shoji shadow-[0_30px_80px_-20px_rgba(0,0,0,0.45)] overflow-hidden"
         onClick={e => e.stopPropagation()}
+        style={{ borderRadius: 1 }}
       >
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 w-9 h-9 rounded-full bg-paper-soft text-ink hover:bg-paper-soft/70 flex items-center justify-center"
+          className="absolute top-4 right-4 w-9 h-9 text-sumi/70 hover:text-sumi flex items-center justify-center border border-sumi/15"
           aria-label={t('booking.close')}
+          style={{ borderRadius: 1 }}
         >
-          <X size={18} />
+          <X size={16} />
         </button>
 
-        <div className="px-7 pt-9 pb-7 md:px-9 md:pt-10 md:pb-9">
-          <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-champagne">
-            <Calendar size={12} />
+        <div className="px-7 pt-10 pb-8 md:px-10 md:pt-12 md:pb-10">
+          <p className="text-[10.5px] uppercase tracking-[0.32em] text-sumi-soft">
             Salonized
-          </div>
+          </p>
 
-          <h3 className="mt-3 font-serif text-3xl md:text-4xl text-ink leading-tight">
+          <h3 className="mt-3 font-display text-3xl md:text-[2.3rem] text-sumi leading-[1.08]">
             {t('nav.book')}
           </h3>
+          <BrushUnderline className="brush mt-4" />
 
-          <p className="mt-3 text-sm text-mute leading-relaxed">
+          <p className="mt-6 text-[14.5px] text-sumi/70 leading-[1.7]">
             {t('booking.body')}
           </p>
 
@@ -60,31 +63,33 @@ export default function BookingModal({ open, onClose, t }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setTimeout(onClose, 400)}
-            className="mt-6 btn-primary w-full"
+            className="mt-8 btn-sumi w-full"
           >
-            <ExternalLink size={16} />
+            <ExternalLink size={14} />
             {t('booking.cta')}
           </a>
 
-          <div className="mt-7 pt-6 border-t border-ink/8">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-mute mb-3">
+          <div className="mt-8 pt-6 border-t border-sumi/10">
+            <p className="text-[10.5px] uppercase tracking-[0.28em] text-sumi-soft mb-3">
               {t('booking.alt')}
             </p>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2">
               <a
                 href="tel:+31683434002"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 px-3 py-2.5 text-sm text-ink hover:bg-paper-soft"
+                className="inline-flex items-center justify-center gap-2 border border-sumi/15 px-3 py-3 text-[12px] uppercase tracking-[0.18em] text-sumi hover:bg-washi"
+                style={{ borderRadius: 1 }}
               >
-                <Phone size={14} />
-                06 83434002
+                <Phone size={12} />
+                Bel
               </a>
               <a
                 href="https://wa.me/31683434002"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 px-3 py-2.5 text-sm text-ink hover:bg-paper-soft"
+                className="inline-flex items-center justify-center gap-2 border border-sumi/15 px-3 py-3 text-[12px] uppercase tracking-[0.18em] text-sumi hover:bg-washi"
+                style={{ borderRadius: 1 }}
               >
-                <MessageCircle size={14} />
+                <MessageCircle size={12} />
                 WhatsApp
               </a>
             </div>

@@ -30,7 +30,7 @@ export default function Lightbox({ images, index, onClose, onNav }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] bg-ink/95 flex items-center justify-center p-4"
+      className="fixed inset-0 z-[100] bg-sumi/96 flex items-center justify-center p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
@@ -38,34 +38,39 @@ export default function Lightbox({ images, index, onClose, onNav }: Props) {
     >
       <button
         onClick={e => { e.stopPropagation(); onClose(); }}
-        className="absolute top-4 right-4 text-paper p-2 rounded-full hover:bg-paper/10"
+        className="absolute top-4 right-4 text-shoji/80 hover:text-shoji p-2"
         aria-label="Close"
       >
-        <X size={24} />
+        <X size={22} />
       </button>
       <button
         onClick={e => { e.stopPropagation(); onNav(-1); }}
-        className="absolute left-2 md:left-6 text-paper p-2 rounded-full hover:bg-paper/10"
+        className="absolute left-2 md:left-6 text-shoji/80 hover:text-shoji p-2"
         aria-label="Previous"
       >
-        <ChevronLeft size={28} />
+        <ChevronLeft size={26} />
       </button>
       <figure className="flex flex-col items-center max-w-4xl" onClick={e => e.stopPropagation()}>
-        <img
-          src={img.src}
-          alt={img.alt}
-          className="max-w-full max-h-[82vh] object-contain rounded-md"
-        />
-        <figcaption className="mt-4 text-sm text-paper/70 text-center">
-          {img.alt} · {index + 1} / {images.length}
+        <div className="paper-mount" style={{ padding: 12, background: 'oklch(0.972 0.006 78)' }}>
+          <img
+            src={img.src}
+            alt={img.alt}
+            className="max-w-full max-h-[78vh] object-contain"
+          />
+        </div>
+        <figcaption className="mt-5 flex items-center gap-3 text-[10.5px] uppercase tracking-[0.28em] text-shoji/70">
+          <span className="block w-5 h-px bg-shoji/40" />
+          <span>{img.alt}</span>
+          <span className="block w-5 h-px bg-shoji/40" />
+          <span>{index + 1} / {images.length}</span>
         </figcaption>
       </figure>
       <button
         onClick={e => { e.stopPropagation(); onNav(1); }}
-        className="absolute right-2 md:right-6 text-paper p-2 rounded-full hover:bg-paper/10"
+        className="absolute right-2 md:right-6 text-shoji/80 hover:text-shoji p-2"
         aria-label="Next"
       >
-        <ChevronRight size={28} />
+        <ChevronRight size={26} />
       </button>
     </div>
   );

@@ -1,28 +1,36 @@
-import { Gem, GraduationCap, Star, Calendar } from 'lucide-react';
-
 type Props = { t: (k: string) => string };
 
 export default function UspStrip({ t }: Props) {
   const items = [
-    { icon: Gem,            title: t('usp.diamond'),   sub: t('usp.diamondSub') },
-    { icon: GraduationCap,  title: t('usp.diploma'),   sub: t('usp.diplomaSub') },
-    { icon: Star,           title: t('usp.google'),    sub: t('usp.googleSub') },
-    { icon: Calendar,       title: t('usp.salonized'), sub: t('usp.salonizedSub') },
+    { n: '01', title: t('usp.diamond'),   sub: t('usp.diamondSub') },
+    { n: '02', title: t('usp.diploma'),   sub: t('usp.diplomaSub') },
+    { n: '03', title: t('usp.google'),    sub: t('usp.googleSub') },
+    { n: '04', title: t('usp.salonized'), sub: t('usp.salonizedSub') },
   ];
 
   return (
-    <section className="relative -mt-12 md:-mt-16 z-10">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 bg-white rounded-2xl p-3 md:p-4 shadow-[0_18px_60px_-30px_rgba(0,0,0,0.35)] border border-ink/6">
-          {items.map(({ icon: Icon, title, sub }) => (
-            <div key={title} className="flex items-start gap-3 p-3 rounded-xl md:hover:bg-paper">
-              <div className="shrink-0 w-10 h-10 rounded-full bg-paper flex items-center justify-center text-champagne ring-1 ring-ink/5">
-                <Icon size={18} />
+    <section className="bg-shoji border-y border-sumi/10">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4">
+          {items.map((it, i) => (
+            <div
+              key={it.n}
+              className={`py-8 md:py-10 px-2 md:px-6 flex flex-col gap-3 ${
+                i > 0 ? 'md:border-l border-sumi/10' : ''
+              } ${i === 2 ? 'border-l md:border-l border-sumi/10' : ''} ${
+                i >= 2 ? 'border-t md:border-t-0 border-sumi/10' : ''
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <span className="font-display text-sumi/50 text-[12px] tracking-[0.06em]">
+                  {it.n}
+                </span>
+                <span className="block w-6 h-px bg-sumi/30" />
               </div>
-              <div className="min-w-0">
-                <p className="text-sm font-medium text-ink leading-tight">{title}</p>
-                <p className="text-xs text-mute mt-0.5">{sub}</p>
-              </div>
+              <p className="font-display text-xl md:text-2xl leading-tight text-sumi">
+                {it.title}
+              </p>
+              <p className="text-[12px] text-sumi/55 leading-relaxed">{it.sub}</p>
             </div>
           ))}
         </div>

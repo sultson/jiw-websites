@@ -22,7 +22,7 @@ export default function App() {
   const closeBooking = () => setBookingOpen(false);
 
   return (
-    <div className="min-h-[100dvh] flex flex-col bg-paper">
+    <div className="min-h-[100dvh] flex flex-col bg-shoji">
       <TopBar t={t} />
       <Nav lang={lang} setLang={setLang} t={t} onBook={openBooking} />
 

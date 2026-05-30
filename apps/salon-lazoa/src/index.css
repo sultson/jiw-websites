@@ -1,109 +1,193 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Italiana&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-display: "Italiana", "Cormorant Garamond", serif;
+  --font-serif: "Shippori Mincho", "Cormorant Garamond", "Noto Serif JP", Georgia, serif;
+  --font-display: "Shippori Mincho", "Cormorant Garamond", Georgia, serif;
 
-  /* Editorial gray, per brief */
-  --color-paper: #F1F1F1;
-  --color-paper-soft: #E7E7E7;
-  --color-white-warm: #FAFAFA;
+  /* Japandi neutrals — warm shoji paper, washi linen, stone */
+  --color-shoji:    oklch(0.972 0.006 78);   /* base paper, warm linen white */
+  --color-washi:    oklch(0.945 0.009 75);   /* gentle section tint */
+  --color-stone:    oklch(0.875 0.012 72);   /* deeper paper tone, edge */
+  --color-stone-warm: oklch(0.815 0.018 68); /* warmer stone for chips */
 
-  /* Primary text — true black per brief */
-  --color-ink: #0A0A0A;
-  --color-ink-soft: #2A2A2A;
-  --color-mute: #6E6E6E;
+  /* Sumi ink — warm near-black, not pure */
+  --color-sumi:       oklch(0.205 0.012 62);
+  --color-sumi-soft:  oklch(0.38  0.010 62);
+  --color-mist:       oklch(0.58  0.009 62);
 
-  /* Signature accent — soft champagne, picks up the salon's clean/herfst tones */
-  --color-champagne: #B89274;
-  --color-champagne-soft: #D8BFA6;
-  --color-blush: #E8D7C7;
+  /* Hinoki — warm soft wood accent, restrained */
+  --color-hinoki:      oklch(0.62 0.052 64);
+  --color-hinoki-soft: oklch(0.78 0.030 70);
+
+  /* Bengara — iron oxide / persimmon, reserved for seal-marks */
+  --color-bengara: oklch(0.48 0.092 38);
+
+  /* Tatami — muted moss, used once or twice */
+  --color-tatami:  oklch(0.50 0.038 132);
+
+  /* Legacy aliases kept for any third-party / lingering refs (will be cleaned) */
+  --color-paper:       var(--color-shoji);
+  --color-paper-soft:  var(--color-washi);
+  --color-ink:         var(--color-sumi);
+  --color-ink-soft:    var(--color-sumi-soft);
+  --color-mute:        var(--color-mist);
+  --color-champagne:   var(--color-hinoki);
+  --color-champagne-soft: var(--color-hinoki-soft);
+  --color-blush:       var(--color-stone-warm);
+  --color-white-warm:  oklch(0.985 0.004 75);
 }
 
 @layer base {
   html {
-    background-color: var(--color-ink);
+    background-color: var(--color-sumi);
   }
   body {
-    @apply font-sans bg-paper text-ink antialiased;
-    font-feature-settings: "ss01", "cv11";
+    @apply font-sans bg-shoji text-sumi antialiased;
+    font-feature-settings: "ss01", "cv11", "calt";
+    background-image:
+      radial-gradient(1200px 600px at 110% -10%, oklch(0.965 0.012 72) 0%, transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, oklch(0.963 0.014 76) 0%, transparent 60%);
   }
   h1, h2, h3, h4, h5 {
-    @apply font-serif text-ink;
-    letter-spacing: -0.015em;
+    @apply font-display text-sumi;
+    letter-spacing: -0.012em;
+    font-weight: 400;
   }
-  h1 { font-weight: 400; }
-  h2 { font-weight: 400; }
-  ::selection { background: var(--color-ink); color: var(--color-paper); }
+  ::selection { background: var(--color-sumi); color: var(--color-shoji); }
   *:focus-visible {
-    outline: 2px solid var(--color-champagne);
-    outline-offset: 2px;
-    border-radius: 2px;
+    outline: 1px solid var(--color-sumi);
+    outline-offset: 3px;
+    border-radius: 1px;
   }
+  /* Hairline-by-default for divs that opt in */
+  hr { border: 0; height: 1px; background: oklch(0.205 0.012 62 / 0.14); }
 }
 
 @layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-ink text-paper px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-ink-soft;
-    min-height: 44px;
+  /* Buttons — squared with 2px radius. Sumi primary, hinoki secondary, hairline ghost */
+  .btn-sumi {
+    @apply inline-flex items-center justify-center gap-2 bg-sumi text-shoji px-7 py-3.5 text-[13px] font-medium tracking-[0.16em] uppercase hover:bg-sumi-soft;
+    min-height: 48px;
+    border-radius: 1px;
   }
-  .btn-champagne {
-    @apply inline-flex items-center justify-center gap-2 bg-champagne text-white px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:opacity-90;
-    min-height: 44px;
+  .btn-shoji {
+    @apply inline-flex items-center justify-center gap-2 bg-shoji text-sumi px-7 py-3.5 text-[13px] font-medium tracking-[0.16em] uppercase hover:bg-washi;
+    min-height: 48px;
+    border-radius: 1px;
   }
-  .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 border border-ink/20 text-ink px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:border-ink/40 hover:bg-white;
-    min-height: 44px;
+  .btn-line {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[13px] font-medium tracking-[0.16em] uppercase text-sumi hover:bg-sumi hover:text-shoji transition-colors;
+    min-height: 48px;
+    border-radius: 1px;
+    border: 1px solid oklch(0.205 0.012 62 / 0.55);
   }
-  .btn-outline-light {
-    @apply inline-flex items-center justify-center gap-2 border border-white/35 text-white px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-white/10;
-    min-height: 44px;
+  .btn-line-light {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 text-[13px] font-medium tracking-[0.16em] uppercase text-shoji hover:bg-shoji hover:text-sumi transition-colors;
+    min-height: 48px;
+    border-radius: 1px;
+    border: 1px solid oklch(0.972 0.006 78 / 0.5);
   }
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 text-ink px-4 py-2 rounded-full text-sm font-medium hover:bg-black/5;
+    @apply inline-flex items-center justify-center gap-2 text-sumi px-3 py-2 text-[12px] font-medium tracking-[0.14em] uppercase hover:text-hinoki;
     min-height: 40px;
   }
+
+  /* Kicker — vertical-rule + caps, japandi cadence */
   .kicker {
-    @apply inline-block text-[11px] uppercase tracking-[0.32em] text-champagne font-medium;
+    @apply inline-flex items-center gap-3 text-[10.5px] uppercase tracking-[0.34em] text-sumi-soft font-medium;
   }
-  .card {
-    @apply bg-white rounded-xl border border-ink/8 shadow-[0_1px_2px_rgba(0,0,0,0.04)];
-  }
-  .field {
-    @apply w-full px-4 py-3 rounded-xl border border-ink/15 bg-white text-ink placeholder:text-ink/40 focus:border-champagne focus:outline-none;
-    min-height: 48px;
-  }
-  .hairline {
+  .kicker::before {
+    content: "";
+    display: inline-block;
+    width: 22px;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(10,10,10,0.18), transparent);
+    background: currentColor;
+    opacity: 0.7;
+  }
+
+  .field {
+    @apply w-full px-4 py-3 bg-shoji text-sumi placeholder:text-sumi/40 focus:border-sumi focus:outline-none;
+    min-height: 48px;
+    border: 1px solid oklch(0.205 0.012 62 / 0.20);
+    border-radius: 1px;
+  }
+
+  /* Hairline rules */
+  .rule       { height: 1px; background: oklch(0.205 0.012 62 / 0.14); }
+  .rule-strong{ height: 1px; background: oklch(0.205 0.012 62 / 0.28); }
+  .rule-soft  { height: 1px; background: oklch(0.205 0.012 62 / 0.08); }
+  .v-rule     { width: 1px; background: oklch(0.205 0.012 62 / 0.14); }
+
+  /* Paper-mount frame around photos */
+  .paper-mount {
+    background: var(--color-shoji);
+    padding: 10px;
+    border: 1px solid oklch(0.205 0.012 62 / 0.10);
+    box-shadow: 0 30px 60px -45px oklch(0.205 0.012 62 / 0.35);
+  }
+
+  /* Sumi seal mark — a quiet stamp */
+  .sumi-seal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--color-bengara);
+    color: var(--color-shoji);
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    transform: rotate(-3deg);
   }
 }
 
+/* Marquee — kept for studio strip */
 @keyframes marquee-rtl {
   from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
 }
 .marquee-viewport {
   overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-rtl 60s linear infinite;
+  animation: marquee-rtl 70s linear infinite;
   will-change: transform;
 }
 .marquee-viewport:hover .marquee-track {
   animation-play-state: paused;
 }
 
+/* Subtle rise on scroll */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise 900ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.rise-1 { animation-delay: 80ms; }
+.rise-2 { animation-delay: 160ms; }
+.rise-3 { animation-delay: 260ms; }
+.rise-4 { animation-delay: 360ms; }
+
+/* Brush stroke — used under display headings */
+.brush {
+  display: block;
+  height: 18px;
+  width: 84px;
+  color: var(--color-hinoki);
+}
+.brush-ink { color: var(--color-sumi); }
+
 .safe-bottom {
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
-
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
