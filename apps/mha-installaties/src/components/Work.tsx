@@ -7,9 +7,20 @@ import Pic from './Pic';
 /* Before / after comparison slider                                   */
 /* ------------------------------------------------------------------ */
 
-type BeforeAfterData = (typeof beforeAfters)[number];
+type Pair = {
+  before: { src: string; alt: string };
+  after: { src: string; alt: string };
+  beforeLabel: string;
+  afterLabel: string;
+  frame: string;
+};
 
-function BeforeAfter({ data }: { data: BeforeAfterData }) {
+type BeforeAfterData = { title: string; body: string } & Pair;
+type CasesData = { title: string; body: string; cases: (Pair & { label: string })[] };
+
+/* The drag-to-compare visual. State lives here so each slider (and each case)
+   manages its own handle position. */
+function CompareSlider({ pair }: { pair: Pair }) {
   const [pos, setPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const draggingRef = useRef(false);
@@ -68,81 +79,130 @@ function BeforeAfter({ data }: { data: BeforeAfterData }) {
   };
 
   return (
+    <div
+      ref={containerRef}
+      className={`relative w-full select-none overflow-hidden rounded-2xl border border-line bg-ink-3 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)] ${pair.frame}`}
+    >
+      {/* Before (base layer) */}
+      <Pic
+        src={pair.before.src}
+        alt={pair.before.alt}
+        width={800}
+        height={600}
+        sizes="(max-width: 1024px) 100vw, 64vw"
+        loading="lazy"
+        draggable={false}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+
+      {/* After (clipped top layer) */}
+      <div
+        className="absolute inset-0 h-full w-full overflow-hidden"
+        style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
+      >
+        <Pic
+          src={pair.after.src}
+          alt={pair.after.alt}
+          width={800}
+          height={600}
+          sizes="(max-width: 1024px) 100vw, 64vw"
+          loading="lazy"
+          draggable={false}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
+
+      {/* Corner labels */}
+      <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-ink/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-bright backdrop-blur-sm">
+        {pair.afterLabel}
+      </span>
+      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-ink/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-bone-soft backdrop-blur-sm">
+        {pair.beforeLabel}
+      </span>
+
+      {/* Divider + handle */}
+      <div className="absolute inset-y-0 z-10 w-px bg-gold-bright/80" style={{ left: `${pos}%` }}>
+        <div
+          role="slider"
+          tabIndex={0}
+          aria-label={`Vergelijk ${pair.afterLabel.toLowerCase()} en ${pair.beforeLabel.toLowerCase()}`}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(pos)}
+          aria-valuetext={`${Math.round(pos)}% ${pair.afterLabel.toLowerCase()} zichtbaar`}
+          onPointerDown={startDrag}
+          onKeyDown={onKeyDown}
+          className="absolute top-1/2 left-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize touch-none place-items-center rounded-full bg-gradient-to-br from-[#c89e48] via-[#f2e394] to-[#b98c41] text-ink shadow-[0_8px_24px_-6px_rgba(0,0,0,0.7)] transition-transform duration-150 hover:scale-105"
+        >
+          <MoveHorizontal size={20} strokeWidth={2.5} aria-hidden="true" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CompareHint() {
+  return (
+    <p className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-mute">
+      <MoveHorizontal size={16} className="text-gold" aria-hidden="true" />
+      Sleep om voor en na te vergelijken
+    </p>
+  );
+}
+
+function BeforeAfter({ data }: { data: BeforeAfterData }) {
+  return (
     <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
-      {/* Copy */}
       <div className="lg:col-span-4">
         <h3 className="text-2xl md:text-3xl">{data.title}</h3>
         <p className="mt-4 text-bone-soft">{data.body}</p>
-        <p className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-mute">
-          <MoveHorizontal size={16} className="text-gold" aria-hidden="true" />
-          Sleep om voor en na te vergelijken
-        </p>
+        <CompareHint />
       </div>
-
-      {/* Slider */}
       <div className="lg:col-span-8">
-        <div
-          ref={containerRef}
-          className={`relative w-full select-none overflow-hidden rounded-2xl border border-line bg-ink-3 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)] ${data.frame}`}
-        >
-          {/* Before (base layer) */}
-          <Pic
-            src={data.before.src}
-            alt={data.before.alt}
-            width={800}
-            height={600}
-            sizes="(max-width: 1024px) 100vw, 64vw"
-            loading="lazy"
-            draggable={false}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+        <CompareSlider pair={data} />
+      </div>
+    </div>
+  );
+}
 
-          {/* After (clipped top layer) */}
-          <div
-            className="absolute inset-0 h-full w-full overflow-hidden"
-            style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
-          >
-            <Pic
-              src={data.after.src}
-              alt={data.after.alt}
-              width={800}
-              height={600}
-              sizes="(max-width: 1024px) 100vw, 64vw"
-              loading="lazy"
-              draggable={false}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
+/* Same layout as BeforeAfter, but with chips to switch between several
+   comparable jobs. Remounting the slider per case resets the handle to centre. */
+function BeforeAfterCases({ data }: { data: CasesData }) {
+  const [active, setActive] = useState(0);
+  const current = data.cases[active];
 
-          {/* Corner labels */}
-          <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-ink/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-bright backdrop-blur-sm">
-            {data.afterLabel}
-          </span>
-          <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-ink/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-bone-soft backdrop-blur-sm">
-            {data.beforeLabel}
-          </span>
+  return (
+    <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
+      <div className="lg:col-span-4">
+        <h3 className="text-2xl md:text-3xl">{data.title}</h3>
+        <p className="mt-4 text-bone-soft">{data.body}</p>
 
-          {/* Divider + handle */}
-          <div
-            className="absolute inset-y-0 z-10 w-px bg-gold-bright/80"
-            style={{ left: `${pos}%` }}
-          >
-            <div
-              role="slider"
-              tabIndex={0}
-              aria-label={`Vergelijk ${data.afterLabel.toLowerCase()} en ${data.beforeLabel.toLowerCase()}`}
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={Math.round(pos)}
-              aria-valuetext={`${Math.round(pos)}% ${data.afterLabel.toLowerCase()} zichtbaar`}
-              onPointerDown={startDrag}
-              onKeyDown={onKeyDown}
-              className="absolute top-1/2 left-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize touch-none place-items-center rounded-full bg-gradient-to-br from-[#c89e48] via-[#f2e394] to-[#b98c41] text-ink shadow-[0_8px_24px_-6px_rgba(0,0,0,0.7)] transition-transform duration-150 hover:scale-105"
-            >
-              <MoveHorizontal size={20} strokeWidth={2.5} aria-hidden="true" />
-            </div>
-          </div>
+        <div className="mt-6 flex flex-wrap gap-2" role="tablist" aria-label={`Kies een ${data.title.toLowerCase()}`}>
+          {data.cases.map((c, i) => {
+            const selected = i === active;
+            return (
+              <button
+                key={c.label}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                onClick={() => setActive(i)}
+                className={
+                  selected
+                    ? 'rounded-full bg-gradient-to-br from-[#c89e48] via-[#f2e394] to-[#b98c41] px-4 py-1.5 text-sm font-semibold text-ink shadow-[0_8px_24px_-10px_rgba(0,0,0,0.7)]'
+                    : 'rounded-full border border-line px-4 py-1.5 text-sm font-medium text-bone-soft transition-colors hover:border-gold hover:text-gold-bright'
+                }
+              >
+                {c.label}
+              </button>
+            );
+          })}
         </div>
+
+        <CompareHint />
+      </div>
+      <div className="lg:col-span-8">
+        <CompareSlider key={current.label} pair={current} />
       </div>
     </div>
   );
@@ -260,11 +320,15 @@ function Lightbox({
 /* Gallery tile                                                        */
 /* ------------------------------------------------------------------ */
 
-// Desktop bento spans for the 6 tiles over a 12-col grid.
+// Desktop bento spans for the 8 tiles over a 12-col grid.
+// Rows 1-2: a wide hero tile next to a tall portrait. Rows 3-4: two rows of
+// three. Order must match the gallery array.
 const tileSpans = [
-  'md:col-span-7 md:row-span-2',
-  'md:col-span-5 md:row-span-1',
-  'md:col-span-5 md:row-span-1',
+  'md:col-span-8 md:row-span-2',
+  'md:col-span-4 md:row-span-2',
+  'md:col-span-4 md:row-span-1',
+  'md:col-span-4 md:row-span-1',
+  'md:col-span-4 md:row-span-1',
   'md:col-span-4 md:row-span-1',
   'md:col-span-4 md:row-span-1',
   'md:col-span-4 md:row-span-1',
@@ -339,9 +403,13 @@ export default function Work() {
 
         {/* Part A — before/after sliders */}
         <div className="mt-12 space-y-14 md:mt-16 md:space-y-20">
-          {beforeAfters.map((item) => (
-            <BeforeAfter key={item.title} data={item} />
-          ))}
+          {beforeAfters.map((item) =>
+            'cases' in item ? (
+              <BeforeAfterCases key={item.title} data={item} />
+            ) : (
+              <BeforeAfter key={item.title} data={item} />
+            ),
+          )}
         </div>
 
         <div className="hairline my-12 md:my-16" />

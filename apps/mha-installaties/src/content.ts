@@ -181,34 +181,83 @@ export const about = {
   imageAlt: 'Installateur van MHA Installaties aan het werk',
 };
 
-// Before/after projects — drag-to-compare sliders
-export const beforeAfters = [
+// Before/after projects — drag-to-compare sliders.
+// Convention (matches the slider in Work.tsx): the `after` field is the image
+// shown on the LEFT under `afterLabel`, the `before` field is shown on the RIGHT
+// under `beforeLabel`. So the old situation goes in `after` ('Voor') and the new
+// result in `before` ('Na'). An item may instead carry `cases`, which renders a
+// chip toggle so visitors can step through several comparable jobs.
+type ComparePair = {
+  before: { src: string; alt: string };
+  after: { src: string; alt: string };
+  beforeLabel: string;
+  afterLabel: string;
+  frame: string;
+};
+type BeforeAfterItem =
+  | ({ title: string; body: string } & ComparePair)
+  | { title: string; body: string; cases: (ComparePair & { label: string })[] };
+
+export const beforeAfters: BeforeAfterItem[] = [
+  {
+    title: 'CV-ketel vervangen',
+    body: 'Twee complete vervangingen. Oude opstelling eruit, nieuwe cv-ketel strak gemonteerd, leidingwerk netjes weggewerkt en veilig opgeleverd. Kies een klus om voor en na te vergelijken.',
+    // Multiple comparable jobs behind chips, so bezoekers er zelf doorheen kunnen klikken.
+    cases: [
+      {
+        label: 'Klus 1',
+        before: { src: '/work/boiler-na', alt: 'Nieuwe cv-ketel netjes gemonteerd' },
+        after: { src: '/work/boiler-voor', alt: 'Cv-ketelopstelling voor de werkzaamheden' },
+        beforeLabel: 'Na',
+        afterLabel: 'Voor',
+        frame: 'aspect-[3/4] mx-auto max-w-[22rem] sm:max-w-[26rem]',
+      },
+      {
+        label: 'Klus 2',
+        before: { src: '/work/cvketel2-na', alt: 'Nieuwe Intergas cv-ketel netjes gemonteerd' },
+        after: { src: '/work/cvketel2-voor', alt: 'Oude cv-ketelopstelling voor de vervanging' },
+        beforeLabel: 'Na',
+        afterLabel: 'Voor',
+        frame: 'aspect-[3/4] mx-auto max-w-[22rem] sm:max-w-[26rem]',
+      },
+    ],
+  },
+  {
+    title: 'Ventilatiemotor gereinigd',
+    body: 'De waaier van de mechanische ventilatie zat dichtgeslibd met stof en vet. Gedemonteerd, grondig gereinigd en weer fris draaiend teruggeplaatst.',
+    before: { src: '/work/ventilatie-waaier-schoon', alt: 'Gereinigde ventilatiewaaier, schoon en stofvrij' },
+    after: { src: '/work/ventilatie-waaier-vuil', alt: 'Ventilatiewaaier dichtgeslibd met stof voor de reiniging' },
+    beforeLabel: 'Na',
+    afterLabel: 'Voor',
+    frame: 'aspect-[3/4] mx-auto max-w-[22rem] sm:max-w-[26rem]',
+  },
+  {
+    title: 'Dakdoorvoer vernieuwd',
+    body: 'Versleten rookgasafvoer op het dak vervangen door een nieuwe, strak afgewerkte dakdoorvoer. Weer waterdicht en veilig afgevoerd.',
+    before: { src: '/work/dakdoorvoer-na', alt: 'Nieuwe dakdoorvoer netjes geplaatst op het dak' },
+    after: { src: '/work/dakdoorvoer-voor', alt: 'Oude rookgasafvoer op de schoorsteen voor de vervanging' },
+    beforeLabel: 'Na',
+    afterLabel: 'Voor',
+    // Tall portrait shots — a slim frame keeps the schoorsteen in beeld.
+    frame: 'aspect-[1/2] mx-auto max-w-[18rem] sm:max-w-[20rem]',
+  },
   {
     title: 'Keukenleidingen verplaatst',
     body: 'Oude leidingen in de keuken gedemonteerd en strak opnieuw aangelegd. Klaar voor een nieuwe inrichting.',
-    before: { src: '/work/keuken-voor', alt: 'Keukenleidingen voor de werkzaamheden' },
-    after: { src: '/work/keuken-na', alt: 'Keukenleidingen netjes opnieuw aangelegd' },
+    before: { src: '/work/keuken-voor', alt: 'Keukenleidingen netjes opnieuw aangelegd' },
+    after: { src: '/work/keuken-na', alt: 'Keukenleidingen voor de werkzaamheden' },
     beforeLabel: 'Na',
     afterLabel: 'Voor',
-    // Frame classes — landscape photos, so a wide frame fits without cropping.
+    // Landscape photos, so a wide frame fits without cropping.
     frame: 'aspect-[4/3] sm:aspect-[16/10]',
-  },
-  {
-    title: 'CV-ketel vervangen',
-    body: 'Oude opstelling vervangen door een nieuwe cv-ketel. Strak gemonteerd, leidingwerk netjes weggewerkt en veilig opgeleverd.',
-    before: { src: '/work/boiler-na', alt: 'Nieuwe cv-ketel netjes gemonteerd' },
-    after: { src: '/work/boiler-voor', alt: 'Cv-ketelopstelling voor de werkzaamheden' },
-    beforeLabel: 'Na',
-    afterLabel: 'Voor',
-    // Portrait photos (3:4) — match the frame to them and cap the width so the
-    // full boiler stays visible without cropping top or bottom.
-    frame: 'aspect-[3/4] mx-auto max-w-[22rem] sm:max-w-[26rem]',
   },
 ];
 
-// Work gallery
+// Work gallery — order matters, it drives the bento spans in Work.tsx.
 export const gallery = [
   { src: '/work/verwarming', alt: 'Aangelegde verwarmingsinstallatie met isolatie', caption: 'Verwarmingsinstallatie' },
+  { src: '/work/cv-leidingwerk', alt: 'Strak weggewerkt leidingwerk onder een nieuwe cv-ketel', caption: 'Leidingwerk cv-ketel' },
+  { src: '/work/ventilatiekanaal', alt: 'Gereinigd ventilatiekanaal in de afzuigbox', caption: 'Ventilatiekanaal gereinigd' },
   { src: '/work/leidingwerk', alt: 'Strak weggewerkt leidingwerk', caption: 'Leidingwerk' },
   { src: '/work/badkamer', alt: 'Badkamer en toilet werkzaamheden', caption: 'Badkamer & sanitair' },
   { src: '/work/lekkage', alt: 'Lekkage aan een kraan verholpen', caption: 'Lekkage verholpen' },
