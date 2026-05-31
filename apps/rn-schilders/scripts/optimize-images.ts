@@ -5,6 +5,11 @@ import path from 'node:path';
 const publicDir = path.resolve(process.cwd(), 'public');
 const maxEdge = 1800;
 
+// Real PNG/ICO icons that must stay PNG. Google's search-result favicon and
+// Apple touch icon are not reliably served as WebP, so keep these untouched —
+// converting them to .webp (and deleting the source) 404s the favicon.
+const keepAsIs = new Set(['favicon-64.png', 'apple-touch-icon.png']);
+
 async function human(size: number) {
   if (size > 1024 * 1024) return `${(size / 1024 / 1024).toFixed(2)} MB`;
   return `${(size / 1024).toFixed(0)} KB`;
@@ -14,6 +19,7 @@ async function processOne(file: string) {
   const full = path.join(publicDir, file);
   const ext = path.extname(file).toLowerCase();
   if (!['.jpg', '.jpeg', '.png', '.webp'].includes(ext)) return;
+  if (keepAsIs.has(file)) return;
 
   const before = (await stat(full)).size;
   const meta = await sharp(full).metadata();
