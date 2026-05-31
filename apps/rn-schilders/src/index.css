@@ -253,23 +253,21 @@
 
 /* Edge-to-edge auto-scrolling carousel (na Onze werkzaamheden) */
 .marquee-viewport {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
 }
 
-@keyframes marquee-ltr {
-  from { transform: translate3d(-50%, 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
+.marquee-viewport::-webkit-scrollbar {
+  display: none;
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-ltr 64s linear infinite;
-}
-
-.marquee-viewport:hover .marquee-track,
-.marquee-viewport:focus-within .marquee-track {
-  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -277,16 +275,11 @@
   .hero-reveal,
   .quote-sheet,
   .success-check,
-  .success-bar,
-  .marquee-track {
+  .success-bar {
     animation: none;
   }
 
   .success-bar {
     width: 100%;
-  }
-
-  .marquee-viewport {
-    overflow-x: auto;
   }
 }

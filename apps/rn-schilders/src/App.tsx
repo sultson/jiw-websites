@@ -818,6 +818,60 @@ const roofWindowStory: ShowcaseImage[] = [
 
 const showcaseGroups: ShowcaseGroup[] = [
   {
+    title: 'Buiten en gevels',
+    text: 'Recent buitenwerk: gevels, kozijnen en erkers strak in de lak, plus renovatie aan een monumentale boerderij.',
+    images: [
+      {
+        src: '/werk-gevel-erker-tuindeuren.webp?v=20260530',
+        alt: 'Bakstenen gevel met witte erker en crème openslaande tuindeuren na schilderwerk',
+        width: 1280,
+        height: 960,
+        title: 'Gevel met erker',
+        label: 'Resultaat',
+      },
+      {
+        src: '/werk-witte-kozijnen-topgevel.webp?v=20260530',
+        alt: 'Witte kozijnen in een zwarte houten topgevel tegen een blauwe lucht',
+        width: 1280,
+        height: 960,
+        title: 'Houten topgevel',
+        label: 'Resultaat',
+      },
+      {
+        src: '/werk-antraciet-bovengevel.webp?v=20260530',
+        alt: 'Antracietgrijze houten bovengevel op een bakstenen onderbouw met witte kozijnen',
+        width: 1280,
+        height: 960,
+        title: 'Antraciet bovengevel',
+        label: 'Resultaat',
+      },
+      {
+        src: '/werk-erker-prep-bijgebouw.webp?v=20260530',
+        alt: 'Schilder bereidt de crème erker van een zwart houten bijgebouw voor',
+        width: 960,
+        height: 1280,
+        title: 'Erker voorbereiden',
+        label: 'In uitvoering',
+      },
+      {
+        src: '/werk-boerderij-rieten-schuur.webp?v=20260530',
+        alt: 'Schilder op een boerenerf bij een bakstenen boerderij met rieten schuur',
+        width: 960,
+        height: 1280,
+        title: 'Boerderijrenovatie',
+        label: 'Op locatie',
+      },
+      {
+        src: '/werk-houten-poort-renovatie.webp?v=20260530',
+        alt: 'Schilder draagt een grote houten poort tijdens renovatie bij een rieten schuur',
+        width: 960,
+        height: 1280,
+        title: 'Houten poort',
+        label: 'Renovatie',
+      },
+    ],
+  },
+  {
     title: 'Kozijnen en licht',
     text: 'Buitenaanzicht, hoekdetails en glaspartijen bij elkaar, zodat u de aansluiting en afwerking goed kunt beoordelen.',
     images: [
@@ -977,6 +1031,22 @@ const showcaseGroups: ShowcaseGroup[] = [
         title: 'Entreepartij',
         label: 'Buiten',
       },
+      {
+        src: '/werk-creme-tuindeuren-baksteen.webp?v=20260530',
+        alt: 'Crème openslaande tuindeuren in een oude bakstenen gevel',
+        width: 1280,
+        height: 960,
+        title: 'Openslaande tuindeuren',
+        label: 'Resultaat',
+      },
+      {
+        src: '/werk-creme-tuindeuren-binnenplaats.webp?v=20260530',
+        alt: 'Crème openslaande deuren in een bakstenen gevel op een binnenplaats',
+        width: 1280,
+        height: 960,
+        title: 'Tuindeuren binnenplaats',
+        label: 'Resultaat',
+      },
     ],
   },
   {
@@ -1046,6 +1116,46 @@ const showcaseGroups: ShowcaseGroup[] = [
         height: 1800,
         title: 'Deur voorbereiden',
         label: 'Schuren',
+      },
+      {
+        src: '/werk-prep-kozijn-steiger.webp?v=20260530',
+        alt: 'Schilder bereidt een kozijn voor op een steiger bij een antraciet houten gevel',
+        width: 960,
+        height: 1280,
+        title: 'Kozijn voorbereiden',
+        label: 'Op de steiger',
+      },
+      {
+        src: '/werk-schuren-erker-boven.webp?v=20260530',
+        alt: 'Schilder schuurt de bovenkant van een crème erkerkozijn',
+        width: 1280,
+        height: 960,
+        title: 'Erkerkozijn schuren',
+        label: 'Schuren',
+      },
+      {
+        src: '/werk-schuren-erker-oranje.webp?v=20260530',
+        alt: 'Schilder schuurt een wit erkerkozijn met een schuurmachine',
+        width: 1280,
+        height: 960,
+        title: 'Kozijn schuren',
+        label: 'Schuren',
+      },
+      {
+        src: '/werk-schuren-erker-kozijnen.webp?v=20260530',
+        alt: 'Schilder schuurt de crème kozijnen van een erker op een binnenplaats',
+        width: 1280,
+        height: 960,
+        title: 'Erker schuren',
+        label: 'Schuren',
+      },
+      {
+        src: '/werk-erker-terras-parasol.webp?v=20260530',
+        alt: 'Schilder werkt aan een erker op een terras met haag en parasol',
+        width: 720,
+        height: 1280,
+        title: 'Erker op terras',
+        label: 'In uitvoering',
       },
     ],
   },
@@ -1317,7 +1427,7 @@ function App() {
   return (
     <div id="top" className="min-h-[100dvh] bg-paper">
       <Nav menuOpen={menuOpen} setMenuOpen={setMenuOpen} openQuote={() => setQuoteOpen(true)} isTermsPage={isSubPage} />
-      <main className="pt-16 md:pt-20">
+      <main>
         {isTermsPage ? (
           <TermsPage openQuote={() => setQuoteOpen(true)} />
         ) : isWorkAreaPage ? (
@@ -1368,48 +1478,56 @@ function Nav({
   }, []);
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition ${scrolled ? 'bg-whitewash/95 shadow-sm backdrop-blur-md' : 'bg-whitewash/90 backdrop-blur-sm'}`}>
-      <div className="shell flex h-16 items-center justify-between md:h-20">
-        <a href={isTermsPage ? '/' : '#top'} className="flex min-w-0 items-center gap-3" aria-label="RN Schilders & Renovatie">
-          <img src="/logo-mark.webp" alt="" width={800} height={679} className="h-11 w-11 object-contain" />
-          <span className="min-w-0">
-            <span className="block truncate font-display text-lg font-extrabold text-navy sm:text-xl">RN Schilders</span>
-            <span className="block text-xs font-bold uppercase tracking-[0.12em] text-roller">Woerden</span>
-          </span>
-        </a>
-
-        <nav className="hidden items-center gap-7 lg:flex">
-          {navLinks.map(([label, href]) => (
-            <a key={href} href={resolveNavHref(href, isTermsPage)} className="text-sm font-semibold text-graphite transition hover:text-navy">
-              {label}
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div className="shell pt-3 sm:pt-4">
+        <div
+          className={`overflow-hidden rounded-2xl border px-4 transition sm:px-5 ${
+            scrolled
+              ? 'border-line/70 bg-whitewash/95 shadow-[0_18px_50px_-30px_rgba(13,30,61,0.55)] backdrop-blur-md'
+              : 'border-white/55 bg-whitewash/80 shadow-[0_14px_44px_-32px_rgba(13,30,61,0.45)] backdrop-blur'
+          }`}
+        >
+          <div className="flex h-16 items-center justify-between md:h-[4.25rem]">
+            <a href={isTermsPage ? '/' : '#top'} className="flex min-w-0 items-center gap-3" aria-label="RN Schilders & Renovatie">
+              <img src="/logo-mark.webp" alt="" width={800} height={679} className="h-11 w-11 object-contain" />
+              <span className="min-w-0">
+                <span className="block truncate font-display text-lg font-extrabold text-navy sm:text-xl">RN Schilders</span>
+                <span className="block text-xs font-bold uppercase tracking-[0.12em] text-roller">Woerden</span>
+              </span>
             </a>
-          ))}
-        </nav>
 
-        <div className="flex items-center gap-2">
-          <a href={phoneHref} className="btn-outline hidden md:inline-flex">
-            <Phone size={17} />
-            Bel direct
-          </a>
-          <button type="button" onClick={openQuote} className="btn-primary hidden lg:inline-flex">
-            Offerte aanvragen
-            <ArrowRight size={17} />
-          </button>
-          <button
-            type="button"
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-line bg-white lg:hidden"
-            aria-label="Menu"
-          >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-      </div>
+            <nav className="hidden items-center gap-7 lg:flex">
+              {navLinks.map(([label, href]) => (
+                <a key={href} href={resolveNavHref(href, isTermsPage)} className="text-sm font-semibold text-graphite transition hover:text-navy">
+                  {label}
+                </a>
+              ))}
+            </nav>
 
-      {menuOpen && (
-        <div className="border-t border-line bg-whitewash lg:hidden">
-          <div className="shell py-5">
-            <div className="grid gap-1">
+            <div className="flex items-center gap-2">
+              <a href={phoneHref} className="btn-outline hidden md:inline-flex">
+                <Phone size={17} />
+                Bel direct
+              </a>
+              <button type="button" onClick={openQuote} className="btn-primary hidden lg:inline-flex">
+                Offerte aanvragen
+                <ArrowRight size={17} />
+              </button>
+              <button
+                type="button"
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-line bg-white lg:hidden"
+                aria-label="Menu"
+              >
+                {menuOpen ? <X size={22} /> : <Menu size={22} />}
+              </button>
+            </div>
+          </div>
+
+          {menuOpen && (
+            <div className="border-t border-line/70 lg:hidden">
+              <div className="py-5">
+                <div className="grid gap-1">
               {navLinks.map(([label, href]) => (
                 <Fragment key={href}>
                   <a
@@ -1448,29 +1566,48 @@ function Nav({
             >
               Gratis offerte aanvragen
             </button>
-          </div>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </header>
   );
 }
 
+const heroSlides = [
+  { src: '/rn-schilders-main.webp?v=20260530', width: 1024, height: 1536, position: '50% 28%' },
+  { src: '/hero-schilder-dakrand.webp?v=20260530', width: 1200, height: 1600, position: '50% 32%' },
+  { src: '/hero-tuinvilla-steiger.webp?v=20260530', width: 1200, height: 1600, position: '50% 42%' },
+  { src: '/hero-steigertoren-villa.webp?v=20260530', width: 1200, height: 1600, position: '50% 40%' },
+] as const;
+
 function Hero({ openQuote }: { openQuote: () => void }) {
+  const [slide, setSlide] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    const id = setInterval(() => setSlide((current) => (current + 1) % heroSlides.length), 5500);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <section className="relative min-h-[82dvh] overflow-hidden md:min-h-[calc(92dvh-5rem)]">
-      <div className="absolute inset-0">
-        <img
-          src="/workspace-hero.webp?v=20260514"
-          srcSet="/workspace-hero-mobile.webp?v=20260514 669w, /workspace-hero.webp?v=20260514 1536w"
-          sizes="100vw"
-          alt=""
-          width={1536}
-          height={1024}
-          className="hero-bg h-full w-full object-cover"
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-        />
+      <div className="hero-bg absolute inset-0">
+        {heroSlides.map((item, index) => (
+          <img
+            key={item.src}
+            src={item.src}
+            alt=""
+            width={item.width}
+            height={item.height}
+            style={{ objectPosition: item.position }}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-in-out ${index === slide ? 'opacity-100' : 'opacity-0'}`}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            fetchPriority={index === 0 ? 'high' : 'low'}
+            decoding="async"
+          />
+        ))}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,30,61,0.94)_0%,rgba(13,30,61,0.78)_46%,rgba(13,30,61,0.28)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-whitewash to-transparent" />
       </div>
@@ -1534,7 +1671,7 @@ function OwnerSection() {
   return (
     <section className="section-pad">
       <div className="shell grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-        <img src="/hoogwerker.webp?v=20260514" alt="RN Schilders aan het werk bij buitenschilderwerk" width={810} height={540} className="aspect-[4/3] w-full rounded-lg object-cover" loading="lazy" decoding="async" />
+        <img src="/workspace-hero.webp?v=20260514" alt="Bedrijfsbus van RN Schilders & Renovatie" width={1536} height={1024} className="aspect-[4/3] w-full rounded-lg object-cover" loading="lazy" decoding="async" />
 
         <div>
           <h2 className="max-w-2xl text-4xl font-extrabold leading-tight text-navy md:text-5xl">
@@ -1772,6 +1909,14 @@ type MarqueeItem =
 const marqueeItems: MarqueeItem[] = [
   {
     type: 'video',
+    src: '/video-spuit-gevel.mp4',
+    poster: '/video-spuit-gevel-poster.webp',
+    caption: 'Gevel spuiten in de avondzon',
+    width: 540,
+    height: 960,
+  },
+  {
+    type: 'video',
     src: '/carousel-werk-video.mp4',
     poster: '/carousel-werk-video-poster.webp',
     caption: 'Plafondproject van dichtbij',
@@ -1787,12 +1932,28 @@ const marqueeItems: MarqueeItem[] = [
     height: 533,
   },
   {
+    type: 'video',
+    src: '/video-steiger-villa.mp4',
+    poster: '/video-steiger-villa-poster.webp',
+    caption: 'Buitenwerk vanaf de steiger',
+    width: 540,
+    height: 960,
+  },
+  {
     type: 'image',
     src: '/carousel-staircase.webp?v=20260517',
     alt: 'Strak wit gelakte trap van bovenaf gezien',
     caption: 'Strak gelakte trap',
     width: 1320,
     height: 1389,
+  },
+  {
+    type: 'video',
+    src: '/video-dakrand-schuren.mp4',
+    poster: '/video-dakrand-schuren-poster.webp',
+    caption: 'Dakrand schuren en strak maken',
+    width: 540,
+    height: 960,
   },
   {
     type: 'image',
@@ -1811,6 +1972,14 @@ const marqueeItems: MarqueeItem[] = [
     height: 660,
   },
   {
+    type: 'video',
+    src: '/video-verfspuit-steiger.mp4',
+    poster: '/video-verfspuit-steiger-poster.webp',
+    caption: 'Spuitwerk op de steiger',
+    width: 540,
+    height: 960,
+  },
+  {
     type: 'image',
     src: '/carousel-garden-shed.webp',
     alt: 'Moderne tuinberging met zwarte en houten gevelbekleding',
@@ -1827,6 +1996,14 @@ const marqueeItems: MarqueeItem[] = [
     height: 1350,
   },
   {
+    type: 'video',
+    src: '/video-boogvenster.mp4',
+    poster: '/video-boogvenster-poster.webp',
+    caption: 'Schilderwerk rond een boogvenster',
+    width: 540,
+    height: 960,
+  },
+  {
     type: 'image',
     src: '/carousel-ceiling-tiles.webp',
     alt: 'Zwart akoestisch plafond met inbouwspots',
@@ -1841,6 +2018,14 @@ const marqueeItems: MarqueeItem[] = [
     caption: 'Zolderbadkamer in renovatie',
     width: 1350,
     height: 1800,
+  },
+  {
+    type: 'video',
+    src: '/video-erker-schuren.mp4',
+    poster: '/video-erker-schuren-poster.webp',
+    caption: 'Erkerkozijn schuren',
+    width: 540,
+    height: 960,
   },
   {
     type: 'video',
@@ -1867,12 +2052,28 @@ const marqueeItems: MarqueeItem[] = [
     height: 1350,
   },
   {
+    type: 'video',
+    src: '/video-kozijn-parasol.mp4',
+    poster: '/video-kozijn-parasol-poster.webp',
+    caption: 'Kozijn schuren op het terras',
+    width: 540,
+    height: 960,
+  },
+  {
     type: 'image',
     src: '/carousel-stalen-deur.webp?v=20260517',
     alt: 'Stalen binnendeur in voorbereiding tijdens renovatie',
     caption: 'Stalen binnendeur in voorbereiding',
     width: 1320,
     height: 1746,
+  },
+  {
+    type: 'video',
+    src: '/video-binnenplaats-overzicht.mp4',
+    poster: '/video-binnenplaats-overzicht-poster.webp',
+    caption: 'Buitenwerk op de binnenplaats',
+    width: 540,
+    height: 960,
   },
   {
     type: 'video',
@@ -1912,7 +2113,7 @@ function MarqueeCard({ item, onPlay }: { item: MarqueeItem; onPlay: (video: { sr
         aria-label={`Video bekijken: ${item.caption}`}
         className={`group ${base}`}
       >
-        <div className="aspect-[4/3] w-full overflow-hidden">
+        <div className="aspect-[3/4] w-full overflow-hidden">
           <img
             src={item.poster}
             alt={item.caption}
@@ -1938,7 +2139,7 @@ function MarqueeCard({ item, onPlay }: { item: MarqueeItem; onPlay: (video: { sr
 
   return (
     <figure className={base}>
-      <div className="aspect-[4/3] w-full overflow-hidden">
+      <div className="aspect-[3/4] w-full overflow-hidden">
         <img
           src={item.src}
           alt={item.alt}
@@ -1999,7 +2200,37 @@ function VideoLightbox({ src, poster, onClose }: { src: string; poster: string; 
 
 function WorkMarquee() {
   const [activeVideo, setActiveVideo] = useState<{ src: string; poster: string } | null>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
   const loop = [...marqueeItems, ...marqueeItems];
+
+  useEffect(() => {
+    const el = viewportRef.current;
+    if (!el) return;
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    let raf = 0;
+    let pos = el.scrollLeft;
+    const step = () => {
+      const half = el.scrollWidth / 2;
+      if (pausedRef.current) {
+        pos = el.scrollLeft;
+      } else {
+        pos += 0.5;
+        if (half > 0 && pos >= half) pos -= half;
+        el.scrollLeft = pos;
+      }
+      raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  const pause = () => {
+    pausedRef.current = true;
+  };
+  const resume = () => {
+    pausedRef.current = false;
+  };
 
   return (
     <section className="section-pad overflow-hidden">
@@ -2010,13 +2241,24 @@ function WorkMarquee() {
             Een doorlopende blik op recent werk.
           </h2>
           <p className="max-w-md text-base leading-7 text-graphite">
-            Van buitenschilderwerk tot afgewerkte interieurs. Beweeg over de strook om te pauzeren.
+            Van buitenschilderwerk tot afgewerkte interieurs. Swipe of scroll door de strook om zelf te bladeren.
           </p>
         </div>
       </div>
 
-      <div className="marquee-viewport mt-10 w-full md:mt-12" aria-label="Doorlopende weergave van uitgevoerd werk">
-        <div className="marquee-track gap-5 pl-5">
+      <div
+        ref={viewportRef}
+        className="marquee-viewport mt-10 w-full md:mt-12"
+        aria-label="Doorlopende weergave van uitgevoerd werk; scroll of swipe om te bladeren"
+        onMouseEnter={pause}
+        onMouseLeave={resume}
+        onPointerDown={pause}
+        onPointerUp={resume}
+        onPointerCancel={resume}
+        onTouchStart={pause}
+        onTouchEnd={resume}
+      >
+        <div className="marquee-track gap-5 px-5">
           {loop.map((item, index) => (
             <MarqueeCard key={`${item.src}-${index}`} item={item} onPlay={setActiveVideo} />
           ))}
@@ -2275,6 +2517,8 @@ function ProjectSlideshow({
 function WorkShowcase({ openQuote }: { openQuote: () => void }) {
   const allImages = useMemo(() => [...roofWindowStory, ...showcaseGroups.flatMap((group) => group.images)], []);
   const [selectedImage, setSelectedImage] = useState<ShowcaseImage | null>(null);
+  const [activeGroupTitle, setActiveGroupTitle] = useState(showcaseGroups[0].title);
+  const activeGroup = showcaseGroups.find((group) => group.title === activeGroupTitle) ?? showcaseGroups[0];
 
   useEffect(() => {
     if (!selectedImage) return;
@@ -2304,47 +2548,54 @@ function WorkShowcase({ openQuote }: { openQuote: () => void }) {
         <DakraamhoekSlider />
       </div>
 
-      <div className="mt-8 grid gap-5 lg:grid-cols-2">
-        {showcaseGroups.map((group) => (
-          <article key={group.title} className="rounded-lg border border-white/10 bg-navy/35 p-4 sm:p-5">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <h4 className="font-display text-2xl font-extrabold text-white">{group.title}</h4>
-                <p className="mt-2 max-w-xl text-sm leading-6 text-white/75">{group.text}</p>
-              </div>
-              <span className="shrink-0 rounded-md border border-white/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white/70">
-                {group.images.length} beelden
+      <div className="mt-10">
+        <div className="flex flex-wrap gap-2">
+          {showcaseGroups.map((group) => {
+            const active = group.title === activeGroup.title;
+            return (
+              <button
+                key={group.title}
+                type="button"
+                onClick={() => setActiveGroupTitle(group.title)}
+                aria-pressed={active}
+                className={`rounded-full px-4 py-2 text-sm font-bold transition ${
+                  active
+                    ? 'bg-roller text-white shadow-[0_12px_24px_-16px_rgba(255,106,0,0.9)]'
+                    : 'border border-white/15 bg-white/5 text-white/75 hover:bg-white/10 hover:text-white'
+                }`}
+              >
+                {group.title}
+              </button>
+            );
+          })}
+        </div>
+
+        <p className="mt-5 max-w-2xl text-sm leading-6 text-white/70">{activeGroup.text}</p>
+
+        <div className="mt-6 columns-2 gap-3 sm:columns-3 lg:columns-4">
+          {activeGroup.images.map((image) => (
+            <button
+              key={image.src}
+              type="button"
+              onClick={() => setSelectedImage(image)}
+              className="group relative mb-3 block w-full break-inside-avoid overflow-hidden rounded-lg bg-white/8"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                className="w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="absolute inset-0 bg-navy/0 transition group-hover:bg-navy/15" />
+              <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-md bg-white/90 text-navy opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
+                <Maximize2 size={17} />
               </span>
-            </div>
-            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {group.images.map((image, index) => (
-                <button
-                  key={image.src}
-                  type="button"
-                  onClick={() => setSelectedImage(image)}
-                  className={`group relative overflow-hidden rounded-lg bg-white/8 text-left ${index === 0 && group.images.length > 2 ? 'col-span-2 row-span-2 sm:col-span-2' : ''}`}
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    className={`w-full object-cover transition duration-500 group-hover:scale-[1.04] ${index === 0 && group.images.length > 2 ? 'aspect-[4/3] h-full sm:aspect-[16/10]' : 'aspect-square'}`}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent p-3 pt-10">
-                    <span className="block text-xs font-bold uppercase tracking-[0.12em] text-roller-soft">{image.label}</span>
-                    <span className="mt-1 block font-display text-sm font-extrabold text-white sm:text-base">{image.title}</span>
-                  </span>
-                  <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-md bg-white/90 text-navy opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
-                    <Maximize2 size={17} />
-                  </span>
-                </button>
-              ))}
-            </div>
-          </article>
-        ))}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="mt-8 flex flex-col gap-4 rounded-lg bg-whitewash p-5 text-navy sm:flex-row sm:items-center sm:justify-between">
@@ -3158,7 +3409,7 @@ function ServicePage({ service, openQuote }: { service: Service; openQuote: () =
   return (
     <>
       <section className="bg-navy text-white">
-        <div className="shell grid gap-10 py-12 md:grid-cols-[1fr_0.8fr] md:items-center md:py-16">
+        <div className="shell grid gap-10 pb-12 pt-24 md:grid-cols-[1fr_0.8fr] md:items-center md:pb-16 md:pt-28">
           <div className="max-w-3xl">
             <a href="/#diensten" className="inline-flex items-center gap-2 text-sm font-bold text-roller-soft">
               <ChevronRight size={16} className="rotate-180" />
@@ -3279,7 +3530,7 @@ function WorkAreaPage({ openQuote }: { openQuote: () => void }) {
   return (
     <>
       <section className="bg-navy text-white">
-        <div className="shell grid gap-8 py-12 md:grid-cols-[1fr_auto] md:items-center md:py-16">
+        <div className="shell grid gap-8 pb-12 pt-24 md:grid-cols-[1fr_auto] md:items-center md:pb-16 md:pt-28">
           <div className="max-w-3xl">
             <p className="eyebrow text-roller-soft">Werkgebied</p>
             <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">Schilderwerk rondom Woerden.</h1>
@@ -3348,7 +3599,7 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
   return (
     <>
       <section className="bg-navy text-white">
-        <div className="shell grid gap-10 py-12 md:grid-cols-[1fr_0.78fr] md:items-center md:py-16">
+        <div className="shell grid gap-10 pb-12 pt-24 md:grid-cols-[1fr_0.78fr] md:items-center md:pb-16 md:pt-28">
           <div className="max-w-3xl">
             <a href="/werkgebied" className="inline-flex items-center gap-2 text-sm font-bold text-roller-soft">
               <ChevronRight size={16} className="rotate-180" />
@@ -3371,11 +3622,11 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
 
           <div className="overflow-hidden rounded-lg border border-white/10 bg-white/8">
             <img
-              src={location.heroImage?.src ?? '/hoogwerker.webp?v=20260514'}
+              src={location.heroImage?.src ?? '/rn-schilders-main.webp?v=20260530'}
               alt={location.heroImage?.alt ?? `Schilderwerk voor ${location.title}`}
-              width={location.heroImage?.width ?? 810}
-              height={location.heroImage?.height ?? 540}
-              className="aspect-[4/3] w-full object-cover"
+              width={location.heroImage?.width ?? 1024}
+              height={location.heroImage?.height ?? 1536}
+              className={`w-full object-cover ${location.heroImage ? 'aspect-[4/3]' : 'aspect-[3/4] object-top'}`}
               loading="eager"
               decoding="async"
             />
@@ -3540,7 +3791,7 @@ function TermsPage({ openQuote }: { openQuote: () => void }) {
   return (
     <section className="bg-paper">
       <div className="bg-navy text-white">
-        <div className="shell grid gap-8 py-10 md:grid-cols-[1fr_auto] md:items-center md:py-14">
+        <div className="shell grid gap-8 pb-10 pt-24 md:grid-cols-[1fr_auto] md:items-center md:pb-14 md:pt-28">
           <div className="max-w-3xl">
             <p className="eyebrow text-roller-soft">Versie april 2026</p>
             <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">Algemene Voorwaarden RN Schilders & Renovatie</h1>
