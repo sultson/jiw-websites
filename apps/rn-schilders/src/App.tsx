@@ -17,6 +17,7 @@ import {
   Menu,
   MessageCircle,
   MessageSquare,
+  MoveHorizontal,
   PaintRoller,
   Phone,
   Play,
@@ -181,7 +182,6 @@ const services: Service[] = [
       '/schilderwerk-3.webp?v=20260514',
       '/schilderwerk-4.webp?v=20260517',
       '/schilderwerk-5.webp',
-      '/schilderwerk-6.webp?v=20260517',
     ],
     width: 1300,
     height: 867,
@@ -210,9 +210,8 @@ const services: Service[] = [
       'Kozijnen in Woerden laten renoveren, herstellen of plaatsen. Houten en kunststof kozijnen, houtwerk, isolatie en PKVW hang- en sluitwerk.',
     pageLead:
       'RN Schilders helpt in Woerden met kozijnen die weer strak, veilig en goed beschermd moeten zijn. Van herstel en schilderwerk tot plaatsing en advies over hang- en sluitwerk.',
-    image: '/kozijnen-3.webp?v=20260514',
+    image: '/kozijnen-7.webp?v=20260517',
     images: [
-      '/kozijnen-3.webp?v=20260514',
       '/kozijnen-7.webp?v=20260517',
       '/kozijnen-6.webp?v=20260517',
       '/kozijnen-5.webp',
@@ -1851,26 +1850,26 @@ function FeaturedWork({ openQuote }: { openQuote: () => void }) {
   return (
     <section id="werk" className="section-pad bg-navy text-white">
       <div className="shell">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="eyebrow text-roller-soft">Recent werk</p>
             <h2 className="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">
               Van versleten voordeur naar hoogglans visitekaartje.
             </h2>
-            <p className="mt-6 text-lg leading-8 text-white/88">
+            <p className="mt-5 text-lg leading-8 text-white/88">
               Foto’s maken het verschil tussen beloven en laten zien. Daarom krijgt recent werk hier de ruimte: voorbereiding, herstel en afwerking naast elkaar.
             </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
               {['Schuren', 'Herstellen', 'Aflakken'].map((step, index) => (
-                <div key={step} className="rounded-md border border-white/12 bg-white/8 p-4">
+                <div key={step} className="rounded-md border border-white/12 bg-white/8 p-3.5">
                   <span className="text-xs font-bold uppercase tracking-[0.15em] text-roller-soft">Stap {index + 1}</span>
-                  <strong className="mt-2 block font-display text-xl font-extrabold">{step}</strong>
+                  <strong className="mt-1.5 block font-display text-xl font-extrabold">{step}</strong>
                 </div>
               ))}
             </div>
 
-            <button type="button" onClick={openQuote} className="btn-primary mt-8">
+            <button type="button" onClick={openQuote} className="btn-primary mt-6">
               Ik wil dit resultaat
               <ArrowRight size={17} />
             </button>
@@ -1925,11 +1924,11 @@ const marqueeItems: MarqueeItem[] = [
   },
   {
     type: 'image',
-    src: '/carousel-facade-boom-lift.webp',
-    alt: 'Buitenschilderwerk aan een gevel vanuit een hoogwerker',
-    caption: 'Buitenschilderwerk met hoogwerker',
-    width: 800,
-    height: 533,
+    src: '/carousel-voordeur-renovatie.webp',
+    alt: 'Schilder van RN Schilders werkt aan een houten voordeur in een bakstenen entree',
+    caption: 'Voordeur in renovatie',
+    width: 1013,
+    height: 1800,
   },
   {
     type: 'video',
@@ -2274,11 +2273,35 @@ function WorkMarquee() {
 
 type Stage = { src: string; label: string; sub: string; alt: string };
 
-const doorStages: readonly Stage[] = [
-  { src: '/voordeur-voor.webp?v=20260517', label: 'Voor', sub: 'Verweerd hout, peelende verflagen.', alt: 'Voordeur voor behandeling' },
-  { src: '/voordeur-tijdens.webp?v=20260517', label: 'Tijdens', sub: 'Schuren, plamuren, gronden.', alt: 'Voordeur tijdens behandeling' },
-  { src: '/voordeur-na.webp?v=20260517', label: 'Na', sub: 'Hoogglans afwerking, weer jarenlang beschermd.', alt: 'Voordeur na behandeling' },
-] as const;
+type ComparePair = {
+  before: { src: string; alt: string };
+  after: { src: string; alt: string };
+  beforeLabel: string;
+  afterLabel: string;
+};
+
+// Drag-to-compare door renovations. `before` shows on the left under
+// `beforeLabel`, `after` on the right under `afterLabel`.
+const doorCompareCases: readonly { label: string; pair: ComparePair }[] = [
+  {
+    label: 'Eikenhouten deur',
+    pair: {
+      before: { src: '/voordeur-eik-voor.webp', alt: 'Verweerde eikenhouten voordeur met dofgeworden lak' },
+      after: { src: '/voordeur-eik-na.webp', alt: 'Eikenhouten voordeur na renovatie met diepe hoogglans afwerking' },
+      beforeLabel: 'Voor',
+      afterLabel: 'Na',
+    },
+  },
+  {
+    label: 'Groene paneeldeur',
+    pair: {
+      before: { src: '/voordeur-voor.webp?v=20260517', alt: 'Groene dubbele voordeur met afgebladderde verflagen' },
+      after: { src: '/voordeur-na.webp?v=20260517', alt: 'Groene dubbele voordeur na renovatie met strakke hoogglans afwerking' },
+      beforeLabel: 'Voor',
+      afterLabel: 'Na',
+    },
+  },
+];
 
 const dakraamStages: readonly Stage[] = [
   { src: '/showcase-roof-window-before.webp?v=20260517', label: 'Voor', sub: 'Versleten dakkapel met losse verflagen en houtwerk dat aandacht vraagt.', alt: 'Dakkapel en dakraamhoek voor afwerking' },
@@ -2377,8 +2400,136 @@ function StageSlider({
   );
 }
 
+function CompareSlider({ pair }: { pair: ComparePair }) {
+  const [pos, setPos] = useState(50);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const draggingRef = useRef(false);
+
+  const clamp = (n: number) => Math.min(100, Math.max(0, n));
+
+  const updateFromClientX = useCallback((clientX: number) => {
+    const el = containerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.width === 0) return;
+    setPos(clamp(((clientX - rect.left) / rect.width) * 100));
+  }, []);
+
+  // Pointer events cover both mouse and touch with a single API.
+  useEffect(() => {
+    const handleMove = (event: PointerEvent) => {
+      if (!draggingRef.current) return;
+      event.preventDefault();
+      updateFromClientX(event.clientX);
+    };
+    const stop = () => {
+      draggingRef.current = false;
+    };
+    window.addEventListener('pointermove', handleMove);
+    window.addEventListener('pointerup', stop);
+    window.addEventListener('pointercancel', stop);
+    return () => {
+      window.removeEventListener('pointermove', handleMove);
+      window.removeEventListener('pointerup', stop);
+      window.removeEventListener('pointercancel', stop);
+    };
+  }, [updateFromClientX]);
+
+  const startDrag = (event: React.PointerEvent) => {
+    draggingRef.current = true;
+    updateFromClientX(event.clientX);
+  };
+
+  const onKeyDown = (event: ReactKeyboardEvent) => {
+    const step = event.shiftKey ? 10 : 4;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      setPos((p) => clamp(p - step));
+    } else if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      setPos((p) => clamp(p + step));
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      setPos(0);
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      setPos(100);
+    }
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative aspect-[4/5] w-full select-none overflow-hidden rounded-lg bg-navy ring-1 ring-white/10"
+    >
+      {/* After (base layer) */}
+      <img src={pair.after.src} alt={pair.after.alt} className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" draggable={false} />
+
+      {/* Before (clipped top layer, revealed on the left) */}
+      <div className="absolute inset-0 h-full w-full overflow-hidden" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
+        <img src={pair.before.src} alt={pair.before.alt} className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" draggable={false} />
+      </div>
+
+      {/* Corner labels */}
+      <span className="pointer-events-none absolute left-3 top-3 rounded-md bg-navy/80 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-white/85 backdrop-blur-sm">
+        {pair.beforeLabel}
+      </span>
+      <span className="pointer-events-none absolute right-3 top-3 rounded-md bg-navy/80 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-roller-soft backdrop-blur-sm">
+        {pair.afterLabel}
+      </span>
+
+      {/* Divider + handle */}
+      <div className="absolute inset-y-0 z-10 w-px bg-white/90" style={{ left: `${pos}%` }}>
+        <div
+          role="slider"
+          tabIndex={0}
+          aria-label={`Vergelijk ${pair.beforeLabel.toLowerCase()} en ${pair.afterLabel.toLowerCase()}`}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(pos)}
+          aria-valuetext={`${Math.round(pos)}% ${pair.beforeLabel.toLowerCase()} zichtbaar`}
+          onPointerDown={startDrag}
+          onKeyDown={onKeyDown}
+          className="absolute top-1/2 left-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize touch-none place-items-center rounded-full bg-roller text-white shadow-[0_8px_24px_-6px_rgba(0,0,0,0.7)] transition-transform duration-150 hover:scale-105"
+        >
+          <MoveHorizontal size={20} strokeWidth={2.5} aria-hidden="true" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function DoorRenovationSlider() {
-  return <StageSlider stages={doorStages} ariaLabel="Sleep om voor, tijdens en na te vergelijken" imageWidth={451} imageHeight={590} />;
+  const [active, setActive] = useState(0);
+  const current = doorCompareCases[active];
+
+  return (
+    <div className="mx-auto w-full max-w-md">
+      <div className="mb-3 flex gap-2">
+        {doorCompareCases.map((item, index) => {
+          const selected = index === active;
+          return (
+            <button
+              key={item.label}
+              type="button"
+              onClick={() => setActive(index)}
+              aria-pressed={selected}
+              className={`flex-1 rounded-md px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] transition ${selected ? 'bg-roller text-white shadow-[0_8px_18px_-8px_rgba(255,106,0,0.9)]' : 'bg-white/8 text-white/70 hover:bg-white/15 hover:text-white'}`}
+            >
+              {item.label}
+            </button>
+          );
+        })}
+      </div>
+
+      <CompareSlider key={current.label} pair={current.pair} />
+
+      <p className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-white/70">
+        <MoveHorizontal size={16} className="text-roller-soft" aria-hidden="true" />
+        Sleep om voor en na te vergelijken
+      </p>
+    </div>
+  );
 }
 
 function DakraamhoekSlider() {
