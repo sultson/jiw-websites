@@ -1,0 +1,18 @@
+export const site = {
+  name: 'Skin & feet care by Kelly',
+  owner: 'Kelly',
+  phoneDisplay: '06 30418941',
+  phoneE164: '+31630418941',
+  whatsapp: '31630418941',
+  email: 'kelly@skinandfeetcare.nl',
+  address: 'Seppedreef 6, 4744 BV Bosschenhoofd',
+  addressQuery: 'Seppedreef+6,+4744+BV+Bosschenhoofd',
+  city: 'Bosschenhoofd',
+  region: 'Noord-Brabant',
+  instagram: 'https://www.instagram.com/skinandfeet_bykelly/',
+  instagramHandle: '@skinandfeet_bykelly',
+  facebook: 'https://www.facebook.com/people/Skin-feet-care-by-Kelly/100066888616960/',
+  mapsReviews: 'https://maps.google.com/?cid=16794307844268432928',
+  lat: 51.5636074,
+  lng: 4.5421342,
+} as const;

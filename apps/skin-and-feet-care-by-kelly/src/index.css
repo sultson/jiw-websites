@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+
+  /* Soft warm beige, the logo's light shade */
+  --color-cream: #F8F4EC;
+  --color-blush: #ECE1D2;
+  --color-blush-soft: #F2EADC;
+
+  /* Deep aubergine ink, drawn from the logo's purple */
+  --color-ink: #2B1B33;
+  --color-ink-soft: #4E3A5A;
+
+  /* Royal purple, the signature color */
+  --color-plum: #6C3FA0;
+  --color-plum-soft: #A282C8;
+
+  /* Warm greige, the logo's secondary "S" tone */
+  --color-taupe: #B4A98C;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ink);
+  }
+  body {
+    @apply font-sans bg-cream text-ink antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-serif text-ink;
+    letter-spacing: -0.01em;
+  }
+  h1 { font-weight: 400; }
+  h2 { font-weight: 400; }
+  ::selection { background: var(--color-plum); color: white; }
+  *:focus-visible {
+    outline: 2px solid var(--color-plum);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-ink text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:bg-ink-soft;
+    min-height: 44px;
+  }
+  .btn-plum {
+    @apply inline-flex items-center justify-center gap-2 bg-plum text-cream px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:opacity-90;
+    min-height: 44px;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/20 text-ink px-6 py-3 rounded-full text-sm font-medium tracking-wide hover:border-ink/40 hover:bg-white;
+    min-height: 44px;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-ink px-4 py-2 rounded-full text-sm font-medium hover:bg-black/5;
+    min-height: 40px;
+  }
+  .kicker {
+    @apply inline-block text-[11px] uppercase tracking-[0.22em] text-plum font-medium;
+  }
+  .card {
+    @apply bg-white/70 backdrop-blur-sm rounded-2xl border border-ink/5 shadow-[0_1px_2px_rgba(43,27,51,0.04)];
+  }
+  .field {
+    @apply w-full px-4 py-3 rounded-xl border border-ink/15 bg-white text-ink placeholder:text-ink/40 focus:border-plum focus:outline-none;
+    min-height: 48px;
+  }
+}
+
+/* ---- Marquee (auto-advances, but the user can scroll/drag it too) ---- */
+.marquee-track {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  cursor: grab;
+  user-select: none;
+}
+.marquee-track:active {
+  cursor: grabbing;
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
