@@ -48,8 +48,8 @@ export const translations: Record<Lang, Dict> = {
 
     'about.kicker':   'Over ons',
     'about.title':    'Zorg en comfort centraal.',
-    'about.body':     'AnArt Studio in Kaatsheuvel is een beauty- en tattoostudio waar zorg en comfort centraal staan. Anna van de Hout en haar team streven ernaar elke klant te laten stralen — met perfect verzorgde nagels, wimpers, wenkbrauwen en prachtige tattoos. Modern, verzorgd en comfortabel — een fijne plek waar je je direct welkom voelt.',
-    'about.owner':    'Anna van de Hout',
+    'about.body':     'AnArt Studio in Kaatsheuvel is een beauty- en tattoostudio waar zorg en comfort centraal staan. Anna van den Hout en haar team streven ernaar elke klant te laten stralen — met perfect verzorgde nagels, wimpers, wenkbrauwen en prachtige tattoos. Modern, verzorgd en comfortabel — een fijne plek waar je je direct welkom voelt.',
+    'about.owner':    'Anna van den Hout',
 
     'kobido.kicker':  'Bijzondere behandeling',
     'kobido.title':   'Kobido — de natuurlijke facelift.',
@@ -151,8 +151,8 @@ export const translations: Record<Lang, Dict> = {
 
     'about.kicker':   'About us',
     'about.title':    'Care and comfort at the heart of everything.',
-    'about.body':     'AnArt Studio in Kaatsheuvel is a beauty and tattoo studio where care and comfort come first. Anna van de Hout and her team aim to make every client radiate — with perfectly groomed nails, lashes, brows and beautiful tattoos. Modern, well-kept and comfortable — a place where you feel welcome from the moment you walk in.',
-    'about.owner':    'Anna van de Hout',
+    'about.body':     'AnArt Studio in Kaatsheuvel is a beauty and tattoo studio where care and comfort come first. Anna van den Hout and her team aim to make every client radiate — with perfectly groomed nails, lashes, brows and beautiful tattoos. Modern, well-kept and comfortable — a place where you feel welcome from the moment you walk in.',
+    'about.owner':    'Anna van den Hout',
 
     'kobido.kicker':  'Signature treatment',
     'kobido.title':   'Kobido — the natural facelift.',
@@ -254,8 +254,8 @@ export const translations: Record<Lang, Dict> = {
 
     'about.kicker':   'O nas',
     'about.title':    'Troska i komfort na pierwszym miejscu.',
-    'about.body':     'AnArt Studio w Kaatsheuvel to salon beauty i studio tatuażu, w którym troska i komfort są najważniejsze. Anna van de Hout i jej zespół dążą do tego, aby każda klientka promieniała — dzięki pięknie zadbanym paznokciom, rzęsom, brwiom i wyjątkowym tatuażom. Nowoczesne, zadbane i komfortowe — miejsce, w którym od razu czujesz się mile widziana.',
-    'about.owner':    'Anna van de Hout',
+    'about.body':     'AnArt Studio w Kaatsheuvel to salon beauty i studio tatuażu, w którym troska i komfort są najważniejsze. Anna van den Hout i jej zespół dążą do tego, aby każda klientka promieniała — dzięki pięknie zadbanym paznokciom, rzęsom, brwiom i wyjątkowym tatuażom. Nowoczesne, zadbane i komfortowe — miejsce, w którym od razu czujesz się mile widziana.',
+    'about.owner':    'Anna van den Hout',
 
     'kobido.kicker':  'Wyjątkowy zabieg',
     'kobido.title':   'Kobido — naturalny lifting twarzy.',
