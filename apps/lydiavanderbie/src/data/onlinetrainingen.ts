@@ -13,7 +13,7 @@ export const onlinetrainingen: OnlineTraining[] = [
   {
     id: 'basis-medische-vakken',
     name: 'Basis medische vakken holistisch bekeken',
-    image: '/img/op-medische-basisvakken.webp',
+    image: '/img/op-medische-basisvakken.webp?v=20260601',
     price: { nl: '€ 95', en: '€ 95' },
     desc: {
       nl: 'Anatomie, fysiologie en pathologie, steeds met de holistische kant erbij. Een stevige basis voor iedere therapeut. Je sluit af met een certificaat.',
@@ -43,7 +43,7 @@ export const onlinetrainingen: OnlineTraining[] = [
   {
     id: 'celzouttherapie',
     name: 'Module celzouttherapie',
-    image: '/img/op-celzouttherapie.webp',
+    image: '/img/op-celzouttherapie.webp?v=20260601d',
     price: { nl: '€ 35', en: '€ 35' },
     desc: {
       nl: 'De twaalf celzouten van Dr. Schüssler, helder uitgelegd. Na betaling staat de lesmap direct in je mailbox, zodat je meteen kunt beginnen.',

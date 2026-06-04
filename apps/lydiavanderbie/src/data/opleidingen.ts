@@ -71,7 +71,7 @@ export const opleidingen: Opleiding[] = [
   {
     id: 'biotensor',
     name: 'Meten en behandelen met de biotensor',
-    image: '/img/op-biotensor.webp',
+    image: '/img/op-biotensor.webp?v=20260601',
     price: { nl: '€ 125 per lesdag', en: '€ 125 per class day' },
     desc: {
       nl: 'De biotensor is een testinstrument waarmee je energetische trillingen meet. In drie lesdagen leer je testen en behandelen rond de levensfasen van het leven en van de ziel. Bij deelname aan alle drie de dagen krijg je een gratis biotensor.',
