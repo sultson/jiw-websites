@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { ArrowRight, Phone, MapPin, Clock } from 'lucide-react';
 import Reveal from './Reveal';
 import { SITE } from '../lib/site';
 
@@ -31,11 +31,6 @@ export default function Contact({ t, onOpen }: Props) {
         <Reveal delay={1}>
           <div className="card p-6 sm:p-7 shadow-[0_30px_70px_-45px_rgba(58,33,24,0.45)]">
             <div className="flex flex-col gap-4">
-              <Row icon={<Mail size={18} />} label={t('ct.emailLabel')}>
-                <a href={`mailto:${SITE.email}`} className="text-[14px] sm:text-[15px] hover:text-terra transition-colors break-all">
-                  {SITE.email}
-                </a>
-              </Row>
               <Row icon={<Phone size={18} />} label={t('ct.phoneLabel')}>
                 <a href={SITE.phoneHref} className="hover:text-terra transition-colors tnum">
                   {SITE.phoneDisplay}

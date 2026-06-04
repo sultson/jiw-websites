@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
+import { Phone, MapPin, ArrowUpRight } from 'lucide-react';
 import { SITE } from '../lib/site';
 
 type Props = { t: (k: string) => string; onHome: boolean };
@@ -45,12 +45,6 @@ export default function Footer({ t, onHome }: Props) {
         <div>
           <div className="text-[12px] font-bold uppercase tracking-[0.16em] text-cream/50">{t('footer.contactTitle')}</div>
           <ul className="mt-4 space-y-3 text-[15px]">
-            <li>
-              <a href={`mailto:${SITE.email}`} className="flex items-start gap-2.5 text-cream/80 hover:text-cream transition-colors">
-                <Mail size={16} className="mt-0.5 shrink-0 text-rose-soft" />
-                <span className="break-all">{SITE.email}</span>
-              </a>
-            </li>
             <li>
               <a href={SITE.phoneHref} className="flex items-center gap-2.5 text-cream/80 hover:text-cream transition-colors">
                 <Phone size={16} className="shrink-0 text-rose-soft" />

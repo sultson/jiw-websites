@@ -18,7 +18,7 @@ export const privacyPolicy: LegalSection[] = [
   {
     h: 'Privacybeleid',
     p: [
-      'Lydia van der Bie, gevestigd aan de Adm. de Ruyterstraat 42, 3262 XE Oud-Beijerland, is verantwoordelijk voor de verwerking van uw persoonsgegevens zoals weergegeven in deze privacyverklaring. Ik verwerk uw persoonsgegevens doordat u informatie opvraagt, doordat u gebruikmaakt van mijn diensten of doordat u deze gegevens zelf aan mij verstrekt.',
+      'Lydia van der Bie, gevestigd te Oud-Beijerland, is verantwoordelijk voor de verwerking van uw persoonsgegevens zoals weergegeven in deze privacyverklaring. Ik verwerk uw persoonsgegevens doordat u informatie opvraagt, doordat u gebruikmaakt van mijn diensten of doordat u deze gegevens zelf aan mij verstrekt.',
     ],
   },
   {
@@ -104,7 +104,7 @@ export const privacyPolicy: LegalSection[] = [
   {
     h: 'Contact en toezicht',
     p: [
-      'Lydia van der Bie, Adm. de Ruyterstraat 42, 3262 XE Oud-Beijerland. Telefoon 06 17 99 67 03. KvK Rotterdam 24465028.',
+      'Lydia van der Bie, Oud-Beijerland. Telefoon 06 17 99 67 03. KvK Rotterdam 24465028.',
       'Voor meer informatie over de AVG kunt u terecht bij de Autoriteit Persoonsgegevens via www.autoriteitpersoonsgegevens.nl. U heeft ook het recht een klacht in te dienen bij deze nationale toezichthouder.',
     ],
   },
@@ -249,7 +249,7 @@ export const klachtenreglement: LegalSection[] = [
   {
     h: 'Indienen van een klacht',
     p: [
-      'De klager wendt zich bij voorkeur eerst tot de aangeklaagde. Lukt het niet om samen tot een oplossing te komen, dan kan de klacht binnen 14 dagen schriftelijk worden ingediend bij de klachtencommissie, gericht aan: Lydia van der Bie, t.a.v. klachtencommissie, Adm. de Ruyterstraat 42, 3262 XE Oud-Beijerland.',
+      'De klager wendt zich bij voorkeur eerst tot de aangeklaagde. Lukt het niet om samen tot een oplossing te komen, dan kan de klacht binnen 14 dagen schriftelijk worden ingediend bij de klachtencommissie, gericht aan: Lydia van der Bie, t.a.v. klachtencommissie, Oud-Beijerland.',
     ],
   },
   {
