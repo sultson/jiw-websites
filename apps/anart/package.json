@@ -9,6 +9,8 @@
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
+    "ship": "pnpm build && wrangler pages deploy --branch=main",
+    "ship:dry-run": "pnpm build",
     "optimize-images": "tsx scripts/optimize-images.ts"
   },
   "dependencies": {
