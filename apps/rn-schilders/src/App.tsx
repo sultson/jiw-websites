@@ -167,9 +167,8 @@ const services: Service[] = [
     title: 'Schilderwerk',
     slug: 'schilderwerk-woerden',
     text: 'Binnen en buiten strak afgewerkt met duurzame verfproducten, van muren en plafonds tot kozijnen, deuren en boeidelen.',
-    image: '/schilderwerk.webp?v=20260514',
+    image: '/schilderwerk-2.webp?v=20260517',
     images: [
-      '/schilderwerk.webp?v=20260514',
       '/schilderwerk-2.webp?v=20260517',
       '/schilderwerk-3.webp?v=20260514',
       '/schilderwerk-4.webp?v=20260517',
