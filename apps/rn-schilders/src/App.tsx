@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent } from 'react';
 import {
   ArrowRight,
   BadgeCheck,
@@ -79,9 +79,6 @@ type Service = {
   title: string;
   slug: string;
   text: string;
-  seoTitle: string;
-  seoDescription: string;
-  pageLead: string;
   image: string;
   images?: string[];
   width: number;
@@ -170,11 +167,6 @@ const services: Service[] = [
     title: 'Schilderwerk',
     slug: 'schilderwerk-woerden',
     text: 'Binnen en buiten strak afgewerkt met duurzame verfproducten, van muren en plafonds tot kozijnen, deuren en boeidelen.',
-    seoTitle: 'Schilderwerk Woerden | RN Schilders & Renovatie',
-    seoDescription:
-      'Schilderwerk in Woerden voor woningen en bedrijfspanden. Binnen- en buitenschilderwerk, kozijnen, deuren en onderhoud met gratis prijsindicatie.',
-    pageLead:
-      'Zoekt u een schilder in Woerden die voorbereiding, afwerking en planning serieus neemt? RN Schilders verzorgt binnen- en buitenschilderwerk voor woningen en bedrijfspanden, met Richard als vast aanspreekpunt op het werk.',
     image: '/schilderwerk.webp?v=20260514',
     images: [
       '/schilderwerk.webp?v=20260514',
@@ -205,11 +197,6 @@ const services: Service[] = [
     title: 'Kozijnen',
     slug: 'kozijnen-woerden',
     text: 'Renovatie, plaatsing en herstel van houten en kunststof kozijnen, inclusief hang- en sluitwerk met PKVW-focus.',
-    seoTitle: 'Kozijnen Woerden | Renovatie en plaatsing',
-    seoDescription:
-      'Kozijnen in Woerden laten renoveren, herstellen of plaatsen. Houten en kunststof kozijnen, houtwerk, isolatie en PKVW hang- en sluitwerk.',
-    pageLead:
-      'RN Schilders helpt in Woerden met kozijnen die weer strak, veilig en goed beschermd moeten zijn. Van herstel en schilderwerk tot plaatsing en advies over hang- en sluitwerk.',
     image: '/kozijnen-7.webp?v=20260517',
     images: [
       '/kozijnen-7.webp?v=20260517',
@@ -242,11 +229,6 @@ const services: Service[] = [
     title: 'Spuitwerk',
     slug: 'spuitwerk-woerden',
     text: 'Egaal spuitwerk voor woningen, kantoren en bedrijfspanden wanneer tempo en een moderne afwerking belangrijk zijn.',
-    seoTitle: 'Spuitwerk Woerden | Strakke wanden en plafonds',
-    seoDescription:
-      'Professioneel spuitwerk in Woerden voor woningen, kantoren en bedrijfspanden. Strakke muren en plafonds met zorgvuldige voorbereiding.',
-    pageLead:
-      'Spuitwerk is geschikt wanneer grote oppervlakken strak, egaal en efficiënt afgewerkt moeten worden. RN Schilders verzorgt spuitwerk in Woerden met aandacht voor voorbereiding, afplakken en een rustig eindbeeld.',
     image: '/spuitwerk-1.webp?v=20260516',
     images: [
       '/spuitwerk-1.webp?v=20260516',
@@ -274,11 +256,6 @@ const services: Service[] = [
     title: 'Stucwerk',
     slug: 'stucwerk-woerden',
     text: 'Gladde wanden en plafonds als sterke basis voor schilderwerk, renovatiestuc en reparaties in bestaande woningen.',
-    seoTitle: 'Stucwerk Woerden | Wanden en plafonds strak afgewerkt',
-    seoDescription:
-      'Stucwerk in Woerden voor renovatie, reparatie, wanden en plafonds. Sterke basis voor schilderwerk of spuitwerk door RN Schilders.',
-    pageLead:
-      'Goed stucwerk maakt het verschil in de afwerking van een woning of bedrijfsruimte. RN Schilders verzorgt stucwerk in Woerden als basis voor strak schilderwerk, spuitwerk en renovatie.',
     image: '/stucwerk-1.webp?v=20260514',
     images: [
       '/stucwerk-1.webp?v=20260514',
@@ -307,11 +284,6 @@ const services: Service[] = [
     title: 'Houtrotherstel',
     slug: 'houtrotherstel-woerden',
     text: 'Aangetast houtwerk duurzaam herstellen voordat vocht grotere schade veroorzaakt aan kozijnen, deuren of boeidelen.',
-    seoTitle: 'Houtrotherstel Woerden | Kozijnen en buitenhout herstellen',
-    seoDescription:
-      'Houtrotherstel in Woerden voor kozijnen, deuren en boeidelen. Inspectie, duurzaam herstel en schilderwerk voordat schade groter wordt.',
-    pageLead:
-      'Houtrot hoeft niet altijd tot vervanging te leiden. RN Schilders herstelt aangetast houtwerk in Woerden en werkt het daarna duurzaam af, zodat kozijnen, deuren en boeidelen weer beschermd zijn.',
     image: '/houtrotherstel.webp',
     images: [
       '/houtrotherstel.webp',
@@ -339,11 +311,6 @@ const services: Service[] = [
     title: 'Sloopwerk',
     slug: 'sloopwerk-woerden',
     text: 'Zorgvuldig voorbereid sloopwerk voor renovaties, zodat de ruimte schoon, veilig en klaar is voor de volgende stap.',
-    seoTitle: 'Sloopwerk Woerden | Voorbereiding voor renovatie',
-    seoDescription:
-      'Sloopwerk in Woerden als voorbereiding op renovatie, stucwerk, schilderwerk of spuitwerk. Netjes, veilig en met korte lijnen.',
-    pageLead:
-      'Bij renovatie begint kwaliteit vaak met een nette voorbereiding. RN Schilders verzorgt sloopwerk in Woerden wanneer ruimtes klaar moeten worden gemaakt voor herstel, stucwerk, schilderwerk of spuitwerk.',
     image: '/sloopwerk.webp?v=20260514',
     images: [
       '/sloopwerk.webp?v=20260514',
@@ -372,284 +339,140 @@ const services: Service[] = [
 
 const locationPages: LocationPage[] = [
   {
+    title: 'Woerden',
+    slug: 'schilder-woerden',
+    seoTitle: 'Schilder in Woerden en omgeving | RN Schilders & Renovatie',
+    seoDescription:
+      'Schilder uit Woerden voor buiten- en binnenschilderwerk, kozijnen, houtrotherstel en renovatie. Bekijk recent werk in de regio Woerden en vraag een gratis prijsindicatie aan.',
+    lead:
+      'RN Schilders & Renovatie is gevestigd aan de Kuipersweg in Woerden, en het grootste deel van ons werk ligt binnen een kwartier rijden. Van de jaren-30 woningen rond het centrum en de Bloemen- en Bomenbuurt tot de nieuwere wijken Snel en Polanen en Waterrijk vraagt elk type woning om een eigen aanpak van buitenhout, kozijnen en gevels. Richard komt zelf langs, beoordeelt de staat van het werk en zorgt dat u vooraf weet wat er nodig is.',
+    routeNote:
+      'Bij een opname in Woerden kijken we eerst naar de delen die het meeste te verduren krijgen: dorpels, raamhoeken, boeidelen en de onderkant van kozijnen. Daar begint vocht. Per onderdeel bepalen we of een nieuwe verflaag volstaat of dat eerst houtrotherstel, nieuw kitwerk of grondwerk nodig is, zodat het schilderwerk daarna jaren meegaat.',
+    localFit:
+      'Binnen pakken we na een verbouwing of verhuizing wanden, plafonds, trappen en kozijnen aan, met stucwerk of latex spuiten als dat strakker uitpakt. Omdat we uit Woerden komen zijn de lijnen kort: een extra blik op locatie of een snelle aanpassing in de planning is zo geregeld.',
+    areas: ['Woerden', 'Harmelen', 'Kamerik', 'Zegveld', 'Montfoort', 'Oudewater', 'Linschoten', 'Snel en Polanen', 'Waterrijk'],
+    featuredServices: ['Schilderwerk', 'Kozijnen', 'Houtrotherstel', 'Stucwerk'],
+    commonRequests: [
+      'Buitenschilderwerk aan kozijnen, voordeuren en boeidelen bij jaren-30 woningen rond het centrum van Woerden.',
+      'Houtrotherstel aan dorpels en raamhoeken voordat de gevel weer volledig in de lak gaat.',
+      'Strak binnenschilderwerk, stucwerk of latex spuiten na een verbouwing in Snel en Polanen of Waterrijk.',
+    ],
+    serviceLinks: [
+      { label: 'Buitenschilderwerk in Woerden', serviceTitle: 'Schilderwerk' },
+      { label: 'Kozijnen in Woerden', serviceTitle: 'Kozijnen' },
+      { label: 'Houtrotherstel in Woerden', serviceTitle: 'Houtrotherstel' },
+    ],
+    faqs: [
+      {
+        question: 'Komt Richard zelf langs voor een opname in Woerden?',
+        answer: 'Ja. Omdat we in Woerden gevestigd zijn, plant Richard een opname meestal snel in. Hij beoordeelt het werk zelf op locatie, zodat de offerte aansluit op wat er echt nodig is.',
+      },
+      {
+        question: 'Werken jullie aan zowel oudere als nieuwere woningen?',
+        answer: 'Ja. Bij oudere woningen rond het centrum ligt de nadruk op buitenhout, houtrot en kozijnen. In nieuwere wijken zoals Snel en Polanen en Waterrijk gaat het vaker om afwerking na verbouwing of het strak houden van kozijnen en gevels.',
+      },
+      {
+        question: 'Hoe snel kan het werk starten?',
+        answer: 'Dat hangt af van het seizoen en de omvang, maar door de korte lijnen vanuit Woerden kunnen we vaak vlot een datum afspreken. In de offerte staat een duidelijke indicatie van de planning.',
+      },
+      {
+        question: 'Geven jullie garantie op het schilderwerk?',
+        answer: 'Op buitenschilderwerk geldt een garantie van vijf jaar, mits het werk volgens afspraak wordt onderhouden. De voorwaarden staan in onze algemene voorwaarden.',
+      },
+    ],
+    heroImage: {
+      src: '/woerden-vakwerk-hero.webp?v=20260604',
+      alt: 'Woning in Woerden in de steigers met RN Schilders spandoek tijdens buitenschilderwerk',
+      width: 1500,
+      height: 1125,
+    },
+    projectStory: {
+      eyebrow: 'Project in beeld',
+      title: 'Recent werk in de regio Woerden.',
+      intro: [
+        'Dit project laat zien hoe we te werk gaan. De woning staat volledig in de steigers, zodat gevel, kozijnen, boeidelen en dakranden allemaal goed bereikbaar zijn. Eerst herstel en voorbereiding, daarna pas de afwerking.',
+        'De spandoeken en bedrijfsbussen op locatie horen erbij. We werken zichtbaar en netjes in de buurt, met Richard als vast aanspreekpunt op de vloer.',
+      ],
+      images: [
+        {
+          src: '/woerden-vakwerk-banner.webp?v=20260604',
+          alt: 'RN Schilders spandoek aan de steiger van een woning in Woerden',
+          width: 825,
+          height: 1100,
+          caption: 'Vakwerk in de steigers',
+        },
+        {
+          src: '/werk-gevel-erker-tuindeuren.webp?v=20260530',
+          alt: 'Bakstenen gevel met witte erker en openslaande tuindeuren na schilderwerk',
+          width: 1280,
+          height: 960,
+          caption: 'Gevel en kozijnen strak afgewerkt',
+        },
+        {
+          src: '/hero-tuinvilla-steiger.webp?v=20260530',
+          alt: 'Tuinvilla in de steigers tijdens buitenschilderwerk',
+          width: 1200,
+          height: 1600,
+          caption: 'Volledig in de steigers',
+        },
+        {
+          src: '/werk-boerderij-rieten-schuur.webp?v=20260530',
+          alt: 'Renovatie van een boerderij met rieten schuur in het buitengebied',
+          width: 960,
+          height: 1280,
+          caption: 'Renovatie in het buitengebied',
+        },
+      ],
+    },
+  },
+  {
     title: 'Vleuten, De Meern en Leidsche Rijn',
     slug: 'schilder-vleuten-de-meern',
     seoTitle: 'Schilder Vleuten, De Meern en Leidsche Rijn | RN Schilders',
     seoDescription:
-      'Schilder nodig in Vleuten, De Meern of Leidsche Rijn? Buitenschilderwerk, houtrotherstel, kozijnen, spuitwerk en binnenafwerking.',
+      'Schilder in Vleuten, De Meern en Leidsche Rijn voor buitenschilderwerk, houtrotherstel, kozijnen en strakke afwerking na verbouwing of oplevering.',
     lead:
-      'Zoekt u een schilder in Vleuten, De Meern of Leidsche Rijn, dan wilt u vooral duidelijkheid over de staat van kozijnen, deuren, boeidelen, muren en plafonds. In nieuwere wijken speelt afwerking na verhuizing of verbouwing vaak mee; in oudere kernen moet buitenhout eerst goed worden gecontroleerd.',
+      'Vleuten, De Meern en Leidsche Rijn lopen sterk uiteen in bouwjaar, en dat bepaalt het schilderwerk. In de nieuwbouw van Leidsche Rijn, Terwijde en Vleuterweide gaat het vaak om afwerking na oplevering of verbouwing: kozijnen strak houden, wanden en plafonds netjes opleveren. In de oudere kernen van Vleuten en De Meern vraagt buitenhout juist om controle op houtrot, naden en oude verflagen voordat er een kwast aan te pas komt.',
     routeNote:
-      'Bij een opname wordt gekeken naar oude verflagen, open naden, kitwerk, houtrot en de gewenste afwerking binnen of buiten.',
+      'Bij nieuwbouw is de ondergrond meestal goed, maar luistert de afwerking nauw: strakke latex, nette kozijnen en geen spatranden. Bij oudere woningen begint het werk met inspectie van dorpels, raamhoeken, kitnaden en boeidelen. Per onderdeel bepalen we wat geschilderd kan worden en waar eerst herstel nodig is, zodat u niet halverwege voor verrassingen komt te staan.',
     localFit:
-      'Zo ontstaat een duidelijke offerte voor schilderwerk, houtrotherstel, kozijnen of spuitwerk zonder dat losse herstelpunten later alsnog boven water komen.',
-    areas: ['Vleuten', 'De Meern', 'Leidsche Rijn', 'Veldhuizen', 'Terwijde'],
-    featuredServices: ['Schilderwerk', 'Houtrotherstel', 'Kozijnen', 'Spuitwerk'],
+      'Omdat Leidsche Rijn dicht bij Woerden ligt, plannen we het werk hier vaak gecombineerd in: binnen latex spuiten of stucwerk na een verbouwing, buiten de kozijnen en gevel in een traject. Zo vallen voorbereiding, droogtijd en afwerking in een heldere planning.',
+    areas: ['Vleuten', 'De Meern', 'Leidsche Rijn', 'Terwijde', 'Vleuterweide', 'Veldhuizen', 'Haarzuilens'],
+    featuredServices: ['Schilderwerk', 'Kozijnen', 'Houtrotherstel', 'Spuitwerk'],
     commonRequests: [
-      'Buitenschilderwerk aan kozijnen, deuren en boeidelen bij gezinswoningen in Vleuten en Vleuterweide.',
-      'Houtrotherstel bij oudere kozijnen of dorpels in De Meern voordat het schilderwerk wordt afgewerkt.',
-      'Latex spuiten of strak binnenschilderwerk na verbouwing, verhuizing of renovatie in Leidsche Rijn.',
+      'Kozijnen, voordeuren en boeidelen schilderen bij oudere woningen in Vleuten-dorp en De Meern.',
+      'Latex spuiten of strak binnenschilderwerk na oplevering of verbouwing in Leidsche Rijn en Terwijde.',
+      'Houtrotherstel aan dorpels en raamhoeken voordat de buitenboel weer wordt afgelakt.',
     ],
     serviceLinks: [
       { label: 'Buitenschilderwerk in Vleuten', serviceTitle: 'Schilderwerk' },
-      { label: 'Houtrotherstel in De Meern', serviceTitle: 'Houtrotherstel' },
-      { label: 'Kozijnen schilderen in Leidsche Rijn', serviceTitle: 'Kozijnen' },
+      { label: 'Kozijnen in De Meern', serviceTitle: 'Kozijnen' },
+      { label: 'Spuitwerk in Leidsche Rijn', serviceTitle: 'Spuitwerk' },
     ],
     faqs: [
+      {
+        question: 'Werken jullie veel in de nieuwbouw van Leidsche Rijn?',
+        answer: 'Ja. In Leidsche Rijn, Terwijde en Vleuterweide gaat het vaak om afwerking na oplevering of verbouwing: strak latex spuiten, wanden en plafonds netjes opleveren en kozijnen goed in de lak zetten.',
+      },
       {
         question: 'Waar wordt bij kozijnen in Vleuten of De Meern op gelet?',
-        answer: 'Vooral op open naden, loslatende verf, kitwerk, raamhoeken, dorpels en beginnende houtrot. Die punten bepalen of schilderwerk genoeg is of dat eerst herstel nodig is.',
+        answer: 'Op open naden, loslatende verf, kitwerk, raamhoeken, dorpels en beginnende houtrot. Die punten bepalen of schilderwerk volstaat of dat eerst herstel nodig is.',
       },
       {
-        question: 'Kan binnenwerk na verhuizing of verbouwing worden meegenomen?',
+        question: 'Kan binnenwerk na een verbouwing worden meegenomen?',
         answer: 'Ja. Wanden, plafonds, deuren, kozijnen, stucwerk en latex spuiten kunnen samen worden bekeken, zodat de volgorde en afwerking vooraf helder zijn.',
       },
-    ],
-  },
-  {
-    title: 'Maarssen, Stichtse Vecht en Breukelen',
-    slug: 'schilder-maarssen-stichtse-vecht',
-    seoTitle: 'Schilder Maarssen, Stichtse Vecht en Breukelen | RN Schilders',
-    seoDescription:
-      'Schilderwerk in Maarssen, Stichtse Vecht en Breukelen voor woningen met aandacht voor buitenhout, kozijnen, houtrotherstel en duurzame afwerking.',
-    lead:
-      'Voor schilderwerk in Maarssen, Stichtse Vecht en Breukelen is buitenhout vaak bepalend: kozijnen, deuren, boeidelen en dorpels moeten niet alleen strak ogen, maar vocht buiten houden.',
-    routeNote:
-      'Bij oudere woningen en panden rond dorpskernen is goed schuren, herstellen, gronden en aflakken belangrijker dan alleen een nieuwe verflaag.',
-    localFit:
-      'Binnen kan het gaan om wandherstel, stucwerk of schilderwerk na renovatie, zodat voorbereiding en afwerking in één planning vallen.',
-    areas: ['Maarssen', 'Breukelen', 'Stichtse Vecht', 'Maarssenbroek', 'Tienhoven'],
-    featuredServices: ['Schilderwerk', 'Houtrotherstel', 'Kozijnen', 'Stucwerk'],
-    commonRequests: [
-      'Kozijnen en buitendeuren schilderen bij oudere woningen in Maarssen-Dorp of Breukelen.',
-      'Houtrot controleren en herstellen bij dorpels, raamhoeken en boeidelen voordat nieuw schilderwerk wordt aangebracht.',
-      'Binnenwanden herstellen, stucen of schilderen na renovatie in Maarssenbroek of omliggende kernen.',
-    ],
-    serviceLinks: [
-      { label: 'Buitenschilderwerk in Maarssen', serviceTitle: 'Schilderwerk' },
-      { label: 'Houtrotherstel in Breukelen', serviceTitle: 'Houtrotherstel' },
-      { label: 'Kozijnen schilderen in Stichtse Vecht', serviceTitle: 'Kozijnen' },
-    ],
-    faqs: [
       {
-        question: 'Waarom is houtrotherstel hier vaak relevant?',
-        answer: 'Bij ouder buitenhout kan vocht rondom verbindingen, dorpels en kozijnhoeken schade veroorzaken. Tijdig herstel voorkomt vaak duurdere vervanging.',
-      },
-      {
-        question: 'Kan RN Schilders ook kozijnen meenemen in het schilderwerk?',
-        answer: 'Ja. Kozijnherstel, voorbereiding, gronden en aflakken kunnen in één traject worden beoordeeld.',
+        question: 'Hoe ver is Vleuten van jullie vandaan?',
+        answer: 'Vleuten en De Meern liggen vlak bij Woerden, dus we zijn er snel voor een opname en kunnen het werk goed inplannen.',
       },
     ],
-  },
-  {
-    title: 'Mijdrecht, De Ronde Venen en Vinkeveen',
-    slug: 'schilder-mijdrecht-de-ronde-venen',
-    seoTitle: 'Schilder Mijdrecht, De Ronde Venen en Vinkeveen | RN Schilders',
-    seoDescription:
-      'Schilder in Mijdrecht, De Ronde Venen of Vinkeveen voor buitenschilderwerk, houtrotherstel, kozijnen, spuitwerk en renovatie-afwerking.',
-    lead:
-      'In Mijdrecht, De Ronde Venen en Vinkeveen gaat schilderwerk vaak samen met bescherming van buitenhout in een open, waterrijke omgeving. Kozijnen, deuren en boeidelen verdienen extra aandacht bij naden, liggende delen en oude verflagen.',
-    routeNote:
-      'Een opname helpt bepalen waar alleen schilderwerk nodig is en waar eerst houtrotherstel, kitwerk of grondwerk moet gebeuren.',
-    localFit:
-      'Binnenwerk, latex spuiten en stucwerk kunnen worden meegenomen wanneer een woning na verbouwing of verhuizing in één keer strak afgewerkt moet worden.',
-    areas: ['Mijdrecht', 'Wilnis', 'Vinkeveen', 'De Ronde Venen', 'Abcoude'],
-    featuredServices: ['Schilderwerk', 'Houtrotherstel', 'Kozijnen', 'Spuitwerk'],
-    commonRequests: [
-      'Buitenschilderwerk aan kozijnen, deuren en boeidelen bij woningen in Mijdrecht en Wilnis.',
-      'Houtrotinspectie bij woningen rond Vinkeveen waar vocht en wind sneller sporen achterlaten op buitenhout.',
-      'Spuitwerk of binnenschilderwerk na verbouwing, verhuizing of opfriswerk in De Ronde Venen.',
-    ],
-    serviceLinks: [
-      { label: 'Buitenschilderwerk in Mijdrecht', serviceTitle: 'Schilderwerk' },
-      { label: 'Houtrotherstel in Vinkeveen', serviceTitle: 'Houtrotherstel' },
-      { label: 'Spuitwerk in De Ronde Venen', serviceTitle: 'Spuitwerk' },
-    ],
-    faqs: [
-      {
-        question: 'Is buitenschilderwerk rond Vinkeveen anders door vocht?',
-        answer: 'Bij vochtige of open omgevingen is inspectie van naden, hoeken en liggende delen extra belangrijk voordat er geschuurd, hersteld en afgewerkt wordt.',
-      },
-      {
-        question: 'Kan ik foto’s meesturen voor een eerste inschatting?',
-        answer: 'Ja. Foto’s van kozijnen, deuren, boeidelen of beschadigingen helpen om sneller te bepalen welke opname nodig is.',
-      },
-    ],
-  },
-  {
-    title: 'Bodegraven en Reeuwijk',
-    slug: 'schilder-bodegraven-reeuwijk',
-    seoTitle: 'Schilder Bodegraven en Reeuwijk | RN Schilders Woerden',
-    seoDescription:
-      'Schilder in Bodegraven of Reeuwijk nodig? Schilderwerk, houtrotherstel, kozijnen, stucwerk en renovatie-afwerking voor woningen.',
-    lead:
-      'Schilderwerk in Bodegraven en Reeuwijk vraagt vaak om aandacht voor kozijnen, deuren, boeidelen en gevelhout. Zeker rond dorpen, buitengebied en de Reeuwijkse Plassen is onderhoud aan buitenhout belangrijk om vochtproblemen voor te blijven.',
-    routeNote:
-      'Tijdens de opname worden slijtage, houtrot, open naden en oude verflagen bekeken voordat de afwerking wordt gekozen.',
-    localFit:
-      'Voor binnenruimtes kan stucwerk of schilderwerk worden gecombineerd met renovatie, schadeherstel of het netjes afronden van een verbouwing.',
-    areas: ['Bodegraven', 'Reeuwijk', 'Reeuwijk-Brug', 'Nieuwerbrug', 'Driebruggen'],
-    featuredServices: ['Schilderwerk', 'Houtrotherstel', 'Kozijnen', 'Stucwerk'],
-    commonRequests: [
-      'Onderhoudsschilderwerk aan kozijnen, deuren en boeidelen in Bodegraven en Nieuwerbrug.',
-      'Houtrotherstel bij buitenhout rond Reeuwijk en Reeuwijk-Brug voordat vochtproblemen groter worden.',
-      'Stucwerk of schilderwerk binnen na verbouwing, schadeherstel of renovatie in woningen in het Groene Hart.',
-    ],
-    serviceLinks: [
-      { label: 'Schilderwerk in Bodegraven', serviceTitle: 'Schilderwerk' },
-      { label: 'Houtrotherstel in Reeuwijk', serviceTitle: 'Houtrotherstel' },
-      { label: 'Stucwerk in Bodegraven-Reeuwijk', serviceTitle: 'Stucwerk' },
-    ],
-    faqs: [
-      {
-        question: 'Wanneer is houtrotherstel nodig bij buitenhout?',
-        answer: 'Wanneer hout zacht wordt, verf loslaat, naden openstaan of dorpels en raamhoeken vocht vasthouden. Eerst herstellen voorkomt dat nieuw schilderwerk snel weer schade laat zien.',
-      },
-      {
-        question: 'Is een onderhoudsplanning mogelijk?',
-        answer: 'Ja. Bij buitenschilderwerk kan per gevel, kozijn of bouwdeel worden bekeken wat nu moet gebeuren en wat later ingepland kan worden.',
-      },
-    ],
-  },
-  {
-    title: 'IJsselstein',
-    slug: 'schilder-ijsselstein',
-    seoTitle: 'Schilder IJsselstein | Schilderwerk en houtrotherstel',
-    seoDescription:
-      'Schilder in IJsselstein voor binnen- en buitenschilderwerk, houtrotherstel, kozijnen, spuitwerk en stucwerk. Gratis prijsindicatie.',
-    lead:
-      'In IJsselstein kan schilderwerk variëren van strak binnenwerk in woonwijken tot onderhoud aan kozijnen en deuren bij oudere bouwdelen. Voor een goed resultaat moet vooraf duidelijk zijn wat geschilderd kan worden en wat eerst hersteld moet worden.',
-    routeNote:
-      'Bij buitenwerk wordt gekeken naar houtrot, kitnaden, liggende delen en de staat van bestaande verflagen.',
-    localFit:
-      'Bij binnenwerk gaat het vooral om rustige planning, gladde wanden, nette afwerking en zo min mogelijk overlast in huis.',
-    areas: ['IJsselstein', 'Zenderpark', 'Achterveld', 'Binnenstad', 'Eiteren'],
-    featuredServices: ['Schilderwerk', 'Houtrotherstel', 'Spuitwerk', 'Stucwerk'],
-    commonRequests: [
-      'Binnen- en buitenschilderwerk voor woningen in IJsselstein, Zenderpark en Achterveld.',
-      'Houtrot herstellen bij kozijnen, deuren of dorpels rond oudere bouwdelen.',
-      'Spuitwerk of stucwerk als nette afwerking na renovatie of verhuiswerk.',
-    ],
-    serviceLinks: [
-      { label: 'Schilderwerk in IJsselstein', serviceTitle: 'Schilderwerk' },
-      { label: 'Houtrotherstel in IJsselstein', serviceTitle: 'Houtrotherstel' },
-      { label: 'Spuitwerk in IJsselstein', serviceTitle: 'Spuitwerk' },
-    ],
-    faqs: [
-      {
-        question: 'Doet RN Schilders ook binnenschilderwerk in IJsselstein?',
-        answer: 'Ja. Binnenwerk, spuitwerk en stucwerk kunnen worden gecombineerd met buitenschilderwerk of los worden aangevraagd.',
-      },
-      {
-        question: 'Hoe vraag ik snel een prijsindicatie aan?',
-        answer: 'Stuur via het offerteformulier kort de dienst, plaats, omschrijving en eventueel foto’s mee. Dan kan Richard gericht reageren.',
-      },
-    ],
-  },
-  {
-    title: 'Houten',
-    slug: 'schilder-houten',
-    seoTitle: 'Schilder Houten | Betrouwbaar schilderwerk door RN Schilders',
-    seoDescription:
-      'Schilderwerk in Houten voor gezinswoningen en bedrijfspanden: kozijnen, buitenschilderwerk, spuitwerk, stucwerk en binnenafwerking.',
-    lead:
-      'Voor woningen in Houten draait schilderwerk vaak om duidelijke planning: kozijnen, deuren, boeidelen en binnenruimtes moeten netjes worden afgewerkt zonder dat het dagelijks gebruik van de woning te veel stilvalt.',
-    routeNote:
-      'Bij een opname worden herstelpunten, afplakwerk, materiaalkeuze en de volgorde van ruimtes of gevels vooraf besproken.',
-    localFit:
-      'Daardoor kunnen schilderwerk, kozijnonderhoud, spuitwerk of stucwerk in één overzichtelijke offerte worden gezet.',
-    areas: ['Houten', 'Houten-Zuid', 'Castellum', 'Schalkwijk', "Tull en 't Waal"],
-    featuredServices: ['Schilderwerk', 'Kozijnen', 'Spuitwerk', 'Stucwerk'],
-    commonRequests: [
-      'Buitenschilderwerk aan kozijnen, deuren en boeidelen bij gezinswoningen in Houten.',
-      'Kozijnen schilderen of herstellen wanneer oude verflagen slijten of naden openstaan.',
-      'Stucwerk, spuitwerk of binnenschilderwerk voor woonkamers, hallen en slaapkamers na renovatie.',
-    ],
-    serviceLinks: [
-      { label: 'Schilderwerk in Houten', serviceTitle: 'Schilderwerk' },
-      { label: 'Kozijnen schilderen in Houten', serviceTitle: 'Kozijnen' },
-      { label: 'Spuitwerk in Houten', serviceTitle: 'Spuitwerk' },
-    ],
-    faqs: [
-      {
-        question: 'Kan RN Schilders meerdere werkzaamheden combineren?',
-        answer: 'Ja. Schilderwerk, stucwerk, spuitwerk en kozijnwerk kunnen samen worden beoordeeld, zodat voorbereiding, droogtijd en afwerking goed op elkaar aansluiten.',
-      },
-      {
-        question: 'Kan schilderwerk per ruimte of geveldeel worden gepland?',
-        answer: 'Ja. Bij bewoonde woningen kan het werk in delen worden gepland, bijvoorbeeld eerst buitenkozijnen of juist kamer voor kamer binnen.',
-      },
-    ],
-  },
-  {
-    title: 'De Bilt en Bilthoven',
-    slug: 'schilder-de-bilt-bilthoven',
-    seoTitle: 'Schilder De Bilt en Bilthoven | Schilderwerk en houtrotherstel',
-    seoDescription:
-      'Schilder in De Bilt of Bilthoven voor zorgvuldig buitenschilderwerk, houtrotherstel, kozijnen en nette binnenafwerking.',
-    lead:
-      'In De Bilt en Bilthoven is bij schilderwerk vaak extra aandacht nodig voor kozijnen, gevelhout, deuren en bestaande verflagen. Goed herstel vóór het schilderen voorkomt dat beschadigingen of houtrot onder een nieuwe verflaag blijven zitten.',
-    routeNote:
-      'Bij een opname wordt gekeken naar houtwerk, naden, kitwerk, vochtplekken en de gewenste afwerking binnen of buiten.',
-    localFit:
-      'Voor binnenruimtes kan schilderwerk worden gecombineerd met stucwerk of reparaties zodat het eindbeeld rustig en strak wordt.',
-    areas: ['De Bilt', 'Bilthoven', 'Groenekan', 'Maartensdijk', 'Hollandsche Rading'],
-    featuredServices: ['Schilderwerk', 'Houtrotherstel', 'Kozijnen', 'Stucwerk'],
-    commonRequests: [
-      'Buitenschilderwerk aan kozijnen, deuren en gevelhout in De Bilt en Bilthoven.',
-      'Houtrot opsporen en herstellen voordat nieuwe verflagen worden aangebracht.',
-      'Stucwerk en schilderwerk binnen wanneer ruimtes opnieuw strak afgewerkt moeten worden.',
-    ],
-    serviceLinks: [
-      { label: 'Buitenschilderwerk in De Bilt', serviceTitle: 'Schilderwerk' },
-      { label: 'Houtrotherstel in Bilthoven', serviceTitle: 'Houtrotherstel' },
-      { label: 'Kozijnen schilderen in De Bilt', serviceTitle: 'Kozijnen' },
-    ],
-    faqs: [
-      {
-        question: 'Past RN Schilders bij oudere of karaktervolle woningen?',
-        answer: 'Ja. Juist bij waardevol houtwerk is inspectie, herstel en afwerking in de juiste volgorde belangrijk.',
-      },
-      {
-        question: 'Is een opname op locatie mogelijk?',
-        answer: 'Ja. Voor buitenschilderwerk, houtrot en kozijnen is een opname vaak de beste manier om scope en planning helder te krijgen.',
-      },
-    ],
-  },
-  {
-    title: 'Zeist',
-    slug: 'schilder-zeist',
-    seoTitle: 'Schilder Zeist | Schilderwerk, houtrotherstel en kozijnen',
-    seoDescription:
-      'Schilder in Zeist nodig? RN Schilders verzorgt schilderwerk, houtrotherstel, kozijnen, stucwerk en spuitwerk met duidelijke offerte.',
-    lead:
-      'Zoekt u een schilder in Zeist, dan wilt u vooral weten of kozijnen, deuren, boeidelen, wanden of plafonds netjes worden beoordeeld voordat er een prijs wordt genoemd. RN Schilders kijkt eerst naar de ondergrond, mogelijke houtrot, voorbereiding en afwerking, zodat de offerte past bij het werk dat echt nodig is.',
-    routeNote:
-      'Bij buitenwerk in Zeist gaat het vaak om kozijnen, deuren, raamhoeken en liggende delen die door weer en zon slijten.',
-    localFit:
-      'Bij binnenwerk kan het gaan om schilderwerk, stucwerk of spuitwerk na renovatie, verhuizing of schadeherstel.',
-    areas: ['Zeist', 'Den Dolder', 'Austerlitz', 'Bosch en Duin', 'Huis ter Heide'],
-    featuredServices: ['Schilderwerk', 'Houtrotherstel', 'Kozijnen', 'Spuitwerk'],
-    commonRequests: [
-      'Kozijnen, deuren en buitenhout schilderen bij woningen in Zeist en omliggende kernen.',
-      'Houtrot herstellen bij raamhoeken, dorpels en boeidelen voordat het schilderwerk start.',
-      'Spuitwerk of binnenschilderwerk voor gerenoveerde woonruimtes, hallen en plafonds.',
-    ],
-    serviceLinks: [
-      { label: 'Schilderwerk in Zeist', serviceTitle: 'Schilderwerk' },
-      { label: 'Houtrotherstel in Zeist', serviceTitle: 'Houtrotherstel' },
-      { label: 'Kozijnen schilderen in Zeist', serviceTitle: 'Kozijnen' },
-    ],
-    faqs: [
-      {
-        question: 'Komt RN Schilders ook naar Zeist voor een opname?',
-        answer: 'Ja. Voor schilderwerk, kozijnen en houtrotherstel kan een opname op locatie helpen om voorbereiding, herstelpunten en planning helder te krijgen.',
-      },
-      {
-        question: 'Kan RN Schilders ook renovatie-afwerking in Zeist doen?',
-        answer: 'Ja. Naast schilderwerk kan RN Schilders ook stucwerk, spuitwerk, sloopvoorbereiding en kozijnwerk beoordelen.',
-      },
-    ],
+    heroImage: {
+      src: '/kozijnen-7.webp?v=20260517',
+      alt: 'Geschilderde houten kozijnen aan een woning',
+      width: 1024,
+      height: 1536,
+    },
   },
   {
     title: 'Ridderkerk',
@@ -734,24 +557,14 @@ const locationPages: LocationPage[] = [
 
 const workAreaGroups: WorkAreaGroup[] = [
   {
+    title: 'Woerden en directe omgeving',
+    text: 'Vanuit onze vestiging aan de Kuipersweg werken we dagelijks in Woerden en de omliggende kernen zoals Harmelen, Kamerik, Zegveld, Montfoort, Oudewater en Linschoten. Korte lijnen, snel een opname en een vast aanspreekpunt op de vloer.',
+    slugs: ['schilder-woerden'],
+  },
+  {
     title: 'Utrecht west',
-    text: 'Voor woningen in Vleuten, De Meern en Leidsche Rijn gaat het vaak om buitenschilderwerk, kozijnonderhoud en strakke binnenafwerking na verbouwing of verhuizing.',
+    text: 'Voor woningen in Vleuten, De Meern en Leidsche Rijn gaat het vaak om buitenschilderwerk en kozijnonderhoud bij oudere woningen, en strakke afwerking na oplevering of verbouwing in de nieuwbouw.',
     slugs: ['schilder-vleuten-de-meern'],
-  },
-  {
-    title: 'Vechtstreek',
-    text: 'In Maarssen, Breukelen en Stichtse Vecht ligt de nadruk vaak op buitenhout: kozijnen, deuren, boeidelen, dorpels en oude verflagen die eerst goed gecontroleerd moeten worden.',
-    slugs: ['schilder-maarssen-stichtse-vecht'],
-  },
-  {
-    title: 'Groene Hart',
-    text: 'Rond Bodegraven, Reeuwijk, Mijdrecht en Vinkeveen is onderhoud aan buitenhout belangrijk door open ligging, vocht en wind.',
-    slugs: ['schilder-bodegraven-reeuwijk', 'schilder-mijdrecht-de-ronde-venen'],
-  },
-  {
-    title: 'Utrecht zuid en oost',
-    text: 'In IJsselstein, Houten, De Bilt, Bilthoven en Zeist gaat het vaak om schilderwerk dat samenhangt met kozijnherstel, stucwerk of spuitwerk in bewoonde woningen.',
-    slugs: ['schilder-ijsselstein', 'schilder-houten', 'schilder-de-bilt-bilthoven', 'schilder-zeist'],
   },
   {
     title: 'Regio Rotterdam',
@@ -1337,10 +1150,6 @@ function absoluteUrl(path: string) {
   return `${siteUrl}${path === '/' ? '/' : path}`;
 }
 
-function getServicePath(service: Service) {
-  return `/${service.slug}`;
-}
-
 function getLocationPath(location: LocationPage) {
   return `/${location.slug}`;
 }
@@ -1361,61 +1170,113 @@ function setMetaTag(selector: string, attr: 'content' | 'href', value: string) {
   if (element) element.setAttribute(attr, value);
 }
 
-function useRouteMetadata(pathname: string, servicePage: Service | undefined, locationPage: LocationPage | undefined, isTermsPage: boolean, isWorkAreaPage: boolean) {
-  useEffect(() => {
-    if (typeof document === 'undefined') return;
+export type RouteMeta = {
+  path: string;
+  title: string;
+  description: string;
+  canonical: string;
+  jsonLd: string[];
+};
 
-    const page = servicePage
-      ? {
-          title: servicePage.seoTitle,
-          description: servicePage.seoDescription,
-          path: getServicePath(servicePage),
-        }
-      : locationPage
-        ? {
-            title: locationPage.seoTitle,
-            description: locationPage.seoDescription,
-            path: getLocationPath(locationPage),
-          }
-      : isWorkAreaPage
-        ? {
-            title: `Werkgebied | ${siteName}`,
-            description: 'Bekijk het werkgebied van RN Schilders & Renovatie rondom Woerden, met plaatsen zoals Vleuten, Maarssen, Mijdrecht, Bodegraven, Houten en Zeist.',
-            path: '/werkgebied',
-          }
-      : isTermsPage
-        ? {
-            title: `Algemene voorwaarden | ${siteName}`,
-            description: 'Algemene voorwaarden van RN Schilders & Renovatie in Woerden.',
-            path: '/algemene-voorwaarden',
-          }
-        : {
-            title: `${siteName} | Schilder Woerden`,
-            description:
-              'RN Schilders & Renovatie in Woerden. Schilderwerk, renovatie, kozijnen, spuitwerk, stucwerk en houtrotherstel met gratis offerte.',
-            path: '/',
-          };
+const homeMeta = {
+  title: `${siteName} | Schilder Woerden`,
+  description:
+    'RN Schilders & Renovatie in Woerden. Schilderwerk, renovatie, kozijnen, spuitwerk, stucwerk en houtrotherstel met gratis offerte.',
+};
 
-    document.title = page.title;
-    setMetaTag('meta[name="description"]', 'content', page.description);
-    setMetaTag('link[rel="canonical"]', 'href', absoluteUrl(page.path));
-    setMetaTag('meta[property="og:title"]', 'content', page.title);
-    setMetaTag('meta[property="og:description"]', 'content', page.description);
-    setMetaTag('meta[property="og:url"]', 'content', absoluteUrl(page.path));
-  }, [isTermsPage, isWorkAreaPage, locationPage, pathname, servicePage]);
+const workAreaMeta = {
+  title: `Werkgebied | ${siteName}`,
+  description:
+    'Bekijk het werkgebied van RN Schilders & Renovatie rondom Woerden, met plaatsen zoals Vleuten, De Meern, Leidsche Rijn en Ridderkerk.',
+};
+
+const termsMeta = {
+  title: `Algemene voorwaarden | ${siteName}`,
+  description: 'Algemene voorwaarden van RN Schilders & Renovatie in Woerden.',
+};
+
+// Service + FAQPage structured data for a location page, derived straight from
+// the page's own areas, services and FAQs so there is one source of truth.
+function buildLocationJsonLd(location: LocationPage): string[] {
+  const pageUrl = absoluteUrl(getLocationPath(location));
+  return [
+    JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': `${pageUrl}#service`,
+      name: location.seoTitle,
+      description: location.seoDescription,
+      provider: { '@id': `${siteUrl}/#business` },
+      url: pageUrl,
+      serviceType: location.featuredServices,
+      areaServed: location.areas.map((name) => ({ '@type': 'City', name })),
+    }),
+    JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      '@id': `${pageUrl}#faq`,
+      mainEntity: location.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
+    }),
+  ];
 }
 
-function App() {
+// Single source of truth for per-route <head> metadata, used by both the
+// client (SPA navigation) and the build-time prerender script.
+export function routeMetaFor(pathname: string): RouteMeta {
+  const path = normalizePathname(pathname);
+  const location = locationPages.find((item) => getLocationPath(item) === path);
+
+  let base = homeMeta;
+  let jsonLd: string[] = [];
+  if (location) {
+    base = { title: location.seoTitle, description: location.seoDescription };
+    jsonLd = buildLocationJsonLd(location);
+  } else if (path === '/werkgebied') {
+    base = workAreaMeta;
+  } else if (path === '/algemene-voorwaarden') {
+    base = termsMeta;
+  }
+
+  return { path, title: base.title, description: base.description, canonical: absoluteUrl(path), jsonLd };
+}
+
+// Every route the site renders, in sitemap order. Drives the prerender loop.
+export const allRoutePaths: string[] = [
+  '/',
+  '/werkgebied',
+  ...locationPages.map((location) => getLocationPath(location)),
+  '/algemene-voorwaarden',
+];
+
+function useRouteMetadata(pathname: string) {
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const meta = routeMetaFor(pathname);
+    document.title = meta.title;
+    setMetaTag('meta[name="description"]', 'content', meta.description);
+    setMetaTag('link[rel="canonical"]', 'href', meta.canonical);
+    setMetaTag('meta[property="og:title"]', 'content', meta.title);
+    setMetaTag('meta[property="og:description"]', 'content', meta.description);
+    setMetaTag('meta[property="og:url"]', 'content', meta.canonical);
+  }, [pathname]);
+}
+
+function App({ initialPath }: { initialPath?: string } = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [quoteOpen, setQuoteOpen] = useState(false);
-  const [pathname, setPathname] = useState(() => (typeof window === 'undefined' ? '/' : window.location.pathname));
+  const [pathname, setPathname] = useState(() =>
+    typeof window === 'undefined' ? initialPath ?? '/' : window.location.pathname,
+  );
   const normalizedPathname = normalizePathname(pathname);
   const isTermsPage = normalizedPathname === '/algemene-voorwaarden';
   const isWorkAreaPage = normalizedPathname === '/werkgebied';
-  const servicePage = services.find((service) => normalizedPathname === getServicePath(service));
   const locationPage = locationPages.find((location) => normalizedPathname === getLocationPath(location));
-  const isSubPage = isTermsPage || isWorkAreaPage || Boolean(servicePage) || Boolean(locationPage);
-  useRouteMetadata(normalizedPathname, servicePage, locationPage, isTermsPage, isWorkAreaPage);
+  const isSubPage = isTermsPage || isWorkAreaPage || Boolean(locationPage);
+  useRouteMetadata(normalizedPathname);
 
   useEffect(() => {
     const onLocationChange = () => setPathname(window.location.pathname);
@@ -1431,8 +1292,6 @@ function App() {
           <TermsPage openQuote={() => setQuoteOpen(true)} />
         ) : isWorkAreaPage ? (
           <WorkAreaPage openQuote={() => setQuoteOpen(true)} />
-        ) : servicePage ? (
-          <ServicePage service={servicePage} openQuote={() => setQuoteOpen(true)} />
         ) : locationPage ? (
           <LocationPageView location={locationPage} openQuote={() => setQuoteOpen(true)} />
         ) : (
@@ -1528,31 +1387,15 @@ function Nav({
               <div className="py-5">
                 <div className="grid gap-1">
               {navLinks.map(([label, href]) => (
-                <Fragment key={href}>
-                  <a
-                    href={resolveNavHref(href, isTermsPage)}
-                    onClick={() => setMenuOpen(false)}
-                    className="flex items-center justify-between rounded-md px-2 py-3 font-display text-xl font-bold text-navy"
-                  >
-                    {label}
-                    <ChevronRight size={18} />
-                  </a>
-                  {label === 'Diensten' && (
-                    <div className="mb-1 ml-2 grid gap-0.5 border-l-2 border-line pl-3">
-                      {services.map((service) => (
-                        <a
-                          key={service.slug}
-                          href={getServicePath(service)}
-                          onClick={() => setMenuOpen(false)}
-                          className="flex items-center justify-between rounded-md px-2 py-2 text-base font-semibold text-graphite"
-                        >
-                          {service.title}
-                          <ChevronRight size={16} className="text-roller" />
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </Fragment>
+                <a
+                  key={href}
+                  href={resolveNavHref(href, isTermsPage)}
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center justify-between rounded-md px-2 py-3 font-display text-xl font-bold text-navy"
+                >
+                  {label}
+                  <ChevronRight size={18} />
+                </a>
               ))}
             </div>
             <button
@@ -2201,6 +2044,9 @@ function WorkMarquee() {
   const [activeVideo, setActiveVideo] = useState<{ src: string; poster: string } | null>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
+  const hoverRef = useRef(false);
+  const resumeTimer = useRef<number | null>(null);
+  const drag = useRef({ active: false, captured: false, moved: false, startX: 0, startScroll: 0 });
   const loop = [...marqueeItems, ...marqueeItems];
 
   useEffect(() => {
@@ -2212,6 +2058,7 @@ function WorkMarquee() {
     const step = () => {
       const half = el.scrollWidth / 2;
       if (pausedRef.current) {
+        // Stay in sync with whatever the user scrolled to manually.
         pos = el.scrollLeft;
       } else {
         pos += 0.5;
@@ -2224,11 +2071,72 @@ function WorkMarquee() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
+  useEffect(
+    () => () => {
+      if (resumeTimer.current) window.clearTimeout(resumeTimer.current);
+    },
+    [],
+  );
+
   const pause = () => {
     pausedRef.current = true;
+    if (resumeTimer.current) {
+      window.clearTimeout(resumeTimer.current);
+      resumeTimer.current = null;
+    }
   };
-  const resume = () => {
-    pausedRef.current = false;
+  // Resume auto-scroll after a quiet beat, but never while still hovered or dragging.
+  const resumeSoon = (delay: number) => {
+    if (resumeTimer.current) window.clearTimeout(resumeTimer.current);
+    resumeTimer.current = window.setTimeout(() => {
+      resumeTimer.current = null;
+      if (!hoverRef.current && !drag.current.active) pausedRef.current = false;
+    }, delay);
+  };
+
+  const onMouseEnter = () => {
+    hoverRef.current = true;
+    pause();
+  };
+  const onMouseLeave = () => {
+    hoverRef.current = false;
+    resumeSoon(250);
+  };
+
+  // Click-and-drag to scroll (mouse / pen). Native touch scrolling handles swipe.
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === 'touch') return;
+    const el = viewportRef.current;
+    if (!el) return;
+    pause();
+    drag.current = { active: true, captured: false, moved: false, startX: e.clientX, startScroll: el.scrollLeft };
+  };
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!drag.current.active) return;
+    const el = viewportRef.current;
+    if (!el) return;
+    const dx = e.clientX - drag.current.startX;
+    if (!drag.current.moved && Math.abs(dx) > 4) {
+      // Only hijack the pointer once it's clearly a drag, so taps still open videos.
+      drag.current.moved = true;
+      drag.current.captured = true;
+      el.setPointerCapture(e.pointerId);
+      el.style.cursor = 'grabbing';
+    }
+    if (drag.current.moved) {
+      e.preventDefault();
+      el.scrollLeft = drag.current.startScroll - dx;
+    }
+  };
+  const onPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = viewportRef.current;
+    if (drag.current.captured && el) {
+      el.releasePointerCapture?.(e.pointerId);
+      el.style.cursor = '';
+    }
+    drag.current.active = false;
+    drag.current.captured = false;
+    resumeSoon(2000);
   };
 
   return (
@@ -2240,22 +2148,28 @@ function WorkMarquee() {
             Een doorlopende blik op recent werk.
           </h2>
           <p className="max-w-md text-base leading-7 text-graphite">
-            Van buitenschilderwerk tot afgewerkte interieurs. Swipe of scroll door de strook om zelf te bladeren.
+            Van buitenschilderwerk tot afgewerkte interieurs. Swipe of sleep door de strook om zelf te bladeren.
           </p>
         </div>
       </div>
 
       <div
         ref={viewportRef}
-        className="marquee-viewport mt-10 w-full md:mt-12"
-        aria-label="Doorlopende weergave van uitgevoerd werk; scroll of swipe om te bladeren"
-        onMouseEnter={pause}
-        onMouseLeave={resume}
-        onPointerDown={pause}
-        onPointerUp={resume}
-        onPointerCancel={resume}
+        className="marquee-viewport mt-10 w-full cursor-grab md:mt-12"
+        aria-label="Doorlopende weergave van uitgevoerd werk; sleep, scroll of swipe om te bladeren"
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        onWheel={() => {
+          pause();
+          resumeSoon(1500);
+        }}
         onTouchStart={pause}
-        onTouchEnd={resume}
+        onTouchEnd={() => resumeSoon(2000)}
+        onTouchCancel={() => resumeSoon(2000)}
       >
         <div className="marquee-track gap-5 px-5">
           {loop.map((item, index) => (
@@ -3554,129 +3468,6 @@ function TurnstileWidget({
   return <div ref={containerRef} />;
 }
 
-function ServicePage({ service, openQuote }: { service: Service; openQuote: () => void }) {
-  const relatedServices = services.filter((item) => item.slug !== service.slug).slice(0, 3);
-
-  return (
-    <>
-      <section className="bg-navy text-white">
-        <div className="shell grid gap-10 pb-12 pt-24 md:grid-cols-[1fr_0.8fr] md:items-center md:pb-16 md:pt-28">
-          <div className="max-w-3xl">
-            <a href="/#diensten" className="inline-flex items-center gap-2 text-sm font-bold text-roller-soft">
-              <ChevronRight size={16} className="rotate-180" />
-              Terug naar diensten
-            </a>
-            <p className="eyebrow mt-8 text-roller-soft">RN Schilders in Woerden</p>
-            <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">{service.detailTitle} in Woerden</h1>
-            <p className="mt-6 text-lg leading-8 text-white/88 md:text-xl md:leading-8">{service.pageLead}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <button type="button" onClick={openQuote} className="btn-primary">
-                Gratis prijsindicatie
-                <ArrowRight size={17} />
-              </button>
-              <a href={phoneHref} draggable={false} className="btn-light">
-                <Phone size={17} />
-                <span className="select-text cursor-text">{phoneDisplay}</span>
-              </a>
-            </div>
-          </div>
-
-          <div className="overflow-hidden rounded-lg border border-white/10 bg-white/8">
-            <img src={service.image} alt={`${service.title} door RN Schilders in Woerden`} width={service.width} height={service.height} className="aspect-[4/3] w-full object-cover" loading="eager" decoding="async" />
-            <div className="grid gap-3 p-5">
-              {service.bullets.map((bullet) => (
-                <div key={bullet} className="flex items-center gap-3 text-sm font-semibold text-white/88">
-                  <Check size={17} className="text-roller-soft" />
-                  {bullet}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-pad">
-        <div className="shell grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-          <aside className="rounded-lg border border-line bg-whitewash p-5 lg:sticky lg:top-24">
-            <service.icon className="text-roller" size={26} />
-            <h2 className="mt-4 font-display text-2xl font-extrabold text-navy">{service.title} aanvragen</h2>
-            <p className="mt-3 text-sm leading-6 text-graphite">
-              Stuur kort wat er moet gebeuren en voeg eventueel foto's toe. Richard beoordeelt de aanvraag en neemt contact op voor de volgende stap.
-            </p>
-            <div className="mt-5 grid gap-3">
-              <button type="button" onClick={openQuote} className="btn-primary w-full">
-                Offerte aanvragen
-              </button>
-              <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn-outline w-full">
-                <MessageCircle size={17} />
-                WhatsApp
-              </a>
-            </div>
-          </aside>
-
-          <div className="grid gap-8">
-            <article className="rounded-lg border border-line bg-whitewash p-5 md:p-8">
-              <p className="eyebrow">Aanpak</p>
-              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-navy md:text-4xl">{service.detailTitle}</h2>
-              <p className="mt-5 text-base leading-8 text-graphite">{service.detailIntro}</p>
-              <div className="mt-8 grid gap-5 md:grid-cols-2">
-                {service.detailSections.map((section) => (
-                  <section key={section.title} className="rounded-lg border border-line bg-white p-5">
-                    <h3 className="font-display text-xl font-extrabold text-navy">{section.title}</h3>
-                    <div className="mt-4 grid gap-3">
-                      {section.items.map((item) => (
-                        <div key={item} className="flex gap-3 text-sm leading-6 text-ink">
-                          <Check className="mt-1 shrink-0 text-roller" size={16} />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </section>
-                ))}
-              </div>
-            </article>
-
-            <article className="rounded-lg border border-line bg-whitewash p-5 md:p-8">
-              <p className="eyebrow">Regio</p>
-              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-navy md:text-4xl">Voor woningen en bedrijfspanden in Woerden en omgeving.</h2>
-              <p className="mt-5 text-base leading-8 text-graphite">
-                Bij een aanvraag wordt gekeken naar de ondergrond, voorbereiding, planning en afwerking die bij het pand past. Voeg gerust foto's toe van kozijnen, muren, plafonds of beschadigingen, zodat de eerste inschatting concreter wordt.
-              </p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                {['Woerden', 'Groene Hart', 'Midden-Nederland'].map((area) => (
-                  <div key={area} className="rounded-md border border-line bg-white p-4 text-sm font-bold text-navy">
-                    {area}
-                  </div>
-                ))}
-              </div>
-            </article>
-
-            <article className="rounded-lg border border-line bg-whitewash p-5 md:p-8">
-              <p className="eyebrow">Ook bekeken</p>
-              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-navy md:text-4xl">Gerelateerde diensten</h2>
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
-                {relatedServices.map((item) => (
-                  <a key={item.slug} href={getServicePath(item)} className="group rounded-lg border border-line bg-white p-5 transition hover:-translate-y-0.5 hover:border-navy/35">
-                    <item.icon className="text-roller" size={23} />
-                    <h3 className="mt-4 font-display text-xl font-extrabold text-navy">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-graphite">{item.text}</p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-roller">
-                      Bekijk dienst
-                      <ArrowRight size={16} />
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <Contact openQuote={openQuote} />
-    </>
-  );
-}
-
 function WorkAreaPage({ openQuote }: { openQuote: () => void }) {
   return (
     <>
@@ -3882,7 +3673,7 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
                   const service = services.find((item) => item.title === link.serviceTitle);
                   if (!service) return null;
                   return (
-                    <a key={link.label} href={getServicePath(service)} className="btn-outline px-4 py-2">
+                    <a key={link.label} href="/#diensten" className="btn-outline px-4 py-2">
                       {link.label}
                       <ChevronRight size={16} />
                     </a>
@@ -3891,7 +3682,7 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
               </div>
               <div className="mt-6 grid gap-4 md:grid-cols-2">
                 {featuredServices.map((service) => (
-                  <a key={service.slug} href={getServicePath(service)} className="group rounded-lg border border-line bg-white p-5 transition hover:-translate-y-0.5 hover:border-navy/35">
+                  <a key={service.slug} href="/#diensten" className="group rounded-lg border border-line bg-white p-5 transition hover:-translate-y-0.5 hover:border-navy/35">
                     <service.icon className="text-roller" size={23} />
                     <h3 className="mt-4 font-display text-xl font-extrabold text-navy">{service.title}</h3>
                     <p className="mt-2 text-sm leading-6 text-graphite">{service.text}</p>
@@ -4149,7 +3940,7 @@ function Footer() {
             <SocialLinks />
             <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/88 md:justify-end">
               {services.map((service) => (
-                <a key={service.slug} href={getServicePath(service)} className="hover:text-white">
+                <a key={service.slug} href="/#diensten" className="hover:text-white">
                   {service.title} Woerden
                 </a>
               ))}

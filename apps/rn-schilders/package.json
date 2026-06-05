@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3006 --host=0.0.0.0",
-    "build": "vite build",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "ship": "pnpm build && wrangler deploy",
     "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
     "preview": "vite preview",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist dist-ssr",
     "lint": "tsc --noEmit && tsc --noEmit -p tsconfig.worker.json",
     "optimize-images": "tsx scripts/optimize-images.ts"
   },

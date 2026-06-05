@@ -1,10 +1,19 @@
 import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
 
-createRoot(document.getElementById('root')!).render(
+const container = document.getElementById('root')!;
+const tree = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 );
+
+// Prerendered pages ship real markup inside #root, so hydrate them. In dev (and
+// any non-prerendered shell) #root is empty, so mount a fresh client root.
+if (container.firstElementChild) {
+  hydrateRoot(container, tree);
+} else {
+  createRoot(container).render(tree);
+}
