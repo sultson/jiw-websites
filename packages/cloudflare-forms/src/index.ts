@@ -21,6 +21,9 @@ export type LeadFormConfig = {
   subjectFields?: string[];
   messageField?: string;
   serviceOtherField?: string;
+  requireFirstName?: boolean;
+  requireLastName?: boolean;
+  requireEmail?: boolean;
   attachmentMaxFiles?: number;
   attachmentMaxFileBytes?: number;
   attachmentMaxTotalBytes?: number;
@@ -112,6 +115,9 @@ function withDefaults(config: LeadFormConfig): Required<LeadFormConfig> {
     subjectFields: [],
     messageField: 'message',
     serviceOtherField: 'serviceOther',
+    requireFirstName: true,
+    requireLastName: true,
+    requireEmail: true,
     attachmentMaxFiles: 5,
     attachmentMaxFileBytes: 10 * 1024 * 1024,
     attachmentMaxTotalBytes: 50 * 1024 * 1024,
@@ -285,9 +291,14 @@ function parseFields(form: FormData): SubmissionFields {
 }
 
 function validateFields(fields: SubmissionFields, config: Required<LeadFormConfig>): string | null {
-  if (!fields.firstName) return 'Vul uw voornaam in.';
-  if (!fields.lastName) return 'Vul uw achternaam in.';
-  if (!fields.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) return 'Vul een geldig e-mailadres in.';
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (config.requireFirstName && !fields.firstName) return 'Vul uw naam in.';
+  if (config.requireLastName && !fields.lastName) return 'Vul uw achternaam in.';
+  if (config.requireEmail) {
+    if (!fields.email || !emailPattern.test(fields.email)) return 'Vul een geldig e-mailadres in.';
+  } else if (fields.email && !emailPattern.test(fields.email)) {
+    return 'Vul een geldig e-mailadres in.';
+  }
 
   for (const field of config.requiredFields) {
     if (!conditionMatches(fields, field.when)) continue;
@@ -382,6 +393,7 @@ async function sendConfirmationEmail(
   manifest: SubmissionManifest,
 ): Promise<void> {
   const { fields } = manifest;
+  if (!fields.email) return;
 
   try {
     await env.LEAD_EMAIL.send({
@@ -418,7 +430,9 @@ async function sendLeadEmail(
     await env.LEAD_EMAIL.send({
       from: { email: env.LEAD_SENDER, name: config.senderName },
       to: env.LEAD_RECIPIENT,
-      replyTo: { email: fields.email, name: cleanHeader(getFullName(fields)) },
+      replyTo: fields.email
+        ? { email: fields.email, name: cleanHeader(getFullName(fields)) }
+        : env.LEAD_RECIPIENT,
       subject,
       text: renderTextEmail(config, manifest, origin),
       html: renderHtmlEmail(config, manifest, origin),
