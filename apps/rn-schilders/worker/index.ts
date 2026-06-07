@@ -4,13 +4,18 @@ export type Env = CloudflareFormsEnv & {
   ASSETS: Fetcher;
 };
 
-const canonicalHost = 'rn-schilders.nl';
+const canonicalHost = 'rnschilders.nl';
 const siteUrl = `https://${canonicalHost}`;
+
+// Alternate domain (the hyphenated, legacy one). Both the apex and www variant
+// 301 to the canonical host so all SEO value consolidates on rnschilders.nl.
+// Note: e-mail (sender/recipient) still lives on the rn-schilders.nl domain.
+const alternateHosts = ['rn-schilders.nl', 'www.rn-schilders.nl'];
 
 // Pages that were consolidated away. Each 301s to a still-relevant target so any
 // existing links or index entries keep their value:
 //  - thin location doorway pages -> /werkgebied
-//  - per-service detail pages (now covered by the homepage Diensten section) -> /#diensten
+//  - legacy hyphenated service paths -> the new clean service detail pages
 const removedPathRedirects: Record<string, string> = {
   '/schilder-maarssen-stichtse-vecht': '/werkgebied',
   '/schilder-mijdrecht-de-ronde-venen': '/werkgebied',
@@ -19,12 +24,12 @@ const removedPathRedirects: Record<string, string> = {
   '/schilder-houten': '/werkgebied',
   '/schilder-de-bilt-bilthoven': '/werkgebied',
   '/schilder-zeist': '/werkgebied',
-  '/schilderwerk-woerden': '/#diensten',
-  '/kozijnen-woerden': '/#diensten',
-  '/spuitwerk-woerden': '/#diensten',
-  '/stucwerk-woerden': '/#diensten',
-  '/houtrotherstel-woerden': '/#diensten',
-  '/sloopwerk-woerden': '/#diensten',
+  '/schilderwerk-woerden': '/schilderwerk',
+  '/kozijnen-woerden': '/kozijnen',
+  '/spuitwerk-woerden': '/spuitwerk',
+  '/stucwerk-woerden': '/stucwerk',
+  '/houtrotherstel-woerden': '/houtrotherstel',
+  '/sloopwerk-woerden': '/sloopwerk',
 };
 
 const formWorker = createFormWorker({
@@ -37,21 +42,17 @@ const formWorker = createFormWorker({
   messageField: 'message',
   serviceOtherField: 'serviceOther',
   subjectFields: ['service', 'postalCode', 'city'],
+  // Keep the barrier to contact low: only naam, telefoon en e-mail zijn verplicht.
+  // De rest is optioneel zodat een aanvraag versturen nooit een gedoe is.
+  requireLastName: false,
   requiredFields: [
     { name: 'phone', label: 'telefoonnummer', message: 'Vul uw telefoonnummer in.' },
-    { name: 'postalCode', label: 'postcode', message: 'Vul uw postcode in.' },
-    { name: 'streetName', label: 'straatnaam', message: 'Vul uw straatnaam in.' },
-    { name: 'houseNumber', label: 'huisnummer', message: 'Vul uw huisnummer in.' },
-    { name: 'city', label: 'plaatsnaam', message: 'Vul uw plaatsnaam in.' },
-    { name: 'service', label: 'dienst', message: 'Kies een dienst.' },
     {
       name: 'serviceOther',
       label: 'dienst toelichting',
       message: 'Vul de gewenste dienst in.',
       when: { field: 'service', equals: 'other' },
     },
-    { name: 'preferredExecutionDate', label: 'gewenste uitvoeringsdatum', message: 'Kies een gewenste uitvoeringsdatum.' },
-    { name: 'message', label: 'projectomschrijving', message: 'Beschrijf kort wat er moet gebeuren.' },
   ],
   emailFields: [
     { name: 'phone', label: 'Telefoon' },
@@ -71,7 +72,7 @@ export default {
 
     let shouldRedirect = false;
 
-    if (url.hostname === `www.${canonicalHost}`) {
+    if (url.hostname === `www.${canonicalHost}` || alternateHosts.includes(url.hostname)) {
       url.hostname = canonicalHost;
       shouldRedirect = true;
     }

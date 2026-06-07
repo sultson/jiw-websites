@@ -33,9 +33,10 @@ import {
 const phoneDisplay = '085 060 6309';
 const phoneHref = 'tel:+31850606309';
 const whatsappHref = 'https://wa.me/31645172726?text=Hallo%20RN%20Schilders%2C%20ik%20wil%20graag%20een%20gratis%20prijsindicatie%20aanvragen.';
+// Email stays on the rn-schilders.nl domain for now; only the public site URL moves.
 const email = 'info@rn-schilders.nl';
 const mapsHref = 'https://www.google.com/maps/search/?api=1&query=Kuipersweg+33+3449+JA+Woerden';
-const siteUrl = 'https://rn-schilders.nl';
+const siteUrl = 'https://rnschilders.nl';
 const siteName = 'RN Schilders & Renovatie';
 const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || '';
 const attachmentAccept = '.jpg,.jpeg,.png,.webp,.heic,.heif,.pdf,image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf';
@@ -91,6 +92,9 @@ type Service = {
     title: string;
     items: string[];
   }>;
+  seoTitle: string;
+  seoDescription: string;
+  faqs: Array<{ question: string; answer: string }>;
 };
 
 type LocationPage = {
@@ -156,10 +160,9 @@ type TermsSection = {
 const navLinks = [
   ['Diensten', '#diensten'],
   ['Werk', '#werk'],
-  ['Reviews', '#reviews'],
-  ['Werkwijze', '#werkwijze'],
+  ['Over ons', '/over-ons'],
   ['Werkgebied', '/werkgebied'],
-  ['Contact', '#contact'],
+  ['Contact', '/contact'],
 ] as const;
 
 const services: Service[] = [
@@ -189,6 +192,26 @@ const services: Service[] = [
       {
         title: 'Buiten',
         items: ['Inspectie van houtwerk en bestaande verflagen', 'Herstelwerk voordat er afgewerkt wordt', 'Bescherming tegen weer, vocht en zon'],
+      },
+    ],
+    seoTitle: 'Schilderwerk in Woerden | Binnen en buiten | RN Schilders',
+    seoDescription:
+      'Binnen- en buitenschilderwerk in Woerden door RN Schilders. Strakke afwerking van muren, plafonds, kozijnen en boeidelen met duurzame verf. Vraag een gratis offerte aan.',
+    faqs: [
+      {
+        question: 'Doen jullie zowel binnen- als buitenschilderwerk?',
+        answer:
+          'Ja. Binnen schilderen we muren, plafonds, kozijnen, deuren en trappen. Buiten richten we ons op kozijnen, deuren, boeidelen en gevelhout, altijd met grondige voorbereiding.',
+      },
+      {
+        question: 'Welke verf gebruiken jullie?',
+        answer:
+          'We werken met hoogwaardige, duurzame verfproducten die passen bij de ondergrond en het gebruik. Zo blijft het werk langer mooi en beschermd tegen vocht en UV.',
+      },
+      {
+        question: 'Geven jullie garantie op buitenschilderwerk?',
+        answer:
+          'Op buitenschilderwerk geldt een garantie van vijf jaar, mits het werk volgens afspraak wordt onderhouden. De voorwaarden staan in onze algemene voorwaarden.',
       },
     ],
   },
@@ -223,6 +246,26 @@ const services: Service[] = [
         items: ['PKVW-gecertificeerd hang- en sluitwerk', 'Aandacht voor inbraakwering', 'Advies per woning of bedrijfspand'],
       },
     ],
+    seoTitle: 'Kozijnen in Woerden | Hout en kunststof | RN Schilders',
+    seoDescription:
+      'Houten en kunststof kozijnen in Woerden: plaatsing, renovatie en herstel met PKVW hang- en sluitwerk. RN Schilders adviseert per woning. Vraag een gratis offerte aan.',
+    faqs: [
+      {
+        question: 'Werken jullie met houten en kunststof kozijnen?',
+        answer:
+          'Ja. Houten kozijnen geven een warme uitstraling en zijn goed te herstellen; kunststof kozijnen zijn onderhoudsarm en kleurvast. We adviseren wat per woning het beste past.',
+      },
+      {
+        question: 'Wat is PKVW hang- en sluitwerk?',
+        answer:
+          'PKVW staat voor het Politiekeurmerk Veilig Wonen. We besteden aandacht aan inbraakwerend hang- en sluitwerk, zodat uw kozijnen veilig afsluiten.',
+      },
+      {
+        question: 'Kunnen kozijnen hersteld worden in plaats van vervangen?',
+        answer:
+          'Vaak wel. Bij beperkte schade of houtrot herstellen we het hout gericht, zodat volledige vervanging niet altijd nodig is.',
+      },
+    ],
   },
   {
     title: 'Spuitwerk',
@@ -248,6 +291,26 @@ const services: Service[] = [
       {
         title: 'Voorbereiding',
         items: ['Reinigen en gladmaken van ondergronden', 'Herstellen van beschadigingen', 'Zorgvuldig afplakken van vloeren, ramen en deuren'],
+      },
+    ],
+    seoTitle: 'Spuitwerk in Woerden | Strakke afwerking | RN Schilders',
+    seoDescription:
+      'Egaal spuitwerk in Woerden voor woningen, kantoren en bedrijfspanden. Strakke, moderne afwerking van muren en plafonds met zorgvuldige voorbereiding. Vraag een gratis offerte aan.',
+    faqs: [
+      {
+        question: 'Waarom kiezen voor spuitwerk in plaats van rollen?',
+        answer:
+          'Spuitwerk geeft een egaal, strak en modern resultaat, vooral op grote oppervlakken. Het werkt efficiënt en laat geen rolstructuur achter.',
+      },
+      {
+        question: 'Voor welke ruimtes is spuitwerk geschikt?',
+        answer:
+          'Voor woningen, nieuwbouw, kantoren, winkels en bedrijfspanden. We spuiten muren, plafonds en andere grote vlakken.',
+      },
+      {
+        question: 'Hoe bereiden jullie de ruimte voor?',
+        answer:
+          'We reinigen en maken de ondergrond glad, herstellen beschadigingen en plakken vloeren, ramen en deuren zorgvuldig af voordat we beginnen.',
       },
     ],
   },
@@ -278,6 +341,26 @@ const services: Service[] = [
         items: ['Naadloos te combineren met schilderwerk', 'Ook geschikt als basis voor spuitwerk', 'Een vaste partij voor voorbereiding en afwerking'],
       },
     ],
+    seoTitle: 'Stucwerk in Woerden | Gladde wanden en plafonds | RN Schilders',
+    seoDescription:
+      'Strak stucwerk in Woerden voor gladde wanden en plafonds, als basis voor schilder- of spuitwerk. Inclusief voorbereiding en schadeherstel. Vraag een gratis offerte aan.',
+    faqs: [
+      {
+        question: 'Wat is het verschil tussen stucwerk en spuitwerk?',
+        answer:
+          'Stucwerk maakt wanden en plafonds glad als basis; spuitwerk is een afwerktechniek. We combineren beide vaak voor een strak eindresultaat.',
+      },
+      {
+        question: 'Doen jullie ook reparaties aan bestaand stucwerk?',
+        answer:
+          'Ja. We herstellen scheuren en beschadigingen en bereiden de ondergrond voor, zodat de afwerking weer strak wordt.',
+      },
+      {
+        question: 'Is stucwerk geschikt voor renovatie en nieuwbouw?',
+        answer:
+          'Ja, voor allebei. We stemmen de aanpak af op de staat van de ondergrond en de gewenste afwerking.',
+      },
+    ],
   },
   {
     title: 'Houtrotherstel',
@@ -303,6 +386,26 @@ const services: Service[] = [
       {
         title: 'Afwerking',
         items: ['Schuren, gronden en strak schilderen', 'Bescherming tegen vocht en temperatuurwisselingen', 'Preventief advies voor toekomstig onderhoud'],
+      },
+    ],
+    seoTitle: 'Houtrotherstel in Woerden | Kozijnen en buitenhout | RN Schilders',
+    seoDescription:
+      'Houtrotherstel in Woerden voor kozijnen, deuren en boeidelen. RN Schilders herstelt aangetast hout duurzaam voordat vocht grotere schade veroorzaakt. Vraag een gratis offerte aan.',
+    faqs: [
+      {
+        question: 'Hoe weet ik of ik houtrot heb?',
+        answer:
+          'Zacht, verkleurd of afbladderend hout bij kozijnen, dorpels of boeidelen wijst vaak op houtrot. Bij twijfel kijkt Richard tijdens de opname mee.',
+      },
+      {
+        question: 'Moet aangetast hout altijd vervangen worden?',
+        answer:
+          'Niet altijd. Bij beperkte schade verwijderen we het rotte deel en herstellen we met gespecialiseerde reparatieproducten, daarna schuren, gronden en schilderen we het bij.',
+      },
+      {
+        question: 'Kan houtrot terugkomen?',
+        answer:
+          'Met goed herstel, afwerking en onderhoud blijft het hout lang beschermd. We geven preventief advies om vocht buiten te houden.',
       },
     ],
   },
@@ -331,6 +434,26 @@ const services: Service[] = [
       {
         title: 'Aansluiting op afwerking',
         items: ['Direct door naar herstelwerk', 'Stucwerk, schilderwerk en spuitwerk sluiten aan', 'Geschikt voor woningen en bedrijfspanden in de regio Woerden'],
+      },
+    ],
+    seoTitle: 'Sloopwerk in Woerden | Voorbereiding renovatie | RN Schilders',
+    seoDescription:
+      'Zorgvuldig sloopwerk in Woerden als voorbereiding op renovatie. RN Schilders verwijdert oude materialen veilig en netjes, klaar voor herstel en afwerking. Vraag een gratis offerte aan.',
+    faqs: [
+      {
+        question: 'Hoort sloopwerk bij een renovatie?',
+        answer:
+          'Vaak wel. Sloopwerk is meestal de eerste fase: oude wanden, afwerkingen en plafondmaterialen verwijderen voordat herstel en afwerking beginnen.',
+      },
+      {
+        question: 'Voeren jullie het sloopafval af?',
+        answer:
+          'In overleg. We halen materialen zorgvuldig los en regelen de afvoer zoals afgesproken in de offerte.',
+      },
+      {
+        question: 'Sluit het sloopwerk aan op de afwerking?',
+        answer:
+          'Ja. We gaan direct door naar herstel, stucwerk, schilderwerk of spuitwerk, zodat het hele traject bij één partij ligt.',
       },
     ],
   },
@@ -1153,6 +1276,12 @@ function getLocationPath(location: LocationPage) {
   return `/${location.slug}`;
 }
 
+// Service detail pages live at a clean single-word path (e.g. /schilderwerk),
+// derived from the title so there is one source of truth.
+function getServicePath(service: Service) {
+  return `/${service.title.toLowerCase()}`;
+}
+
 function normalizePathname(pathname: string) {
   if (pathname.length > 1 && pathname.endsWith('/')) return pathname.slice(0, -1);
   return pathname;
@@ -1178,9 +1307,9 @@ export type RouteMeta = {
 };
 
 const homeMeta = {
-  title: `${siteName} | Schilder Woerden`,
+  title: `✴️ ${siteName} | Schilder Woerden`,
   description:
-    'RN Schilders & Renovatie in Woerden. Schilderwerk, renovatie, kozijnen, spuitwerk, stucwerk en houtrotherstel met gratis offerte.',
+    'Vakkundige schilder in Woerden voor binnen- en buitenschilderwerk, kozijnen, stucwerk en houtrotherstel. Richard komt zelf langs en u krijgt snel een gratis offerte.',
 };
 
 const workAreaMeta = {
@@ -1194,11 +1323,38 @@ const termsMeta = {
   description: 'Algemene voorwaarden van RN Schilders & Renovatie in Woerden.',
 };
 
+const aboutMeta = {
+  title: `Over RN Schilders | Schilder en renovatiebedrijf in Woerden`,
+  description:
+    'Maak kennis met RN Schilders & Renovatie uit Woerden. Een meewerkend eigenaar, Richard, met meer dan vijftien jaar ervaring, korte lijnen en duidelijke afspraken.',
+};
+
+const contactMeta = {
+  title: `Contact | RN Schilders & Renovatie Woerden`,
+  description:
+    'Neem contact op met RN Schilders & Renovatie in Woerden. Bel, mail of vraag online een gratis offerte aan. Kuipersweg 33, 3449 JA Woerden.',
+};
+
+// BreadcrumbList so Google understands the page sits under the homepage and can
+// render a breadcrumb trail (and treat the subpages as distinct entries) in the
+// search result instead of a single bare listing.
+function buildBreadcrumbJsonLd(pageName: string, pageUrl: string): string {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: pageName, item: pageUrl },
+    ],
+  });
+}
+
 // Service + FAQPage structured data for a location page, derived straight from
 // the page's own areas, services and FAQs so there is one source of truth.
 function buildLocationJsonLd(location: LocationPage): string[] {
   const pageUrl = absoluteUrl(getLocationPath(location));
   return [
+    buildBreadcrumbJsonLd(location.title, pageUrl),
     JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Service',
@@ -1223,21 +1379,62 @@ function buildLocationJsonLd(location: LocationPage): string[] {
   ];
 }
 
+// Service + FAQPage structured data for a service detail page.
+function buildServiceJsonLd(service: Service): string[] {
+  const pageUrl = absoluteUrl(getServicePath(service));
+  return [
+    buildBreadcrumbJsonLd(service.title, pageUrl),
+    JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': `${pageUrl}#service`,
+      name: service.detailTitle,
+      description: service.seoDescription,
+      provider: { '@id': `${siteUrl}/#business` },
+      url: pageUrl,
+      serviceType: service.title,
+      areaServed: { '@type': 'City', name: 'Woerden' },
+    }),
+    JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      '@id': `${pageUrl}#faq`,
+      mainEntity: service.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
+    }),
+  ];
+}
+
 // Single source of truth for per-route <head> metadata, used by both the
 // client (SPA navigation) and the build-time prerender script.
 export function routeMetaFor(pathname: string): RouteMeta {
   const path = normalizePathname(pathname);
   const location = locationPages.find((item) => getLocationPath(item) === path);
+  const service = services.find((item) => getServicePath(item) === path);
 
   let base = homeMeta;
   let jsonLd: string[] = [];
   if (location) {
     base = { title: location.seoTitle, description: location.seoDescription };
     jsonLd = buildLocationJsonLd(location);
+  } else if (service) {
+    base = { title: service.seoTitle, description: service.seoDescription };
+    jsonLd = buildServiceJsonLd(service);
   } else if (path === '/werkgebied') {
     base = workAreaMeta;
+    jsonLd = [buildBreadcrumbJsonLd('Werkgebied', absoluteUrl(path))];
+  } else if (path === '/over-ons') {
+    base = aboutMeta;
+    jsonLd = [buildBreadcrumbJsonLd('Over ons', absoluteUrl(path))];
+  } else if (path === '/contact') {
+    base = contactMeta;
+    jsonLd = [buildBreadcrumbJsonLd('Contact', absoluteUrl(path))];
   } else if (path === '/algemene-voorwaarden') {
     base = termsMeta;
+    jsonLd = [buildBreadcrumbJsonLd('Algemene voorwaarden', absoluteUrl(path))];
   }
 
   return { path, title: base.title, description: base.description, canonical: absoluteUrl(path), jsonLd };
@@ -1246,8 +1443,11 @@ export function routeMetaFor(pathname: string): RouteMeta {
 // Every route the site renders, in sitemap order. Drives the prerender loop.
 export const allRoutePaths: string[] = [
   '/',
+  ...services.map((service) => getServicePath(service)),
   '/werkgebied',
   ...locationPages.map((location) => getLocationPath(location)),
+  '/over-ons',
+  '/contact',
   '/algemene-voorwaarden',
 ];
 
@@ -1273,8 +1473,12 @@ function App({ initialPath }: { initialPath?: string } = {}) {
   const normalizedPathname = normalizePathname(pathname);
   const isTermsPage = normalizedPathname === '/algemene-voorwaarden';
   const isWorkAreaPage = normalizedPathname === '/werkgebied';
+  const isAboutPage = normalizedPathname === '/over-ons';
+  const isContactPage = normalizedPathname === '/contact';
   const locationPage = locationPages.find((location) => normalizedPathname === getLocationPath(location));
-  const isSubPage = isTermsPage || isWorkAreaPage || Boolean(locationPage);
+  const servicePage = services.find((service) => normalizedPathname === getServicePath(service));
+  const isSubPage =
+    isTermsPage || isWorkAreaPage || isAboutPage || isContactPage || Boolean(locationPage) || Boolean(servicePage);
   useRouteMetadata(normalizedPathname);
 
   useEffect(() => {
@@ -1291,12 +1495,18 @@ function App({ initialPath }: { initialPath?: string } = {}) {
           <TermsPage openQuote={() => setQuoteOpen(true)} />
         ) : isWorkAreaPage ? (
           <WorkAreaPage openQuote={() => setQuoteOpen(true)} />
+        ) : isAboutPage ? (
+          <AboutPage openQuote={() => setQuoteOpen(true)} />
+        ) : isContactPage ? (
+          <ContactPage openQuote={() => setQuoteOpen(true)} />
+        ) : servicePage ? (
+          <ServicePageView service={servicePage} openQuote={() => setQuoteOpen(true)} />
         ) : locationPage ? (
           <LocationPageView location={locationPage} openQuote={() => setQuoteOpen(true)} />
         ) : (
           <>
             <Hero openQuote={() => setQuoteOpen(true)} />
-            <Services openQuote={() => setQuoteOpen(true)} />
+            <Services />
             <ProofStrip />
             <OwnerSection />
             <WorkMarquee />
@@ -1527,9 +1737,7 @@ function OwnerSection() {
   );
 }
 
-function Services({ openQuote }: { openQuote: () => void }) {
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
-
+function Services() {
   return (
     <section id="diensten" className="bg-whitewash pb-16 pt-2 md:pb-24 md:pt-4">
       <div className="shell">
@@ -1541,150 +1749,44 @@ function Services({ openQuote }: { openQuote: () => void }) {
         </div>
 
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service) => {
-            const open = () => setSelectedService(service);
-            const slides = service.images && service.images.length > 1 ? service.images : null;
-            return (
-              <div
-                key={service.title}
-                role="button"
-                tabIndex={0}
-                onClick={open}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    open();
-                  }
-                }}
-                className="group cursor-pointer overflow-hidden rounded-lg border border-line bg-white text-left transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-30px_rgba(13,30,61,0.65)] focus-visible:-translate-y-0.5"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  {slides ? (
-                    <ProjectCarousel slides={slides} className="absolute inset-0 h-full w-full bg-navy" imageWidth={service.width} imageHeight={service.height} />
-                  ) : (
-                    <img
-                      src={service.image}
-                      alt=""
-                      width={service.width}
-                      height={service.height}
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  )}
+          {services.map((service) => (
+            <a
+              key={service.title}
+              href={getServicePath(service)}
+              className="group overflow-hidden rounded-lg border border-line bg-white text-left transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-30px_rgba(13,30,61,0.65)] focus-visible:-translate-y-0.5"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={`${service.title} door RN Schilders in Woerden`}
+                  width={service.width}
+                  height={service.height}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="font-display text-2xl font-extrabold text-navy">{service.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-graphite">{service.text}</p>
+                <div className="mt-5 grid gap-2">
+                  {service.bullets.map((bullet) => (
+                    <div key={bullet} className="flex items-center gap-2 text-sm font-semibold text-ink">
+                      <Check size={16} className="text-roller" />
+                      {bullet}
+                    </div>
+                  ))}
                 </div>
-                <div className="p-5">
-                  <h3 className="font-display text-2xl font-extrabold text-navy">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-graphite">{service.text}</p>
-                  <div className="mt-5 grid gap-2">
-                    {service.bullets.map((bullet) => (
-                      <div key={bullet} className="flex items-center gap-2 text-sm font-semibold text-ink">
-                        <Check size={16} className="text-roller" />
-                        {bullet}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-5 flex items-center gap-2 text-sm font-bold text-roller">
-                    Lees uitleg
-                    <ArrowRight size={16} />
-                  </div>
+                <div className="mt-5 flex items-center gap-2 text-sm font-bold text-roller">
+                  Bekijk dienst
+                  <ArrowRight size={16} className="transition group-hover:translate-x-0.5" />
                 </div>
               </div>
-            );
-          })}
+            </a>
+          ))}
         </div>
-
       </div>
-      <ServiceModal service={selectedService} onClose={() => setSelectedService(null)} openQuote={openQuote} />
     </section>
-  );
-}
-
-function ServiceModal({
-  service,
-  onClose,
-  openQuote,
-}: {
-  service: Service | null;
-  onClose: () => void;
-  openQuote: () => void;
-}) {
-  useEffect(() => {
-    if (!service) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
-    };
-    document.addEventListener('keydown', onKey);
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = '';
-    };
-  }, [service, onClose]);
-
-  if (!service) return null;
-
-  return (
-    <div className="fixed inset-0 z-[100] overflow-y-auto bg-navy/70 p-4 backdrop-blur-sm md:p-6" role="dialog" aria-modal="true" aria-label={`${service.title} uitleg`}>
-      <div className="mx-auto my-4 max-w-4xl overflow-hidden rounded-lg bg-whitewash shadow-2xl md:my-10">
-        <div className="grid md:grid-cols-[0.85fr_1.15fr]">
-          <div className="relative min-h-64 bg-navy md:aspect-auto">
-            {service.images && service.images.length > 1 ? (
-              <ProjectCarousel slides={service.images} className="absolute inset-0 h-full w-full bg-navy" imageWidth={service.width} imageHeight={service.height} />
-            ) : (
-              <img src={service.image} alt="" width={service.width} height={service.height} className="h-full w-full object-cover" />
-            )}
-            <div className="pointer-events-none absolute left-5 top-5 z-10 rounded-md bg-navy p-3 text-white">
-              <service.icon size={24} />
-            </div>
-          </div>
-          <div className="p-5 md:p-7">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="eyebrow">Onze diensten</p>
-                <h2 className="mt-2 font-display text-3xl font-extrabold leading-tight text-navy">{service.detailTitle}</h2>
-              </div>
-              <button type="button" onClick={onClose} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-line bg-white" aria-label="Sluiten">
-                <X size={22} />
-              </button>
-            </div>
-            <p className="mt-5 text-base leading-7 text-graphite">{service.detailIntro}</p>
-            <div className="mt-6 grid gap-5">
-              {service.detailSections.map((section) => (
-                <div key={section.title} className="rounded-md border border-line bg-white p-4">
-                  <h3 className="font-display text-xl font-extrabold text-navy">{section.title}</h3>
-                  <div className="mt-3 grid gap-2">
-                    {section.items.map((item) => (
-                      <div key={item} className="flex gap-2 text-sm leading-6 text-ink">
-                        <Check className="mt-1 shrink-0 text-roller" size={16} />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <button
-                type="button"
-                onClick={() => {
-                  onClose();
-                  openQuote();
-                }}
-                className="btn-primary"
-              >
-                Gratis prijsindicatie
-                <ArrowRight size={17} />
-              </button>
-              <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn-outline">
-                <MessageCircle size={17} />
-                WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -2979,18 +3081,11 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
     const formData = new FormData(form);
     const getValue = (field: QuoteFieldName) => String(formData.get(field) ?? '').trim();
     const errors: QuoteFieldErrors = {};
+    // Only naam, telefoon en e-mail zijn verplicht; de rest is optioneel.
     const requiredFields: Array<[QuoteFieldName, string]> = [
-      ['firstName', 'Vul uw voornaam in.'],
-      ['lastName', 'Vul uw achternaam in.'],
-      ['postalCode', 'Vul uw postcode in.'],
-      ['streetName', 'Vul uw straatnaam in.'],
-      ['houseNumber', 'Vul uw huisnummer in.'],
-      ['city', 'Vul uw plaatsnaam in.'],
-      ['service', 'Kies een dienst.'],
-      ['preferredExecutionDate', 'Kies een gewenste uitvoeringsdatum.'],
+      ['firstName', 'Vul uw naam in.'],
       ['phone', 'Vul uw telefoonnummer in.'],
       ['email', 'Vul uw e-mailadres in.'],
-      ['message', 'Beschrijf kort wat er moet gebeuren.'],
     ];
 
     for (const [field, message] of requiredFields) {
@@ -3185,38 +3280,38 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
               noValidate
             >
               <label className="grid gap-2 text-sm font-bold text-navy">
-                <span>Voornaam <RequiredMark /></span>
+                <span>Naam <RequiredMark /></span>
                 <input className="field" name="firstName" placeholder="Voornaam" autoComplete="given-name" required onChange={handleFieldChange('firstName')} aria-invalid={Boolean(fieldErrors.firstName)} aria-describedby={fieldErrors.firstName ? 'firstName-error' : undefined} />
                 <FieldError id="firstName-error" message={fieldErrors.firstName} />
               </label>
               <label className="grid gap-2 text-sm font-bold text-navy">
-                <span>Achternaam <RequiredMark /></span>
-                <input className="field" name="lastName" placeholder="Achternaam" autoComplete="family-name" required onChange={handleFieldChange('lastName')} aria-invalid={Boolean(fieldErrors.lastName)} aria-describedby={fieldErrors.lastName ? 'lastName-error' : undefined} />
+                <span>Achternaam <OptionalMark /></span>
+                <input className="field" name="lastName" placeholder="Achternaam" autoComplete="family-name" onChange={handleFieldChange('lastName')} aria-invalid={Boolean(fieldErrors.lastName)} aria-describedby={fieldErrors.lastName ? 'lastName-error' : undefined} />
                 <FieldError id="lastName-error" message={fieldErrors.lastName} />
               </label>
               <label className="grid gap-2 text-sm font-bold text-navy">
-                <span>Postcode <RequiredMark /></span>
-                <input className="field" name="postalCode" placeholder="3449 JA" autoComplete="postal-code" required onChange={handleFieldChange('postalCode')} aria-invalid={Boolean(fieldErrors.postalCode)} aria-describedby={fieldErrors.postalCode ? 'postalCode-error' : undefined} />
+                <span>Postcode <OptionalMark /></span>
+                <input className="field" name="postalCode" placeholder="3449 JA" autoComplete="postal-code" onChange={handleFieldChange('postalCode')} aria-invalid={Boolean(fieldErrors.postalCode)} aria-describedby={fieldErrors.postalCode ? 'postalCode-error' : undefined} />
                 <FieldError id="postalCode-error" message={fieldErrors.postalCode} />
               </label>
               <label className="grid gap-2 text-sm font-bold text-navy">
-                <span>Plaatsnaam <RequiredMark /></span>
-                <input className="field" name="city" placeholder="Woerden" autoComplete="address-level2" required onChange={handleFieldChange('city')} aria-invalid={Boolean(fieldErrors.city)} aria-describedby={fieldErrors.city ? 'city-error' : undefined} />
+                <span>Plaatsnaam <OptionalMark /></span>
+                <input className="field" name="city" placeholder="Woerden" autoComplete="address-level2" onChange={handleFieldChange('city')} aria-invalid={Boolean(fieldErrors.city)} aria-describedby={fieldErrors.city ? 'city-error' : undefined} />
                 <FieldError id="city-error" message={fieldErrors.city} />
               </label>
               <label className="grid gap-2 text-sm font-bold text-navy">
-                <span>Straatnaam <RequiredMark /></span>
-                <input className="field" name="streetName" placeholder="Kuipersweg" autoComplete="address-line1" required onChange={handleFieldChange('streetName')} aria-invalid={Boolean(fieldErrors.streetName)} aria-describedby={fieldErrors.streetName ? 'streetName-error' : undefined} />
+                <span>Straatnaam <OptionalMark /></span>
+                <input className="field" name="streetName" placeholder="Kuipersweg" autoComplete="address-line1" onChange={handleFieldChange('streetName')} aria-invalid={Boolean(fieldErrors.streetName)} aria-describedby={fieldErrors.streetName ? 'streetName-error' : undefined} />
                 <FieldError id="streetName-error" message={fieldErrors.streetName} />
               </label>
               <label className="grid gap-2 text-sm font-bold text-navy">
-                <span>Huisnummer <RequiredMark /></span>
-                <input className="field" name="houseNumber" placeholder="33" autoComplete="address-line2" required onChange={handleFieldChange('houseNumber')} aria-invalid={Boolean(fieldErrors.houseNumber)} aria-describedby={fieldErrors.houseNumber ? 'houseNumber-error' : undefined} />
+                <span>Huisnummer <OptionalMark /></span>
+                <input className="field" name="houseNumber" placeholder="33" autoComplete="address-line2" onChange={handleFieldChange('houseNumber')} aria-invalid={Boolean(fieldErrors.houseNumber)} aria-describedby={fieldErrors.houseNumber ? 'houseNumber-error' : undefined} />
                 <FieldError id="houseNumber-error" message={fieldErrors.houseNumber} />
               </label>
               <label className="grid gap-2 text-sm font-bold text-navy">
-                <span>Dienst <RequiredMark /></span>
-                <select className="field" name="service" value={serviceValue} required onChange={handleFieldChange('service')} aria-invalid={Boolean(fieldErrors.service)} aria-describedby={fieldErrors.service ? 'service-error' : undefined}>
+                <span>Dienst <OptionalMark /></span>
+                <select className="field" name="service" value={serviceValue} onChange={handleFieldChange('service')} aria-invalid={Boolean(fieldErrors.service)} aria-describedby={fieldErrors.service ? 'service-error' : undefined}>
                   <option value="">Kies een dienst</option>
                   {serviceOptions.map((option) => (
                     <option key={option} value={option}>{option}</option>
@@ -3234,8 +3329,8 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
                 </label>
               )}
               <label className="grid gap-2 text-sm font-bold text-navy">
-                <span>Gewenste uitvoeringsdatum <RequiredMark /></span>
-                <input className="field" name="preferredExecutionDate" type="date" required onChange={handleFieldChange('preferredExecutionDate')} aria-invalid={Boolean(fieldErrors.preferredExecutionDate)} aria-describedby={fieldErrors.preferredExecutionDate ? 'preferredExecutionDate-error' : undefined} />
+                <span>Gewenste uitvoeringsdatum <OptionalMark /></span>
+                <input className="field" name="preferredExecutionDate" type="date" onChange={handleFieldChange('preferredExecutionDate')} aria-invalid={Boolean(fieldErrors.preferredExecutionDate)} aria-describedby={fieldErrors.preferredExecutionDate ? 'preferredExecutionDate-error' : undefined} />
                 <FieldError id="preferredExecutionDate-error" message={fieldErrors.preferredExecutionDate} />
               </label>
               <label className="grid gap-2 text-sm font-bold text-navy">
@@ -3259,12 +3354,11 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
                 </label>
               </div>
               <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
-                <span>Projectomschrijving <RequiredMark /></span>
+                <span>Projectomschrijving <OptionalMark /></span>
                 <textarea
                   className="field min-h-32 resize-y"
                   name="message"
                   placeholder="Bijvoorbeeld: buitenschilderwerk kozijnen, houtrot bij voordeur, stucwerk woonkamer..."
-                  required
                   onChange={handleFieldChange('message')}
                   aria-invalid={Boolean(fieldErrors.message)}
                   aria-describedby={fieldErrors.message ? 'message-error' : undefined}
@@ -3389,6 +3483,10 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
 
 function RequiredMark() {
   return <span className="text-roller" aria-hidden="true">*</span>;
+}
+
+function OptionalMark() {
+  return <span className="font-semibold text-graphite/70">(optioneel)</span>;
 }
 
 function FieldError({ id, message }: { id: string; message?: string }) {
@@ -3672,7 +3770,7 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
                   const service = services.find((item) => item.title === link.serviceTitle);
                   if (!service) return null;
                   return (
-                    <a key={link.label} href="/#diensten" className="btn-outline px-4 py-2">
+                    <a key={link.label} href={getServicePath(service)} className="btn-outline px-4 py-2">
                       {link.label}
                       <ChevronRight size={16} />
                     </a>
@@ -3681,7 +3779,7 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
               </div>
               <div className="mt-6 grid gap-4 md:grid-cols-2">
                 {featuredServices.map((service) => (
-                  <a key={service.slug} href="/#diensten" className="group rounded-lg border border-line bg-white p-5 transition hover:-translate-y-0.5 hover:border-navy/35">
+                  <a key={service.slug} href={getServicePath(service)} className="group rounded-lg border border-line bg-white p-5 transition hover:-translate-y-0.5 hover:border-navy/35">
                     <service.icon className="text-roller" size={23} />
                     <h3 className="mt-4 font-display text-xl font-extrabold text-navy">{service.title}</h3>
                     <p className="mt-2 text-sm leading-6 text-graphite">{service.text}</p>
@@ -3719,6 +3817,291 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
                 ))}
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <Contact openQuote={openQuote} />
+    </>
+  );
+}
+
+function ServicePageView({ service, openQuote }: { service: Service; openQuote: () => void }) {
+  const otherServices = services.filter((item) => item.title !== service.title);
+  const gallery = service.images && service.images.length > 1 ? service.images : null;
+
+  return (
+    <>
+      <section className="bg-navy text-white">
+        <div className="shell grid gap-10 pb-12 pt-24 md:grid-cols-[1fr_0.85fr] md:items-center md:pb-16 md:pt-28">
+          <div className="max-w-3xl">
+            <a href="/#diensten" className="inline-flex items-center gap-2 text-sm font-bold text-roller-soft">
+              <ChevronRight size={16} className="rotate-180" />
+              Terug naar diensten
+            </a>
+            <div className="mt-8 inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 text-roller-soft">
+              <service.icon size={18} />
+              <span className="eyebrow text-roller-soft">Dienst in Woerden</span>
+            </div>
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">{service.detailTitle}</h1>
+            <p className="mt-6 text-lg leading-8 text-white/88 md:text-xl">{service.detailIntro}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <button type="button" onClick={openQuote} className="btn-primary">
+                Gratis prijsindicatie
+                <ArrowRight size={17} />
+              </button>
+              <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn-light">
+                <MessageCircle size={17} />
+                WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-lg border border-white/10 bg-white/8">
+            <div className="relative aspect-[4/3]">
+              {gallery ? (
+                <ProjectCarousel slides={gallery} className="absolute inset-0 h-full w-full bg-navy" imageWidth={service.width} imageHeight={service.height} loadingFirst="eager" />
+              ) : (
+                <img
+                  src={service.image}
+                  alt={`${service.title} door RN Schilders in Woerden`}
+                  width={service.width}
+                  height={service.height}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="eager"
+                  decoding="async"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad">
+        <div className="shell grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+          <aside className="rounded-lg border border-line bg-whitewash p-5 lg:sticky lg:top-24">
+            <service.icon className="text-roller" size={26} />
+            <h2 className="mt-4 font-display text-2xl font-extrabold text-navy">{service.title} aanvragen</h2>
+            <p className="mt-3 text-sm leading-6 text-graphite">
+              Voeg bij voorkeur een paar foto's toe bij uw aanvraag. Dan kan Richard sneller bepalen wat er nodig is en wat het ongeveer kost.
+            </p>
+            <div className="mt-5 grid gap-3">
+              <button type="button" onClick={openQuote} className="btn-primary w-full">
+                Offerte aanvragen
+              </button>
+              <a href={phoneHref} draggable={false} className="btn-outline w-full">
+                <Phone size={17} />
+                <span className="select-text cursor-text">{phoneDisplay}</span>
+              </a>
+            </div>
+          </aside>
+
+          <div className="grid gap-8">
+            <article className="rounded-lg border border-line bg-whitewash p-5 md:p-8">
+              <p className="eyebrow">Wat we doen</p>
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-navy md:text-4xl">{service.title} van voorbereiding tot afwerking.</h2>
+              <p className="mt-5 text-base leading-8 text-graphite">{service.text}</p>
+              <div className="mt-6 grid gap-5 md:grid-cols-2">
+                {service.detailSections.map((section) => (
+                  <div key={section.title} className="rounded-md border border-line bg-white p-5">
+                    <h3 className="font-display text-xl font-extrabold text-navy">{section.title}</h3>
+                    <div className="mt-3 grid gap-2">
+                      {section.items.map((item) => (
+                        <div key={item} className="flex gap-2 text-sm leading-6 text-ink">
+                          <Check className="mt-1 shrink-0 text-roller" size={16} />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            {gallery && (
+              <article className="rounded-lg border border-line bg-whitewash p-5 md:p-8">
+                <p className="eyebrow">Werk in beeld</p>
+                <h2 className="mt-4 text-3xl font-extrabold leading-tight text-navy md:text-4xl">Voorbeelden van {service.title.toLowerCase()}.</h2>
+                <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {gallery.map((src) => (
+                    <figure key={src} className="overflow-hidden rounded-lg border border-line bg-white">
+                      <img
+                        src={src}
+                        alt={`${service.title} project van RN Schilders in de regio Woerden`}
+                        width={service.width}
+                        height={service.height}
+                        className="aspect-[4/3] w-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              </article>
+            )}
+
+            <article className="rounded-lg border border-line bg-whitewash p-5 md:p-8">
+              <p className="eyebrow">Veelgestelde vragen</p>
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-navy md:text-4xl">Praktisch over {service.title.toLowerCase()}.</h2>
+              <div className="mt-6 grid gap-4">
+                {service.faqs.map((faq) => (
+                  <section key={faq.question} className="rounded-lg border border-line bg-white p-5">
+                    <h3 className="font-display text-xl font-extrabold text-navy">{faq.question}</h3>
+                    <p className="mt-3 text-sm leading-6 text-graphite">{faq.answer}</p>
+                  </section>
+                ))}
+              </div>
+            </article>
+
+            <article className="rounded-lg border border-line bg-whitewash p-5 md:p-8">
+              <p className="eyebrow">Meer diensten</p>
+              <h2 className="mt-4 text-3xl font-extrabold leading-tight text-navy md:text-4xl">Andere werkzaamheden.</h2>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {otherServices.map((item) => (
+                  <a key={item.title} href={getServicePath(item)} className="group rounded-lg border border-line bg-white p-5 transition hover:-translate-y-0.5 hover:border-navy/35">
+                    <item.icon className="text-roller" size={22} />
+                    <h3 className="mt-4 font-display text-lg font-extrabold text-navy">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-graphite">{item.text}</p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-roller">
+                      Bekijk dienst
+                      <ArrowRight size={16} />
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <Contact openQuote={openQuote} />
+    </>
+  );
+}
+
+function AboutPage({ openQuote }: { openQuote: () => void }) {
+  return (
+    <>
+      <section className="bg-navy text-white">
+        <div className="shell grid gap-10 pb-12 pt-24 md:grid-cols-[1fr_0.85fr] md:items-center md:pb-16 md:pt-28">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-roller-soft">Over ons</p>
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">Een meewerkend eigenaar op elk project.</h1>
+            <p className="mt-6 text-lg leading-8 text-white/88 md:text-xl">
+              RN Schilders & Renovatie is gebouwd rond Richard: meer dan vijftien jaar ervaring, direct contact en zelf aanwezig bij de uitvoering. Eén aanspreekpunt, duidelijke afspraken en iemand die voorbereiding, planning en eindresultaat zelf controleert.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <button type="button" onClick={openQuote} className="btn-primary">
+                Offerte aanvragen
+                <ArrowRight size={17} />
+              </button>
+              <a href={phoneHref} draggable={false} className="btn-light">
+                <Phone size={17} />
+                <span className="select-text cursor-text">{phoneDisplay}</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-lg border border-white/10 bg-white/8">
+            <img
+              src="/workspace-hero.webp?v=20260514"
+              alt="Bedrijfsbus van RN Schilders & Renovatie in Woerden"
+              width={1536}
+              height={1024}
+              className="aspect-[4/3] w-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad">
+        <div className="shell grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div>
+            <p className="eyebrow">Wie zijn wij</p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-navy md:text-4xl">Vakwerk dat zichtbaar blijft in Woerden en omgeving.</h2>
+            <div className="mt-5 grid gap-4 text-base leading-8 text-graphite">
+              <p>
+                RN Schilders & Renovatie is een schilder- en renovatiebedrijf uit Woerden. We verzorgen binnen- en buitenschilderwerk, kozijnen, spuitwerk, stucwerk, houtrotherstel en sloopwerk, voor zowel woningen als bedrijfspanden.
+              </p>
+              <p>
+                Richard komt zelf langs voor de opname, beoordeelt het werk op locatie en blijft uw vaste aanspreekpunt tijdens de uitvoering. Zo weet u vooraf wat er nodig is en sluit de offerte aan op de praktijk.
+              </p>
+            </div>
+            <div className="mt-7 flex flex-wrap gap-3">
+              {services.map((service) => (
+                <a key={service.title} href={getServicePath(service)} className="btn-outline px-4 py-2">
+                  {service.title}
+                  <ChevronRight size={16} />
+                </a>
+              ))}
+            </div>
+          </div>
+          <img
+            src="/rn-schilders-main.webp?v=20260530"
+            alt="Schilder van RN Schilders aan het werk in Woerden"
+            width={1024}
+            height={1536}
+            className="aspect-[3/4] w-full rounded-lg object-cover object-top"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </section>
+
+      <section className="section-pad bg-whitewash">
+        <div className="shell">
+          <p className="eyebrow">Werkwijze</p>
+          <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight text-navy md:text-4xl">
+            Zo verloopt een project van offerte tot oplevering.
+          </h2>
+          <div className="mt-9 grid gap-4 md:grid-cols-2">
+            {processSteps.map(([title, text], index) => (
+              <div key={title} className="grid grid-cols-[3rem_1fr] gap-4 rounded-lg border border-line bg-white p-5">
+                <div className="flex h-12 w-12 items-center justify-center rounded-md bg-roller text-lg font-extrabold text-white">{index + 1}</div>
+                <div>
+                  <h3 className="font-display text-xl font-extrabold text-navy">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-graphite">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Contact openQuote={openQuote} />
+    </>
+  );
+}
+
+function ContactPage({ openQuote }: { openQuote: () => void }) {
+  return (
+    <>
+      <section className="bg-navy text-white">
+        <div className="shell grid gap-8 pb-12 pt-24 md:grid-cols-[1fr_auto] md:items-center md:pb-16 md:pt-28">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-roller-soft">Contact</p>
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">Vraag een gratis offerte aan in Woerden.</h1>
+            <p className="mt-6 text-lg leading-8 text-white/88 md:text-xl">
+              Bel, mail of stuur uw projectinformatie online. Richard neemt binnen 24 tot 48 uur contact op om uw plan en de volgende stap door te spreken.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <button type="button" onClick={openQuote} className="btn-primary">
+                Offerte aanvragen
+                <ArrowRight size={17} />
+              </button>
+              <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn-light">
+                <MessageCircle size={17} />
+                WhatsApp
+              </a>
+            </div>
+          </div>
+          <div className="hidden rounded-lg border border-white/12 bg-white/8 p-6 md:block">
+            <Phone className="text-roller-soft" size={32} />
+            <p className="mt-5 max-w-xs text-sm font-semibold leading-6 text-white/82">
+              Direct contact met de eigenaar, korte lijnen en geen tussenpersonen.
+            </p>
           </div>
         </div>
       </section>
@@ -3939,12 +4322,23 @@ function Footer() {
             <SocialLinks />
             <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/88 md:justify-end">
               {services.map((service) => (
-                <a key={service.slug} href="/#diensten" className="hover:text-white">
+                <a key={service.slug} href={getServicePath(service)} className="hover:text-white">
                   {service.title} Woerden
+                </a>
+              ))}
+              {locationPages.map((location) => (
+                <a key={location.slug} href={getLocationPath(location)} className="hover:text-white">
+                  Schilder {location.title}
                 </a>
               ))}
               <a href="/werkgebied" className="hover:text-white">
                 Werkgebied
+              </a>
+              <a href="/over-ons" className="hover:text-white">
+                Over ons
+              </a>
+              <a href="/contact" className="hover:text-white">
+                Contact
               </a>
               <a href={`mailto:${email}`} className="hover:text-white">
                 {email}

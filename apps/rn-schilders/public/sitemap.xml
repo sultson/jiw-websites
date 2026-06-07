@@ -1,32 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rn-schilders.nl/</loc>
+    <loc>https://rnschilders.nl/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://rn-schilders.nl/werkgebied</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://rn-schilders.nl/schilder-woerden</loc>
+    <loc>https://rnschilders.nl/schilderwerk</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://rn-schilders.nl/schilder-vleuten-de-meern</loc>
+    <loc>https://rnschilders.nl/kozijnen</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rnschilders.nl/spuitwerk</loc>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://rn-schilders.nl/schilder-ridderkerk</loc>
+    <loc>https://rnschilders.nl/stucwerk</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://rnschilders.nl/houtrotherstel</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://rnschilders.nl/sloopwerk</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rnschilders.nl/werkgebied</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://rnschilders.nl/schilder-woerden</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rnschilders.nl/schilder-vleuten-de-meern</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://rnschilders.nl/schilder-ridderkerk</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rn-schilders.nl/algemene-voorwaarden</loc>
+    <loc>https://rnschilders.nl/over-ons</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://rnschilders.nl/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rnschilders.nl/algemene-voorwaarden</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>

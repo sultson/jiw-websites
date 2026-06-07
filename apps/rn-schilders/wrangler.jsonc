@@ -22,6 +22,14 @@
     {
       "pattern": "www.rn-schilders.nl",
       "custom_domain": true
+    },
+    {
+      "pattern": "rnschilders.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.rnschilders.nl",
+      "custom_domain": true
     }
   ],
   "r2_buckets": [
