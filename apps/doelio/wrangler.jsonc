@@ -1,0 +1,23 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "doelio-site",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "compatibility_date": "2026-05-15",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    {
+      "pattern": "doelio.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.doelio.nl",
+      "custom_domain": true
+    }
+  ]
+}
