@@ -1,0 +1,41 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "het-kracht-collectief",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-05-15",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/robots.txt", "/sitemap.xml"]
+  },
+  "routes": [
+    {
+      "pattern": "het-kracht-collectief.jouwidealewebsite.nl",
+      "custom_domain": true
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["hetkrachtcollectief@notify.jouwidealewebsite.nl"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "het-kracht-collectief",
+    "LEAD_RECIPIENT": "talitha@krachtcollectief.nl",
+    "LEAD_SENDER": "hetkrachtcollectief@notify.jouwidealewebsite.nl",
+    "TURNSTILE_SECRET_KEY": "dev"
+  }
+}
