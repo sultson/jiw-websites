@@ -21,8 +21,8 @@ Reusable pattern for client-site lead forms in this monorepo.
 
 Cloudflare Email Service sending can be used directly from Workers with a `send_email` binding. For RN Schilders:
 
-- Destination: `info@rn-schilders.nl`.
-- Sender: `offerte@notify.rn-schilders.nl`.
+- Destination: `info@rnschilders.nl`.
+- Sender: `offerte@notify.rnschilders.nl`.
 - Keep Purelymail untouched for normal mailbox hosting.
 - Use the Email Service sender domain/subdomain configured in Cloudflare.
 

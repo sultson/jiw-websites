@@ -41,12 +41,12 @@
   "send_email": [
     {
       "name": "LEAD_EMAIL",
-      "allowed_sender_addresses": ["offerte@notify.rn-schilders.nl"]
+      "allowed_sender_addresses": ["offerte@notify.rnschilders.nl"]
     }
   ],
   "vars": {
     "SITE_ID": "rn-schilders",
-    "LEAD_RECIPIENT": "info@rn-schilders.nl",
-    "LEAD_SENDER": "offerte@notify.rn-schilders.nl"
+    "LEAD_RECIPIENT": "info@rnschilders.nl",
+    "LEAD_SENDER": "offerte@notify.rnschilders.nl"
   }
 }
