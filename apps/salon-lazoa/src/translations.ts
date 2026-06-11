@@ -13,7 +13,6 @@ export const translations: Record<Lang, Dict> = {
     'nav.book':        'Boek afspraak',
     'nav.bookShort':   'Boek',
 
-    'topbar.line':     'Online boeken via Salonized · Beek en Donk · 5,0 ★ op Google',
 
     'hero.kicker':     'Beek en Donk · Urban Nails Diamond Salon',
     'hero.title':      'Een salon waar elk\nsetje af is.',
@@ -141,7 +140,6 @@ export const translations: Record<Lang, Dict> = {
     'nav.book':        'Book online',
     'nav.bookShort':   'Book',
 
-    'topbar.line':     'Book online via Salonized · Beek en Donk · 5.0 ★ on Google',
 
     'hero.kicker':     'Beek en Donk · Urban Nails Diamond Salon',
     'hero.title':      'A studio where every\nset feels finished.',

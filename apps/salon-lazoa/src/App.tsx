@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useLang } from './hooks/useLang';
-import TopBar from './components/TopBar';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import UspStrip from './components/UspStrip';
@@ -23,7 +22,6 @@ export default function App() {
 
   return (
     <div className="min-h-[100dvh] flex flex-col bg-shoji">
-      <TopBar t={t} />
       <Nav lang={lang} setLang={setLang} t={t} onBook={openBooking} />
 
       <main className="flex-1">
