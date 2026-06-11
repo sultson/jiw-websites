@@ -12,7 +12,7 @@ const iconMap = {
 };
 
 export default function Services({ lang, t }: Props) {
-  const [open, setOpen] = useState<string | null>('gezicht');
+  const [open, setOpen] = useState<string | null>('wenkbrauwen');
 
   function catName(cat: { titleNl: string; titleEn: string }) {
     return lang === 'en' ? cat.titleEn : cat.titleNl;

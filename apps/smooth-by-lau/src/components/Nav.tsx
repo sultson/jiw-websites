@@ -13,6 +13,7 @@ type Props = {
 const links = [
   { href: '#behandelingen', key: 'nav.services' },
   { href: '#suiker',        key: 'nav.suiker' },
+  { href: '#wenkbrauwen',   key: 'nav.brows' },
   { href: '#fotos',         key: 'nav.gallery' },
   { href: '#recensies',     key: 'nav.reviews' },
   { href: '#bezoek',        key: 'nav.visit' },

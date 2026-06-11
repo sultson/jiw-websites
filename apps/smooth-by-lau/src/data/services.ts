@@ -51,6 +51,22 @@ export const serviceCategories: ServiceCategory[] = [
         descEn: 'Brows are tinted with hybrid dye and shaped. Hybrid lasts 7 to 10 days on the skin and up to 7 weeks on the hairs.',
         price: 32, durationMin: 45,
       },
+      {
+        id: 'browlift',
+        nameNl: 'Browlift (excl. verven)',
+        nameEn: 'Brow lift (excl. tint)',
+        descNl: 'Ook wel brow lamination genoemd. De haartjes worden met lotions in de juiste positie gezet voor optisch vollere wenkbrauwen. Resultaat van 6 tot 8 weken.',
+        descEn: 'Also known as brow lamination. Lotions set the hairs in the right position for visually fuller brows. Result lasts 6 to 8 weeks.',
+        price: 50, durationMin: 45,
+      },
+      {
+        id: 'browlift-hybrid',
+        nameNl: 'Browlift incl. hybrid verf',
+        nameEn: 'Brow lift incl. hybrid tint',
+        descNl: 'Een browlift waarbij de wenkbrauwen worden behandeld met hybrid verf. Vollere, opgelichte wenkbrauwen met een resultaat van 6 tot 8 weken.',
+        descEn: 'A brow lift finished with hybrid tint. Fuller, lifted brows with a result lasting 6 to 8 weeks.',
+        price: 55, durationMin: 60,
+      },
     ],
   },
   {

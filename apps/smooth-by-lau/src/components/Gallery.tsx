@@ -13,6 +13,7 @@ const ontharingImages: Img[] = [
 ];
 
 const wenkbrauwImages: Img[] = [
+  { src: '/resultaat-wenkbrauwen-5.webp',     alt: 'Wenkbrauw behandeling resultaat',        cls: 'aspect-square' },
   { src: '/resultaat-wenkbrauwen.webp',       alt: 'Wenkbrauw behandeling resultaat',        cls: 'aspect-square' },
   { src: '/sbl-after.webp',                   alt: 'Wenkbrauw behandeling resultaat',        cls: 'aspect-square' },
   { src: '/resultaat-wenkbrauw-closeup.webp', alt: 'Wenkbrauw behandeling close-up',         cls: 'aspect-square' },

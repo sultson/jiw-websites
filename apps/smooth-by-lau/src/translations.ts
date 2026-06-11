@@ -6,6 +6,7 @@ export const translations: Record<Lang, Dict> = {
   nl: {
     'nav.services':    'Behandelingen',
     'nav.suiker':      'Suikerontharing',
+    'nav.brows':       'Wenkbrauwen',
     'nav.gallery':     "Foto's",
     'nav.reviews':     'Recensies',
     'nav.visit':       'Bezoek',
@@ -84,6 +85,17 @@ export const translations: Record<Lang, Dict> = {
     'sugar.b5':        'Minimale irritatie, ook perfect voor gezicht en intieme zones',
     'sugar.cta':       'Boek een behandeling',
 
+    'brows.kicker':    'Mijn nieuwe focus',
+    'brows.title':     'Wenkbrauwen die jouw blik laten spreken.',
+    'brows.body':      'Naast suikerontharing leg ik me steeds meer toe op wenkbrauwen. Van een strakke, natuurlijke vorm tot een volle, opgelichte look. Ik kijk naar jouw gezicht en haargroei en bepaal samen met jou welke behandeling het beste bij je past.',
+    'brows.t1.t':      'Shapen & verven',
+    'brows.t1.b':      'Een precieze vorm die past bij jouw gezicht, eventueel aangevuld met kleuring voor meer diepte en definitie.',
+    'brows.t2.t':      'Hybrid Brows',
+    'brows.t2.b':      'Geverfd met hybrid verf voor een vollere look. Tot 10 dagen zichtbaar op de huid en tot 7 weken op de haartjes.',
+    'brows.t3.t':      'Browlift',
+    'brows.t3.b':      'Brow lamination zet de haartjes in de juiste positie voor optisch vollere wenkbrauwen. Resultaat van 6 tot 8 weken.',
+    'brows.cta':       'Boek een wenkbrauwbehandeling',
+
     'services.kicker': 'Prijslijst',
     'services.title':  'Behandelingen & tarieven',
     'services.sub':    'Alle behandelingen worden uitgevoerd met 100% natuurlijke suikerpasta.',
@@ -138,6 +150,7 @@ export const translations: Record<Lang, Dict> = {
   en: {
     'nav.services':    'Treatments',
     'nav.suiker':      'Sugar Waxing',
+    'nav.brows':       'Eyebrows',
     'nav.gallery':     'Gallery',
     'nav.reviews':     'Reviews',
     'nav.visit':       'Visit',
@@ -215,6 +228,17 @@ export const translations: Record<Lang, Dict> = {
     'sugar.b4':        'Hair grows back finer and thinner with every treatment',
     'sugar.b5':        'Minimal irritation, also perfect for face and intimate areas',
     'sugar.cta':       'Book a treatment',
+
+    'brows.kicker':    'My new focus',
+    'brows.title':     'Eyebrows that let your eyes speak.',
+    'brows.body':      'Alongside sugar waxing, I am specialising more and more in eyebrows. From a clean, natural shape to a full, lifted look. I look at your face and hair growth and decide together with you which treatment suits you best.',
+    'brows.t1.t':      'Shaping & tinting',
+    'brows.t1.b':      'A precise shape that fits your face, optionally finished with tint for more depth and definition.',
+    'brows.t2.t':      'Hybrid Brows',
+    'brows.t2.b':      'Tinted with hybrid dye for a fuller look. Visible up to 10 days on the skin and up to 7 weeks on the hairs.',
+    'brows.t3.t':      'Brow lift',
+    'brows.t3.b':      'Brow lamination sets the hairs in the right position for visually fuller brows. Result lasts 6 to 8 weeks.',
+    'brows.cta':       'Book an eyebrow treatment',
 
     'services.kicker': 'Price list',
     'services.title':  'Treatments & prices',
