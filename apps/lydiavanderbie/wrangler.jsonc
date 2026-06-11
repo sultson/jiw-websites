@@ -17,6 +17,14 @@
     {
       "pattern": "lydiavanderbie.jouwidealewebsite.nl",
       "custom_domain": true
+    },
+    {
+      "pattern": "lydiavanderbie.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.lydiavanderbie.nl",
+      "custom_domain": true
     }
   ],
   "r2_buckets": [
