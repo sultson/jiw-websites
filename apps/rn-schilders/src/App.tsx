@@ -76,12 +76,14 @@ type TurnstileRenderOptions = {
   'error-callback': () => void;
 };
 
+type ServiceImage = string | { src: string; alt: string };
+
 type Service = {
   title: string;
   slug: string;
   text: string;
   image: string;
-  images?: string[];
+  images?: ServiceImage[];
   width: number;
   height: number;
   icon: typeof PaintRoller;
@@ -170,15 +172,20 @@ const services: Service[] = [
     title: 'Schilderwerk',
     slug: 'schilderwerk-woerden',
     text: 'Binnen en buiten strak afgewerkt met duurzame verfproducten, van muren en plafonds tot kozijnen, deuren en boeidelen.',
-    image: '/schilderwerk-2.webp?v=20260517',
+    image: '/showcase-progress-ceiling-paint.webp',
     images: [
-      '/schilderwerk-2.webp?v=20260517',
-      '/schilderwerk-3.webp?v=20260514',
-      '/schilderwerk-4.webp?v=20260517',
-      '/schilderwerk-5.webp',
+      { src: '/showcase-progress-ceiling-paint.webp', alt: 'Schilder van RN Schilders rolt een plafond in een afgeplakte keuken' },
+      { src: '/schilderwerk-almere-erker-glas-in-lood.webp', alt: 'Strak geschilderde kamer met glas-in-lood kozijnen na schilderwerk in Almere' },
+      { src: '/schilderwerk-almere-kozijn-glas-in-lood.webp', alt: 'In creme gelakt binnenkozijn met glas-in-lood bovenlichten, schilderwerk in Almere' },
+      { src: '/schilderwerk-almere-binnendeur.webp', alt: 'Nieuw gelakte creme binnendeur tijdens renovatie in Almere' },
+      { src: '/schilderwerk-almere-dagkant-lak.webp', alt: 'Hoogglans gelakte dagkant naast een glas-in-lood raam in Almere' },
+      { src: '/schilderwerk-almere-wand-structuur.webp', alt: 'Wand met structuurafwerking en gelakte kozijnen na schilderwerk in Almere' },
+      { src: '/schilderwerk-almere-tuinraam.webp', alt: 'Gelakt draairaam met tuinzicht na binnenschilderwerk in Almere' },
+      { src: '/schilderwerk-2.webp?v=20260517', alt: 'Slaapkamer met diepzwarte paneelwanden na binnenschilderwerk' },
+      { src: '/schilderwerk-3.webp?v=20260514', alt: 'Verfblikken op de hoogwerker tijdens buitenschilderwerk' },
     ],
-    width: 1300,
-    height: 867,
+    width: 1200,
+    height: 900,
     icon: PaintRoller,
     bullets: ['Binnen en buiten', 'Kozijnen en boeidelen', 'Onderhoudsplanning'],
     detailTitle: 'Binnen- en buitenschilderwerk',
@@ -318,14 +325,17 @@ const services: Service[] = [
     title: 'Stucwerk',
     slug: 'stucwerk-woerden',
     text: 'Gladde wanden en plafonds als sterke basis voor schilderwerk, renovatiestuc en reparaties in bestaande woningen.',
-    image: '/stucwerk-1.webp?v=20260514',
+    image: '/stucwerk-almere-plamuren-raamwand.webp',
     images: [
-      '/stucwerk-1.webp?v=20260514',
-      '/stucwerk-2.webp?v=20260514',
-      '/stucwerk-3.webp',
+      { src: '/stucwerk-almere-plamuren-raamwand.webp', alt: 'Stukadoor van RN Schilders plamuurt een wand bij het kozijn tijdens renovatie in Almere' },
+      { src: '/stucwerk-almere-behang-verwijderen.webp', alt: 'Oud behang verwijderen als voorbereiding op stucwerk in Almere' },
+      { src: '/stucwerk-almere-wand-uitvlakken.webp', alt: 'Wand uitvlakken en naden bijwerken voor strak stucwerk in Almere' },
+      { src: '/stucwerk-almere-dagkant-kozijn.webp', alt: 'Dagkant bij het kozijn strak afwerken tijdens stucwerk in Almere' },
+      { src: '/stucwerk-almere-trapgat-strak.webp', alt: 'Strak gestuukt trapgat klaar voor schilderwerk in Almere' },
+      { src: '/stucwerk-almere-wanden-gereed.webp', alt: 'Glad gestuukte wanden klaar voor afwerking in Almere' },
     ],
-    width: 1536,
-    height: 1024,
+    width: 1200,
+    height: 900,
     icon: Ruler,
     bullets: ['Pleisterwerk', 'Nieuwbouw en renovatie', 'Reparaties'],
     detailTitle: 'Strak stucwerk in Woerden',
@@ -1892,6 +1902,14 @@ const marqueeItems: MarqueeItem[] = [
   },
   {
     type: 'video',
+    src: '/video-stucwerk-almere.mp4',
+    poster: '/video-stucwerk-almere-poster.webp',
+    caption: 'Stucwerk in Almere',
+    width: 540,
+    height: 960,
+  },
+  {
+    type: 'video',
     src: '/video-dakrand-schuren.mp4',
     poster: '/video-dakrand-schuren-poster.webp',
     caption: 'Dakrand schuren en strak maken',
@@ -2560,7 +2578,7 @@ function ProjectCarousel({
   autoplayMs = 5000,
   loadingFirst = 'lazy',
 }: {
-  slides: string[];
+  slides: ServiceImage[];
   alt?: string;
   className?: string;
   imageWidth?: number;
@@ -2602,11 +2620,11 @@ function ProjectCarousel({
 
   return (
     <div className={`overflow-hidden ${className}`}>
-      {slides.map((src, i) => (
+      {slides.map((slide, i) => (
         <img
-          key={src}
-          src={src}
-          alt={alt}
+          key={typeof slide === 'string' ? slide : slide.src}
+          src={typeof slide === 'string' ? slide : slide.src}
+          alt={typeof slide === 'string' ? alt : slide.alt}
           width={imageWidth}
           height={imageHeight}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${i === index ? 'opacity-100' : 'opacity-0'}`}
@@ -2636,9 +2654,9 @@ function ProjectCarousel({
             <ChevronRight size={18} />
           </button>
           <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center gap-1.5">
-            {slides.map((src, i) => (
+            {slides.map((slide, i) => (
               <button
-                key={src}
+                key={typeof slide === 'string' ? slide : slide.src}
                 type="button"
                 onClick={(event) => { stop(event); setIndex(i); pauseTemporarily(); }}
                 onKeyDown={stop}
@@ -3923,11 +3941,11 @@ function ServicePageView({ service, openQuote }: { service: Service; openQuote: 
                 <p className="eyebrow">Werk in beeld</p>
                 <h2 className="mt-4 text-3xl font-extrabold leading-tight text-navy md:text-4xl">Voorbeelden van {service.title.toLowerCase()}.</h2>
                 <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {gallery.map((src) => (
-                    <figure key={src} className="overflow-hidden rounded-lg border border-line bg-white">
+                  {gallery.map((item) => (
+                    <figure key={typeof item === 'string' ? item : item.src} className="overflow-hidden rounded-lg border border-line bg-white">
                       <img
-                        src={src}
-                        alt={`${service.title} project van RN Schilders in de regio Woerden`}
+                        src={typeof item === 'string' ? item : item.src}
+                        alt={typeof item === 'string' ? `${service.title} project van RN Schilders in de regio Woerden` : item.alt}
                         width={service.width}
                         height={service.height}
                         className="aspect-[4/3] w-full object-cover"
@@ -4232,7 +4250,14 @@ function MobileCta({ openQuote }: { openQuote: () => void }) {
   );
 }
 
+// Clicking the Google reviews part of the Trustoo widget should open our Google
+// Maps place page, not the Trustoo profile that the widget links to by default.
+const GOOGLE_MAPS_REVIEWS_URL =
+  'https://www.google.com/maps/place/RN+Schilders+%26+Renovatie/@52.0837987,4.8587872,836m/data=!3m1!1e3!4m8!3m7!1s0x47c67727f0dfd923:0x4e29cd84763f73f5!8m2!3d52.0837988!4d4.8636581!9m1!1b1!16s%2Fg%2F11n4xgf7kn?entry=ttu';
+
 function TrustooWidget() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://static.trustoo.nl/widget/widget_v2.js';
@@ -4244,8 +4269,54 @@ function TrustooWidget() {
     };
   }, []);
 
+  // The whole widget is covered by a single absolutely-positioned anchor that
+  // links to the Trustoo profile, so the Google rating block underneath it is
+  // not independently clickable. Lay our own anchor (-> Google Maps) over just
+  // the Google badge, promoting the badge to its own stacking context so the
+  // overlay sits above Trustoo's. A real anchor keeps native link behaviour
+  // (new tab, middle/ctrl-click, focus, hover URL). The widget renders async
+  // and may re-render, so (re)attach via a MutationObserver.
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const findGoogleBadge = (): HTMLElement | null => {
+      // `.Lb4cK` is Trustoo's minified wrapper for the Google rating block.
+      const byClass = container.querySelector<HTMLElement>('.Lb4cK');
+      if (byClass) return byClass;
+      // Fallback: an element that contains the Google branding/score.
+      return (
+        Array.from(container.querySelectorAll<HTMLElement>('div, a')).find((el) =>
+          /google/i.test(el.getAttribute('aria-label') ?? el.textContent ?? ''),
+        ) ?? null
+      );
+    };
+
+    const attachOverlay = () => {
+      const badge = findGoogleBadge();
+      if (!badge || badge.querySelector('a[data-maps-overlay]')) return;
+      badge.style.position = 'relative';
+      badge.style.zIndex = '10'; // beat Trustoo's z-index:9 sibling overlay
+      const overlay = document.createElement('a');
+      overlay.href = GOOGLE_MAPS_REVIEWS_URL;
+      overlay.target = '_blank';
+      overlay.rel = 'noopener noreferrer';
+      overlay.setAttribute('aria-label', 'Bekijk onze Google reviews');
+      overlay.setAttribute('data-maps-overlay', '');
+      overlay.style.cssText = 'position:absolute;inset:0;z-index:10;display:block;cursor:pointer';
+      badge.appendChild(overlay);
+    };
+
+    attachOverlay();
+    const observer = new MutationObserver(attachOverlay);
+    observer.observe(container, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
+      ref={containerRef}
       className="trustoo-widget"
       data-id="uOmxp_aP-RjJ2uxfXOoY5KO9OTh1N2Y-3cH8Hpx4ezRvSg"
       data-language-code="nl"
