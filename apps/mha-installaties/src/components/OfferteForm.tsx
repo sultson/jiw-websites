@@ -93,6 +93,8 @@ export default function OfferteForm({ onSuccess }: Props) {
     if (!email) errors.email = 'Vul uw e-mailadres in.';
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Vul een geldig e-mailadres in.';
     if (!get('phone')) errors.phone = 'Vul uw telefoonnummer in.';
+    if (!get('streetName')) errors.streetName = 'Vul uw straatnaam in.';
+    if (!get('houseNumber')) errors.houseNumber = 'Vul uw huisnummer in.';
     if (!get('postalCode')) errors.postalCode = 'Vul uw postcode in.';
     if (!get('city')) errors.city = 'Vul uw plaats in.';
     if (!get('service')) errors.service = 'Kies een dienst.';
@@ -244,6 +246,24 @@ export default function OfferteForm({ onSuccess }: Props) {
             type="tel"
             name="phone"
             autoComplete="tel"
+            className="field"
+          />
+        </Field>
+        <Field id="offerte-streetName" label="Straatnaam" error={fieldErrors.streetName}>
+          <input
+            id="offerte-streetName"
+            type="text"
+            name="streetName"
+            autoComplete="address-line1"
+            className="field"
+          />
+        </Field>
+        <Field id="offerte-houseNumber" label="Huisnummer" error={fieldErrors.houseNumber}>
+          <input
+            id="offerte-houseNumber"
+            type="text"
+            name="houseNumber"
+            autoComplete="address-line2"
             className="field"
           />
         </Field>

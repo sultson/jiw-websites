@@ -17,6 +17,8 @@ const formWorker = createFormWorker({
   subjectFields: ['service', 'postalCode', 'city'],
   requiredFields: [
     { name: 'phone', label: 'telefoonnummer', message: 'Vul uw telefoonnummer in.' },
+    { name: 'streetName', label: 'straatnaam', message: 'Vul uw straatnaam in.' },
+    { name: 'houseNumber', label: 'huisnummer', message: 'Vul uw huisnummer in.' },
     { name: 'postalCode', label: 'postcode', message: 'Vul uw postcode in.' },
     { name: 'city', label: 'plaatsnaam', message: 'Vul uw plaatsnaam in.' },
     { name: 'service', label: 'dienst', message: 'Kies een dienst.' },
@@ -30,6 +32,8 @@ const formWorker = createFormWorker({
   ],
   emailFields: [
     { name: 'phone', label: 'Telefoon' },
+    { name: 'streetName', label: 'Straatnaam' },
+    { name: 'houseNumber', label: 'Huisnummer' },
     { name: 'postalCode', label: 'Postcode' },
     { name: 'city', label: 'Plaatsnaam' },
     { name: 'service', label: 'Dienst' },
