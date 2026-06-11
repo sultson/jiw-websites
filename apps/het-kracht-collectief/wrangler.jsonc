@@ -18,6 +18,14 @@
     {
       "pattern": "het-kracht-collectief.jouwidealewebsite.nl",
       "custom_domain": true
+    },
+    {
+      "pattern": "krachtcollectief.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.krachtcollectief.nl",
+      "custom_domain": true
     }
   ],
   "r2_buckets": [
