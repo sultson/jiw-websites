@@ -1,0 +1,802 @@
+{
+  "title": "Nails by Jenny",
+  "subTitle": null,
+  "description": null,
+  "price": null,
+  "categoryName": "Nagelstudio",
+  "address": "Jagershof 25, 4871 KG Etten-Leur, Nederland",
+  "neighborhood": null,
+  "street": "Jagershof 25",
+  "city": "Etten-Leur",
+  "postalCode": "4871 KG",
+  "state": null,
+  "countryCode": "NL",
+  "website": "https://www.facebook.com/profile.php?id=61577923244099",
+  "phone": "+31 6 27034206",
+  "phoneUnformatted": "+31627034206",
+  "claimThisBusiness": false,
+  "location": {
+    "lat": 51.5895556,
+    "lng": 4.6601102
+  },
+  "locatedIn": null,
+  "floor": null,
+  "plusCode": "HMQ6+R2 Etten-Leur, Nederland",
+  "menu": null,
+  "servicesLink": null,
+  "totalScore": 5,
+  "permanentlyClosed": false,
+  "temporarilyClosed": false,
+  "placeId": "ChIJa8a0NSIfxEcRKRUeEnY3ocY",
+  "categories": [
+    "Nagelstudio"
+  ],
+  "fid": "0x47c41f2235b4c66b:0xc6a13776121e1529",
+  "cid": "14312782071009776937",
+  "reviewsCount": 3,
+  "reviewsDistribution": {
+    "oneStar": 0,
+    "twoStar": 0,
+    "threeStar": 0,
+    "fourStar": 0,
+    "fiveStar": 3
+  },
+  "imagesCount": 13,
+  "imageCategories": [
+    "Alle",
+    "Menu",
+    "Nagel",
+    "Van eigenaar",
+    "Street View en 360°"
+  ],
+  "scrapedAt": "2026-06-11T13:57:56.810Z",
+  "reserveTableUrl": null,
+  "googleFoodUrl": null,
+  "hotelStars": null,
+  "hotelDescription": null,
+  "checkInDate": null,
+  "checkOutDate": null,
+  "hotelAds": [],
+  "popularTimesLiveText": "Nu: Meestal redelijk druk",
+  "popularTimesLivePercent": null,
+  "popularTimesHistogram": {
+    "Su": [
+      {
+        "hour": 6,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 7,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 8,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 9,
+        "occupancyPercent": 85
+      },
+      {
+        "hour": 10,
+        "occupancyPercent": 71
+      },
+      {
+        "hour": 11,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 12,
+        "occupancyPercent": 71
+      },
+      {
+        "hour": 13,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 14,
+        "occupancyPercent": 71
+      },
+      {
+        "hour": 15,
+        "occupancyPercent": 71
+      },
+      {
+        "hour": 16,
+        "occupancyPercent": 71
+      },
+      {
+        "hour": 17,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 18,
+        "occupancyPercent": 50
+      },
+      {
+        "hour": 19,
+        "occupancyPercent": 35
+      },
+      {
+        "hour": 20,
+        "occupancyPercent": 28
+      },
+      {
+        "hour": 21,
+        "occupancyPercent": 7
+      },
+      {
+        "hour": 22,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 23,
+        "occupancyPercent": 0
+      }
+    ],
+    "Mo": [
+      {
+        "hour": 6,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 7,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 8,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 9,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 10,
+        "occupancyPercent": 35
+      },
+      {
+        "hour": 11,
+        "occupancyPercent": 35
+      },
+      {
+        "hour": 12,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 13,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 14,
+        "occupancyPercent": 57
+      },
+      {
+        "hour": 15,
+        "occupancyPercent": 85
+      },
+      {
+        "hour": 16,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 17,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 18,
+        "occupancyPercent": 50
+      },
+      {
+        "hour": 19,
+        "occupancyPercent": 92
+      },
+      {
+        "hour": 20,
+        "occupancyPercent": 85
+      },
+      {
+        "hour": 21,
+        "occupancyPercent": 100
+      },
+      {
+        "hour": 22,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 23,
+        "occupancyPercent": 0
+      }
+    ],
+    "Tu": [
+      {
+        "hour": 6,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 7,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 8,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 9,
+        "occupancyPercent": 85
+      },
+      {
+        "hour": 10,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 11,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 12,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 13,
+        "occupancyPercent": 85
+      },
+      {
+        "hour": 14,
+        "occupancyPercent": 85
+      },
+      {
+        "hour": 15,
+        "occupancyPercent": 85
+      },
+      {
+        "hour": 16,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 17,
+        "occupancyPercent": 50
+      },
+      {
+        "hour": 18,
+        "occupancyPercent": 50
+      },
+      {
+        "hour": 19,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 20,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 21,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 22,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 23,
+        "occupancyPercent": 0
+      }
+    ],
+    "We": [
+      {
+        "hour": 6,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 7,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 8,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 9,
+        "occupancyPercent": 57
+      },
+      {
+        "hour": 10,
+        "occupancyPercent": 50
+      },
+      {
+        "hour": 11,
+        "occupancyPercent": 50
+      },
+      {
+        "hour": 12,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 13,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 14,
+        "occupancyPercent": 57
+      },
+      {
+        "hour": 15,
+        "occupancyPercent": 50
+      },
+      {
+        "hour": 16,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 17,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 18,
+        "occupancyPercent": 57
+      },
+      {
+        "hour": 19,
+        "occupancyPercent": 57
+      },
+      {
+        "hour": 20,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 21,
+        "occupancyPercent": 57
+      },
+      {
+        "hour": 22,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 23,
+        "occupancyPercent": 0
+      }
+    ],
+    "Th": [
+      {
+        "hour": 6,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 7,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 8,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 9,
+        "occupancyPercent": 35
+      },
+      {
+        "hour": 10,
+        "occupancyPercent": 28
+      },
+      {
+        "hour": 11,
+        "occupancyPercent": 21
+      },
+      {
+        "hour": 12,
+        "occupancyPercent": 21
+      },
+      {
+        "hour": 13,
+        "occupancyPercent": 28
+      },
+      {
+        "hour": 14,
+        "occupancyPercent": 35
+      },
+      {
+        "hour": 15,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 16,
+        "occupancyPercent": 57
+      },
+      {
+        "hour": 17,
+        "occupancyPercent": 85
+      },
+      {
+        "hour": 18,
+        "occupancyPercent": 100
+      },
+      {
+        "hour": 19,
+        "occupancyPercent": 100
+      },
+      {
+        "hour": 20,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 21,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 22,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 23,
+        "occupancyPercent": 0
+      }
+    ],
+    "Fr": [
+      {
+        "hour": 6,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 7,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 8,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 9,
+        "occupancyPercent": 35
+      },
+      {
+        "hour": 10,
+        "occupancyPercent": 50
+      },
+      {
+        "hour": 11,
+        "occupancyPercent": 50
+      },
+      {
+        "hour": 12,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 13,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 14,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 15,
+        "occupancyPercent": 28
+      },
+      {
+        "hour": 16,
+        "occupancyPercent": 21
+      },
+      {
+        "hour": 17,
+        "occupancyPercent": 35
+      },
+      {
+        "hour": 18,
+        "occupancyPercent": 35
+      },
+      {
+        "hour": 19,
+        "occupancyPercent": 35
+      },
+      {
+        "hour": 20,
+        "occupancyPercent": 21
+      },
+      {
+        "hour": 21,
+        "occupancyPercent": 35
+      },
+      {
+        "hour": 22,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 23,
+        "occupancyPercent": 0
+      }
+    ],
+    "Sa": [
+      {
+        "hour": 6,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 7,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 8,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 9,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 10,
+        "occupancyPercent": 21
+      },
+      {
+        "hour": 11,
+        "occupancyPercent": 28
+      },
+      {
+        "hour": 12,
+        "occupancyPercent": 35
+      },
+      {
+        "hour": 13,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 14,
+        "occupancyPercent": 42
+      },
+      {
+        "hour": 15,
+        "occupancyPercent": 28
+      },
+      {
+        "hour": 16,
+        "occupancyPercent": 35
+      },
+      {
+        "hour": 17,
+        "occupancyPercent": 57
+      },
+      {
+        "hour": 18,
+        "occupancyPercent": 57
+      },
+      {
+        "hour": 19,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 20,
+        "occupancyPercent": 57
+      },
+      {
+        "hour": 21,
+        "occupancyPercent": 64
+      },
+      {
+        "hour": 22,
+        "occupancyPercent": 0
+      },
+      {
+        "hour": 23,
+        "occupancyPercent": 0
+      }
+    ]
+  },
+  "openingHours": [
+    {
+      "day": "donderdag",
+      "hours": "09:00 to 22:00"
+    },
+    {
+      "day": "vrijdag",
+      "hours": "09:00 to 22:00"
+    },
+    {
+      "day": "zaterdag",
+      "hours": "09:00 to 22:00"
+    },
+    {
+      "day": "zondag",
+      "hours": "09:00 to 22:00"
+    },
+    {
+      "day": "maandag",
+      "hours": "09:00 to 22:00"
+    },
+    {
+      "day": "dinsdag",
+      "hours": "09:00 to 22:00"
+    },
+    {
+      "day": "woensdag",
+      "hours": "09:00 to 22:00"
+    }
+  ],
+  "peopleAlsoSearch": [],
+  "placesTags": [],
+  "reviewsTags": [],
+  "additionalInfo": {
+    "Toegankelijkheid": [
+      {
+        "Rolstoeltoegankelijke ingang": false
+      },
+      {
+        "Rolstoeltoegankelijke parking": false
+      },
+      {
+        "Rolstoeltoegankelijke zitplaatsen": false
+      }
+    ],
+    "Planning": [
+      {
+        "Afspraak verplicht": true
+      }
+    ],
+    "Betalen": [
+      {
+        "Contactloos mobiel betalen": true
+      }
+    ],
+    "Parkeren": [
+      {
+        "Gratis parkeerplaats": true
+      },
+      {
+        "Gratis parkeren op straat": true
+      }
+    ]
+  },
+  "gasPrices": [],
+  "questionsAndAnswers": [],
+  "url": "https://www.google.com/maps/search/?api=1&query=Nails%20by%20Jenny&query_place_id=ChIJa8a0NSIfxEcRKRUeEnY3ocY",
+  "searchString": "Direct Detail URL: https://www.google.com/maps/place/Nails+by+Jenny/@51.5895556,4.6601102,17z/data=!4m16!1m9!3m8!1s0x47c41f2235b4c66b:0xc6a13776121e1529!2sNails+by+Jenny!8m2!3d51.5895556!4d4.6601102!9m1!1b1!16s%2Fg%2F11ysstf1xs!3m5!1s0x47c41f2235b4c66b:0xc6a13776121e1529!8m2!3d51.5895556!4d4.6601102!16s%2Fg%2F11ysstf1xs",
+  "language": "nl",
+  "inputStartUrl": "https://www.google.com/maps/place/Nails+by+Jenny/@51.5895556,4.6601102,17z/data=!4m16!1m9!3m8!1s0x47c41f2235b4c66b:0xc6a13776121e1529!2sNails+by+Jenny!8m2!3d51.5895556!4d4.6601102!9m1!1b1!16s%2Fg%2F11ysstf1xs!3m5!1s0x47c41f2235b4c66b:0xc6a13776121e1529!8m2!3d51.5895556!4d4.6601102!16s%2Fg%2F11ysstf1xs",
+  "isAdvertisement": false,
+  "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHPy7G9PQ9wpm_LyMXqfv4A8uaAnN0JytDDkSLrtyJegcLG-CvdFcYcET4XlAWalF-e9NNn3e-3K8B3No3B-1Lt5EOG7YGf5wzdQSYdDsu9umLdN20VkrbG67yetdw6rwPaVnYDWjEHqyk=w408-h306-k-no",
+  "kgmid": "/g/11ysstf1xs",
+  "webResults": [],
+  "tableReservationLinks": [],
+  "bookingLinks": [],
+  "restaurantData": {
+    "tableReservationProvider": null
+  },
+  "ownerUpdates": [],
+  "imageUrls": [
+    "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHPy7G9PQ9wpm_LyMXqfv4A8uaAnN0JytDDkSLrtyJegcLG-CvdFcYcET4XlAWalF-e9NNn3e-3K8B3No3B-1Lt5EOG7YGf5wzdQSYdDsu9umLdN20VkrbG67yetdw6rwPaVnYDWjEHqyk=w1920-h1080-k-no",
+    "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEgF6Ikn1RklN71m4MkrW365NuR3siowgn74hknEUY12Bnsz4CmVp4onv9SiNHR4lqTdLzfFKd1MrwXmkVDYZSEGPwwM9HZFqMDW0vi6Io8yGJFf9QG9tuHf58L4Dot0RS85bgdqgKaLuE=w1920-h1080-k-no",
+    "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFqgX_7Mul84pH-HHpFGJU-2ibrz9Jos45pDEdUuEDUQkhvNpU1mB1TtecSTqAEJ6mScO8cZZAvKjlHgcAkFwyKwCfXX9icsVP2MlFrVR6gG8b-rEmZDj0Qv8K6cWw864wOf6rqA89gFV6l=w1920-h1080-k-no",
+    "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEGt7dcyhXcqmkoj1WvHb8RlJ-Xvqw6UlSJFy8JbmOzh05ilxJn-XEbusGdHyxyRi6GD1luP3knANvr1UlChGzs9FCfy-jXraWoETwRxuyId1ZZQ8nmoK2Cf6izzQQyLVOf-Itu1IBaSSo=w1920-h1080-k-no",
+    "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEWSWIRGvjKOa1WIFyYcVF5zO4m3vXsbIpvmhCVr3vPw250uayltcVPo7i8tS0sjqKz9FKt-dJ9sggfdBW0edjoFHflcFWCY9tbJAAiwtQeF4-pQqnFC7ptoF5kFnzuaK2K6nhnOtTuRvo=w1920-h1080-k-no",
+    "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=98XY--8BHBGzBI1mZx-ZFw&cb_client=lu.gallery.gps&w=1920&h=1272&yaw=61.500668&pitch=0&thumbfov=100",
+    "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEn-rXtQLzsEbtsDml60c2Luo5XFw8gvhZju2Mam2qnv6INk5DKIThJ5dimZrtzOosowX1Ic5hRLQlbflII2dscvXM8zpwyo7HbRAp2xUoBj_UP3GERCanW3nT4DkfLQ0B7dbsVkUTN5Abd=w1920-h1080-k-no",
+    "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGca7uo6fGI7brShIMstdFbOFA0DfVyLEgBXGjDmw6v6f687Zv7zOOdPVHPlSBMpBbzobtEtba7I6JV8kKbMy1hzrAOgHP4xkmlWFVb-7rXUuSgqPBHf8TbCEE7lPE7O79QZO6xOJ97tS4=w1920-h1080-k-no"
+  ],
+  "images": [
+    {
+      "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHPy7G9PQ9wpm_LyMXqfv4A8uaAnN0JytDDkSLrtyJegcLG-CvdFcYcET4XlAWalF-e9NNn3e-3K8B3No3B-1Lt5EOG7YGf5wzdQSYdDsu9umLdN20VkrbG67yetdw6rwPaVnYDWjEHqyk=w1920-h1080-k-no",
+      "authorName": "Nails by Jenny",
+      "authorUrl": "https://maps.google.com/maps/contrib/109995359933173100125",
+      "uploadedAt": "2025-10-28T00:00:00.000Z"
+    },
+    {
+      "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEgF6Ikn1RklN71m4MkrW365NuR3siowgn74hknEUY12Bnsz4CmVp4onv9SiNHR4lqTdLzfFKd1MrwXmkVDYZSEGPwwM9HZFqMDW0vi6Io8yGJFf9QG9tuHf58L4Dot0RS85bgdqgKaLuE=w1920-h1080-k-no",
+      "authorName": "Nails by Jenny",
+      "authorUrl": "https://maps.google.com/maps/contrib/109995359933173100125",
+      "uploadedAt": "2025-12-19T00:00:00.000Z"
+    },
+    {
+      "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFqgX_7Mul84pH-HHpFGJU-2ibrz9Jos45pDEdUuEDUQkhvNpU1mB1TtecSTqAEJ6mScO8cZZAvKjlHgcAkFwyKwCfXX9icsVP2MlFrVR6gG8b-rEmZDj0Qv8K6cWw864wOf6rqA89gFV6l=w1920-h1080-k-no",
+      "authorName": "Nails by Jenny",
+      "authorUrl": "https://maps.google.com/maps/contrib/109995359933173100125",
+      "uploadedAt": "2025-06-24T00:00:00.000Z"
+    },
+    {
+      "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEGt7dcyhXcqmkoj1WvHb8RlJ-Xvqw6UlSJFy8JbmOzh05ilxJn-XEbusGdHyxyRi6GD1luP3knANvr1UlChGzs9FCfy-jXraWoETwRxuyId1ZZQ8nmoK2Cf6izzQQyLVOf-Itu1IBaSSo=w1920-h1080-k-no",
+      "authorName": "Nails by Jenny",
+      "authorUrl": "https://maps.google.com/maps/contrib/109995359933173100125",
+      "uploadedAt": "2025-12-21T00:00:00.000Z"
+    },
+    {
+      "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEWSWIRGvjKOa1WIFyYcVF5zO4m3vXsbIpvmhCVr3vPw250uayltcVPo7i8tS0sjqKz9FKt-dJ9sggfdBW0edjoFHflcFWCY9tbJAAiwtQeF4-pQqnFC7ptoF5kFnzuaK2K6nhnOtTuRvo=w1920-h1080-k-no",
+      "authorName": "Nails by Jenny",
+      "authorUrl": "https://maps.google.com/maps/contrib/109995359933173100125",
+      "uploadedAt": "2025-12-03T00:00:00.000Z"
+    },
+    {
+      "imageUrl": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=98XY--8BHBGzBI1mZx-ZFw&cb_client=lu.gallery.gps&w=1920&h=1272&yaw=61.500668&pitch=0&thumbfov=100"
+    },
+    {
+      "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEn-rXtQLzsEbtsDml60c2Luo5XFw8gvhZju2Mam2qnv6INk5DKIThJ5dimZrtzOosowX1Ic5hRLQlbflII2dscvXM8zpwyo7HbRAp2xUoBj_UP3GERCanW3nT4DkfLQ0B7dbsVkUTN5Abd=w1920-h1080-k-no",
+      "authorName": "Nails by Jenny",
+      "authorUrl": "https://maps.google.com/maps/contrib/109995359933173100125",
+      "uploadedAt": "2025-11-11T00:00:00.000Z"
+    },
+    {
+      "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGca7uo6fGI7brShIMstdFbOFA0DfVyLEgBXGjDmw6v6f687Zv7zOOdPVHPlSBMpBbzobtEtba7I6JV8kKbMy1hzrAOgHP4xkmlWFVb-7rXUuSgqPBHf8TbCEE7lPE7O79QZO6xOJ97tS4=w1920-h1080-k-no",
+      "authorName": "Nails by Jenny",
+      "authorUrl": "https://maps.google.com/maps/contrib/109995359933173100125",
+      "uploadedAt": "2025-11-19T00:00:00.000Z"
+    }
+  ],
+  "reviews": [
+    {
+      "reviewerId": "106586261577282119247",
+      "reviewerUrl": "https://www.google.com/maps/contrib/106586261577282119247?hl=nl",
+      "name": "Ingrid Rockx",
+      "reviewerNumberOfReviews": 7,
+      "isLocalGuide": false,
+      "reviewerPhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJwSm3D_HIkpNPsb4p0PQkbXi6vdSBFb_3AbEk5R6IY8YpIoA=s1920-c-rp-mo-br100",
+      "text": "Erg kundige en vriendelijke nagelstyliste.\nAltijd weer erg blij met mijn nieuwe nagels.\nTop!",
+      "textTranslated": null,
+      "publishAt": "een dag geleden",
+      "publishedAtDate": "2026-06-10T04:27:43.826Z",
+      "likesCount": 0,
+      "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT25OeGFpMU9lbGN0UVVGTU0xQnJVbkJoTVhoWGVFRRAB",
+      "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT25OeGFpMU9lbGN0UVVGTU0xQnJVbkJoTVhoWGVFRRAB!2m1!1s0x0:0xc6a13776121e1529!3m1!1s2@1:CAIQACodChtycF9oOnNxai1OelctQUFMM1BrUnBhMXhXeEE%7C%7C?hl=nl",
+      "reviewOrigin": "Google",
+      "stars": 5,
+      "rating": null,
+      "responseFromOwnerDate": null,
+      "responseFromOwnerText": null,
+      "reviewImageUrls": [],
+      "reviewContext": {},
+      "reviewDetailedRating": {},
+      "visitedIn": null,
+      "originalLanguage": "nl",
+      "translatedLanguage": null
+    },
+    {
+      "reviewerId": "100667125396220466812",
+      "reviewerUrl": "https://www.google.com/maps/contrib/100667125396220466812?hl=nl",
+      "name": "Anja Heeren",
+      "reviewerNumberOfReviews": 3,
+      "isLocalGuide": false,
+      "reviewerPhotoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLqhgOuwI98ficuhzaJCdBvCNuh1AY_2fORNoi4_98agCl5vWO5=s1920-c-rp-mo-br100",
+      "text": "Ben blij met mijn nagels. Had heel snel een afspraak en ze was heel secuur. Werd vriendelijk ontvangen en de prijs was redelijk.  Een aanrader.👌👍💅🥰",
+      "textTranslated": null,
+      "publishAt": "4 maanden geleden",
+      "publishedAtDate": "2026-02-06T12:30:15.781Z",
+      "likesCount": 0,
+      "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT2pGNldrUXhZVjlaYUZkeGJqSk1aVlF6VVRSVmNHYxAB",
+      "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2pGNldrUXhZVjlaYUZkeGJqSk1aVlF6VVRSVmNHYxAB!2m1!1s0x0:0xc6a13776121e1529!3m1!1s2@1:CAIQACodChtycF9oOjF6WkQxYV9ZaFdxbjJMZVQzUTRVcGc%7C%7C?hl=nl",
+      "reviewOrigin": "Google",
+      "stars": 5,
+      "rating": null,
+      "responseFromOwnerDate": null,
+      "responseFromOwnerText": null,
+      "reviewImageUrls": [],
+      "reviewContext": {
+        "Services": "Kunstnagels"
+      },
+      "reviewDetailedRating": {},
+      "visitedIn": null,
+      "originalLanguage": "nl",
+      "translatedLanguage": null
+    },
+    {
+      "reviewerId": "102789709727541243167",
+      "reviewerUrl": "https://www.google.com/maps/contrib/102789709727541243167?hl=nl",
+      "name": "Nienke van den Akker",
+      "reviewerNumberOfReviews": 4,
+      "isLocalGuide": false,
+      "reviewerPhotoUrl": "https://lh3.googleusercontent.com/a-/ALV-UjVWQnwxlUU65r5GdOLTCIJpv7d5M0pjHtCv4fzEa5Q1LrqcfHhQ=s1920-c-rp-mo-br100",
+      "text": "Een professionele nagelstyliste, gezellig en kundig. Dankjewel Jennifer voor alle keren dat je mijn nagels zo mooi hebt gedaan! ❤️",
+      "textTranslated": null,
+      "publishAt": "5 maanden geleden",
+      "publishedAtDate": "2025-12-26T19:16:54.222Z",
+      "likesCount": 0,
+      "reviewId": "Ci9DQUlRQUNvZENodHljRjlvT2tORVNHRnJNa3BsVWxSVFZGQkhUWGR5T1dKWlpuYxAB",
+      "reviewUrl": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT2tORVNHRnJNa3BsVWxSVFZGQkhUWGR5T1dKWlpuYxAB!2m1!1s0x0:0xc6a13776121e1529!3m1!1s2@1:CAIQACodChtycF9oOkNESGFrMkplUlRTVFBHTXdyOWJZZnc%7C%7C?hl=nl",
+      "reviewOrigin": "Google",
+      "stars": 5,
+      "rating": null,
+      "responseFromOwnerDate": null,
+      "responseFromOwnerText": null,
+      "reviewImageUrls": [],
+      "reviewContext": {},
+      "reviewDetailedRating": {},
+      "visitedIn": null,
+      "originalLanguage": "nl",
+      "translatedLanguage": null
+    }
+  ],
+  "leadsEnrichment": []
+}

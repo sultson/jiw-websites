@@ -1,0 +1,18 @@
+# Nails by Jenny — Google Maps photo manifest
+
+Scraped 2026-06-11 via compass/crawler-google-places (run j2PTwCHcw0f4eLm6S), dataset order preserved.
+All googleusercontent URLs were downloaded with the size directive upscaled to `=w1920-h1920-k-no` (source gallery URLs ended in `=w1920-h1080-k-no`).
+Author "Nails by Jenny" (https://maps.google.com/maps/contrib/109995359933173100125) = the business profile itself, i.e. owner photos. No visitor photos were present.
+
+| File | Author | Uploaded | Content | Source URL |
+| --- | --- | --- | --- | --- |
+| gmaps-001.jpg (1920x1440) | Nails by Jenny (owner) | 2025-10-28 | Nail work: milky pink nails with red polka-dot nail art, two hands on black cushion | https://lh3.googleusercontent.com/gps-cs-s/APNQkAHPy7G9PQ9wpm_LyMXqfv4A8uaAnN0JytDDkSLrtyJegcLG-CvdFcYcET4XlAWalF-e9NNn3e-3K8B3No3B-1Lt5EOG7YGf5wzdQSYdDsu9umLdN20VkrbG67yetdw6rwPaVnYDWjEHqyk=w1920-h1080-k-no |
+| gmaps-002.jpg (1920x1440) | Nails by Jenny (owner) | 2025-12-19 | Nail work: deep green gel polish, older client's hands with gold rings | https://lh3.googleusercontent.com/gps-cs-s/APNQkAEgF6Ikn1RklN71m4MkrW365NuR3siowgn74hknEUY12Bnsz4CmVp4onv9SiNHR4lqTdLzfFKd1MrwXmkVDYZSEGPwwM9HZFqMDW0vi6Io8yGJFf9QG9tuHf58L4Dot0RS85bgdqgKaLuE=w1920-h1080-k-no |
+| gmaps-003.jpg (1920x1440) | Nails by Jenny (owner) | 2025-06-24 | Nail work: natural/nude almond-shaped extensions | https://lh3.googleusercontent.com/gps-cs-s/APNQkAFqgX_7Mul84pH-HHpFGJU-2ibrz9Jos45pDEdUuEDUQkhvNpU1mB1TtecSTqAEJ6mScO8cZZAvKjlHgcAkFwyKwCfXX9icsVP2MlFrVR6gG8b-rEmZDj0Qv8K6cWw864wOf6rqA89gFV6l=w1920-h1080-k-no |
+| gmaps-004.jpg (886x1920) | Nails by Jenny (owner) | 2025-12-21 | "Menu" category: Prijslijst Nails by Jenny (full price list, pink/orange circles design) | https://lh3.googleusercontent.com/gps-cs-s/APNQkAEGt7dcyhXcqmkoj1WvHb8RlJ-Xvqw6UlSJFy8JbmOzh05ilxJn-XEbusGdHyxyRi6GD1luP3knANvr1UlChGzs9FCfy-jXraWoETwRxuyId1ZZQ8nmoK2Cf6izzQQyLVOf-Itu1IBaSSo=w1920-h1080-k-no |
+| gmaps-005.jpg (1920x1440) | Nails by Jenny (owner) | 2025-12-03 | Nail work: shimmery red/terracotta round nails, white sweater | https://lh3.googleusercontent.com/gps-cs-s/APNQkAEWSWIRGvjKOa1WIFyYcVF5zO4m3vXsbIpvmhCVr3vPw250uayltcVPo7i8tS0sjqKz9FKt-dJ9sggfdBW0edjoFHflcFWCY9tbJAAiwtQeF4-pQqnFC7ptoF5kFnzuaK2K6nhnOtTuRvo=w1920-h1080-k-no |
+| gmaps-006.jpg (1024x678) | (no author — Google Street View) | n/a | Street View exterior: white modern row houses, nr. 25 (the salon address) and 27, garages and brick driveway. NOTE: source URL 403s without a google.com Referer and with cb_client=lu.gallery.gps; downloaded via cb_client=maps_sv.tactile.gps + Referer header; 1024px is the max this endpoint serves | https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=98XY--8BHBGzBI1mZx-ZFw&cb_client=lu.gallery.gps&w=1920&h=1272&yaw=61.500668&pitch=0&thumbfov=100 |
+| gmaps-007.jpg (1920x1440) | Nails by Jenny (owner) | 2025-11-11 | Nail work: salmon/coral pink short round nails over black cushion, dust grid visible (work station) | https://lh3.googleusercontent.com/gps-cs-s/APNQkAEn-rXtQLzsEbtsDml60c2Luo5XFw8gvhZju2Mam2qnv6INk5DKIThJ5dimZrtzOosowX1Ic5hRLQlbflII2dscvXM8zpwyo7HbRAp2xUoBj_UP3GERCanW3nT4DkfLQ0B7dbsVkUTN5Abd=w1920-h1080-k-no |
+| gmaps-008.jpg (1920x1440) | Nails by Jenny (owner) | 2025-11-19 | Nail work: brick-red round nails with single white dot accents | https://lh3.googleusercontent.com/gps-cs-s/APNQkAGca7uo6fGI7brShIMstdFbOFA0DfVyLEgBXGjDmw6v6f687Zv7zOOdPVHPlSBMpBbzobtEtba7I6JV8kKbMy1hzrAOgHP4xkmlWFVb-7rXUuSgqPBHf8TbCEE7lPE7O79QZO6xOJ97tS4=w1920-h1080-k-no |
+
+Listing image categories: Alle, Menu, Nagel, Van eigenaar, Street View en 360. Google reported imagesCount=13 but the gallery exposed 8 distinct images to the scraper.
