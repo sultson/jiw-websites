@@ -14,6 +14,14 @@
     {
       "pattern": "salon-lazoa.jouwidealewebsite.nl",
       "custom_domain": true
+    },
+    {
+      "pattern": "salonlazoa.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.salonlazoa.nl",
+      "custom_domain": true
     }
   ]
 }
