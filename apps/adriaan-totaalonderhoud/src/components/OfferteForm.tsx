@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent, type ChangeEvent, type DragEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent, type ChangeEvent, type DragEvent } from 'react';
 import { Upload, Check, AlertCircle, X, Phone } from 'lucide-react';
 import { useSite } from '../contexts/SiteContext';
 import {
@@ -19,6 +19,35 @@ function formatBytes(bytes: number): string {
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 }
 
+const POSTCODE_RE = /^\d{4}\s?[a-zA-Z]{2}$/;
+
+type DerivedAddress = { street: string; city: string; label: string };
+type AddressLookup =
+  | { status: 'idle' | 'loading' | 'notfound' }
+  | { status: 'found'; result: DerivedAddress };
+
+// PDOK returns its best-scoring match even for non-existent house numbers, so
+// the echoed postcode and huisnummer must be verified against the input.
+async function lookupAddress(postalCode: string, houseNumber: string): Promise<DerivedAddress | null> {
+  const pc = postalCode.replace(/\s+/g, '').toUpperCase();
+  const url =
+    'https://api.pdok.nl/bzk/locatieserver/search/v3_1/free' +
+    `?fq=type:adres&rows=1&fl=weergavenaam,straatnaam,woonplaatsnaam,postcode,huis_nlt` +
+    `&q=${encodeURIComponent(`${pc} ${houseNumber.trim()}`)}`;
+  const res = await fetch(url);
+  if (!res.ok) return null;
+  const data = (await res.json()) as {
+    response?: {
+      docs?: { weergavenaam: string; straatnaam: string; woonplaatsnaam: string; postcode?: string; huis_nlt?: string }[];
+    };
+  };
+  const doc = data.response?.docs?.[0];
+  if (!doc || doc.postcode !== pc) return null;
+  const normalizeNr = (v: string) => v.replace(/[\s-]+/g, '').toLowerCase();
+  if (normalizeNr(doc.huis_nlt ?? '') !== normalizeNr(houseNumber)) return null;
+  return { street: doc.straatnaam, city: doc.woonplaatsnaam, label: doc.weergavenaam };
+}
+
 export default function OfferteForm({ onSuccess }: Props) {
   const { t } = useSite();
   const [state, setState] = useState<State>('idle');
@@ -28,9 +57,34 @@ export default function OfferteForm({ onSuccess }: Props) {
   const [serviceValue, setServiceValue] = useState('');
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [dragOver, setDragOver] = useState(false);
+  const [postalCode, setPostalCode] = useState('');
+  const [houseNumber, setHouseNumber] = useState('');
+  const [addr, setAddr] = useState<AddressLookup>({ status: 'idle' });
+  const lookupSeq = useRef(0);
   const formRef = useRef<HTMLFormElement>(null);
 
   const totalBytes = files.reduce((sum, f) => sum + f.size, 0);
+
+  useEffect(() => {
+    if (!POSTCODE_RE.test(postalCode.trim()) || !houseNumber.trim()) {
+      lookupSeq.current++;
+      setAddr({ status: 'idle' });
+      return;
+    }
+    const seq = ++lookupSeq.current;
+    setAddr({ status: 'loading' });
+    const timer = setTimeout(async () => {
+      let result: DerivedAddress | null = null;
+      try {
+        result = await lookupAddress(postalCode, houseNumber);
+      } catch {
+        result = null;
+      }
+      if (seq !== lookupSeq.current) return;
+      setAddr(result ? { status: 'found', result } : { status: 'notfound' });
+    }, 450);
+    return () => clearTimeout(timer);
+  }, [postalCode, houseNumber]);
 
   const addFiles = (incoming: FileList | File[]) => {
     const list = Array.from(incoming);
@@ -68,7 +122,7 @@ export default function OfferteForm({ onSuccess }: Props) {
     if (e.dataTransfer.files?.length) addFiles(e.dataTransfer.files);
   };
 
-  const validate = (el: HTMLFormElement): Record<string, string> => {
+  const validate = (el: HTMLFormElement, addrState: AddressLookup): Record<string, string> => {
     const errors: Record<string, string> = {};
     const get = (n: string) =>
       (el.elements.namedItem(n) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null)
@@ -80,8 +134,13 @@ export default function OfferteForm({ onSuccess }: Props) {
     if (!email) errors.email = t(form.errEmail);
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = t(form.errEmailValid);
     if (!get('phone')) errors.phone = t(form.errPhone);
-    if (!get('postalCode')) errors.postalCode = t(form.errPostal);
-    if (!get('city')) errors.city = t(form.errCity);
+    if (!postalCode.trim()) errors.postalCode = t(form.errPostal);
+    else if (!POSTCODE_RE.test(postalCode.trim())) errors.postalCode = t(form.errPostalValid);
+    if (!houseNumber.trim()) errors.houseNumber = t(form.errHouseNumber);
+    if (addrState.status === 'notfound') {
+      if (!get('streetName')) errors.streetName = t(form.errStreet);
+      if (!get('city')) errors.city = t(form.errCity);
+    }
     if (!get('service')) errors.service = t(form.errService);
     if (get('service') === 'other' && !get('serviceOther')) errors.serviceOther = t(form.errServiceOther);
     if (!get('message')) errors.message = t(form.errMessage);
@@ -98,7 +157,21 @@ export default function OfferteForm({ onSuccess }: Props) {
       return;
     }
 
-    const errors = validate(el);
+    // Resolve an in-flight address lookup so submit never races the debounce
+    let addrState = addr;
+    if (addrState.status === 'loading') {
+      lookupSeq.current++;
+      let result: DerivedAddress | null = null;
+      try {
+        result = await lookupAddress(postalCode, houseNumber);
+      } catch {
+        result = null;
+      }
+      addrState = result ? { status: 'found', result } : { status: 'notfound' };
+      setAddr(addrState);
+    }
+
+    const errors = validate(el, addrState);
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
       (el.elements.namedItem(Object.keys(errors)[0]) as HTMLElement | null)?.focus();
@@ -118,6 +191,12 @@ export default function OfferteForm({ onSuccess }: Props) {
       const formData = new FormData(el);
       formData.delete('files');
       for (const f of files) formData.append('files', f, f.name);
+      formData.set('postalCode', postalCode.replace(/\s+/g, '').toUpperCase());
+      formData.set('houseNumber', houseNumber.trim());
+      if (addrState.status === 'found') {
+        formData.set('streetName', addrState.result.street);
+        formData.set('city', addrState.result.city);
+      }
 
       const response = await fetch('/api/forms/offerte', { method: 'POST', body: formData });
       const result = (await response.json().catch(() => ({}))) as { ok?: boolean; message?: string };
@@ -139,6 +218,9 @@ export default function OfferteForm({ onSuccess }: Props) {
     setFileError('');
     setServiceValue('');
     setFieldErrors({});
+    setPostalCode('');
+    setHouseNumber('');
+    setAddr({ status: 'idle' });
   };
 
   if (state === 'success') {
@@ -194,11 +276,57 @@ export default function OfferteForm({ onSuccess }: Props) {
           <input id="offerte-phone" type="tel" name="phone" autoComplete="tel" className="field" />
         </Field>
         <Field id="offerte-postalCode" label={t(form.postalCode)} error={fieldErrors.postalCode}>
-          <input id="offerte-postalCode" type="text" name="postalCode" autoComplete="postal-code" className="field" />
+          <input
+            id="offerte-postalCode"
+            type="text"
+            name="postalCode"
+            autoComplete="postal-code"
+            placeholder="6039 RP"
+            className="field"
+            value={postalCode}
+            onChange={(e) => setPostalCode(e.target.value)}
+          />
         </Field>
-        <Field id="offerte-city" label={t(form.city)} error={fieldErrors.city}>
-          <input id="offerte-city" type="text" name="city" autoComplete="address-level2" className="field" />
+        <Field id="offerte-houseNumber" label={t(form.houseNumber)} error={fieldErrors.houseNumber}>
+          <input
+            id="offerte-houseNumber"
+            type="text"
+            name="houseNumber"
+            autoComplete="off"
+            placeholder="4"
+            className="field"
+            value={houseNumber}
+            onChange={(e) => setHouseNumber(e.target.value)}
+          />
         </Field>
+
+        {addr.status !== 'idle' && (
+          <div className="sm:col-span-2" role="status" aria-live="polite">
+            {addr.status === 'loading' && (
+              <p className="text-sm text-mute">{t(form.addressSearching)}</p>
+            )}
+            {addr.status === 'found' && (
+              <p className="flex items-center gap-2 rounded-lg border border-line bg-ink-3 px-3 py-2.5 text-sm text-bone-soft">
+                <Check size={15} className="shrink-0 text-orange" />
+                <span>{addr.result.label}</span>
+              </p>
+            )}
+            {addr.status === 'notfound' && (
+              <p className="text-sm text-mute">{t(form.addressNotFound)}</p>
+            )}
+          </div>
+        )}
+
+        {addr.status === 'notfound' && (
+          <>
+            <Field id="offerte-streetName" label={t(form.streetName)} error={fieldErrors.streetName}>
+              <input id="offerte-streetName" type="text" name="streetName" autoComplete="address-line1" className="field" />
+            </Field>
+            <Field id="offerte-city" label={t(form.city)} error={fieldErrors.city}>
+              <input id="offerte-city" type="text" name="city" autoComplete="address-level2" className="field" />
+            </Field>
+          </>
+        )}
       </div>
 
       <Field id="offerte-service" label={t(form.service)} error={fieldErrors.service}>
