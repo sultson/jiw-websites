@@ -108,8 +108,8 @@ export const content: Record<Lang, SiteContent> = {
     },
     cta: {
       title: 'Klaar om te beginnen?',
-      body: 'Stuur ons een bericht via WhatsApp. We denken vrijblijvend met u mee.',
-      button: 'Start een gesprek',
+      body: 'Plan een vrijblijvend gesprek. We denken graag met u mee.',
+      button: 'Plan een gesprek',
     },
     footer: {
       tagline: 'AI met een doel.',
@@ -189,8 +189,8 @@ export const content: Record<Lang, SiteContent> = {
     },
     cta: {
       title: 'Ready to start?',
-      body: 'Send us a message on WhatsApp. We will think along with you, no strings attached.',
-      button: 'Start a conversation',
+      body: 'Book a free call. We will think along with you, no strings attached.',
+      button: 'Book a call',
     },
     footer: {
       tagline: 'AI with a purpose.',

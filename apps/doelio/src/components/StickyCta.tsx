@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
+import { CalendarCheck } from 'lucide-react';
 import type { SiteContent } from '../i18n';
-import { WHATSAPP_URL } from '../data/site';
-import WhatsappIcon from './WhatsappIcon';
+import { CAL_TRIGGER_PROPS } from '../data/site';
 
 type Props = { c: SiteContent };
 
-/** Mobile-only sticky WhatsApp CTA. Appears after the hero scrolls away. */
+/** Mobile-only sticky booking CTA. Appears after the hero scrolls away. */
 export default function StickyCta({ c }: Props) {
   const [show, setShow] = useState(false);
 
@@ -23,10 +23,10 @@ export default function StickyCta({ c }: Props) {
       }`}
       style={{ transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)' }}
     >
-      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary w-full">
-        <WhatsappIcon className="h-[18px] w-[18px]" />
+      <button type="button" {...CAL_TRIGGER_PROPS} className="btn btn-primary w-full">
+        <CalendarCheck size={18} />
         {c.nav.cta}
-      </a>
+      </button>
     </div>
   );
 }

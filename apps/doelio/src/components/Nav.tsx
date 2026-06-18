@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import type { Lang, SiteContent } from '../i18n';
-import { WHATSAPP_URL } from '../data/site';
+import { CAL_TRIGGER_PROPS } from '../data/site';
 import Logo from './Logo';
 import LangToggle from './LangToggle';
 
@@ -58,14 +58,13 @@ export default function Nav({ lang, setLang, c }: Props) {
 
           <div className="flex items-center gap-2">
             <LangToggle lang={lang} setLang={setLang} />
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              {...CAL_TRIGGER_PROPS}
               className="btn btn-primary hidden !min-h-[42px] !px-5 text-[0.88rem] sm:inline-flex"
             >
               {c.nav.cta}
-            </a>
+            </button>
             <button
               onClick={() => setOpen((v) => !v)}
               className="grid h-10 w-10 place-items-center rounded-full text-ink transition-colors hover:bg-white/10 md:hidden"
@@ -100,15 +99,14 @@ export default function Nav({ lang, setLang, c }: Props) {
                 {l.label}
               </a>
             ))}
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              {...CAL_TRIGGER_PROPS}
               onClick={() => setOpen(false)}
               className="btn btn-primary mt-2 w-full"
             >
               {c.nav.cta}
-            </a>
+            </button>
           </div>
         </div>
       )}

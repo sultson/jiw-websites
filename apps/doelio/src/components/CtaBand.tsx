@@ -1,6 +1,6 @@
+import { CalendarCheck } from 'lucide-react';
 import type { SiteContent } from '../i18n';
-import { WHATSAPP_URL } from '../data/site';
-import WhatsappIcon from './WhatsappIcon';
+import { CAL_TRIGGER_PROPS } from '../data/site';
 
 type Props = { c: SiteContent };
 
@@ -36,10 +36,10 @@ export default function CtaBand({ c }: Props) {
           <h2 className="relative mx-auto max-w-[20ch] text-[clamp(2rem,4.4vw,3.3rem)]">{c.cta.title}</h2>
           <p className="relative mx-auto mt-5 max-w-[42ch] text-[1.1rem] leading-relaxed text-ink-dim">{c.cta.body}</p>
           <div className="relative mt-9 flex justify-center">
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary !min-h-[54px] !px-8 text-[1rem]">
-              <WhatsappIcon className="h-5 w-5" />
+            <button type="button" {...CAL_TRIGGER_PROPS} className="btn btn-primary !min-h-[54px] !px-8 text-[1rem]">
+              <CalendarCheck size={20} />
               {c.cta.button}
-            </a>
+            </button>
           </div>
         </div>
       </div>

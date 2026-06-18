@@ -1,7 +1,6 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CalendarCheck } from 'lucide-react';
 import type { SiteContent } from '../i18n';
-import { WHATSAPP_URL, ECOSYSTEM } from '../data/site';
-import WhatsappIcon from './WhatsappIcon';
+import { CAL_TRIGGER_PROPS, ECOSYSTEM } from '../data/site';
 import TypedTitle from './TypedTitle';
 import BrandMark from './BrandMark';
 
@@ -46,10 +45,10 @@ export default function Hero({ c }: Props) {
         </p>
 
         <div className="reveal mt-9 flex flex-col gap-3 sm:flex-row sm:items-center" style={{ ['--reveal-delay' as string]: '240ms' }}>
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-            <WhatsappIcon className="h-[18px] w-[18px]" />
+          <button type="button" {...CAL_TRIGGER_PROPS} className="btn btn-primary">
+            <CalendarCheck size={18} />
             {c.hero.ctaPrimary}
-          </a>
+          </button>
           <a href="#diensten" className="btn btn-glass group">
             {c.hero.ctaSecondary}
             <ArrowRight size={17} className="transition-transform duration-300 group-hover:translate-x-0.5" />
