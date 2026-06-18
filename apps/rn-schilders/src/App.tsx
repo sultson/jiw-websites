@@ -685,6 +685,93 @@ const locationPages: LocationPage[] = [
       ],
     },
   },
+  {
+    title: 'Almere',
+    slug: 'stukadoor-schilder-almere',
+    seoTitle: 'Schilder en stukadoor Almere | RN Schilders & Renovatie',
+    seoDescription:
+      'Stuc- en schilderwerk in Almere: binnenwanden, plafonds, trapgaten en kozijnen. Bekijk een recent project en vraag een gratis prijsindicatie aan.',
+    lead:
+      'RN Schilders & Renovatie doet stuc- en schilderwerk in Almere, vooral binnen. Wanden en plafonds bijwerken na een verbouwing of verhuizing, het trapgat onder handen nemen en kozijnen en deuren weer in de lak. Buitenwerk pakken we mee als dat erbij hoort.',
+    routeNote:
+      'Bij een opname in Almere kijken we eerst naar de ondergrond: oude wandafwerking, beschadigd stucwerk, naden en plekken waar latex of een nieuwe stuclaag nodig is. Per wand en plafond bepalen we of stucwerk, spuitwerk of schilderwerk de strakste afwerking geeft, zodat u vooraf weet wat er gebeurt en wat het kost.',
+    localFit:
+      'We schakelen graag snel. Komt er tijdens een klus een extra wand of een vraag van de buren bij, dan maken we daar direct een eerlijke prijs voor en nemen we het werk in dezelfde planning mee. Zo blijft het voor iedereen overzichtelijk en hoeft niemand op een tweede afspraak te wachten.',
+    areas: ['Almere Stad', 'Almere Buiten', 'Almere Haven', 'Almere Poort', 'Almere Hout', 'Lelystad', 'Zeewolde'],
+    featuredServices: ['Stucwerk', 'Schilderwerk', 'Spuitwerk'],
+    commonRequests: [
+      'Stucwerk en latex op binnenwanden en plafonds na een verbouwing of verhuizing in Almere.',
+      'Trapgaten en hoge wanden strak afwerken, veilig bereikbaar gemaakt vanaf een nette opbouw.',
+      'Kozijnen, deuren en boeidelen schilderen, binnen en buiten netjes in de lak.',
+    ],
+    serviceLinks: [
+      { label: 'Stucwerk in Almere', serviceTitle: 'Stucwerk' },
+      { label: 'Binnenschilderwerk in Almere', serviceTitle: 'Schilderwerk' },
+      { label: 'Spuitwerk in Almere', serviceTitle: 'Spuitwerk' },
+    ],
+    faqs: [
+      {
+        question: 'Doen jullie zowel stucwerk als schilderwerk in Almere?',
+        answer: 'Ja. We combineren stuc- en schilderwerk vaak in één traject: wanden en plafonds eerst stucen of latex spuiten, daarna kozijnen, deuren en boeidelen in de lak. Zo sluit de afwerking op elkaar aan.',
+      },
+      {
+        question: 'Komen jullie ook voor een enkele wand?',
+        answer: 'Zeker. Een losse wand pakken we net zo serieus op als een heel huis, met dezelfde voorbereiding en afwerking. We maken er een eerlijke prijs voor en plannen het vlot in.',
+      },
+      {
+        question: 'Werkt RN Schilders buiten de regio Woerden?',
+        answer: 'Ja. Almere en de rest van Flevoland horen bij ons werkgebied. Stuur uw adres en wat foto’s mee, dan volgt een duidelijke inschatting van het werk en de planning.',
+      },
+      {
+        question: 'Hoe snel kan het werk starten?',
+        answer: 'Dat hangt af van de omvang en het seizoen. In de offerte staat een duidelijke indicatie van wanneer we kunnen starten.',
+      },
+    ],
+    heroImage: {
+      src: '/almere-team-aan-het-werk.webp?v=20260617',
+      alt: 'Team van RN Schilders aan het werk bij een woning in Almere met uitzicht op de straat',
+      width: 1200,
+      height: 1600,
+    },
+    projectStory: {
+      eyebrow: 'Project in beeld',
+      title: 'Eén klus in Almere, twee blije klanten.',
+      intro: [
+        'We namen in Almere een project aan voor stuc- en schilderwerk: wanden en plafonds afwerken en het trapgat weer in de verf.',
+        'Tijdens het werk kwam de buurman even langs met de vraag of wij ook bij hem een wand konden stucen. Geen probleem. We maakten direct een eerlijke prijs en liepen na het oorspronkelijke adres door om ook daar het werk netjes af te maken. Het resultaat: een zeer tevreden buurman, blij met zijn wand en met een mooie review als bedankje.',
+      ],
+      images: [
+        {
+          src: '/almere-trap-resultaat.webp?v=20260617',
+          alt: 'Strak gestuukt en geschilderd trapgat in een woning in Almere',
+          width: 1013,
+          height: 1800,
+          caption: 'Trapgat strak afgewerkt',
+        },
+        {
+          src: '/almere-stucwerk-trapgat.webp?v=20260617',
+          alt: 'Gladde gestuukte wand langs de trap in een woning in Almere',
+          width: 1200,
+          height: 1600,
+          caption: 'Glad stucwerk langs de trap',
+        },
+        {
+          src: '/almere-buurman-stucwerk.webp?v=20260617',
+          alt: 'Vers gestuukte wand bij de buurman in Almere',
+          width: 1350,
+          height: 1800,
+          caption: 'De wand van de buurman gestuukt',
+        },
+        {
+          src: '/almere-buurman-wand.webp?v=20260617',
+          alt: 'Donker afgewerkte accentwand met pendels in de woonkamer van de buurman in Almere',
+          width: 1350,
+          height: 1800,
+          caption: 'Accentwand in kleur afgewerkt',
+        },
+      ],
+    },
+  },
 ];
 
 const workAreaGroups: WorkAreaGroup[] = [
@@ -702,6 +789,11 @@ const workAreaGroups: WorkAreaGroup[] = [
     title: 'Regio Rotterdam',
     text: 'Ook buiten de directe regio voert RN Schilders projecten uit, zoals buitenschilderwerk in Ridderkerk waarbij gevels, boeidelen en dakranden vanaf een nette steigeropbouw worden aangepakt.',
     slugs: ['schilder-ridderkerk'],
+  },
+  {
+    title: 'Flevoland',
+    text: 'In Almere en omgeving verzorgt RN Schilders stuc- en schilderwerk binnenshuis: wanden en plafonds strak afgewerkt, trapgaten netjes in de verf en kozijnen weer in de lak. Flexibel ingepland en met een eerlijke prijs vooraf.',
+    slugs: ['stukadoor-schilder-almere'],
   },
 ];
 
@@ -1325,7 +1417,7 @@ const homeMeta = {
 const workAreaMeta = {
   title: `Werkgebied | ${siteName}`,
   description:
-    'Bekijk het werkgebied van RN Schilders & Renovatie rondom Woerden, met plaatsen zoals Vleuten, De Meern, Leidsche Rijn en Ridderkerk.',
+    'Bekijk het werkgebied van RN Schilders & Renovatie rondom Woerden, met plaatsen zoals Vleuten, De Meern, Leidsche Rijn, Ridderkerk en Almere.',
 };
 
 const termsMeta = {
@@ -1363,7 +1455,7 @@ function buildBreadcrumbJsonLd(pageName: string, pageUrl: string): string {
 // the page's own areas, services and FAQs so there is one source of truth.
 function buildLocationJsonLd(location: LocationPage): string[] {
   const pageUrl = absoluteUrl(getLocationPath(location));
-  return [
+  const blocks = [
     buildBreadcrumbJsonLd(location.title, pageUrl),
     JSON.stringify({
       '@context': 'https://schema.org',
@@ -1387,6 +1479,36 @@ function buildLocationJsonLd(location: LocationPage): string[] {
       })),
     }),
   ];
+  // Almere has a real project video; expose it as a VideoObject so it is
+  // eligible for video rich results and ties the media to this page.
+  if (location.slug === 'stukadoor-schilder-almere') {
+    blocks.push(
+      JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'VideoObject',
+        '@id': `${pageUrl}#video`,
+        name: 'Stucwerk in Almere | RN Schilders & Renovatie',
+        description:
+          'RN Schilders & Renovatie aan het werk met stucwerk tijdens een renovatie in Almere: wanden uitvlakken en strak afwerken.',
+        thumbnailUrl: [`${siteUrl}/video-stucwerk-almere-poster.webp`],
+        contentUrl: `${siteUrl}/video-stucwerk-almere.mp4`,
+        uploadDate: '2026-06-17',
+        publisher: { '@id': `${siteUrl}/#business` },
+      }),
+      JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        '@id': pageUrl,
+        url: pageUrl,
+        name: location.seoTitle,
+        description: location.seoDescription,
+        primaryImageOfPage: { '@type': 'ImageObject', url: `${siteUrl}${location.heroImage?.src ?? ''}` },
+        about: { '@id': `${siteUrl}/#business` },
+        isPartOf: { '@id': `${siteUrl}/#website` },
+      }),
+    );
+  }
+  return blocks;
 }
 
 // Service + FAQPage structured data for a service detail page.
@@ -1512,7 +1634,11 @@ function App({ initialPath }: { initialPath?: string } = {}) {
         ) : servicePage ? (
           <ServicePageView service={servicePage} openQuote={() => setQuoteOpen(true)} />
         ) : locationPage ? (
-          <LocationPageView location={locationPage} openQuote={() => setQuoteOpen(true)} />
+          locationPage.slug === 'stukadoor-schilder-almere' ? (
+            <AlmereLocationPage location={locationPage} openQuote={() => setQuoteOpen(true)} />
+          ) : (
+            <LocationPageView location={locationPage} openQuote={() => setQuoteOpen(true)} />
+          )
         ) : (
           <>
             <Hero openQuote={() => setQuoteOpen(true)} />
@@ -3840,6 +3966,442 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
       </section>
 
       <Contact openQuote={openQuote} />
+    </>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Almere gets a bespoke, conversion- and SEO-focused landing page instead of the
+// shared LocationPageView template: more local depth, the real project video, a
+// process narrative, a work gallery, neighbourhood coverage and reviews. The
+// locationPages entry still drives meta, sitemap and footer links.
+const almereTrustPoints: Array<{ icon: typeof ShieldCheck; text: string }> = [
+  { icon: ShieldCheck, text: '5 jaar garantie op buitenschilderwerk' },
+  { icon: FileText, text: 'Gratis opname en heldere offerte' },
+  { icon: PaintRoller, text: 'Stuc- en schilderwerk onder één dak' },
+  { icon: BadgeCheck, text: 'Eigen vast team, één aanspreekpunt' },
+];
+
+const almereIntro: string[] = [
+  'Almere is in korte tijd gebouwd, en dat zie je terug in de woningen. Veel huizen stammen uit de jaren tachtig, negentig en tweeduizend, met ruime binnenwanden, hoge trapgaten en houten kozijnen. Dat is precies het werk dat wij doen.',
+  'Het meeste is binnenwerk: wanden en plafonds stucen of in de latex spuiten, het trapgat bijwerken en kozijnen, deuren en boeidelen weer in de lak. Buitenschilderwerk doen we in hetzelfde traject mee.',
+  'We zitten in Woerden, dus voor ons is dit buitengebied. Stuur foto’s van het werk, dan schatten we het vooraf in. Voor grotere projecten komen we langs voor een opname.',
+];
+
+const almereGoodToKnow: string[] = [
+  'Binnen en buiten: stucwerk, latex spuiten, schilderwerk, kozijnen en houtrotherstel.',
+  'Een eerlijke prijs, ook voor een enkele wand.',
+  'Snelle inschatting op basis van foto’s, opname op locatie voor grotere klussen.',
+  'Vast team dat netjes en zichtbaar werkt, met één aanspreekpunt.',
+];
+
+const almereProcess: Array<[string, string]> = [
+  ['Foto’s of opname', 'U stuurt foto’s van de wanden, plafonds, het trapgat of de kozijnen. Voor grotere klussen komen we langs voor een opname.'],
+  ['Heldere offerte', 'U weet vooraf welk werk nodig is, welke materialen we gebruiken en wanneer we starten.'],
+  ['Herstel en voorbereiding', 'Oud behang eraf, naden en beschadigingen bijwerken en de ondergrond uitvlakken.'],
+  ['Stucwerk of latex spuiten', 'Wanden en plafonds stucen of in de latex spuiten, afhankelijk van wat past.'],
+  ['Schilderwerk en oplevering', 'Kozijnen, deuren en boeidelen in de lak. Daarna lopen we het werk samen na en noteren we eventuele restpunten.'],
+];
+
+const almereServiceLinks: Array<{ slug: string; blurb: string }> = [
+  { slug: 'stucwerk-woerden', blurb: 'Wanden en plafonds glad stucen na verbouwing of verhuizing, klaar voor behang of verf.' },
+  { slug: 'schilderwerk-woerden', blurb: 'Binnen- en buitenschilderwerk: kozijnen, deuren, boeidelen en wanden strak in de verf.' },
+  { slug: 'spuitwerk-woerden', blurb: 'Latex spuiten voor een naadloos strak resultaat op grote wand- en plafondvlakken.' },
+  { slug: 'kozijnen-woerden', blurb: 'Houten en kunststof kozijnen schilderen of waar nodig vervangen, binnen en buiten.' },
+  { slug: 'houtrotherstel-woerden', blurb: 'Aangetast hout herstellen voordat het schilderwerk wordt afgewerkt.' },
+];
+
+const almereWorkGallery: Array<{ src: string; alt: string; caption: string }> = [
+  { src: '/stucwerk-almere-behang-verwijderen.webp', alt: 'Oud behang verwijderen als voorbereiding op stucwerk in Almere', caption: 'Behang eraf' },
+  { src: '/stucwerk-almere-plamuren-raamwand.webp', alt: 'Stukadoor plamuurt een wand bij het kozijn tijdens renovatie in Almere', caption: 'Plamuren bij het kozijn' },
+  { src: '/stucwerk-almere-wand-uitvlakken.webp', alt: 'Wand uitvlakken en naden bijwerken voor strak stucwerk in Almere', caption: 'Wand uitvlakken' },
+  { src: '/stucwerk-almere-wanden-gereed.webp', alt: 'Glad gestuukte wanden klaar voor afwerking in Almere', caption: 'Glad en strak' },
+  { src: '/schilderwerk-almere-wand-structuur.webp', alt: 'Wand met structuurafwerking en gelakte kozijnen na schilderwerk in Almere', caption: 'Wand afgewerkt' },
+  { src: '/schilderwerk-almere-binnendeur.webp', alt: 'Nieuw gelakte crème binnendeur tijdens renovatie in Almere', caption: 'Binnendeur in de lak' },
+  { src: '/schilderwerk-almere-kozijn-glas-in-lood.webp', alt: 'In crème gelakt binnenkozijn met glas-in-lood bovenlichten in Almere', caption: 'Kozijn met glas-in-lood' },
+  { src: '/schilderwerk-almere-erker-glas-in-lood.webp', alt: 'Strak geschilderde kamer met glas-in-lood kozijnen na schilderwerk in Almere', caption: 'Kamer opgeleverd' },
+];
+
+const almereNeighbourhoods = [
+  'Almere Stad', 'Almere Buiten', 'Almere Haven', 'Almere Poort', 'Almere Hout', 'Almere Pampus',
+  'Filmwijk', 'Literatuurwijk', 'Muziekwijk', 'Stedenwijk', 'Tussen de Vaarten', 'Parkwijk',
+];
+const almereNearby = ['Lelystad', 'Zeewolde', 'Dronten', 'Biddinghuizen'];
+
+function AlmereLocationPage({ location, openQuote }: { location: LocationPage; openQuote: () => void }) {
+  const [videoOpen, setVideoOpen] = useState(false);
+  const story = location.projectStory;
+  const serviceCards = almereServiceLinks
+    .map((link) => ({ ...link, service: services.find((service) => service.slug === link.slug) }))
+    .filter((card): card is typeof card & { service: Service } => Boolean(card.service));
+  const otherLocations = locationPages.filter((item) => item.slug !== location.slug);
+
+  return (
+    <>
+      {/* Hero */}
+      <section className="bg-navy text-white">
+        <div className="shell grid gap-10 pb-14 pt-24 md:grid-cols-[1.1fr_0.9fr] md:items-center md:pb-20 md:pt-28">
+          <div className="max-w-3xl">
+            <a href="/werkgebied" className="inline-flex items-center gap-2 text-sm font-bold text-roller-soft">
+              <ChevronRight size={16} className="rotate-180" />
+              Terug naar werkgebied
+            </a>
+            <p className="eyebrow mt-8 text-roller-soft">Werkgebied · Flevoland</p>
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">Schilder en stukadoor in Almere</h1>
+            <p className="mt-6 text-lg leading-8 text-white/88 md:text-xl md:leading-8">{location.lead}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <button type="button" onClick={openQuote} className="btn-primary">
+                Gratis prijsindicatie
+                <ArrowRight size={17} />
+              </button>
+              <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn-light">
+                <MessageCircle size={17} />
+                WhatsApp
+              </a>
+              <a href={phoneHref} className="btn-light">
+                <Phone size={17} />
+                {phoneDisplay}
+              </a>
+            </div>
+            <div className="mt-9 grid gap-3 sm:grid-cols-2">
+              {almereTrustPoints.map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-3 rounded-lg border border-white/12 bg-white/5 px-4 py-3 text-sm font-semibold text-white/90">
+                  <Icon size={18} className="shrink-0 text-roller-soft" />
+                  {text}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-lg border border-white/10 bg-white/8">
+            <img
+              src={location.heroImage?.src ?? '/almere-team-aan-het-werk.webp?v=20260617'}
+              alt={location.heroImage?.alt ?? 'RN Schilders aan het werk in Almere'}
+              width={location.heroImage?.width ?? 1200}
+              height={location.heroImage?.height ?? 1600}
+              className="aspect-[4/5] w-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+            <div className="grid gap-3 p-5 sm:grid-cols-2">
+              {location.areas.slice(0, 6).map((area) => (
+                <div key={area} className="flex items-center gap-3 text-sm font-semibold text-white/88">
+                  <MapPin size={16} className="text-roller-soft" />
+                  {area}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Flagship case study: the buurman story + video */}
+      <section className="section-pad bg-whitewash">
+        <div className="shell">
+          <p className="eyebrow">Project in beeld</p>
+          <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight text-navy md:text-4xl">
+            Eén klus in Almere, twee blije klanten.
+          </h2>
+          <div className="mt-5 grid max-w-3xl gap-4 text-base leading-8 text-graphite">
+            <p>We namen in Almere een project aan voor stuc- en schilderwerk: wanden en plafonds afwerken en het trapgat weer in de verf.</p>
+            <p>Tijdens het werk kwam de buurman van onze klant even langs. Of wij misschien ook bij hém een wand konden stucen? Geen probleem. We namen direct contact op, maakten een eerlijke prijs en kwamen er samen snel uit.</p>
+            <p>Toen onze mensen klaar waren op het oorspronkelijke adres, liepen ze door naar de buurman om ook daar het werk netjes af te maken. Het resultaat: een zeer tevreden buurman, blij met zijn wand en met een mooie review als bedankje.</p>
+          </div>
+
+          <div className="mt-9 grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-stretch">
+            <button
+              type="button"
+              onClick={() => setVideoOpen(true)}
+              className="group relative block overflow-hidden rounded-lg border border-line bg-navy"
+              aria-label="Bekijk de video van stucwerk in Almere"
+            >
+              <img
+                src="/video-stucwerk-almere-poster.webp"
+                alt="RN Schilders aan het werk met stucwerk in Almere"
+                width={540}
+                height={960}
+                className="aspect-[4/5] w-full object-cover opacity-90 transition group-hover:opacity-100"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/95 text-navy shadow-lg transition group-hover:scale-105">
+                  <Play size={26} fill="currentColor" />
+                </span>
+              </span>
+              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/85 to-transparent p-4 text-left text-sm font-semibold text-white">
+                Stucwerk in Almere · bekijk de video
+              </span>
+            </button>
+
+            <div className="flex flex-col justify-center rounded-lg bg-navy p-6 text-white md:p-9">
+              <Sparkles size={26} className="text-roller-soft" />
+              <p className="mt-5 font-display text-2xl font-extrabold leading-tight md:text-3xl">
+                Snel schakelen, een eerlijke prijs en netjes werk afleveren.
+              </p>
+              <p className="mt-4 leading-7 text-white/85">
+                Of het nu om een heel project gaat of om een enkele wand, we maken er een prijs voor en plannen het vlot in.
+              </p>
+              <button type="button" onClick={openQuote} className="btn-primary mt-7 w-full sm:w-auto">
+                Vraag uw klus aan
+                <ArrowRight size={17} />
+              </button>
+            </div>
+          </div>
+
+          {story && (
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {story.images.map((image) => (
+                <figure key={image.src} className="overflow-hidden rounded-lg border border-line bg-white">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    className="aspect-[3/4] w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption className="px-4 py-3 text-sm font-semibold text-graphite">{image.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Local intro + good to know */}
+      <section className="section-pad">
+        <div className="shell grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
+          <div>
+            <p className="eyebrow">Stuc- en schilderwerk in Almere</p>
+            <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight text-navy md:text-4xl">
+              Vooral binnenwerk, netjes afgemaakt.
+            </h2>
+            <div className="mt-6 grid max-w-2xl gap-4 text-base leading-8 text-graphite">
+              {almereIntro.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+          <aside className="rounded-lg border border-line bg-whitewash p-6 lg:sticky lg:top-24 md:p-8">
+            <p className="eyebrow">Goed om te weten</p>
+            <div className="mt-5 grid gap-4">
+              {almereGoodToKnow.map((item) => (
+                <div key={item} className="flex gap-3 text-sm leading-6 text-ink">
+                  <Check className="mt-1 shrink-0 text-roller" size={16} />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+            <button type="button" onClick={openQuote} className="btn-dark mt-7 w-full">
+              Gratis offerte aanvragen
+              <ArrowRight size={17} />
+            </button>
+          </aside>
+        </div>
+      </section>
+
+      {/* Process tailored to Almere */}
+      <section className="section-pad bg-whitewash">
+        <div className="shell grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-start">
+          <div>
+            <p className="eyebrow">Werkwijze</p>
+            <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight text-navy md:text-4xl">
+              Zo pakken we een klus aan.
+            </h2>
+            <div className="mt-8 grid gap-4">
+              {almereProcess.map(([title, text], index) => (
+                <div key={title} className="grid grid-cols-[3rem_1fr] gap-4 rounded-lg border border-line bg-whitewash p-5">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md bg-roller text-lg font-extrabold text-white">{index + 1}</div>
+                  <div>
+                    <h3 className="font-display text-xl font-extrabold text-navy">{title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-graphite">{text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <aside className="rounded-lg bg-navy p-6 text-white md:p-8 lg:sticky lg:top-24">
+            <CalendarCheck size={26} className="text-roller-soft" />
+            <h3 className="mt-5 font-display text-2xl font-extrabold leading-tight md:text-3xl">Liever eerst even sparren?</h3>
+            <p className="mt-4 leading-7 text-white/85">
+              Stuur foto’s van het werk via WhatsApp of laat uw gegevens achter. Dan laten we weten wat er nodig is en wanneer we kunnen komen.
+            </p>
+            <div className="mt-7 grid gap-3">
+              <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn-light w-full">
+                <MessageCircle size={17} />
+                Stuur foto’s via WhatsApp
+              </a>
+              <button type="button" onClick={openQuote} className="btn-primary w-full">
+                Offerte aanvragen
+                <ArrowRight size={17} />
+              </button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      {/* Work gallery */}
+      <section className="section-pad">
+        <div className="shell">
+          <p className="eyebrow">Werk in Almere</p>
+          <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight text-navy md:text-4xl">
+            Van kale wand tot opgeleverde kamer.
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-8 text-graphite">
+            Stuc- en schilderwerk uit een recent project, van voorbereiding en uitvlakken tot gelakte kozijnen.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {almereWorkGallery.map((image) => (
+              <figure key={image.src} className="overflow-hidden rounded-lg border border-line bg-white">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  width={1200}
+                  height={900}
+                  className="aspect-[4/3] w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption className="px-4 py-3 text-sm font-semibold text-graphite">{image.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services in Almere */}
+      <section className="section-pad bg-whitewash">
+        <div className="shell">
+          <p className="eyebrow">Diensten</p>
+          <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight text-navy md:text-4xl">
+            Wat we doen.
+          </h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {serviceCards.map(({ service, blurb }) => (
+              <a
+                key={service.slug}
+                href={getServicePath(service)}
+                className="group rounded-lg border border-line bg-white p-6 transition hover:-translate-y-0.5 hover:border-navy/35"
+              >
+                <service.icon className="text-roller" size={24} />
+                <h3 className="mt-4 font-display text-xl font-extrabold text-navy">{service.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-graphite">{blurb}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-roller">
+                  Bekijk dienst
+                  <ArrowRight size={16} />
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Neighbourhood coverage */}
+      <section className="section-pad bg-navy text-white">
+        <div className="shell">
+          <p className="eyebrow text-roller-soft">Werkgebied in Flevoland</p>
+          <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight md:text-4xl">RN Schilders werkt door heel Almere.</h2>
+          <p className="mt-4 max-w-2xl leading-8 text-white/85">
+            We komen in alle wijken en in de omliggende plaatsen in Flevoland. Staat uw wijk er niet bij? Stuur uw postcode mee, dan laten we weten wanneer we kunnen komen.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            {almereNeighbourhoods.map((area) => (
+              <span key={area} className="inline-flex items-center gap-2 rounded-md border border-white/12 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90">
+                <MapPin size={15} className="text-roller-soft" />
+                {area}
+              </span>
+            ))}
+          </div>
+          <p className="mt-8 text-sm font-bold uppercase tracking-wide text-roller-soft">Ook in de omgeving</p>
+          <div className="mt-3 flex flex-wrap gap-3">
+            {almereNearby.map((area) => (
+              <span key={area} className="rounded-md border border-white/12 bg-white/5 px-4 py-2 text-sm font-semibold text-white/80">
+                {area}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews */}
+      <section className="section-pad">
+        <div className="shell grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+          <div>
+            <p className="eyebrow">Reviews</p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight text-navy md:text-4xl">
+              Wat klanten over RN Schilders zeggen.
+            </h2>
+            <div className="mt-7 rounded-lg border border-line bg-whitewash p-6">
+              <div className="flex items-center gap-1 text-roller">
+                {Array.from({ length: 5 }, (_, index) => (
+                  <Star key={index} size={22} fill="currentColor" />
+                ))}
+              </div>
+              <p className="mt-4 font-display text-4xl font-extrabold text-navy">5.0 op Google</p>
+            </div>
+          </div>
+          <div className="grid gap-5">
+            {reviews.map((review) => (
+              <article key={review.name} className="rounded-lg border border-line bg-whitewash p-6">
+                <div className="flex items-center gap-1 text-roller">
+                  {Array.from({ length: 5 }, (_, index) => (
+                    <Star key={index} size={17} fill="currentColor" />
+                  ))}
+                </div>
+                <blockquote className="mt-4 text-lg leading-8 text-ink">“{review.quote}”</blockquote>
+                <p className="mt-5 text-sm font-bold text-navy">{review.name}</p>
+                <p className="text-sm text-graphite">{review.date}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section-pad bg-whitewash">
+        <div className="shell">
+          <p className="eyebrow">Veelgestelde vragen</p>
+          <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight text-navy md:text-4xl">
+            Praktisch voordat u een offerte aanvraagt.
+          </h2>
+          <div className="mt-8 grid gap-4 lg:grid-cols-2">
+            {location.faqs.map((faq) => (
+              <section key={faq.question} className="rounded-lg border border-line bg-white p-6">
+                <h3 className="font-display text-xl font-extrabold text-navy">{faq.question}</h3>
+                <p className="mt-3 text-sm leading-6 text-graphite">{faq.answer}</p>
+              </section>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Cross-links */}
+      <section className="section-pad">
+        <div className="shell">
+          <p className="eyebrow">Meer regio</p>
+          <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight text-navy md:text-4xl">Andere plaatsen in het werkgebied.</h2>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {otherLocations.map((item) => (
+              <a key={item.slug} href={getLocationPath(item)} className="rounded-lg border border-line bg-whitewash p-6 transition hover:-translate-y-0.5 hover:border-navy/35">
+                <h3 className="font-display text-lg font-extrabold leading-tight text-navy">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-graphite">{item.seoDescription}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-roller">
+                  Bekijk werkgebied
+                  <ArrowRight size={16} />
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Contact openQuote={openQuote} />
+
+      {videoOpen && (
+        <VideoLightbox src="/video-stucwerk-almere.mp4" poster="/video-stucwerk-almere-poster.webp" onClose={() => setVideoOpen(false)} />
+      )}
     </>
   );
 }

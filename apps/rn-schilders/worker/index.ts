@@ -17,6 +17,8 @@ const alternateHosts = ['rn-schilders.nl', 'www.rn-schilders.nl'];
 //  - thin location doorway pages -> /werkgebied
 //  - legacy hyphenated service paths -> the new clean service detail pages
 const removedPathRedirects: Record<string, string> = {
+  // Renamed so the URL reflects the stuc- én schilderwerk content in Almere.
+  '/schilder-almere': '/stukadoor-schilder-almere',
   '/schilder-maarssen-stichtse-vecht': '/werkgebied',
   '/schilder-mijdrecht-de-ronde-venen': '/werkgebied',
   '/schilder-bodegraven-reeuwijk': '/werkgebied',
