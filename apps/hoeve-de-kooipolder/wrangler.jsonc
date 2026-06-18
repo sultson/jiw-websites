@@ -14,6 +14,14 @@
     {
       "pattern": "hoeve-de-kooipolder.jouwidealewebsite.nl",
       "custom_domain": true
+    },
+    {
+      "pattern": "hoevedekooipolder.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.hoevedekooipolder.nl",
+      "custom_domain": true
     }
   ]
 }
