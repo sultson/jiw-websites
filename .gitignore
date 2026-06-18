@@ -20,6 +20,7 @@ apps/de-vest/data
 apps/manly-clinic/data
 apps/xenon/data
 apps/*/scraped-media
+apps/*/raw-media
 /*.png
 # prospecting: keep methodology docs (STRATEGY.md/README.md), exclude data + contact CSVs (PII)
 prospecting/data
