@@ -48,13 +48,36 @@ const formWorker = createFormWorker({
 
 const ROBOTS_TXT = `User-agent: *\nAllow: /\n\nSitemap: https://mhainstallaties.nl/sitemap.xml\n`;
 
+const LEGACY_PAGE_REDIRECTS: Record<string, string> = {
+  '/contact': '/#contact',
+  '/diensten': '/#diensten',
+  '/galerij': '/#werk',
+  '/hello-world': '/',
+};
+
+function canonicalRedirect(destination: string, status = 301) {
+  const target = new URL(destination, 'https://mhainstallaties.nl');
+  return Response.redirect(target.toString(), status);
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
+    const canonicalPathname =
+      url.pathname.length > 1 && url.pathname.endsWith('/') ? url.pathname.slice(0, -1) : url.pathname;
+
+    const legacyRedirect = LEGACY_PAGE_REDIRECTS[canonicalPathname];
+    if (legacyRedirect) {
+      return canonicalRedirect(legacyRedirect);
+    }
+
+    if (url.hostname === 'www.mhainstallaties.nl' && !canonicalPathname.startsWith('/api/')) {
+      return canonicalRedirect(canonicalPathname);
+    }
+
     if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
-      url.pathname = url.pathname.slice(0, -1);
-      return Response.redirect(url.toString(), 301);
+      return canonicalRedirect(canonicalPathname);
     }
 
     // Serve robots.txt from the worker so Cloudflare's managed AI-audit
