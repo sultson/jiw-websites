@@ -1,0 +1,102 @@
+---
+interface Props {
+  before: string;
+  after: string;
+  beforeAlt: string;
+  afterAlt: string;
+  beforeLabel: string;
+  afterLabel: string;
+  class?: string;
+}
+const { before, after, beforeAlt, afterAlt, beforeLabel, afterLabel, class: cls = '' } = Astro.props;
+---
+
+<div
+  class={`ba-slider relative aspect-[4/3] w-full select-none overflow-hidden rounded-3xl surface-ring shadow-card ${cls}`}
+  role="slider"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="50"
+  aria-label="Voor en na vergelijking"
+  tabindex="0"
+>
+  <!-- After (full, underneath) -->
+  <img src={after} alt={afterAlt} class="absolute inset-0 h-full w-full object-cover" draggable="false" loading="lazy" />
+  <span class="absolute bottom-3 right-3 z-10 rounded-full bg-ink/70 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cream backdrop-blur-sm">{afterLabel}</span>
+
+  <!-- Before (clipped overlay) -->
+  <div class="ba-before absolute inset-0 h-full w-full overflow-hidden" style="width:50%">
+    <img src={before} alt={beforeAlt} class="absolute inset-0 h-full w-full max-w-none object-cover" style="width:var(--ba-w,100vw)" draggable="false" loading="lazy" />
+    <span class="absolute bottom-3 left-3 z-10 rounded-full bg-cream/85 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink backdrop-blur-sm">{beforeLabel}</span>
+  </div>
+
+  <!-- Handle -->
+  <div class="ba-handle absolute inset-y-0 z-20 flex w-1 items-center justify-center bg-cream/90" style="left:50%">
+    <span class="absolute h-11 w-11 -translate-x-1/2 rounded-full border border-ink/10 bg-cream shadow-lg" style="left:50%"></span>
+    <svg class="absolute -translate-x-1/2 text-ink" style="left:50%" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="14 8 18 12 14 16"></polyline>
+      <polyline points="10 8 6 12 10 16"></polyline>
+    </svg>
+  </div>
+</div>
+
+<script>
+  function initBa(slider: HTMLElement) {
+    const before = slider.querySelector<HTMLElement>('.ba-before');
+    const handle = slider.querySelector<HTMLElement>('.ba-handle');
+    const beforeImg = before?.querySelector('img') as HTMLImageElement | null;
+    if (!before || !handle) return;
+
+    let dragging = false;
+
+    const setW = () => {
+      if (beforeImg) beforeImg.style.setProperty('--ba-w', `${slider.clientWidth}px`);
+    };
+
+    const set = (clientX: number) => {
+      const rect = slider.getBoundingClientRect();
+      let pct = ((clientX - rect.left) / rect.width) * 100;
+      pct = Math.max(0, Math.min(100, pct));
+      before.style.width = `${pct}%`;
+      handle.style.left = `${pct}%`;
+      slider.setAttribute('aria-valuenow', String(Math.round(pct)));
+    };
+
+    setW();
+    window.addEventListener('resize', setW);
+
+    const start = (e: PointerEvent) => {
+      dragging = true;
+      slider.setPointerCapture(e.pointerId);
+      set(e.clientX);
+    };
+    const move = (e: PointerEvent) => {
+      if (!dragging) return;
+      set(e.clientX);
+    };
+    const end = () => {
+      dragging = false;
+    };
+
+    slider.addEventListener('pointerdown', start);
+    slider.addEventListener('pointermove', move);
+    slider.addEventListener('pointerup', end);
+    slider.addEventListener('pointercancel', end);
+    slider.addEventListener('keydown', (e: KeyboardEvent) => {
+      const cur = Number(slider.getAttribute('aria-valuenow') ?? 50);
+      if (e.key === 'ArrowLeft') {
+        const v = Math.max(0, cur - 4);
+        before.style.width = `${v}%`;
+        handle.style.left = `${v}%`;
+        slider.setAttribute('aria-valuenow', String(v));
+      } else if (e.key === 'ArrowRight') {
+        const v = Math.min(100, cur + 4);
+        before.style.width = `${v}%`;
+        handle.style.left = `${v}%`;
+        slider.setAttribute('aria-valuenow', String(v));
+      }
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('.ba-slider').forEach(initBa);
+</script>

@@ -1,0 +1,100 @@
+---
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import LeadForm from './LeadForm.astro';
+import OpeningStatus from './OpeningStatus.astro';
+import { site, dayLabels } from '../data/site';
+import { t, route, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const tr = t(lang);
+---
+
+<section class="container-x py-14">
+  <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+    <!-- Form -->
+    <div class="reveal">
+      <h2 class="font-display text-2xl text-ink md:text-3xl">{lang === 'nl' ? 'Stuur ons een bericht' : 'Send us a message'}</h2>
+      <p class="mt-3 max-w-lg text-pretty text-ink-soft">
+        {lang === 'nl'
+          ? 'Vul het formulier in en we nemen zo snel mogelijk contact met u op, meestal binnen één werkdag. Liever bellen of WhatsApp? Dat kan ook.'
+          : 'Fill in the form and we will contact you as soon as possible, usually within one business day. Prefer to call or WhatsApp? That works too.'}
+      </p>
+      <div class="mt-6">
+        <LeadForm lang={lang} formPath="/api/forms/contact" variant="contact" />
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="space-y-6 reveal" data-delay="100ms">
+      <div class="card p-6">
+        <h3 class="font-display text-xl text-ink">{lang === 'nl' ? 'Direct contact' : 'Direct contact'}</h3>
+        <div class="mt-4 space-y-3">
+          <a href={site.phone.href} class="flex items-center gap-3 rounded-2xl bg-cream p-3.5 surface-ring transition-colors hover:bg-cream-deep">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-sage/15 text-sage-ink"><Icon name="phone" size={19} /></span>
+            <span>
+              <span class="block text-[0.78rem] text-ink-mute">{tr.common.phone}</span>
+              <span class="font-semibold text-ink">{site.phone.display}</span>
+            </span>
+          </a>
+          <a href={site.phone.whatsapp} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 rounded-2xl bg-cream p-3.5 surface-ring transition-colors hover:bg-cream-deep">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-sage/15 text-sage-ink"><Icon name="whatsapp" size={19} /></span>
+            <span>
+              <span class="block text-[0.78rem] text-ink-mute">WhatsApp</span>
+              <span class="font-semibold text-ink">{site.phone.display}</span>
+            </span>
+          </a>
+          <a href={`mailto:${site.email}`} class="flex items-center gap-3 rounded-2xl bg-cream p-3.5 surface-ring transition-colors hover:bg-cream-deep">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-sage/15 text-sage-ink"><Icon name="mail" size={19} /></span>
+            <span>
+              <span class="block text-[0.78rem] text-ink-mute">{tr.common.email}</span>
+              <span class="font-semibold text-ink">{site.email}</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="card p-6">
+        <div class="flex items-center justify-between gap-3">
+          <h3 class="flex items-center gap-2 font-display text-xl text-ink"><Icon name="pin" size={18} class="text-gold-deep" />{tr.common.address}</h3>
+        </div>
+        <p class="mt-3 text-ink-soft">{site.address.line1}, {site.address.line2}<br />{site.address.postalCode} {site.address.city}</p>
+        <a href={site.maps.directions} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1.5 text-[0.9rem] font-semibold text-sage-ink link-underline">
+          {tr.cta.directions} <Icon name="arrowUpRight" size={15} />
+        </a>
+        <div class="mt-4 overflow-hidden rounded-2xl surface-ring">
+          <iframe src={site.maps.embed} title="Omnia Dental Hoofddorp" width="100%" height="200" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+      <div class="card p-6">
+        <div class="mb-3 flex items-center justify-between gap-3">
+          <h3 class="flex items-center gap-2 font-display text-xl text-ink"><Icon name="clock" size={18} class="text-gold-deep" />{tr.common.openingHours}</h3>
+          <OpeningStatus lang={lang} class="rounded-full bg-cream px-3 py-1 text-[0.78rem] surface-ring" />
+        </div>
+        <table class="w-full text-[0.92rem]">
+          <tbody>
+            {site.hours.map((h) => (
+              <tr class="border-b border-ink/6 last:border-0">
+                <td class="py-2 text-ink-soft">{dayLabels[h.day][lang]}</td>
+                <td class="py-2 text-right tabular-nums font-medium text-ink">{h.open && h.close ? `${h.open} - ${h.close}` : <span class="text-ink-mute">{tr.common.closed}</span>}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <a href={route('spoed', lang)} class="flex items-center gap-3 rounded-2xl border border-[#a4533f]/30 bg-[#a4533f]/8 p-4 transition-colors hover:bg-[#a4533f]/12">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#a4533f]/15 text-[#a4533f]"><Icon name="alert" size={20} /></span>
+        <span>
+          <span class="block font-semibold text-ink">{lang === 'nl' ? 'Spoed of acute pijn?' : 'Emergency or acute pain?'}</span>
+          <span class="block text-[0.85rem] text-ink-soft">{lang === 'nl' ? 'Bekijk wat u kunt doen' : 'See what you can do'}</span>
+        </span>
+        <Icon name="arrow" size={18} class="ml-auto text-ink-mute" />
+      </a>
+    </aside>
+  </div>
+</section>

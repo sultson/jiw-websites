@@ -1,0 +1,30 @@
+---
+import Layout from '../components/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ReviewsSection from '../components/ReviewsSection.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { route } from '../lib/i18n';
+import { breadcrumbJsonLd } from '../lib/seo';
+---
+
+<Layout
+  lang="nl"
+  title="Ervaringen van patiënten | Tandarts Hoofddorp | Omnia Dental"
+  description="Lees ervaringen van patiënten van Omnia Dental in Hoofddorp. Van angstige patiënten tot complexe behandelingen, ontdek waarom mensen voor onze praktijk kiezen."
+  pathNl={route('reviews', 'nl')}
+  pathEn={route('reviews', 'en')}
+  jsonLd={[breadcrumbJsonLd([
+    { name: 'Home', path: route('home', 'nl') },
+    { name: 'Ervaringen', path: route('reviews', 'nl') },
+  ])]}
+>
+  <PageHeader
+    lang="nl"
+    eyebrow="Ervaringen"
+    title="Wat patiënten over ons zeggen"
+    subtitle="Verhalen van patiënten over hun bezoek aan onze praktijk, van een spannende eerste controle tot uitgebreidere behandelingen."
+    current="Ervaringen"
+  />
+  <div class="py-14"><ReviewsSection lang="nl" showAll heading="Ervaringen van onze patiënten" /></div>
+  <CtaBanner lang="nl" />
+</Layout>

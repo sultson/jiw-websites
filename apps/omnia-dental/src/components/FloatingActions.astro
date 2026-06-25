@@ -1,0 +1,55 @@
+---
+import Icon from './Icon.astro';
+import { t, route, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const tr = t(lang);
+---
+
+<!-- Mobile-only floating actions: easy-reach Afspraak + a visible Spoed.
+     Hidden until the user scrolls down a little. -->
+<div
+  id="floating-actions"
+  class="fixed bottom-4 right-4 z-40 flex translate-y-6 flex-col items-end gap-2.5 opacity-0 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] xl:hidden"
+  data-hidden="true"
+>
+  <a
+    href={route('spoed', lang)}
+    class="flex items-center gap-1.5 rounded-full bg-[#a4533f] px-4 py-2.5 text-[0.85rem] font-bold text-cream shadow-[0_10px_24px_-10px_rgba(164,83,63,0.8)] ring-1 ring-white/20"
+    aria-label={tr.nav.spoed}
+  >
+    <Icon name="alert" size={17} />
+    {tr.nav.spoed}
+  </a>
+  <a
+    href={route('contact', lang)}
+    class="flex items-center gap-2 rounded-full px-5 py-3.5 text-[0.95rem] font-bold text-cream shadow-[0_14px_30px_-12px_rgba(59,82,76,0.85)] ring-1 ring-white/20"
+    style="background: radial-gradient(120% 140% at 50% -10%, #5f7a72 0%, #46615a 46%, #3b524c 100%);"
+    aria-label={tr.cta.intake}
+    data-appointment-trigger="true"
+  >
+    <Icon name="calendar" size={19} />
+    {tr.cta.intakeShort}
+  </a>
+</div>
+
+<script>
+  const fab = document.getElementById('floating-actions');
+  if (fab) {
+    const onScroll = () => {
+      const show = window.scrollY > 260;
+      if (show && fab.dataset.hidden === 'true') {
+        fab.dataset.hidden = 'false';
+        fab.classList.remove('translate-y-6', 'opacity-0');
+      } else if (!show && fab.dataset.hidden === 'false') {
+        fab.dataset.hidden = 'true';
+        fab.classList.add('translate-y-6', 'opacity-0');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+</script>

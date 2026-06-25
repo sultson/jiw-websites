@@ -1,0 +1,306 @@
+---
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import OpeningStatus from './OpeningStatus.astro';
+import TreatmentCard from './TreatmentCard.astro';
+import ReviewsSection from './ReviewsSection.astro';
+import VisitSection from './VisitSection.astro';
+import CtaBanner from './CtaBanner.astro';
+import FaqList from './FaqList.astro';
+import BeforeAfter from './BeforeAfter.astro';
+import { site } from '../data/site';
+import { t, route, type Lang } from '../lib/i18n';
+import { treatments } from '../data/treatments';
+import { faqItems } from '../data/faq';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const tr = t(lang);
+
+const copy = {
+  nl: {
+    eyebrow: 'Tandartspraktijk in Hoofddorp',
+    h1a: 'Uw tandarts in Hoofddorp',
+    trust1: 'Nieuwe patiënten welkom',
+    trust3: 'Bij spoed dezelfde dag mogelijk',
+    pillarsEyebrow: 'Waarom Omnia Dental',
+    pillarsHeading: 'Complete tandheelkunde, persoonlijk en dichtbij',
+    pillarsSub: 'Vier dingen waar u bij ons op kunt rekenen.',
+    treatmentsEyebrow: 'Behandelingen',
+    treatmentsHeading: 'Alles wat uw gebit nodig heeft',
+    treatmentsSub: 'Twaalf behandelingen, één praktijk. Bekijk wat we voor u kunnen doen.',
+    ownerEyebrow: 'Uw tandarts',
+    ownerHeading: 'Een vertrouwd gezicht voor uw hele gezin',
+    baEyebrow: 'Resultaten',
+    baHeading: 'Kleine ingrepen, zichtbaar verschil',
+    baSub: 'Sleep de schuif om het verschil te zien. Resultaten variëren per persoon en worden vooraf met u besproken.',
+    faqEyebrow: 'Veelgestelde vragen',
+    faqHeading: 'Goed om te weten',
+    faqLink: 'Alle vragen bekijken',
+  },
+  en: {
+    eyebrow: 'Dental practice in Hoofddorp',
+    h1a: 'Your dentist in Hoofddorp',
+    trust1: 'New patients welcome',
+    trust3: 'Same-day help for emergencies',
+    pillarsEyebrow: 'Why Omnia Dental',
+    pillarsHeading: 'Complete dentistry, personal and close by',
+    pillarsSub: 'Four things you can count on with us.',
+    treatmentsEyebrow: 'Treatments',
+    treatmentsHeading: 'Everything your teeth need',
+    treatmentsSub: 'Twelve treatments, one practice. See what we can do for you.',
+    ownerEyebrow: 'Your dentist',
+    ownerHeading: 'A familiar face for your whole family',
+    baEyebrow: 'Results',
+    baHeading: 'Small treatments, visible difference',
+    baSub: 'Drag the slider to see the difference. Results vary per person and are discussed with you in advance.',
+    faqEyebrow: 'Frequently asked questions',
+    faqHeading: 'Good to know',
+    faqLink: 'View all questions',
+  },
+}[lang];
+
+const pillars = [
+  {
+    icon: 'tooth',
+    title: { nl: 'Alles onder één dak', en: 'Everything under one roof' },
+    body: {
+      nl: 'Wortelkanaal, kronen, implantaten en meer doen we zelf. U hoeft zelden naar een andere praktijk.',
+      en: 'Root canals, crowns, implants and more are done here. You rarely need another practice.',
+    },
+  },
+  {
+    icon: 'heart',
+    title: { nl: 'Aandacht en comfort', en: 'Attention and comfort' },
+    body: {
+      nl: 'We nemen de tijd, leggen alles rustig uit en houden rekening met angst of gevoelige tanden.',
+      en: 'We take our time, explain everything calmly and account for anxiety or sensitive teeth.',
+    },
+  },
+  {
+    icon: 'scan',
+    title: { nl: 'Moderne techniek', en: 'Modern technology' },
+    body: {
+      nl: 'Met digitale scans en CEREC maken we bijvoorbeeld een kroon vaak in één afspraak.',
+      en: 'With digital scans and CEREC we often make a crown in a single appointment.',
+    },
+  },
+  {
+    icon: 'baby',
+    title: { nl: 'Voor het hele gezin', en: 'For the whole family' },
+    body: {
+      nl: 'Van de eerste controle van uw kind tot zorg op latere leeftijd, in het Nederlands en Engels.',
+      en: 'From your child’s first check-up to care later in life, in Dutch and English.',
+    },
+  },
+];
+
+const ownerBio = {
+  nl: [
+    'Drs. Naresh Gangaram Panday is tandarts en eigenaar van Omnia Dental. Hij voert vrijwel alle behandelingen zelf uit, van controle tot implantaat, zodat u steeds hetzelfde vertrouwde gezicht ziet.',
+  ],
+  en: [
+    'Drs. Naresh Gangaram Panday is the dentist and owner of Omnia Dental. He carries out almost every treatment himself, from check-up to implant, so you always see the same familiar face.',
+  ],
+};
+
+const beforeAfters = [
+  {
+    key: 'whitening',
+    title: { nl: 'Tanden bleken', en: 'Teeth whitening' },
+    before: '/images/before-after/whitening-before.webp',
+    after: '/images/before-after/whitening-after.webp',
+    href: route('treatments', lang),
+  },
+  {
+    key: 'veneers',
+    title: { nl: 'Facings', en: 'Veneers' },
+    before: '/images/before-after/veneers-before.webp',
+    after: '/images/before-after/veneers-after.webp',
+    href: route('treatments', lang),
+  },
+];
+
+const featuredTreatments = treatments;
+const homeFaqs = faqItems.slice(0, 5);
+---
+
+<!-- ============================ HERO ============================ -->
+<!-- Photo-led and useful, not sales-y. A real face + the practice, plus the few
+     things a dentist-seeker actually needs: open now, book, call, and the facts
+     that decide it. The hero starts below the fixed header so the image never
+     sits under the navbar; a bottom fade avoids a hard image-to-section cut. -->
+<section class="home-hero relative isolate flex items-end overflow-hidden lg:items-center">
+  <picture class="absolute inset-0 -z-10 block h-full w-full">
+    <source media="(min-width: 1024px)" srcset="/images/hero-wide.webp" width="1536" height="1024" />
+    <img
+      src="/images/hero.webp"
+      alt={lang === 'nl'
+        ? 'Patiënt met een ontspannen, gezonde lach in de behandelstoel bij Omnia Dental in Hoofddorp'
+        : 'Patient with a relaxed, healthy smile in the treatment chair at Omnia Dental in Hoofddorp'}
+      width="720"
+      height="860"
+      fetchpriority="high"
+      class="h-full w-full object-cover object-[46%_14%] lg:object-[50%_32%]"
+    />
+  </picture>
+
+  <!-- Mobile: cream rising from the bottom, face clear up top. -->
+  <div class="absolute inset-0 -z-10 bg-gradient-to-t from-cream via-cream/70 to-transparent lg:hidden"></div>
+  <!-- Desktop: she stays crisp on the left; cream gathers on the right for copy. -->
+  <div class="absolute inset-0 -z-10 hidden bg-gradient-to-r from-transparent from-35% via-cream/80 via-75% to-cream lg:block"></div>
+  <div class="absolute inset-x-0 bottom-0 -z-10 h-28 bg-gradient-to-t from-cream to-transparent lg:h-36"></div>
+
+  <div class="container-x relative flex w-full pb-12 pt-20 sm:pb-16 lg:justify-end lg:py-0">
+    <div class="max-w-md lg:max-w-[27rem]">
+      <span class="inline-flex w-fit items-center gap-2 rounded-full bg-white/80 px-3.5 py-1.5 text-[0.82rem] surface-ring backdrop-blur-sm">
+        <OpeningStatus lang={lang} />
+      </span>
+
+      <h1 class="mt-5 font-display text-[2.7rem] font-extrabold leading-[1.02] tracking-[-0.025em] text-ink text-balance sm:text-[3.1rem]">
+        {copy.h1a}
+      </h1>
+
+      <div class="mt-7 flex flex-wrap items-center gap-3">
+        <Button href={route('contact', lang)} variant="primary" size="lg" icon="calendar" appointmentTrigger>{tr.cta.intake}</Button>
+        <Button href={site.phone.href} variant="ghost" size="lg" icon="phone">{site.phone.display}</Button>
+      </div>
+
+      <ul class="mt-7 flex flex-col gap-2.5 text-[0.92rem]">
+        {[copy.trust1, copy.trust3].map((item) => (
+          <li class="flex items-center gap-2 text-ink-soft">
+            <Icon name="checkCircle" size={17} class="text-sage-deep" />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PILLARS ============================ -->
+<section class="container-x mt-8 md:mt-10">
+  <div class="mx-auto max-w-2xl text-center reveal">
+    <p class="eyebrow">{copy.pillarsEyebrow}</p>
+    <h2 class="mt-3 font-display text-[1.75rem] leading-tight text-ink md:text-[2.5rem]">{copy.pillarsHeading}</h2>
+    <p class="mt-3 text-sm text-pretty text-ink-soft md:mt-4 md:text-base">{copy.pillarsSub}</p>
+  </div>
+  <div class="mt-6 grid grid-cols-2 gap-3 md:mt-12 md:gap-6 lg:grid-cols-4">
+    {pillars.map((pillar, i) => (
+      <div class="card card-hover flex h-full flex-col items-center justify-center p-3 text-center reveal md:items-start md:justify-start md:p-7 md:text-left" data-delay={`${(i % 4) * 70}ms`}>
+        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sage/25 to-gold/25 text-sage-ink md:h-12 md:w-12 md:rounded-2xl">
+          <Icon name={pillar.icon as any} size={20} class="md:hidden" />
+          <Icon name={pillar.icon as any} size={24} class="hidden md:block" />
+        </span>
+        <h3 class="mt-2 font-display text-[0.98rem] leading-tight text-ink md:mt-5 md:text-xl">{pillar.title[lang]}</h3>
+        <p class="mt-2 hidden text-pretty text-[0.92rem] leading-relaxed text-ink-soft md:block">{pillar.body[lang]}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ============================ OWNER ============================ -->
+<section class="container-x mt-24">
+  <div class="overflow-hidden rounded-section bg-gradient-to-br from-cream-deep to-stone surface-ring">
+    <div class="grid items-stretch gap-0 lg:grid-cols-[0.85fr_1.15fr]">
+      <div class="relative min-h-[22rem] reveal">
+        <img src="/images/owner.webp" alt={site.owner.name} class="absolute inset-0 h-full w-full object-cover object-top" loading="lazy" />
+      </div>
+      <div class="p-8 md:p-12 lg:p-14 reveal" data-delay="100ms">
+        <p class="eyebrow">{copy.ownerEyebrow}</p>
+        <h2 class="mt-3 font-display text-3xl text-ink md:text-[2.4rem]">{copy.ownerHeading}</h2>
+        <div class="mt-5 space-y-4 text-pretty leading-relaxed text-ink-soft">
+          {ownerBio[lang].map((para) => <p>{para}</p>)}
+        </div>
+        <div class="mt-7 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-ink/10 pt-6">
+          <div>
+            <p class="font-display text-xl text-ink">{site.owner.name}</p>
+            <p class="text-[0.88rem] text-ink-mute">{site.owner.role[lang]}</p>
+          </div>
+          <div class="flex items-center gap-2 rounded-full bg-white/60 px-3.5 py-1.5 text-[0.82rem] surface-ring">
+            <Icon name="shield" size={16} class="text-gold-deep" />
+            <span class="text-ink-soft">{tr.footer.bigLabel}: <span class="font-semibold text-ink">{site.owner.bigNumber}</span></span>
+          </div>
+        </div>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <Button href={route('about', lang)} variant="primary" iconRight="arrow">{lang === 'nl' ? 'Meer over de praktijk' : 'More about the practice'}</Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TREATMENTS ============================ -->
+<section id="behandelingen" class="container-x mt-24 scroll-mt-28">
+  <div class="mb-12 flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
+    <div class="max-w-xl reveal">
+      <p class="eyebrow">{copy.treatmentsEyebrow}</p>
+      <h2 class="mt-3 font-display text-3xl text-ink md:text-[2.5rem]">{copy.treatmentsHeading}</h2>
+      <p class="mt-4 text-pretty text-ink-soft">{copy.treatmentsSub}</p>
+    </div>
+    <Button href={route('treatments', lang)} variant="ghost" iconRight="arrow" class="reveal shrink-0">{tr.cta.allTreatments}</Button>
+  </div>
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {featuredTreatments.map((treatment, i) => (
+      <div class="reveal" data-delay={`${(i % 3) * 70}ms`}>
+        <TreatmentCard treatment={treatment} lang={lang} />
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ============================ BEFORE / AFTER ============================ -->
+<section class="container-x mt-24">
+  <div class="mb-10 max-w-2xl reveal">
+    <p class="eyebrow">{copy.baEyebrow}</p>
+    <h2 class="mt-3 font-display text-3xl text-ink md:text-[2.5rem]">{copy.baHeading}</h2>
+    <p class="mt-4 text-pretty text-ink-soft">{copy.baSub}</p>
+  </div>
+  <div class="grid gap-8 md:grid-cols-2">
+    {beforeAfters.map((ba, i) => (
+      <div class="reveal" data-delay={`${i * 90}ms`}>
+        <BeforeAfter
+          before={ba.before}
+          after={ba.after}
+          beforeAlt={`${ba.title[lang]} ${lang === 'nl' ? 'voor' : 'before'}`}
+          afterAlt={`${ba.title[lang]} ${lang === 'nl' ? 'na' : 'after'}`}
+          beforeLabel={lang === 'nl' ? 'Voor' : 'Before'}
+          afterLabel={lang === 'nl' ? 'Na' : 'After'}
+        />
+        <p class="mt-3 flex items-center gap-2 text-[0.92rem] font-semibold text-ink">
+          <Icon name="sparkle" size={16} class="text-gold-deep" /> {ba.title[lang]}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ============================ REVIEWS ============================ -->
+<div class="mt-24"><ReviewsSection lang={lang} /></div>
+
+<!-- ============================ FAQ ============================ -->
+<section class="container-x mt-24">
+  <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+    <div class="reveal">
+      <p class="eyebrow">{copy.faqEyebrow}</p>
+      <h2 class="mt-3 font-display text-3xl text-ink md:text-[2.5rem]">{copy.faqHeading}</h2>
+      <p class="mt-4 max-w-sm text-pretty text-ink-soft">
+        {lang === 'nl'
+          ? 'Staat uw vraag er niet bij? Neem gerust contact met ons op, we helpen u graag verder.'
+          : 'Cannot find your question? Feel free to contact us, we are happy to help.'}
+      </p>
+      <Button href={route('faq', lang)} variant="ghost" iconRight="arrow" class="mt-6">{copy.faqLink}</Button>
+    </div>
+    <div class="reveal" data-delay="100ms">
+      <FaqList items={homeFaqs} lang={lang} />
+    </div>
+  </div>
+</section>
+
+<!-- ============================ VISIT ============================ -->
+<div class="mt-24"><VisitSection lang={lang} /></div>
+
+<!-- ============================ CTA ============================ -->
+<div class="mt-24"><CtaBanner lang={lang} /></div>

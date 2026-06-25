@@ -1,0 +1,143 @@
+---
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import LeadForm from './LeadForm.astro';
+import OpeningStatus from './OpeningStatus.astro';
+import { site } from '../data/site';
+import { t, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const tr = t(lang);
+
+const copy = {
+  nl: {
+    callTitle: 'Bel ons zo vroeg mogelijk op de dag',
+    callBody: 'Heeft u acute pijn, een afgebroken tand of een zwelling? Bel ons binnen openingstijden. Hoe vroeger u belt, hoe groter de kans dat we u dezelfde dag kunnen helpen.',
+    situationsTitle: 'Wat geldt als spoed?',
+    situationsSub: 'Bij deze klachten proberen we u dezelfde dag te zien.',
+    doTitle: 'Wat u alvast zelf kunt doen',
+    afterHoursTitle: 'Buiten openingstijden',
+    afterHoursBody: 'Is de praktijk gesloten en heeft u dringend hulp nodig? Neem dan contact op met de dienstdoende spoedpraktijk voor tandheelkunde in de regio Haarlemmermeer. Bij een levensbedreigende situatie belt u altijd 112.',
+    formTitle: 'Spoed doorgeven',
+    formSub: 'Liever eerst bellen bij acute pijn. Gebruik dit formulier om uw spoedklacht door te geven binnen openingstijden.',
+  },
+  en: {
+    callTitle: 'Call us as early in the day as possible',
+    callBody: 'Do you have acute pain, a broken tooth or swelling? Call us during opening hours. The earlier you call, the greater the chance we can help you the same day.',
+    situationsTitle: 'What counts as an emergency?',
+    situationsSub: 'For these complaints we aim to see you the same day.',
+    doTitle: 'What you can do in the meantime',
+    afterHoursTitle: 'Outside opening hours',
+    afterHoursBody: 'Is the practice closed and do you need urgent help? Contact the on-call dental emergency service for the Haarlemmermeer region. In a life-threatening situation always call 112.',
+    formTitle: 'Report an emergency',
+    formSub: 'For acute pain, calling first is best. Use this form to report your emergency complaint during opening hours.',
+  },
+}[lang];
+
+const situations =
+  lang === 'nl'
+    ? [
+        { icon: 'alert', t: 'Hevige, aanhoudende kiespijn' },
+        { icon: 'tooth', t: 'Een afgebroken of uitgevallen tand' },
+        { icon: 'drop', t: 'Een nabloeding na een ingreep' },
+        { icon: 'shield', t: 'Een zwelling of abces in de mond' },
+        { icon: 'syringe', t: 'Een losgeraakte kroon of vulling' },
+        { icon: 'heart', t: 'Een ongeval met letsel aan het gebit' },
+      ]
+    : [
+        { icon: 'alert', t: 'Severe, persistent toothache' },
+        { icon: 'tooth', t: 'A broken or knocked-out tooth' },
+        { icon: 'drop', t: 'Bleeding that will not stop after a procedure' },
+        { icon: 'shield', t: 'Swelling or an abscess in the mouth' },
+        { icon: 'syringe', t: 'A loose crown or filling' },
+        { icon: 'heart', t: 'An accident with injury to the teeth' },
+      ];
+
+const tips =
+  lang === 'nl'
+    ? [
+        'Spoel uw mond met lauw water en houd het gebied schoon.',
+        'Bij een uitgevallen tand: bewaar deze in melk of in de wang en kom zo snel mogelijk langs.',
+        'Bij zwelling of pijn kunt u een pijnstiller nemen die u verdraagt, volg de bijsluiter.',
+        'Leg geen aspirine direct op het tandvlees, dat kan irritatie geven.',
+      ]
+    : [
+        'Rinse your mouth with lukewarm water and keep the area clean.',
+        'For a knocked-out tooth: keep it in milk or in your cheek and come in as soon as possible.',
+        'For swelling or pain you may take a painkiller you tolerate, follow the leaflet.',
+        'Do not place aspirin directly on the gum, it can cause irritation.',
+      ];
+---
+
+<section class="container-x py-12">
+  <!-- Call CTA -->
+  <div class="overflow-hidden rounded-section bg-ink p-8 text-cream md:p-12 reveal">
+    <div class="grid items-center gap-8 lg:grid-cols-[1.3fr_0.7fr]">
+      <div>
+        <p class="eyebrow !text-[#e8a48f]">{tr.common.emergency}</p>
+        <h2 class="mt-3 font-display text-3xl text-cream md:text-[2.4rem]">{copy.callTitle}</h2>
+        <p class="mt-4 max-w-xl text-pretty text-cream/75">{copy.callBody}</p>
+        <div class="mt-7 flex flex-wrap items-center gap-3">
+          <Button href={site.phone.href} variant="gold" size="lg" icon="phone">{site.phone.display}</Button>
+          <Button href={site.phone.whatsapp} variant="white" size="lg" icon="whatsapp" external>WhatsApp</Button>
+        </div>
+      </div>
+      <div class="rounded-2xl bg-cream/8 p-5">
+        <div class="flex items-center gap-2 text-cream/85">
+          <Icon name="clock" size={18} class="text-gold" />
+          <span class="font-semibold">{tr.common.openingHours}</span>
+        </div>
+        <div class="mt-2"><OpeningStatus lang={lang} class="text-cream" /></div>
+        <p class="mt-3 text-[0.88rem] leading-relaxed text-cream/70">
+          {lang === 'nl' ? 'Ma t/m do 08:30 - 17:00, vr 08:30 - 16:00. Weekend gesloten.' : 'Mon to Thu 08:30 - 17:00, Fri 08:30 - 16:00. Closed at weekends.'}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Situations + tips -->
+  <div class="mt-16 grid gap-10 lg:grid-cols-2">
+    <div class="reveal">
+      <h2 class="font-display text-2xl text-ink md:text-3xl">{copy.situationsTitle}</h2>
+      <p class="mt-2 text-ink-soft">{copy.situationsSub}</p>
+      <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+        {situations.map((s) => (
+          <li class="flex items-center gap-3 rounded-2xl bg-white p-4 surface-ring shadow-card">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#a4533f]/12 text-[#a4533f]"><Icon name={s.icon as any} size={19} /></span>
+            <span class="text-[0.92rem] text-ink-soft">{s.t}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="reveal" data-delay="100ms">
+      <h2 class="font-display text-2xl text-ink md:text-3xl">{copy.doTitle}</h2>
+      <ul class="mt-6 space-y-3">
+        {tips.map((tip) => (
+          <li class="flex items-start gap-3 rounded-2xl bg-cream-deep/60 p-4">
+            <Icon name="checkCircle" size={20} class="mt-0.5 shrink-0 text-sage-deep" />
+            <span class="text-[0.92rem] leading-relaxed text-ink-soft">{tip}</span>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-6 rounded-2xl border border-[#a4533f]/30 bg-[#a4533f]/8 p-5">
+        <h3 class="flex items-center gap-2 font-semibold text-ink"><Icon name="alert" size={18} class="text-[#a4533f]" />{copy.afterHoursTitle}</h3>
+        <p class="mt-2 text-[0.9rem] leading-relaxed text-ink-soft">{copy.afterHoursBody}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="mt-16 grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+    <div class="reveal">
+      <p class="eyebrow !text-[#a4533f]">{tr.common.emergency}</p>
+      <h2 class="mt-3 font-display text-2xl text-ink md:text-3xl">{copy.formTitle}</h2>
+      <p class="mt-3 text-pretty text-ink-soft">{copy.formSub}</p>
+    </div>
+    <div class="reveal" data-delay="100ms">
+      <LeadForm lang={lang} formPath="/api/forms/spoed" variant="spoed" />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+import Layout from '../../components/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import TarievenView from '../../components/TarievenView.astro';
+import { route } from '../../lib/i18n';
+import { breadcrumbJsonLd } from '../../lib/seo';
+---
+
+<Layout
+  lang="en"
+  title="Rates 2026 | Dentist Hoofddorp | Omnia Dental"
+  description="View and search the 2026 dental rates. Prices are set by the NZa. Easily find the code and rate of your treatment at Omnia Dental in Hoofddorp."
+  pathNl={route('tarieven', 'nl')}
+  pathEn={route('tarieven', 'en')}
+  jsonLd={[breadcrumbJsonLd([
+    { name: 'Home', path: route('home', 'en') },
+    { name: 'Rates', path: route('tarieven', 'en') },
+  ])]}
+>
+  <PageHeader
+    lang="en"
+    eyebrow="Rates 2026"
+    title="Dental rates, clear and searchable"
+    subtitle="Dental rates in the Netherlands are set nationally by the NZa. Search below by treatment or code and see the rate straight away."
+    current="Rates"
+  />
+  <TarievenView lang="en" />
+</Layout>

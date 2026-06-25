@@ -1,0 +1,48 @@
+---
+import Layout from '../components/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import LegalView from '../components/LegalView.astro';
+import { legalDocs } from '../data/legal';
+import { route } from '../lib/i18n';
+import { breadcrumbJsonLd } from '../lib/seo';
+
+const legalKeyToRoute = {
+  privacy: 'privacy',
+  cookie: 'cookie',
+  terms: 'terms',
+  conduct: 'conduct',
+  complaints: 'complaints',
+} as const;
+
+export function getStaticPaths() {
+  const keyToRoute = {
+    privacy: 'privacy',
+    cookie: 'cookie',
+    terms: 'terms',
+    conduct: 'conduct',
+    complaints: 'complaints',
+  } as const;
+  return legalDocs.map((doc) => ({
+    params: { legal: route(keyToRoute[doc.key], 'nl').slice(1) },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+const routeKey = legalKeyToRoute[doc.key];
+---
+
+<Layout
+  lang="nl"
+  title={doc.metaTitle.nl}
+  description={doc.metaDescription.nl}
+  pathNl={route(routeKey, 'nl')}
+  pathEn={route(routeKey, 'en')}
+  jsonLd={[breadcrumbJsonLd([
+    { name: 'Home', path: route('home', 'nl') },
+    { name: doc.title.nl, path: route(routeKey, 'nl') },
+  ])]}
+>
+  <PageHeader lang="nl" eyebrow="Juridisch" title={doc.title.nl} current={doc.title.nl} />
+  <LegalView doc={doc} lang="nl" />
+</Layout>

@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'gold' | 'ghost' | 'white';
+  size?: 'md' | 'lg';
+  icon?: string;
+  iconRight?: string;
+  class?: string;
+  external?: boolean;
+  type?: 'button' | 'submit';
+  id?: string;
+  ariaLabel?: string;
+  appointmentTrigger?: boolean;
+}
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  icon,
+  iconRight,
+  class: cls = '',
+  external = false,
+  type = 'button',
+  id,
+  ariaLabel,
+  appointmentTrigger = false,
+} = Astro.props;
+
+const sizeCls = size === 'lg' ? 'px-7 py-4 text-base' : '';
+const classes = `btn btn-${variant} ${sizeCls} ${cls}`;
+const rel = external ? 'noopener noreferrer' : undefined;
+const target = external ? '_blank' : undefined;
+---
+
+{
+  href ? (
+    <a href={href} class={classes} rel={rel} target={target} id={id} aria-label={ariaLabel} data-appointment-trigger={appointmentTrigger ? 'true' : undefined}>
+      {icon && <Icon name={icon as any} size={18} />}
+      <span><slot /></span>
+      {iconRight && <Icon name={iconRight as any} size={18} />}
+    </a>
+  ) : (
+    <button type={type} class={classes} id={id} aria-label={ariaLabel} data-appointment-trigger={appointmentTrigger ? 'true' : undefined}>
+      {icon && <Icon name={icon as any} size={18} />}
+      <span><slot /></span>
+      {iconRight && <Icon name={iconRight as any} size={18} />}
+    </button>
+  )
+}

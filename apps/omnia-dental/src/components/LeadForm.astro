@@ -1,0 +1,229 @@
+---
+import Icon from './Icon.astro';
+import { t, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+  formPath: string;
+  variant?: 'contact' | 'spoed';
+}
+const { lang, formPath, variant = 'contact' } = Astro.props;
+const tr = t(lang);
+const f = tr.form;
+const isSpoed = variant === 'spoed';
+
+const reasons =
+  lang === 'nl'
+    ? [
+        { value: 'Afspraak of intake', label: 'Afspraak of intake' },
+        { value: 'Vraag over een behandeling', label: 'Vraag over een behandeling' },
+        { value: 'Inschrijven als nieuwe patiënt', label: 'Inschrijven als nieuwe patiënt' },
+        { value: 'Tarieven of vergoeding', label: 'Tarieven of vergoeding' },
+        { value: 'Iets anders', label: 'Iets anders' },
+      ]
+    : [
+        { value: 'Appointment or intake', label: 'Appointment or intake' },
+        { value: 'Question about a treatment', label: 'Question about a treatment' },
+        { value: 'Register as a new patient', label: 'Register as a new patient' },
+        { value: 'Rates or reimbursement', label: 'Rates or reimbursement' },
+        { value: 'Something else', label: 'Something else' },
+      ];
+
+const contactPrefs =
+  lang === 'nl'
+    ? ['Telefoon', 'E-mail', 'WhatsApp']
+    : ['Phone', 'Email', 'WhatsApp'];
+
+const labels = {
+  nl: {
+    complaint: 'Omschrijf uw klacht',
+    complaintPlaceholder: 'Bijvoorbeeld: hevige kiespijn rechtsonder sinds vannacht, of een afgebroken voortand.',
+    messagePlaceholder: 'Waarmee kunnen we u helpen?',
+    spoedNote: 'Bel ons bij acute pijn altijd eerst, dan kunnen we u het snelst helpen. Dit formulier is voor spoed binnen openingstijden.',
+  },
+  en: {
+    complaint: 'Describe your complaint',
+    complaintPlaceholder: 'For example: severe toothache lower right since last night, or a broken front tooth.',
+    messagePlaceholder: 'How can we help you?',
+    spoedNote: 'For acute pain, always call us first so we can help you fastest. This form is for emergencies within opening hours.',
+  },
+}[lang];
+---
+
+<div class="relative">
+  <!-- Success -->
+  <div id="form-success" class="hidden">
+    <div class="card flex flex-col items-center p-10 text-center">
+      <span class="flex h-16 w-16 items-center justify-center rounded-full bg-sage/20 text-sage-deep">
+        <Icon name="checkCircle" size={34} />
+      </span>
+      <h3 class="mt-5 font-display text-2xl text-ink">{f.successTitle}</h3>
+      <p class="mt-3 max-w-md text-pretty text-ink-soft">{f.successBody}</p>
+    </div>
+  </div>
+
+  <form id="lead-form" class="card p-6 md:p-8" data-form-path={formPath} novalidate>
+    {isSpoed && (
+      <div class="mb-6 flex items-start gap-3 rounded-2xl border border-[#a4533f]/30 bg-[#a4533f]/8 p-4 text-[0.9rem] text-ink-soft">
+        <Icon name="alert" size={20} class="mt-0.5 shrink-0 text-[#a4533f]" />
+        <p>{labels.spoedNote}</p>
+      </div>
+    )}
+
+    <div class="grid gap-5 sm:grid-cols-2">
+      <label class="block">
+        <span class="mb-1.5 block text-[0.85rem] font-semibold text-ink">{f.firstName} *</span>
+        <input name="firstName" type="text" required autocomplete="given-name" class="form-input" />
+      </label>
+      <label class="block">
+        <span class="mb-1.5 block text-[0.85rem] font-semibold text-ink">{f.lastName} <span class="font-normal text-ink-mute">({f.optional})</span></span>
+        <input name="lastName" type="text" autocomplete="family-name" class="form-input" />
+      </label>
+
+      <label class="block">
+        <span class="mb-1.5 block text-[0.85rem] font-semibold text-ink">{f.phone} *</span>
+        <input name="phone" type="tel" required autocomplete="tel" class="form-input" />
+      </label>
+      <label class="block">
+        <span class="mb-1.5 block text-[0.85rem] font-semibold text-ink">{f.email}{isSpoed ? <span class="font-normal text-ink-mute"> ({f.optional})</span> : ' *'}</span>
+        <input name="email" type="email" required={!isSpoed} autocomplete="email" class="form-input" />
+      </label>
+
+      {!isSpoed && (
+        <>
+          <label class="block">
+            <span class="mb-1.5 block text-[0.85rem] font-semibold text-ink">{f.subject}</span>
+            <div class="relative">
+              <select name="reason" class="form-input appearance-none pr-10">
+                {reasons.map((r) => <option value={r.value}>{r.label}</option>)}
+              </select>
+              <Icon name="chevronDown" size={18} class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-ink-mute" />
+            </div>
+          </label>
+          <label class="block">
+            <span class="mb-1.5 block text-[0.85rem] font-semibold text-ink">{f.newPatient}</span>
+            <div class="relative">
+              <select name="newPatient" class="form-input appearance-none pr-10">
+                <option value={f.yes}>{f.yes}</option>
+                <option value={f.no}>{f.no}</option>
+              </select>
+              <Icon name="chevronDown" size={18} class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-ink-mute" />
+            </div>
+          </label>
+        </>
+      )}
+    </div>
+
+    <label class="mt-5 block">
+      <span class="mb-1.5 block text-[0.85rem] font-semibold text-ink">{isSpoed ? labels.complaint + ' *' : f.message + ' *'}</span>
+      <textarea name="message" rows={isSpoed ? 4 : 5} required class="form-input resize-y" placeholder={isSpoed ? labels.complaintPlaceholder : labels.messagePlaceholder}></textarea>
+    </label>
+
+    {!isSpoed && (
+      <fieldset class="mt-5">
+        <legend class="mb-2 text-[0.85rem] font-semibold text-ink">{f.preferredContact}</legend>
+        <div class="flex flex-wrap gap-2">
+          {contactPrefs.map((pref, i) => (
+            <label class="cursor-pointer">
+              <input type="radio" name="preferredContact" value={pref} class="peer sr-only" checked={i === 0} />
+              <span class="inline-flex rounded-full bg-cream px-4 py-2 text-[0.88rem] font-medium text-ink-soft surface-ring transition-colors peer-checked:bg-ink peer-checked:text-cream">{pref}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+    )}
+
+    <!-- No Turnstile widget on this site: dev bypass token. -->
+    <input type="hidden" name="cf-turnstile-response" value="dev" />
+    <!-- Honeypot -->
+    <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+    <p id="form-error" class="mt-5 hidden rounded-xl bg-[#a4533f]/10 px-4 py-3 text-[0.9rem] text-[#8f4030]"></p>
+
+    <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <button type="submit" class="btn btn-primary btn-lg px-7 py-4">
+        <span class="btn-label">{isSpoed ? (lang === 'nl' ? 'Spoedaanvraag versturen' : 'Send emergency request') : f.send}</span>
+        <Icon name="arrow" size={18} />
+      </button>
+      <p class="text-[0.8rem] leading-snug text-ink-mute sm:max-w-[18rem] sm:text-right">{f.consent}</p>
+    </div>
+  </form>
+</div>
+
+<style>
+  .form-input {
+    width: 100%;
+    border-radius: 0.9rem;
+    background: #fffdf8;
+    padding: 0.8rem 1rem;
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px rgba(46, 46, 46, 0.14);
+    transition: box-shadow 0.25s ease;
+    font-size: 0.95rem;
+  }
+  .form-input::placeholder {
+    color: var(--color-ink-mute);
+  }
+  .form-input:focus {
+    outline: none;
+    box-shadow:
+      inset 0 0 0 1.5px var(--color-sage-deep),
+      0 0 0 4px rgba(126, 152, 143, 0.16);
+  }
+  .form-input:user-invalid {
+    box-shadow: inset 0 0 0 1.5px #c47d6f;
+  }
+</style>
+
+<script>
+  const form = document.getElementById('lead-form') as HTMLFormElement | null;
+  const success = document.getElementById('form-success');
+  const errorBox = document.getElementById('form-error');
+
+  if (form) {
+    const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const label = form.querySelector<HTMLElement>('.btn-label');
+    const original = label?.textContent ?? '';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox?.classList.add('hidden');
+
+      // Honeypot
+      if ((form.elements.namedItem('company') as HTMLInputElement)?.value) return;
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const path = form.dataset.formPath ?? '/api/forms/contact';
+      submitBtn?.setAttribute('disabled', 'true');
+      if (label) label.textContent = original.includes('Send') || original.includes('emergency') ? 'Sending…' : 'Versturen…';
+
+      try {
+        const res = await fetch(path, { method: 'POST', body: new FormData(form) });
+        const data = (await res.json().catch(() => ({}))) as { ok?: boolean; message?: string };
+        if (res.ok && data.ok) {
+          form.classList.add('hidden');
+          success?.classList.remove('hidden');
+          success?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          throw new Error(data.message || 'error');
+        }
+      } catch (err) {
+        if (errorBox) {
+          errorBox.textContent =
+            (err as Error).message && (err as Error).message !== 'error'
+              ? (err as Error).message
+              : document.documentElement.lang === 'en'
+                ? 'Your request could not be sent. Please try again or call us directly.'
+                : 'Uw aanvraag kon niet worden verstuurd. Probeer het opnieuw of bel ons direct.';
+          errorBox.classList.remove('hidden');
+        }
+        submitBtn?.removeAttribute('disabled');
+        if (label) label.textContent = original;
+      }
+    });
+  }
+</script>

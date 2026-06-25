@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import { treatmentPath, t, type Lang } from '../lib/i18n';
+import { treatmentIcon } from '../data/treatments';
+import type { Treatment } from '../data/types';
+
+interface Props {
+  treatment: Treatment;
+  lang: Lang;
+}
+const { treatment, lang } = Astro.props;
+const tr = t(lang);
+const href = treatmentPath(treatment.slug[lang], lang);
+const icon = treatmentIcon[treatment.key] ?? 'tooth';
+const imageBase = treatment.image.replace(/\.webp$/, '');
+---
+
+<a href={href} class="card card-hover group/card flex flex-col overflow-hidden">
+  <div class="relative aspect-[16/11] overflow-hidden">
+    <img
+      src={`${imageBase}-672.webp`}
+      srcset={`${imageBase}-420.webp 420w, ${imageBase}-672.webp 672w, ${treatment.image} 860w`}
+      sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+      alt={treatment.imageAlt[lang]}
+      loading="lazy"
+      decoding="async"
+      width="672"
+      height="462"
+      class={`h-full w-full ${treatment.imageKind === 'illustration' ? 'bg-stone object-cover' : 'object-cover'}`}
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/35 via-transparent to-transparent opacity-70"></div>
+    <span class="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-xl bg-cream/90 text-sage-ink shadow-sm backdrop-blur-sm">
+      <Icon name={icon as any} size={20} />
+    </span>
+  </div>
+  <div class="flex flex-1 flex-col p-6">
+    <h3 class="font-display text-xl text-ink">{treatment.name[lang]}</h3>
+    <p class="mt-2 flex-1 text-pretty text-[0.92rem] leading-relaxed text-ink-soft">{treatment.tagline[lang]}</p>
+    <span class="mt-4 inline-flex items-center gap-1.5 text-[0.88rem] font-semibold text-sage-ink transition-colors group-hover/card:text-gold-deep">
+      {tr.cta.readMore}
+      <Icon name="arrow" size={15} class="transition-transform duration-300 group-hover/card:translate-x-1" />
+    </span>
+  </div>
+</a>

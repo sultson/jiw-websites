@@ -1,0 +1,17 @@
+---
+import Layout from '../../components/Layout.astro';
+import HomeView from '../../components/HomeView.astro';
+import { dentistJsonLd } from '../../lib/seo';
+import { route } from '../../lib/i18n';
+---
+
+<Layout
+  lang="en"
+  title="Dentist in Hoofddorp | Omnia Dental"
+  description="Omnia Dental is your dentist in Hoofddorp. All dental care under one roof: check-ups, hygiene, implants, crowns, root canal treatment and CEREC."
+  pathNl={route('home', 'nl')}
+  pathEn={route('home', 'en')}
+  jsonLd={[dentistJsonLd('en')]}
+>
+  <HomeView lang="en" />
+</Layout>

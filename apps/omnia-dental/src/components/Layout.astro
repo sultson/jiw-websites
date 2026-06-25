@@ -1,0 +1,187 @@
+---
+import '../styles/global.css';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import FloatingActions from './FloatingActions.astro';
+import ThemeSwitcher from './ThemeSwitcher.astro';
+import AppointmentDialog from './AppointmentDialog.astro';
+import { site } from '../data/site';
+import { t, type Lang } from '../lib/i18n';
+import { absoluteUrl } from '../lib/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  /** Equivalent page paths per language, for hreflang + the language toggle. */
+  pathNl: string;
+  pathEn: string;
+  image?: string;
+  noindex?: boolean;
+  /** Extra JSON-LD blocks for this page. */
+  jsonLd?: unknown[];
+}
+const {
+  title,
+  description,
+  lang,
+  pathNl,
+  pathEn,
+  image = '/images/og-default.jpg',
+  noindex = false,
+  jsonLd = [],
+} = Astro.props;
+
+const tr = t(lang);
+const canonical = absoluteUrl(Astro.url.pathname.replace(/\/$/, '') || '/');
+const altPath = lang === 'nl' ? pathEn : pathNl;
+const ogImage = absoluteUrl(image);
+const fullTitle = title.includes('Omnia Dental') ? title : `${title} | Omnia Dental`;
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-pt-28">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Apply a saved style direction before paint (no flash). Concept tool. -->
+    <script is:inline>
+      try {
+        var th = localStorage.getItem('omnia-theme');
+        if (th && th !== 'warm') document.documentElement.dataset.theme = th;
+      } catch (e) {}
+    </script>
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Language alternates -->
+    <link rel="alternate" hreflang="nl" href={absoluteUrl(pathNl)} />
+    <link rel="alternate" hreflang="en" href={absoluteUrl(pathEn)} />
+    <link rel="alternate" hreflang="x-default" href={absoluteUrl(pathNl)} />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Omnia Dental" />
+    <meta property="og:locale" content={lang === 'nl' ? 'nl_NL' : 'en_US'} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Brand + theme -->
+    <meta name="theme-color" content="#fcf8ee" />
+    <meta name="author" content={site.owner.name} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/omnia-logo-mark-180.png" />
+
+    <!-- Practice schema (every page) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Dentist',
+        '@id': `${site.url}/#practice`,
+      })}
+    />
+    {jsonLd.map((block) => <script type="application/ld+json" set:html={JSON.stringify(block)} />)}
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-2.5 focus:text-cream">
+      {tr.skipToContent}
+    </a>
+
+    <Header lang={lang} altPath={altPath} />
+
+    <main id="main" class="site-main">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+
+    <FloatingActions lang={lang} />
+
+    <AppointmentDialog lang={lang} />
+
+    <ThemeSwitcher lang={lang} />
+
+    <script>
+      // --- Header scroll state: solidify the bar after a little scroll ---
+      const header = document.getElementById('site-header');
+      const headerAppointmentCta = document.querySelector('.header-appointment-cta');
+      const hero = document.querySelector('.home-hero');
+      let headerAppointmentThreshold = 0;
+
+      const measureHeaderAppointmentThreshold = () => {
+        if (!header || !hero) return;
+        headerAppointmentThreshold = hero.offsetTop + hero.offsetHeight - header.offsetHeight - 24;
+      };
+
+      const onScroll = () => {
+        if (!header) return;
+        const y = window.scrollY;
+        if (y > 16) {
+          header.classList.add('bg-cream/85', 'shadow-[0_8px_30px_-18px_rgba(46,46,46,0.35)]', 'backdrop-blur-xl');
+        } else {
+          header.classList.remove('bg-cream/85', 'shadow-[0_8px_30px_-18px_rgba(46,46,46,0.35)]', 'backdrop-blur-xl');
+        }
+
+        const promoteHeaderAppointment = hero
+          ? y >= headerAppointmentThreshold
+          : true;
+        headerAppointmentCta?.classList.toggle('btn-primary', promoteHeaderAppointment);
+        headerAppointmentCta?.classList.toggle('btn-ghost', !promoteHeaderAppointment);
+      };
+      measureHeaderAppointmentThreshold();
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', () => {
+        measureHeaderAppointmentThreshold();
+        onScroll();
+      }, { passive: true });
+
+      // --- Mobile menu ---
+      const menu = document.getElementById('mobile-menu');
+      const panel = document.getElementById('menu-panel');
+      const backdrop = document.getElementById('menu-backdrop');
+      const openBtn = document.getElementById('menu-open');
+      const closeBtn = document.getElementById('menu-close');
+
+      const openMenu = () => {
+        if (!menu || !panel || !backdrop) return;
+        menu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => {
+          panel.classList.remove('translate-x-full');
+          backdrop.classList.remove('opacity-0');
+        });
+        openBtn?.setAttribute('aria-expanded', 'true');
+      };
+      const closeMenu = () => {
+        if (!menu || !panel || !backdrop) return;
+        panel.classList.add('translate-x-full');
+        backdrop.classList.add('opacity-0');
+        document.body.style.overflow = '';
+        openBtn?.setAttribute('aria-expanded', 'false');
+        setTimeout(() => menu.classList.add('hidden'), 400);
+      };
+
+      openBtn?.addEventListener('click', openMenu);
+      closeBtn?.addEventListener('click', closeMenu);
+      backdrop?.addEventListener('click', closeMenu);
+      menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu && !menu.classList.contains('hidden')) closeMenu();
+      });
+
+      // Scroll-reveal was deliberately removed: gating content visibility on
+      // JS/IntersectionObserver made cards pop in late while scrolling on
+      // Android. Content now renders visible from the server HTML.
+    </script>
+  </body>
+</html>

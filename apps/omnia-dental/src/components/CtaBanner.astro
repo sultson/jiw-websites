@@ -1,0 +1,50 @@
+---
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import { site } from '../data/site';
+import { t, route, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+  heading?: string;
+  body?: string;
+}
+const { lang, heading, body } = Astro.props;
+const tr = t(lang);
+
+const defaults = {
+  nl: {
+    heading: 'Klaar voor een gezonde, zelfverzekerde lach?',
+    body: 'Vraag vandaag nog een afspraak aan. We verwelkomen nieuwe patiënten en denken graag met u mee.',
+  },
+  en: {
+    heading: 'Ready for a healthy, confident smile?',
+    body: 'Request an appointment today. We welcome new patients and are happy to think along with you.',
+  },
+};
+const h = heading ?? defaults[lang].heading;
+const b = body ?? defaults[lang].body;
+---
+
+<section class="container-x">
+  <div class="relative overflow-hidden rounded-section bg-ink px-6 py-14 text-center text-cream md:px-16 md:py-20">
+    <!-- soft sage glow -->
+    <div class="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-sage/20 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-28 -right-20 h-80 w-80 rounded-full bg-gold/15 blur-3xl"></div>
+    <div class="hairline-gold absolute inset-x-0 top-0 h-px opacity-70"></div>
+
+    <div class="relative mx-auto max-w-2xl reveal">
+      <p class="eyebrow !text-gold">{site.motto[lang]}</p>
+      <h2 class="mt-4 font-display text-3xl text-cream md:text-[2.6rem]">{h}</h2>
+      <p class="mx-auto mt-4 max-w-xl text-pretty text-cream/75">{b}</p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <Button href={route('contact', lang)} variant="gold" size="lg" icon="calendar" appointmentTrigger>{tr.cta.intake}</Button>
+        <Button href={site.phone.whatsapp} variant="white" size="lg" icon="whatsapp" external>WhatsApp</Button>
+        <a href={site.phone.href} class="inline-flex items-center gap-2 px-4 py-2 font-semibold text-cream/85 hover:text-cream">
+          <Icon name="phone" size={18} class="text-gold" />
+          {site.phone.display}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

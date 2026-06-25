@@ -1,0 +1,28 @@
+---
+import Layout from '../../components/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import TreatmentsOverview from '../../components/TreatmentsOverview.astro';
+import { route } from '../../lib/i18n';
+import { breadcrumbJsonLd } from '../../lib/seo';
+---
+
+<Layout
+  lang="nl"
+  title="Behandelingen | Tandarts Hoofddorp | Omnia Dental"
+  description="Een compleet overzicht van onze tandheelkundige behandelingen in Hoofddorp: van controle en mondhygiëne tot implantaten, CEREC, wortelkanaalbehandeling en facings."
+  pathNl={route('treatments', 'nl')}
+  pathEn={route('treatments', 'en')}
+  jsonLd={[breadcrumbJsonLd([
+    { name: 'Home', path: route('home', 'nl') },
+    { name: 'Behandelingen', path: route('treatments', 'nl') },
+  ])]}
+>
+  <PageHeader
+    lang="nl"
+    eyebrow="Behandelingen"
+    title="Alle tandheelkunde onder één dak"
+    subtitle="Omdat we vrijwel alle behandelingen zelf uitvoeren, blijft uw zorg op één plek. Bekijk hieronder wat we voor u kunnen doen, geordend per soort behandeling."
+    current="Behandelingen"
+  />
+  <TreatmentsOverview lang="nl" />
+</Layout>

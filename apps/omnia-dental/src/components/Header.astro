@@ -1,0 +1,192 @@
+---
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import { site } from '../data/site';
+import { t, route, treatmentPath, type Lang } from '../lib/i18n';
+import { treatmentsByCategory, categoryMeta, treatmentIcon } from '../data/treatments';
+
+interface Props {
+  lang: Lang;
+  altPath: string; // equivalent page in the other language
+}
+const { lang, altPath } = Astro.props;
+const tr = t(lang);
+const here = Astro.url.pathname.replace(/\/$/, '') || '/';
+const otherLang: Lang = lang === 'nl' ? 'en' : 'nl';
+
+const groups = treatmentsByCategory();
+
+const navLinks = [
+  { label: tr.nav.treatments, href: route('treatments', lang), hasMenu: true },
+  { label: tr.nav.tarieven, href: route('tarieven', lang) },
+  { label: tr.nav.about, href: route('about', lang) },
+  { label: tr.nav.reviews, href: route('reviews', lang) },
+  { label: tr.nav.contact, href: route('contact', lang) },
+];
+
+const isActive = (href: string) => here === href || (href !== route('home', lang) && here.startsWith(href));
+---
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-[background,box-shadow,backdrop-filter] duration-500">
+  <!-- Slim utility bar -->
+  <div class="hidden lg:block border-b border-ink/8 bg-cream/70 text-ink-soft">
+    <div class="container-x flex h-10 items-center justify-between text-[0.8rem]">
+      <div class="flex items-center gap-6">
+        <a href={site.maps.directions} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 link-underline">
+          <Icon name="pin" size={14} class="text-sage-deep" />
+          {site.address.line1}, {site.address.city}
+        </a>
+      </div>
+      <div class="flex items-center gap-5">
+        <a href={altPath} hreflang={otherLang} class="flex items-center gap-1.5 link-underline" aria-label={`Switch to ${tr.common.otherLang}`}>
+          <Icon name="globe" size={14} class="text-sage-deep" />
+          {tr.common.otherLang}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main bar -->
+  <div class="border-b border-transparent">
+    <nav class="container-x flex h-[4.5rem] items-center justify-between gap-4" aria-label="Hoofdmenu">
+      <a href={route('home', lang)} class="flex items-center gap-3 shrink-0" aria-label="Omnia Dental home">
+        <img src="/images/omnia-logo-mark-96.webp" alt="" width="44" height="44" class="h-11 w-11 object-contain" />
+        <span class="flex flex-col leading-none">
+          <span class="font-display text-[1.45rem] tracking-tight text-ink">Omnia</span>
+          <span class="text-[0.62rem] font-bold uppercase tracking-[0.32em] text-sage-deep">Dental</span>
+        </span>
+      </a>
+
+      <!-- Desktop nav -->
+      <ul class="hidden xl:flex items-center gap-1 text-[0.95rem] font-semibold text-ink-soft">
+        {navLinks.map((link) => (
+          link.hasMenu ? (
+            <li class="group/menu relative">
+              <a
+                href={link.href}
+                class={`flex items-center gap-1 rounded-full px-3.5 py-2 transition-colors hover:text-ink hover:bg-ink/5 ${isActive(link.href) ? 'text-ink' : ''}`}
+                aria-haspopup="true"
+              >
+                {link.label}
+                <Icon name="chevronDown" size={15} class="transition-transform duration-300 group-hover/menu:rotate-180" />
+              </a>
+              <!-- Mega menu -->
+              <div class="invisible absolute left-1/2 top-full z-50 w-[44rem] -translate-x-1/2 pt-3 opacity-0 transition-all duration-300 group-hover/menu:visible group-hover/menu:opacity-100 group-focus-within/menu:visible group-focus-within/menu:opacity-100">
+                <div class="card p-5">
+                  <div class="grid grid-cols-2 gap-x-6 gap-y-1">
+                    {groups.map((group) => (
+                      <div class="col-span-2 mt-2 first:mt-0">
+                        <p class="eyebrow mb-1.5 flex items-center gap-1.5 text-[0.66rem]">
+                          <Icon name={categoryMeta[group.category].icon as any} size={13} class="text-gold-deep" />
+                          {categoryMeta[group.category].label[lang]}
+                        </p>
+                        <div class="grid grid-cols-2 gap-x-6">
+                          {group.items.map((tItem) => (
+                            <a href={treatmentPath(tItem.slug[lang], lang)} class="group/item flex items-center gap-2.5 rounded-xl px-2.5 py-2 transition-colors hover:bg-cream">
+                              <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-sage/15 text-sage-ink transition-colors group-hover/item:bg-gold/25 group-hover/item:text-gold-deep">
+                                <Icon name={(treatmentIcon[tItem.key] ?? categoryMeta[group.category].icon) as any} size={16} />
+                              </span>
+                              <span class="text-[0.9rem] font-semibold text-ink">{tItem.name[lang]}</span>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <a href={route('treatments', lang)} class="mt-3 flex items-center justify-center gap-1.5 border-t border-ink/8 pt-3 text-[0.9rem] font-semibold text-sage-ink link-underline">
+                    {tr.cta.allTreatments}
+                    <Icon name="arrow" size={15} />
+                  </a>
+                </div>
+              </div>
+            </li>
+          ) : (
+            <li>
+              <a href={link.href} class={`block rounded-full px-3.5 py-2 transition-colors hover:text-ink hover:bg-ink/5 ${isActive(link.href) ? 'text-ink' : ''}`}>
+                {link.label}
+              </a>
+            </li>
+          )
+        ))}
+      </ul>
+
+      <div class="flex items-center gap-2.5">
+        <!-- Spoed: always conspicuous on desktop -->
+        <a href={route('spoed', lang)} class="btn btn-ghost hidden xl:inline-flex !border-0 !bg-[#a4533f]/10 !text-[#a4533f] !shadow-[inset_0_0_0_1px_rgba(164,83,63,0.28)]">
+          <Icon name="alert" size={17} />
+          <span>{tr.nav.spoed}</span>
+        </a>
+        <Button
+          href={route('contact', lang)}
+          variant="ghost"
+          icon="calendar"
+          class="header-appointment-cta hidden transition-all duration-300 sm:inline-flex"
+          appointmentTrigger
+        >
+          {tr.cta.intakeShort}
+        </Button>
+        <!-- Language toggle: visible on mobile without opening the menu -->
+        <a href={altPath} hreflang={otherLang} class="btn btn-ghost xl:hidden !px-3.5" aria-label={`Switch to ${tr.common.otherLang}`}>
+          <Icon name="globe" size={17} class="text-sage-deep" />
+          <span class="text-[0.82rem] font-bold uppercase tracking-wide">{otherLang}</span>
+        </a>
+        <!-- Mobile menu trigger -->
+        <button id="menu-open" class="btn btn-ghost xl:hidden !px-3.5" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+          <Icon name="menu" size={20} />
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile menu overlay: rendered as a header sibling so backdrop-blur on the
+     header never clips it. -->
+<div id="mobile-menu" class="fixed inset-0 z-[60] hidden xl:hidden" role="dialog" aria-modal="true" aria-label="Menu">
+  <div id="menu-backdrop" class="absolute inset-0 bg-ink/40 opacity-0 transition-opacity duration-300"></div>
+  <div id="menu-panel" class="absolute right-0 top-0 flex h-full w-[min(22rem,88vw)] translate-x-full flex-col bg-cream shadow-2xl transition-transform duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]">
+    <div class="flex items-center justify-between border-b border-ink/8 px-5 py-4">
+      <div class="flex items-center gap-2.5">
+        <img src="/images/omnia-logo-mark-96.webp" alt="" width="34" height="34" class="h-8 w-8 object-contain" />
+        <span class="font-display text-xl">Omnia <span class="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-sage-deep align-middle">Dental</span></span>
+      </div>
+      <button id="menu-close" class="btn btn-ghost !px-3 !py-3" aria-label="Sluiten">
+        <Icon name="x" size={20} />
+      </button>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto px-5 py-4" aria-label="Mobiel menu">
+      <a href={route('treatments', lang)} class="block py-2.5 text-lg font-semibold">{tr.nav.treatments}</a>
+      <div class="mb-2 ml-1 grid grid-cols-1 gap-0.5 border-l border-ink/10 pl-3">
+        {groups.map((group) => (
+          <div class="py-1">
+            <p class="eyebrow mb-1 text-[0.62rem]">{categoryMeta[group.category].label[lang]}</p>
+            {group.items.map((tItem) => (
+              <a href={treatmentPath(tItem.slug[lang], lang)} class="flex items-center gap-2 py-1.5 text-[0.95rem] text-ink-soft">
+                <Icon name={(treatmentIcon[tItem.key] ?? 'tooth') as any} size={15} class="text-sage-deep" />
+                {tItem.name[lang]}
+              </a>
+            ))}
+          </div>
+        ))}
+      </div>
+      {navLinks.filter((l) => !l.hasMenu).map((link) => (
+        <a href={link.href} class="block border-t border-ink/8 py-3 text-lg font-semibold">{link.label}</a>
+      ))}
+      <a href={route('faq', lang)} class="block border-t border-ink/8 py-3 text-lg font-semibold">{tr.nav.faq}</a>
+      <a href={route('spoed', lang)} class="mt-1 flex items-center gap-2 border-t border-ink/8 py-3 text-lg font-semibold text-[#a4533f]">
+        <Icon name="alert" size={18} /> {tr.nav.spoed}
+      </a>
+    </nav>
+
+    <div class="border-t border-ink/8 px-5 py-4 space-y-2.5">
+      <Button href={route('contact', lang)} variant="primary" icon="calendar" class="w-full" appointmentTrigger>{tr.cta.intake}</Button>
+      <div class="grid grid-cols-2 gap-2.5">
+        <Button href={site.phone.href} variant="ghost" icon="phone">{tr.cta.call}</Button>
+        <Button href={site.phone.whatsapp} variant="ghost" icon="whatsapp" external>WhatsApp</Button>
+      </div>
+      <a href={altPath} hreflang={otherLang} class="flex items-center justify-center gap-1.5 pt-1 text-sm font-semibold text-sage-ink">
+        <Icon name="globe" size={15} /> {tr.common.otherLang}
+      </a>
+    </div>
+  </div>
+</div>

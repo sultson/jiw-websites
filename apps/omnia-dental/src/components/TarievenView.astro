@@ -1,0 +1,164 @@
+---
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import CtaBanner from './CtaBanner.astro';
+import { site } from '../data/site';
+import { route, type Lang } from '../lib/i18n';
+import { tariefCategories } from '../data/tarieven';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const euro = (n: number) =>
+  new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' }).format(n);
+
+const copy = {
+  nl: {
+    searchPlaceholder: 'Zoek op behandeling of code, bijvoorbeeld controle of C11',
+    noResults: 'Geen tarieven gevonden voor uw zoekopdracht.',
+    codeCol: 'Code',
+    treatmentCol: 'Behandeling',
+    priceCol: 'Tarief 2026',
+    officialTitle: 'Tarieven vastgesteld door de overheid',
+    officialBody:
+      'Tarieven in de mondzorg zijn landelijk vastgesteld door de Nederlandse Zorgautoriteit (NZa). Iedere tandartspraktijk hanteert dezelfde maximumtarieven per code. Hieronder vindt u de meest voorkomende codes. Voor uitgebreidere behandelingen ontvangt u vooraf een persoonlijke begroting.',
+    officialLink: 'Bekijk de volledige NZa-tarievenlijst',
+    insuranceTitle: 'Vergoeding en verzekering',
+    insuranceBody:
+      'Mondzorg voor kinderen tot 18 jaar valt grotendeels onder de basisverzekering. Voor volwassenen hangt de vergoeding af van uw aanvullende tandartsverzekering. Controleer uw polis of vraag het ons gerust.',
+    estimateNote: 'Bedragen zijn maximumtarieven per 2026 en kunnen per situatie verschillen.',
+  },
+  en: {
+    searchPlaceholder: 'Search by treatment or code, for example check-up or C11',
+    noResults: 'No tariffs found for your search.',
+    codeCol: 'Code',
+    treatmentCol: 'Treatment',
+    priceCol: 'Rate 2026',
+    officialTitle: 'Rates set by the government',
+    officialBody:
+      'Dental rates in the Netherlands are set nationally by the Dutch Healthcare Authority (NZa). Every dental practice uses the same maximum tariffs per code. Below you will find the most common codes. For larger treatments you receive a personal estimate in advance.',
+    officialLink: 'View the full NZa tariff list',
+    insuranceTitle: 'Reimbursement and insurance',
+    insuranceBody:
+      'Dental care for children up to 18 is largely covered by the basic insurance. For adults, reimbursement depends on your supplementary dental insurance. Check your policy or feel free to ask us.',
+    estimateNote: 'Amounts are 2026 maximum tariffs and may vary per situation.',
+  },
+}[lang];
+---
+
+<section class="container-x py-12">
+  <div class="grid gap-6 lg:grid-cols-2">
+    <div class="card flex items-start gap-4 p-6 reveal">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sage/15 text-sage-ink"><Icon name="shield" size={22} /></span>
+      <div>
+        <h2 class="font-display text-xl text-ink">{copy.officialTitle}</h2>
+        <p class="mt-2 text-pretty text-[0.92rem] leading-relaxed text-ink-soft">{copy.officialBody}</p>
+        <a href={site.nzaTariffUrl} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-1.5 text-[0.9rem] font-semibold text-sage-ink link-underline">
+          {copy.officialLink} <Icon name="arrowUpRight" size={15} />
+        </a>
+      </div>
+    </div>
+    <div class="card flex items-start gap-4 p-6 reveal" data-delay="80ms">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold/20 text-gold-deep"><Icon name="euro" size={22} /></span>
+      <div>
+        <h2 class="font-display text-xl text-ink">{copy.insuranceTitle}</h2>
+        <p class="mt-2 text-pretty text-[0.92rem] leading-relaxed text-ink-soft">{copy.insuranceBody}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="sticky top-[4.5rem] z-30 -mx-2 mt-10 rounded-2xl bg-cream/95 px-2 py-3 backdrop-blur-sm lg:top-[6.25rem] reveal">
+    <div class="relative">
+      <Icon name="search" size={20} class="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 text-ink-mute" />
+      <input
+        id="tarief-search"
+        type="search"
+        placeholder={copy.searchPlaceholder}
+        aria-label={copy.searchPlaceholder}
+        autocomplete="off"
+        class="w-full rounded-full border-0 bg-white py-4 pl-14 pr-5 text-ink shadow-card surface-ring outline-none placeholder:text-ink-mute focus:shadow-lift"
+      />
+    </div>
+  </div>
+
+  <!-- No results -->
+  <p id="tarief-empty" class="mt-10 hidden rounded-2xl bg-cream-deep p-6 text-center text-ink-soft">{copy.noResults}</p>
+
+  <!-- Tables -->
+  <div id="tarief-list" class="mt-10 space-y-12">
+    {tariefCategories.map((cat) => (
+      <div class="tarief-cat" data-empty="false">
+        <div class="mb-4 flex items-baseline justify-between gap-4">
+          <h2 class="font-display text-2xl text-ink">{cat.title[lang]}</h2>
+        </div>
+        {cat.intro && <p class="mb-4 max-w-2xl text-pretty text-[0.92rem] text-ink-soft">{cat.intro[lang]}</p>}
+        <div class="overflow-hidden rounded-2xl bg-white surface-ring shadow-card">
+          <table class="w-full text-left text-[0.93rem]">
+            <thead>
+              <tr class="border-b border-ink/8 text-[0.72rem] uppercase tracking-wider text-ink-mute">
+                <th class="w-20 px-5 py-3 font-semibold">{copy.codeCol}</th>
+                <th class="px-2 py-3 font-semibold">{copy.treatmentCol}</th>
+                <th class="w-36 px-5 py-3 text-right font-semibold">{copy.priceCol}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cat.items.map((item) => (
+                <tr class="tarief-row border-b border-ink/6 last:border-0 transition-colors hover:bg-cream/60" data-search={`${item.code} ${item.label.nl} ${item.label.en}`.toLowerCase()}>
+                  <td class="px-5 py-3.5 align-top font-mono text-[0.82rem] font-semibold text-sage-ink">{item.code}</td>
+                  <td class="px-2 py-3.5 text-ink-soft">
+                    {item.label[lang]}
+                    {item.unit && <span class="ml-1 text-[0.8rem] text-ink-mute">({item.unit[lang]})</span>}
+                  </td>
+                  <td class="whitespace-nowrap px-5 py-3.5 text-right align-top font-semibold tabular-nums text-ink">{euro(item.price)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <p class="mt-8 flex items-center gap-2 text-[0.85rem] text-ink-mute">
+    <Icon name="alert" size={15} /> {copy.estimateNote}
+  </p>
+
+  <div class="mt-10 flex flex-wrap gap-3">
+    <Button href={route('contact', lang)} variant="primary" icon="calendar" appointmentTrigger>{lang === 'nl' ? 'Afspraak aanvragen' : 'Request an appointment'}</Button>
+    <Button href={route('faq', lang)} variant="ghost" iconRight="arrow">{lang === 'nl' ? 'Veelgestelde vragen' : 'Frequently asked questions'}</Button>
+  </div>
+</section>
+
+<div class="mt-20"><CtaBanner lang={lang} /></div>
+
+<script>
+  const input = document.getElementById('tarief-search') as HTMLInputElement | null;
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('.tarief-row'));
+  const cats = Array.from(document.querySelectorAll<HTMLElement>('.tarief-cat'));
+  const empty = document.getElementById('tarief-empty');
+
+  function run() {
+    if (!input) return;
+    const q = input.value.trim().toLowerCase();
+    let anyVisible = false;
+
+    rows.forEach((row) => {
+      const match = q === '' || (row.dataset.search ?? '').includes(q);
+      row.style.display = match ? '' : 'none';
+      if (match) anyVisible = true;
+    });
+
+    cats.forEach((cat) => {
+      const visibleRows = cat.querySelectorAll<HTMLElement>('.tarief-row');
+      const hasVisible = Array.from(visibleRows).some((r) => r.style.display !== 'none');
+      cat.style.display = hasVisible ? '' : 'none';
+    });
+
+    if (empty) empty.classList.toggle('hidden', anyVisible);
+  }
+
+  input?.addEventListener('input', run);
+</script>

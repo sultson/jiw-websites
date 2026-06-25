@@ -1,0 +1,124 @@
+---
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import VisitSection from './VisitSection.astro';
+import CtaBanner from './CtaBanner.astro';
+import { site } from '../data/site';
+import { t, route, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const tr = t(lang);
+
+const bio = {
+  nl: [
+    'Omnia Dental is de praktijk van drs. Naresh Gangaram Panday, tandarts in Hoofddorp. De naam Omnia betekent alles, en dat is precies de gedachte achter de praktijk: zo veel mogelijk tandheelkundige zorg op één plek, door een tandarts die u kent.',
+    'Naresh werkt breed. Van een halfjaarlijkse controle en professionele gebitsreiniging tot esthetische behandelingen, wortelkanaalbehandelingen, kronen, het plaatsen van implantaten en het trekken van verstandskiezen. Doordat hij dit zelf in huis doet, hoeft u zelden naar een andere praktijk en blijft uw behandeling samenhangend.',
+    'Net zo belangrijk is hoe die zorg voelt. We nemen de tijd, leggen rustig uit wat er gebeurt en houden rekening met spanning of gevoelige tanden. Veel mensen die jarenlang niet bij de tandarts kwamen, vinden hier weer een plek waar ze zich op hun gemak voelen.',
+  ],
+  en: [
+    'Omnia Dental is the practice of Drs. Naresh Gangaram Panday, dentist in Hoofddorp. The name Omnia means everything, which is exactly the idea behind the practice: as much dental care as possible in one place, by a dentist who knows you.',
+    'Naresh has a broad scope. From a six-monthly check-up and professional cleaning to cosmetic treatments, root canal treatment, crowns, placing implants and removing wisdom teeth. Because he does this in-house, you rarely need another practice and your treatment stays coherent.',
+    'Just as important is how that care feels. We take our time, calmly explain what is happening and account for tension or sensitive teeth. Many people who avoided the dentist for years find a place here where they feel at ease again.',
+  ],
+}[lang];
+
+const values =
+  lang === 'nl'
+    ? [
+        { icon: 'tooth', t: 'Alles onder één dak', d: 'Brede expertise zodat doorverwijzen bijna nooit nodig is.' },
+        { icon: 'heart', t: 'Rust en aandacht', d: 'We nemen de tijd en u houdt altijd de regie over uw behandeling.' },
+        { icon: 'scan', t: 'Moderne tandheelkunde', d: 'Digitale scans en CEREC voor nauwkeurig werk, vaak in één afspraak.' },
+        { icon: 'shield', t: 'Zorgvuldig en transparant', d: 'Heldere uitleg, een begroting vooraf en zorg volgens de richtlijnen.' },
+      ]
+    : [
+        { icon: 'tooth', t: 'Everything under one roof', d: 'Broad expertise so a referral is almost never needed.' },
+        { icon: 'heart', t: 'Calm and attention', d: 'We take our time and you always stay in control of your treatment.' },
+        { icon: 'scan', t: 'Modern dentistry', d: 'Digital scans and CEREC for precise work, often in a single visit.' },
+        { icon: 'shield', t: 'Careful and transparent', d: 'Clear explanations, an estimate in advance and care that follows the guidelines.' },
+      ];
+
+const firstVisit =
+  lang === 'nl'
+    ? [
+        'Een rustig kennismakingsgesprek over uw wensen en uw medische achtergrond.',
+        'Een grondige controle van uw gebit en tandvlees, zo nodig met een röntgenfoto.',
+        'Een helder behandelplan met uitleg en, bij grotere behandelingen, een begroting.',
+      ]
+    : [
+        'A relaxed introductory talk about your wishes and medical background.',
+        'A thorough check of your teeth and gums, with an X-ray if needed.',
+        'A clear treatment plan with explanation and, for larger treatments, an estimate.',
+      ];
+---
+
+<!-- Intro -->
+<section class="container-x py-14">
+  <div class="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+    <div class="relative reveal">
+      <div class="overflow-hidden rounded-section surface-ring shadow-lift">
+        <img src="/images/owner.webp" alt={site.owner.name} class="aspect-[4/5] w-full object-cover object-top" />
+      </div>
+      <div class="absolute -bottom-5 -right-3 rounded-2xl bg-cream/90 px-5 py-4 shadow-lift backdrop-blur-md surface-ring sm:-right-6">
+        <p class="font-display text-lg text-ink">{site.owner.name}</p>
+        <p class="text-[0.82rem] text-ink-mute">{site.owner.role[lang]}</p>
+        <p class="mt-1 flex items-center gap-1.5 text-[0.78rem] text-sage-ink"><Icon name="shield" size={14} class="text-gold-deep" />BIG {site.owner.bigNumber}</p>
+      </div>
+    </div>
+    <div class="reveal" data-delay="100ms">
+      <p class="eyebrow">{lang === 'nl' ? 'Over de praktijk' : 'About the practice'}</p>
+      <h2 class="mt-3 font-display text-3xl text-ink md:text-[2.5rem]">{lang === 'nl' ? 'Tandheelkunde zoals het hoort' : 'Dentistry the way it should be'}</h2>
+      <div class="mt-5 space-y-4 text-pretty leading-relaxed text-ink-soft">
+        {bio.map((para) => <p>{para}</p>)}
+      </div>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <Button href={route('contact', lang)} variant="primary" icon="calendar" appointmentTrigger>{tr.cta.intake}</Button>
+        <Button href={route('treatments', lang)} variant="ghost" iconRight="arrow">{tr.cta.allTreatments}</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values -->
+<section class="container-x mt-10">
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {values.map((v, i) => (
+      <div class="card card-hover p-7 reveal" data-delay={`${(i % 4) * 70}ms`}>
+        <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-sage/25 to-gold/25 text-sage-ink"><Icon name={v.icon as any} size={24} /></span>
+        <h3 class="mt-5 font-display text-lg text-ink">{v.t}</h3>
+        <p class="mt-2 text-pretty text-[0.9rem] leading-relaxed text-ink-soft">{v.d}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- First visit -->
+<section class="container-x mt-20">
+  <div class="overflow-hidden rounded-section bg-ink p-8 text-cream md:p-12">
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+      <div class="reveal">
+        <p class="eyebrow !text-gold">{lang === 'nl' ? 'Uw eerste bezoek' : 'Your first visit'}</p>
+        <h2 class="mt-3 font-display text-3xl text-cream md:text-[2.3rem]">{lang === 'nl' ? 'Wat u kunt verwachten' : 'What you can expect'}</h2>
+        <p class="mt-4 max-w-md text-pretty text-cream/75">
+          {lang === 'nl'
+            ? 'Een eerste afspraak is vooral kennismaken. We brengen uw gebit in kaart en bespreken rustig wat er nodig is, zonder verrassingen.'
+            : 'A first appointment is mainly about getting to know each other. We map out your teeth and calmly discuss what is needed, without surprises.'}
+        </p>
+        <Button href={route('contact', lang)} variant="gold" class="mt-7" icon="calendar" appointmentTrigger>{tr.cta.intakeShort}</Button>
+      </div>
+      <ol class="space-y-4 reveal" data-delay="100ms">
+        {firstVisit.map((step, i) => (
+          <li class="flex items-start gap-4 rounded-2xl bg-cream/8 p-5">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold/20 font-display text-gold">{i + 1}</span>
+            <span class="text-[0.95rem] leading-relaxed text-cream/85">{step}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="mt-24"><VisitSection lang={lang} /></div>
+<div class="mt-24"><CtaBanner lang={lang} /></div>

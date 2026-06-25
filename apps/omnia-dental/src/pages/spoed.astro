@@ -1,0 +1,28 @@
+---
+import Layout from '../components/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SpoedView from '../components/SpoedView.astro';
+import { route } from '../lib/i18n';
+import { breadcrumbJsonLd } from '../lib/seo';
+---
+
+<Layout
+  lang="nl"
+  title="Spoed bij de tandarts | Hoofddorp | Omnia Dental"
+  description="Acute kiespijn of een afgebroken tand in Hoofddorp? Bekijk wat u kunt doen en geef uw spoedklacht door. Bel ons zo vroeg mogelijk op de dag."
+  pathNl={route('spoed', 'nl')}
+  pathEn={route('spoed', 'en')}
+  jsonLd={[breadcrumbJsonLd([
+    { name: 'Home', path: route('home', 'nl') },
+    { name: 'Spoed', path: route('spoed', 'nl') },
+  ])]}
+>
+  <PageHeader
+    lang="nl"
+    eyebrow="Spoedhulp"
+    title="Spoed bij de tandarts"
+    subtitle="Acute pijn, een afgebroken tand of een zwelling? We helpen u graag snel. Hieronder leest u precies wat u kunt doen."
+    current="Spoed"
+  />
+  <SpoedView lang="nl" />
+</Layout>

@@ -1,0 +1,28 @@
+---
+import Layout from '../components/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import TarievenView from '../components/TarievenView.astro';
+import { route } from '../lib/i18n';
+import { breadcrumbJsonLd } from '../lib/seo';
+---
+
+<Layout
+  lang="nl"
+  title="Tarieven 2026 | Tandarts Hoofddorp | Omnia Dental"
+  description="Bekijk en doorzoek de tandartstarieven 2026. De prijzen zijn vastgesteld door de NZa. Vind eenvoudig de code en het tarief van uw behandeling bij Omnia Dental in Hoofddorp."
+  pathNl={route('tarieven', 'nl')}
+  pathEn={route('tarieven', 'en')}
+  jsonLd={[breadcrumbJsonLd([
+    { name: 'Home', path: route('home', 'nl') },
+    { name: 'Tarieven', path: route('tarieven', 'nl') },
+  ])]}
+>
+  <PageHeader
+    lang="nl"
+    eyebrow="Tarieven 2026"
+    title="Tandartstarieven, helder en doorzoekbaar"
+    subtitle="De tarieven in de mondzorg zijn landelijk vastgesteld door de NZa. Zoek hieronder eenvoudig op behandeling of code en bekijk direct het tarief."
+    current="Tarieven"
+  />
+  <TarievenView lang="nl" />
+</Layout>

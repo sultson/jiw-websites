@@ -1,0 +1,28 @@
+---
+import Icon from './Icon.astro';
+import type { Lang } from '../lib/i18n';
+import type { QA, FaqItem } from '../data/types';
+
+interface Props {
+  items: (QA | FaqItem)[];
+  lang: Lang;
+  class?: string;
+}
+const { items, lang, class: cls = '' } = Astro.props;
+---
+
+<div class={`divide-y divide-ink/8 ${cls}`}>
+  {items.map((item) => (
+    <details class="group/faq py-1">
+      <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 [&::-webkit-details-marker]:hidden">
+        <span class="font-display text-lg text-ink md:text-xl">{item.q[lang]}</span>
+        <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sage/15 text-sage-ink transition-all duration-300 group-open/faq:rotate-180 group-open/faq:bg-gold/25 group-open/faq:text-gold-deep">
+          <Icon name="chevronDown" size={18} />
+        </span>
+      </summary>
+      <div class="overflow-hidden pb-5 pr-12 text-pretty leading-relaxed text-ink-soft">
+        {item.a[lang]}
+      </div>
+    </details>
+  ))}
+</div>

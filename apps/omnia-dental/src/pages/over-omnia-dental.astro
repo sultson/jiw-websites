@@ -1,0 +1,28 @@
+---
+import Layout from '../components/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import AboutView from '../components/AboutView.astro';
+import { route } from '../lib/i18n';
+import { breadcrumbJsonLd } from '../lib/seo';
+---
+
+<Layout
+  lang="nl"
+  title="Over ons | Tandarts Naresh Gangaram Panday | Hoofddorp"
+  description="Maak kennis met Omnia Dental en tandarts Naresh Gangaram Panday in Hoofddorp. Brede expertise, persoonlijke aandacht en alle tandheelkundige zorg onder één dak."
+  pathNl={route('about', 'nl')}
+  pathEn={route('about', 'en')}
+  jsonLd={[breadcrumbJsonLd([
+    { name: 'Home', path: route('home', 'nl') },
+    { name: 'Over ons', path: route('about', 'nl') },
+  ])]}
+>
+  <PageHeader
+    lang="nl"
+    eyebrow="Over Omnia Dental"
+    title="Eén vertrouwd team voor uw hele gebit"
+    subtitle="Een moderne tandartspraktijk in Hoofddorp waar brede expertise en persoonlijke aandacht samenkomen."
+    current="Over ons"
+  />
+  <AboutView lang="nl" />
+</Layout>

@@ -1,0 +1,44 @@
+---
+import Layout from '../../components/Layout.astro';
+import TreatmentView from '../../components/TreatmentView.astro';
+import { treatments, treatmentBySlug } from '../../data/treatments';
+import { treatmentPath, route } from '../../lib/i18n';
+import { breadcrumbJsonLd, faqJsonLd, absoluteUrl } from '../../lib/seo';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return treatments.map((tt) => ({ params: { slug: tt.slug.nl } }));
+}
+
+const { slug } = Astro.params;
+const tt = treatmentBySlug(slug!, 'nl')!;
+
+const jsonLd = [
+  breadcrumbJsonLd([
+    { name: 'Home', path: route('home', 'nl') },
+    { name: 'Behandelingen', path: route('treatments', 'nl') },
+    { name: tt.name.nl, path: treatmentPath(tt.slug.nl, 'nl') },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalProcedure',
+    name: tt.name.nl,
+    description: tt.metaDescription.nl,
+    url: absoluteUrl(treatmentPath(tt.slug.nl, 'nl')),
+    provider: { '@type': 'Dentist', name: site.name, '@id': `${site.url}/#practice` },
+  },
+  ...(tt.faq.length ? [faqJsonLd(tt.faq.map((f) => ({ q: f.q.nl, a: f.a.nl })))] : []),
+];
+---
+
+<Layout
+  lang="nl"
+  title={tt.metaTitle.nl}
+  description={tt.metaDescription.nl}
+  pathNl={treatmentPath(tt.slug.nl, 'nl')}
+  pathEn={treatmentPath(tt.slug.en, 'en')}
+  image={tt.image}
+  jsonLd={jsonLd}
+>
+  <TreatmentView treatment={tt} lang="nl" />
+</Layout>

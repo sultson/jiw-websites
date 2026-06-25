@@ -1,0 +1,61 @@
+---
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import FaqList from './FaqList.astro';
+import CtaBanner from './CtaBanner.astro';
+import { site } from '../data/site';
+import { t, route, type Lang } from '../lib/i18n';
+import { faqItems } from '../data/faq';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const tr = t(lang);
+
+// Group by category, preserving first-seen order.
+const groups: { category: string; items: typeof faqItems }[] = [];
+for (const item of faqItems) {
+  const cat = item.category[lang];
+  let group = groups.find((g) => g.category === cat);
+  if (!group) {
+    group = { category: cat, items: [] };
+    groups.push(group);
+  }
+  group.items.push(item);
+}
+---
+
+<section class="container-x py-14">
+  <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
+    <aside class="lg:sticky lg:top-28 reveal">
+      <div class="card p-6">
+        <h2 class="font-display text-xl text-ink">{lang === 'nl' ? 'Onderwerpen' : 'Topics'}</h2>
+        <ul class="mt-4 space-y-1.5">
+          {groups.map((g) => (
+            <li>
+              <a href={`#${encodeURIComponent(g.category.toLowerCase().replace(/\s+/g, '-'))}`} class="flex items-center gap-2 rounded-lg px-2 py-1.5 text-[0.92rem] text-ink-soft transition-colors hover:bg-cream hover:text-ink">
+                <Icon name="chevronRight" size={14} class="text-sage-deep" />{g.category}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-6 rounded-2xl bg-cream-deep/70 p-4">
+          <p class="text-[0.9rem] text-ink-soft">{lang === 'nl' ? 'Staat uw vraag er niet bij?' : 'Cannot find your question?'}</p>
+          <Button href={route('contact', lang)} variant="primary" class="mt-3 w-full" icon="mail">{tr.nav.contact}</Button>
+        </div>
+      </div>
+    </aside>
+
+    <div>
+      {groups.map((g, i) => (
+        <div id={g.category.toLowerCase().replace(/\s+/g, '-')} class={`scroll-mt-28 ${i === 0 ? '' : 'mt-12'}`}>
+          <h2 class="font-display text-2xl text-ink reveal">{g.category}</h2>
+          <FaqList items={g.items} lang={lang} class="mt-2 reveal" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<div class="mt-10"><CtaBanner lang={lang} /></div>

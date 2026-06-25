@@ -1,0 +1,28 @@
+---
+import Layout from '../../components/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ContactView from '../../components/ContactView.astro';
+import { route } from '../../lib/i18n';
+import { breadcrumbJsonLd } from '../../lib/seo';
+---
+
+<Layout
+  lang="en"
+  title="Contact & appointment | Dentist Hoofddorp | Omnia Dental"
+  description="Make an appointment at Omnia Dental in Hoofddorp. Request an appointment online, call or send a WhatsApp message. New patients are welcome."
+  pathNl={route('contact', 'nl')}
+  pathEn={route('contact', 'en')}
+  jsonLd={[breadcrumbJsonLd([
+    { name: 'Home', path: route('home', 'en') },
+    { name: 'Contact', path: route('contact', 'en') },
+  ])]}
+>
+  <PageHeader
+    lang="en"
+    eyebrow="Contact"
+    title="Make an appointment"
+    subtitle="We welcome new patients. Request an appointment through the form, call us or send a message via WhatsApp."
+    current="Contact"
+  />
+  <ContactView lang="en" />
+</Layout>

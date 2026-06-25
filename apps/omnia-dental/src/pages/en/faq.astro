@@ -1,0 +1,32 @@
+---
+import Layout from '../../components/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import FaqView from '../../components/FaqView.astro';
+import { route } from '../../lib/i18n';
+import { breadcrumbJsonLd, faqJsonLd } from '../../lib/seo';
+import { faqItems } from '../../data/faq';
+---
+
+<Layout
+  lang="en"
+  title="Frequently asked questions | Dentist Hoofddorp | Omnia Dental"
+  description="Answers to frequently asked questions about registering, appointments, rates, reimbursement and emergencies at Omnia Dental, your dentist in Hoofddorp."
+  pathNl={route('faq', 'nl')}
+  pathEn={route('faq', 'en')}
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: 'Home', path: route('home', 'en') },
+      { name: 'FAQ', path: route('faq', 'en') },
+    ]),
+    faqJsonLd(faqItems.map((i) => ({ q: i.q.en, a: i.a.en }))),
+  ]}
+>
+  <PageHeader
+    lang="en"
+    eyebrow="Frequently asked questions"
+    title="Answers to your questions"
+    subtitle="From registering and appointments to rates, reimbursement and emergencies. Cannot find your question? Feel free to contact us."
+    current="FAQ"
+  />
+  <FaqView lang="en" />
+</Layout>

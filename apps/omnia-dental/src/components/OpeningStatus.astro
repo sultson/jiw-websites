@@ -1,0 +1,64 @@
+---
+import { t, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+  class?: string;
+}
+const { lang, class: cls = '' } = Astro.props;
+const tr = t(lang);
+---
+
+<span class={`js-open-status inline-flex items-center gap-2 ${cls}`} data-lang={lang}>
+  <span class="status-dot h-2 w-2 rounded-full bg-sage-deep"></span>
+  <span class="status-text font-semibold">{tr.common.openingHours}</span>
+</span>
+
+<script>
+  import { site, dayLabels } from '../data/site';
+
+  type H = { day: string; open: string | null; close: string | null };
+  const order = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'] as const;
+  const hours = site.hours as readonly H[];
+  const toMin = (t: string) => {
+    const [a, b] = t.split(':').map(Number);
+    return a * 60 + b;
+  };
+
+  function compute(lang: 'nl' | 'en') {
+    const now = new Date();
+    const dayIdx = now.getDay();
+    const mins = now.getHours() * 60 + now.getMinutes();
+    const today = hours.find((h) => h.day === order[dayIdx]);
+
+    if (today && today.open && today.close && mins >= toMin(today.open) && mins < toMin(today.close)) {
+      return { open: true, text: (lang === 'nl' ? 'Geopend tot ' : 'Open until ') + today.close };
+    }
+    // Opening later today?
+    if (today && today.open && mins < toMin(today.open)) {
+      return { open: false, text: (lang === 'nl' ? 'Opent om ' : 'Opens at ') + today.open };
+    }
+    // Otherwise the next day that has hours.
+    for (let i = 1; i <= 7; i++) {
+      const key = order[(dayIdx + i) % 7];
+      const h = hours.find((x) => x.day === key);
+      if (h && h.open) {
+        const dayName = (dayLabels as any)[key].short[lang];
+        return { open: false, text: (lang === 'nl' ? 'Opent ' : 'Opens ') + dayName + ' ' + h.open };
+      }
+    }
+    return { open: false, text: lang === 'nl' ? 'Gesloten' : 'Closed' };
+  }
+
+  document.querySelectorAll<HTMLElement>('.js-open-status').forEach((el) => {
+    const lang = el.dataset.lang === 'en' ? 'en' : 'nl';
+    const { open, text } = compute(lang);
+    const dot = el.querySelector<HTMLElement>('.status-dot');
+    const label = el.querySelector<HTMLElement>('.status-text');
+    if (dot) {
+      dot.style.background = open ? '#6f9c7e' : '#c9a24f';
+      dot.style.boxShadow = open ? '0 0 0 4px rgba(111,156,126,0.22)' : '0 0 0 4px rgba(201,162,79,0.2)';
+    }
+    if (label) label.textContent = text;
+  });
+</script>
