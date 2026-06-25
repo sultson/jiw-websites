@@ -8,6 +8,7 @@ dist-worker
 .env.local
 .vite
 .turbo
+.astro
 CLAUDE.local.md
 .local.test
 .local.research
