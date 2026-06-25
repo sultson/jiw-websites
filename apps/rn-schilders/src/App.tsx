@@ -2988,6 +2988,23 @@ function Reviews() {
               </div>
               <p className="mt-4 font-display text-4xl font-extrabold text-navy">5.0 op Google</p>
             </div>
+            <a
+              href="https://top30vakbedrijven.nl/index.php/utrecht-schilders/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 block rounded-lg transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-roller"
+              aria-label="Geselecteerd vakbedrijf Top 30 Vakbedrijven 2026-2027 — bekijk op top30vakbedrijven.nl"
+            >
+              <img
+                src="/top30-vakbedrijven-badge.webp"
+                alt="Top 30 Vakbedrijven — geselecteerd vakbedrijf 2026-2027"
+                width={800}
+                height={541}
+                className="mx-auto w-full max-w-[280px]"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
           </div>
 
           <div className="grid gap-5">
@@ -4943,44 +4960,71 @@ function Footer() {
     <footer className="bg-ink pb-28 pt-10 text-white md:pb-10">
       <div className="shell flex flex-col gap-8">
         <TrustooWidget />
-        <div className="flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-4">
-            <img src="/logo-mono.webp" alt="" width={470} height={457} className="h-14 w-14 shrink-0 object-contain" loading="lazy" decoding="async" />
-            <div>
-              <p className="font-display text-2xl font-extrabold">RN Schilders & Renovatie</p>
-              <p className="mt-2 text-sm text-white/85">Vakwerk dat zichtbaar blijft in Woerden en omgeving.</p>
+        <div className="grid gap-10 border-t border-white/10 pt-10 md:grid-cols-[1.5fr_1fr_1fr_1fr] md:gap-8">
+          <div className="flex flex-col gap-6">
+            <div className="flex items-center gap-4">
+              <img src="/logo-mono.webp" alt="" width={470} height={457} className="h-14 w-14 shrink-0 object-contain" loading="lazy" decoding="async" />
+              <div>
+                <p className="font-display text-2xl font-extrabold leading-tight">RN Schilders &amp; Renovatie</p>
+                <p className="mt-1 text-sm text-white/85">Vakwerk dat zichtbaar blijft in Woerden en omgeving.</p>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col gap-4 md:items-end">
+            <a
+              href="https://top30vakbedrijven.nl/index.php/utrecht-schilders/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-fit transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/60"
+              aria-label="Geselecteerd vakbedrijf Top 30 Vakbedrijven 2026-2027 — bekijk op top30vakbedrijven.nl"
+            >
+              <img
+                src="/top30-vakbedrijven-badge.webp"
+                alt="Top 30 Vakbedrijven — geselecteerd vakbedrijf 2026-2027"
+                width={800}
+                height={541}
+                className="h-16 w-auto object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
             <SocialLinks />
-            <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/88 md:justify-end">
-              {services.map((service) => (
-                <a key={service.slug} href={getServicePath(service)} className="hover:text-white">
-                  {service.title} Woerden
-                </a>
-              ))}
-              {locationPages.map((location) => (
-                <a key={location.slug} href={getLocationPath(location)} className="hover:text-white">
-                  Schilder {location.title}
-                </a>
-              ))}
-              <a href="/werkgebied" className="hover:text-white">
-                Werkgebied
-              </a>
-              <a href="/over-ons" className="hover:text-white">
-                Over ons
-              </a>
-              <a href="/contact" className="hover:text-white">
-                Contact
-              </a>
-              <a href={`mailto:${email}`} className="hover:text-white">
-                {email}
-              </a>
-              <a href="/algemene-voorwaarden" className="hover:text-white">
-                Algemene voorwaarden
-              </a>
-            </div>
           </div>
+
+          <nav className="flex flex-col gap-3 text-sm" aria-label="Diensten">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/55">Diensten</p>
+            {services.map((service) => (
+              <a key={service.slug} href={getServicePath(service)} className="text-white/85 hover:text-white">
+                {service.title} Woerden
+              </a>
+            ))}
+          </nav>
+
+          <nav className="flex flex-col gap-3 text-sm" aria-label="Werkgebied">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/55">Werkgebied</p>
+            {locationPages.map((location) => (
+              <a key={location.slug} href={getLocationPath(location)} className="text-white/85 hover:text-white">
+                Schilder {location.title}
+              </a>
+            ))}
+            <a href="/werkgebied" className="text-white/85 hover:text-white">
+              Heel ons werkgebied
+            </a>
+          </nav>
+
+          <nav className="flex flex-col gap-3 text-sm" aria-label="Bedrijf">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/55">Bedrijf</p>
+            <a href="/over-ons" className="text-white/85 hover:text-white">
+              Over ons
+            </a>
+            <a href="/contact" className="text-white/85 hover:text-white">
+              Contact
+            </a>
+            <a href={`mailto:${email}`} className="text-white/85 hover:text-white">
+              {email}
+            </a>
+            <a href="/algemene-voorwaarden" className="text-white/85 hover:text-white">
+              Algemene voorwaarden
+            </a>
+          </nav>
         </div>
       </div>
     </footer>
