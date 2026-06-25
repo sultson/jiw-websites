@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://netherlandsunveiledtours.jouwidealewebsite.nl/sitemap-index.xml

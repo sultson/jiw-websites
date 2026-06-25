@@ -1,0 +1,345 @@
+---
+import '../styles/global.css';
+
+const tours = [
+  {
+    title: 'Amsterdam',
+    image: '/images/amsterdam.webp',
+    alt: 'Amsterdam canal with gabled houses and bicycles',
+    copy: 'Classic Amsterdam, the Jordaan and the Jewish quarter, shaped for first-time visitors or guests who want the quieter layers of the city.',
+    items: ['Amsterdam introduction', 'Jordaan walking tour', 'Jewish heritage route'],
+  },
+  {
+    title: 'Volendam, Edam & Marken',
+    image: '/images/villages.webp',
+    alt: 'Traditional harbor village with Dutch houses and boats',
+    copy: 'A bright day outside Amsterdam with harbor life, cheese-town streets, fishing village history and enough time to breathe.',
+    items: ['Volendam harbor', 'Edam town walk', 'Marken and Zaanse Schans options'],
+  },
+  {
+    title: 'Nijmegen',
+    image: '/images/nijmegen.webp',
+    alt: 'Historic Nijmegen riverside city view',
+    copy: 'Especially strong for groups: the oldest city in the Netherlands, river views, wartime history and relaxed walking routes.',
+    items: ['Group tours', 'Historic city walk', 'Waal river stories'],
+  },
+  {
+    title: 'The Grand Holland',
+    image: '/images/grand-holland.webp',
+    alt: 'Rotterdam skyline, Delft blue and South Holland landmarks',
+    copy: 'A full South Holland route: Rotterdam, Delft blue, a short Delft walk, The Hague, Madurodam and free time.',
+    items: ['Rotterdam by bus or on foot', 'Delft and Delft blue', 'The Hague and Madurodam'],
+  },
+  {
+    title: 'Museums & Boat Tours',
+    image: '/images/museums-boats.webp',
+    alt: 'Amsterdam canal boat and museum district atmosphere',
+    copy: 'Culture and water at a comfortable pace, from canal cruises to Van Gogh, Rijksmuseum and custom museum combinations.',
+    items: ['Canal and boat tours', 'Van Gogh Museum', 'Rijksmuseum'],
+  },
+  {
+    title: 'Custom Tours',
+    image: '/images/hero.webp',
+    alt: 'Colorful Netherlands travel collage with canals, tulips and Delft blue',
+    copy: 'For tour operators, families and private groups who need a route that fits season, pace, language and group size.',
+    items: ['Private groups', 'Tour operator support', 'Flexible Netherlands routes'],
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Netherlands Unveiled | Private Tours Across Holland</title>
+    <meta
+      name="description"
+      content="Private and group tours across the Netherlands with Marion: Amsterdam, Nijmegen, Volendam, Edam, Marken, Zaanse Schans, Rotterdam, Delft, The Hague, museums and boat tours."
+    />
+    <meta property="og:title" content="Netherlands Unveiled" />
+    <meta
+      property="og:description"
+      content="Colorful, personal tours through Amsterdam, South Holland, historic cities, villages, museums and waterways."
+    />
+    <meta property="og:image" content="/images/hero.webp" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="nav" id="nav">
+        <div class="nav-inner">
+          <a class="brand" href="#top" aria-label="Netherlands Unveiled home">
+            <strong>Netherlands Unveiled</strong>
+            <span>Private tours with Marion</span>
+          </a>
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+          <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+            <a href="#tours">Tours</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-label="Netherlands Unveiled">
+          <img src="/images/hero.webp" alt="Colorful Netherlands scene with canals, tulips, Delft blue and Dutch architecture" />
+          <div class="hero-content">
+            <div class="hero-copy">
+              <p class="eyebrow">Amsterdam, villages, museums and all-Holland routes</p>
+              <h1>Netherlands Unveiled</h1>
+              <p>
+                Private and group tours with Marion for travelers who want more than a checklist:
+                local stories, sensitive cultural context and a route that fits the season.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#contact">Plan a tour</a>
+                <a class="btn btn-ghost" href="#tours">Explore tours</a>
+              </div>
+            </div>
+          </div>
+          <div class="hero-facts" aria-label="Tour highlights">
+            <div class="fact">
+              <strong>6+ years guiding</strong>
+              <span>Experienced in high-season groups and private tours.</span>
+            </div>
+            <div class="fact">
+              <strong>All over Holland</strong>
+              <span>Amsterdam, Nijmegen, villages, museums and South Holland.</span>
+            </div>
+            <div class="fact">
+              <strong>Email or Messenger</strong>
+              <span>No phone-first pressure. Send the request and Marion replies.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section first" id="tours">
+          <div class="section-head">
+            <h2>Tours by city and story</h2>
+            <p>
+              Start with a city, then choose the layer that matters: architecture, Jewish history,
+              villages, museums, water, wartime context or a full-day Holland route.
+            </p>
+          </div>
+          <div class="tour-grid">
+            {tours.map((tour) => (
+              <article class="tour-card">
+                <img src={tour.image} alt={tour.alt} loading="lazy" />
+                <div class="tour-body">
+                  <h3>{tour.title}</h3>
+                  <p>{tour.copy}</p>
+                  <ul>
+                    {tour.items.map((item) => <li>{item}</li>)}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="band" id="about">
+          <div class="section split">
+            <div>
+              <p class="eyebrow">About Marion</p>
+              <h2>A guide for people, not scripts</h2>
+            </div>
+            <div class="about-copy">
+              <p>
+                Marion has guided travelers through the Netherlands for six to seven years. In
+                high season, when Keukenhof and day trips are busy, she is used to working with
+                tour operators and groups. Outside peak season, tours can become more personal,
+                more flexible and more deeply tailored.
+              </p>
+              <p>
+                The site uses the general name Netherlands Unveiled so the brand can travel with
+                Marion in the future, while keeping the focus on what guests book: colorful,
+                thoughtful tours through the Netherlands.
+              </p>
+              <div class="portrait-note">
+                <p>
+                  Some museum themes, including portraiture and historical representation, can be
+                  sensitive. Marion handles those subjects with context, care and room for questions.
+                </p>
+              </div>
+              <div class="language-row" aria-label="Guiding languages">
+                <span aria-label="English">🇬🇧</span>
+                <span aria-label="German">🇩🇪</span>
+                <span aria-label="French">🇫🇷</span>
+                <span aria-label="Spanish">🇪🇸</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="contact">
+          <div class="contact-wrap">
+            <div class="contact-card">
+              <p class="eyebrow">Contact</p>
+              <h2>Tell Marion what you want to see</h2>
+              <p>
+                Send your preferred date, group size and tour idea. Marion replies by email or
+                Messenger with availability and a fitting route.
+              </p>
+              <div class="contact-actions">
+                <a class="btn btn-primary" href="mailto:hallo@jouwidealewebsite.nl?subject=Netherlands%20Unveiled%20tour%20request">
+                  Send an email
+                </a>
+                <a class="btn btn-secondary" href="#contact-form">
+                  Use the form below
+                </a>
+              </div>
+            </div>
+
+            <div class="form-card" id="contact-form">
+              <div class="form-success" id="form-success">
+                Thank you. Your request was sent. Marion will reply by email or Messenger.
+              </div>
+              <form id="lead-form" data-form-path="/api/forms/contact" novalidate>
+                <div class="form-grid">
+                  <label>
+                    First name *
+                    <input name="firstName" type="text" autocomplete="given-name" required />
+                  </label>
+                  <label>
+                    Last name
+                    <input name="lastName" type="text" autocomplete="family-name" />
+                  </label>
+                  <label>
+                    Email *
+                    <input name="email" type="email" autocomplete="email" required />
+                  </label>
+                  <label>
+                    Preferred contact
+                    <select name="contactPreference">
+                      <option>Email</option>
+                      <option>Messenger</option>
+                    </select>
+                  </label>
+                  <label>
+                    Tour interest *
+                    <select name="tourInterest" required>
+                      <option value="">Choose a tour</option>
+                      <option>Amsterdam</option>
+                      <option>Jordaan tour</option>
+                      <option>Jewish heritage tour</option>
+                      <option>Volendam, Edam, Marken or Zaanse Schans</option>
+                      <option>Nijmegen group tour</option>
+                      <option>The Grand Holland</option>
+                      <option>Boat tour</option>
+                      <option>Museum tour</option>
+                      <option>Custom Netherlands tour</option>
+                    </select>
+                  </label>
+                  <label>
+                    Preferred date or period *
+                    <input name="travelDate" type="text" placeholder="For example: 18 May or spring 2027" required />
+                  </label>
+                  <label>
+                    Group size *
+                    <input name="groupSize" type="text" placeholder="For example: 2 guests or a bus group" required />
+                  </label>
+                  <label>
+                    Preferred language
+                    <select name="language">
+                      <option>English</option>
+                      <option>German</option>
+                      <option>French</option>
+                      <option>Spanish</option>
+                    </select>
+                  </label>
+                  <label class="full">
+                    Message *
+                    <textarea name="message" required placeholder="Tell Marion who is traveling, what you want to see and whether the pace should be relaxed or full-day."></textarea>
+                  </label>
+                </div>
+                <input type="hidden" name="cf-turnstile-response" value="dev" />
+                <input type="text" name="company" tabindex="-1" autocomplete="off" hidden aria-hidden="true" />
+                <p class="form-error" id="form-error"></p>
+                <div class="form-footer">
+                  <button class="btn btn-primary" type="submit">
+                    <span class="btn-label">Send tour request</span>
+                  </button>
+                  <p>Your details are only used to answer this tour request.</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-inner">
+          <span>Netherlands Unveiled</span>
+          <span>Private and group tours across the Netherlands</span>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const nav = document.getElementById('nav');
+      const menuButton = document.querySelector('.menu-toggle');
+      menuButton?.addEventListener('click', () => {
+        const next = nav?.dataset.open !== 'true';
+        if (nav) nav.dataset.open = String(next);
+        menuButton.setAttribute('aria-expanded', String(next));
+      });
+
+      document.querySelectorAll('.nav-links a').forEach((link) => {
+        link.addEventListener('click', () => {
+          if (nav) nav.dataset.open = 'false';
+          menuButton?.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      const form = document.getElementById('lead-form');
+      const success = document.getElementById('form-success');
+      const errorBox = document.getElementById('form-error');
+
+      if (form instanceof HTMLFormElement) {
+        const submit = form.querySelector('button[type="submit"]');
+        const label = form.querySelector('.btn-label');
+        const originalLabel = label?.textContent ?? 'Send tour request';
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          if (errorBox) errorBox.style.display = 'none';
+
+          const honeypot = form.elements.namedItem('company');
+          if (honeypot instanceof HTMLInputElement && honeypot.value) return;
+
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+
+          submit?.setAttribute('disabled', 'true');
+          if (label) label.textContent = 'Sending...';
+
+          try {
+            const path = form.dataset.formPath ?? '/api/forms/contact';
+            const response = await fetch(path, { method: 'POST', body: new FormData(form) });
+            const data = await response.json().catch(() => ({}));
+            const payload = data && typeof data === 'object' ? data : {};
+            if (!response.ok || !('ok' in payload) || !payload.ok) {
+              const message = 'message' in payload && typeof payload.message === 'string'
+                ? payload.message
+                : 'Your request could not be sent.';
+              throw new Error(message);
+            }
+            form.style.display = 'none';
+            if (success) success.style.display = 'block';
+          } catch (error) {
+            if (errorBox) {
+              errorBox.textContent = error instanceof Error ? error.message : 'Your request could not be sent.';
+              errorBox.style.display = 'block';
+            }
+            submit?.removeAttribute('disabled');
+            if (label) label.textContent = originalLabel;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
