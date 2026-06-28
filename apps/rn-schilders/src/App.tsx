@@ -799,6 +799,18 @@ const workAreaGroups: WorkAreaGroup[] = [
 
 const reviews: Review[] = [
   {
+    name: 'Curtis Bouman',
+    date: 'juni 2026',
+    quote:
+      'Het stucwerk is uitstekend en strak afgewerkt, echt vakwerk. Wij zijn zeer tevreden met het eindresultaat en de professionele werkwijze. Op zoek naar een betrouwbare partij voor stucwerk in huis? Dan kan ik RN Schilders & Renovatie zeker aanbevelen.',
+  },
+  {
+    name: 'Remco Paauwe',
+    date: 'juni 2026',
+    quote:
+      'RN Schilders & Renovatie is bij ons bezig geweest met een grote verbouwing en de afwerking in Ridderkerk, zowel binnen als buiten. Alles liep volledig volgens plan. Prachtig schilderwerk dat er weer jaren tegenaan kan. Vriendelijke jongens die met hart voor hun vak werken. Mijn huis zit weer mooi strak in de lak. Echt een aanrader.',
+  },
+  {
     name: 'Barry Verschoor',
     date: 'maart 2026',
     quote:
@@ -817,6 +829,9 @@ const reviews: Review[] = [
       'De service is top en alles wordt netjes en professioneel geregeld. Ze denken goed mee en komen afspraken na.',
   },
 ];
+
+// Google-style avatar background colours, assigned per reviewer by index.
+const avatarColors = ['#1a73e8', '#d93025', '#188038', '#e8710a', '#a142f4'];
 
 const processSteps = [
   ['Foto of afspraak', 'Stuur foto’s mee of plan een opname op locatie in Woerden en omgeving.'],
@@ -1167,14 +1182,6 @@ const showcaseGroups: ShowcaseGroup[] = [
         width: 1280,
         height: 960,
         title: 'Erkerkozijn schuren',
-        label: 'Schuren',
-      },
-      {
-        src: '/werk-schuren-erker-oranje.webp?v=20260530',
-        alt: 'Schilder schuurt een wit erkerkozijn met een schuurmachine',
-        width: 1280,
-        height: 960,
-        title: 'Kozijn schuren',
         label: 'Schuren',
       },
       {
@@ -1799,30 +1806,38 @@ function Hero({ openQuote }: { openQuote: () => void }) {
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-whitewash to-transparent" />
       </div>
 
-      <div className="shell relative flex min-h-[82dvh] items-center py-14 md:min-h-[calc(92dvh-5rem)] md:py-24">
-        <div className="w-full max-w-3xl pb-12">
-          <p className="hero-reveal hero-reveal-1 eyebrow max-w-full text-[10px] tracking-[0.14em] text-roller-soft sm:text-xs sm:tracking-[0.18em]">
-            Schilder en renovatiebedrijf in Woerden
-          </p>
-          <h1 className="hero-reveal hero-reveal-2 mt-5 max-w-full text-[2.45rem] font-extrabold leading-[0.98] text-white sm:text-6xl md:text-7xl lg:text-8xl">
-            <span className="block">RN Schilders</span>
-            <span className="block">& Renovatie</span>
-          </h1>
-          <p className="hero-reveal hero-reveal-3 mt-6 max-w-2xl text-base leading-7 text-white/88 sm:text-lg sm:leading-8 md:text-xl">
-            Vakwerk dat zichtbaar blijft. Richard werkt zelf mee en regelt schilderwerk, kozijnen, stucwerk en renovatie vanuit één aanspreekpunt.
-          </p>
-
-          <div className="hero-reveal hero-reveal-4 mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap">
-            <button type="button" onClick={openQuote} className="btn-primary w-full md:w-auto">
-              Gratis prijsindicatie
-              <ArrowRight size={18} />
-            </button>
-            <a href={phoneHref} draggable={false} className="btn-light w-full md:w-auto">
-              <Phone size={18} />
-              <span className="select-text cursor-text">{phoneDisplay}</span>
-            </a>
+      <div className="shell relative flex min-h-[82dvh] items-start pb-14 pt-28 md:min-h-[calc(92dvh-5rem)] md:items-center md:py-24">
+        <div className="w-full pb-12">
+          <div className="max-w-3xl">
+            <p className="hero-reveal hero-reveal-1 eyebrow max-w-full text-[10px] tracking-[0.14em] text-roller-soft sm:text-xs sm:tracking-[0.18em]">
+              Schilder en renovatiebedrijf in Woerden
+            </p>
+            <h1 className="hero-reveal hero-reveal-2 mt-5 max-w-full text-[2.45rem] font-extrabold leading-[0.98] text-white sm:text-6xl md:text-7xl lg:text-8xl">
+              <span className="block">RN Schilders</span>
+              <span className="block">& Renovatie</span>
+            </h1>
+            <p className="hero-reveal hero-reveal-3 mt-6 max-w-2xl text-base leading-7 text-white/88 sm:text-lg sm:leading-8 md:text-xl">
+              Vakwerk dat zichtbaar blijft. Richard werkt zelf mee en regelt schilderwerk, kozijnen, stucwerk en renovatie vanuit één aanspreekpunt.
+            </p>
           </div>
 
+          <div className="mt-8 grid gap-8 md:grid-cols-[minmax(0,1fr)_340px] md:items-end md:gap-10 lg:gap-16">
+            <div className="hero-reveal hero-reveal-4 flex flex-col gap-3 md:flex-row md:flex-wrap">
+              <button type="button" onClick={openQuote} className="btn-primary w-full md:w-auto">
+                Gratis prijsindicatie
+                <ArrowRight size={18} />
+              </button>
+              <a href={phoneHref} draggable={false} className="btn-light w-full md:w-auto">
+                <Phone size={18} />
+                <span className="select-text cursor-text">{phoneDisplay}</span>
+              </a>
+            </div>
+            <div className="hero-reveal hero-reveal-5 flex w-full justify-center md:justify-end">
+              <div className="trustoo-compact">
+                <TrustooWidget />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2970,6 +2985,44 @@ function ImageLightbox({
   );
 }
 
+function GoogleGlyph({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
+      <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z" />
+      <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z" />
+      <path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z" />
+      <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z" />
+    </svg>
+  );
+}
+
+function ReviewCard({ review, color }: { review: Review; color: string }) {
+  return (
+    <article className="rounded-xl border border-[#dadce0] bg-white p-5 shadow-[0_1px_2px_rgba(60,64,67,0.1),0_1px_3px_1px_rgba(60,64,67,0.06)]">
+      <div className="flex items-center gap-3">
+        <span
+          className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-base font-semibold text-white"
+          style={{ background: color }}
+          aria-hidden="true"
+        >
+          {review.name.charAt(0)}
+        </span>
+        <div className="min-w-0">
+          <p className="truncate text-sm font-semibold text-[#202124]">{review.name}</p>
+          <p className="text-xs text-[#5f6368]">{review.date}</p>
+        </div>
+        <GoogleGlyph className="ml-auto h-5 w-5 shrink-0" />
+      </div>
+      <div className="mt-3 flex items-center gap-0.5 text-[#FBBC04]">
+        {Array.from({ length: 5 }, (_, index) => (
+          <Star key={index} size={16} fill="currentColor" strokeWidth={0} />
+        ))}
+      </div>
+      <blockquote className="mt-2.5 text-sm leading-6 text-[#3c4043]">{review.quote}</blockquote>
+    </article>
+  );
+}
+
 function Reviews() {
   return (
     <section id="reviews" className="section-pad">
@@ -2981,44 +3034,45 @@ function Reviews() {
               Recente klanten noemen precies wat nieuwe klanten willen weten.
             </h2>
             <div className="mt-7 rounded-lg border border-line bg-whitewash p-6">
-              <div className="flex items-center gap-1 text-roller">
+              <div className="flex items-center gap-1 text-[#FBBC04]">
                 {Array.from({ length: 5 }, (_, index) => (
-                  <Star key={index} size={22} fill="currentColor" />
+                  <Star key={index} size={22} fill="currentColor" strokeWidth={0} />
                 ))}
               </div>
-              <p className="mt-4 font-display text-4xl font-extrabold text-navy">5.0 op Google</p>
+              <p className="mt-4 flex items-center gap-2.5 font-display text-4xl font-extrabold text-navy">
+                <GoogleGlyph className="h-8 w-8 shrink-0" />
+                5.0 op Google
+              </p>
             </div>
-            <a
-              href="https://top30vakbedrijven.nl/index.php/utrecht-schilders/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 block rounded-lg transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-roller"
-              aria-label="Geselecteerd vakbedrijf Top 30 Vakbedrijven 2026-2027 — bekijk op top30vakbedrijven.nl"
-            >
-              <img
-                src="/top30-vakbedrijven-badge.webp"
-                alt="Top 30 Vakbedrijven — geselecteerd vakbedrijf 2026-2027"
-                width={800}
-                height={541}
-                className="mx-auto w-full max-w-[280px]"
-                loading="lazy"
-                decoding="async"
-              />
-            </a>
+            <div className="mt-5 rounded-lg border border-line bg-whitewash p-6">
+              <a
+                href="https://top30vakbedrijven.nl/index.php/utrecht-schilders/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mx-auto block w-fit rounded-lg transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-roller"
+                aria-label="Geselecteerd vakbedrijf Top 30 Vakbedrijven 2026-2027 — bekijk op top30vakbedrijven.nl"
+              >
+                <img
+                  src="/top30-vakbedrijven-badge.webp"
+                  alt="Top 30 Vakbedrijven — geselecteerd vakbedrijf 2026-2027"
+                  width={800}
+                  height={541}
+                  className="w-full max-w-[220px]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+              <p className="mt-5 border-t border-line pt-5 text-sm leading-7 text-graphite">
+                We zijn in korte tijd snel gegroeid en leveren altijd goede kwaliteit. Daarom zijn we recent verkozen tot
+                een van de beste 30 vakbedrijven van Nederland door top30vakbedrijven.nl. Dat is precies waar we voor
+                staan: kwaliteit en vakmanschap.
+              </p>
+            </div>
           </div>
 
-          <div className="grid gap-5">
-            {reviews.map((review) => (
-              <article key={review.name} className="rounded-lg border border-line bg-whitewash p-6">
-                <div className="flex items-center gap-1 text-roller">
-                  {Array.from({ length: 5 }, (_, index) => (
-                    <Star key={index} size={17} fill="currentColor" />
-                  ))}
-                </div>
-                <blockquote className="mt-4 text-lg leading-8 text-ink">“{review.quote}”</blockquote>
-                <p className="mt-5 text-sm font-bold text-navy">{review.name}</p>
-                <p className="text-sm text-graphite">{review.date}</p>
-              </article>
+          <div className="grid gap-4">
+            {reviews.map((review, index) => (
+              <ReviewCard key={review.name} review={review} color={avatarColors[index % avatarColors.length]} />
             ))}
           </div>
         </div>
@@ -4351,26 +4405,20 @@ function AlmereLocationPage({ location, openQuote }: { location: LocationPage; o
               Wat klanten over RN Schilders zeggen.
             </h2>
             <div className="mt-7 rounded-lg border border-line bg-whitewash p-6">
-              <div className="flex items-center gap-1 text-roller">
+              <div className="flex items-center gap-1 text-[#FBBC04]">
                 {Array.from({ length: 5 }, (_, index) => (
-                  <Star key={index} size={22} fill="currentColor" />
+                  <Star key={index} size={22} fill="currentColor" strokeWidth={0} />
                 ))}
               </div>
-              <p className="mt-4 font-display text-4xl font-extrabold text-navy">5.0 op Google</p>
+              <p className="mt-4 flex items-center gap-2.5 font-display text-4xl font-extrabold text-navy">
+                <GoogleGlyph className="h-8 w-8 shrink-0" />
+                5.0 op Google
+              </p>
             </div>
           </div>
-          <div className="grid gap-5">
-            {reviews.map((review) => (
-              <article key={review.name} className="rounded-lg border border-line bg-whitewash p-6">
-                <div className="flex items-center gap-1 text-roller">
-                  {Array.from({ length: 5 }, (_, index) => (
-                    <Star key={index} size={17} fill="currentColor" />
-                  ))}
-                </div>
-                <blockquote className="mt-4 text-lg leading-8 text-ink">“{review.quote}”</blockquote>
-                <p className="mt-5 text-sm font-bold text-navy">{review.name}</p>
-                <p className="text-sm text-graphite">{review.date}</p>
-              </article>
+          <div className="grid gap-4">
+            {reviews.map((review, index) => (
+              <ReviewCard key={review.name} review={review} color={avatarColors[index % avatarColors.length]} />
             ))}
           </div>
         </div>
@@ -4959,8 +5007,7 @@ function Footer() {
   return (
     <footer className="bg-ink pb-28 pt-10 text-white md:pb-10">
       <div className="shell flex flex-col gap-8">
-        <TrustooWidget />
-        <div className="grid gap-10 border-t border-white/10 pt-10 md:grid-cols-[1.5fr_1fr_1fr_1fr] md:gap-8">
+        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr] md:gap-8">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4">
               <img src="/logo-mono.webp" alt="" width={470} height={457} className="h-14 w-14 shrink-0 object-contain" loading="lazy" decoding="async" />
