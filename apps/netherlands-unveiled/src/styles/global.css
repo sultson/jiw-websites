@@ -186,7 +186,13 @@ h1 {
 .hero-copy p {
   max-width: 40rem;
   margin: 1.25rem 0 0;
-  color: rgba(255, 250, 241, 0.88);
+  padding: 0.95rem 1.15rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 250, 241, 0.1);
+  background: rgba(8, 12, 13, 0.34);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  color: rgba(255, 250, 241, 0.94);
   font-size: clamp(1.05rem, 2vw, 1.35rem);
 }
 
@@ -455,29 +461,6 @@ h2 {
   color: var(--muted);
 }
 
-.contact-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-top: 1.2rem;
-}
-
-.contact-actions .btn {
-  min-height: 46px;
-}
-
-.contact-actions .btn-secondary {
-  border-radius: 8px;
-  background: #e8f1ed;
-  color: var(--ink);
-  border-color: rgba(23, 32, 38, 0.1);
-}
-
-.contact-actions .btn-secondary:hover,
-.contact-actions .btn-secondary:focus-visible {
-  background: #d9e8e1;
-  outline: none;
-}
 
 .form-grid {
   display: grid;
