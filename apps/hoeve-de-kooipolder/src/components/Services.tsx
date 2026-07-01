@@ -1,4 +1,4 @@
-import { Check, Home } from 'lucide-react';
+import { CalendarClock, Check, Home } from 'lucide-react';
 import { services } from '../data/services';
 
 type Props = { t: (k: string) => string; lang: 'nl' | 'en' };
@@ -6,8 +6,8 @@ type Props = { t: (k: string) => string; lang: 'nl' | 'en' };
 type ServiceRow = (typeof services)[number];
 
 export default function Services({ t, lang }: Props) {
-  const priced = services.filter(s => s.price !== null);
-  const onRequest = services.filter(s => s.price === null);
+  const priced = services.filter(s => s.price !== null && s.itemsNl.length > 0);
+  const compact = services.filter(s => s.itemsNl.length === 0);
 
   const name = (s: ServiceRow) => (lang === 'en' ? s.nameEn : s.nameNl);
   const items = (s: ServiceRow) => (lang === 'en' ? s.itemsEn : s.itemsNl);
@@ -43,7 +43,7 @@ export default function Services({ t, lang }: Props) {
         </div>
 
         <div className="mt-5 md:mt-6 space-y-3">
-          {onRequest.map(s => (
+          {compact.map(s => (
             <div
               key={s.id}
               className="card px-5 md:px-7 py-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-1"
@@ -52,9 +52,14 @@ export default function Services({ t, lang }: Props) {
                 <p className="text-sm md:text-base font-medium text-ink">{name(s)}</p>
                 {note(s) && <p className="text-xs text-ink-soft/70 mt-0.5">{note(s)}</p>}
               </div>
-              <span className="shrink-0 text-sm text-lilac-deep">{t('services.note')}</span>
+              <span className="shrink-0 text-sm text-lilac-deep">{s.price ?? t('services.note')}</span>
             </div>
           ))}
+        </div>
+
+        <div className="mt-5 rounded-2xl border border-ink/10 bg-white/60 px-5 py-4 flex items-start gap-3 text-sm text-ink-soft/90">
+          <CalendarClock size={18} className="mt-0.5 shrink-0 text-lilac-deep" aria-hidden="true" />
+          <p>{t('services.cancelPolicy')}</p>
         </div>
 
         <div className="mt-8 md:mt-10 rounded-2xl bg-lilac-wash border border-lilac-mist p-7 md:p-8 flex flex-col sm:flex-row sm:items-start gap-5">
@@ -62,7 +67,10 @@ export default function Services({ t, lang }: Props) {
             <Home size={20} aria-hidden="true" />
           </div>
           <div>
-            <h3 className="font-serif text-2xl">{t('services.home.title')}</h3>
+            <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <h3 className="font-serif text-2xl">{t('services.home.title')}</h3>
+              <p className="font-serif text-3xl text-lilac-deep">{t('services.home.price')}</p>
+            </div>
             <p className="mt-2 text-sm text-ink-soft leading-relaxed max-w-2xl">
               {t('services.home.body')}
             </p>

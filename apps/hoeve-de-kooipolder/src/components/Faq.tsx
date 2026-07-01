@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 
 type Props = { t: (k: string) => string };
 
-const ITEMS = [1, 2, 3, 4, 5, 6];
+const ITEMS = [1, 2, 3, 4, 5, 6, 7, 8];
 
 export default function Faq({ t }: Props) {
   const [open, setOpen] = useState<number | null>(0);

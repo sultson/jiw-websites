@@ -29,24 +29,26 @@ Fonts: Cormorant Garamond (headings) + Inter (body), already imported.
   edge of Dordrecht: fields, quiet, easy parking on the yard.
 - Phone: display "06 28 57 77 11", link `tel:+31628577711`
 - WhatsApp: `https://wa.me/31628577711`
-- Email: hoevedekooipolderpedicuresalon@gmail.com
+- Email: hoevedekooipolder@gmail.com
 - Maps: https://maps.google.com/?cid=17446167066350775375
 - Facebook: https://www.facebook.com/p/Hoeve-De-Kooipolder-Pedicuresalon-100094300916991/
-- Hours: ma 09:00-17:00, di 09:00-21:00, wo gesloten, do gesloten,
+- Hours: ma gesloten, di 09:00-21:00, wo 09:00-17:00, do gesloten,
   vr 09:00-17:00, za 09:00-14:00, zo gesloten. (di avond open!)
-- Treatments + REAL prices (from her own price list, Jan 2025):
-  - Basisbehandeling €32,50: knippen van de nagels, verzorgen van de nagels, voetcrème
-  - Basisbehandeling + €37,50: knippen + verzorgen van de nagels, eelt verwijderen,
+- Treatments + REAL prices (updated June 2026):
+  - Basisbehandeling €33,50: knippen van de nagels, verzorgen van de nagels, voetcrème
+  - Basisbehandeling + €38,50: knippen + verzorgen van de nagels, eelt verwijderen,
     afvlakken van de nagels (kalknagels), kloven behandelen, likdoorn verwijderen,
     ingroeiende nagel behandelen, voetcrème
-  - Gellak op de teennagels (no price known: "prijs in overleg" / "price on request")
+  - Gellak op de teennagels €25
   - Voetenbad met lavendel badkristallen (extra verwennerij, no price known)
-  - Aan huis: if you can't come to the salon (slecht ter been, geen trap), she comes
-    to you with her koffer. (Also does Wednesdays in Zevenbergen, FAQ only.)
+  - Aan huis €45: if you can't come to the salon (slecht ter been, geen trap), she comes
+    to you with her koffer.
 - Products used/sold in the salon: Green Rabbit Originals foot creams (vegan,
   natural ingredients, cruelty-free, softens droge hielen/ruwe plekken) and
   Yodeyma parfums (sold in salon).
-- Appointment only (afspraak verplicht). Pay by pin or contactless. Toilet present.
+- Appointment only (afspraak verplicht). Cancellations at least 24 hours in advance;
+  late cancellations may incur a charge. Pay by pin or contactless. Toilet present.
+- ProVoet member and qualified pedicurist.
 - Booking: PHONE primary, WhatsApp secondary. No online booking. No prices invented.
 - Google: 5.0 from only 2 ratings, NO review texts exist. There is NO reviews
   section. Do not mention review scores anywhere.
@@ -67,7 +69,7 @@ Fonts: Cormorant Garamond (headings) + Inter (body), already imported.
 - hero-bg.webp (~2000w, from edge-to-edge-bg.png) + hero-bg-mobile.webp (~1080w,
   portrait-ish crop centered on the farmhouse)
 - og-preview.jpg (1200x630)
-- about-hoeve.webp        (raw-media/onbekend-feb25.jpg, farmhouse front + lavender)
+- about-hoeve.webp        (raw-media/hoeve-front-2026.jpg, farmhouse front + lavender)
 - visit-luchtfoto.webp    (raw-media/gmaps-foto-1.jpg, second drone angle)
 - products-green-rabbit.webp (green-rabbit-producten.jpg)
 - products-yodeyma.webp   (yodeyma-parfum-1.jpg or -2, pick best ONE)
@@ -88,13 +90,14 @@ Hero: hero.kicker (location), hero.title (2 lines, \n), hero.sub, hero.ctaCall, 
 UspStrip: usp.1t/.1s, usp.2t/.2s, usp.3t/.3s, usp.4t/.4s
   (1: landelijke rust aan de Zeedijk; 2: persoonlijke aandacht, één klant tegelijk
    feel without inventing; 3: ook aan huis; 4: pinnen of contactloos)
-About: about.kicker, about.title, about.body1, about.body2, about.imgAlt
+About: about.kicker, about.title, about.body1, about.body2, about.certification,
+  about.imgAlt
   (the hoeve story: salon at the farmhouse on the polder edge of Dordrecht, quiet
    rural setting, fixed clientele incl. older customers feel welcome; do NOT repeat
    USP texts literally)
 Services: services.kicker, services.title, services.intro,
-  services.note (gellak/voetenbad price line),
-  services.home.title, services.home.body (aan-huis card),
+  services.note (voetenbad price line), services.cancelPolicy,
+  services.home.title, services.home.price, services.home.body (aan-huis card),
   services.priceLabel not needed; prices come from data/services.ts
 Products: products.kicker, products.title, products.gr.title, products.gr.body,
   products.yo.title, products.yo.body
@@ -102,10 +105,11 @@ Gallery: gallery.kicker, gallery.title
 Visit: visit.kicker, visit.title, visit.body (route/parking, rural dike location),
   visit.hoursTitle, visit.addressTitle, visit.maps (button label), visit.closed,
   visit.imgAlt
-Faq: faq.kicker, faq.title, faq.q1..q6, faq.a1..a6
-  (1 afspraak maken: bellen of appen; 2 aan huis + woensdag Zevenbergen;
+Faq: faq.kicker, faq.title, faq.q1..q8, faq.a1..a8
+  (1 afspraak maken: bellen of appen; 2 aan huis;
    3 betalen: pin/contactloos; 4 producten: Green Rabbit/Yodeyma kort;
-   5 gellak mogelijk na pedicure; 6 waar precies / parkeren)
+   5 gellak mogelijk na pedicure; 6 waar precies / parkeren;
+   7 annuleren minimaal 24 uur vooraf; 8 ProVoet + gediplomeerd)
 Footer: footer.tagline, footer.contactTitle, footer.hoursTitle, footer.followTitle,
   footer.rights
 WhatsApp/Sticky: wa.aria ("WhatsApp openen"), sticky.call (label)
@@ -115,8 +119,8 @@ WhatsApp/Sticky: wa.aria ("WhatsApp openen"), sticky.call (label)
 export type Service = { id: string; nameNl: string; nameEn: string;
   price: string | null; itemsNl: string[]; itemsEn: string[];
   noteNl?: string; noteEn?: string };
-Basis (€32,50), Basis+ (€37,50) with the exact bullet lists above; gellak and
-voetenbad as smaller items with price null.
+Basis (€33,50), Basis+ (€38,50) with the exact bullet lists above; gellak (€25)
+and voetenbad as smaller items; voetenbad has price null.
 
 ## data/hours.ts (copy agent)
 

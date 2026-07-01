@@ -14,7 +14,7 @@ export const services: Service[] = [
     id: 'basisbehandeling',
     nameNl: 'Basisbehandeling',
     nameEn: 'Basic treatment',
-    price: '€ 32,50',
+    price: '€ 33,50',
     itemsNl: [
       'Knippen van de nagels',
       'Verzorgen van de nagels',
@@ -30,7 +30,7 @@ export const services: Service[] = [
     id: 'basisbehandeling-plus',
     nameNl: 'Basisbehandeling +',
     nameEn: 'Basic treatment +',
-    price: '€ 37,50',
+    price: '€ 38,50',
     itemsNl: [
       'Knippen en verzorgen van de nagels',
       'Eelt verwijderen',
@@ -54,7 +54,7 @@ export const services: Service[] = [
     id: 'gellak',
     nameNl: 'Gellak op de teennagels',
     nameEn: 'Gel polish on the toenails',
-    price: null,
+    price: '€ 25',
     itemsNl: [],
     itemsEn: [],
   },

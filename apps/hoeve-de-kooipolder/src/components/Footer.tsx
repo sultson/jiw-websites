@@ -43,11 +43,11 @@ export default function Footer({ t, lang }: Props) {
               WhatsApp
             </a>
             <a
-              href="mailto:hoevedekooipolderpedicuresalon@gmail.com"
+              href="mailto:hoevedekooipolder@gmail.com"
               className="flex items-center gap-2 hover:text-cream break-all"
             >
               <Mail size={14} className="shrink-0 text-lilac" aria-hidden="true" />
-              hoevedekooipolderpedicuresalon@gmail.com
+              hoevedekooipolder@gmail.com
             </a>
             <p className="flex items-start gap-2">
               <MapPin size={14} className="mt-0.5 shrink-0 text-lilac" aria-hidden="true" />
