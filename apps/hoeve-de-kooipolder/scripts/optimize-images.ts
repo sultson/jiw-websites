@@ -118,7 +118,7 @@ async function main() {
 
   // ---- Section images ------------------------------------------------------
   const sections: Array<{ out: string; src: string; width: number; quality: number }> = [
-    { out: 'about-hoeve.webp', src: 'onbekend-feb25.jpg', width: 1400, quality: 68 },
+    { out: 'about-hoeve.webp', src: 'hoeve-front-2026.jpg', width: 1000, quality: 66 },
     // gmaps-foto-1.jpg is 1080px wide; never upscale, so this caps at 1080.
     { out: 'visit-luchtfoto.webp', src: 'gmaps-foto-1.jpg', width: 1200, quality: 80 },
     { out: 'products-green-rabbit.webp', src: 'green-rabbit-producten.jpg', width: 1000, quality: 80 },
