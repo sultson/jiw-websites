@@ -44,9 +44,10 @@ const formWorker = createFormWorker({
   messageField: 'message',
   serviceOtherField: 'serviceOther',
   subjectFields: ['service', 'postalCode', 'city'],
-  // Keep the barrier to contact low: only naam, telefoon en e-mail zijn verplicht.
-  // De rest is optioneel zodat een aanvraag versturen nooit een gedoe is.
+  // Keep the barrier to contact low: naam en telefoon zijn genoeg for the
+  // campaign lander; the regular modal may still ask more on the client side.
   requireLastName: false,
+  requireEmail: false,
   requiredFields: [
     { name: 'phone', label: 'telefoonnummer', message: 'Vul uw telefoonnummer in.' },
     {
@@ -63,8 +64,13 @@ const formWorker = createFormWorker({
     { name: 'houseNumber', label: 'Huisnummer' },
     { name: 'city', label: 'Plaatsnaam' },
     { name: 'service', label: 'Dienst' },
+    { name: 'leadSource', label: 'Leadbron' },
+    { name: 'contactPreference', label: 'Aanvraagroute' },
     { name: 'preferredExecutionDate', label: 'Gewenste uitvoeringsdatum' },
     { name: 'urgent', label: 'Spoed' },
+    { name: 'gclid', label: 'GCLID' },
+    { name: 'pageUrl', label: 'Pagina URL' },
+    { name: 'submittedAt', label: 'Verzonden op' },
   ],
 });
 

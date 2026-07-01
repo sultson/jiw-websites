@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "mapbox-gl/dist/mapbox-gl.css";
 
 @theme {
   --font-display: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -84,6 +85,19 @@
 
 .safe-bottom {
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.campaign-mapbox {
+  height: 100% !important;
+  inset: 0 !important;
+  position: absolute !important;
+  width: 100% !important;
+}
+
+.campaign-mapbox .mapboxgl-canvas-container,
+.campaign-mapbox .mapboxgl-canvas {
+  height: 100% !important;
+  width: 100% !important;
 }
 
 .hero-bg {
