@@ -87,6 +87,44 @@
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
+/* Campaign lander: give primary buttons a tactile, visually-pressed feel. */
+[data-campaign-page] .btn-primary {
+  position: relative;
+  overflow: visible;
+  border: 2px solid rgb(123 47 0 / 0.9);
+  box-shadow:
+    0 5px 0 rgb(154 62 0 / 0.95),
+    0 10px 0 rgb(13 30 61 / 0.14);
+  transition:
+    transform 0.16s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.16s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 0.16s ease;
+}
+
+[data-campaign-page] .btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 3px 4px auto;
+  height: 42%;
+  border-radius: 5px;
+  background: rgb(255 255 255 / 0.18);
+  pointer-events: none;
+}
+
+[data-campaign-page] .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 7px 0 rgb(154 62 0 / 0.95),
+    0 12px 0 rgb(13 30 61 / 0.14);
+}
+
+[data-campaign-page] .btn-primary:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 2px 0 rgb(154 62 0 / 0.95),
+    0 5px 0 rgb(13 30 61 / 0.14);
+}
+
 .campaign-mapbox {
   height: 100% !important;
   inset: 0 !important;

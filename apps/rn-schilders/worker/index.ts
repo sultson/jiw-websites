@@ -59,6 +59,7 @@ const formWorker = createFormWorker({
   ],
   emailFields: [
     { name: 'phone', label: 'Telefoon' },
+    { name: 'email', label: 'E-mail' },
     { name: 'postalCode', label: 'Postcode' },
     { name: 'streetName', label: 'Straatnaam' },
     { name: 'houseNumber', label: 'Huisnummer' },

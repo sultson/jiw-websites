@@ -44,6 +44,13 @@ const attachmentAccept = '.jpg,.jpeg,.png,.webp,.heic,.heif,.pdf,image/jpeg,imag
 const MAX_ATTACHMENTS = 5;
 const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024;
 const SUCCESS_AUTO_CLOSE_MS = 3200;
+const googleAdsConversionId = 'AW-18294027643';
+const googleAdsFormConversionSendTo = `${googleAdsConversionId}/tW9DCLfUrskcEPvqopNE`;
+const googleAdsCallConversionSendTo = `${googleAdsConversionId}/TNi-COeH3ckcEPvqopNE`;
+const googleAdsWhatsappConversionSendTo = `${googleAdsConversionId}/hB0lCOqH3ckcEPvqopNE`;
+const campaignLeadStorageKey = 'rn_schilders_campaign_lead';
+const gclidStorageKey = 'rn_schilders_gclid';
+const sentPageLoadConversions = new Set<string>();
 
 function isLocalFormHost() {
   if (typeof window === 'undefined') return false;
@@ -62,6 +69,7 @@ function isImageFile(file: File) {
 
 declare global {
   interface Window {
+    gtag?: (...args: unknown[]) => void;
     turnstile?: {
       render: (container: HTMLElement, options: TurnstileRenderOptions) => string;
       remove: (widgetId: string) => void;
@@ -76,6 +84,96 @@ type TurnstileRenderOptions = {
   'expired-callback': () => void;
   'error-callback': () => void;
 };
+
+type CampaignLeadUserData = {
+  firstName?: string;
+  email?: string;
+  phone?: string;
+};
+
+function trackGoogleAdsConversion(sendTo: string) {
+  if (typeof window === 'undefined' || !window.gtag) return;
+  window.gtag('event', 'conversion', {
+    send_to: sendTo,
+    value: 1.0,
+    currency: 'EUR',
+  });
+}
+
+function normalizeEmail(value: string) {
+  const trimmed = value.trim().toLowerCase();
+  const [localPart, domain] = trimmed.split('@');
+  if (!localPart || !domain) return trimmed;
+  if (domain === 'gmail.com' || domain === 'googlemail.com') return `${localPart.replace(/\./g, '')}@${domain}`;
+  return trimmed;
+}
+
+function normalizeDutchPhone(value: string) {
+  const raw = value.trim();
+  if (!raw) return '';
+  const plusPrefixed = raw.startsWith('+');
+  const digits = raw.replace(/\D/g, '');
+  if (!digits) return '';
+  if (plusPrefixed) return `+${digits}`;
+  if (digits.startsWith('00')) return `+${digits.slice(2)}`;
+  if (digits.startsWith('31')) return `+${digits}`;
+  if (digits.startsWith('0')) return `+31${digits.slice(1)}`;
+  return `+31${digits}`;
+}
+
+async function sha256Hex(value: string) {
+  if (typeof window === 'undefined' || !window.crypto?.subtle) return '';
+  const bytes = new TextEncoder().encode(value);
+  const digest = await window.crypto.subtle.digest('SHA-256', bytes);
+  return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
+function rememberCampaignLeadForEnhancedConversions(formData: FormData) {
+  if (typeof window === 'undefined') return;
+  const lead: CampaignLeadUserData = {
+    firstName: String(formData.get('firstName') ?? '').trim(),
+    email: String(formData.get('email') ?? '').trim(),
+    phone: String(formData.get('phone') ?? '').trim(),
+  };
+  if (!lead.firstName && !lead.email && !lead.phone) return;
+  try {
+    window.sessionStorage.setItem(campaignLeadStorageKey, JSON.stringify(lead));
+  } catch {
+    // Ignore storage failures; base conversion tracking still works.
+  }
+}
+
+async function applyEnhancedConversionUserData() {
+  if (typeof window === 'undefined' || !window.gtag) return;
+  let lead: CampaignLeadUserData | null = null;
+  try {
+    const raw = window.sessionStorage.getItem(campaignLeadStorageKey);
+    if (raw) lead = JSON.parse(raw) as CampaignLeadUserData;
+    window.sessionStorage.removeItem(campaignLeadStorageKey);
+  } catch {
+    return;
+  }
+  if (!lead) return;
+
+  const userData: Record<string, unknown> = {};
+  const emailValue = lead.email ? normalizeEmail(lead.email) : '';
+  const phoneValue = lead.phone ? normalizeDutchPhone(lead.phone) : '';
+  if (emailValue) userData.sha256_email_address = await sha256Hex(emailValue);
+  if (phoneValue) userData.sha256_phone_number = await sha256Hex(phoneValue);
+  if (!userData.sha256_email_address && !userData.sha256_phone_number) return;
+
+  window.gtag('set', 'user_data', userData);
+}
+
+function GoogleAdsPageLoadConversion({ sendTo, eventKey }: { sendTo: string; eventKey: string }) {
+  useEffect(() => {
+    if (sentPageLoadConversions.has(eventKey)) return;
+    sentPageLoadConversions.add(eventKey);
+    void applyEnhancedConversionUserData().finally(() => trackGoogleAdsConversion(sendTo));
+  }, [eventKey, sendTo]);
+
+  return null;
+}
 
 type ServiceImage = string | { src: string; alt: string };
 
@@ -1775,7 +1873,25 @@ const campaignProofCards = [
   },
 ];
 
-type CampaignFieldName = 'firstName' | 'phone' | 'message' | 'email' | 'city';
+const campaignGalleryImages = [
+  { src: '/ridderkerk-2.webp', alt: 'Steigers rond de voorgevel van een woning in Ridderkerk', width: 1346, height: 1800 },
+  { src: '/ridderkerk-4.webp', alt: 'Woning in Ridderkerk volledig in de steigers gezien vanuit de tuin', width: 1800, height: 1346 },
+  { src: '/werk-witte-kozijnen-topgevel.webp?v=20260530', alt: 'Strak geschilderde witte kozijnen in een topgevel', width: 1280, height: 960 },
+  { src: '/werk-antraciet-bovengevel.webp?v=20260530', alt: 'Antracietgrijs schilderwerk aan een bovengevel', width: 1280, height: 960 },
+  { src: '/werk-gevel-erker-tuindeuren.webp?v=20260530', alt: 'Buitenschilderwerk aan gevel, erker en tuindeuren', width: 1280, height: 960 },
+  { src: '/ridderkerk-3.webp', alt: 'Steigeropbouw langs de zijgevel van een woning in Ridderkerk', width: 1800, height: 1346 },
+  { src: '/werk-schuren-erker-kozijnen.webp?v=20260530', alt: 'Schuren en voorbereiden van erker en kozijnen', width: 1280, height: 960 },
+  { src: '/hero-tuinvilla-steiger.webp?v=20260530', alt: 'Villa met steiger tijdens buitenschilderwerk', width: 1200, height: 1600 },
+] as const;
+
+const campaignDoorPair: ComparePair = {
+  before: { src: '/voordeur-voor.webp?v=20260517', alt: 'Groene dubbele voordeur met afgebladderde verflagen voor de behandeling' },
+  after: { src: '/voordeur-tijdens.webp', alt: 'Dezelfde voordeur tijdens het schuren en voorbereiden, afgeplakt en houtwerk hersteld' },
+  beforeLabel: 'Voor',
+  afterLabel: 'Tijdens',
+};
+
+type CampaignFieldName = 'firstName' | 'phone' | 'email' | 'message';
 type CampaignFieldErrors = Partial<Record<CampaignFieldName, string>>;
 
 function getStoredGclid() {
@@ -1783,11 +1899,22 @@ function getStoredGclid() {
   const params = new URLSearchParams(window.location.search);
   const fromUrl = params.get('gclid')?.trim() ?? '';
   if (fromUrl) {
-    document.cookie = `gclid=${encodeURIComponent(fromUrl)}; max-age=${60 * 60 * 24 * 90}; path=/; SameSite=Lax`;
+    const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = `gclid=${encodeURIComponent(fromUrl)}; Max-Age=${60 * 60 * 24 * 90}; Path=/; SameSite=Lax${secure}`;
+    try {
+      window.localStorage.setItem(gclidStorageKey, fromUrl);
+    } catch {
+      // The hidden field still receives the URL value on this page.
+    }
     return fromUrl;
   }
   const match = document.cookie.match(/(?:^|;\s*)gclid=([^;]+)/);
-  return match ? decodeURIComponent(match[1]) : '';
+  if (match) return decodeURIComponent(match[1]);
+  try {
+    return window.localStorage.getItem(gclidStorageKey) ?? '';
+  } catch {
+    return '';
+  }
 }
 
 function scrollToCampaignForm() {
@@ -1797,7 +1924,7 @@ function scrollToCampaignForm() {
 
 function CampaignLandingPage() {
   return (
-    <div id="top" className="min-h-[100dvh] bg-paper pb-24 text-ink md:pb-0">
+    <div id="top" data-campaign-page className="min-h-[100dvh] bg-paper pb-24 text-ink md:pb-0">
       <main>
         <section className="relative overflow-hidden bg-navy text-white">
           <img
@@ -1830,13 +1957,14 @@ function CampaignLandingPage() {
                 garantie en nu nog ruimte in de planning, ook in de vakantie en de bouwvak.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a id="call-link" href={phoneHref} className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-white/30 bg-white/8 px-4 py-3 text-sm font-bold text-white transition hover:bg-white/14 sm:min-w-[190px]">
+                <a id="call-cta" href={phoneHref} onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)} className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-white/30 bg-white/8 px-4 py-3 text-sm font-bold text-white transition hover:bg-white/14 sm:min-w-[190px]">
                   <Phone size={17} />
                   Bel {phoneDisplay}
                 </a>
                 <a
-                  id="whatsapp-link"
+                  id="whatsapp-cta"
                   href={whatsappHref}
+                  onClick={() => trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo)}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[#25D366] px-4 py-3 text-sm font-bold text-white shadow-[0_14px_26px_-18px_rgba(37,211,102,0.9)] transition hover:bg-[#1ebe5d]"
@@ -1845,9 +1973,6 @@ function CampaignLandingPage() {
                   WhatsApp
                 </a>
               </div>
-            </div>
-            <CampaignLeadForm formId="lead-form" compact={false} className="md:col-start-2 md:row-span-2 md:row-start-1" />
-            <div className="md:col-start-1 md:row-start-2">
               <CampaignTrustStrip />
               <div className="mt-5 rounded-lg border border-white/12 bg-white/[0.06] p-4">
                 <div>
@@ -1864,6 +1989,7 @@ function CampaignLandingPage() {
                 </div>
               </div>
             </div>
+            <CampaignLeadForm formId="lead-form" compact={false} className="md:self-center" />
           </div>
         </section>
 
@@ -1872,6 +1998,7 @@ function CampaignLandingPage() {
         <CampaignProcess />
         <CampaignReviews />
         <CampaignBeforeAfter />
+        <CampaignGallery />
         <CampaignWorkArea />
         <CampaignFaq />
         <section className="section-pad bg-navy text-white">
@@ -1882,8 +2009,8 @@ function CampaignLandingPage() {
                 Klaar voor een strakke, duurzame buitenboel?
               </h2>
               <p className="mt-5 max-w-xl text-lg leading-8 text-white/78">
-                Vraag nu uw gratis prijsindicatie aan, dan komt Richard langs voor een vaste prijs. We bellen kort om
-                te bepalen of een opname zinvol is.
+                Vraag nu uw gratis prijsindicatie aan, dan komt Richard langs voor een vaste prijs na een gratis
+                opname op locatie.
               </p>
             </div>
             <CampaignLeadForm formId="lead-form-onderaan" compact />
@@ -1963,7 +2090,6 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
     const errors: CampaignFieldErrors = {};
     if (!getValue('firstName')) errors.firstName = 'Vul uw naam in.';
     if (!getValue('phone')) errors.phone = 'Vul uw telefoonnummer in.';
-    if (!getValue('message')) errors.message = 'Vertel kort wat u wilt laten schilderen.';
     const emailValue = getValue('email');
     if (emailValue && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) errors.email = 'Vul een geldig e-mailadres in.';
     return errors;
@@ -2013,6 +2139,7 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
       const result = (await response.json()) as { ok: boolean; message?: string };
       if (!response.ok || !result.ok) throw new Error(result.message || 'De aanvraag kon niet worden verstuurd.');
 
+      rememberCampaignLeadForEnhancedConversions(formData);
       window.location.href = '/aanvraag-ontvangen';
     } catch (error) {
       const err = error instanceof Error ? error : new Error(String(error));
@@ -2038,9 +2165,9 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
         <div>
           <p className="eyebrow">Gratis aanvraag</p>
           <h2 className="mt-2 font-display text-2xl font-extrabold leading-tight text-navy">Vraag uw prijsindicatie aan</h2>
-          <p className="mt-2 text-sm leading-6 text-graphite">We bellen kort om te bepalen of een opname zinvol is.</p>
+          <p className="mt-2 text-sm leading-6 text-graphite">Naam en telefoon zijn genoeg. Richard belt u snel terug.</p>
         </div>
-        <div className="hidden rounded-md bg-door px-3 py-2 text-center text-xs font-extrabold uppercase tracking-[0.12em] text-white sm:block">
+        <div className="shrink-0 rounded-md bg-door px-3 py-2 text-center text-xs font-extrabold uppercase tracking-[0.12em] text-white">
           5 jaar garantie
         </div>
       </div>
@@ -2065,24 +2192,13 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
           <FieldError id={`${formId}-phone-error`} message={fieldErrors.phone} />
         </label>
         <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
-          <span>Wat wilt u laten schilderen? <RequiredMark /></span>
-          <textarea className="field min-h-24 resize-y" name="message" placeholder="Bijvoorbeeld: kozijnen en boeidelen buiten, houtrot bij voordeur, hele gevel..." required onChange={handleFieldChange('message')} aria-invalid={Boolean(fieldErrors.message)} aria-describedby={fieldErrors.message ? `${formId}-message-error` : undefined} />
-          <FieldError id={`${formId}-message-error`} message={fieldErrors.message} />
-        </label>
-        <label className="grid gap-2 text-sm font-bold text-navy">
           <span>E-mail <OptionalMark /></span>
           <input className="field" name="email" type="email" autoComplete="email" placeholder={email} onChange={handleFieldChange('email')} aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? `${formId}-email-error` : undefined} />
           <FieldError id={`${formId}-email-error`} message={fieldErrors.email} />
         </label>
-        <label className="grid gap-2 text-sm font-bold text-navy">
-          <span>Adres of plaats <OptionalMark /></span>
-          <input className="field" name="city" autoComplete="address-level2" placeholder="Woerden" onChange={handleFieldChange('city')} aria-invalid={Boolean(fieldErrors.city)} aria-describedby={fieldErrors.city ? `${formId}-city-error` : undefined} />
-          <FieldError id={`${formId}-city-error`} message={fieldErrors.city} />
-        </label>
         <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
-          <span>Foto's meesturen <OptionalMark /></span>
-          <input className="field file:mr-3 file:rounded-md file:border-0 file:bg-navy file:px-3 file:py-2 file:text-sm file:font-bold file:text-white" type="file" name="files" accept={attachmentAccept} multiple />
-          <span className="text-xs font-semibold leading-5 text-graphite">Maximaal 5 bestanden, 10 MB per bestand.</span>
+          <span>Korte toelichting <OptionalMark /></span>
+          <textarea className="field min-h-24 resize-y" name="message" placeholder="Bijvoorbeeld: kozijnen en boeidelen buiten, houtrot bij voordeur, hele gevel..." onChange={handleFieldChange('message')} />
         </label>
         <div className="md:col-span-2">
           {shouldUseTurnstile ? (
@@ -2137,15 +2253,17 @@ function CampaignWhy() {
 
   return (
     <section className="section-pad bg-whitewash">
-      <div className="shell grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-        <div>
-          <p className="eyebrow">Waarom RN</p>
-          <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Buitenwerk dat eerst goed voorbereid wordt.</h2>
-          <p className="mt-5 text-base leading-7 text-graphite">
-            Buitenschilderwerk is bescherming. Daarom kijken we naar houtrot, kitnaden, openstaande verbindingen en
-            de bestaande verflaag voordat er afgewerkt wordt.
-          </p>
-          <figure className="mt-7 overflow-hidden rounded-lg border border-line bg-white">
+      <div className="shell">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <p className="eyebrow">Waarom klanten kiezen voor RN Schilders &amp; Renovatie</p>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Buitenwerk dat eerst goed voorbereid wordt.</h2>
+            <p className="mt-5 text-base leading-7 text-graphite">
+              Buitenschilderwerk is bescherming. Daarom kijken we naar houtrot, kitnaden, openstaande verbindingen en
+              de bestaande verflaag voordat er afgewerkt wordt.
+            </p>
+          </div>
+          <figure className="overflow-hidden rounded-lg border border-line bg-white">
             <img
               src="/campaign-bus-gevelwerk.webp"
               alt="RN Schilders bus bij buitenschilderwerk aan een gevel"
@@ -2160,9 +2278,9 @@ function CampaignWhy() {
             </figcaption>
           </figure>
         </div>
-        <div className="grid gap-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
-            <div key={item} className="flex gap-4 rounded-lg border border-line bg-white p-5">
+            <div key={item} className="flex h-full gap-3 rounded-lg border border-line bg-white p-5">
               <Check className="mt-0.5 h-5 w-5 shrink-0 text-door" />
               <p className="text-sm leading-7 text-graphite">{item}</p>
             </div>
@@ -2177,7 +2295,7 @@ function CampaignProcess() {
   const steps = [
     ['Foto of opname', 'Stuur een foto of plan een gratis opname op locatie.'],
     ['Duidelijke offerte', 'U krijgt een duidelijke offerte met een vaste prijs vooraf.'],
-    ['Uitvoering', 'Wij voeren het werk netjes en op afspraak uit, met Richard zelf op locatie.'],
+    ['Uitvoering', 'Wij voeren het werk netjes en volgens afspraak uit, met Richard zelf op locatie.'],
     ['Oplevering', 'Samen leveren we op en lopen we het resultaat na.'],
   ];
 
@@ -2221,8 +2339,8 @@ function CampaignReviews() {
       <div className="shell">
         <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <div>
-            <p className="eyebrow">Wat klanten zeggen</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Echte reviews, hoog op de pagina omdat vertrouwen telt.</h2>
+            <p className="eyebrow">Reviews</p>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Wat klanten zeggen</h2>
             <div className="mt-7 rounded-lg border border-line bg-white p-5">
               <div className="flex items-center gap-1 text-[#FBBC04]">
                 {Array.from({ length: 5 }, (_, index) => (
@@ -2245,7 +2363,7 @@ function CampaignReviews() {
             </div>
           </div>
           <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
-            {reviews.slice(0, 3).map((review, index) => (
+            {reviews.filter((review) => review.name !== 'Curtis Bouman').slice(0, 3).map((review, index) => (
               <ReviewCard key={review.name} review={review} color={avatarColors[index % avatarColors.length]} />
             ))}
           </div>
@@ -2261,8 +2379,8 @@ function CampaignBeforeAfter() {
       <div className="shell">
         <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <div>
-            <p className="eyebrow">Voor en na</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">De eikenhouten voordeur laat het vakmanschap direct zien.</h2>
+            <p className="eyebrow">Voor en tijdens</p>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">De voorbereiding bepaalt hoe het straks wordt.</h2>
             <p className="mt-5 text-base leading-7 text-white/78">
               Buitenhout blijft alleen mooi als de ondergrond goed wordt aangepakt. Bij deuren, kozijnen en boeidelen
               draait het om schuren, herstellen, gronden en strak aflakken.
@@ -2279,7 +2397,42 @@ function CampaignBeforeAfter() {
               ))}
             </div>
           </div>
-          <CompareSlider pair={doorCompareCases[0].pair} />
+          <div>
+            <h3 className="mb-4 font-display text-xl font-extrabold text-white">Voordeur: sleep van voor naar tijdens</h3>
+            <CompareSlider pair={campaignDoorPair} />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CampaignGallery() {
+  return (
+    <section className="section-pad bg-whitewash">
+      <div className="shell">
+        <div className="max-w-2xl">
+          <p className="eyebrow">Recent buitenwerk</p>
+          <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Buitenschilderwerk in de regio, van dichtbij.</h2>
+          <p className="mt-5 text-base leading-7 text-graphite">
+            Van een woning volledig in de steigers in Ridderkerk tot kozijnen, boeidelen en gevels dichter bij huis.
+            Zo werken we: veilig bereikbaar, netjes voorbereid en strak afgewerkt.
+          </p>
+        </div>
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+          {campaignGalleryImages.map((image) => (
+            <div key={image.src} className="overflow-hidden rounded-lg border border-line bg-white">
+              <img
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                className="aspect-[4/5] w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -2469,8 +2622,7 @@ function CampaignMinimalFooter() {
     <footer className="bg-[#08142b] py-8 text-white">
       <div className="shell flex flex-col gap-3 text-sm font-semibold sm:flex-row sm:items-center sm:justify-between">
         <span>RN Schilders & Renovatie</span>
-        <span>Kuipersweg 33, 3449 JA Woerden</span>
-        <a href={phoneHref} className="text-white/85 hover:text-white">
+        <a href={phoneHref} onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)} className="text-white/85 hover:text-white">
           {phoneDisplay}
         </a>
       </div>
@@ -2526,6 +2678,7 @@ function CampaignStickyCta() {
 function CampaignThankYouPage() {
   return (
     <div className="min-h-[100dvh] bg-paper">
+      <GoogleAdsPageLoadConversion sendTo={googleAdsFormConversionSendTo} eventKey="campaign-form-thank-you" />
       <main className="bg-navy text-white">
         <div className="shell grid min-h-[100dvh] content-center gap-8 py-12">
           <div className="max-w-3xl">
@@ -2538,12 +2691,13 @@ function CampaignThankYouPage() {
               gratis opname op locatie zinvol is. Daarna volgt een duidelijke offerte met vaste prijs vooraf.
             </p>
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <a href={phoneHref} className="btn-light">
+              <a href={phoneHref} onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)} className="btn-light">
                 <Phone size={17} />
                 Bel {phoneDisplay}
               </a>
               <a
                 href={whatsappHref}
+                onClick={() => trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo)}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[#25D366] px-5 py-3 text-sm font-bold text-white shadow-[0_14px_26px_-18px_rgba(37,211,102,0.9)] transition hover:bg-[#1ebe5d]"
@@ -3896,11 +4050,12 @@ function GoogleGlyph({ className = '' }: { className?: string }) {
 }
 
 function WhatsAppGlyph({ className = '' }: { className?: string }) {
+  // Official WhatsApp brand glyph (Simple Icons).
   return (
-    <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path
         fill="currentColor"
-        d="M16.02 3.2A12.75 12.75 0 0 0 5.2 22.68L3.6 28.8l6.28-1.58A12.75 12.75 0 1 0 16.02 3.2Zm0 2.2a10.55 10.55 0 0 1 8.98 16.1 10.54 10.54 0 0 1-13.76 3.6l-.42-.22-3.74.94.96-3.62-.25-.44A10.55 10.55 0 0 1 16.02 5.4Zm-4.2 5.52c-.26 0-.68.1-1.04.5-.36.4-1.38 1.35-1.38 3.3s1.42 3.83 1.62 4.1c.2.26 2.74 4.38 6.78 5.96 3.36 1.32 4.04 1.06 4.76.99.73-.07 2.35-.96 2.68-1.89.33-.93.33-1.72.23-1.89-.1-.16-.36-.26-.76-.46-.4-.2-2.35-1.16-2.72-1.29-.36-.13-.63-.2-.9.2-.26.4-1.03 1.29-1.26 1.55-.23.27-.46.3-.86.1-.4-.2-1.68-.62-3.2-1.98-1.18-1.05-1.98-2.35-2.21-2.75-.23-.4-.03-.6.17-.8.18-.18.4-.46.6-.7.2-.23.26-.4.4-.66.13-.27.07-.5-.03-.7-.1-.2-.9-2.16-1.23-2.96-.32-.77-.65-.66-.9-.67h-.75Z"
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.358.101 11.892c0 2.096.549 4.142 1.595 5.945L0 24l6.335-1.652a11.882 11.882 0 005.71 1.454h.006c6.585 0 11.946-5.359 11.949-11.893a11.821 11.821 0 00-3.495-8.46z"
       />
     </svg>
   );
