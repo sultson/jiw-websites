@@ -1,27 +1,31 @@
 ---
 import '../styles/global.css';
 
+const messengerUrl = 'https://m.me/100075943650762';
+
 const tours = [
   {
     title: 'Amsterdam',
     image: '/images/amsterdam.webp',
     alt: 'Amsterdam canal with gabled houses and bicycles',
-    copy: 'Classic Amsterdam, the Jordaan and the Jewish quarter, shaped for first-time visitors or guests who want the quieter layers of the city.',
-    items: ['Amsterdam introduction', 'Jordaan walking tour', 'Jewish heritage route'],
+    copy: 'Classic Amsterdam with stories that connect the city to New Amsterdam, from Centraal Station and Dam Square to the Jordaan, Jewish Amsterdam and the Red Light District.',
+    items: ['Amsterdam introduction', 'Jordaan walking tour', 'Jewish/WW2 Amsterdam', 'Red Light District context'],
   },
   {
     title: 'Volendam, Edam & Marken',
     image: '/images/villages.webp',
-    alt: 'Traditional harbor village with Dutch houses and boats',
+    alt: 'Traditional harbor village with Dutch houses',
     copy: 'A bright day outside Amsterdam with harbor life, cheese-town streets, fishing village history and enough time to breathe.',
     items: ['Volendam harbor', 'Edam town walk', 'Marken and Zaanse Schans options'],
   },
   {
     title: 'Nijmegen',
     image: '/images/nijmegen.webp',
-    alt: 'Historic Nijmegen riverside city view',
-    copy: 'Especially strong for groups: the oldest city in the Netherlands, river views, wartime history and relaxed walking routes.',
-    items: ['Group tours', 'Historic city walk', 'Waal river stories'],
+    alt: 'Historic Nijmegen city view',
+    highlightImage: '/images/nijmegen-tour-group.webp',
+    highlightAlt: 'Marion with a tour group during a Nijmegen walking tour',
+    copy: 'Especially strong for groups: the oldest city in the Netherlands, built on two levels, with a relaxed walking tour through its historic center.',
+    items: ['Relaxed walking tour', 'Historic city tour', 'Stevenskerk and Waalkade'],
   },
   {
     title: 'The Grand Holland',
@@ -31,11 +35,11 @@ const tours = [
     items: ['Rotterdam by bus or on foot', 'Delft and Delft blue', 'The Hague and Madurodam'],
   },
   {
-    title: 'Van Gogh',
-    image: '/images/museums-boats.webp?v=20260629',
-    alt: "Van Gogh's Starry Night in a gold frame in a museum gallery with visitors",
-    copy: 'The Van Gogh Museum at a calm pace, with the story behind his life, letters and the works that matter most to you.',
-    items: ['Van Gogh Museum visit', 'Story behind the paintings', 'Calm, guided pace'],
+    title: 'The Hague, Rotterdam & Delft',
+    image: '/images/grand-holland.webp',
+    alt: 'South Holland landmarks and city details',
+    copy: 'Historic city tours and bus routes through South Holland: Parliament and Scheveningen in The Hague, modern Rotterdam and Delft Blue craftsmanship.',
+    items: ['The Hague center or bus tour', 'Rotterdam walk or bus tour', 'Delft Blue factory and city walk'],
   },
   {
     title: 'Custom Tours',
@@ -55,12 +59,12 @@ const tours = [
     <title>Netherlands Unveiled | Private Tours Across Holland</title>
     <meta
       name="description"
-      content="Private and group tours across the Netherlands with Marion: Amsterdam, Nijmegen, Volendam, Edam, Marken, Zaanse Schans, Rotterdam, Delft, The Hague, museums and boat tours."
+      content="Private and group tours across the Netherlands with Marion: Amsterdam, Nijmegen, Volendam, Edam, Marken, Zaanse Schans, Rotterdam, Delft and The Hague."
     />
     <meta property="og:title" content="Netherlands Unveiled" />
     <meta
       property="og:description"
-      content="Colorful, personal tours through Amsterdam, South Holland, historic cities, villages, museums and waterways."
+      content="Colorful, personal tours through Amsterdam, South Holland, historic cities and Dutch villages with a storyteller who explains cultural differences."
     />
     <meta property="og:image" content="/images/hero.webp" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -73,6 +77,14 @@ const tours = [
             <strong>Netherlands Unveiled</strong>
             <span>Private tours with Marion</span>
           </a>
+          <div class="top-flags" aria-label="Guiding languages">
+            <span aria-label="English">🇺🇸</span>
+            <span aria-label="Dutch">🇳🇱</span>
+            <span aria-label="German">🇩🇪</span>
+            <span aria-label="French">🇫🇷</span>
+            <span aria-label="Spanish">🇪🇸</span>
+            <span aria-label="Italian">🇮🇹</span>
+          </div>
           <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
           <nav class="nav-links" id="nav-links" aria-label="Main navigation">
             <a href="#tours">Tours</a>
@@ -84,13 +96,13 @@ const tours = [
 
       <main id="top">
         <section class="hero" aria-label="Netherlands Unveiled">
-          <img src="/images/hero.webp" alt="Colorful Netherlands scene with canals, tulips, Delft blue and Dutch architecture" />
+          <img src="/images/hero.webp" alt="Colorful Netherlands scene with canals, tulips, Delft blue and Dutch city details" />
           <div class="hero-content">
             <div class="hero-copy">
               <h1>Netherlands Unveiled</h1>
               <p>
-                Private and group tours with Marion for travelers who want more than a checklist:
-                local stories, sensitive cultural context and a route that fits the season.
+                Private and group tours with Marion, a storyteller with 40 years in travel,
+                for guests who want Dutch places explained through culture, context and lived experience.
               </p>
               <div class="hero-actions">
                 <a class="btn btn-primary" href="#contact">Plan a tour</a>
@@ -100,12 +112,12 @@ const tours = [
           </div>
           <div class="hero-facts" aria-label="Tour highlights">
             <div class="fact">
-              <strong>6+ years guiding</strong>
-              <span>Experienced in high-season groups and private tours.</span>
+              <strong>40 years in travel</strong>
+              <span>Tour operations, group sales and guiding on both sides of the Atlantic.</span>
             </div>
             <div class="fact">
-              <strong>All over Holland</strong>
-              <span>Amsterdam, Nijmegen, villages, museums and South Holland.</span>
+              <strong>Culture explained</strong>
+              <span>Amsterdam and New Amsterdam perspectives, shaped for international guests.</span>
             </div>
             <div class="fact">
               <strong>Email or Messenger</strong>
@@ -118,14 +130,27 @@ const tours = [
           <div class="section-head">
             <h2>Tours by city and story</h2>
             <p>
-              Start with a city, then choose the layer that matters: architecture, Jewish history,
-              villages, museums, water, wartime context or a full-day Holland route.
+              Start with a city, then choose the layer that matters: Jewish history, the Jordaan,
+              Red Light District context, villages, wartime history or a full-day Holland route.
             </p>
           </div>
           <div class="tour-grid">
             {tours.map((tour) => (
               <article class="tour-card">
-                <img src={tour.image} alt={tour.alt} loading="lazy" />
+                <div class="tour-media">
+                  <img src={tour.image} alt={tour.alt} loading="lazy" />
+                  {'highlightImage' in tour && (
+                    <details class="tour-photo-popout">
+                      <summary aria-label={`View real tour photo for ${tour.title}`}>
+                        <img src={tour.highlightImage} alt="" loading="lazy" />
+                        <span>View photo</span>
+                      </summary>
+                      <div class="tour-photo-panel">
+                        <img src={tour.highlightImage} alt={tour.highlightAlt} loading="lazy" />
+                      </div>
+                    </details>
+                  )}
+                </div>
                 <div class="tour-body">
                   <h3>{tour.title}</h3>
                   <p>{tour.copy}</p>
@@ -142,34 +167,46 @@ const tours = [
           <div class="section split">
             <div>
               <p class="eyebrow">About Marion</p>
-              <h2>A guide for people, not scripts</h2>
+              <h2>A storyteller between two worlds</h2>
             </div>
             <div class="about-copy">
               <p>
-                Marion has guided travelers through the Netherlands for six to seven years. In
-                high season, when Keukenhof and day trips are busy, she is used to working with
-                tour operators and groups. Outside peak season, tours can become more personal,
-                more flexible and more deeply tailored.
+                Marion Baumgarten has spent 40 years in travel and tourism, from tour operations
+                and group sales to guiding visitors through the Netherlands and New York City.
+                Most tours are guided by Marion herself.
               </p>
               <p>
-                The site uses the general name Netherlands Unveiled so the brand can travel with
-                Marion in the future, while keeping the focus on what guests book: colorful,
-                thoughtful tours through the Netherlands.
+                Born in New York City and shaped by life in the Netherlands and other countries,
+                Marion made the original journey in reverse: from New Amsterdam to Amsterdam.
+                That gives her a natural way to explain the differences in lifestyle, outlook and
+                habits between both sides of the Atlantic.
               </p>
-              <div class="portrait-note">
+              <div class="insight-note">
                 <p>
-                  Some museum themes, including portraiture and historical representation, can be
-                  sensitive. Marion handles those subjects with context, care and room for questions.
+                  Her tours are built around stories, not scripts: how places developed, why Dutch
+                  customs feel different to visitors and what those cultural differences mean in daily life.
                 </p>
-              </div>
-              <div class="language-row" aria-label="Guiding languages">
-                <span aria-label="English">🇬🇧</span>
-                <span aria-label="German">🇩🇪</span>
-                <span aria-label="French">🇫🇷</span>
-                <span aria-label="Spanish">🇪🇸</span>
               </div>
             </div>
           </div>
+        </section>
+
+        <section class="section spring-section" aria-label="Keukenhof spring tours">
+          <article class="spring-card">
+            <div class="spring-content">
+              <p class="eyebrow">Springtime</p>
+              <h2>Discover Keukenhof</h2>
+              <p>
+                In the springtime, discover Keukenhof: home to millions of flowers,
+                starting with daffodils and ending with about 350 different varieties of tulips.
+                Keukenhof is about an hour from Amsterdam and can be visited as a stand-alone
+                excursion or combined with nearby attractions such as The Hague or Delft.
+              </p>
+              <p>
+                Marion can also help shape the day around an official lunch somewhere nearby.
+              </p>
+            </div>
+          </article>
         </section>
 
         <section class="section" id="contact">
@@ -181,6 +218,7 @@ const tours = [
                 Send your preferred date, group size and tour idea. Marion replies by email or
                 Messenger with availability and a fitting route.
               </p>
+              <a class="btn btn-messenger" href={messengerUrl} target="_blank" rel="noopener">Message on Messenger</a>
             </div>
 
             <div class="form-card" id="contact-form">
@@ -215,11 +253,12 @@ const tours = [
                       <option>Amsterdam</option>
                       <option>Jordaan tour</option>
                       <option>Jewish heritage tour</option>
+                      <option>Red Light District tour</option>
+                      <option>Keukenhof spring tour</option>
                       <option>Volendam, Edam, Marken or Zaanse Schans</option>
                       <option>Nijmegen group tour</option>
                       <option>The Grand Holland</option>
-                      <option>Boat tour</option>
-                      <option>Museum tour</option>
+                      <option>The Hague, Rotterdam or Delft</option>
                       <option>Custom Netherlands tour</option>
                     </select>
                   </label>
@@ -235,9 +274,11 @@ const tours = [
                     Preferred language
                     <select name="language">
                       <option>English</option>
+                      <option>Dutch</option>
                       <option>German</option>
                       <option>French</option>
                       <option>Spanish</option>
+                      <option>Italian</option>
                     </select>
                   </label>
                   <label class="full">

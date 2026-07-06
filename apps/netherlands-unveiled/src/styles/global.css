@@ -72,8 +72,11 @@ textarea {
 
 .brand {
   display: grid;
+  flex: 0 0 auto;
   gap: 0.05rem;
+  min-width: max-content;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .brand strong {
@@ -87,6 +90,23 @@ textarea {
   color: rgba(255, 250, 241, 0.74);
   font-size: 0.72rem;
   text-transform: uppercase;
+}
+
+.top-flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.22rem;
+  justify-content: center;
+  margin-left: auto;
+  pointer-events: none;
+}
+
+.top-flags span {
+  display: inline-flex;
+  justify-content: center;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .nav-links {
@@ -179,8 +199,10 @@ h3 {
 }
 
 h1 {
-  max-width: 11ch;
-  font-size: clamp(4rem, 10vw, 8.5rem);
+  max-width: 14ch;
+  font-size: clamp(3.4rem, 5.8vw, 5.8rem);
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .hero-copy p {
@@ -318,10 +340,105 @@ h2 {
   box-shadow: 0 12px 28px rgba(23, 32, 38, 0.08);
 }
 
-.tour-card img {
+.tour-media {
+  position: relative;
+}
+
+.tour-media > img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+.tour-photo-popout {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+}
+
+.tour-photo-popout summary {
+  display: grid;
+  width: 8.4rem;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid #fffdf8;
+  border-radius: 16px;
+  background: #fffdf8;
+  box-shadow: 0 12px 28px rgba(23, 32, 38, 0.28);
+  list-style: none;
+}
+
+.tour-photo-popout summary::-webkit-details-marker {
+  display: none;
+}
+
+.tour-photo-popout summary img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.tour-photo-popout summary span {
+  padding: 0.28rem 0.45rem 0.34rem;
+  color: #253036;
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.tour-photo-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 120;
+  width: min(62rem, calc(100vw - 32px));
+  max-height: calc(100svh - 48px);
+  overflow: hidden;
+  border: 3px solid #fffdf8;
+  border-radius: 18px;
+  background: #fffdf8;
+  box-shadow: 0 20px 52px rgba(23, 32, 38, 0.35);
+  transform: translate(-50%, -50%);
+}
+
+.tour-photo-panel img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.tour-photo-popout[open]::before {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background: rgba(8, 12, 13, 0.62);
+  content: "";
+}
+
+.tour-photo-popout[open] summary {
+  position: fixed;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 130;
+  width: auto;
+  border-width: 0;
+  padding: 0.68rem 0.78rem;
+  background: #fffdf8;
+}
+
+.tour-photo-popout[open] summary img {
+  display: none;
+}
+
+.tour-photo-popout[open] summary span {
+  padding: 0;
+  font-size: 0;
+}
+
+.tour-photo-popout[open] summary span::after {
+  color: #253036;
+  content: "Close photo";
+  font-size: 0.86rem;
 }
 
 .tour-body {
@@ -369,6 +486,37 @@ h2 {
   background: #e8f1ed;
 }
 
+.spring-section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.spring-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(255, 250, 241, 0.97) 0%, rgba(255, 250, 241, 0.9) 46%, rgba(255, 250, 241, 0.22) 100%),
+    url("/images/keukenhof-pattern.webp") center / cover;
+  box-shadow: var(--shadow);
+}
+
+.spring-content {
+  max-width: 680px;
+  padding: clamp(1.3rem, 4vw, 3rem);
+}
+
+.spring-content h2 {
+  max-width: 8ch;
+}
+
+.spring-content p {
+  margin: 1rem 0 0;
+  color: #334047;
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+}
+
 .split {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
@@ -376,7 +524,7 @@ h2 {
   align-items: start;
 }
 
-.portrait-note {
+.insight-note {
   border-left: 6px solid var(--red);
   border-radius: 8px;
   background: #fffaf1;
@@ -384,7 +532,7 @@ h2 {
   box-shadow: 0 12px 28px rgba(23, 32, 38, 0.08);
 }
 
-.portrait-note p {
+.insight-note p {
   margin: 0;
   color: #3a2b23;
 }
@@ -397,24 +545,6 @@ h2 {
 .about-copy p {
   margin: 0;
   color: #344047;
-}
-
-.language-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-  margin-top: 1.25rem;
-}
-
-.language-row span {
-  display: inline-flex;
-  min-width: 3rem;
-  justify-content: center;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fffdf8;
-  padding: 0.45rem 0.55rem;
-  font-size: 1.25rem;
 }
 
 .platforms {
@@ -459,6 +589,21 @@ h2 {
 .contact-card p {
   margin: 0.7rem 0 0;
   color: var(--muted);
+}
+
+.btn-messenger {
+  width: fit-content;
+  margin-top: 1.1rem;
+  border-color: #0a7cff;
+  background: #0a7cff;
+  color: #fff;
+}
+
+.btn-messenger:hover,
+.btn-messenger:focus-visible {
+  border-color: #006be0;
+  background: #006be0;
+  outline: none;
 }
 
 
@@ -566,6 +711,12 @@ textarea:focus {
 }
 
 @media (max-width: 880px) {
+  .nav-inner {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.62rem 0;
+  }
+
   .nav-links {
     position: absolute;
     top: 100%;
@@ -578,6 +729,11 @@ textarea:focus {
     background: rgba(20, 26, 28, 0.96);
   }
 
+  .top-flags {
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+
   .nav[data-open="true"] .nav-links {
     display: flex;
   }
@@ -588,7 +744,7 @@ textarea:focus {
 
   .hero-content {
     align-items: end;
-    padding-bottom: 8rem;
+    padding-bottom: 6rem;
   }
 
   .hero-facts,
@@ -620,24 +776,102 @@ textarea:focus {
   .platforms {
     grid-template-columns: 1fr;
   }
+
+  .spring-card {
+    background:
+      linear-gradient(0deg, rgba(255, 250, 241, 0.96) 0%, rgba(255, 250, 241, 0.82) 66%, rgba(255, 250, 241, 0.52) 100%),
+      url("/images/keukenhof-pattern.webp") center / cover;
+  }
 }
 
 @media (max-width: 560px) {
   .hero {
-    min-height: 88svh;
+    --mobile-hero-media: clamp(500px, 60svh, 560px);
+
+    min-height: auto;
+  }
+
+  .hero img,
+  .hero::after {
+    bottom: auto;
+    height: var(--mobile-hero-media);
+  }
+
+  .hero img {
+    object-fit: cover;
+    object-position: 50% center;
   }
 
   .hero-content {
-    min-height: 88svh;
-    padding-top: 6rem;
+    min-height: var(--mobile-hero-media);
+    align-items: center;
+    padding: 4.55rem 0 2.4rem;
+  }
+
+  .hero-facts {
+    width: min(100% - 24px, 680px);
+    margin-top: 0;
   }
 
   h1 {
-    font-size: clamp(3.35rem, 17vw, 5.4rem);
+    max-width: 100%;
+    font-size: clamp(2.1rem, 8.8vw, 2.9rem);
+  }
+
+  .hero-copy p {
+    max-width: 100%;
+    padding: 0.78rem 0.85rem;
+    font-size: 0.96rem;
+  }
+
+  .hero-actions {
+    gap: 0.55rem;
+    margin-top: 1.1rem;
+  }
+
+  .btn {
+    min-height: 44px;
+    padding: 0.68rem 0.82rem;
+  }
+
+  .nav-inner {
+    width: min(100% - 20px, 1160px);
+    gap: 0.35rem;
+    padding: 0.36rem 0;
+  }
+
+  .brand strong {
+    font-size: 0.92rem;
+  }
+
+  .brand span {
+    display: none;
+  }
+
+  .top-flags {
+    gap: 0.16rem;
+  }
+
+  .top-flags span {
+    font-size: 0.76rem;
+  }
+
+  .menu-toggle {
+    padding: 0.34rem 0.48rem;
+    font-size: 0.78rem;
   }
 
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .tour-photo-popout {
+    right: 0.55rem;
+    bottom: 0.55rem;
+  }
+
+  .tour-photo-popout summary {
+    width: 7.2rem;
   }
 
   .footer-inner {
