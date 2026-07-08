@@ -39,7 +39,6 @@ const mapsHref = 'https://www.google.com/maps/search/?api=1&query=Kuipersweg+33+
 const siteUrl = 'https://rnschilders.nl';
 const siteName = 'RN Schilders & Renovatie';
 const turnstileSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || '';
-const mapboxPublicToken = import.meta.env.VITE_MAPBOX_PUBLIC_TOKEN || '';
 const attachmentAccept = '.jpg,.jpeg,.png,.webp,.heic,.heif,.pdf,image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf';
 const MAX_ATTACHMENTS = 5;
 const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024;
@@ -929,6 +928,16 @@ const reviews: Review[] = [
   },
 ];
 
+const campaignReviews: Review[] = [
+  reviews.find((review) => review.name === 'Barry Verschoor')!,
+  {
+    name: 'Sipke Woudstra',
+    date: '3 maanden geleden',
+    quote: 'Snel offerte gehad, snel gehandeld. Mooi schilderwerk geleverd voor een goede prijs!',
+  },
+  reviews.find((review) => review.name === 'Marek Balog')!,
+];
+
 // Google-style avatar background colours, assigned per reviewer by index.
 const avatarColors = ['#1a73e8', '#d93025', '#188038', '#e8710a', '#a142f4'];
 
@@ -945,7 +954,7 @@ const roofWindowStory: ShowcaseImage[] = [
     alt: 'Dakkapel en dakraam vóór afwerking',
     width: 1024,
     height: 1536,
-    title: 'Dakraamhoek',
+    title: 'Dakkapel',
     label: 'Voor',
   },
   {
@@ -953,7 +962,7 @@ const roofWindowStory: ShowcaseImage[] = [
     alt: 'Dakkapel en dakraam na afwerking',
     width: 1024,
     height: 1536,
-    title: 'Dakraamhoek',
+    title: 'Dakkapel',
     label: 'Na',
   },
   {
@@ -1803,22 +1812,6 @@ function App({ initialPath }: { initialPath?: string } = {}) {
   );
 }
 
-const mapboxOverview = { lng: 4.93, lat: 52.07, zoom: 9.25 };
-const campaignMapPins = [
-  { name: 'Woerden', lat: 52.0853, lng: 4.8838, text: 'Thuisbasis RN Schilders' },
-  { name: 'Utrecht', lat: 52.0907, lng: 5.1214, text: 'Veel buitenwerk aan kozijnen, boeidelen en deuren' },
-  { name: 'Nieuwegein', lat: 52.0292, lng: 5.0800, text: 'Opname en uitvoering in de regio Utrecht' },
-  { name: 'IJsselstein', lat: 52.0200, lng: 5.0431, text: 'Buitenschilderwerk en houtrotherstel' },
-  { name: 'Houten', lat: 52.0283, lng: 5.1681, text: 'Kozijnen, boeidelen en gevelhout' },
-  { name: 'Gouda', lat: 52.0115, lng: 4.7105, text: 'Binnen bereik voor grotere buitenklussen' },
-  { name: 'Alphen aan den Rijn', lat: 52.1292, lng: 4.6555, text: 'Regio west van Woerden' },
-  { name: 'Oudewater', lat: 52.0250, lng: 4.8681, text: 'Korte lijnen vanuit Woerden' },
-  { name: 'Montfoort', lat: 52.0458, lng: 4.9528, text: 'Opname op locatie mogelijk' },
-  { name: 'Vleuten', lat: 52.1057, lng: 5.0156, text: 'Ouder buitenhout en kozijnonderhoud' },
-  { name: 'De Meern', lat: 52.0818, lng: 5.0366, text: 'Buitenschilderwerk dichtbij Woerden' },
-  { name: 'Leidsche Rijn', lat: 52.1000, lng: 5.0550, text: 'Kozijnen en buitenafwerking' },
-] as const;
-
 const campaignFaqs = [
   {
     question: 'Wat kost buitenschilderwerk?',
@@ -1838,7 +1831,7 @@ const campaignFaqs = [
   {
     question: 'Werken jullie ook in mijn plaats?',
     answer:
-      'We werken in Woerden en tot ongeveer een uur daaromheen, in een groot deel van de regio Utrecht. Twijfelt u of uw plaats erbij hoort? Vraag het even, grote kans van wel.',
+      'Ja. We nemen buitenschilderwerk aan in heel Nederland. Stuur uw plaats, foto’s en een korte omschrijving mee, dan kijken we direct wat er mogelijk is.',
   },
   {
     question: 'Komt Richard zelf langs?',
@@ -1880,16 +1873,8 @@ const campaignGalleryImages = [
   { src: '/werk-antraciet-bovengevel.webp?v=20260530', alt: 'Antracietgrijs schilderwerk aan een bovengevel', width: 1280, height: 960 },
   { src: '/werk-gevel-erker-tuindeuren.webp?v=20260530', alt: 'Buitenschilderwerk aan gevel, erker en tuindeuren', width: 1280, height: 960 },
   { src: '/ridderkerk-3.webp', alt: 'Steigeropbouw langs de zijgevel van een woning in Ridderkerk', width: 1800, height: 1346 },
-  { src: '/werk-schuren-erker-kozijnen.webp?v=20260530', alt: 'Schuren en voorbereiden van erker en kozijnen', width: 1280, height: 960 },
   { src: '/hero-tuinvilla-steiger.webp?v=20260530', alt: 'Villa met steiger tijdens buitenschilderwerk', width: 1200, height: 1600 },
 ] as const;
-
-const campaignDoorPair: ComparePair = {
-  before: { src: '/voordeur-voor.webp?v=20260517', alt: 'Groene dubbele voordeur met afgebladderde verflagen voor de behandeling' },
-  after: { src: '/voordeur-tijdens.webp', alt: 'Dezelfde voordeur tijdens het schuren en voorbereiden, afgeplakt en houtwerk hersteld' },
-  beforeLabel: 'Voor',
-  afterLabel: 'Tijdens',
-};
 
 type CampaignFieldName = 'firstName' | 'phone' | 'email' | 'message';
 type CampaignFieldErrors = Partial<Record<CampaignFieldName, string>>;
@@ -1927,16 +1912,19 @@ function CampaignLandingPage() {
     <div id="top" data-campaign-page className="min-h-[100dvh] bg-paper pb-24 text-ink md:pb-0">
       <main>
         <section className="relative overflow-hidden bg-navy text-white">
-          <img
-            src="/campaign-hero-buitenschilderwerk.webp"
-            alt=""
-            width={2200}
-            height={1238}
-            className="absolute inset-0 h-full w-full object-cover object-[52%_45%]"
-            loading="eager"
-            decoding="async"
-            fetchPriority="high"
-          />
+          <picture>
+            <source media="(max-width: 767px)" srcSet="/rn-schilders-main.webp?v=20260530" />
+            <img
+              src="/campaign-hero-buitenschilderwerk.webp"
+              alt=""
+              width={2200}
+              height={1238}
+              className="absolute inset-0 h-full w-full object-cover object-[52%_45%] max-md:object-[50%_28%]"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
+          </picture>
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,30,61,0.94)_0%,rgba(13,30,61,0.82)_42%,rgba(13,30,61,0.56)_100%)]" />
           <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-navy/35 to-transparent" />
           <div className="shell relative grid gap-8 py-8 md:grid-cols-[minmax(0,1fr)_500px] md:items-start md:py-12 lg:grid-cols-[minmax(0,660px)_540px] xl:grid-cols-[minmax(0,700px)_560px] lg:gap-10 lg:py-14">
@@ -1974,20 +1962,6 @@ function CampaignLandingPage() {
                 </a>
               </div>
               <CampaignTrustStrip />
-              <div className="mt-5 rounded-lg border border-white/12 bg-white/[0.06] p-4">
-                <div>
-                  <div className="flex items-center gap-1 text-[#FBBC04]">
-                    {Array.from({ length: 5 }, (_, index) => (
-                      <Star key={index} size={17} fill="currentColor" strokeWidth={0} />
-                    ))}
-                    <span className="ml-2 text-sm font-extrabold text-white">5,0 Google</span>
-                  </div>
-                  <blockquote className="mt-3 max-w-2xl text-sm leading-6 text-white/80">
-                    “Prachtig schilderwerk dat er weer jaren tegenaan kan. Vriendelijke jongens die met hart voor hun vak werken.”
-                  </blockquote>
-                  <p className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-roller-soft">Remco Paauwe · juni 2026</p>
-                </div>
-              </div>
             </div>
             <CampaignLeadForm formId="lead-form" compact={false} className="md:self-center" />
           </div>
@@ -1996,17 +1970,17 @@ function CampaignLandingPage() {
         <CampaignUrgency />
         <CampaignWhy />
         <CampaignProcess />
+        <CampaignMidForm />
         <CampaignReviews />
+        <CampaignFaq />
         <CampaignBeforeAfter />
         <CampaignGallery />
-        <CampaignWorkArea />
-        <CampaignFaq />
         <section className="section-pad bg-navy text-white">
           <div className="shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
               <p className="eyebrow">Gratis prijsindicatie</p>
               <h2 className="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">
-                Klaar voor een strakke, duurzame buitenboel?
+                Klaar voor een huis dat er weer jaren mooi uitziet?
               </h2>
               <p className="mt-5 max-w-xl text-lg leading-8 text-white/78">
                 Vraag nu uw gratis prijsindicatie aan, dan komt Richard langs voor een vaste prijs na een gratis
@@ -2026,30 +2000,12 @@ function CampaignLandingPage() {
 function CampaignTrustStrip() {
   return (
     <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 rounded-lg border border-white/12 bg-white/[0.06] px-4 py-3">
-      <div className="flex items-center gap-2 text-sm font-bold text-white/92">
-        <GoogleGlyph className="h-6 w-6 shrink-0" />
-        <span>5,0 op Google</span>
-      </div>
-      <div className="h-5 w-px bg-white/14 max-sm:hidden" aria-hidden="true" />
       <div className="text-sm font-bold text-white/88">
         15+ jaar ervaring
       </div>
       <div className="h-5 w-px bg-white/14 max-sm:hidden" aria-hidden="true" />
       <div className="text-sm font-bold text-white/88">
         5 jaar garantie op buitenwerk
-      </div>
-      <div className="h-5 w-px bg-white/14 max-sm:hidden" aria-hidden="true" />
-      <div className="flex items-center gap-2 text-sm font-bold text-white/92">
-        <img
-          src="/top30-vakbedrijven-badge.webp"
-          alt=""
-          width={800}
-          height={541}
-          className="h-8 w-11 shrink-0 rounded bg-white object-contain p-1"
-          loading="eager"
-          decoding="async"
-        />
-        <span>Top 30 Vakbedrijf</span>
       </div>
     </div>
   );
@@ -2061,12 +2017,7 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
   const [submitMessage, setSubmitMessage] = useState('');
   const [gclid, setGclid] = useState('');
   const [pageUrl, setPageUrl] = useState('/buitenschilderwerk-aanvraag');
-  const [turnstileToken, setTurnstileToken] = useState('');
-  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
-  const isLocalForm = isLocalFormHost();
-  const shouldUseTurnstile = Boolean(turnstileSiteKey && !isLocalForm);
   const isSubmitting = submitState === 'submitting';
-  const handleTurnstileToken = useCallback((token: string) => setTurnstileToken(token), []);
 
   useEffect(() => {
     setGclid(getStoredGclid());
@@ -2107,18 +2058,6 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
       return;
     }
 
-    if (!shouldUseTurnstile && !isLocalForm && !import.meta.env.DEV) {
-      setSubmitState('error');
-      setSubmitMessage('De spambeveiliging is nog niet ingesteld. Bel of WhatsApp RN Schilders direct.');
-      return;
-    }
-
-    if (shouldUseTurnstile && !turnstileToken) {
-      setSubmitState('error');
-      setSubmitMessage('De spamcontrole is nog niet klaar. Probeer het formulier opnieuw te versturen.');
-      return;
-    }
-
     setSubmitState('submitting');
     setSubmitMessage('');
     setFieldErrors({});
@@ -2130,7 +2069,6 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
       formData.set('pageUrl', pageUrl);
       formData.set('submittedAt', new Date().toISOString());
       formData.set('gclid', gclid);
-      if (turnstileToken) formData.set('cf-turnstile-response', turnstileToken);
 
       const response = await fetch('/api/forms/offerte', {
         method: 'POST',
@@ -2145,8 +2083,6 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
       const err = error instanceof Error ? error : new Error(String(error));
       setSubmitState('error');
       setSubmitMessage(err.message || 'De aanvraag kon niet worden verstuurd. Bel of WhatsApp RN Schilders direct.');
-      setTurnstileToken('');
-      setTurnstileResetKey((value) => value + 1);
     }
   };
 
@@ -2165,7 +2101,10 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
         <div>
           <p className="eyebrow">Gratis aanvraag</p>
           <h2 className="mt-2 font-display text-2xl font-extrabold leading-tight text-navy">Vraag uw prijsindicatie aan</h2>
-          <p className="mt-2 text-sm leading-6 text-graphite">Naam en telefoon zijn genoeg. Richard belt u snel terug.</p>
+          <p className="mt-2 text-sm leading-6 text-graphite">
+            Geen verplichtingen. Richard kijkt mee, geeft eerlijk advies en stuurt u een eerlijke prijs. Geen
+            verrassingen achteraf.
+          </p>
         </div>
         <div className="shrink-0 rounded-md bg-door px-3 py-2 text-center text-xs font-extrabold uppercase tracking-[0.12em] text-white">
           5 jaar garantie
@@ -2193,20 +2132,18 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
         </label>
         <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
           <span>E-mail <OptionalMark /></span>
-          <input className="field" name="email" type="email" autoComplete="email" placeholder={email} onChange={handleFieldChange('email')} aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? `${formId}-email-error` : undefined} />
+          <input className="field" name="email" type="email" autoComplete="email" placeholder="Uw email" onChange={handleFieldChange('email')} aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? `${formId}-email-error` : undefined} />
           <FieldError id={`${formId}-email-error`} message={fieldErrors.email} />
         </label>
         <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
           <span>Korte toelichting <OptionalMark /></span>
           <textarea className="field min-h-24 resize-y" name="message" placeholder="Bijvoorbeeld: kozijnen en boeidelen buiten, houtrot bij voordeur, hele gevel..." onChange={handleFieldChange('message')} />
         </label>
-        <div className="md:col-span-2">
-          {shouldUseTurnstile ? (
-            <TurnstileWidget siteKey={turnstileSiteKey} resetKey={turnstileResetKey} onTokenChange={handleTurnstileToken} />
-          ) : (
-            <input type="hidden" name="cf-turnstile-response" value="dev" />
-          )}
-        </div>
+        <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
+          <span>Foto's meesturen <OptionalMark /></span>
+          <input className="field file:mr-3 file:rounded-md file:border-0 file:bg-navy file:px-3 file:py-2 file:text-sm file:font-bold file:text-white" type="file" name="files" accept={attachmentAccept} multiple />
+          <span className="text-xs font-semibold leading-5 text-graphite">Maximaal 5 bestanden, 10 MB per bestand.</span>
+        </label>
         {submitMessage && (
           <div className="rounded-md border border-roller/25 bg-roller/10 p-3 text-sm font-semibold text-roller md:col-span-2" role="status">
             {submitMessage}
@@ -2243,25 +2180,32 @@ function CampaignUrgency() {
 }
 
 function CampaignWhy() {
-  const items = [
-    'Richard is zelf op elk project, van opname tot oplevering. Eén aanspreekpunt, en voor grotere klussen stuurt hij zijn vaste team van vakmensen zelf aan.',
-    'Vaste prijs vooraf na een gratis opname op locatie. Geen verrassingen achteraf.',
-    'Vijf jaar garantie op buitenschilderwerk, met hoogwaardige, duurzame verf.',
-    'Beoordeeld met een 5,0 op Google en geselecteerd als Top 30 Vakbedrijf.',
-    'Ook grote klussen, en we werken door in de bouwvak en de vakantie.',
-  ];
-
   return (
     <section className="section-pad bg-whitewash">
       <div className="shell">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
-            <p className="eyebrow">Waarom klanten kiezen voor RN Schilders &amp; Renovatie</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Buitenwerk dat eerst goed voorbereid wordt.</h2>
+            <h2 className="text-4xl font-extrabold leading-tight text-navy md:text-5xl">Buitenwerk dat eerst goed voorbereid wordt.</h2>
             <p className="mt-5 text-base leading-7 text-graphite">
-              Buitenschilderwerk is bescherming. Daarom kijken we naar houtrot, kitnaden, openstaande verbindingen en
-              de bestaande verflaag voordat er afgewerkt wordt.
+              Buitenschilderwerk is bescherming. Verf op een slechte ondergrond bladdert binnen een paar jaar, en dan
+              betaalt u dubbel. Daarom herstellen we eerst houtrot, kitnaden en de ondergrond, en lakken we pas af als
+              het goed zit.
             </p>
+            <div className="mt-6 text-base leading-8 text-graphite">
+              <p className="font-bold text-navy">Waar u op kunt rekenen:</p>
+              <ul className="mt-3 space-y-2">
+                {[
+                  '5 jaar garantie op buitenwerk, tot het factuurbedrag',
+                  'Vaste prijs vooraf, zonder verrassingen',
+                  'Strak resultaat dat jaren meegaat',
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <Check className="mt-1 h-5 w-5 shrink-0 text-roller" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <figure className="overflow-hidden rounded-lg border border-line bg-white">
             <img
@@ -2277,14 +2221,6 @@ function CampaignWhy() {
               Richard komt zelf langs voor de opname en blijft uw aanspreekpunt tijdens de uitvoering.
             </figcaption>
           </figure>
-        </div>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((item) => (
-            <div key={item} className="flex h-full gap-3 rounded-lg border border-line bg-white p-5">
-              <Check className="mt-0.5 h-5 w-5 shrink-0 text-door" />
-              <p className="text-sm leading-7 text-graphite">{item}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -2333,6 +2269,16 @@ function CampaignProcess() {
   );
 }
 
+function CampaignMidForm() {
+  return (
+    <section className="section-pad bg-whitewash">
+      <div className="shell max-w-3xl">
+        <CampaignLeadForm formId="lead-form-na-zo-werkt-het" compact />
+      </div>
+    </section>
+  );
+}
+
 function CampaignReviews() {
   return (
     <section className="section-pad bg-whitewash">
@@ -2341,30 +2287,17 @@ function CampaignReviews() {
           <div>
             <p className="eyebrow">Reviews</p>
             <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Wat klanten zeggen</h2>
-            <div className="mt-7 rounded-lg border border-line bg-white p-5">
-              <div className="flex items-center gap-1 text-[#FBBC04]">
-                {Array.from({ length: 5 }, (_, index) => (
-                  <Star key={index} size={22} fill="currentColor" strokeWidth={0} />
-                ))}
-              </div>
-              <p className="mt-3 flex items-center gap-2 font-display text-3xl font-extrabold text-navy">
-                <GoogleGlyph className="h-8 w-8 shrink-0" />
-                5.0 op Google
-              </p>
-              <img
-                src="/top30-vakbedrijven-badge.webp"
-                alt="Top 30 Vakbedrijven geselecteerd vakbedrijf 2026-2027"
-                width={800}
-                height={541}
-                className="mt-6 w-full max-w-[210px]"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
+            <p className="mt-5 max-w-md text-base leading-7 text-graphite">
+              Ervaringen van klanten over voorbereiding, communicatie en de afwerking van het schilderwerk.
+            </p>
           </div>
           <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
-            {reviews.filter((review) => review.name !== 'Curtis Bouman').slice(0, 3).map((review, index) => (
-              <ReviewCard key={review.name} review={review} color={avatarColors[index % avatarColors.length]} />
+            {campaignReviews.map((review, index) => (
+              <ReviewCard
+                key={review.name}
+                review={review}
+                color={review.name === 'Sipke Woudstra' ? '#f57c00' : avatarColors[index % avatarColors.length]}
+              />
             ))}
           </div>
         </div>
@@ -2377,19 +2310,19 @@ function CampaignBeforeAfter() {
   return (
     <section className="section-pad bg-navy text-white">
       <div className="shell">
-        <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+        <div className="grid gap-10 xl:grid-cols-[0.82fr_1.18fr] xl:items-center">
           <div>
             <p className="eyebrow">Voor en tijdens</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">De voorbereiding bepaalt hoe het straks wordt.</h2>
+            <h2 className="mt-4 max-w-2xl text-4xl font-extrabold leading-tight md:text-5xl">De voorbereiding bepaalt hoe het straks wordt.</h2>
             <p className="mt-5 text-base leading-7 text-white/78">
               Buitenhout blijft alleen mooi als de ondergrond goed wordt aangepakt. Bij deuren, kozijnen en boeidelen
               draait het om schuren, herstellen, gronden en strak aflakken.
             </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            <div className="mt-8 grid gap-4 md:grid-cols-3 xl:grid-cols-1">
               {campaignProofCards.map((card) => (
-                <article key={card.title} className="overflow-hidden rounded-lg bg-white/8 ring-1 ring-white/10">
-                  <img src={card.image} alt={card.alt} width={1280} height={960} className="aspect-[4/3] w-full object-cover" loading="lazy" decoding="async" />
-                  <div className="p-4">
+                <article key={card.title} className="grid overflow-hidden rounded-lg bg-white/8 ring-1 ring-white/10 xl:grid-cols-[8.5rem_1fr]">
+                  <img src={card.image} alt={card.alt} width={1280} height={960} className="aspect-[4/3] w-full object-cover xl:h-full xl:min-h-32" loading="lazy" decoding="async" />
+                  <div className="p-4 xl:p-5">
                     <h3 className="font-display text-lg font-extrabold">{card.title}</h3>
                     <p className="mt-2 text-sm leading-6 text-white/72">{card.text}</p>
                   </div>
@@ -2398,8 +2331,8 @@ function CampaignBeforeAfter() {
             </div>
           </div>
           <div>
-            <h3 className="mb-4 font-display text-xl font-extrabold text-white">Voordeur: sleep van voor naar tijdens</h3>
-            <CompareSlider pair={campaignDoorPair} />
+            <h3 className="mb-4 font-display text-xl font-extrabold text-white">Dakkapel: voor, na en detail</h3>
+            <CampaignDakraamhoekSlider />
           </div>
         </div>
       </div>
@@ -2411,14 +2344,7 @@ function CampaignGallery() {
   return (
     <section className="section-pad bg-whitewash">
       <div className="shell">
-        <div className="max-w-2xl">
-          <p className="eyebrow">Recent buitenwerk</p>
-          <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Buitenschilderwerk in de regio, van dichtbij.</h2>
-          <p className="mt-5 text-base leading-7 text-graphite">
-            Van een woning volledig in de steigers in Ridderkerk tot kozijnen, boeidelen en gevels dichter bij huis.
-            Zo werken we: veilig bereikbaar, netjes voorbereid en strak afgewerkt.
-          </p>
-        </div>
+        <h2 className="text-4xl font-extrabold leading-tight text-navy md:text-5xl">Recent buitenwerk</h2>
         <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
           {campaignGalleryImages.map((image) => (
             <div key={image.src} className="overflow-hidden rounded-lg border border-line bg-white">
@@ -2439,163 +2365,6 @@ function CampaignGallery() {
   );
 }
 
-function CampaignWorkArea() {
-  return (
-    <section className="section-pad">
-      <div className="shell">
-        <div className="max-w-3xl">
-          <p className="eyebrow">Ons werkgebied</p>
-          <h2 className="mt-4 max-w-2xl text-4xl font-extrabold leading-tight text-navy md:text-5xl">Vanuit Woerden tot ongeveer een uur rijden.</h2>
-          <p className="mt-5 text-base leading-7 text-graphite">
-            De kaart focust op plaatsen waar we vaak buitenschilderwerk uitvoeren. Staat uw plaats er niet tussen? Grote
-            kans dat we er toch komen, vraag het gerust.
-          </p>
-        </div>
-        <div className="mt-8">
-          <CampaignRegionMap />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function styleCampaignMarker(element: HTMLButtonElement, active: boolean) {
-  const pin = element.firstElementChild as HTMLSpanElement | null;
-  element.style.width = '42px';
-  element.style.height = '42px';
-  element.style.display = 'grid';
-  element.style.placeItems = 'center';
-  element.style.border = '0';
-  element.style.background = 'transparent';
-  element.style.padding = '0';
-  element.style.cursor = 'pointer';
-  if (!pin) return;
-  pin.style.width = active ? '30px' : '22px';
-  pin.style.height = active ? '30px' : '22px';
-  pin.style.borderRadius = '999px 999px 999px 4px';
-  pin.style.background = active ? '#ff6a00' : '#0d1e3d';
-  pin.style.border = '3px solid #ffffff';
-  pin.style.boxShadow = active ? '0 18px 28px -14px rgba(255,106,0,0.95)' : '0 14px 24px -16px rgba(13,30,61,0.9)';
-  pin.style.transform = 'rotate(-45deg)';
-  pin.style.transition = 'width 160ms ease, height 160ms ease, background 160ms ease, box-shadow 160ms ease';
-}
-
-function CampaignRegionMap() {
-  const [activeName, setActiveName] = useState('Woerden');
-  const mapContainerRef = useRef<HTMLDivElement | null>(null);
-  const mapRef = useRef<import('mapbox-gl').Map | null>(null);
-  const markersRef = useRef<Map<string, { marker: import('mapbox-gl').Marker; element: HTMLButtonElement }>>(new Map());
-  const activeNameRef = useRef(activeName);
-  const activePin = campaignMapPins.find((pin) => pin.name === activeName) ?? campaignMapPins[0];
-
-  useEffect(() => {
-    activeNameRef.current = activeName;
-  }, [activeName]);
-
-  useEffect(() => {
-    if (!mapboxPublicToken || !mapContainerRef.current || mapRef.current) return;
-    let cancelled = false;
-    let resizeObserver: ResizeObserver | null = null;
-
-    void import('mapbox-gl').then(({ default: mapboxgl }) => {
-      if (cancelled || !mapContainerRef.current) return;
-      mapboxgl.accessToken = mapboxPublicToken;
-      const map = new mapboxgl.Map({
-        container: mapContainerRef.current,
-        style: 'mapbox://styles/mapbox/light-v11',
-        center: [mapboxOverview.lng, mapboxOverview.lat],
-        zoom: mapboxOverview.zoom,
-        attributionControl: false,
-      });
-      mapRef.current = map;
-      map.scrollZoom.disable();
-      map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
-      map.addControl(new mapboxgl.AttributionControl({ compact: true }), 'bottom-left');
-      const resizeMap = () => map.resize();
-      map.on('load', resizeMap);
-      window.requestAnimationFrame(resizeMap);
-      if ('ResizeObserver' in window) {
-        resizeObserver = new ResizeObserver(resizeMap);
-        resizeObserver.observe(mapContainerRef.current);
-      }
-
-      campaignMapPins.forEach((pin) => {
-        const element = document.createElement('button');
-        const pinShape = document.createElement('span');
-        pinShape.setAttribute('aria-hidden', 'true');
-        element.appendChild(pinShape);
-        element.type = 'button';
-        element.setAttribute('aria-label', `Toon ${pin.name} op de kaart`);
-        element.title = pin.name;
-        styleCampaignMarker(element, pin.name === activeNameRef.current);
-        element.addEventListener('click', () => setActiveName(pin.name));
-
-        const marker = new mapboxgl.Marker({ element, anchor: 'bottom' }).setLngLat([pin.lng, pin.lat]).addTo(map);
-        markersRef.current.set(pin.name, { marker, element });
-      });
-    });
-
-    return () => {
-      cancelled = true;
-      resizeObserver?.disconnect();
-      markersRef.current.clear();
-      if (mapRef.current) {
-        mapRef.current.remove();
-        mapRef.current = null;
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    markersRef.current.forEach(({ element }, name) => styleCampaignMarker(element, name === activeName));
-    const map = mapRef.current;
-    if (!map) return;
-    map.flyTo({ center: [activePin.lng, activePin.lat], zoom: 11.6, duration: 650, essential: true });
-  }, [activeName, activePin.lat, activePin.lng]);
-
-  return (
-    <div className="overflow-hidden rounded-lg border border-line bg-white shadow-[0_18px_45px_-36px_rgba(13,30,61,0.5)]">
-      <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_260px]">
-        <div className="relative min-h-[340px] bg-[#dde2e3] md:min-h-[470px] lg:min-h-[560px]" data-campaign-map="true">
-          {mapboxPublicToken ? (
-            <div ref={mapContainerRef} className="campaign-mapbox" />
-          ) : (
-            <div className="absolute inset-0 grid place-items-center bg-paper p-6 text-center text-sm font-semibold text-graphite">
-              Kaart wordt geladen zodra de Mapbox-token beschikbaar is.
-            </div>
-          )}
-          <div className="absolute bottom-3 left-3 rounded-md bg-white/90 px-3 py-2 text-xs font-semibold text-navy shadow-[0_10px_24px_-18px_rgba(13,30,61,0.8)]">
-            Geselecteerd: {activePin.name}
-          </div>
-        </div>
-
-        <div className="border-t border-line bg-white p-4 lg:border-l lg:border-t-0">
-          <div className="rounded-md border border-line bg-whitewash p-4">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-roller">Geselecteerd</p>
-            <p className="mt-1 font-display text-xl font-extrabold text-navy">{activePin.name}</p>
-            <p className="mt-1 text-xs leading-5 text-graphite">{activePin.text}</p>
-          </div>
-          <p className="mt-4 text-xs font-bold uppercase tracking-[0.16em] text-roller">Focus kaart</p>
-          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-1">
-            {campaignMapPins.map((pin) => (
-              <button
-                key={pin.name}
-                type="button"
-                onClick={() => setActiveName(pin.name)}
-                className={`rounded-md px-3 py-2 text-left text-xs font-bold transition ${
-                  pin.name === activeName ? 'bg-navy text-white' : 'bg-paper text-navy hover:bg-line/45'
-                }`}
-              >
-                {pin.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function CampaignFaq() {
   return (
     <section className="section-pad bg-whitewash">
@@ -2604,12 +2373,15 @@ function CampaignFaq() {
           <p className="eyebrow">Veelgestelde vragen</p>
           <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Kort antwoord voordat u aanvraagt.</h2>
         </div>
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <div className="mt-10 divide-y divide-line rounded-lg border border-line bg-white">
           {campaignFaqs.map((faq) => (
-            <article key={faq.question} className="rounded-lg border border-line bg-white p-5">
-              <h3 className="font-display text-xl font-extrabold text-navy">{faq.question}</h3>
-              <p className="mt-3 text-sm leading-7 text-graphite">{faq.answer}</p>
-            </article>
+            <details key={faq.question} className="group">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-display text-lg font-extrabold text-navy marker:hidden">
+                <span>{faq.question}</span>
+                <ChevronRight className="h-5 w-5 shrink-0 text-roller transition-transform group-open:rotate-90" aria-hidden="true" />
+              </summary>
+              <p className="px-5 pb-5 text-sm leading-7 text-graphite">{faq.answer}</p>
+            </details>
           ))}
         </div>
       </div>
@@ -2631,20 +2403,21 @@ function CampaignMinimalFooter() {
 }
 
 function CampaignStickyCta() {
-  const [visible, setVisible] = useState(false);
+  const [stickyState, setStickyState] = useState({ showDock: false, showFormCta: false });
 
   useEffect(() => {
     let frame = 0;
     const update = () => {
       frame = 0;
-      const forms = ['lead-form', 'lead-form-onderaan']
+      const forms = ['lead-form', 'lead-form-na-zo-werkt-het', 'lead-form-onderaan']
         .map((id) => document.getElementById(id))
         .filter((element): element is HTMLElement => Boolean(element));
       const formVisible = forms.some((form) => {
         const rect = form.getBoundingClientRect();
         return rect.top < window.innerHeight - 90 && rect.bottom > 90;
       });
-      setVisible(window.scrollY > 760 && !formVisible);
+      const showDock = window.scrollY > 760;
+      setStickyState({ showDock, showFormCta: showDock && !formVisible });
     };
     const requestUpdate = () => {
       if (frame) return;
@@ -2660,18 +2433,45 @@ function CampaignStickyCta() {
     };
   }, []);
 
-  if (!visible) return null;
+  if (!stickyState.showDock) return null;
 
   return (
-    <div
-      data-campaign-sticky="true"
-      className="safe-bottom fixed inset-x-0 bottom-0 z-40 border-t border-line bg-whitewash/96 px-4 pt-3 shadow-[0_-12px_30px_-24px_rgba(13,30,61,0.8)] backdrop-blur-md md:hidden"
-    >
-      <button type="button" onClick={scrollToCampaignForm} className="btn-primary w-full">
-        Gratis prijsindicatie
-        <ArrowRight size={17} />
-      </button>
-    </div>
+    <>
+      {stickyState.showFormCta ? (
+        <div
+          data-campaign-sticky="true"
+          className="safe-bottom fixed inset-x-0 bottom-0 z-40 border-t border-line bg-whitewash/96 px-4 pt-3 shadow-[0_-12px_30px_-24px_rgba(13,30,61,0.8)] backdrop-blur-md md:hidden"
+        >
+          <button type="button" onClick={scrollToCampaignForm} className="btn-primary w-full">
+            Gratis prijsindicatie
+            <ArrowRight size={17} />
+          </button>
+        </div>
+      ) : null}
+      <div data-campaign-sticky-desktop="true" className="fixed bottom-5 right-5 z-40 hidden items-center gap-3 md:flex">
+        {stickyState.showFormCta ? (
+          <button
+            type="button"
+            onClick={scrollToCampaignForm}
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-door px-5 py-3 text-sm font-extrabold text-white shadow-[0_16px_36px_-20px_rgba(255,106,0,0.95)] transition hover:bg-door/90"
+          >
+            Gratis prijsindicatie
+            <ArrowRight size={17} />
+          </button>
+        ) : null}
+        <a
+          href={whatsappHref}
+          onClick={() => trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo)}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="WhatsApp RN Schilders"
+          className="inline-flex h-12 min-w-12 items-center justify-center gap-2 rounded-md bg-[#25D366] px-4 text-sm font-extrabold text-white shadow-[0_16px_36px_-20px_rgba(37,211,102,0.95)] transition hover:bg-[#1ebe5d]"
+        >
+          <WhatsAppGlyph className="h-5 w-5" />
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </>
   );
 }
 
@@ -3531,8 +3331,8 @@ const doorCompareCases: readonly { label: string; pair: ComparePair }[] = [
 ];
 
 const dakraamStages: readonly Stage[] = [
-  { src: '/showcase-roof-window-before.webp?v=20260517', label: 'Voor', sub: 'Versleten dakkapel met losse verflagen en houtwerk dat aandacht vraagt.', alt: 'Dakkapel en dakraamhoek voor afwerking' },
-  { src: '/showcase-roof-window-after.webp?v=20260517', label: 'Na', sub: 'Strakke afwerking, herstelde naden en duurzaam beschermd hout.', alt: 'Dakkapel en dakraamhoek na afwerking' },
+  { src: '/showcase-roof-window-before.webp?v=20260517', label: 'Voor', sub: 'Versleten dakkapel met losse verflagen en houtwerk dat aandacht vraagt.', alt: 'Dakkapel voor afwerking' },
+  { src: '/showcase-roof-window-after.webp?v=20260517', label: 'Na', sub: 'Strakke afwerking, herstelde naden en duurzaam beschermd hout.', alt: 'Dakkapel na afwerking' },
   { src: '/showcase-roof-window-after-detail.webp?v=20260517', label: 'Detail', sub: 'Vanaf straatniveau valt op hoe schoon de aansluitingen zijn afgewerkt.', alt: 'Afgewerkte dakkapel vanaf straatniveau' },
 ] as const;
 
@@ -3541,11 +3341,15 @@ function StageSlider({
   ariaLabel,
   imageWidth,
   imageHeight,
+  className = 'mx-auto w-full max-w-md',
+  mediaClassName = 'aspect-[4/5]',
 }: {
   stages: readonly Stage[];
   ariaLabel: string;
   imageWidth: number;
   imageHeight: number;
+  className?: string;
+  mediaClassName?: string;
 }) {
   const max = (stages.length - 1) * 100;
   const [pos, setPos] = useState(0);
@@ -3558,8 +3362,8 @@ function StageSlider({
   };
 
   return (
-    <div className="mx-auto w-full max-w-md overflow-hidden rounded-lg bg-white/8 ring-1 ring-white/10">
-      <div className="relative aspect-[4/5] w-full bg-navy">
+    <div className={`${className} overflow-hidden rounded-lg bg-white/8 ring-1 ring-white/10`}>
+      <div className={`relative w-full bg-navy ${mediaClassName}`}>
         {stages.map((stage, i) => {
           const opacity = Math.max(0, 1 - Math.abs(pos / 100 - i));
           return (
@@ -3760,7 +3564,20 @@ function DoorRenovationSlider() {
 }
 
 function DakraamhoekSlider() {
-  return <StageSlider stages={dakraamStages} ariaLabel="Sleep om dakraamhoek voor, na en detail te vergelijken" imageWidth={1024} imageHeight={1280} />;
+  return <StageSlider stages={dakraamStages} ariaLabel="Sleep om dakkapel voor, na en detail te vergelijken" imageWidth={1024} imageHeight={1280} />;
+}
+
+function CampaignDakraamhoekSlider() {
+  return (
+    <StageSlider
+      stages={dakraamStages}
+      ariaLabel="Sleep om dakkapel voor, na en detail te vergelijken"
+      imageWidth={1024}
+      imageHeight={1280}
+      className="w-full max-w-none"
+      mediaClassName="aspect-[4/3] lg:aspect-[16/11]"
+    />
+  );
 }
 
 function ProjectCarousel({
@@ -3917,10 +3734,10 @@ function WorkShowcase({ openQuote }: { openQuote: () => void }) {
         <div>
           <p className="eyebrow text-roller-soft">Werk in beeld</p>
           <h3 className="mt-3 font-display text-3xl font-extrabold leading-tight text-white md:text-4xl">
-            Dakraamhoek: van versleten tot strak afgewerkt.
+            Dakkapel: van versleten tot strak afgewerkt.
           </h3>
           <p className="mt-4 leading-7 text-white/82">
-            Sleep door de stappen om te zien hoe een dakraamhoek wordt hersteld en netjes wordt afgewerkt. Daaronder vindt u meer werk per onderwerp gegroepeerd.
+            Sleep door de stappen om te zien hoe een dakkapel wordt hersteld en netjes wordt afgewerkt. Daaronder vindt u meer werk per onderwerp gegroepeerd.
           </p>
         </div>
         <DakraamhoekSlider />
