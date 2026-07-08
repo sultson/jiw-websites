@@ -44,10 +44,11 @@ const formWorker = createFormWorker({
   messageField: 'message',
   serviceOtherField: 'serviceOther',
   subjectFields: ['service', 'postalCode', 'city'],
-  // Keep the barrier to contact low: naam en telefoon zijn genoeg for the
-  // campaign lander; the regular modal may still ask more on the client side.
+  optionalEmailWhen: [{ field: 'leadSource', equals: 'Google Ads landingspagina buitenschilderwerk' }],
+  skipTurnstileWhen: [{ field: 'leadSource', equals: 'Google Ads landingspagina buitenschilderwerk' }],
+  // Keep the barrier to contact low on the campaign lander: naam en telefoon
+  // zijn daar genoeg. The regular modal still requires email.
   requireLastName: false,
-  requireEmail: false,
   requiredFields: [
     { name: 'phone', label: 'telefoonnummer', message: 'Vul uw telefoonnummer in.' },
     {
@@ -105,7 +106,18 @@ export default {
     }
 
     // Pages are prerendered to static HTML at build time (real <head> + <body>),
-    // so assets are served as-is. No edge HTML rewriting needed.
-    return env.ASSETS.fetch(request);
+    // so assets are served as-is. HTML should revalidate on every request; hashed
+    // assets keep their long-lived cache headers from public/_headers.
+    const response = await env.ASSETS.fetch(request);
+    const contentType = response.headers.get('content-type') ?? '';
+    if (!contentType.includes('text/html')) return response;
+
+    const headers = new Headers(response.headers);
+    headers.set('Cache-Control', 'no-store');
+    return new Response(response.body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers,
+    });
   },
 } satisfies ExportedHandler<Env>;

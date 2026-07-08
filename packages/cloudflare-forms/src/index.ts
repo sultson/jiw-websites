@@ -29,25 +29,26 @@ export type LeadFormConfig = {
   attachmentMaxTotalBytes?: number;
   allowedFileTypes?: string[];
   allowedFileExtensions?: string[];
+  optionalEmailWhen?: LeadFormCondition[];
+  skipTurnstileWhen?: LeadFormCondition[];
 };
 
 export type LeadFormRequiredField = {
   name: string;
   label: string;
   message?: string;
-  when?: {
-    field: string;
-    equals: string;
-  };
+  when?: LeadFormCondition;
 };
 
 export type LeadFormEmailField = {
   name: string;
   label: string;
-  when?: {
-    field: string;
-    equals: string;
-  };
+  when?: LeadFormCondition;
+};
+
+export type LeadFormCondition = {
+  field: string;
+  equals: string;
 };
 
 type SubmissionFields = {
@@ -123,6 +124,8 @@ function withDefaults(config: LeadFormConfig): Required<LeadFormConfig> {
     attachmentMaxTotalBytes: 50 * 1024 * 1024,
     allowedFileTypes: defaultAllowedFileTypes,
     allowedFileExtensions: defaultAllowedFileExtensions,
+    optionalEmailWhen: [],
+    skipTurnstileWhen: [],
     ...config,
   };
 }
@@ -167,7 +170,8 @@ async function handleSubmission(
       return jsonError('validation', validationError, 400);
     }
 
-    const turnstileValid = await validateTurnstile(env.TURNSTILE_SECRET_KEY, turnstileToken, request);
+    const shouldSkipTurnstile = config.skipTurnstileWhen.some((condition) => conditionMatches(fields, condition));
+    const turnstileValid = shouldSkipTurnstile || (await validateTurnstile(env.TURNSTILE_SECRET_KEY, turnstileToken, request));
     if (!turnstileValid) {
       console.log('form_rejected', { reason: 'turnstile', ...fieldsPresent, ...reqMeta });
       return jsonError('turnstile', 'De spamcontrole is verlopen. Probeer het formulier opnieuw te versturen.', 400);
@@ -292,9 +296,10 @@ function parseFields(form: FormData): SubmissionFields {
 
 function validateFields(fields: SubmissionFields, config: Required<LeadFormConfig>): string | null {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRequired = config.requireEmail && !config.optionalEmailWhen.some((condition) => conditionMatches(fields, condition));
   if (config.requireFirstName && !fields.firstName) return 'Vul uw naam in.';
   if (config.requireLastName && !fields.lastName) return 'Vul uw achternaam in.';
-  if (config.requireEmail) {
+  if (emailRequired) {
     if (!fields.email || !emailPattern.test(fields.email)) return 'Vul een geldig e-mailadres in.';
   } else if (fields.email && !emailPattern.test(fields.email)) {
     return 'Vul een geldig e-mailadres in.';
