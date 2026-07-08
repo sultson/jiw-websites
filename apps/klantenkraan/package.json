@@ -1,9 +1,0 @@
-{
-  "name": "@jiw/klantenkraan",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "ship": "wrangler deploy",
-    "ship:dry-run": "wrangler deploy --dry-run"
-  }
-}
