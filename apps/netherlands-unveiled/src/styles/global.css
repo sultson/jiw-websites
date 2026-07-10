@@ -109,6 +109,45 @@ textarea {
   line-height: 1;
 }
 
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.18rem;
+  justify-content: center;
+  border: 1px solid rgba(255, 250, 241, 0.32);
+  border-radius: 8px;
+  background: rgba(255, 250, 241, 0.1);
+  padding: 0.18rem;
+}
+
+.lang-option {
+  display: inline-flex;
+  min-width: 2.35rem;
+  min-height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: rgba(255, 250, 241, 0.78);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.lang-option:hover,
+.lang-option:focus-visible {
+  background: rgba(255, 250, 241, 0.14);
+  color: #fffaf1;
+  outline: none;
+}
+
+.lang-option.is-active {
+  background: #fffaf1;
+  color: #172026;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -432,12 +471,7 @@ h2 {
 
 .tour-photo-popout[open] summary span {
   padding: 0;
-  font-size: 0;
-}
-
-.tour-photo-popout[open] summary span::after {
   color: #253036;
-  content: "Close photo";
   font-size: 0.86rem;
 }
 
@@ -854,6 +888,17 @@ textarea:focus {
 
   .top-flags span {
     font-size: 0.76rem;
+  }
+
+  .lang-toggle {
+    gap: 0.12rem;
+    padding: 0.12rem;
+  }
+
+  .lang-option {
+    min-width: 1.82rem;
+    min-height: 1.72rem;
+    font-size: 0.7rem;
   }
 
   .menu-toggle {

@@ -16,6 +16,14 @@
   },
   "routes": [
     {
+      "pattern": "netherlandsunveiled.com/*",
+      "zone_name": "netherlandsunveiled.com"
+    },
+    {
+      "pattern": "www.netherlandsunveiled.com/*",
+      "zone_name": "netherlandsunveiled.com"
+    },
+    {
       "pattern": "netherlandsunveiledtours.jouwidealewebsite.nl",
       "custom_domain": true
     }
@@ -34,7 +42,7 @@
   ],
   "vars": {
     "SITE_ID": "netherlands-unveiled",
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_RECIPIENT": "marion@netherlandsunveiled.com",
     "LEAD_SENDER": "afspraak@notify.jouwidealewebsite.nl",
     "TURNSTILE_SECRET_KEY": "dev"
   }

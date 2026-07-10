@@ -3,69 +3,393 @@ import '../styles/global.css';
 
 const messengerUrl = 'https://m.me/100075943650762';
 
-const tours = [
-  {
-    title: 'Amsterdam',
-    image: '/images/amsterdam.webp',
-    alt: 'Amsterdam canal with gabled houses and bicycles',
-    copy: 'Classic Amsterdam with stories that connect the city to New Amsterdam, from Centraal Station and Dam Square to the Jordaan, Jewish Amsterdam and the Red Light District.',
-    items: ['Amsterdam introduction', 'Jordaan walking tour', 'Jewish/WW2 Amsterdam', 'Red Light District context'],
+const content = {
+  en: {
+    meta: {
+      title: 'Netherlands Unveiled | Private Tours Across Holland',
+      description:
+        'Private and group tours across the Netherlands with Marion: Amsterdam, Nijmegen, Volendam, Edam, Marken, Zaanse Schans, Rotterdam, Delft and The Hague.',
+      ogDescription:
+        'Colorful, personal tours through Amsterdam, South Holland, historic cities and Dutch villages with a storyteller who explains cultural differences.',
+    },
+    nav: {
+      brandAria: 'Netherlands Unveiled home',
+      tagline: 'Private tours with Marion',
+      guidingLanguages: 'Guiding languages',
+      languageToggleLabel: 'Site language',
+      menu: 'Menu',
+      aria: 'Main navigation',
+      tours: 'Tours',
+      about: 'About',
+      contact: 'Contact',
+    },
+    hero: {
+      label: 'Netherlands Unveiled',
+      imageAlt: 'Colorful Netherlands scene with canals, tulips, Delft blue and Dutch city details',
+      title: 'Netherlands Unveiled',
+      copy:
+        'Private and group tours with Marion, a storyteller with 40 years in travel, for guests who want Dutch places explained through culture, context and lived experience.',
+      primaryCta: 'Plan a tour',
+      secondaryCta: 'Explore tours',
+      factsLabel: 'Tour highlights',
+      facts: [
+        {
+          title: '40 years in travel',
+          copy: 'Tour operations, group sales and guiding on both sides of the Atlantic.',
+        },
+        {
+          title: 'Culture explained',
+          copy: 'Amsterdam and New Amsterdam perspectives, shaped for international guests.',
+        },
+        {
+          title: 'Email or Messenger',
+          copy: 'No phone-first pressure. Send the request and Marion replies.',
+        },
+      ],
+    },
+    toursSection: {
+      title: 'Tours by city and story',
+      copy:
+        'Start with a city, then choose the layer that matters: Jewish history, the Jordaan, Red Light District context, villages, wartime history or a full-day Holland route.',
+    },
+    tours: [
+      {
+        title: 'Amsterdam',
+        image: '/images/amsterdam.webp',
+        alt: 'Amsterdam canal with gabled houses and bicycles',
+        copy:
+          'Classic Amsterdam with stories that connect the city to New Amsterdam, from Centraal Station and Dam Square to the Jordaan, Jewish Amsterdam and the Red Light District.',
+        items: [
+          'Amsterdam introduction',
+          'Jordaan walking tour',
+          'Jewish/WW2 Amsterdam',
+          'Red Light District context',
+        ],
+      },
+      {
+        title: 'Volendam, Edam & Marken',
+        image: '/images/villages.webp',
+        alt: 'Traditional harbor village with Dutch houses',
+        copy:
+          'A bright day outside Amsterdam with harbor life, cheese-town streets, fishing village history and enough time to breathe.',
+        items: ['Volendam harbor', 'Edam town walk', 'Marken and Zaanse Schans options'],
+      },
+      {
+        title: 'Nijmegen',
+        image: '/images/nijmegen.webp',
+        alt: 'Historic Nijmegen city view',
+        highlightImage: '/images/nijmegen-tour-group.webp',
+        highlightAlt: 'Marion with a tour group during a Nijmegen walking tour',
+        photoAria: 'View real tour photo for Nijmegen',
+        photoCta: 'View photo',
+        photoClose: 'Close photo',
+        copy:
+          'Especially strong for groups: the oldest city in the Netherlands, built on two levels, with a relaxed walking tour through its historic center.',
+        items: ['Relaxed walking tour', 'Historic city tour', 'Stevenskerk and Waalkade'],
+      },
+      {
+        title: 'The Grand Holland',
+        image: '/images/grand-holland.webp',
+        alt: 'Rotterdam skyline, Delft blue and South Holland landmarks',
+        copy:
+          'A full South Holland route: Rotterdam, Delft blue, a short Delft walk, The Hague, Madurodam and free time.',
+        items: ['Rotterdam by bus or on foot', 'Delft and Delft blue', 'The Hague and Madurodam'],
+      },
+      {
+        title: 'The Hague, Rotterdam & Delft',
+        image: '/images/grand-holland.webp',
+        alt: 'South Holland landmarks and city details',
+        copy:
+          'Historic city tours and bus routes through South Holland: Parliament and Scheveningen in The Hague, modern Rotterdam and Delft Blue craftsmanship.',
+        items: ['The Hague center or bus tour', 'Rotterdam walk or bus tour', 'Delft Blue factory and city walk'],
+      },
+      {
+        title: 'Custom Tours',
+        image: '/images/hero.webp',
+        alt: 'Colorful Netherlands travel collage with canals, tulips and Delft blue',
+        copy:
+          'For tour operators, families and private groups who need a route that fits season, pace, language and group size.',
+        items: ['Private groups', 'Tour operator support', 'Flexible Netherlands routes'],
+      },
+    ],
+    about: {
+      eyebrow: 'About Marion',
+      title: 'A storyteller between two worlds',
+      copy: [
+        'Marion Baumgarten has spent 40 years in travel and tourism, from tour operations and group sales to guiding visitors through the Netherlands and New York City. Most tours are guided by Marion herself.',
+        'Born in New York City and shaped by life in the Netherlands and other countries, Marion made the original journey in reverse: from New Amsterdam to Amsterdam. That gives her a natural way to explain the differences in lifestyle, outlook and habits between both sides of the Atlantic.',
+      ],
+      note:
+        'Her tours are built around stories, not scripts: how places developed, why Dutch customs feel different to visitors and what those cultural differences mean in daily life.',
+    },
+    spring: {
+      label: 'Keukenhof spring tours',
+      eyebrow: 'Springtime',
+      title: 'Discover Keukenhof',
+      copy: [
+        'In the springtime, discover Keukenhof: home to millions of flowers, starting with daffodils and ending with about 350 different varieties of tulips. Keukenhof is about an hour from Amsterdam and can be visited as a stand-alone excursion or combined with nearby attractions such as The Hague or Delft.',
+        'Marion can also help shape the day around an official lunch somewhere nearby.',
+      ],
+    },
+    contact: {
+      eyebrow: 'Contact',
+      title: 'Tell Marion what you want to see',
+      copy:
+        'Send your preferred date, group size and tour idea. Marion replies by email or Messenger with availability and a fitting route.',
+      messenger: 'Message on Messenger',
+    },
+    form: {
+      success: 'Thank you. Your request was sent. Marion will reply by email or Messenger.',
+      firstName: 'First name *',
+      lastName: 'Last name',
+      email: 'Email *',
+      contactPreference: 'Preferred contact',
+      emailOption: 'Email',
+      messengerOption: 'Messenger',
+      tourInterest: 'Tour interest *',
+      chooseTour: 'Choose a tour',
+      date: 'Preferred date or period *',
+      datePlaceholder: 'For example: 18 May or spring 2027',
+      groupSize: 'Group size *',
+      groupSizePlaceholder: 'For example: 2 guests or a bus group',
+      language: 'Preferred language',
+      message: 'Message *',
+      messagePlaceholder:
+        'Tell Marion who is traveling, what you want to see and whether the pace should be relaxed or full-day.',
+      submit: 'Send tour request',
+      submitting: 'Sending...',
+      privacy: 'Your details are only used to answer this tour request.',
+      errorDefault: 'Your request could not be sent.',
+      siteLanguage: 'English',
+      languageOptions: {
+        English: 'English',
+        Dutch: 'Dutch',
+        German: 'German',
+        French: 'French',
+        Spanish: 'Spanish',
+        Italian: 'Italian',
+      },
+      tourOptions: {
+        Amsterdam: 'Amsterdam',
+        'Jordaan tour': 'Jordaan tour',
+        'Jewish heritage tour': 'Jewish heritage tour',
+        'Red Light District tour': 'Red Light District tour',
+        'Keukenhof spring tour': 'Keukenhof spring tour',
+        'Volendam, Edam, Marken or Zaanse Schans': 'Volendam, Edam, Marken or Zaanse Schans',
+        'Nijmegen group tour': 'Nijmegen group tour',
+        'The Grand Holland': 'The Grand Holland',
+        'The Hague, Rotterdam or Delft': 'The Hague, Rotterdam or Delft',
+        'Custom Netherlands tour': 'Custom Netherlands tour',
+      },
+    },
+    footer: {
+      brand: 'Netherlands Unveiled',
+      copy: 'Private and group tours across the Netherlands',
+    },
   },
-  {
-    title: 'Volendam, Edam & Marken',
-    image: '/images/villages.webp',
-    alt: 'Traditional harbor village with Dutch houses',
-    copy: 'A bright day outside Amsterdam with harbor life, cheese-town streets, fishing village history and enough time to breathe.',
-    items: ['Volendam harbor', 'Edam town walk', 'Marken and Zaanse Schans options'],
+  fr: {
+    meta: {
+      title: 'Netherlands Unveiled | Visites privées en Hollande',
+      description:
+        'Visites privées et de groupe aux Pays-Bas avec Marion : Amsterdam, Nimègue, Volendam, Edam, Marken, Zaanse Schans, Rotterdam, Delft et La Haye.',
+      ogDescription:
+        'Des visites personnelles et colorées à Amsterdam, en Hollande du Sud, dans les villes historiques et les villages néerlandais avec une conteuse qui explique les différences culturelles.',
+    },
+    nav: {
+      brandAria: 'Accueil Netherlands Unveiled',
+      tagline: 'Visites privées avec Marion',
+      guidingLanguages: 'Langues de visite',
+      languageToggleLabel: 'Langue du site',
+      menu: 'Menu',
+      aria: 'Navigation principale',
+      tours: 'Visites',
+      about: 'À propos',
+      contact: 'Contact',
+    },
+    hero: {
+      label: 'Netherlands Unveiled',
+      imageAlt: 'Scène colorée des Pays-Bas avec canaux, tulipes, bleu de Delft et détails urbains',
+      title: 'Netherlands Unveiled',
+      copy:
+        'Visites privées et de groupe avec Marion, conteuse forte de 40 ans d’expérience dans le voyage, pour les visiteurs qui souhaitent comprendre les lieux néerlandais par la culture, le contexte et le vécu.',
+      primaryCta: 'Planifier une visite',
+      secondaryCta: 'Voir les visites',
+      factsLabel: 'Points forts des visites',
+      facts: [
+        {
+          title: '40 ans dans le voyage',
+          copy: 'Opérations touristiques, ventes groupes et guidage des deux côtés de l’Atlantique.',
+        },
+        {
+          title: 'La culture expliquée',
+          copy: 'Perspectives entre Amsterdam et New Amsterdam, adaptées aux visiteurs internationaux.',
+        },
+        {
+          title: 'E-mail ou Messenger',
+          copy: 'Aucune pression par téléphone. Envoyez votre demande et Marion vous répond.',
+        },
+      ],
+    },
+    toursSection: {
+      title: 'Visites par ville et par histoire',
+      copy:
+        'Commencez par une ville, puis choisissez l’angle qui compte : histoire juive, Jordaan, contexte du Quartier rouge, villages, histoire de guerre ou itinéraire d’une journée en Hollande.',
+    },
+    tours: [
+      {
+        title: 'Amsterdam',
+        image: '/images/amsterdam.webp',
+        alt: 'Canal d’Amsterdam avec maisons à pignons et vélos',
+        copy:
+          'Amsterdam classique, avec des histoires qui relient la ville à New Amsterdam, de la gare Centrale et la place du Dam au Jordaan, à l’Amsterdam juif et au Quartier rouge.',
+        items: [
+          'Introduction à Amsterdam',
+          'Promenade dans le Jordaan',
+          'Amsterdam juif et Seconde Guerre mondiale',
+          'Contexte du Quartier rouge',
+        ],
+      },
+      {
+        title: 'Volendam, Edam et Marken',
+        image: '/images/villages.webp',
+        alt: 'Village portuaire traditionnel avec maisons néerlandaises',
+        copy:
+          'Une belle journée hors d’Amsterdam avec vie portuaire, rues d’une ville du fromage, histoire de village de pêcheurs et assez de temps pour respirer.',
+        items: ['Port de Volendam', 'Promenade à Edam', 'Options Marken et Zaanse Schans'],
+      },
+      {
+        title: 'Nimègue',
+        image: '/images/nijmegen.webp',
+        alt: 'Vue historique de la ville de Nimègue',
+        highlightImage: '/images/nijmegen-tour-group.webp',
+        highlightAlt: 'Marion avec un groupe pendant une visite à pied de Nimègue',
+        photoAria: 'Voir une vraie photo de visite à Nimègue',
+        photoCta: 'Voir la photo',
+        photoClose: 'Fermer la photo',
+        copy:
+          'Particulièrement intéressante pour les groupes : la plus ancienne ville des Pays-Bas, construite sur deux niveaux, avec une promenade détendue dans son centre historique.',
+        items: ['Promenade détendue', 'Visite historique de la ville', 'Stevenskerk et Waalkade'],
+      },
+      {
+        title: 'La Grande Hollande',
+        image: '/images/grand-holland.webp',
+        alt: 'Skyline de Rotterdam, bleu de Delft et sites de Hollande du Sud',
+        copy:
+          'Un itinéraire complet en Hollande du Sud : Rotterdam, bleu de Delft, courte promenade à Delft, La Haye, Madurodam et temps libre.',
+        items: ['Rotterdam en bus ou à pied', 'Delft et bleu de Delft', 'La Haye et Madurodam'],
+      },
+      {
+        title: 'La Haye, Rotterdam et Delft',
+        image: '/images/grand-holland.webp',
+        alt: 'Sites de Hollande du Sud et détails urbains',
+        copy:
+          'Visites de villes historiques et parcours en bus en Hollande du Sud : Parlement et Scheveningen à La Haye, Rotterdam moderne et savoir-faire du bleu de Delft.',
+        items: ['Centre de La Haye ou tour en bus', 'Rotterdam à pied ou en bus', 'Fabrique de bleu de Delft et promenade en ville'],
+      },
+      {
+        title: 'Visites sur mesure',
+        image: '/images/hero.webp',
+        alt: 'Collage coloré de voyage aux Pays-Bas avec canaux, tulipes et bleu de Delft',
+        copy:
+          'Pour les tour-opérateurs, familles et groupes privés qui ont besoin d’un itinéraire adapté à la saison, au rythme, à la langue et à la taille du groupe.',
+        items: ['Groupes privés', 'Soutien aux tour-opérateurs', 'Itinéraires flexibles aux Pays-Bas'],
+      },
+    ],
+    about: {
+      eyebrow: 'À propos de Marion',
+      title: 'Une conteuse entre deux mondes',
+      copy: [
+        'Marion Baumgarten travaille depuis 40 ans dans le voyage et le tourisme, des opérations touristiques et ventes groupes au guidage de visiteurs aux Pays-Bas et à New York. La plupart des visites sont guidées par Marion elle-même.',
+        'Née à New York et marquée par la vie aux Pays-Bas et dans d’autres pays, Marion a fait le voyage originel en sens inverse : de New Amsterdam à Amsterdam. Cela lui donne une manière naturelle d’expliquer les différences de mode de vie, de regard et d’habitudes des deux côtés de l’Atlantique.',
+      ],
+      note:
+        'Ses visites sont construites autour d’histoires, pas de scripts : comment les lieux se sont développés, pourquoi les coutumes néerlandaises surprennent les visiteurs et ce que ces différences culturelles signifient dans la vie quotidienne.',
+    },
+    spring: {
+      label: 'Visites de printemps à Keukenhof',
+      eyebrow: 'Printemps',
+      title: 'Découvrez Keukenhof',
+      copy: [
+        'Au printemps, découvrez Keukenhof : un lieu qui abrite des millions de fleurs, commençant par les jonquilles et se terminant par environ 350 variétés de tulipes. Keukenhof se trouve à environ une heure d’Amsterdam et peut se visiter comme excursion séparée ou être combiné avec des attractions proches comme La Haye ou Delft.',
+        'Marion peut aussi vous aider à organiser la journée autour d’un déjeuner officiel à proximité.',
+      ],
+    },
+    contact: {
+      eyebrow: 'Contact',
+      title: 'Dites à Marion ce que vous voulez voir',
+      copy:
+        'Envoyez votre date préférée, la taille de votre groupe et votre idée de visite. Marion répond par e-mail ou Messenger avec ses disponibilités et un itinéraire adapté.',
+      messenger: 'Envoyer un message sur Messenger',
+    },
+    form: {
+      success: 'Merci. Votre demande a été envoyée. Marion vous répondra par e-mail ou Messenger.',
+      firstName: 'Prénom *',
+      lastName: 'Nom',
+      email: 'E-mail *',
+      contactPreference: 'Contact préféré',
+      emailOption: 'E-mail',
+      messengerOption: 'Messenger',
+      tourInterest: 'Visite souhaitée *',
+      chooseTour: 'Choisissez une visite',
+      date: 'Date ou période préférée *',
+      datePlaceholder: 'Par exemple : 18 mai ou printemps 2027',
+      groupSize: 'Taille du groupe *',
+      groupSizePlaceholder: 'Par exemple : 2 personnes ou un groupe en bus',
+      language: 'Langue préférée',
+      message: 'Message *',
+      messagePlaceholder:
+        'Dites à Marion qui voyage, ce que vous voulez voir et si le rythme doit être détendu ou sur une journée complète.',
+      submit: 'Envoyer la demande',
+      submitting: 'Envoi...',
+      privacy: 'Vos coordonnées servent uniquement à répondre à cette demande de visite.',
+      errorDefault: 'Votre demande n’a pas pu être envoyée.',
+      siteLanguage: 'French',
+      languageOptions: {
+        English: 'Anglais',
+        Dutch: 'Néerlandais',
+        German: 'Allemand',
+        French: 'Français',
+        Spanish: 'Espagnol',
+        Italian: 'Italien',
+      },
+      tourOptions: {
+        Amsterdam: 'Amsterdam',
+        'Jordaan tour': 'Visite du Jordaan',
+        'Jewish heritage tour': 'Visite du patrimoine juif',
+        'Red Light District tour': 'Visite du Quartier rouge',
+        'Keukenhof spring tour': 'Visite printanière de Keukenhof',
+        'Volendam, Edam, Marken or Zaanse Schans': 'Volendam, Edam, Marken ou Zaanse Schans',
+        'Nijmegen group tour': 'Visite de groupe à Nimègue',
+        'The Grand Holland': 'La Grande Hollande',
+        'The Hague, Rotterdam or Delft': 'La Haye, Rotterdam ou Delft',
+        'Custom Netherlands tour': 'Visite sur mesure aux Pays-Bas',
+      },
+    },
+    footer: {
+      brand: 'Netherlands Unveiled',
+      copy: 'Visites privées et de groupe aux Pays-Bas',
+    },
   },
-  {
-    title: 'Nijmegen',
-    image: '/images/nijmegen.webp',
-    alt: 'Historic Nijmegen city view',
-    highlightImage: '/images/nijmegen-tour-group.webp',
-    highlightAlt: 'Marion with a tour group during a Nijmegen walking tour',
-    copy: 'Especially strong for groups: the oldest city in the Netherlands, built on two levels, with a relaxed walking tour through its historic center.',
-    items: ['Relaxed walking tour', 'Historic city tour', 'Stevenskerk and Waalkade'],
-  },
-  {
-    title: 'The Grand Holland',
-    image: '/images/grand-holland.webp',
-    alt: 'Rotterdam skyline, Delft blue and South Holland landmarks',
-    copy: 'A full South Holland route: Rotterdam, Delft blue, a short Delft walk, The Hague, Madurodam and free time.',
-    items: ['Rotterdam by bus or on foot', 'Delft and Delft blue', 'The Hague and Madurodam'],
-  },
-  {
-    title: 'The Hague, Rotterdam & Delft',
-    image: '/images/grand-holland.webp',
-    alt: 'South Holland landmarks and city details',
-    copy: 'Historic city tours and bus routes through South Holland: Parliament and Scheveningen in The Hague, modern Rotterdam and Delft Blue craftsmanship.',
-    items: ['The Hague center or bus tour', 'Rotterdam walk or bus tour', 'Delft Blue factory and city walk'],
-  },
-  {
-    title: 'Custom Tours',
-    image: '/images/hero.webp',
-    alt: 'Colorful Netherlands travel collage with canals, tulips and Delft blue',
-    copy: 'For tour operators, families and private groups who need a route that fits season, pace, language and group size.',
-    items: ['Private groups', 'Tour operator support', 'Flexible Netherlands routes'],
-  },
-];
+} as const;
+
+type Lang = keyof typeof content;
+
+const defaultLang = 'en' satisfies Lang;
+const t = content[defaultLang];
+const languageOptionValues = Object.keys(t.form.languageOptions);
+const tourOptionValues = Object.keys(t.form.tourOptions);
+const contentJson = JSON.stringify(content).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={defaultLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Netherlands Unveiled | Private Tours Across Holland</title>
-    <meta
-      name="description"
-      content="Private and group tours across the Netherlands with Marion: Amsterdam, Nijmegen, Volendam, Edam, Marken, Zaanse Schans, Rotterdam, Delft and The Hague."
-    />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
     <meta property="og:title" content="Netherlands Unveiled" />
-    <meta
-      property="og:description"
-      content="Colorful, personal tours through Amsterdam, South Holland, historic cities and Dutch villages with a storyteller who explains cultural differences."
-    />
+    <meta property="og:description" content={t.meta.ogDescription} />
     <meta property="og:image" content="/images/hero.webp" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
@@ -73,11 +397,11 @@ const tours = [
     <div class="site-shell">
       <header class="nav" id="nav">
         <div class="nav-inner">
-          <a class="brand" href="#top" aria-label="Netherlands Unveiled home">
+          <a class="brand" href="#top" aria-label={t.nav.brandAria} data-i18n-attr="aria-label:nav.brandAria">
             <strong>Netherlands Unveiled</strong>
-            <span>Private tours with Marion</span>
+            <span data-i18n="nav.tagline">{t.nav.tagline}</span>
           </a>
-          <div class="top-flags" aria-label="Guiding languages">
+          <div class="top-flags" aria-label={t.nav.guidingLanguages} data-i18n-attr="aria-label:nav.guidingLanguages">
             <span aria-label="English">🇺🇸</span>
             <span aria-label="Dutch">🇳🇱</span>
             <span aria-label="German">🇩🇪</span>
@@ -85,77 +409,73 @@ const tours = [
             <span aria-label="Spanish">🇪🇸</span>
             <span aria-label="Italian">🇮🇹</span>
           </div>
-          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
-          <nav class="nav-links" id="nav-links" aria-label="Main navigation">
-            <a href="#tours">Tours</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+          <div class="lang-toggle" aria-label={t.nav.languageToggleLabel} data-i18n-attr="aria-label:nav.languageToggleLabel">
+            <button class="lang-option is-active" type="button" data-lang-button="en" aria-pressed="true">EN</button>
+            <button class="lang-option" type="button" data-lang-button="fr" aria-pressed="false">FR</button>
+          </div>
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" data-i18n="nav.menu">
+            {t.nav.menu}
+          </button>
+          <nav class="nav-links" id="nav-links" aria-label={t.nav.aria} data-i18n-attr="aria-label:nav.aria">
+            <a href="#tours" data-i18n="nav.tours">{t.nav.tours}</a>
+            <a href="#about" data-i18n="nav.about">{t.nav.about}</a>
+            <a href="#contact" data-i18n="nav.contact">{t.nav.contact}</a>
           </nav>
         </div>
       </header>
 
       <main id="top">
-        <section class="hero" aria-label="Netherlands Unveiled">
-          <img src="/images/hero.webp" alt="Colorful Netherlands scene with canals, tulips, Delft blue and Dutch city details" />
+        <section class="hero" aria-label={t.hero.label} data-i18n-attr="aria-label:hero.label">
+          <img src="/images/hero.webp" alt={t.hero.imageAlt} data-i18n-attr="alt:hero.imageAlt" />
           <div class="hero-content">
             <div class="hero-copy">
-              <h1>Netherlands Unveiled</h1>
-              <p>
-                Private and group tours with Marion, a storyteller with 40 years in travel,
-                for guests who want Dutch places explained through culture, context and lived experience.
-              </p>
+              <h1 data-i18n="hero.title">{t.hero.title}</h1>
+              <p data-i18n="hero.copy">{t.hero.copy}</p>
               <div class="hero-actions">
-                <a class="btn btn-primary" href="#contact">Plan a tour</a>
-                <a class="btn btn-ghost" href="#tours">Explore tours</a>
+                <a class="btn btn-primary" href="#contact" data-i18n="hero.primaryCta">{t.hero.primaryCta}</a>
+                <a class="btn btn-ghost" href="#tours" data-i18n="hero.secondaryCta">{t.hero.secondaryCta}</a>
               </div>
             </div>
           </div>
-          <div class="hero-facts" aria-label="Tour highlights">
-            <div class="fact">
-              <strong>40 years in travel</strong>
-              <span>Tour operations, group sales and guiding on both sides of the Atlantic.</span>
-            </div>
-            <div class="fact">
-              <strong>Culture explained</strong>
-              <span>Amsterdam and New Amsterdam perspectives, shaped for international guests.</span>
-            </div>
-            <div class="fact">
-              <strong>Email or Messenger</strong>
-              <span>No phone-first pressure. Send the request and Marion replies.</span>
-            </div>
+          <div class="hero-facts" aria-label={t.hero.factsLabel} data-i18n-attr="aria-label:hero.factsLabel">
+            {t.hero.facts.map((fact, index) => (
+              <div class="fact">
+                <strong data-i18n={`hero.facts.${index}.title`}>{fact.title}</strong>
+                <span data-i18n={`hero.facts.${index}.copy`}>{fact.copy}</span>
+              </div>
+            ))}
           </div>
         </section>
 
         <section class="section first" id="tours">
           <div class="section-head">
-            <h2>Tours by city and story</h2>
-            <p>
-              Start with a city, then choose the layer that matters: Jewish history, the Jordaan,
-              Red Light District context, villages, wartime history or a full-day Holland route.
-            </p>
+            <h2 data-i18n="toursSection.title">{t.toursSection.title}</h2>
+            <p data-i18n="toursSection.copy">{t.toursSection.copy}</p>
           </div>
           <div class="tour-grid">
-            {tours.map((tour) => (
+            {t.tours.map((tour, index) => (
               <article class="tour-card">
                 <div class="tour-media">
-                  <img src={tour.image} alt={tour.alt} loading="lazy" />
+                  <img src={tour.image} alt={tour.alt} loading="lazy" data-i18n-attr={`alt:tours.${index}.alt`} />
                   {'highlightImage' in tour && (
-                    <details class="tour-photo-popout">
-                      <summary aria-label={`View real tour photo for ${tour.title}`}>
+                    <details class="tour-photo-popout" data-photo-popout data-photo-index={String(index)}>
+                      <summary aria-label={tour.photoAria} data-i18n-attr={`aria-label:tours.${index}.photoAria`}>
                         <img src={tour.highlightImage} alt="" loading="lazy" />
-                        <span>View photo</span>
+                        <span data-photo-label>{tour.photoCta}</span>
                       </summary>
                       <div class="tour-photo-panel">
-                        <img src={tour.highlightImage} alt={tour.highlightAlt} loading="lazy" />
+                        <img src={tour.highlightImage} alt={tour.highlightAlt} loading="lazy" data-i18n-attr={`alt:tours.${index}.highlightAlt`} />
                       </div>
                     </details>
                   )}
                 </div>
                 <div class="tour-body">
-                  <h3>{tour.title}</h3>
-                  <p>{tour.copy}</p>
+                  <h3 data-i18n={`tours.${index}.title`}>{tour.title}</h3>
+                  <p data-i18n={`tours.${index}.copy`}>{tour.copy}</p>
                   <ul>
-                    {tour.items.map((item) => <li>{item}</li>)}
+                    {tour.items.map((item, itemIndex) => (
+                      <li data-i18n={`tours.${index}.items.${itemIndex}`}>{item}</li>
+                    ))}
                   </ul>
                 </div>
               </article>
@@ -166,45 +486,28 @@ const tours = [
         <section class="band" id="about">
           <div class="section split">
             <div>
-              <p class="eyebrow">About Marion</p>
-              <h2>A storyteller between two worlds</h2>
+              <p class="eyebrow" data-i18n="about.eyebrow">{t.about.eyebrow}</p>
+              <h2 data-i18n="about.title">{t.about.title}</h2>
             </div>
             <div class="about-copy">
-              <p>
-                Marion Baumgarten has spent 40 years in travel and tourism, from tour operations
-                and group sales to guiding visitors through the Netherlands and New York City.
-                Most tours are guided by Marion herself.
-              </p>
-              <p>
-                Born in New York City and shaped by life in the Netherlands and other countries,
-                Marion made the original journey in reverse: from New Amsterdam to Amsterdam.
-                That gives her a natural way to explain the differences in lifestyle, outlook and
-                habits between both sides of the Atlantic.
-              </p>
+              {t.about.copy.map((paragraph, index) => (
+                <p data-i18n={`about.copy.${index}`}>{paragraph}</p>
+              ))}
               <div class="insight-note">
-                <p>
-                  Her tours are built around stories, not scripts: how places developed, why Dutch
-                  customs feel different to visitors and what those cultural differences mean in daily life.
-                </p>
+                <p data-i18n="about.note">{t.about.note}</p>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="section spring-section" aria-label="Keukenhof spring tours">
+        <section class="section spring-section" aria-label={t.spring.label} data-i18n-attr="aria-label:spring.label">
           <article class="spring-card">
             <div class="spring-content">
-              <p class="eyebrow">Springtime</p>
-              <h2>Discover Keukenhof</h2>
-              <p>
-                In the springtime, discover Keukenhof: home to millions of flowers,
-                starting with daffodils and ending with about 350 different varieties of tulips.
-                Keukenhof is about an hour from Amsterdam and can be visited as a stand-alone
-                excursion or combined with nearby attractions such as The Hague or Delft.
-              </p>
-              <p>
-                Marion can also help shape the day around an official lunch somewhere nearby.
-              </p>
+              <p class="eyebrow" data-i18n="spring.eyebrow">{t.spring.eyebrow}</p>
+              <h2 data-i18n="spring.title">{t.spring.title}</h2>
+              {t.spring.copy.map((paragraph, index) => (
+                <p data-i18n={`spring.copy.${index}`}>{paragraph}</p>
+              ))}
             </div>
           </article>
         </section>
@@ -212,88 +515,82 @@ const tours = [
         <section class="section" id="contact">
           <div class="contact-wrap">
             <div class="contact-card">
-              <p class="eyebrow">Contact</p>
-              <h2>Tell Marion what you want to see</h2>
-              <p>
-                Send your preferred date, group size and tour idea. Marion replies by email or
-                Messenger with availability and a fitting route.
-              </p>
-              <a class="btn btn-messenger" href={messengerUrl} target="_blank" rel="noopener">Message on Messenger</a>
+              <p class="eyebrow" data-i18n="contact.eyebrow">{t.contact.eyebrow}</p>
+              <h2 data-i18n="contact.title">{t.contact.title}</h2>
+              <p data-i18n="contact.copy">{t.contact.copy}</p>
+              <a class="btn btn-messenger" href={messengerUrl} target="_blank" rel="noopener" data-i18n="contact.messenger">
+                {t.contact.messenger}
+              </a>
             </div>
 
             <div class="form-card" id="contact-form">
-              <div class="form-success" id="form-success">
-                Thank you. Your request was sent. Marion will reply by email or Messenger.
+              <div class="form-success" id="form-success" data-i18n="form.success">
+                {t.form.success}
               </div>
               <form id="lead-form" data-form-path="/api/forms/contact" novalidate>
                 <div class="form-grid">
                   <label>
-                    First name *
+                    <span data-i18n="form.firstName">{t.form.firstName}</span>
                     <input name="firstName" type="text" autocomplete="given-name" required />
                   </label>
                   <label>
-                    Last name
+                    <span data-i18n="form.lastName">{t.form.lastName}</span>
                     <input name="lastName" type="text" autocomplete="family-name" />
                   </label>
                   <label>
-                    Email *
+                    <span data-i18n="form.email">{t.form.email}</span>
                     <input name="email" type="email" autocomplete="email" required />
                   </label>
                   <label>
-                    Preferred contact
+                    <span data-i18n="form.contactPreference">{t.form.contactPreference}</span>
                     <select name="contactPreference">
-                      <option>Email</option>
-                      <option>Messenger</option>
+                      <option value="Email" data-i18n="form.emailOption">{t.form.emailOption}</option>
+                      <option value="Messenger" data-i18n="form.messengerOption">{t.form.messengerOption}</option>
                     </select>
                   </label>
                   <label>
-                    Tour interest *
+                    <span data-i18n="form.tourInterest">{t.form.tourInterest}</span>
                     <select name="tourInterest" required>
-                      <option value="">Choose a tour</option>
-                      <option>Amsterdam</option>
-                      <option>Jordaan tour</option>
-                      <option>Jewish heritage tour</option>
-                      <option>Red Light District tour</option>
-                      <option>Keukenhof spring tour</option>
-                      <option>Volendam, Edam, Marken or Zaanse Schans</option>
-                      <option>Nijmegen group tour</option>
-                      <option>The Grand Holland</option>
-                      <option>The Hague, Rotterdam or Delft</option>
-                      <option>Custom Netherlands tour</option>
+                      <option value="" data-i18n="form.chooseTour">{t.form.chooseTour}</option>
+                      {tourOptionValues.map((option) => (
+                        <option value={option} data-i18n={`form.tourOptions.${option}`}>
+                          {t.form.tourOptions[option as keyof typeof t.form.tourOptions]}
+                        </option>
+                      ))}
                     </select>
                   </label>
                   <label>
-                    Preferred date or period *
-                    <input name="travelDate" type="text" placeholder="For example: 18 May or spring 2027" required />
+                    <span data-i18n="form.date">{t.form.date}</span>
+                    <input name="travelDate" type="text" placeholder={t.form.datePlaceholder} required data-i18n-attr="placeholder:form.datePlaceholder" />
                   </label>
                   <label>
-                    Group size *
-                    <input name="groupSize" type="text" placeholder="For example: 2 guests or a bus group" required />
+                    <span data-i18n="form.groupSize">{t.form.groupSize}</span>
+                    <input name="groupSize" type="text" placeholder={t.form.groupSizePlaceholder} required data-i18n-attr="placeholder:form.groupSizePlaceholder" />
                   </label>
                   <label>
-                    Preferred language
+                    <span data-i18n="form.language">{t.form.language}</span>
                     <select name="language">
-                      <option>English</option>
-                      <option>Dutch</option>
-                      <option>German</option>
-                      <option>French</option>
-                      <option>Spanish</option>
-                      <option>Italian</option>
+                      {languageOptionValues.map((option) => (
+                        <option value={option} data-i18n={`form.languageOptions.${option}`}>
+                          {t.form.languageOptions[option as keyof typeof t.form.languageOptions]}
+                        </option>
+                      ))}
                     </select>
                   </label>
                   <label class="full">
-                    Message *
-                    <textarea name="message" required placeholder="Tell Marion who is traveling, what you want to see and whether the pace should be relaxed or full-day."></textarea>
+                    <span data-i18n="form.message">{t.form.message}</span>
+                    <textarea name="message" required placeholder={t.form.messagePlaceholder} data-i18n-attr="placeholder:form.messagePlaceholder"></textarea>
                   </label>
                 </div>
+                <input type="hidden" name="siteLanguage" value={t.form.siteLanguage} data-site-language />
                 <input type="hidden" name="cf-turnstile-response" value="dev" />
                 <input type="text" name="company" tabindex="-1" autocomplete="off" hidden aria-hidden="true" />
                 <p class="form-error" id="form-error"></p>
                 <div class="form-footer">
                   <button class="btn btn-primary" type="submit">
-                    <span class="btn-label">Send tour request</span>
+                    <span class="btn-label" data-i18n="form.submit">{t.form.submit}</span>
                   </button>
-                  <p>Your details are only used to answer this tour request.</p>
+                  <p data-i18n="form.privacy">{t.form.privacy}</p>
                 </div>
               </form>
             </div>
@@ -303,15 +600,93 @@ const tours = [
 
       <footer class="footer">
         <div class="footer-inner">
-          <span>Netherlands Unveiled</span>
-          <span>Private and group tours across the Netherlands</span>
+          <span data-i18n="footer.brand">{t.footer.brand}</span>
+          <span data-i18n="footer.copy">{t.footer.copy}</span>
         </div>
       </footer>
     </div>
 
+    <script is:inline type="application/json" id="i18n-data" set:html={contentJson}></script>
     <script>
+      const dataNode = document.getElementById('i18n-data');
+      const translations: Record<string, unknown> = dataNode?.textContent ? JSON.parse(dataNode.textContent) : {};
+      const defaultLang = 'en';
       const nav = document.getElementById('nav');
       const menuButton = document.querySelector('.menu-toggle');
+      let currentLang: string = defaultLang;
+
+      const getTranslation = (lang: string, key: string): string | undefined => {
+        const parts = key.split('.');
+        let value: unknown = translations[lang];
+
+        for (const part of parts) {
+          if (typeof value !== 'object' || value === null || !(part in value)) return undefined;
+          value = (value as Record<string, unknown>)[part];
+        }
+
+        return typeof value === 'string' ? value : undefined;
+      };
+
+      const updatePhotoLabels = (lang: string) => {
+        document.querySelectorAll('[data-photo-popout]').forEach((details) => {
+          if (!(details instanceof HTMLDetailsElement)) return;
+
+          const index = details.getAttribute('data-photo-index');
+          const label = details.querySelector('[data-photo-label]');
+          if (!index || !label) return;
+
+          const key = details.open ? `tours.${index}.photoClose` : `tours.${index}.photoCta`;
+          const value = getTranslation(lang, key);
+          if (value) label.textContent = value;
+        });
+      };
+
+      const applyLanguage = (lang: string) => {
+        if (!translations[lang]) return;
+        currentLang = lang;
+        document.documentElement.lang = lang;
+        document.title = getTranslation(lang, 'meta.title') ?? document.title;
+
+        const description = document.querySelector('meta[name="description"]');
+        const ogDescription = document.querySelector('meta[property="og:description"]');
+        description?.setAttribute('content', getTranslation(lang, 'meta.description') ?? '');
+        ogDescription?.setAttribute('content', getTranslation(lang, 'meta.ogDescription') ?? '');
+
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+          const key = element.getAttribute('data-i18n');
+          const value = key ? getTranslation(lang, key) : undefined;
+          if (value) element.textContent = value;
+        });
+
+        document.querySelectorAll('[data-i18n-attr]').forEach((element) => {
+          const entries = element.getAttribute('data-i18n-attr')?.split('|') ?? [];
+          entries.forEach((entry) => {
+            const [attribute, key] = entry.split(':');
+            const value = key ? getTranslation(lang, key) : undefined;
+            if (attribute && value) element.setAttribute(attribute, value);
+          });
+        });
+
+        document.querySelectorAll('[data-lang-button]').forEach((button) => {
+          const isActive = button.getAttribute('data-lang-button') === lang;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', String(isActive));
+        });
+
+        const siteLanguage = document.querySelector('[data-site-language]');
+        if (siteLanguage instanceof HTMLInputElement) {
+          siteLanguage.value = getTranslation(lang, 'form.siteLanguage') ?? lang;
+        }
+
+        updatePhotoLabels(lang);
+
+        try {
+          window.localStorage.setItem('netherlands-unveiled-lang', lang);
+        } catch {
+          // Ignore storage failures; the toggle still works for the current page.
+        }
+      };
+
       menuButton?.addEventListener('click', () => {
         const next = nav?.dataset.open !== 'true';
         if (nav) nav.dataset.open = String(next);
@@ -325,6 +700,24 @@ const tours = [
         });
       });
 
+      document.querySelectorAll('[data-lang-button]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const lang = button.getAttribute('data-lang-button');
+          if (lang) applyLanguage(lang);
+        });
+      });
+
+      document.querySelectorAll('[data-photo-popout]').forEach((details) => {
+        details.addEventListener('toggle', () => updatePhotoLabels(currentLang));
+      });
+
+      try {
+        const storedLang = window.localStorage.getItem('netherlands-unveiled-lang');
+        if (storedLang && translations[storedLang]) applyLanguage(storedLang);
+      } catch {
+        applyLanguage(defaultLang);
+      }
+
       const form = document.getElementById('lead-form');
       const success = document.getElementById('form-success');
       const errorBox = document.getElementById('form-error');
@@ -332,7 +725,6 @@ const tours = [
       if (form instanceof HTMLFormElement) {
         const submit = form.querySelector('button[type="submit"]');
         const label = form.querySelector('.btn-label');
-        const originalLabel = label?.textContent ?? 'Send tour request';
 
         form.addEventListener('submit', async (event) => {
           event.preventDefault();
@@ -347,7 +739,7 @@ const tours = [
           }
 
           submit?.setAttribute('disabled', 'true');
-          if (label) label.textContent = 'Sending...';
+          if (label) label.textContent = getTranslation(currentLang, 'form.submitting') ?? 'Sending...';
 
           try {
             const path = form.dataset.formPath ?? '/api/forms/contact';
@@ -357,18 +749,20 @@ const tours = [
             if (!response.ok || !('ok' in payload) || !payload.ok) {
               const message = 'message' in payload && typeof payload.message === 'string'
                 ? payload.message
-                : 'Your request could not be sent.';
+                : getTranslation(currentLang, 'form.errorDefault') ?? 'Your request could not be sent.';
               throw new Error(message);
             }
             form.style.display = 'none';
             if (success) success.style.display = 'block';
           } catch (error) {
             if (errorBox) {
-              errorBox.textContent = error instanceof Error ? error.message : 'Your request could not be sent.';
+              errorBox.textContent = error instanceof Error
+                ? error.message
+                : getTranslation(currentLang, 'form.errorDefault') ?? 'Your request could not be sent.';
               errorBox.style.display = 'block';
             }
             submit?.removeAttribute('disabled');
-            if (label) label.textContent = originalLabel;
+            if (label) label.textContent = getTranslation(currentLang, 'form.submit') ?? 'Send tour request';
           }
         });
       }

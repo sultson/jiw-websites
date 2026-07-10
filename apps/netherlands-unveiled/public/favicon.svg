@@ -1,7 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Netherlands Unveiled">
-  <rect width="64" height="64" rx="10" fill="#fffaf1"/>
-  <path d="M8 42h48v9H8z" fill="#0f6f8f"/>
-  <path d="M8 31h48v9H8z" fill="#f3bd38"/>
-  <path d="M8 20h48v9H8z" fill="#d94b36"/>
-  <path d="M18 48 46 16" stroke="#172026" stroke-width="5" stroke-linecap="round"/>
+  <rect width="64" height="64" rx="14" fill="#fffaf1"/>
+  <rect x="10" y="13" width="44" height="12" rx="3" fill="#AE1C28"/>
+  <rect x="10" y="26" width="44" height="12" fill="#FFFFFF"/>
+  <rect x="10" y="39" width="44" height="12" rx="3" fill="#21468B"/>
+  <path d="M10 28h44v8H10z" fill="#FFFFFF"/>
+  <path
+    d="M23 43V21l18 22V21"
+    fill="none"
+    stroke="#172026"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="6"
+  />
 </svg>
