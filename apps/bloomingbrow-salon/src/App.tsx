@@ -33,6 +33,7 @@ const phoneDisplay = '06 51720796';
 const phoneHref = 'tel:+31651720796';
 const whatsappUrl = 'https://wa.me/31651720796';
 const email = 'bloomingbrowsalon@gmail.com';
+const termsUrl = 'https://drive.google.com/file/d/1tSKFI6zEMIHyykQRMQ2Thdp4CoVJVoF6/view?usp=sharing';
 
 type Copy = {
   nav: string[];
@@ -87,6 +88,8 @@ type Copy = {
   hours: string;
   faqKicker: string;
   faqTitle: string;
+  faqTermsText: string;
+  faqTermsLink: string;
   ctaKicker: string;
   ctaTitle: string;
   ctaSub: string;
@@ -169,6 +172,9 @@ const copy: Record<Lang, Copy> = {
     hours: 'Openingstijden',
     faqKicker: 'Goed om te weten',
     faqTitle: 'Veelgestelde vragen',
+    faqTermsText:
+      'Belangrijk: Lees vóór het maken van je afspraak onze algemene voorwaarden zorgvuldig door. Bij het bevestigen van je afspraak ga je akkoord met deze voorwaarden.',
+    faqTermsLink: 'Algemene voorwaarden',
     ctaKicker: 'Zin in een nieuwe look?',
     ctaTitle: 'Boek met mij. Ik kijk er naar uit.',
     ctaSub: 'Boek online of stuur me even een appje. Ik denk graag mee over wat bij jou past.',
@@ -249,6 +255,9 @@ const copy: Record<Lang, Copy> = {
     hours: 'Opening hours',
     faqKicker: 'Good to know',
     faqTitle: 'Frequently asked questions',
+    faqTermsText:
+      'Important: Please read our terms and conditions carefully before making your appointment. By confirming your appointment, you agree to these terms.',
+    faqTermsLink: 'Terms and conditions',
     ctaKicker: 'Ready for a new look?',
     ctaTitle: 'Book with me. I can\'t wait.',
     ctaSub: 'Book online or send me a quick message. I\'m happy to think along about what suits you.',
@@ -263,7 +272,7 @@ const signatureTreatments = {
       text: 'Voor wie elke ochtend wakker wil worden met vorm. Bloem mapt eerst rustig uit en stemt de kleur af op jouw gezicht.',
       price: 'vanaf €250',
       duration: '240 min',
-      image: '/powderbrows-result-1.webp',
+      image: '/powderbrows-new-3.webp',
       badge: 'PMU',
     },
     {
@@ -271,7 +280,7 @@ const signatureTreatments = {
       text: 'Hybrid tint inclusief shape. Meer definitie doordat zowel haartjes als huid worden meegenomen, voor een vollere, strakkere en draagbare look.',
       price: '€37,50',
       duration: '60 min',
-      image: '/hybrid-tint-result-5.webp',
+      image: '/hybrid-tint-new-1.webp',
       badge: 'Brow styling',
     },
     {
@@ -297,7 +306,7 @@ const signatureTreatments = {
       text: 'For anyone who wants to wake up with shape every morning. Bloem maps first and matches the colour to your face.',
       price: 'from €250',
       duration: '240 min',
-      image: '/powderbrows-result-1.webp',
+      image: '/powderbrows-new-3.webp',
       badge: 'PMU',
     },
     {
@@ -305,7 +314,7 @@ const signatureTreatments = {
       text: 'Hybrid tint including shape. More definition because both hair and skin are tinted, for a fuller, cleaner and very wearable look.',
       price: '€37.50',
       duration: '60 min',
-      image: '/hybrid-tint-result-5.webp',
+      image: '/hybrid-tint-new-1.webp',
       badge: 'Brow styling',
     },
     {
@@ -434,12 +443,21 @@ const processSteps = {
 };
 
 const powderResults = [
+  '/powderbrows-new-1.webp',
+  '/powderbrows-new-2.webp',
+  '/powderbrows-new-4.webp',
+  '/powderbrows-new-5.webp',
+  '/powderbrows-result-1.webp',
   '/powderbrows-result-2.webp',
   '/powderbrows-result-3.webp',
-  '/powderbrows-result-4.webp',
 ];
 
 const hybridResults = [
+  '/hybrid-tint-new-5.webp',
+  '/hybrid-tint-new-2.webp',
+  '/hybrid-tint-new-3.webp',
+  '/hybrid-tint-new-4.webp',
+  '/hybrid-tint-result-5.webp',
   '/hybrid-tint-result-1.webp',
   '/hybrid-tint-result-2.webp',
   '/hybrid-tint-result-3.webp',
@@ -1053,6 +1071,13 @@ export default function App() {
                 </article>
               );
             })}
+          </div>
+          <div className="faq-terms">
+            <p>{c.faqTermsText}</p>
+            <a href={termsUrl} target="_blank" rel="noreferrer">
+              {c.faqTermsLink}
+              <ExternalLink size={13} />
+            </a>
           </div>
         </section>
 
