@@ -11,6 +11,7 @@ export type CloudflareFormsEnv = {
 
 export type LeadFormConfig = {
   formPath: string;
+  locale?: 'nl' | 'en';
   siteName: string;
   ownerName?: string;
   senderName: string;
@@ -102,13 +103,14 @@ export function createFormWorker(config: LeadFormConfig): ExportedHandler<Cloudf
         return handleAttachmentDownload(request, env, settings);
       }
 
-      return jsonError('server', 'Niet gevonden.', 404);
+      return jsonError('server', settings.locale === 'en' ? 'Not found.' : 'Niet gevonden.', 404);
     },
   };
 }
 
 function withDefaults(config: LeadFormConfig): Required<LeadFormConfig> {
   return {
+    locale: 'nl',
     ownerName: 'Eigenaar',
     confirmationFollowUpSentence: 'We nemen binnen 24 tot 48 uur contact met u op.',
     requiredFields: [],
@@ -217,7 +219,7 @@ async function handleSubmission(
     console.error('form_failed', { error: error instanceof Error ? { name: error.name, message: error.message, stack: error.stack } : error, ...reqMeta });
     return jsonError(
       'server',
-      `De aanvraag kon niet worden verwerkt. Neem direct telefonisch of per e-mail contact op met ${config.siteName}.`,
+      config.locale === 'en' ? `The request could not be processed. Please contact ${config.siteName} directly by phone or email.` : `De aanvraag kon niet worden verwerkt. Neem direct telefonisch of per e-mail contact op met ${config.siteName}.`,
       500,
     );
   }
@@ -297,33 +299,33 @@ function parseFields(form: FormData): SubmissionFields {
 function validateFields(fields: SubmissionFields, config: Required<LeadFormConfig>): string | null {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const emailRequired = config.requireEmail && !config.optionalEmailWhen.some((condition) => conditionMatches(fields, condition));
-  if (config.requireFirstName && !fields.firstName) return 'Vul uw naam in.';
-  if (config.requireLastName && !fields.lastName) return 'Vul uw achternaam in.';
+  if (config.requireFirstName && !fields.firstName) return config.locale === 'en' ? 'Enter your first name.' : 'Vul uw naam in.';
+  if (config.requireLastName && !fields.lastName) return config.locale === 'en' ? 'Enter your last name.' : 'Vul uw achternaam in.';
   if (emailRequired) {
-    if (!fields.email || !emailPattern.test(fields.email)) return 'Vul een geldig e-mailadres in.';
+    if (!fields.email || !emailPattern.test(fields.email)) return config.locale === 'en' ? 'Enter a valid email address.' : 'Vul een geldig e-mailadres in.';
   } else if (fields.email && !emailPattern.test(fields.email)) {
-    return 'Vul een geldig e-mailadres in.';
+    return config.locale === 'en' ? 'Enter a valid email address.' : 'Vul een geldig e-mailadres in.';
   }
 
   for (const field of config.requiredFields) {
     if (!conditionMatches(fields, field.when)) continue;
-    if (!getFieldValue(fields, field.name)) return field.message ?? `Vul ${field.label.toLowerCase()} in.`;
+    if (!getFieldValue(fields, field.name)) return field.message ?? (config.locale === 'en' ? `Enter ${field.label.toLowerCase()}.` : `Vul ${field.label.toLowerCase()} in.`);
   }
 
   return null;
 }
 
 function validateAttachments(files: File[], config: Required<LeadFormConfig>): string | null {
-  if (files.length > config.attachmentMaxFiles) return `Stuur maximaal ${config.attachmentMaxFiles} bestanden mee.`;
+  if (files.length > config.attachmentMaxFiles) return config.locale === 'en' ? `Attach no more than ${config.attachmentMaxFiles} files.` : `Stuur maximaal ${config.attachmentMaxFiles} bestanden mee.`;
 
   let totalSize = 0;
   for (const file of files) {
     totalSize += file.size;
-    if (file.size > config.attachmentMaxFileBytes) return `Bestand "${file.name}" is groter dan 10 MB.`;
-    if (!isAllowedFile(file, config)) return `Bestand "${file.name}" heeft geen toegestaan bestandstype.`;
+    if (file.size > config.attachmentMaxFileBytes) return config.locale === 'en' ? `File "${file.name}" is larger than 10 MB.` : `Bestand "${file.name}" is groter dan 10 MB.`;
+    if (!isAllowedFile(file, config)) return config.locale === 'en' ? `File "${file.name}" has an unsupported file type.` : `Bestand "${file.name}" heeft geen toegestaan bestandstype.`;
   }
 
-  if (totalSize > config.attachmentMaxTotalBytes) return 'De bijlagen zijn samen groter dan 50 MB.';
+  if (totalSize > config.attachmentMaxTotalBytes) return config.locale === 'en' ? 'The attachments exceed 50 MB in total.' : 'De bijlagen zijn samen groter dan 50 MB.';
   return null;
 }
 
@@ -370,7 +372,7 @@ async function storeAttachments(bucket: R2Bucket, files: File[], prefix: string)
 
   for (const [index, file] of files.entries()) {
     const id = crypto.randomUUID();
-    const safeName = sanitizeFilename(file.name || `bijlage-${index + 1}`);
+    const safeName = sanitizeFilename(file.name || `attachment-${index + 1}`);
     const key = `${prefix}/${index + 1}-${id}-${safeName}`;
 
     await bucket.put(key, file.stream(), {
@@ -405,7 +407,7 @@ async function sendConfirmationEmail(
       from: { email: env.LEAD_SENDER, name: config.senderName },
       to: fields.email,
       replyTo: env.LEAD_RECIPIENT,
-      subject: cleanHeader(`Uw offerteaanvraag is ontvangen - ${config.siteName}`),
+      subject: cleanHeader(config.locale === 'en' ? `Your request has been received - ${config.siteName}` : `Uw offerteaanvraag is ontvangen - ${config.siteName}`),
       text: renderConfirmationTextEmail(config, manifest),
       html: renderConfirmationHtmlEmail(config, manifest),
     });
@@ -454,6 +456,10 @@ function renderConfirmationTextEmail(config: Required<LeadFormConfig>, manifest:
   const message = getFieldValue(fields, config.messageField);
   const rows = renderEmailRows(config, fields);
 
+  if (config.locale === 'en') return [
+    `Dear ${fullName},`, '', `Your request to ${config.siteName} has been sent.`, config.confirmationFollowUpSentence, '', 'Your request:',
+    ...rows.map(([label, value]) => `${label}: ${value || '-'}`), '', 'Message:', message || '-', '', `Reference: ${manifest.submissionId}`,
+  ].join('\n');
   return [
     `Beste ${fullName},`,
     '',
@@ -475,6 +481,7 @@ function renderConfirmationHtmlEmail(config: Required<LeadFormConfig>, manifest:
   const rows = renderEmailRows(config, fields);
   const message = getFieldValue(fields, config.messageField);
 
+  if (config.locale === 'en') return `<!doctype html><html><body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;"><p>Dear ${escapeHtml(getFullName(fields))},</p><p>Your request to ${escapeHtml(config.siteName)} has been sent. ${escapeHtml(config.confirmationFollowUpSentence)}</p><h1 style="font-size: 20px;">Your request</h1><table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">${rows.map(([label,value])=>`<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}</table><h2 style="font-size: 16px;">Message</h2><p>${escapeHtml(message||'-').replace(/\n/g,'<br>')}</p><p style="font-size: 12px; color: #667085;">Reference ${escapeHtml(manifest.submissionId)}.</p></body></html>`;
   return `<!doctype html>
 <html>
   <body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;">
@@ -497,7 +504,11 @@ function renderTextEmail(config: Required<LeadFormConfig>, manifest: SubmissionM
   const message = getFieldValue(fields, config.messageField);
   const attachmentLines = manifest.attachments.length
     ? manifest.attachments.map((attachment) => `- ${attachment.name}: ${attachmentUrl(config, manifest, attachment, origin)}`).join('\n')
-    : 'Geen bijlagen meegestuurd.';
+    : config.locale === 'en' ? 'No attachments included.' : 'Geen bijlagen meegestuurd.';
+
+  if (config.locale === 'en') return [
+    `New request for ${config.siteName}`, '', ...rows.map(([label,value])=>`${label}: ${value||'-'}`), '', 'Message:', message||'-', '', 'Attachments:', attachmentLines,
+  ].join('\n');
 
   return [
     `Nieuwe offerteaanvraag voor ${config.siteName}`,
@@ -523,7 +534,9 @@ function renderHtmlEmail(config: Required<LeadFormConfig>, manifest: SubmissionM
     ? `<ul>${manifest.attachments
         .map((attachment) => `<li><a href="${escapeHtml(attachmentUrl(config, manifest, attachment, origin))}">${escapeHtml(attachment.name)}</a></li>`)
         .join('')}</ul>`
-    : '<p>Geen bijlagen meegestuurd.</p>';
+    : config.locale === 'en' ? '<p>No attachments included.</p>' : '<p>Geen bijlagen meegestuurd.</p>';
+
+  if (config.locale === 'en') return `<!doctype html><html><body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;"><h1 style="font-size: 20px;">New request for ${escapeHtml(config.siteName)}</h1><table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">${rows.map(([label,value])=>`<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}</table><h2 style="font-size: 16px;">Message</h2><p>${escapeHtml(message||'-').replace(/\n/g,'<br>')}</p><h2 style="font-size: 16px;">Attachments</h2>${attachments}<p style="font-size: 12px; color: #667085;">Submission ${escapeHtml(manifest.submissionId)} received at ${escapeHtml(manifest.createdAt)}.</p></body></html>`;
 
   return `<!doctype html>
 <html>
