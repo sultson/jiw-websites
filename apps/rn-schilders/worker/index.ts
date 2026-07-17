@@ -32,6 +32,7 @@ const removedPathRedirects: Record<string, string> = {
   '/stucwerk-woerden': '/stucwerk',
   '/houtrotherstel-woerden': '/houtrotherstel',
   '/sloopwerk-woerden': '/sloopwerk',
+  '/vloeren-woerden': '/vloeren',
 };
 
 const formWorker = createFormWorker({

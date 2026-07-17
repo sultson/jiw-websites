@@ -10,6 +10,7 @@ import {
   FileText,
   Hammer,
   Home,
+  Layers,
   Loader2,
   Mail,
   MapPin,
@@ -521,6 +522,57 @@ const services: Service[] = [
     ],
   },
   {
+    title: 'Vloeren',
+    slug: 'vloeren-woerden',
+    text: 'Laminaatvloeren vakkundig gelegd, van een rustige rechte plank tot een karaktervol visgraatpatroon met een nette afwerking.',
+    image: '/vloeren-visgraat-doorgang.webp',
+    images: [
+      { src: '/vloeren-visgraat-doorgang.webp', alt: 'Visgraatvloer netjes doorgelegd tussen kamer en overloop' },
+      { src: '/vloeren-visgraat-woonkamer.webp', alt: 'Lichte visgraatvloer doorgelegd in een woonkamer en hal' },
+      { src: '/vloeren-visgraat-keuken.webp', alt: 'Lichte visgraatvloer doorgelegd tot in de keuken' },
+      { src: '/vloeren-visgraat-trap.webp', alt: 'Doorlopende visgraatvloer rondom een open trap' },
+      { src: '/vloeren-visgraat-overloop.webp', alt: 'Visgraatvloer op de overloop en in aangrenzende kamers' },
+      { src: '/vloeren-visgraat-hal.webp', alt: 'Visgraatvloer doorgelegd in een smalle hal' },
+    ],
+    width: 1800,
+    height: 1014,
+    icon: Layers,
+    bullets: ['Focus op laminaat', 'Rechte plank en visgraat', 'Ondervloer en afwerking'],
+    detailTitle: 'Laminaatvloeren strak gelegd',
+    detailIntro:
+      'Een nieuwe vloer geeft een interieur direct een andere uitstraling. RN Schilders legt laminaat zorgvuldig en sluit het patroon netjes aan tussen woonkamers, hallen en andere ruimtes.',
+    detailSections: [
+      {
+        title: 'Laminaat leggen',
+        items: ['Rechte planken en visgraatpatronen', 'Nette aansluiting tussen meerdere ruimtes', 'Zorgvuldig maatwerk bij deuren, kozijnen en trappen'],
+      },
+      {
+        title: 'Voorbereiding en afwerking',
+        items: ['Controle van de bestaande ondergrond', 'Passende ondervloer en egalisatie waar nodig', 'Afwerking met plinten, profielen en nette randen'],
+      },
+    ],
+    seoTitle: 'Laminaat laten leggen in Woerden | Vloeren | RN Schilders',
+    seoDescription:
+      'Laminaat laten leggen in Woerden door RN Schilders. Rechte planken of visgraat, met aandacht voor ondervloer, aansluitingen en nette afwerking. Vraag een gratis offerte aan.',
+    faqs: [
+      {
+        question: 'Leggen jullie vooral laminaat?',
+        answer:
+          'Ja. De focus ligt op het vakkundig leggen van laminaat, zowel in een rechte plank als in een visgraatpatroon. Tijdens de opname bespreken we welke vloer en legwijze bij de ruimte passen.',
+      },
+      {
+        question: 'Moet de ondergrond eerst geëgaliseerd worden?',
+        answer:
+          'Dat hangt af van de bestaande vloer. We controleren of de ondergrond vlak, droog en stevig genoeg is en nemen een passende ondervloer of egalisatie mee in de offerte als dat nodig is.',
+      },
+      {
+        question: 'Werken jullie de vloer ook af met plinten?',
+        answer:
+          'Ja. We kunnen plinten, overgangsprofielen en aansluitingen bij deuren en kozijnen meenemen, zodat de vloer als één verzorgd geheel wordt opgeleverd.',
+      },
+    ],
+  },
+  {
     title: 'Sloopwerk',
     slug: 'sloopwerk-woerden',
     text: 'Zorgvuldig voorbereid sloopwerk voor renovaties, zodat de ruimte schoon, veilig en klaar is voor de volgende stap.',
@@ -584,7 +636,7 @@ const locationPages: LocationPage[] = [
     localFit:
       'Binnen pakken we na een verbouwing of verhuizing wanden, plafonds, trappen en kozijnen aan, met stucwerk of latex spuiten als dat strakker uitpakt. Omdat we uit Woerden komen zijn de lijnen kort: een extra blik op locatie of een snelle aanpassing in de planning is zo geregeld.',
     areas: ['Woerden', 'Harmelen', 'Kamerik', 'Zegveld', 'Montfoort', 'Oudewater', 'Linschoten', 'Snel en Polanen', 'Waterrijk'],
-    featuredServices: ['Schilderwerk', 'Kozijnen', 'Houtrotherstel', 'Stucwerk'],
+    featuredServices: ['Schilderwerk', 'Kozijnen', 'Houtrotherstel', 'Stucwerk', 'Vloeren'],
     commonRequests: [
       'Buitenschilderwerk aan kozijnen, voordeuren en boeidelen bij jaren-30 woningen rond het centrum van Woerden.',
       'Houtrotherstel aan dorpels en raamhoeken voordat de gevel weer volledig in de lak gaat.',
@@ -594,6 +646,7 @@ const locationPages: LocationPage[] = [
       { label: 'Buitenschilderwerk in Woerden', serviceTitle: 'Schilderwerk' },
       { label: 'Kozijnen in Woerden', serviceTitle: 'Kozijnen' },
       { label: 'Houtrotherstel in Woerden', serviceTitle: 'Houtrotherstel' },
+      { label: 'Laminaatvloeren in Woerden', serviceTitle: 'Vloeren' },
     ],
     faqs: [
       {
@@ -1549,7 +1602,7 @@ export type RouteMeta = {
 const homeMeta = {
   title: `✴️ ${siteName} | Schilder Woerden`,
   description:
-    'Vakkundige schilder in Woerden voor binnen- en buitenschilderwerk, kozijnen, stucwerk en houtrotherstel. Richard komt zelf langs en u krijgt snel een gratis offerte.',
+    'Vakkundige schilder en renovatiebedrijf in Woerden voor schilderwerk, kozijnen, stucwerk, houtrotherstel en laminaatvloeren. Vraag snel een gratis offerte aan.',
 };
 
 const workAreaMeta = {
@@ -4814,7 +4867,7 @@ function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
                 <textarea
                   className="field min-h-32 resize-y"
                   name="message"
-                  placeholder="Bijvoorbeeld: buitenschilderwerk kozijnen, houtrot bij voordeur, stucwerk woonkamer..."
+                  placeholder="Bijvoorbeeld: buitenschilderwerk kozijnen, houtrot bij voordeur, stucwerk woonkamer of laminaat leggen..."
                   onChange={handleFieldChange('message')}
                   aria-invalid={Boolean(fieldErrors.message)}
                   aria-describedby={fieldErrors.message ? 'message-error' : undefined}
@@ -5030,7 +5083,7 @@ function WorkAreaPage({ openQuote }: { openQuote: () => void }) {
             <p className="eyebrow text-roller-soft">Werkgebied</p>
             <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">Schilderwerk rondom Woerden.</h1>
             <p className="mt-6 text-lg leading-8 text-white/88 md:text-xl">
-              Bekijk per regio welke plaatsen binnen het werkgebied vallen en welke werkzaamheden u kunt aanvragen: schilderwerk, kozijnen, houtrotherstel, stucwerk en spuitwerk. Staat uw plaats er niet bij, stuur dan uw postcode mee in de offerteaanvraag.
+              Bekijk per regio welke plaatsen binnen het werkgebied vallen en welke werkzaamheden u kunt aanvragen: schilderwerk, kozijnen, houtrotherstel, stucwerk, spuitwerk en vloeren. Staat uw plaats er niet bij, stuur dan uw postcode mee in de offerteaanvraag.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <button type="button" onClick={openQuote} className="btn-primary">
@@ -5917,7 +5970,7 @@ function AboutPage({ openQuote }: { openQuote: () => void }) {
             <h2 className="mt-4 text-3xl font-extrabold leading-tight text-navy md:text-4xl">Vakwerk dat zichtbaar blijft in Woerden en omgeving.</h2>
             <div className="mt-5 grid gap-4 text-base leading-8 text-graphite">
               <p>
-                RN Schilders & Renovatie is een schilder- en renovatiebedrijf uit Woerden. We verzorgen binnen- en buitenschilderwerk, kozijnen, spuitwerk, stucwerk, houtrotherstel en sloopwerk, voor zowel woningen als bedrijfspanden.
+                RN Schilders & Renovatie is een schilder- en renovatiebedrijf uit Woerden. We verzorgen binnen- en buitenschilderwerk, kozijnen, spuitwerk, stucwerk, houtrotherstel, vloeren en sloopwerk, voor zowel woningen als bedrijfspanden.
               </p>
               <p>
                 Richard komt zelf langs voor de opname, beoordeelt het werk op locatie en blijft uw vaste aanspreekpunt tijdens de uitvoering. Zo weet u vooraf wat er nodig is en sluit de offerte aan op de praktijk.
