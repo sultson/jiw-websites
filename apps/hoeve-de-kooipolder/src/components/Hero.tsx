@@ -9,9 +9,9 @@ export default function Hero({ t }: Props) {
     <section id="top" className="relative overflow-hidden min-h-[88dvh] flex items-end">
       <div className="absolute inset-0 bg-ink">
         <picture>
-          <source media="(min-width: 768px)" srcSet="/hero-bg.webp" />
+          <source media="(min-width: 768px)" srcSet="/hero-bg.webp?v=20260711" />
           <img
-            src="/hero-bg-mobile.webp"
+            src="/hero-bg-mobile.webp?v=20260711"
             alt=""
             className="w-full h-full object-cover"
             fetchPriority="high"
