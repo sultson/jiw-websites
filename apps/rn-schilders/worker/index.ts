@@ -68,6 +68,7 @@ const formWorker = createFormWorker({
     { name: 'service', label: 'Dienst' },
     { name: 'leadSource', label: 'Leadbron' },
     { name: 'contactPreference', label: 'Aanvraagroute' },
+    { name: 'preferredExecutionDate', label: 'Wanneer gewenst' },
     { name: 'preferredExecutionDate', label: 'Gewenste uitvoeringsdatum' },
     { name: 'urgent', label: 'Spoed' },
     { name: 'gclid', label: 'GCLID' },

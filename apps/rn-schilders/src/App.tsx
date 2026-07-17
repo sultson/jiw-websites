@@ -33,6 +33,7 @@ import {
 const phoneDisplay = '085 060 6309';
 const phoneHref = 'tel:+31850606309';
 const whatsappHref = 'https://wa.me/31645172726?text=Hallo%20RN%20Schilders%2C%20ik%20wil%20graag%20een%20gratis%20prijsindicatie%20aanvragen.';
+const whatsappCampaignHref = `https://wa.me/31645172726?text=${encodeURIComponent('Hallo RN Schilders, ik wil graag dat jullie gratis langskomen voor een offerte.')}`;
 // Email stays on the rn-schilders.nl domain for now; only the public site URL moves.
 const email = 'info@rnschilders.nl';
 const mapsHref = 'https://www.google.com/maps/search/?api=1&query=Kuipersweg+33+3449+JA+Woerden';
@@ -49,6 +50,8 @@ const googleAdsCallConversionSendTo = `${googleAdsConversionId}/TNi-COeH3ckcEPvq
 const googleAdsWhatsappConversionSendTo = `${googleAdsConversionId}/hB0lCOqH3ckcEPvqopNE`;
 const campaignLeadStorageKey = 'rn_schilders_campaign_lead';
 const gclidStorageKey = 'rn_schilders_gclid';
+const campaignScopeOptions = ['Kozijnen en deuren', 'Gevel of buitenmuur', 'De hele buitenkant', 'Iets anders of weet ik nog niet'];
+const campaignTimingOptions = ['Zo snel mogelijk', 'Komende 3 maanden', 'Later dit jaar', 'Ik oriënteer me eerst'];
 const sentPageLoadConversions = new Set<string>();
 
 function isLocalFormHost() {
@@ -936,6 +939,26 @@ const campaignReviews: Review[] = [
     quote: 'Snel offerte gehad, snel gehandeld. Mooi schilderwerk geleverd voor een goede prijs!',
   },
   reviews.find((review) => review.name === 'Marek Balog')!,
+  {
+    name: 'Frank',
+    date: '2 weken geleden',
+    quote: 'RN Schilders heeft bij mij in Montfoort de buitenkant van mijn woning heel mooi geschilderd. Mijn vrouw en ik zijn er heel blij mee.',
+  },
+  {
+    name: 'Bart Bodenstaff',
+    date: '4 maanden geleden',
+    quote: 'Prachtig schilderwerk, snel en netjes gedaan. We zijn er heel blij mee.',
+  },
+  {
+    name: 'Larissa Telkamp',
+    date: '4 maanden geleden',
+    quote: 'Zeker 5 sterren waard! Netjes, duidelijke afspraken. Ga zo door!',
+  },
+  {
+    name: 'Vince',
+    date: '3 maanden geleden',
+    quote: 'Perfect! Echt een aanrader. Vriendelijk, goed bereikbaar en echt vakmanschap.',
+  },
 ];
 
 // Google-style avatar background colours, assigned per reviewer by index.
@@ -1553,9 +1576,9 @@ const contactMeta = {
 };
 
 const campaignMeta = {
-  title: `Gespecialiseerd in buitenschilderwerk | Gratis prijsindicatie`,
+  title: `Buitenschilderwerk met vaste prijs | Gratis afspraak`,
   description:
-    'Vraag een gratis prijsindicatie aan voor buitenschilderwerk in Woerden en omgeving. Richard komt zelf langs, vaste prijs vooraf en vijf jaar garantie.',
+    'Plan een gratis afspraak voor buitenschilderwerk. Richard komt zelf kijken en u krijgt een vaste prijs vooraf, zonder verrassingen.',
 };
 
 const campaignThankYouMeta = {
@@ -1816,12 +1839,12 @@ const campaignFaqs = [
   {
     question: 'Wat kost buitenschilderwerk?',
     answer:
-      'Dat hangt af van de staat en de omvang van het werk. Daarom komen we gratis langs voor een opname op locatie en krijgt u vooraf een vaste prijs, zonder verrassingen achteraf.',
+      'Dat hangt af van de staat van het houtwerk, en die zien we pas ter plekke. Daarom noemen we geen prijzen die achteraf niet blijken te kloppen. Richard komt gratis kijken en u krijgt een vaste prijs, zonder verrassingen achteraf.',
   },
   {
     question: 'Hoe snel kunnen jullie beginnen?',
     answer:
-      'Er is nu nog plek in de planning, ook in de vakantie en de bouwvak. Vraag uw prijsindicatie aan, dan kijken we direct wanneer het uitkomt.',
+      'Ook deze zomer is er nog plek en wij werken door in de bouwvak. Vraag uw gratis afspraak aan, dan kijken we direct wanneer het uitkomt.',
   },
   {
     question: 'Geven jullie garantie?',
@@ -1836,7 +1859,7 @@ const campaignFaqs = [
   {
     question: 'Komt Richard zelf langs?',
     answer:
-      'Ja. Richard is meewerkend eigenaar en is zelf aanwezig, van de opname tot de oplevering. Eén aanspreekpunt dus.',
+      'Ja. Richard is meewerkend eigenaar en komt zelf gratis kijken. Ook tijdens de uitvoering blijft hij uw vaste aanspreekpunt.',
   },
   {
     question: 'Kan ik ook een grote klus laten doen?',
@@ -1867,13 +1890,22 @@ const campaignProofCards = [
 ];
 
 const campaignGalleryImages = [
-  { src: '/ridderkerk-2.webp', alt: 'Steigers rond de voorgevel van een woning in Ridderkerk', width: 1346, height: 1800 },
-  { src: '/ridderkerk-4.webp', alt: 'Woning in Ridderkerk volledig in de steigers gezien vanuit de tuin', width: 1800, height: 1346 },
-  { src: '/werk-witte-kozijnen-topgevel.webp?v=20260530', alt: 'Strak geschilderde witte kozijnen in een topgevel', width: 1280, height: 960 },
-  { src: '/werk-antraciet-bovengevel.webp?v=20260530', alt: 'Antracietgrijs schilderwerk aan een bovengevel', width: 1280, height: 960 },
-  { src: '/werk-gevel-erker-tuindeuren.webp?v=20260530', alt: 'Buitenschilderwerk aan gevel, erker en tuindeuren', width: 1280, height: 960 },
-  { src: '/ridderkerk-3.webp', alt: 'Steigeropbouw langs de zijgevel van een woning in Ridderkerk', width: 1800, height: 1346 },
-  { src: '/hero-tuinvilla-steiger.webp?v=20260530', alt: 'Villa met steiger tijdens buitenschilderwerk', width: 1200, height: 1600 },
+  { src: '/campaign-thumb-boeideel.webp?v=20260715', alt: 'Schilder van RN Schilders werkt vanaf een steiger aan het boeideel van een zwarte houten gevel', caption: 'Boeideel schilderen vanaf de steiger', width: 600, height: 800 },
+  { src: '/campaign-thumb-hoogwerker.webp?v=20260715', alt: 'RN Schilders schildert de witte gevel rond een bakstenen entreeboog vanaf een hoogwerker', caption: 'Gevel schilderen vanaf de hoogwerker', width: 600, height: 800 },
+  { src: '/werk-zwarte-deur-bakstenen-boog.webp', alt: 'Hoogglans zwart gelakte voordeur met ribbelglas in een bakstenen entreeboog', caption: 'Zwarte deur in bakstenen boog', width: 1350, height: 1800 },
+  { src: '/werk-groene-voordeur-rozen.webp', alt: 'Donkergroen gelakte klassieke paneeldeur omringd door klimrozen', caption: 'Klassieke groene voordeur', width: 880, height: 1173 },
+  { src: '/werk-steigertoren-erker.webp', alt: 'Twee schilders van RN Schilders op een rolsteiger bij de gevel en kozijnen van een klassieke woning', caption: 'Gevel en kozijnen vanaf de rolsteiger', width: 900, height: 1200 },
+  { src: '/werk-antraciet-voordeur-zijlicht.webp', alt: 'Strak in hoogglans antraciet gelakte voordeur met zijlicht', caption: 'Hoogglans antraciet voordeur', width: 1350, height: 1800 },
+  { src: '/werk-witte-erker-zwarte-kozijnen.webp', alt: 'Strak geschilderde witte erker met zwarte kozijnaccenten in een bakstenen gevel', caption: 'Witte erker met zwarte kozijnen', width: 1800, height: 1498 },
+  { src: '/werk-witte-kozijnen-topgevel.webp?v=20260530', alt: 'Strak geschilderde witte kozijnen in een topgevel', caption: 'Witte kozijnen in de topgevel', width: 1280, height: 960 },
+  { src: '/werk-antraciet-gevelbetimmering.webp', alt: 'Antracietgrijze houten gevelbetimmering met witte kozijnen, geschilderd vanaf de steiger', caption: 'Antraciet gevelbetimmering', width: 1600, height: 1200 },
+  { src: '/ridderkerk-2.webp', alt: 'Steigers rond de voorgevel van een woning in Ridderkerk', caption: 'Steigers rond de voorgevel', width: 1346, height: 1800 },
+  { src: '/werk-lichtgrijze-paneeldeur.webp', alt: 'Lichtgrijs geschilderde klassieke paneelvoordeur in een bakstenen gevel', caption: 'Lichtgrijze paneeldeur', width: 880, height: 1173 },
+  { src: '/werk-antraciet-bovengevel.webp?v=20260530', alt: 'Antracietgrijs schilderwerk aan een bovengevel', caption: 'Antracietgrijze bovengevel', width: 1280, height: 960 },
+  { src: '/werk-bijgebouw-louvre.webp', alt: 'Tuinbijgebouw met zwart geschilderde omlijsting en houten louvredeur', caption: 'Bijgebouw met houten betimmering', width: 1350, height: 1800 },
+  { src: '/werk-gevel-erker-tuindeuren.webp?v=20260530', alt: 'Buitenschilderwerk aan gevel, erker en tuindeuren', caption: 'Gevel, erker en tuindeuren', width: 1280, height: 960 },
+  { src: '/ridderkerk-3.webp', alt: 'Steigeropbouw langs de zijgevel van een woning in Ridderkerk', caption: 'Steiger langs de zijgevel', width: 1800, height: 1346 },
+  { src: '/hero-tuinvilla-steiger.webp?v=20260530', alt: 'Villa met steiger tijdens buitenschilderwerk', caption: 'Villa met steiger', width: 1200, height: 1600 },
 ] as const;
 
 type CampaignFieldName = 'firstName' | 'phone' | 'email' | 'message';
@@ -1910,48 +1942,57 @@ function scrollToCampaignForm() {
 function CampaignLandingPage() {
   return (
     <div id="top" data-campaign-page className="min-h-[100dvh] bg-paper pb-24 text-ink md:pb-0">
+      <CampaignNoticeBar />
       <main>
         <section className="relative overflow-hidden bg-navy text-white">
           <picture>
-            <source media="(max-width: 767px)" srcSet="/rn-schilders-main.webp?v=20260530" />
+            <source media="(max-width: 767px)" srcSet="/campaign-hero-buitenschilderwerk-mobile.webp?v=20260714" />
             <img
-              src="/campaign-hero-buitenschilderwerk.webp"
+              src="/campaign-hero-buitenschilderwerk.webp?v=20260714"
               alt=""
-              width={2200}
-              height={1238}
+              width={1600}
+              height={900}
               className="absolute inset-0 h-full w-full object-cover object-[52%_45%] max-md:object-[50%_28%]"
               loading="eager"
-              decoding="async"
               fetchPriority="high"
             />
           </picture>
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,30,61,0.94)_0%,rgba(13,30,61,0.82)_42%,rgba(13,30,61,0.56)_100%)]" />
           <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-navy/35 to-transparent" />
-          <div className="shell relative grid gap-8 py-8 md:grid-cols-[minmax(0,1fr)_500px] md:items-start md:py-12 lg:grid-cols-[minmax(0,660px)_540px] xl:grid-cols-[minmax(0,700px)_560px] lg:gap-10 lg:py-14">
+          <div className="shell relative grid gap-6 py-5 md:grid-cols-[minmax(0,1fr)_540px] md:items-start md:gap-8 md:py-12 lg:grid-cols-[minmax(0,1fr)_590px] lg:gap-10 lg:py-14">
             <div className="max-w-[700px]">
               <div className="flex items-center gap-3">
-                <img src="/logo-mark.webp" alt="" width={800} height={679} className="h-12 w-12 rounded-md bg-white object-contain p-1.5" />
+                <img src="/campaign-logo-mark.webp?v=20260715" alt="" width={96} height={81} className="h-12 w-12 rounded-md bg-white object-contain p-1.5 max-md:h-9 max-md:w-9" fetchPriority="high" />
                 <div>
                   <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-roller-soft">RN Schilders</p>
-                  <p className="text-sm text-white/75">Gespecialiseerd in buitenschilderwerk</p>
+                  <p className="text-sm text-white/75 max-md:hidden">Gespecialiseerd in buitenschilderwerk</p>
                 </div>
+                <a
+                  href={phoneHref}
+                  onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)}
+                  aria-label={`Bel ${phoneDisplay}`}
+                  className="ml-auto flex min-h-10 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-white/25 bg-white/8 px-3 text-sm font-bold text-white transition hover:bg-white/14 md:hidden"
+                >
+                  <Phone size={18} />
+                  {phoneDisplay}
+                </a>
               </div>
-              <h1 className="mt-8 max-w-3xl font-extrabold leading-[1.04]">
-                <span className="block text-4xl md:text-5xl lg:text-[3.45rem]">Buitenschilderwerk dat zichtbaar goed voorbereid is.</span>
-                <span className="mt-3 block text-3xl text-roller-soft md:text-4xl lg:text-[2.45rem]">Gratis opname, vaste prijs vooraf.</span>
+              <h1 className="mt-5 max-w-3xl font-extrabold leading-[1.05] md:mt-8">
+                <span className="block text-3xl md:text-5xl lg:text-[3.3rem]">Buitenschilderwerk met vaste prijs vooraf</span>
               </h1>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-white/78 md:text-lg">
+              <CampaignProofLine />
+              <p className="mt-6 max-w-2xl text-base leading-8 text-white/78 max-md:hidden md:text-lg">
                 Richard komt zelf langs en blijft betrokken tot oplevering. U krijgt een duidelijke prijs, vijf jaar
                 garantie en nu nog ruimte in de planning, ook in de vakantie en de bouwvak.
               </p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="mt-7 flex-col gap-3 max-md:hidden sm:flex-row sm:items-center md:flex">
                 <a id="call-cta" href={phoneHref} onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)} className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-white/30 bg-white/8 px-4 py-3 text-sm font-bold text-white transition hover:bg-white/14 sm:min-w-[190px]">
                   <Phone size={17} />
                   Bel {phoneDisplay}
                 </a>
                 <a
                   id="whatsapp-cta"
-                  href={whatsappHref}
+                  href={whatsappCampaignHref}
                   onClick={() => trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo)}
                   target="_blank"
                   rel="noreferrer"
@@ -1961,30 +2002,56 @@ function CampaignLandingPage() {
                   WhatsApp
                 </a>
               </div>
-              <CampaignTrustStrip />
+              <div className="max-md:hidden">
+                <CampaignTrustStrip />
+              </div>
             </div>
             <CampaignLeadForm formId="lead-form" compact={false} className="md:self-center" />
+            <div className="md:hidden">
+              <p className="text-sm font-bold text-white/85">Liever direct contact?</p>
+              <div className="mt-3 grid grid-cols-2 gap-3">
+                <a
+                  id="call-cta-mobile"
+                  href={phoneHref}
+                  onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)}
+                  className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-white/30 bg-white/8 px-4 py-3 text-sm font-bold text-white transition hover:bg-white/14"
+                >
+                  <Phone size={17} />
+                  Bel {phoneDisplay}
+                </a>
+                <a
+                  id="whatsapp-cta-mobile"
+                  href={whatsappCampaignHref}
+                  onClick={() => trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-[#25D366] px-4 py-3 text-sm font-bold text-white shadow-[0_14px_26px_-18px_rgba(37,211,102,0.9)] transition hover:bg-[#1ebe5d]"
+                >
+                  <WhatsAppGlyph className="h-5 w-5" />
+                  WhatsApp
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
-        <CampaignUrgency />
-        <CampaignWhy />
         <CampaignProcess />
-        <CampaignMidForm />
+        <CampaignWorkMarquee />
         <CampaignReviews />
-        <CampaignFaq />
         <CampaignBeforeAfter />
-        <CampaignGallery />
-        <section className="section-pad bg-navy text-white">
+        <CampaignWhatsAppCta />
+        <CampaignMidForm />
+        <CampaignPrice />
+        <CampaignFaq />
+        <section id="aanvraag" className="section-pad bg-navy text-white">
           <div className="shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
-              <p className="eyebrow">Gratis prijsindicatie</p>
+              <p className="eyebrow">Gratis afspraak</p>
               <h2 className="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">
                 Klaar voor een huis dat er weer jaren mooi uitziet?
               </h2>
               <p className="mt-5 max-w-xl text-lg leading-8 text-white/78">
-                Vraag nu uw gratis prijsindicatie aan, dan komt Richard langs voor een vaste prijs na een gratis
-                opname op locatie.
+                Plan uw gratis afspraak. Richard komt kijken wat er echt nodig is en u krijgt één vaste prijs.
               </p>
             </div>
             <CampaignLeadForm formId="lead-form-onderaan" compact />
@@ -1993,6 +2060,23 @@ function CampaignLandingPage() {
       </main>
       <CampaignMinimalFooter />
       <CampaignStickyCta />
+    </div>
+  );
+}
+
+function CampaignProofLine() {
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 md:hidden">
+      <span className="flex items-center gap-0.5 text-[#FBBC04]" aria-hidden="true">
+        {Array.from({ length: 5 }, (_, index) => (
+          <Star key={index} size={14} fill="currentColor" strokeWidth={0} />
+        ))}
+      </span>
+      <span className="text-sm font-bold text-white/88">5,0 op Google uit 15 reviews</span>
+      <span className="text-white/40" aria-hidden="true">·</span>
+      <span className="text-sm font-bold text-white/88">15+ jaar ervaring</span>
+      <span className="text-white/40" aria-hidden="true">·</span>
+      <span className="text-sm font-bold text-white/88">5 jaar garantie</span>
     </div>
   );
 }
@@ -2012,17 +2096,36 @@ function CampaignTrustStrip() {
 }
 
 function CampaignLeadForm({ formId, compact, className = '' }: { formId: string; compact: boolean; className?: string }) {
+  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [scope, setScope] = useState('');
+  const [timing, setTiming] = useState('');
+  const [showOptional, setShowOptional] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<CampaignFieldErrors>({});
   const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
   const [gclid, setGclid] = useState('');
   const [pageUrl, setPageUrl] = useState('/buitenschilderwerk-aanvraag');
+  const step1PanelRef = useRef<HTMLFieldSetElement>(null);
+  const step2PanelRef = useRef<HTMLFieldSetElement>(null);
+  const step3PanelRef = useRef<HTMLDivElement>(null);
+  const hasChangedStep = useRef(false);
   const isSubmitting = submitState === 'submitting';
 
   useEffect(() => {
     setGclid(getStoredGclid());
     setPageUrl(window.location.href);
   }, []);
+
+  useEffect(() => {
+    if (!hasChangedStep.current) return;
+    const panel = step === 1 ? step1PanelRef.current : step === 2 ? step2PanelRef.current : step3PanelRef.current;
+    panel?.focus({ preventScroll: true });
+  }, [step]);
+
+  const changeStep = (next: 1 | 2 | 3) => {
+    hasChangedStep.current = true;
+    setStep(next);
+  };
 
   const clearFieldError = (field: CampaignFieldName) => {
     setFieldErrors((prev) => {
@@ -2049,9 +2152,13 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
   const submitCampaignForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
+
+    if (step < 3) return;
+
     const validationErrors = validate(form);
 
     if (Object.keys(validationErrors).length > 0) {
+      changeStep(3);
       setFieldErrors(validationErrors);
       setSubmitState('error');
       setSubmitMessage('Controleer de gemarkeerde velden.');
@@ -2064,6 +2171,9 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
 
     try {
       const formData = new FormData(form);
+      const userMessage = String(formData.get('message') ?? '').trim();
+      formData.set('message', userMessage ? `Te schilderen: ${scope}. Gewenste timing: ${timing}. ${userMessage}` : `Te schilderen: ${scope}. Gewenste timing: ${timing}.`);
+      formData.set('preferredExecutionDate', timing);
       formData.set('service', 'Buitenschilderwerk');
       formData.set('leadSource', 'Google Ads landingspagina buitenschilderwerk');
       formData.set('pageUrl', pageUrl);
@@ -2093,20 +2203,25 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
       method="post"
       encType="multipart/form-data"
       onSubmit={submitCampaignForm}
-      className={`rounded-lg border border-line bg-white p-5 text-ink shadow-[0_22px_60px_-34px_rgba(13,30,61,0.8)] ${compact ? '' : 'md:p-7'} ${className}`}
+      className={`rounded-lg border border-line bg-white text-ink shadow-[0_22px_60px_-34px_rgba(13,30,61,0.8)] ${compact ? 'p-5' : 'p-5 sm:p-6 md:p-8'} ${className}`}
       aria-busy={isSubmitting}
       noValidate
     >
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="eyebrow">Gratis aanvraag</p>
-          <h2 className="mt-2 font-display text-2xl font-extrabold leading-tight text-navy">Vraag uw prijsindicatie aan</h2>
-          <p className="mt-2 text-sm leading-6 text-graphite">
-            Geen verplichtingen. Richard kijkt mee, geeft eerlijk advies en stuurt u een eerlijke prijs. Geen
-            verrassingen achteraf.
-          </p>
+      <div className={`${compact ? 'mb-5' : 'mb-3 md:mb-5'} flex items-center gap-3 md:gap-4`}>
+        <div className="flex min-w-0 flex-1 items-center gap-2 md:gap-3">
+          <div
+            className="h-1.5 flex-1 overflow-hidden rounded-full bg-line"
+            role="progressbar"
+            aria-valuemin={1}
+            aria-valuemax={3}
+            aria-valuenow={step}
+            aria-label={`Stap ${step} van 3`}
+          >
+            <div className="h-full rounded-full bg-roller transition-[width] duration-300 ease-out" style={{ width: `${(step / 3) * 100}%` }} />
+          </div>
+          <span className={`shrink-0 font-extrabold uppercase text-graphite ${compact ? 'text-xs tracking-[0.14em]' : 'text-[10px] tracking-[0.1em] md:text-xs md:tracking-[0.14em]'}`}>Stap {step}/3</span>
         </div>
-        <div className="shrink-0 rounded-md bg-door px-3 py-2 text-center text-xs font-extrabold uppercase tracking-[0.12em] text-white">
+        <div className={`shrink-0 rounded-md bg-door px-3 py-2 text-center text-xs font-extrabold uppercase tracking-[0.12em] text-white ${compact ? '' : 'max-md:hidden'}`}>
           5 jaar garantie
         </div>
       </div>
@@ -2114,155 +2229,215 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
       <input type="hidden" name="lastName" value="" />
       <input type="hidden" name="service" value="Buitenschilderwerk" />
       <input type="hidden" name="leadSource" value="Google Ads landingspagina buitenschilderwerk" />
-      <input type="hidden" name="contactPreference" value="Gratis opname op locatie" />
+      <input type="hidden" name="contactPreference" value="Gratis offerte op locatie" />
       <input type="hidden" name="gclid" value={gclid} />
       <input type="hidden" name="pageUrl" value={pageUrl} />
       <input type="hidden" name="submittedAt" value="" />
+      <input type="hidden" name="preferredExecutionDate" value={timing} />
 
-      <div className="mt-5 grid gap-4 md:grid-cols-2">
-        <label className="grid gap-2 text-sm font-bold text-navy">
-          <span>Naam <RequiredMark /></span>
-          <input className="field" name="firstName" autoComplete="name" placeholder="Uw naam" required onChange={handleFieldChange('firstName')} aria-invalid={Boolean(fieldErrors.firstName)} aria-describedby={fieldErrors.firstName ? `${formId}-firstName-error` : undefined} />
-          <FieldError id={`${formId}-firstName-error`} message={fieldErrors.firstName} />
-        </label>
-        <label className="grid gap-2 text-sm font-bold text-navy">
-          <span>Telefoon (06) <RequiredMark /></span>
-          <input className="field" name="phone" inputMode="tel" autoComplete="tel" placeholder="06 ..." required onChange={handleFieldChange('phone')} aria-invalid={Boolean(fieldErrors.phone)} aria-describedby={fieldErrors.phone ? `${formId}-phone-error` : undefined} />
-          <FieldError id={`${formId}-phone-error`} message={fieldErrors.phone} />
-        </label>
-        <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
-          <span>E-mail <OptionalMark /></span>
-          <input className="field" name="email" type="email" autoComplete="email" placeholder="Uw email" onChange={handleFieldChange('email')} aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? `${formId}-email-error` : undefined} />
-          <FieldError id={`${formId}-email-error`} message={fieldErrors.email} />
-        </label>
-        <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
-          <span>Korte toelichting <OptionalMark /></span>
-          <textarea className="field min-h-24 resize-y" name="message" placeholder="Bijvoorbeeld: kozijnen en boeidelen buiten, houtrot bij voordeur, hele gevel..." onChange={handleFieldChange('message')} />
-        </label>
-        <label className="grid gap-2 text-sm font-bold text-navy md:col-span-2">
-          <span>Foto's meesturen <OptionalMark /></span>
-          <input className="field file:mr-3 file:rounded-md file:border-0 file:bg-navy file:px-3 file:py-2 file:text-sm file:font-bold file:text-white" type="file" name="files" accept={attachmentAccept} multiple />
-          <span className="text-xs font-semibold leading-5 text-graphite">Maximaal 5 bestanden, 10 MB per bestand.</span>
-        </label>
-        {submitMessage && (
-          <div className="rounded-md border border-roller/25 bg-roller/10 p-3 text-sm font-semibold text-roller md:col-span-2" role="status">
-            {submitMessage}
-          </div>
+      <fieldset ref={step1PanelRef} tabIndex={-1} className={step === 1 ? 'outline-none' : 'hidden'}>
+        <legend className="text-lg font-extrabold text-navy">Wat moet er geschilderd worden?</legend>
+        <div className="mt-3 grid gap-2 sm:grid-cols-2">
+          {campaignScopeOptions.map((option) => (
+            <label key={option} className="cursor-pointer">
+              <input type="radio" name={`${formId}-scope`} value={option} checked={scope === option} className="peer sr-only" onChange={() => { setScope(option); changeStep(2); }} />
+              <span className={`flex items-center justify-between gap-2 rounded-md border border-line bg-whitewash font-bold text-navy transition peer-checked:border-roller peer-checked:bg-roller/10 peer-checked:text-roller peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-roller peer-checked:[&_svg]:opacity-100 ${compact ? 'min-h-12 px-4 py-3 text-sm' : 'min-h-14 px-4 py-3.5 text-base md:min-h-16 md:px-5'}`}>
+                {option}
+                <Check size={16} className="shrink-0 opacity-0 transition" aria-hidden="true" />
+              </span>
+            </label>
+          ))}
+        </div>
+        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs font-bold text-graphite">
+          <span className="flex items-center gap-1.5"><Check size={14} className="text-door" /> Vrijblijvend</span>
+          <span className="flex items-center gap-1.5"><Check size={14} className="text-door" /> Richard belt zelf</span>
+        </div>
+        {scope && (
+          <button type="button" onClick={() => changeStep(2)} className="btn-primary mt-4 w-full">
+            Verder
+            <ArrowRight size={17} />
+          </button>
         )}
-        <button type="submit" className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60 md:col-span-2" disabled={isSubmitting}>
-          {isSubmitting ? 'Aanvraag wordt verstuurd...' : 'Gratis prijsindicatie aanvragen'}
-          {isSubmitting ? <Loader2 size={17} className="animate-spin" /> : <ArrowRight size={17} />}
-        </button>
+      </fieldset>
+
+      <fieldset ref={step2PanelRef} tabIndex={-1} className={step === 2 ? 'outline-none' : 'hidden'}>
+        <div className="flex items-baseline justify-between gap-3">
+          <legend className="text-lg font-extrabold text-navy">Wanneer wilt u dat het gebeurt?</legend>
+          <button type="button" onClick={() => changeStep(1)} className="inline-flex shrink-0 items-center gap-1 text-sm font-bold text-graphite transition hover:text-navy"><ChevronLeft size={16} />Terug</button>
+        </div>
+        <div className="mt-3 grid gap-2 sm:grid-cols-2">
+          {campaignTimingOptions.map((option) => (
+            <label key={option} className="cursor-pointer">
+              <input type="radio" name={`${formId}-timing`} value={option} checked={timing === option} className="peer sr-only" onChange={() => { setTiming(option); changeStep(3); }} />
+              <span className={`flex items-center justify-between gap-2 rounded-md border border-line bg-whitewash font-bold text-navy transition peer-checked:border-roller peer-checked:bg-roller/10 peer-checked:text-roller peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-roller peer-checked:[&_svg]:opacity-100 ${compact ? 'min-h-12 px-4 py-3 text-sm' : 'min-h-14 px-4 py-3.5 text-base md:min-h-16 md:px-5'}`}>
+                {option}<Check size={16} className="shrink-0 opacity-0 transition" aria-hidden="true" />
+              </span>
+            </label>
+          ))}
+        </div>
+        {timing && (
+          <button type="button" onClick={() => changeStep(3)} className="btn-primary mt-4 w-full">
+            Verder
+            <ArrowRight size={17} />
+          </button>
+        )}
+      </fieldset>
+
+      <div ref={step3PanelRef} tabIndex={-1} className={step === 3 ? 'outline-none' : 'hidden'}>
+        <div className="flex items-baseline justify-between gap-3">
+          <p className="text-lg font-extrabold text-navy">Wilt u dat Richard vrijblijvend komt kijken?</p>
+          <button type="button" onClick={() => changeStep(2)} className="inline-flex shrink-0 items-center gap-1 text-sm font-bold text-graphite transition hover:text-navy">
+            <ChevronLeft size={16} />
+            Terug
+          </button>
+        </div>
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <label className="grid gap-2 text-sm font-bold text-navy">
+            <input className="field" name="firstName" autoComplete="name" placeholder="Uw naam *" aria-label="Uw naam" required onChange={handleFieldChange('firstName')} aria-invalid={Boolean(fieldErrors.firstName)} aria-describedby={fieldErrors.firstName ? `${formId}-firstName-error` : undefined} />
+            <FieldError id={`${formId}-firstName-error`} message={fieldErrors.firstName} />
+          </label>
+          <label className="grid gap-2 text-sm font-bold text-navy">
+            <input className="field" name="phone" inputMode="tel" autoComplete="tel" placeholder="Telefoonnummer *" aria-label="Telefoonnummer" required onChange={handleFieldChange('phone')} aria-invalid={Boolean(fieldErrors.phone)} aria-describedby={fieldErrors.phone ? `${formId}-phone-error` : undefined} />
+            <FieldError id={`${formId}-phone-error`} message={fieldErrors.phone} />
+          </label>
+          <p className="text-sm font-semibold leading-6 text-graphite md:col-span-2">Richard belt u zelf, meestal dezelfde dag nog. U zit nergens aan vast.</p>
+          <button
+            type="button"
+            onClick={() => setShowOptional((prev) => !prev)}
+            aria-expanded={showOptional}
+            aria-controls={`${formId}-optional`}
+            className="inline-flex items-center gap-1.5 justify-self-start text-sm font-bold text-navy transition hover:text-roller md:col-span-2"
+          >
+            <ChevronRight size={16} className={`transition-transform ${showOptional ? 'rotate-90' : ''}`} aria-hidden="true" />
+            Foto's of toelichting toevoegen
+          </button>
+          <div id={`${formId}-optional`} className={showOptional ? 'grid gap-4 md:col-span-2' : 'hidden'}>
+            <label className="grid gap-2 text-sm font-bold text-navy">
+              <span>E-mail <OptionalMark /></span>
+              <input className="field" name="email" type="email" autoComplete="email" placeholder="Uw email" onChange={handleFieldChange('email')} aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? `${formId}-email-error` : undefined} />
+              <FieldError id={`${formId}-email-error`} message={fieldErrors.email} />
+            </label>
+            <label className="grid gap-2 text-sm font-bold text-navy">
+              <span>Korte toelichting <OptionalMark /></span>
+              <textarea className="field min-h-24 resize-y" name="message" placeholder="Bijvoorbeeld: kozijnen en boeidelen buiten, houtrot bij voordeur, hele gevel..." onChange={handleFieldChange('message')} />
+            </label>
+            <label className="grid gap-2 text-sm font-bold text-navy">
+              <span>Foto's meesturen <OptionalMark /></span>
+              <input className="field file:mr-3 file:rounded-md file:border-0 file:bg-navy file:px-3 file:py-2 file:text-sm file:font-bold file:text-white" type="file" name="files" accept={attachmentAccept} multiple />
+              <span className="text-xs font-semibold leading-5 text-graphite">Maximaal 5 bestanden, 10 MB per bestand.</span>
+            </label>
+          </div>
+          {submitMessage && (
+            <div className="rounded-md border border-roller/25 bg-roller/10 p-3 text-sm font-semibold text-roller md:col-span-2" role="status">
+              {submitMessage}
+            </div>
+          )}
+          <button type="submit" className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60 md:col-span-2" disabled={isSubmitting}>
+            {isSubmitting ? 'Aanvraag wordt verstuurd...' : 'Ja, kom gratis kijken'}
+            {isSubmitting ? <Loader2 size={17} className="animate-spin" /> : <ArrowRight size={17} />}
+          </button>
+          <a href={whatsappCampaignHref} onClick={() => trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo)} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 text-center text-sm font-bold text-[#168c43] underline decoration-2 underline-offset-4 md:col-span-2">
+            <WhatsAppGlyph className="h-5 w-5" /> Liever appen? Stuur uw vraag via WhatsApp.
+          </a>
+        </div>
       </div>
     </form>
   );
 }
 
-function CampaignUrgency() {
-  return (
-    <section className="border-y border-line bg-whitewash py-10">
-      <div className="shell grid gap-5 md:grid-cols-[auto_1fr] md:items-center">
-        <div className="flex h-14 w-14 items-center justify-center rounded-md bg-roller text-white shadow-[0_12px_24px_-18px_rgba(255,106,0,0.9)]">
-          <CalendarCheck size={30} />
-        </div>
-        <div>
-          <h2 className="font-display text-3xl font-extrabold text-navy">Nu nog plek in de planning</h2>
-          <p className="mt-3 max-w-4xl text-base leading-7 text-graphite">
-            Het schildersseizoen is kort en de agenda loopt vol. Terwijl veel schilders in de bouwvak stilliggen,
-            werken wij gewoon door, en ook in de vakantie is er nog ruimte. Vraag snel uw prijsindicatie aan, dan
-            plannen we uw buitenwerk nog deze periode in. Grote klus? Ook dat kan, vraag vrijblijvend naar de
-            mogelijkheden.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
+function CampaignNoticeBar() {
+  const [dismissed, setDismissed] = useState(false);
+  if (dismissed) return null;
 
-function CampaignWhy() {
   return (
-    <section className="section-pad bg-whitewash">
-      <div className="shell">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div>
-            <h2 className="text-4xl font-extrabold leading-tight text-navy md:text-5xl">Buitenwerk dat eerst goed voorbereid wordt.</h2>
-            <p className="mt-5 text-base leading-7 text-graphite">
-              Buitenschilderwerk is bescherming. Verf op een slechte ondergrond bladdert binnen een paar jaar, en dan
-              betaalt u dubbel. Daarom herstellen we eerst houtrot, kitnaden en de ondergrond, en lakken we pas af als
-              het goed zit.
-            </p>
-            <div className="mt-6 text-base leading-8 text-graphite">
-              <p className="font-bold text-navy">Waar u op kunt rekenen:</p>
-              <ul className="mt-3 space-y-2">
-                {[
-                  '5 jaar garantie op buitenwerk, tot het factuurbedrag',
-                  'Vaste prijs vooraf, zonder verrassingen',
-                  'Strak resultaat dat jaren meegaat',
-                ].map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <Check className="mt-1 h-5 w-5 shrink-0 text-roller" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <figure className="overflow-hidden rounded-lg border border-line bg-white">
-            <img
-              src="/campaign-bus-gevelwerk.webp"
-              alt="RN Schilders bus bij buitenschilderwerk aan een gevel"
-              width={1400}
-              height={1050}
-              className="aspect-[4/3] w-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption className="p-4 text-sm leading-6 text-graphite">
-              Richard komt zelf langs voor de opname en blijft uw aanspreekpunt tijdens de uitvoering.
-            </figcaption>
-          </figure>
-        </div>
+    <div className="relative z-30 bg-navy text-white">
+      <div className="shell flex items-center gap-3 py-2.5">
+        <CalendarCheck size={18} className="hidden shrink-0 sm:block" aria-hidden="true" />
+        <p className="min-w-0 flex-1 text-sm font-semibold leading-snug">Ook deze zomer nog plek</p>
+        <button
+          type="button"
+          onClick={() => setDismissed(true)}
+          aria-label="Melding sluiten"
+          className="-mr-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-white/85 transition hover:bg-white/15 hover:text-white"
+        >
+          <X size={16} />
+        </button>
       </div>
-    </section>
+    </div>
   );
 }
 
 function CampaignProcess() {
   const steps = [
-    ['Foto of opname', 'Stuur een foto of plan een gratis opname op locatie.'],
-    ['Duidelijke offerte', 'U krijgt een duidelijke offerte met een vaste prijs vooraf.'],
-    ['Uitvoering', 'Wij voeren het werk netjes en volgens afspraak uit, met Richard zelf op locatie.'],
-    ['Oplevering', 'Samen leveren we op en lopen we het resultaat na.'],
+    ['Aanvraag', 'Vul het formulier in, of bel of app ons direct.'],
+    ['Richard komt kijken', 'Richard belt u dezelfde dag en komt gratis langs. U zit nergens aan vast.'],
+    ['Vaste prijs', 'U krijgt één vaste prijs, zwart op wit. Geen verrassingen achteraf.'],
+    ['Uitvoering en oplevering', 'Richard staat zelf op het project en levert samen met u op.'],
   ];
 
   return (
-    <section className="section-pad">
+    <section id="werkwijze" className="section-pad">
       <div className="shell">
         <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <div className="max-w-2xl">
             <p className="eyebrow">Zo werkt het</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Van eerste foto tot oplevering helder.</h2>
+            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Van aanvraag tot oplevering helder.</h2>
           </div>
           <figure className="overflow-hidden rounded-lg border border-line bg-whitewash">
             <img
-              src="/campaign-villa-gevel-steiger.webp"
+              src="/campaign-process-villa.webp?v=20260715"
               alt="Groot woonhuis met steiger en hoogwerker tijdens buitenschilderwerk"
-              width={1800}
-              height={1013}
+              width={960}
+              height={540}
               className="aspect-[16/7] w-full object-cover"
               loading="lazy"
               decoding="async"
+              fetchPriority="low"
             />
           </figure>
         </div>
-        <div className="mt-10 grid gap-4 md:grid-cols-4">
+        <div className="mt-7 grid grid-cols-2 gap-3 md:mt-10 md:grid-cols-4 md:gap-4">
           {steps.map(([title, text], index) => (
-            <article key={title} className="rounded-lg border border-line bg-whitewash p-5">
-              <span className="flex h-10 w-10 items-center justify-center rounded-md bg-navy text-sm font-extrabold text-white">{index + 1}</span>
-              <h3 className="mt-5 font-display text-xl font-extrabold text-navy">{title}</h3>
-              <p className="mt-3 text-sm leading-6 text-graphite">{text}</p>
+            <article key={title} className="rounded-lg border border-line bg-whitewash p-3.5 md:p-5">
+              <span className="flex h-8 w-8 items-center justify-center rounded-md bg-navy text-xs font-extrabold text-white md:h-10 md:w-10 md:text-sm">{index + 1}</span>
+              <h3 className="mt-3 font-display text-base font-extrabold text-navy md:mt-5 md:text-xl">{title}</h3>
+              <p className="mt-2 text-xs leading-5 text-graphite md:mt-3 md:text-sm md:leading-6">{text}</p>
             </article>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CampaignWhatsAppCta() {
+  return (
+    <section className="section-pad bg-navy text-white">
+      <div className="shell">
+        <div className="grid gap-8 rounded-2xl border border-white/12 bg-white/[0.06] p-7 md:grid-cols-[1fr_auto] md:items-center md:gap-10 md:p-10">
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-full bg-[#25D366]/15 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#4ade80]">
+              <WhatsAppGlyph className="h-4 w-4" />
+              WhatsApp
+            </p>
+            <h2 className="mt-4 max-w-2xl text-3xl font-extrabold leading-tight md:text-4xl">
+              Liever direct contact via WhatsApp?
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-7 text-white/78">
+              App ons nu kort wat je wilt laten schilderen. Dan spreken we af wanneer Richard langskomt om te kijken,
+              zodat hij een eerlijke offerte kan maken en je precies weet waar je aan toe bent.
+            </p>
+          </div>
+          <a
+            href={whatsappCampaignHref}
+            onClick={() => trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo)}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex min-h-14 items-center justify-center gap-2.5 whitespace-nowrap rounded-md bg-[#25D366] px-7 py-4 text-base font-extrabold text-white shadow-[0_18px_40px_-20px_rgba(37,211,102,0.95)] transition hover:bg-[#1ebe5d] md:justify-self-end"
+          >
+            <WhatsAppGlyph className="h-6 w-6" />
+            Stuur je bericht via WhatsApp
+          </a>
         </div>
       </div>
     </section>
@@ -2280,27 +2455,54 @@ function CampaignMidForm() {
 }
 
 function CampaignReviews() {
+  const [expanded, setExpanded] = useState(false);
+  const initialCount = 3;
+  const hiddenCount = campaignReviews.length - initialCount;
+
   return (
-    <section className="section-pad bg-whitewash">
+    <section id="reviews" className="section-pad bg-whitewash">
       <div className="shell">
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="eyebrow">Reviews</p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Wat klanten zeggen</h2>
-            <p className="mt-5 max-w-md text-base leading-7 text-graphite">
+            <h2 className="mt-3 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Wat klanten zeggen</h2>
+            <p className="mt-4 max-w-lg text-base leading-7 text-graphite">
               Ervaringen van klanten over voorbereiding, communicatie en de afwerking van het schilderwerk.
             </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
-            {campaignReviews.map((review, index) => (
+          <div className="inline-flex shrink-0 items-center gap-2.5 rounded-lg border border-line bg-white px-4 py-3">
+            <GoogleGlyph className="h-6 w-6 shrink-0" />
+            <span className="flex items-center gap-0.5 text-[#FBBC04]">
+              {Array.from({ length: 5 }, (_, index) => (
+                <Star key={index} size={15} fill="currentColor" strokeWidth={0} />
+              ))}
+            </span>
+            <span className="font-display text-lg font-extrabold text-navy">5.0</span>
+          </div>
+        </div>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {campaignReviews.map((review, index) => (
+            <div
+              key={review.name}
+              className={index >= initialCount && !expanded ? 'hidden sm:block' : undefined}
+            >
               <ReviewCard
-                key={review.name}
                 review={review}
                 color={review.name === 'Sipke Woudstra' ? '#f57c00' : avatarColors[index % avatarColors.length]}
               />
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
+        {!expanded && hiddenCount > 0 && (
+          <button
+            type="button"
+            onClick={() => setExpanded(true)}
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md border border-navy/20 bg-white px-5 py-3 text-sm font-bold text-navy transition hover:border-navy/45 sm:hidden"
+          >
+            Toon {hiddenCount} reviews meer
+            <ChevronRight className="h-4 w-4 rotate-90" aria-hidden="true" />
+          </button>
+        )}
       </div>
     </section>
   );
@@ -2308,16 +2510,29 @@ function CampaignReviews() {
 
 function CampaignBeforeAfter() {
   return (
-    <section className="section-pad bg-navy text-white">
+    <section id="voorbereiding" className="section-pad bg-navy text-white">
       <div className="shell">
         <div className="grid gap-10 xl:grid-cols-[0.82fr_1.18fr] xl:items-center">
           <div>
             <p className="eyebrow">Voor en tijdens</p>
             <h2 className="mt-4 max-w-2xl text-4xl font-extrabold leading-tight md:text-5xl">De voorbereiding bepaalt hoe het straks wordt.</h2>
             <p className="mt-5 text-base leading-7 text-white/78">
-              Buitenhout blijft alleen mooi als de ondergrond goed wordt aangepakt. Bij deuren, kozijnen en boeidelen
-              draait het om schuren, herstellen, gronden en strak aflakken.
+              Buitenschilderwerk blijft alleen mooi als de ondergrond goed wordt aangepakt. Bij deuren, kozijnen en
+              boeidelen draait het om schuren, herstellen, gronden en strak aflakken.
             </p>
+            <p className="mt-6 font-bold text-white">Hierdoor garanderen wij:</p>
+            <ul className="mt-3 grid gap-2 text-base leading-8 text-white/85">
+              {[
+                '5 jaar garantie op buitenwerk, tot het factuurbedrag',
+                'Vaste prijs vooraf, zonder verrassingen',
+                'Strak resultaat dat jaren meegaat',
+              ].map((item) => (
+                <li key={item} className="flex gap-3">
+                  <Check className="mt-1 h-5 w-5 shrink-0 text-roller" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
             <div className="mt-8 grid gap-4 md:grid-cols-3 xl:grid-cols-1">
               {campaignProofCards.map((card) => (
                 <article key={card.title} className="grid overflow-hidden rounded-lg bg-white/8 ring-1 ring-white/10 xl:grid-cols-[8.5rem_1fr]">
@@ -2340,24 +2555,128 @@ function CampaignBeforeAfter() {
   );
 }
 
-function CampaignGallery() {
+function CampaignWorkMarquee() {
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
+  const hoverRef = useRef(false);
+  const resumeTimer = useRef<number | null>(null);
+  const drag = useRef({ active: false, captured: false, moved: false, startX: 0, startScroll: 0 });
+  const loop = [...campaignGalleryImages, ...campaignGalleryImages];
+
+  useEffect(
+    () => () => {
+      if (resumeTimer.current) window.clearTimeout(resumeTimer.current);
+    },
+    [],
+  );
+
+  const pause = () => {
+    pausedRef.current = true;
+    if (resumeTimer.current) {
+      window.clearTimeout(resumeTimer.current);
+      resumeTimer.current = null;
+    }
+  };
+  const resumeSoon = (delay: number) => {
+    if (resumeTimer.current) window.clearTimeout(resumeTimer.current);
+    resumeTimer.current = window.setTimeout(() => {
+      resumeTimer.current = null;
+      if (!hoverRef.current && !drag.current.active) pausedRef.current = false;
+    }, delay);
+  };
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === 'touch') return;
+    const el = viewportRef.current;
+    if (!el) return;
+    pause();
+    drag.current = { active: true, captured: false, moved: false, startX: e.clientX, startScroll: el.scrollLeft };
+  };
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!drag.current.active) return;
+    const el = viewportRef.current;
+    if (!el) return;
+    const dx = e.clientX - drag.current.startX;
+    if (!drag.current.moved && Math.abs(dx) > 4) {
+      drag.current.moved = true;
+      drag.current.captured = true;
+      el.setPointerCapture(e.pointerId);
+      el.style.cursor = 'grabbing';
+    }
+    if (drag.current.moved) {
+      e.preventDefault();
+      el.scrollLeft = drag.current.startScroll - dx;
+    }
+  };
+  const onPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = viewportRef.current;
+    if (drag.current.captured && el) {
+      el.releasePointerCapture?.(e.pointerId);
+      el.style.cursor = '';
+    }
+    drag.current.active = false;
+    drag.current.captured = false;
+    resumeSoon(2000);
+  };
+
   return (
-    <section className="section-pad bg-whitewash">
-      <div className="shell">
-        <h2 className="text-4xl font-extrabold leading-tight text-navy md:text-5xl">Recent buitenwerk</h2>
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
-          {campaignGalleryImages.map((image) => (
-            <div key={image.src} className="overflow-hidden rounded-lg border border-line bg-white">
-              <img
-                src={image.src}
-                alt={image.alt}
-                width={image.width}
-                height={image.height}
-                className="aspect-[4/5] w-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
+    <section id="projecten" className="overflow-hidden bg-paper pt-10 pb-12 md:pt-12 md:pb-14">
+      <div className="shell flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="eyebrow">Recent buitenwerk</p>
+          <h2 className="mt-3 max-w-xl text-3xl font-extrabold leading-tight text-navy md:text-4xl">
+            Werk van de afgelopen weken.
+          </h2>
+        </div>
+        <p className="max-w-sm text-sm leading-6 text-graphite">Sleep of swipe door de strook om mee te kijken.</p>
+      </div>
+
+      <div
+        ref={viewportRef}
+        className="marquee-viewport mt-7 w-full cursor-grab md:mt-8"
+        aria-label="Doorlopende weergave van recent buitenschilderwerk; sleep, scroll of swipe om te bladeren"
+        onMouseEnter={() => {
+          hoverRef.current = true;
+          pause();
+        }}
+        onMouseLeave={() => {
+          hoverRef.current = false;
+          resumeSoon(250);
+        }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        onWheel={() => {
+          pause();
+          resumeSoon(1500);
+        }}
+        onTouchStart={pause}
+        onTouchEnd={() => resumeSoon(2000)}
+        onTouchCancel={() => resumeSoon(2000)}
+      >
+        <div className="marquee-track gap-4 px-5 sm:gap-5">
+          {loop.map((image, index) => (
+            <figure
+              key={`${image.src}-${index}`}
+              className="relative w-[62vw] max-w-[290px] shrink-0 overflow-hidden rounded-lg border border-line bg-white sm:w-[300px]"
+            >
+              <div className="aspect-[3/4] w-full overflow-hidden">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  draggable={false}
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent" />
+              <figcaption className="absolute inset-x-3 bottom-3 text-sm font-bold text-white">{image.caption}</figcaption>
+            </figure>
           ))}
         </div>
       </div>
@@ -2367,7 +2686,7 @@ function CampaignGallery() {
 
 function CampaignFaq() {
   return (
-    <section className="section-pad bg-whitewash">
+    <section id="faq" className="section-pad bg-whitewash">
       <div className="shell">
         <div className="max-w-2xl">
           <p className="eyebrow">Veelgestelde vragen</p>
@@ -2384,6 +2703,18 @@ function CampaignFaq() {
             </details>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function CampaignPrice() {
+  return (
+    <section className="section-pad bg-paper">
+      <div className="shell max-w-4xl">
+        <p className="eyebrow">Eerlijke prijs</p>
+        <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">Wat kost buitenschilderwerk?</h2>
+        <p className="mt-5 max-w-3xl text-lg leading-8 text-graphite">Dat hangt af van de staat van het houtwerk, en die zien we pas ter plekke. Daarom noemen we geen prijzen die achteraf niet blijken te kloppen. Richard komt gratis kijken en u krijgt een vaste prijs, zonder verrassingen achteraf.</p>
       </div>
     </section>
   );
@@ -2416,7 +2747,7 @@ function CampaignStickyCta() {
         const rect = form.getBoundingClientRect();
         return rect.top < window.innerHeight - 90 && rect.bottom > 90;
       });
-      const showDock = window.scrollY > 760;
+      const showDock = window.scrollY > 480;
       setStickyState({ showDock, showFormCta: showDock && !formVisible });
     };
     const requestUpdate = () => {
@@ -2426,10 +2757,18 @@ function CampaignStickyCta() {
     update();
     window.addEventListener('scroll', requestUpdate, { passive: true });
     window.addEventListener('resize', requestUpdate);
+    const resizeObserver = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(requestUpdate);
+    if (resizeObserver) {
+      ['lead-form', 'lead-form-na-zo-werkt-het', 'lead-form-onderaan'].forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) resizeObserver.observe(element);
+      });
+    }
     return () => {
       if (frame) window.cancelAnimationFrame(frame);
       window.removeEventListener('scroll', requestUpdate);
       window.removeEventListener('resize', requestUpdate);
+      resizeObserver?.disconnect();
     };
   }, []);
 
@@ -2442,10 +2781,30 @@ function CampaignStickyCta() {
           data-campaign-sticky="true"
           className="safe-bottom fixed inset-x-0 bottom-0 z-40 border-t border-line bg-whitewash/96 px-4 pt-3 shadow-[0_-12px_30px_-24px_rgba(13,30,61,0.8)] backdrop-blur-md md:hidden"
         >
-          <button type="button" onClick={scrollToCampaignForm} className="btn-primary w-full">
-            Gratis prijsindicatie
-            <ArrowRight size={17} />
-          </button>
+          <div className="flex items-stretch gap-2">
+            <button type="button" onClick={scrollToCampaignForm} className="btn-primary min-w-0 flex-1">
+              Plan gratis afspraak
+              <ArrowRight size={17} />
+            </button>
+            <a
+              href={phoneHref}
+              onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)}
+              aria-label={`Bel ${phoneDisplay}`}
+              className="inline-flex w-12 shrink-0 items-center justify-center rounded-md border border-navy/20 bg-white text-navy transition hover:border-navy/45"
+            >
+              <Phone size={18} />
+            </a>
+            <a
+              href={whatsappCampaignHref}
+              onClick={() => trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo)}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="WhatsApp RN Schilders"
+              className="inline-flex w-12 shrink-0 items-center justify-center rounded-md bg-[#25D366] text-white transition hover:bg-[#1ebe5d]"
+            >
+              <WhatsAppGlyph className="h-5 w-5" />
+            </a>
+          </div>
         </div>
       ) : null}
       <div data-campaign-sticky-desktop="true" className="fixed bottom-5 right-5 z-40 hidden items-center gap-3 md:flex">
@@ -2455,12 +2814,12 @@ function CampaignStickyCta() {
             onClick={scrollToCampaignForm}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-door px-5 py-3 text-sm font-extrabold text-white shadow-[0_16px_36px_-20px_rgba(255,106,0,0.95)] transition hover:bg-door/90"
           >
-            Gratis prijsindicatie
+            Plan gratis afspraak
             <ArrowRight size={17} />
           </button>
         ) : null}
         <a
-          href={whatsappHref}
+          href={whatsappCampaignHref}
           onClick={() => trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo)}
           target="_blank"
           rel="noreferrer"
@@ -2488,7 +2847,7 @@ function CampaignThankYouPage() {
             <h1 className="mt-8 text-4xl font-extrabold leading-tight md:text-6xl">Aanvraag ontvangen.</h1>
             <p className="mt-5 text-lg leading-8 text-white/82">
               Bedankt. Richard neemt meestal binnen een uur contact op om kort te bespreken wat er nodig is en of een
-              gratis opname op locatie zinvol is. Daarna volgt een duidelijke offerte met vaste prijs vooraf.
+              gratis offerte op locatie zinvol is. Daarna weet u de vaste prijs vooraf, zonder verrassingen achteraf.
             </p>
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <a href={phoneHref} onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)} className="btn-light">
@@ -2508,7 +2867,7 @@ function CampaignThankYouPage() {
             </div>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
-            {['We bellen kort terug', 'U kunt foto’s nasturen', 'Bij opname krijgt u een vaste prijs'].map((item) => (
+            {['We bellen kort terug', 'U kunt foto’s nasturen', 'Bij de offerte krijgt u een vaste prijs'].map((item) => (
               <div key={item} className="rounded-lg border border-white/15 bg-white/8 p-5 text-sm font-bold text-white/86">
                 {item}
               </div>

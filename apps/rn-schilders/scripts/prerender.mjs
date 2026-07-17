@@ -33,6 +33,38 @@ function applyHead(html, meta) {
   return out;
 }
 
+function deferCampaignTracking(html) {
+  const deferredGoogleTag = `<script>
+      window.addEventListener('load', function () {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18294027643';
+        document.head.appendChild(script);
+      }, { once: true });
+    </script>`;
+  const deferredClarity = `<!-- Microsoft Clarity -->
+    <script type="text/javascript">
+      window.addEventListener('load', function () {
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "xlin4iqzro");
+      }, { once: true });
+    </script>
+    <!-- End Microsoft Clarity -->`;
+
+  return html
+    .replace(
+      '<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18294027643"></script>',
+      deferredGoogleTag,
+    )
+    .replace(/<!-- Microsoft Clarity -->[\s\S]*?<!-- End Microsoft Clarity -->/, deferredClarity)
+    // Campaign submissions are protected by the server-side honeypot and rate
+    // limit, so this route never renders a Turnstile widget.
+    .replace(/\s*<script src="https:\/\/challenges\.cloudflare\.com\/turnstile\/v0\/api\.js\?render=explicit" async defer><\/script>/, '');
+}
+
 if (!template.includes('<div id="root"></div>')) {
   throw new Error('prerender: could not find <div id="root"></div> in dist/index.html');
 }
@@ -41,10 +73,17 @@ for (const path of allRoutePaths) {
   const meta = routeMetaFor(path);
   const body = render(path);
   let html = applyHead(template.replace('<div id="root"></div>', `<div id="root">${body}</div>`), meta);
-  // The homepage hero preload only helps the homepage; drop it elsewhere so
-  // subpages don't warn about a preloaded-but-unused image.
-  if (path !== '/') {
-    html = html.replace(/<link[^>]*rel="preload"[^>]*rn-schilders-main\.webp[^>]*>/, '');
+  const homepageHeroPreload = /<link[^>]*rel="preload"[^>]*rn-schilders-main\.webp[^>]*>/;
+  if (path === '/buitenschilderwerk-aanvraag') {
+    html = html.replace(
+      homepageHeroPreload,
+      '<link rel="preload" as="image" href="/campaign-hero-buitenschilderwerk-mobile.webp?v=20260714" type="image/webp" fetchpriority="high" />\n    <link rel="preload" as="image" href="/campaign-hero-buitenschilderwerk.webp?v=20260714" type="image/webp" media="(min-width: 768px)" fetchpriority="high" />',
+    );
+    html = deferCampaignTracking(html);
+  } else if (path !== '/') {
+    // The homepage hero preload only helps the homepage; drop it elsewhere so
+    // subpages don't warn about a preloaded-but-unused image.
+    html = html.replace(homepageHeroPreload, '');
   }
   const outPath = path === '/' ? join(distDir, 'index.html') : join(distDir, path.replace(/^\//, ''), 'index.html');
   mkdirSync(dirname(outPath), { recursive: true });
