@@ -6,6 +6,7 @@ dist-worker
 *.log
 .env
 .env.local
+.env.production
 .vite
 .turbo
 .astro
