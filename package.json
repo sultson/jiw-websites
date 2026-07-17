@@ -21,7 +21,8 @@
     "dev:xenon": "pnpm --filter @jiw/xenon dev",
     "dev:adriaan-totaalonderhoud": "pnpm --filter @jiw/adriaan-totaalonderhoud dev",
     "dev:maefluence": "pnpm --filter @jiw/maefluence dev",
-    "dev:zk-beauty": "pnpm --filter @jiw/zk-beauty dev"
+    "dev:zk-beauty": "pnpm --filter @jiw/zk-beauty dev",
+    "dev:resq-protec": "pnpm --filter @jiw/resq-protec dev"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

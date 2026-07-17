@@ -1,0 +1,26 @@
+{
+  "name": "@jiw/resq-protec",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port 3014 --host",
+    "build": "astro build",
+    "preview": "astro preview",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "clean": "rm -rf dist .astro",
+    "lint": "astro check && tsc --noEmit -p tsconfig.worker.json"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
+    "@jiw/cloudflare-forms": "workspace:*",
+    "astro": "^5.16.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "typescript": "~5.8.2",
+    "wrangler": "^4.85.0"
+  }
+}

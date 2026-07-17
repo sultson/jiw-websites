@@ -1,0 +1,2 @@
+TURNSTILE_SECRET_KEY="replace-with-cloudflare-turnstile-secret"
+APIFY_TOKEN="replace-with-apify-token"

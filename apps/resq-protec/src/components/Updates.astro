@@ -1,0 +1,26 @@
+---
+import Layout from './Layout.astro';
+import Icon from './Icon.astro';
+import { routes, type Lang } from '../data/content';
+const { lang='nl' }=Astro.props as {lang:Lang};
+const r=routes[lang];
+const fallback=lang==='nl'?
+  [{date:'29 oktober 2022',title:'Samenwerking met TOHATSU Nederland',image:'/images/updates/img_2419.webp'},{date:'12 december 2020',title:'Veiligheidstraining voor K3 Delta',image:'/images/updates/img_2560.webp'},{date:'29 november 2020',title:'NIKTA-gecertificeerd opleidingscentrum',image:'/images/updates/img_2642.webp'}]:
+  [{date:'29 October 2022',title:'Partnership with TOHATSU Netherlands',image:'/images/updates/img_2419.webp'},{date:'12 December 2020',title:'Safety training for K3 Delta',image:'/images/updates/img_2560.webp'},{date:'29 November 2020',title:'NIKTA-certified training centre',image:'/images/updates/img_2642.webp'}];
+---
+<Layout lang={lang} title={`${lang==='nl'?'Actueel':'Updates'} | Resqprotec`} description={lang==='nl'?'Nieuws, trainingen en praktijkmomenten van Resqprotec.':'News, training and field updates from Resqprotec.'} canonicalPath={r.updates}>
+  <header class="page-hero"><div class="container"><div class="crumb">Resqprotec / {lang==='nl'?'Actueel':'Updates'}</div><p class="eyebrow">{lang==='nl'?'Uit de praktijk':'From the field'}</p><h1>{lang==='nl'?'Actueel':'Updates'}</h1><p class="lead">{lang==='nl'?'Trainingen, samenwerkingen en operationele momenten van Resqprotec.':'Training, partnerships and operational moments from Resqprotec.'}</p></div></header>
+  <section class="section"><div class="container"><div class="feed" data-updates-feed>{fallback.map(item=><article><div class="feed-media"><img src={item.image} alt="" width="1200" height="800" loading="lazy"/></div><div><time>{item.date}</time><h2>{item.title}</h2><a href="https://www.facebook.com/resqprotec" target="_blank" rel="noreferrer">Facebook <Icon name="arrow" size={17}/></a></div></article>)}</div><p class="feed-note">{lang==='nl'?'De nieuwste berichten worden automatisch geladen vanaf Facebook.':'The latest posts are loaded automatically from Facebook.'}</p></div></section>
+</Layout>
+<script>
+type FeedItem={text:string;url:string;time:string;image?:string};
+const feed=document.querySelector<HTMLElement>('[data-updates-feed]');
+if(feed)fetch('/api/social-feed?channel=facebook&v=2').then(response=>response.ok?response.json():Promise.reject()).then((data:{items?:FeedItem[]})=>{
+  if(!data.items?.length)return;const locale=document.documentElement.lang==='nl'?'nl-NL':'en-GB';
+  const cards=data.items.map(item=>{const article=document.createElement('article');if(item.image){const media=document.createElement('div');media.className='feed-media';const image=document.createElement('img');image.src=item.image;image.alt='';image.loading='lazy';media.append(image);article.append(media)}
+    const body=document.createElement('div');const time=document.createElement('time');const date=new Date(item.time);time.textContent=Number.isNaN(date.getTime())?'Facebook':new Intl.DateTimeFormat(locale,{day:'numeric',month:'long',year:'numeric'}).format(date);const heading=document.createElement('h2');heading.textContent=item.text.length>180?`${item.text.slice(0,177)}…`:item.text;const link=document.createElement('a');link.href=item.url;link.target='_blank';link.rel='noreferrer';link.textContent=document.documentElement.lang==='nl'?'Bekijk op Facebook →':'View on Facebook →';body.append(time,heading,link);article.append(body);return article;});feed.replaceChildren(...cards);
+}).catch(()=>{});
+</script>
+<style>
+.feed{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.feed :global(article){min-width:0;display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line);background:#fff}.feed :global(.feed-media){position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--mist)}.feed :global(.feed-media img){position:absolute;inset:0;display:block;width:100%;height:100%;max-width:100%;object-fit:contain}.feed :global(article>div:not(.feed-media)){min-width:0;padding:24px;display:flex;flex:1;flex-direction:column}.feed :global(time){font-size:.72rem;color:var(--steel);text-transform:uppercase;letter-spacing:.07em}.feed :global(h2){font-size:1.45rem;margin:12px 0 28px;overflow-wrap:anywhere}.feed :global(a){display:inline-flex;align-items:center;gap:8px;margin-top:auto;font-size:.76rem;font-weight:700;text-transform:uppercase;text-decoration:none}.feed-note{margin-top:24px;color:var(--steel);font-size:.78rem}@media(max-width:900px){.feed{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.feed{grid-template-columns:minmax(0,1fr)}}
+</style>

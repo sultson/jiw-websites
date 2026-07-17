@@ -1,0 +1,25 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "resq-protec",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "drop-trailing-slash",
+    "run_worker_first": ["/api/*"]
+  },
+  "routes": [
+    { "pattern": "resqprotec.jouwidealewebsite.nl", "custom_domain": true },
+    { "pattern": "rescuewatercraft.jouwidealewebsite.nl", "custom_domain": true }
+  ],
+  "r2_buckets": [{ "binding": "FORM_UPLOADS", "bucket_name": "jiw-form-uploads-prod" }],
+  "send_email": [{ "name": "LEAD_EMAIL", "allowed_sender_addresses": ["website@notify.resqprotec.com"] }],
+  "vars": {
+    "SITE_ID": "resq-protec",
+    "LEAD_RECIPIENT": "info@resqprotec.com",
+    "LEAD_SENDER": "website@notify.resqprotec.com"
+  }
+}

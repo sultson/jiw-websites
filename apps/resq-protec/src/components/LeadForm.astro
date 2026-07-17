@@ -1,0 +1,28 @@
+---
+import type { Lang } from '../data/content';
+const { lang='nl', kind='contact', items=[] }=Astro.props as {lang:Lang;kind:'course'|'equipment'|'contact';items?:string[]};
+const nl=lang==='nl';
+const labels={course:nl?'Opleiding of training':'Course or training',equipment:nl?'Product of categorie':'Product or category',contact:nl?'Onderwerp':'Subject'};
+const turnstileKey=import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAAD2h-XD8dN6PHeWG';
+---
+<form class="lead-form" data-lead-form method="post" action={`/api/forms/${lang==='en'?'en/':''}${kind}`}>
+  <input type="hidden" name="language" value={lang}/><input type="hidden" name="pageUrl" value="" data-page-url />
+  <div class="field-row"><label>{nl?'Voornaam':'First name'}<input name="firstName" autocomplete="given-name" required /></label><label>{nl?'Achternaam':'Last name'}<input name="lastName" autocomplete="family-name" required /></label></div>
+  <div class="field-row"><label>{nl?'E-mailadres':'Email address'}<input type="email" name="email" autocomplete="email" required /></label><label>{nl?'Telefoonnummer':'Phone number'}<input type="tel" name="phone" autocomplete="tel" required /></label></div>
+  <label>{labels[kind]}{items.length?<select name="subject" required><option value="">{nl?'Maak een keuze':'Select an option'}</option>{items.map(item=><option value={item}>{item}</option>)}</select>:<input name="subject" required />}</label>
+  <label>{nl?'Organisatie':'Organisation'}<input name="organisation" autocomplete="organization" /></label>
+  <label>{nl?'Uw vraag of toelichting':'Your question or notes'}<textarea name="message" rows="5" required></textarea></label>
+  <label class="consent"><input type="checkbox" name="privacyConsent" value="Akkoord" required/><span>{nl?'Ik ga akkoord met het verwerken van mijn gegevens om mijn aanvraag te beantwoorden.':'I agree to the processing of my data to answer my request.'}</span></label>
+  {turnstileKey&&<div class="cf-turnstile" data-sitekey={turnstileKey}></div>}
+  <button class="button" type="submit">{nl?'Aanvraag versturen':'Send request'}</button><p class="form-status" role="status" aria-live="polite"></p>
+</form>
+{turnstileKey&&<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+<script>
+document.querySelectorAll<HTMLFormElement>('[data-lead-form]').forEach(form=>{
+  const page=form.querySelector<HTMLInputElement>('[data-page-url]'); if(page) page.value=location.href;
+  form.addEventListener('submit',async e=>{e.preventDefault();const button=form.querySelector<HTMLButtonElement>('button[type=submit]');const status=form.querySelector<HTMLElement>('.form-status');const nl=document.documentElement.lang==='nl';if(!button||!status)return;button.disabled=true;status.textContent=nl?'Bezig met versturen…':'Sending…';try{const response=await fetch(form.action,{method:'POST',body:new FormData(form)});const data=await response.json() as {ok?:boolean;message?:string};if(!response.ok)throw new Error(data.message||(nl?'Aanvraag mislukt.':'Request failed.'));form.reset();status.textContent=nl?'Bedankt. Uw aanvraag is ontvangen.':'Thank you. Your request has been received.';}catch(error){status.textContent=error instanceof Error?error.message:(nl?'Er ging iets mis.':'Something went wrong.');}finally{button.disabled=false;}});
+});
+</script>
+<style>
+.lead-form{display:grid;gap:18px}.field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}.lead-form label{display:grid;gap:7px;font-size:.76rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}.lead-form input,.lead-form select,.lead-form textarea{width:100%;border:1px solid #bec8ce;border-radius:0;background:white;padding:13px 14px;color:var(--ink);outline:none;text-transform:none}.lead-form input:focus,.lead-form select:focus,.lead-form textarea:focus{border-color:var(--ink);box-shadow:0 0 0 2px rgba(16,24,32,.12)}.consent{grid-template-columns:auto 1fr!important;align-items:start;text-transform:none!important;font-weight:400!important;letter-spacing:0!important}.consent input{width:18px;height:18px;margin-top:3px}.lead-form .button{justify-self:start}.form-status{margin:0;font-size:.9rem}.button:disabled{opacity:.55}@media(max-width:600px){.field-row{grid-template-columns:1fr}.lead-form .button{width:100%}}
+</style>
