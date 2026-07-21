@@ -115,7 +115,7 @@ export const content: Record<Lang, SiteContent> = {
       tagline: 'AI met een doel.',
       rights: 'Alle rechten voorbehouden.',
       contact: 'Contact',
-      legal: 'Handelsnaam van AW Investments B.V. · KVK 66842883 · Rotterdam',
+      legal: 'Doelio B.V. · KvK 42099115',
     },
   },
 
@@ -196,7 +196,7 @@ export const content: Record<Lang, SiteContent> = {
       tagline: 'AI with a purpose.',
       rights: 'All rights reserved.',
       contact: 'Contact',
-      legal: 'Trade name of AW Investments B.V. · KVK 66842883 · Rotterdam',
+      legal: 'Doelio B.V. · KvK 42099115',
     },
   },
 };
