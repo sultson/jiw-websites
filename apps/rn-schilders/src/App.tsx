@@ -33,8 +33,9 @@ import {
 
 const phoneDisplay = '085 060 6309';
 const phoneHref = 'tel:+31850606309';
+const whatsappNumber = '31645172726';
 const whatsappHref = 'https://wa.me/31645172726?text=Hallo%20RN%20Schilders%2C%20ik%20wil%20graag%20een%20gratis%20prijsindicatie%20aanvragen.';
-const whatsappCampaignHref = `https://wa.me/31645172726?text=${encodeURIComponent('Hallo RN Schilders, ik wil graag dat jullie gratis langskomen voor een offerte.')}`;
+const whatsappCampaignHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hallo RN Schilders, ik wil graag dat jullie gratis langskomen voor een offerte.')}`;
 // Email stays on the rn-schilders.nl domain for now; only the public site URL moves.
 const email = 'info@rnschilders.nl';
 const mapsHref = 'https://www.google.com/maps/search/?api=1&query=Kuipersweg+33+3449+JA+Woerden';
@@ -53,7 +54,6 @@ const campaignLeadStorageKey = 'rn_schilders_campaign_lead';
 const gclidStorageKey = 'rn_schilders_gclid';
 const campaignScopeOptions = ['Kozijnen en deuren', 'Gevel of buitenmuur', 'De hele buitenkant', 'Iets anders of weet ik nog niet'];
 const campaignTimingOptions = ['Zo snel mogelijk', 'Komende 3 maanden', 'Later dit jaar', 'Ik oriënteer me eerst'];
-const sentPageLoadConversions = new Set<string>();
 
 function isLocalFormHost() {
   if (typeof window === 'undefined') return false;
@@ -94,12 +94,58 @@ type CampaignLeadUserData = {
   phone?: string;
 };
 
-function trackGoogleAdsConversion(sendTo: string) {
-  if (typeof window === 'undefined' || !window.gtag) return;
+function trackGoogleAdsConversion(sendTo: string, onComplete?: () => void) {
+  if (typeof window === 'undefined' || !window.gtag) {
+    onComplete?.();
+    return;
+  }
+
+  let completed = false;
+  const complete = () => {
+    if (completed) return;
+    completed = true;
+    onComplete?.();
+  };
+
   window.gtag('event', 'conversion', {
     send_to: sendTo,
     value: 1.0,
     currency: 'EUR',
+    ...(onComplete ? { event_callback: complete, event_timeout: 1000 } : {}),
+  });
+
+  // Content blockers can leave the gtag queue without ever running its callback.
+  // Never leave a call or successful form submission stuck in that case.
+  if (onComplete) window.setTimeout(complete, 1200);
+}
+
+function trackEvent(name: string, label: string, formId: string) {
+  if (typeof window === 'undefined' || !window.gtag) return;
+  window.gtag('event', name, {
+    event_label: label,
+    form_location: formId,
+    transport_type: 'beacon',
+  });
+}
+
+function getCampaignWhatsAppHref(scope: string, timing: string) {
+  const scopeAnswer = scope.toLocaleLowerCase('nl-NL');
+  const timingAnswer = timing.toLocaleLowerCase('nl-NL');
+  const message = timing === 'Zo snel mogelijk'
+    ? `Hoi Richard, ik zoek op korte termijn een schilder voor: ${scopeAnswer}. Kunt u langskomen voor een vrijblijvende offerte?`
+    : timing === 'Ik oriënteer me eerst'
+      ? `Hoi Richard, ik oriënteer me op schilderwerk voor: ${scopeAnswer}. Kunt u een vrijblijvende richtprijs geven?`
+      : `Hoi Richard, ik zoek een schilder voor: ${scopeAnswer}, planning: ${timingAnswer}. Wat zou dat ongeveer kosten?`;
+
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
+function trackGoogleAdsCallConversion(event: ReactMouseEvent<HTMLAnchorElement>) {
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  const destination = event.currentTarget.href;
+  trackGoogleAdsConversion(googleAdsCallConversionSendTo, () => {
+    window.location.href = destination;
   });
 }
 
@@ -168,16 +214,6 @@ async function applyEnhancedConversionUserData() {
   window.gtag('set', 'user_data', userData);
 }
 
-function GoogleAdsPageLoadConversion({ sendTo, eventKey }: { sendTo: string; eventKey: string }) {
-  useEffect(() => {
-    if (sentPageLoadConversions.has(eventKey)) return;
-    sentPageLoadConversions.add(eventKey);
-    void applyEnhancedConversionUserData().finally(() => trackGoogleAdsConversion(sendTo));
-  }, [eventKey, sendTo]);
-
-  return null;
-}
-
 type ServiceImage = string | { src: string; alt: string };
 
 type Service = {
@@ -225,6 +261,11 @@ type LocationPage = {
     eyebrow: string;
     title: string;
     intro: string[];
+    comparison?: {
+      title: string;
+      text: string;
+      pair: ComparePair;
+    };
     images: Array<{ src: string; alt: string; width: number; height: number; caption: string }>;
   };
 };
@@ -712,6 +753,111 @@ const locationPages: LocationPage[] = [
     },
   },
   {
+    title: 'Montfoort',
+    slug: 'schilder-montfoort',
+    seoTitle: 'Schilder Montfoort | Traprenovatie en schilderwerk | RN Schilders',
+    seoDescription:
+      'Schilder in Montfoort voor binnen- en buitenschilderwerk, traprenovatie, kozijnen en houtrotherstel. Bekijk een recent trapproject en vraag een gratis offerte aan.',
+    lead:
+      'Zoekt u een schilder in Montfoort die voorbereiding en afwerking als één geheel behandelt? RN Schilders & Renovatie werkt vanuit Woerden in Montfoort en de omliggende plaatsen. Richard bekijkt het werk zelf en maakt vooraf duidelijk welke ondergrondbehandeling, reparaties en verflagen nodig zijn. Op deze pagina ziet u een recent trapproject in Montfoort: van zorgvuldig schuren en afplakken tot een strak, licht eindresultaat.',
+    routeNote:
+      'Bij binnenschilderwerk letten we niet alleen op de zichtlaag. Een trap krijgt dagelijks veel te verduren, dus controleert Richard eerst de staat van treden, stootborden, naden, leuningen en aansluitingen. Oude of beschadigde lagen worden geschuurd, oneffenheden hersteld en aangrenzende delen zorgvuldig afgeplakt voordat de nieuwe lak wordt aangebracht.',
+    localFit:
+      'Montfoort ligt dicht bij onze vestiging in Woerden. Daardoor kunnen we een opname en uitvoering praktisch plannen, ook wanneer het trapwerk wordt gecombineerd met wanden, plafonds, deuren of kozijnen. U heeft tijdens het hele traject één aanspreekpunt en ontvangt een duidelijke offerte voor het afgesproken werk.',
+    areas: ['Montfoort', 'Linschoten', 'Oudewater', 'Woerden', 'IJsselstein', 'Benschop'],
+    featuredServices: ['Schilderwerk', 'Kozijnen', 'Houtrotherstel', 'Stucwerk'],
+    commonRequests: [
+      'Houten trappen schuren, herstellen, gronden en slijtvast aflakken voor een strak en duurzaam resultaat.',
+      'Binnenschilderwerk aan wanden, plafonds, deuren en kozijnen na een verbouwing of verhuizing.',
+      'Buitenschilderwerk en houtrotherstel aan kozijnen, deuren, dorpels en ander gevelhout.',
+    ],
+    serviceLinks: [
+      { label: 'Binnenschilderwerk in Montfoort', serviceTitle: 'Schilderwerk' },
+      { label: 'Kozijnen in Montfoort', serviceTitle: 'Kozijnen' },
+      { label: 'Houtrotherstel in Montfoort', serviceTitle: 'Houtrotherstel' },
+      { label: 'Stucwerk in Montfoort', serviceTitle: 'Stucwerk' },
+    ],
+    faqs: [
+      {
+        question: 'Schilderen jullie complete trappen in Montfoort?',
+        answer: 'Ja. We behandelen de treden, stootborden, zijkanten en waar afgesproken ook leuningen en balustrades. De precieze aanpak hangt af van de bestaande verflaag en de staat van het hout.',
+      },
+      {
+        question: 'Hoe wordt een geschilderde trap voorbereid?',
+        answer: 'We reinigen en schuren de ondergrond, herstellen beschadigingen en open naden, plakken de omgeving zorgvuldig af en bouwen de afwerking op met passende grond- en laklagen.',
+      },
+      {
+        question: 'Kan ander binnenschilderwerk tegelijk worden meegenomen?',
+        answer: 'Zeker. Wanden, plafonds, deuren en kozijnen kunnen in dezelfde opname en planning worden meegenomen, zodat kleuren, materialen en werkvolgorde op elkaar aansluiten.',
+      },
+      {
+        question: 'Komen jullie vanuit Woerden naar Montfoort voor een opname?',
+        answer: 'Ja. Montfoort ligt in ons directe werkgebied. Richard komt zelf kijken, bespreekt de wensen en maakt daarna een duidelijke offerte voor het benodigde werk.',
+      },
+    ],
+    heroImage: {
+      src: '/montfoort-trap-resultaat.webp?v=20260717',
+      alt: 'Strak wit gelakte trap na schilderwerk in Montfoort',
+      width: 1152,
+      height: 2048,
+    },
+    projectStory: {
+      eyebrow: 'Recent project in Montfoort',
+      title: 'Een complete trap weer strak in de lak.',
+      intro: [
+        'Bij deze woning in Montfoort hebben we de trap en het omliggende houtwerk zorgvuldig aangepakt. Beschadigde en onrustige verflagen zijn geschuurd, kleine oneffenheden zijn hersteld en alle randen zijn netjes voorbereid voor de nieuwe afwerking.',
+        'Het resultaat is een rustige, lichte trap waarbij treden, stootborden, zijkanten en aansluitingen weer één strak geheel vormen. Sleep over de vergelijking om het verschil tussen voorbereiding en oplevering zelf te bekijken.',
+      ],
+      comparison: {
+        title: 'Van intensief gebruikt naar strak afgewerkt',
+        text: 'De voorfoto laat de trap tijdens de voorbereiding zien. Na het herstel, schuurwerk en de nieuwe laklagen oogt het geheel weer rustig, schoon en verzorgd.',
+        pair: {
+          before: { src: '/montfoort-trap-voor.webp?v=20260717', alt: 'Trap in Montfoort tijdens de voorbereiding voor schilderwerk' },
+          after: { src: '/montfoort-trap-na.webp?v=20260717', alt: 'Trap in Montfoort na het schilderen en aflakken' },
+          beforeLabel: 'Voor',
+          afterLabel: 'Na',
+        },
+      },
+      images: [
+        {
+          src: '/montfoort-trap-schuren.webp?v=20260717',
+          alt: 'Geschuurde traptreden in Montfoort met gereedschap tijdens de voorbereiding',
+          width: 1152,
+          height: 2048,
+          caption: 'Grondig schuren en herstellen',
+        },
+        {
+          src: '/montfoort-trap-renovatie-overzicht.webp?v=20260717',
+          alt: 'Overzicht van trap en vide tijdens binnenschilderwerk in Montfoort',
+          width: 1200,
+          height: 1600,
+          caption: 'Trap en vide in voorbereiding',
+        },
+        {
+          src: '/montfoort-trap-details.webp?v=20260717',
+          alt: 'Balustrade en trapdetails tijdens schilderwerk in Montfoort',
+          width: 1200,
+          height: 1600,
+          caption: 'Aandacht voor alle aansluitingen',
+        },
+        {
+          src: '/montfoort-trap-hal-afwerking.webp?v=20260717',
+          alt: 'Lichte hal met strak afgewerkte trap en zwarte spijlen in Montfoort',
+          width: 1152,
+          height: 2048,
+          caption: 'Trap en balustrade als één geheel',
+        },
+        {
+          src: '/montfoort-trap-resultaat.webp?v=20260717',
+          alt: 'Wit gelakte traptreden na oplevering van schilderwerk in Montfoort',
+          width: 1152,
+          height: 2048,
+          caption: 'Strak en licht eindresultaat',
+        },
+      ],
+    },
+  },
+  {
     title: 'Vleuten, De Meern en Leidsche Rijn',
     slug: 'schilder-vleuten-de-meern',
     seoTitle: 'Schilder Vleuten, De Meern en Leidsche Rijn | RN Schilders',
@@ -931,8 +1077,8 @@ const locationPages: LocationPage[] = [
 const workAreaGroups: WorkAreaGroup[] = [
   {
     title: 'Woerden en directe omgeving',
-    text: 'Vanuit onze vestiging aan de Kuipersweg werken we dagelijks in Woerden en de omliggende kernen zoals Harmelen, Kamerik, Zegveld, Montfoort, Oudewater en Linschoten. Korte lijnen, snel een opname en een vast aanspreekpunt op de vloer.',
-    slugs: ['schilder-woerden'],
+    text: 'Vanuit onze vestiging aan de Kuipersweg werken we dagelijks in Woerden en de omliggende kernen zoals Harmelen, Kamerik, Zegveld, Montfoort, Oudewater en Linschoten. Bekijk onze lokale projecten en aanpak per plaats.',
+    slugs: ['schilder-woerden', 'schilder-montfoort'],
   },
   {
     title: 'Utrecht west',
@@ -1608,7 +1754,7 @@ const homeMeta = {
 const workAreaMeta = {
   title: `Werkgebied | ${siteName}`,
   description:
-    'Bekijk het werkgebied van RN Schilders & Renovatie rondom Woerden, met plaatsen zoals Vleuten, De Meern, Leidsche Rijn, Ridderkerk en Almere.',
+    'Bekijk het werkgebied van RN Schilders & Renovatie rondom Woerden, met plaatsen zoals Montfoort, Vleuten, De Meern, Leidsche Rijn, Ridderkerk en Almere.',
 };
 
 const termsMeta = {
@@ -2022,7 +2168,7 @@ function CampaignLandingPage() {
                 </div>
                 <a
                   href={phoneHref}
-                  onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)}
+                  onClick={trackGoogleAdsCallConversion}
                   aria-label={`Bel ${phoneDisplay}`}
                   className="ml-auto flex min-h-10 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-white/25 bg-white/8 px-3 text-sm font-bold text-white transition hover:bg-white/14 md:hidden"
                 >
@@ -2039,7 +2185,7 @@ function CampaignLandingPage() {
                 garantie en nu nog ruimte in de planning, ook in de vakantie en de bouwvak.
               </p>
               <div className="mt-7 flex-col gap-3 max-md:hidden sm:flex-row sm:items-center md:flex">
-                <a id="call-cta" href={phoneHref} onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)} className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-white/30 bg-white/8 px-4 py-3 text-sm font-bold text-white transition hover:bg-white/14 sm:min-w-[190px]">
+                <a id="call-cta" href={phoneHref} onClick={trackGoogleAdsCallConversion} className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-white/30 bg-white/8 px-4 py-3 text-sm font-bold text-white transition hover:bg-white/14 sm:min-w-[190px]">
                   <Phone size={17} />
                   Bel {phoneDisplay}
                 </a>
@@ -2066,7 +2212,7 @@ function CampaignLandingPage() {
                 <a
                   id="call-cta-mobile"
                   href={phoneHref}
-                  onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)}
+                  onClick={trackGoogleAdsCallConversion}
                   className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-white/30 bg-white/8 px-4 py-3 text-sm font-bold text-white transition hover:bg-white/14"
                 >
                   <Phone size={17} />
@@ -2096,6 +2242,7 @@ function CampaignLandingPage() {
         <CampaignMidForm />
         <CampaignPrice />
         <CampaignFaq />
+        <CampaignAbout />
         <section id="aanvraag" className="section-pad bg-navy text-white">
           <div className="shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
@@ -2149,9 +2296,10 @@ function CampaignTrustStrip() {
 }
 
 function CampaignLeadForm({ formId, compact, className = '' }: { formId: string; compact: boolean; className?: string }) {
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [step, setStep] = useState<1 | 2>(1);
   const [scope, setScope] = useState('');
   const [timing, setTiming] = useState('');
+  const [showCallback, setShowCallback] = useState(false);
   const [showOptional, setShowOptional] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<CampaignFieldErrors>({});
   const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'error'>('idle');
@@ -2161,6 +2309,7 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
   const step1PanelRef = useRef<HTMLFieldSetElement>(null);
   const step2PanelRef = useRef<HTMLFieldSetElement>(null);
   const step3PanelRef = useRef<HTMLDivElement>(null);
+  const whatsappButtonRef = useRef<HTMLAnchorElement>(null);
   const hasChangedStep = useRef(false);
   const isSubmitting = submitState === 'submitting';
 
@@ -2171,13 +2320,47 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
 
   useEffect(() => {
     if (!hasChangedStep.current) return;
-    const panel = step === 1 ? step1PanelRef.current : step === 2 ? step2PanelRef.current : step3PanelRef.current;
+    const panel = step === 1 ? step1PanelRef.current : step2PanelRef.current;
     panel?.focus({ preventScroll: true });
   }, [step]);
 
-  const changeStep = (next: 1 | 2 | 3) => {
+  useEffect(() => {
+    if (showCallback) step3PanelRef.current?.focus({ preventScroll: true });
+  }, [showCallback]);
+
+  useEffect(() => {
+    if (!timing || showCallback || window.innerWidth >= 1024) return;
+    const button = whatsappButtonRef.current;
+    if (!button) return;
+    button.focus({ preventScroll: true });
+    button.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      block: 'nearest',
+    });
+  }, [timing, showCallback]);
+
+  const changeStep = (next: 1 | 2) => {
     hasChangedStep.current = true;
     setStep(next);
+  };
+
+  const handleScopeSelection = (option: string) => {
+    setScope(option);
+    trackEvent('lead_step1_selected', option, formId);
+    changeStep(2);
+  };
+
+  const handleTimingSelection = (option: string) => {
+    setTiming(option);
+  };
+
+  const toggleCallback = () => {
+    setShowCallback((current) => !current);
+  };
+
+  const handleCampaignWhatsAppClick = () => {
+    trackEvent('lead_whatsapp_click', timing, formId);
+    trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo);
   };
 
   const clearFieldError = (field: CampaignFieldName) => {
@@ -2206,12 +2389,11 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
     event.preventDefault();
     const form = event.currentTarget;
 
-    if (step < 3) return;
+    if (step !== 2 || !showCallback) return;
 
     const validationErrors = validate(form);
 
     if (Object.keys(validationErrors).length > 0) {
-      changeStep(3);
       setFieldErrors(validationErrors);
       setSubmitState('error');
       setSubmitMessage('Controleer de gemarkeerde velden.');
@@ -2240,8 +2422,12 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
       const result = (await response.json()) as { ok: boolean; message?: string };
       if (!response.ok || !result.ok) throw new Error(result.message || 'De aanvraag kon niet worden verstuurd.');
 
+      trackEvent('lead_callback_submitted', timing || 'Geen timing gekozen', formId);
       rememberCampaignLeadForEnhancedConversions(formData);
-      window.location.href = '/aanvraag-ontvangen';
+      await applyEnhancedConversionUserData();
+      trackGoogleAdsConversion(googleAdsFormConversionSendTo, () => {
+        window.location.href = '/aanvraag-ontvangen';
+      });
     } catch (error) {
       const err = error instanceof Error ? error : new Error(String(error));
       setSubmitState('error');
@@ -2266,13 +2452,13 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
             className="h-1.5 flex-1 overflow-hidden rounded-full bg-line"
             role="progressbar"
             aria-valuemin={1}
-            aria-valuemax={3}
+            aria-valuemax={2}
             aria-valuenow={step}
-            aria-label={`Stap ${step} van 3`}
+            aria-label={`Stap ${step} van 2`}
           >
-            <div className="h-full rounded-full bg-roller transition-[width] duration-300 ease-out" style={{ width: `${(step / 3) * 100}%` }} />
+            <div className="h-full rounded-full bg-roller transition-[width] duration-300 ease-out" style={{ width: `${(step / 2) * 100}%` }} />
           </div>
-          <span className={`shrink-0 font-extrabold uppercase text-graphite ${compact ? 'text-xs tracking-[0.14em]' : 'text-[10px] tracking-[0.1em] md:text-xs md:tracking-[0.14em]'}`}>Stap {step}/3</span>
+          <span className={`shrink-0 font-extrabold uppercase text-graphite ${compact ? 'text-xs tracking-[0.14em]' : 'text-[10px] tracking-[0.1em] md:text-xs md:tracking-[0.14em]'}`}>Stap {step}/2</span>
         </div>
         <div className={`shrink-0 rounded-md bg-door px-3 py-2 text-center text-xs font-extrabold uppercase tracking-[0.12em] text-white ${compact ? '' : 'max-md:hidden'}`}>
           5 jaar garantie
@@ -2293,7 +2479,7 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
           {campaignScopeOptions.map((option) => (
             <label key={option} className="cursor-pointer">
-              <input type="radio" name={`${formId}-scope`} value={option} checked={scope === option} className="peer sr-only" onChange={() => { setScope(option); changeStep(2); }} />
+              <input type="radio" name={`${formId}-scope`} value={option} checked={scope === option} className="peer sr-only" onChange={() => handleScopeSelection(option)} />
               <span className={`flex items-center justify-between gap-2 rounded-md border border-line bg-whitewash font-bold text-navy transition peer-checked:border-roller peer-checked:bg-roller/10 peer-checked:text-roller peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-roller peer-checked:[&_svg]:opacity-100 ${compact ? 'min-h-12 px-4 py-3 text-sm' : 'min-h-14 px-4 py-3.5 text-base md:min-h-16 md:px-5'}`}>
                 {option}
                 <Check size={16} className="shrink-0 opacity-0 transition" aria-hidden="true" />
@@ -2321,30 +2507,44 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
           {campaignTimingOptions.map((option) => (
             <label key={option} className="cursor-pointer">
-              <input type="radio" name={`${formId}-timing`} value={option} checked={timing === option} className="peer sr-only" onChange={() => { setTiming(option); changeStep(3); }} />
+              <input type="radio" name={`${formId}-timing`} value={option} checked={timing === option} className="peer sr-only" onChange={() => handleTimingSelection(option)} />
               <span className={`flex items-center justify-between gap-2 rounded-md border border-line bg-whitewash font-bold text-navy transition peer-checked:border-roller peer-checked:bg-roller/10 peer-checked:text-roller peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-roller peer-checked:[&_svg]:opacity-100 ${compact ? 'min-h-12 px-4 py-3 text-sm' : 'min-h-14 px-4 py-3.5 text-base md:min-h-16 md:px-5'}`}>
                 {option}<Check size={16} className="shrink-0 opacity-0 transition" aria-hidden="true" />
               </span>
             </label>
           ))}
         </div>
-        {timing && (
-          <button type="button" onClick={() => changeStep(3)} className="btn-primary mt-4 w-full">
-            Verder
-            <ArrowRight size={17} />
-          </button>
-        )}
+        <div className={`grid transition-[grid-template-rows,opacity] duration-200 ease-out ${timing ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`} aria-hidden={!timing}>
+          {timing && (
+            <div className="min-h-0 overflow-hidden">
+              {!showCallback && (
+                <a
+                  ref={whatsappButtonRef}
+                  href={getCampaignWhatsAppHref(scope, timing)}
+                  onClick={handleCampaignWhatsAppClick}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-primary mt-4 w-full"
+                >
+                  <WhatsAppGlyph className="h-5 w-5" />
+                  Ontvang gratis richtprijs via WhatsApp
+                </a>
+              )}
+              <p className="mt-3 text-sm leading-6 text-graphite">
+                Liever bellen?{' '}
+                <a href={phoneHref} onClick={trackGoogleAdsCallConversion} className="font-bold text-navy underline underline-offset-2">{phoneDisplay}</a>{' '}
+                <span aria-hidden="true">·</span> of laat een{' '}
+                <button type="button" onClick={toggleCallback} aria-expanded={showCallback} aria-controls={`${formId}-callback`} className="font-bold text-navy underline underline-offset-2">
+                  terugbelverzoek achter
+                </button>
+              </p>
+            </div>
+          )}
+        </div>
       </fieldset>
 
-      <div ref={step3PanelRef} tabIndex={-1} className={step === 3 ? 'outline-none' : 'hidden'}>
-        <div className="flex items-baseline justify-between gap-3">
-          <p className="text-lg font-extrabold text-navy">Wilt u dat Richard vrijblijvend komt kijken?</p>
-          <button type="button" onClick={() => changeStep(2)} className="inline-flex shrink-0 items-center gap-1 text-sm font-bold text-graphite transition hover:text-navy">
-            <ChevronLeft size={16} />
-            Terug
-          </button>
-        </div>
-        <div className="mt-4 grid gap-4 md:grid-cols-2">
+      <div id={`${formId}-callback`} ref={step3PanelRef} tabIndex={-1} className={step === 2 && showCallback ? 'mt-5 outline-none' : 'hidden'}>
+        <div className="grid gap-4 md:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold text-navy">
             <input className="field" name="firstName" autoComplete="name" placeholder="Uw naam *" aria-label="Uw naam" required onChange={handleFieldChange('firstName')} aria-invalid={Boolean(fieldErrors.firstName)} aria-describedby={fieldErrors.firstName ? `${formId}-firstName-error` : undefined} />
             <FieldError id={`${formId}-firstName-error`} message={fieldErrors.firstName} />
@@ -2353,7 +2553,7 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
             <input className="field" name="phone" inputMode="tel" autoComplete="tel" placeholder="Telefoonnummer *" aria-label="Telefoonnummer" required onChange={handleFieldChange('phone')} aria-invalid={Boolean(fieldErrors.phone)} aria-describedby={fieldErrors.phone ? `${formId}-phone-error` : undefined} />
             <FieldError id={`${formId}-phone-error`} message={fieldErrors.phone} />
           </label>
-          <p className="text-sm font-semibold leading-6 text-graphite md:col-span-2">Richard belt u zelf, meestal dezelfde dag nog. U zit nergens aan vast.</p>
+          <p className="text-sm font-semibold leading-6 text-graphite md:col-span-2">Richard belt u zelf. U zit nergens aan vast.</p>
           <button
             type="button"
             onClick={() => setShowOptional((prev) => !prev)}
@@ -2386,12 +2586,9 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
             </div>
           )}
           <button type="submit" className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60 md:col-span-2" disabled={isSubmitting}>
-            {isSubmitting ? 'Aanvraag wordt verstuurd...' : 'Ja, kom gratis kijken'}
+            {isSubmitting ? 'Aanvraag wordt verstuurd...' : 'Bel mij terug'}
             {isSubmitting ? <Loader2 size={17} className="animate-spin" /> : <ArrowRight size={17} />}
           </button>
-          <a href={whatsappCampaignHref} onClick={() => trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo)} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 text-center text-sm font-bold text-[#168c43] underline decoration-2 underline-offset-4 md:col-span-2">
-            <WhatsAppGlyph className="h-5 w-5" /> Liever appen? Stuur uw vraag via WhatsApp.
-          </a>
         </div>
       </div>
     </form>
@@ -2610,6 +2807,7 @@ function CampaignBeforeAfter() {
 
 function CampaignWorkMarquee() {
   const viewportRef = useRef<HTMLDivElement>(null);
+  const [selectedImage, setSelectedImage] = useState<(typeof campaignGalleryImages)[number] | null>(null);
   const pausedRef = useRef(false);
   const hoverRef = useRef(false);
   const resumeTimer = useRef<number | null>(null);
@@ -2622,6 +2820,19 @@ function CampaignWorkMarquee() {
     },
     [],
   );
+
+  useEffect(() => {
+    if (!selectedImage) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setSelectedImage(null);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [selectedImage]);
 
   const pause = () => {
     pausedRef.current = true;
@@ -2710,11 +2921,20 @@ function CampaignWorkMarquee() {
       >
         <div className="marquee-track gap-4 px-5 sm:gap-5">
           {loop.map((image, index) => (
-            <figure
+            <button
               key={`${image.src}-${index}`}
+              type="button"
+              onClick={() => {
+                if (drag.current.moved) {
+                  drag.current.moved = false;
+                  return;
+                }
+                setSelectedImage(image);
+              }}
+              aria-label={`${image.caption} vergroten`}
               className="relative w-[62vw] max-w-[290px] shrink-0 overflow-hidden rounded-lg border border-line bg-white sm:w-[300px]"
             >
-              <div className="aspect-[3/4] w-full overflow-hidden">
+              <span className="block aspect-[3/4] w-full overflow-hidden">
                 <img
                   src={image.src}
                   alt={image.alt}
@@ -2726,14 +2946,70 @@ function CampaignWorkMarquee() {
                   fetchPriority="low"
                   draggable={false}
                 />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent" />
-              <figcaption className="absolute inset-x-3 bottom-3 text-sm font-bold text-white">{image.caption}</figcaption>
-            </figure>
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent" />
+              <span className="absolute inset-x-3 bottom-3 pr-9 text-left text-sm font-bold text-white">{image.caption}</span>
+              <span className="absolute bottom-2.5 right-2.5 flex h-8 w-8 items-center justify-center rounded-md bg-white/90 text-navy" aria-hidden="true">
+                <Maximize2 size={15} />
+              </span>
+            </button>
           ))}
         </div>
       </div>
+      {selectedImage && (
+        <CampaignImageLightbox
+          image={selectedImage}
+          onSelect={setSelectedImage}
+          onClose={() => setSelectedImage(null)}
+        />
+      )}
     </section>
+  );
+}
+
+function CampaignImageLightbox({
+  image,
+  onSelect,
+  onClose,
+}: {
+  image: (typeof campaignGalleryImages)[number];
+  onSelect: (image: (typeof campaignGalleryImages)[number]) => void;
+  onClose: () => void;
+}) {
+  const imageIndex = campaignGalleryImages.findIndex((item) => item.src === image.src);
+  const selectOffset = (offset: number) => {
+    const nextIndex = (imageIndex + offset + campaignGalleryImages.length) % campaignGalleryImages.length;
+    onSelect(campaignGalleryImages[nextIndex]);
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-navy/92 p-4 md:p-8"
+      role="dialog"
+      aria-modal="true"
+      aria-label={image.caption}
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <div className="relative flex max-h-full w-full max-w-6xl flex-col gap-4">
+        <div className="flex items-center justify-between gap-4 text-white">
+          <p className="font-display text-lg font-extrabold md:text-2xl">{image.caption}</p>
+          <button type="button" onClick={onClose} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-white text-navy" aria-label="Sluiten">
+            <X size={22} />
+          </button>
+        </div>
+        <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-lg bg-black/30">
+          <img src={image.src} alt={image.alt} width={image.width} height={image.height} className="max-h-[78dvh] w-auto max-w-full object-contain" />
+          <button type="button" onClick={() => selectOffset(-1)} className="absolute left-2 flex h-11 w-11 items-center justify-center rounded-md bg-white/90 text-navy md:left-4" aria-label="Vorige foto">
+            <ChevronLeft size={22} />
+          </button>
+          <button type="button" onClick={() => selectOffset(1)} className="absolute right-2 flex h-11 w-11 items-center justify-center rounded-md bg-white/90 text-navy md:right-4" aria-label="Volgende foto">
+            <ChevronRight size={22} />
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -2761,6 +3037,36 @@ function CampaignFaq() {
   );
 }
 
+function CampaignAbout() {
+  return (
+    <section id="over-ons" className="section-pad bg-paper">
+      <div className="shell grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <img
+          src="/campaign-over-rn-schilders.webp"
+          alt="Richard van RN Schilders begeleidt buitenschilderwerk aan een woning"
+          width={1600}
+          height={1069}
+          className="aspect-[3/2] w-full rounded-lg object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+        <div>
+          <p className="eyebrow">Over RN Schilders</p>
+          <h2 className="mt-4 text-4xl font-extrabold leading-tight text-navy md:text-5xl">
+            De eigenaar zelf op uw project.
+          </h2>
+          <p className="mt-6 text-lg leading-8 text-graphite">
+            RN Schilders & Renovatie is gebouwd rond Richard: een meewerkend eigenaar met meer dan vijftien jaar ervaring. Hij komt zelf kijken, bespreekt vooraf wat er nodig is en blijft tijdens de uitvoering uw vaste aanspreekpunt.
+          </p>
+          <p className="mt-4 text-base leading-7 text-graphite">
+            Zo zijn de lijnen kort, worden afspraken duidelijk bewaakt en weet u wie verantwoordelijk is voor de voorbereiding, planning en afwerking van uw buitenschilderwerk.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CampaignPrice() {
   return (
     <section className="section-pad bg-paper">
@@ -2778,7 +3084,7 @@ function CampaignMinimalFooter() {
     <footer className="bg-[#08142b] py-8 text-white">
       <div className="shell flex flex-col gap-3 text-sm font-semibold sm:flex-row sm:items-center sm:justify-between">
         <span>RN Schilders & Renovatie</span>
-        <a href={phoneHref} onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)} className="text-white/85 hover:text-white">
+        <a href={phoneHref} onClick={trackGoogleAdsCallConversion} className="text-white/85 hover:text-white">
           {phoneDisplay}
         </a>
       </div>
@@ -2841,7 +3147,7 @@ function CampaignStickyCta() {
             </button>
             <a
               href={phoneHref}
-              onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)}
+              onClick={trackGoogleAdsCallConversion}
               aria-label={`Bel ${phoneDisplay}`}
               className="inline-flex w-12 shrink-0 items-center justify-center rounded-md border border-navy/20 bg-white text-navy transition hover:border-navy/45"
             >
@@ -2890,7 +3196,6 @@ function CampaignStickyCta() {
 function CampaignThankYouPage() {
   return (
     <div className="min-h-[100dvh] bg-paper">
-      <GoogleAdsPageLoadConversion sendTo={googleAdsFormConversionSendTo} eventKey="campaign-form-thank-you" />
       <main className="bg-navy text-white">
         <div className="shell grid min-h-[100dvh] content-center gap-8 py-12">
           <div className="max-w-3xl">
@@ -2903,7 +3208,7 @@ function CampaignThankYouPage() {
               gratis offerte op locatie zinvol is. Daarna weet u de vaste prijs vooraf, zonder verrassingen achteraf.
             </p>
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <a href={phoneHref} onClick={() => trackGoogleAdsConversion(googleAdsCallConversionSendTo)} className="btn-light">
+              <a href={phoneHref} onClick={trackGoogleAdsCallConversion} className="btn-light">
                 <Phone size={17} />
                 Bel {phoneDisplay}
               </a>
@@ -5156,7 +5461,7 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
               Terug naar werkgebied
             </a>
             <p className="eyebrow mt-8 text-roller-soft">Werkgebied rondom Woerden</p>
-            <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">Schilder voor {location.title}</h1>
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">Schilder in {location.title}</h1>
             <p className="mt-6 text-lg leading-8 text-white/88 md:text-xl md:leading-8">{location.lead}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <button type="button" onClick={openQuote} className="btn-primary">
@@ -5204,7 +5509,31 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {location.projectStory.comparison && (
+              <div className="mt-10 grid overflow-hidden rounded-lg bg-navy text-white lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+                <div className="p-4 sm:p-6 lg:p-8">
+                  <CompareSlider pair={location.projectStory.comparison.pair} />
+                  <p className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-white/70">
+                    <MoveHorizontal size={16} className="text-roller-soft" aria-hidden="true" />
+                    Sleep om voor en na te vergelijken
+                  </p>
+                </div>
+                <div className="border-t border-white/10 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-12">
+                  <p className="eyebrow text-roller-soft">Voor en na</p>
+                  <h3 className="mt-4 font-display text-3xl font-extrabold leading-tight md:text-4xl">
+                    {location.projectStory.comparison.title}
+                  </h3>
+                  <p className="mt-5 max-w-xl text-base leading-8 text-white/82">
+                    {location.projectStory.comparison.text}
+                  </p>
+                  <button type="button" onClick={openQuote} className="btn-primary mt-7">
+                    Mijn project bespreken
+                    <ArrowRight size={17} />
+                  </button>
+                </div>
+              </div>
+            )}
+            <div className={`mt-8 grid gap-4 sm:grid-cols-2 ${location.projectStory.comparison ? 'lg:grid-cols-5' : 'lg:grid-cols-4'}`}>
               {location.projectStory.images.map((image) => (
                 <figure key={image.src} className="overflow-hidden rounded-lg border border-line bg-white">
                   <img
@@ -5212,7 +5541,7 @@ function LocationPageView({ location, openQuote }: { location: LocationPage; ope
                     alt={image.alt}
                     width={image.width}
                     height={image.height}
-                    className="aspect-[4/3] w-full object-cover"
+                    className={`${location.projectStory?.comparison ? 'aspect-[3/4]' : 'aspect-[4/3]'} w-full object-cover`}
                     loading="lazy"
                     decoding="async"
                   />
@@ -5784,11 +6113,7 @@ function ServicePageView({ service, openQuote }: { service: Service; openQuote: 
               <ChevronRight size={16} className="rotate-180" />
               Terug naar diensten
             </a>
-            <div className="mt-8 inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 text-roller-soft">
-              <service.icon size={18} />
-              <span className="eyebrow text-roller-soft">Dienst in Woerden</span>
-            </div>
-            <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">{service.detailTitle}</h1>
+            <h1 className="mt-8 text-4xl font-extrabold leading-tight md:text-6xl">{service.detailTitle}</h1>
             <p className="mt-6 text-lg leading-8 text-white/88 md:text-xl">{service.detailIntro}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <button type="button" onClick={openQuote} className="btn-primary">

@@ -51,6 +51,11 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://rnschilders.nl/schilder-montfoort</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://rnschilders.nl/schilder-vleuten-de-meern</loc>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>

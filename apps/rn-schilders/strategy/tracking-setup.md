@@ -26,9 +26,9 @@ Inventory as of 2026-07-12, so future edits know what they are touching:
 
 - `index.html:6-23` — gtag.js loader for **Google Ads ID `AW-18294027643`**, with Consent Mode v2 defaults (everything `granted`, no consent banner) and `allow_enhanced_conversions: true`. `index.html` is the SSG template: this `<head>` is prerendered into **every** route in `dist/`, so a change here ships site-wide on the next build.
 - `src/App.tsx:46-49` — three Ads conversion actions:
-  - **form lead** `tW9DCLfUrskcEPvqopNE` — fires on `/aanvraag-ontvangen` page load via `GoogleAdsPageLoadConversion` (App.tsx:168), deduped with the `sentPageLoadConversions` set.
-  - **call click** `TNi-COeH3ckcEPvqopNE` and **WhatsApp click** `hB0lCOqH3ckcEPvqopNE` — fired from `onClick` handlers via `trackGoogleAdsConversion` (App.tsx:94).
-- **Enhanced conversions** (App.tsx:131-166): lead's email/phone stashed in `sessionStorage` on submit, SHA-256-hashed and `gtag('set', 'user_data', …)` on the thank-you page, *before* the conversion event. Order matters — don't insert anything between `applyEnhancedConversionUserData()` and `trackGoogleAdsConversion()`.
+  - **form lead** `tW9DCLfUrskcEPvqopNE` — fires immediately after `/api/forms/offerte` confirms the lead was accepted. Navigation to `/aanvraag-ontvangen` happens through Google's `event_callback`, with a timeout fallback so ad blockers cannot strand the user.
+  - **call click** `TNi-COeH3ckcEPvqopNE` — fires through the same callback handoff before opening the `tel:` destination. **WhatsApp click** `hB0lCOqH3ckcEPvqopNE` fires directly because WhatsApp opens in a new tab.
+- **Enhanced conversions** (App.tsx:158-194): the lead's email/phone is stashed briefly in `sessionStorage`, normalized, SHA-256-hashed and passed through `gtag('set', 'user_data', …)` after the successful API response and *before* the form conversion event. Order matters — don't insert anything between `applyEnhancedConversionUserData()` and `trackGoogleAdsConversion()`.
 - **gclid capture**: stored under `rn_schilders_gclid` and posted with the lead form, so every lead email already carries its click ID.
 - Navigation is **full page loads** (prerendered MPA, no pushState). This makes GA4 and Clarity trivial: no SPA pageview plumbing needed.
 - No CSP headers anywhere (`public/_headers` is cache-control only) — nothing blocks adding a Clarity script.

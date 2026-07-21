@@ -46,7 +46,7 @@
   ],
   "vars": {
     "SITE_ID": "rn-schilders",
-    "LEAD_RECIPIENT": "info@rnschilders.nl",
+    "LEAD_RECIPIENT": "offerte@rnschilders.nl",
     "LEAD_SENDER": "offerte@notify.rnschilders.nl"
   }
 }
