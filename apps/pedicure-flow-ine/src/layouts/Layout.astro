@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  lang: 'nl' | 'en';
+  title: string;
+  description: string;
+  path: string;
+  alternate: string;
+}
+
+const { lang, title, description, path, alternate } = Astro.props;
+const canonical = new URL(path, Astro.site);
+const altUrl = new URL(alternate, Astro.site);
+const locale = lang === 'nl' ? 'nl_NL' : 'en_GB';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#fcfaf8" />
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/logo.png', Astro.site)} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={lang === 'nl' ? 'en' : 'nl'} href={altUrl} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <script is:inline>
+      if (Date.now() >= Date.parse('2026-08-02T22:00:00Z')) {
+        document.documentElement.classList.add('opening-date-passed');
+      }
+    </script>
+    <style is:inline>.opening-date-passed [data-opening-notice] { display: none !important; }</style>
+    <title>{title}</title>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'NailSalon',
+      name: 'Pedicure Flow Ine',
+      url: 'https://pedicureflowine.jouwidealewebsite.nl',
+      telephone: '+31648678593',
+      email: 'ine.van.berkesteijn@outlook.com',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Ooiweide 47',
+        addressLocality: 'Zoetermeer',
+        addressRegion: 'Zuid-Holland',
+        addressCountry: 'NL',
+      },
+      priceRange: '€40–€60',
+      sameAs: ['https://www.facebook.com/profile.php?id=61591470921977'],
+    })} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

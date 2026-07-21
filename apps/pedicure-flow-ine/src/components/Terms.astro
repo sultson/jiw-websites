@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+interface Props { lang: 'nl' | 'en' }
+const { lang } = Astro.props;
+const isNl = lang === 'nl';
+const home = isNl ? '/' : '/en';
+const alternate = isNl ? '/en/terms' : '/algemene-voorwaarden';
+const sections = isNl ? [
+  ['1. Toepasselijkheid', 'Deze voorwaarden gelden voor iedere aanbieding, behandeling en transactie tussen de pedicure en de cliënt waarop de pedicure deze voorwaarden van toepassing heeft verklaard, tenzij hiervan uitdrukkelijk en schriftelijk is afgeweken.'],
+  ['2. Inspanningen van de pedicure', 'De pedicure voert behandelingen naar beste inzicht en vermogen uit, volgens de eisen van goed vakmanschap, de op dat moment bekende stand van de wetenschap en de code voor de voetverzorger. De pedicure informeert de cliënt, voor zover redelijkerwijs mogelijk, over de financiële gevolgen van een wijziging of aanvulling van een behandeling.'],
+  ['3. Afspraken', 'De cliënt en de pedicure melden verhindering zo snel mogelijk en uiterlijk 24 uur, of één werkdag, voor de afspraak. Bij overmacht geldt deze verplichting niet. Bij niet tijdig afzeggen mag de pedicure het volledige tarief van de afgesproken behandeling berekenen. Wanneer de cliënt meer dan vijf minuten te laat is, mag de behandeltijd worden ingekort terwijl het volledige tarief verschuldigd blijft.'],
+  ['4. Betaling', 'De prijzen van behandelingen en producten worden zichtbaar in de praktijk vermeld en zijn, waar van toepassing, inclusief btw. Prijswijzigingen worden 30 dagen voor ingang zichtbaar aangekondigd. Aanbiedingen gelden binnen de genoemde looptijd en zolang de voorraad strekt. Bij uitblijven van betaling kan het openstaande bedrag na afloop van de betalingstermijn en een aanmaning ter incasso worden aangeboden. De daaruit voortvloeiende kosten zijn voor rekening van de cliënt.'],
+  ['5. Persoonsgegevens en privacy', 'De cliënt verstrekt voor de eerste behandeling de gegevens die nodig zijn voor een zorgvuldige uitvoering. De pedicure verwerkt deze gegevens in een geautomatiseerd systeem of op een klantenkaart en behandelt vertrouwelijke gegevens volgens de richtlijnen van de AVG.'],
+  ['6. Geheimhouding', 'De pedicure houdt alle vertrouwelijke informatie die tijdens de behandeling is gedeeld geheim. Deze verplichting vervalt wanneer de pedicure op grond van een wettelijke bepaling of rechterlijke uitspraak verplicht is informatie aan derden te verstrekken.'],
+  ['7. Aansprakelijkheid', 'De pedicure is niet aansprakelijk voor schade die ontstaat doordat is uitgegaan van onjuiste of onvolledige informatie van de cliënt over onder meer lichamelijke aandoeningen, medicijngebruik, werk of vrijetijdsbesteding. De pedicure is niet aansprakelijk voor verlies, diefstal of beschadiging van persoonlijke eigendommen. Bij schade aan meubilair, apparatuur of producten kan een schadevergoeding worden verlangd. Diefstal wordt bij de politie gemeld.'],
+  ['8. Garantie', 'Op een behandeling geldt één week garantie en op producten twee weken. De garantie vervalt wanneer de cliënt andere dan geadviseerde producten gebruikt, adviezen niet opvolgt, een advies om medische hulp te zoeken niet binnen twee werkdagen opvolgt of producten niet volgens de gebruiksaanwijzing gebruikt.'],
+  ['9. Klachten', 'Een klacht over een behandeling of product moet zo snel mogelijk en binnen vijf werkdagen na ontdekking schriftelijk worden gemeld. De pedicure geeft binnen vijf werkdagen een passend antwoord. Bij een gegronde klacht wordt de behandeling opnieuw uitgevoerd, tenzij dit aantoonbaar zinloos is geworden en de cliënt dit schriftelijk aangeeft. Wanneer partijen geen overeenstemming bereiken, kan het geschil aan een bevoegde instantie of mediator worden voorgelegd.'],
+  ['10. Behoorlijk gedrag', 'De cliënt gedraagt zich in de praktijk volgens algemeen aanvaarde normen. Wanneer onbehoorlijk gedrag na herhaalde waarschuwingen voortduurt, mag de pedicure de cliënt de toegang tot de praktijk weigeren.'],
+  ['11. Recht', 'Op iedere overeenkomst tussen de pedicure en de cliënt is Nederlands recht van toepassing. Bij uitleg van deze voorwaarden is de Nederlandse tekst bepalend. De versie die gold op het moment waarop de overeenkomst tot stand kwam, is van toepassing.'],
+] : [
+  ['1. Scope', 'These terms apply to every offer, treatment and transaction between the pedicurist and the client to which the pedicurist has declared these terms applicable, unless expressly agreed otherwise in writing.'],
+  ['2. Professional duties', 'The pedicurist performs treatments to the best of her knowledge and ability, in accordance with professional standards, current scientific knowledge and the professional code for foot care practitioners. Where reasonably possible, the client will be informed of the financial consequences of changing or extending a treatment.'],
+  ['3. Appointments', 'The client and pedicurist must report an inability to attend as soon as possible and no later than 24 hours, or one working day, before the appointment. This does not apply in force majeure situations. If an appointment is not cancelled on time, the full treatment fee may be charged. If the client is more than five minutes late, treatment time may be shortened while the full fee remains due.'],
+  ['4. Payment', 'Treatment and product prices are displayed in the practice and include VAT where applicable. Price changes are announced 30 days before they take effect. Offers are valid for the stated period and while stocks last. If payment remains outstanding after the due date and a reminder, the debt may be referred for collection. The resulting costs are payable by the client.'],
+  ['5. Personal data and privacy', 'Before the first treatment, the client provides the information required for careful treatment. The pedicurist records this information electronically or on a client card and handles confidential information in accordance with the GDPR.'],
+  ['6. Confidentiality', 'The pedicurist keeps all confidential information shared during treatment private. This obligation does not apply when disclosure is required by law or by a court decision.'],
+  ['7. Liability', 'The pedicurist is not liable for damage resulting from incorrect or incomplete information provided by the client about physical conditions, medication, work or leisure activities. The pedicurist is not liable for loss, theft or damage to personal belongings. Compensation may be requested for damage to furniture, equipment or products. Theft is reported to the police.'],
+  ['8. Guarantee', 'Treatments are guaranteed for one week and products for two weeks. The guarantee expires if the client uses products other than those advised, does not follow advice, does not seek medical help within two working days when advised to do so, or does not use products according to their instructions.'],
+  ['9. Complaints', 'A complaint about a treatment or product must be submitted in writing as soon as possible and within five working days of discovery. The pedicurist will provide an appropriate response within five working days. If a complaint is justified, the treatment will be repeated unless this has demonstrably become pointless and the client states so in writing. If no agreement is reached, the dispute may be referred to a competent authority or mediator.'],
+  ['10. Proper conduct', 'Clients must behave in accordance with generally accepted standards while in the practice. If improper behaviour continues after repeated warnings, the pedicurist may deny the client access to the practice.'],
+  ['11. Governing law', 'Dutch law applies to every agreement between the pedicurist and the client. The Dutch text is decisive when interpreting these terms. The version in force when the agreement was concluded applies.'],
+];
+---
+<header class="legal-header"><div class="container"><a href={home}><Image src={logo} alt="Pedicure Flow Ine" width={220} quality={90} /></a><div><a href={alternate}>{isNl ? 'EN' : 'NL'}</a><a class="back" href={home}>← {isNl ? 'Terug naar home' : 'Back to home'}</a></div></div></header>
+<main class="legal-main"><div class="container legal-grid"><aside><p class="eyebrow">{isNl ? 'Juridisch' : 'Legal'}</p><h1>{isNl ? 'Algemene voorwaarden' : 'Terms and conditions'}</h1><p>{isNl ? 'Laatst bijgewerkt: juli 2026' : 'Last updated: July 2026'}</p><a href="mailto:ine.van.berkesteijn@outlook.com">ine.van.berkesteijn@outlook.com</a></aside><article>{sections.map(([title, body]) => <section><h2>{title}</h2><p>{body}</p></section>)}<div class="language-note"><strong>{isNl ? 'Taal en uitleg' : 'Language and interpretation'}</strong><p>{isNl ? 'Bij verschillen in uitleg is de Nederlandse tekst bepalend.' : 'This English version is provided for convenience. The Dutch text is decisive in the event of any difference in interpretation.'}</p></div></article></div></main>
+<footer class="legal-footer"><div class="container">© {new Date().getFullYear()} Pedicure Flow Ine · Ooiweide 47, Zoetermeer</div></footer>
+<style>
+  .legal-header { border-bottom: 1px solid var(--line); background: white; }
+  .legal-header .container { display: flex; min-height: 5.5rem; align-items: center; justify-content: space-between; gap: 2rem; }
+  .legal-header img { width: 12rem; }
+  .legal-header div div { display: flex; align-items: center; gap: 1.5rem; }
+  .legal-header a { font-size: .85rem; font-weight: 700; text-decoration: none; }
+  .back { color: var(--rose-dark); }
+  .legal-main { padding: clamp(3.5rem, 8vw, 7rem) 0; }
+  .legal-grid { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(3rem, 9vw, 9rem); }
+  aside { position: sticky; top: 2rem; align-self: start; }
+  aside h1 { max-width: 8ch; font-size: clamp(2.5rem, 5vw, 4.5rem); }
+  aside > p:not(.eyebrow) { margin-top: 1.5rem; color: var(--muted); font-size: .85rem; }
+  aside > a { display: block; margin-top: .5rem; color: var(--rose-dark); font-size: .8rem; overflow-wrap: anywhere; }
+  article { display: grid; gap: 2.5rem; }
+  article section { padding-bottom: 2.5rem; border-bottom: 1px solid var(--line); }
+  article h2 { margin-bottom: .85rem; font-size: 1.5rem; }
+  article p { color: var(--muted); }
+  .language-note { padding: 1.5rem; border-radius: 1rem; background: var(--blue-light); }
+  .language-note p { margin-top: .35rem; font-size: .9rem; }
+  .legal-footer { padding: 2rem 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+  @media (max-width: 720px) {
+    .legal-header .container { min-height: 4.75rem; }
+    .legal-header img { width: 10rem; }
+    .legal-header div div { gap: .8rem; }
+    .legal-header .back { font-size: 0; }
+    .legal-header .back::after { content: '←'; font-size: 1.25rem; }
+    .legal-grid { grid-template-columns: 1fr; gap: 3rem; }
+    aside { position: static; }
+  }
+</style>

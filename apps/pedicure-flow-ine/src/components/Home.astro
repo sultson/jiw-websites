@@ -1,0 +1,332 @@
+---
+import { Picture, Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import hero from '../assets/hero.png';
+import standardImage from '../assets/standard-treatment.png';
+import polishImage from '../assets/polish-treatment.png';
+import luxuryImage from '../assets/luxury-treatment.png';
+import salonImage from '../assets/pedicure-flow-ine-salon-photo.webp';
+
+interface Props { lang: 'nl' | 'en' }
+const { lang } = Astro.props;
+const isNl = lang === 'nl';
+const t = isNl ? {
+  nav: ['Behandelingen', 'Over Ine', 'Contact', 'Algemene voorwaarden'],
+  book: 'Maak een afspraak',
+  title: 'Voeten die weer licht aanvoelen.',
+  intro: 'Je voeten dragen je elke dag. Geef ze de professionele verzorging en rustige aandacht die ze verdienen.',
+  call: 'Bel Ine',
+  whatsapp: 'WhatsApp',
+  reassurance: ['Persoonlijke aandacht', 'Hygiënisch en zorgvuldig', 'Helder advies voor thuis'],
+  treatmentsEyebrow: 'Behandelingen',
+  treatmentsTitle: 'Kies wat je voeten nodig hebben',
+  treatmentsIntro: 'Elke behandeling begint met aandacht voor jouw voeten en eindigt met praktisch verzorgingsadvies voor thuis.',
+  included: 'Inbegrepen',
+  cards: [
+    { title: 'Standaard behandeling', price: '€ 40,00', desc: 'Een complete, professionele basisverzorging voor frisse en verzorgde voeten.', items: ['Voeten desinfecteren', 'Anamnese van de voeten', 'Nagels knippen en polijsten', 'Eelt en likdoorns verwijderen', 'Verzorgingsadvies voor thuis'], image: standardImage, alt: 'Zorgvuldige standaard pedicurebehandeling' },
+    { title: 'Standaard met nagellak', price: '€ 50,00', desc: 'De volledige standaard behandeling, afgewerkt met gewone nagellak.', items: ['Alles uit de standaard behandeling', 'Nagels lakken met gewone nagellak', 'Geen gellak'], image: polishImage, alt: 'Gewone nagellak wordt zorgvuldig aangebracht' },
+    { title: 'Luxe behandeling', price: '€ 60,00', desc: 'Volledige voetverzorging met extra tijd voor ontspanning en herstel.', items: ['Alles uit de standaard behandeling', 'Ontspannende massage van 20 minuten', 'Persoonlijk verzorgingsadvies'], image: luxuryImage, alt: 'Ontspannende voetmassage tijdens de luxe behandeling' },
+  ],
+  aboutEyebrow: 'Welkom bij Pedicure Flow Ine',
+  aboutTitle: 'Rustige zorg, helemaal afgestemd op jou',
+  aboutText: 'Ik ben Ine en ik ben gediplomeerd pedicure. In mijn salon in Zoetermeer neem ik rustig de tijd voor je voeten. Met een zorgvuldige behandeling en eerlijk advies help ik je om comfortabel en verzorgd weer naar buiten te stappen.',
+  aboutNote: 'De salon opent op 3 augustus 2026. Afspraken kunnen nu al worden ingepland.',
+  contactEyebrow: 'Afspraak en contact',
+  contactTitle: 'Klaar voor verzorgde voeten?',
+  contactText: 'Bel of stuur een WhatsApp-bericht. Ine helpt je graag bij het kiezen van de behandeling die bij je past.',
+  termsNotice: 'Door een afspraak te maken, bevestig je dat je kennis hebt genomen van de',
+  accessNotice: 'Let op: de praktijk is bereikbaar via een trap en daardoor moeilijk toegankelijk voor mensen die slecht ter been zijn.',
+  visit: 'Bezoek de salon',
+  directions: 'Route openen in Google Maps',
+  address: 'Ooiweide 47, Zoetermeer',
+  email: 'E-mail',
+  terms: 'Algemene voorwaarden',
+  rights: 'Pedicure Flow Ine. Alle rechten voorbehouden.',
+  menuOpen: 'Menu openen', menuClose: 'Menu sluiten',
+} : {
+  nav: ['Treatments', 'About Ine', 'Contact', 'Terms and conditions'],
+  book: 'Book an appointment',
+  title: 'Feet that feel light again.',
+  intro: 'Your feet carry you every day. Give them the professional care and calm attention they deserve.',
+  call: 'Call Ine',
+  whatsapp: 'WhatsApp',
+  reassurance: ['Personal attention', 'Hygienic and careful', 'Clear home care advice'],
+  treatmentsEyebrow: 'Treatments',
+  treatmentsTitle: 'Choose what your feet need',
+  treatmentsIntro: 'Every treatment starts with attention to your feet and ends with practical home care advice.',
+  included: 'Included',
+  cards: [
+    { title: 'Standard treatment', price: '€ 40.00', desc: 'Complete professional care for fresh, comfortable and well-groomed feet.', items: ['Foot disinfection', 'Foot health assessment', 'Nail trimming and polishing', 'Removal of calluses and corns', 'Home care advice'], image: standardImage, alt: 'A careful standard pedicure treatment' },
+    { title: 'Standard with nail polish', price: '€ 50.00', desc: 'The full standard treatment, finished with classic regular nail polish.', items: ['Everything in the standard treatment', 'Regular nail polish application', 'No gel polish'], image: polishImage, alt: 'Regular nail polish applied with care' },
+    { title: 'Luxury treatment', price: '€ 60.00', desc: 'Complete foot care with extra time for relaxation and recovery.', items: ['Everything in the standard treatment', 'Relaxing 20-minute massage', 'Personal home care advice'], image: luxuryImage, alt: 'Relaxing foot massage in the luxury treatment' },
+  ],
+  aboutEyebrow: 'Welcome to Pedicure Flow Ine',
+  aboutTitle: 'Calm care, tailored to you',
+  aboutText: 'I am Ine and I am a certified pedicurist. In my salon in Zoetermeer, I take the time your feet need. With careful treatment and honest advice, I help you step outside feeling comfortable and well cared for.',
+  aboutNote: 'The salon opens on 3 August 2026. Appointments can already be scheduled.',
+  contactEyebrow: 'Appointments and contact',
+  contactTitle: 'Ready for well-cared-for feet?',
+  contactText: 'Call or send a WhatsApp message. Ine will gladly help you choose the treatment that suits you.',
+  termsNotice: 'By booking an appointment, you confirm that you have read the',
+  accessNotice: 'Please note: the practice is reached via a staircase and is therefore difficult to access for people with reduced mobility.',
+  visit: 'Visit the salon',
+  directions: 'Open directions in Google Maps',
+  address: 'Ooiweide 47, Zoetermeer',
+  email: 'Email',
+  terms: 'Terms and conditions',
+  rights: 'Pedicure Flow Ine. All rights reserved.',
+  menuOpen: 'Open menu', menuClose: 'Close menu',
+};
+const altPath = isNl ? '/en' : '/';
+const termsPath = isNl ? '/algemene-voorwaarden' : '/en/terms';
+const phone = '+31648678593';
+const whatsapp = 'https://wa.me/31648678593';
+const map = 'https://www.google.com/maps/search/?api=1&query=Ooiweide+47+Zoetermeer';
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={isNl ? '/' : '/en'} aria-label="Pedicure Flow Ine home">
+      <Image src={logo} alt="Pedicure Flow Ine" width={248} quality={90} loading="eager" />
+    </a>
+    <nav class="desktop-nav" aria-label={isNl ? 'Hoofdnavigatie' : 'Main navigation'}>
+      <a href="#behandelingen">{t.nav[0]}</a><a href="#over">{t.nav[1]}</a><a href="#contact">{t.nav[2]}</a><a href={termsPath}>{t.nav[3]}</a>
+    </nav>
+    <div class="header-actions">
+      <a class="lang" href={altPath} lang={isNl ? 'en' : 'nl'} aria-label={isNl ? 'Switch to English' : 'Schakel naar Nederlands'}>{isNl ? 'EN' : 'NL'}</a>
+      <a class="button header-cta" href={`tel:${phone}`}>{t.book}</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label={t.menuOpen} data-open={t.menuOpen} data-close={t.menuClose}>
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobile-menu" aria-label={isNl ? 'Mobiele navigatie' : 'Mobile navigation'} hidden>
+    <a href="#behandelingen">{t.nav[0]}</a><a href="#over">{t.nav[1]}</a><a href="#contact">{t.nav[2]}</a><a href={termsPath}>{t.nav[3]}</a>
+    <a class="button" href={`tel:${phone}`}>{t.book}</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <Picture class="hero-background" src={hero} formats={['avif', 'webp']} widths={[960, 1536, 2200]} sizes="100vw" alt="" loading="eager" fetchpriority="high" quality={84} />
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1>{t.title}</h1>
+        <p class="hero-intro">{t.intro}</p>
+        <div class="hero-actions">
+          <a class="button" href={`tel:${phone}`} aria-label={`${t.call}: +31 6 48678593`}>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7.2 3.5 4.7 5.3c-1.6 1.2.5 5.8 3.6 9s7.7 5.2 9 3.6l1.8-2.5-4.4-3-1.9 1.8c-1.1-.5-2.5-1.6-3.4-2.6s-2-2.3-2.6-3.4l1.8-1.9-1.4-2.8Z"/></svg>
+            {t.call}
+          </a>
+          <a class="button button--ghost" href={whatsapp} target="_blank" rel="noreferrer">{t.whatsapp}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust" aria-label={isNl ? 'Onze beloftes' : 'Our promises'}>
+    <div class="container trust-list">
+      {t.reassurance.map((item) => <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>{item}</span></div>)}
+    </div>
+  </section>
+
+  <section class="treatments" id="behandelingen">
+    <div class="container">
+      <div class="section-heading"><div><p class="eyebrow">{t.treatmentsEyebrow}</p><h2>{t.treatmentsTitle}</h2></div><p>{t.treatmentsIntro}</p></div>
+      <div class="card-grid">
+        {t.cards.map((card, index) => (
+          <article class:list={["treatment-card", { featured: index === 1 }]}>
+            <div class="card-image">
+              <Picture src={card.image} formats={['avif', 'webp']} widths={[480, 720]} sizes="(max-width: 760px) 100vw, 33vw" alt={card.alt} loading="lazy" quality={80} />
+              <span class="price">{card.price}</span>
+            </div>
+            <div class="card-body"><h3>{card.title}</h3><p class="card-desc">{card.desc}</p><p class="included">{t.included}</p><ul>{card.items.map(item => <li>{item}</li>)}</ul><a href={whatsapp} target="_blank" rel="noreferrer">{t.book}<span aria-hidden="true">→</span></a></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="over">
+    <div class="container about-grid">
+      <div class="about-photo">
+        <Picture src={salonImage} formats={['avif', 'webp']} widths={[520, 760, 941]} sizes="(max-width: 900px) 100vw, 42vw" alt={isNl ? 'De lichte behandelruimte van Pedicure Flow Ine in Zoetermeer' : 'The bright Pedicure Flow Ine treatment room in Zoetermeer'} loading="lazy" quality={84} />
+      </div>
+      <div class="about-copy"><p class="eyebrow">{t.aboutEyebrow}</p><h2>{t.aboutTitle}</h2><p>{t.aboutText}</p><div class="about-note" data-opening-notice><span>03</span><p><strong>{isNl ? 'Augustus 2026' : 'August 2026'}</strong>{t.aboutNote}</p></div></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container contact-panel">
+      <div><p class="eyebrow">{t.contactEyebrow}</p><h2>{t.contactTitle}</h2><p>{t.contactText}</p><div class="contact-actions"><a class="button" href={`tel:${phone}`}>{t.call}</a><a class="button button--ghost" href={whatsapp} target="_blank" rel="noreferrer">{t.whatsapp}</a></div><p class="terms-notice">{t.termsNotice} <a href={termsPath}>{t.terms.toLowerCase()}</a>.</p></div>
+      <div class="contact-details">
+        <a href={map} target="_blank" rel="noreferrer"><span>{t.visit}</span><strong>{t.address}</strong></a>
+        <a href="mailto:ine.van.berkesteijn@outlook.com"><span>{t.email}</span><strong>ine.van.berkesteijn@outlook.com</strong></a>
+        <a href="tel:+31648678593"><span>{isNl ? 'Telefoon' : 'Phone'}</span><strong>+31 6 48678593</strong></a>
+      </div>
+      <div class="map-card">
+        <div class="map-copy">
+          <p class="eyebrow">{t.visit}</p>
+          <h3>{t.address}</h3>
+          <p>{isNl ? 'De salon bevindt zich aan de Ooiweide in Zoetermeer. Bekijk de locatie en plan eenvoudig je route.' : 'The salon is located on Ooiweide in Zoetermeer. View the location and plan your route.'}</p>
+          <p class="access-notice"><strong>{t.accessNotice}</strong></p>
+          <a href={map} target="_blank" rel="noreferrer">{t.directions}<span aria-hidden="true">↗</span></a>
+        </div>
+        <iframe title={`${t.visit}: ${t.address}`} src="https://www.google.com/maps?q=Ooiweide+47,+Zoetermeer&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="container footer-inner"><Image src={logo} alt="Pedicure Flow Ine" width={200} quality={85} loading="lazy" /><div class="footer-links"><a href={termsPath}>{t.terms}</a><a href="https://www.facebook.com/profile.php?id=61591470921977" target="_blank" rel="noreferrer">Facebook</a></div><p>© {new Date().getFullYear()} {t.rights}</p></div></footer>
+
+<div class="mobile-sticky"><a href={`tel:${phone}`}>{t.call}</a><a href={whatsapp} target="_blank" rel="noreferrer">{t.whatsapp}</a></div>
+
+<script is:inline>
+  const button = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.mobile-nav');
+  const stickyActions = document.querySelector('.mobile-sticky');
+  const heroActions = document.querySelector('.hero-actions');
+  const closeMenu = () => {
+    if (!button || !menu) return;
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-label', button.dataset.open || 'Open menu');
+    menu.hidden = true;
+  };
+  button?.addEventListener('click', () => {
+    const open = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!open));
+    button.setAttribute('aria-label', open ? button.dataset.open : button.dataset.close);
+    if (menu) menu.hidden = open;
+  });
+  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+
+  const updateStickyActions = () => {
+    if (!stickyActions || !heroActions) return;
+    const heroButtonsHavePassed = heroActions.getBoundingClientRect().bottom < 0;
+    stickyActions.classList.toggle('is-visible', heroButtonsHavePassed);
+  };
+  updateStickyActions();
+  window.addEventListener('scroll', updateStickyActions, { passive: true });
+  window.addEventListener('resize', updateStickyActions, { passive: true });
+</script>
+
+<style>
+  .site-header { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid var(--line); background: rgba(252,250,248,.94); backdrop-filter: blur(14px); }
+  .header-inner { display: flex; min-height: 5.25rem; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .brand { display: block; width: 12.5rem; flex: 0 0 auto; }
+  .brand img { display: block; width: 100%; height: auto; object-fit: contain; }
+  .desktop-nav { display: flex; align-items: center; gap: 1.4rem; margin-left: auto; }
+  .desktop-nav a, .lang { font-size: .88rem; font-weight: 650; text-decoration: none; }
+  .desktop-nav a:hover { color: var(--rose-dark); }
+  .header-actions { display: flex; align-items: center; gap: .8rem; }
+  .lang { display: grid; width: 2.6rem; height: 2.6rem; place-items: center; border: 1px solid var(--line); border-radius: 50%; }
+  .menu-toggle { display: none; width: 2.8rem; height: 2.8rem; border: 0; border-radius: 50%; background: var(--blush); }
+  .menu-toggle span { display: block; width: 1.2rem; height: 1px; margin: .32rem auto; background: currentColor; }
+  .mobile-nav { padding: .5rem 1.25rem 1.25rem; border-top: 1px solid var(--line); background: var(--cream); }
+  .mobile-nav a:not(.button) { display: block; padding: .8rem 0; text-decoration: none; }
+  .mobile-nav .button { width: 100%; margin-top: .5rem; }
+  .hero { position: relative; display: flex; min-height: clamp(38rem, calc(100svh - 5.25rem), 50rem); overflow: hidden; align-items: center; }
+  .hero :global(img.hero-background) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(252,250,248,.97) 0%, rgba(252,250,248,.88) 31%, rgba(252,250,248,.24) 62%, rgba(252,250,248,.04) 100%); }
+  .hero-inner { position: relative; z-index: 1; padding-block: clamp(4rem, 9vw, 7rem); }
+  .hero-copy { width: min(46rem, 58%); }
+  .hero h1 { max-width: 10ch; }
+  .hero-intro { max-width: 35rem; margin-top: 1.5rem; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.22rem); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .trust { border-block: 1px solid var(--line); background: white; }
+  .trust-list { display: grid; grid-template-columns: repeat(3, 1fr); }
+  .trust-list div { display: flex; align-items: center; justify-content: center; gap: .7rem; padding: 1.25rem; border-right: 1px solid var(--line); font-size: .88rem; font-weight: 650; }
+  .trust-list div:last-child { border: 0; }
+  .trust-list svg { width: 1.2rem; fill: none; stroke: var(--rose); stroke-linecap: round; stroke-width: 1.8; }
+  .treatments { padding: clamp(5rem, 9vw, 8rem) 0; }
+  .section-heading { display: grid; grid-template-columns: 1.1fr .7fr; align-items: end; gap: 3rem; margin-bottom: 3rem; }
+  .section-heading > p { max-width: 33rem; color: var(--muted); }
+  .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .treatment-card { overflow: hidden; border: 1px solid var(--line); border-radius: 1.25rem; background: white; }
+  .treatment-card.featured { border-color: rgba(168,106,115,.4); box-shadow: 0 1.2rem 3rem rgba(91,61,54,.08); }
+  .card-image { position: relative; height: clamp(12rem, 18vw, 14rem); overflow: hidden; background: var(--blush); }
+  .card-image picture { display: block; width: 100%; height: 100%; }
+  .card-image picture img { width: 100%; height: 100%; object-fit: cover; }
+  .price { position: absolute; right: 1rem; bottom: 1rem; padding: .55rem .8rem; border-radius: 999px; background: white; color: var(--rose-dark); font-family: var(--serif); font-size: 1.15rem; box-shadow: 0 .4rem 1rem rgba(0,0,0,.1); }
+  .card-body { padding: 1.5rem; }
+  .card-desc { min-height: 3.25rem; margin-top: .7rem; color: var(--muted); font-size: .9rem; }
+  .included { margin-top: 1.25rem; color: var(--rose-dark); font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  ul { display: grid; gap: .45rem; padding: 0; margin: .7rem 0 1.4rem; list-style: none; }
+  li { position: relative; padding-left: 1.15rem; color: var(--muted); font-size: .86rem; }
+  li::before { position: absolute; top: .66rem; left: 0; width: .35rem; height: .35rem; border-radius: 50%; background: var(--blue); content: ''; }
+  .card-body > a { display: inline-flex; align-items: center; gap: .5rem; color: var(--rose-dark); font-size: .88rem; font-weight: 750; text-decoration: none; }
+  .about { padding: clamp(4rem, 8vw, 7rem) 0; background: var(--blush); }
+  .about-grid { display: grid; grid-template-columns: .8fr 1fr; align-items: center; gap: clamp(2rem, 7vw, 7rem); }
+  .about-photo { aspect-ratio: 4 / 5; overflow: hidden; border: .45rem solid white; border-radius: 1.5rem; background: white; box-shadow: 0 1.5rem 3.5rem rgba(79,55,48,.13); }
+  .about-photo picture { display: block; width: 100%; height: 100%; }
+  .about-photo picture img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 46%; }
+  .about-copy > p:not(.eyebrow) { max-width: 37rem; margin-top: 1.5rem; color: var(--muted); font-size: 1.05rem; }
+  .about-note { display: flex; align-items: center; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(168,106,115,.25); }
+  .about-note > span { color: var(--rose); font-family: var(--serif); font-size: 3.2rem; line-height: 1; }
+  .about-note p { display: flex; max-width: 25rem; flex-direction: column; color: var(--muted); font-size: .84rem; }
+  .about-note strong { color: var(--ink); font-size: .92rem; }
+  .contact { padding: clamp(4rem, 8vw, 7rem) 0; }
+  .contact-panel { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2rem, 8vw, 7rem); padding: clamp(2rem, 6vw, 5rem); border-radius: 1.5rem; background: var(--blue-light); }
+  .contact-panel h2 { max-width: 12ch; }
+  .contact-panel > div > p:not(.eyebrow) { max-width: 35rem; margin-top: 1.25rem; color: var(--muted); }
+  .contact-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.8rem; }
+  .contact-panel .terms-notice { margin-top: 1rem; font-size: .82rem; }
+  .terms-notice a { color: var(--rose-dark); font-weight: 700; }
+  .contact-details { display: flex; flex-direction: column; justify-content: center; }
+  .contact-details a { display: flex; flex-direction: column; padding: 1.1rem 0; border-bottom: 1px solid rgba(73,83,89,.15); text-decoration: none; }
+  .contact-details a:last-child { border: 0; }
+  .contact-details span { color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .contact-details strong { overflow-wrap: anywhere; font-size: .92rem; }
+  .map-card { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(15rem, .72fr) minmax(0, 1.28fr); min-height: 23rem; overflow: hidden; border: 1px solid rgba(73,83,89,.15); border-radius: 1.25rem; background: white; }
+  .map-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(1.5rem, 4vw, 2.75rem); }
+  .map-copy > p:not(.eyebrow) { margin-top: 1rem; color: var(--muted); font-size: .92rem; }
+  .map-copy > .access-notice { padding: .8rem 1rem; border-left: 3px solid var(--rose); background: var(--blush); color: var(--ink); font-size: .84rem; }
+  .map-copy > a { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.5rem; color: var(--rose-dark); font-size: .88rem; font-weight: 750; text-decoration: none; }
+  .map-card iframe { width: 100%; height: 100%; min-height: 23rem; border: 0; }
+  footer { padding: 2.5rem 0 6rem; border-top: 1px solid var(--line); background: white; }
+  .footer-inner { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1.5rem; }
+  .footer-inner img { width: 10rem; }
+  .footer-inner p { grid-column: 1 / -1; color: var(--muted); font-size: .75rem; }
+  .footer-links { display: flex; gap: 1.25rem; }
+  .footer-links a { color: var(--muted); font-size: .8rem; text-decoration: none; }
+  .mobile-sticky { display: none; }
+  @media (max-width: 900px) {
+    .desktop-nav, .header-cta { display: none; }
+    .header-actions { margin-left: auto; }
+    .menu-toggle { display: block; }
+    .hero-copy { width: min(38rem, 70%); }
+    .card-grid { grid-template-columns: 1fr; max-width: 43rem; margin: auto; }
+    .card-desc { min-height: 0; }
+    .about-grid, .contact-panel { grid-template-columns: 1fr; }
+    .about-photo { width: min(100%, 34rem); }
+    .map-card { grid-template-columns: 1fr; }
+    .map-card iframe { min-height: 20rem; }
+  }
+  @media (max-width: 650px) {
+    .site-header { backdrop-filter: none; }
+    .header-inner { min-height: 4.5rem; }
+    .brand { width: 10.25rem; }
+    .hero { min-height: 0; align-items: flex-end; }
+    .hero :global(img.hero-background) { width: 100%; height: auto; object-fit: contain; object-position: top center; }
+    .hero-shade { background: linear-gradient(180deg, rgba(252,250,248,0) 0%, rgba(252,250,248,.05) 22%, rgba(252,250,248,.9) 39%, var(--cream) 50%); }
+    .hero-inner { padding-block: clamp(16rem, 36svh, 18rem) 2.5rem; }
+    .hero-copy { width: 100%; }
+    .trust-list { grid-template-columns: 1fr; padding-block: .35rem; }
+    .trust-list div { justify-content: flex-start; padding: .6rem 0; border: 0; }
+    .section-heading { grid-template-columns: 1fr; gap: 1.25rem; }
+    .contact-panel { width: calc(100% - 1.5rem); padding: 2rem 1.25rem; }
+    .map-card { min-height: 0; }
+    .map-copy { padding: 1.5rem; }
+    .map-card iframe { min-height: 18rem; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-links { flex-direction: column; gap: .65rem; }
+    .footer-inner p { grid-column: auto; }
+    footer { padding-bottom: 6rem; }
+    .mobile-sticky { position: fixed; z-index: 19; right: .75rem; bottom: .75rem; left: .75rem; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 1px solid rgba(255,255,255,.6); border-radius: 999px; background: var(--rose-dark); box-shadow: 0 .7rem 2rem rgba(56,35,31,.25); opacity: 0; pointer-events: none; transform: translateY(calc(100% + 1.5rem)); transition: opacity .2s ease, transform .2s ease; }
+    .mobile-sticky.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .mobile-sticky a { display: grid; min-height: 3.25rem; place-items: center; color: white; font-size: .86rem; font-weight: 750; text-decoration: none; }
+    .mobile-sticky a + a { border-left: 1px solid rgba(255,255,255,.25); background: #487b63; }
+  }
+</style>

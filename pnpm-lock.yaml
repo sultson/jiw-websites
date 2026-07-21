@@ -2017,6 +2017,28 @@ importers:
         specifier: ^4.85.0
         version: 4.85.0(@cloudflare/workers-types@4.20260424.1)
 
+  apps/pedicure-flow-ine:
+    dependencies:
+      '@astrojs/sitemap':
+        specifier: ^3.7.0
+        version: 3.7.3
+      astro:
+        specifier: ^5.16.0
+        version: 5.18.2(@types/node@24.13.2)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.60.1)(tsx@4.21.0)(typescript@5.8.3)(yaml@2.9.0)
+    devDependencies:
+      '@astrojs/check':
+        specifier: ^0.9.4
+        version: 0.9.9(prettier@3.8.4)(typescript@5.8.3)
+      sharp:
+        specifier: ^0.34.5
+        version: 0.34.5
+      typescript:
+        specifier: ~5.8.2
+        version: 5.8.3
+      wrangler:
+        specifier: ^4.85.0
+        version: 4.85.0(@cloudflare/workers-types@4.20260424.1)
+
   apps/resq-protec:
     dependencies:
       '@astrojs/sitemap':

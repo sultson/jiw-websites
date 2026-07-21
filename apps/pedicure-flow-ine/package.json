@@ -1,0 +1,25 @@
+{
+  "name": "@jiw/pedicure-flow-ine",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port 3018 --host",
+    "build": "astro build",
+    "preview": "astro preview --host",
+    "lint": "astro check",
+    "clean": "rm -rf dist .astro",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
+    "astro": "^5.16.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "sharp": "^0.34.5",
+    "typescript": "~5.8.2",
+    "wrangler": "^4.85.0"
+  }
+}

@@ -1,0 +1,73 @@
+:root {
+  --rose: #a86a73;
+  --rose-dark: #7f4b54;
+  --taupe: #8b7a74;
+  --blue: #7fb3d6;
+  --blue-light: #dceaf6;
+  --blush: #f6edef;
+  --cream: #fcfaf8;
+  --ink: #332d2b;
+  --muted: #6d6360;
+  --line: rgba(139, 122, 116, 0.2);
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--cream);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.container { width: min(1120px, calc(100% - 2.5rem)); margin-inline: auto; }
+.eyebrow {
+  margin: 0 0 .75rem;
+  color: var(--rose-dark);
+  font-size: .75rem;
+  font-weight: 750;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 500; line-height: 1.08; text-wrap: balance; }
+h1 { font-size: clamp(2.75rem, 7vw, 5.75rem); }
+h2 { font-size: clamp(2.1rem, 4vw, 3.6rem); }
+h3 { font-size: 1.55rem; }
+p { margin: 0; }
+.button {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  padding: .85rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--rose-dark);
+  color: white;
+  font-size: .92rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+.button:hover { background: #653942; }
+.button--ghost { border-color: var(--line); background: rgba(255,255,255,.68); color: var(--ink); }
+.button--ghost:hover { border-color: var(--rose); background: white; color: var(--rose-dark); }
+.icon { width: 1.15rem; height: 1.15rem; flex: none; }
+@media (max-width: 700px) {
+  .container { width: min(100% - 1.5rem, 1120px); }
+  h1 { font-size: clamp(2.6rem, 13vw, 4rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}
