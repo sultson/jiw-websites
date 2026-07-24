@@ -47,7 +47,7 @@ export const reviews: Review[] = [
   },
   {
     id: 5,
-    name: 'Joanna Glejndek',
+    name: 'Johanna Glejndek',
     rating: 5,
     nl: 'Ania is een echte professional die haar vak verstaat. De manicure is altijd perfect en mijn nagels blijven lang prachtig. De sfeer tijdens mijn bezoek is erg prettig en ontspannend.',
     en: 'Ania is a true professional who knows her craft. The manicure is always perfect and my nails stay beautiful for a long time. The atmosphere during my visit is very pleasant and relaxing.',
