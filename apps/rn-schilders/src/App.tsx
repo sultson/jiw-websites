@@ -2309,7 +2309,6 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
   const step1PanelRef = useRef<HTMLFieldSetElement>(null);
   const step2PanelRef = useRef<HTMLFieldSetElement>(null);
   const step3PanelRef = useRef<HTMLDivElement>(null);
-  const whatsappButtonRef = useRef<HTMLAnchorElement>(null);
   const hasChangedStep = useRef(false);
   const isSubmitting = submitState === 'submitting';
 
@@ -2328,17 +2327,6 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
     if (showCallback) step3PanelRef.current?.focus({ preventScroll: true });
   }, [showCallback]);
 
-  useEffect(() => {
-    if (!timing || showCallback || window.innerWidth >= 1024) return;
-    const button = whatsappButtonRef.current;
-    if (!button) return;
-    button.focus({ preventScroll: true });
-    button.scrollIntoView({
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-      block: 'nearest',
-    });
-  }, [timing, showCallback]);
-
   const changeStep = (next: 1 | 2) => {
     hasChangedStep.current = true;
     setStep(next);
@@ -2352,15 +2340,13 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
 
   const handleTimingSelection = (option: string) => {
     setTiming(option);
+    trackEvent('lead_whatsapp_click', option, formId);
+    trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo);
+    window.location.assign(getCampaignWhatsAppHref(scope, option));
   };
 
   const toggleCallback = () => {
     setShowCallback((current) => !current);
-  };
-
-  const handleCampaignWhatsAppClick = () => {
-    trackEvent('lead_whatsapp_click', timing, formId);
-    trackGoogleAdsConversion(googleAdsWhatsappConversionSendTo);
   };
 
   const clearFieldError = (field: CampaignFieldName) => {
@@ -2514,33 +2500,15 @@ function CampaignLeadForm({ formId, compact, className = '' }: { formId: string;
             </label>
           ))}
         </div>
-        <div className={`grid transition-[grid-template-rows,opacity] duration-200 ease-out ${timing ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`} aria-hidden={!timing}>
-          {timing && (
-            <div className="min-h-0 overflow-hidden">
-              {!showCallback && (
-                <a
-                  ref={whatsappButtonRef}
-                  href={getCampaignWhatsAppHref(scope, timing)}
-                  onClick={handleCampaignWhatsAppClick}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-primary mt-4 w-full"
-                >
-                  <WhatsAppGlyph className="h-5 w-5" />
-                  Ontvang gratis richtprijs via WhatsApp
-                </a>
-              )}
-              <p className="mt-3 text-sm leading-6 text-graphite">
-                Liever bellen?{' '}
-                <a href={phoneHref} onClick={trackGoogleAdsCallConversion} className="font-bold text-navy underline underline-offset-2">{phoneDisplay}</a>{' '}
-                <span aria-hidden="true">·</span> of laat een{' '}
-                <button type="button" onClick={toggleCallback} aria-expanded={showCallback} aria-controls={`${formId}-callback`} className="font-bold text-navy underline underline-offset-2">
-                  terugbelverzoek achter
-                </button>
-              </p>
-            </div>
-          )}
-        </div>
+        <p className="mt-3 text-sm leading-6 text-graphite">
+          Uw keuze opent WhatsApp direct met een vooraf ingevuld bericht.
+          {' '}Liever bellen?{' '}
+          <a href={phoneHref} onClick={trackGoogleAdsCallConversion} className="font-bold text-navy underline underline-offset-2">{phoneDisplay}</a>{' '}
+          <span aria-hidden="true">·</span> of laat een{' '}
+          <button type="button" onClick={toggleCallback} aria-expanded={showCallback} aria-controls={`${formId}-callback`} className="font-bold text-navy underline underline-offset-2">
+            terugbelverzoek achter
+          </button>
+        </p>
       </fieldset>
 
       <div id={`${formId}-callback`} ref={step3PanelRef} tabIndex={-1} className={step === 2 && showCallback ? 'mt-5 outline-none' : 'hidden'}>
