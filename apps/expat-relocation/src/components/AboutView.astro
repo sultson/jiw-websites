@@ -1,0 +1,99 @@
+---
+import CtaBand from './CtaBand.astro';
+import { type Lang } from '../lib/i18n';
+import { getContent } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = getContent(lang);
+const a = c.core.about;
+const reviews = c.core.home.reviews;
+---
+
+<section class="border-b border-line bg-ivory">
+  <div class="container-site py-14 text-center md:py-20">
+    <span class="eyebrow">{a.eyebrow}</span>
+    <h1 class="mx-auto mt-4 max-w-3xl font-display text-4xl md:text-5xl">{a.title}</h1>
+    <span class="gold-rule mx-auto mt-7"></span>
+  </div>
+</section>
+
+<!-- Portrait + story -->
+<section class="container-site py-16 md:py-24">
+  <div class="mx-auto grid max-w-5xl gap-12 md:grid-cols-[2fr_3fr] md:gap-16">
+    <img src={a.image} alt={a.imageAlt} class="aspect-[3/4] w-full object-cover shadow-card" width="896" height="1200" loading="eager" fetchpriority="high" />
+    <div class="self-center">
+      {a.intro.map((p) => (
+        <p class="mt-5 text-[1.05rem] leading-relaxed first:mt-0">{p}</p>
+      ))}
+      <h2 class="mt-10 font-display text-2xl md:text-3xl">{a.approach.heading}</h2>
+      {a.approach.text.map((p) => (
+        <p class="mt-4 leading-relaxed">{p}</p>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Why boutique -->
+<section class="border-y border-line bg-ivory">
+  <div class="container-site py-16 md:py-24">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="font-display text-3xl md:text-4xl">{a.boutique.heading}</h2>
+      <span class="gold-rule mx-auto mt-6"></span>
+      {a.boutique.text.map((p) => (
+        <p class="mx-auto mt-6 leading-relaxed">{p}</p>
+      ))}
+    </div>
+    <div class="mx-auto mt-12 grid max-w-4xl gap-10 md:grid-cols-3">
+      {a.boutique.points.map((point) => (
+        <div class="border-t border-gold pt-5">
+          <h3 class="font-display text-xl">{point.title}</h3>
+          <p class="mt-2 text-[0.92rem] leading-relaxed">{point.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Families -->
+<section class="container-site py-16 md:py-24">
+  <div class="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2 md:gap-16">
+    <img src="/images/relocation-family.jpg" alt="" class="aspect-[4/3] w-full object-cover" width="800" height="600" loading="lazy" />
+    <div>
+      <h2 class="font-display text-3xl">{a.families.heading}</h2>
+      {a.families.text.map((p) => (
+        <p class="mt-5 leading-relaxed">{p}</p>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section class="border-t border-line">
+  <div class="container-site py-16 md:py-24">
+    <div class="text-center">
+      <h2 class="font-display text-3xl md:text-4xl">{a.reviews.heading}</h2>
+      <p class="mt-4 text-[0.95rem] text-ink-soft">{a.reviews.sub}</p>
+    </div>
+    <div class="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-2">
+      {reviews.items.map((review) => (
+        <figure class="flex flex-col justify-between border border-line p-8 md:p-10">
+          <blockquote class="font-display text-xl leading-relaxed text-navy">“{review.quote}”</blockquote>
+          <figcaption class="mt-7">
+            <p class="font-medium text-navy">{review.name}</p>
+            <p class="mt-0.5 text-[0.8rem] uppercase tracking-[0.14em] text-ink-soft">{review.route}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {review.tags.map((tag) => (
+                <span class="border border-line px-3 py-1 text-[0.7rem] uppercase tracking-[0.1em] text-ink-soft">{tag}</span>
+              ))}
+            </div>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<CtaBand lang={lang} cta={a.cta} />

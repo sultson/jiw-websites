@@ -1,0 +1,61 @@
+---
+import Icon from './Icon.astro';
+import PageHero from './PageHero.astro';
+import CtaBand from './CtaBand.astro';
+import type { SectionContent } from '../content/types';
+import { localizePath, type Lang } from '../lib/i18n';
+import { getContent } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+  section: SectionContent;
+  /** English base path of the section, e.g. '/immigration'. */
+  basePath: string;
+}
+const { lang, section, basePath } = Astro.props;
+const c = getContent(lang);
+const l = (p: string) => localizePath(p, lang);
+---
+
+<PageHero
+  eyebrow={section.eyebrow}
+  title={section.title}
+  intro={section.intro}
+  image={section.image}
+  imageAlt={section.imageAlt}
+/>
+
+<section class="container-site py-16 md:py-24">
+  <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+    {section.services.map((s) => (
+      <a href={l(`${basePath}/${s.slug}`)} class="group block">
+        <div class="overflow-hidden">
+          <img
+            src={s.image}
+            alt={s.imageAlt}
+            class="aspect-[3/2] w-full object-cover"
+            width="800"
+            height="533"
+            loading="lazy"
+          />
+        </div>
+        <h2 class="mt-5 font-display text-2xl transition-colors group-hover:text-gold">{s.menuLabel}</h2>
+        <p class="mt-2 text-[0.92rem] leading-relaxed">{s.cardText}</p>
+        <span class="link-editorial mt-4">{c.core.ui.cta.readMore}</span>
+      </a>
+    ))}
+    {(section.crossLinks ?? []).map((cl) => (
+      <a href={l(cl.path)} class="group flex flex-col justify-between border border-line p-8 transition-colors hover:border-gold">
+        <div>
+          <h2 class="font-display text-2xl transition-colors group-hover:text-gold">{cl.label}</h2>
+          <p class="mt-2 text-[0.92rem] leading-relaxed">{cl.text}</p>
+        </div>
+        <span class="mt-6 inline-flex items-center gap-2 text-gold">
+          <Icon name="arrow" size={18} />
+        </span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<CtaBand lang={lang} cta={section.cta} />

@@ -1,0 +1,13 @@
+---
+import Layout from '../components/Layout.astro';
+import AboutView from '../components/AboutView.astro';
+import { getContent } from '../lib/content';
+import { SECTIONS } from '../lib/i18n';
+
+const lang = 'en' as const;
+const a = getContent(lang).core.about;
+---
+
+<Layout title={a.metaTitle} description={a.metaDescription} lang={lang} path={SECTIONS.about} image={a.image}>
+  <AboutView lang={lang} />
+</Layout>

@@ -1,0 +1,127 @@
+---
+import Icon from './Icon.astro';
+import PageHero from './PageHero.astro';
+import LeadForm from './LeadForm.astro';
+import type { ServiceContent } from '../content/types';
+import { localizePath, type Lang } from '../lib/i18n';
+import { getContent } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+  service: ServiceContent;
+  /** English base path of the section, e.g. '/immigration'. */
+  basePath: string;
+  sectionTitle: string;
+  siblings: { label: string; path: string }[];
+}
+const { lang, service: s, basePath, sectionTitle, siblings } = Astro.props;
+const c = getContent(lang);
+const l = (p: string) => localizePath(p, lang);
+---
+
+<PageHero eyebrow={s.eyebrow} title={s.title} intro={s.intro} image={s.image} imageAlt={s.imageAlt} />
+
+<!-- Who it is for -->
+<section class="container-site py-16 md:py-24">
+  <div class="mx-auto grid max-w-4xl gap-10 md:grid-cols-[1fr_1.4fr] md:gap-16">
+    <h2 class="font-display text-3xl">{s.forWho.title}</h2>
+    <ul class="space-y-4">
+      {s.forWho.items.map((item) => (
+        <li class="flex items-start gap-3.5">
+          <span class="mt-1.5 text-gold"><Icon name="check" size={16} /></span>
+          <span class="text-[0.98rem] leading-relaxed">{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- What is included -->
+<section class="border-y border-line bg-ivory">
+  <div class="container-site py-16 md:py-24">
+    <h2 class="text-center font-display text-3xl md:text-4xl">{s.included.title}</h2>
+    <span class="gold-rule mx-auto mt-6"></span>
+    <div class="mt-12 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+      {s.included.blocks.map((block) => (
+        <div class="bg-white p-7">
+          <h3 class="font-display text-xl">{block.title}</h3>
+          <p class="mt-2.5 text-[0.92rem] leading-relaxed">{block.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="container-site py-16 md:py-24">
+  <h2 class="text-center font-display text-3xl md:text-4xl">{s.process.title}</h2>
+  <span class="gold-rule mx-auto mt-6"></span>
+  <ol class="mx-auto mt-12 grid max-w-5xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    {s.process.steps.map((step, i) => (
+      <li>
+        <span class="font-display text-4xl text-gold">{String(i + 1).padStart(2, '0')}</span>
+        <h3 class="mt-3 font-display text-lg">{step.title}</h3>
+        <p class="mt-2 text-[0.9rem] leading-relaxed">{step.text}</p>
+      </li>
+    ))}
+  </ol>
+  {s.note && (
+    <p class="mx-auto mt-12 max-w-2xl border-l-2 border-gold bg-ivory px-6 py-4 text-[0.9rem] italic leading-relaxed">
+      {s.note}
+    </p>
+  )}
+</section>
+
+<!-- FAQ -->
+<section class="border-t border-line">
+  <div class="container-site py-16 md:py-24">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="font-display text-3xl">{s.faq.title}</h2>
+      <div class="mt-8 border-t border-line">
+        {s.faq.items.map((item) => (
+          <details class="group border-b border-line">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 py-5 font-medium text-navy [&::-webkit-details-marker]:hidden">
+              <span class="text-[1.02rem]">{item.q}</span>
+              <span class="shrink-0 text-gold transition-transform duration-200 group-open:rotate-180">
+                <Icon name="chevronDown" size={18} />
+              </span>
+            </summary>
+            <p class="pb-6 text-[0.95rem] leading-relaxed">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA + tailored form -->
+<section class="border-t border-line bg-ivory" id="inquiry">
+  <div class="container-site py-16 md:py-24">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="font-display text-3xl md:text-4xl">{s.cta.title}</h2>
+      <p class="mx-auto mt-4 max-w-xl leading-relaxed">{s.cta.text}</p>
+    </div>
+    <div class="mx-auto mt-10 max-w-3xl">
+      <LeadForm lang={lang} kind={s.form} preselect={s.menuLabel} id={`lead-${s.slug}`} />
+    </div>
+  </div>
+</section>
+
+<!-- Other services in this section -->
+<section class="container-site py-14 md:py-20">
+  <p class="eyebrow eyebrow-navy text-center">{c.core.ui.misc.otherServices}</p>
+  <h2 class="mt-3 text-center font-display text-2xl">{sectionTitle}</h2>
+  <div class="mx-auto mt-8 flex max-w-4xl flex-wrap justify-center gap-3">
+    {siblings.map((sib) => (
+      <a
+        href={l(sib.path)}
+        class="border border-line px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-navy transition-colors hover:border-gold hover:text-gold"
+      >
+        {sib.label}
+      </a>
+    ))}
+    <a href={l(basePath)} class="border border-navy bg-navy px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-white transition-colors hover:bg-navy-2">
+      {c.core.ui.cta.allServices}
+    </a>
+  </div>
+</section>

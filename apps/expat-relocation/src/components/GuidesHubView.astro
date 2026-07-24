@@ -1,0 +1,53 @@
+---
+import CtaBand from './CtaBand.astro';
+import { SECTIONS, localizePath, type Lang } from '../lib/i18n';
+import { getContent } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = getContent(lang);
+const g = c.guides;
+const l = (p: string) => localizePath(p, lang);
+---
+
+<section class="border-b border-line bg-ivory">
+  <div class="container-site py-14 text-center md:py-20">
+    <span class="eyebrow">{g.eyebrow}</span>
+    <h1 class="mx-auto mt-4 max-w-3xl font-display text-4xl md:text-5xl">{g.title}</h1>
+    <span class="gold-rule mx-auto mt-7"></span>
+    {g.intro.map((p) => (
+      <p class="mx-auto mt-5 max-w-2xl text-[1.02rem] leading-relaxed">{p}</p>
+    ))}
+  </div>
+  <div class="container-site pb-0">
+    <img
+      src="/images/guides-flatlay.jpg"
+      alt=""
+      class="aspect-[5/2] w-full translate-y-14 object-cover shadow-card md:translate-y-20"
+      width="1600"
+      height="640"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+</section>
+<div class="h-14 md:h-20"></div>
+
+<section class="container-site py-16 md:py-24">
+  <div class="mx-auto max-w-3xl divide-y divide-line border-y border-line">
+    {g.guides.map((guide, i) => (
+      <a href={l(`${SECTIONS.guides}/${guide.slug}`)} class="group grid gap-x-8 gap-y-2 py-8 md:grid-cols-[3.5rem_1fr]">
+        <span class="font-display text-2xl text-gold">{String(i + 1).padStart(2, '0')}</span>
+        <span>
+          <h2 class="font-display text-2xl transition-colors group-hover:text-gold">{guide.title}</h2>
+          <p class="mt-2 text-[0.94rem] leading-relaxed">{guide.cardText}</p>
+          <span class="link-editorial mt-4">{c.core.ui.cta.readMore}</span>
+        </span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<CtaBand lang={lang} cta={g.cta} />

@@ -1,0 +1,140 @@
+---
+import Icon from './Icon.astro';
+import LeadForm from './LeadForm.astro';
+import { site } from '../data/site';
+import { type Lang } from '../lib/i18n';
+import { getContent } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = getContent(lang);
+const ct = c.core.contact;
+---
+
+<section class="border-b border-line bg-ivory">
+  <div class="container-site py-14 text-center md:py-20">
+    <span class="eyebrow">{ct.eyebrow}</span>
+    <h1 class="mx-auto mt-4 max-w-3xl font-display text-4xl md:text-5xl">{ct.title}</h1>
+    <span class="gold-rule mx-auto mt-7"></span>
+    {ct.intro.map((p) => (
+      <p class="mx-auto mt-5 max-w-2xl text-[1.02rem] leading-relaxed">{p}</p>
+    ))}
+  </div>
+</section>
+
+<section class="container-site py-14 md:py-20">
+  <div class="mx-auto max-w-3xl">
+    <!-- Path selector -->
+    <div class="grid gap-3 sm:grid-cols-3" role="tablist" aria-label={ct.title}>
+      {ct.tabs.map((tab, i) => (
+        <button
+          type="button"
+          role="tab"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          data-contact-tab={tab.key}
+          class:list={[
+            'cursor-pointer border px-5 py-4 text-left transition-colors',
+            i === 0 ? 'border-navy bg-navy text-white' : 'border-line bg-white text-navy hover:border-gold',
+          ]}
+        >
+          <span class="block text-[0.8rem] font-medium uppercase tracking-[0.14em]">{tab.label}</span>
+          <span class:list={['mt-1 block text-[0.8rem]', i === 0 ? 'text-white/70' : 'text-ink-soft']}>{tab.text}</span>
+        </button>
+      ))}
+    </div>
+
+    <div class="mt-8">
+      <div data-contact-panel="immigration">
+        <h2 class="font-display text-2xl">{ct.formCopy.immigration.heading}</h2>
+        <p class="mt-2 text-[0.92rem] text-ink-soft">{ct.formCopy.immigration.text}</p>
+        <div class="mt-6"><LeadForm lang={lang} kind="immigration" id="contact-immigration" /></div>
+      </div>
+      <div data-contact-panel="relocation" class="hidden">
+        <h2 class="font-display text-2xl">{ct.formCopy.relocation.heading}</h2>
+        <p class="mt-2 text-[0.92rem] text-ink-soft">{ct.formCopy.relocation.text}</p>
+        <div class="mt-6"><LeadForm lang={lang} kind="relocation" id="contact-relocation" /></div>
+      </div>
+      <div data-contact-panel="vip" class="hidden">
+        <h2 class="font-display text-2xl">{ct.formCopy.vip.heading}</h2>
+        <p class="mt-2 text-[0.92rem] text-ink-soft">{ct.formCopy.vip.text}</p>
+        <div class="mt-6"><LeadForm lang={lang} kind="vip" id="contact-vip" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WhatsApp + emergency + details -->
+<section class="border-t border-line bg-ivory">
+  <div class="container-site grid gap-10 py-16 md:grid-cols-3 md:py-20">
+    <div class="border-t-2 border-gold bg-white p-8">
+      <h2 class="font-display text-xl">{ct.whatsapp.heading}</h2>
+      <p class="mt-3 text-[0.92rem] leading-relaxed">{ct.whatsapp.text}</p>
+      <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn btn-whatsapp mt-6 w-full">
+        <Icon name="whatsapp" size={15} />
+        {ct.whatsapp.label}
+      </a>
+    </div>
+    <div class="border-t-2 border-gold bg-white p-8">
+      <h2 class="font-display text-xl">{ct.emergency.heading}</h2>
+      <p class="mt-3 text-[0.92rem] leading-relaxed">{ct.emergency.text}</p>
+    </div>
+    <div class="border-t-2 border-gold bg-white p-8">
+      <h2 class="font-display text-xl">{ct.details.heading}</h2>
+      <ul class="mt-4 space-y-3 text-[0.92rem]">
+        <li class="flex items-start gap-3">
+          <Icon name="mapPin" size={16} class="mt-1 shrink-0 text-gold" />
+          <span>{site.legalName}<br />{site.address.line1}, {site.address.city}</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <Icon name="mail" size={16} class="shrink-0 text-gold" />
+          <a href={`mailto:${site.email}`} class="hover:text-navy">{site.email}</a>
+        </li>
+        <li class="flex items-center gap-3">
+          <Icon name="phone" size={16} class="shrink-0 text-gold" />
+          <a href={`tel:${site.phone.e164}`} class="hover:text-navy">{site.phone.display}</a>
+        </li>
+        <li class="flex items-center gap-3">
+          <Icon name="whatsapp" size={16} class="shrink-0 text-gold" />
+          <a href={site.whatsappUrl} target="_blank" rel="noopener" class="hover:text-navy">{site.whatsapp.display}</a>
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="text-[0.7rem] uppercase tracking-[0.16em] text-ink-soft">{c.core.ui.footer.kvkLabel}</span>
+          <span>{site.kvk}</span>
+        </li>
+      </ul>
+      <div class="mt-5 flex gap-4">
+        <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="Instagram" class="text-ink-soft hover:text-gold"><Icon name="instagram" size={18} /></a>
+        <a href={site.social.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn" class="text-ink-soft hover:text-gold"><Icon name="linkedin" size={18} /></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Contact path tabs: swap the visible tailored form.
+  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-contact-tab]');
+  const panels = document.querySelectorAll<HTMLElement>('[data-contact-panel]');
+  const activate = (key: string) => {
+    tabs.forEach((t) => {
+      const active = t.dataset.contactTab === key;
+      t.setAttribute('aria-selected', String(active));
+      t.classList.toggle('border-navy', active);
+      t.classList.toggle('bg-navy', active);
+      t.classList.toggle('text-white', active);
+      t.classList.toggle('border-line', !active);
+      t.classList.toggle('bg-white', !active);
+      t.classList.toggle('text-navy', !active);
+      const sub = t.querySelector('span + span');
+      sub?.classList.toggle('text-white/70', active);
+      sub?.classList.toggle('text-ink-soft', !active);
+    });
+    panels.forEach((p) => p.classList.toggle('hidden', p.dataset.contactPanel !== key));
+  };
+  tabs.forEach((t) => t.addEventListener('click', () => activate(t.dataset.contactTab ?? '')));
+
+  // Deep-link support: /contact#vip etc.
+  const hash = location.hash.replace('#', '');
+  if (['immigration', 'relocation', 'vip'].includes(hash)) activate(hash);
+</script>

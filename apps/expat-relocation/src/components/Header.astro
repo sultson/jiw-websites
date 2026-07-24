@@ -1,0 +1,226 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+import { LANGS, LANG_LABELS, SECTIONS, localizePath, type Lang } from '../lib/i18n';
+import { getContent } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+  /** Canonical English path of the current page, for language switching. */
+  path: string;
+}
+const { lang, path } = Astro.props;
+const c = getContent(lang);
+const nav = c.core.ui.nav;
+
+const l = (p: string) => localizePath(p, lang);
+
+const navItems = [
+  { label: nav.home, href: l('/') },
+  { label: nav.immigration, href: l(SECTIONS.immigration) },
+  { label: nav.housing, href: l(SECTIONS.housing) },
+  { label: nav.relocation, href: l(SECTIONS.relocation) },
+  { label: nav.business, href: l(SECTIONS.business) },
+  { label: nav.vip, href: l(SECTIONS.vip) },
+  { label: nav.guides, href: l(SECTIONS.guides) },
+  { label: nav.about, href: l(SECTIONS.about) },
+  { label: nav.contact, href: l(SECTIONS.contact) },
+];
+
+const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => {
+  const clean = href.replace(/\/$/, '') || '/';
+  if (clean === l('/').replace(/\/$/, '') || clean === '/') return current === clean;
+  return current === clean || current.startsWith(clean + '/');
+};
+---
+
+<header id="site-header" class="sticky top-0 z-50 border-b border-line bg-white">
+  <!-- Utility row (desktop) -->
+  <div class="hidden border-b border-line lg:block">
+    <div class="container-site flex h-10 items-center justify-between text-[0.68rem] font-medium uppercase tracking-[0.18em] text-ink-soft">
+      <div class="relative" id="lang-menu-wrap">
+        <button
+          id="lang-menu-btn"
+          type="button"
+          class="flex cursor-pointer items-center gap-1.5 py-2 uppercase tracking-[0.18em] transition-colors hover:text-navy"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <Icon name="globe" size={14} />
+          {LANG_LABELS[lang]}
+          <Icon name="chevronDown" size={12} />
+        </button>
+        <div
+          id="lang-menu"
+          class="absolute left-0 top-full hidden min-w-40 border border-line bg-white py-2 shadow-card"
+        >
+          {LANGS.map((lg) => (
+            <a
+              href={localizePath(path, lg)}
+              data-lang-choice={lg}
+              class:list={[
+                'block px-4 py-1.5 tracking-[0.14em] transition-colors hover:text-gold',
+                lg === lang ? 'text-gold' : 'text-navy',
+              ]}
+            >
+              {LANG_LABELS[lg]}
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="flex items-center gap-7">
+        <a href={`mailto:${site.email}`} class="transition-colors hover:text-navy">{site.email}</a>
+        <a href={site.whatsappUrl} target="_blank" rel="noopener" class="flex items-center gap-2 text-navy transition-colors hover:text-gold">
+          <Icon name="whatsapp" size={14} />
+          {c.core.ui.cta.whatsapp}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logo row -->
+  <div class="container-site relative flex h-16 items-center justify-between lg:h-[4.6rem] lg:justify-center">
+    <button
+      id="menu-open"
+      type="button"
+      class="-ml-2 cursor-pointer p-2 text-navy lg:hidden"
+      aria-label="Menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <Icon name="menu" size={24} />
+    </button>
+    <a href={l('/')} class="absolute left-1/2 -translate-x-1/2" aria-label={site.name}>
+      <img src="/images/logo.png" alt={site.name} class="h-12 w-auto md:h-[3.5rem]" width="750" height="150" />
+    </a>
+    <a href={site.whatsappUrl} target="_blank" rel="noopener" class="-mr-2 p-2 text-navy lg:hidden" aria-label={c.core.ui.cta.whatsapp}>
+      <Icon name="whatsapp" size={22} />
+    </a>
+  </div>
+
+  <!-- Nav row (desktop) -->
+  <nav class="hidden lg:block" aria-label="Main">
+    <div class="container-site flex items-center justify-center gap-8 pb-4">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'text-[0.72rem] font-medium uppercase tracking-[0.16em] transition-colors',
+            isActive(item.href)
+              ? 'text-gold'
+              : 'text-navy hover:text-gold',
+          ]}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile menu overlay: sibling of the header, solid surface -->
+<div id="mobile-menu" class="fixed inset-0 z-60 hidden lg:hidden" role="dialog" aria-modal="true">
+  <div id="menu-backdrop" class="absolute inset-0 bg-navy/40 opacity-0 transition-opacity duration-300"></div>
+  <div
+    id="menu-panel"
+    class="absolute inset-y-0 left-0 flex w-[85%] max-w-sm -translate-x-full flex-col overflow-y-auto bg-white shadow-lift transition-transform duration-300 ease-out"
+  >
+    <div class="flex items-center justify-between border-b border-line px-6 py-4">
+      <img src="/images/logo.png" alt={site.name} class="h-9 w-auto" width="750" height="150" />
+      <button id="menu-close" type="button" class="-mr-2 cursor-pointer p-2 text-navy" aria-label="Close">
+        <Icon name="close" size={22} />
+      </button>
+    </div>
+    <nav class="flex flex-col px-6 py-6" aria-label="Mobile">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'border-b border-line py-3.5 font-display text-lg transition-colors',
+            isActive(item.href) ? 'text-gold' : 'text-navy',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <div class="mt-auto space-y-4 px-6 pb-8">
+      <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn btn-whatsapp w-full">
+        <Icon name="whatsapp" size={16} />
+        {c.core.ui.cta.whatsappLong}
+      </a>
+      <div class="flex flex-wrap gap-x-4 gap-y-1 text-[0.7rem] uppercase tracking-[0.14em] text-ink-soft">
+        {LANGS.map((lg) => (
+          <a
+            href={localizePath(path, lg)}
+            data-lang-choice={lg}
+            class:list={[lg === lang ? 'text-gold' : 'hover:text-navy']}
+          >
+            {LANG_LABELS[lg]}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Mobile menu
+  const menu = document.getElementById('mobile-menu');
+  const panel = document.getElementById('menu-panel');
+  const backdrop = document.getElementById('menu-backdrop');
+  const openBtn = document.getElementById('menu-open');
+  const closeBtn = document.getElementById('menu-close');
+
+  const openMenu = () => {
+    if (!menu || !panel || !backdrop) return;
+    menu.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      panel.classList.remove('-translate-x-full');
+      backdrop.classList.remove('opacity-0');
+    });
+    openBtn?.setAttribute('aria-expanded', 'true');
+  };
+  const closeMenu = () => {
+    if (!menu || !panel || !backdrop) return;
+    panel.classList.add('-translate-x-full');
+    backdrop.classList.add('opacity-0');
+    document.body.style.overflow = '';
+    openBtn?.setAttribute('aria-expanded', 'false');
+    setTimeout(() => menu.classList.add('hidden'), 320);
+  };
+
+  openBtn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  backdrop?.addEventListener('click', closeMenu);
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu && !menu.classList.contains('hidden')) closeMenu();
+  });
+
+  // Language dropdown (desktop) + remember explicit choice
+  const langBtn = document.getElementById('lang-menu-btn');
+  const langMenu = document.getElementById('lang-menu');
+  langBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = !langMenu?.classList.contains('hidden');
+    langMenu?.classList.toggle('hidden');
+    langBtn.setAttribute('aria-expanded', String(!open));
+  });
+  document.addEventListener('click', () => {
+    if (langMenu && !langMenu.classList.contains('hidden')) {
+      langMenu.classList.add('hidden');
+      langBtn?.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.querySelectorAll<HTMLAnchorElement>('[data-lang-choice]').forEach((a) =>
+    a.addEventListener('click', () => {
+      try {
+        localStorage.setItem('ei-lang', a.dataset.langChoice ?? '');
+      } catch {}
+    })
+  );
+</script>

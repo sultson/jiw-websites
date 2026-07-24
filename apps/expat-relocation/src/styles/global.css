@@ -1,0 +1,200 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/playfair-display';
+@import '@fontsource-variable/montserrat';
+
+/* ------------------------------------------------------------------ *
+ * E & I — Expat & Immigration Services
+ * Brand sheet: navy #00143a, gold #d4af37, off-white #f5f5f7.
+ * Playfair Display for headings (thin, editorial), Montserrat for body.
+ * Gold is jewellery: hairlines, eyebrows, small accents. Never big fills.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-navy: #00143a;
+  --color-navy-2: #0a2150;
+  --color-navy-3: #142e63;
+  --color-gold: #d4af37;
+  --color-gold-soft: #dfc16a;
+  --color-gold-pale: #f3e8c8;
+  --color-ivory: #f5f5f7;
+  --color-paper: #ffffff;
+  --color-ink: #45526b;
+  --color-ink-soft: #64708a;
+  --color-line: rgba(0, 20, 58, 0.12);
+
+  --font-display: 'Playfair Display Variable', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Montserrat Variable', 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(0, 20, 58, 0.05), 0 16px 40px -24px rgba(0, 20, 58, 0.25);
+  --shadow-lift: 0 2px 4px rgba(0, 20, 58, 0.06), 0 32px 64px -32px rgba(0, 20, 58, 0.35);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-paper);
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--color-navy);
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: var(--color-gold-pale);
+    color: var(--color-navy);
+  }
+}
+
+@utility container-site {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 76rem;
+  padding-inline: 1.5rem;
+  @media (min-width: 768px) {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* Small uppercase label above headings. */
+@utility eyebrow {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+@utility eyebrow-navy {
+  color: rgba(0, 20, 58, 0.55);
+}
+
+/* Short centered gold hairline, echoes the logo's rules. */
+@utility gold-rule {
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  background: var(--color-gold);
+}
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 0.95rem 1.9rem;
+    border: 1px solid transparent;
+    transition: background-color 0.25s var(--ease-out-soft), color 0.25s var(--ease-out-soft),
+      border-color 0.25s var(--ease-out-soft);
+    cursor: pointer;
+    text-align: center;
+  }
+  .btn-navy {
+    background: var(--color-navy);
+    color: #fff;
+  }
+  .btn-navy:hover {
+    background: var(--color-navy-2);
+  }
+  .btn-outline {
+    border-color: rgba(0, 20, 58, 0.3);
+    color: var(--color-navy);
+    background: transparent;
+  }
+  .btn-outline:hover {
+    border-color: var(--color-navy);
+  }
+  .btn-gold {
+    border-color: rgba(212, 175, 55, 0.65);
+    color: var(--color-gold-soft);
+    background: transparent;
+  }
+  .btn-gold:hover {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-navy);
+  }
+  .btn-white {
+    background: #fff;
+    color: var(--color-navy);
+  }
+  .btn-white:hover {
+    background: var(--color-ivory);
+  }
+  .btn-whatsapp {
+    background: #1faa55;
+    color: #fff;
+  }
+  .btn-whatsapp:hover {
+    background: #178f47;
+  }
+
+  .form-input {
+    width: 100%;
+    background: #fff;
+    border: 1px solid rgba(0, 20, 58, 0.18);
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+    color: var(--color-navy);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .form-input::placeholder {
+    color: rgba(69, 82, 107, 0.55);
+  }
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
+  }
+  .form-label {
+    display: block;
+    margin-bottom: 0.45rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-navy);
+  }
+
+  /* Editorial link: small caps with gold underline offset. */
+  .link-editorial {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-navy);
+    border-bottom: 1px solid var(--color-gold);
+    padding-bottom: 0.35rem;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .link-editorial:hover {
+    color: var(--color-gold);
+  }
+  .link-editorial-light {
+    color: #fff;
+  }
+  .link-editorial-light:hover {
+    color: var(--color-gold-soft);
+  }
+}

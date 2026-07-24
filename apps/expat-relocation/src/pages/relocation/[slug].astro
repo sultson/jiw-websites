@@ -1,0 +1,23 @@
+---
+import Layout from '../../components/Layout.astro';
+import ServiceView from '../../components/ServiceView.astro';
+import { sectionServiceSlugs, serviceProps } from '../../lib/pages';
+import { serviceJsonLd, faqJsonLd } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return sectionServiceSlugs('relocation').map((slug) => ({ params: { slug } }));
+}
+const lang = 'en' as const;
+const { section, service, basePath, siblings, path } = serviceProps(lang, 'relocation', Astro.params.slug);
+---
+
+<Layout
+  title={service.metaTitle}
+  description={service.metaDescription}
+  lang={lang}
+  path={path}
+  image={service.image}
+  jsonLd={[serviceJsonLd(service.title, service.metaDescription, path, lang), faqJsonLd(service.faq.items)]}
+>
+  <ServiceView lang={lang} service={service} basePath={basePath} sectionTitle={section.title} siblings={siblings} />
+</Layout>

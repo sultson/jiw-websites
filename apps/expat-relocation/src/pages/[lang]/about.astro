@@ -1,0 +1,16 @@
+---
+import Layout from '../../components/Layout.astro';
+import AboutView from '../../components/AboutView.astro';
+import { getContent } from '../../lib/content';
+import { NON_DEFAULT_LANGS, SECTIONS, type Lang } from '../../lib/i18n';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LANGS.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const c = getContent(lang).core.about;
+---
+
+<Layout title={c.metaTitle} description={c.metaDescription} lang={lang} path={SECTIONS.about} image={c.image}>
+  <AboutView lang={lang} />
+</Layout>

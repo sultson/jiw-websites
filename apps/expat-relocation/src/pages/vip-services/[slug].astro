@@ -1,0 +1,23 @@
+---
+import Layout from '../../components/Layout.astro';
+import PackageView from '../../components/PackageView.astro';
+import { packageSlugs, packageProps } from '../../lib/pages';
+import { serviceJsonLd, faqJsonLd } from '../../lib/seo';
+
+export function getStaticPaths() {
+  return packageSlugs().map((slug) => ({ params: { slug } }));
+}
+const lang = 'en' as const;
+const { pkg, siblings, path } = packageProps(lang, Astro.params.slug);
+---
+
+<Layout
+  title={pkg.metaTitle}
+  description={pkg.metaDescription}
+  lang={lang}
+  path={path}
+  image={pkg.image}
+  jsonLd={[serviceJsonLd(pkg.name, pkg.metaDescription, path, lang), faqJsonLd(pkg.faq.items)]}
+>
+  <PackageView lang={lang} pkg={pkg} siblings={siblings} />
+</Layout>

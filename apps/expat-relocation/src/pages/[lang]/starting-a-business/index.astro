@@ -1,0 +1,16 @@
+---
+import Layout from '../../../components/Layout.astro';
+import HubView from '../../../components/HubView.astro';
+import { getContent } from '../../../lib/content';
+import { NON_DEFAULT_LANGS, SECTIONS, type Lang } from '../../../lib/i18n';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LANGS.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const section = getContent(lang).business;
+---
+
+<Layout title={section.metaTitle} description={section.metaDescription} lang={lang} path={SECTIONS.business} image={section.image}>
+  <HubView lang={lang} section={section} basePath={SECTIONS.business} />
+</Layout>

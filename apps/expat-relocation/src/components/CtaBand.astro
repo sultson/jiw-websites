@@ -1,0 +1,35 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+import { SECTIONS, localizePath, type Lang } from '../lib/i18n';
+import { getContent } from '../lib/content';
+import type { Cta } from '../content/types';
+
+interface Props {
+  lang: Lang;
+  cta: Cta;
+  /** Where the button goes; defaults to the contact page. */
+  href?: string;
+  showWhatsapp?: boolean;
+}
+const { lang, cta, href, showWhatsapp = true } = Astro.props;
+const c = getContent(lang);
+const target = href ?? localizePath(SECTIONS.contact, lang);
+---
+
+<section class="bg-navy">
+  <div class="container-site py-16 text-center md:py-20">
+    <span class="gold-rule mx-auto"></span>
+    <h2 class="mx-auto mt-6 max-w-2xl font-display text-3xl text-white md:text-4xl">{cta.title}</h2>
+    <p class="mx-auto mt-4 max-w-xl text-[0.98rem] leading-relaxed text-white/70">{cta.text}</p>
+    <div class="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a href={target} class="btn btn-white">{cta.label}</a>
+      {showWhatsapp && (
+        <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn btn-gold">
+          <Icon name="whatsapp" size={15} />
+          {c.core.ui.cta.whatsapp}
+        </a>
+      )}
+    </div>
+  </div>
+</section>

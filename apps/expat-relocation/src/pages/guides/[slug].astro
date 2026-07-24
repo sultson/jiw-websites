@@ -1,0 +1,15 @@
+---
+import Layout from '../../components/Layout.astro';
+import GuideView from '../../components/GuideView.astro';
+import { guideSlugs, guideProps } from '../../lib/pages';
+
+export function getStaticPaths() {
+  return guideSlugs().map((slug) => ({ params: { slug } }));
+}
+const lang = 'en' as const;
+const { guide, siblings, path } = guideProps(lang, Astro.params.slug);
+---
+
+<Layout title={guide.metaTitle} description={guide.metaDescription} lang={lang} path={path}>
+  <GuideView lang={lang} guide={guide} siblings={siblings} />
+</Layout>

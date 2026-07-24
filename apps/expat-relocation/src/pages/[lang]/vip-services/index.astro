@@ -1,0 +1,16 @@
+---
+import Layout from '../../../components/Layout.astro';
+import VipHubView from '../../../components/VipHubView.astro';
+import { getContent } from '../../../lib/content';
+import { NON_DEFAULT_LANGS, SECTIONS, type Lang } from '../../../lib/i18n';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LANGS.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const v = getContent(lang).vip;
+---
+
+<Layout title={v.metaTitle} description={v.metaDescription} lang={lang} path={SECTIONS.vip} image={v.image}>
+  <VipHubView lang={lang} />
+</Layout>

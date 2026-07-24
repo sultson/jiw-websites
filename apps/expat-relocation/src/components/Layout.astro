@@ -1,0 +1,146 @@
+---
+import '../styles/global.css';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import WhatsAppFloat from './WhatsAppFloat.astro';
+import { site } from '../data/site';
+import {
+  LANGS,
+  BANNER_STRINGS,
+  DEFAULT_LANG,
+  localizePath,
+  type Lang,
+} from '../lib/i18n';
+import { OG_LOCALES } from '../lib/i18n';
+import { absoluteUrl, orgJsonLd } from '../lib/seo';
+import { getContent } from '../lib/content';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  /** Canonical English path of this page (no language prefix). */
+  path: string;
+  image?: string;
+  noindex?: boolean;
+  jsonLd?: unknown[];
+}
+const { title, description, lang, path, image = '/images/og.jpg', noindex = false, jsonLd = [] } = Astro.props;
+
+const c = getContent(lang);
+const canonical = absoluteUrl(localizePath(path, lang));
+const ogImage = absoluteUrl(image);
+const fullTitle = title.includes('E & I') || title.includes('Expat & Immigration') ? title : `${title} | Expat & Immigration Services`;
+
+// Map of lang → localized URL for hreflang + the banner script.
+const altUrls = Object.fromEntries(LANGS.map((l) => [l, absoluteUrl(localizePath(path, l))]));
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-pt-32">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    {LANGS.map((l) => <link rel="alternate" hreflang={l} href={altUrls[l]} />)}
+    <link rel="alternate" hreflang="x-default" href={absoluteUrl(localizePath(path, DEFAULT_LANG))} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={OG_LOCALES[lang]} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="theme-color" content="#00143a" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd())} />
+    {jsonLd.map((block) => <script type="application/ld+json" set:html={JSON.stringify(block)} />)}
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:bg-navy focus:px-5 focus:py-2.5 focus:text-white"
+    >
+      {c.core.ui.skipToContent}
+    </a>
+
+    <!-- Polite language suggestion (H&M-style). Filled by the inline script;
+         never an automatic redirect. -->
+    <div
+      id="lang-banner"
+      class="hidden items-center justify-center gap-x-5 gap-y-2 flex-wrap border-b border-line bg-ivory px-4 py-2.5 text-[0.8rem] text-navy"
+      data-langs={JSON.stringify(altUrls)}
+      data-current={lang}
+    >
+      <span id="lang-banner-text"></span>
+      <a id="lang-banner-switch" href="#" class="font-medium underline decoration-gold underline-offset-4"></a>
+      <button id="lang-banner-dismiss" type="button" class="cursor-pointer text-ink-soft hover:text-navy"></button>
+    </div>
+
+    <Header lang={lang} path={path} />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+    <WhatsAppFloat lang={lang} />
+
+    <script is:inline define:vars={{ BANNER_STRINGS }}>
+      // Language suggestion banner. Uses the browser language, remembers the
+      // visitor's decision, and never redirects automatically.
+      (function () {
+        var banner = document.getElementById('lang-banner');
+        if (!banner) return;
+        try {
+          var stored = localStorage.getItem('ei-lang');
+          var current = banner.dataset.current;
+          var urls = JSON.parse(banner.dataset.langs || '{}');
+          if (stored === 'dismissed' || stored === current) return;
+          var supported = Object.keys(urls);
+          var candidates = (navigator.languages || [navigator.language || 'en']).map(function (l) {
+            return String(l).slice(0, 2).toLowerCase();
+          });
+          var best = null;
+          for (var i = 0; i < candidates.length; i++) {
+            if (supported.indexOf(candidates[i]) !== -1) {
+              best = candidates[i];
+              break;
+            }
+          }
+          if (!best || best === current) return;
+          if (stored && stored !== best) return;
+          var strings = BANNER_STRINGS[best];
+          if (!strings) return;
+          document.getElementById('lang-banner-text').textContent = strings.prompt;
+          var sw = document.getElementById('lang-banner-switch');
+          sw.textContent = strings.switch;
+          sw.href = urls[best];
+          sw.addEventListener('click', function () {
+            try { localStorage.setItem('ei-lang', best); } catch (e) {}
+          });
+          var dis = document.getElementById('lang-banner-dismiss');
+          dis.textContent = strings.dismiss;
+          dis.addEventListener('click', function () {
+            try { localStorage.setItem('ei-lang', 'dismissed'); } catch (e) {}
+            banner.style.display = 'none';
+          });
+          banner.classList.remove('hidden');
+          banner.classList.add('flex');
+        } catch (e) {}
+      })();
+    </script>
+  </body>
+</html>

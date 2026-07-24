@@ -1,0 +1,113 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+import { SECTIONS, localizePath, type Lang } from '../lib/i18n';
+import { getContent } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = getContent(lang);
+const f = c.core.ui.footer;
+const nav = c.core.ui.nav;
+const l = (p: string) => localizePath(p, lang);
+
+const serviceLinks = [
+  { label: nav.immigration, href: l(SECTIONS.immigration) },
+  { label: nav.housing, href: l(SECTIONS.housing) },
+  { label: nav.relocation, href: l(SECTIONS.relocation) },
+  { label: nav.business, href: l(SECTIONS.business) },
+  { label: nav.vip, href: l(SECTIONS.vip) },
+  { label: c.industrial.title, href: l(SECTIONS.industrial) },
+];
+const companyLinks = [
+  { label: nav.about, href: l(SECTIONS.about) },
+  { label: nav.guides, href: l(SECTIONS.guides) },
+  { label: nav.contact, href: l(SECTIONS.contact) },
+];
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-navy text-white/75">
+  <div class="container-site pt-16 pb-10 md:pt-20">
+    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+      <div>
+        <p class="font-display text-xl tracking-[0.08em] text-white">EXPAT &amp; IMMIGRATION</p>
+        <p class="mt-1 flex items-center gap-3 text-[0.7rem] uppercase tracking-[0.34em] text-gold">
+          <span class="h-px w-8 bg-gold/60"></span>
+          Services
+          <span class="h-px w-8 bg-gold/60"></span>
+        </p>
+        <p class="mt-5 max-w-xs text-[0.92rem] leading-relaxed">{f.tagline}</p>
+        <div class="mt-6 flex gap-4">
+          <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="Instagram" class="text-white/60 transition-colors hover:text-gold">
+            <Icon name="instagram" size={18} />
+          </a>
+          <a href={site.social.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn" class="text-white/60 transition-colors hover:text-gold">
+            <Icon name="linkedin" size={18} />
+          </a>
+        </div>
+      </div>
+
+      <nav aria-label={f.services}>
+        <p class="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-gold">{f.services}</p>
+        <ul class="mt-5 space-y-2.5 text-[0.92rem]">
+          {serviceLinks.map((link) => (
+            <li>
+              <a href={link.href} class="transition-colors hover:text-white">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <nav aria-label={f.company}>
+        <p class="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-gold">{f.company}</p>
+        <ul class="mt-5 space-y-2.5 text-[0.92rem]">
+          {companyLinks.map((link) => (
+            <li>
+              <a href={link.href} class="transition-colors hover:text-white">{link.label}</a>
+            </li>
+          ))}
+          <li>
+            <a href={l(SECTIONS.privacy)} class="transition-colors hover:text-white">{c.core.privacy.title}</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div>
+        <p class="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-gold">{f.contactHeading}</p>
+        <ul class="mt-5 space-y-3 text-[0.92rem]">
+          <li class="flex items-start gap-3">
+            <Icon name="mapPin" size={16} class="mt-1 shrink-0 text-gold/70" />
+            <span>{site.address.line1}<br />{site.address.city}, {site.address.country}</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <Icon name="mail" size={16} class="shrink-0 text-gold/70" />
+            <a href={`mailto:${site.email}`} class="transition-colors hover:text-white">{site.email}</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <Icon name="phone" size={16} class="shrink-0 text-gold/70" />
+            <a href={`tel:${site.phone.e164}`} class="transition-colors hover:text-white">{site.phone.display}</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <Icon name="whatsapp" size={16} class="shrink-0 text-gold/70" />
+            <a href={site.whatsappUrl} target="_blank" rel="noopener" class="transition-colors hover:text-white">{site.whatsapp.display}</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="text-[0.7rem] uppercase tracking-[0.16em] text-white/50">{f.kvkLabel}</span>
+            <span>{site.kvk}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col gap-2 border-t border-white/10 pt-6 text-[0.78rem] text-white/45 md:flex-row md:items-center md:justify-between">
+      <p>© {year} {site.legalName}. {f.rightsReserved}</p>
+      <p>
+        {f.builtBy}
+        <a href="https://jouwidealewebsite.nl" target="_blank" rel="noopener" class="text-white/60 transition-colors hover:text-gold">jouwidealewebsite.nl</a>
+      </p>
+    </div>
+  </div>
+</footer>

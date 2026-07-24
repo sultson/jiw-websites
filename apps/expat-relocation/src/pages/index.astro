@@ -1,0 +1,12 @@
+---
+import Layout from '../components/Layout.astro';
+import HomeView from '../components/HomeView.astro';
+import { getContent } from '../lib/content';
+
+const lang = 'en' as const;
+const h = getContent(lang).core.home;
+---
+
+<Layout title={h.metaTitle} description={h.metaDescription} lang={lang} path="/">
+  <HomeView lang={lang} />
+</Layout>

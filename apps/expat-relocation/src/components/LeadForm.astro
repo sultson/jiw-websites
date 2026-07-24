@@ -1,0 +1,184 @@
+---
+import Icon from './Icon.astro';
+import type { FormKind } from '../content/types';
+import type { Lang } from '../lib/i18n';
+import { getContent } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+  kind: FormKind;
+  /** Preselect a service/package option (must match an option string). */
+  preselect?: string;
+  id?: string;
+}
+const { lang, kind, preselect, id = `lead-${kind}` } = Astro.props;
+const c = getContent(lang);
+const f = c.core.ui.form;
+const cta = c.core.ui.cta;
+const copy = c.core.contact.formCopy[kind];
+
+const selectField = kind === 'vip' ? 'package' : 'service';
+const selectLabel = kind === 'vip' ? c.core.contact.formCopy.vip.package : (copy as any).service;
+const selectOptions: string[] =
+  kind === 'vip' ? c.core.contact.formCopy.vip.packageOptions : (copy as any).serviceOptions;
+---
+
+<div class="relative" data-lead-wrap>
+  <div class="hidden border border-line bg-white p-10 text-center" data-lead-success>
+    <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-gold text-gold">
+      <Icon name="check" size={28} />
+    </span>
+    <h3 class="mt-5 font-display text-2xl">{f.successTitle}</h3>
+    <p class="mx-auto mt-3 max-w-md text-[0.95rem]">{f.successBody}</p>
+  </div>
+
+  <form
+    id={id}
+    class="border border-line bg-white p-6 md:p-9"
+    data-lead-form={kind}
+    data-form-path={`/api/forms/${kind}`}
+    data-sending-label={cta.sending}
+    data-error-text={f.errorBody}
+    novalidate
+  >
+    <div class="grid gap-5 sm:grid-cols-2">
+      <label class="block">
+        <span class="form-label">{f.firstName} *</span>
+        <input name="firstName" type="text" required autocomplete="given-name" class="form-input" />
+      </label>
+      <label class="block">
+        <span class="form-label">{f.lastName} <span class="normal-case text-ink-soft">({f.optional})</span></span>
+        <input name="lastName" type="text" autocomplete="family-name" class="form-input" />
+      </label>
+
+      <label class="block">
+        <span class="form-label">{f.email} *</span>
+        <input name="email" type="email" required autocomplete="email" class="form-input" />
+      </label>
+      <label class="block">
+        <span class="form-label">{f.phone} <span class="normal-case text-ink-soft">({f.optional})</span></span>
+        <input name="phone" type="tel" autocomplete="tel" class="form-input" />
+      </label>
+
+      <label class="block sm:col-span-2">
+        <span class="form-label">{selectLabel}</span>
+        <div class="relative">
+          <select name={selectField} class="form-input cursor-pointer appearance-none pr-10">
+            {selectOptions.map((opt) => (
+              <option value={opt} selected={opt === preselect}>{opt}</option>
+            ))}
+          </select>
+          <Icon name="chevronDown" size={16} class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-ink-soft" />
+        </div>
+      </label>
+
+      {kind === 'immigration' && (
+        <label class="block">
+          <span class="form-label">{c.core.contact.formCopy.immigration.nationality}</span>
+          <input name="nationality" type="text" class="form-input" />
+        </label>
+      )}
+      {kind === 'relocation' && (
+        <label class="block">
+          <span class="form-label">{c.core.contact.formCopy.relocation.movingFrom}</span>
+          <input name="movingFrom" type="text" class="form-input" />
+        </label>
+      )}
+      {kind === 'vip' && (
+        <label class="block">
+          <span class="form-label">{c.core.contact.formCopy.vip.arrival}</span>
+          <input name="arrival" type="text" class="form-input" />
+        </label>
+      )}
+
+      {kind !== 'vip' ? (
+        <label class="block">
+          <span class="form-label">{(copy as any).timeline}</span>
+          <div class="relative">
+            <select name="timeline" class="form-input cursor-pointer appearance-none pr-10">
+              {((copy as any).timelineOptions as string[]).map((opt) => (
+                <option value={opt}>{opt}</option>
+              ))}
+            </select>
+            <Icon name="chevronDown" size={16} class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-ink-soft" />
+          </div>
+        </label>
+      ) : (
+        <fieldset class="block">
+          <legend class="form-label">{c.core.contact.formCopy.vip.preferredContact}</legend>
+          <div class="flex flex-wrap gap-2 pt-1">
+            {c.core.contact.formCopy.vip.preferredContactOptions.map((pref, i) => (
+              <label class="cursor-pointer">
+                <input type="radio" name="preferredContact" value={pref} class="peer sr-only" checked={i === 0} />
+                <span class="inline-flex border border-line px-4 py-2 text-[0.78rem] tracking-[0.06em] text-ink transition-colors peer-checked:border-navy peer-checked:bg-navy peer-checked:text-white">
+                  {pref}
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      )}
+    </div>
+
+    <label class="mt-5 block">
+      <span class="form-label">{copy.message} *</span>
+      <textarea name="message" rows={4} required class="form-input resize-y" placeholder={copy.messagePlaceholder}></textarea>
+    </label>
+
+    <!-- No Turnstile widget on this demo: dev bypass token. -->
+    <input type="hidden" name="cf-turnstile-response" value="dev" />
+    <!-- Honeypot -->
+    <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+    <p class="mt-5 hidden border border-red-800/30 bg-red-800/5 px-4 py-3 text-[0.9rem] text-red-900" data-lead-error></p>
+
+    <div class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <button type="submit" class="btn btn-navy">
+        <span data-lead-label>{cta.send}</span>
+        <Icon name="arrow" size={16} />
+      </button>
+      <p class="text-[0.78rem] leading-snug text-ink-soft sm:max-w-56 sm:text-right">{f.consent}</p>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[data-lead-form]').forEach((form) => {
+    const wrap = form.closest('[data-lead-wrap]');
+    const success = wrap?.querySelector('[data-lead-success]');
+    const errorBox = wrap?.querySelector('[data-lead-error]') ?? form.querySelector('[data-lead-error]');
+    const label = form.querySelector<HTMLElement>('[data-lead-label]');
+    const original = label?.textContent ?? '';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox?.classList.add('hidden');
+
+      if ((form.elements.namedItem('company') as HTMLInputElement)?.value) return;
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (label) label.textContent = form.dataset.sendingLabel ?? '…';
+      try {
+        const res = await fetch(form.dataset.formPath ?? '', {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data?.success === false) throw new Error(data?.message || 'failed');
+        form.classList.add('hidden');
+        success?.classList.remove('hidden');
+        success?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (err) {
+        if (errorBox) {
+          errorBox.textContent = form.dataset.errorText ?? (err instanceof Error && err.message !== 'failed' ? err.message : 'Error');
+          errorBox.classList.remove('hidden');
+        }
+      } finally {
+        if (label) label.textContent = original;
+      }
+    });
+  });
+</script>

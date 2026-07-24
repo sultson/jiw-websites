@@ -1,0 +1,324 @@
+---
+import Icon from './Icon.astro';
+import LeadForm from './LeadForm.astro';
+import { site } from '../data/site';
+import { SECTIONS, localizePath, type Lang } from '../lib/i18n';
+import { getContent } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = getContent(lang);
+const h = c.core.home;
+const l = (p: string) => localizePath(p, lang);
+---
+
+<!-- 1. Hero: edge-to-edge video, content in the lower third -->
+<section class="relative flex min-h-[86svh] items-end overflow-hidden bg-navy">
+  <video
+    id="hero-video"
+    class="absolute inset-0 h-full w-full object-cover"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster="/images/hero-poster.jpg"
+  >
+    <source src="/hero.mp4" type="video/mp4" />
+  </video>
+  <!-- Poster overlay: fades out once the video is actually rendering frames, so the
+       thumbnail-to-video switch is a soft crossfade instead of a hard cut. -->
+  <img
+    id="hero-poster-overlay"
+    src="/images/hero-poster.jpg"
+    alt=""
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-out"
+    width="1280"
+    height="720"
+    fetchpriority="high"
+  />
+  <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-navy/20"></div>
+  <div class="container-site relative pb-16 pt-44 text-center md:pb-24">
+    <span class="eyebrow">{site.tagline}</span>
+    <h1 class="mx-auto mt-5 max-w-4xl font-display text-4xl leading-tight text-white md:text-6xl">
+      {h.hero.h1}
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-[1.02rem] leading-relaxed text-white/85">{h.hero.sub}</p>
+    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a href={l(SECTIONS.contact)} class="btn btn-white">{h.hero.ctaPrimary}</a>
+      <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn btn-gold">
+        <Icon name="whatsapp" size={15} />
+        {h.hero.ctaWhatsapp}
+      </a>
+    </div>
+    <a href="#paths" class="mt-8 inline-flex items-center gap-2 text-[0.74rem] uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-gold-soft">
+      {h.hero.ctaSecondary}
+      <Icon name="chevronDown" size={14} />
+    </a>
+  </div>
+</section>
+
+<!-- 2. Three paths -->
+<section id="paths" class="container-site py-16 md:py-24">
+  <div class="text-center">
+    <h2 class="font-display text-3xl md:text-4xl">{h.paths.heading}</h2>
+    <span class="gold-rule mx-auto mt-6"></span>
+    <p class="mx-auto mt-5 max-w-xl leading-relaxed">{h.paths.sub}</p>
+  </div>
+  <div class="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+    {h.paths.items.map((item) => (
+      <a href={l(item.path)} class="group block">
+        <div class="overflow-hidden">
+          <img src={item.image} alt={item.imageAlt} class="aspect-[3/2] w-full object-cover" width="800" height="533" loading="lazy" />
+        </div>
+        <h3 class="mt-6 font-display text-2xl transition-colors group-hover:text-gold">{item.title}</h3>
+        <p class="mt-2.5 text-[0.94rem] leading-relaxed">{item.text}</p>
+        <span class="link-editorial mt-5">{item.label}</span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<!-- 3. Most requested services -->
+<section class="border-y border-line bg-ivory">
+  <div class="container-site py-16 md:py-22">
+    <div class="text-center">
+      <h2 class="font-display text-3xl md:text-4xl">{h.mostRequested.heading}</h2>
+      <p class="mt-4 text-[0.95rem] text-ink-soft">{h.mostRequested.sub}</p>
+    </div>
+    <div class="mx-auto mt-10 grid max-w-4xl gap-3 sm:grid-cols-2">
+      {h.mostRequested.items.map((item) => (
+        <a
+          href={l(item.path)}
+          class="group flex items-center justify-between gap-4 border border-line bg-white px-6 py-4 transition-colors hover:border-gold"
+        >
+          <span class="text-[0.95rem] font-medium text-navy">{item.label}</span>
+          <span class="text-gold transition-transform duration-200 group-hover:translate-x-1">
+            <Icon name="arrow" size={17} />
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- 4. VIP band -->
+<section class="relative overflow-hidden bg-navy">
+  <img
+    src="/images/path-vip.jpg"
+    alt=""
+    class="absolute inset-0 h-full w-full object-cover opacity-35"
+    width="1600"
+    height="1067"
+    loading="lazy"
+  />
+  <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/70 to-navy/30"></div>
+  <div class="container-site relative py-20 md:py-28">
+    <div class="max-w-xl">
+      <span class="eyebrow">{h.vipBlock.eyebrow}</span>
+      <h2 class="mt-4 font-display text-3xl text-white md:text-4xl">{h.vipBlock.heading}</h2>
+      {h.vipBlock.text.map((p) => (
+        <p class="mt-5 text-[0.97rem] leading-relaxed text-white/80">{p}</p>
+      ))}
+      <a href={l(SECTIONS.vip)} class="link-editorial link-editorial-light mt-8">{h.vipBlock.label}</a>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Immigration -->
+<section class="container-site py-16 md:py-24">
+  <div class="mx-auto max-w-3xl text-center">
+    <span class="eyebrow eyebrow-navy">{h.immigrationBlock.eyebrow}</span>
+    <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.immigrationBlock.heading}</h2>
+    {h.immigrationBlock.text.map((p) => (
+      <p class="mx-auto mt-5 max-w-2xl leading-relaxed">{p}</p>
+    ))}
+  </div>
+  <div class="mx-auto mt-10 grid max-w-3xl gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    {h.immigrationBlock.links.map((link) => (
+      <a
+        href={l(link.path)}
+        class="border border-line px-5 py-3.5 text-center text-[0.85rem] font-medium text-navy transition-colors hover:border-gold hover:text-gold"
+      >
+        {link.label}
+      </a>
+    ))}
+  </div>
+  <div class="mt-9 text-center">
+    <a href={l(SECTIONS.immigration)} class="link-editorial">{h.immigrationBlock.label}</a>
+  </div>
+</section>
+
+<!-- 6. Housing: image band with overlay card -->
+<section class="relative">
+  <img
+    src="/images/housing-canal.jpg"
+    alt=""
+    class="h-105 w-full object-cover md:h-130"
+    width="1600"
+    height="1067"
+    loading="lazy"
+  />
+  <div class="container-site">
+    <div class="relative z-10 -mt-28 max-w-xl border-t-2 border-gold bg-white p-8 shadow-lift md:-mt-36 md:p-12">
+      <span class="eyebrow eyebrow-navy">{h.housingBlock.eyebrow}</span>
+      <h2 class="mt-3 font-display text-3xl">{h.housingBlock.heading}</h2>
+      {h.housingBlock.text.map((p) => (
+        <p class="mt-4 text-[0.95rem] leading-relaxed">{p}</p>
+      ))}
+      <div class="mt-6 flex flex-wrap gap-2.5">
+        {h.housingBlock.links.map((link) => (
+          <a href={l(link.path)} class="border border-line px-4 py-2 text-[0.78rem] text-navy transition-colors hover:border-gold hover:text-gold">
+            {link.label}
+          </a>
+        ))}
+      </div>
+      <a href={l(SECTIONS.housing)} class="link-editorial mt-7">{h.housingBlock.label}</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Business -->
+<section class="container-site py-16 md:py-24">
+  <div class="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2 md:gap-16">
+    <div>
+      <span class="eyebrow eyebrow-navy">{h.businessBlock.eyebrow}</span>
+      <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.businessBlock.heading}</h2>
+      {h.businessBlock.text.map((p) => (
+        <p class="mt-5 leading-relaxed">{p}</p>
+      ))}
+      <a href={l(SECTIONS.business)} class="link-editorial mt-7">{h.businessBlock.label}</a>
+    </div>
+    <img src="/images/business-meeting.jpg" alt="" class="aspect-[4/3] w-full object-cover" width="800" height="600" loading="lazy" />
+  </div>
+</section>
+
+<!-- 8. Rotterdam / Europoort specialist -->
+<section class="border-y border-line bg-ivory">
+  <div class="container-site py-16 md:py-24">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="eyebrow eyebrow-navy">{h.regionBlock.eyebrow}</span>
+      <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.regionBlock.heading}</h2>
+      {h.regionBlock.text.map((p) => (
+        <p class="mx-auto mt-5 leading-relaxed">{p}</p>
+      ))}
+    </div>
+    <img
+      src="/images/europoort.jpg"
+      alt="Port of Rotterdam at dusk"
+      class="mt-12 aspect-[21/9] w-full object-cover"
+      width="1600"
+      height="686"
+      loading="lazy"
+    />
+    <div class="mt-12 grid gap-10 md:grid-cols-3">
+      {h.regionBlock.areas.map((area) => (
+        <div class="border-t border-gold pt-5">
+          <h3 class="font-display text-xl">{area.title}</h3>
+          <p class="mt-2 text-[0.92rem] leading-relaxed">{area.text}</p>
+        </div>
+      ))}
+    </div>
+    <div class="mt-10 text-center">
+      <a href={l(SECTIONS.industrial)} class="link-editorial">{h.regionBlock.label}</a>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Why boutique -->
+<section class="container-site py-16 md:py-24">
+  <div class="mx-auto max-w-3xl text-center">
+    <span class="eyebrow eyebrow-navy">{h.whyBoutique.eyebrow}</span>
+    <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.whyBoutique.heading}</h2>
+    {h.whyBoutique.text.map((p) => (
+      <p class="mx-auto mt-5 leading-relaxed">{p}</p>
+    ))}
+  </div>
+  <div class="mx-auto mt-12 grid max-w-4xl gap-x-14 gap-y-10 sm:grid-cols-2">
+    {h.whyBoutique.points.map((point) => (
+      <div>
+        <h3 class="font-display text-xl">{point.title}</h3>
+        <p class="mt-2 text-[0.94rem] leading-relaxed">{point.text}</p>
+      </div>
+    ))}
+  </div>
+  <div class="mx-auto mt-14 grid max-w-3xl grid-cols-3 border-y border-line py-8 text-center">
+    {h.whyBoutique.stats.map((stat) => (
+      <div>
+        <p class="font-display text-3xl text-gold md:text-4xl">{stat.value}</p>
+        <p class="mt-1.5 text-[0.72rem] uppercase tracking-[0.14em] text-ink-soft">{stat.label}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- 10. Reviews -->
+<section class="border-t border-line">
+  <div class="container-site py-16 md:py-24">
+    <div class="text-center">
+      <span class="eyebrow eyebrow-navy">{h.reviews.eyebrow}</span>
+      <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.reviews.heading}</h2>
+      <p class="mt-4 text-[0.95rem] text-ink-soft">{h.reviews.sub}</p>
+    </div>
+    <div class="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-2">
+      {h.reviews.items.map((review) => (
+        <figure class="flex flex-col justify-between border border-line p-8 md:p-10">
+          <blockquote class="font-display text-xl leading-relaxed text-navy">“{review.quote}”</blockquote>
+          <figcaption class="mt-7">
+            <p class="font-medium text-navy">{review.name}</p>
+            <p class="mt-0.5 text-[0.8rem] uppercase tracking-[0.14em] text-ink-soft">{review.route}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {review.tags.map((tag) => (
+                <span class="border border-line px-3 py-1 text-[0.7rem] uppercase tracking-[0.1em] text-ink-soft">{tag}</span>
+              ))}
+            </div>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- 11. WhatsApp CTA -->
+<section class="bg-navy">
+  <div class="container-site py-16 text-center md:py-20">
+    <span class="gold-rule mx-auto"></span>
+    <h2 class="mx-auto mt-6 max-w-2xl font-display text-3xl text-white md:text-4xl">{h.whatsappCta.heading}</h2>
+    <p class="mx-auto mt-4 max-w-xl leading-relaxed text-white/70">{h.whatsappCta.text}</p>
+    <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn btn-whatsapp mt-9">
+      <Icon name="whatsapp" size={16} />
+      {h.whatsappCta.label}
+    </a>
+  </div>
+</section>
+
+<!-- 12. Contact form -->
+<section class="border-t border-line bg-ivory" id="contact-form">
+  <div class="container-site py-16 md:py-24">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="eyebrow eyebrow-navy">{h.contactBlock.eyebrow}</span>
+      <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.contactBlock.heading}</h2>
+      <p class="mt-4 text-[0.95rem] text-ink-soft">{h.contactBlock.text}</p>
+    </div>
+    <div class="mx-auto mt-10 max-w-3xl">
+      <LeadForm lang={lang} kind="relocation" id="lead-home" />
+    </div>
+  </div>
+</section>
+
+<script>
+  // Crossfade the hero poster overlay away once the video is actually playing.
+  const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+  const overlay = document.getElementById('hero-poster-overlay');
+  const fadeOut = () => overlay?.classList.add('opacity-0');
+  if (video && overlay) {
+    if (!video.paused && video.currentTime > 0.05 && video.readyState >= 3) {
+      fadeOut();
+    } else {
+      video.addEventListener('playing', fadeOut, { once: true });
+    }
+  }
+</script>

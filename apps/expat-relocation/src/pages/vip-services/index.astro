@@ -1,0 +1,13 @@
+---
+import Layout from '../../components/Layout.astro';
+import VipHubView from '../../components/VipHubView.astro';
+import { getContent } from '../../lib/content';
+import { SECTIONS } from '../../lib/i18n';
+
+const lang = 'en' as const;
+const v = getContent(lang).vip;
+---
+
+<Layout title={v.metaTitle} description={v.metaDescription} lang={lang} path={SECTIONS.vip} image={v.image}>
+  <VipHubView lang={lang} />
+</Layout>

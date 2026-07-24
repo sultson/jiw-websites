@@ -1,0 +1,72 @@
+---
+import CtaBand from './CtaBand.astro';
+import { SECTIONS, localizePath, type Lang } from '../lib/i18n';
+import { getContent } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = getContent(lang);
+const v = c.vip;
+const l = (p: string) => localizePath(p, lang);
+---
+
+<!-- Full-bleed VIP hero -->
+<section class="relative bg-navy">
+  <img src={v.image} alt={v.imageAlt} class="absolute inset-0 h-full w-full object-cover opacity-45" width="1600" height="1067" loading="eager" fetchpriority="high" />
+  <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-navy/20"></div>
+  <div class="container-site relative flex min-h-[64vh] flex-col items-center justify-end pb-16 pt-40 text-center md:pb-20">
+    <span class="eyebrow">{v.eyebrow}</span>
+    <h1 class="mt-4 max-w-3xl font-display text-4xl text-white md:text-6xl">{v.title}</h1>
+    <span class="gold-rule mx-auto mt-7"></span>
+  </div>
+</section>
+
+<section class="container-site py-16 md:py-20">
+  <div class="mx-auto max-w-3xl text-center">
+    {v.intro.map((p) => (
+      <p class="mt-5 text-[1.05rem] leading-relaxed first:mt-0">{p}</p>
+    ))}
+  </div>
+</section>
+
+<!-- Packages -->
+<section class="container-site pb-16 md:pb-24">
+  <div class="grid gap-10 md:grid-cols-2">
+    {v.packages.map((p) => (
+      <a href={l(`${SECTIONS.vip}/${p.slug}`)} class="group relative block overflow-hidden bg-navy">
+        <img
+          src={p.image}
+          alt={p.imageAlt}
+          class="aspect-[4/3] w-full object-cover opacity-70 transition-opacity duration-300 group-hover:opacity-55"
+          width="800"
+          height="600"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 p-8 md:p-10">
+          <p class="text-[0.72rem] uppercase tracking-[0.2em] text-gold-soft">{p.priceFrom}</p>
+          <h2 class="mt-2 font-display text-3xl text-white">{p.name}</h2>
+          <p class="mt-2 font-display italic text-white/80">{p.tagline}</p>
+          <span class="link-editorial link-editorial-light mt-5">{c.core.ui.cta.readMore}</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<!-- Pricing context -->
+<section class="border-t border-line bg-ivory">
+  <div class="container-site py-16 md:py-24">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-center font-display text-3xl md:text-4xl">{v.pricingNote.title}</h2>
+      <span class="gold-rule mx-auto mt-6"></span>
+      {v.pricingNote.text.map((p) => (
+        <p class="mt-6 text-[1.02rem] leading-relaxed">{p}</p>
+      ))}
+    </div>
+  </div>
+</section>
+
+<CtaBand lang={lang} cta={v.cta} />

@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+import { getContent } from '../lib/content';
+import type { Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = getContent(lang);
+---
+
+<!-- Persistent WhatsApp entry point: present, elegant, never a popup. -->
+<a
+  href={site.whatsappUrl}
+  target="_blank"
+  rel="noopener"
+  aria-label={c.core.ui.cta.whatsappLong}
+  class="fixed bottom-5 right-5 z-40 flex h-13 w-13 items-center justify-center rounded-full bg-[#1faa55] text-white shadow-lift transition-transform duration-200 hover:scale-105 md:bottom-7 md:right-7"
+>
+  <Icon name="whatsapp" size={26} />
+</a>
