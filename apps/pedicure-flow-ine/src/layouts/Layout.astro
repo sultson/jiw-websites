@@ -32,18 +32,12 @@ const locale = lang === 'nl' ? 'nl_NL' : 'en_GB';
     <link rel="alternate" hreflang={lang === 'nl' ? 'en' : 'nl'} href={altUrl} />
     <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <script is:inline>
-      if (Date.now() >= Date.parse('2026-08-02T22:00:00Z')) {
-        document.documentElement.classList.add('opening-date-passed');
-      }
-    </script>
-    <style is:inline>.opening-date-passed [data-opening-notice] { display: none !important; }</style>
     <title>{title}</title>
     <script is:inline type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'NailSalon',
       name: 'Pedicure Flow Ine',
-      url: 'https://pedicureflowine.jouwidealewebsite.nl',
+      url: 'https://www.pedicureflowine.nl',
       telephone: '+31648678593',
       email: 'ine.van.berkesteijn@outlook.com',
       address: {

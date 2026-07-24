@@ -30,7 +30,6 @@ const t = isNl ? {
   aboutEyebrow: 'Welkom bij Pedicure Flow Ine',
   aboutTitle: 'Rustige zorg, helemaal afgestemd op jou',
   aboutText: 'Ik ben Ine en ik ben gediplomeerd pedicure. In mijn salon in Zoetermeer neem ik rustig de tijd voor je voeten. Met een zorgvuldige behandeling en eerlijk advies help ik je om comfortabel en verzorgd weer naar buiten te stappen.',
-  aboutNote: 'De salon opent op 3 augustus 2026. Afspraken kunnen nu al worden ingepland.',
   contactEyebrow: 'Afspraak en contact',
   contactTitle: 'Klaar voor verzorgde voeten?',
   contactText: 'Bel of stuur een WhatsApp-bericht. Ine helpt je graag bij het kiezen van de behandeling die bij je past.',
@@ -40,6 +39,8 @@ const t = isNl ? {
   directions: 'Route openen in Google Maps',
   address: 'Ooiweide 47, Zoetermeer',
   email: 'E-mail',
+  payment: 'Betalen',
+  paymentMethods: 'Pin of gepast contant',
   terms: 'Algemene voorwaarden',
   rights: 'Pedicure Flow Ine. Alle rechten voorbehouden.',
   menuOpen: 'Menu openen', menuClose: 'Menu sluiten',
@@ -63,7 +64,6 @@ const t = isNl ? {
   aboutEyebrow: 'Welcome to Pedicure Flow Ine',
   aboutTitle: 'Calm care, tailored to you',
   aboutText: 'I am Ine and I am a certified pedicurist. In my salon in Zoetermeer, I take the time your feet need. With careful treatment and honest advice, I help you step outside feeling comfortable and well cared for.',
-  aboutNote: 'The salon opens on 3 August 2026. Appointments can already be scheduled.',
   contactEyebrow: 'Appointments and contact',
   contactTitle: 'Ready for well-cared-for feet?',
   contactText: 'Call or send a WhatsApp message. Ine will gladly help you choose the treatment that suits you.',
@@ -73,6 +73,8 @@ const t = isNl ? {
   directions: 'Open directions in Google Maps',
   address: 'Ooiweide 47, Zoetermeer',
   email: 'Email',
+  payment: 'Payment',
+  paymentMethods: 'Debit card or exact cash',
   terms: 'Terms and conditions',
   rights: 'Pedicure Flow Ine. All rights reserved.',
   menuOpen: 'Open menu', menuClose: 'Close menu',
@@ -153,7 +155,7 @@ const map = 'https://www.google.com/maps/search/?api=1&query=Ooiweide+47+Zoeterm
       <div class="about-photo">
         <Picture src={salonImage} formats={['avif', 'webp']} widths={[520, 760, 941]} sizes="(max-width: 900px) 100vw, 42vw" alt={isNl ? 'De lichte behandelruimte van Pedicure Flow Ine in Zoetermeer' : 'The bright Pedicure Flow Ine treatment room in Zoetermeer'} loading="lazy" quality={84} />
       </div>
-      <div class="about-copy"><p class="eyebrow">{t.aboutEyebrow}</p><h2>{t.aboutTitle}</h2><p>{t.aboutText}</p><div class="about-note" data-opening-notice><span>03</span><p><strong>{isNl ? 'Augustus 2026' : 'August 2026'}</strong>{t.aboutNote}</p></div></div>
+      <div class="about-copy"><p class="eyebrow">{t.aboutEyebrow}</p><h2>{t.aboutTitle}</h2><p>{t.aboutText}</p></div>
     </div>
   </section>
 
@@ -164,6 +166,7 @@ const map = 'https://www.google.com/maps/search/?api=1&query=Ooiweide+47+Zoeterm
         <a href={map} target="_blank" rel="noreferrer"><span>{t.visit}</span><strong>{t.address}</strong></a>
         <a href="mailto:ine.van.berkesteijn@outlook.com"><span>{t.email}</span><strong>ine.van.berkesteijn@outlook.com</strong></a>
         <a href="tel:+31648678593"><span>{isNl ? 'Telefoon' : 'Phone'}</span><strong>+31 6 48678593</strong></a>
+        <div><span>{t.payment}</span><strong>{t.paymentMethods}</strong></div>
       </div>
       <div class="map-card">
         <div class="map-copy">
@@ -263,10 +266,6 @@ const map = 'https://www.google.com/maps/search/?api=1&query=Ooiweide+47+Zoeterm
   .about-photo picture { display: block; width: 100%; height: 100%; }
   .about-photo picture img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 46%; }
   .about-copy > p:not(.eyebrow) { max-width: 37rem; margin-top: 1.5rem; color: var(--muted); font-size: 1.05rem; }
-  .about-note { display: flex; align-items: center; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(168,106,115,.25); }
-  .about-note > span { color: var(--rose); font-family: var(--serif); font-size: 3.2rem; line-height: 1; }
-  .about-note p { display: flex; max-width: 25rem; flex-direction: column; color: var(--muted); font-size: .84rem; }
-  .about-note strong { color: var(--ink); font-size: .92rem; }
   .contact { padding: clamp(4rem, 8vw, 7rem) 0; }
   .contact-panel { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2rem, 8vw, 7rem); padding: clamp(2rem, 6vw, 5rem); border-radius: 1.5rem; background: var(--blue-light); }
   .contact-panel h2 { max-width: 12ch; }
@@ -275,8 +274,8 @@ const map = 'https://www.google.com/maps/search/?api=1&query=Ooiweide+47+Zoeterm
   .contact-panel .terms-notice { margin-top: 1rem; font-size: .82rem; }
   .terms-notice a { color: var(--rose-dark); font-weight: 700; }
   .contact-details { display: flex; flex-direction: column; justify-content: center; }
-  .contact-details a { display: flex; flex-direction: column; padding: 1.1rem 0; border-bottom: 1px solid rgba(73,83,89,.15); text-decoration: none; }
-  .contact-details a:last-child { border: 0; }
+  .contact-details > * { display: flex; flex-direction: column; padding: 1.1rem 0; border-bottom: 1px solid rgba(73,83,89,.15); text-decoration: none; }
+  .contact-details > *:last-child { border: 0; }
   .contact-details span { color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
   .contact-details strong { overflow-wrap: anywhere; font-size: .92rem; }
   .map-card { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(15rem, .72fr) minmax(0, 1.28fr); min-height: 23rem; overflow: hidden; border: 1px solid rgba(73,83,89,.15); border-radius: 1.25rem; background: white; }

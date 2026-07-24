@@ -9,8 +9,8 @@
     "preview": "astro preview --host",
     "lint": "astro check",
     "clean": "rm -rf dist .astro",
-    "ship": "pnpm build && wrangler deploy",
-    "ship:dry-run": "pnpm build && wrangler deploy --dry-run"
+    "ship": "pnpm build && wrangler pages deploy --branch=main",
+    "ship:dry-run": "pnpm build"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",

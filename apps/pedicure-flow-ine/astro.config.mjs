@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://pedicureflowine.jouwidealewebsite.nl',
+  site: 'https://www.pedicureflowine.nl',
   trailingSlash: 'never',
   build: { inlineStylesheets: 'always' },
   integrations: [

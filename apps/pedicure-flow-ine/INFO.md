@@ -96,5 +96,9 @@ apps/pedicure-flow-ine/logo.png
 apps/pedicure-flow-ine/hero.png
 
 
-to deploy to:
-pedicureflowine.jouwidealewebsite.nl
+Cloudflare Pages project: pedicure-flow-ine
+
+Production domain: www.pedicureflowine.nl
+
+The domain uses external DNS. Add the custom domain to the Pages project first,
+then point a CNAME record for `www` to `pedicure-flow-ine.pages.dev`.
