@@ -6,15 +6,15 @@ const messengerUrl = 'https://m.me/100075943650762';
 const content = {
   en: {
     meta: {
-      title: 'Netherlands Unveiled | Private Tours Across Holland',
+      title: 'Netherlands Unveiled | Amsterdam City Tours and More',
       description:
-        'Private and group tours across the Netherlands with Marion: Amsterdam, Nijmegen, Volendam, Edam, Marken, Zaanse Schans, Rotterdam, Delft and The Hague.',
+        'Amsterdam city tours and excursions with Marion to Zaanse Schans, Edam, Volendam, Marken, The Hague, Rotterdam, Delft and Nijmegen.',
       ogDescription:
-        'Colorful, personal tours through Amsterdam, South Holland, historic cities and Dutch villages with a storyteller who explains cultural differences.',
+        'Discover Amsterdam and more with a guide who brings Dutch history, culture and the differences between Amsterdam and New Amsterdam to life.',
     },
     nav: {
       brandAria: 'Netherlands Unveiled home',
-      tagline: 'Private tours with Marion',
+      tagline: 'Amsterdam city tours and more',
       guidingLanguages: 'Guiding languages',
       languageToggleLabel: 'Site language',
       menu: 'Menu',
@@ -28,14 +28,14 @@ const content = {
       imageAlt: 'Colorful Netherlands scene with canals, tulips, Delft blue and Dutch city details',
       title: 'Netherlands Unveiled',
       copy:
-        'Private and group tours with Marion, a storyteller with 40 years in travel, for guests who want Dutch places explained through culture, context and lived experience.',
+        'Amsterdam city tours and more with Marion, a guide who brings places to life through culture, context and lived experience.',
       primaryCta: 'Plan a tour',
       secondaryCta: 'Explore tours',
       factsLabel: 'Tour highlights',
       facts: [
         {
-          title: '40 years in travel',
-          copy: 'Tour operations, group sales and guiding on both sides of the Atlantic.',
+          title: 'Travel industry experience',
+          copy: 'From tour guiding to hotel and attraction sales—and back to guiding.',
         },
         {
           title: 'Culture explained',
@@ -48,9 +48,9 @@ const content = {
       ],
     },
     toursSection: {
-      title: 'Tours by city and story',
+      title: 'What we offer: Amsterdam city tours and more',
       copy:
-        'Start with a city, then choose the layer that matters: Jewish history, the Jordaan, Red Light District context, villages, wartime history or a full-day Holland route.',
+        'Choose from themed walking tours in Amsterdam, visits to villages around Amsterdam and city tours in The Hague, Rotterdam, Delft and Nijmegen.',
     },
     tours: [
       {
@@ -58,21 +58,57 @@ const content = {
         image: '/images/amsterdam.webp',
         alt: 'Amsterdam canal with gabled houses and bicycles',
         copy:
-          'Classic Amsterdam with stories that connect the city to New Amsterdam, from Centraal Station and Dam Square to the Jordaan, Jewish Amsterdam and the Red Light District.',
+          'Four ways to discover Amsterdam on foot, each revealing a different side of the city.',
         items: [
-          'Amsterdam introduction',
-          'Jordaan walking tour',
-          'Jewish/WW2 Amsterdam',
-          'Red Light District context',
+          'Introduction to Amsterdam — From Amsterdam Centraal through part of the Red Light District to Dam Square and the Flower Market. This tour takes 2–3 hours, depending on the itinerary.',
+          'Jewish and WWII Amsterdam — Learn about Amsterdam’s Jewish community and what happened during WWII. See the Holocaust Names Monument, the Jewish Museum from the outside, Wertheimpark and Waterlooplein. If time allows, continue to the Anne Frank House.',
+          'Jordaan — Discover how this famous neighbourhood developed from a working-class district into one of Amsterdam’s most sought-after areas.',
+          'Red Light District — Explore the history of the neighbourhood known for its “ladies of the night” and its surprising connection with Wall Street in New York.',
         ],
       },
       {
-        title: 'Volendam, Edam & Marken',
+        title: 'Zaanse Schans, Edam, Volendam & Marken',
         image: '/images/villages.webp',
         alt: 'Traditional harbor village with Dutch houses',
         copy:
-          'A bright day outside Amsterdam with harbor life, cheese-town streets, fishing village history and enough time to breathe.',
-        items: ['Volendam harbor', 'Edam town walk', 'Marken and Zaanse Schans options'],
+          'This excursion through the countryside around Amsterdam can be enjoyed as a half-day or full-day tour, with or without lunch.',
+        items: [
+          'Visit Zaanse Schans, an open-air village showing life in one of the largest industrial areas of the 17th century. Watch a demonstration of how Dutch clogs are made and enjoy free time to explore.',
+          'Stop at a cheese farm for a demonstration of how Dutch cheese is made, followed by a tasting.',
+          'Continue to the historic streets of Edam and the harbour village of Volendam, with a crossing to Marken.',
+        ],
+      },
+      {
+        title: 'The Hague',
+        image: '/images/grand-holland.webp',
+        alt: 'The Hague skyline and landmarks',
+        copy:
+          'Discover the governmental and international heart of the Netherlands on foot or by bus.',
+        items: [
+          'Walking tour — Explore the city centre, including Lange Voorhout, the Parliament Buildings and the former Jewish district, which is now The Hague’s Chinatown.',
+          'Bus tour — See the city centre, the Peace Palace, the embassy district, Madurodam and the beach at Scheveningen.',
+        ],
+      },
+      {
+        title: 'Rotterdam',
+        image: '/images/grand-holland.webp',
+        alt: 'Modern Rotterdam skyline and Erasmus Bridge',
+        copy:
+          'See the striking architecture and changing skyline of the Netherlands’ modern port city.',
+        items: [
+          'Walking tour — Discover the Cube Houses, the new Markthal and views from the Erasmus Bridge.',
+          'Bus tour — Pass Blijdorp Zoo, Coolsingel and the Cube Houses, cross the Maas over the Willems Bridge and return via the Erasmus Bridge, passing the Euromast observation tower.',
+        ],
+      },
+      {
+        title: 'Delft',
+        image: '/images/grand-holland.webp',
+        alt: 'Delft Blue pottery and historic Delft',
+        copy:
+          'Visit Royal Delft, the country’s oldest Delft Blue factory, for a demonstration of how the famous pottery is made, followed by a walking tour of this beautiful historic city.',
+        items: [
+          'The Hague, Rotterdam and Delft can also be combined in a full-day tour known as “Grand Holland”. Contact us for more information.',
+        ],
       },
       {
         title: 'Nijmegen',
@@ -84,43 +120,21 @@ const content = {
         photoCta: 'View photo',
         photoClose: 'Close photo',
         copy:
-          'Especially strong for groups: the oldest city in the Netherlands, built on two levels, with a relaxed walking tour through its historic center.',
-        items: ['Relaxed walking tour', 'Historic city tour', 'Stevenskerk and Waalkade'],
-      },
-      {
-        title: 'The Grand Holland',
-        image: '/images/grand-holland.webp',
-        alt: 'Rotterdam skyline, Delft blue and South Holland landmarks',
-        copy:
-          'A full South Holland route: Rotterdam, Delft blue, a short Delft walk, The Hague, Madurodam and free time.',
-        items: ['Rotterdam by bus or on foot', 'Delft and Delft blue', 'The Hague and Madurodam'],
-      },
-      {
-        title: 'The Hague, Rotterdam & Delft',
-        image: '/images/grand-holland.webp',
-        alt: 'South Holland landmarks and city details',
-        copy:
-          'Historic city tours and bus routes through South Holland: Parliament and Scheveningen in The Hague, modern Rotterdam and Delft Blue craftsmanship.',
-        items: ['The Hague center or bus tour', 'Rotterdam walk or bus tour', 'Delft Blue factory and city walk'],
-      },
-      {
-        title: 'Custom Tours',
-        image: '/images/hero.webp',
-        alt: 'Colorful Netherlands travel collage with canals, tulips and Delft blue',
-        copy:
-          'For tour operators, families and private groups who need a route that fits season, pace, language and group size.',
-        items: ['Private groups', 'Tour operator support', 'Flexible Netherlands routes'],
+          'Explore Nijmegen, the oldest city in the Netherlands and the country’s only city built on two levels, on a walking tour of approximately two hours.',
+        items: [
+          'See the city’s best-known landmarks, especially Stevenskerk towering above the centre and the Waalkade along the river.',
+        ],
       },
     ],
     about: {
       eyebrow: 'About Marion',
-      title: 'A storyteller between two worlds',
+      title: 'From New Amsterdam to Amsterdam',
       copy: [
-        'Marion Baumgarten has spent 40 years in travel and tourism, from tour operations and group sales to guiding visitors through the Netherlands and New York City. Most tours are guided by Marion herself.',
-        'Born in New York City and shaped by life in the Netherlands and other countries, Marion made the original journey in reverse: from New Amsterdam to Amsterdam. That gives her a natural way to explain the differences in lifestyle, outlook and habits between both sides of the Atlantic.',
+        'Marion Baumgarten’s career in the travel industry has spanned many years. She went from tour guiding to hotel and attraction sales and back again to tour guiding—first in New York City and now in Amsterdam.',
+        'Born in New York City and having lived in the Netherlands and other countries, Marion made the original journey in reverse: from “New Amsterdam to Amsterdam”. In the process, she became a specialist in explaining the differences in lifestyle on each side of the Atlantic.',
       ],
       note:
-        'Her tours are built around stories, not scripts: how places developed, why Dutch customs feel different to visitors and what those cultural differences mean in daily life.',
+        'With a background in French language and literature as well as tourism, Marion brings history, culture and everyday life together in the stories she shares.',
     },
     spring: {
       label: 'Keukenhof spring tours',
@@ -176,28 +190,27 @@ const content = {
         'Red Light District tour': 'Red Light District tour',
         'Keukenhof spring tour': 'Keukenhof spring tour',
         'Volendam, Edam, Marken or Zaanse Schans': 'Volendam, Edam, Marken or Zaanse Schans',
-        'Nijmegen group tour': 'Nijmegen group tour',
+        'Nijmegen walking tour': 'Nijmegen walking tour',
         'The Grand Holland': 'The Grand Holland',
         'The Hague, Rotterdam or Delft': 'The Hague, Rotterdam or Delft',
-        'Custom Netherlands tour': 'Custom Netherlands tour',
       },
     },
     footer: {
       brand: 'Netherlands Unveiled',
-      copy: 'Private and group tours across the Netherlands',
+      copy: 'Amsterdam city tours and more',
     },
   },
   fr: {
     meta: {
-      title: 'Netherlands Unveiled | Visites privées en Hollande',
+      title: 'Netherlands Unveiled | Visites d’Amsterdam et plus encore',
       description:
-        'Visites privées et de groupe aux Pays-Bas avec Marion : Amsterdam, Nimègue, Volendam, Edam, Marken, Zaanse Schans, Rotterdam, Delft et La Haye.',
+        'Visites d’Amsterdam et excursions avec Marion à Zaanse Schans, Edam, Volendam, Marken, La Haye, Rotterdam, Delft et Nimègue.',
       ogDescription:
-        'Des visites personnelles et colorées à Amsterdam, en Hollande du Sud, dans les villes historiques et les villages néerlandais avec une conteuse qui explique les différences culturelles.',
+        'Découvrez Amsterdam et bien plus avec une guide qui donne vie à l’histoire, à la culture et aux différences entre Amsterdam et New Amsterdam.',
     },
     nav: {
       brandAria: 'Accueil Netherlands Unveiled',
-      tagline: 'Visites privées avec Marion',
+      tagline: 'Visites d’Amsterdam et plus encore',
       guidingLanguages: 'Langues de visite',
       languageToggleLabel: 'Langue du site',
       menu: 'Menu',
@@ -211,14 +224,14 @@ const content = {
       imageAlt: 'Scène colorée des Pays-Bas avec canaux, tulipes, bleu de Delft et détails urbains',
       title: 'Netherlands Unveiled',
       copy:
-        'Visites privées et de groupe avec Marion, conteuse forte de 40 ans d’expérience dans le voyage, pour les visiteurs qui souhaitent comprendre les lieux néerlandais par la culture, le contexte et le vécu.',
+        'Visites d’Amsterdam et plus encore avec Marion, une guide qui donne vie aux lieux grâce à la culture, au contexte et à son expérience personnelle.',
       primaryCta: 'Planifier une visite',
       secondaryCta: 'Voir les visites',
       factsLabel: 'Points forts des visites',
       facts: [
         {
-          title: '40 ans dans le voyage',
-          copy: 'Opérations touristiques, ventes groupes et guidage des deux côtés de l’Atlantique.',
+          title: 'Expérience dans le tourisme',
+          copy: 'Du guidage à la vente hôtelière et d’attractions, puis un retour au guidage.',
         },
         {
           title: 'La culture expliquée',
@@ -231,9 +244,9 @@ const content = {
       ],
     },
     toursSection: {
-      title: 'Visites par ville et par histoire',
+      title: 'Notre offre : visites d’Amsterdam et plus encore',
       copy:
-        'Commencez par une ville, puis choisissez l’angle qui compte : histoire juive, Jordaan, contexte du Quartier rouge, villages, histoire de guerre ou itinéraire d’une journée en Hollande.',
+        'Choisissez parmi des visites thématiques à pied d’Amsterdam, des excursions dans les villages des environs et des visites de La Haye, Rotterdam, Delft et Nimègue.',
     },
     tours: [
       {
@@ -241,21 +254,57 @@ const content = {
         image: '/images/amsterdam.webp',
         alt: 'Canal d’Amsterdam avec maisons à pignons et vélos',
         copy:
-          'Amsterdam classique, avec des histoires qui relient la ville à New Amsterdam, de la gare Centrale et la place du Dam au Jordaan, à l’Amsterdam juif et au Quartier rouge.',
+          'Quatre façons de découvrir Amsterdam à pied, chacune révélant un visage différent de la ville.',
         items: [
-          'Introduction à Amsterdam',
-          'Promenade dans le Jordaan',
-          'Amsterdam juif et Seconde Guerre mondiale',
-          'Contexte du Quartier rouge',
+          'Introduction à Amsterdam — De la gare centrale d’Amsterdam, en passant par une partie du Quartier rouge, jusqu’à la place du Dam et au marché aux fleurs. Cette visite dure de 2 à 3 heures, selon l’itinéraire.',
+          'Amsterdam juif et la Seconde Guerre mondiale — Découvrez la communauté juive d’Amsterdam et ce qui lui est arrivé pendant la guerre. Voyez le Mémorial des noms de l’Holocauste, le Musée juif de l’extérieur, le Wertheimpark et Waterlooplein. Si le temps le permet, poursuivez jusqu’à la Maison d’Anne Frank.',
+          'Jordaan — Découvrez comment ce célèbre quartier populaire est devenu l’un des secteurs les plus recherchés d’Amsterdam.',
+          'Quartier rouge — Explorez l’histoire du quartier connu pour ses « dames de la nuit » et son lien surprenant avec Wall Street à New York.',
         ],
       },
       {
-        title: 'Volendam, Edam et Marken',
+        title: 'Zaanse Schans, Edam, Volendam et Marken',
         image: '/images/villages.webp',
         alt: 'Village portuaire traditionnel avec maisons néerlandaises',
         copy:
-          'Une belle journée hors d’Amsterdam avec vie portuaire, rues d’une ville du fromage, histoire de village de pêcheurs et assez de temps pour respirer.',
-        items: ['Port de Volendam', 'Promenade à Edam', 'Options Marken et Zaanse Schans'],
+          'Cette excursion dans la campagne autour d’Amsterdam peut se faire en une demi-journée ou une journée complète, avec ou sans déjeuner.',
+        items: [
+          'Visitez Zaanse Schans, un village en plein air qui présente la vie dans l’une des plus grandes régions industrielles du XVIIe siècle. Assistez à une démonstration de fabrication de sabots néerlandais et profitez de temps libre pour explorer le village.',
+          'Arrêtez-vous dans une ferme fromagère pour découvrir la fabrication du fromage néerlandais, suivie d’une dégustation.',
+          'Poursuivez vers les rues historiques d’Edam et le village portuaire de Volendam, avec une traversée vers Marken.',
+        ],
+      },
+      {
+        title: 'La Haye',
+        image: '/images/grand-holland.webp',
+        alt: 'Panorama et monuments de La Haye',
+        copy:
+          'Découvrez à pied ou en bus le cœur gouvernemental et international des Pays-Bas.',
+        items: [
+          'Visite à pied — Explorez le centre-ville, notamment Lange Voorhout, les bâtiments du Parlement et l’ancien quartier juif, devenu aujourd’hui le quartier chinois de La Haye.',
+          'Visite en bus — Découvrez le centre-ville, le Palais de la Paix, le quartier des ambassades, Madurodam et la plage de Scheveningen.',
+        ],
+      },
+      {
+        title: 'Rotterdam',
+        image: '/images/grand-holland.webp',
+        alt: 'Panorama moderne de Rotterdam et pont Érasme',
+        copy:
+          'Découvrez l’architecture audacieuse et le paysage urbain changeant de la ville portuaire moderne des Pays-Bas.',
+        items: [
+          'Visite à pied — Découvrez les Maisons Cubes, le nouveau Markthal et la vue depuis le pont Érasme.',
+          'Visite en bus — Passez devant le zoo de Blijdorp, Coolsingel et les Maisons Cubes, traversez la Meuse par le pont Willems et revenez par le pont Érasme, en passant devant la tour panoramique Euromast.',
+        ],
+      },
+      {
+        title: 'Delft',
+        image: '/images/grand-holland.webp',
+        alt: 'Faïence bleu de Delft et centre historique de Delft',
+        copy:
+          'Visitez Royal Delft, la plus ancienne manufacture de faïence bleu de Delft du pays, pour découvrir sa fabrication, puis partez à pied à la découverte de cette belle ville historique.',
+        items: [
+          'La Haye, Rotterdam et Delft peuvent également être combinées en une excursion d’une journée appelée « Grand Holland ». Contactez-nous pour plus d’informations.',
+        ],
       },
       {
         title: 'Nimègue',
@@ -267,43 +316,21 @@ const content = {
         photoCta: 'Voir la photo',
         photoClose: 'Fermer la photo',
         copy:
-          'Particulièrement intéressante pour les groupes : la plus ancienne ville des Pays-Bas, construite sur deux niveaux, avec une promenade détendue dans son centre historique.',
-        items: ['Promenade détendue', 'Visite historique de la ville', 'Stevenskerk et Waalkade'],
-      },
-      {
-        title: 'La Grande Hollande',
-        image: '/images/grand-holland.webp',
-        alt: 'Skyline de Rotterdam, bleu de Delft et sites de Hollande du Sud',
-        copy:
-          'Un itinéraire complet en Hollande du Sud : Rotterdam, bleu de Delft, courte promenade à Delft, La Haye, Madurodam et temps libre.',
-        items: ['Rotterdam en bus ou à pied', 'Delft et bleu de Delft', 'La Haye et Madurodam'],
-      },
-      {
-        title: 'La Haye, Rotterdam et Delft',
-        image: '/images/grand-holland.webp',
-        alt: 'Sites de Hollande du Sud et détails urbains',
-        copy:
-          'Visites de villes historiques et parcours en bus en Hollande du Sud : Parlement et Scheveningen à La Haye, Rotterdam moderne et savoir-faire du bleu de Delft.',
-        items: ['Centre de La Haye ou tour en bus', 'Rotterdam à pied ou en bus', 'Fabrique de bleu de Delft et promenade en ville'],
-      },
-      {
-        title: 'Visites sur mesure',
-        image: '/images/hero.webp',
-        alt: 'Collage coloré de voyage aux Pays-Bas avec canaux, tulipes et bleu de Delft',
-        copy:
-          'Pour les tour-opérateurs, familles et groupes privés qui ont besoin d’un itinéraire adapté à la saison, au rythme, à la langue et à la taille du groupe.',
-        items: ['Groupes privés', 'Soutien aux tour-opérateurs', 'Itinéraires flexibles aux Pays-Bas'],
+          'Explorez Nimègue, la plus ancienne ville des Pays-Bas et la seule du pays construite sur deux niveaux, lors d’une visite à pied d’environ deux heures.',
+        items: [
+          'Découvrez ses monuments les plus connus, en particulier la Stevenskerk qui domine le centre-ville et la Waalkade au bord du fleuve.',
+        ],
       },
     ],
     about: {
       eyebrow: 'À propos de Marion',
-      title: 'Une conteuse entre deux mondes',
+      title: 'De New Amsterdam à Amsterdam',
       copy: [
-        'Marion Baumgarten travaille depuis 40 ans dans le voyage et le tourisme, des opérations touristiques et ventes groupes au guidage de visiteurs aux Pays-Bas et à New York. La plupart des visites sont guidées par Marion elle-même.',
-        'Née à New York et marquée par la vie aux Pays-Bas et dans d’autres pays, Marion a fait le voyage originel en sens inverse : de New Amsterdam à Amsterdam. Cela lui donne une manière naturelle d’expliquer les différences de mode de vie, de regard et d’habitudes des deux côtés de l’Atlantique.',
+        'La carrière de Marion Baumgarten dans le tourisme s’étend sur de nombreuses années. Elle est passée du guidage à la vente hôtelière et d’attractions, puis est revenue au guidage—d’abord à New York et maintenant à Amsterdam.',
+        'Née à New York et ayant vécu aux Pays-Bas ainsi que dans d’autres pays, Marion a fait le voyage originel en sens inverse : de « New Amsterdam à Amsterdam ». Elle est ainsi devenue spécialiste des différences de mode de vie de chaque côté de l’Atlantique.',
       ],
       note:
-        'Ses visites sont construites autour d’histoires, pas de scripts : comment les lieux se sont développés, pourquoi les coutumes néerlandaises surprennent les visiteurs et ce que ces différences culturelles signifient dans la vie quotidienne.',
+        'Grâce à sa formation en langue et littérature françaises ainsi qu’en tourisme, Marion réunit histoire, culture et vie quotidienne dans les récits qu’elle partage.',
     },
     spring: {
       label: 'Visites de printemps à Keukenhof',
@@ -359,18 +386,56 @@ const content = {
         'Red Light District tour': 'Visite du Quartier rouge',
         'Keukenhof spring tour': 'Visite printanière de Keukenhof',
         'Volendam, Edam, Marken or Zaanse Schans': 'Volendam, Edam, Marken ou Zaanse Schans',
-        'Nijmegen group tour': 'Visite de groupe à Nimègue',
+        'Nijmegen walking tour': 'Visite à pied de Nimègue',
         'The Grand Holland': 'La Grande Hollande',
         'The Hague, Rotterdam or Delft': 'La Haye, Rotterdam ou Delft',
-        'Custom Netherlands tour': 'Visite sur mesure aux Pays-Bas',
       },
     },
     footer: {
       brand: 'Netherlands Unveiled',
-      copy: 'Visites privées et de groupe aux Pays-Bas',
+      copy: 'Visites d’Amsterdam et plus encore',
     },
   },
 } as const;
+
+const guidingLanguageMessages = [
+  {
+    language: 'English',
+    flag: '🇺🇸',
+    message:
+      'Marion offers walking tours of Amsterdam, the city she loves and where she lives. Other excursions can also be arranged.',
+  },
+  {
+    language: 'Dutch',
+    flag: '🇳🇱',
+    message:
+      'Wij kunnen uw teksten vertalen naar het Engels of omgekeerd; als ook teksten voor advokatuur, toerisme, reclame, immigratie of literatuur worden door ons deskundig vertaald. Wij kunnen uw groepsreis naar Amerika voorbereiden en begeleiden. Onze Amerika specialist, Marion, heeft daar het grootste deel van haar leven gewoond en gewerkt. Zij heeft een vergunning om te gidsen in New York en is zeer bekend met vele andere steden in Amerika en Canada. Verder organiseren we excursies, reisjes en luxe dineravonden voor 50-plus singles. Houd onze blog in de gaten voor alle details hierover!',
+  },
+  {
+    language: 'German',
+    flag: '🇩🇪',
+    message:
+      'Marion bietet Stadtrundgänge von Amsterdam an, die Stadt, die sie liebt und in der sie lebt, aber sie kann auch andere Ausflüge organisieren.',
+  },
+  {
+    language: 'French',
+    flag: '🇫🇷',
+    message:
+      'Marion conduit des visites a pied d’Amsterdam, la ville qu’elle adore, et ou elle habite. D’autres excursions peuvent aussi etre arrangees.',
+  },
+  {
+    language: 'Spanish',
+    flag: '🇪🇸',
+    message:
+      'Marion da paseos por Amsterdam, la ciudad donde vive, y que le encanta mucho, pero puede organizar tambien otras excursiones.',
+  },
+  {
+    language: 'Italian',
+    flag: '🇮🇹',
+    message:
+      'Marion fa delle passegiate di Amsterdam, la citta dove vive, e che ama molto…, ma puo anche organizzare altre gite.',
+  },
+] as const;
 
 type Lang = keyof typeof content;
 
@@ -402,12 +467,16 @@ const contentJson = JSON.stringify(content).replace(/</g, '\\u003c');
             <span data-i18n="nav.tagline">{t.nav.tagline}</span>
           </a>
           <div class="top-flags" aria-label={t.nav.guidingLanguages} data-i18n-attr="aria-label:nav.guidingLanguages">
-            <span aria-label="English">🇺🇸</span>
-            <span aria-label="Dutch">🇳🇱</span>
-            <span aria-label="German">🇩🇪</span>
-            <span aria-label="French">🇫🇷</span>
-            <span aria-label="Spanish">🇪🇸</span>
-            <span aria-label="Italian">🇮🇹</span>
+            {guidingLanguageMessages.map(({ language, flag, message }) => (
+              <button
+                type="button"
+                aria-label={`Read Marion’s message in ${language}`}
+                data-flag-message={message}
+                data-flag-language={language}
+              >
+                <span aria-hidden="true">{flag}</span>
+              </button>
+            ))}
           </div>
           <div class="lang-toggle" aria-label={t.nav.languageToggleLabel} data-i18n-attr="aria-label:nav.languageToggleLabel">
             <button class="lang-option is-active" type="button" data-lang-button="en" aria-pressed="true">EN</button>
@@ -606,6 +675,16 @@ const contentJson = JSON.stringify(content).replace(/</g, '\\u003c');
       </footer>
     </div>
 
+    <dialog class="language-modal" id="language-modal" aria-labelledby="language-modal-title">
+      <div class="language-modal-inner">
+        <button class="language-modal-close" type="button" aria-label="Close language message" data-language-modal-close>
+          <span aria-hidden="true">×</span>
+        </button>
+        <h2 id="language-modal-title"></h2>
+        <p data-language-modal-message></p>
+      </div>
+    </dialog>
+
     <script is:inline type="application/json" id="i18n-data" set:html={contentJson}></script>
     <script>
       const dataNode = document.getElementById('i18n-data');
@@ -705,6 +784,33 @@ const contentJson = JSON.stringify(content).replace(/</g, '\\u003c');
           const lang = button.getAttribute('data-lang-button');
           if (lang) applyLanguage(lang);
         });
+      });
+
+      const languageModal = document.getElementById('language-modal');
+      const languageModalTitle = document.getElementById('language-modal-title');
+      const languageModalMessage = languageModal?.querySelector('[data-language-modal-message]');
+      const languageModalClose = languageModal?.querySelector('[data-language-modal-close]');
+
+      document.querySelectorAll('[data-flag-message]').forEach((button) => {
+        button.addEventListener('click', () => {
+          if (!(languageModal instanceof HTMLDialogElement)) return;
+
+          const language = button.getAttribute('data-flag-language') ?? '';
+          const message = button.getAttribute('data-flag-message') ?? '';
+          if (languageModalTitle) languageModalTitle.textContent = language;
+          if (languageModalMessage) languageModalMessage.textContent = message;
+          languageModal.showModal();
+        });
+      });
+
+      languageModalClose?.addEventListener('click', () => {
+        if (languageModal instanceof HTMLDialogElement) languageModal.close();
+      });
+
+      languageModal?.addEventListener('click', (event) => {
+        if (event.target === languageModal && languageModal instanceof HTMLDialogElement) {
+          languageModal.close();
+        }
       });
 
       document.querySelectorAll('[data-photo-popout]').forEach((details) => {
