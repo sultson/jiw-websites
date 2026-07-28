@@ -1,0 +1,53 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #111318;
+  --color-ink-2: #181b21;
+  --color-ink-3: #22262e;
+  --color-paper: #f4f3ef;
+  --color-oranje: #f27025;
+  --color-oranje-deep: #cd5a12;
+  --font-sans: 'Archivo', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Big condensed-expanded display type, the site's voice */
+.display {
+  font-family: var(--font-sans);
+  font-variation-settings: 'wdth' 122;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.eyebrow {
+  font-variation-settings: 'wdth' 110;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+/* Blueprint grid backdrop behind the diorama canvas */
+.blueprint {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
