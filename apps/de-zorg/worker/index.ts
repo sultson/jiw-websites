@@ -13,7 +13,7 @@ const formWorker = createFormWorker({
   subjectFields: ['subject'],
   requiredFields: [
     { name: 'subject', label: 'onderwerp', message: 'Kies waar uw bericht over gaat.' },
-    { name: 'message', label: 'bericht', message: 'Omschrijf kort de organisatie, werkomgeving en gewenste inzet.' }
+    { name: 'message', label: 'bericht', message: 'Vertel kort welke ondersteuning, inzet of samenwerking u wilt bespreken.' }
   ],
   emailFields: [
     { name: 'subject', label: 'Onderwerp' },

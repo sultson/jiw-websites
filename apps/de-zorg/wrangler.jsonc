@@ -12,7 +12,9 @@
     "run_worker_first": ["/api/*"]
   },
   "routes": [
-    { "pattern": "dezorg.jouwidealewebsite.nl", "custom_domain": true }
+    { "pattern": "dezorg.jouwidealewebsite.nl", "custom_domain": true },
+    { "pattern": "d-e-zorg.nl", "custom_domain": true },
+    { "pattern": "www.d-e-zorg.nl", "custom_domain": true }
   ],
   "r2_buckets": [
     { "binding": "FORM_UPLOADS", "bucket_name": "jiw-form-uploads-prod" }
@@ -22,7 +24,7 @@
   ],
   "vars": {
     "SITE_ID": "de-zorg",
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_RECIPIENT": "lenie.eranio@hotmail.com",
     "LEAD_SENDER": "contact@notify.jouwidealewebsite.nl",
     "TURNSTILE_SECRET_KEY": "dev"
   }
