@@ -10,8 +10,8 @@ export const relocation: SectionContent = {
     'Verhuizen naar een ander land is duizend kleine taken vermomd als één grote. Het BSN, de gemeente, de verzekering, de school, de bank, elk met een eigen loket, eigen formulieren en een eigen idee van een redelijke wachttijd. De meeste bureaus geven u een checklist. Wij zijn het enige boutique expatbureau van Nederland, en wij doen iets anders: één persoon leert uw naam, uw gezin en uw situatie kennen, en zorgt er vervolgens gewoon voor.',
     'Die persoon regelt uw relocation niet vanachter een bureau. Zij boekt de afspraken, bereidt het papierwerk voor, rijdt met u mee naar de gemeente en zit naast u aan het loket. Vanaf het moment dat u landt tot het moment dat Nederland als thuis voelt, heeft u hier iemand die het antwoord op uw volgende vraag al kent.',
   ],
-  image: '/images/relocation-family.jpg',
-  imageAlt: 'Een gezin komt aan bij hun nieuwe huis in Nederland',
+  image: '/images/relocation-hub.jpg',
+  imageAlt: 'Verhuizers dragen dozen een Nederlands gezinshuis binnen',
   services: [
     {
       slug: 'bsn-registration-netherlands',
@@ -97,8 +97,8 @@ export const relocation: SectionContent = {
         label: 'Regel mijn BSN',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg',
-      imageAlt: 'Een inschrijfafspraak aan een Nederlands gemeenteloket',
+      image: '/images/bsn-registration.jpg',
+      imageAlt: 'Een inschrijfdocument wordt overhandigd aan een gemeenteloket',
     },
     {
       slug: 'municipality-registration-netherlands',
@@ -183,7 +183,7 @@ export const relocation: SectionContent = {
         label: 'Regel mijn inschrijving',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg',
+      image: '/images/immigration-desk.jpg?v=20260728',
       imageAlt: 'Papierwerk wordt ingevuld aan een gemeentelijke servicebalie',
     },
     {
@@ -270,8 +270,8 @@ export const relocation: SectionContent = {
         label: 'Regel mijn verzekering',
       },
       form: 'relocation',
-      image: '/images/relocation-settling.jpg',
-      imageAlt: 'Een nieuwkomer neemt Nederlandse zorgverzekeringsopties door met een begeleider',
+      image: '/images/health-insurance.jpg',
+      imageAlt: 'Nederlandse zorgverzekeringen vergelijken aan een keukentafel',
     },
     {
       slug: 'school-search-netherlands',
@@ -357,8 +357,8 @@ export const relocation: SectionContent = {
         label: 'Vind onze school',
       },
       form: 'relocation',
-      image: '/images/relocation-family.jpg',
-      imageAlt: 'Ouders en kinderen bezoeken een school in Nederland',
+      image: '/images/school-search.jpg',
+      imageAlt: 'Ouders en kind in gesprek met een leerkracht op een Nederlandse school',
     },
     {
       slug: 'settling-in-services-netherlands',
@@ -447,7 +447,7 @@ export const relocation: SectionContent = {
         label: 'Help mij settelen',
       },
       form: 'relocation',
-      image: '/images/relocation-settling.jpg',
+      image: '/images/relocation-settling.jpg?v=20260728',
       imageAlt: 'Een nieuwkomer raakt vertrouwd met de nieuwe Nederlandse buurt',
     },
     {
@@ -533,7 +533,7 @@ export const relocation: SectionContent = {
         label: 'Boek mijn aankomst',
       },
       form: 'relocation',
-      image: '/images/relocation-arrival.jpg',
+      image: '/images/relocation-arrival.jpg?v=20260728',
       imageAlt: 'Een warm welkom in de aankomsthal van de luchthaven',
     },
     {
@@ -627,8 +627,8 @@ export const relocation: SectionContent = {
         label: 'Plan onze gezinsverhuizing',
       },
       form: 'relocation',
-      image: '/images/vip-family.jpg',
-      imageAlt: 'Een gezin settelt gelukkig in het leven in Nederland',
+      image: '/images/family-relocation.jpg',
+      imageAlt: 'Gezin wandelt met fietsen door hun nieuwe buurt',
     },
     {
       slug: 'relocation-services-rotterdam',
@@ -713,7 +713,7 @@ export const relocation: SectionContent = {
         label: 'Start mijn Rotterdamse verhuizing',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
+      image: '/images/rotterdam.jpg?v=20260728',
       imageAlt: 'Het centrum van Rotterdam met moderne architectuur langs de Maas',
     },
   ],

@@ -10,8 +10,8 @@ export const relocation: SectionContent = {
     'Changer de pays, ce sont mille petites tâches déguisées en une seule grande. Le BSN, la commune, l’assurance, l’école, la banque, chacun avec son guichet, ses formulaires et sa propre idée d’un délai raisonnable. La plupart des agences vous tendent une check-list. Nous sommes la seule agence boutique pour expatriés aux Pays-Bas, et nous faisons autre chose : une personne apprend votre nom, votre famille et votre situation, puis s’en occupe, tout simplement.',
     'Cette personne ne pilote pas votre relocation depuis un bureau. Elle prend les rendez-vous, prépare les documents, vous conduit à la commune et s’assied à vos côtés au guichet. Du moment où vous atterrissez jusqu’au moment où les Pays-Bas deviennent chez vous, vous avez ici quelqu’un qui connaît déjà la réponse à votre prochaine question.',
   ],
-  image: '/images/relocation-family.jpg',
-  imageAlt: 'Une famille arrivant dans sa nouvelle maison aux Pays-Bas',
+  image: '/images/relocation-hub.jpg',
+  imageAlt: 'Déménageurs portant des cartons dans une maison familiale néerlandaise',
   services: [
     {
       slug: 'bsn-registration-netherlands',
@@ -97,8 +97,8 @@ export const relocation: SectionContent = {
         label: 'Organiser mon BSN',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg',
-      imageAlt: 'Un rendez-vous d’inscription au guichet d’une commune néerlandaise',
+      image: '/images/bsn-registration.jpg',
+      imageAlt: 'Remise d’un document d’inscription au guichet d’une commune',
     },
     {
       slug: 'municipality-registration-netherlands',
@@ -183,7 +183,7 @@ export const relocation: SectionContent = {
         label: 'Gérer mon inscription',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg',
+      image: '/images/immigration-desk.jpg?v=20260728',
       imageAlt: 'Formalités remplies au guichet d’un service communal',
     },
     {
@@ -270,8 +270,8 @@ export const relocation: SectionContent = {
         label: 'Régler mon assurance',
       },
       form: 'relocation',
-      image: '/images/relocation-settling.jpg',
-      imageAlt: 'Un nouvel arrivant examinant les options d’assurance santé néerlandaises avec une accompagnatrice',
+      image: '/images/health-insurance.jpg',
+      imageAlt: 'Comparaison des options d’assurance santé néerlandaises à une table de cuisine',
     },
     {
       slug: 'school-search-netherlands',
@@ -357,8 +357,8 @@ export const relocation: SectionContent = {
         label: 'Trouver notre école',
       },
       form: 'relocation',
-      image: '/images/relocation-family.jpg',
-      imageAlt: 'Parents et enfants visitant une école aux Pays-Bas',
+      image: '/images/school-search.jpg',
+      imageAlt: 'Parents et enfant discutant avec une enseignante dans une école néerlandaise',
     },
     {
       slug: 'settling-in-services-netherlands',
@@ -447,7 +447,7 @@ export const relocation: SectionContent = {
         label: 'M’aider à m’installer',
       },
       form: 'relocation',
-      image: '/images/relocation-settling.jpg',
+      image: '/images/relocation-settling.jpg?v=20260728',
       imageAlt: 'Un nouvel arrivant prenant ses repères dans son nouveau quartier néerlandais',
     },
     {
@@ -533,7 +533,7 @@ export const relocation: SectionContent = {
         label: 'Réserver mon accueil',
       },
       form: 'relocation',
-      image: '/images/relocation-arrival.jpg',
+      image: '/images/relocation-arrival.jpg?v=20260728',
       imageAlt: 'Un accueil chaleureux dans le hall des arrivées de l’aéroport',
     },
     {
@@ -627,8 +627,8 @@ export const relocation: SectionContent = {
         label: 'Planifier notre déménagement familial',
       },
       form: 'relocation',
-      image: '/images/vip-family.jpg',
-      imageAlt: 'Une famille s’installant avec bonheur dans sa vie aux Pays-Bas',
+      image: '/images/family-relocation.jpg',
+      imageAlt: 'Famille marchant avec des vélos dans son nouveau quartier',
     },
     {
       slug: 'relocation-services-rotterdam',
@@ -713,7 +713,7 @@ export const relocation: SectionContent = {
         label: 'Lancer mon installation à Rotterdam',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
+      image: '/images/rotterdam.jpg?v=20260728',
       imageAlt: 'Centre-ville de Rotterdam et son architecture moderne le long de la Meuse',
     },
   ],

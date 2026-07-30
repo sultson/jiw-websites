@@ -76,6 +76,8 @@ export interface PackageContent {
   metaDescription: string;
   /** e.g. 'from €2,900' localized. */
   priceFrom: string;
+  /** Optional highlight badge on the hub card, e.g. 'Most popular'. */
+  badge?: string;
   intro: string[];
   included: { title: string; items: { title: string; text: string }[] };
   forWho: { title: string; items: string[] };
@@ -98,6 +100,8 @@ export interface VipContent {
   imageAlt: string;
   /** Shared pricing context shown on the hub (range, what drives price). */
   pricingNote: { title: string; text: string[] };
+  /** Packages are starting points, adapted per client. Shown on hub and package pages. */
+  tailored: { text: string; label: string };
   packages: PackageContent[];
   cta: Cta;
 }
@@ -169,6 +173,8 @@ export interface UiStrings {
     errorTitle: string;
     errorBody: string;
     consent: string;
+    /** Shown above the form: what happens after submission. */
+    nextSteps: string;
   };
   footer: {
     tagline: string;
@@ -197,6 +203,8 @@ export interface HomeContent {
     ctaPrimary: string;
     ctaWhatsapp: string;
     ctaSecondary: string;
+    /** Short trust line under the CTAs, next to the stars. */
+    trust: string;
   };
   /** Three-path split directly under the hero. */
   paths: {
@@ -233,12 +241,27 @@ export interface HomeContent {
     links: { label: string; path: string }[];
   };
   businessBlock: { eyebrow: string; heading: string; text: string[]; label: string };
-  regionBlock: {
+  /** Dedicated port, harbour and offshore section (dark band). */
+  portBlock: {
     eyebrow: string;
     heading: string;
     text: string[];
     label: string;
     areas: { title: string; text: string }[];
+    /** Regional focus presented as a service advantage. */
+    advantages: { title: string; text: string }[];
+    links: { label: string; path: string }[];
+  };
+  /** Image-led family relocation band. */
+  familyBlock: {
+    eyebrow: string;
+    heading: string;
+    text: string[];
+    label: string;
+    path: string;
+    image: string;
+    imageAlt: string;
+    links: { label: string; path: string }[];
   };
   whyBoutique: {
     eyebrow: string;
@@ -299,6 +322,9 @@ export interface FormsCopy {
     service: string;
     serviceOptions: string[];
     nationality: string;
+    currentLocation: string;
+    status: string;
+    statusOptions: string[];
     timeline: string;
     timelineOptions: string[];
     message: string;
@@ -310,6 +336,8 @@ export interface FormsCopy {
     service: string;
     serviceOptions: string[];
     movingFrom: string;
+    household: string;
+    householdOptions: string[];
     timeline: string;
     timelineOptions: string[];
     message: string;
@@ -323,6 +351,7 @@ export interface FormsCopy {
     preferredContact: string;
     preferredContactOptions: string[];
     arrival: string;
+    movingFrom: string;
     message: string;
     messagePlaceholder: string;
   };

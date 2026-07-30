@@ -10,14 +10,18 @@ export const vip: VipContent = {
     'Artiesten met tourschema’s. Sporters tussen twee seizoenen. Bestuurders met één vrij weekend en oprichters zonder. Onze VIP-pakketten bestaan voor mensen wier agenda niet meebuigt, dus buigt Nederland mee.',
     'Elk pakket wordt persoonlijk geleid door Johanna: afspraken gebundeld, deuren vooraf geopend, en een 24/7-lijn die wordt beantwoord door degene die uw dossier kent, niet door een servicedesk.',
   ],
-  image: '/images/vip-concierge.jpg',
-  imageAlt: 'Privéjet en wachtende auto bij zonsopgang',
+  image: '/images/vip-hub.jpg',
+  imageAlt: 'Gastheer verwelkomt een stel dat met de auto aankomt bij een hotel aan de gracht',
   pricingNote: {
     title: 'Wat een pakket kost, en waarom',
     text: [
       'Pakketten lopen van € 2.000 tot € 10.000, afhankelijk van de grootte van uw huishouden, de visumroute en hoe krap uw tijdlijn is. Die prijs koopt weken voltijds werk: aanvragen voorbereid en ingediend, woningen gezocht en onderhandeld, elke registratie ingepland en begeleid, en een beschikbaarheid die niet ophoudt om vijf uur.',
       'Na uw eerste gesprek ontvangt u één vaste offerte. Geen uurtarief-verrassingen, geen extra kosten halverwege de verhuizing.',
     ],
+  },
+  tailored: {
+    text: 'Elk pakket is een startpunt, geen vaste menukaart. In het eerste gesprek stemmen wij de inhoud af op uw situatie, met erbij wat u nodig heeft en zonder wat u niet nodig heeft.',
+    label: 'Bespreek een pakket op maat',
   },
   packages: [
     {
@@ -81,7 +85,7 @@ export const vip: VipContent = {
         text: 'Geef ons uw data en wij vertellen u precies wat er mogelijk is.',
         label: 'Start uw VIP-aanvraag',
       },
-      image: '/images/vip-couple.jpg',
+      image: '/images/vip-couple.jpg?v=20260728',
       imageAlt: 'Stel op een penthousebalkon met uitzicht over Rotterdam in de schemering',
     },
     {
@@ -92,6 +96,7 @@ export const vip: VipContent = {
       metaDescription:
         'Gezinsrelocatiepakket voor Nederland: immigratie voor elk gezinslid, wonen, scholenzoektocht, zorg, registraties en buurtoriëntatie, persoonlijk begeleid.',
       priceFrom: 'vanaf € 3.500',
+      badge: 'Meest gekozen',
       intro: [
         'Een gezinsrelocatie is geen grotere versie van een individuele, het is een ander vak. Schooljaren die op vaste data beginnen, een woning die voor iedereen moet werken, vier dossiers bij de IND in plaats van één. Dit pakket bestaat omdat die volgorde goed krijgen is waar wij het beste in zijn.',
       ],
@@ -145,7 +150,7 @@ export const vip: VipContent = {
         text: 'Vertel ons over uw huishouden en uw data. Wij ontwerpen de aankomst rond het schooljaar.',
         label: 'Start uw VIP-aanvraag',
       },
-      image: '/images/vip-family.jpg',
+      image: '/images/vip-family.jpg?v=20260728',
       imageAlt: 'Gezin dat in het avondlicht aankomt bij een Nederlandse villa',
     },
     {
@@ -209,7 +214,7 @@ export const vip: VipContent = {
         text: 'Vertel ons uw plannen en uw tijdvenster. Wij komen terug met een volgorde en een vaste offerte.',
         label: 'Start uw VIP-aanvraag',
       },
-      image: '/images/vip-business.jpg',
+      image: '/images/vip-business.jpg?v=20260728',
       imageAlt: 'Bestuurder aan het werk achterin een auto met chauffeur',
     },
     {
@@ -272,7 +277,7 @@ export const vip: VipContent = {
         text: 'Geef ons de data die u heeft. Wij laten u zien wat daarbinnen kan gebeuren.',
         label: 'Start een discrete aanvraag',
       },
-      image: '/images/vip-concierge.jpg',
+      image: '/images/vip-concierge.jpg?v=20260728',
       imageAlt: 'Privéjet met wachtende auto bij zonsopgang',
     },
   ],

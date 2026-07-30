@@ -10,7 +10,7 @@ export const business: SectionContent = {
     'Visumkantoren regelen vergunningen. Oprichtingsbureaus registreren bedrijven. Woningbureaus vinden appartementen. Een internationale ondernemer heeft alle drie tegelijk nodig, plus een gezin dat werkelijk wil blijven, en niemand biedt u dat als één dienst. Wij wel. Immigratie, bedrijfsoprichting, woonruimte en relocation, gecoördineerd door één team dat aan u verantwoording aflegt.',
     'Hetzelfde geldt op bedrijfsschaal. Wanneer een onderneming mensen naar Nederland verplaatst, verhuizen wij het complete plaatje: de entiteit, de bestuurders, de teams en elk gezin dat meekomt.',
   ],
-  image: '/images/business-meeting.jpg',
+  image: '/images/business-meeting.jpg?v=20260728',
   imageAlt: 'Internationale ondernemers plannen hun Nederlandse bedrijf aan een vergadertafel',
   cta: {
     title: 'Breng uw bedrijf naar Nederland',
@@ -92,8 +92,8 @@ export const business: SectionContent = {
         label: 'Breng mijn route in kaart',
       },
       form: 'immigration',
-      image: '/images/business-meeting.jpg',
-      imageAlt: 'Ondernemer schetst een Nederlands bedrijfsplan met een adviseur',
+      image: '/images/start-business.jpg',
+      imageAlt: 'Ondernemer opent de deur van haar nieuwe kantoorruimte',
     },
     {
       slug: 'company-registration-netherlands',
@@ -174,7 +174,7 @@ export const business: SectionContent = {
         label: 'Zet mijn bedrijf op',
       },
       form: 'immigration',
-      image: '/images/business-signing.jpg',
+      image: '/images/business-signing.jpg?v=20260728',
       imageAlt: 'Oprichter ondertekent oprichtingsdocumenten bij een Nederlandse notaris',
     },
     {
@@ -252,8 +252,8 @@ export const business: SectionContent = {
         label: 'Boek mijn KvK-inschrijving',
       },
       form: 'immigration',
-      image: '/images/business-signing.jpg',
-      imageAlt: 'Nieuwe ondernemer rondt de inschrijving bij de Kamer van Koophandel af',
+      image: '/images/kvk-registration.jpg',
+      imageAlt: 'Ondernemer ontvangt een uittreksel van de bedrijfsinschrijving aan een balie',
     },
     {
       slug: 'relocation-services-for-entrepreneurs-netherlands',
@@ -329,8 +329,8 @@ export const business: SectionContent = {
         label: 'Start mijn relocationplan',
       },
       form: 'immigration',
-      image: '/images/vip-business.jpg',
-      imageAlt: 'Ondernemer neemt relocationplannen door met een persoonlijke adviseur',
+      image: '/images/entrepreneur-relocation.jpg',
+      imageAlt: 'Oprichter draagt een doos en laptop een nieuw kantoor binnen',
     },
     {
       slug: 'business-relocation-to-the-netherlands',
@@ -410,8 +410,8 @@ export const business: SectionContent = {
         label: 'Bespreek onze bedrijfsverhuizing',
       },
       form: 'immigration',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'De skyline van de Rotterdamse haven, thuisbasis voor corporate relocations',
+      image: '/images/business-relocation.jpg',
+      imageAlt: 'Team verhuist kratten naar een modern kantoorgebouw',
     },
     {
       slug: 'housing-support-for-entrepreneurs-netherlands',
@@ -488,8 +488,8 @@ export const business: SectionContent = {
         label: 'Start mijn woningzoektocht',
       },
       form: 'immigration',
-      image: '/images/housing-interior.jpg',
-      imageAlt: 'Lichte woonkamer van een huurwoning gevonden voor een ondernemer',
+      image: '/images/entrepreneur-housing.jpg',
+      imageAlt: 'Licht woon-werk loftappartement met een bureau bij het raam',
     },
   ],
   crossLinks: [

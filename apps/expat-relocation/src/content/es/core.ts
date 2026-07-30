@@ -43,9 +43,11 @@ export const core: CoreContent = {
       errorTitle: 'Algo ha salido mal',
       errorBody: 'No se pudo enviar su consulta. Inténtelo de nuevo o escríbanos por WhatsApp.',
       consent: 'Al enviar este formulario acepta nuestra política de privacidad.',
+      nextSteps:
+        'Después de enviar este formulario, Johanna revisa personalmente su situación y le responde en el plazo de un día laborable con una valoración honesta de si podemos ayudarle y cómo. Si su solicitud queda fuera de nuestros servicios o de nuestra región, se lo decimos de inmediato.',
     },
     footer: {
-      tagline: 'Servicios boutique de reubicación e inmigración para expatriados que se mudan a los Países Bajos.',
+      tagline: 'Servicios boutique de reubicación e inmigración para expatriados que se mudan a Rotterdam, Europoort y el conjunto de la región portuaria.',
       services: 'Servicios',
       company: 'Empresa',
       contactHeading: 'Contacto',
@@ -72,10 +74,11 @@ export const core: CoreContent = {
       ctaPrimary: 'Reserve una consulta de reubicación',
       ctaWhatsapp: 'Escríbanos por WhatsApp',
       ctaSecondary: 'Comience su reubicación',
+      trust: 'Acompañamiento personal de Johanna, disponible 24/7',
     },
     paths: {
       heading: '¿Cómo podemos ayudarle a llegar?',
-      sub: 'Tres caminos de entrada. Una persona que conoce su nombre desde el primer mensaje hasta el día en que se siente en casa.',
+      sub: 'Inmigración, vivienda, reubicación y asistencia VIP, gestionadas a través de una sola empresa. Elija su camino de entrada y una persona conoce su nombre desde el primer mensaje hasta el día en que se siente en casa.',
       items: [
         {
           key: 'immigration',
@@ -83,7 +86,7 @@ export const core: CoreContent = {
           text: 'Visados y permisos para profesionales, parejas, familias y fundadores. Preparados con precisión y guiados personalmente, desde la evaluación hasta la aprobación.',
           label: 'Explorar inmigración',
           path: '/immigration',
-          image: '/images/path-immigration.jpg',
+          image: '/images/path-immigration.jpg?v=20260728',
           imageAlt: 'Asesora guiando a un cliente entre documentos de residencia',
         },
         {
@@ -92,7 +95,7 @@ export const core: CoreContent = {
           text: 'Paquetes completos de reubicación o servicios contratados por separado: búsqueda de vivienda, colegios, BSN, seguros y todo lo que hay entre medias.',
           label: 'Explorar reubicación',
           path: '/relocation',
-          image: '/images/path-relocation.jpg',
+          image: '/images/path-relocation.jpg?v=20260728',
           imageAlt: 'Familia llegando a una casa junto a un canal neerlandés',
         },
         {
@@ -101,7 +104,7 @@ export const core: CoreContent = {
           text: 'Para artistas, deportistas, ejecutivos y visitas de fin de semana. Toda su mudanza orquestada en torno a una sola visita, con cada puerta ya abierta.',
           label: 'Explorar servicios VIP',
           path: '/vip-services',
-          image: '/images/path-vip.jpg',
+          image: '/images/path-vip.jpg?v=20260728',
           imageAlt: 'Chófer abriendo la puerta de un coche frente al perfil urbano de Rotterdam',
         },
       ],
@@ -167,17 +170,45 @@ export const core: CoreContent = {
       ],
       label: 'Servicios para empresas',
     },
-    regionBlock: {
-      eyebrow: 'Especialistas en Rotterdam y Europoort',
-      heading: 'La región que conocemos calle por calle',
+    portBlock: {
+      eyebrow: 'Puertos, terminales y offshore',
+      heading: 'El especialista en el puerto de Rotterdam',
       text: [
-        'El puerto más grande de Europa no aparece en los folletos de reubicación, y sin embargo decenas de miles de profesionales internacionales construyen allí su carrera. Somos la única agencia boutique especializada en Rotterdam, Europoort y la Maasvlakte, desde el ático en el Wilhelminapier hasta la casa familiar a veinte minutos de las terminales.',
+        'El puerto más grande de Europa no aparece en los folletos de reubicación, y sin embargo decenas de miles de profesionales internacionales construyen allí su carrera. Somos la única agencia boutique especializada en Rotterdam, la región al sur de la ciudad, Europoort y la Maasvlakte, y trabajamos a diario con las empresas portuarias, de offshore, de transporte marítimo y de ingeniería que traen a personas hasta aquí.',
       ],
       label: 'Servicios para expatriados del sector industrial',
       areas: [
         { title: 'Rotterdam', text: 'Vida con vistas al skyline, colegios internacionales y la ciudad que más rápido cambia de los Países Bajos.' },
         { title: 'Europoort y Maasvlakte', text: 'Reubicación práctica para profesionales del puerto, el offshore y las refinerías, y para sus familias.' },
-        { title: 'La región industrial', text: 'Localidades tranquilas como Brielle y Rozenburg, a minutos de las terminales y a un mundo de distancia de ellas.' },
+        { title: 'Al sur de Rotterdam', text: 'Localidades tranquilas como Brielle, Rozenburg y Hellevoetsluis, a minutos de las terminales y a un mundo de distancia de ellas.' },
+      ],
+      advantages: [
+        { title: 'Conocimiento local', text: 'Conocemos los barrios, los colegios, los caseros y los trayectos de esta región calle por calle.' },
+        { title: 'Asistencia personal rápida', text: 'Estamos cerca, así que podemos presentarnos con poca antelación en una visita de vivienda, una ventanilla municipal o una urgencia.' },
+        { title: 'Una red consolidada', text: 'Los agentes, ayuntamientos, colegios y empleadores internacionales de la región ya nos conocen.' },
+        { title: 'Apoyo después de la llegada', text: 'La relación no termina con las llaves. Seguimos siendo el punto de contacto mucho después de que se instale.' },
+      ],
+      links: [
+        { label: 'Expatriados en Europoort', path: '/industrial-expat-services/europoort-relocation-services-netherlands' },
+        { label: 'Expatriados en la Maasvlakte', path: '/industrial-expat-services/maasvlakte-expat-relocation-netherlands' },
+        { label: 'Profesionales del offshore', path: '/industrial-expat-services/offshore-expat-services-netherlands' },
+        { label: 'Profesionales de la logística', path: '/industrial-expat-services/relocation-for-logistics-professionals-netherlands' },
+      ],
+    },
+    familyBlock: {
+      eyebrow: 'Reubicación familiar',
+      heading: 'Mudar a una familia es otra disciplina',
+      text: [
+        'Cursos escolares que empiezan en fechas fijas, varios expedientes ante el IND en lugar de uno y un hogar que tiene que funcionar para todos. Coordinamos la llegada de toda la familia, inmigración incluida, en un solo plan y en unas mismas manos.',
+      ],
+      label: 'Servicios de reubicación familiar',
+      path: '/relocation/family-relocation-netherlands',
+      image: '/images/relocation-family.jpg?v=20260728',
+      imageAlt: 'Padres e hijos desembalando cajas en su nuevo hogar neerlandés',
+      links: [
+        { label: 'Paquete VIP para Familias', path: '/vip-services/family-relocation-immigration-services-netherlands' },
+        { label: 'Búsqueda de colegio', path: '/relocation/school-search-netherlands' },
+        { label: 'Reagrupación familiar', path: '/immigration/family-reunification-netherlands' },
       ],
     },
     whyBoutique: {
@@ -185,6 +216,7 @@ export const core: CoreContent = {
       heading: 'Una agencia. Una persona. Su nombre.',
       text: [
         'Las grandes firmas de reubicación le asignan un número de expediente. Una agencia boutique le asigna una persona. Johanna construyó su reputación en el mundo de las embajadas, donde la discreción y la precisión no son cualidades, son la descripción del puesto.',
+        'No somos una agencia generalista de expatriados que ofrece todos los servicios posibles. Hacemos inmigración, vivienda, reubicación y asistencia VIP para una sola región, a través de una sola empresa, y los hacemos de forma completa.',
       ],
       points: [
         {
@@ -251,7 +283,7 @@ export const core: CoreContent = {
       'E & I: Expat, Relocation and Immigration Services The Netherlands nació de una observación sencilla desde dentro del mundo de las embajadas: las personas que mejor cambian de país son las que van acompañadas personalmente. No gestionadas como expedientes. Acompañadas.',
       'Hoy Johanna y su red guían hacia los Países Bajos a profesionales, parejas, familias y fundadores, con una especialización que nadie más reivindica: Rotterdam, Europoort y la región industrial en torno al puerto más grande de Europa.',
     ],
-    image: '/images/about-Johanna.jpg',
+    image: '/images/about-joanna.jpg',
     imageAlt: 'Johanna, fundadora de E & I, en su oficina',
     approach: {
       heading: 'Nuestro enfoque personal de reubicación',
@@ -344,6 +376,14 @@ export const core: CoreContent = {
           'Aún no lo sé',
         ],
         nationality: 'Nacionalidad',
+        currentLocation: 'País de residencia actual',
+        status: 'Situación migratoria actual',
+        statusOptions: [
+          'Fuera de la UE, todavía sin permiso neerlandés',
+          'Ya en los Países Bajos con un visado o permiso',
+          'Ciudadano de la UE o del EEE',
+          'Otra situación o no lo sé',
+        ],
         timeline: '¿Cuándo planea mudarse?',
         timelineOptions: ['Lo antes posible', 'En menos de 3 meses', 'De 3 a 6 meses', 'Explorando opciones'],
         message: 'Su situación',
@@ -364,6 +404,8 @@ export const core: CoreContent = {
           'Otra cosa',
         ],
         movingFrom: 'Se muda desde',
+        household: '¿Quién se reubica?',
+        householdOptions: ['Solo yo', 'Mi pareja y yo', 'Mi familia con hijos', 'Empleados de mi empresa', 'Otro'],
         timeline: '¿Cuándo llega?',
         timelineOptions: ['Lo antes posible', 'En menos de 3 meses', 'De 3 a 6 meses', 'Explorando opciones'],
         message: 'Su mudanza',
@@ -383,6 +425,7 @@ export const core: CoreContent = {
         preferredContact: 'Contacto preferido',
         preferredContactOptions: ['WhatsApp', 'Teléfono', 'Correo electrónico'],
         arrival: 'Llegada prevista',
+        movingFrom: 'Se muda desde',
         message: 'Su reubicación',
         messagePlaceholder: 'Por ejemplo: me reubico desde Los Ángeles en octubre, disponible para una visita de preparación en septiembre.',
       },

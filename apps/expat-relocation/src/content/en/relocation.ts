@@ -10,8 +10,8 @@ export const relocation: SectionContent = {
     'Moving countries is a thousand small tasks wearing the disguise of one big one. The BSN, the municipality, the insurance, the school, the bank, each with its own counter, its own forms and its own idea of a reasonable waiting time. Most agencies hand you a checklist. We are the only boutique expat agency in the Netherlands, and we do something different: one person learns your name, your family and your situation, and then simply takes care of it.',
     'That person does not manage your relocation from behind a desk. She books the appointments, prepares the paperwork, drives to the municipality with you and sits beside you at the counter. From the moment you land until the moment the Netherlands feels like home, you have someone here who already knows the answer to your next question.',
   ],
-  image: '/images/relocation-family.jpg',
-  imageAlt: 'A family arriving at their new home in the Netherlands',
+  image: '/images/relocation-hub.jpg',
+  imageAlt: 'Movers carrying boxes into a Dutch family home',
   services: [
     {
       slug: 'bsn-registration-netherlands',
@@ -97,8 +97,8 @@ export const relocation: SectionContent = {
         label: 'Arrange my BSN',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg',
-      imageAlt: 'A registration appointment at a Dutch municipality desk',
+      image: '/images/bsn-registration.jpg',
+      imageAlt: 'Receiving a registration document at a municipal counter',
     },
     {
       slug: 'municipality-registration-netherlands',
@@ -183,7 +183,7 @@ export const relocation: SectionContent = {
         label: 'Handle my registration',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg',
+      image: '/images/immigration-desk.jpg?v=20260728',
       imageAlt: 'Paperwork being completed at a municipal service counter',
     },
     {
@@ -270,8 +270,8 @@ export const relocation: SectionContent = {
         label: 'Sort my insurance',
       },
       form: 'relocation',
-      image: '/images/relocation-settling.jpg',
-      imageAlt: 'A newcomer reviewing Dutch health insurance options with a guide',
+      image: '/images/health-insurance.jpg',
+      imageAlt: 'Comparing Dutch health insurance options at a kitchen table',
     },
     {
       slug: 'school-search-netherlands',
@@ -357,8 +357,8 @@ export const relocation: SectionContent = {
         label: 'Find our school',
       },
       form: 'relocation',
-      image: '/images/relocation-family.jpg',
-      imageAlt: 'Parents and children visiting a school in the Netherlands',
+      image: '/images/school-search.jpg',
+      imageAlt: 'Parents and child talking with a teacher at a Dutch school',
     },
     {
       slug: 'settling-in-services-netherlands',
@@ -447,7 +447,7 @@ export const relocation: SectionContent = {
         label: 'Help me settle in',
       },
       form: 'relocation',
-      image: '/images/relocation-settling.jpg',
+      image: '/images/relocation-settling.jpg?v=20260728',
       imageAlt: 'A newcomer getting oriented in their new Dutch neighborhood',
     },
     {
@@ -533,7 +533,7 @@ export const relocation: SectionContent = {
         label: 'Book my arrival',
       },
       form: 'relocation',
-      image: '/images/relocation-arrival.jpg',
+      image: '/images/relocation-arrival.jpg?v=20260728',
       imageAlt: 'A warm welcome at the airport arrivals hall',
     },
     {
@@ -627,8 +627,8 @@ export const relocation: SectionContent = {
         label: 'Plan our family move',
       },
       form: 'relocation',
-      image: '/images/vip-family.jpg',
-      imageAlt: 'A family settling happily into life in the Netherlands',
+      image: '/images/family-relocation.jpg',
+      imageAlt: 'Family walking with bicycles in their new neighbourhood',
     },
     {
       slug: 'relocation-services-rotterdam',
@@ -713,7 +713,7 @@ export const relocation: SectionContent = {
         label: 'Start my Rotterdam move',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
+      image: '/images/rotterdam.jpg?v=20260728',
       imageAlt: 'Rotterdam city center with modern architecture along the Maas',
     },
   ],

@@ -10,7 +10,7 @@ export const industrial: SectionContent = {
     'Порт Роттердама остаётся промышленным сердцем Европы, а коридор от города через Европорт до Маасвлакте нанимает иностранцев тысячами: инженеры, офшорные экипажи, операторы терминалов, планировщики логистики. При этом почти каждый релокационный сервис в Нидерландах создан для офисных сотрудников, приземляющихся в Амстердаме. Никто не специализируется на людях, которые заставляют этот порт работать. Мы специализируемся, и мы единственные.',
     'Мы знаем терминалы и нефтеперерабатывающие заводы, сменные графики и подрядные контракты, города, где на самом деле живут портовые семьи, и маршруты, при которых начало смены в 6 утра остаётся выносимым. Привозите ли вы бригаду как работодатель или приезжаете один как специалист, этот раздел создан для промышленного кластера и ни для кого больше.',
   ],
-  image: '/images/industrial-hub.jpg',
+  image: '/images/industrial-hub.jpg?v=20260728',
   imageAlt: 'Промышленные установки и терминалы в портовой зоне Европорт',
   services: [
     {
@@ -96,7 +96,7 @@ export const industrial: SectionContent = {
         label: 'Спланировать мой переезд в Европорт',
       },
       form: 'relocation',
-      image: '/images/europoort.jpg',
+      image: '/images/europoort.jpg?v=20260728',
       imageAlt: 'Инфраструктура НПЗ и терминалов в Европорте, Роттердам',
     },
     {
@@ -182,7 +182,7 @@ export const industrial: SectionContent = {
         label: 'Устроить мой переезд на Маасвлакте',
       },
       form: 'relocation',
-      image: '/images/maasvlakte.jpg',
+      image: '/images/maasvlakte.jpg?v=20260728',
       imageAlt: 'Контейнерные терминалы и краны глубоководного порта Маасвлакте',
     },
     {
@@ -269,7 +269,7 @@ export const industrial: SectionContent = {
         label: 'Устроить мою базу',
       },
       form: 'relocation',
-      image: '/images/industrial-worker.jpg',
+      image: '/images/industrial-worker.jpg?v=20260728',
       imageAlt: 'Офшорный специалист в рабочей одежде на портовом объекте',
     },
     {
@@ -355,7 +355,7 @@ export const industrial: SectionContent = {
         label: 'Ускорить мой переезд',
       },
       form: 'relocation',
-      image: '/images/logistics-worker.jpg',
+      image: '/images/logistics-worker.jpg?v=20260728',
       imageAlt: 'Специалист по логистике за работой в дистрибуционной зоне Роттердама',
     },
     {
@@ -445,8 +445,8 @@ export const industrial: SectionContent = {
         label: 'Стать нашим партнёром',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'Промышленный портовый горизонт Роттердама в рабочие часы',
+      image: '/images/rotterdam-industrial.jpg',
+      imageAlt: 'Рабочие в сигнальных жилетах в порту на фоне панорамы Роттердама',
     },
   ],
   cta: {

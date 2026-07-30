@@ -10,7 +10,7 @@ export const business: SectionContent = {
     'Визовые фирмы оформляют разрешения. Регистраторы создают компании. Жилищные агенты находят квартиры. Международному предпринимателю нужны все три сразу, плюс семья, которая действительно захочет остаться, и никто не предлагает это как одну услугу. Мы предлагаем. Иммиграция, создание компании, жильё и релокация, скоординированные одной командой, которая отвечает перед вами.',
     'То же верно и в масштабе компании. Когда бизнес перевозит людей в Нидерланды, мы релоцируем картину целиком: юридическое лицо, руководителей, команды и каждую семью, которая едет с ними.',
   ],
-  image: '/images/business-meeting.jpg',
+  image: '/images/business-meeting.jpg?v=20260728',
   imageAlt: 'Международные предприниматели планируют свою голландскую компанию за столом переговоров',
   cta: {
     title: 'Привезите свой бизнес в Нидерланды',
@@ -92,8 +92,8 @@ export const business: SectionContent = {
         label: 'Построить мой маршрут',
       },
       form: 'immigration',
-      image: '/images/business-meeting.jpg',
-      imageAlt: 'Предприниматель набрасывает голландский бизнес-план с консультантом',
+      image: '/images/start-business.jpg',
+      imageAlt: 'Предпринимательница открывает дверь своего нового офиса',
     },
     {
       slug: 'company-registration-netherlands',
@@ -174,7 +174,7 @@ export const business: SectionContent = {
         label: 'Создать мою компанию',
       },
       form: 'immigration',
-      image: '/images/business-signing.jpg',
+      image: '/images/business-signing.jpg?v=20260728',
       imageAlt: 'Основатель подписывает учредительные документы у голландского нотариуса',
     },
     {
@@ -252,8 +252,8 @@ export const business: SectionContent = {
         label: 'Забронировать мою регистрацию в KvK',
       },
       form: 'immigration',
-      image: '/images/business-signing.jpg',
-      imageAlt: 'Новый владелец бизнеса завершает регистрацию в торговой палате',
+      image: '/images/kvk-registration.jpg',
+      imageAlt: 'Предприниматель получает выписку о регистрации компании у стойки',
     },
     {
       slug: 'relocation-services-for-entrepreneurs-netherlands',
@@ -329,8 +329,8 @@ export const business: SectionContent = {
         label: 'Начать мой план релокации',
       },
       form: 'immigration',
-      image: '/images/vip-business.jpg',
-      imageAlt: 'Предприниматель обсуждает планы релокации с личным консультантом',
+      image: '/images/entrepreneur-relocation.jpg',
+      imageAlt: 'Основатель несёт коробку и ноутбук в новый офис',
     },
     {
       slug: 'business-relocation-to-the-netherlands',
@@ -410,8 +410,8 @@ export const business: SectionContent = {
         label: 'Обсудить наш корпоративный переезд',
       },
       form: 'immigration',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'Панорама гавани Роттердама, домашней базы корпоративных релокаций',
+      image: '/images/business-relocation.jpg',
+      imageAlt: 'Команда заносит ящики в современное офисное здание',
     },
     {
       slug: 'housing-support-for-entrepreneurs-netherlands',
@@ -488,8 +488,8 @@ export const business: SectionContent = {
         label: 'Начать мой поиск жилья',
       },
       form: 'immigration',
-      image: '/images/housing-interior.jpg',
-      imageAlt: 'Светлая гостиная арендного дома, найденного для предпринимателя',
+      image: '/images/entrepreneur-housing.jpg',
+      imageAlt: 'Светлый лофт для жизни и работы с письменным столом у окна',
     },
   ],
   crossLinks: [

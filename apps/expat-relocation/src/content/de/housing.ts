@@ -10,7 +10,7 @@ export const housing: SectionContent = {
     'Der niederländische Mietmarkt bewegt sich schnell und belohnt die Vorbereiteten. Gute Wohnungen werden morgens inseriert und sind abends vergeben, und Vermieter wählen Mieter, die schnell mit einer vollständigen Akte reagieren. Genau hier kommen wir ins Spiel. Wir beobachten den Markt für Sie, reagieren innerhalb von Stunden und bereiten Ihr Dossier so vor, dass Sie der Kandidat sind, zu dem ein Vermieter Ja sagt, wenn das richtige Zuhause auftaucht.',
     'Unser Heimatterrain ist Rotterdam und die weitere Hafenregion, vom Stadtzentrum bis hinaus nach Europoort und zur Maasvlakte, wobei wir in den ganzen Niederlanden suchen. Sie werden nie allein mit einer Linkliste losgeschickt. Wir erstellen die Auswahl, begleiten Sie zu Besichtigungen, lesen jeden Vertrag vor der Unterschrift und führen das Gespräch mit dem Vermieter von der ersten Nachricht bis zur Schlüsselübergabe.',
   ],
-  image: '/images/housing-canal.jpg',
+  image: '/images/housing-canal.jpg?v=20260728',
   imageAlt: 'Grachtenhäuser in einer niederländischen Stadt an einem hellen Tag',
   services: [
     {
@@ -105,8 +105,8 @@ export const housing: SectionContent = {
         label: 'Meine Suche starten',
       },
       form: 'relocation',
-      image: '/images/housing-canal.jpg',
-      imageAlt: 'Niederländische Grachtenhäuser mit charakteristischen Giebelfassaden',
+      image: '/images/housing-search.jpg',
+      imageAlt: 'Makler und Paar sehen sich Wohnungsangebote auf einem Laptop an',
     },
     {
       slug: 'housing-for-expats-rotterdam',
@@ -191,8 +191,8 @@ export const housing: SectionContent = {
         label: 'Mit einem Rotterdam-Local sprechen',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'Skyline von Rotterdam mit der Erasmusbrücke über der Maas',
+      image: '/images/rotterdam-housing.jpg',
+      imageAlt: 'Moderne Wohngebäude in Rotterdam',
     },
     {
       slug: 'viewing-assistance-netherlands',
@@ -282,7 +282,7 @@ export const housing: SectionContent = {
         label: 'Besichtigung buchen',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg',
+      image: '/images/housing-viewing.jpg?v=20260728',
       imageAlt: 'Besichtigung einer hellen niederländischen Wohnung mit großen Fenstern',
     },
     {
@@ -369,8 +369,8 @@ export const housing: SectionContent = {
         label: 'Meinen Vertrag prüfen',
       },
       form: 'relocation',
-      image: '/images/immigration-documents.jpg',
-      imageAlt: 'Ein Mietvertrag wird am Schreibtisch Seite für Seite geprüft',
+      image: '/images/rental-contract.jpg',
+      imageAlt: 'Hände prüfen einen Mietvertrag, daneben liegen Schlüssel auf dem Tisch',
     },
     {
       slug: 'temporary-housing-for-expats-netherlands',
@@ -459,7 +459,7 @@ export const housing: SectionContent = {
         label: 'Mein Zuhause auf Zeit organisieren',
       },
       form: 'relocation',
-      image: '/images/housing-interior.jpg',
+      image: '/images/housing-interior.jpg?v=20260728',
       imageAlt: 'Ein möbliertes Short-Stay-Apartment, bereit für einen Neuankömmling',
     },
     {
@@ -546,8 +546,8 @@ export const housing: SectionContent = {
         label: 'An uns übergeben',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg',
-      imageAlt: 'Ein Gespräch zwischen einer Mietervertreterin und einem Vermieter in einer Mietwohnung',
+      image: '/images/landlord-communication.jpg',
+      imageAlt: 'Berater gibt einem Vermieter an der Tür die Hand',
     },
   ],
   cta: {

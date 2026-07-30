@@ -10,7 +10,7 @@ export const housing: SectionContent = {
     'Голландский рынок аренды движется быстро и вознаграждает подготовленных. Хорошие квартиры публикуются утром и исчезают к вечеру, а арендодатели выбирают тех, кто быстро откликается с полным досье. Именно здесь вступаем мы. Мы следим за рынком вместо вас, реагируем в течение часов и готовим ваше досье так, что когда появляется подходящий дом, именно вам арендодатель говорит «да».',
     'Наша родная территория охватывает Роттердам и весь портовый регион, от центра города до Европорта и Маасвлакте, хотя ищем мы по всей стране. Вас никогда не отправят одного со списком ссылок. Мы отбираем варианты, ходим с вами на просмотры, читаем каждый договор до подписи и ведём разговор с арендодателем от первого сообщения до передачи ключей.',
   ],
-  image: '/images/housing-canal.jpg',
+  image: '/images/housing-canal.jpg?v=20260728',
   imageAlt: 'Дома у канала в голландском городе в ясный день',
   services: [
     {
@@ -105,8 +105,8 @@ export const housing: SectionContent = {
         label: 'Начать мой поиск',
       },
       form: 'relocation',
-      image: '/images/housing-canal.jpg',
-      imageAlt: 'Голландские дома у канала с характерными ступенчатыми фасадами',
+      image: '/images/housing-search.jpg',
+      imageAlt: 'Агент и пара просматривают объявления о квартирах на ноутбуке',
     },
     {
       slug: 'housing-for-expats-rotterdam',
@@ -191,8 +191,8 @@ export const housing: SectionContent = {
         label: 'Поговорить с роттердамцем',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'Панорама Роттердама с мостом Эразма через Маас',
+      image: '/images/rotterdam-housing.jpg',
+      imageAlt: 'Современные жилые многоквартирные дома в Роттердаме',
     },
     {
       slug: 'viewing-assistance-netherlands',
@@ -282,7 +282,7 @@ export const housing: SectionContent = {
         label: 'Заказать просмотр',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg',
+      image: '/images/housing-viewing.jpg?v=20260728',
       imageAlt: 'Просмотр светлой голландской квартиры с большими окнами',
     },
     {
@@ -369,8 +369,8 @@ export const housing: SectionContent = {
         label: 'Проверить мой договор',
       },
       form: 'relocation',
-      image: '/images/immigration-documents.jpg',
-      imageAlt: 'Договор аренды, изучаемый страница за страницей за столом',
+      image: '/images/rental-contract.jpg',
+      imageAlt: 'Руки листают договор аренды, рядом на столе лежат ключи',
     },
     {
       slug: 'temporary-housing-for-expats-netherlands',
@@ -459,7 +459,7 @@ export const housing: SectionContent = {
         label: 'Организовать временный дом',
       },
       form: 'relocation',
-      image: '/images/housing-interior.jpg',
+      image: '/images/housing-interior.jpg?v=20260728',
       imageAlt: 'Меблированная краткосрочная квартира, готовая к приезду нового жильца',
     },
     {
@@ -546,8 +546,8 @@ export const housing: SectionContent = {
         label: 'Передать нам',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg',
-      imageAlt: 'Разговор представителя арендатора с арендодателем в арендуемом доме',
+      image: '/images/landlord-communication.jpg',
+      imageAlt: 'Консультант пожимает руку арендодателю у двери',
     },
   ],
   cta: {

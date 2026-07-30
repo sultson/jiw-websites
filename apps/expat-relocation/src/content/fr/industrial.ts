@@ -10,7 +10,7 @@ export const industrial: SectionContent = {
     'Le port de Rotterdam est le cœur industriel de l’Europe, et le corridor qui va de la ville à la Maasvlakte en passant par Europoort emploie des internationaux par milliers : ingénieurs, équipes offshore, opérateurs de terminaux, planificateurs logistiques. Pourtant, presque tous les services de relocation aux Pays-Bas sont conçus pour des employés de bureau atterrissant à Amsterdam. Personne ne se spécialise dans ceux qui font tourner ce port. Nous, si, et nous sommes les seuls.',
     'Nous connaissons les terminaux et les raffineries, les rythmes postés et les contrats de sous-traitance, les communes où vivent réellement les familles du port et les trajets qui rendent supportable une prise de poste à 6 heures du matin. Que vous soyez un employeur qui fait venir une équipe ou un professionnel qui arrive seul, cette section est construite pour le cluster industriel et pour personne d’autre.',
   ],
-  image: '/images/industrial-hub.jpg',
+  image: '/images/industrial-hub.jpg?v=20260728',
   imageAlt: 'Installations industrielles et terminaux dans la zone portuaire d’Europoort',
   services: [
     {
@@ -96,7 +96,7 @@ export const industrial: SectionContent = {
         label: 'Planifier mon installation à Europoort',
       },
       form: 'relocation',
-      image: '/images/europoort.jpg',
+      image: '/images/europoort.jpg?v=20260728',
       imageAlt: 'Infrastructures de raffinerie et de terminaux à Europoort Rotterdam',
     },
     {
@@ -182,7 +182,7 @@ export const industrial: SectionContent = {
         label: 'Régler mon installation à la Maasvlakte',
       },
       form: 'relocation',
-      image: '/images/maasvlakte.jpg',
+      image: '/images/maasvlakte.jpg?v=20260728',
       imageAlt: 'Terminaux à conteneurs et grues du port en eaux profondes de la Maasvlakte',
     },
     {
@@ -269,7 +269,7 @@ export const industrial: SectionContent = {
         label: 'Monter ma base à terre',
       },
       form: 'relocation',
-      image: '/images/industrial-worker.jpg',
+      image: '/images/industrial-worker.jpg?v=20260728',
       imageAlt: 'Un professionnel offshore en tenue de travail dans une installation portuaire',
     },
     {
@@ -355,7 +355,7 @@ export const industrial: SectionContent = {
         label: 'Accélérer mon installation',
       },
       form: 'relocation',
-      image: '/images/logistics-worker.jpg',
+      image: '/images/logistics-worker.jpg?v=20260728',
       imageAlt: 'Un professionnel de la logistique au travail dans une zone de distribution de Rotterdam',
     },
     {
@@ -445,8 +445,8 @@ export const industrial: SectionContent = {
         label: 'Devenir partenaire',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'La skyline industrielle du port de Rotterdam aux heures de travail',
+      image: '/images/rotterdam-industrial.jpg',
+      imageAlt: 'Ouvriers en gilets haute visibilité dans le port avec la skyline de Rotterdam en arrière-plan',
     },
   ],
   cta: {

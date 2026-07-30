@@ -10,7 +10,7 @@ const dir = path.join(root, 'public/images');
 
 // Per-file max widths; everything else defaults to 1600.
 const widths = {
-  'about-Johanna.jpg': 1200,
+  'about-joanna.jpg': 1200,
   'og.jpg': 1200,
   'logo.png': 750,
 };

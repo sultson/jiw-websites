@@ -26,26 +26,26 @@ const l = (p: string) => localizePath(p, lang);
 />
 
 <section class="container-site py-16 md:py-24">
-  <div class="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {section.services.map((s) => (
-      <a href={l(`${basePath}/${s.slug}`)} class="group block">
-        <div class="overflow-hidden">
-          <img
-            src={s.image}
-            alt={s.imageAlt}
-            class="aspect-[3/2] w-full object-cover"
-            width="800"
-            height="533"
-            loading="lazy"
-          />
+      <a href={l(`${basePath}/${s.slug}`)} class="card group flex flex-col bg-ivory">
+        <img
+          src={s.image}
+          alt={s.imageAlt}
+          class="aspect-[16/10] w-full object-cover"
+          width="800"
+          height="500"
+          loading="lazy"
+        />
+        <div class="flex flex-1 flex-col p-6 md:p-7">
+          <h2 class="font-display text-2xl transition-colors group-hover:text-gold">{s.menuLabel}</h2>
+          <p class="mt-2 flex-1 text-[0.92rem] leading-relaxed">{s.cardText}</p>
+          <span class="link-editorial mt-5 self-start">{c.core.ui.cta.readMore}</span>
         </div>
-        <h2 class="mt-5 font-display text-2xl transition-colors group-hover:text-gold">{s.menuLabel}</h2>
-        <p class="mt-2 text-[0.92rem] leading-relaxed">{s.cardText}</p>
-        <span class="link-editorial mt-4">{c.core.ui.cta.readMore}</span>
       </a>
     ))}
     {(section.crossLinks ?? []).map((cl) => (
-      <a href={l(cl.path)} class="group flex flex-col justify-between border border-line p-8 transition-colors hover:border-gold">
+      <a href={l(cl.path)} class="card group flex flex-col justify-between bg-white p-6 md:p-7">
         <div>
           <h2 class="font-display text-2xl transition-colors group-hover:text-gold">{cl.label}</h2>
           <p class="mt-2 text-[0.92rem] leading-relaxed">{cl.text}</p>

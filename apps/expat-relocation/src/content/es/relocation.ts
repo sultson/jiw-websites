@@ -10,8 +10,8 @@ export const relocation: SectionContent = {
     'Mudarse de país son mil pequeñas tareas disfrazadas de una sola grande. El BSN, el municipio, el seguro, el colegio, el banco, cada uno con su propia ventanilla, sus propios formularios y su propia idea de un tiempo de espera razonable. La mayoría de las agencias le entrega una lista de tareas. Nosotros somos la única agencia boutique para expatriados en los Países Bajos, y hacemos algo distinto: una persona aprende su nombre, su familia y su situación, y sencillamente se ocupa de todo.',
     'Esa persona no dirige su reubicación desde detrás de un escritorio. Reserva las citas, prepara la documentación, conduce con usted hasta el municipio y se sienta a su lado en la ventanilla. Desde el momento en que aterriza hasta el momento en que los Países Bajos se sienten como su hogar, tiene aquí a alguien que ya conoce la respuesta a su próxima pregunta.',
   ],
-  image: '/images/relocation-family.jpg',
-  imageAlt: 'Una familia llegando a su nuevo hogar en los Países Bajos',
+  image: '/images/relocation-hub.jpg',
+  imageAlt: 'Operarios de mudanza llevando cajas a una vivienda familiar neerlandesa',
   services: [
     {
       slug: 'bsn-registration-netherlands',
@@ -97,8 +97,8 @@ export const relocation: SectionContent = {
         label: 'Gestionar mi BSN',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg',
-      imageAlt: 'Una cita de empadronamiento en una ventanilla municipal neerlandesa',
+      image: '/images/bsn-registration.jpg',
+      imageAlt: 'Recibiendo un documento de empadronamiento en una ventanilla municipal',
     },
     {
       slug: 'municipality-registration-netherlands',
@@ -183,7 +183,7 @@ export const relocation: SectionContent = {
         label: 'Gestionar mi empadronamiento',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg',
+      image: '/images/immigration-desk.jpg?v=20260728',
       imageAlt: 'Trámites completándose en un mostrador de servicios municipales',
     },
     {
@@ -270,8 +270,8 @@ export const relocation: SectionContent = {
         label: 'Resolver mi seguro',
       },
       form: 'relocation',
-      image: '/images/relocation-settling.jpg',
-      imageAlt: 'Un recién llegado revisando opciones de seguro médico neerlandés con una guía',
+      image: '/images/health-insurance.jpg',
+      imageAlt: 'Comparando opciones de seguro médico neerlandés en la mesa de la cocina',
     },
     {
       slug: 'school-search-netherlands',
@@ -357,8 +357,8 @@ export const relocation: SectionContent = {
         label: 'Encontrar nuestro colegio',
       },
       form: 'relocation',
-      image: '/images/relocation-family.jpg',
-      imageAlt: 'Padres e hijos visitando un colegio en los Países Bajos',
+      image: '/images/school-search.jpg',
+      imageAlt: 'Padres e hijo hablando con una profesora en un colegio neerlandés',
     },
     {
       slug: 'settling-in-services-netherlands',
@@ -447,7 +447,7 @@ export const relocation: SectionContent = {
         label: 'Ayúdenme a instalarme',
       },
       form: 'relocation',
-      image: '/images/relocation-settling.jpg',
+      image: '/images/relocation-settling.jpg?v=20260728',
       imageAlt: 'Un recién llegado orientándose en su nuevo barrio neerlandés',
     },
     {
@@ -533,7 +533,7 @@ export const relocation: SectionContent = {
         label: 'Reservar mi llegada',
       },
       form: 'relocation',
-      image: '/images/relocation-arrival.jpg',
+      image: '/images/relocation-arrival.jpg?v=20260728',
       imageAlt: 'Una cálida bienvenida en la sala de llegadas del aeropuerto',
     },
     {
@@ -627,8 +627,8 @@ export const relocation: SectionContent = {
         label: 'Planificar nuestra mudanza familiar',
       },
       form: 'relocation',
-      image: '/images/vip-family.jpg',
-      imageAlt: 'Una familia instalándose feliz en su vida en los Países Bajos',
+      image: '/images/family-relocation.jpg',
+      imageAlt: 'Familia paseando con bicicletas por su nuevo barrio',
     },
     {
       slug: 'relocation-services-rotterdam',
@@ -713,7 +713,7 @@ export const relocation: SectionContent = {
         label: 'Iniciar mi mudanza a Rotterdam',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
+      image: '/images/rotterdam.jpg?v=20260728',
       imageAlt: 'Centro de Rotterdam con arquitectura moderna junto al Mosa',
     },
   ],

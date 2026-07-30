@@ -10,14 +10,18 @@ export const vip: VipContent = {
     'Artistas con calendarios de gira. Deportistas entre temporadas. Ejecutivos con un solo fin de semana libre y fundadores sin ninguno. Nuestros paquetes VIP existen para personas cuyas agendas no se doblan, así que son los Países Bajos los que se doblan.',
     'Cada paquete lo dirige personalmente Johanna: citas consolidadas, puertas abiertas de antemano y una línea 24/7 atendida por la persona que conoce su expediente, no por un centro de atención.',
   ],
-  image: '/images/vip-concierge.jpg',
-  imageAlt: 'Jet privado y coche esperando al amanecer',
+  image: '/images/vip-hub.jpg',
+  imageAlt: 'Anfitrión recibiendo a una pareja que llega en coche a un hotel junto a un canal',
   pricingNote: {
     title: 'Cuánto cuesta un paquete, y por qué',
     text: [
       'Los paquetes van de 2.000 € a 10.000 € según el tamaño del hogar, la vía de visado y lo comprimido de su calendario. Ese precio compra semanas de trabajo a tiempo completo: solicitudes preparadas y presentadas, vivienda buscada y negociada, cada registro programado y acompañado, y una disponibilidad que no termina a las cinco de la tarde.',
       'Tras su primera consulta recibe un único presupuesto cerrado. Sin sorpresas por horas, sin extras a mitad de la mudanza.',
     ],
+  },
+  tailored: {
+    text: 'Cada paquete es un punto de partida, no un menú fijo. En la primera consulta adaptamos el alcance a su situación, añadiendo lo que necesita y dejando fuera lo que no.',
+    label: 'Hablemos de un paquete a medida',
   },
   packages: [
     {
@@ -81,7 +85,7 @@ export const vip: VipContent = {
         text: 'Díganos sus fechas y le diremos exactamente qué es posible.',
         label: 'Inicie su consulta VIP',
       },
-      image: '/images/vip-couple.jpg',
+      image: '/images/vip-couple.jpg?v=20260728',
       imageAlt: 'Pareja en la terraza de un ático con vistas a Rotterdam al atardecer',
     },
     {
@@ -92,6 +96,7 @@ export const vip: VipContent = {
       metaDescription:
         'Paquete de reubicación familiar para los Países Bajos: inmigración para cada miembro de la familia, vivienda, búsqueda de colegio, sanidad, registros y orientación por el barrio, con acompañamiento personal.',
       priceFrom: 'desde 3.500 €',
+      badge: 'El más elegido',
       intro: [
         'Una reubicación familiar no es una versión ampliada de una individual, es otra disciplina. Cursos escolares que empiezan en fechas fijas, un hogar que tiene que funcionar para todos, cuatro expedientes ante el IND en lugar de uno. Este paquete existe porque acertar con esa secuencia es lo que mejor sabemos hacer.',
       ],
@@ -145,7 +150,7 @@ export const vip: VipContent = {
         text: 'Cuéntenos sobre su hogar y sus fechas. Diseñaremos la llegada en torno al curso escolar.',
         label: 'Inicie su consulta VIP',
       },
-      image: '/images/vip-family.jpg',
+      image: '/images/vip-family.jpg?v=20260728',
       imageAlt: 'Familia llegando a una villa neerlandesa con la luz del atardecer',
     },
     {
@@ -209,7 +214,7 @@ export const vip: VipContent = {
         text: 'Cuéntenos sus planes y su ventana de tiempo. Volveremos con una secuencia y un presupuesto cerrado.',
         label: 'Inicie su consulta VIP',
       },
-      image: '/images/vip-business.jpg',
+      image: '/images/vip-business.jpg?v=20260728',
       imageAlt: 'Ejecutivo trabajando en la parte trasera de un coche con chófer',
     },
     {
@@ -272,7 +277,7 @@ export const vip: VipContent = {
         text: 'Dénos las fechas que tiene. Le mostraremos lo que puede ocurrir dentro de ellas.',
         label: 'Inicie una consulta discreta',
       },
-      image: '/images/vip-concierge.jpg',
+      image: '/images/vip-concierge.jpg?v=20260728',
       imageAlt: 'Jet privado con coche esperando al amanecer',
     },
   ],

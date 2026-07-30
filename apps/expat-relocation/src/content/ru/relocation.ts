@@ -10,8 +10,8 @@ export const relocation: SectionContent = {
     'Переезд в другую страну состоит из тысячи мелких задач под маской одной большой. BSN, муниципалитет, страховка, школа, банк, у каждого своя стойка, свои анкеты и свои представления о разумном ожидании. Большинство агентств вручают вам чек-лист. Мы единственное бутик-агентство для экспатов в Нидерландах, и мы поступаем иначе: один человек узнаёт ваше имя, вашу семью и вашу ситуацию, а затем просто берёт всё на себя.',
     'Этот человек не управляет вашей релокацией из-за стола. Она записывает вас на встречи, готовит документы, едет с вами в муниципалитет и сидит рядом у стойки. С момента прилёта и до момента, когда Нидерланды станут ощущаться домом, у вас здесь есть человек, который уже знает ответ на ваш следующий вопрос.',
   ],
-  image: '/images/relocation-family.jpg',
-  imageAlt: 'Семья приезжает в свой новый дом в Нидерландах',
+  image: '/images/relocation-hub.jpg',
+  imageAlt: 'Грузчики заносят коробки в голландский семейный дом',
   services: [
     {
       slug: 'bsn-registration-netherlands',
@@ -97,8 +97,8 @@ export const relocation: SectionContent = {
         label: 'Оформить мой BSN',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg',
-      imageAlt: 'Приём по регистрации у стойки голландского муниципалитета',
+      image: '/images/bsn-registration.jpg',
+      imageAlt: 'Получение регистрационного документа у муниципальной стойки',
     },
     {
       slug: 'municipality-registration-netherlands',
@@ -183,7 +183,7 @@ export const relocation: SectionContent = {
         label: 'Оформить мою регистрацию',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg',
+      image: '/images/immigration-desk.jpg?v=20260728',
       imageAlt: 'Оформление документов у стойки муниципальной службы',
     },
     {
@@ -270,8 +270,8 @@ export const relocation: SectionContent = {
         label: 'Разобраться с моей страховкой',
       },
       form: 'relocation',
-      image: '/images/relocation-settling.jpg',
-      imageAlt: 'Новоприбывший изучает варианты голландской медицинской страховки с консультантом',
+      image: '/images/health-insurance.jpg',
+      imageAlt: 'Сравнение вариантов голландской медицинской страховки за кухонным столом',
     },
     {
       slug: 'school-search-netherlands',
@@ -357,8 +357,8 @@ export const relocation: SectionContent = {
         label: 'Найти нашу школу',
       },
       form: 'relocation',
-      image: '/images/relocation-family.jpg',
-      imageAlt: 'Родители с детьми посещают школу в Нидерландах',
+      image: '/images/school-search.jpg',
+      imageAlt: 'Родители с ребёнком разговаривают с учителем в голландской школе',
     },
     {
       slug: 'settling-in-services-netherlands',
@@ -447,7 +447,7 @@ export const relocation: SectionContent = {
         label: 'Помочь мне обустроиться',
       },
       form: 'relocation',
-      image: '/images/relocation-settling.jpg',
+      image: '/images/relocation-settling.jpg?v=20260728',
       imageAlt: 'Новоприбывший осваивается в своём новом голландском районе',
     },
     {
@@ -533,7 +533,7 @@ export const relocation: SectionContent = {
         label: 'Заказать мою встречу',
       },
       form: 'relocation',
-      image: '/images/relocation-arrival.jpg',
+      image: '/images/relocation-arrival.jpg?v=20260728',
       imageAlt: 'Тёплая встреча в зале прилёта аэропорта',
     },
     {
@@ -627,8 +627,8 @@ export const relocation: SectionContent = {
         label: 'Спланировать переезд семьи',
       },
       form: 'relocation',
-      image: '/images/vip-family.jpg',
-      imageAlt: 'Семья счастливо обустраивается в жизни в Нидерландах',
+      image: '/images/family-relocation.jpg',
+      imageAlt: 'Семья идёт с велосипедами по своему новому району',
     },
     {
       slug: 'relocation-services-rotterdam',
@@ -713,7 +713,7 @@ export const relocation: SectionContent = {
         label: 'Начать мой переезд в Роттердам',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
+      image: '/images/rotterdam.jpg?v=20260728',
       imageAlt: 'Центр Роттердама с современной архитектурой вдоль Мааса',
     },
   ],

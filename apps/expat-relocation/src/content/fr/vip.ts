@@ -10,14 +10,18 @@ export const vip: VipContent = {
     'Des artistes en tournée. Des athlètes entre deux saisons. Des dirigeants avec un seul week-end libre et des fondateurs qui n’en ont aucun. Nos forfaits VIP existent pour ceux dont l’agenda ne plie pas. Alors, ce sont les Pays-Bas qui plient.',
     'Chaque forfait est piloté personnellement par Johanna : rendez-vous regroupés, portes ouvertes à l’avance, et une ligne 24/7 tenue par la personne qui connaît votre dossier, pas par un service client.',
   ],
-  image: '/images/vip-concierge.jpg',
-  imageAlt: 'Jet privé et voiture qui attend à l’aube',
+  image: '/images/vip-hub.jpg',
+  imageAlt: 'Hôte accueillant un couple arrivant en voiture devant un hôtel au bord d’un canal',
   pricingNote: {
     title: 'Le prix d’un forfait, et pourquoi',
     text: [
       'Les forfaits vont de 2 000 € à 10 000 € selon la taille du foyer, la voie de visa et le degré de compression de votre calendrier. Ce prix couvre des semaines de travail à temps plein : demandes préparées et déposées, logement recherché et négocié, chaque enregistrement planifié et accompagné, et une disponibilité qui ne s’arrête pas à dix-sept heures.',
       'Après votre première consultation, vous recevez un devis unique et fixe. Pas de surprises horaires, pas de suppléments en cours de route.',
     ],
+  },
+  tailored: {
+    text: 'Chaque forfait est un point de départ, pas un menu figé. Lors de la première consultation, nous adaptons le périmètre à votre situation, en ajoutant ce dont vous avez besoin et en écartant ce qui ne vous sert pas.',
+    label: 'Discuter d’un forfait sur mesure',
   },
   packages: [
     {
@@ -81,7 +85,7 @@ export const vip: VipContent = {
         text: 'Donnez-nous vos dates et nous vous dirons exactement ce qui est possible.',
         label: 'Lancer votre demande VIP',
       },
-      image: '/images/vip-couple.jpg',
+      image: '/images/vip-couple.jpg?v=20260728',
       imageAlt: 'Couple sur la terrasse d’un penthouse dominant Rotterdam au crépuscule',
     },
     {
@@ -92,6 +96,7 @@ export const vip: VipContent = {
       metaDescription:
         'Forfait de relocation familiale pour les Pays-Bas : immigration pour chaque membre de la famille, logement, recherche d’école, santé, enregistrements et découverte du quartier, avec un accompagnement personnel.',
       priceFrom: 'à partir de 3 500 €',
+      badge: 'Le plus choisi',
       intro: [
         'Une relocation familiale n’est pas la version agrandie d’une relocation individuelle, c’est une autre discipline. Des années scolaires qui commencent à dates fixes, un logement qui doit convenir à tous, quatre dossiers à l’IND au lieu d’un. Ce forfait existe parce que réussir cet enchaînement est ce que nous faisons de mieux.',
       ],
@@ -145,7 +150,7 @@ export const vip: VipContent = {
         text: 'Parlez-nous de votre foyer et de vos dates. Nous concevrons l’arrivée autour de l’année scolaire.',
         label: 'Lancer votre demande VIP',
       },
-      image: '/images/vip-family.jpg',
+      image: '/images/vip-family.jpg?v=20260728',
       imageAlt: 'Famille arrivant dans une villa néerlandaise dans la lumière du soir',
     },
     {
@@ -209,7 +214,7 @@ export const vip: VipContent = {
         text: 'Confiez-nous vos projets et votre fenêtre. Nous reviendrons avec une feuille de route et un devis fixe.',
         label: 'Lancer votre demande VIP',
       },
-      image: '/images/vip-business.jpg',
+      image: '/images/vip-business.jpg?v=20260728',
       imageAlt: 'Dirigeant travaillant à l’arrière d’une voiture avec chauffeur',
     },
     {
@@ -272,7 +277,7 @@ export const vip: VipContent = {
         text: 'Indiquez-nous les dates dont vous disposez. Nous vous montrerons ce qui peut se passer à l’intérieur.',
         label: 'Lancer une demande discrète',
       },
-      image: '/images/vip-concierge.jpg',
+      image: '/images/vip-concierge.jpg?v=20260728',
       imageAlt: 'Jet privé et voiture qui attend à l’aube',
     },
   ],

@@ -10,7 +10,7 @@ export const housing: SectionContent = {
     'The Dutch rental market moves fast and rewards the prepared. Good apartments are listed in the morning and gone by the evening, and landlords choose tenants who respond quickly with a complete file. That is exactly where we come in. We watch the market for you, react within hours, and prepare your dossier so that when the right home appears, you are the candidate a landlord says yes to.',
     'Our home ground is Rotterdam and the wider port region, from the city center out to Europoort and the Maasvlakte, though we search across the Netherlands. You are never sent out alone with a list of links. We shortlist, we attend viewings with you, we read every contract before you sign, and we handle the landlord conversation from first message to key handover.',
   ],
-  image: '/images/housing-canal.jpg',
+  image: '/images/housing-canal.jpg?v=20260728',
   imageAlt: 'Canal houses in a Dutch city on a bright day',
   services: [
     {
@@ -105,8 +105,8 @@ export const housing: SectionContent = {
         label: 'Start my search',
       },
       form: 'relocation',
-      image: '/images/housing-canal.jpg',
-      imageAlt: 'Dutch canal houses with characteristic gabled facades',
+      image: '/images/housing-search.jpg',
+      imageAlt: 'Agent and couple reviewing apartment listings on a laptop',
     },
     {
       slug: 'housing-for-expats-rotterdam',
@@ -191,8 +191,8 @@ export const housing: SectionContent = {
         label: 'Talk to a Rotterdam local',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'Rotterdam skyline with the Erasmus Bridge over the Maas',
+      image: '/images/rotterdam-housing.jpg',
+      imageAlt: 'Modern residential apartment buildings in Rotterdam',
     },
     {
       slug: 'viewing-assistance-netherlands',
@@ -282,7 +282,7 @@ export const housing: SectionContent = {
         label: 'Book a viewing',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg',
+      image: '/images/housing-viewing.jpg?v=20260728',
       imageAlt: 'A viewing of a bright Dutch apartment with large windows',
     },
     {
@@ -369,8 +369,8 @@ export const housing: SectionContent = {
         label: 'Review my contract',
       },
       form: 'relocation',
-      image: '/images/immigration-documents.jpg',
-      imageAlt: 'A rental contract being reviewed page by page at a desk',
+      image: '/images/rental-contract.jpg',
+      imageAlt: 'Hands reviewing a rental contract with keys on the table',
     },
     {
       slug: 'temporary-housing-for-expats-netherlands',
@@ -459,7 +459,7 @@ export const housing: SectionContent = {
         label: 'Arrange my temporary home',
       },
       form: 'relocation',
-      image: '/images/housing-interior.jpg',
+      image: '/images/housing-interior.jpg?v=20260728',
       imageAlt: 'A furnished short-stay apartment ready for a new arrival',
     },
     {
@@ -546,8 +546,8 @@ export const housing: SectionContent = {
         label: 'Hand it over',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg',
-      imageAlt: 'A conversation between a tenant representative and a landlord at a rental property',
+      image: '/images/landlord-communication.jpg',
+      imageAlt: 'Consultant shaking hands with a landlord at the door',
     },
   ],
   cta: {

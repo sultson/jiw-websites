@@ -43,9 +43,11 @@ export const core: CoreContent = {
       errorTitle: 'Etwas ist schiefgelaufen',
       errorBody: 'Ihre Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie uns auf WhatsApp.',
       consent: 'Mit dem Absenden dieses Formulars stimmen Sie unserer Datenschutzerklärung zu.',
+      nextSteps:
+        'Nachdem Sie dieses Formular abgesendet haben, sieht sich Johanna Ihre Situation persönlich an und antwortet innerhalb eines Werktags mit einer ehrlichen Einschätzung, ob und wie wir helfen können. Liegt Ihr Anliegen außerhalb unserer Leistungen oder unserer Region, sagen wir Ihnen das sofort.',
     },
     footer: {
-      tagline: 'Boutique-Relocation- und Immigrationsservices für Expats, die in die Niederlande ziehen.',
+      tagline: 'Boutique-Relocation- und Immigrationsservices für Expats, die nach Rotterdam, in den Europoort und die weitere Hafenregion ziehen.',
       services: 'Leistungen',
       company: 'Unternehmen',
       contactHeading: 'Kontakt',
@@ -72,10 +74,11 @@ export const core: CoreContent = {
       ctaPrimary: 'Relocation-Beratung buchen',
       ctaWhatsapp: 'Direkt auf WhatsApp schreiben',
       ctaSecondary: 'Starten Sie Ihre Relocation',
+      trust: 'Persönliche Begleitung durch Johanna, 24/7 erreichbar',
     },
     paths: {
       heading: 'Wie dürfen wir Sie beim Ankommen begleiten?',
-      sub: 'Drei Wege hinein. Eine Person, die Ihren Namen kennt, von der ersten Nachricht bis zu dem Tag, an dem Sie sich zu Hause fühlen.',
+      sub: 'Immigration, Wohnen, Relocation und VIP-Support, abgewickelt über ein einziges Unternehmen. Wählen Sie Ihren Weg hinein, und eine Person kennt Ihren Namen, von der ersten Nachricht bis zu dem Tag, an dem Sie sich zu Hause fühlen.',
       items: [
         {
           key: 'immigration',
@@ -83,7 +86,7 @@ export const core: CoreContent = {
           text: 'Visa und Aufenthaltstitel für Fachkräfte, Partner, Familien und Gründer. Präzise vorbereitet, persönlich begleitet, von der ersten Prüfung bis zur Genehmigung.',
           label: 'Immigration entdecken',
           path: '/immigration',
-          image: '/images/path-immigration.jpg',
+          image: '/images/path-immigration.jpg?v=20260728',
           imageAlt: 'Beraterin führt eine Klientin durch Aufenthaltsdokumente',
         },
         {
@@ -92,7 +95,7 @@ export const core: CoreContent = {
           text: 'Komplette Relocation-Pakete oder einzeln buchbare Leistungen: Wohnungssuche, Schulen, BSN, Versicherungen und alles dazwischen.',
           label: 'Relocation entdecken',
           path: '/relocation',
-          image: '/images/path-relocation.jpg',
+          image: '/images/path-relocation.jpg?v=20260728',
           imageAlt: 'Familie kommt an einem niederländischen Grachtenhaus an',
         },
         {
@@ -101,7 +104,7 @@ export const core: CoreContent = {
           text: 'Für Künstler, Sportler, Führungskräfte und Wochenend-Fly-ins. Ihr gesamter Umzug orchestriert um einen einzigen Besuch, mit Türen, die bereits offen stehen.',
           label: 'VIP-Services entdecken',
           path: '/vip-services',
-          image: '/images/path-vip.jpg',
+          image: '/images/path-vip.jpg?v=20260728',
           imageAlt: 'Chauffeur öffnet eine Wagentür vor der Skyline von Rotterdam',
         },
       ],
@@ -167,17 +170,45 @@ export const core: CoreContent = {
       ],
       label: 'Business-Services',
     },
-    regionBlock: {
-      eyebrow: 'Spezialist für Rotterdam & Europoort',
-      heading: 'Die Region, die wir Straße für Straße kennen',
+    portBlock: {
+      eyebrow: 'Häfen, Hafenwirtschaft & Offshore',
+      heading: 'Der Spezialist für den Rotterdamer Hafen',
       text: [
-        'Europas größter Hafen taucht in keiner Relocation-Broschüre auf, und doch bauen Zehntausende internationale Fachkräfte dort ihre Karriere. Wir sind die einzige Boutique-Agentur, die auf Rotterdam, Europoort und die Maasvlakte spezialisiert ist, vom Penthouse auf der Wilhelminapier bis zum Familienhaus zwanzig Minuten von den Terminals.',
+        'Europas größter Hafen taucht in keiner Relocation-Broschüre auf, und doch bauen Zehntausende internationale Fachkräfte dort ihre Karriere. Wir sind die einzige Boutique-Agentur, die auf Rotterdam, die Region südlich davon, Europoort und die Maasvlakte spezialisiert ist, und arbeiten täglich mit den Hafen-, Offshore-, Schifffahrts- und Engineering-Unternehmen, die Menschen hierher holen.',
       ],
       label: 'Services für Industrie-Expats',
       areas: [
         { title: 'Rotterdam', text: 'Leben mit Skyline, internationale Schulen und die Stadt, die sich schneller wandelt als jede andere in den Niederlanden.' },
         { title: 'Europoort & Maasvlakte', text: 'Praktische Relocation für Hafen-, Offshore- und Raffineriefachkräfte und ihre Familien.' },
-        { title: 'Die Industrieregion', text: 'Ruhige Städte wie Brielle und Rozenburg, Minuten von den Terminals entfernt und doch eine Welt für sich.' },
+        { title: 'Südlich von Rotterdam', text: 'Ruhige Städte wie Brielle, Rozenburg und Hellevoetsluis, Minuten von den Terminals entfernt und doch eine Welt für sich.' },
+      ],
+      advantages: [
+        { title: 'Lokale Ortskenntnis', text: 'Wir kennen die Viertel, Schulen, Vermieter und Pendelwege dieser Region Straße für Straße.' },
+        { title: 'Schnelle persönliche Hilfe', text: 'Wir sind in der Nähe und können kurzfristig bei einer Besichtigung, am Gemeindeschalter oder in einem Notfall vor Ort sein.' },
+        { title: 'Ein gewachsenes Netzwerk', text: 'Makler, Gemeinden, Schulen und internationale Arbeitgeber der Region kennen uns bereits.' },
+        { title: 'Begleitung nach der Ankunft', text: 'Die Beziehung endet nicht bei den Schlüsseln. Wir bleiben Ansprechpartner, lange nachdem Sie angekommen sind.' },
+      ],
+      links: [
+        { label: 'Europoort-Expats', path: '/industrial-expat-services/europoort-relocation-services-netherlands' },
+        { label: 'Maasvlakte-Expats', path: '/industrial-expat-services/maasvlakte-expat-relocation-netherlands' },
+        { label: 'Offshore-Fachkräfte', path: '/industrial-expat-services/offshore-expat-services-netherlands' },
+        { label: 'Logistik-Fachkräfte', path: '/industrial-expat-services/relocation-for-logistics-professionals-netherlands' },
+      ],
+    },
+    familyBlock: {
+      eyebrow: 'Familien-Relocation',
+      heading: 'Eine Familie umzuziehen ist eine eigene Disziplin',
+      text: [
+        'Schuljahre mit festen Stichtagen, mehrere IND-Akten statt einer, und ein Zuhause, das für alle funktionieren muss. Wir koordinieren die Ankunft der ganzen Familie, Immigration eingeschlossen, in einem Plan und einer Hand.',
+      ],
+      label: 'Relocation-Services für Familien',
+      path: '/relocation/family-relocation-netherlands',
+      image: '/images/relocation-family.jpg?v=20260728',
+      imageAlt: 'Eltern und Kinder packen Kartons in ihrem neuen niederländischen Zuhause aus',
+      links: [
+        { label: 'VIP-Paket für Familien', path: '/vip-services/family-relocation-immigration-services-netherlands' },
+        { label: 'Schulsuche', path: '/relocation/school-search-netherlands' },
+        { label: 'Familienzusammenführung', path: '/immigration/family-reunification-netherlands' },
       ],
     },
     whyBoutique: {
@@ -185,6 +216,7 @@ export const core: CoreContent = {
       heading: 'Eine Agentur. Eine Person. Ihr Name.',
       text: [
         'Große Relocation-Firmen geben Ihnen eine Ticketnummer. Eine Boutique-Agentur gibt Ihnen einen Menschen. Johanna hat sich ihren Ruf in der Welt der Botschaften erarbeitet, wo Diskretion und Präzision keine Eigenschaften sind, sondern die Stellenbeschreibung.',
+        'Wir sind keine allgemeine Expat-Agentur, die jede erdenkliche Leistung anbietet. Wir übernehmen Immigration, Wohnen, Relocation und VIP-Support für eine Region, über ein Unternehmen, und das vollständig.',
       ],
       points: [
         {
@@ -251,7 +283,7 @@ export const core: CoreContent = {
       'E & I: Expat, Relocation and Immigration Services The Netherlands entstand aus einer einfachen Beobachtung aus der Welt der Botschaften: Am besten wechseln jene Menschen das Land, die persönlich begleitet werden. Nicht verwaltet. Begleitet.',
       'Heute führt Johanna mit ihrem Netzwerk Fachkräfte, Paare, Familien und Gründer in die Niederlande, mit einer Spezialisierung, die sonst niemand beansprucht: Rotterdam, Europoort und die Industrieregion rund um Europas größten Hafen.',
     ],
-    image: '/images/about-Johanna.jpg',
+    image: '/images/about-joanna.jpg',
     imageAlt: 'Johanna, Gründerin von E & I, in ihrem Büro',
     approach: {
       heading: 'Unser persönlicher Relocation-Ansatz',
@@ -344,6 +376,14 @@ export const core: CoreContent = {
           'Noch unsicher',
         ],
         nationality: 'Staatsangehörigkeit',
+        currentLocation: 'Aktuelles Wohnsitzland',
+        status: 'Aktueller Aufenthaltsstatus',
+        statusOptions: [
+          'Außerhalb der EU, noch kein niederländischer Aufenthaltstitel',
+          'Bereits mit Visum oder Aufenthaltstitel in den Niederlanden',
+          'EU- oder EWR-Bürger',
+          'Anderes oder unsicher',
+        ],
         timeline: 'Wann planen Sie den Umzug?',
         timelineOptions: ['So bald wie möglich', 'Innerhalb von 3 Monaten', '3 bis 6 Monate', 'Ich orientiere mich noch'],
         message: 'Ihre Situation',
@@ -364,6 +404,8 @@ export const core: CoreContent = {
           'Etwas anderes',
         ],
         movingFrom: 'Umzug aus',
+        household: 'Wer zieht um?',
+        householdOptions: ['Nur ich', 'Mein Partner und ich', 'Meine Familie mit Kindern', 'Mitarbeiter meines Unternehmens', 'Anderes'],
         timeline: 'Wann kommen Sie an?',
         timelineOptions: ['So bald wie möglich', 'Innerhalb von 3 Monaten', '3 bis 6 Monate', 'Ich orientiere mich noch'],
         message: 'Ihr Umzug',
@@ -383,6 +425,7 @@ export const core: CoreContent = {
         preferredContact: 'Bevorzugter Kontaktweg',
         preferredContactOptions: ['WhatsApp', 'Telefon', 'E-Mail'],
         arrival: 'Geplante Ankunft',
+        movingFrom: 'Umzug aus',
         message: 'Ihre Relocation',
         messagePlaceholder: 'Zum Beispiel: Umzug aus Los Angeles im Oktober, verfügbar für einen Vorbereitungsbesuch im September.',
       },

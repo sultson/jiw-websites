@@ -23,7 +23,7 @@ const l = (path: string) => localizePath(path, lang);
     <span class="eyebrow">{c.vip.eyebrow}</span>
     <h1 class="mt-4 max-w-3xl font-display text-4xl text-white md:text-6xl">{p.name}</h1>
     <p class="mt-4 font-display text-xl italic text-gold-soft md:text-2xl">{p.tagline}</p>
-    <p class="mt-7 border border-gold/50 px-6 py-2.5 text-[0.8rem] uppercase tracking-[0.2em] text-white">
+    <p class="mt-7 rounded-full border border-gold/50 px-6 py-2.5 text-[0.8rem] uppercase tracking-[0.2em] text-white">
       {p.priceFrom}
     </p>
   </div>
@@ -34,6 +34,9 @@ const l = (path: string) => localizePath(path, lang);
     {p.intro.map((para) => (
       <p class="mt-4 text-[1.05rem] leading-relaxed first:mt-0">{para}</p>
     ))}
+    <p class="mx-auto mt-7 max-w-2xl border-t border-line pt-6 text-[0.95rem] italic leading-relaxed text-ink-soft">
+      {c.vip.tailored.text}
+    </p>
   </div>
 </section>
 
@@ -139,12 +142,12 @@ const l = (path: string) => localizePath(path, lang);
       {siblings.map((sib) => (
         <a
           href={l(sib.path)}
-          class="border border-white/25 px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-white transition-colors hover:border-gold hover:text-gold"
+          class="rounded-full border border-white/25 px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-white transition-colors hover:border-gold hover:text-gold"
         >
           {sib.label}
         </a>
       ))}
-      <a href={l(SECTIONS.vip)} class="border border-gold bg-gold px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-navy transition-colors hover:bg-gold-soft">
+      <a href={l(SECTIONS.vip)} class="rounded-full border border-gold bg-gold px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-navy transition-colors hover:bg-gold-soft">
         {c.core.ui.cta.allServices}
       </a>
     </div>

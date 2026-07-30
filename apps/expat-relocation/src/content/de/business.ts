@@ -10,7 +10,7 @@ export const business: SectionContent = {
     'Visa-Kanzleien besorgen Aufenthaltstitel. Gründungsagenten registrieren Firmen. Wohnungsmakler finden Apartments. Ein internationaler Unternehmer braucht alle drei gleichzeitig, plus eine Familie, die wirklich bleiben will, und niemand bietet Ihnen das als einen Service. Wir schon. Einwanderung, Firmenaufbau, Wohnraum und Relocation, koordiniert von einem Team, das Ihnen verpflichtet ist.',
     'Dasselbe gilt im Unternehmensmaßstab. Wenn ein Unternehmen Menschen in die Niederlande verlegt, relocaten wir das ganze Bild: die Gesellschaft, die Führungskräfte, die Teams und jede Familie, die mitkommt.',
   ],
-  image: '/images/business-meeting.jpg',
+  image: '/images/business-meeting.jpg?v=20260728',
   imageAlt: 'Internationale Unternehmer planen ihre niederländische Firma am Besprechungstisch',
   cta: {
     title: 'Bringen Sie Ihr Unternehmen in die Niederlande',
@@ -92,8 +92,8 @@ export const business: SectionContent = {
         label: 'Meine Route kartieren',
       },
       form: 'immigration',
-      image: '/images/business-meeting.jpg',
-      imageAlt: 'Unternehmer skizziert mit einem Berater einen niederländischen Businessplan',
+      image: '/images/start-business.jpg',
+      imageAlt: 'Unternehmerin öffnet die Tür ihres neuen Büros',
     },
     {
       slug: 'company-registration-netherlands',
@@ -174,7 +174,7 @@ export const business: SectionContent = {
         label: 'Meine Firma aufsetzen',
       },
       form: 'immigration',
-      image: '/images/business-signing.jpg',
+      image: '/images/business-signing.jpg?v=20260728',
       imageAlt: 'Gründer unterschreibt Gründungsdokumente bei einem niederländischen Notar',
     },
     {
@@ -252,8 +252,8 @@ export const business: SectionContent = {
         label: 'Meine KvK-Registrierung buchen',
       },
       form: 'immigration',
-      image: '/images/business-signing.jpg',
-      imageAlt: 'Neuer Unternehmer schließt die Registrierung bei der Handelskammer ab',
+      image: '/images/kvk-registration.jpg',
+      imageAlt: 'Unternehmer erhält am Schalter einen Handelsregisterauszug',
     },
     {
       slug: 'relocation-services-for-entrepreneurs-netherlands',
@@ -329,8 +329,8 @@ export const business: SectionContent = {
         label: 'Meinen Relocation-Plan starten',
       },
       form: 'immigration',
-      image: '/images/vip-business.jpg',
-      imageAlt: 'Unternehmer bespricht Umzugspläne mit einer persönlichen Beraterin',
+      image: '/images/entrepreneur-relocation.jpg',
+      imageAlt: 'Gründer trägt einen Karton und einen Laptop in ein neues Büro',
     },
     {
       slug: 'business-relocation-to-the-netherlands',
@@ -410,8 +410,8 @@ export const business: SectionContent = {
         label: 'Unseren Corporate-Umzug besprechen',
       },
       form: 'immigration',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'Rotterdamer Hafensilhouette, Heimatbasis für Corporate-Relocations',
+      image: '/images/business-relocation.jpg',
+      imageAlt: 'Team trägt Kisten in ein modernes Bürogebäude',
     },
     {
       slug: 'housing-support-for-entrepreneurs-netherlands',
@@ -488,8 +488,8 @@ export const business: SectionContent = {
         label: 'Meine Wohnungssuche starten',
       },
       form: 'immigration',
-      image: '/images/housing-interior.jpg',
-      imageAlt: 'Helles Wohnzimmer einer für einen Unternehmer gefundenen Mietwohnung',
+      image: '/images/entrepreneur-housing.jpg',
+      imageAlt: 'Helles Wohn- und Arbeitsloft mit Schreibtisch am Fenster',
     },
   ],
   crossLinks: [

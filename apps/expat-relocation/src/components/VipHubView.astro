@@ -1,5 +1,6 @@
 ---
 import CtaBand from './CtaBand.astro';
+import Icon from './Icon.astro';
 import { SECTIONS, localizePath, type Lang } from '../lib/i18n';
 import { getContent } from '../lib/content';
 
@@ -31,25 +32,49 @@ const l = (p: string) => localizePath(p, lang);
   </div>
 </section>
 
-<!-- Packages -->
+<!-- Packages: card grid, the badged package highlighted in navy -->
 <section class="container-site pb-16 md:pb-24">
-  <div class="grid gap-10 md:grid-cols-2">
+  <div class="grid gap-7 md:grid-cols-2">
     {v.packages.map((p) => (
-      <a href={l(`${SECTIONS.vip}/${p.slug}`)} class="group relative block overflow-hidden bg-navy">
-        <img
-          src={p.image}
-          alt={p.imageAlt}
-          class="aspect-[4/3] w-full object-cover opacity-70 transition-opacity duration-300 group-hover:opacity-55"
-          width="800"
-          height="600"
-          loading="lazy"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/30 to-transparent"></div>
-        <div class="absolute inset-x-0 bottom-0 p-8 md:p-10">
-          <p class="text-[0.72rem] uppercase tracking-[0.2em] text-gold-soft">{p.priceFrom}</p>
-          <h2 class="mt-2 font-display text-3xl text-white">{p.name}</h2>
-          <p class="mt-2 font-display italic text-white/80">{p.tagline}</p>
-          <span class="link-editorial link-editorial-light mt-5">{c.core.ui.cta.readMore}</span>
+      <a
+        href={l(`${SECTIONS.vip}/${p.slug}`)}
+        class:list={[
+          'card group flex h-full flex-col',
+          p.badge ? 'border-navy bg-navy text-white' : 'bg-ivory',
+        ]}
+      >
+        <div class="relative overflow-hidden">
+          <img
+            src={p.image}
+            alt={p.imageAlt}
+            class="aspect-[16/9] w-full object-cover"
+            width="800"
+            height="450"
+            loading="lazy"
+          />
+          {p.badge && (
+            <span class="absolute left-4 top-4 rounded-full bg-gold px-3.5 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-navy">
+              {p.badge}
+            </span>
+          )}
+        </div>
+        <div class="flex flex-1 flex-col p-7 md:p-8">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h2 class:list={['font-display text-2xl', p.badge ? 'text-white' : 'text-navy']}>{p.name}</h2>
+            <p class:list={['text-[0.78rem] uppercase tracking-[0.14em]', p.badge ? 'text-gold-soft' : 'text-gold']}>{p.priceFrom}</p>
+          </div>
+          <p class:list={['mt-2 text-[0.92rem]', p.badge ? 'text-white/70' : 'text-ink-soft']}>{p.tagline}</p>
+          <ul class="mt-5 flex-1 space-y-2">
+            {p.included.items.slice(0, 4).map((item) => (
+              <li class:list={['flex items-center gap-2.5 text-[0.9rem]', p.badge ? 'text-white/85' : 'text-ink']}>
+                <Icon name="check" size={14} class:list={[p.badge ? 'shrink-0 text-gold-soft' : 'shrink-0 text-gold']} />
+                {item.title}
+              </li>
+            ))}
+          </ul>
+          <span class:list={['link-editorial mt-7 self-start', p.badge && 'link-editorial-light']}>
+            {c.core.ui.cta.readMore}
+          </span>
         </div>
       </a>
     ))}
@@ -65,6 +90,7 @@ const l = (p: string) => localizePath(p, lang);
       {v.pricingNote.text.map((p) => (
         <p class="mt-6 text-[1.02rem] leading-relaxed">{p}</p>
       ))}
+      <p class="mt-6 border-l-2 border-gold pl-6 text-[1.02rem] italic leading-relaxed">{v.tailored.text}</p>
     </div>
   </div>
 </section>

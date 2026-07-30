@@ -10,14 +10,18 @@ export const vip: VipContent = {
     'Artists on tour schedules. Athletes between seasons. Executives with one free weekend and founders with none. Our VIP packages exist for people whose calendars do not bend, so the Netherlands bends instead.',
     'Every package is run personally by Johanna: appointments consolidated, doors opened in advance, and a 24/7 line that is answered by the person who knows your file, not a service desk.',
   ],
-  image: '/images/vip-concierge.jpg',
-  imageAlt: 'Private jet and waiting car at dawn',
+  image: '/images/vip-hub.jpg',
+  imageAlt: 'Host greeting a couple arriving by car at a canal-side hotel',
   pricingNote: {
     title: 'What a package costs, and why',
     text: [
       'Packages range from €2,000 to €10,000 depending on household size, visa route and how compressed your timeline is. That price buys weeks of full-time work: applications prepared and filed, housing searched and negotiated, every registration scheduled and accompanied, and availability that does not end at five o’clock.',
       'After your first consultation you receive one fixed quote. No hourly surprises, no add-ons mid-move.',
     ],
+  },
+  tailored: {
+    text: 'Every package is a starting point, not a fixed menu. In the first consultation we adapt the scope to your situation, adding what you need and leaving out what you do not.',
+    label: 'Discuss a tailored package',
   },
   packages: [
     {
@@ -81,7 +85,7 @@ export const vip: VipContent = {
         text: 'Tell us your dates and we will tell you exactly what is possible.',
         label: 'Start your VIP inquiry',
       },
-      image: '/images/vip-couple.jpg',
+      image: '/images/vip-couple.jpg?v=20260728',
       imageAlt: 'Couple on a penthouse balcony overlooking Rotterdam at dusk',
     },
     {
@@ -92,6 +96,7 @@ export const vip: VipContent = {
       metaDescription:
         'Family relocation package for the Netherlands: immigration for every family member, housing, school search, healthcare, registrations and neighbourhood orientation, personally guided.',
       priceFrom: 'from €3,500',
+      badge: 'Most popular',
       intro: [
         'A family relocation is not a bigger version of a single one, it is a different discipline. School years that start on fixed dates, a home that has to work for everyone, four files at the IND instead of one. This package exists because getting that sequence right is what we are best at.',
       ],
@@ -145,7 +150,7 @@ export const vip: VipContent = {
         text: 'Tell us about your household and your dates. We will design the arrival around the school year.',
         label: 'Start your VIP inquiry',
       },
-      image: '/images/vip-family.jpg',
+      image: '/images/vip-family.jpg?v=20260728',
       imageAlt: 'Family arriving at a Dutch villa in the evening light',
     },
     {
@@ -209,7 +214,7 @@ export const vip: VipContent = {
         text: 'Tell us your plans and your window. We will come back with a sequence and a fixed quote.',
         label: 'Start your VIP inquiry',
       },
-      image: '/images/vip-business.jpg',
+      image: '/images/vip-business.jpg?v=20260728',
       imageAlt: 'Executive working in the back of a chauffeured car',
     },
     {
@@ -272,7 +277,7 @@ export const vip: VipContent = {
         text: 'Give us the dates you have. We will show you what can happen inside them.',
         label: 'Start a discreet inquiry',
       },
-      image: '/images/vip-concierge.jpg',
+      image: '/images/vip-concierge.jpg?v=20260728',
       imageAlt: 'Private jet with waiting car at dawn',
     },
   ],

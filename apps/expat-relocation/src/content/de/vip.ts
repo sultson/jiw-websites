@@ -10,14 +10,18 @@ export const vip: VipContent = {
     'Künstler mit Tourneeplänen. Sportler zwischen zwei Saisons. Führungskräfte mit einem freien Wochenende und Gründer ohne ein einziges. Unsere VIP-Pakete existieren für Menschen, deren Kalender sich nicht biegen lässt, also biegen sich stattdessen die Niederlande.',
     'Jedes Paket führt Johanna persönlich: Termine gebündelt, Türen im Voraus geöffnet, und eine 24/7-Nummer, an der die Person antwortet, die Ihre Akte kennt, kein Service-Desk.',
   ],
-  image: '/images/vip-concierge.jpg',
-  imageAlt: 'Privatjet und wartender Wagen im Morgengrauen',
+  image: '/images/vip-hub.jpg',
+  imageAlt: 'Gastgeber begrüßt ein mit dem Auto ankommendes Paar vor einem Hotel an der Gracht',
   pricingNote: {
     title: 'Was ein Paket kostet, und warum',
     text: [
       'Die Pakete liegen je nach Haushaltsgröße, Visumsweg und Verdichtung Ihres Zeitplans zwischen 2.000 € und 10.000 €. Dieser Preis kauft Wochen an Vollzeitarbeit: Anträge vorbereitet und eingereicht, Wohnraum gesucht und verhandelt, jede Anmeldung terminiert und begleitet, und eine Erreichbarkeit, die nicht um fünf Uhr endet.',
       'Nach Ihrer ersten Beratung erhalten Sie ein festes Angebot. Keine Stundenüberraschungen, keine Zusatzkosten mitten im Umzug.',
     ],
+  },
+  tailored: {
+    text: 'Jedes Paket ist ein Ausgangspunkt, kein festes Menü. Im ersten Gespräch passen wir den Umfang an Ihre Situation an, ergänzen, was Sie brauchen, und lassen weg, was Sie nicht brauchen.',
+    label: 'Individuelles Paket besprechen',
   },
   packages: [
     {
@@ -81,7 +85,7 @@ export const vip: VipContent = {
         text: 'Nennen Sie uns Ihre Daten, und wir sagen Ihnen genau, was möglich ist.',
         label: 'VIP-Anfrage starten',
       },
-      image: '/images/vip-couple.jpg',
+      image: '/images/vip-couple.jpg?v=20260728',
       imageAlt: 'Paar auf einem Penthouse-Balkon mit Blick über Rotterdam in der Abenddämmerung',
     },
     {
@@ -92,6 +96,7 @@ export const vip: VipContent = {
       metaDescription:
         'Familien-Relocation-Paket für die Niederlande: Immigration für jedes Familienmitglied, Wohnen, Schulsuche, Gesundheitsversorgung, Anmeldungen und Orientierung im Viertel, persönlich begleitet.',
       priceFrom: 'ab 3.500 €',
+      badge: 'Am häufigsten gewählt',
       intro: [
         'Eine Familien-Relocation ist keine größere Version eines Einzelumzugs, sie ist eine eigene Disziplin. Schuljahre mit festen Stichtagen, ein Zuhause, das für alle funktionieren muss, vier Akten bei der IND statt einer. Dieses Paket existiert, weil wir genau diese Abfolge am besten beherrschen.',
       ],
@@ -145,7 +150,7 @@ export const vip: VipContent = {
         text: 'Erzählen Sie uns von Ihrem Haushalt und Ihren Terminen. Wir gestalten die Ankunft um das Schuljahr herum.',
         label: 'VIP-Anfrage starten',
       },
-      image: '/images/vip-family.jpg',
+      image: '/images/vip-family.jpg?v=20260728',
       imageAlt: 'Familie kommt im Abendlicht an einer niederländischen Villa an',
     },
     {
@@ -209,7 +214,7 @@ export const vip: VipContent = {
         text: 'Nennen Sie uns Ihre Pläne und Ihr Zeitfenster. Wir kommen mit einer Abfolge und einem festen Angebot zurück.',
         label: 'VIP-Anfrage starten',
       },
-      image: '/images/vip-business.jpg',
+      image: '/images/vip-business.jpg?v=20260728',
       imageAlt: 'Führungskraft arbeitet im Fond eines chauffierten Wagens',
     },
     {
@@ -272,7 +277,7 @@ export const vip: VipContent = {
         text: 'Geben Sie uns die Tage, die Sie haben. Wir zeigen Ihnen, was darin möglich ist.',
         label: 'Diskrete Anfrage starten',
       },
-      image: '/images/vip-concierge.jpg',
+      image: '/images/vip-concierge.jpg?v=20260728',
       imageAlt: 'Privatjet mit wartendem Wagen im Morgengrauen',
     },
   ],

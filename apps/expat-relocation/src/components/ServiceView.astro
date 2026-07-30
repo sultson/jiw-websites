@@ -41,9 +41,9 @@ const l = (p: string) => localizePath(p, lang);
   <div class="container-site py-16 md:py-24">
     <h2 class="text-center font-display text-3xl md:text-4xl">{s.included.title}</h2>
     <span class="gold-rule mx-auto mt-6"></span>
-    <div class="mt-12 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {s.included.blocks.map((block) => (
-        <div class="bg-white p-7">
+        <div class="card bg-white p-7">
           <h3 class="font-display text-xl">{block.title}</h3>
           <p class="mt-2.5 text-[0.92rem] leading-relaxed">{block.text}</p>
         </div>
@@ -115,12 +115,12 @@ const l = (p: string) => localizePath(p, lang);
     {siblings.map((sib) => (
       <a
         href={l(sib.path)}
-        class="border border-line px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-navy transition-colors hover:border-gold hover:text-gold"
+        class="rounded-full border border-line px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-navy transition-colors hover:border-gold hover:text-gold"
       >
         {sib.label}
       </a>
     ))}
-    <a href={l(basePath)} class="border border-navy bg-navy px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-white transition-colors hover:bg-navy-2">
+    <a href={l(basePath)} class="rounded-full border border-navy bg-navy px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-white transition-colors hover:bg-navy-2">
       {c.core.ui.cta.allServices}
     </a>
   </div>

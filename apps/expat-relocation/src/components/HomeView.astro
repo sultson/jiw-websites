@@ -14,8 +14,8 @@ const h = c.core.home;
 const l = (p: string) => localizePath(p, lang);
 ---
 
-<!-- 1. Hero: edge-to-edge video, content in the lower third -->
-<section class="relative flex min-h-[86svh] items-end overflow-hidden bg-navy">
+<!-- 1. Hero: edge-to-edge video, left-aligned copy -->
+<section class="relative flex min-h-[92svh] items-center overflow-hidden bg-navy pt-24">
   <video
     id="hero-video"
     class="absolute inset-0 h-full w-full object-cover"
@@ -40,43 +40,54 @@ const l = (p: string) => localizePath(p, lang);
     height="720"
     fetchpriority="high"
   />
-  <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-navy/20"></div>
-  <div class="container-site relative pb-16 pt-44 text-center md:pb-24">
-    <span class="eyebrow">{site.tagline}</span>
-    <h1 class="mx-auto mt-5 max-w-4xl font-display text-4xl leading-tight text-white md:text-6xl">
-      {h.hero.h1}
-    </h1>
-    <p class="mx-auto mt-6 max-w-2xl text-[1.02rem] leading-relaxed text-white/85">{h.hero.sub}</p>
-    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-      <a href={l(SECTIONS.contact)} class="btn btn-white">{h.hero.ctaPrimary}</a>
-      <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn btn-gold">
-        <Icon name="whatsapp" size={15} />
-        {h.hero.ctaWhatsapp}
-      </a>
+  <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-navy/20"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/40 to-transparent"></div>
+  <div class="container-site relative py-20">
+    <div class="max-w-3xl">
+      <p class="flex items-center gap-3">
+        <span class="h-px w-10 bg-gold" aria-hidden="true"></span>
+        <span class="eyebrow">{site.tagline}</span>
+      </p>
+      <h1 class="mt-6 font-display text-4xl leading-[1.08] text-white sm:text-5xl lg:text-6xl">
+        {h.hero.h1}
+      </h1>
+      <p class="mt-7 max-w-xl text-[1.02rem] leading-relaxed text-white/85">{h.hero.sub}</p>
+      <div class="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+        <a href={l(SECTIONS.contact)} class="btn btn-white">
+          {h.hero.ctaPrimary}
+          <Icon name="arrow" size={15} />
+        </a>
+        <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn btn-gold">
+          <Icon name="whatsapp" size={15} />
+          {h.hero.ctaWhatsapp}
+        </a>
+      </div>
+      <p class="mt-8 flex items-center gap-2.5 text-[0.85rem] text-white/70">
+        <span class="flex items-center gap-0.5 text-gold" aria-hidden="true">
+          {Array.from({ length: 5 }).map(() => <Icon name="star" size={13} />)}
+        </span>
+        {h.hero.trust}
+      </p>
     </div>
-    <a href="#paths" class="mt-8 inline-flex items-center gap-2 text-[0.74rem] uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-gold-soft">
-      {h.hero.ctaSecondary}
-      <Icon name="chevronDown" size={14} />
-    </a>
   </div>
 </section>
 
-<!-- 2. Three paths -->
+<!-- 2. Three paths, presented as cards -->
 <section id="paths" class="container-site py-16 md:py-24">
-  <div class="text-center">
+  <div class="max-w-2xl">
     <h2 class="font-display text-3xl md:text-4xl">{h.paths.heading}</h2>
-    <span class="gold-rule mx-auto mt-6"></span>
-    <p class="mx-auto mt-5 max-w-xl leading-relaxed">{h.paths.sub}</p>
+    <span class="gold-rule mt-6"></span>
+    <p class="mt-5 leading-relaxed">{h.paths.sub}</p>
   </div>
-  <div class="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
+  <div class="mt-12 grid gap-6 md:grid-cols-3">
     {h.paths.items.map((item) => (
-      <a href={l(item.path)} class="group block">
-        <div class="overflow-hidden">
-          <img src={item.image} alt={item.imageAlt} class="aspect-[3/2] w-full object-cover" width="800" height="533" loading="lazy" />
+      <a href={l(item.path)} class="card group flex flex-col bg-ivory">
+        <img src={item.image} alt={item.imageAlt} class="aspect-[16/10] w-full object-cover" width="800" height="500" loading="lazy" />
+        <div class="flex flex-1 flex-col p-7">
+          <h3 class="font-display text-2xl transition-colors group-hover:text-gold">{item.title}</h3>
+          <p class="mt-2.5 flex-1 text-[0.94rem] leading-relaxed">{item.text}</p>
+          <span class="link-editorial mt-6 self-start">{item.label}</span>
         </div>
-        <h3 class="mt-6 font-display text-2xl transition-colors group-hover:text-gold">{item.title}</h3>
-        <p class="mt-2.5 text-[0.94rem] leading-relaxed">{item.text}</p>
-        <span class="link-editorial mt-5">{item.label}</span>
       </a>
     ))}
   </div>
@@ -89,46 +100,121 @@ const l = (p: string) => localizePath(p, lang);
       <h2 class="font-display text-3xl md:text-4xl">{h.mostRequested.heading}</h2>
       <p class="mt-4 text-[0.95rem] text-ink-soft">{h.mostRequested.sub}</p>
     </div>
-    <div class="mx-auto mt-10 grid max-w-4xl gap-3 sm:grid-cols-2">
+    <div class="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-3">
       {h.mostRequested.items.map((item) => (
         <a
           href={l(item.path)}
-          class="group flex items-center justify-between gap-4 border border-line bg-white px-6 py-4 transition-colors hover:border-gold"
+          class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-2.5 text-[0.85rem] font-medium text-navy transition-colors hover:border-gold hover:text-gold"
         >
-          <span class="text-[0.95rem] font-medium text-navy">{item.label}</span>
-          <span class="text-gold transition-transform duration-200 group-hover:translate-x-1">
-            <Icon name="arrow" size={17} />
-          </span>
+          {item.label}
+          <Icon name="arrow" size={14} class="text-gold" />
         </a>
       ))}
     </div>
   </div>
 </section>
 
-<!-- 4. VIP band -->
-<section class="relative overflow-hidden bg-navy">
-  <img
-    src="/images/path-vip.jpg"
-    alt=""
-    class="absolute inset-0 h-full w-full object-cover opacity-35"
-    width="1600"
-    height="1067"
-    loading="lazy"
-  />
-  <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/70 to-navy/30"></div>
-  <div class="container-site relative py-20 md:py-28">
-    <div class="max-w-xl">
-      <span class="eyebrow">{h.vipBlock.eyebrow}</span>
-      <h2 class="mt-4 font-display text-3xl text-white md:text-4xl">{h.vipBlock.heading}</h2>
-      {h.vipBlock.text.map((p) => (
-        <p class="mt-5 text-[0.97rem] leading-relaxed text-white/80">{p}</p>
+<!-- 4. Ports, harbours & offshore (dark band) -->
+<section class="bg-navy">
+  <div class="container-site py-16 md:py-24">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="eyebrow">{h.portBlock.eyebrow}</span>
+      <h2 class="mt-4 font-display text-3xl text-white md:text-4xl">{h.portBlock.heading}</h2>
+      {h.portBlock.text.map((p) => (
+        <p class="mx-auto mt-5 leading-relaxed text-white/80">{p}</p>
       ))}
-      <a href={l(SECTIONS.vip)} class="link-editorial link-editorial-light mt-8">{h.vipBlock.label}</a>
+    </div>
+    <img
+      src="/images/europoort.jpg?v=20260728"
+      alt="Container terminals in the port of Rotterdam"
+      class="mt-12 aspect-[21/9] w-full rounded-3xl object-cover"
+      width="1600"
+      height="686"
+      loading="lazy"
+    />
+    <div class="mt-12 grid gap-10 md:grid-cols-3">
+      {h.portBlock.areas.map((area) => (
+        <div class="border-t border-gold/60 pt-5">
+          <h3 class="font-display text-xl text-white">{area.title}</h3>
+          <p class="mt-2 text-[0.92rem] leading-relaxed text-white/75">{area.text}</p>
+        </div>
+      ))}
+    </div>
+    <div class="mt-14 grid gap-x-12 gap-y-8 border-t border-white/15 pt-12 sm:grid-cols-2">
+      {h.portBlock.advantages.map((adv) => (
+        <div>
+          <h3 class="font-display text-lg text-white">{adv.title}</h3>
+          <p class="mt-1.5 text-[0.9rem] leading-relaxed text-white/70">{adv.text}</p>
+        </div>
+      ))}
+    </div>
+    <div class="mt-12 flex flex-wrap items-center justify-center gap-3">
+      {h.portBlock.links.map((link) => (
+        <a href={l(link.path)} class="rounded-full border border-white/25 px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-white transition-colors hover:border-gold hover:text-gold-soft">
+          {link.label}
+        </a>
+      ))}
+    </div>
+    <div class="mt-10 text-center">
+      <a href={l(SECTIONS.industrial)} class="link-editorial link-editorial-light">{h.portBlock.label}</a>
     </div>
   </div>
 </section>
 
-<!-- 5. Immigration -->
+<!-- 5. VIP band: full-bleed navy with photo backdrop and gold CTA -->
+<section class="relative overflow-hidden bg-navy">
+  <img
+    src="/images/vip-welcome.jpg"
+    alt=""
+    class="absolute inset-0 h-full w-full object-cover opacity-30"
+    width="1600"
+    height="1067"
+    loading="lazy"
+  />
+  <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/50"></div>
+  <div class="container-site relative py-16 md:py-24">
+    <div class="max-w-2xl">
+      <p class="flex items-center gap-3">
+        <span class="h-px w-8 bg-gold" aria-hidden="true"></span>
+        <span class="eyebrow">{h.vipBlock.eyebrow}</span>
+      </p>
+      <h2 class="mt-4 font-display text-3xl text-white md:text-4xl">{h.vipBlock.heading}</h2>
+      {h.vipBlock.text.map((p) => (
+        <p class="mt-5 text-[0.97rem] leading-relaxed text-white/80">{p}</p>
+      ))}
+      <a href={l(SECTIONS.vip)} class="btn btn-gold-fill mt-9">
+        {h.vipBlock.label}
+        <Icon name="arrow" size={15} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Family relocation -->
+<section class="border-y border-line bg-ivory">
+  <div class="container-site py-16 md:py-24">
+    <div class="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2 md:gap-16">
+      <div>
+        <span class="eyebrow eyebrow-navy">{h.familyBlock.eyebrow}</span>
+        <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.familyBlock.heading}</h2>
+        {h.familyBlock.text.map((p) => (
+          <p class="mt-5 text-[0.97rem] leading-relaxed">{p}</p>
+        ))}
+        <div class="mt-6 flex flex-wrap gap-2.5">
+          {h.familyBlock.links.map((link) => (
+            <a href={l(link.path)} class="rounded-full border border-line bg-white px-4 py-2 text-[0.78rem] text-navy transition-colors hover:border-gold hover:text-gold">
+              {link.label}
+            </a>
+          ))}
+        </div>
+        <a href={l(h.familyBlock.path)} class="link-editorial mt-7">{h.familyBlock.label}</a>
+      </div>
+      <img src={h.familyBlock.image} alt={h.familyBlock.imageAlt} class="aspect-[4/3] w-full rounded-3xl object-cover" width="800" height="600" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- 7. Immigration -->
 <section class="container-site py-16 md:py-24">
   <div class="mx-auto max-w-3xl text-center">
     <span class="eyebrow eyebrow-navy">{h.immigrationBlock.eyebrow}</span>
@@ -137,11 +223,11 @@ const l = (p: string) => localizePath(p, lang);
       <p class="mx-auto mt-5 max-w-2xl leading-relaxed">{p}</p>
     ))}
   </div>
-  <div class="mx-auto mt-10 grid max-w-3xl gap-3 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-3">
     {h.immigrationBlock.links.map((link) => (
       <a
         href={l(link.path)}
-        class="border border-line px-5 py-3.5 text-center text-[0.85rem] font-medium text-navy transition-colors hover:border-gold hover:text-gold"
+        class="rounded-full border border-line px-5 py-2.5 text-[0.85rem] font-medium text-navy transition-colors hover:border-gold hover:text-gold"
       >
         {link.label}
       </a>
@@ -152,10 +238,10 @@ const l = (p: string) => localizePath(p, lang);
   </div>
 </section>
 
-<!-- 6. Housing: image band with overlay card -->
+<!-- 8. Housing: image band with overlay card -->
 <section class="relative">
   <img
-    src="/images/housing-canal.jpg"
+    src="/images/housing-canal.jpg?v=20260728"
     alt=""
     class="h-105 w-full object-cover md:h-130"
     width="1600"
@@ -163,7 +249,7 @@ const l = (p: string) => localizePath(p, lang);
     loading="lazy"
   />
   <div class="container-site">
-    <div class="relative z-10 -mt-28 max-w-xl border-t-2 border-gold bg-white p-8 shadow-lift md:-mt-36 md:p-12">
+    <div class="relative z-10 -mt-28 max-w-xl rounded-3xl bg-white p-8 shadow-lift md:-mt-36 md:p-12">
       <span class="eyebrow eyebrow-navy">{h.housingBlock.eyebrow}</span>
       <h2 class="mt-3 font-display text-3xl">{h.housingBlock.heading}</h2>
       {h.housingBlock.text.map((p) => (
@@ -171,7 +257,7 @@ const l = (p: string) => localizePath(p, lang);
       ))}
       <div class="mt-6 flex flex-wrap gap-2.5">
         {h.housingBlock.links.map((link) => (
-          <a href={l(link.path)} class="border border-line px-4 py-2 text-[0.78rem] text-navy transition-colors hover:border-gold hover:text-gold">
+          <a href={l(link.path)} class="rounded-full border border-line px-4 py-2 text-[0.78rem] text-navy transition-colors hover:border-gold hover:text-gold">
             {link.label}
           </a>
         ))}
@@ -181,7 +267,7 @@ const l = (p: string) => localizePath(p, lang);
   </div>
 </section>
 
-<!-- 7. Business -->
+<!-- 9. Business -->
 <section class="container-site py-16 md:py-24">
   <div class="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2 md:gap-16">
     <div>
@@ -192,89 +278,64 @@ const l = (p: string) => localizePath(p, lang);
       ))}
       <a href={l(SECTIONS.business)} class="link-editorial mt-7">{h.businessBlock.label}</a>
     </div>
-    <img src="/images/business-meeting.jpg" alt="" class="aspect-[4/3] w-full object-cover" width="800" height="600" loading="lazy" />
+    <img src="/images/business-meeting.jpg?v=20260728" alt="" class="aspect-[4/3] w-full rounded-3xl object-cover" width="800" height="600" loading="lazy" />
   </div>
 </section>
 
-<!-- 8. Rotterdam / Europoort specialist -->
-<section class="border-y border-line bg-ivory">
+<!-- 10. Why boutique (dark band) -->
+<section class="bg-navy">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl text-center">
-      <span class="eyebrow eyebrow-navy">{h.regionBlock.eyebrow}</span>
-      <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.regionBlock.heading}</h2>
-      {h.regionBlock.text.map((p) => (
-        <p class="mx-auto mt-5 leading-relaxed">{p}</p>
+      <span class="eyebrow">{h.whyBoutique.eyebrow}</span>
+      <h2 class="mt-4 font-display text-3xl text-white md:text-4xl">{h.whyBoutique.heading}</h2>
+      {h.whyBoutique.text.map((p) => (
+        <p class="mx-auto mt-5 leading-relaxed text-white/75">{p}</p>
       ))}
     </div>
-    <img
-      src="/images/europoort.jpg"
-      alt="Port of Rotterdam at dusk"
-      class="mt-12 aspect-[21/9] w-full object-cover"
-      width="1600"
-      height="686"
-      loading="lazy"
-    />
-    <div class="mt-12 grid gap-10 md:grid-cols-3">
-      {h.regionBlock.areas.map((area) => (
-        <div class="border-t border-gold pt-5">
-          <h3 class="font-display text-xl">{area.title}</h3>
-          <p class="mt-2 text-[0.92rem] leading-relaxed">{area.text}</p>
+    <div class="mx-auto mt-12 grid max-w-4xl gap-x-14 gap-y-10 sm:grid-cols-2">
+      {h.whyBoutique.points.map((point) => (
+        <div>
+          <h3 class="font-display text-xl text-white">{point.title}</h3>
+          <p class="mt-2 text-[0.94rem] leading-relaxed text-white/70">{point.text}</p>
         </div>
       ))}
     </div>
-    <div class="mt-10 text-center">
-      <a href={l(SECTIONS.industrial)} class="link-editorial">{h.regionBlock.label}</a>
+    <div class="mx-auto mt-14 grid max-w-3xl grid-cols-3 border-y border-white/15 py-8 text-center">
+      {h.whyBoutique.stats.map((stat) => (
+        <div>
+          <p class="font-display text-3xl text-gold-soft md:text-4xl">{stat.value}</p>
+          <p class="mt-1.5 text-[0.72rem] uppercase tracking-[0.14em] text-white/60">{stat.label}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
-<!-- 9. Why boutique -->
-<section class="container-site py-16 md:py-24">
-  <div class="mx-auto max-w-3xl text-center">
-    <span class="eyebrow eyebrow-navy">{h.whyBoutique.eyebrow}</span>
-    <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.whyBoutique.heading}</h2>
-    {h.whyBoutique.text.map((p) => (
-      <p class="mx-auto mt-5 leading-relaxed">{p}</p>
-    ))}
-  </div>
-  <div class="mx-auto mt-12 grid max-w-4xl gap-x-14 gap-y-10 sm:grid-cols-2">
-    {h.whyBoutique.points.map((point) => (
-      <div>
-        <h3 class="font-display text-xl">{point.title}</h3>
-        <p class="mt-2 text-[0.94rem] leading-relaxed">{point.text}</p>
-      </div>
-    ))}
-  </div>
-  <div class="mx-auto mt-14 grid max-w-3xl grid-cols-3 border-y border-line py-8 text-center">
-    {h.whyBoutique.stats.map((stat) => (
-      <div>
-        <p class="font-display text-3xl text-gold md:text-4xl">{stat.value}</p>
-        <p class="mt-1.5 text-[0.72rem] uppercase tracking-[0.14em] text-ink-soft">{stat.label}</p>
-      </div>
-    ))}
-  </div>
-</section>
-
-<!-- 10. Reviews -->
-<section class="border-t border-line">
+<!-- 11. Reviews: star-led cards -->
+<section class="border-y border-line bg-ivory">
   <div class="container-site py-16 md:py-24">
-    <div class="text-center">
-      <span class="eyebrow eyebrow-navy">{h.reviews.eyebrow}</span>
-      <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.reviews.heading}</h2>
-      <p class="mt-4 text-[0.95rem] text-ink-soft">{h.reviews.sub}</p>
+    <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div class="max-w-2xl">
+        <span class="eyebrow eyebrow-navy">{h.reviews.eyebrow}</span>
+        <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.reviews.heading}</h2>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="flex items-center gap-1 text-gold" aria-hidden="true">
+          {Array.from({ length: 5 }).map(() => <Icon name="star" size={18} />)}
+        </span>
+        <p class="text-[0.9rem] text-ink-soft">{h.reviews.sub}</p>
+      </div>
     </div>
-    <div class="mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-2">
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
       {h.reviews.items.map((review) => (
-        <figure class="flex flex-col justify-between border border-line p-8 md:p-10">
-          <blockquote class="font-display text-xl leading-relaxed text-navy">“{review.quote}”</blockquote>
-          <figcaption class="mt-7">
+        <figure class="card flex h-full flex-col bg-white p-7 md:p-8">
+          <div class="flex items-center gap-1 text-gold" aria-hidden="true">
+            {Array.from({ length: 5 }).map(() => <Icon name="star" size={15} />)}
+          </div>
+          <blockquote class="mt-5 flex-1 font-display text-xl leading-relaxed text-navy">“{review.quote}”</blockquote>
+          <figcaption class="mt-6 border-t border-line pt-4">
             <p class="font-medium text-navy">{review.name}</p>
-            <p class="mt-0.5 text-[0.8rem] uppercase tracking-[0.14em] text-ink-soft">{review.route}</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              {review.tags.map((tag) => (
-                <span class="border border-line px-3 py-1 text-[0.7rem] uppercase tracking-[0.1em] text-ink-soft">{tag}</span>
-              ))}
-            </div>
+            <p class="mt-0.5 text-[0.85rem] text-ink-soft">{review.route}</p>
           </figcaption>
         </figure>
       ))}
@@ -282,7 +343,7 @@ const l = (p: string) => localizePath(p, lang);
   </div>
 </section>
 
-<!-- 11. WhatsApp CTA -->
+<!-- 12. WhatsApp CTA -->
 <section class="bg-navy">
   <div class="container-site py-16 text-center md:py-20">
     <span class="gold-rule mx-auto"></span>
@@ -295,16 +356,38 @@ const l = (p: string) => localizePath(p, lang);
   </div>
 </section>
 
-<!-- 12. Contact form -->
+<!-- 13. Contact form: details left, form right -->
 <section class="border-t border-line bg-ivory" id="contact-form">
   <div class="container-site py-16 md:py-24">
-    <div class="mx-auto max-w-3xl text-center">
-      <span class="eyebrow eyebrow-navy">{h.contactBlock.eyebrow}</span>
-      <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.contactBlock.heading}</h2>
-      <p class="mt-4 text-[0.95rem] text-ink-soft">{h.contactBlock.text}</p>
-    </div>
-    <div class="mx-auto mt-10 max-w-3xl">
-      <LeadForm lang={lang} kind="relocation" id="lead-home" />
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+      <div>
+        <span class="eyebrow eyebrow-navy">{h.contactBlock.eyebrow}</span>
+        <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.contactBlock.heading}</h2>
+        <p class="mt-4 max-w-md text-[0.95rem] leading-relaxed text-ink-soft">{h.contactBlock.text}</p>
+        <div class="mt-10 space-y-5">
+          <a href={`tel:${site.phone.e164}`} class="group flex items-center gap-4">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+              <Icon name="phone" size={18} />
+            </span>
+            <span class="font-medium text-navy transition-colors group-hover:text-gold">{site.phone.display}</span>
+          </a>
+          <a href={`mailto:${site.email}`} class="group flex items-center gap-4">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+              <Icon name="mail" size={18} />
+            </span>
+            <span class="font-medium text-navy transition-colors group-hover:text-gold">{site.email}</span>
+          </a>
+          <a href={site.whatsappUrl} target="_blank" rel="noopener" class="group flex items-center gap-4">
+            <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+              <Icon name="whatsapp" size={18} />
+            </span>
+            <span class="font-medium text-navy transition-colors group-hover:text-gold">{site.whatsapp.display}</span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <LeadForm lang={lang} kind="relocation" id="lead-home" />
+      </div>
     </div>
   </div>
 </section>

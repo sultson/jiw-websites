@@ -25,88 +25,87 @@ const ct = c.core.contact;
 </section>
 
 <section class="container-site py-14 md:py-20">
-  <div class="mx-auto max-w-3xl">
-    <!-- Path selector -->
-    <div class="grid gap-3 sm:grid-cols-3" role="tablist" aria-label={ct.title}>
-      {ct.tabs.map((tab, i) => (
-        <button
-          type="button"
-          role="tab"
-          aria-selected={i === 0 ? 'true' : 'false'}
-          data-contact-tab={tab.key}
-          class:list={[
-            'cursor-pointer border px-5 py-4 text-left transition-colors',
-            i === 0 ? 'border-navy bg-navy text-white' : 'border-line bg-white text-navy hover:border-gold',
-          ]}
-        >
-          <span class="block text-[0.8rem] font-medium uppercase tracking-[0.14em]">{tab.label}</span>
-          <span class:list={['mt-1 block text-[0.8rem]', i === 0 ? 'text-white/70' : 'text-ink-soft']}>{tab.text}</span>
-        </button>
-      ))}
-    </div>
-
-    <div class="mt-8">
-      <div data-contact-panel="immigration">
-        <h2 class="font-display text-2xl">{ct.formCopy.immigration.heading}</h2>
-        <p class="mt-2 text-[0.92rem] text-ink-soft">{ct.formCopy.immigration.text}</p>
-        <div class="mt-6"><LeadForm lang={lang} kind="immigration" id="contact-immigration" /></div>
+  <div class="grid gap-12 lg:grid-cols-[2fr_3fr] lg:gap-16">
+    <!-- Contact details, left -->
+    <div>
+      <h2 class="font-display text-2xl">{ct.whatsapp.heading}</h2>
+      <p class="mt-3 max-w-md text-[0.92rem] leading-relaxed">{ct.whatsapp.text}</p>
+      <div class="mt-9 space-y-5">
+        <a href={`tel:${site.phone.e164}`} class="group flex items-center gap-4">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+            <Icon name="phone" size={18} />
+          </span>
+          <span class="font-medium text-navy transition-colors group-hover:text-gold">{site.phone.display}</span>
+        </a>
+        <a href={`mailto:${site.email}`} class="group flex items-center gap-4">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+            <Icon name="mail" size={18} />
+          </span>
+          <span class="font-medium text-navy transition-colors group-hover:text-gold">{site.email}</span>
+        </a>
+        <a href={site.whatsappUrl} target="_blank" rel="noopener" class="group flex items-center gap-4">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+            <Icon name="whatsapp" size={18} />
+          </span>
+          <span class="font-medium text-navy transition-colors group-hover:text-gold">{site.whatsapp.display}</span>
+        </a>
+        <div class="flex items-start gap-4">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+            <Icon name="mapPin" size={18} />
+          </span>
+          <span class="text-[0.92rem] leading-relaxed">
+            {site.legalName}<br />{site.address.line1}, {site.address.city}<br />
+            <span class="text-[0.8rem] text-ink-soft">{c.core.ui.footer.kvkLabel} {site.kvk}</span>
+          </span>
+        </div>
       </div>
-      <div data-contact-panel="relocation" class="hidden">
-        <h2 class="font-display text-2xl">{ct.formCopy.relocation.heading}</h2>
-        <p class="mt-2 text-[0.92rem] text-ink-soft">{ct.formCopy.relocation.text}</p>
-        <div class="mt-6"><LeadForm lang={lang} kind="relocation" id="contact-relocation" /></div>
-      </div>
-      <div data-contact-panel="vip" class="hidden">
-        <h2 class="font-display text-2xl">{ct.formCopy.vip.heading}</h2>
-        <p class="mt-2 text-[0.92rem] text-ink-soft">{ct.formCopy.vip.text}</p>
-        <div class="mt-6"><LeadForm lang={lang} kind="vip" id="contact-vip" /></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WhatsApp + emergency + details -->
-<section class="border-t border-line bg-ivory">
-  <div class="container-site grid gap-10 py-16 md:grid-cols-3 md:py-20">
-    <div class="border-t-2 border-gold bg-white p-8">
-      <h2 class="font-display text-xl">{ct.whatsapp.heading}</h2>
-      <p class="mt-3 text-[0.92rem] leading-relaxed">{ct.whatsapp.text}</p>
-      <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn btn-whatsapp mt-6 w-full">
-        <Icon name="whatsapp" size={15} />
-        {ct.whatsapp.label}
-      </a>
-    </div>
-    <div class="border-t-2 border-gold bg-white p-8">
-      <h2 class="font-display text-xl">{ct.emergency.heading}</h2>
-      <p class="mt-3 text-[0.92rem] leading-relaxed">{ct.emergency.text}</p>
-    </div>
-    <div class="border-t-2 border-gold bg-white p-8">
-      <h2 class="font-display text-xl">{ct.details.heading}</h2>
-      <ul class="mt-4 space-y-3 text-[0.92rem]">
-        <li class="flex items-start gap-3">
-          <Icon name="mapPin" size={16} class="mt-1 shrink-0 text-gold" />
-          <span>{site.legalName}<br />{site.address.line1}, {site.address.city}</span>
-        </li>
-        <li class="flex items-center gap-3">
-          <Icon name="mail" size={16} class="shrink-0 text-gold" />
-          <a href={`mailto:${site.email}`} class="hover:text-navy">{site.email}</a>
-        </li>
-        <li class="flex items-center gap-3">
-          <Icon name="phone" size={16} class="shrink-0 text-gold" />
-          <a href={`tel:${site.phone.e164}`} class="hover:text-navy">{site.phone.display}</a>
-        </li>
-        <li class="flex items-center gap-3">
-          <Icon name="whatsapp" size={16} class="shrink-0 text-gold" />
-          <a href={site.whatsappUrl} target="_blank" rel="noopener" class="hover:text-navy">{site.whatsapp.display}</a>
-        </li>
-        <li class="flex items-center gap-3">
-          <span class="text-[0.7rem] uppercase tracking-[0.16em] text-ink-soft">{c.core.ui.footer.kvkLabel}</span>
-          <span>{site.kvk}</span>
-        </li>
-      </ul>
-      <div class="mt-5 flex gap-4">
+      <div class="mt-7 flex gap-4">
         <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="Instagram" class="text-ink-soft hover:text-gold"><Icon name="instagram" size={18} /></a>
         <a href={site.social.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn" class="text-ink-soft hover:text-gold"><Icon name="linkedin" size={18} /></a>
+      </div>
+      <div class="card mt-10 bg-ivory p-6">
+        <h3 class="font-display text-lg">{ct.emergency.heading}</h3>
+        <p class="mt-2 text-[0.88rem] leading-relaxed">{ct.emergency.text}</p>
+      </div>
+    </div>
+
+    <!-- Tailored forms, right -->
+    <div>
+      <!-- Path selector -->
+      <div class="grid gap-3 sm:grid-cols-3" role="tablist" aria-label={ct.title}>
+        {ct.tabs.map((tab, i) => (
+          <button
+            type="button"
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            data-contact-tab={tab.key}
+            class:list={[
+              'cursor-pointer rounded-2xl border px-5 py-4 text-left transition-colors',
+              i === 0 ? 'border-navy bg-navy text-white' : 'border-line bg-white text-navy hover:border-gold',
+            ]}
+          >
+            <span class="block text-[0.8rem] font-medium uppercase tracking-[0.14em]">{tab.label}</span>
+            <span class:list={['mt-1 block text-[0.8rem]', i === 0 ? 'text-white/70' : 'text-ink-soft']}>{tab.text}</span>
+          </button>
+        ))}
+      </div>
+
+      <div class="mt-8">
+        <div data-contact-panel="immigration">
+          <h2 class="font-display text-2xl">{ct.formCopy.immigration.heading}</h2>
+          <p class="mt-2 text-[0.92rem] text-ink-soft">{ct.formCopy.immigration.text}</p>
+          <div class="mt-6"><LeadForm lang={lang} kind="immigration" id="contact-immigration" /></div>
+        </div>
+        <div data-contact-panel="relocation" class="hidden">
+          <h2 class="font-display text-2xl">{ct.formCopy.relocation.heading}</h2>
+          <p class="mt-2 text-[0.92rem] text-ink-soft">{ct.formCopy.relocation.text}</p>
+          <div class="mt-6"><LeadForm lang={lang} kind="relocation" id="contact-relocation" /></div>
+        </div>
+        <div data-contact-panel="vip" class="hidden">
+          <h2 class="font-display text-2xl">{ct.formCopy.vip.heading}</h2>
+          <p class="mt-2 text-[0.92rem] text-ink-soft">{ct.formCopy.vip.text}</p>
+          <div class="mt-6"><LeadForm lang={lang} kind="vip" id="contact-vip" /></div>
+        </div>
       </div>
     </div>
   </div>

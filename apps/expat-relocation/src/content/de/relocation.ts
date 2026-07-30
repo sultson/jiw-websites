@@ -10,8 +10,8 @@ export const relocation: SectionContent = {
     'Ein Länderwechsel ist tausend kleine Aufgaben im Gewand einer großen. Das BSN, die Gemeinde, die Versicherung, die Schule, die Bank, jede mit eigenem Schalter, eigenen Formularen und eigener Vorstellung von einer zumutbaren Wartezeit. Die meisten Agenturen drücken Ihnen eine Checkliste in die Hand. Wir sind die einzige Boutique-Agentur für Expats in den Niederlanden, und wir machen etwas anderes: Eine Person lernt Ihren Namen, Ihre Familie und Ihre Situation kennen und kümmert sich dann einfach darum.',
     'Diese Person managt Ihren Umzug nicht vom Schreibtisch aus. Sie bucht die Termine, bereitet die Unterlagen vor, fährt mit Ihnen zur Gemeinde und sitzt neben Ihnen am Schalter. Von dem Moment, in dem Sie landen, bis zu dem Moment, in dem sich die Niederlande wie Zuhause anfühlen, haben Sie jemanden hier, der die Antwort auf Ihre nächste Frage bereits kennt.',
   ],
-  image: '/images/relocation-family.jpg',
-  imageAlt: 'Eine Familie kommt in ihrem neuen Zuhause in den Niederlanden an',
+  image: '/images/relocation-hub.jpg',
+  imageAlt: 'Umzugshelfer tragen Kartons in ein niederländisches Einfamilienhaus',
   services: [
     {
       slug: 'bsn-registration-netherlands',
@@ -97,8 +97,8 @@ export const relocation: SectionContent = {
         label: 'Mein BSN organisieren',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg',
-      imageAlt: 'Ein Anmeldetermin am Schalter einer niederländischen Gemeinde',
+      image: '/images/bsn-registration.jpg',
+      imageAlt: 'Ein Anmeldedokument wird am Schalter der Gemeinde entgegengenommen',
     },
     {
       slug: 'municipality-registration-netherlands',
@@ -183,7 +183,7 @@ export const relocation: SectionContent = {
         label: 'Meine Anmeldung übernehmen',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg',
+      image: '/images/immigration-desk.jpg?v=20260728',
       imageAlt: 'Unterlagen werden an einem Schalter der Gemeindeverwaltung ausgefüllt',
     },
     {
@@ -270,8 +270,8 @@ export const relocation: SectionContent = {
         label: 'Meine Versicherung regeln',
       },
       form: 'relocation',
-      image: '/images/relocation-settling.jpg',
-      imageAlt: 'Ein Neuankömmling prüft mit einer Begleiterin niederländische Krankenversicherungsoptionen',
+      image: '/images/health-insurance.jpg',
+      imageAlt: 'Vergleich niederländischer Krankenversicherungsoptionen am Küchentisch',
     },
     {
       slug: 'school-search-netherlands',
@@ -357,8 +357,8 @@ export const relocation: SectionContent = {
         label: 'Unsere Schule finden',
       },
       form: 'relocation',
-      image: '/images/relocation-family.jpg',
-      imageAlt: 'Eltern und Kinder besuchen eine Schule in den Niederlanden',
+      image: '/images/school-search.jpg',
+      imageAlt: 'Eltern und Kind im Gespräch mit einer Lehrerin an einer niederländischen Schule',
     },
     {
       slug: 'settling-in-services-netherlands',
@@ -447,7 +447,7 @@ export const relocation: SectionContent = {
         label: 'Beim Einleben helfen',
       },
       form: 'relocation',
-      image: '/images/relocation-settling.jpg',
+      image: '/images/relocation-settling.jpg?v=20260728',
       imageAlt: 'Ein Neuankömmling orientiert sich in seinem neuen niederländischen Viertel',
     },
     {
@@ -533,7 +533,7 @@ export const relocation: SectionContent = {
         label: 'Meine Ankunft buchen',
       },
       form: 'relocation',
-      image: '/images/relocation-arrival.jpg',
+      image: '/images/relocation-arrival.jpg?v=20260728',
       imageAlt: 'Ein warmer Empfang in der Ankunftshalle des Flughafens',
     },
     {
@@ -627,8 +627,8 @@ export const relocation: SectionContent = {
         label: 'Unseren Familienumzug planen',
       },
       form: 'relocation',
-      image: '/images/vip-family.jpg',
-      imageAlt: 'Eine Familie lebt sich glücklich in den Niederlanden ein',
+      image: '/images/family-relocation.jpg',
+      imageAlt: 'Familie spaziert mit Fahrrädern durch ihr neues Viertel',
     },
     {
       slug: 'relocation-services-rotterdam',
@@ -713,7 +713,7 @@ export const relocation: SectionContent = {
         label: 'Meinen Rotterdam-Umzug starten',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
+      image: '/images/rotterdam.jpg?v=20260728',
       imageAlt: 'Rotterdamer Innenstadt mit moderner Architektur an der Maas',
     },
   ],

@@ -10,7 +10,7 @@ export const business: SectionContent = {
     'Visa firms arrange permits. Formation agents register companies. Housing agents find apartments. An international entrepreneur needs all three at once, plus a family that actually wants to stay, and nobody hands you that as one service. We do. Immigration, company setup, housing and relocation, coordinated by one team that answers to you.',
     'The same applies at company scale. When a business moves people to the Netherlands, we relocate the whole picture: the entity, the executives, the teams and every family that comes with them.',
   ],
-  image: '/images/business-meeting.jpg',
+  image: '/images/business-meeting.jpg?v=20260728',
   imageAlt: 'International entrepreneurs planning their Dutch company at a meeting table',
   cta: {
     title: 'Bring your business to the Netherlands',
@@ -92,8 +92,8 @@ export const business: SectionContent = {
         label: 'Map my route',
       },
       form: 'immigration',
-      image: '/images/business-meeting.jpg',
-      imageAlt: 'Entrepreneur sketching a Dutch business plan with an advisor',
+      image: '/images/start-business.jpg',
+      imageAlt: 'Entrepreneur opening the door of her new office space',
     },
     {
       slug: 'company-registration-netherlands',
@@ -174,7 +174,7 @@ export const business: SectionContent = {
         label: 'Set up my company',
       },
       form: 'immigration',
-      image: '/images/business-signing.jpg',
+      image: '/images/business-signing.jpg?v=20260728',
       imageAlt: 'Founder signing incorporation documents at a Dutch notary',
     },
     {
@@ -252,8 +252,8 @@ export const business: SectionContent = {
         label: 'Book my KvK registration',
       },
       form: 'immigration',
-      image: '/images/business-signing.jpg',
-      imageAlt: 'New business owner completing Chamber of Commerce registration',
+      image: '/images/kvk-registration.jpg',
+      imageAlt: 'Entrepreneur receiving a company registration extract at a counter',
     },
     {
       slug: 'relocation-services-for-entrepreneurs-netherlands',
@@ -329,8 +329,8 @@ export const business: SectionContent = {
         label: 'Start my relocation plan',
       },
       form: 'immigration',
-      image: '/images/vip-business.jpg',
-      imageAlt: 'Entrepreneur reviewing relocation plans with a personal advisor',
+      image: '/images/entrepreneur-relocation.jpg',
+      imageAlt: 'Founder carrying a box and laptop into a new office',
     },
     {
       slug: 'business-relocation-to-the-netherlands',
@@ -410,8 +410,8 @@ export const business: SectionContent = {
         label: 'Discuss our corporate move',
       },
       form: 'immigration',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'Rotterdam harbour skyline, home base for corporate relocations',
+      image: '/images/business-relocation.jpg',
+      imageAlt: 'Team moving crates into a modern office building',
     },
     {
       slug: 'housing-support-for-entrepreneurs-netherlands',
@@ -488,8 +488,8 @@ export const business: SectionContent = {
         label: 'Start my housing search',
       },
       form: 'immigration',
-      image: '/images/housing-interior.jpg',
-      imageAlt: 'Bright living room of a rental home found for an entrepreneur',
+      image: '/images/entrepreneur-housing.jpg',
+      imageAlt: 'Bright live-work loft apartment with a desk by the window',
     },
   ],
   crossLinks: [

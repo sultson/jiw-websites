@@ -10,7 +10,7 @@ export const housing: SectionContent = {
     'El mercado de alquiler neerlandés se mueve rápido y premia a quien llega preparado. Los buenos apartamentos se publican por la mañana y desaparecen por la tarde, y los propietarios eligen inquilinos que responden con rapidez y un expediente completo. Ahí es exactamente donde entramos nosotros. Vigilamos el mercado por usted, reaccionamos en cuestión de horas y preparamos su dosier para que, cuando aparezca la vivienda adecuada, usted sea el candidato al que un propietario dice que sí.',
     'Nuestro terreno es Rotterdam y la amplia región portuaria, desde el centro de la ciudad hasta Europoort y la Maasvlakte, aunque buscamos en todos los Países Bajos. Nunca le mandamos solo con una lista de enlaces. Preseleccionamos, asistimos a las visitas con usted, leemos cada contrato antes de que firme y llevamos la conversación con el propietario desde el primer mensaje hasta la entrega de llaves.',
   ],
-  image: '/images/housing-canal.jpg',
+  image: '/images/housing-canal.jpg?v=20260728',
   imageAlt: 'Casas junto a un canal en una ciudad neerlandesa en un día luminoso',
   services: [
     {
@@ -105,8 +105,8 @@ export const housing: SectionContent = {
         label: 'Iniciar mi búsqueda',
       },
       form: 'relocation',
-      image: '/images/housing-canal.jpg',
-      imageAlt: 'Casas neerlandesas junto a un canal con sus características fachadas de hastial',
+      image: '/images/housing-search.jpg',
+      imageAlt: 'Agente y pareja revisando anuncios de apartamentos en un portátil',
     },
     {
       slug: 'housing-for-expats-rotterdam',
@@ -191,8 +191,8 @@ export const housing: SectionContent = {
         label: 'Hablar con una local de Rotterdam',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'Horizonte de Rotterdam con el puente Erasmus sobre el Mosa',
+      image: '/images/rotterdam-housing.jpg',
+      imageAlt: 'Edificios de apartamentos residenciales modernos en Rotterdam',
     },
     {
       slug: 'viewing-assistance-netherlands',
@@ -282,7 +282,7 @@ export const housing: SectionContent = {
         label: 'Reservar una visita',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg',
+      image: '/images/housing-viewing.jpg?v=20260728',
       imageAlt: 'Visita a un apartamento neerlandés luminoso con grandes ventanales',
     },
     {
@@ -369,8 +369,8 @@ export const housing: SectionContent = {
         label: 'Revisar mi contrato',
       },
       form: 'relocation',
-      image: '/images/immigration-documents.jpg',
-      imageAlt: 'Un contrato de alquiler revisado página a página en un escritorio',
+      image: '/images/rental-contract.jpg',
+      imageAlt: 'Manos revisando un contrato de alquiler con llaves sobre la mesa',
     },
     {
       slug: 'temporary-housing-for-expats-netherlands',
@@ -459,7 +459,7 @@ export const housing: SectionContent = {
         label: 'Organizar mi vivienda temporal',
       },
       form: 'relocation',
-      image: '/images/housing-interior.jpg',
+      image: '/images/housing-interior.jpg?v=20260728',
       imageAlt: 'Un apartamento de corta estancia amueblado y listo para un recién llegado',
     },
     {
@@ -546,8 +546,8 @@ export const housing: SectionContent = {
         label: 'Páselo a nuestras manos',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg',
-      imageAlt: 'Conversación entre una representante del inquilino y un propietario en una vivienda de alquiler',
+      image: '/images/landlord-communication.jpg',
+      imageAlt: 'Consultora estrechando la mano de un propietario en la puerta',
     },
   ],
   cta: {

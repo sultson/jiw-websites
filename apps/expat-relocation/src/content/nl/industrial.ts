@@ -10,7 +10,7 @@ export const industrial: SectionContent = {
     'De Rotterdamse haven is het industriële hart van Europa, en de corridor van de stad via Europoort naar de Maasvlakte biedt werk aan duizenden internationals: engineers, offshorecrews, terminaloperators, logistiek planners. Toch is vrijwel elke relocationservice in Nederland gebouwd voor kantoormedewerkers die in Amsterdam landen. Niemand specialiseert zich in de mensen die deze haven draaiende houden. Wij wel, en wij zijn de enigen.',
     'Wij kennen de terminals en de raffinaderijen, de ploegenroosters en de aannemerscontracten, de plaatsen waar havengezinnen werkelijk wonen en de reistijden die een start om 6 uur ’s ochtends leefbaar maken. Of u nu als werkgever een crew laat overkomen of als professional alleen aankomt, deze sectie is gebouwd voor het industriële cluster en voor niemand anders.',
   ],
-  image: '/images/industrial-hub.jpg',
+  image: '/images/industrial-hub.jpg?v=20260728',
   imageAlt: 'Industriële installaties en terminals in het havengebied Europoort',
   services: [
     {
@@ -96,7 +96,7 @@ export const industrial: SectionContent = {
         label: 'Plan mijn Europoort-verhuizing',
       },
       form: 'relocation',
-      image: '/images/europoort.jpg',
+      image: '/images/europoort.jpg?v=20260728',
       imageAlt: 'Raffinaderij- en terminalinfrastructuur bij Europoort Rotterdam',
     },
     {
@@ -182,7 +182,7 @@ export const industrial: SectionContent = {
         label: 'Regel mijn Maasvlakte-verhuizing',
       },
       form: 'relocation',
-      image: '/images/maasvlakte.jpg',
+      image: '/images/maasvlakte.jpg?v=20260728',
       imageAlt: 'Containerterminals en kranen in de deepsea-haven op de Maasvlakte',
     },
     {
@@ -269,7 +269,7 @@ export const industrial: SectionContent = {
         label: 'Zet mijn thuisbasis op',
       },
       form: 'relocation',
-      image: '/images/industrial-worker.jpg',
+      image: '/images/industrial-worker.jpg?v=20260728',
       imageAlt: 'Een offshoreprofessional in werkkleding bij een havenfaciliteit',
     },
     {
@@ -355,7 +355,7 @@ export const industrial: SectionContent = {
         label: 'Versnel mijn verhuizing',
       },
       form: 'relocation',
-      image: '/images/logistics-worker.jpg',
+      image: '/images/logistics-worker.jpg?v=20260728',
       imageAlt: 'Een logistiek professional aan het werk in een Rotterdams distributiegebied',
     },
     {
@@ -445,8 +445,8 @@ export const industrial: SectionContent = {
         label: 'Word onze partner',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'De industriële havenskyline van Rotterdam tijdens werkuren',
+      image: '/images/rotterdam-industrial.jpg',
+      imageAlt: 'Werknemers in veiligheidshesjes in de haven met de skyline van Rotterdam op de achtergrond',
     },
   ],
   cta: {

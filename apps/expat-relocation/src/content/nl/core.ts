@@ -43,9 +43,11 @@ export const core: CoreContent = {
       errorTitle: 'Er is iets misgegaan',
       errorBody: 'Uw aanvraag kon niet worden verzonden. Probeer het opnieuw, of stuur ons een WhatsApp.',
       consent: 'Door dit formulier te versturen gaat u akkoord met ons privacybeleid.',
+      nextSteps:
+        'Nadat u dit formulier verstuurt, bekijkt Johanna uw situatie persoonlijk en reageert zij binnen één werkdag met een eerlijke inschatting of en hoe wij kunnen helpen. Valt uw vraag buiten onze diensten of regio, dan zeggen wij dat direct.',
     },
     footer: {
-      tagline: 'Boutique relocatie- en immigratiediensten voor expats die naar Nederland verhuizen.',
+      tagline: 'Boutique relocatie- en immigratiediensten voor expats die naar Rotterdam, Europoort en de bredere havenregio verhuizen.',
       services: 'Diensten',
       company: 'Bedrijf',
       contactHeading: 'Contact',
@@ -72,10 +74,11 @@ export const core: CoreContent = {
       ctaPrimary: 'Plan een relocatiegesprek',
       ctaWhatsapp: 'Stuur ons direct een WhatsApp',
       ctaSecondary: 'Start uw relocatie',
+      trust: 'Persoonlijke begeleiding door Johanna, 24/7 bereikbaar',
     },
     paths: {
       heading: 'Hoe kunnen wij u helpen aankomen?',
-      sub: 'Drie wegen naar binnen. Eén persoon die uw naam kent, van het eerste bericht tot de dag dat u zich thuis voelt.',
+      sub: 'Immigratie, wonen, relocatie en VIP-ondersteuning, geregeld via één bedrijf. Kies uw weg naar binnen en één persoon kent uw naam, van het eerste bericht tot de dag dat u zich thuis voelt.',
       items: [
         {
           key: 'immigration',
@@ -83,7 +86,7 @@ export const core: CoreContent = {
           text: 'Visa en vergunningen voor professionals, partners, gezinnen en oprichters. Zorgvuldig voorbereid en persoonlijk begeleid, van toetsing tot goedkeuring.',
           label: 'Ontdek immigratie',
           path: '/immigration',
-          image: '/images/path-immigration.jpg',
+          image: '/images/path-immigration.jpg?v=20260728',
           imageAlt: 'Adviseur die een cliënt begeleidt bij verblijfsdocumenten',
         },
         {
@@ -92,7 +95,7 @@ export const core: CoreContent = {
           text: 'Complete relocatiepakketten of losse diensten: woningzoektocht, scholen, BSN, verzekeringen en alles daartussenin.',
           label: 'Ontdek relocatie',
           path: '/relocation',
-          image: '/images/path-relocation.jpg',
+          image: '/images/path-relocation.jpg?v=20260728',
           imageAlt: 'Gezin dat aankomt bij een Nederlands grachtenpand',
         },
         {
@@ -101,7 +104,7 @@ export const core: CoreContent = {
           text: 'Voor artiesten, sporters, bestuurders en wie maar één weekend heeft. Uw hele verhuizing georkestreerd rond één bezoek, met elke deur al open.',
           label: 'Ontdek VIP-diensten',
           path: '/vip-services',
-          image: '/images/path-vip.jpg',
+          image: '/images/path-vip.jpg?v=20260728',
           imageAlt: 'Chauffeur die een autodeur opent tegen de skyline van Rotterdam',
         },
       ],
@@ -167,17 +170,45 @@ export const core: CoreContent = {
       ],
       label: 'Zakelijke diensten',
     },
-    regionBlock: {
-      eyebrow: 'Specialist in Rotterdam & Europoort',
-      heading: 'De regio die wij straat voor straat kennen',
+    portBlock: {
+      eyebrow: 'Havens & offshore',
+      heading: 'De specialist voor de Rotterdamse haven',
       text: [
-        'De grootste haven van Europa staat in geen enkele relocatiebrochure, en toch bouwen tienduizenden internationale professionals er hun carrière. Wij zijn het enige boutique bureau gespecialiseerd in Rotterdam, Europoort en de Maasvlakte, van penthouse op de Wilhelminapier tot gezinswoning op twintig minuten van de terminals.',
+        'De grootste haven van Europa staat in geen enkele relocatiebrochure, en toch bouwen tienduizenden internationale professionals er hun carrière. Wij zijn het enige boutique bureau gespecialiseerd in Rotterdam, de regio ten zuiden ervan, Europoort en de Maasvlakte, en werken dagelijks met de haven-, offshore-, scheepvaart- en engineeringbedrijven die mensen hierheen halen.',
       ],
       label: 'Diensten voor industriële expats',
       areas: [
         { title: 'Rotterdam', text: 'Wonen met skyline, internationale scholen en de snelst veranderende stad van Nederland.' },
         { title: 'Europoort & Maasvlakte', text: 'Praktische relocatie voor haven-, offshore- en raffinaderijprofessionals en hun gezinnen.' },
-        { title: 'De industrieregio', text: 'Rustige stadjes als Brielle en Rozenburg, op minuten van de terminals en een wereld ervan verwijderd.' },
+        { title: 'Ten zuiden van Rotterdam', text: 'Rustige stadjes als Brielle, Rozenburg en Hellevoetsluis, op minuten van de terminals en een wereld ervan verwijderd.' },
+      ],
+      advantages: [
+        { title: 'Lokale kennis', text: 'Wij kennen de buurten, scholen, verhuurders en woon-werkroutes van deze regio straat voor straat.' },
+        { title: 'Snelle persoonlijke hulp', text: 'Wij zitten dichtbij, dus wij kunnen op korte termijn bij een bezichtiging, een gemeentebalie of een noodgeval zijn.' },
+        { title: 'Een gevestigd netwerk', text: 'Makelaars, gemeenten, scholen en internationale werkgevers in de regio kennen ons al.' },
+        { title: 'Ondersteuning na aankomst', text: 'De relatie eindigt niet bij de sleutels. Wij blijven het aanspreekpunt lang nadat u zich heeft gesetteld.' },
+      ],
+      links: [
+        { label: 'Expats Europoort', path: '/industrial-expat-services/europoort-relocation-services-netherlands' },
+        { label: 'Expats Maasvlakte', path: '/industrial-expat-services/maasvlakte-expat-relocation-netherlands' },
+        { label: 'Offshore-professionals', path: '/industrial-expat-services/offshore-expat-services-netherlands' },
+        { label: 'Logistieke professionals', path: '/industrial-expat-services/relocation-for-logistics-professionals-netherlands' },
+      ],
+    },
+    familyBlock: {
+      eyebrow: 'Gezinsrelocatie',
+      heading: 'Een gezin verhuizen is een ander vak',
+      text: [
+        'Schooljaren die op vaste data beginnen, meerdere IND-dossiers in plaats van één, en een woning die voor iedereen moet werken. Wij coördineren de aankomst van het hele gezin, immigratie inbegrepen, in één plan en één paar handen.',
+      ],
+      label: 'Gezinsrelocatiediensten',
+      path: '/relocation/family-relocation-netherlands',
+      image: '/images/relocation-family.jpg?v=20260728',
+      imageAlt: 'Ouders en kinderen die dozen uitpakken in hun nieuwe Nederlandse huis',
+      links: [
+        { label: 'Family VIP Package', path: '/vip-services/family-relocation-immigration-services-netherlands' },
+        { label: 'Scholenzoektocht', path: '/relocation/school-search-netherlands' },
+        { label: 'Gezinshereniging', path: '/immigration/family-reunification-netherlands' },
       ],
     },
     whyBoutique: {
@@ -185,6 +216,7 @@ export const core: CoreContent = {
       heading: 'Eén bureau. Eén persoon. Uw naam.',
       text: [
         'Grote relocatiebureaus geven u een ticketnummer. Een boutique bureau geeft u een persoon. Johanna bouwde haar reputatie op in de ambassadewereld, waar discretie en precisie geen eigenschappen zijn, maar de functieomschrijving.',
+        'Wij zijn geen algemeen expatbureau dat elke denkbare dienst aanbiedt. Wij doen immigratie, wonen, relocatie en VIP-ondersteuning voor één regio, via één bedrijf, en dat doen wij volledig.',
       ],
       points: [
         {
@@ -251,7 +283,7 @@ export const core: CoreContent = {
       'E & I: Expat, Relocation and Immigration Services The Netherlands begon met een eenvoudige observatie vanuit de ambassadewereld: de mensen die het beste van land wisselen, zijn degenen die persoonlijk worden begeleid. Niet als dossier beheerd. Begeleid.',
       'Vandaag begeleiden Johanna en haar netwerk professionals, stellen, gezinnen en oprichters naar Nederland, met een specialisme dat niemand anders claimt: Rotterdam, Europoort en de industrieregio rond de grootste haven van Europa.',
     ],
-    image: '/images/about-Johanna.jpg',
+    image: '/images/about-joanna.jpg',
     imageAlt: 'Johanna, oprichter van E & I, in haar kantoor',
     approach: {
       heading: 'Onze persoonlijke relocatieaanpak',
@@ -344,6 +376,14 @@ export const core: CoreContent = {
           'Nog niet zeker',
         ],
         nationality: 'Nationaliteit',
+        currentLocation: 'Huidig woonland',
+        status: 'Huidige immigratiestatus',
+        statusOptions: [
+          'Buiten de EU, nog geen Nederlandse vergunning',
+          'Al in Nederland op een visum of vergunning',
+          'EU- of EER-burger',
+          'Anders of niet zeker',
+        ],
         timeline: 'Wanneer wilt u verhuizen?',
         timelineOptions: ['Zo snel mogelijk', 'Binnen 3 maanden', '3 tot 6 maanden', 'Oriënterend'],
         message: 'Uw situatie',
@@ -364,6 +404,8 @@ export const core: CoreContent = {
           'Iets anders',
         ],
         movingFrom: 'Verhuizend vanuit',
+        household: 'Wie verhuist er?',
+        householdOptions: ['Alleen ik', 'Mijn partner en ik', 'Mijn gezin met kinderen', 'Medewerkers van mijn bedrijf', 'Anders'],
         timeline: 'Wanneer komt u aan?',
         timelineOptions: ['Zo snel mogelijk', 'Binnen 3 maanden', '3 tot 6 maanden', 'Oriënterend'],
         message: 'Uw verhuizing',
@@ -383,6 +425,7 @@ export const core: CoreContent = {
         preferredContact: 'Voorkeurscontact',
         preferredContactOptions: ['WhatsApp', 'Telefoon', 'E-mail'],
         arrival: 'Geplande aankomst',
+        movingFrom: 'Verhuizend vanuit',
         message: 'Uw relocatie',
         messagePlaceholder: 'Bijvoorbeeld: verhuizing vanuit Los Angeles in oktober, beschikbaar voor één voorbereidingsbezoek in september.',
       },

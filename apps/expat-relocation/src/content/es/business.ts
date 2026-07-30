@@ -10,7 +10,7 @@ export const business: SectionContent = {
     'Los despachos de visados tramitan permisos. Los agentes de constitución registran sociedades. Las agencias inmobiliarias encuentran apartamentos. Un emprendedor internacional necesita las tres cosas a la vez, más una familia que de verdad quiera quedarse, y nadie se lo ofrece como un solo servicio. Nosotros sí. Inmigración, creación de la empresa, vivienda y reubicación, coordinadas por un equipo que responde ante usted.',
     'Lo mismo se aplica a escala de empresa. Cuando un negocio traslada personas a los Países Bajos, reubicamos el cuadro completo: la entidad, los directivos, los equipos y cada familia que viene con ellos.',
   ],
-  image: '/images/business-meeting.jpg',
+  image: '/images/business-meeting.jpg?v=20260728',
   imageAlt: 'Emprendedores internacionales planificando su empresa neerlandesa en una mesa de reuniones',
   cta: {
     title: 'Traiga su empresa a los Países Bajos',
@@ -92,8 +92,8 @@ export const business: SectionContent = {
         label: 'Trazar mi ruta',
       },
       form: 'immigration',
-      image: '/images/business-meeting.jpg',
-      imageAlt: 'Emprendedor esbozando un plan de negocio neerlandés con una asesora',
+      image: '/images/start-business.jpg',
+      imageAlt: 'Emprendedora abriendo la puerta de su nueva oficina',
     },
     {
       slug: 'company-registration-netherlands',
@@ -174,7 +174,7 @@ export const business: SectionContent = {
         label: 'Constituir mi sociedad',
       },
       form: 'immigration',
-      image: '/images/business-signing.jpg',
+      image: '/images/business-signing.jpg?v=20260728',
       imageAlt: 'Fundador firmando documentos de constitución ante un notario neerlandés',
     },
     {
@@ -252,8 +252,8 @@ export const business: SectionContent = {
         label: 'Reservar mi registro en la KvK',
       },
       form: 'immigration',
-      image: '/images/business-signing.jpg',
-      imageAlt: 'Nuevo empresario completando el registro en la Cámara de Comercio',
+      image: '/images/kvk-registration.jpg',
+      imageAlt: 'Emprendedor recibiendo un extracto de registro de empresa en un mostrador',
     },
     {
       slug: 'relocation-services-for-entrepreneurs-netherlands',
@@ -329,8 +329,8 @@ export const business: SectionContent = {
         label: 'Iniciar mi plan de reubicación',
       },
       form: 'immigration',
-      image: '/images/vip-business.jpg',
-      imageAlt: 'Emprendedor revisando planes de reubicación con una asesora personal',
+      image: '/images/entrepreneur-relocation.jpg',
+      imageAlt: 'Fundador llevando una caja y un portátil a una nueva oficina',
     },
     {
       slug: 'business-relocation-to-the-netherlands',
@@ -410,8 +410,8 @@ export const business: SectionContent = {
         label: 'Hablar de nuestro traslado corporativo',
       },
       form: 'immigration',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'Horizonte del puerto de Rotterdam, base de las reubicaciones corporativas',
+      image: '/images/business-relocation.jpg',
+      imageAlt: 'Equipo trasladando cajas a un edificio de oficinas moderno',
     },
     {
       slug: 'housing-support-for-entrepreneurs-netherlands',
@@ -488,8 +488,8 @@ export const business: SectionContent = {
         label: 'Iniciar mi búsqueda de vivienda',
       },
       form: 'immigration',
-      image: '/images/housing-interior.jpg',
-      imageAlt: 'Salón luminoso de una vivienda de alquiler encontrada para un emprendedor',
+      image: '/images/entrepreneur-housing.jpg',
+      imageAlt: 'Loft luminoso para vivir y trabajar con un escritorio junto a la ventana',
     },
   ],
   crossLinks: [

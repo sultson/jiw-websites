@@ -10,7 +10,7 @@ export const industrial: SectionContent = {
     'The port of Rotterdam is Europe’s industrial heart, and the corridor from the city out through Europoort to the Maasvlakte employs internationals by the thousand: engineers, offshore crews, terminal operators, logistics planners. Yet almost every relocation service in the Netherlands is built for office workers landing in Amsterdam. Nobody specializes in the people who keep this port running. We do, and we are the only ones who do.',
     'We know the terminals and the refineries, the shift patterns and the contractor contracts, the towns where port families actually live and the commutes that make a 6 a.m. start survivable. Whether you are an employer bringing in a crew or a professional arriving alone, this section is built for the industrial cluster and no one else.',
   ],
-  image: '/images/industrial-hub.jpg',
+  image: '/images/industrial-hub.jpg?v=20260728',
   imageAlt: 'Industrial installations and terminals in the Europoort port area',
   services: [
     {
@@ -96,7 +96,7 @@ export const industrial: SectionContent = {
         label: 'Plan my Europoort move',
       },
       form: 'relocation',
-      image: '/images/europoort.jpg',
+      image: '/images/europoort.jpg?v=20260728',
       imageAlt: 'Refinery and terminal infrastructure at Europoort Rotterdam',
     },
     {
@@ -182,7 +182,7 @@ export const industrial: SectionContent = {
         label: 'Sort my Maasvlakte move',
       },
       form: 'relocation',
-      image: '/images/maasvlakte.jpg',
+      image: '/images/maasvlakte.jpg?v=20260728',
       imageAlt: 'Container terminals and cranes at the Maasvlakte deep-sea port',
     },
     {
@@ -269,7 +269,7 @@ export const industrial: SectionContent = {
         label: 'Set up my home base',
       },
       form: 'relocation',
-      image: '/images/industrial-worker.jpg',
+      image: '/images/industrial-worker.jpg?v=20260728',
       imageAlt: 'An offshore professional in work gear at a port facility',
     },
     {
@@ -355,7 +355,7 @@ export const industrial: SectionContent = {
         label: 'Fast-track my move',
       },
       form: 'relocation',
-      image: '/images/logistics-worker.jpg',
+      image: '/images/logistics-worker.jpg?v=20260728',
       imageAlt: 'A logistics professional at work in a Rotterdam distribution area',
     },
     {
@@ -445,8 +445,8 @@ export const industrial: SectionContent = {
         label: 'Partner with us',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'The industrial port skyline of Rotterdam at working hours',
+      image: '/images/rotterdam-industrial.jpg',
+      imageAlt: 'Workers in hi-vis jackets in the port with the Rotterdam skyline behind',
     },
   ],
   cta: {

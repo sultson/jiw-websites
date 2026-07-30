@@ -43,9 +43,11 @@ export const core: CoreContent = {
       errorTitle: 'Une erreur est survenue',
       errorBody: 'Votre demande n’a pas pu être envoyée. Veuillez réessayer, ou écrivez-nous sur WhatsApp.',
       consent: 'En envoyant ce formulaire, vous acceptez notre politique de confidentialité.',
+      nextSteps:
+        'Après l’envoi de ce formulaire, Johanna étudie personnellement votre situation et vous répond sous un jour ouvré avec une évaluation honnête de la possibilité et de la manière de vous aider. Si votre demande sort de nos services ou de notre région, nous vous le disons d’emblée.',
     },
     footer: {
-      tagline: 'Services boutique de relocation et d’immigration pour les expatriés qui s’installent aux Pays-Bas.',
+      tagline: 'Services boutique de relocation et d’immigration pour les expatriés qui s’installent à Rotterdam, Europoort et dans la grande région portuaire.',
       services: 'Services',
       company: 'Société',
       contactHeading: 'Contact',
@@ -72,10 +74,11 @@ export const core: CoreContent = {
       ctaPrimary: 'Réserver une consultation de relocation',
       ctaWhatsapp: 'Écrivez-nous sur WhatsApp',
       ctaSecondary: 'Commencer votre relocation',
+      trust: 'Accompagnement personnel par Johanna, joignable 24h/24',
     },
     paths: {
       heading: 'Comment pouvons-nous faciliter votre arrivée?',
-      sub: 'Trois chemins possibles. Une seule personne qui connaît votre nom, du premier message au jour où vous vous sentez chez vous.',
+      sub: 'Immigration, logement, relocation et accompagnement VIP, réunis dans une seule société. Choisissez votre porte d’entrée et une seule personne connaît votre nom, du premier message au jour où vous vous sentez chez vous.',
       items: [
         {
           key: 'immigration',
@@ -83,7 +86,7 @@ export const core: CoreContent = {
           text: 'Visas et permis pour les professionnels, partenaires, familles et fondateurs. Des dossiers préparés avec précision et un accompagnement personnel, de l’éligibilité à l’approbation.',
           label: 'Découvrir l’immigration',
           path: '/immigration',
-          image: '/images/path-immigration.jpg',
+          image: '/images/path-immigration.jpg?v=20260728',
           imageAlt: 'Conseillère guidant un client dans ses documents de séjour',
         },
         {
@@ -92,7 +95,7 @@ export const core: CoreContent = {
           text: 'Des forfaits de relocation complets ou des services à la carte : recherche de logement, écoles, BSN, assurances et tout ce qui les relie.',
           label: 'Découvrir la relocation',
           path: '/relocation',
-          image: '/images/path-relocation.jpg',
+          image: '/images/path-relocation.jpg?v=20260728',
           imageAlt: 'Famille arrivant dans une maison au bord d’un canal néerlandais',
         },
         {
@@ -101,7 +104,7 @@ export const core: CoreContent = {
           text: 'Pour les artistes, athlètes, dirigeants et visites éclair d’un week-end. Toute votre installation orchestrée autour d’une seule visite, chaque porte déjà ouverte.',
           label: 'Découvrir les services VIP',
           path: '/vip-services',
-          image: '/images/path-vip.jpg',
+          image: '/images/path-vip.jpg?v=20260728',
           imageAlt: 'Chauffeur ouvrant la portière d’une voiture devant la skyline de Rotterdam',
         },
       ],
@@ -167,17 +170,45 @@ export const core: CoreContent = {
       ],
       label: 'Services entreprises',
     },
-    regionBlock: {
-      eyebrow: 'Spécialiste de Rotterdam & Europoort',
-      heading: 'La région que nous connaissons rue par rue',
+    portBlock: {
+      eyebrow: 'Ports, zones portuaires & offshore',
+      heading: 'Le spécialiste du port de Rotterdam',
       text: [
-        'Le plus grand port d’Europe ne figure dans aucune brochure de relocation, et pourtant des dizaines de milliers de professionnels internationaux y construisent leur carrière. Nous sommes la seule agence boutique spécialisée dans Rotterdam, Europoort et la Maasvlakte, du penthouse sur le Wilhelminapier à la maison familiale à vingt minutes des terminaux.',
+        'Le plus grand port d’Europe ne figure dans aucune brochure de relocation, et pourtant des dizaines de milliers de professionnels internationaux y construisent leur carrière. Nous sommes la seule agence boutique spécialisée dans Rotterdam, la région au sud de la ville, Europoort et la Maasvlakte, et nous travaillons chaque jour avec les entreprises portuaires, offshore, maritimes et d’ingénierie qui font venir ces talents ici.',
       ],
       label: 'Services pour expatriés de l’industrie',
       areas: [
         { title: 'Rotterdam', text: 'Vivre face à la skyline, des écoles internationales et la ville qui se transforme le plus vite des Pays-Bas.' },
         { title: 'Europoort & Maasvlakte', text: 'Une relocation pragmatique pour les professionnels du port, de l’offshore et du raffinage, et leurs familles.' },
-        { title: 'La région industrielle', text: 'Des villes paisibles comme Brielle et Rozenburg, à quelques minutes des terminaux et pourtant dans un autre monde.' },
+        { title: 'Au sud de Rotterdam', text: 'Des villes paisibles comme Brielle, Rozenburg et Hellevoetsluis, à quelques minutes des terminaux et pourtant dans un autre monde.' },
+      ],
+      advantages: [
+        { title: 'Connaissance locale', text: 'Nous connaissons les quartiers, les écoles, les propriétaires et les trajets de cette région rue par rue.' },
+        { title: 'Assistance personnelle rapide', text: 'Nous sommes sur place, ce qui nous permet d’être présents à une visite, à un guichet municipal ou lors d’une urgence dans les plus brefs délais.' },
+        { title: 'Un réseau établi', text: 'Agences, municipalités, écoles et employeurs internationaux de la région nous connaissent déjà.' },
+        { title: 'Un suivi après l’arrivée', text: 'La relation ne s’arrête pas à la remise des clés. Nous restons votre interlocuteur bien après votre installation.' },
+      ],
+      links: [
+        { label: 'Expatriés Europoort', path: '/industrial-expat-services/europoort-relocation-services-netherlands' },
+        { label: 'Expatriés Maasvlakte', path: '/industrial-expat-services/maasvlakte-expat-relocation-netherlands' },
+        { label: 'Professionnels de l’offshore', path: '/industrial-expat-services/offshore-expat-services-netherlands' },
+        { label: 'Professionnels de la logistique', path: '/industrial-expat-services/relocation-for-logistics-professionals-netherlands' },
+      ],
+    },
+    familyBlock: {
+      eyebrow: 'Relocation familiale',
+      heading: 'Déménager une famille est une autre discipline',
+      text: [
+        'Des années scolaires qui commencent à dates fixes, plusieurs dossiers à l’IND au lieu d’un, et un logement qui doit convenir à tous. Nous coordonnons l’arrivée de toute la famille, immigration comprise, en un seul plan et une seule paire de mains.',
+      ],
+      label: 'Services de relocation familiale',
+      path: '/relocation/family-relocation-netherlands',
+      image: '/images/relocation-family.jpg?v=20260728',
+      imageAlt: 'Parents et enfants déballant des cartons dans leur nouvelle maison néerlandaise',
+      links: [
+        { label: 'Forfait VIP Famille', path: '/vip-services/family-relocation-immigration-services-netherlands' },
+        { label: 'Recherche d’école', path: '/relocation/school-search-netherlands' },
+        { label: 'Regroupement familial', path: '/immigration/family-reunification-netherlands' },
       ],
     },
     whyBoutique: {
@@ -185,6 +216,7 @@ export const core: CoreContent = {
       heading: 'Une agence. Une personne. Votre nom.',
       text: [
         'Les grands cabinets de relocation vous attribuent un numéro de dossier. Une agence boutique vous attribue une personne. Johanna a bâti sa réputation dans le monde des ambassades, où la discrétion et la précision ne sont pas des qualités, mais la définition même du métier.',
+        'Nous ne sommes pas une agence généraliste pour expatriés qui propose tous les services imaginables. Nous faisons l’immigration, le logement, la relocation et l’accompagnement VIP pour une seule région, au sein d’une seule société, et nous les faisons jusqu’au bout.',
       ],
       points: [
         {
@@ -251,7 +283,7 @@ export const core: CoreContent = {
       'E & I : Expat, Relocation and Immigration Services The Netherlands est né d’une observation simple, faite au cœur du monde des ambassades : ceux qui changent de pays le mieux sont ceux qui sont personnellement accompagnés. Pas gérés comme des dossiers. Accompagnés.',
       'Aujourd’hui, Johanna et son réseau guident professionnels, couples, familles et fondateurs vers les Pays-Bas, avec une spécialité que personne d’autre ne revendique : Rotterdam, Europoort et la région industrielle autour du plus grand port d’Europe.',
     ],
-    image: '/images/about-Johanna.jpg',
+    image: '/images/about-joanna.jpg',
     imageAlt: 'Johanna, fondatrice d’E & I, dans son bureau',
     approach: {
       heading: 'Notre approche personnelle de la relocation',
@@ -344,6 +376,14 @@ export const core: CoreContent = {
           'Je ne sais pas encore',
         ],
         nationality: 'Nationalité',
+        currentLocation: 'Pays de résidence actuel',
+        status: 'Statut d’immigration actuel',
+        statusOptions: [
+          'Hors de l’UE, pas encore de permis néerlandais',
+          'Déjà aux Pays-Bas avec un visa ou un permis',
+          'Citoyen de l’UE ou de l’EEE',
+          'Autre ou incertain',
+        ],
         timeline: 'Quand prévoyez-vous de déménager?',
         timelineOptions: ['Dès que possible', 'D’ici 3 mois', '3 à 6 mois', 'J’explore les options'],
         message: 'Votre situation',
@@ -364,6 +404,8 @@ export const core: CoreContent = {
           'Autre chose',
         ],
         movingFrom: 'Vous partez de',
+        household: 'Qui déménage?',
+        householdOptions: ['Moi seul(e)', 'Mon partenaire et moi', 'Ma famille avec enfants', 'Des collaborateurs de mon entreprise', 'Autre'],
         timeline: 'Quand arrivez-vous?',
         timelineOptions: ['Dès que possible', 'D’ici 3 mois', '3 à 6 mois', 'J’explore les options'],
         message: 'Votre déménagement',
@@ -383,6 +425,7 @@ export const core: CoreContent = {
         preferredContact: 'Contact préféré',
         preferredContactOptions: ['WhatsApp', 'Téléphone', 'E-mail'],
         arrival: 'Arrivée prévue',
+        movingFrom: 'Vous partez de',
         message: 'Votre relocation',
         messagePlaceholder: 'Par exemple : installation depuis Los Angeles en octobre, disponible pour une visite de préparation en septembre.',
       },

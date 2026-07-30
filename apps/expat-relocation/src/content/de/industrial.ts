@@ -10,7 +10,7 @@ export const industrial: SectionContent = {
     'Der Rotterdamer Hafen ist das industrielle Herz Europas, und der Korridor von der Stadt durch Europoort bis zur Maasvlakte beschäftigt Internationals zu Tausenden: Ingenieure, Offshore-Crews, Terminalbetreiber, Logistikplaner. Doch fast jeder Relocation-Service in den Niederlanden ist für Büroangestellte gebaut, die in Amsterdam landen. Niemand hat sich auf die Menschen spezialisiert, die diesen Hafen am Laufen halten. Wir schon, und wir sind die Einzigen.',
     'Wir kennen die Terminals und die Raffinerien, die Schichtmuster und die Contractor-Verträge, die Orte, in denen Hafenfamilien tatsächlich leben, und die Arbeitswege, die einen Start um 6 Uhr überlebbar machen. Ob Sie als Arbeitgeber eine Crew hereinholen oder als Fachkraft allein ankommen, dieser Bereich ist für das Industriecluster gebaut und für niemanden sonst.',
   ],
-  image: '/images/industrial-hub.jpg',
+  image: '/images/industrial-hub.jpg?v=20260728',
   imageAlt: 'Industrieanlagen und Terminals im Hafengebiet Europoort',
   services: [
     {
@@ -96,7 +96,7 @@ export const industrial: SectionContent = {
         label: 'Meinen Europoort-Umzug planen',
       },
       form: 'relocation',
-      image: '/images/europoort.jpg',
+      image: '/images/europoort.jpg?v=20260728',
       imageAlt: 'Raffinerie- und Terminalinfrastruktur am Europoort Rotterdam',
     },
     {
@@ -182,7 +182,7 @@ export const industrial: SectionContent = {
         label: 'Meinen Maasvlakte-Umzug regeln',
       },
       form: 'relocation',
-      image: '/images/maasvlakte.jpg',
+      image: '/images/maasvlakte.jpg?v=20260728',
       imageAlt: 'Containerterminals und Kräne am Tiefseehafen Maasvlakte',
     },
     {
@@ -269,7 +269,7 @@ export const industrial: SectionContent = {
         label: 'Meine Heimatbasis einrichten',
       },
       form: 'relocation',
-      image: '/images/industrial-worker.jpg',
+      image: '/images/industrial-worker.jpg?v=20260728',
       imageAlt: 'Ein Offshore-Profi in Arbeitskleidung an einer Hafenanlage',
     },
     {
@@ -355,7 +355,7 @@ export const industrial: SectionContent = {
         label: 'Meinen Umzug beschleunigen',
       },
       form: 'relocation',
-      image: '/images/logistics-worker.jpg',
+      image: '/images/logistics-worker.jpg?v=20260728',
       imageAlt: 'Ein Logistikprofi bei der Arbeit in einem Rotterdamer Distributionsgebiet',
     },
     {
@@ -445,8 +445,8 @@ export const industrial: SectionContent = {
         label: 'Mit uns partnern',
       },
       form: 'relocation',
-      image: '/images/rotterdam.jpg',
-      imageAlt: 'Die industrielle Hafensilhouette von Rotterdam zur Arbeitszeit',
+      image: '/images/rotterdam-industrial.jpg',
+      imageAlt: 'Arbeiter in Warnwesten im Hafen mit der Rotterdamer Skyline im Hintergrund',
     },
   ],
   cta: {

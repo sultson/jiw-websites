@@ -23,6 +23,8 @@ const immigrationWorker = createFormWorker({
   emailFields: [
     { name: 'service', label: 'Service' },
     { name: 'nationality', label: 'Nationality' },
+    { name: 'currentLocation', label: 'Current country of residence' },
+    { name: 'status', label: 'Immigration status' },
     { name: 'phone', label: 'Phone / WhatsApp' },
     { name: 'timeline', label: 'Timeline' },
   ],
@@ -45,6 +47,7 @@ const relocationWorker = createFormWorker({
   emailFields: [
     { name: 'service', label: 'Service' },
     { name: 'movingFrom', label: 'Moving from' },
+    { name: 'household', label: 'Who is relocating' },
     { name: 'phone', label: 'Phone / WhatsApp' },
     { name: 'timeline', label: 'Timeline' },
   ],
@@ -66,6 +69,7 @@ const vipWorker = createFormWorker({
   ],
   emailFields: [
     { name: 'package', label: 'Package' },
+    { name: 'movingFrom', label: 'Moving from' },
     { name: 'phone', label: 'Phone / WhatsApp' },
     { name: 'preferredContact', label: 'Preferred contact' },
     { name: 'arrival', label: 'Planned arrival' },

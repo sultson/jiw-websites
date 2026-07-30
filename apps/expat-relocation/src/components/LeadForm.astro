@@ -24,7 +24,7 @@ const selectOptions: string[] =
 ---
 
 <div class="relative" data-lead-wrap>
-  <div class="hidden border border-line bg-white p-10 text-center" data-lead-success>
+  <div class="card hidden bg-white p-10 text-center" data-lead-success>
     <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-gold text-gold">
       <Icon name="check" size={28} />
     </span>
@@ -34,7 +34,7 @@ const selectOptions: string[] =
 
   <form
     id={id}
-    class="border border-line bg-white p-6 md:p-9"
+    class="card bg-white p-6 md:p-9"
     data-lead-form={kind}
     data-form-path={`/api/forms/${kind}`}
     data-sending-label={cta.sending}
@@ -73,22 +73,58 @@ const selectOptions: string[] =
       </label>
 
       {kind === 'immigration' && (
-        <label class="block">
-          <span class="form-label">{c.core.contact.formCopy.immigration.nationality}</span>
-          <input name="nationality" type="text" class="form-input" />
-        </label>
+        <>
+          <label class="block">
+            <span class="form-label">{c.core.contact.formCopy.immigration.nationality}</span>
+            <input name="nationality" type="text" class="form-input" />
+          </label>
+          <label class="block">
+            <span class="form-label">{c.core.contact.formCopy.immigration.currentLocation}</span>
+            <input name="currentLocation" type="text" class="form-input" />
+          </label>
+          <label class="block">
+            <span class="form-label">{c.core.contact.formCopy.immigration.status}</span>
+            <div class="relative">
+              <select name="status" class="form-input cursor-pointer appearance-none pr-10">
+                {c.core.contact.formCopy.immigration.statusOptions.map((opt) => (
+                  <option value={opt}>{opt}</option>
+                ))}
+              </select>
+              <Icon name="chevronDown" size={16} class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-ink-soft" />
+            </div>
+          </label>
+        </>
       )}
       {kind === 'relocation' && (
-        <label class="block">
-          <span class="form-label">{c.core.contact.formCopy.relocation.movingFrom}</span>
-          <input name="movingFrom" type="text" class="form-input" />
-        </label>
+        <>
+          <label class="block">
+            <span class="form-label">{c.core.contact.formCopy.relocation.movingFrom}</span>
+            <input name="movingFrom" type="text" class="form-input" />
+          </label>
+          <label class="block">
+            <span class="form-label">{c.core.contact.formCopy.relocation.household}</span>
+            <div class="relative">
+              <select name="household" class="form-input cursor-pointer appearance-none pr-10">
+                {c.core.contact.formCopy.relocation.householdOptions.map((opt) => (
+                  <option value={opt}>{opt}</option>
+                ))}
+              </select>
+              <Icon name="chevronDown" size={16} class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-ink-soft" />
+            </div>
+          </label>
+        </>
       )}
       {kind === 'vip' && (
-        <label class="block">
-          <span class="form-label">{c.core.contact.formCopy.vip.arrival}</span>
-          <input name="arrival" type="text" class="form-input" />
-        </label>
+        <>
+          <label class="block">
+            <span class="form-label">{c.core.contact.formCopy.vip.movingFrom}</span>
+            <input name="movingFrom" type="text" class="form-input" />
+          </label>
+          <label class="block">
+            <span class="form-label">{c.core.contact.formCopy.vip.arrival}</span>
+            <input name="arrival" type="text" class="form-input" />
+          </label>
+        </>
       )}
 
       {kind !== 'vip' ? (
@@ -110,7 +146,7 @@ const selectOptions: string[] =
             {c.core.contact.formCopy.vip.preferredContactOptions.map((pref, i) => (
               <label class="cursor-pointer">
                 <input type="radio" name="preferredContact" value={pref} class="peer sr-only" checked={i === 0} />
-                <span class="inline-flex border border-line px-4 py-2 text-[0.78rem] tracking-[0.06em] text-ink transition-colors peer-checked:border-navy peer-checked:bg-navy peer-checked:text-white">
+                <span class="inline-flex rounded-full border border-line px-4 py-2 text-[0.78rem] tracking-[0.06em] text-ink transition-colors peer-checked:border-navy peer-checked:bg-navy peer-checked:text-white">
                   {pref}
                 </span>
               </label>
@@ -125,12 +161,14 @@ const selectOptions: string[] =
       <textarea name="message" rows={4} required class="form-input resize-y" placeholder={copy.messagePlaceholder}></textarea>
     </label>
 
+    <p class="mt-5 rounded-2xl border-l-2 border-gold bg-ivory px-4 py-3 text-[0.82rem] leading-relaxed text-ink-soft">{f.nextSteps}</p>
+
     <!-- No Turnstile widget on this demo: dev bypass token. -->
     <input type="hidden" name="cf-turnstile-response" value="dev" />
     <!-- Honeypot -->
     <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
-    <p class="mt-5 hidden border border-red-800/30 bg-red-800/5 px-4 py-3 text-[0.9rem] text-red-900" data-lead-error></p>
+    <p class="mt-5 hidden rounded-2xl border border-red-800/30 bg-red-800/5 px-4 py-3 text-[0.9rem] text-red-900" data-lead-error></p>
 
     <div class="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <button type="submit" class="btn btn-navy">
