@@ -27,3 +27,4 @@ apps/*/raw-media
 # prospecting: keep methodology docs (STRATEGY.md/README.md), exclude data + contact CSVs (PII)
 prospecting/data
 prospecting/*.csv
+tmp
