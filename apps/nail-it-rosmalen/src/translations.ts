@@ -14,7 +14,7 @@ export const translations: Record<Lang, Dict> = {
     'nav.call': 'Bel',
     'nav.callShort': 'Bel',
 
-    'topbar.new': 'Nagelstudio aan huis in Hintham, Rosmalen. Bel 06 39211983 voor een afspraak.',
+    'topbar.new': 'Nieuwe klanten welkom · 2e bezoek € 10 korting',
 
     'hero.kicker': 'Hintham · Rosmalen · sinds 2012',
     'hero.title': 'Verzorgde nagels — al 26 jaar mijn vak.',
@@ -23,6 +23,11 @@ export const translations: Record<Lang, Dict> = {
     'hero.ctaWa': 'WhatsApp',
     'hero.closed': 'Nu gesloten',
     'hero.openNow': 'Nu geopend',
+
+    'offer.kicker': 'Nieuwe klanten welkom',
+    'offer.title': '€ 10 korting bij uw tweede bezoek',
+    'offer.body': 'Maak na uw eerste behandeling meteen een vervolgafspraak. Bij uw tweede bezoek ontvangt u € 10 korting op iedere behandeling.',
+    'offer.cta': 'Maak een afspraak',
 
     'usp.rating': '4,9 ★ · 48 recensies',
     'usp.ratingSub': 'Google reviews',
@@ -105,14 +110,16 @@ export const translations: Record<Lang, Dict> = {
 
     'faq.q1': 'Hoe maak ik een afspraak?',
     'faq.a1': 'Bel 06 39211983 tijdens openingstijden. Liever niet via een bericht — bellen is echt het snelst. Kom op tijd: bij meer dan 10 minuten te laat kan de behandeling helaas niet meer doorgaan.',
-    'faq.q2': 'Werken jullie met een spaarsysteem?',
-    'faq.a2': 'Ja. Bij elke behandeling spaart u mee — bij 10 stempels krijgt u € 5,- korting op de volgende afspraak.',
-    'faq.q3': 'Hoe vaak moet ik terugkomen voor opvullen?',
-    'faq.a3': 'Tussen de 3 en 4 weken. Door een te lange uitgroei kan de nagel breken, dus op tijd opvullen is belangrijk. Zit er meer dan 4 weken tussen, dan rekenen we het nieuwe-set-tarief.',
-    'faq.q4': 'Doen jullie ook nagels tegen bijten?',
-    'faq.a4': 'Ja, dat is een specialiteit. Ook voor mannen — korte, natuurlijk ogende nagels waardoor het bijten vanzelf stopt.',
-    'faq.q5': 'Vanaf welke leeftijd kan ik bij jullie terecht voor kunstnagels?',
-    'faq.a5': 'Bij kinderen onder de 16 jaar plaatsen we in principe geen kunstproducten. Op die leeftijd zorgen hormonen er vaak voor dat het product niet goed blijft hechten, is er een grotere kans op het opbouwen van een allergische reactie, en kunnen ze nog niet altijd goed omgaan met lange nagels. Past het wel binnen de behandeling, dan kijken we naar een geschikt alternatief of een andere plek waar het wel kan. Voor hardnekkige nagelbijters onder de 16 is plaatsing in overleg soms toch een optie — altijd op eigen risico. Bel gerust om de situatie samen door te nemen.',
+    'faq.q2': 'Is er een aanbieding voor nieuwe klanten?',
+    'faq.a2': 'Ja. Maak na uw eerste behandeling meteen een vervolgafspraak. Bij uw tweede bezoek ontvangt u € 10 korting op iedere behandeling.',
+    'faq.q3': 'Werken jullie met een spaarsysteem?',
+    'faq.a3': 'Ja. Bij elke behandeling spaart u mee — bij 10 stempels krijgt u € 5,- korting op de volgende afspraak.',
+    'faq.q4': 'Hoe vaak moet ik terugkomen voor opvullen?',
+    'faq.a4': 'Tussen de 3 en 4 weken. Door een te lange uitgroei kan de nagel breken, dus op tijd opvullen is belangrijk. Zit er meer dan 4 weken tussen, dan rekenen we het nieuwe-set-tarief.',
+    'faq.q5': 'Doen jullie ook nagels tegen bijten?',
+    'faq.a5': 'Ja, dat is een specialiteit. Ook voor mannen — korte, natuurlijk ogende nagels waardoor het bijten vanzelf stopt.',
+    'faq.q6': 'Vanaf welke leeftijd kan ik bij jullie terecht voor kunstnagels?',
+    'faq.a6': 'Bij kinderen onder de 16 jaar plaatsen we in principe geen kunstproducten. Op die leeftijd zorgen hormonen er vaak voor dat het product niet goed blijft hechten, is er een grotere kans op het opbouwen van een allergische reactie, en kunnen ze nog niet altijd goed omgaan met lange nagels. Past het wel binnen de behandeling, dan kijken we naar een geschikt alternatief of een andere plek waar het wel kan. Voor hardnekkige nagelbijters onder de 16 is plaatsing in overleg soms toch een optie — altijd op eigen risico. Bel gerust om de situatie samen door te nemen.',
 
     'footer.tagline': 'Nagelstudio in Hintham, Rosmalen. Al 12+ jaar op hetzelfde adres.',
     'footer.rights': '© Nagelstudio Nail It — Lisa Robbins',
@@ -131,7 +138,7 @@ export const translations: Record<Lang, Dict> = {
     'nav.call': 'Call',
     'nav.callShort': 'Call',
 
-    'topbar.new': 'Home nail studio in Hintham, Rosmalen. Call 06 39211983 to book an appointment.',
+    'topbar.new': 'New clients welcome · second visit € 10 off',
 
     'hero.kicker': 'Hintham · Rosmalen · since 2012',
     'hero.title': "Nails, done properly — it's been my craft for 26 years.",
@@ -140,6 +147,11 @@ export const translations: Record<Lang, Dict> = {
     'hero.ctaWa': 'WhatsApp',
     'hero.closed': 'Closed now',
     'hero.openNow': 'Open now',
+
+    'offer.kicker': 'New clients welcome',
+    'offer.title': '€ 10 off your second visit',
+    'offer.body': 'Book your follow-up appointment straight after your first treatment. You will receive € 10 off any treatment on your second visit.',
+    'offer.cta': 'Book an appointment',
 
     'usp.rating': '4.9 ★ · 48 reviews',
     'usp.ratingSub': 'Google reviews',
@@ -222,14 +234,16 @@ export const translations: Record<Lang, Dict> = {
 
     'faq.q1': 'How do I book an appointment?',
     'faq.a1': "Call 06 39211983 during business hours. A call is truly the fastest way — please don't rely on messages. Please arrive on time: if you're more than 10 minutes late, the appointment unfortunately can't go ahead.",
-    'faq.q2': 'Is there a loyalty scheme?',
-    'faq.a2': 'Yes. Every treatment earns a stamp — 10 stamps = € 5,- off your next appointment.',
-    'faq.q3': 'How often should I come back for a refill?',
-    'faq.a3': "Every 3 to 4 weeks. If the nail grows out too far it may break, so timely refills matter. If more than 4 weeks pass between visits, the new-set price applies.",
-    'faq.q4': 'Do you do nails against biting?',
-    'faq.a4': "Yes — it's a specialty, for men too. Short, natural-looking nails that quietly stop the biting habit.",
-    'faq.q5': 'From what age can I come for artificial nails?',
-    'faq.a5': "As a rule, we don't apply artificial products to children under 16. At that age hormones often keep the product from adhering well, the risk of developing an allergic reaction is higher, and long nails can be hard to manage. If the treatment allows, we'll look at a suitable alternative or another spot where it does work. For persistent nail-biters under 16, application may still be an option in consultation — always at the client's own risk. Give us a call and we'll talk it through.",
+    'faq.q2': 'Is there an offer for new clients?',
+    'faq.a2': 'Yes. Book your follow-up appointment straight after your first treatment. You will receive € 10 off any treatment on your second visit.',
+    'faq.q3': 'Is there a loyalty scheme?',
+    'faq.a3': 'Yes. Every treatment earns a stamp — 10 stamps = € 5,- off your next appointment.',
+    'faq.q4': 'How often should I come back for a refill?',
+    'faq.a4': "Every 3 to 4 weeks. If the nail grows out too far it may break, so timely refills matter. If more than 4 weeks pass between visits, the new-set price applies.",
+    'faq.q5': 'Do you do nails against biting?',
+    'faq.a5': "Yes — it's a specialty, for men too. Short, natural-looking nails that quietly stop the biting habit.",
+    'faq.q6': 'From what age can I come for artificial nails?',
+    'faq.a6': "As a rule, we don't apply artificial products to children under 16. At that age hormones often keep the product from adhering well, the risk of developing an allergic reaction is higher, and long nails can be hard to manage. If the treatment allows, we'll look at a suitable alternative or another spot where it does work. For persistent nail-biters under 16, application may still be an option in consultation — always at the client's own risk. Give us a call and we'll talk it through.",
 
     'footer.tagline': 'Nail studio in Hintham, Rosmalen. On the same spot for 12+ years.',
     'footer.rights': '© Nagelstudio Nail It — Lisa Robbins',

@@ -5,7 +5,7 @@ type Props = { t: (k: string) => string };
 
 export default function Faq({ t }: Props) {
   const [open, setOpen] = useState<number | null>(0);
-  const items = [1, 2, 3, 4, 5];
+  const items = [1, 2, 3, 4, 5, 6];
 
   return (
     <section id="faq" className="py-20 md:py-28">

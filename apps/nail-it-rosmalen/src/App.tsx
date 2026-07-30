@@ -2,6 +2,7 @@ import { useLang } from './hooks/useLang';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import UspStrip from './components/UspStrip';
+import NewClientOffer from './components/NewClientOffer';
 import About from './components/About';
 import Awards from './components/Awards';
 import Products from './components/Products';
@@ -34,6 +35,7 @@ export default function App() {
       <main className="flex-1">
         <Hero t={t} />
         <UspStrip t={t} />
+        <NewClientOffer t={t} />
         <About t={t} />
         <Awards t={t} />
         <Services lang={lang} t={t} />
