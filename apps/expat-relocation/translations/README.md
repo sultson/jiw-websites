@@ -11,6 +11,9 @@ a translation job, not a development job.
 - `en.source.json` — every translatable string in the site, as `"json.path": "text"`.
   Regenerate with `node scripts/i18n-strings.mjs extract en`.
 - `it.json` — Italian, complete. The reference for what a finished map looks like.
+- `pt.partial.json` — Portuguese, in progress. European Portuguese, formal register,
+  matching the other languages. Complete: all UI/nav, homepage, about, contact,
+  privacy, 404, every VIP page and the first three immigration routes.
 
 Slugs, image paths, form kinds, route paths and `fees.kind` are deliberately
 **absent** from these maps. They are identity rather than prose: shared
@@ -48,7 +51,7 @@ hand rather than machine-translated.
 |----------|----------|------|
 | en, nl, de, fr, es, ru | 100% | yes |
 | it | 100% | yes |
-| pt | 0% | no |
+| pt | 24% | no |
 | zh | 0% | no |
 
 Portuguese and Chinese are the outstanding two of the client's requested eight.
