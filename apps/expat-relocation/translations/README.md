@@ -10,8 +10,8 @@ a translation job, not a development job.
 
 - `en.source.json` — every translatable string in the site, as `"json.path": "text"`.
   Regenerate with `node scripts/i18n-strings.mjs extract en`.
-- `it.json`, `pt.json` — complete maps. Either is a good reference for what a
-  finished one looks like.
+- `it.json`, `pt.json`, `zh.json` — complete maps. Any of them is a good
+  reference for what a finished one looks like.
 
 Slugs, image paths, form kinds, route paths and `fees.kind` are deliberately
 **absent** from these maps. They are identity rather than prose: shared
@@ -48,10 +48,14 @@ hand rather than machine-translated.
 | Language | Coverage | Live |
 |----------|----------|------|
 | en, nl, de, fr, es, ru | 100% | yes |
-| it | 100% | yes |
-| pt | 100% | yes |
-| zh | in progress | no |
+| it, pt, zh | 100% | yes |
 
-Portuguese and Chinese are the outstanding two of the client's requested eight.
-Both are a straight translation of `en.source.json`; nothing in the codebase has
-to change to add them beyond the registration step above.
+All eight languages the client asked for are live, plus Russian. Adding a ninth
+is a translation of `en.source.json` and the registration step above; no other
+code has to change.
+
+Chinese also needed a typography rule, which lives unlayered at the end of
+`global.css`. The site's small-caps letter-spacing is tuned for Latin
+letterforms and reads as loose on CJK. Note it cannot go in `@layer base`: a
+cascade layer always loses to a later one, so Tailwind's `components` and
+`utilities` layers would silently win.

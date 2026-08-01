@@ -364,3 +364,31 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+/* ------------------------------------------------------------------ *
+ * Chinese typography
+ *
+ * Deliberately UNLAYERED. These rules have to beat Tailwind's `components` and
+ * `utilities` layers, and a cascade layer always loses to a later layer no
+ * matter how specific the selector is, so putting this in @layer base silently
+ * does nothing.
+ *
+ * The wide small-caps tracking on buttons, eyebrows and nav is tuned for Latin
+ * letterforms, which carry their own sidebearings. Chinese glyphs do not, so the
+ * same value just pushes them apart and reads as loose rather than refined.
+ * text-transform: uppercase is a no-op on CJK and is left alone.
+ * ------------------------------------------------------------------ */
+:lang(zh) .btn,
+:lang(zh) .eyebrow,
+:lang(zh) .link-editorial,
+:lang(zh) [class*='tracking-'] {
+  letter-spacing: 0.03em;
+}
+/* Latin headings carry a hair of negative tracking; on CJK that closes up
+   characters that are already tightly set, so return them to neutral. */
+:lang(zh) h1,
+:lang(zh) h2,
+:lang(zh) h3,
+:lang(zh) h4 {
+  letter-spacing: 0;
+}
