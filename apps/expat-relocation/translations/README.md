@@ -10,11 +10,11 @@ a translation job, not a development job.
 
 - `en.source.json` — every translatable string in the site, as `"json.path": "text"`.
   Regenerate with `node scripts/i18n-strings.mjs extract en`.
-- `it.partial.json` — Italian, partially translated (see status below).
+- `it.json` — Italian, complete. The reference for what a finished map looks like.
 
-Slugs, image paths, form kinds and route paths are deliberately **absent** from
-these maps. They are identity, shared byte-for-byte across languages, and changing
-one breaks routing.
+Slugs, image paths, form kinds, route paths and `fees.kind` are deliberately
+**absent** from these maps. They are identity rather than prose: shared
+byte-for-byte across languages, and translating one breaks routing or the build.
 
 ## Workflow
 
@@ -38,13 +38,19 @@ until its coverage is 100%, or visitors get an English page under a translated n
 
 ## Size
 
-The site is **3,198 strings / ~45,000 words** per language. For reference, the
-existing six languages were written by hand.
+The site is **3,163 strings / ~45,000 words** per language, which is what a
+translator needs to quote against. Every language currently live was written by
+hand rather than machine-translated.
 
 ## Status
 
-| Language | Coverage | Notes |
-|----------|----------|-------|
-| it | 517 / 3198 (16%) | Complete: all UI/nav, homepage, about, contact, privacy, 404 and every VIP page. Remaining: the 35 service pages and the guides. |
-| pt | 0 | Not started. |
-| zh | 0 | Not started. |
+| Language | Coverage | Live |
+|----------|----------|------|
+| en, nl, de, fr, es, ru | 100% | yes |
+| it | 100% | yes |
+| pt | 0% | no |
+| zh | 0% | no |
+
+Portuguese and Chinese are the outstanding two of the client's requested eight.
+Both are a straight translation of `en.source.json`; nothing in the codebase has
+to change to add them beyond the registration step above.

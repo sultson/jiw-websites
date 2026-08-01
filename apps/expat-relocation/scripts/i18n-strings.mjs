@@ -25,8 +25,12 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const APP = path.resolve(HERE, '..');
 const CONTENT = path.join(APP, 'src', 'content');
 
-/** Never translated: identity and routing values shared by every language. */
-const KEEP = new Set(['slug', 'image', 'image2', 'form', 'path', 'key', 'href', 'imageAlt', 'image2Alt']);
+/**
+ * Never translated: identity, routing and enum values shared by every language.
+ * `kind` is a union type ('fixed' | 'tiered' | 'tailored') that drives rendering,
+ * so a translator turning it into "fisso" would break the build, not just the copy.
+ */
+const KEEP = new Set(['slug', 'image', 'image2', 'form', 'path', 'key', 'kind', 'href', 'imageAlt', 'image2Alt']);
 /** ...except alt text, which IS prose. Kept out of KEEP explicitly below. */
 const ALT = new Set(['imageAlt', 'image2Alt']);
 

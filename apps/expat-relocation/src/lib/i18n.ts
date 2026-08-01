@@ -1,4 +1,4 @@
-export const LANGS = ['en', 'de', 'nl', 'fr', 'es', 'ru'] as const;
+export const LANGS = ['en', 'nl', 'de', 'fr', 'es', 'it', 'ru'] as const;
 export type Lang = (typeof LANGS)[number];
 export const DEFAULT_LANG: Lang = 'en';
 
@@ -9,6 +9,7 @@ export const LANG_LABELS: Record<Lang, string> = {
   nl: 'Nederlands',
   fr: 'Français',
   es: 'Español',
+  it: 'Italiano',
   ru: 'Русский',
 };
 
@@ -18,6 +19,7 @@ export const OG_LOCALES: Record<Lang, string> = {
   nl: 'nl_NL',
   fr: 'fr_FR',
   es: 'es_ES',
+  it: 'it_IT',
   ru: 'ru_RU',
 };
 
@@ -57,6 +59,7 @@ export const BANNER_STRINGS: Record<Lang, { prompt: string; switch: string; dism
   nl: { prompt: 'Wilt u deze website liever in het Nederlands lezen?', switch: 'Verder in het Nederlands', dismiss: 'Nee, bedankt' },
   fr: { prompt: 'Préférez-vous consulter ce site en français ?', switch: 'Continuer en français', dismiss: 'Non, merci' },
   es: { prompt: '¿Prefiere ver este sitio en español?', switch: 'Continuar en español', dismiss: 'No, gracias' },
+  it: { prompt: 'Preferisce consultare questo sito in italiano?', switch: 'Continua in italiano', dismiss: 'No, grazie' },
   ru: { prompt: 'Хотите просматривать этот сайт на русском языке?', switch: 'Продолжить на русском', dismiss: 'Нет, спасибо' },
 };
 
