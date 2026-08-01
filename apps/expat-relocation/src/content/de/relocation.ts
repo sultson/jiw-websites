@@ -705,7 +705,7 @@ export const relocation: SectionContent = {
             a: 'DigiD ist Ihre digitale Identität für den niederländischen Staat: Steuern, Gesundheit, Zuschüsse und Gemeindedienste laufen alle darüber. Sie werden es ständig brauchen, und wir richten es früh mit Ihnen ein.',
           },
           {
-            q: 'Wir sind vor Monaten angekommen, aber nie richtig angekommen. Ist das noch etwas für Sie?',
+            q: 'Wir sind vor Monaten angekommen, haben uns aber nie richtig eingelebt. Ist das noch etwas für uns?',
             a: 'Absolut, und es ist häufiger, als Sie denken. Wir prüfen, was fehlt oder falsch eingerichtet ist, beheben es und vollenden die Ankunft, für die Sie nie Zeit hatten.',
           },
         ],

@@ -705,7 +705,7 @@ export const relocation: SectionContent = {
             a: 'DigiD is your digital identity for the Dutch government: taxes, healthcare, allowances and municipal services all use it. You will need it constantly, and we set it up with you early.',
           },
           {
-            q: 'We arrived months ago but never really settled. Is this still for you?',
+            q: 'We arrived months ago but never really settled. Is this still for us?',
             a: 'Absolutely, and it is more common than you think. We audit what is missing or set up wrongly, fix it, and finish the landing you never had time for.',
           },
         ],
