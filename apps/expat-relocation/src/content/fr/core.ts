@@ -55,14 +55,18 @@ export const core: CoreContent = {
       kvkLabel: 'KvK',
       rightsReserved: 'Tous droits réservés.',
       builtBy: 'Site réalisé par',
+      disclaimer:
+        'E & I est un cabinet indépendant de relocation et d’immigration. Nous ne sommes pas un organisme public et n’avons aucun lien avec l’IND, le gouvernement néerlandais, une ambassade ou un consulat. Les décisions relatives aux visas, aux titres de séjour et à la naturalisation relèvent exclusivement des autorités compétentes.',
     },
     misc: {
-      from: 'à partir de',
+      from: 'Investissement à partir de',
       whatsIncluded: 'Ce qui est inclus',
       otherServices: 'Autres services',
       relatedGuides: 'Guides associés',
       conditions: 'Conditions',
       investment: 'Investissement',
+      feesDisclaimer:
+        'Les montants indiqués correspondent uniquement à nos honoraires et sont donnés à titre indicatif. Les taxes administratives (y compris les frais de dossier de l’IND), la TVA, les frais de légalisation et d’apostille, les traductions assermentées, les frais consulaires et les débours de tiers ne sont pas compris, sauf mention expresse dans la proposition.',
     },
   },
 
@@ -239,6 +243,7 @@ export const core: CoreContent = {
         },
       ],
       stats: [
+        { value: 'Depuis 2016', label: 'À accompagner les arrivées aux Pays-Bas' },
         { value: '1200+', label: 'Expatriés et familles accompagnés' },
         { value: '98%', label: 'Taux de satisfaction client' },
         { value: '24/7', label: 'Assistance personnelle sur WhatsApp' },
@@ -292,6 +297,13 @@ export const core: CoreContent = {
       text: [
         'Chaque client dispose d’un interlocuteur unique qui connaît l’ensemble du dossier. Quand la municipalité exige votre présence, nous sommes assis à côté de vous. Quand un propriétaire appelle, nous répondons en néerlandais. Et si quelque chose survient à onze heures du soir durant votre première semaine, la ligne WhatsApp est tenue par la personne qui est venue vous chercher à l’aéroport.',
         'Cette façon de travailler ne se prête pas à des milliers de clients par an. C’est précisément le but.',
+      ],
+    },
+    history: {
+      heading: 'En activité depuis 2016',
+      text: [
+        'E & I a été fondé en 2016 et accompagne depuis lors les arrivées aux Pays-Bas. Une décennie dans une seule région explique pourquoi nous savons quelle commune réclame quel document, quels bailleurs accepteront d’examiner un candidat dont le contrat commence le mois prochain, et combien de temps l’IND met réellement le mois où vous déposez votre dossier.',
+        'Cela signifie aussi que les relations sont réelles. Des agents, des notaires, des secrétariats d’école et des fonctionnaires qui décrochent parce qu’ils reconnaissent le nom. C’est l’avantage discret qu’un cabinet ne peut pas acheter et qu’un nouveau venu ne peut pas imiter.',
       ],
     },
     boutique: {

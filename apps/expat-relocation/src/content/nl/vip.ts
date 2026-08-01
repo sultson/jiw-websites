@@ -13,10 +13,10 @@ export const vip: VipContent = {
   image: '/images/vip-hub.jpg?v=20260731',
   imageAlt: 'Gastheer verwelkomt een stel dat met de auto aankomt bij een hotel aan de gracht',
   pricingNote: {
-    title: 'Wat een pakket kost, en waarom',
+    title: 'Hoe VIP geprijsd wordt',
     text: [
-      'Pakketten lopen van € 2.000 tot € 10.000, afhankelijk van de grootte van uw huishouden, de visumroute en hoe krap uw tijdlijn is. Die prijs koopt weken voltijds werk: aanvragen voorbereid en ingediend, woningen gezocht en onderhandeld, elke registratie ingepland en begeleid, en een beschikbaarheid die niet ophoudt om vijf uur.',
-      'Na uw eerste gesprek ontvangt u één vaste offerte. Geen uurtarief-verrassingen, geen extra kosten halverwege de verhuizing.',
+      'Diensten op maat, afgestemd op uw persoonlijke wensen. Na een eerste gesprek ontvangt u een voorstel op maat, gebaseerd op uw doelen, uw gezinssituatie en de mate van begeleiding die u wenst.',
+      'Dat voorstel is één vast bedrag voor de afgesproken omvang. Geen uurtarieven, geen toevoegingen halverwege de verhuizing en geen kosten voor het gesprek waaruit het voorstel voortkomt.',
     ],
   },
   tailored: {
@@ -31,7 +31,7 @@ export const vip: VipContent = {
       metaTitle: 'Relocatie- & Immigratiepakket voor Stellen Nederland | E & I',
       metaDescription:
         'Compleet relocatie- en immigratiepakket voor stellen die naar Nederland verhuizen: partnervisum, wonen, BSN, verzekering, bankrekening en settelen, persoonlijk begeleid.',
-      priceFrom: 'vanaf € 2.000',
+      investment: 'Op maat',
       intro: [
         'U verhuist voor een carrière, een bedrijf of voor elkaar, en geen van beiden heeft tijd om expert te worden in de Nederlandse bureaucratie. Het Couple VIP Package legt beide dossiers in één hand en zet alles in de juiste volgorde, zodat visa, woning en registraties op het juiste moment landen.',
       ],
@@ -95,7 +95,7 @@ export const vip: VipContent = {
       metaTitle: 'Gezinsrelocatie- & Immigratiediensten Nederland | E & I',
       metaDescription:
         'Gezinsrelocatiepakket voor Nederland: immigratie voor elk gezinslid, wonen, scholenzoektocht, zorg, registraties en buurtoriëntatie, persoonlijk begeleid.',
-      priceFrom: 'vanaf € 3.500',
+      investment: 'Op maat',
       badge: 'Meest gekozen',
       intro: [
         'Een gezinsrelocatie is geen grotere versie van een individuele, het is een ander vak. Schooljaren die op vaste data beginnen, een woning die voor iedereen moet werken, vier dossiers bij de IND in plaats van één. Dit pakket bestaat omdat die volgorde goed krijgen is waar wij het beste in zijn.',
@@ -160,7 +160,7 @@ export const vip: VipContent = {
       metaTitle: 'Zakelijke Relocatie- & Immigratiediensten Nederland | E & I',
       metaDescription:
         'Zakelijk relocatiepakket voor Nederland: startup- of DAFT-visum, bedrijfs- en KvK-inschrijving, wonen en settelen voor oprichters en bestuurders, in één plan.',
-      priceFrom: 'vanaf € 5.000',
+      investment: 'Op maat',
       intro: [
         'Oprichters en bestuurders die naar Nederland verhuizen, staan tegenover twee bureaucratieën tegelijk: één voor het bedrijf, één voor het leven eromheen. Dit pakket laat beide sporen tegelijk lopen, zodat het bedrijf draait terwijl de oprichter al goed woont, in plaats van vanuit een hotel naar een wachtrij vol papierwerk te pendelen.',
       ],
@@ -224,7 +224,7 @@ export const vip: VipContent = {
       metaTitle: 'VIP Relocation Concierge Nederland | E & I',
       metaDescription:
         'Volledige concierge-relocatie naar Nederland voor artiesten, sporters en bestuurders: één voorbereid bezoek, elke afspraak gebundeld, dagen met chauffeur en 24/7 persoonlijke ondersteuning.',
-      priceFrom: 'vanaf € 7.500',
+      investment: 'Op maat',
       intro: [
         'Een artiest tussen twee tourdata. Een sporter die midden in het seizoen tekent. Een bestuurder wiens agenda tot volgend jaar volstaat. Het concierge-niveau comprimeert een relocatie tot de tijd die u werkelijk heeft, soms één enkel weekend, en regelt alles wat maar zonder u geregeld kan worden.',
         'U vertelt ons op welke data u in Nederland kunt zijn. Wij choreograferen de rest eromheen.',

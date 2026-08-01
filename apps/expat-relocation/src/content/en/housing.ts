@@ -81,7 +81,18 @@ export const housing: SectionContent = {
           },
         ],
       },
-      note: 'We are open about one thing: no honest agency can guarantee you a specific home in this market. What we can promise is speed, a complete file and a strong local network, which is what wins homes. Pricing depends on your search area and timeline and is confirmed during your intake.',
+      fees: {
+        title: 'Professional fees for a housing search',
+        kind: 'fixed',
+        amount: 'Investment from €1,750',
+        includes: [
+          'A written brief and a shortlist matched to how you actually live',
+          'Access to listings through our agent network, including homes never advertised',
+          'Viewings arranged and attended with you or on your behalf',
+          'Negotiation on rent and conditions, and the contract checked before you sign',
+        ],
+      },
+      note: 'We are open about one thing: no honest consultancy can guarantee you a specific home in this market. What we can promise is speed, a complete file and a strong local network, which is what wins homes. Pricing depends on your search area and timeline and is confirmed during your intake.',
       conditions: {
         title: 'What the Dutch rental market demands',
         intro:
@@ -206,6 +217,19 @@ export const housing: SectionContent = {
             title: 'Move in',
             text: 'Offer, contract and handover are managed for you, including the inspection report on key day.',
           },
+        ],
+      },
+      fees: {
+        title: 'What Rotterdam housing support costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'Rotterdam ranges from a single professional needing a city apartment to a family needing space, a garden and the right school run. After a first conversation you receive one fixed quotation for the scope you actually need.',
+        includes: [
+          'A search brief built around your commute, budget and household',
+          'Neighbourhood guidance from someone who knows the city street by street',
+          'Viewings arranged, attended and honestly assessed',
+          'Contract review and handover before you sign anything',
         ],
       },
       conditions: {
@@ -338,6 +362,17 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Professional fees for viewing assistance',
+        kind: 'fixed',
+        amount: '€295 per viewing',
+        includes: [
+          'Attendance at the viewing, in person, with the questions a landlord expects',
+          'An honest written verdict on the property, including what we would not accept',
+          'Checks on rent level, service costs and the points system',
+          'Immediate feedback so you can decide before the next applicant does',
+        ],
+      },
       note: 'Viewing assistance can be booked on its own or as part of a full housing search. Fees depend on location and frequency and are confirmed during your intake.',
       conditions: {
         title: 'How viewing assistance works',
@@ -463,6 +498,17 @@ export const housing: SectionContent = {
             title: 'Sign with confidence',
             text: 'You sign a contract you understand, with the risky clauses removed or renegotiated.',
           },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for a rental contract review',
+        kind: 'fixed',
+        amount: 'Investment from €395',
+        includes: [
+          'Full review of the contract and the general terms attached to it',
+          'The rent tested against the Dutch points system while the window to object is open',
+          'Diplomatic clause, deposit, service costs and notice period explained in writing',
+          'Points renegotiated with the landlord or agent on your behalf',
         ],
       },
       note: 'We review contracts as relocation specialists, not as a law firm. For genuine legal disputes we connect you with tenancy lawyers from our professional network, a network built over years of working alongside embassies and consulates.',
@@ -596,6 +642,19 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'What temporary housing support costs',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Temporary housing depends entirely on how long you need it, for how many people and at what notice. You receive a fixed quotation once we know the dates.',
+        includes: [
+          'Serviced apartments and short-stay options matched to your dates',
+          'Terms checked so a short stay does not block your municipality registration',
+          'Coordination between the temporary address and the permanent search',
+          'Handover arranged when the permanent home is ready',
+        ],
+      },
       conditions: {
         title: 'Short stay, in practice',
         intro:
@@ -720,6 +779,19 @@ export const housing: SectionContent = {
             title: 'Resolution and record',
             text: 'We push the issue to an outcome and hand you a documented file you can rely on later if needed.',
           },
+        ],
+      },
+      fees: {
+        title: 'What landlord support costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'Some clients need one difficult letter answered, others need a year of tenancy handled in Dutch on their behalf. You receive a quotation for the scope you need.',
+        includes: [
+          'Correspondence with your landlord or agent, in Dutch, on your behalf',
+          'Repairs, service charges and deposit disputes taken up and followed through',
+          'Your position checked against Dutch tenancy law before we write',
+          'Escalation to the Huurcommissie prepared where it is justified',
         ],
       },
       note: 'For matters that genuinely belong in front of the rent tribunal or a court, we prepare your file and refer you to a specialized tenancy lawyer. You never pay us to do what a lawyer should do.',

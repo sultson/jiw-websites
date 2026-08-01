@@ -73,6 +73,19 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Wat een verhuizing naar Europoort kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Opdrachten in de haven verschillen in duur, roosters en hoeveel mensen tegelijk aankomen. U ontvangt een voorstel rond het contract en de ploeg.',
+        includes: [
+          'Woonruimte op werkbare afstand van de terminal of de fabriek',
+          'Immigratiedossiers voor de werknemer en, waar van toepassing, het gezin',
+          'Elke inschrijving geregeld rond ploegendiensten',
+          'Een contactpersoon die buiten kantooruren opneemt, omdat de haven die niet kent',
+        ],
+      },
       conditions: {
         title: 'Wat werken op Europoort betekent voor uw verhuizing',
         intro:
@@ -197,6 +210,19 @@ export const industrial: SectionContent = {
             title: 'Begin gesetteld aan het werk',
             text: 'Papierwerk gedaan, huis op orde, en een directe lijn naar ons voor alles daarna.',
           },
+        ],
+      },
+      fees: {
+        title: 'Wat een verhuizing naar de Maasvlakte kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Plaatsingen op de Maasvlakte lopen uiteen van één specialist op een korte inbedrijfstelling tot een heel team op een meerjarig contract. U ontvangt een voorstel voor de werkelijke omvang.',
+        includes: [
+          'Woonruimte die de reis naar de Maasvlakte realistisch maakt',
+          'Immigratie en vergunningen geregeld rond de projectplanning',
+          'Inschrijvingen geregeld zonder mensen van het terrein te halen',
+          'Ondersteuning voor partners en kinderen die later komen',
         ],
       },
       conditions: {
@@ -325,6 +351,19 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Wat offshore begeleiding kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Roosters maken offshore werk onvergelijkbaar met elke andere verhuizing. U ontvangt een voorstel rond uw rooster en de duur van het contract.',
+        includes: [
+          'Woonruimte die past bij een rooster in plaats van een kantoorbaan',
+          'Immigratie geregeld rond de tijd op zee',
+          'Afspraken ingepland binnen uw weken aan wal',
+          'Een vast aanspreekpunt zolang u onbereikbaar bent',
+        ],
+      },
       note: 'Offshoreposities voor belasting en sociale zekerheid variëren met vlaggenstaat, werkgever en gewerkte dagen; wij signaleren wanneer uw situatie een grensoverschrijdende belastingspecialist vereist en verbinden u met er een uit ons netwerk.',
       conditions: {
         title: 'Wat rotatiewerk verandert',
@@ -450,6 +489,19 @@ export const industrial: SectionContent = {
             title: 'Eerste dienst, volledig gesetteld',
             text: 'U klokt in met uw adres, nummer en verzekering al geregeld.',
           },
+        ],
+      },
+      fees: {
+        title: 'Wat een verhuizing voor logistieke professionals kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'De omvang hangt ervan af of u alleen of met gezin komt en hoe snel de functie begint. Na het eerste gesprek ontvangt u één vaste offerte.',
+        includes: [
+          'Woonruimte dicht bij de terminals, magazijnen of corridor waar u werkelijk werkt',
+          'Verblijfsroute gekozen en ingediend passend bij uw startdatum',
+          'Inschrijvingen, verzekering en bankzaken bij aankomst geregeld',
+          'Gezinsbegeleiding wanneer partner en kinderen nakomen',
         ],
       },
       conditions: {
@@ -580,6 +632,19 @@ export const industrial: SectionContent = {
             title: 'Evalueren en herhalen',
             text: 'Wij evalueren na elke landing met de werkgever, zodat de volgende nog soepeler verloopt.',
           },
+        ],
+      },
+      fees: {
+        title: 'Wat industriële verhuisbegeleiding kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Diensten op maat, afgestemd op uw persoonlijke wensen. Na een eerste gesprek ontvangt u een voorstel op maat, gebaseerd op uw doelen, uw gezinssituatie en de mate van begeleiding die u wenst.',
+        includes: [
+          'Eén plan voor de vergunning, de woning en de inschrijvingen',
+          'Afstemming met de werkgever zodat papierwerk geen startdatum vertraagt',
+          'Begeleiding in de talen die uw team werkelijk spreekt',
+          'Eén aanspreekpunt voor de werknemer en voor uw HR-afdeling',
         ],
       },
       conditions: {

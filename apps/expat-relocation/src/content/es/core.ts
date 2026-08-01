@@ -55,14 +55,18 @@ export const core: CoreContent = {
       kvkLabel: 'KvK',
       rightsReserved: 'Todos los derechos reservados.',
       builtBy: 'Sitio web de',
+      disclaimer:
+        'E & I es una consultoría independiente de reubicación e inmigración. No somos un organismo público y no tenemos vinculación alguna con el IND, el Gobierno neerlandés ni con ninguna embajada o consulado. Las decisiones sobre visados, permisos de residencia y naturalización corresponden exclusivamente a las autoridades competentes.',
     },
     misc: {
-      from: 'desde',
+      from: 'Inversión desde',
       whatsIncluded: 'Qué incluye',
       otherServices: 'Otros servicios',
       relatedGuides: 'Guías relacionadas',
       conditions: 'Condiciones',
       investment: 'Inversión',
+      feesDisclaimer:
+        'Los importes de inversión indicados corresponden únicamente a nuestros honorarios profesionales y tienen carácter orientativo. Las tasas administrativas (incluidas las tasas del IND), el IVA, los costes de legalización y apostilla, las traducciones juradas, los aranceles consulares y los gastos de terceros no están incluidos, salvo que la propuesta lo indique expresamente.',
     },
   },
 
@@ -239,6 +243,7 @@ export const core: CoreContent = {
         },
       ],
       stats: [
+        { value: 'Desde 2016', label: 'Acompañando llegadas a los Países Bajos' },
         { value: '1200+', label: 'Expatriados y familias acompañados' },
         { value: '98%', label: 'Índice de satisfacción de clientes' },
         { value: '24/7', label: 'Asistencia personal por WhatsApp' },
@@ -292,6 +297,13 @@ export const core: CoreContent = {
       text: [
         'Cada cliente tiene un único punto de contacto que conoce el expediente completo. Cuando el ayuntamiento le necesita en persona, estamos en la silla de al lado. Cuando llama un casero, respondemos en neerlandés. Cuando algo ocurre a las once de la noche en su primera semana, la línea de WhatsApp es la misma persona que le recogió en el aeropuerto.',
         'Esa forma de trabajar no escala a miles de clientes al año. Ese es precisamente el punto.',
+      ],
+    },
+    history: {
+      heading: 'En activo desde 2016',
+      text: [
+        'E & I se fundó en 2016 y desde entonces acompaña llegadas a los Países Bajos. Una década en una sola región es la razón por la que sabemos qué municipio pide qué documento, qué caseros aceptarán siquiera valorar a un candidato cuyo contrato empieza el mes que viene y cuánto tarda realmente el IND en el mes en que usted presenta la solicitud.',
+        'También significa que las relaciones son reales. Agentes, notarios, secretarías escolares y funcionarios que descuelgan porque reconocen el nombre. Esa es la ventaja silenciosa que una firma no puede comprar y que una recién llegada no puede imitar.',
       ],
     },
     boutique: {

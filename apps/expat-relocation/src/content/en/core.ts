@@ -55,14 +55,18 @@ export const core: CoreContent = {
       kvkLabel: 'KvK',
       rightsReserved: 'All rights reserved.',
       builtBy: 'Website by',
+      disclaimer:
+        'E & I is an independent relocation and immigration consultancy. We are not a government body and we are not affiliated with the IND, the Dutch government or any embassy or consulate. Decisions on visas, residence permits and naturalisation are made solely by the competent authorities.',
     },
     misc: {
-      from: 'from',
+      from: 'Investment from',
       whatsIncluded: 'What is included',
       otherServices: 'Other services',
       relatedGuides: 'Related guides',
       conditions: 'Conditions',
       investment: 'Investment',
+      feesDisclaimer:
+        'Investment figures represent our professional service fees only and are intended as a guideline. Government fees (including IND filing fees), VAT, legalisation and apostille costs, sworn translations, consular charges and any third-party expenses are not included unless explicitly stated in the proposal.',
     },
   },
 
@@ -176,7 +180,7 @@ export const core: CoreContent = {
       eyebrow: 'Ports, harbours & offshore',
       heading: 'The specialist for the port of Rotterdam',
       text: [
-        'Europe’s largest port does not appear in relocation brochures, yet tens of thousands of international professionals build their careers there. We are the only boutique agency specialised in Rotterdam, the region south of it, Europoort and the Maasvlakte, working daily with the port, offshore, shipping and engineering companies that bring people here.',
+        'Europe’s largest port does not appear in relocation brochures, yet tens of thousands of international professionals build their careers there. We are the only boutique consultancy specialised in Rotterdam, the region south of it, Europoort and the Maasvlakte, working daily with the port, offshore, shipping and engineering companies that bring people here.',
       ],
       label: 'Industrial expat services',
       areas: [
@@ -239,6 +243,7 @@ export const core: CoreContent = {
         },
       ],
       stats: [
+        { value: 'Since 2016', label: 'Guiding arrivals in the Netherlands' },
         { value: '1200+', label: 'Expats and families helped' },
         { value: '98%', label: 'Client satisfaction score' },
         { value: '24/7', label: 'Personal WhatsApp support' },
@@ -276,9 +281,9 @@ export const core: CoreContent = {
   },
 
   about: {
-    metaTitle: 'About E & I | Boutique Expat & Immigration Agency Netherlands',
+    metaTitle: 'About E & I | Boutique Expat & Relocation Consultancy Netherlands',
     metaDescription:
-      'E & I is the only boutique expat relocation and immigration agency in the Netherlands. Personal guidance by Johanna, from visa to housing to the day you feel at home.',
+      'E & I is the only boutique expat relocation and immigration consultancy in the Netherlands. Personal guidance by Johanna, from visa to housing to the day you feel at home.',
     eyebrow: 'About E & I',
     title: 'The boutique behind a thousand arrivals',
     intro: [
@@ -294,8 +299,15 @@ export const core: CoreContent = {
         'That way of working does not scale to thousands of clients per year. That is precisely the point.',
       ],
     },
+    history: {
+      heading: 'Operating since 2016',
+      text: [
+        'E & I was founded in 2016 and has been guiding arrivals into the Netherlands ever since. A decade in one region is why we know which municipality asks for which document, which landlords will consider an applicant whose contract starts next month, and how long the IND is really taking in the month you apply.',
+        'It also means the relationships are real. Agents, notaries, school registrars and civil servants who take the call because they recognise the name. That is the quiet advantage a firm cannot buy and a new one cannot imitate.',
+      ],
+    },
     boutique: {
-      heading: 'Why work with a boutique agency',
+      heading: 'Why work with a boutique consultancy',
       text: [
         'Corporate mobility firms are built for volume: portals, tickets, service levels. A boutique is built for outcomes. You get the judgment of someone who has walked hundreds of clients through the IND, the speed of a team that knows every desk in the region, and the discretion that a reputation built among diplomats demands.',
       ],

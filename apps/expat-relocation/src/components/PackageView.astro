@@ -24,7 +24,7 @@ const l = (path: string) => localizePath(path, lang);
     <h1 class="mt-4 max-w-3xl font-display text-4xl text-white md:text-6xl">{p.name}</h1>
     <p class="mt-4 font-display text-xl italic text-gold-soft md:text-2xl">{p.tagline}</p>
     <p class="mt-7 rounded-full border border-gold/50 px-6 py-2.5 text-[0.8rem] uppercase tracking-[0.2em] text-white">
-      {p.priceFrom}
+      {p.investment}
     </p>
   </div>
 </section>
@@ -130,7 +130,7 @@ const l = (path: string) => localizePath(path, lang);
 </section>
 
 <!-- CTA + VIP form -->
-<section class="border-t border-line" id="inquiry">
+<section class="band-inquiry border-t border-line-warm" id="inquiry">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl text-center">
       <h2 class="font-display text-3xl md:text-4xl">{p.cta.title}</h2>

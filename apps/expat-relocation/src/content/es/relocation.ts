@@ -26,6 +26,13 @@ export const relocation: SectionContent = {
         'Preparamos la cita, verificamos que sus partidas de nacimiento y apostillas serán aceptadas, y Johanna le acompaña en persona a la ventanilla. Si el funcionario plantea una duda sobre un documento extranjero, tiene a su lado a alguien que ha oído esa pregunta cien veces y conoce la respuesta.',
       ],
       cardText: 'Su número de servicio ciudadano gestionado rápido, con nosotros a su lado en la ventanilla.',
+      explainer: {
+        title: '¿Qué es el BSN?',
+        text: [
+          'El BSN, burgerservicenummer, es su número neerlandés de servicio al ciudadano. Es el identificador único por el que la Administración, su empleador, su banco, su aseguradora y su médico le reconocen, y casi nada en la vida neerlandesa echa a andar sin él.',
+          'Se obtiene al empadronarse en un municipio, no mediante una solicitud aparte. Por eso el empadronamiento es la primera tarea práctica tras la llegada: sin el número no puede pagarse una nómina, no puede iniciarse el seguro de salud y abrir una cuenta bancaria resulta difícil.',
+        ],
+      },
       forWho: {
         title: 'Para quién es',
         items: [
@@ -71,6 +78,17 @@ export const relocation: SectionContent = {
             title: 'Día del empadronamiento',
             text: 'Vamos juntos, completamos el registro y salimos con todo confirmado.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por la obtención del BSN',
+        kind: 'fixed',
+        amount: 'Inversión desde 295 €',
+        includes: [
+          'Cita municipal reservada en la ventanilla correcta y en el momento oportuno',
+          'Requisitos de documentos, legalización y traducción comprobados por anticipado',
+          'Acompañamiento a la cita, con interpretación cuando haga falta',
+          'Seguimiento hasta que el número se expide efectivamente',
         ],
       },
       note: 'El BSN se emite mediante la inscripción en la Base de Datos de Registros Personales, ya sea como residente o, para estancias cortas, como no residente a través de una ventanilla RNI. Le aconsejamos qué vía encaja con su situación durante la entrevista inicial.',
@@ -153,6 +171,13 @@ export const relocation: SectionContent = {
         'Gestionamos toda la relación con su municipio. Primer empadronamiento al llegar, nuevo registro cuando se muda dentro de los Países Bajos, baja si se marcha y correcciones cuando los registros no coinciden con la realidad. Años de trabajo junto a embajadas y consulados nos enseñaron cómo piensa la administración neerlandesa, y ponemos esa fluidez a trabajar en su ventanilla local.',
       ],
       cardText: 'Primer empadronamiento, mudanzas y correcciones en la gemeente, todo gestionado por usted.',
+      explainer: {
+        title: '¿Qué es el empadronamiento municipal?',
+        text: [
+          'El empadronamiento le inscribe en la Basisregistratie Personen, el BRP, que es el registro de población neerlandés. Recoge quién es usted y dónde vive, y de él nace su BSN. Todos los niveles de la Administración neerlandesa consultan ese registro.',
+          'Es una obligación legal con plazo y no una formalidad opcional. Se empadrona en el ayuntamiento de la dirección en la que vive realmente, y necesita el permiso del casero para esa dirección, que es justo donde más a menudo fallan los empadronamientos.',
+        ],
+      },
       forWho: {
         title: 'Para quién es',
         items: [
@@ -198,6 +223,17 @@ export const relocation: SectionContent = {
             title: 'Empadronado y verificado',
             text: 'Completamos el registro juntos y confirmamos que la base de datos muestra exactamente lo que debe.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por el empadronamiento municipal',
+        kind: 'fixed',
+        amount: 'Inversión desde 295 €',
+        includes: [
+          'Cita reservada dentro del plazo legal de cinco días',
+          'Dirección y consentimiento del casero comprobados para que no se deniegue el empadronamiento',
+          'Acompañamiento al ayuntamiento el mismo día',
+          'Confirmación de que el asiento en el BRP es correcto una vez emitido',
         ],
       },
       conditions: {
@@ -326,6 +362,17 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Honorarios por el asesoramiento en seguro de salud',
+        kind: 'fixed',
+        amount: 'Inversión desde 195 €',
+        includes: [
+          'La póliza neerlandesa adecuada identificada para su situación y su hogar',
+          'Solicitud cumplimentada y presentada junto a usted',
+          'Fecha de inicio alineada con su llegada para que nunca esté sin cobertura',
+          'Asesoramiento sobre la franquicia, la ayuda sanitaria y la elección de médico de cabecera',
+        ],
+      },
       note: 'El seguro entra en vigor con efecto retroactivo desde la fecha en que comenzó su obligación, así que las primas se deben desde esa fecha aunque se afilie más tarde. Afiliarse pronto no cuesta nada extra y evita multas.',
       conditions: {
         title: 'Cómo funciona el sistema neerlandés',
@@ -451,6 +498,17 @@ export const relocation: SectionContent = {
             title: 'Matricular y empezar',
             text: 'Completamos la matrícula y ayudamos a que su hijo llegue a un colegio que le espera.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por una búsqueda de colegio',
+        kind: 'fixed',
+        amount: 'Inversión desde 995 €',
+        includes: [
+          'Una preselección de colegios internacionales, bilingües o neerlandeses que encajen de verdad con su hijo',
+          'Listas de espera, plazos de admisión y zonas de escolarización comprobados antes de que elija',
+          'Visitas y presentaciones concertadas con los colegios',
+          'Documentación de matrícula preparada y presentada',
         ],
       },
       note: 'La elección de colegio y la de vivienda son una sola decisión, no dos; la dirección determina las opciones. Si también llevamos su búsqueda de vivienda, las planificamos juntas.',
@@ -584,6 +642,19 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Qué cuesta el acompañamiento en la instalación',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'Instalarse es la parte de una mudanza que es distinta para cada persona, así que se presupuesta según lo que usted quiera realmente que se gestione. Tras la primera conversación recibirá un presupuesto cerrado, no un contador por horas.',
+        includes: [
+          'Suministros, internet e impuestos municipales dados de alta a su nombre',
+          'Alta con médico de cabecera, dentista y farmacia',
+          'Banca, DigiD y la burocracia neerlandesa que bloquea todo lo demás',
+          'La orientación práctica que convierte una dirección en un barrio',
+        ],
+      },
       conditions: {
         title: 'El orden en que deben ocurrir las cosas',
         intro:
@@ -708,6 +779,17 @@ export const relocation: SectionContent = {
             title: 'Llegue a casa',
             text: 'Se acuesta en una casa que funciona, sabiendo exactamente cómo será mañana.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por la recogida en el aeropuerto',
+        kind: 'fixed',
+        amount: 'Desde 395 €',
+        includes: [
+          'Un chófer profesional y un vehículo ejecutivo acordes a su grupo y su equipaje',
+          'Vuelo monitorizado para que un retraso no le cueste la reserva',
+          'Recepción dentro de la terminal, no un mensaje desde el aparcamiento',
+          'Traslado directo a su domicilio, su hotel o su primera cita',
         ],
       },
       conditions: {
@@ -844,6 +926,19 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Qué cuesta una reubicación familiar',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'No hay dos mudanzas familiares iguales: el número de hijos, los colegios, la vía de residencia y los plazos cambian el trabajo. Tras una primera consulta recibirá una propuesta personalizada que cubre toda la llegada.',
+        includes: [
+          'Un plan que cubre a cada miembro de la familia, secuenciado en el orden correcto',
+          'Búsqueda de vivienda construida en torno a colegios y trayecto, no solo al código postal',
+          'Búsqueda de colegio, matrícula y presentaciones',
+          'Cada trámite para cada miembro de la familia, reservado y acompañado',
+        ],
+      },
       conditions: {
         title: 'Cómo se secuencia una mudanza familiar',
         intro:
@@ -968,6 +1063,19 @@ export const relocation: SectionContent = {
             title: 'Aterrizado y viviendo',
             text: 'Está empadronado, alojado y orientado, con un número local al que escribir siempre que surja una pregunta.',
           },
+        ],
+      },
+      fees: {
+        title: 'Qué cuesta una reubicación en Róterdam',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'Servicios a medida, adaptados a sus necesidades personales. Tras una primera consulta recibirá una propuesta personalizada basada en sus objetivos, su situación familiar y el nivel de acompañamiento que prefiera.',
+        includes: [
+          'Un único plan que cubre inmigración, vivienda y cada trámite',
+          'Una asesora que conoce la ciudad y acompaña su expediente de principio a fin',
+          'Citas reservadas, preparadas y atendidas junto a usted',
+          'Apoyo que continúa cuando las cajas ya están deshechas',
         ],
       },
       conditions: {

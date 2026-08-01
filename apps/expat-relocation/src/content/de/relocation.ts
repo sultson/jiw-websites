@@ -26,6 +26,13 @@ export const relocation: SectionContent = {
         'Wir bereiten den Termin vor, prüfen, ob Ihre Geburtsurkunden und Apostillen akzeptiert werden, und Johanna kommt persönlich mit an den Schalter. Wenn der Beamte eine Frage zu einem ausländischen Dokument stellt, sitzt jemand neben Ihnen, der diese Frage hundertmal gehört hat und die Antwort kennt.',
       ],
       cardText: 'Ihre Bürgerservicenummer schnell organisiert, mit uns neben Ihnen am Schalter.',
+      explainer: {
+        title: 'Was ist eine BSN?',
+        text: [
+          'Die BSN, burgerservicenummer, ist Ihre niederländische Bürgerservicenummer. Sie ist die eine Kennung, an der Behörden, Ihr Arbeitgeber, Ihre Bank, Ihre Versicherung und Ihre Ärztin Sie erkennen, und fast nichts im niederländischen Alltag geht ohne sie.',
+          'Sie erhalten sie durch die Anmeldung bei einer Gemeinde und nicht über einen gesonderten Antrag. Deshalb ist die Anmeldung die erste praktische Aufgabe nach der Ankunft: Ohne die Nummer kann kein Gehalt gezahlt werden, keine Krankenversicherung beginnen und ein Bankkonto lässt sich nur schwer eröffnen.',
+        ],
+      },
       forWho: {
         title: 'Für wen dieser Service gedacht ist',
         items: [
@@ -71,6 +78,17 @@ export const relocation: SectionContent = {
             title: 'Anmeldetag',
             text: 'Wir gehen gemeinsam, schließen die Anmeldung ab und gehen mit allem bestätigt nach Hause.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorar für die BSN-Anmeldung',
+        kind: 'fixed',
+        amount: 'Investition ab 295 €',
+        includes: [
+          'Termin bei der Gemeinde am richtigen Schalter und zum richtigen Zeitpunkt gebucht',
+          'Anforderungen an Dokumente, Legalisation und Übersetzung vorab geprüft',
+          'Begleitung zum Termin, bei Bedarf mit Verdolmetschung',
+          'Nachverfolgung, bis die Nummer tatsächlich erteilt ist',
         ],
       },
       note: 'Ein BSN wird durch Eintragung in das Personenregister vergeben, entweder als Einwohner oder, bei Kurzaufenthalten, als Nichteinwohner über einen RNI-Schalter. Welcher Weg zu Ihrer Situation passt, klären wir im Erstgespräch.',
@@ -153,6 +171,13 @@ export const relocation: SectionContent = {
         'Wir übernehmen die gesamte Beziehung zu Ihrer Gemeinde. Erstanmeldung bei der Ankunft, Ummeldung bei einem Umzug innerhalb der Niederlande, Abmeldung bei der Ausreise und Korrekturen, wenn die Register nicht der Realität entsprechen. Jahre der Arbeit an der Seite von Botschaften und Konsulaten haben uns gelehrt, wie die niederländische Amtswelt denkt, und diese Sprachgewandtheit setzen wir an Ihrem lokalen Schalter ein.',
       ],
       cardText: 'Erstanmeldung, Umzüge und Korrekturen bei der Gemeente, alles für Sie erledigt.',
+      explainer: {
+        title: 'Was ist die Anmeldung bei der Gemeinde?',
+        text: [
+          'Die Anmeldung bei der Gemeinde trägt Sie in die Basisregistratie Personen ein, kurz BRP, das niederländische Einwohnerregister. Es hält fest, wer Sie sind und wo Sie wohnen, und daraus entsteht Ihre BSN. Jede Ebene der niederländischen Verwaltung liest aus diesem Register.',
+          'Es ist eine gesetzliche Pflicht mit Frist und keine freiwillige Formalität. Sie melden sich bei der Gemeinde der Adresse an, an der Sie tatsächlich wohnen, und Sie brauchen dafür die Zustimmung des Vermieters. Genau daran scheitern Anmeldungen am häufigsten.',
+        ],
+      },
       forWho: {
         title: 'Für wen dieser Service gedacht ist',
         items: [
@@ -198,6 +223,17 @@ export const relocation: SectionContent = {
             title: 'Angemeldet und geprüft',
             text: 'Wir schließen die Anmeldung gemeinsam ab und bestätigen, dass das Register genau das zeigt, was es soll.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorar für die Anmeldung bei der Gemeinde',
+        kind: 'fixed',
+        amount: 'Investition ab 295 €',
+        includes: [
+          'Termin innerhalb der gesetzlichen Fünftagesfrist gebucht',
+          'Adresse und Zustimmung des Vermieters geprüft, damit die Anmeldung nicht abgelehnt wird',
+          'Begleitung zur Gemeinde am Tag des Termins',
+          'Bestätigung, dass der BRP-Eintrag stimmt, sobald er vorliegt',
         ],
       },
       conditions: {
@@ -326,6 +362,17 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Honorar für die Beratung zur Krankenversicherung',
+        kind: 'fixed',
+        amount: 'Investition ab 195 €',
+        includes: [
+          'Die richtige niederländische Police für Ihre Situation und Ihren Haushalt ermittelt',
+          'Antrag gemeinsam mit Ihnen ausgefüllt und eingereicht',
+          'Beginn auf Ihre Ankunft abgestimmt, damit Sie nie unversichert sind',
+          'Beratung zu Selbstbehalt, Zorgtoeslag und der Wahl einer Hausarztpraxis',
+        ],
+      },
       note: 'Die Versicherung wirkt rückwirkend ab dem Datum, an dem Ihre Versicherungspflicht begann, sodass Prämien ab diesem Datum geschuldet sind, auch wenn Sie später abschließen. Ein zügiger Abschluss kostet nichts extra und vermeidet Bußgelder.',
       conditions: {
         title: 'Wie das niederländische System funktioniert',
@@ -451,6 +498,17 @@ export const relocation: SectionContent = {
             title: 'Anmelden und starten',
             text: 'Wir schließen die Anmeldung ab und helfen Ihrem Kind, an einer Schule anzukommen, die es erwartet.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorar für eine Schulsuche',
+        kind: 'fixed',
+        amount: 'Investition ab 995 €',
+        includes: [
+          'Eine Auswahl internationaler, zweisprachiger oder niederländischer Schulen, die wirklich zu Ihrem Kind passen',
+          'Wartelisten, Anmeldefristen und Einzugsregeln geprüft, bevor Sie sich entscheiden',
+          'Besuche und Vorstellungsgespräche mit den Schulen organisiert',
+          'Anmeldeunterlagen vorbereitet und eingereicht',
         ],
       },
       note: 'Schulwahl und Wohnungswahl sind eine Entscheidung, nicht zwei; die Adresse bestimmt die Optionen. Wenn wir auch Ihre Wohnungssuche führen, planen wir beides zusammen.',
@@ -584,6 +642,19 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Was Begleitung beim Einleben kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Das Einleben ist der Teil eines Umzugs, der bei jedem anders aussieht, und wird deshalb nach dem bemessen, was Sie tatsächlich erledigt haben möchten. Nach dem ersten Gespräch erhalten Sie ein Festpreisangebot und keine Stundenabrechnung.',
+        includes: [
+          'Versorger, Internet und Gemeindeabgaben auf Ihren Namen eingerichtet',
+          'Anmeldung bei Hausarzt, Zahnarzt und Apotheke',
+          'Bankwesen, DigiD und der niederländische Papierkram, der alles andere blockiert',
+          'Die praktische Orientierung, die aus einer Adresse ein Viertel macht',
+        ],
+      },
       conditions: {
         title: 'Die Reihenfolge, in der es geschehen muss',
         intro:
@@ -708,6 +779,17 @@ export const relocation: SectionContent = {
             title: 'Zu Hause ankommen',
             text: 'Sie schlafen in einem funktionierenden Zuhause ein und wissen genau, wie morgen aussieht.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorar für die Abholung am Flughafen',
+        kind: 'fixed',
+        amount: 'Ab 395 €',
+        includes: [
+          'Ein professioneller Chauffeur und ein Fahrzeug der Oberklasse, passend zu Ihrer Gruppe und Ihrem Gepäck',
+          'Flug überwacht, damit Verspätungen die Buchung nicht kosten',
+          'Empfang im Terminal und nicht eine Nachricht aus dem Parkhaus',
+          'Direkter Transfer zu Ihrer Adresse, Ihrem Hotel oder Ihrem ersten Termin',
         ],
       },
       conditions: {
@@ -844,6 +926,19 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Was ein Familienumzug kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Keine zwei Familienumzüge gleichen einander: Die Zahl der Kinder, die Schulen, der Aufenthaltsweg und der Zeitplan verändern die Arbeit. Nach einem ersten Gespräch erhalten Sie ein individuelles Angebot für die gesamte Ankunft.',
+        includes: [
+          'Ein Plan für jedes Familienmitglied, in der richtigen Reihenfolge abgestimmt',
+          'Wohnungssuche entlang von Schulen und Arbeitsweg, nicht nur nach Postleitzahl',
+          'Schulsuche, Anmeldung und Vorstellung',
+          'Jede Anmeldung für jedes Familienmitglied, gebucht und begleitet',
+        ],
+      },
       conditions: {
         title: 'Wie ein Familienumzug aufgebaut wird',
         intro:
@@ -968,6 +1063,19 @@ export const relocation: SectionContent = {
             title: 'Angekommen und lebend',
             text: 'Sie sind angemeldet, untergebracht und orientiert, mit einer lokalen Nummer für jede Frage, die aufkommt.',
           },
+        ],
+      },
+      fees: {
+        title: 'Was ein Umzug nach Rotterdam kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Maßgeschneiderte Leistungen, zugeschnitten auf Ihre persönlichen Anforderungen. Nach einem ersten Gespräch erhalten Sie ein individuelles Angebot, das sich an Ihren Zielen, Ihrer familiären Situation und dem gewünschten Grad an Begleitung orientiert.',
+        includes: [
+          'Ein einziger Plan für Immigration, Wohnen und jede Anmeldung',
+          'Eine Beraterin, die die Stadt kennt und Ihre Akte durchgehend begleitet',
+          'Termine gebucht, vorbereitet und gemeinsam wahrgenommen',
+          'Unterstützung, die weitergeht, wenn die Kisten ausgepackt sind',
         ],
       },
       conditions: {

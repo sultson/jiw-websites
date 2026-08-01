@@ -55,14 +55,18 @@ export const core: CoreContent = {
       kvkLabel: 'KvK',
       rightsReserved: 'Alle rechten voorbehouden.',
       builtBy: 'Website door',
+      disclaimer:
+        'E & I is een onafhankelijke adviespraktijk voor relocatie en immigratie. Wij zijn geen overheidsinstantie en hebben geen band met de IND, de Nederlandse overheid of enige ambassade of consulaat. Beslissingen over visa, verblijfsvergunningen en naturalisatie worden uitsluitend genomen door de bevoegde instanties.',
     },
     misc: {
-      from: 'vanaf',
+      from: 'Investering vanaf',
       whatsIncluded: 'Wat is inbegrepen',
       otherServices: 'Andere diensten',
       relatedGuides: 'Gerelateerde gidsen',
       conditions: 'Voorwaarden',
       investment: 'Investering',
+      feesDisclaimer:
+        'De genoemde investeringsbedragen betreffen uitsluitend ons honorarium en zijn bedoeld als richtlijn. Overheidsleges (waaronder de leges van de IND), btw, kosten voor legalisatie en apostille, beëdigde vertalingen, consulaire kosten en kosten van derden zijn niet inbegrepen, tenzij het voorstel dat uitdrukkelijk vermeldt.',
     },
   },
 
@@ -239,6 +243,7 @@ export const core: CoreContent = {
         },
       ],
       stats: [
+        { value: 'Sinds 2016', label: 'Begeleiden wij aankomsten in Nederland' },
         { value: '1200+', label: 'Expats en gezinnen geholpen' },
         { value: '98%', label: 'Klanttevredenheid' },
         { value: '24/7', label: 'Persoonlijke WhatsApp-ondersteuning' },
@@ -292,6 +297,13 @@ export const core: CoreContent = {
       text: [
         'Elke cliënt heeft één aanspreekpunt dat het hele dossier kent. Als de gemeente u persoonlijk nodig heeft, zitten wij in de stoel naast u. Als een verhuurder belt, nemen wij op in het Nederlands. Als er in uw eerste week om elf uur ’s avonds iets gebeurt, is de WhatsApp-lijn dezelfde persoon die u van het vliegveld haalde.',
         'Die manier van werken schaalt niet naar duizenden cliënten per jaar. Dat is precies de bedoeling.',
+      ],
+    },
+    history: {
+      heading: 'Actief sinds 2016',
+      text: [
+        'E & I is opgericht in 2016 en begeleidt sindsdien mensen bij hun aankomst in Nederland. Een decennium in één regio is de reden dat wij weten welke gemeente welk document vraagt, welke verhuurders een kandidaat met een contract dat volgende maand ingaat überhaupt overwegen, en hoe lang de IND er in deze maand werkelijk over doet.',
+        'Het betekent ook dat de relaties echt zijn. Makelaars, notarissen, schooladministraties en ambtenaren die opnemen omdat ze de naam herkennen. Dat is het stille voordeel dat een kantoor niet kan kopen en een nieuwkomer niet kan nabootsen.',
       ],
     },
     boutique: {

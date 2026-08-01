@@ -24,7 +24,7 @@ const selectOptions: string[] =
 ---
 
 <div class="relative" data-lead-wrap>
-  <div class="card hidden bg-white p-10 text-center" data-lead-success>
+  <div class="card-inquiry hidden p-10 text-center" data-lead-success>
     <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-gold text-gold">
       <Icon name="check" size={28} />
     </span>
@@ -34,7 +34,7 @@ const selectOptions: string[] =
 
   <form
     id={id}
-    class="card bg-white p-6 md:p-9"
+    class="card-inquiry p-6 md:p-9"
     data-lead-form={kind}
     data-form-path={`/api/forms/${kind}`}
     data-sending-label={cta.sending}

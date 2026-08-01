@@ -73,6 +73,19 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Ce que coûte une relocation à Europoort',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'Les missions portuaires diffèrent par leur durée, leur rotation et le nombre de personnes qui arrivent en même temps. Vous recevez une proposition bâtie sur le contrat et l’équipe.',
+        includes: [
+          'Un logement à distance praticable du terminal ou de l’usine',
+          'Dossiers d’immigration pour le salarié et, le cas échéant, sa famille',
+          'Chaque formalité traitée autour des horaires postés',
+          'Un interlocuteur qui répond en dehors des heures de bureau, parce que le port n’en a pas',
+        ],
+      },
       conditions: {
         title: 'Ce que travailler à Europoort implique',
         intro:
@@ -197,6 +210,19 @@ export const industrial: SectionContent = {
             title: 'Commencez le travail installé',
             text: 'Formalités faites, logement opérationnel, et une ligne directe vers nous pour tout ce qui suit.',
           },
+        ],
+      },
+      fees: {
+        title: 'Ce que coûte une relocation à la Maasvlakte',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'Les affectations à la Maasvlakte vont du spécialiste seul sur une courte mise en service à une équipe entière sur un contrat pluriannuel. Vous recevez une proposition correspondant au périmètre réel.',
+        includes: [
+          'Un logement qui rend le trajet vers la Maasvlakte réaliste',
+          'Immigration et autorisations organisées selon le calendrier du projet',
+          'Formalités traitées sans retirer les équipes du site',
+          'Un appui pour les conjoints et enfants qui arrivent plus tard',
         ],
       },
       conditions: {
@@ -325,6 +351,19 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Ce que coûte un appui offshore',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'Les rotations rendent le travail offshore incomparable à toute autre relocation. Vous recevez une proposition bâtie sur votre rotation et la durée du contrat.',
+        includes: [
+          'Un logement adapté à une rotation plutôt qu’à des horaires de bureau',
+          'Immigration traitée autour du temps passé en mer',
+          'Rendez-vous placés à l’intérieur de vos semaines à terre',
+          'Un interlocuteur permanent pendant que vous êtes injoignable',
+        ],
+      },
       note: 'Les positions fiscales et de sécurité sociale offshore varient selon l’État du pavillon, l’employeur et les jours travaillés ; nous signalons quand votre situation exige un spécialiste fiscal transfrontalier et vous mettons en relation avec l’un de notre réseau.',
       conditions: {
         title: 'Ce que change le travail en rotation',
@@ -450,6 +489,19 @@ export const industrial: SectionContent = {
             title: 'Premier poste, entièrement installé',
             text: 'Vous pointez avec votre adresse, votre numéro et votre assurance déjà réglés.',
           },
+        ],
+      },
+      fees: {
+        title: 'Ce que coûte une relocation pour les professionnels de la logistique',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'Le périmètre dépend du fait que vous arriviez seul ou en famille, et de la rapidité du démarrage du poste. Après le premier entretien, vous recevez un devis à prix fixe.',
+        includes: [
+          'Un logement près des terminaux, entrepôts ou du corridor où vous travaillerez réellement',
+          'Voie de séjour choisie et déposée en fonction de votre date d’entrée',
+          'Formalités, assurance et banque organisées à l’arrivée',
+          'Un appui familial lorsque conjoint et enfants suivent',
         ],
       },
       conditions: {
@@ -580,6 +632,19 @@ export const industrial: SectionContent = {
             title: 'Bilan et itération',
             text: 'Nous débriefons avec l’employeur après chaque atterrissage, pour que le suivant soit encore plus fluide.',
           },
+        ],
+      },
+      fees: {
+        title: 'Ce que coûte un appui à la relocation industrielle',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'Des prestations sur mesure, adaptées à vos exigences personnelles. À l’issue d’un premier entretien, vous recevez une proposition personnalisée fondée sur vos objectifs, votre situation familiale et le niveau d’accompagnement souhaité.',
+        includes: [
+          'Un plan unique couvrant le titre de séjour, le logement et les formalités',
+          'Coordination avec l’employeur pour que la paperasse ne retarde aucune date d’entrée',
+          'Un accompagnement dans les langues que votre équipe parle réellement',
+          'Un interlocuteur unique pour le salarié et pour votre service RH',
         ],
       },
       conditions: {

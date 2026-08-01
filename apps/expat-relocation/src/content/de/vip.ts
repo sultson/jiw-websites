@@ -13,10 +13,10 @@ export const vip: VipContent = {
   image: '/images/vip-hub.jpg?v=20260731',
   imageAlt: 'Gastgeber begrüßt ein mit dem Auto ankommendes Paar vor einem Hotel an der Gracht',
   pricingNote: {
-    title: 'Was ein Paket kostet, und warum',
+    title: 'Wie VIP kalkuliert wird',
     text: [
-      'Die Pakete liegen je nach Haushaltsgröße, Visumsweg und Verdichtung Ihres Zeitplans zwischen 2.000 € und 10.000 €. Dieser Preis kauft Wochen an Vollzeitarbeit: Anträge vorbereitet und eingereicht, Wohnraum gesucht und verhandelt, jede Anmeldung terminiert und begleitet, und eine Erreichbarkeit, die nicht um fünf Uhr endet.',
-      'Nach Ihrer ersten Beratung erhalten Sie ein festes Angebot. Keine Stundenüberraschungen, keine Zusatzkosten mitten im Umzug.',
+      'Maßgeschneiderte Leistungen, zugeschnitten auf Ihre persönlichen Anforderungen. Nach einem ersten Gespräch erhalten Sie ein individuelles Angebot, das sich an Ihren Zielen, Ihrer familiären Situation und dem gewünschten Grad an Begleitung orientiert.',
+      'Dieses Angebot ist ein fester Betrag für den vereinbarten Umfang. Keine Stundensätze, keine Nachträge mitten im Umzug und keine Kosten für das Gespräch, aus dem das Angebot entsteht.',
     ],
   },
   tailored: {
@@ -31,7 +31,7 @@ export const vip: VipContent = {
       metaTitle: 'Relocation & Immigration Paket für Paare Niederlande | E & I',
       metaDescription:
         'Komplettes Relocation- und Immigrationspaket für Paare, die in die Niederlande ziehen: Partnervisum, Wohnen, BSN, Versicherung, Bankkonto und Ankommen, persönlich begleitet.',
-      priceFrom: 'ab 2.000 €',
+      investment: 'Maßgeschneidert',
       intro: [
         'Sie ziehen um für eine Karriere, ein Unternehmen oder füreinander, und keiner von Ihnen hat Zeit, Experte für niederländische Bürokratie zu werden. Das VIP-Paket für Paare legt beide Akten in eine Hand und ordnet alles so, dass Visa, Zuhause und Anmeldungen in der richtigen Reihenfolge eintreffen.',
       ],
@@ -95,7 +95,7 @@ export const vip: VipContent = {
       metaTitle: 'Relocation & Immigration Services für Familien Niederlande | E & I',
       metaDescription:
         'Familien-Relocation-Paket für die Niederlande: Immigration für jedes Familienmitglied, Wohnen, Schulsuche, Gesundheitsversorgung, Anmeldungen und Orientierung im Viertel, persönlich begleitet.',
-      priceFrom: 'ab 3.500 €',
+      investment: 'Maßgeschneidert',
       badge: 'Am häufigsten gewählt',
       intro: [
         'Eine Familien-Relocation ist keine größere Version eines Einzelumzugs, sie ist eine eigene Disziplin. Schuljahre mit festen Stichtagen, ein Zuhause, das für alle funktionieren muss, vier Akten bei der IND statt einer. Dieses Paket existiert, weil wir genau diese Abfolge am besten beherrschen.',
@@ -160,7 +160,7 @@ export const vip: VipContent = {
       metaTitle: 'Business Relocation & Immigration Services Niederlande | E & I',
       metaDescription:
         'Business-Relocation-Paket für die Niederlande: Startup- oder DAFT-Visum, Firmen- und KvK-Eintragung, Wohnen und Ankommen für Gründer und Führungskräfte, in einem Plan.',
-      priceFrom: 'ab 5.000 €',
+      investment: 'Maßgeschneidert',
       intro: [
         'Gründer und Führungskräfte, die in die Niederlande ziehen, stehen vor zwei Bürokratien zugleich: eine für das Unternehmen, eine für das Leben darum herum. Dieses Paket führt beide Stränge gleichzeitig, damit das Unternehmen arbeitet, während sein Gründer bereits gut lebt, statt aus dem Hotel in die Warteschlange zu pendeln.',
       ],
@@ -224,7 +224,7 @@ export const vip: VipContent = {
       metaTitle: 'VIP Relocation Concierge Niederlande | E & I',
       metaDescription:
         'Concierge-Relocation in die Niederlande für Künstler, Sportler und Führungskräfte: ein vorbereiteter Besuch, alle Termine gebündelt, Chauffeurtage und persönlicher 24/7-Support.',
-      priceFrom: 'ab 7.500 €',
+      investment: 'Maßgeschneidert',
       intro: [
         'Eine Künstlerin zwischen Tourneeterminen. Ein Sportler, mitten in der Saison verpflichtet. Eine Führungskraft, deren Kalender bis ins nächste Jahr geplant ist. Die Concierge-Stufe verdichtet eine Relocation auf die Zeit, die Sie tatsächlich haben, manchmal ein einziges Wochenende, und erledigt alles, was sich ohne Sie erledigen lässt.',
         'Sie nennen uns die Tage, an denen Sie in den Niederlanden sein können. Wir choreografieren den Rest darum herum.',

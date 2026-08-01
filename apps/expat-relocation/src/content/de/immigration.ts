@@ -31,6 +31,13 @@ export const immigration: SectionContent = {
         'Genau hier kommen wir ins Spiel. Wir koordinieren direkt mit der HR-Abteilung Ihres Arbeitgebers, bereiten Sie und Ihre Familie auf jeden Termin vor und bleiben über unsere persönliche 24/7 WhatsApp-Linie erreichbar, wann immer eine Frage aufkommt, ganz gleich in welcher Zeitzone.',
       ],
       cardText: 'Der schnellste Arbeitsweg in die Niederlande, koordiniert zwischen Ihnen, Ihrem Arbeitgeber und der IND.',
+      explainer: {
+        title: 'Was ist die Aufenthaltserlaubnis für hoch qualifizierte Fachkräfte?',
+        text: [
+          'Die Erlaubnis für hoch qualifizierte Fachkräfte, auf Niederländisch kennismigrant, ist der Weg, über den die Niederlande erfahrene Fachkräfte schnell ins Land holen. Beurteilt wird weder Ihre Berufsbezeichnung noch Ihr Abschluss. Beurteilt wird eines: ob ein niederländischer Arbeitgeber, den die IND als Sponsor anerkannt hat, Ihnen ein Gehalt oberhalb einer festgelegten Grenze zahlt.',
+          'Weil die Anerkennung beim Arbeitgeber liegt, verläuft das Verfahren zügig und ohne Arbeitsmarktprüfung. Die Erlaubnis ist an diesen Arbeitgeber gebunden. Es ist also der Vertrag und nicht die Person, der Ihren Aufenthalt in den Niederlanden trägt.',
+        ],
+      },
       forWho: {
         title: 'Für wen dieser Weg gedacht ist',
         items: [
@@ -72,6 +79,17 @@ export const immigration: SectionContent = {
           { title: 'Vorbereitung der Akte', text: 'Wir stellen die Dokumente mit Ihnen und Ihrem Arbeitgeber zusammen und reichen über den Sponsor ein.' },
           { title: 'Entscheidung und MVV', text: 'Je nach Staatsangehörigkeit holen Sie vor der Reise ein Einreisevisum bei der niederländischen Botschaft ab. Wir bereiten Sie auf diesen Termin vor.' },
           { title: 'Ankunft', text: 'In Ihren ersten Tagen erledigen wir Anmeldung, Abholung der Aufenthaltskarte und die praktischen Grundlagen.' },
+        ],
+      },
+      fees: {
+        title: 'Honorar für einen Antrag als hoch qualifizierte Fachkraft',
+        kind: 'fixed',
+        amount: 'Investition ab 1.295 €',
+        includes: [
+          'Prüfung der Gehaltsgrenze, die für Ihr Alter und Ihre Situation gilt',
+          'Die vollständige Antragsakte, vorbereitet und über Ihren anerkannten Sponsor eingereicht',
+          'Abstimmung mit der Personalabteilung Ihres Arbeitgebers, damit Vertrag und Eintrittsdatum zusammenpassen',
+          'Nachverfolgung jeder Nachforderung der IND bis zur Entscheidung',
         ],
       },
       note: 'Viele Highly Skilled Migrants qualifizieren sich für die 30%-Regelung, einen niederländischen Steuervorteil für zuziehende Arbeitnehmer. Die Bedingungen ändern sich regelmäßig, deshalb sprechen wir sie im Erstgespräch an und verbinden Sie mit einem Steuerberater, statt Zahlen zu versprechen.',
@@ -159,6 +177,13 @@ export const immigration: SectionContent = {
         'Unser Ruf wurde in der Welt der Botschaften aufgebaut, und Blue-Card-Akten belohnen genau diese Präzision: ein korrekt bewerteter Abschluss, ein konformer Vertrag und eine saubere Einreichung. Wir sorgen dafür, dass Ihre Akte alle drei Kriterien erfüllt.',
       ],
       cardText: 'Die europäische Arbeitserlaubnis für hochqualifizierte Fachkräfte, mit Mobilität in der ganzen EU.',
+      explainer: {
+        title: 'Was ist die Blaue Karte EU?',
+        text: [
+          'Die Blaue Karte EU ist ein europäischer Aufenthalts- und Arbeitstitel für Akademikerinnen und Akademiker. Während die niederländische Erlaubnis für hoch qualifizierte Fachkräfte nur nach Gehalt und anerkanntem Sponsor fragt, verlangt die Blaue Karte zusätzlich ein abgeschlossenes Hochschulstudium und gibt dafür Rechte, die über die Niederlande hinausreichen.',
+          'Darin liegt der eigentliche Unterschied. Eine Blaue Karte führt zu Mobilität innerhalb der Europäischen Union und zur langfristigen Aufenthaltsberechtigung EU, was der nationale Titel nicht leistet. Sie ist die bessere Wahl, wenn die Niederlande ein Kapitel sind und nicht das ganze Buch.',
+        ],
+      },
       forWho: {
         title: 'Ist das Ihr Weg?',
         items: [
@@ -195,6 +220,17 @@ export const immigration: SectionContent = {
           { title: 'Einschätzung', text: 'Wir prüfen Abschluss, Angebot und Gehalt gegen die aktuellen Bedingungen der Blauen Karte.' },
           { title: 'Anerkennung und Akte', text: 'Die Diplombewertung wird angestoßen, während wir parallel die Antragsakte aufbauen.' },
           { title: 'Einreichung und Ankunft', text: 'Nach der Genehmigung planen wir Einreise, Anmeldung und die ersten Termine in der richtigen Reihenfolge.' },
+        ],
+      },
+      fees: {
+        title: 'Honorar für einen Antrag auf die Blaue Karte EU',
+        kind: 'fixed',
+        amount: 'Investition ab 1.295 €',
+        includes: [
+          'Qualifikation und Gehalt an den Kriterien der Blauen Karte geprüft, bevor Sie sich festlegen',
+          'Diplombewertung veranlasst, wo die IND sie verlangt',
+          'Antrag vorbereitet und eingereicht, einschließlich des Arbeitgeberteils der Akte',
+          'Begleitung bis zur Entscheidung, auch bei Nachforderungen von Unterlagen',
         ],
       },
       conditions: {
@@ -286,6 +322,13 @@ export const immigration: SectionContent = {
         'Der Antrag selbst ist unkompliziert, wenn er richtig gemacht wird. Unser eigentlicher Wert liegt in dem, was danach kommt: aus diesem Jahr eine Karriere und ein Zuhause zu machen. Wir begleiten Absolventen vom ersten Formular bis zur ersten Wohnung und bleiben an Ihrer Seite, während Sie Fuß fassen.',
       ],
       cardText: 'Zwölf Monate, um nach Ihrem Abschluss frei in den Niederlanden zu leben und zu arbeiten.',
+      explainer: {
+        title: 'Was ist das Orientierungsjahr?',
+        text: [
+          'Das Orientierungsjahr, auf Niederländisch zoekjaar, ist eine einjährige Aufenthaltserlaubnis, mit der Absolventinnen, Absolventen und Forschende in den Niederlanden Arbeit suchen können, ohne dass ein Arbeitgeber sie zuvor sponsert. In diesem Jahr dürfen Sie frei arbeiten, kein Arbeitgeber benötigt eine Arbeitserlaubnis für Sie.',
+          'Es löst ein Henne-Ei-Problem: Arbeitgeber wollen jemanden, der sofort anfangen kann, und Aufenthaltstitel setzen meist einen Arbeitgeber voraus. Das Orientierungsjahr durchbricht diese Blockade und bringt anschließend eine niedrigere Gehaltsgrenze mit, wenn Sie in die Erlaubnis für hoch qualifizierte Fachkräfte wechseln.',
+        ],
+      },
       forWho: {
         title: 'Wer sich qualifiziert',
         items: [
@@ -326,6 +369,18 @@ export const immigration: SectionContent = {
           { title: 'Prüfen', text: 'Ein Gespräch, um Ihre Berechtigung zu bestätigen und den Zeitpunkt Ihres Umzugs zu planen.' },
           { title: 'Beantragen', text: 'Wir bereiten den IND-Antrag vor, reichen ihn ein und halten Sie bei jeder Statusänderung auf dem Laufenden.' },
           { title: 'Ankommen und einleben', text: 'Wir organisieren Anmeldung und Grundlagen, damit Sie das Jahr für Ihre Karriere nutzen können, nicht für Bürokratie.' },
+        ],
+      },
+      fees: {
+        title: 'Honorar für das Orientierungsjahr',
+        kind: 'tailored',
+        amount: 'Auf Anfrage',
+        amountNote:
+          'Das Orientierungsjahr ist ein kurzes Verfahren, und was Sie von uns brauchen, hängt davon ab, ob Sie aus den Niederlanden heraus oder aus dem Ausland beantragen. Nach einer kurzen Prüfung Ihres Abschlusses und Ihres Zeitplans erhalten Sie ein Festpreisangebot.',
+        includes: [
+          'Prüfung, ob Ihr Abschluss und Ihr Abschlussdatum noch qualifizieren',
+          'Antrag vorbereitet und bei der IND eingereicht',
+          'Begleitung beim Wechsel in eine Arbeitserlaubnis, bevor das Jahr abläuft',
         ],
       },
       note: 'Das Drei-Jahres-Fenster nach dem Abschluss ist strikt, und die Ranking-Listen ändern sich jedes Jahr. Wenn Sie an der Grenze liegen, kontaktieren Sie uns, bevor Sie annehmen, dass Sie nicht infrage kommen. Fragen halten sich selten an Bürozeiten, deshalb erreichen unsere Klienten uns Tag und Nacht über eine persönliche WhatsApp-Linie.',
@@ -408,6 +463,13 @@ export const immigration: SectionContent = {
         'Wir behandeln diese Fälle mit der Sorgfalt, die sie verdienen. Johanna begleitet Klienten persönlich zu ihren Terminen, vom Schalter der Gemeinde bis zur IND, damit keiner von Ihnen jemals unvorbereitet einem Beamten gegenübersitzt.',
       ],
       cardText: 'Sorgfältige, persönliche Begleitung, um Ihren Partner oder Ehepartner in die Niederlande zu holen.',
+      explainer: {
+        title: 'Was ist ein Partnervisum?',
+        text: [
+          'Ein Partnervisum ist ein Aufenthalt, der auf Ihrer Beziehung beruht und nicht auf Ihrer Arbeit. Einer von Ihnen, die referierende Person, darf bereits in den Niederlanden leben. Die andere Person beantragt den Nachzug. Eine Ehe ist nicht erforderlich, eine unverheiratete Beziehung muss jedoch als dauerhaft und ausschließlich belegt werden.',
+          'Das niederländische Verfahren prüft drei Dinge: dass die Beziehung echt ist, dass die referierende Person ein stabiles und ausreichendes Einkommen hat und dass ausländische Personenstandsurkunden ordnungsgemäß legalisiert und übersetzt sind. Die meisten Ablehnungen kommen vom dritten Punkt, nicht vom ersten.',
+        ],
+      },
       forWho: {
         title: 'Wem wir helfen',
         items: [
@@ -449,6 +511,17 @@ export const immigration: SectionContent = {
           { title: 'Vorbereitung im Ausland', text: 'Examen, Legalisationen und Botschaftslogistik im Land Ihres Partners, koordiniert von hier aus.' },
           { title: 'Einreichen und entscheiden', text: 'Der Antrag geht an die IND. Wir verfolgen ihn und beantworten Nachforderungen sofort.' },
           { title: 'Wieder vereint', text: 'Ihr Partner reist ein, meldet sich an und erhält die Aufenthaltserlaubnis. Wir sind bei der Ankunft dabei.' },
+        ],
+      },
+      fees: {
+        title: 'Honorar für einen Antrag auf ein Partnervisum',
+        kind: 'fixed',
+        amount: 'Investition ab 895 €',
+        includes: [
+          'Prüfung der Beziehungsnachweise, bevor irgendetwas eingereicht wird',
+          'Akten der referierenden und der antragstellenden Person gemeinsam erstellt, damit sie einander nicht widersprechen',
+          'Legalisations- und Übersetzungserfordernisse für Ihr Herkunftsland aufgeschlüsselt',
+          'Antrag eingereicht und bis zur Entscheidung begleitet',
         ],
       },
       conditions: {
@@ -530,6 +603,13 @@ export const immigration: SectionContent = {
         'Diese Operation führen wir für Familien rund um Rotterdam, Europoort und die weitere Industrieregion durch, wo internationale Fachkräfte mit Verträgen ankommen und ihre Familien nachfolgen. Es ist unser Heimatterrain, und das prägt alles, von den Schulen, die wir empfehlen, bis zu den Gemeindeschaltern, die wir beim Namen kennen.',
       ],
       cardText: 'Aufenthaltstitel für Ehepartner und Kinder, koordiniert, damit die ganze Familie gemeinsam ankommt.',
+      explainer: {
+        title: 'Was ist Familienzusammenführung?',
+        text: [
+          'Die Familienzusammenführung, auf Niederländisch gezinshereniging, bringt Partnerin oder Partner und Kinder zu jemandem, der bereits einen Aufenthaltstitel in den Niederlanden hat. Es ist ein einziger rechtlicher Rahmen für den gesamten Haushalt und kein getrenntes Verfahren pro Person.',
+          'Die IND prüft die referierende Person ebenso genau wie die Antragstellenden: ein stabiles Einkommen mindestens in Höhe der gesetzlichen Grenze, angemessener Wohnraum und Personenstandsurkunden aus dem Herkunftsland, die der Legalisation standhalten. Für Kinder gelten eigene Nachweise zu Sorgerecht und elterlicher Zustimmung.',
+        ],
+      },
       forWho: {
         title: 'Gemacht für',
         items: [
@@ -570,6 +650,17 @@ export const immigration: SectionContent = {
           { title: 'Familien-Erstgespräch', text: 'Wir erfassen Staatsangehörigkeit, Dokumente und Bedürfnisse jedes Familienmitglieds in einem Gespräch.' },
           { title: 'Vorbereiten und einreichen', text: 'Urkunden werden legalisiert, während wir die Anträge parallel aufbauen und einreichen, um Monate zu sparen.' },
           { title: 'Reisen und einleben', text: 'Einreisevisa, Flüge, Anmeldung und Schulstarts, so getaktet, dass niemand auf jemanden warten muss.' },
+        ],
+      },
+      fees: {
+        title: 'Honorar für einen Antrag auf Familienzusammenführung',
+        kind: 'fixed',
+        amount: 'Investition ab 1.195 €',
+        includes: [
+          'Einkommens- und Sponsoranforderungen an Ihrem tatsächlichen Vertrag geprüft',
+          'Eine abgestimmte Akte für Ihre Partnerin oder Ihren Partner und jedes Kind',
+          'Legalisation und beeidigte Übersetzungen je Land aufgeschlüsselt',
+          'Anträge gemeinsam eingereicht und bis zur Entscheidung begleitet',
         ],
       },
       note: 'Anträge für Kinder hängen an Details, mit denen Eltern selten rechnen, etwa der Zustimmung eines zurückbleibenden Elternteils. Schildern Sie Ihre vollständige Familiensituation im Erstgespräch, damit nichts spät auftaucht.',
@@ -652,6 +743,13 @@ export const immigration: SectionContent = {
         'Wir begleiten den ganzen Bogen, nicht nur den Aufenthaltstitel: das Facilitator-Matching, den Startup-Plan, den die IND lesen will, und die praktische Seite der Ankunft, von der Unternehmensregistrierung bis zur Wohnung.',
       ],
       cardText: 'Ein einjähriger Gründertitel, um Ihr innovatives Unternehmen im niederländischen Ökosystem aufzubauen.',
+      explainer: {
+        title: 'Was ist das Startup-Visum?',
+        text: [
+          'Das Startup-Visum ist eine einjährige Aufenthaltserlaubnis für Gründerinnen und Gründer, die in den Niederlanden ein innovatives Unternehmen aufbauen. Es existiert, weil ein wirklich neues Unternehmen am ersten Tag selten den Umsatz oder die Historie vorweisen kann, die die reguläre Selbstständigenerlaubnis verlangt.',
+          'Sein prägendes Merkmal ist der Facilitator: ein erfahrener Mentor, der von der niederländischen Wirtschaftsagentur anerkannt ist und Ihr Unternehmen durch sein erstes Jahr begleitet. Bewertet werden die Innovation im Plan und diese Partnerschaft, nicht Ihr Umsatz. Das Jahr ist die Anlaufbahn zur Selbstständigenerlaubnis, und wer diesen nächsten Schritt früh vorbereitet, macht den Unterschied zwischen Weitermachen und Neuanfangen.',
+        ],
+      },
       forWho: {
         title: 'Wer das Startup-Visum beantragen kann',
         items: [
@@ -707,15 +805,15 @@ export const immigration: SectionContent = {
         ],
       },
       fees: {
-        title: 'Honorar für einen Startup-Visum-Antrag',
-        amount: 'ab 2.250 bis 3.250 Euro',
+        title: 'Honorar für einen Antrag auf das Startup-Visum',
+        kind: 'fixed',
+        amount: 'Investition ab 2.495 €',
         includes: [
-          'Einwanderungsstrategie und Beratung',
-          'Vorbereitung des Startup-Visum-Antrags',
-          'Facilitator-Koordination',
-          'Kommunikation mit der IND',
+          'Immigrationsstrategie und Beratung zur Zulässigkeit',
+          'Unterstützung beim Aufbau des Plans, nach dem der Antrag beurteilt wird',
+          'Auswahl des Facilitators und Abstimmung mit ihm',
+          'Antrag bei der IND eingereicht und bis zur Entscheidung begleitet',
         ],
-      note: 'Der Startup-Titel läuft ein Jahr und wird als solcher nicht verlängert. Der geplante nächste Schritt ist die Aufenthaltserlaubnis für Selbstständige, und wir beginnen mit dieser Akte lange bevor Ihr Jahr endet.',
       },
       note: 'Der Startup-Titel läuft ein Jahr und wird als solcher nicht verlängert. Der geplante nächste Schritt ist meist die Aufenthaltserlaubnis für Selbstständige, und wir beginnen mit dieser Akte lange bevor Ihr Jahr endet.',
       details: {
@@ -776,6 +874,13 @@ export const immigration: SectionContent = {
         'Es ist die Route, die Freelancer, Berater und Inhaber kleiner Unternehmen am häufigsten nutzen. Neben der Einwanderungsakte übernehmen wir die praktische Seite der Ankunft: Unternehmensregistrierung, Wohnung und Aufenthalt für die Familie, die mitkommt.',
       ],
       cardText: 'Die Vertragsroute, mit der Amerikaner als Unternehmer in den Niederlanden leben und arbeiten können.',
+      explainer: {
+        title: 'Was ist die DAFT-Erlaubnis?',
+        text: [
+          'Die DAFT-Erlaubnis stammt aus dem Dutch American Friendship Treaty, einem Abkommen von 1956, das US-Staatsbürgerinnen und -bürgern einen außergewöhnlich zugänglichen Weg in die Selbstständigkeit in den Niederlanden eröffnet. Sie steht ausschließlich Amerikanern offen und ist mit Abstand die einfachste unternehmerische Erlaubnis des Landes.',
+          'Der Vertrag ersetzt das Punktesystem, dem andere Nationalitäten unterliegen, durch einen einzigen klaren Test: ein echtes niederländisches Unternehmen anmelden und eine festgelegte Mindesteinlage im Eigenkapital halten. Es gibt keine Innovationsanforderung, keinen Facilitator und keine Bewertung Ihres Businessplans. Die Einlage zu erhalten ist das, was die Erlaubnis bei der Verlängerung am Leben hält.',
+        ],
+      },
       forWho: {
         title: 'Für wen das DAFT-Visum gedacht ist',
         items: [
@@ -833,14 +938,14 @@ export const immigration: SectionContent = {
       },
       fees: {
         title: 'Honorar für einen DAFT-Antrag',
-        amount: 'ab 1.950 bis 2.750 Euro',
+        kind: 'fixed',
+        amount: 'Investition ab 2.295 €',
         includes: [
-          'Einwanderungsberatung',
-          'Vorbereitung des Antrags auf Aufenthaltserlaubnis',
-          'Begleitung bei der Unternehmensregistrierung',
-          'Kommunikation mit der IND',
+          'Prüfung der Zulässigkeit nach dem Dutch American Friendship Treaty',
+          'Unternehmensanmeldung und Einlage so strukturiert, dass sie den Vertragstest bestehen',
+          'Antrag auf die Aufenthaltserlaubnis vorbereitet und eingereicht',
+          'Begleitung beim Erhalt der Einlage über spätere Verlängerungen hinweg',
         ],
-      note: 'Die Aufenthaltserlaubnis wird üblicherweise für zwei Jahre erteilt und ist verlängerbar. Die 4.500 Euro müssen im Unternehmen investiert bleiben, solange Sie den DAFT-Status halten, denn bei Verlängerungen wird Ihre Bilanz geprüft.',
       },
       note: 'Die 4.500 € müssen im Unternehmen investiert bleiben, solange Sie den DAFT-Status halten, und bei Verlängerungen wird Ihre Bilanz geprüft. Aktuelle IND-Gebühren und Bearbeitungszeiten ändern sich, deshalb bestätigen wir sie in Ihrem Erstgespräch.',
       details: {
@@ -901,6 +1006,13 @@ export const immigration: SectionContent = {
         'Diese Akten leben und sterben im Konsulat, und diese Welt kennen wir aus nächster Nähe. Unser Ruf wurde in der Welt der Botschaften aufgebaut, wir wissen also, wie eine überzeugende Geschäftsakte von der anderen Seite des Schalters aussieht.',
       ],
       cardText: 'Kurzaufenthaltsvisa für Meetings, Verhandlungen und Standortbesuche in den Niederlanden.',
+      explainer: {
+        title: 'Was ist ein Geschäftsvisum?',
+        text: [
+          'Ein Geschäftsvisum ist ein Schengen-Visum für kurze Aufenthalte, Typ C, für Besprechungen, Verhandlungen, Konferenzen und Betriebsbesichtigungen. Es erlaubt bis zu 90 Tage innerhalb von 180 Tagen im gesamten Schengen-Raum und berechtigt nicht dazu, in den Niederlanden eine Beschäftigung aufzunehmen.',
+          'Angehörige vieler Staaten benötigen es vor der Reise, andere sind für kurze Aufenthalte befreit. Über den Antrag entscheidet das Konsulat anhand der Einladung, Ihrer Reisehistorie, der Versicherung und des Nachweises, dass Sie zurückkehren werden. Deshalb zählt die Aktenlage mehr als das Formular.',
+        ],
+      },
       forWho: {
         title: 'Typische Reisende',
         items: [
@@ -937,6 +1049,17 @@ export const immigration: SectionContent = {
           { title: 'Briefen Sie uns', text: 'Wer reist, von wo und wofür. Wir bestätigen sofort den richtigen Visumtyp.' },
           { title: 'Akte aufbauen', text: 'Einladung, Nachweise und Formulare kommen in Tagen zusammen, nicht in Wochen.' },
           { title: 'Konsulat und Reise', text: 'Termin gebucht, Akte eingereicht, und Ihr Besuch verläuft nach Plan.' },
+        ],
+      },
+      fees: {
+        title: 'Honorar für einen Antrag auf ein Geschäftsvisum',
+        kind: 'fixed',
+        amount: 'Investition ab 795 €',
+        includes: [
+          'Prüfung des richtigen Visumtyps für Zweck und Dauer Ihrer Reise',
+          'Einladung und Nachweise auf konsularischem Niveau vorbereitet',
+          'Termin gebucht und die Akte für die Einreichung zusammengestellt',
+          'Beratung zu Reiseversicherung und Nachweis der Mittel',
         ],
       },
       note: 'Ein Schengen-Businessvisum erlaubt Meetings und Verhandlungen, keine Beschäftigung. Wenn Ihre Besuche zu regelmäßiger Arbeit in den Niederlanden werden, sprechen Sie mit uns über einen arbeitsbasierten Titel, bevor es an der Grenze zum Problem wird.',
@@ -1019,6 +1142,13 @@ export const immigration: SectionContent = {
         'Wir sind das Einwanderungsbüro, über das unsere Klienten nie nachdenken müssen. Wir behalten die Fristen im Blick, bereiten die Akten vor, und Johanna begleitet Klienten persönlich zu ihren IND-Terminen, damit sich eine Vorladung nie wie eine Drohung anfühlt.',
       ],
       cardText: 'Ersttitel, Verlängerungen, Änderungen und der Weg zum Daueraufenthalt, alles unter einem Dach.',
+      explainer: {
+        title: 'Was ist eine niederländische Aufenthaltserlaubnis?',
+        text: [
+          'Eine Aufenthaltserlaubnis, auf Niederländisch verblijfsvergunning, ist das Dokument, das Ihren Aufenthalt über 90 Tage hinaus rechtmäßig macht. Sie wird von der IND erteilt, nennt immer einen Aufenthaltszweck wie Arbeit, Familie oder Studium, und die damit verbundenen Rechte folgen diesem Zweck und nicht der Karte selbst.',
+          'Erlaubnisse sind entweder befristet oder unbefristet. Für die lange Sicht zählt vor allem, welchen Zweck Sie halten und wie lange, denn der ununterbrochene rechtmäßige Aufenthalt öffnet am Ende den Weg zur Niederlassung und zur Einbürgerung. Ein Zweckwechsel ist möglich, aber der Zeitpunkt entscheidet, ob Ihre angesammelten Jahre den Wechsel überstehen.',
+        ],
+      },
       forWho: {
         title: 'Wann Sie uns anrufen sollten',
         items: [
@@ -1055,6 +1185,17 @@ export const immigration: SectionContent = {
           { title: 'Prüfen', text: 'Wir auditieren Ihren aktuellen Status und markieren jede Frist und Bedingung, die zählt.' },
           { title: 'Vorbereiten', text: 'Der richtige Antrag, zusammengestellt vor der Frist und mit Luft nach hinten.' },
           { title: 'Sichern', text: 'Einreichung, Nachverfolgung und Ihr neuer Titel in der Hand, mit dem nächsten Meilenstein bereits im Kalender.' },
+        ],
+      },
+      fees: {
+        title: 'Honorar für einen Antrag auf eine Aufenthaltserlaubnis',
+        kind: 'fixed',
+        amount: 'Investition ab 895 €',
+        includes: [
+          'Prüfung, welche Erlaubnis zu Ihrer Situation passt und welche Bestand hat',
+          'Antrag vorbereitet und bei der IND eingereicht',
+          'Anforderungen an Dokumente, Legalisation und Übersetzung vorab aufgeschlüsselt',
+          'Begleitung bis zur Entscheidung, auf Wunsch auch bei Verlängerungen',
         ],
       },
       note: 'Gebühren und Entscheidungsfristen unterscheiden sich je Titelart und ändern sich mit der Zeit, deshalb bestätigen wir die aktuellen IND-Zahlen in Ihrem Erstgespräch, statt sie hier abzudrucken.',

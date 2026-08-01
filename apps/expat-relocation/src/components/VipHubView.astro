@@ -61,7 +61,7 @@ const l = (p: string) => localizePath(p, lang);
         <div class="flex flex-1 flex-col p-7 md:p-8">
           <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
             <h2 class:list={['font-display text-2xl', p.badge ? 'text-white' : 'text-navy']}>{p.name}</h2>
-            <p class:list={['text-[0.78rem] uppercase tracking-[0.14em]', p.badge ? 'text-gold-soft' : 'text-gold']}>{p.priceFrom}</p>
+            <p class:list={['text-[0.78rem] uppercase tracking-[0.14em]', p.badge ? 'text-gold-soft' : 'text-gold']}>{p.investment}</p>
           </div>
           <p class:list={['mt-2 text-[0.92rem]', p.badge ? 'text-white/70' : 'text-ink-soft']}>{p.tagline}</p>
           <ul class="mt-5 flex-1 space-y-2">

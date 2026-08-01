@@ -26,6 +26,13 @@ export const relocation: SectionContent = {
         'Wij bereiden de afspraak voor, controleren of uw geboorteakten en apostilles geaccepteerd zullen worden, en Johanna gaat persoonlijk met u mee naar het loket. Stelt de ambtenaar een vraag over een buitenlands document, dan heeft u iemand naast u die die vraag al honderd keer heeft gehoord en het antwoord kent.',
       ],
       cardText: 'Uw burgerservicenummer snel geregeld, met ons naast u aan het loket.',
+      explainer: {
+        title: 'Wat is een BSN?',
+        text: [
+          'Het BSN, burgerservicenummer, is uw Nederlandse persoonsnummer. Het is het enige kenmerk waaraan de overheid, uw werkgever, uw bank, uw verzekeraar en uw huisarts u herkennen, en vrijwel niets in het Nederlandse leven komt zonder dat nummer op gang.',
+          'U krijgt het door u in te schrijven bij een gemeente, niet door het apart aan te vragen. Daarom is de inschrijving de eerste praktische taak na aankomst: zonder het nummer kan geen salaris worden uitbetaald, kan geen zorgverzekering ingaan en is een bankrekening lastig te openen.',
+        ],
+      },
       forWho: {
         title: 'Voor wie dit is',
         items: [
@@ -71,6 +78,17 @@ export const relocation: SectionContent = {
             title: 'Inschrijfdag',
             text: 'Wij gaan samen, ronden de inschrijving af en vertrekken met alles bevestigd.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor BSN-inschrijving',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 295',
+        includes: [
+          'Afspraak bij de gemeente geboekt aan het juiste loket en op het juiste moment',
+          'Eisen rond documenten, legalisatie en vertaling vooraf gecontroleerd',
+          'Begeleiding naar de afspraak, met tolk waar nodig',
+          'Opvolging tot het nummer daadwerkelijk is afgegeven',
         ],
       },
       note: 'Een BSN wordt uitgegeven via inschrijving in de Basisregistratie Personen, als ingezetene of, bij kort verblijf, als niet-ingezetene via een RNI-loket. Wij adviseren tijdens de intake welke route bij uw situatie past.',
@@ -153,6 +171,13 @@ export const relocation: SectionContent = {
         'Wij verzorgen de hele relatie met uw gemeente. Eerste inschrijving bij aankomst, herinschrijving bij een verhuizing binnen Nederland, uitschrijving als u vertrekt, en correcties wanneer de registratie niet klopt met de werkelijkheid. Jaren van werken naast ambassades en consulaten hebben ons geleerd hoe de Nederlandse overheid denkt, en die taal spreken wij aan uw lokale loket.',
       ],
       cardText: 'Eerste inschrijving, verhuizingen en correcties bij de gemeente, allemaal voor u geregeld.',
+      explainer: {
+        title: 'Wat is inschrijving bij de gemeente?',
+        text: [
+          'Inschrijving bij de gemeente neemt u op in de Basisregistratie Personen, de BRP, het Nederlandse bevolkingsregister. Daarin staat wie u bent en waar u woont, en daaruit komt uw BSN voort. Elke laag van de Nederlandse administratie leest uit dat register.',
+          'Het is een wettelijke plicht met een termijn en geen vrijblijvende formaliteit. U schrijft zich in bij de gemeente van het adres waar u daadwerkelijk woont, en daarvoor heeft u toestemming van de verhuurder nodig. Juist daarop lopen inschrijvingen het vaakst vast.',
+        ],
+      },
       forWho: {
         title: 'Voor wie dit is',
         items: [
@@ -198,6 +223,17 @@ export const relocation: SectionContent = {
             title: 'Ingeschreven en gecontroleerd',
             text: 'Wij ronden de inschrijving samen af en bevestigen dat de registratie exact toont wat ze moet tonen.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor inschrijving bij de gemeente',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 295',
+        includes: [
+          'Afspraak geboekt binnen de wettelijke termijn van vijf dagen',
+          'Adres en toestemming van de verhuurder gecontroleerd zodat inschrijving niet wordt geweigerd',
+          'Begeleiding naar de gemeente op de dag zelf',
+          'Bevestiging dat de BRP-registratie klopt zodra die er is',
         ],
       },
       conditions: {
@@ -326,6 +362,17 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Honorarium voor advies over de zorgverzekering',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 195',
+        includes: [
+          'De juiste Nederlandse polis bepaald voor uw situatie en huishouden',
+          'Aanvraag samen met u ingevuld en ingediend',
+          'Ingangsdatum afgestemd op uw aankomst zodat u nooit onverzekerd bent',
+          'Advies over eigen risico, zorgtoeslag en het kiezen van een huisarts',
+        ],
+      },
       note: 'De verzekering gaat met terugwerkende kracht in vanaf de datum waarop uw verzekeringsplicht begon, dus premies zijn vanaf die datum verschuldigd, ook als u zich later aanmeldt. Snel aanmelden kost niets extra en voorkomt boetes.',
       conditions: {
         title: 'Hoe het Nederlandse stelsel werkt',
@@ -451,6 +498,17 @@ export const relocation: SectionContent = {
             title: 'Inschrijven en starten',
             text: 'Wij ronden de inschrijving af en helpen uw kind aankomen op een school die hen verwacht.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor een schoolzoektocht',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 995',
+        includes: [
+          'Een selectie internationale, tweetalige of Nederlandse scholen die echt bij uw kind passen',
+          'Wachtlijsten, aanmeldperiodes en toelatingsgebieden gecontroleerd voordat u kiest',
+          'Bezoeken en kennismakingen geregeld met de scholen',
+          'Aanmeldpapieren voorbereid en ingediend',
         ],
       },
       note: 'Schoolkeuze en woningkeuze zijn één beslissing, geen twee; het adres bepaalt de opties. Voeren wij ook uw woningzoektocht uit, dan plannen wij ze samen.',
@@ -584,6 +642,19 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Wat begeleiding bij het inburgeren kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Wennen is het deel van een verhuizing dat voor iedereen anders is en wordt daarom geprijsd naar wat u werkelijk geregeld wilt hebben. Na het eerste gesprek ontvangt u één vaste offerte, geen urenteller.',
+        includes: [
+          'Energie, internet en gemeentelijke belastingen op uw naam geregeld',
+          'Inschrijving bij huisarts, tandarts en apotheek',
+          'Bankzaken, DigiD en de Nederlandse administratie die al het andere blokkeert',
+          'De praktische kennismaking die van een adres een buurt maakt',
+        ],
+      },
       conditions: {
         title: 'De volgorde waarin het moet gebeuren',
         intro:
@@ -708,6 +779,17 @@ export const relocation: SectionContent = {
             title: 'Kom thuis aan',
             text: 'U gaat slapen in een werkend huis, precies wetend hoe morgen eruitziet.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor ophalen op de luchthaven',
+        kind: 'fixed',
+        amount: 'Vanaf € 395',
+        includes: [
+          'Een professionele chauffeur en een directieauto passend bij uw gezelschap en bagage',
+          'Vlucht bewaakt zodat vertraging u de boeking niet kost',
+          'Ontvangst in de terminal, niet een bericht vanaf de parkeerplaats',
+          'Rechtstreeks vervoer naar uw adres, hotel of eerste afspraak',
         ],
       },
       conditions: {
@@ -844,6 +926,19 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Wat een gezinsverhuizing kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Geen twee gezinsverhuizingen zijn gelijk: het aantal kinderen, de scholen, de verblijfsroute en de planning veranderen het werk. Na een eerste gesprek ontvangt u een voorstel op maat voor de hele aankomst.',
+        includes: [
+          'Eén plan voor elk gezinslid, in de juiste volgorde afgestemd',
+          'Woningzoektocht rond scholen en woon-werkverkeer, niet alleen op postcode',
+          'Schoolzoektocht, aanmelding en kennismaking',
+          'Elke inschrijving voor elk gezinslid, geboekt en begeleid',
+        ],
+      },
       conditions: {
         title: 'Hoe een gezinsverhuizing wordt opgebouwd',
         intro:
@@ -968,6 +1063,19 @@ export const relocation: SectionContent = {
             title: 'Geland en levend',
             text: 'U bent ingeschreven, gehuisvest en georiënteerd, met een lokaal nummer om te berichten wanneer er een vraag opkomt.',
           },
+        ],
+      },
+      fees: {
+        title: 'Wat een verhuizing naar Rotterdam kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Diensten op maat, afgestemd op uw persoonlijke wensen. Na een eerste gesprek ontvangt u een voorstel op maat, gebaseerd op uw doelen, uw gezinssituatie en de mate van begeleiding die u wenst.',
+        includes: [
+          'Eén plan voor immigratie, wonen en elke inschrijving',
+          'Eén adviseur die de stad kent en uw dossier van begin tot eind volgt',
+          'Afspraken geboekt, voorbereid en samen met u bijgewoond',
+          'Ondersteuning die doorloopt nadat de dozen zijn uitgepakt',
         ],
       },
       conditions: {

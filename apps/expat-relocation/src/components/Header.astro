@@ -15,16 +15,16 @@ const nav = c.core.ui.nav;
 
 const l = (p: string) => localizePath(p, lang);
 
-/* Order is positioning: this is a relocation consultancy that also handles
-   immigration, not an immigration agency. Relocation, housing and VIP lead;
-   immigration and business follow. Do not put immigration back in first place. */
+/* This exact order is the client's own, and it is also positioning: relocation
+   and housing lead, so the site reads as a relocation consultancy that handles
+   immigration rather than an immigration agency. Do not move immigration up. */
 const navItems = [
   { label: nav.home, href: l('/') },
   { label: nav.relocation, href: l(SECTIONS.relocation) },
   { label: nav.housing, href: l(SECTIONS.housing) },
-  { label: nav.vip, href: l(SECTIONS.vip) },
   { label: nav.immigration, href: l(SECTIONS.immigration) },
   { label: nav.business, href: l(SECTIONS.business) },
+  { label: nav.vip, href: l(SECTIONS.vip) },
   { label: nav.guides, href: l(SECTIONS.guides) },
   { label: nav.about, href: l(SECTIONS.about) },
   { label: nav.contact, href: l(SECTIONS.contact) },

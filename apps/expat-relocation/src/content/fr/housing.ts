@@ -81,6 +81,17 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Honoraires pour une recherche de logement',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 1 750 €',
+        includes: [
+          'Un cahier des charges écrit et une sélection accordée à votre façon de vivre',
+          'Accès aux biens via notre réseau d’agents, y compris des logements jamais publiés',
+          'Visites organisées et effectuées avec vous ou pour votre compte',
+          'Négociation du loyer et des conditions, et contrôle du bail avant signature',
+        ],
+      },
       note: 'Nous sommes transparents sur un point : aucune agence honnête ne peut vous garantir un logement précis sur ce marché. Ce que nous pouvons promettre, c’est la rapidité, un dossier complet et un solide réseau local, et c’est cela qui remporte les logements. Le tarif dépend de votre zone de recherche et de votre calendrier et est confirmé lors de votre entretien.',
       conditions: {
         title: 'Ce qu\'exige le marché locatif néerlandais',
@@ -206,6 +217,19 @@ export const housing: SectionContent = {
             title: 'Emménager',
             text: 'Offre, contrat et remise des clés sont gérés pour vous, y compris l’état des lieux le jour J.',
           },
+        ],
+      },
+      fees: {
+        title: 'Ce que coûte un accompagnement logement à Rotterdam',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'Rotterdam va du professionnel seul cherchant un appartement en ville à la famille qui a besoin d’espace, d’un jardin et du bon trajet scolaire. Après un premier échange, vous recevez un devis à prix fixe pour le périmètre dont vous avez réellement besoin.',
+        includes: [
+          'Un cahier des charges bâti autour de votre trajet, de votre budget et de votre foyer',
+          'Des conseils de quartier par quelqu’un qui connaît la ville rue par rue',
+          'Visites organisées, accompagnées et évaluées honnêtement',
+          'Contrôle du bail et remise des clés avant toute signature',
         ],
       },
       conditions: {
@@ -338,6 +362,17 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Honoraires pour un accompagnement aux visites',
+        kind: 'fixed',
+        amount: '295 € par visite',
+        includes: [
+          'Présence à la visite, en personne, avec les questions qu’un bailleur attend',
+          'Un avis écrit honnête sur le bien, y compris ce que nous n’accepterions pas',
+          'Vérification du niveau de loyer, des charges et du système de points',
+          'Retour immédiat pour décider avant que le candidat suivant ne le fasse',
+        ],
+      },
       note: 'L’assistance aux visites se réserve seule ou dans le cadre d’une recherche de logement complète. Les honoraires dépendent du lieu et de la fréquence et sont confirmés lors de votre entretien.',
       conditions: {
         title: 'Comment fonctionne l\'accompagnement aux visites',
@@ -463,6 +498,17 @@ export const housing: SectionContent = {
             title: 'Signez en confiance',
             text: 'Vous signez un contrat que vous comprenez, avec les clauses à risque supprimées ou renégociées.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour l’examen d’un bail',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 395 €',
+        includes: [
+          'Examen complet du bail et des conditions générales qui y sont annexées',
+          'Le loyer confronté au système de points néerlandais tant que le délai de contestation est ouvert',
+          'Clause diplomatique, dépôt de garantie, charges et préavis expliqués par écrit',
+          'Points renégociés en votre nom avec le bailleur ou l’agent',
         ],
       },
       note: 'Nous relisons les contrats en tant que spécialistes de la relocation, pas en tant que cabinet d’avocats. Pour les véritables litiges juridiques, nous vous mettons en relation avec des avocats en droit locatif de notre réseau professionnel, un réseau bâti au fil d’années de travail aux côtés des ambassades et consulats.',
@@ -596,6 +642,19 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Ce que coûte un accompagnement en logement temporaire',
+        kind: 'tailored',
+        amount: 'Sur demande',
+        amountNote:
+          'Le logement temporaire dépend entièrement de sa durée, du nombre de personnes et du délai de préavis. Vous recevez un devis à prix fixe dès que les dates sont connues.',
+        includes: [
+          'Appartements avec services et solutions de courte durée accordés à vos dates',
+          'Conditions vérifiées pour qu’un court séjour ne bloque pas votre inscription communale',
+          'Coordination entre l’adresse temporaire et la recherche définitive',
+          'Transition organisée dès que le logement définitif est prêt',
+        ],
+      },
       conditions: {
         title: 'Le court séjour en pratique',
         intro:
@@ -720,6 +779,19 @@ export const housing: SectionContent = {
             title: 'Résolution et dossier',
             text: 'Nous poussons le sujet jusqu’à une issue et vous remettons un dossier documenté sur lequel vous pourrez vous appuyer plus tard si besoin.',
           },
+        ],
+      },
+      fees: {
+        title: 'Ce que coûte un appui face au bailleur',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'Certains clients ont besoin qu’une seule lettre difficile reçoive réponse, d’autres d’une année de location menée en néerlandais pour leur compte. Vous recevez un devis correspondant au périmètre dont vous avez besoin.',
+        includes: [
+          'Correspondance avec votre bailleur ou son agent, en néerlandais, en votre nom',
+          'Réparations, charges et litiges de dépôt pris en main et menés à terme',
+          'Votre position vérifiée au regard du droit locatif néerlandais avant tout courrier',
+          'Saisine de la Huurcommissie préparée lorsqu’elle est justifiée',
         ],
       },
       note: 'Pour les affaires qui relèvent réellement de la commission des loyers ou d’un tribunal, nous préparons votre dossier et vous orientons vers un avocat spécialisé en droit locatif. Vous ne nous payez jamais pour faire ce qu’un avocat doit faire.',

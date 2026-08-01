@@ -73,6 +73,19 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Qué cuesta una reubicación en Europoort',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'Los destinos portuarios difieren en duración, rotación y en cuántas personas llegan a la vez. Recibirá una propuesta construida sobre el contrato y el equipo.',
+        includes: [
+          'Vivienda a una distancia viable de la terminal o la planta',
+          'Expedientes de inmigración para el trabajador y, cuando proceda, la familia',
+          'Cada trámite gestionado en torno a los turnos',
+          'Un contacto que responde fuera del horario de oficina, porque el puerto no lo tiene',
+        ],
+      },
       conditions: {
         title: 'Lo que trabajar en Europoort supone para su mudanza',
         intro:
@@ -197,6 +210,19 @@ export const industrial: SectionContent = {
             title: 'Empiece a trabajar instalado',
             text: 'Papeleo hecho, casa en marcha y una línea directa con nosotros para todo lo demás.',
           },
+        ],
+      },
+      fees: {
+        title: 'Qué cuesta una reubicación en la Maasvlakte',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'Los destinos en la Maasvlakte van desde un solo especialista en una puesta en marcha corta hasta un equipo completo en un contrato plurianual. Recibirá una propuesta para el alcance real.',
+        includes: [
+          'Vivienda que haga realista el desplazamiento a la Maasvlakte',
+          'Inmigración y permisos gestionados según el calendario del proyecto',
+          'Trámites resueltos sin sacar a nadie de la instalación',
+          'Apoyo para parejas e hijos que llegan más tarde',
         ],
       },
       conditions: {
@@ -325,6 +351,19 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Qué cuesta el apoyo offshore',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'Los calendarios de rotación hacen que el trabajo offshore no se parezca a ninguna otra reubicación. Recibirá una propuesta construida sobre su rotación y la duración del contrato.',
+        includes: [
+          'Vivienda que encaja con una rotación y no con una jornada de oficina',
+          'Inmigración gestionada en torno al tiempo en el mar',
+          'Citas programadas dentro de sus semanas en tierra',
+          'Un punto de contacto permanente mientras usted está ilocalizable',
+        ],
+      },
       note: 'Las posiciones fiscales y de seguridad social offshore varían según el pabellón, el empleador y los días trabajados; le avisamos cuando su situación necesita un especialista fiscal transfronterizo y le ponemos en contacto con uno de nuestra red.',
       conditions: {
         title: 'Lo que cambia el trabajo por rotación',
@@ -450,6 +489,19 @@ export const industrial: SectionContent = {
             title: 'Primer turno, totalmente instalado',
             text: 'Ficha con su dirección, su número y su seguro ya resueltos.',
           },
+        ],
+      },
+      fees: {
+        title: 'Qué cuesta la reubicación de profesionales de la logística',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'El alcance depende de si llega solo o con familia y de la rapidez con la que empieza el puesto. Tras la primera conversación recibirá un presupuesto cerrado.',
+        includes: [
+          'Vivienda cerca de las terminales, almacenes o el corredor en el que realmente trabajará',
+          'Vía de residencia elegida y presentada en función de su fecha de incorporación',
+          'Trámites, seguro y banca resueltos a la llegada',
+          'Apoyo familiar cuando la pareja y los hijos llegan después',
         ],
       },
       conditions: {
@@ -580,6 +632,19 @@ export const industrial: SectionContent = {
             title: 'Revisar y repetir',
             text: 'Hacemos balance con el empleador tras cada aterrizaje, para que el siguiente sea aún más fluido.',
           },
+        ],
+      },
+      fees: {
+        title: 'Qué cuesta el apoyo a la reubicación industrial',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'Servicios a medida, adaptados a sus necesidades personales. Tras una primera consulta recibirá una propuesta personalizada basada en sus objetivos, su situación familiar y el nivel de acompañamiento que prefiera.',
+        includes: [
+          'Un plan que cubre el permiso, la vivienda y los trámites',
+          'Coordinación con el empleador para que el papeleo no retrase una fecha de incorporación',
+          'Apoyo en los idiomas que su equipo habla de verdad',
+          'Un único contacto para el trabajador y para su departamento de personal',
         ],
       },
       conditions: {

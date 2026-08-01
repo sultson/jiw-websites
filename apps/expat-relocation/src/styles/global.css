@@ -123,6 +123,20 @@
     var(--color-sand);
 }
 
+/* Surface for every section carrying a lead form. These used to sit on bare white,
+   which read as unfinished next to the navy and sand bands everywhere else: a white
+   card on a white page has no edge, so the section looked like a gap. Layered
+   gradients plus a barely-there weave, all in CSS, so it costs no request, no image
+   decode and no paint budget. The weave also stops the gradient from banding on
+   cheap 6-bit laptop panels. */
+@utility band-inquiry {
+  background:
+    repeating-linear-gradient(135deg, rgba(0, 20, 58, 0.03) 0 1px, transparent 1px 8px),
+    radial-gradient(75% 60% at 88% 4%, rgba(212, 175, 55, 0.14) 0%, transparent 62%),
+    radial-gradient(60% 55% at 4% 96%, rgba(0, 20, 58, 0.08) 0%, transparent 58%),
+    linear-gradient(178deg, var(--color-ivory) 0%, #fdfdfe 42%, var(--color-sand) 100%);
+}
+
 @layer components {
   .btn {
     display: inline-flex;
@@ -242,6 +256,24 @@
     overflow: hidden;
   }
   .card-capped::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-gold), rgba(212, 175, 55, 0.15));
+  }
+
+  /* Lead-form card. It sits on band-inquiry, so it needs real elevation and a gold
+     cap to read as the deliberate object on the page rather than more white space. */
+  .card-inquiry {
+    position: relative;
+    border-radius: 1.5rem;
+    border: 1px solid var(--color-line-warm);
+    background: #fff;
+    box-shadow: var(--shadow-lift);
+    overflow: hidden;
+  }
+  .card-inquiry::before {
     content: '';
     position: absolute;
     inset: 0 0 auto 0;

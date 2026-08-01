@@ -55,14 +55,18 @@ export const core: CoreContent = {
       kvkLabel: 'KvK',
       rightsReserved: 'Alle Rechte vorbehalten.',
       builtBy: 'Website von',
+      disclaimer:
+        'E & I ist eine unabhängige Beratung für Relocation und Immigration. Wir sind keine Behörde und stehen in keiner Verbindung zur IND, zur niederländischen Regierung oder zu einer Botschaft oder einem Konsulat. Über Visa, Aufenthaltstitel und Einbürgerung entscheiden ausschließlich die zuständigen Behörden.',
     },
     misc: {
-      from: 'ab',
+      from: 'Investition ab',
       whatsIncluded: 'Das ist enthalten',
       otherServices: 'Weitere Leistungen',
       relatedGuides: 'Passende Ratgeber',
       conditions: 'Voraussetzungen',
       investment: 'Investition',
+      feesDisclaimer:
+        'Die genannten Investitionsbeträge sind ausschließlich unsere Honorare und dienen der Orientierung. Behördengebühren (einschließlich der IND-Gebühren), Mehrwertsteuer, Legalisations- und Apostillekosten, beeidigte Übersetzungen, konsularische Gebühren und Auslagen Dritter sind nicht enthalten, sofern das Angebot dies nicht ausdrücklich anders ausweist.',
     },
   },
 
@@ -239,6 +243,7 @@ export const core: CoreContent = {
         },
       ],
       stats: [
+        { value: 'Seit 2016', label: 'Begleiten wir Ankünfte in den Niederlanden' },
         { value: '1200+', label: 'Begleitete Expats und Familien' },
         { value: '98%', label: 'Kundenzufriedenheit' },
         { value: '24/7', label: 'Persönlicher WhatsApp-Support' },
@@ -292,6 +297,13 @@ export const core: CoreContent = {
       text: [
         'Jeder Klient hat einen festen Ansprechpartner, der die gesamte Akte kennt. Wenn die Gemeinde Sie persönlich sehen möchte, sitzen wir auf dem Stuhl neben Ihnen. Wenn ein Vermieter anruft, antworten wir auf Niederländisch. Und wenn in Ihrer ersten Woche um elf Uhr nachts etwas passiert, meldet sich auf WhatsApp dieselbe Person, die Sie vom Flughafen abgeholt hat.',
         'Diese Arbeitsweise lässt sich nicht auf Tausende Klienten pro Jahr skalieren. Genau das ist der Punkt.',
+      ],
+    },
+    history: {
+      heading: 'Tätig seit 2016',
+      text: [
+        'E & I wurde 2016 gegründet und begleitet seither Ankünfte in den Niederlanden. Ein Jahrzehnt in einer Region ist der Grund, warum wir wissen, welche Gemeinde welches Dokument verlangt, welche Vermieter einen Bewerber mit Vertragsbeginn im nächsten Monat überhaupt in Betracht ziehen und wie lange die IND in dem Monat wirklich braucht, in dem Sie den Antrag stellen.',
+        'Es bedeutet auch, dass die Beziehungen echt sind. Makler, Notare, Schulsekretariate und Sachbearbeiter, die abnehmen, weil sie den Namen kennen. Das ist der stille Vorteil, den man nicht kaufen und als Neuling nicht nachahmen kann.',
       ],
     },
     boutique: {

@@ -83,15 +83,17 @@ export const business: SectionContent = {
         ],
       },
       fees: {
-        title: 'Tarief voor een aanvraag als zelfstandig ondernemer',
-        amount: 'vanaf 2.450 tot 3.500 euro',
+        title: 'Wat een bedrijf starten kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Een bedrijf oprichten raakt uw rechtsvorm, uw fiscale positie en meestal tegelijk uw verblijfsvergunning. Die drie beslissingen zijn bij geen enkele cliënt gelijk, dus ontvangt u na het eerste gesprek een voorstel op maat.',
         includes: [
-          'Immigratieadvies en strategie',
-          'Voorbereiding van de aanvraag',
-          'Controle van de documenten',
-          'Communicatie met de IND',
+          'Rechtsvorm geadviseerd op uw fiscale positie en uw verblijfsroute',
+          'Bedrijf ingeschreven bij de KvK en de Belastingdienst',
+          'Verblijfsroute gekozen en parallel aan het bedrijf voorbereid',
+          'Bankzaken, boekhouding en de eerste verplichtingen ingericht',
         ],
-        note: 'Leges van de IND zijn niet inbegrepen. Waar uw dossier binnen deze bandbreedte valt, hangt af van de complexiteit van het bedrijf en of gezinsleden meeaanvragen.',
       },
       details: {
         title: 'Hoe uw aanvraag wordt beoordeeld',
@@ -155,6 +157,13 @@ export const business: SectionContent = {
         'Wij regelen de oprichting van begin tot eind en in de juiste volgorde, waarbij de notaris, de Kamer van Koophandel, de Belastingdienst en de bank elk in één keer precies krijgen wat ze nodig hebben.',
       ],
       cardText: 'Oprichting van a tot z geregeld: rechtsvorm, notaris, KvK, btw en bankzaken.',
+      explainer: {
+        title: 'Wat komt er kijken bij het oprichten van een Nederlands bedrijf?',
+        text: [
+          'Oprichten in Nederland begint vóór alles met de keuze van een rechtsvorm. Een eenmanszaak, ook wel ZZP, is snel en goedkoop maar laat u persoonlijk aansprakelijk voor de schulden van het bedrijf. Een bv is een besloten vennootschap: een aparte rechtspersoon die uw privévermogen beschermt en die via een Nederlandse notaris wordt opgericht.',
+          'Die keuze bepaalt alles wat erna komt, waaronder hoe u wordt belast, of u aandeelhouders kunt toelaten, hoe banken en opdrachtgevers u inschatten en in meerdere gevallen ook voor welke verblijfsvergunning u in aanmerking komt. Meteen goed kiezen is aanzienlijk goedkoper dan later omzetten.',
+        ],
+      },
       forWho: {
         title: 'Wij registreren bedrijven voor',
         items: [
@@ -195,6 +204,22 @@ export const business: SectionContent = {
           { title: 'Ontwerpen', text: 'Structuur, aandeelhouders en adres bepaald in één werksessie.' },
           { title: 'Uitvoeren', text: 'Notariële akte, KvK-inschrijving en belastingregistraties in volgorde afgerond.' },
           { title: 'Ondernemen', text: 'Bankrekening open, btw-nummer actief, en uw bedrijf klaar om het eerste contract te tekenen.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor het opzetten van een bedrijf',
+        kind: 'tiered',
+        amount: 'Investering vanaf € 2.495',
+        tiers: [
+          { label: 'Eenmanszaak (ZZP)', amount: 'Investering vanaf € 2.495' },
+          { label: 'Nederlandse bv', amount: 'Investering vanaf € 3.495' },
+          { label: 'Internationale holdingstructuur', amount: 'Op maat' },
+        ],
+        includes: [
+          'Structuur geadviseerd voordat er iets wordt ingediend, niet erna',
+          'Notariële akte gecoördineerd voor een bv, inclusief de oprichtingsstukken',
+          'Inschrijving bij de KvK en de Belastingdienst',
+          'UBO-register, btw-nummer en de eerste aangifteverplichtingen correct ingericht',
         ],
       },
       note: 'Is uw verblijfsvergunning nog in behandeling, dan telt de volgorde van handelen: sommige stappen kunnen vóór aankomst en sommige niet. Wij plannen de reeks rond uw immigratietijdlijn.',
@@ -277,6 +302,13 @@ export const business: SectionContent = {
         'Wij bereiden de complete inschrijving voor en daarna gaat Johanna met u mee naar de afspraak zelf, zodat taal, ontbrekende documenten of een onverwachte vraag u nooit een tweede bezoek kosten.',
       ],
       cardText: 'Uw KvK-inschrijving voorbereid, geboekt en samen bijgewoond.',
+      explainer: {
+        title: 'Wat is inschrijving bij de KvK?',
+        text: [
+          'De KvK, Kamer van Koophandel, houdt het Nederlandse handelsregister bij, en inschrijving daarin is wat een bedrijf in Nederland juridisch doet ontstaan. Elk bedrijf en elke zelfstandige moet erin staan.',
+          'De inschrijving is openbaar: uw bedrijfsgegevens zijn voor iedereen zichtbaar, en opdrachtgevers controleren ze standaard voordat ze een contract sluiten. De KvK geeft uw gegevens door aan de Belastingdienst, waaruit uw btw-nummer volgt. De activiteitencodes die u bij inschrijving kiest, bepalen daarmee stilletjes uw latere fiscale positie.',
+        ],
+      },
       forWho: {
         title: 'Met wie wij naar binnen lopen',
         items: [
@@ -313,6 +345,17 @@ export const business: SectionContent = {
           { title: 'Voorbereiden', text: 'Documenten, adres en activiteitomschrijving samen afgerond.' },
           { title: 'Inschrijven', text: 'Wij gaan met u mee naar het KvK-kantoor en vangen verrassingen ter plekke op.' },
           { title: 'Bevestigen', text: 'KvK-nummer uitgegeven, btw-nummer opgevolgd, en kopieën gearchiveerd waar uw bank en accountant ze nodig hebben.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor inschrijving bij de KvK',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 395',
+        includes: [
+          'Inschrijfformulier voorbereid en de SBI-codes juist gekozen',
+          'KvK-afspraak geboekt en samen met u bijgewoond',
+          'Eisen rond adres en identiteit gecontroleerd vóór de afspraak',
+          'Btw-nummer na inschrijving opgevolgd bij de Belastingdienst',
         ],
       },
       note: 'Heeft u nog geen BSN, dan is inschrijving in veel situaties toch mogelijk, maar de route verschilt. Vermeld het wanneer u contact met ons opneemt en wij plannen eromheen.',
@@ -431,6 +474,19 @@ export const business: SectionContent = {
           { title: 'Blauwdruk', text: 'Eén plan voor vergunning, bedrijf, huis en gezin, met de afhankelijkheden expliciet gemaakt.' },
           { title: 'Uitvoering', text: 'Wij laten de werkstromen parallel lopen en rapporteren de voortgang in gewone taal, niet in portaalupdates.' },
           { title: 'Gesetteld', text: 'U bent ingeschreven, gehuisvest, gebankierd en operationeel, en uw gezin weet waar de goede bakker zit.' },
+        ],
+      },
+      fees: {
+        title: 'Wat een verhuizing voor ondernemers kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Een ondernemer verplaatst tegelijk een bedrijf en een huishouden, en die twee hebben verschillende deadlines. Na een eerste gesprek ontvangt u een voorstel op maat voor allebei.',
+        includes: [
+          'Bedrijfsoprichting en uw verblijfsroute als één volgorde gepland',
+          'Woningzoektocht voor u en uw gezin',
+          'Elke inschrijving voor het huishouden, geboekt en begeleid',
+          'Introducties bij accountants, notarissen en banken die met internationals werken',
         ],
       },
       conditions: {
@@ -552,6 +608,19 @@ export const business: SectionContent = {
           { title: 'Scope bepalen', text: 'Wij brengen de entiteitsbehoeften, het aantal mensen, de gezinnen en de deadline samen in één programmaplan.' },
           { title: 'Mobiliseren', text: 'Bedrijfsopzet en vergunningaanvragen lopen terwijl per gezin woonruimte en scholen worden veiliggesteld.' },
           { title: 'Het team landen', text: 'Aankomsten worden gespreid en begeleid, inschrijvingen afgerond, en uw Nederlandse vestiging opent met haar mensen compleet.' },
+        ],
+      },
+      fees: {
+        title: 'Wat een bedrijfsverhuizing kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Een bedrijf verplaatsen hangt af van hoeveel mensen meekomen, welke vergunningen zij nodig hebben en hoe snel het kantoor open moet. U ontvangt een voorstel op maat rond de werkelijke bezetting en planning.',
+        includes: [
+          'Entiteit opgericht en erkend sponsorschap geregeld waar dat nodig is',
+          'Immigratiedossiers voor het team, afgestemd op uw openingsdatum',
+          'Woonruimte voor meeverhuizend personeel en hun gezinnen',
+          'Eén coördinator voor de hele verhuizing, die rapporteert aan één persoon aan uw kant',
         ],
       },
       conditions: {
@@ -694,6 +763,19 @@ export const business: SectionContent = {
           { title: 'Aankomst en settelen', text: 'Medewerkers en hun gezinnen worden begeleid bij inschrijving, huisvesting en de praktijk van het aankomen.' },
         ],
       },
+      fees: {
+        title: 'Wat immigratiebegeleiding voor werkgevers kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Werkgeversbegeleiding wordt geprijsd naar volume en naar het niveau van sponsorschap dat u nodig heeft, van één aanname tot een doorlopende samenwerking. U ontvangt een voorstel rond uw wervingsplan.',
+        includes: [
+          'Erkend sponsorschap aangevraagd en onderhouden',
+          'Elke aanname vóór het aanbod getoetst op route, salarisnorm en startdatum',
+          'Aanvragen voorbereid en ingediend voor uw kandidaten en hun gezinnen',
+          'Uw administratie- en meldplichten controleklaar gehouden',
+        ],
+      },
       note: 'Wij zijn een boutiquebureau, wat evenzeer een bewuste grens is als een belofte. Wij nemen het volume aan dat wij persoonlijk kunnen begeleiden, en zeggen het gewoon wanneer een verzoek daarboven uitkomt.',
       details: {
         title: 'Details voor HR- en mobilityteams',
@@ -793,6 +875,19 @@ export const business: SectionContent = {
           { title: 'Profiel', text: 'Budget, gebieden, gezinsbehoeften en inschrijfeisen bepaald in één gesprek.' },
           { title: 'Jagen', text: 'Wij selecteren, boeken en wonen bezichtigingen snel bij, want goede huizen gaan hier in dagen.' },
           { title: 'Binnenhalen', text: 'Bod onderhandeld, contract gecontroleerd, sleutels overgedragen, inschrijving geregeld.' },
+        ],
+      },
+      fees: {
+        title: 'Wat woonbegeleiding voor ondernemers kost',
+        kind: 'tailored',
+        amount: 'Op aanvraag',
+        amountNote:
+          'Verhuurders beoordelen ondernemers doorgaans anders dan huurders in loondienst, dus varieert het werk met uw situatie. Na een eerste gesprek ontvangt u een vaste offerte.',
+        includes: [
+          'Een zoektocht die rekening houdt met hoe verhuurders inkomen uit onderneming beoordelen',
+          'Het bewijsdossier dat verhuurders van ondernemers vragen, vooraf opgebouwd',
+          'Bezichtigingen geregeld en bijgewoond',
+          'Contract gecontroleerd en onderhandeld voordat u tekent',
         ],
       },
       note: 'Tijdelijke woonruimte kan het gat overbruggen terwijl wij zoeken, maar niet elk short-stay adres staat gemeentelijke inschrijving toe. Wij wijzen op dat onderscheid voordat u zich ergens aan verbindt.',

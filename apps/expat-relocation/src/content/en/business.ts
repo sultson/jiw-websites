@@ -83,15 +83,17 @@ export const business: SectionContent = {
         ],
       },
       fees: {
-        title: 'Professional fees for an entrepreneur permit application',
-        amount: 'from 2,450 to 3,500 euro',
+        title: 'What starting a business costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'Founding a company touches your legal structure, your tax position and usually your residence permit at the same time. Those three decisions are never identical between clients, so you receive a customised proposal after the first consultation.',
         includes: [
-          'Immigration advice and strategy',
-          'Application preparation',
-          'Document review',
-          'Communication with the IND',
+          'Legal structure advised against your tax position and immigration route',
+          'Company registered with the KvK and the tax authority',
+          'Residence permit route selected and prepared alongside the company',
+          'Banking, accounting and the first compliance obligations arranged',
         ],
-        note: 'Government fees charged by the IND are not included. Where your case falls in this range depends on the complexity of the business and whether family members apply alongside you.',
       },
       details: {
         title: 'How your application is assessed',
@@ -155,6 +157,13 @@ export const business: SectionContent = {
         'We manage the incorporation end to end and in the right order, with the notary, the Chamber of Commerce, the tax authority and the bank each getting exactly what they need the first time.',
       ],
       cardText: 'Incorporation handled end to end: legal form, notary, KvK, VAT and banking.',
+      explainer: {
+        title: 'What does setting up a Dutch company involve?',
+        text: [
+          'Setting up in the Netherlands means choosing a legal structure before anything else. A sole proprietorship, the eenmanszaak or ZZP, is fast and inexpensive but leaves you personally liable for the company’s debts. A BV is a private limited company: a separate legal person that protects your personal assets, incorporated through a Dutch notary.',
+          'That choice drives everything downstream, including how you are taxed, whether you can bring in shareholders, how banks and clients assess you, and in several cases which residence permit you qualify for. It is far cheaper to choose correctly at the start than to convert later.',
+        ],
+      },
       forWho: {
         title: 'We register companies for',
         items: [
@@ -195,6 +204,22 @@ export const business: SectionContent = {
           { title: 'Design', text: 'Structure, shareholders and address decided in one working session.' },
           { title: 'Execute', text: 'Notary deed, KvK registration and tax filings completed in sequence.' },
           { title: 'Operate', text: 'Bank account open, VAT number active, and your company ready to sign its first contract.' },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for company setup',
+        kind: 'tiered',
+        amount: 'Investment from €2,495',
+        tiers: [
+          { label: 'Sole proprietorship (ZZP)', amount: 'Investment from €2,495' },
+          { label: 'Dutch BV', amount: 'Investment from €3,495' },
+          { label: 'International holding structure', amount: 'Tailor-made' },
+        ],
+        includes: [
+          'Structure advised before anything is filed, not after',
+          'Notarial deed coordinated for a BV, including the incorporation documents',
+          'Registration with the KvK and the Belastingdienst',
+          'UBO register, VAT number and the first filing obligations set up correctly',
         ],
       },
       note: 'If your residence permit is still pending, the order of operations matters: some steps can proceed before arrival and some cannot. We plan the sequence around your immigration timeline.',
@@ -277,6 +302,13 @@ export const business: SectionContent = {
         'We prepare the entire registration and then Johanna goes with you to the appointment itself, so language, missing documents or an unexpected question never cost you a second visit.',
       ],
       cardText: 'Your Chamber of Commerce registration prepared, booked and attended together.',
+      explainer: {
+        title: 'What is KvK registration?',
+        text: [
+          'The KvK, Kamer van Koophandel, is the Dutch Chamber of Commerce, and registration in its trade register is what legally brings a business into existence in the Netherlands. Every company and every freelancer must be listed there.',
+          'Registration is public: your company details are visible to anyone, and clients routinely check them before contracting. The KvK passes your details to the tax authority, which is how your VAT number follows, so the activity codes you choose at registration quietly shape your tax position afterwards.',
+        ],
+      },
       forWho: {
         title: 'Who we walk in with',
         items: [
@@ -313,6 +345,17 @@ export const business: SectionContent = {
           { title: 'Prepare', text: 'Documents, address and activity description finalized together.' },
           { title: 'Register', text: 'We accompany you to the KvK office and handle surprises in the room.' },
           { title: 'Confirm', text: 'KvK number issued, VAT number followed up, and copies filed where your bank and accountant need them.' },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for KvK registration',
+        kind: 'fixed',
+        amount: 'Investment from €395',
+        includes: [
+          'Registration form prepared and the SBI activity codes chosen correctly',
+          'KvK appointment booked and attended with you',
+          'Address and identity requirements checked before the appointment',
+          'VAT number followed up with the Belastingdienst after registration',
         ],
       },
       note: 'If you do not yet have a BSN, registration is still possible in many situations, but the route differs. Mention it when you contact us and we will plan around it.',
@@ -431,6 +474,19 @@ export const business: SectionContent = {
           { title: 'Blueprint', text: 'One plan covering permit, company, home and family, with dependencies made explicit.' },
           { title: 'Execution', text: 'We run the workstreams in parallel and report progress in plain language, not portal updates.' },
           { title: 'Settled', text: 'You are registered, housed, banked and operational, and your family knows where the good bakery is.' },
+        ],
+      },
+      fees: {
+        title: 'What entrepreneur relocation costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'An entrepreneur moves a company and a household at the same time, and the two have different deadlines. You receive a customised proposal covering both after an initial consultation.',
+        includes: [
+          'Company formation and your residence route planned as one sequence',
+          'Housing search for you and your family',
+          'Every registration for the household, booked and accompanied',
+          'Introductions to accountants, notaries and banks that work with internationals',
         ],
       },
       conditions: {
@@ -552,6 +608,19 @@ export const business: SectionContent = {
           { title: 'Scope', text: 'We map the entity needs, the headcount, the families and the deadline into one program plan.' },
           { title: 'Mobilize', text: 'Company setup and permit applications run while housing and schools are secured per family.' },
           { title: 'Land the team', text: 'Arrivals are staggered and supported, registrations completed, and your Dutch operation opens with its people whole.' },
+        ],
+      },
+      fees: {
+        title: 'What a business relocation costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'Moving a business depends on how many people move with it, which permits they need and how fast the office has to open. You receive a customised proposal built around the actual headcount and timeline.',
+        includes: [
+          'Entity established and recognised sponsorship arranged where it is needed',
+          'Immigration files for the team, sequenced against your opening date',
+          'Housing for relocating staff and their families',
+          'One coordinator for the whole move, reporting to one person on your side',
         ],
       },
       conditions: {
@@ -694,7 +763,20 @@ export const business: SectionContent = {
           { title: 'Arrival and settling in', text: 'Employees and their families are supported through registration, housing and the practical side of arriving.' },
         ],
       },
-      note: 'We are a boutique agency, which is a deliberate limit as much as a promise. We take on the volume we can run personally, and we say so plainly when a request exceeds it.',
+      fees: {
+        title: 'What employer immigration support costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'Employer support is priced against volume and the level of sponsorship you need, from a single hire to a standing arrangement. You receive a proposal built around your hiring plan.',
+        includes: [
+          'Recognised sponsorship applied for and maintained',
+          'Each hire assessed for route, salary criterion and start date before the offer goes out',
+          'Applications prepared and filed for your candidates and their families',
+          'Your record-keeping and reporting obligations kept audit-ready',
+        ],
+      },
+      note: 'We are a boutique consultancy, which is a deliberate limit as much as a promise. We take on the volume we can run personally, and we say so plainly when a request exceeds it.',
       details: {
         title: 'Detail for HR and mobility teams',
         items: [
@@ -793,6 +875,19 @@ export const business: SectionContent = {
           { title: 'Profile', text: 'Budget, areas, family needs and registration requirements defined in one call.' },
           { title: 'Hunt', text: 'We shortlist, book and attend viewings fast, because good homes here go in days.' },
           { title: 'Secure', text: 'Offer negotiated, contract checked, keys handed over, registration arranged.' },
+        ],
+      },
+      fees: {
+        title: 'What housing support for entrepreneurs costs',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Founders are usually judged differently by landlords than salaried tenants, so the work varies with your situation. You receive a fixed quotation after a first conversation.',
+        includes: [
+          'A search that accounts for how landlords assess self-employed income',
+          'The evidence pack landlords ask founders for, prepared in advance',
+          'Viewings arranged and attended',
+          'Contract reviewed and negotiated before you sign',
         ],
       },
       note: 'Temporary housing can bridge the gap while we search, but not every short-stay address allows municipal registration. We flag that distinction before you commit to anything.',

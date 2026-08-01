@@ -33,6 +33,13 @@ const reviews = c.core.home.reviews;
       {a.approach.text.map((p) => (
         <p class="mt-4 leading-relaxed">{p}</p>
       ))}
+      <!-- Founded 2016. Set off by a gold rule so the year reads as provenance. -->
+      <div class="mt-10 border-l-2 border-gold pl-6">
+        <h2 class="font-display text-2xl md:text-3xl">{a.history.heading}</h2>
+        {a.history.text.map((p) => (
+          <p class="mt-4 leading-relaxed">{p}</p>
+        ))}
+      </div>
     </div>
   </div>
 </section>

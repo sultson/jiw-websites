@@ -83,15 +83,17 @@ export const business: SectionContent = {
         ],
       },
       fees: {
-        title: 'Honorarios para una solicitud de permiso de emprendedor',
-        amount: 'desde 2.450 hasta 3.500 euros',
+        title: 'Qué cuesta montar una empresa',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'Fundar una empresa afecta a su forma jurídica, a su posición fiscal y, casi siempre, a su permiso de residencia al mismo tiempo. Esas tres decisiones nunca son idénticas entre clientes, así que recibirá una propuesta personalizada tras la primera consulta.',
         includes: [
-          'Asesoramiento y estrategia de inmigración',
-          'Preparación de la solicitud',
-          'Revisión de documentos',
-          'Comunicación con el IND',
+          'Forma jurídica asesorada según su posición fiscal y su vía de residencia',
+          'Empresa registrada en la KvK y en la Agencia Tributaria',
+          'Vía de residencia elegida y preparada en paralelo a la empresa',
+          'Banca, contabilidad y las primeras obligaciones puestas en marcha',
         ],
-        note: 'Las tasas que cobra el IND no están incluidas. El punto de su caso dentro de esta horquilla depende de la complejidad del negocio y de si hay familiares que soliciten con usted.',
       },
       details: {
         title: 'Cómo se evalúa su solicitud',
@@ -155,6 +157,13 @@ export const business: SectionContent = {
         'Gestionamos la constitución de principio a fin y en el orden correcto, con el notario, la Cámara de Comercio, la agencia tributaria y el banco recibiendo cada uno exactamente lo que necesita a la primera.',
       ],
       cardText: 'Constitución gestionada de principio a fin: forma jurídica, notario, KvK, IVA y banca.',
+      explainer: {
+        title: '¿Qué implica constituir una empresa neerlandesa?',
+        text: [
+          'Constituir en los Países Bajos empieza, antes que nada, por elegir una forma jurídica. El empresario individual, la eenmanszaak o ZZP, es rápido y barato pero le deja personalmente responsable de las deudas de la empresa. La BV es una sociedad limitada: una persona jurídica separada que protege su patrimonio personal y que se constituye ante notario neerlandés.',
+          'Esa elección condiciona todo lo demás, incluida su tributación, la posibilidad de dar entrada a socios, cómo le valoran bancos y clientes y, en varios supuestos, a qué permiso de residencia puede optar. Acertar desde el principio sale mucho más barato que transformar después.',
+        ],
+      },
       forWho: {
         title: 'Registramos sociedades para',
         items: [
@@ -195,6 +204,22 @@ export const business: SectionContent = {
           { title: 'Diseñar', text: 'Estructura, socios y domicilio decididos en una sesión de trabajo.' },
           { title: 'Ejecutar', text: 'Escritura notarial, registro en la KvK y trámites fiscales completados en secuencia.' },
           { title: 'Operar', text: 'Cuenta bancaria abierta, número de IVA activo y su sociedad lista para firmar su primer contrato.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por la constitución de la empresa',
+        kind: 'tiered',
+        amount: 'Inversión desde 2.495 €',
+        tiers: [
+          { label: 'Empresario individual (ZZP)', amount: 'Inversión desde 2.495 €' },
+          { label: 'BV neerlandesa', amount: 'Inversión desde 3.495 €' },
+          { label: 'Estructura de holding internacional', amount: 'A medida' },
+        ],
+        includes: [
+          'Estructura asesorada antes de presentar nada, no después',
+          'Escritura notarial coordinada para una BV, con los documentos de constitución',
+          'Inscripción en la KvK y en el Belastingdienst',
+          'Registro UBO, número de IVA y las primeras obligaciones de declaración bien configurados',
         ],
       },
       note: 'Si su permiso de residencia aún está en trámite, el orden de las operaciones importa: algunos pasos pueden avanzar antes de la llegada y otros no. Planificamos la secuencia en torno a su calendario migratorio.',
@@ -277,6 +302,13 @@ export const business: SectionContent = {
         'Preparamos todo el registro y después Johanna le acompaña a la propia cita, para que el idioma, un documento que falta o una pregunta inesperada nunca le cuesten una segunda visita.',
       ],
       cardText: 'Su registro en la Cámara de Comercio, preparado, reservado y acompañado juntos.',
+      explainer: {
+        title: '¿Qué es el registro en la KvK?',
+        text: [
+          'La KvK, Kamer van Koophandel, es la Cámara de Comercio neerlandesa, y la inscripción en su registro mercantil es lo que hace nacer legalmente una empresa en los Países Bajos. Toda sociedad y todo autónomo debe figurar en él.',
+          'La inscripción es pública: los datos de su empresa son visibles para cualquiera y los clientes los consultan de forma habitual antes de contratar. La KvK traslada sus datos a la Agencia Tributaria, de donde se deriva su número de IVA, así que los códigos de actividad que elija al inscribirse configuran discretamente su posición fiscal posterior.',
+        ],
+      },
       forWho: {
         title: 'Con quién entramos',
         items: [
@@ -313,6 +345,17 @@ export const business: SectionContent = {
           { title: 'Preparar', text: 'Documentos, dirección y descripción de actividad finalizados juntos.' },
           { title: 'Registrar', text: 'Le acompañamos a la oficina de la KvK y resolvemos los imprevistos en la sala.' },
           { title: 'Confirmar', text: 'Número de KvK emitido, número de IVA reclamado y copias archivadas donde su banco y su contable las necesitan.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por el registro en la KvK',
+        kind: 'fixed',
+        amount: 'Inversión desde 395 €',
+        includes: [
+          'Formulario de inscripción preparado y códigos de actividad SBI elegidos correctamente',
+          'Cita en la KvK reservada y atendida junto a usted',
+          'Requisitos de domicilio e identidad comprobados antes de la cita',
+          'Número de IVA reclamado al Belastingdienst tras la inscripción',
         ],
       },
       note: 'Si aún no tiene BSN, el registro sigue siendo posible en muchas situaciones, pero la vía es distinta. Menciónelo cuando nos contacte y lo planificaremos en consecuencia.',
@@ -431,6 +474,19 @@ export const business: SectionContent = {
           { title: 'Plano', text: 'Un plan que cubre permiso, empresa, casa y familia, con las dependencias hechas explícitas.' },
           { title: 'Ejecución', text: 'Llevamos las líneas de trabajo en paralelo e informamos del progreso en lenguaje claro, no con actualizaciones de portal.' },
           { title: 'Instalado', text: 'Está empadronado, alojado, con banco y operativo, y su familia sabe dónde está la buena panadería.' },
+        ],
+      },
+      fees: {
+        title: 'Qué cuesta la reubicación de un emprendedor',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'Un emprendedor traslada una empresa y un hogar a la vez, y ambos tienen plazos distintos. Tras una primera consulta recibirá una propuesta personalizada que cubre los dos.',
+        includes: [
+          'Constitución de la empresa y su vía de residencia planificadas como una sola secuencia',
+          'Búsqueda de vivienda para usted y su familia',
+          'Cada trámite del hogar, reservado y acompañado',
+          'Presentaciones a asesores fiscales, notarios y bancos que trabajan con internacionales',
         ],
       },
       conditions: {
@@ -552,6 +608,19 @@ export const business: SectionContent = {
           { title: 'Definir', text: 'Volcamos las necesidades de entidad, la plantilla, las familias y el plazo en un solo plan de programa.' },
           { title: 'Movilizar', text: 'La creación de la empresa y las solicitudes de permiso avanzan mientras se aseguran viviendas y colegios por familia.' },
           { title: 'Aterrizar al equipo', text: 'Las llegadas se escalonan y acompañan, los registros se completan y su operación neerlandesa abre con su gente al completo.' },
+        ],
+      },
+      fees: {
+        title: 'Qué cuesta el traslado de una empresa',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'Trasladar una empresa depende de cuántas personas se mudan con ella, qué permisos necesitan y con qué rapidez debe abrir la oficina. Recibirá una propuesta personalizada construida sobre la plantilla y los plazos reales.',
+        includes: [
+          'Entidad constituida y patrocinio reconocido gestionado donde haga falta',
+          'Expedientes de inmigración del equipo, acompasados a su fecha de apertura',
+          'Vivienda para el personal que se traslada y sus familias',
+          'Un único coordinador para todo el traslado, que reporta a una sola persona por su parte',
         ],
       },
       conditions: {
@@ -694,6 +763,19 @@ export const business: SectionContent = {
           { title: 'Llegada e instalación', text: 'Los empleados y sus familias reciben apoyo con el empadronamiento, la vivienda y lo práctico de la llegada.' },
         ],
       },
+      fees: {
+        title: 'Qué cuesta el apoyo de inmigración para empleadores',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'El apoyo a empleadores se presupuesta según el volumen y el nivel de patrocinio que necesite, desde una contratación puntual hasta una colaboración permanente. Recibirá una propuesta construida sobre su plan de contratación.',
+        includes: [
+          'Patrocinio reconocido solicitado y mantenido',
+          'Cada contratación evaluada antes de la oferta en cuanto a vía, umbral salarial y fecha de inicio',
+          'Solicitudes preparadas y presentadas para sus candidatos y sus familias',
+          'Sus obligaciones de archivo y comunicación mantenidas listas para inspección',
+        ],
+      },
       note: 'Somos una agencia boutique, y eso es tanto un límite deliberado como una promesa. Aceptamos el volumen que podemos atender personalmente, y lo decimos con claridad cuando una petición lo supera.',
       details: {
         title: 'Detalles para equipos de RR. HH. y movilidad',
@@ -793,6 +875,19 @@ export const business: SectionContent = {
           { title: 'Perfil', text: 'Presupuesto, zonas, necesidades familiares y requisitos de empadronamiento definidos en una llamada.' },
           { title: 'Caza', text: 'Preseleccionamos, reservamos y asistimos a las visitas rápido, porque las buenas casas aquí vuelan en días.' },
           { title: 'Asegurar', text: 'Oferta negociada, contrato revisado, llaves entregadas, empadronamiento resuelto.' },
+        ],
+      },
+      fees: {
+        title: 'Qué cuesta el apoyo de vivienda para emprendedores',
+        kind: 'tailored',
+        amount: 'Disponible bajo consulta',
+        amountNote:
+          'Los caseros suelen valorar a los emprendedores de forma distinta que a los asalariados, así que el trabajo varía con su situación. Tras una primera conversación recibirá un presupuesto cerrado.',
+        includes: [
+          'Una búsqueda que tiene en cuenta cómo valoran los caseros los ingresos por cuenta propia',
+          'El dossier de pruebas que los caseros piden a los emprendedores, preparado por anticipado',
+          'Visitas organizadas y acompañadas',
+          'Contrato revisado y negociado antes de que firme',
         ],
       },
       note: 'La vivienda temporal puede hacer de puente mientras buscamos, pero no toda dirección de corta estancia permite el empadronamiento municipal. Señalamos esa distinción antes de que se comprometa a nada.',

@@ -13,10 +13,10 @@ export const vip: VipContent = {
   image: '/images/vip-hub.jpg?v=20260731',
   imageAlt: 'Hôte accueillant un couple arrivant en voiture devant un hôtel au bord d’un canal',
   pricingNote: {
-    title: 'Le prix d’un forfait, et pourquoi',
+    title: 'Comment le VIP est chiffré',
     text: [
-      'Les forfaits vont de 2 000 € à 10 000 € selon la taille du foyer, la voie de visa et le degré de compression de votre calendrier. Ce prix couvre des semaines de travail à temps plein : demandes préparées et déposées, logement recherché et négocié, chaque enregistrement planifié et accompagné, et une disponibilité qui ne s’arrête pas à dix-sept heures.',
-      'Après votre première consultation, vous recevez un devis unique et fixe. Pas de surprises horaires, pas de suppléments en cours de route.',
+      'Des prestations sur mesure, adaptées à vos exigences personnelles. À l’issue d’un premier entretien, vous recevez une proposition personnalisée fondée sur vos objectifs, votre situation familiale et le niveau d’accompagnement souhaité.',
+      'Cette proposition est un montant fixe pour le périmètre convenu. Pas de taux horaire, pas d’ajouts en cours de déménagement, et aucun frais pour l’entretien dont elle découle.',
     ],
   },
   tailored: {
@@ -31,7 +31,7 @@ export const vip: VipContent = {
       metaTitle: 'Forfait relocation & immigration Couple Pays-Bas | E & I',
       metaDescription:
         'Forfait complet de relocation et d’immigration pour les couples qui s’installent aux Pays-Bas : visa partenaire, logement, BSN, assurances, compte bancaire et installation, avec un accompagnement personnel.',
-      priceFrom: 'à partir de 2 000 €',
+      investment: 'Sur mesure',
       intro: [
         'Vous déménagez pour une carrière, une entreprise ou l’un pour l’autre, et aucun de vous deux n’a le temps de devenir expert en bureaucratie néerlandaise. Le Forfait VIP Couple confie vos deux dossiers à une seule main et séquence l’ensemble pour que visas, logement et enregistrements arrivent dans le bon ordre.',
       ],
@@ -95,7 +95,7 @@ export const vip: VipContent = {
       metaTitle: 'Relocation & immigration Famille Pays-Bas | E & I',
       metaDescription:
         'Forfait de relocation familiale pour les Pays-Bas : immigration pour chaque membre de la famille, logement, recherche d’école, santé, enregistrements et découverte du quartier, avec un accompagnement personnel.',
-      priceFrom: 'à partir de 3 500 €',
+      investment: 'Sur mesure',
       badge: 'Le plus choisi',
       intro: [
         'Une relocation familiale n’est pas la version agrandie d’une relocation individuelle, c’est une autre discipline. Des années scolaires qui commencent à dates fixes, un logement qui doit convenir à tous, quatre dossiers à l’IND au lieu d’un. Ce forfait existe parce que réussir cet enchaînement est ce que nous faisons de mieux.',
@@ -160,7 +160,7 @@ export const vip: VipContent = {
       metaTitle: 'Relocation & immigration Entreprise Pays-Bas | E & I',
       metaDescription:
         'Forfait de relocation entreprise pour les Pays-Bas : visa start-up ou DAFT, création de société et immatriculation KvK, logement et installation pour fondateurs et dirigeants, en un seul plan.',
-      priceFrom: 'à partir de 5 000 €',
+      investment: 'Sur mesure',
       intro: [
         'Les fondateurs et dirigeants qui s’installent aux Pays-Bas affrontent deux bureaucraties à la fois : celle de l’entreprise et celle de la vie autour. Ce forfait mène les deux chantiers de front, pour que la société soit opérationnelle pendant que son fondateur vit déjà bien, au lieu de faire la navette entre un hôtel et une file de guichets.',
       ],
@@ -224,7 +224,7 @@ export const vip: VipContent = {
       metaTitle: 'Conciergerie Relocation VIP Pays-Bas | E & I',
       metaDescription:
         'Relocation en conciergerie complète vers les Pays-Bas pour artistes, athlètes et dirigeants : une visite préparée, tous les rendez-vous alignés, journées avec chauffeur et assistance personnelle 24/7.',
-      priceFrom: 'à partir de 7 500 €',
+      investment: 'Sur mesure',
       intro: [
         'Un artiste entre deux dates de tournée. Un athlète recruté en pleine saison. Un dirigeant dont l’agenda est planifié jusqu’à l’année prochaine. Le niveau conciergerie condense une relocation dans le temps dont vous disposez réellement, parfois un seul week-end, et prend en charge tout ce qui peut l’être sans vous.',
         'Vous nous donnez les dates où vous pouvez être aux Pays-Bas. Nous chorégraphions le reste autour.',

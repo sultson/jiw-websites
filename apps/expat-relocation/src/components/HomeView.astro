@@ -32,20 +32,20 @@ const paths = [...h.paths.items].sort(
     loop
     playsinline
     preload="metadata"
-    poster="/images/hero-poster.jpg"
+    poster="/images/hero-poster.jpg?v=20260801"
   >
-    <source src="/hero.mp4" type="video/mp4" />
+    <source src="/hero.mp4?v=20260801" type="video/mp4" />
   </video>
   <!-- Poster overlay: fades out once the video is actually rendering frames, so the
        thumbnail-to-video switch is a soft crossfade instead of a hard cut. -->
   <img
     id="hero-poster-overlay"
-    src="/images/hero-poster.jpg"
+    src="/images/hero-poster.jpg?v=20260801"
     alt=""
     aria-hidden="true"
     class="pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-out"
-    width="1280"
-    height="720"
+    width="1600"
+    height="900"
     fetchpriority="high"
   />
   <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-navy/20"></div>
@@ -327,7 +327,7 @@ const paths = [...h.paths.items].sort(
         </div>
       ))}
     </div>
-    <div class="mx-auto mt-14 grid max-w-3xl grid-cols-3 border-y border-white/15 py-8 text-center">
+    <div class="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-y-8 border-y border-white/15 py-8 text-center md:grid-cols-4">
       {h.whyBoutique.stats.map((stat) => (
         <div>
           <p class="font-display text-3xl text-gold-soft md:text-4xl">{stat.value}</p>
@@ -384,7 +384,7 @@ const paths = [...h.paths.items].sort(
 </section>
 
 <!-- 13. Contact form: details left, form right -->
-<section class="border-t border-line-warm band-sand" id="contact-form">
+<section class="band-inquiry border-t border-line-warm" id="contact-form">
   <div class="container-site py-16 md:py-24">
     <div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
       <div>

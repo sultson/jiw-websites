@@ -81,6 +81,17 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Honorarium voor een woningzoektocht',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 1.750',
+        includes: [
+          'Een schriftelijk zoekprofiel en een selectie die past bij hoe u werkelijk leeft',
+          'Toegang tot woningen via ons makelaarsnetwerk, ook woningen die nooit worden geadverteerd',
+          'Bezichtigingen geregeld en met u of namens u bijgewoond',
+          'Onderhandeling over huur en voorwaarden, en het contract gecontroleerd voordat u tekent',
+        ],
+      },
       note: 'Over één ding zijn wij open: geen eerlijk bureau kan u in deze markt een specifieke woning garanderen. Wat wij wel kunnen beloven is snelheid, een compleet dossier en een sterk lokaal netwerk, en daarmee win je woningen. De prijs hangt af van uw zoekgebied en tijdlijn en wordt bevestigd tijdens uw intake.',
       conditions: {
         title: 'Wat de Nederlandse huurmarkt vraagt',
@@ -206,6 +217,19 @@ export const housing: SectionContent = {
             title: 'Erin trekken',
             text: 'Bod, contract en overdracht worden voor u geregeld, inclusief het opnamerapport op sleuteldag.',
           },
+        ],
+      },
+      fees: {
+        title: 'Wat woonbegeleiding in Rotterdam kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Rotterdam loopt uiteen van één professional die een stadsappartement zoekt tot een gezin dat ruimte, een tuin en de juiste schoolroute nodig heeft. Na een eerste gesprek ontvangt u één vaste offerte voor precies de omvang die u nodig heeft.',
+        includes: [
+          'Een zoekprofiel rond uw woon-werkverkeer, budget en huishouden',
+          'Wijkadvies van iemand die de stad straat voor straat kent',
+          'Bezichtigingen geregeld, bijgewoond en eerlijk beoordeeld',
+          'Contractcontrole en oplevering voordat u iets tekent',
         ],
       },
       conditions: {
@@ -338,6 +362,17 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Honorarium voor bezichtigingsbegeleiding',
+        kind: 'fixed',
+        amount: '€ 295 per bezichtiging',
+        includes: [
+          'Aanwezigheid bij de bezichtiging, in persoon, met de vragen die een verhuurder verwacht',
+          'Een eerlijk schriftelijk oordeel over de woning, inclusief wat wij niet zouden accepteren',
+          'Toetsing van huurniveau, servicekosten en het puntensysteem',
+          'Directe terugkoppeling zodat u kunt beslissen voordat de volgende kandidaat dat doet',
+        ],
+      },
       note: 'De bezichtigingsservice is los te boeken of als onderdeel van een volledige woningzoektocht. Tarieven hangen af van locatie en frequentie en worden bevestigd tijdens uw intake.',
       conditions: {
         title: 'Hoe bezichtigingsbegeleiding werkt',
@@ -463,6 +498,17 @@ export const housing: SectionContent = {
             title: 'Teken met vertrouwen',
             text: 'U tekent een contract dat u begrijpt, met de riskante clausules verwijderd of heronderhandeld.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor een huurcontractcontrole',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 395',
+        includes: [
+          'Volledige controle van het contract en de bijbehorende algemene voorwaarden',
+          'De huur getoetst aan het puntensysteem zolang de termijn om bezwaar te maken openstaat',
+          'Diplomatenclausule, borg, servicekosten en opzegtermijn schriftelijk uitgelegd',
+          'Punten namens u heronderhandeld met de verhuurder of makelaar',
         ],
       },
       note: 'Wij beoordelen contracten als relocationspecialisten, niet als advocatenkantoor. Voor echte juridische geschillen brengen wij u in contact met huurrechtadvocaten uit ons professionele netwerk, opgebouwd in jaren van werken naast ambassades en consulaten.',
@@ -596,6 +642,19 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Wat begeleiding bij tijdelijke woonruimte kost',
+        kind: 'tailored',
+        amount: 'Op aanvraag',
+        amountNote:
+          'Tijdelijke woonruimte hangt volledig af van hoe lang u die nodig heeft, voor hoeveel personen en op welke termijn. Zodra de data vaststaan ontvangt u een vaste offerte.',
+        includes: [
+          'Serviced apartments en shortstayopties passend bij uw data',
+          'Voorwaarden gecontroleerd zodat een kort verblijf uw inschrijving bij de gemeente niet blokkeert',
+          'Afstemming tussen het tijdelijke adres en de definitieve zoektocht',
+          'Overdracht geregeld zodra de vaste woning klaar is',
+        ],
+      },
       conditions: {
         title: 'Shortstay in de praktijk',
         intro:
@@ -720,6 +779,19 @@ export const housing: SectionContent = {
             title: 'Oplossing en dossier',
             text: 'Wij duwen de kwestie naar een uitkomst en overhandigen u een gedocumenteerd dossier waarop u later kunt terugvallen als dat nodig is.',
           },
+        ],
+      },
+      fees: {
+        title: 'Wat ondersteuning richting verhuurders kost',
+        kind: 'tailored',
+        amount: 'Voorstel op maat',
+        amountNote:
+          'Sommige cliënten hebben één lastige brief nodig die beantwoord wordt, anderen een heel huurjaar dat in het Nederlands namens hen wordt gevoerd. U ontvangt een offerte voor de omvang die u nodig heeft.',
+        includes: [
+          'Correspondentie met uw verhuurder of makelaar, in het Nederlands, namens u',
+          'Reparaties, servicekosten en borggeschillen opgepakt en doorgezet',
+          'Uw positie getoetst aan het Nederlandse huurrecht voordat wij schrijven',
+          'Escalatie naar de Huurcommissie voorbereid waar die gerechtvaardigd is',
         ],
       },
       note: 'Voor zaken die werkelijk bij de Huurcommissie of de rechter thuishoren, bereiden wij uw dossier voor en verwijzen wij u door naar een gespecialiseerde huurrechtadvocaat. U betaalt ons nooit voor wat een advocaat hoort te doen.',

@@ -31,6 +31,13 @@ export const immigration: SectionContent = {
         'Daar komen wij in beeld. Wij stemmen rechtstreeks af met de HR-afdeling van uw werkgever, bereiden u en uw gezin voor op elke afspraak en blijven bereikbaar via onze persoonlijke 24/7 WhatsApp-lijn wanneer er een vraag opkomt, in welke tijdzone dan ook.',
       ],
       cardText: 'De snelste werkroute naar Nederland, afgestemd tussen u, uw werkgever en de IND.',
+      explainer: {
+        title: 'Wat is de kennismigrantenvergunning?',
+        text: [
+          'De kennismigrantenvergunning is de route waarmee Nederland ervaren professionals snel binnenhaalt. Er wordt niet gekeken naar uw functietitel of uw diploma. Er wordt naar één ding gekeken: of een Nederlandse werkgever die door de IND als sponsor is erkend u een salaris boven een vastgestelde grens betaalt.',
+          'Omdat de erkenning bij de werkgever ligt, verloopt de procedure snel en is er geen arbeidsmarkttoets. De vergunning is aan die werkgever gebonden. Het is dus het contract en niet de persoon dat uw verblijf in Nederland draagt.',
+        ],
+      },
       forWho: {
         title: 'Voor wie dit is',
         items: [
@@ -72,6 +79,17 @@ export const immigration: SectionContent = {
           { title: 'Dossiervoorbereiding', text: 'Wij stellen de documenten samen met u en uw werkgever en dienen in via de referent.' },
           { title: 'Beslissing en MVV', text: 'Afhankelijk van uw nationaliteit haalt u vóór vertrek een inreisvisum op bij de Nederlandse ambassade. Wij bereiden u voor op die afspraak.' },
           { title: 'Aankomst', text: 'Binnen uw eerste dagen ronden wij de inschrijving, het ophalen van de vergunning en de praktische basiszaken af.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor een kennismigrantenaanvraag',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 1.295',
+        includes: [
+          'Toetsing van de salarisnorm die geldt voor uw leeftijd en situatie',
+          'Het volledige dossier voorbereid en ingediend via uw erkende sponsor',
+          'Afstemming met de HR-afdeling van uw werkgever zodat contract en startdatum op elkaar aansluiten',
+          'Opvolging van elk verzoek van de IND tot de beslissing er ligt',
         ],
       },
       note: 'Veel kennismigranten komen in aanmerking voor de 30%-regeling, een Nederlands belastingvoordeel voor inkomende werknemers. De voorwaarden veranderen regelmatig, dus wij signaleren het tijdens de intake en brengen u in contact met een belastingadviseur in plaats van bedragen te beloven.',
@@ -159,6 +177,13 @@ export const immigration: SectionContent = {
         'Onze reputatie is opgebouwd in de ambassadewereld, en juist blauwekaartdossiers belonen die precisie: een correct gewaardeerd diploma, een contract dat aan de eisen voldoet en een vlekkeloze indiening. Wij zorgen dat uw dossier alle drie op orde heeft.',
       ],
       cardText: 'De Europese werkvergunning voor hoogopgeleide professionals, met mobiliteit binnen de EU.',
+      explainer: {
+        title: 'Wat is de Europese blauwe kaart?',
+        text: [
+          'De Europese blauwe kaart is een Europese verblijfs- en werkvergunning voor professionals met een universitaire opleiding. Waar de Nederlandse kennismigrantenvergunning alleen vraagt naar salaris en een erkende sponsor, vraagt de blauwe kaart daarnaast om een afgeronde hogere opleiding, en geeft daarvoor rechten die verder reiken dan Nederland.',
+          'Dat is het werkelijke verschil. Een blauwe kaart bouwt toe naar mobiliteit binnen de Europese Unie en naar de status van EU-langdurig ingezetene, wat de nationale vergunning niet doet. Het is de betere keuze wanneer Nederland een hoofdstuk is en niet het hele boek.',
+        ],
+      },
       forWho: {
         title: 'Is dit uw route?',
         items: [
@@ -195,6 +220,17 @@ export const immigration: SectionContent = {
           { title: 'Beoordeling', text: 'Wij toetsen uw diploma, aanbod en salaris aan de actuele voorwaarden voor de blauwe kaart.' },
           { title: 'Waardering en dossier', text: 'De diplomawaardering wordt in gang gezet terwijl wij parallel het aanvraagdossier opbouwen.' },
           { title: 'Indiening en aankomst', text: 'Na goedkeuring plannen wij uw inreis, inschrijving en eerste afspraken in de juiste volgorde.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor een aanvraag Europese blauwe kaart',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 1.295',
+        includes: [
+          'Opleiding en salaris getoetst aan de criteria van de blauwe kaart voordat u zich vastlegt',
+          'Diplomawaardering geregeld waar de IND die verlangt',
+          'Aanvraag voorbereid en ingediend, inclusief het werkgeversdeel van het dossier',
+          'Bewaking tot de beslissing, ook bij verzoeken om aanvullend bewijs',
         ],
       },
       conditions: {
@@ -286,6 +322,13 @@ export const immigration: SectionContent = {
         'De aanvraag zelf is overzichtelijk wanneer die goed wordt gedaan, dus onze werkelijke waarde zit in wat daarna komt: van dat jaar een carrière en een thuis maken. Wij begeleiden afgestudeerden van het eerste formulier tot het eerste appartement, en blijven dichtbij terwijl u uw draai vindt.',
       ],
       cardText: 'Twaalf maanden om na uw studie vrij in Nederland te wonen en te werken.',
+      explainer: {
+        title: 'Wat is het zoekjaar?',
+        text: [
+          'Het zoekjaar is een verblijfsvergunning van één jaar waarmee recent afgestudeerden en onderzoekers in Nederland werk kunnen zoeken zonder dat een werkgever hen eerst sponsort. In dat jaar mag u vrij werken en heeft geen enkele werkgever een tewerkstellingsvergunning voor u nodig.',
+          'Het lost een kip-en-eiprobleem op: werkgevers willen iemand die kan beginnen, en vergunningen vragen meestal om een werkgever. Het zoekjaar doorbreekt die impasse en brengt daarna een lagere salarisgrens met zich mee als u overstapt naar een kennismigrantenvergunning.',
+        ],
+      },
       forWho: {
         title: 'Wie in aanmerking komt',
         items: [
@@ -326,6 +369,18 @@ export const immigration: SectionContent = {
           { title: 'Toets', text: 'Eén gesprek om te bevestigen dat u in aanmerking komt en om de timing van uw verhuizing te plannen.' },
           { title: 'Aanvragen', text: 'Wij bereiden de IND-aanvraag voor, dienen deze in en houden u bij elke statuswijziging op de hoogte.' },
           { title: 'Aankomen en settelen', text: 'Wij zetten uw inschrijving en basiszaken klaar, zodat u het jaar aan uw carrière kunt besteden in plaats van aan bureaucratie.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor het zoekjaar',
+        kind: 'tailored',
+        amount: 'Op aanvraag',
+        amountNote:
+          'Het zoekjaar is een korte procedure en wat u van ons nodig heeft, hangt ervan af of u vanuit Nederland of vanuit het buitenland aanvraagt. Na een korte toets van uw diploma en uw timing ontvangt u een vaste offerte.',
+        includes: [
+          'Toetsing of uw diploma en afstudeerdatum nog kwalificeren',
+          'Aanvraag voorbereid en ingediend bij de IND',
+          'Begeleiding bij de overstap naar een werkvergunning voordat het jaar afloopt',
         ],
       },
       note: 'De termijn van drie jaar na afstuderen is strikt, en rankinglijsten veranderen per jaar. Zit u dicht bij de grens, neem dan contact met ons op voordat u aanneemt dat u buiten de boot valt. Vragen houden zich zelden aan kantooruren, en daarom bereiken cliënten ons dag en nacht via een persoonlijke WhatsApp-lijn.',
@@ -408,6 +463,13 @@ export const immigration: SectionContent = {
         'Wij behandelen deze dossiers met de zorg die ze verdienen. Johanna gaat persoonlijk met cliënten mee naar hun afspraken, van het gemeenteloket tot de IND, zodat geen van u beiden ooit onvoorbereid tegenover een ambtenaar zit.',
       ],
       cardText: 'Zorgvuldige, persoonlijke begeleiding om uw partner of echtgenoot naar Nederland te halen.',
+      explainer: {
+        title: 'Wat is een partnervisum?',
+        text: [
+          'Een partnervisum is verblijf op grond van uw relatie in plaats van uw werk. Een van u beiden, de referent, mag al in Nederland wonen. De ander vraagt verblijf aan om zich bij die persoon te voegen. Een huwelijk is niet vereist, maar een ongehuwde relatie moet worden aangetoond als duurzaam en exclusief.',
+          'De Nederlandse procedure toetst drie dingen: dat de relatie echt is, dat de referent een stabiel en toereikend inkomen heeft, en dat buitenlandse akten van de burgerlijke stand correct zijn gelegaliseerd en vertaald. De meeste afwijzingen komen voort uit het derde punt, niet uit het eerste.',
+        ],
+      },
       forWho: {
         title: 'Wie wij helpen',
         items: [
@@ -449,6 +511,17 @@ export const immigration: SectionContent = {
           { title: 'Voorbereiden in het buitenland', text: 'Examen, legalisaties en ambassadelogistiek in het land van uw partner, vanuit hier gecoördineerd.' },
           { title: 'Indienen en beslissen', text: 'De aanvraag gaat naar de IND. Wij volgen het dossier en handelen aanvullende verzoeken direct af.' },
           { title: 'Herenigd', text: 'Uw partner reist af, schrijft zich in en ontvangt de verblijfsvergunning. Wij zijn er bij de landing.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor een aanvraag partnervisum',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 895',
+        includes: [
+          'Toetsing van het relatiebewijs voordat er iets wordt ingediend',
+          'Dossiers van referent en aanvrager samen opgebouwd zodat ze elkaar niet tegenspreken',
+          'Eisen rond legalisatie en vertaling in kaart gebracht voor uw land van herkomst',
+          'Aanvraag ingediend en bewaakt tot de beslissing',
         ],
       },
       conditions: {
@@ -530,6 +603,13 @@ export const immigration: SectionContent = {
         'Wij voeren die operatie uit voor gezinnen rond Rotterdam, Europoort en de bredere industriële regio, waar internationale professionals op contract aankomen en hun gezinnen volgen. Het is ons thuisterrein, en dat kleurt alles, van de scholen die wij aanbevelen tot de gemeenteloketten die wij bij naam kennen.',
       ],
       cardText: 'Vergunningen voor uw partner en kinderen, gecoördineerd zodat het hele gezin samen landt.',
+      explainer: {
+        title: 'Wat is gezinshereniging?',
+        text: [
+          'Gezinshereniging is de route die een partner en kinderen laat overkomen naar iemand die al verblijfsrecht in Nederland heeft. Het is één juridisch kader voor het hele huishouden en geen aparte procedure per persoon.',
+          'De IND beoordeelt de referent net zo streng als de aanvragers: een stabiel inkomen op of boven de wettelijke norm, passende woonruimte, en akten uit het land van herkomst die de legalisatie doorstaan. Voor kinderen gelden eigen eisen rond gezag en toestemming van de ouders.',
+        ],
+      },
       forWho: {
         title: 'Gemaakt voor',
         items: [
@@ -570,6 +650,17 @@ export const immigration: SectionContent = {
           { title: 'Gezinsintake', text: 'Wij brengen de nationaliteit, documenten en behoeften van elk gezinslid in kaart in één gesprek.' },
           { title: 'Voorbereiden en indienen', text: 'Akten worden gelegaliseerd terwijl wij de aanvragen parallel opbouwen en indienen om maanden te winnen.' },
           { title: 'Reizen en settelen', text: 'Inreisvisa, vluchten, inschrijving en schoolstarts, zo gepland dat niemand op iemand hoeft te wachten.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor een aanvraag gezinshereniging',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 1.195',
+        includes: [
+          'Inkomens- en referenteisen getoetst aan uw werkelijke contract',
+          'Eén samenhangend dossier voor uw partner en elk kind',
+          'Eisen rond legalisatie en beëdigde vertaling per land in kaart gebracht',
+          'Aanvragen gezamenlijk ingediend en bewaakt tot de beslissing',
         ],
       },
       note: 'Aanvragen voor kinderen hangen af van details die ouders zelden verwachten, zoals toestemming van een achterblijvende ouder. Leg uw volledige gezinssituatie op tafel tijdens de intake, zodat niets laat aan het licht komt.',
@@ -652,6 +743,13 @@ export const immigration: SectionContent = {
         'Wij begeleiden de hele boog, niet alleen de vergunning: de match met de facilitator, het startupplan dat de IND wil lezen, en de praktische kant van aankomen, van bedrijfsinschrijving tot een plek om te wonen.',
       ],
       cardText: 'Een oprichtersvergunning van één jaar om uw innovatieve bedrijf in het Nederlandse ecosysteem te bouwen.',
+      explainer: {
+        title: 'Wat is het startupvisum?',
+        text: [
+          'Het startupvisum is een verblijfsvergunning van één jaar voor ondernemers die in Nederland een innovatief bedrijf opbouwen. Het bestaat omdat een werkelijk nieuw bedrijf op dag één zelden de omzet of het track record heeft dat de gewone zelfstandigenvergunning verlangt.',
+          'Het bepalende kenmerk is de facilitator: een ervaren mentor die is goedgekeurd door de Rijksdienst voor Ondernemend Nederland en die uw bedrijf door het eerste jaar loodst. U wordt beoordeeld op de innovatie in het plan en op dat partnerschap, niet op omzet. Het jaar is een aanloop naar de zelfstandigenvergunning, en die volgende stap vroeg voorbereiden is het verschil tussen doorgaan en opnieuw beginnen.',
+        ],
+      },
       forWho: {
         title: 'Wie het startup visum kan aanvragen',
         items: [
@@ -707,15 +805,15 @@ export const immigration: SectionContent = {
         ],
       },
       fees: {
-        title: 'Tarief voor een startup visum aanvraag',
-        amount: 'vanaf 2.250 tot 3.250 euro',
+        title: 'Honorarium voor een aanvraag startupvisum',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 2.495',
         includes: [
-          'Immigratiestrategie en advies',
-          'Voorbereiding van de startup visum aanvraag',
-          'Coördinatie met de facilitator',
-          'Communicatie met de IND',
+          'Immigratiestrategie en advies over de toelatingseisen',
+          'Ondersteuning bij het opbouwen van het plan waarop de aanvraag wordt beoordeeld',
+          'Selectie van en afstemming met de facilitator',
+          'Aanvraag ingediend bij de IND en bewaakt tot de beslissing',
         ],
-        note: 'Overheidsleges zijn niet inbegrepen. Waar uw dossier binnen deze bandbreedte valt, hangt af van de complexiteit van het plan en of gezinsleden meeaanvragen.',
       },
       note: 'De startupvergunning loopt één jaar en wordt als zodanig niet verlengd. De geplande vervolgstap is meestal de vergunning voor zelfstandigen, en wij beginnen dat dossier ruim vóór het einde van uw jaar voor te bereiden.',
       details: {
@@ -776,6 +874,13 @@ export const immigration: SectionContent = {
         'Het is de route die freelancers, consultants en eigenaren van kleine bedrijven het vaakst gebruiken. Naast het immigratiedossier verzorgen wij de praktische kant van de aankomst: bedrijfsinschrijving, woonruimte en verblijf voor het gezin dat meekomt.',
       ],
       cardText: 'De verdragsroute waarmee Amerikanen als ondernemer in Nederland kunnen wonen en werken.',
+      explainer: {
+        title: 'Wat is de DAFT-vergunning?',
+        text: [
+          'De DAFT-vergunning komt voort uit het Dutch American Friendship Treaty, een verdrag uit 1956 dat Amerikaanse staatsburgers een uitzonderlijk toegankelijke route naar zelfstandig ondernemerschap in Nederland biedt. De vergunning staat alleen open voor Amerikanen en is met afstand de eenvoudigste ondernemersvergunning die het land kent.',
+          'Het verdrag vervangt het puntensysteem waar andere nationaliteiten mee te maken hebben door één heldere toets: schrijf een echt Nederlands bedrijf in en houd een vastgesteld minimumbedrag in het eigen vermogen. Er is geen innovatie-eis, geen facilitator en geen beoordeling van uw ondernemingsplan. Het in stand houden van die inleg is wat de vergunning bij verlenging overeind houdt.',
+        ],
+      },
       forWho: {
         title: 'Voor wie het DAFT visum bedoeld is',
         items: [
@@ -832,15 +937,15 @@ export const immigration: SectionContent = {
         ],
       },
       fees: {
-        title: 'Tarief voor een DAFT-aanvraag',
-        amount: 'vanaf 1.950 tot 2.750 euro',
+        title: 'Honorarium voor een DAFT-aanvraag',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 2.295',
         includes: [
-          'Immigratieconsult',
-          'Voorbereiding van de aanvraag verblijfsvergunning',
-          'Begeleiding bij de bedrijfsinschrijving',
-          'Communicatie met de IND',
+          'Toetsing van de voorwaarden onder het Dutch American Friendship Treaty',
+          'Inschrijving van het bedrijf en de inleg zo ingericht dat ze de verdragstoets doorstaan',
+          'Aanvraag verblijfsvergunning voorbereid en ingediend',
+          'Advies over het in stand houden van de inleg bij latere verlengingen',
         ],
-      note: 'De verblijfsvergunning wordt doorgaans voor twee jaar verleend en is verlengbaar. De 4.500 euro moet in het bedrijf geïnvesteerd blijven zolang u de DAFT-status heeft, want bij verlengingen wordt naar uw balans gekeken.',
       },
       note: 'De € 4.500 moet in het bedrijf geïnvesteerd blijven zolang u de DAFT-status heeft, en bij verlengingen wordt naar uw balans gekeken. Actuele IND-leges en doorlooptijden verschuiven, dus wij bevestigen ze tijdens uw intake.',
       details: {
@@ -901,6 +1006,13 @@ export const immigration: SectionContent = {
         'Deze dossiers staan of vallen bij het consulaat, en dat is een wereld die wij van binnenuit kennen. Onze reputatie is opgebouwd in de ambassadewereld, en daardoor weten wij hoe een overtuigend zakelijk dossier eruitziet vanaf de andere kant van de balie.',
       ],
       cardText: 'Visa voor kort verblijf voor vergaderingen, onderhandelingen en werkbezoeken in Nederland.',
+      explainer: {
+        title: 'Wat is een zakenvisum?',
+        text: [
+          'Een zakenvisum is een Schengenvisum voor kort verblijf, type C, voor besprekingen, onderhandelingen, congressen en bedrijfsbezoeken. Het staat maximaal 90 dagen binnen 180 dagen toe in het hele Schengengebied en geeft geen recht om in Nederland te gaan werken.',
+          'Onderdanen van veel landen hebben er vooraf een nodig, andere zijn voor kort verblijf vrijgesteld. Het consulaat beslist op basis van de uitnodiging, uw reisgeschiedenis, de verzekering en het bewijs dat u terugkeert. Daarom telt het onderliggende dossier zwaarder dan het formulier.',
+        ],
+      },
       forWho: {
         title: 'Typische reizigers',
         items: [
@@ -937,6 +1049,17 @@ export const immigration: SectionContent = {
           { title: 'Brief ons', text: 'Wie reist er, waarvandaan en waarvoor. Wij bevestigen direct het juiste visumtype.' },
           { title: 'Dossier opbouwen', text: 'Uitnodiging, bewijs en formulieren komen in dagen samen, niet in weken.' },
           { title: 'Consulaat en reis', text: 'Afspraak geboekt, dossier ingediend, en uw bezoek verloopt volgens planning.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor een aanvraag zakenvisum',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 795',
+        includes: [
+          'Bepaling van het juiste visumtype voor het doel en de duur van uw reis',
+          'Uitnodiging en onderliggende stukken op consulair niveau voorbereid',
+          'Afspraak geboekt en het dossier gereedgemaakt voor indiening',
+          'Advies over reisverzekering en bewijs van middelen',
         ],
       },
       note: 'Een zakelijk Schengenvisum staat vergaderingen en onderhandelingen toe, geen arbeid. Worden uw bezoeken regulier werk in Nederland, praat dan met ons over een werkvergunning voordat het een probleem wordt aan de grens.',
@@ -1019,6 +1142,13 @@ export const immigration: SectionContent = {
         'Wij zijn het immigratieloket waar onze cliënten nooit over hoeven na te denken. Wij bewaken de data, bereiden de dossiers voor, en Johanna gaat persoonlijk met cliënten mee naar hun IND-afspraken, zodat een oproep nooit als een dreigement voelt.',
       ],
       cardText: 'Eerste vergunningen, verlengingen, wijzigingen en de weg naar permanent verblijf, alles onder één dak.',
+      explainer: {
+        title: 'Wat is een Nederlandse verblijfsvergunning?',
+        text: [
+          'Een verblijfsvergunning is het document dat uw verblijf langer dan 90 dagen rechtmatig maakt. De IND geeft hem af, hij vermeldt altijd een verblijfsdoel zoals werk, gezin of studie, en de rechten die eraan hangen volgen dat doel en niet de pas zelf.',
+          'Vergunningen zijn tijdelijk of permanent. Voor de lange termijn telt vooral welk doel u heeft en hoe lang, want ononderbroken rechtmatig verblijf is wat uiteindelijk de weg opent naar een permanente vergunning en naturalisatie. Van doel wisselen kan, maar het moment bepaalt of uw opgebouwde jaren die wisseling overleven.',
+        ],
+      },
       forWho: {
         title: 'Wanneer u ons belt',
         items: [
@@ -1055,6 +1185,17 @@ export const immigration: SectionContent = {
           { title: 'Beoordelen', text: 'Wij lichten uw huidige status door en markeren elke datum en voorwaarde die ertoe doet.' },
           { title: 'Voorbereiden', text: 'De juiste aanvraag, ruim vóór de deadline samengesteld, met marge over.' },
           { title: 'Veiligstellen', text: 'Indiening, opvolging en uw nieuwe vergunning in de hand, met de volgende mijlpaal al in de agenda.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarium voor een aanvraag verblijfsvergunning',
+        kind: 'fixed',
+        amount: 'Investering vanaf € 895',
+        includes: [
+          'Bepaling welke vergunning bij uw situatie past en welke standhoudt',
+          'Aanvraag voorbereid en ingediend bij de IND',
+          'Eisen rond documenten, legalisatie en vertaling vooraf in kaart gebracht',
+          'Opvolging tot de beslissing, en bij verlengingen waar dat speelt',
         ],
       },
       note: 'Leges en beslistermijnen verschillen per vergunningstype en veranderen in de tijd, dus wij bevestigen de actuele IND-cijfers tijdens uw intake in plaats van ze hier af te drukken.',

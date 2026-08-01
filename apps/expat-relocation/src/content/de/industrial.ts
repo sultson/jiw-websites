@@ -73,6 +73,19 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Was ein Umzug nach Europoort kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Einsätze im Hafen unterscheiden sich in Dauer, Schichtrhythmus und darin, wie viele Menschen gleichzeitig ankommen. Sie erhalten ein Angebot, das sich am Vertrag und an der Mannschaft orientiert.',
+        includes: [
+          'Wohnraum in erreichbarer Entfernung zum Terminal oder zur Anlage',
+          'Immigrationsakten für die Beschäftigten und, wo nötig, für die Familie',
+          'Jede Anmeldung, abgestimmt auf Schichtpläne',
+          'Ein Kontakt, der außerhalb der Bürozeiten abnimmt, weil der Hafen keine kennt',
+        ],
+      },
       conditions: {
         title: 'Was Europoort für Ihren Umzug bedeutet',
         intro:
@@ -197,6 +210,19 @@ export const industrial: SectionContent = {
             title: 'Angekommen die Arbeit beginnen',
             text: 'Papierkram erledigt, Zuhause funktioniert, und ein direkter Draht zu uns für alles danach.',
           },
+        ],
+      },
+      fees: {
+        title: 'Was ein Umzug zur Maasvlakte kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Einsätze auf der Maasvlakte reichen von einer einzelnen Fachkraft in einer kurzen Inbetriebnahme bis zu einem ganzen Team in einem mehrjährigen Vertrag. Sie erhalten ein Angebot für den tatsächlichen Umfang.',
+        includes: [
+          'Wohnraum, der den Weg zur Maasvlakte realistisch macht',
+          'Immigration und Genehmigungen entlang des Projektplans organisiert',
+          'Anmeldungen erledigt, ohne Menschen von der Anlage abzuziehen',
+          'Begleitung für Partner und Kinder, die später nachkommen',
         ],
       },
       conditions: {
@@ -325,6 +351,19 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Was Offshore-Begleitung kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Schichtrhythmen machen Offshore-Einsätze mit keinem anderen Umzug vergleichbar. Sie erhalten ein Angebot, das sich an Ihrem Rhythmus und an der Vertragsdauer orientiert.',
+        includes: [
+          'Wohnraum, der zu einem Schichtrhythmus passt und nicht zu einem Bürotag',
+          'Immigration rund um die Zeit auf See organisiert',
+          'Termine innerhalb Ihrer Wochen an Land gelegt',
+          'Ein fester Ansprechpartner, solange Sie nicht erreichbar sind',
+        ],
+      },
       note: 'Steuer- und Sozialversicherungspositionen im Offshore-Bereich variieren mit Flaggenstaat, Arbeitgeber und Arbeitstagen; wir melden uns, wenn Ihre Situation einen Spezialisten für grenzüberschreitende Steuern braucht, und verbinden Sie mit einem aus unserem Netzwerk.',
       conditions: {
         title: 'Was Rotationsarbeit verändert',
@@ -450,6 +489,19 @@ export const industrial: SectionContent = {
             title: 'Erste Schicht, voll angekommen',
             text: 'Sie stempeln ein mit Adresse, Nummer und Versicherung bereits geregelt.',
           },
+        ],
+      },
+      fees: {
+        title: 'Was ein Umzug für Logistikfachkräfte kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Der Umfang hängt davon ab, ob Sie allein oder mit Familie kommen und wie schnell die Stelle beginnt. Nach dem ersten Gespräch erhalten Sie ein Festpreisangebot.',
+        includes: [
+          'Wohnraum nahe den Terminals, Lagern oder dem Korridor, in dem Sie wirklich arbeiten',
+          'Aufenthaltsweg gewählt und passend zu Ihrem Eintrittstermin eingereicht',
+          'Anmeldungen, Versicherung und Bankkonto bei Ankunft eingerichtet',
+          'Familienbegleitung, wenn Partner und Kinder nachkommen',
         ],
       },
       conditions: {
@@ -580,6 +632,19 @@ export const industrial: SectionContent = {
             title: 'Auswerten und wiederholen',
             text: 'Wir besprechen jede Ankunft mit dem Arbeitgeber nach, damit die nächste noch glatter läuft.',
           },
+        ],
+      },
+      fees: {
+        title: 'Was industrielle Umzugsbegleitung kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Maßgeschneiderte Leistungen, zugeschnitten auf Ihre persönlichen Anforderungen. Nach einem ersten Gespräch erhalten Sie ein individuelles Angebot, das sich an Ihren Zielen, Ihrer familiären Situation und dem gewünschten Grad an Begleitung orientiert.',
+        includes: [
+          'Ein Plan für die Erlaubnis, die Wohnung und die Anmeldungen',
+          'Abstimmung mit dem Arbeitgeber, damit der Papierkram keinen Eintrittstermin verzögert',
+          'Begleitung in den Sprachen, die Ihr Team tatsächlich spricht',
+          'Ein Ansprechpartner für die Beschäftigten und für Ihre Personalabteilung',
         ],
       },
       conditions: {

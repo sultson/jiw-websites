@@ -4,7 +4,7 @@ export const vip: VipContent = {
   title: 'VIP Relocation Services',
   metaTitle: 'VIP Relocation & Immigration Packages Netherlands | E & I',
   metaDescription:
-    'VIP relocation packages for couples, families and businesses moving to the Netherlands. Immigration, housing, registrations and settling-in, orchestrated by one person. From €2,000.',
+    'VIP relocation packages for couples, families and businesses moving to the Netherlands. Immigration, housing, registrations and settling-in, orchestrated by one person. Every package is quoted to your requirements.',
   eyebrow: 'VIP services',
   intro: [
     'Artists on tour schedules. Athletes between seasons. Executives with one free weekend and founders with none. Our VIP packages exist for people whose calendars do not bend, so the Netherlands bends instead.',
@@ -13,10 +13,10 @@ export const vip: VipContent = {
   image: '/images/vip-hub.jpg?v=20260731',
   imageAlt: 'Host greeting a couple arriving by car at a canal-side hotel',
   pricingNote: {
-    title: 'What a package costs, and why',
+    title: 'How VIP is priced',
     text: [
-      'Packages range from €2,000 to €10,000 depending on household size, visa route and how compressed your timeline is. That price buys weeks of full-time work: applications prepared and filed, housing searched and negotiated, every registration scheduled and accompanied, and availability that does not end at five o’clock.',
-      'After your first consultation you receive one fixed quote. No hourly surprises, no add-ons mid-move.',
+      'Bespoke services tailored to your personal requirements. Following an initial consultation, you will receive a customised proposal based on your objectives, family situation and preferred level of assistance.',
+      'That proposal is one fixed figure for the scope you agree. No hourly rates, no additions appearing halfway through the move, and no charge for the consultation that produces it.',
     ],
   },
   tailored: {
@@ -31,7 +31,7 @@ export const vip: VipContent = {
       metaTitle: 'Couple Relocation & Immigration Package Netherlands | E & I',
       metaDescription:
         'Complete relocation and immigration package for couples moving to the Netherlands: partner visa, housing, BSN, insurance, bank account and settling-in, personally guided.',
-      priceFrom: 'from €2,000',
+      investment: 'Tailor-made',
       intro: [
         'You are moving for a career, a company or each other, and neither of you has time to become an expert in Dutch bureaucracy. The Couple VIP Package puts both your files in one hand and sequences everything so that visas, home and registrations land in the right order.',
       ],
@@ -95,7 +95,7 @@ export const vip: VipContent = {
       metaTitle: 'Family Relocation & Immigration Services Netherlands | E & I',
       metaDescription:
         'Family relocation package for the Netherlands: immigration for every family member, housing, school search, healthcare, registrations and neighbourhood orientation, personally guided.',
-      priceFrom: 'from €3,500',
+      investment: 'Tailor-made',
       badge: 'Most popular',
       intro: [
         'A family relocation is not a bigger version of a single one, it is a different discipline. School years that start on fixed dates, a home that has to work for everyone, four files at the IND instead of one. This package exists because getting that sequence right is what we are best at.',
@@ -160,7 +160,7 @@ export const vip: VipContent = {
       metaTitle: 'Business Relocation & Immigration Services Netherlands | E & I',
       metaDescription:
         'Business relocation package for the Netherlands: startup or DAFT visa, company and KvK registration, housing and settling-in for founders and executives, in one plan.',
-      priceFrom: 'from €5,000',
+      investment: 'Tailor-made',
       intro: [
         'Founders and executives moving to the Netherlands face two bureaucracies at once: one for the company, one for the life around it. This package runs both tracks simultaneously, so the business is trading while its founder is already living well, not commuting from a hotel into a paperwork queue.',
       ],
@@ -224,7 +224,7 @@ export const vip: VipContent = {
       metaTitle: 'VIP Relocation Concierge Netherlands | E & I',
       metaDescription:
         'Full concierge relocation to the Netherlands for artists, athletes and executives: one prepared visit, every appointment aligned, chauffeured days and 24/7 personal support.',
-      priceFrom: 'from €7,500',
+      investment: 'Tailor-made',
       intro: [
         'An artist between tour dates. An athlete signed mid-season. An executive whose calendar is planned into next year. The concierge tier compresses a relocation into the time you actually have, sometimes a single weekend, and handles everything that can possibly be handled without you.',
         'You tell us the dates you can be in the Netherlands. We choreograph the rest around them.',
@@ -259,9 +259,9 @@ export const vip: VipContent = {
         ],
       },
       justification: {
-        title: 'Why it costs what it costs',
+        title: 'What you are actually buying',
         text: [
-          'This tier runs to €10,000 for the most compressed relocations, and it is priced on a simple truth: your time is the scarcest asset in the move. Every hour we remove from your side of the table is an hour on stage, on the pitch or in the boardroom. That is the trade.',
+          'This tier is quoted on a simple truth: your time is the scarcest asset in the move. Every hour we remove from your side of the table is an hour on stage, on the pitch or in the boardroom. That is the trade, and it is what the proposal is built around.',
         ],
       },
       faq: {

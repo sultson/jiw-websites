@@ -7,7 +7,7 @@ export const relocation: SectionContent = {
     'Boutique relocation services in the Netherlands. One personal guide for your BSN, municipality registration, health insurance, schools and settling in, who goes with you to every appointment.',
   eyebrow: 'Relocation',
   intro: [
-    'Moving countries is a thousand small tasks wearing the disguise of one big one. The BSN, the municipality, the insurance, the school, the bank, each with its own counter, its own forms and its own idea of a reasonable waiting time. Most agencies hand you a checklist. We are the only boutique expat agency in the Netherlands, and we do something different: one person learns your name, your family and your situation, and then simply takes care of it.',
+    'Moving countries is a thousand small tasks wearing the disguise of one big one. The BSN, the municipality, the insurance, the school, the bank, each with its own counter, its own forms and its own idea of a reasonable waiting time. Most firms hand you a checklist. We are the only boutique expat consultancy in the Netherlands, and we do something different: one person learns your name, your family and your situation, and then simply takes care of it.',
     'That person does not manage your relocation from behind a desk. She books the appointments, prepares the paperwork, drives to the municipality with you and sits beside you at the counter. From the moment you land until the moment the Netherlands feels like home, you have someone here who already knows the answer to your next question.',
   ],
   image: '/images/family-arrival.jpg?v=20260731',
@@ -26,6 +26,13 @@ export const relocation: SectionContent = {
         'We prepare the appointment, verify that your birth certificates and apostilles will be accepted, and Johanna comes with you to the desk in person. If the clerk raises a question about a foreign document, you have someone beside you who has heard that question a hundred times and knows the answer.',
       ],
       cardText: 'Your citizen service number arranged fast, with us beside you at the desk.',
+      explainer: {
+        title: 'What is a BSN?',
+        text: [
+          'The BSN, burgerservicenummer, is your Dutch citizen service number. It is the single identifier the government, your employer, your bank, your insurer and your doctor all use to recognise you, and almost nothing in Dutch life proceeds without it.',
+          'You receive it by registering with a municipality, not by applying for it separately. That is why registration is the first practical task after arrival: a salary cannot be paid, health insurance cannot start and a bank account is difficult to open until the number exists.',
+        ],
+      },
       forWho: {
         title: 'Who this is for',
         items: [
@@ -71,6 +78,17 @@ export const relocation: SectionContent = {
             title: 'Registration day',
             text: 'We go together, complete the registration and leave with everything confirmed.',
           },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for BSN registration',
+        kind: 'fixed',
+        amount: 'Investment from €295',
+        includes: [
+          'Municipality appointment booked at the right desk and the right moment',
+          'Document, legalisation and translation requirements checked in advance',
+          'Accompaniment to the appointment, with interpretation where needed',
+          'Follow-up until the number is actually issued',
         ],
       },
       note: 'A BSN is issued through registration in the Personal Records Database, either as a resident or, for short stays, as a non-resident via an RNI desk. We advise which route fits your situation during intake.',
@@ -153,6 +171,13 @@ export const relocation: SectionContent = {
         'We handle the whole relationship with your municipality. First registration when you arrive, re-registration when you move within the Netherlands, deregistration if you leave, and corrections when the records do not match reality. Years of working alongside embassies and consulates taught us how Dutch officialdom thinks, and we put that fluency to work at your local counter.',
       ],
       cardText: 'First registration, moves and corrections at the gemeente, all handled for you.',
+      explainer: {
+        title: 'What is municipality registration?',
+        text: [
+          'Municipality registration enters you in the Basisregistratie Personen, the BRP, which is the Dutch population register. It records who you are and where you live, and it is what produces your BSN. Every level of Dutch administration reads from it.',
+          'It is a legal obligation with a deadline rather than an optional formality. You register at the gemeente of the address where you actually live, and you need the landlord’s permission for that address, which is the point where registrations most often fail.',
+        ],
+      },
       forWho: {
         title: 'Who this is for',
         items: [
@@ -198,6 +223,17 @@ export const relocation: SectionContent = {
             title: 'Registered and verified',
             text: 'We complete the registration together and confirm the database shows exactly what it should.',
           },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for municipality registration',
+        kind: 'fixed',
+        amount: 'Investment from €295',
+        includes: [
+          'Appointment booked within the five-day window the law allows',
+          'Address and landlord consent checked so registration is not refused',
+          'Accompaniment to the municipality on the day',
+          'Confirmation that the BRP record is correct once it is issued',
         ],
       },
       conditions: {
@@ -326,6 +362,17 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Professional fees for health insurance guidance',
+        kind: 'fixed',
+        amount: 'Investment from €195',
+        includes: [
+          'The right Dutch policy identified for your situation and household',
+          'Application completed and submitted with you',
+          'Start date aligned with your arrival so you are never uninsured',
+          'Guidance on the deductible, healthcare allowance and choosing a GP',
+        ],
+      },
       note: 'Insurance takes effect retroactively from the date your obligation began, so premiums are owed from that date even if you enroll later. Enrolling promptly costs nothing extra and avoids fines.',
       conditions: {
         title: 'How the Dutch system works',
@@ -451,6 +498,17 @@ export const relocation: SectionContent = {
             title: 'Enroll and start',
             text: 'We complete the enrollment and help your child arrive at a school that expects them.',
           },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for a school search',
+        kind: 'fixed',
+        amount: 'Investment from €995',
+        includes: [
+          'A shortlist of international, bilingual or Dutch schools that genuinely fit your child',
+          'Waiting lists, admission windows and catchment rules checked before you choose',
+          'Visits and introductions arranged with the schools',
+          'Registration paperwork prepared and submitted',
         ],
       },
       note: 'School choice and housing choice are one decision, not two; the address determines the options. If we are also running your housing search, we plan them together.',
@@ -584,6 +642,19 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'What settling-in support costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'Settling in is the part of a move that is different for everyone, so it is priced to what you actually want handled. You receive one fixed quotation after the first conversation, not an hourly meter.',
+        includes: [
+          'Utilities, internet and municipal taxes arranged in your name',
+          'Doctor, dentist and pharmacy registration',
+          'Banking, DigiD and the Dutch admin that blocks everything else',
+          'The practical orientation that turns an address into a neighbourhood',
+        ],
+      },
       conditions: {
         title: 'The order things have to happen in',
         intro:
@@ -708,6 +779,17 @@ export const relocation: SectionContent = {
             title: 'Arrive home',
             text: 'You go to sleep in a working home, knowing exactly what tomorrow looks like.',
           },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for airport collection',
+        kind: 'fixed',
+        amount: 'From €395',
+        includes: [
+          'A professional chauffeur and an executive vehicle matched to your party and luggage',
+          'Flight monitored so delays do not cost you the booking',
+          'Meet and greet inside the terminal, not a message from the car park',
+          'Direct transfer to your address, hotel or first appointment',
         ],
       },
       conditions: {
@@ -844,6 +926,19 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'What a family relocation costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'No two family moves are the same: the number of children, the schools, the visa route and the timeline all change the work. After an initial consultation you receive a customised proposal covering the whole arrival.',
+        includes: [
+          'One plan covering every family member, sequenced in the right order',
+          'Housing search built around schools and commute, not just postcode',
+          'School search, registration and introductions',
+          'Every registration for every family member, booked and accompanied',
+        ],
+      },
       conditions: {
         title: 'How a family move is sequenced',
         intro:
@@ -968,6 +1063,19 @@ export const relocation: SectionContent = {
             title: 'Landed and living',
             text: 'You are registered, housed and oriented, with a local number to message whenever a question comes up.',
           },
+        ],
+      },
+      fees: {
+        title: 'What a Rotterdam relocation costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'Bespoke services tailored to your personal requirements. Following an initial consultation, you will receive a customised proposal based on your objectives, family situation and preferred level of assistance.',
+        includes: [
+          'A single plan covering immigration, housing and every registration',
+          'One consultant who knows the city and stays with your file throughout',
+          'Appointments booked, prepared and attended with you',
+          'Support that continues after the boxes are unpacked',
         ],
       },
       conditions: {

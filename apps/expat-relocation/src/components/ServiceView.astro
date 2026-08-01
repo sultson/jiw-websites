@@ -25,6 +25,22 @@ const supportAlt = s.image2 ? (s.image2Alt ?? '') : '';
 
 <PageHero eyebrow={s.eyebrow} title={s.title} intro={s.intro} image={s.image} imageAlt={s.imageAlt} />
 
+<!-- What the permit or procedure actually is. Defines the subject before the page
+     starts qualifying the reader, and answers the "what is X" search directly. -->
+{s.explainer && (
+  <section class="border-b border-line">
+    <div class="container-site py-14 md:py-18">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="font-display text-3xl md:text-4xl">{s.explainer.title}</h2>
+        <span class="gold-rule mt-6"></span>
+        {s.explainer.text.map((p) => (
+          <p class="mt-5 text-[1.02rem] leading-relaxed">{p}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
 <!-- Who it is for, beside a supporting photo -->
 <section class="container-site py-16 md:py-24">
   <div class="grid items-start gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
@@ -121,9 +137,35 @@ const supportAlt = s.image2 ? (s.image2Alt ?? '') : '';
           <div>
             <span class="eyebrow">{c.core.ui.misc.investment}</span>
             <h3 class="mt-3 font-display text-2xl text-white">{s.fees.title}</h3>
-            <p class="mt-4 font-display text-3xl text-gold-soft md:text-4xl">{s.fees.amount}</p>
+            {/* Tiered services carry their figures in the tier rows, so repeating the
+                cheapest one as a headline just says the same thing twice. A tailored
+                service leads with the statement, so its headline stays smaller and the
+                sentence below carries the weight. */}
+            {s.fees.kind !== 'tiered' && (
+              <p
+                class:list={[
+                  'mt-4 font-display text-gold-soft',
+                  s.fees.kind === 'tailored' ? 'text-2xl md:text-[1.75rem]' : 'text-3xl md:text-4xl',
+                ]}
+              >
+                {s.fees.amount}
+              </p>
+            )}
+            {s.fees.amountNote && (
+              <p class="mt-4 text-[0.9rem] leading-relaxed text-white/70">{s.fees.amountNote}</p>
+            )}
           </div>
           <div>
+            {s.fees.tiers && (
+              <ul class="mb-7 space-y-0 border-b border-white/15">
+                {s.fees.tiers.map((tier) => (
+                  <li class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-t border-white/15 py-3.5">
+                    <span class="text-[0.95rem] text-white/85">{tier.label}</span>
+                    <span class="font-display text-lg text-gold-soft">{tier.amount}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
             <ul class="space-y-2.5">
               {s.fees.includes.map((item) => (
                 <li class="flex items-start gap-3 text-[0.93rem] leading-relaxed text-white/85">
@@ -132,7 +174,13 @@ const supportAlt = s.image2 ? (s.image2Alt ?? '') : '';
                 </li>
               ))}
             </ul>
-            <p class="mt-5 border-t border-white/15 pt-4 text-[0.85rem] leading-relaxed text-white/60">{s.fees.note}</p>
+            {/* Only meaningful next to a published figure. A bespoke proposal states
+                its own inclusions, so the disclaimer would be noise there. */}
+            {s.fees.kind !== 'tailored' && (
+              <p class="mt-5 border-t border-white/15 pt-4 text-[0.82rem] leading-relaxed text-white/55">
+                {c.core.ui.misc.feesDisclaimer}
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -193,7 +241,7 @@ const supportAlt = s.image2 ? (s.image2Alt ?? '') : '';
 </section>
 
 <!-- CTA + tailored form -->
-<section id="inquiry">
+<section id="inquiry" class="band-inquiry border-t border-line-warm">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl text-center">
       <h2 class="font-display text-3xl md:text-4xl">{s.cta.title}</h2>

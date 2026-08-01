@@ -26,6 +26,13 @@ export const relocation: SectionContent = {
         'Nous préparons le rendez-vous, vérifions que vos actes de naissance et apostilles seront acceptés, et Johanna vous accompagne en personne au guichet. Si l’agent soulève une question sur un document étranger, vous avez à vos côtés quelqu’un qui a entendu cette question cent fois et en connaît la réponse.',
       ],
       cardText: 'Votre numéro de service citoyen obtenu vite, avec nous à vos côtés au guichet.',
+      explainer: {
+        title: 'Qu’est-ce qu’un BSN ?',
+        text: [
+          'Le BSN, burgerservicenummer, est votre numéro national néerlandais. C’est l’identifiant unique par lequel l’administration, votre employeur, votre banque, votre assureur et votre médecin vous reconnaissent, et presque rien dans la vie néerlandaise ne se met en route sans lui.',
+          'Vous l’obtenez en vous inscrivant auprès d’une commune, et non par une demande distincte. C’est pourquoi l’inscription est la première tâche pratique après l’arrivée : sans ce numéro, aucun salaire ne peut être versé, aucune assurance maladie ne peut démarrer et l’ouverture d’un compte bancaire devient difficile.',
+        ],
+      },
       forWho: {
         title: 'À qui s’adresse ce service',
         items: [
@@ -71,6 +78,17 @@ export const relocation: SectionContent = {
             title: 'Jour de l’inscription',
             text: 'Nous y allons ensemble, finalisons l’inscription et repartons avec tout confirmé.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour l’obtention du BSN',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 295 €',
+        includes: [
+          'Rendez-vous communal pris au bon guichet et au bon moment',
+          'Exigences de documents, de légalisation et de traduction vérifiées à l’avance',
+          'Accompagnement au rendez-vous, avec interprétation si nécessaire',
+          'Suivi jusqu’à la délivrance effective du numéro',
         ],
       },
       note: 'Un BSN est délivré via l’inscription au registre des personnes, soit comme résident, soit, pour les courts séjours, comme non-résident via un guichet RNI. Nous vous conseillons la voie adaptée à votre situation lors de l’entretien.',
@@ -153,6 +171,13 @@ export const relocation: SectionContent = {
         'Nous gérons toute la relation avec votre commune. Première inscription à l’arrivée, réinscription lors d’un déménagement aux Pays-Bas, radiation si vous partez, et corrections quand le registre ne correspond pas à la réalité. Des années de travail aux côtés des ambassades et consulats nous ont appris comment pense l’administration néerlandaise, et nous mettons cette aisance au service de votre guichet local.',
       ],
       cardText: 'Première inscription, déménagements et corrections à la gemeente, tout pris en charge pour vous.',
+      explainer: {
+        title: 'Qu’est-ce que l’inscription à la commune ?',
+        text: [
+          'L’inscription à la commune vous enregistre dans la Basisregistratie Personen, le BRP, le registre de la population néerlandaise. Il consigne qui vous êtes et où vous habitez, et c’est de lui que découle votre BSN. Tous les échelons de l’administration néerlandaise le consultent.',
+          'C’est une obligation légale assortie d’un délai, non une formalité facultative. Vous vous inscrivez à la commune de l’adresse où vous résidez réellement, et vous avez besoin de l’accord du bailleur pour cette adresse. C’est précisément là que les inscriptions échouent le plus souvent.',
+        ],
+      },
       forWho: {
         title: 'À qui s’adresse ce service',
         items: [
@@ -198,6 +223,17 @@ export const relocation: SectionContent = {
             title: 'Inscrit et vérifié',
             text: 'Nous finalisons l’inscription ensemble et confirmons que le registre indique exactement ce qu’il doit.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour l’inscription à la commune',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 295 €',
+        includes: [
+          'Rendez-vous pris dans le délai légal de cinq jours',
+          'Adresse et accord du bailleur vérifiés pour que l’inscription ne soit pas refusée',
+          'Accompagnement à la commune le jour même',
+          'Confirmation de l’exactitude de la fiche BRP une fois établie',
         ],
       },
       conditions: {
@@ -326,6 +362,17 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Honoraires pour un conseil en assurance maladie',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 195 €',
+        includes: [
+          'La police néerlandaise adaptée à votre situation et à votre foyer identifiée',
+          'Souscription complétée et déposée avec vous',
+          'Date d’effet alignée sur votre arrivée pour ne jamais rester sans couverture',
+          'Conseil sur la franchise, l’allocation santé et le choix d’un médecin traitant',
+        ],
+      },
       note: 'L’assurance prend effet rétroactivement à la date où votre obligation a commencé : les primes sont donc dues à partir de cette date même si vous souscrivez plus tard. Souscrire rapidement ne coûte rien de plus et évite les amendes.',
       conditions: {
         title: 'Comment fonctionne le système néerlandais',
@@ -451,6 +498,17 @@ export const relocation: SectionContent = {
             title: 'Inscrire et démarrer',
             text: 'Nous finalisons l’inscription et aidons votre enfant à arriver dans une école qui l’attend.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour une recherche d’école',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 995 €',
+        includes: [
+          'Une sélection d’écoles internationales, bilingues ou néerlandaises réellement adaptées à votre enfant',
+          'Listes d’attente, périodes d’inscription et secteurs vérifiés avant votre choix',
+          'Visites et rencontres organisées avec les écoles',
+          'Dossiers d’inscription préparés et déposés',
         ],
       },
       note: 'Le choix de l’école et le choix du logement sont une seule décision, pas deux : l’adresse détermine les options. Si nous menons aussi votre recherche de logement, nous les planifions ensemble.',
@@ -584,6 +642,19 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Ce que coûte l’accompagnement à l’installation',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'L’installation est la partie d’un déménagement qui diffère pour chacun, elle est donc chiffrée selon ce que vous souhaitez réellement voir pris en charge. Après le premier entretien, vous recevez un devis à prix fixe, pas un compteur horaire.',
+        includes: [
+          'Énergie, internet et taxes locales mis à votre nom',
+          'Inscription chez le médecin, le dentiste et le pharmacien',
+          'Banque, DigiD et les démarches néerlandaises qui bloquent tout le reste',
+          'L’orientation pratique qui transforme une adresse en quartier',
+        ],
+      },
       conditions: {
         title: 'L\'ordre dans lequel les choses doivent se faire',
         intro:
@@ -708,6 +779,17 @@ export const relocation: SectionContent = {
             title: 'Arriver chez soi',
             text: 'Vous vous endormez dans un logement qui fonctionne, en sachant exactement à quoi ressemble demain.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour un accueil à l’aéroport',
+        kind: 'fixed',
+        amount: 'À partir de 395 €',
+        includes: [
+          'Un chauffeur professionnel et un véhicule de direction adaptés à votre groupe et à vos bagages',
+          'Vol surveillé pour qu’un retard ne vous coûte pas la réservation',
+          'Accueil dans le terminal, et non un message depuis le parking',
+          'Transfert direct vers votre adresse, votre hôtel ou votre premier rendez-vous',
         ],
       },
       conditions: {
@@ -844,6 +926,19 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Ce que coûte une relocation familiale',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'Deux déménagements familiaux ne se ressemblent jamais : le nombre d’enfants, les écoles, la voie de séjour et le calendrier changent le travail. Après un premier entretien, vous recevez une proposition personnalisée couvrant toute l’arrivée.',
+        includes: [
+          'Un plan unique couvrant chaque membre de la famille, dans le bon ordre',
+          'Recherche de logement construite autour des écoles et du trajet, pas seulement du code postal',
+          'Recherche d’école, inscription et présentations',
+          'Chaque formalité pour chaque membre de la famille, prise et accompagnée',
+        ],
+      },
       conditions: {
         title: 'Comment s\'organise un déménagement familial',
         intro:
@@ -968,6 +1063,19 @@ export const relocation: SectionContent = {
             title: 'Arrivé et installé',
             text: 'Vous êtes inscrit, logé et orienté, avec un numéro local à contacter dès qu’une question surgit.',
           },
+        ],
+      },
+      fees: {
+        title: 'Ce que coûte une relocation à Rotterdam',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'Des prestations sur mesure, adaptées à vos exigences personnelles. À l’issue d’un premier entretien, vous recevez une proposition personnalisée fondée sur vos objectifs, votre situation familiale et le niveau d’accompagnement souhaité.',
+        includes: [
+          'Un plan unique couvrant l’immigration, le logement et chaque formalité',
+          'Une conseillère qui connaît la ville et suit votre dossier de bout en bout',
+          'Rendez-vous pris, préparés et honorés avec vous',
+          'Un accompagnement qui continue une fois les cartons défaits',
         ],
       },
       conditions: {

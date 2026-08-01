@@ -17,9 +17,9 @@ const l = (p: string) => localizePath(p, lang);
 const serviceLinks = [
   { label: nav.relocation, href: l(SECTIONS.relocation) },
   { label: nav.housing, href: l(SECTIONS.housing) },
-  { label: nav.vip, href: l(SECTIONS.vip) },
   { label: nav.immigration, href: l(SECTIONS.immigration) },
   { label: nav.business, href: l(SECTIONS.business) },
+  { label: nav.vip, href: l(SECTIONS.vip) },
   { label: c.industrial.title, href: l(SECTIONS.industrial) },
 ];
 const companyLinks = [
@@ -103,7 +103,13 @@ const year = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="mt-14 flex flex-col gap-2 border-t border-white/10 pt-6 text-[0.78rem] text-white/45 md:flex-row md:items-center md:justify-between">
+    <!-- Independence statement. The client requires that no visitor can mistake E & I
+         for the IND or a government body, so this is legible rather than buried. -->
+    <p class="mt-14 border-t border-white/10 pt-6 text-[0.8rem] leading-relaxed text-white/55">
+      {f.disclaimer}
+    </p>
+
+    <div class="mt-6 flex flex-col gap-2 text-[0.78rem] text-white/45 md:flex-row md:items-center md:justify-between">
       <p>© {year} {site.legalName}. {f.rightsReserved}</p>
       <p>
         {f.builtBy}

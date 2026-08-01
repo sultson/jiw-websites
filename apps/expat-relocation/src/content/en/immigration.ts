@@ -7,7 +7,7 @@ export const immigration: SectionContent = {
     'Practical, personally guided immigration services for expats in the Netherlands. Highly skilled migrant, partner, startup and DAFT visas, handled with you, not for a file number.',
   eyebrow: 'Immigration',
   intro: [
-    'A Dutch visa is not a form. It is the moment your new life either starts on time or sits in a drawer at the IND. We handle the immigration side of your move the way it should be handled: practically, personally, and with someone who has walked hundreds of families through these exact doors. As the only boutique expat agency in the Netherlands, we take on a small number of clients and give each one real attention.',
+    'A Dutch visa is not a form. It is the moment your new life either starts on time or sits in a drawer at the IND. We handle the immigration side of your move the way it should be handled: practically, personally, and with someone who has walked hundreds of families through these exact doors. As the only boutique expat consultancy in the Netherlands, we take on a small number of clients and give each one real attention.',
     'Every case starts with an honest intake. We tell you which permit actually fits your situation, what the IND will ask for, and what we take off your plate. From that point on you have one contact, one plan, and no surprises.',
   ],
   image: '/images/canal-evening.jpg',
@@ -31,6 +31,13 @@ export const immigration: SectionContent = {
         'That is where we come in. We coordinate directly with your employer’s HR team, prepare you and your family for every appointment, and stay reachable on our 24/7 personal WhatsApp line whenever a question comes up, whatever the time zone.',
       ],
       cardText: 'The fastest work route to the Netherlands, coordinated between you, your employer and the IND.',
+      explainer: {
+        title: 'What is the highly skilled migrant permit?',
+        text: [
+          'The highly skilled migrant permit, kennismigrant in Dutch, is the route the Netherlands uses to bring in experienced professionals quickly. It is not judged on your job title or your diploma. It is judged on one thing: whether a Dutch employer that the IND has recognised as a sponsor is paying you above a set salary threshold.',
+          'Because the employer carries the recognition, the procedure is fast and there is no labour market test. The permit is tied to that employer, so it is the contract, not the person, that anchors your residence in the Netherlands.',
+        ],
+      },
       forWho: {
         title: 'Who this is for',
         items: [
@@ -72,6 +79,17 @@ export const immigration: SectionContent = {
           { title: 'File preparation', text: 'We assemble the documents with you and your employer and submit through the sponsor.' },
           { title: 'Decision and MVV', text: 'Depending on your nationality you collect an entry visa at the Dutch embassy before travelling. We prepare you for that appointment.' },
           { title: 'Landing', text: 'Within your first days we complete registration, permit pickup and the practical essentials.' },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for a highly skilled migrant application',
+        kind: 'fixed',
+        amount: 'Investment from €1,295',
+        includes: [
+          'Assessment of the salary criterion that applies to your age and situation',
+          'The full application file prepared and filed through your recognised sponsor',
+          'Coordination with your employer’s HR so the contract and start date line up',
+          'Follow-up on every IND request until the decision is issued',
         ],
       },
       note: 'Many highly skilled migrants qualify for the 30% facility, a Dutch tax advantage for incoming employees. Conditions change regularly, so we flag it during intake and connect you with a tax advisor rather than promising numbers.',
@@ -159,6 +177,13 @@ export const immigration: SectionContent = {
         'Our reputation was built in the embassy world, and Blue Card files reward exactly that kind of precision: a correctly evaluated degree, a compliant contract and a clean submission. We make sure yours is all three.',
       ],
       cardText: 'The European work permit for higher educated professionals, with mobility across the EU.',
+      explainer: {
+        title: 'What is the EU Blue Card?',
+        text: [
+          'The EU Blue Card is a European residence and work permit for university-educated professionals. Where the Dutch highly skilled migrant permit only asks about salary and a recognised sponsor, the Blue Card also asks for a completed higher education programme, and in return it gives you rights that reach beyond the Netherlands.',
+          'That is the real difference. A Blue Card builds towards mobility inside the European Union and towards EU long-term resident status, which the national permit does not. It is the better choice when the Netherlands is a chapter rather than the whole book.',
+        ],
+      },
       forWho: {
         title: 'Is this your route?',
         items: [
@@ -195,6 +220,17 @@ export const immigration: SectionContent = {
           { title: 'Assessment', text: 'We check your degree, offer and salary against the current Blue Card conditions.' },
           { title: 'Recognition and file', text: 'Diploma evaluation is set in motion while we build the application file in parallel.' },
           { title: 'Submission and arrival', text: 'After approval we plan your entry, registration and first appointments in the right order.' },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for an EU Blue Card application',
+        kind: 'fixed',
+        amount: 'Investment from €1,295',
+        includes: [
+          'Qualification and salary tested against the Blue Card criteria before you commit',
+          'Diploma evaluation arranged where the IND requires one',
+          'Application prepared and filed, including the employer side of the file',
+          'Monitoring until the decision, including any request for further evidence',
         ],
       },
       conditions: {
@@ -286,6 +322,13 @@ export const immigration: SectionContent = {
         'The application itself is straightforward when done right, so our real value is what comes after: turning that year into a career and a home. We guide graduates from the first form to the first apartment, and stay close while you find your footing.',
       ],
       cardText: 'Twelve months to live and work freely in the Netherlands after your degree.',
+      explainer: {
+        title: 'What is the orientation year?',
+        text: [
+          'The orientation year, zoekjaar in Dutch, is a one-year residence permit that lets recent graduates and researchers look for work in the Netherlands without an employer sponsoring them first. During that year you may work freely, with no work permit required from any employer.',
+          'It exists to solve a chicken-and-egg problem: employers want someone who can start, and permits usually need an employer. The orientation year removes that deadlock, and it comes with a lower salary threshold afterwards if you move onto a highly skilled migrant permit.',
+        ],
+      },
       forWho: {
         title: 'Who qualifies',
         items: [
@@ -326,6 +369,18 @@ export const immigration: SectionContent = {
           { title: 'Check', text: 'One conversation to confirm you qualify and to plan the timing of your move.' },
           { title: 'Apply', text: 'We prepare and file the IND application and keep you updated at every status change.' },
           { title: 'Arrive and settle', text: 'We line up your registration and essentials so you can spend the year on your career, not on bureaucracy.' },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for the orientation year',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'The orientation year is a short procedure and what you need from us depends on whether you apply from inside or outside the Netherlands. You receive a fixed quotation after a brief assessment of your diploma and your timing.',
+        includes: [
+          'Assessment of whether your degree and graduation date still qualify',
+          'Application prepared and filed with the IND',
+          'Guidance on moving to a work permit before the year runs out',
         ],
       },
       note: 'The three-year window after graduation is strict, and rankings lists change per year. If you are close to the edge, contact us before you assume you are out. Questions rarely keep office hours, which is why clients reach us on a personal WhatsApp line day and night.',
@@ -408,6 +463,13 @@ export const immigration: SectionContent = {
         'We treat these cases with the care they deserve. Johanna personally goes with clients to their appointments, from the municipality desk to the IND, so neither of you ever sits across from an official unprepared.',
       ],
       cardText: 'Careful, personal guidance for bringing your partner or spouse to the Netherlands.',
+      explainer: {
+        title: 'What is a partner visa?',
+        text: [
+          'A partner visa is residence granted on the basis of your relationship rather than your job. One of you, the sponsor, already has the right to live in the Netherlands. The other applies to join them. Marriage is not required, but an unmarried relationship has to be evidenced as durable and exclusive.',
+          'The Dutch procedure tests three things: that the relationship is genuine, that the sponsor earns a stable and sufficient income, and that any civil documents from abroad are properly legalised and translated. Most refusals come from the third, not the first.',
+        ],
+      },
       forWho: {
         title: 'Who we help',
         items: [
@@ -449,6 +511,17 @@ export const immigration: SectionContent = {
           { title: 'Prepare abroad', text: 'Exam, legalizations and embassy logistics in your partner’s country, coordinated from here.' },
           { title: 'Submit and decide', text: 'The application goes to the IND. We track it and handle any additional requests immediately.' },
           { title: 'Reunited', text: 'Your partner travels, registers and receives the residence permit. We are there for the landing.' },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for a partner visa application',
+        kind: 'fixed',
+        amount: 'Investment from €895',
+        includes: [
+          'Assessment of the relationship evidence before anything is filed',
+          'Sponsor and applicant files prepared together so they cannot contradict each other',
+          'Legalisation and translation requirements mapped for your country of origin',
+          'Application filed and monitored until the decision',
         ],
       },
       conditions: {
@@ -530,6 +603,13 @@ export const immigration: SectionContent = {
         'We run that operation for families around Rotterdam, Europoort and the wider industrial region, where international professionals arrive on contracts and their families follow. It is our home turf, and it shapes everything from which schools we recommend to which municipality desks we know by name.',
       ],
       cardText: 'Permits for your spouse and children, coordinated so the whole family lands together.',
+      explainer: {
+        title: 'What is family reunification?',
+        text: [
+          'Family reunification, gezinshereniging in Dutch, is the route that brings a partner and children to live with someone who already holds residence in the Netherlands. It is a single legal framework covering the whole household rather than a separate procedure per person.',
+          'The IND assesses the sponsor as much as the applicants: a stable income at or above the statutory threshold, suitable housing, and civil status documents from the country of origin that survive legalisation. Children have their own evidence requirements around custody and parental consent.',
+        ],
+      },
       forWho: {
         title: 'Made for',
         items: [
@@ -570,6 +650,17 @@ export const immigration: SectionContent = {
           { title: 'Family intake', text: 'We map every family member’s nationality, documents and needs in one conversation.' },
           { title: 'Prepare and submit', text: 'Certificates are legalized while we build and file the applications in parallel to save months.' },
           { title: 'Travel and settle', text: 'Entry visas, flights, registration and school starts, sequenced so nobody waits on anybody.' },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for a family reunification application',
+        kind: 'fixed',
+        amount: 'Investment from €1,195',
+        includes: [
+          'Income and sponsor requirements checked against your actual contract',
+          'One coordinated file for your partner and each child',
+          'Document legalisation and sworn translation requirements mapped per country',
+          'Applications filed together and monitored to the decision',
         ],
       },
       note: 'Children’s applications hinge on details parents rarely expect, such as consent from a parent staying behind. Raise your full family situation during intake so nothing surfaces late.',
@@ -652,6 +743,13 @@ export const immigration: SectionContent = {
         'We guide the whole arc, not only the permit: the facilitator match, the startup plan the IND wants to read, and the practical side of arriving, from company registration to a place to live.',
       ],
       cardText: 'A one-year founder permit to build your innovative company in the Dutch ecosystem.',
+      explainer: {
+        title: 'What is the startup visa?',
+        text: [
+          'The startup visa is a one-year residence permit for entrepreneurs building an innovative business in the Netherlands. It exists because a genuinely new company rarely has the revenue or the track record that the ordinary self-employed permit demands on day one.',
+          'Its defining feature is the facilitator: an experienced mentor approved by the Netherlands Enterprise Agency who guides your company through its first year. You are assessed on the innovation in the plan and on that partnership, not on turnover. The year is a runway to the self-employed permit, and preparing that next step early is the difference between continuing and starting again.',
+        ],
+      },
       forWho: {
         title: 'Who can apply for the startup visa',
         items: [
@@ -708,14 +806,14 @@ export const immigration: SectionContent = {
       },
       fees: {
         title: 'Professional fees for a startup visa application',
-        amount: 'from 2,250 to 3,250 euro',
+        kind: 'fixed',
+        amount: 'Investment from €2,495',
         includes: [
-          'Immigration strategy and consultation',
-          'Startup visa application preparation',
-          'Facilitator coordination',
-          'Communication with the IND',
+          'Immigration strategy and eligibility consultation',
+          'Support structuring the plan the application is judged on',
+          'Facilitator selection and coordination',
+          'Application filed with the IND and monitored to the decision',
         ],
-        note: 'Government fees are not included. Where your case falls in this range depends on the complexity of the plan and whether family members apply alongside you.',
       },
       note: 'The startup permit runs for one year and is not extended as such. The planned next step is the self-employed entrepreneur permit, and we start preparing that file well before your year ends.',
       details: {
@@ -776,6 +874,13 @@ export const immigration: SectionContent = {
         'It is the route freelancers, consultants and small business owners use most. Alongside the immigration file we handle the practical side of arriving: company registration, housing, and residence for the family coming with you.',
       ],
       cardText: 'The treaty route that lets Americans live and work in the Netherlands as entrepreneurs.',
+      explainer: {
+        title: 'What is the DAFT permit?',
+        text: [
+          'The DAFT permit comes from the Dutch American Friendship Treaty, a 1956 agreement that gives United States citizens a uniquely accessible route to self-employment in the Netherlands. It is open only to Americans, and it is by some distance the easiest entrepreneurial permit the country offers.',
+          'The treaty replaces the points system that other nationalities face with one straightforward test: register a genuine Dutch business and keep a defined minimum investment in the company’s equity. There is no innovation requirement, no facilitator and no scoring of your business plan. Maintaining the investment is what keeps the permit alive at renewal.',
+        ],
+      },
       forWho: {
         title: 'Who the DAFT visa is for',
         items: [
@@ -833,14 +938,14 @@ export const immigration: SectionContent = {
       },
       fees: {
         title: 'Professional fees for a DAFT application',
-        amount: 'from 1,950 to 2,750 euro',
+        kind: 'fixed',
+        amount: 'Investment from €2,295',
         includes: [
-          'Immigration consultation',
-          'Preparation of the residence permit application',
-          'Guidance during company registration',
-          'Communication with the IND',
+          'Eligibility assessment under the Dutch American Friendship Treaty',
+          'Company registration and the investment structured to meet the treaty test',
+          'Residence permit application prepared and filed',
+          'Guidance on maintaining the investment through later renewals',
         ],
-        note: 'Government fees are not included. Where your case falls in this range depends on your company structure and whether family members apply alongside you.',
       },
       note: 'The residence permit is typically granted for two years and can be extended. The 4,500 euro must stay invested in the business for as long as you hold DAFT status, because renewals look at your balance sheet.',
       details: {
@@ -901,6 +1006,13 @@ export const immigration: SectionContent = {
         'These files live and die at the consulate, and that is a world we know intimately. Our reputation was built in the embassy world, which means we know what a convincing business file looks like from the other side of the counter.',
       ],
       cardText: 'Short-stay visas for meetings, negotiations and site visits in the Netherlands.',
+      explainer: {
+        title: 'What is a business visa?',
+        text: [
+          'A business visa is a short-stay Schengen visa, type C, for meetings, negotiations, conferences and site visits. It allows up to 90 days in any 180-day period across the Schengen area, and it does not permit you to take up employment in the Netherlands.',
+          'Nationals of many countries need one before travelling; others are visa-exempt for short stays. The application is decided by the consulate on the strength of the invitation, your travel history, insurance and evidence that you will return, which is why the supporting file matters more than the form.',
+        ],
+      },
       forWho: {
         title: 'Typical travellers',
         items: [
@@ -937,6 +1049,17 @@ export const immigration: SectionContent = {
           { title: 'Brief us', text: 'Who is travelling, from where, and for what. We confirm the correct visa type immediately.' },
           { title: 'Build the file', text: 'Invitation, evidence and forms come together in days, not weeks.' },
           { title: 'Consulate and travel', text: 'Appointment booked, file submitted, and your visit proceeds on schedule.' },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for a business visa application',
+        kind: 'fixed',
+        amount: 'Investment from €795',
+        includes: [
+          'Assessment of the right visa type for the purpose and length of your trip',
+          'Invitation and supporting documents prepared to consular standard',
+          'Appointment booked and the file assembled for submission',
+          'Guidance on travel insurance and proof of means',
         ],
       },
       note: 'A Schengen business visa allows meetings and negotiations, not employment. If your visits are becoming regular work in the Netherlands, talk to us about a work-based permit before it becomes a problem at the border.',
@@ -1019,6 +1142,13 @@ export const immigration: SectionContent = {
         'We act as the immigration desk our clients never have to think about. We track the dates, prepare the files, and Johanna accompanies clients to their IND appointments in person, so a summons never feels like a threat.',
       ],
       cardText: 'First permits, renewals, changes and the road to permanent residence, all under one roof.',
+      explainer: {
+        title: 'What is a Dutch residence permit?',
+        text: [
+          'A residence permit, verblijfsvergunning in Dutch, is the document that makes your stay in the Netherlands lawful beyond 90 days. It is issued by the IND, it always states a purpose of stay such as work, family or study, and the rights that come with it follow that purpose rather than the card itself.',
+          'Permits are either temporary or permanent. What matters most for the long term is which purpose you hold and for how long, because continuous lawful residence is what eventually opens permanent residence and naturalisation. Changing purpose is possible, but the timing decides whether your accrued years survive the change.',
+        ],
+      },
       forWho: {
         title: 'When to call us',
         items: [
@@ -1055,6 +1185,17 @@ export const immigration: SectionContent = {
           { title: 'Review', text: 'We audit your current status and flag every date and condition that matters.' },
           { title: 'Prepare', text: 'The right application, assembled ahead of the deadline with room to spare.' },
           { title: 'Secure', text: 'Submission, follow-up and your new permit in hand, with the next milestone already in the calendar.' },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for a residence permit application',
+        kind: 'fixed',
+        amount: 'Investment from €895',
+        includes: [
+          'Assessment of which permit fits your situation and which one lasts',
+          'Application prepared and filed with the IND',
+          'Document, legalisation and translation requirements mapped in advance',
+          'Follow-up until the decision, including renewals where relevant',
         ],
       },
       note: 'Fees and decision periods differ per permit type and change over time, so we confirm the current IND figures during your intake rather than printing them here.',

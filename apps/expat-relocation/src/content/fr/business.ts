@@ -83,15 +83,17 @@ export const business: SectionContent = {
         ],
       },
       fees: {
-        title: 'Honoraires pour une demande de permis entrepreneur',
-        amount: 'à partir de 2 450 à 3 500 euros',
+        title: 'Ce que coûte la création d’une entreprise',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'Créer une société touche à votre forme juridique, à votre situation fiscale et le plus souvent à votre titre de séjour en même temps. Ces trois décisions ne sont jamais identiques d’un client à l’autre, vous recevez donc une proposition personnalisée après le premier entretien.',
         includes: [
-          'Conseil et stratégie d’immigration',
-          'Préparation de la demande',
-          'Revue des documents',
-          'Communication avec l’IND',
+          'Forme juridique conseillée au regard de votre fiscalité et de votre voie de séjour',
+          'Société immatriculée auprès de la KvK et de l’administration fiscale',
+          'Voie de séjour choisie et préparée en parallèle de la société',
+          'Banque, comptabilité et premières obligations mises en place',
         ],
-        note: 'Les taxes perçues par l’IND ne sont pas incluses. La position de votre dossier dans cette fourchette dépend de la complexité de l’entreprise et de la présence ou non de membres de la famille dans la demande.',
       },
       details: {
         title: 'Comment votre demande est évaluée',
@@ -155,6 +157,13 @@ export const business: SectionContent = {
         'Nous pilotons la constitution de bout en bout et dans le bon ordre, avec le notaire, la Chambre de commerce, le fisc et la banque recevant chacun exactement ce qu’il leur faut du premier coup.',
       ],
       cardText: 'La constitution prise en charge de bout en bout : forme juridique, notaire, KvK, TVA et banque.',
+      explainer: {
+        title: 'Que suppose la création d’une société néerlandaise ?',
+        text: [
+          'Créer aux Pays-Bas commence avant tout par le choix d’une forme juridique. L’entreprise individuelle, eenmanszaak ou ZZP, est rapide et peu coûteuse mais vous laisse personnellement responsable des dettes de l’entreprise. La BV est une société à responsabilité limitée : une personne morale distincte qui protège votre patrimoine personnel, constituée devant un notaire néerlandais.',
+          'Ce choix commande tout le reste, notamment votre imposition, la possibilité d’accueillir des associés, la façon dont les banques et les clients vous évaluent et, dans plusieurs cas, le titre de séjour auquel vous pouvez prétendre. Choisir juste au départ coûte nettement moins cher que de transformer ensuite.',
+        ],
+      },
       forWho: {
         title: 'Nous immatriculons des sociétés pour',
         items: [
@@ -195,6 +204,22 @@ export const business: SectionContent = {
           { title: 'Concevoir', text: 'Structure, actionnaires et adresse décidés en une session de travail.' },
           { title: 'Exécuter', text: 'Acte notarié, inscription KvK et déclarations fiscales accomplis dans l’ordre.' },
           { title: 'Opérer', text: 'Compte bancaire ouvert, numéro de TVA actif, et votre société prête à signer son premier contrat.' },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour la constitution d’une société',
+        kind: 'tiered',
+        amount: 'Investissement à partir de 2 495 €',
+        tiers: [
+          { label: 'Entreprise individuelle (ZZP)', amount: 'Investissement à partir de 2 495 €' },
+          { label: 'BV néerlandaise', amount: 'Investissement à partir de 3 495 €' },
+          { label: 'Structure de holding internationale', amount: 'Sur mesure' },
+        ],
+        includes: [
+          'Structure conseillée avant tout dépôt, et non après',
+          'Acte notarié coordonné pour une BV, statuts compris',
+          'Immatriculation auprès de la KvK et du Belastingdienst',
+          'Registre UBO, numéro de TVA et premières obligations déclaratives correctement établis',
         ],
       },
       note: 'Si votre permis de séjour est encore en cours d’instruction, l’ordre des opérations compte : certaines étapes peuvent avancer avant l’arrivée et d’autres non. Nous planifions la séquence autour de votre calendrier d’immigration.',
@@ -277,6 +302,13 @@ export const business: SectionContent = {
         'Nous préparons toute l’inscription, puis Johanna vous accompagne au rendez-vous lui-même, pour que la langue, un document manquant ou une question inattendue ne vous coûtent jamais une seconde visite.',
       ],
       cardText: 'Votre inscription à la Chambre de commerce préparée, réservée et effectuée ensemble.',
+      explainer: {
+        title: 'Qu’est-ce que l’immatriculation à la KvK ?',
+        text: [
+          'La KvK, Kamer van Koophandel, est la chambre de commerce néerlandaise, et l’immatriculation à son registre du commerce est ce qui fait juridiquement exister une entreprise aux Pays-Bas. Toute société et tout indépendant doit y figurer.',
+          'L’immatriculation est publique : vos données d’entreprise sont visibles de tous, et les clients les vérifient couramment avant de contracter. La KvK transmet vos données à l’administration fiscale, d’où découle votre numéro de TVA. Les codes d’activité choisis à l’immatriculation façonnent donc discrètement votre situation fiscale ultérieure.',
+        ],
+      },
       forWho: {
         title: 'Avec qui nous entrons',
         items: [
@@ -313,6 +345,17 @@ export const business: SectionContent = {
           { title: 'Préparer', text: 'Documents, adresse et description d’activité finalisés ensemble.' },
           { title: 'S’inscrire', text: 'Nous vous accompagnons au bureau de la KvK et gérons les imprévus sur place.' },
           { title: 'Confirmer', text: 'Numéro KvK délivré, numéro de TVA suivi et copies classées là où votre banque et votre comptable en ont besoin.' },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour l’immatriculation à la KvK',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 395 €',
+        includes: [
+          'Formulaire préparé et codes d’activité SBI choisis correctement',
+          'Rendez-vous à la KvK pris et honoré avec vous',
+          'Exigences d’adresse et d’identité vérifiées avant le rendez-vous',
+          'Numéro de TVA relancé auprès du Belastingdienst après l’immatriculation',
         ],
       },
       note: 'Si vous n’avez pas encore de BSN, l’inscription reste possible dans bien des situations, mais la voie diffère. Mentionnez-le quand vous nous contactez et nous planifierons en conséquence.',
@@ -431,6 +474,19 @@ export const business: SectionContent = {
           { title: 'Plan directeur', text: 'Un plan couvrant permis, société, logement et famille, avec des dépendances rendues explicites.' },
           { title: 'Exécution', text: 'Nous menons les chantiers en parallèle et rendons compte en langage clair, pas en notifications de portail.' },
           { title: 'Installé', text: 'Vous êtes inscrit, logé, bancarisé et opérationnel, et votre famille sait où est la bonne boulangerie.' },
+        ],
+      },
+      fees: {
+        title: 'Ce que coûte une relocation d’entrepreneur',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'Un entrepreneur déplace une société et un foyer en même temps, et les deux ont des échéances différentes. Après un premier entretien, vous recevez une proposition personnalisée couvrant les deux.',
+        includes: [
+          'Création de société et voie de séjour planifiées comme une seule séquence',
+          'Recherche de logement pour vous et votre famille',
+          'Chaque formalité du foyer, prise et accompagnée',
+          'Mises en relation avec des experts-comptables, notaires et banques habitués aux internationaux',
         ],
       },
       conditions: {
@@ -552,6 +608,19 @@ export const business: SectionContent = {
           { title: 'Cadrer', text: 'Nous traduisons les besoins d’entité, l’effectif, les familles et l’échéance en un seul plan de programme.' },
           { title: 'Mobiliser', text: 'Création de la société et demandes de permis avancent pendant que logements et écoles sont sécurisés par famille.' },
           { title: 'Faire atterrir l’équipe', text: 'Les arrivées sont échelonnées et accompagnées, les inscriptions bouclées, et votre implantation néerlandaise ouvre avec ses équipes au complet.' },
+        ],
+      },
+      fees: {
+        title: 'Ce que coûte un transfert d’activité',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'Déplacer une entreprise dépend du nombre de personnes qui suivent, des titres dont elles ont besoin et de la rapidité d’ouverture du bureau. Vous recevez une proposition personnalisée bâtie sur l’effectif et le calendrier réels.',
+        includes: [
+          'Entité constituée et statut de sponsor reconnu obtenu là où il est nécessaire',
+          'Dossiers d’immigration pour l’équipe, calés sur votre date d’ouverture',
+          'Logement pour les collaborateurs qui déménagent et leurs familles',
+          'Un coordinateur unique pour tout le transfert, rendant compte à un seul interlocuteur chez vous',
         ],
       },
       conditions: {
@@ -694,6 +763,19 @@ export const business: SectionContent = {
           { title: 'Arrivée et installation', text: 'Les salariés et leurs familles sont accompagnés pour l’inscription, le logement et le concret de l’arrivée.' },
         ],
       },
+      fees: {
+        title: 'Ce que coûte un appui immigration pour employeurs',
+        kind: 'tailored',
+        amount: 'Proposition sur mesure',
+        amountNote:
+          'L’appui aux employeurs se chiffre selon le volume et le niveau de statut de sponsor requis, d’un recrutement unique à une collaboration permanente. Vous recevez une proposition bâtie sur votre plan de recrutement.',
+        includes: [
+          'Statut de sponsor reconnu demandé et maintenu',
+          'Chaque recrutement évalué avant l’offre quant à la voie, au seuil salarial et à la date d’entrée',
+          'Demandes préparées et déposées pour vos candidats et leurs familles',
+          'Vos obligations d’archivage et de déclaration tenues prêtes pour un contrôle',
+        ],
+      },
       note: 'Nous sommes une agence boutique, ce qui est autant une limite assumée qu’une promesse. Nous acceptons le volume que nous pouvons suivre personnellement, et nous le disons franchement quand une demande le dépasse.',
       details: {
         title: 'Détails pour les équipes RH et mobilité',
@@ -793,6 +875,19 @@ export const business: SectionContent = {
           { title: 'Profil', text: 'Budget, secteurs, besoins familiaux et exigences d’enregistrement définis en un appel.' },
           { title: 'Chasse', text: 'Nous présélectionnons, réservons et visitons vite, car ici les bons logements partent en quelques jours.' },
           { title: 'Sécuriser', text: 'Offre négociée, contrat vérifié, clés remises, enregistrement organisé.' },
+        ],
+      },
+      fees: {
+        title: 'Ce que coûte un appui logement pour entrepreneurs',
+        kind: 'tailored',
+        amount: 'Sur demande',
+        amountNote:
+          'Les bailleurs évaluent généralement les entrepreneurs autrement que les salariés, le travail varie donc selon votre situation. Après un premier échange, vous recevez un devis à prix fixe.',
+        includes: [
+          'Une recherche qui tient compte de la façon dont les bailleurs jugent les revenus d’indépendant',
+          'Le dossier de preuves que les bailleurs réclament aux entrepreneurs, constitué à l’avance',
+          'Visites organisées et accompagnées',
+          'Bail examiné et négocié avant votre signature',
         ],
       },
       note: 'Un logement temporaire peut faire le pont pendant la recherche, mais toutes les adresses de courte durée ne permettent pas l’inscription communale. Nous signalons cette distinction avant que vous ne vous engagiez à quoi que ce soit.',

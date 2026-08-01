@@ -31,6 +31,13 @@ export const immigration: SectionContent = {
         'C’est là que nous intervenons. Nous coordonnons directement avec l’équipe RH de votre employeur, vous préparons, vous et votre famille, à chaque rendez-vous, et restons joignables sur notre ligne WhatsApp personnelle 24h/24 et 7j/7 dès qu’une question surgit, quel que soit le fuseau horaire.',
       ],
       cardText: 'La voie de travail la plus rapide vers les Pays-Bas, coordonnée entre vous, votre employeur et l’IND.',
+      explainer: {
+        title: 'Qu’est-ce que le permis de travailleur hautement qualifié ?',
+        text: [
+          'Le permis de travailleur hautement qualifié, kennismigrant en néerlandais, est la voie par laquelle les Pays-Bas font venir rapidement des professionnels expérimentés. Ce n’est ni votre intitulé de poste ni votre diplôme qui est évalué. Une seule chose l’est : le fait qu’un employeur néerlandais reconnu comme sponsor par l’IND vous verse un salaire supérieur à un seuil fixé.',
+          'Comme la reconnaissance repose sur l’employeur, la procédure est rapide et il n’y a pas de test du marché du travail. Le permis est lié à cet employeur. C’est donc le contrat, et non la personne, qui ancre votre séjour aux Pays-Bas.',
+        ],
+      },
       forWho: {
         title: 'À qui s’adresse ce service',
         items: [
@@ -72,6 +79,17 @@ export const immigration: SectionContent = {
           { title: 'Préparation du dossier', text: 'Nous rassemblons les documents avec vous et votre employeur et déposons la demande via le sponsor.' },
           { title: 'Décision et MVV', text: 'Selon votre nationalité, vous retirez un visa d’entrée à l’ambassade des Pays-Bas avant de voyager. Nous vous préparons à ce rendez-vous.' },
           { title: 'Atterrissage', text: 'Dès vos premiers jours, nous finalisons l’inscription, le retrait du permis et l’essentiel pratique.' },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour une demande de travailleur hautement qualifié',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 1 295 €',
+        includes: [
+          'Vérification du seuil de salaire applicable à votre âge et à votre situation',
+          'Le dossier complet préparé et déposé par l’intermédiaire de votre sponsor reconnu',
+          'Coordination avec les ressources humaines de votre employeur pour aligner contrat et date d’entrée',
+          'Suivi de chaque demande de l’IND jusqu’à la décision',
         ],
       },
       note: 'De nombreux migrants hautement qualifiés peuvent bénéficier de la facilité des 30 %, un avantage fiscal néerlandais pour les salariés venant de l’étranger. Les conditions évoluent régulièrement : nous le signalons lors de l’entretien initial et vous mettons en relation avec un conseiller fiscal plutôt que de promettre des chiffres.',
@@ -159,6 +177,13 @@ export const immigration: SectionContent = {
         'Notre réputation s’est forgée dans le monde des ambassades, et les dossiers de Carte bleue récompensent précisément ce type de précision : un diplôme correctement évalué, un contrat conforme et un dépôt impeccable. Nous veillons à ce que le vôtre réunisse les trois.',
       ],
       cardText: 'Le permis de travail européen des professionnels diplômés du supérieur, avec une mobilité à travers l’UE.',
+      explainer: {
+        title: 'Qu’est-ce que la carte bleue européenne ?',
+        text: [
+          'La carte bleue européenne est un titre européen de séjour et de travail destiné aux professionnels diplômés de l’enseignement supérieur. Là où le permis néerlandais de travailleur hautement qualifié ne s’intéresse qu’au salaire et au sponsor reconnu, la carte bleue exige en plus un cursus supérieur achevé, et confère en retour des droits qui dépassent les Pays-Bas.',
+          'C’est là que réside la vraie différence. Une carte bleue prépare la mobilité au sein de l’Union européenne et le statut de résident de longue durée UE, ce que le permis national ne fait pas. C’est le meilleur choix lorsque les Pays-Bas sont un chapitre et non le livre entier.',
+        ],
+      },
       forWho: {
         title: 'Est-ce votre voie ?',
         items: [
@@ -195,6 +220,17 @@ export const immigration: SectionContent = {
           { title: 'Évaluation', text: 'Nous vérifions votre diplôme, votre offre et votre salaire au regard des conditions actuelles de la Carte bleue.' },
           { title: 'Reconnaissance et dossier', text: 'L’évaluation du diplôme est lancée pendant que nous constituons le dossier de demande en parallèle.' },
           { title: 'Dépôt et arrivée', text: 'Après l’approbation, nous planifions votre entrée, votre inscription et vos premiers rendez-vous dans le bon ordre.' },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour une demande de carte bleue européenne',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 1 295 €',
+        includes: [
+          'Diplôme et salaire confrontés aux critères de la carte bleue avant tout engagement',
+          'Évaluation du diplôme organisée lorsque l’IND l’exige',
+          'Demande préparée et déposée, y compris le volet employeur du dossier',
+          'Suivi jusqu’à la décision, y compris en cas de demande de pièces complémentaires',
         ],
       },
       conditions: {
@@ -286,6 +322,13 @@ export const immigration: SectionContent = {
         'La demande elle-même est simple quand elle est bien menée, notre vraie valeur se situe donc après : transformer cette année en carrière et en foyer. Nous accompagnons les diplômés du premier formulaire au premier appartement, et restons proches pendant que vous prenez vos marques.',
       ],
       cardText: 'Douze mois pour vivre et travailler librement aux Pays-Bas après votre diplôme.',
+      explainer: {
+        title: 'Qu’est-ce que l’année d’orientation ?',
+        text: [
+          'L’année d’orientation, zoekjaar en néerlandais, est un titre de séjour d’un an qui permet aux jeunes diplômés et aux chercheurs de chercher un emploi aux Pays-Bas sans qu’un employeur les sponsorise au préalable. Pendant cette année, vous pouvez travailler librement et aucun employeur n’a besoin d’un permis de travail pour vous.',
+          'Elle résout un problème de la poule et de l’œuf : les employeurs veulent quelqu’un qui puisse commencer, et les titres de séjour supposent généralement un employeur. L’année d’orientation lève ce blocage et s’accompagne ensuite d’un seuil de salaire plus bas si vous basculez vers un permis de travailleur hautement qualifié.',
+        ],
+      },
       forWho: {
         title: 'Qui est éligible',
         items: [
@@ -326,6 +369,18 @@ export const immigration: SectionContent = {
           { title: 'Vérification', text: 'Une conversation pour confirmer votre éligibilité et planifier le calendrier de votre installation.' },
           { title: 'Demande', text: 'Nous préparons et déposons la demande IND et vous tenons informé à chaque changement de statut.' },
           { title: 'Arriver et s’installer', text: 'Nous organisons votre inscription et l’essentiel pour que vous consacriez l’année à votre carrière, pas à la bureaucratie.' },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour l’année d’orientation',
+        kind: 'tailored',
+        amount: 'Sur demande',
+        amountNote:
+          'L’année d’orientation est une procédure courte et ce dont vous avez besoin dépend du fait que vous déposiez depuis les Pays-Bas ou depuis l’étranger. Après un bref examen de votre diplôme et de votre calendrier, vous recevez un devis à prix fixe.',
+        includes: [
+          'Vérification que votre diplôme et votre date d’obtention ouvrent encore droit',
+          'Demande préparée et déposée auprès de l’IND',
+          'Accompagnement vers un permis de travail avant la fin de l’année',
         ],
       },
       note: 'La fenêtre de trois ans après le diplôme est stricte, et les listes de classement changent chaque année. Si vous êtes à la limite, contactez-nous avant de conclure que vous êtes exclu. Les questions respectent rarement les horaires de bureau, c’est pourquoi nos clients nous joignent sur une ligne WhatsApp personnelle de jour comme de nuit.',
@@ -408,6 +463,13 @@ export const immigration: SectionContent = {
         'Nous traitons ces dossiers avec le soin qu’ils méritent. Johanna accompagne personnellement les clients à leurs rendez-vous, du guichet de la commune à l’IND, pour qu’aucun de vous deux ne se retrouve jamais face à un fonctionnaire sans y être préparé.',
       ],
       cardText: 'Un accompagnement attentif et personnel pour faire venir votre partenaire ou conjoint aux Pays-Bas.',
+      explainer: {
+        title: 'Qu’est-ce qu’un visa de partenaire ?',
+        text: [
+          'Un visa de partenaire est un séjour accordé au titre de votre relation plutôt que de votre emploi. L’un de vous, le référent, a déjà le droit de vivre aux Pays-Bas. L’autre demande à le rejoindre. Le mariage n’est pas exigé, mais une relation non maritale doit être démontrée comme durable et exclusive.',
+          'La procédure néerlandaise vérifie trois choses : que la relation est réelle, que le référent dispose de revenus stables et suffisants, et que les actes d’état civil étrangers sont correctement légalisés et traduits. La plupart des refus viennent du troisième point, pas du premier.',
+        ],
+      },
       forWho: {
         title: 'Qui nous aidons',
         items: [
@@ -449,6 +511,17 @@ export const immigration: SectionContent = {
           { title: 'Préparer à l’étranger', text: 'Examen, légalisations et logistique d’ambassade dans le pays de votre partenaire, coordonnés depuis ici.' },
           { title: 'Déposer et décider', text: 'La demande part à l’IND. Nous la suivons et traitons immédiatement toute demande complémentaire.' },
           { title: 'Réunis', text: 'Votre partenaire voyage, s’inscrit et reçoit son permis de séjour. Nous sommes là pour l’atterrissage.' },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour une demande de visa de partenaire',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 895 €',
+        includes: [
+          'Examen des preuves de la relation avant tout dépôt',
+          'Dossiers du référent et du demandeur construits ensemble pour qu’ils ne se contredisent pas',
+          'Exigences de légalisation et de traduction cartographiées pour votre pays d’origine',
+          'Demande déposée et suivie jusqu’à la décision',
         ],
       },
       conditions: {
@@ -530,6 +603,13 @@ export const immigration: SectionContent = {
         'Nous menons cette opération pour des familles autour de Rotterdam, d’Europoort et de la grande région industrielle, où les professionnels internationaux arrivent sous contrat et où leurs familles suivent. C’est notre terrain, et cela façonne tout, des écoles que nous recommandons aux guichets communaux que nous connaissons par leur nom.',
       ],
       cardText: 'Des permis pour votre conjoint et vos enfants, coordonnés pour que toute la famille arrive ensemble.',
+      explainer: {
+        title: 'Qu’est-ce que le regroupement familial ?',
+        text: [
+          'Le regroupement familial, gezinshereniging en néerlandais, est la voie qui fait venir un conjoint et des enfants auprès d’une personne titulaire d’un droit de séjour aux Pays-Bas. C’est un cadre juridique unique couvrant tout le foyer, et non une procédure distincte par personne.',
+          'L’IND évalue le référent autant que les demandeurs : des revenus stables au moins égaux au seuil légal, un logement adapté, et des actes d’état civil du pays d’origine qui résistent à la légalisation. Les enfants ont leurs propres exigences de preuve concernant l’autorité parentale et le consentement des parents.',
+        ],
+      },
       forWho: {
         title: 'Conçu pour',
         items: [
@@ -570,6 +650,17 @@ export const immigration: SectionContent = {
           { title: 'Entretien familial', text: 'Nous cartographions la nationalité, les documents et les besoins de chaque membre de la famille en une conversation.' },
           { title: 'Préparer et déposer', text: 'Les actes sont légalisés pendant que nous constituons et déposons les demandes en parallèle pour gagner des mois.' },
           { title: 'Voyager et s’installer', text: 'Visas d’entrée, vols, inscription et rentrées scolaires, séquencés pour que personne n’attende personne.' },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour une demande de regroupement familial',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 1 195 €',
+        includes: [
+          'Exigences de revenus et de référent vérifiées sur votre contrat réel',
+          'Un dossier coordonné pour votre conjoint et chaque enfant',
+          'Exigences de légalisation et de traduction assermentée cartographiées par pays',
+          'Demandes déposées ensemble et suivies jusqu’à la décision',
         ],
       },
       note: 'Les demandes des enfants dépendent de détails que les parents anticipent rarement, comme le consentement d’un parent restant au pays. Exposez votre situation familiale complète lors de l’entretien pour que rien ne surgisse tardivement.',
@@ -652,6 +743,13 @@ export const immigration: SectionContent = {
         'Nous accompagnons tout le parcours, pas seulement le permis : la mise en relation avec le facilitateur, le plan de démarrage que l’IND veut lire, et le côté pratique de l’arrivée, de l’immatriculation de la société au logement.',
       ],
       cardText: 'Un permis fondateur d’un an pour bâtir votre entreprise innovante dans l’écosystème néerlandais.',
+      explainer: {
+        title: 'Qu’est-ce que le visa startup ?',
+        text: [
+          'Le visa startup est un titre de séjour d’un an destiné aux entrepreneurs qui construisent une entreprise innovante aux Pays-Bas. Il existe parce qu’une entreprise réellement nouvelle a rarement, dès le premier jour, le chiffre d’affaires ou l’antériorité qu’exige le permis d’indépendant ordinaire.',
+          'Sa caractéristique déterminante est le facilitateur : un mentor expérimenté agréé par l’agence néerlandaise pour l’entreprise, qui accompagne votre société pendant sa première année. Vous êtes évalué sur l’innovation du projet et sur ce partenariat, pas sur le chiffre d’affaires. Cette année est une piste d’envol vers le permis d’indépendant, et préparer tôt cette étape suivante fait la différence entre continuer et tout recommencer.',
+        ],
+      },
       forWho: {
         title: 'Qui peut demander le visa start-up',
         items: [
@@ -707,15 +805,15 @@ export const immigration: SectionContent = {
         ],
       },
       fees: {
-        title: 'Honoraires pour une demande de visa start-up',
-        amount: 'à partir de 2 250 à 3 250 euros',
+        title: 'Honoraires pour une demande de visa startup',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 2 495 €',
         includes: [
-          'Stratégie d’immigration et consultation',
-          'Préparation de la demande de visa start-up',
-          'Coordination avec le facilitateur',
-          'Communication avec l’IND',
+          'Stratégie d’immigration et conseil sur les conditions d’accès',
+          'Appui à la construction du projet sur lequel la demande est évaluée',
+          'Sélection du facilitateur et coordination avec lui',
+          'Demande déposée auprès de l’IND et suivie jusqu’à la décision',
         ],
-        note: 'Les taxes administratives ne sont pas incluses. La position de votre dossier dans cette fourchette dépend de la complexité du plan et de la présence ou non de membres de la famille dans la demande.',
       },
       note: 'Le permis start-up dure un an et ne se prolonge pas en tant que tel. L’étape suivante prévue est généralement le permis d’indépendant, et nous commençons à préparer ce dossier bien avant la fin de votre année.',
       details: {
@@ -776,6 +874,13 @@ export const immigration: SectionContent = {
         'C’est la voie qu’empruntent le plus souvent les indépendants, les consultants et les dirigeants de petites entreprises. Au-delà du dossier d’immigration, nous prenons en charge le côté pratique de l’arrivée : l’immatriculation de la société, le logement et le séjour de la famille qui vous accompagne.',
       ],
       cardText: 'La voie du traité qui permet aux Américains de vivre et travailler aux Pays-Bas comme entrepreneurs.',
+      explainer: {
+        title: 'Qu’est-ce que le permis DAFT ?',
+        text: [
+          'Le permis DAFT découle du Dutch American Friendship Treaty, un accord de 1956 qui offre aux ressortissants des États-Unis une voie exceptionnellement accessible vers le travail indépendant aux Pays-Bas. Il n’est ouvert qu’aux Américains et constitue de loin le permis entrepreneurial le plus simple du pays.',
+          'Le traité remplace le système de points auquel les autres nationalités sont soumises par un seul critère clair : immatriculer une véritable entreprise néerlandaise et maintenir un investissement minimum défini dans ses fonds propres. Il n’y a ni exigence d’innovation, ni facilitateur, ni notation de votre plan d’affaires. C’est le maintien de cet investissement qui fait vivre le permis lors du renouvellement.',
+        ],
+      },
       forWho: {
         title: 'À qui s’adresse le visa DAFT',
         items: [
@@ -833,14 +938,14 @@ export const immigration: SectionContent = {
       },
       fees: {
         title: 'Honoraires pour une demande DAFT',
-        amount: 'à partir de 1 950 à 2 750 euros',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 2 295 €',
         includes: [
-          'Consultation d’immigration',
-          'Préparation de la demande de permis de séjour',
-          'Accompagnement lors de l’immatriculation de la société',
-          'Communication avec l’IND',
+          'Examen des conditions au titre du Dutch American Friendship Treaty',
+          'Immatriculation de la société et investissement structurés pour satisfaire au critère du traité',
+          'Demande de titre de séjour préparée et déposée',
+          'Conseil sur le maintien de l’investissement lors des renouvellements',
         ],
-      note: 'Le permis de séjour est généralement accordé pour deux ans et peut être prolongé. Les 4 500 euros doivent rester investis dans l’entreprise tant que vous détenez le statut DAFT, car les renouvellements examinent votre bilan.',
       },
       note: 'Les 4 500 € doivent rester investis dans l’entreprise tant que vous détenez le statut DAFT, et les renouvellements examinent votre bilan. Les frais et délais IND en vigueur évoluent, nous les confirmons lors de votre entretien.',
       details: {
@@ -901,6 +1006,13 @@ export const immigration: SectionContent = {
         'Ces dossiers se jouent au consulat, un monde que nous connaissons intimement. Notre réputation s’est forgée dans le monde des ambassades : nous savons à quoi ressemble un dossier d’affaires convaincant, vu de l’autre côté du guichet.',
       ],
       cardText: 'Visas de court séjour pour réunions, négociations et visites de sites aux Pays-Bas.',
+      explainer: {
+        title: 'Qu’est-ce qu’un visa d’affaires ?',
+        text: [
+          'Un visa d’affaires est un visa Schengen de court séjour, de type C, destiné aux réunions, négociations, conférences et visites de sites. Il autorise jusqu’à 90 jours sur toute période de 180 jours dans l’espace Schengen et ne permet pas d’occuper un emploi aux Pays-Bas.',
+          'Les ressortissants de nombreux pays doivent en obtenir un avant de voyager, d’autres en sont dispensés pour les courts séjours. Le consulat décide au vu de l’invitation, de votre historique de voyage, de l’assurance et de la preuve que vous repartirez. C’est pourquoi le dossier justificatif compte davantage que le formulaire.',
+        ],
+      },
       forWho: {
         title: 'Voyageurs types',
         items: [
@@ -937,6 +1049,17 @@ export const immigration: SectionContent = {
           { title: 'Briefez-nous', text: 'Qui voyage, d’où et dans quel but. Nous confirmons immédiatement le bon type de visa.' },
           { title: 'Constituer le dossier', text: 'Invitation, justificatifs et formulaires réunis en quelques jours, pas en quelques semaines.' },
           { title: 'Consulat et voyage', text: 'Rendez-vous réservé, dossier déposé, et votre visite se déroule comme prévu.' },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour une demande de visa d’affaires',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 795 €',
+        includes: [
+          'Détermination du type de visa adapté à l’objet et à la durée de votre voyage',
+          'Invitation et pièces justificatives préparées aux normes consulaires',
+          'Rendez-vous pris et dossier assemblé pour le dépôt',
+          'Conseil sur l’assurance voyage et la preuve de moyens',
         ],
       },
       note: 'Un visa Schengen affaires permet réunions et négociations, pas un emploi. Si vos visites deviennent un travail régulier aux Pays-Bas, parlez-nous d’un permis fondé sur le travail avant que cela ne devienne un problème à la frontière.',
@@ -1019,6 +1142,13 @@ export const immigration: SectionContent = {
         'Nous sommes le bureau d’immigration auquel nos clients n’ont jamais à penser. Nous suivons les dates, préparons les dossiers, et Johanna accompagne les clients en personne à leurs rendez-vous IND, pour qu’une convocation ne ressemble jamais à une menace.',
       ],
       cardText: 'Premiers permis, renouvellements, changements et le chemin vers la résidence permanente, sous un même toit.',
+      explainer: {
+        title: 'Qu’est-ce qu’un titre de séjour néerlandais ?',
+        text: [
+          'Un titre de séjour, verblijfsvergunning en néerlandais, est le document qui rend votre présence légale au-delà de 90 jours. Il est délivré par l’IND, mentionne toujours un motif de séjour tel que le travail, la famille ou les études, et les droits qui l’accompagnent suivent ce motif plutôt que la carte elle-même.',
+          'Les titres sont temporaires ou permanents. Ce qui compte le plus sur la durée, c’est le motif que vous détenez et pendant combien de temps, car c’est la continuité du séjour régulier qui ouvre à terme la résidence permanente et la naturalisation. Changer de motif est possible, mais le moment choisi détermine si vos années acquises survivent au changement.',
+        ],
+      },
       forWho: {
         title: 'Quand nous appeler',
         items: [
@@ -1055,6 +1185,17 @@ export const immigration: SectionContent = {
           { title: 'Examiner', text: 'Nous auditons votre statut actuel et signalons chaque date et chaque condition qui compte.' },
           { title: 'Préparer', text: 'La bonne demande, assemblée avant l’échéance avec de la marge.' },
           { title: 'Sécuriser', text: 'Dépôt, suivi et votre nouveau permis en main, avec le prochain jalon déjà au calendrier.' },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour une demande de titre de séjour',
+        kind: 'fixed',
+        amount: 'Investissement à partir de 895 €',
+        includes: [
+          'Détermination du titre adapté à votre situation et de celui qui dure',
+          'Demande préparée et déposée auprès de l’IND',
+          'Exigences de documents, de légalisation et de traduction cartographiées à l’avance',
+          'Suivi jusqu’à la décision, ainsi que lors des renouvellements le cas échéant',
         ],
       },
       note: 'Les frais et délais de décision varient selon le type de permis et évoluent dans le temps, nous confirmons donc les chiffres IND en vigueur lors de votre entretien plutôt que de les imprimer ici.',

@@ -31,6 +31,13 @@ export const immigration: SectionContent = {
         'Ahí es donde entramos nosotros. Coordinamos directamente con el equipo de recursos humanos de su empleador, le preparamos a usted y a su familia para cada cita y permanecemos localizables en nuestra línea personal de WhatsApp 24/7 siempre que surja una pregunta, sea cual sea la zona horaria.',
       ],
       cardText: 'La vía laboral más rápida hacia los Países Bajos, coordinada entre usted, su empleador y el IND.',
+      explainer: {
+        title: '¿Qué es el permiso de migrante altamente cualificado?',
+        text: [
+          'El permiso de migrante altamente cualificado, kennismigrant en neerlandés, es la vía por la que los Países Bajos incorporan con rapidez a profesionales con experiencia. No se valora su cargo ni su titulación. Se valora una sola cosa: que un empleador neerlandés reconocido como patrocinador por el IND le pague un salario por encima de un umbral fijado.',
+          'Como el reconocimiento recae en el empleador, el procedimiento es rápido y no hay prueba de mercado laboral. El permiso queda ligado a ese empleador, de modo que es el contrato, y no la persona, lo que ancla su residencia en los Países Bajos.',
+        ],
+      },
       forWho: {
         title: 'Para quién es',
         items: [
@@ -72,6 +79,17 @@ export const immigration: SectionContent = {
           { title: 'Preparación del expediente', text: 'Reunimos los documentos con usted y su empleador y presentamos la solicitud a través del patrocinador.' },
           { title: 'Decisión y MVV', text: 'Según su nacionalidad, recogerá un visado de entrada en la embajada neerlandesa antes de viajar. Le preparamos para esa cita.' },
           { title: 'Aterrizaje', text: 'En sus primeros días completamos el empadronamiento, la recogida del permiso y lo esencial en la práctica.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por una solicitud de migrante altamente cualificado',
+        kind: 'fixed',
+        amount: 'Inversión desde 1.295 €',
+        includes: [
+          'Comprobación del umbral salarial que corresponde a su edad y situación',
+          'El expediente completo preparado y presentado a través de su patrocinador reconocido',
+          'Coordinación con el departamento de personal de su empleador para encajar contrato y fecha de inicio',
+          'Seguimiento de cada requerimiento del IND hasta la resolución',
         ],
       },
       note: 'Muchos migrantes altamente cualificados pueden acogerse a la facilidad del 30%, una ventaja fiscal neerlandesa para empleados que llegan del extranjero. Las condiciones cambian con regularidad, así que lo señalamos durante la entrevista inicial y le ponemos en contacto con un asesor fiscal en lugar de prometer cifras.',
@@ -159,6 +177,13 @@ export const immigration: SectionContent = {
         'Nuestra reputación se forjó en el mundo de las embajadas, y los expedientes de la Tarjeta Azul premian exactamente esa precisión: un título correctamente evaluado, un contrato conforme y una presentación impecable. Nos aseguramos de que el suyo cumpla las tres.',
       ],
       cardText: 'El permiso de trabajo europeo para profesionales con estudios superiores, con movilidad por la UE.',
+      explainer: {
+        title: '¿Qué es la Tarjeta Azul de la UE?',
+        text: [
+          'La Tarjeta Azul de la UE es un permiso europeo de residencia y trabajo para profesionales con formación universitaria. Mientras que el permiso neerlandés de migrante altamente cualificado solo atiende al salario y a un patrocinador reconocido, la Tarjeta Azul exige además una titulación superior completa y, a cambio, otorga derechos que van más allá de los Países Bajos.',
+          'Ahí está la diferencia real. Una Tarjeta Azul construye movilidad dentro de la Unión Europea y encamina hacia el estatuto de residente de larga duración UE, algo que el permiso nacional no hace. Es la mejor opción cuando los Países Bajos son un capítulo y no el libro entero.',
+        ],
+      },
       forWho: {
         title: '¿Es esta su vía?',
         items: [
@@ -195,6 +220,17 @@ export const immigration: SectionContent = {
           { title: 'Evaluación', text: 'Comprobamos su título, su oferta y su salario frente a las condiciones vigentes de la Tarjeta Azul.' },
           { title: 'Homologación y expediente', text: 'Ponemos en marcha la evaluación del diploma mientras construimos el expediente en paralelo.' },
           { title: 'Presentación y llegada', text: 'Tras la aprobación planificamos su entrada, su empadronamiento y sus primeras citas en el orden correcto.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por una solicitud de Tarjeta Azul de la UE',
+        kind: 'fixed',
+        amount: 'Inversión desde 1.295 €',
+        includes: [
+          'Titulación y salario contrastados con los criterios de la Tarjeta Azul antes de que se comprometa',
+          'Homologación del título gestionada cuando el IND la exige',
+          'Solicitud preparada y presentada, incluida la parte del expediente que corresponde al empleador',
+          'Seguimiento hasta la resolución, también ante requerimientos de documentación adicional',
         ],
       },
       conditions: {
@@ -286,6 +322,13 @@ export const immigration: SectionContent = {
         'La solicitud en sí es sencilla cuando se hace bien, así que nuestro verdadero valor está en lo que viene después: convertir ese año en una carrera y un hogar. Guiamos a los titulados desde el primer formulario hasta el primer apartamento, y seguimos cerca mientras encuentra su lugar.',
       ],
       cardText: 'Doce meses para vivir y trabajar libremente en los Países Bajos tras su titulación.',
+      explainer: {
+        title: '¿Qué es el año de orientación?',
+        text: [
+          'El año de orientación, zoekjaar en neerlandés, es un permiso de residencia de un año que permite a titulados recientes e investigadores buscar trabajo en los Países Bajos sin que un empleador los patrocine antes. Durante ese año puede trabajar libremente y ningún empleador necesita un permiso de trabajo para usted.',
+          'Existe para resolver un problema circular: los empleadores quieren a alguien que pueda incorporarse, y los permisos suelen requerir un empleador. El año de orientación rompe ese bloqueo y, después, trae consigo un umbral salarial más bajo si pasa a un permiso de migrante altamente cualificado.',
+        ],
+      },
       forWho: {
         title: 'Quién puede acogerse',
         items: [
@@ -326,6 +369,18 @@ export const immigration: SectionContent = {
           { title: 'Comprobación', text: 'Una conversación para confirmar que cumple los requisitos y planificar el momento de su mudanza.' },
           { title: 'Solicitud', text: 'Preparamos y presentamos la solicitud ante el IND y le mantenemos informado en cada cambio de estado.' },
           { title: 'Llegada e instalación', text: 'Organizamos su empadronamiento y lo esencial para que dedique el año a su carrera, no a la burocracia.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por el año de orientación',
+        kind: 'tailored',
+        amount: 'Disponible bajo consulta',
+        amountNote:
+          'El año de orientación es un procedimiento breve y lo que necesita de nosotros depende de si solicita desde dentro o desde fuera de los Países Bajos. Tras una breve revisión de su titulación y sus plazos recibirá un presupuesto cerrado.',
+        includes: [
+          'Comprobación de si su titulación y su fecha de graduación siguen dando derecho',
+          'Solicitud preparada y presentada ante el IND',
+          'Acompañamiento en el paso a un permiso de trabajo antes de que acabe el año',
         ],
       },
       note: 'La ventana de tres años tras la titulación es estricta, y las listas de rankings cambian cada año. Si está al límite, contáctenos antes de dar por hecho que queda fuera. Las preguntas rara vez respetan el horario de oficina, y por eso los clientes nos localizan en una línea personal de WhatsApp de día y de noche.',
@@ -408,6 +463,13 @@ export const immigration: SectionContent = {
         'Tratamos estos casos con el cuidado que merecen. Johanna acompaña personalmente a los clientes a sus citas, desde la ventanilla del municipio hasta el IND, para que ninguno de los dos se siente jamás frente a un funcionario sin preparación.',
       ],
       cardText: 'Acompañamiento cuidadoso y personal para traer a su pareja o cónyuge a los Países Bajos.',
+      explainer: {
+        title: '¿Qué es un visado de pareja?',
+        text: [
+          'Un visado de pareja es una residencia concedida por su relación y no por su empleo. Uno de ustedes, la persona de referencia, ya tiene derecho a vivir en los Países Bajos. La otra solicita reunirse con ella. No se exige matrimonio, pero una relación no matrimonial debe acreditarse como duradera y exclusiva.',
+          'El procedimiento neerlandés comprueba tres cosas: que la relación es genuina, que la persona de referencia tiene ingresos estables y suficientes, y que los documentos de estado civil extranjeros están debidamente legalizados y traducidos. La mayoría de las denegaciones vienen de lo tercero, no de lo primero.',
+        ],
+      },
       forWho: {
         title: 'A quién ayudamos',
         items: [
@@ -449,6 +511,17 @@ export const immigration: SectionContent = {
           { title: 'Preparación en el extranjero', text: 'Examen, legalizaciones y logística de la embajada en el país de su pareja, coordinados desde aquí.' },
           { title: 'Presentación y decisión', text: 'La solicitud va al IND. La seguimos y atendemos de inmediato cualquier requerimiento adicional.' },
           { title: 'Reunidos', text: 'Su pareja viaja, se empadrona y recibe el permiso de residencia. Estamos ahí para el aterrizaje.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por una solicitud de visado de pareja',
+        kind: 'fixed',
+        amount: 'Inversión desde 895 €',
+        includes: [
+          'Revisión de las pruebas de la relación antes de presentar nada',
+          'Expedientes de la persona de referencia y del solicitante construidos a la vez para que no se contradigan',
+          'Requisitos de legalización y traducción detallados para su país de origen',
+          'Solicitud presentada y seguida hasta la resolución',
         ],
       },
       conditions: {
@@ -530,6 +603,13 @@ export const immigration: SectionContent = {
         'Dirigimos esa operación para familias en torno a Rotterdam, Europoort y la amplia región industrial, donde los profesionales internacionales llegan con contratos y sus familias les siguen. Es nuestro territorio, y eso determina desde qué colegios recomendamos hasta qué ventanillas municipales conocemos por su nombre.',
       ],
       cardText: 'Permisos para su cónyuge y sus hijos, coordinados para que toda la familia aterrice junta.',
+      explainer: {
+        title: '¿Qué es la reagrupación familiar?',
+        text: [
+          'La reagrupación familiar, gezinshereniging en neerlandés, es la vía que trae a la pareja y a los hijos junto a quien ya tiene residencia en los Países Bajos. Es un único marco legal que cubre a todo el hogar, no un procedimiento separado por persona.',
+          'El IND evalúa a la persona de referencia tanto como a los solicitantes: ingresos estables iguales o superiores al umbral legal, vivienda adecuada y documentos de estado civil del país de origen que superen la legalización. Los menores tienen sus propios requisitos de prueba sobre custodia y consentimiento parental.',
+        ],
+      },
       forWho: {
         title: 'Pensado para',
         items: [
@@ -570,6 +650,17 @@ export const immigration: SectionContent = {
           { title: 'Entrevista familiar', text: 'Mapeamos la nacionalidad, los documentos y las necesidades de cada miembro de la familia en una sola conversación.' },
           { title: 'Preparación y presentación', text: 'Se legalizan los certificados mientras construimos y presentamos las solicitudes en paralelo para ahorrar meses.' },
           { title: 'Viaje e instalación', text: 'Visados de entrada, vuelos, empadronamiento e inicio escolar, secuenciados para que nadie espere a nadie.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por una solicitud de reagrupación familiar',
+        kind: 'fixed',
+        amount: 'Inversión desde 1.195 €',
+        includes: [
+          'Requisitos de ingresos y de la persona de referencia contrastados con su contrato real',
+          'Un expediente coordinado para su pareja y cada hijo',
+          'Requisitos de legalización y traducción jurada detallados por país',
+          'Solicitudes presentadas juntas y seguidas hasta la resolución',
         ],
       },
       note: 'Las solicitudes de los hijos dependen de detalles que los padres rara vez esperan, como el consentimiento del progenitor que se queda. Exponga toda su situación familiar durante la entrevista inicial para que nada aparezca tarde.',
@@ -652,6 +743,13 @@ export const immigration: SectionContent = {
         'Acompañamos todo el recorrido, no solo el permiso: el encaje con el facilitador, el plan de arranque que el IND quiere leer y el lado práctico de la llegada, desde el registro de la empresa hasta un lugar donde vivir.',
       ],
       cardText: 'Un permiso de fundador de un año para construir su empresa innovadora en el ecosistema neerlandés.',
+      explainer: {
+        title: '¿Qué es el visado startup?',
+        text: [
+          'El visado startup es un permiso de residencia de un año para emprendedores que construyen una empresa innovadora en los Países Bajos. Existe porque una empresa realmente nueva rara vez tiene el primer día la facturación o el historial que exige el permiso ordinario de trabajo autónomo.',
+          'Su rasgo definitorio es el facilitador: un mentor con experiencia aprobado por la agencia neerlandesa de empresa que guía a su compañía durante su primer año. Se le evalúa por la innovación del plan y por esa colaboración, no por la facturación. El año es una pista de despegue hacia el permiso de autónomo, y preparar pronto ese siguiente paso marca la diferencia entre continuar y volver a empezar.',
+        ],
+      },
       forWho: {
         title: 'Quién puede solicitar el visado startup',
         items: [
@@ -707,15 +805,15 @@ export const immigration: SectionContent = {
         ],
       },
       fees: {
-        title: 'Honorarios para una solicitud de visado startup',
-        amount: 'desde 2.250 hasta 3.250 euros',
+        title: 'Honorarios por una solicitud de visado startup',
+        kind: 'fixed',
+        amount: 'Inversión desde 2.495 €',
         includes: [
-          'Estrategia de inmigración y asesoramiento',
-          'Preparación de la solicitud del visado startup',
-          'Coordinación con el facilitador',
-          'Comunicación con el IND',
+          'Estrategia de inmigración y asesoramiento sobre los requisitos',
+          'Apoyo para estructurar el plan por el que se juzga la solicitud',
+          'Selección del facilitador y coordinación con él',
+          'Solicitud presentada ante el IND y seguida hasta la resolución',
         ],
-        note: 'Las tasas administrativas no están incluidas. El punto de su caso dentro de esta horquilla depende de la complejidad del plan y de si hay familiares que soliciten con usted.',
       },
       note: 'El permiso startup dura un año y no se prorroga como tal. El siguiente paso previsto suele ser el permiso de trabajador autónomo, y empezamos a preparar ese expediente mucho antes de que termine su año.',
       details: {
@@ -776,6 +874,13 @@ export const immigration: SectionContent = {
         'Es la vía que más utilizan autónomos, consultores y propietarios de pequeñas empresas. Además del expediente de inmigración nos ocupamos del lado práctico de la llegada: el registro de la empresa, la vivienda y la residencia de la familia que le acompaña.',
       ],
       cardText: 'La vía del tratado que permite a los estadounidenses vivir y trabajar en los Países Bajos como emprendedores.',
+      explainer: {
+        title: '¿Qué es el permiso DAFT?',
+        text: [
+          'El permiso DAFT procede del Dutch American Friendship Treaty, un acuerdo de 1956 que otorga a los ciudadanos de Estados Unidos una vía singularmente accesible al trabajo por cuenta propia en los Países Bajos. Solo está abierto a estadounidenses y es, con diferencia, el permiso emprendedor más sencillo del país.',
+          'El tratado sustituye el sistema de puntos al que se enfrentan otras nacionalidades por una única prueba clara: registrar una empresa neerlandesa real y mantener una inversión mínima definida en su capital. No hay requisito de innovación, ni facilitador, ni evaluación de su plan de negocio. Mantener esa inversión es lo que sostiene el permiso en la renovación.',
+        ],
+      },
       forWho: {
         title: 'A quién se dirige el visado DAFT',
         items: [
@@ -832,15 +937,15 @@ export const immigration: SectionContent = {
         ],
       },
       fees: {
-        title: 'Honorarios para una solicitud DAFT',
-        amount: 'desde 1.950 hasta 2.750 euros',
+        title: 'Honorarios por una solicitud DAFT',
+        kind: 'fixed',
+        amount: 'Inversión desde 2.295 €',
         includes: [
-          'Consulta de inmigración',
-          'Preparación de la solicitud de permiso de residencia',
-          'Acompañamiento en el registro de la empresa',
-          'Comunicación con el IND',
+          'Análisis de los requisitos conforme al Dutch American Friendship Treaty',
+          'Registro de la empresa e inversión estructurados para superar la prueba del tratado',
+          'Solicitud del permiso de residencia preparada y presentada',
+          'Asesoramiento sobre el mantenimiento de la inversión en las renovaciones posteriores',
         ],
-      note: 'El permiso de residencia se concede normalmente por dos años y es prorrogable. Los 4.500 euros deben permanecer invertidos en la empresa mientras mantenga el estatus DAFT, porque las renovaciones examinan su balance.',
       },
       note: 'Los 4.500 € deben permanecer invertidos en la empresa mientras mantenga el estatus DAFT, y las renovaciones examinan su balance. Las tasas y plazos vigentes del IND cambian, así que los confirmamos durante su entrevista inicial.',
       details: {
@@ -901,6 +1006,13 @@ export const immigration: SectionContent = {
         'Estos expedientes viven y mueren en el consulado, y ese es un mundo que conocemos íntimamente. Nuestra reputación se forjó en el mundo de las embajadas, lo que significa que sabemos cómo se ve un expediente de negocios convincente desde el otro lado de la ventanilla.',
       ],
       cardText: 'Visados de corta estancia para reuniones, negociaciones y visitas a instalaciones en los Países Bajos.',
+      explainer: {
+        title: '¿Qué es un visado de negocios?',
+        text: [
+          'Un visado de negocios es un visado Schengen de corta estancia, tipo C, para reuniones, negociaciones, congresos y visitas a instalaciones. Permite hasta 90 días dentro de cualquier periodo de 180 días en todo el espacio Schengen y no habilita para trabajar en los Países Bajos.',
+          'Los nacionales de muchos países lo necesitan antes de viajar; otros están exentos para estancias cortas. El consulado decide a la vista de la invitación, su historial de viajes, el seguro y la prueba de que regresará, y por eso el expediente pesa más que el formulario.',
+        ],
+      },
       forWho: {
         title: 'Viajeros habituales',
         items: [
@@ -937,6 +1049,17 @@ export const immigration: SectionContent = {
           { title: 'Infórmenos', text: 'Quién viaja, desde dónde y para qué. Confirmamos de inmediato el tipo de visado correcto.' },
           { title: 'Construir el expediente', text: 'Invitación, pruebas y formularios se reúnen en días, no en semanas.' },
           { title: 'Consulado y viaje', text: 'Cita reservada, expediente presentado, y su visita avanza según lo previsto.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por una solicitud de visado de negocios',
+        kind: 'fixed',
+        amount: 'Inversión desde 795 €',
+        includes: [
+          'Determinación del tipo de visado adecuado al motivo y la duración de su viaje',
+          'Invitación y documentación preparadas con estándar consular',
+          'Cita reservada y expediente montado para su presentación',
+          'Asesoramiento sobre el seguro de viaje y la prueba de medios',
         ],
       },
       note: 'Un visado Schengen de negocios permite reuniones y negociaciones, no empleo. Si sus visitas se están convirtiendo en trabajo regular en los Países Bajos, hable con nosotros sobre un permiso laboral antes de que se convierta en un problema en la frontera.',
@@ -1019,6 +1142,13 @@ export const immigration: SectionContent = {
         'Actuamos como el departamento de inmigración en el que nuestros clientes nunca tienen que pensar. Controlamos las fechas, preparamos los expedientes, y Johanna acompaña a los clientes en persona a sus citas con el IND, para que una citación nunca se sienta como una amenaza.',
       ],
       cardText: 'Primeros permisos, renovaciones, cambios y el camino a la residencia permanente, todo bajo un mismo techo.',
+      explainer: {
+        title: '¿Qué es un permiso de residencia neerlandés?',
+        text: [
+          'Un permiso de residencia, verblijfsvergunning en neerlandés, es el documento que hace lícita su estancia más allá de 90 días. Lo expide el IND, siempre indica un fin de estancia como trabajo, familia o estudios, y los derechos que lo acompañan siguen a ese fin y no a la tarjeta en sí.',
+          'Los permisos son temporales o permanentes. Lo que más importa a largo plazo es qué fin ostenta y durante cuánto tiempo, porque es la residencia legal continuada la que acaba abriendo la residencia permanente y la naturalización. Cambiar de fin es posible, pero el momento determina si sus años acumulados sobreviven al cambio.',
+        ],
+      },
       forWho: {
         title: 'Cuándo llamarnos',
         items: [
@@ -1055,6 +1185,17 @@ export const immigration: SectionContent = {
           { title: 'Revisar', text: 'Auditamos su estatus actual y señalamos cada fecha y condición que importa.' },
           { title: 'Preparar', text: 'La solicitud correcta, reunida antes del plazo y con margen de sobra.' },
           { title: 'Asegurar', text: 'Presentación, seguimiento y su nuevo permiso en mano, con el siguiente hito ya en el calendario.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por una solicitud de permiso de residencia',
+        kind: 'fixed',
+        amount: 'Inversión desde 895 €',
+        includes: [
+          'Determinación de qué permiso encaja en su situación y cuál perdura',
+          'Solicitud preparada y presentada ante el IND',
+          'Requisitos de documentos, legalización y traducción detallados por anticipado',
+          'Seguimiento hasta la resolución, y en las renovaciones cuando proceda',
         ],
       },
       note: 'Las tasas y los plazos de decisión varían según el tipo de permiso y cambian con el tiempo, así que confirmamos las cifras vigentes del IND durante su entrevista inicial en lugar de imprimirlas aquí.',

@@ -13,10 +13,10 @@ export const vip: VipContent = {
   image: '/images/vip-hub.jpg?v=20260731',
   imageAlt: 'Anfitrión recibiendo a una pareja que llega en coche a un hotel junto a un canal',
   pricingNote: {
-    title: 'Cuánto cuesta un paquete, y por qué',
+    title: 'Cómo se presupuesta el servicio VIP',
     text: [
-      'Los paquetes van de 2.000 € a 10.000 € según el tamaño del hogar, la vía de visado y lo comprimido de su calendario. Ese precio compra semanas de trabajo a tiempo completo: solicitudes preparadas y presentadas, vivienda buscada y negociada, cada registro programado y acompañado, y una disponibilidad que no termina a las cinco de la tarde.',
-      'Tras su primera consulta recibe un único presupuesto cerrado. Sin sorpresas por horas, sin extras a mitad de la mudanza.',
+      'Servicios a medida, adaptados a sus necesidades personales. Tras una primera consulta recibirá una propuesta personalizada basada en sus objetivos, su situación familiar y el nivel de acompañamiento que prefiera.',
+      'Esa propuesta es una cifra fija para el alcance acordado. Sin tarifas por hora, sin añadidos a mitad de la mudanza y sin cargo por la consulta de la que surge.',
     ],
   },
   tailored: {
@@ -31,7 +31,7 @@ export const vip: VipContent = {
       metaTitle: 'Paquete de Reubicación e Inmigración para Parejas en los Países Bajos | E & I',
       metaDescription:
         'Paquete completo de reubicación e inmigración para parejas que se mudan a los Países Bajos: visado de pareja, vivienda, BSN, seguros, cuenta bancaria e instalación, con acompañamiento personal.',
-      priceFrom: 'desde 2.000 €',
+      investment: 'A medida',
       intro: [
         'Se mudan por una carrera, una empresa o el uno por el otro, y ninguno de los dos tiene tiempo de convertirse en experto en burocracia neerlandesa. El Paquete VIP para Parejas pone ambos expedientes en una sola mano y secuencia todo para que los visados, el hogar y los registros lleguen en el orden correcto.',
       ],
@@ -95,7 +95,7 @@ export const vip: VipContent = {
       metaTitle: 'Servicios de Reubicación e Inmigración para Familias en los Países Bajos | E & I',
       metaDescription:
         'Paquete de reubicación familiar para los Países Bajos: inmigración para cada miembro de la familia, vivienda, búsqueda de colegio, sanidad, registros y orientación por el barrio, con acompañamiento personal.',
-      priceFrom: 'desde 3.500 €',
+      investment: 'A medida',
       badge: 'El más elegido',
       intro: [
         'Una reubicación familiar no es una versión ampliada de una individual, es otra disciplina. Cursos escolares que empiezan en fechas fijas, un hogar que tiene que funcionar para todos, cuatro expedientes ante el IND en lugar de uno. Este paquete existe porque acertar con esa secuencia es lo que mejor sabemos hacer.',
@@ -160,7 +160,7 @@ export const vip: VipContent = {
       metaTitle: 'Servicios de Reubicación e Inmigración para Empresas en los Países Bajos | E & I',
       metaDescription:
         'Paquete de reubicación empresarial para los Países Bajos: visado startup o DAFT, registro de la empresa y en la KvK, vivienda e instalación para fundadores y ejecutivos, en un solo plan.',
-      priceFrom: 'desde 5.000 €',
+      investment: 'A medida',
       intro: [
         'Los fundadores y ejecutivos que se mudan a los Países Bajos se enfrentan a dos burocracias a la vez: una para la empresa y otra para la vida alrededor. Este paquete lleva ambas vías en simultáneo, para que el negocio esté operando mientras su fundador ya vive bien, en lugar de ir del hotel a una cola de trámites.',
       ],
@@ -224,7 +224,7 @@ export const vip: VipContent = {
       metaTitle: 'Concierge de Reubicación VIP en los Países Bajos | E & I',
       metaDescription:
         'Reubicación concierge integral a los Países Bajos para artistas, deportistas y ejecutivos: una visita preparada, todas las citas alineadas, días con chófer y asistencia personal 24/7.',
-      priceFrom: 'desde 7.500 €',
+      investment: 'A medida',
       intro: [
         'Un artista entre fechas de gira. Un deportista fichado a mitad de temporada. Un ejecutivo con la agenda planificada hasta el año próximo. El nivel concierge comprime una reubicación en el tiempo que usted realmente tiene, a veces un solo fin de semana, y se ocupa de todo lo que pueda resolverse sin usted.',
         'Usted nos dice las fechas en que puede estar en los Países Bajos. Nosotros coreografiamos el resto en torno a ellas.',

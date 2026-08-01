@@ -81,6 +81,17 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Honorar für eine Wohnungssuche',
+        kind: 'fixed',
+        amount: 'Investition ab 1.750 €',
+        includes: [
+          'Ein schriftliches Suchprofil und eine Auswahl, die zu Ihrem tatsächlichen Leben passt',
+          'Zugang zu Objekten über unser Maklernetzwerk, auch zu nie inserierten Wohnungen',
+          'Besichtigungen organisiert und mit Ihnen oder für Sie wahrgenommen',
+          'Verhandlung von Miete und Bedingungen und Prüfung des Vertrags vor Ihrer Unterschrift',
+        ],
+      },
       note: 'In einem Punkt sind wir offen: Keine ehrliche Agentur kann Ihnen in diesem Markt eine bestimmte Wohnung garantieren. Was wir versprechen können, sind Tempo, eine vollständige Akte und ein starkes lokales Netzwerk, und genau das gewinnt Wohnungen. Die Preise hängen von Suchgebiet und Zeitplan ab und werden im Erstgespräch bestätigt.',
       conditions: {
         title: 'Was der niederländische Mietmarkt verlangt',
@@ -206,6 +217,19 @@ export const housing: SectionContent = {
             title: 'Einziehen',
             text: 'Angebot, Vertrag und Übergabe werden für Sie gemanagt, einschließlich des Übergabeprotokolls am Schlüsseltag.',
           },
+        ],
+      },
+      fees: {
+        title: 'Was Wohnungsbegleitung in Rotterdam kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Rotterdam reicht von der einzelnen Fachkraft, die eine Stadtwohnung braucht, bis zur Familie, die Platz, einen Garten und den richtigen Schulweg braucht. Nach einem ersten Gespräch erhalten Sie ein Festpreisangebot für genau den Umfang, den Sie benötigen.',
+        includes: [
+          'Ein Suchprofil rund um Arbeitsweg, Budget und Haushalt',
+          'Stadtteilberatung von jemandem, der die Stadt Straße für Straße kennt',
+          'Besichtigungen organisiert, begleitet und ehrlich bewertet',
+          'Vertragsprüfung und Übergabe, bevor Sie irgendetwas unterschreiben',
         ],
       },
       conditions: {
@@ -338,6 +362,17 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Honorar für die Begleitung bei Besichtigungen',
+        kind: 'fixed',
+        amount: '295 € pro Besichtigung',
+        includes: [
+          'Teilnahme an der Besichtigung, persönlich, mit den Fragen, die ein Vermieter erwartet',
+          'Ein ehrliches schriftliches Urteil zur Wohnung, einschließlich dessen, was wir nicht akzeptieren würden',
+          'Prüfung von Mietniveau, Nebenkosten und Punktesystem',
+          'Sofortige Rückmeldung, damit Sie entscheiden können, bevor es die nächsten Bewerber tun',
+        ],
+      },
       note: 'Der Besichtigungsservice kann einzeln oder als Teil einer vollständigen Wohnungssuche gebucht werden. Die Gebühren hängen von Ort und Häufigkeit ab und werden im Erstgespräch bestätigt.',
       conditions: {
         title: 'Wie die Besichtigungsbegleitung funktioniert',
@@ -463,6 +498,17 @@ export const housing: SectionContent = {
             title: 'Mit Zuversicht unterschreiben',
             text: 'Sie unterschreiben einen Vertrag, den Sie verstehen, mit den riskanten Klauseln entfernt oder neu verhandelt.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorar für die Prüfung eines Mietvertrags',
+        kind: 'fixed',
+        amount: 'Investition ab 395 €',
+        includes: [
+          'Vollständige Prüfung des Vertrags und der beigefügten allgemeinen Bedingungen',
+          'Die Miete am niederländischen Punktesystem geprüft, solange die Frist für einen Einspruch offen ist',
+          'Diplomatenklausel, Kaution, Nebenkosten und Kündigungsfrist schriftlich erklärt',
+          'Einzelne Punkte in Ihrem Namen mit Vermieter oder Makler nachverhandelt',
         ],
       },
       note: 'Wir prüfen Verträge als Relocation-Spezialisten, nicht als Kanzlei. Bei echten Rechtsstreitigkeiten verbinden wir Sie mit Mietrechtsanwälten aus unserem professionellen Netzwerk, einem Netzwerk, das über Jahre der Arbeit an der Seite von Botschaften und Konsulaten gewachsen ist.',
@@ -596,6 +642,19 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Was Begleitung bei Übergangswohnraum kostet',
+        kind: 'tailored',
+        amount: 'Auf Anfrage',
+        amountNote:
+          'Übergangswohnraum hängt vollständig davon ab, wie lange Sie ihn brauchen, für wie viele Personen und mit welcher Vorlaufzeit. Sobald die Daten feststehen, erhalten Sie ein Festpreisangebot.',
+        includes: [
+          'Serviced Apartments und Kurzzeitlösungen passend zu Ihren Terminen',
+          'Bedingungen geprüft, damit ein kurzer Aufenthalt Ihre Anmeldung bei der Gemeinde nicht blockiert',
+          'Abstimmung zwischen der Übergangsadresse und der dauerhaften Suche',
+          'Übergabe organisiert, sobald die feste Wohnung bereitsteht',
+        ],
+      },
       conditions: {
         title: 'Short Stay in der Praxis',
         intro:
@@ -720,6 +779,19 @@ export const housing: SectionContent = {
             title: 'Lösung und Dokumentation',
             text: 'Wir treiben die Sache zu einem Ergebnis und übergeben Ihnen eine dokumentierte Akte, auf die Sie sich später verlassen können.',
           },
+        ],
+      },
+      fees: {
+        title: 'Was Unterstützung gegenüber Vermietern kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Manche Mandanten brauchen die Antwort auf einen schwierigen Brief, andere ein ganzes Mietjahr, das auf Niederländisch für sie geführt wird. Sie erhalten ein Angebot für den Umfang, den Sie brauchen.',
+        includes: [
+          'Schriftverkehr mit Vermieter oder Makler, auf Niederländisch, in Ihrem Namen',
+          'Reparaturen, Nebenkosten und Kautionsstreitigkeiten aufgenommen und durchgesetzt',
+          'Ihre Position am niederländischen Mietrecht geprüft, bevor wir schreiben',
+          'Eskalation zur Huurcommissie vorbereitet, wo sie berechtigt ist',
         ],
       },
       note: 'Für Angelegenheiten, die wirklich vor die Mietkommission oder ein Gericht gehören, bereiten wir Ihre Akte vor und verweisen Sie an einen spezialisierten Mietrechtsanwalt. Sie zahlen uns nie für das, was ein Anwalt tun sollte.',

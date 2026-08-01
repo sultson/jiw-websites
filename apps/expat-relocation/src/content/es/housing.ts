@@ -81,6 +81,17 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Honorarios por una búsqueda de vivienda',
+        kind: 'fixed',
+        amount: 'Inversión desde 1.750 €',
+        includes: [
+          'Un briefing por escrito y una preselección ajustada a cómo vive usted realmente',
+          'Acceso a inmuebles a través de nuestra red de agentes, incluidas viviendas que nunca se anuncian',
+          'Visitas organizadas y realizadas con usted o en su nombre',
+          'Negociación de la renta y las condiciones, y revisión del contrato antes de que firme',
+        ],
+      },
       note: 'Somos francos en una cosa: ninguna agencia honesta puede garantizarle una vivienda concreta en este mercado. Lo que sí podemos prometer es velocidad, un expediente completo y una red local sólida, que es lo que gana viviendas. El precio depende de su zona de búsqueda y sus plazos y se confirma durante la entrevista inicial.',
       conditions: {
         title: 'Lo que exige el mercado de alquiler neerlandés',
@@ -206,6 +217,19 @@ export const housing: SectionContent = {
             title: 'Mudarse',
             text: 'Oferta, contrato y entrega gestionados por nosotros, incluido el informe de inspección el día de las llaves.',
           },
+        ],
+      },
+      fees: {
+        title: 'Qué cuesta el acompañamiento de vivienda en Róterdam',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'Róterdam abarca desde el profesional que necesita un apartamento en la ciudad hasta la familia que necesita espacio, jardín y el trayecto escolar adecuado. Tras una primera conversación recibirá un presupuesto cerrado para el alcance que realmente necesita.',
+        includes: [
+          'Un briefing construido en torno a su trayecto, su presupuesto y su hogar',
+          'Orientación de barrio por parte de quien conoce la ciudad calle a calle',
+          'Visitas organizadas, acompañadas y valoradas con honestidad',
+          'Revisión del contrato y entrega antes de que firme nada',
         ],
       },
       conditions: {
@@ -338,6 +362,17 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Honorarios por acompañamiento en visitas',
+        kind: 'fixed',
+        amount: '295 € por visita',
+        includes: [
+          'Asistencia a la visita, en persona, con las preguntas que un casero espera',
+          'Un veredicto escrito y honesto sobre la vivienda, incluido lo que nosotros no aceptaríamos',
+          'Comprobación del nivel de renta, los gastos de comunidad y el sistema de puntos',
+          'Respuesta inmediata para que decida antes de que lo haga el siguiente candidato',
+        ],
+      },
       note: 'La asistencia en visitas puede contratarse por separado o como parte de una búsqueda de vivienda completa. Los honorarios dependen de la ubicación y la frecuencia y se confirman durante la entrevista inicial.',
       conditions: {
         title: 'Cómo funciona el acompañamiento a visitas',
@@ -463,6 +498,17 @@ export const housing: SectionContent = {
             title: 'Firme con confianza',
             text: 'Firma un contrato que entiende, con las cláusulas de riesgo eliminadas o renegociadas.',
           },
+        ],
+      },
+      fees: {
+        title: 'Honorarios por la revisión de un contrato de alquiler',
+        kind: 'fixed',
+        amount: 'Inversión desde 395 €',
+        includes: [
+          'Revisión completa del contrato y de las condiciones generales que lo acompañan',
+          'La renta contrastada con el sistema de puntos neerlandés mientras el plazo para reclamar sigue abierto',
+          'Cláusula diplomática, fianza, gastos y preaviso explicados por escrito',
+          'Puntos renegociados en su nombre con el casero o el agente',
         ],
       },
       note: 'Revisamos contratos como especialistas en reubicación, no como despacho de abogados. Para disputas legales de verdad le ponemos en contacto con abogados de arrendamientos de nuestra red profesional, una red construida durante años de trabajo junto a embajadas y consulados.',
@@ -596,6 +642,19 @@ export const housing: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'Qué cuesta el apoyo con vivienda temporal',
+        kind: 'tailored',
+        amount: 'Disponible bajo consulta',
+        amountNote:
+          'La vivienda temporal depende por completo de cuánto tiempo la necesite, para cuántas personas y con cuánta antelación. Recibirá un presupuesto cerrado en cuanto conozcamos las fechas.',
+        includes: [
+          'Apartamentos con servicios y opciones de estancia corta ajustados a sus fechas',
+          'Condiciones revisadas para que una estancia corta no bloquee su empadronamiento',
+          'Coordinación entre la dirección temporal y la búsqueda definitiva',
+          'Traslado organizado en cuanto la vivienda definitiva esté lista',
+        ],
+      },
       conditions: {
         title: 'La corta estancia en la práctica',
         intro:
@@ -720,6 +779,19 @@ export const housing: SectionContent = {
             title: 'Resolución y registro',
             text: 'Empujamos el asunto hasta un resultado y le entregamos un expediente documentado en el que apoyarse más adelante si hace falta.',
           },
+        ],
+      },
+      fees: {
+        title: 'Qué cuesta el apoyo frente al casero',
+        kind: 'tailored',
+        amount: 'Propuesta a medida',
+        amountNote:
+          'Algunos clientes necesitan que se responda a una sola carta difícil; otros, un año entero de arrendamiento gestionado en neerlandés en su nombre. Recibirá un presupuesto por el alcance que necesite.',
+        includes: [
+          'Correspondencia con su casero o su agente, en neerlandés, en su nombre',
+          'Reparaciones, gastos y disputas por la fianza asumidas y llevadas hasta el final',
+          'Su posición contrastada con la ley neerlandesa de arrendamientos antes de escribir',
+          'Escalado a la Huurcommissie preparado cuando está justificado',
         ],
       },
       note: 'Para asuntos que de verdad corresponden al tribunal de rentas o a un juzgado, preparamos su expediente y le derivamos a un abogado especializado en arrendamientos. Nunca nos paga por hacer lo que debe hacer un abogado.',

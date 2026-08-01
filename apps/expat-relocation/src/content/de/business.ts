@@ -83,15 +83,17 @@ export const business: SectionContent = {
         ],
       },
       fees: {
-        title: 'Honorar für einen Antrag als selbstständiger Unternehmer',
-        amount: 'ab 2.450 bis 3.500 Euro',
+        title: 'Was eine Unternehmensgründung kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Eine Gründung berührt Ihre Rechtsform, Ihre steuerliche Lage und meist zugleich Ihre Aufenthaltserlaubnis. Diese drei Entscheidungen sind bei keinem Mandanten gleich, deshalb erhalten Sie nach dem ersten Gespräch ein individuelles Angebot.',
         includes: [
-          'Einwanderungsberatung und Strategie',
-          'Vorbereitung des Antrags',
-          'Prüfung der Unterlagen',
-          'Kommunikation mit der IND',
+          'Rechtsform beraten an Ihrer steuerlichen Lage und Ihrem Aufenthaltsweg',
+          'Unternehmen bei der KvK und der Finanzverwaltung angemeldet',
+          'Aufenthaltsweg gewählt und parallel zum Unternehmen vorbereitet',
+          'Bankwesen, Buchhaltung und die ersten Pflichten eingerichtet',
         ],
-        note: 'Von der IND erhobene Behördengebühren sind nicht enthalten. Wo Ihr Fall in dieser Spanne liegt, hängt von der Komplexität des Unternehmens ab und davon, ob Familienmitglieder mit beantragen.',
       },
       details: {
         title: 'Wie Ihr Antrag bewertet wird',
@@ -155,6 +157,13 @@ export const business: SectionContent = {
         'Wir managen die Gründung von Anfang bis Ende und in der richtigen Reihenfolge, wobei Notar, Handelskammer, Finanzamt und Bank jeweils beim ersten Mal genau das bekommen, was sie brauchen.',
       ],
       cardText: 'Gründung von Anfang bis Ende: Rechtsform, Notar, KvK, Umsatzsteuer und Banking.',
+      explainer: {
+        title: 'Was gehört zur Gründung eines niederländischen Unternehmens?',
+        text: [
+          'Eine Gründung in den Niederlanden beginnt vor allem anderen mit der Wahl der Rechtsform. Ein Einzelunternehmen, die eenmanszaak oder ZZP, ist schnell und günstig, lässt Sie aber persönlich für die Schulden des Unternehmens haften. Eine BV ist eine Gesellschaft mit beschränkter Haftung: eine eigene juristische Person, die Ihr Privatvermögen schützt und über einen niederländischen Notar gegründet wird.',
+          'Diese Wahl bestimmt alles Weitere, darunter Ihre Besteuerung, ob Sie Gesellschafter aufnehmen können, wie Banken und Kunden Sie einschätzen und in mehreren Fällen auch, für welche Aufenthaltserlaubnis Sie infrage kommen. Von Anfang an richtig zu wählen ist erheblich günstiger, als später umzuwandeln.',
+        ],
+      },
       forWho: {
         title: 'Für wen wir Firmen registrieren',
         items: [
@@ -195,6 +204,22 @@ export const business: SectionContent = {
           { title: 'Entwerfen', text: 'Struktur, Gesellschafter und Adresse in einer Arbeitssitzung entschieden.' },
           { title: 'Ausführen', text: 'Notarurkunde, KvK-Registrierung und Steuermeldungen der Reihe nach abgeschlossen.' },
           { title: 'Operieren', text: 'Bankkonto offen, Umsatzsteuernummer aktiv, und Ihre Firma bereit, ihren ersten Vertrag zu unterschreiben.' },
+        ],
+      },
+      fees: {
+        title: 'Honorar für die Unternehmensgründung',
+        kind: 'tiered',
+        amount: 'Investition ab 2.495 €',
+        tiers: [
+          { label: 'Einzelunternehmen (ZZP)', amount: 'Investition ab 2.495 €' },
+          { label: 'Niederländische BV', amount: 'Investition ab 3.495 €' },
+          { label: 'Internationale Holdingstruktur', amount: 'Maßgeschneidert' },
+        ],
+        includes: [
+          'Struktur beraten, bevor etwas eingereicht wird, nicht danach',
+          'Notarielle Urkunde für eine BV koordiniert, samt Gründungsunterlagen',
+          'Anmeldung bei der KvK und beim Belastingdienst',
+          'UBO-Register, Umsatzsteuernummer und die ersten Meldepflichten korrekt eingerichtet',
         ],
       },
       note: 'Wenn Ihre Aufenthaltserlaubnis noch anhängig ist, zählt die Reihenfolge der Schritte: Manche können vor der Ankunft laufen, manche nicht. Wir planen die Abfolge um Ihren Einwanderungszeitplan.',
@@ -277,6 +302,13 @@ export const business: SectionContent = {
         'Wir bereiten die gesamte Registrierung vor, und dann geht Johanna mit Ihnen zum Termin selbst, damit Sprache, fehlende Dokumente oder eine unerwartete Frage Sie nie einen zweiten Besuch kosten.',
       ],
       cardText: 'Ihre Handelskammer-Registrierung vorbereitet, gebucht und gemeinsam wahrgenommen.',
+      explainer: {
+        title: 'Was ist die KvK-Registrierung?',
+        text: [
+          'Die KvK, Kamer van Koophandel, ist die niederländische Handelskammer, und die Eintragung in ihr Handelsregister ist es, was ein Unternehmen in den Niederlanden rechtlich entstehen lässt. Jedes Unternehmen und jede selbstständig tätige Person muss dort eingetragen sein.',
+          'Die Eintragung ist öffentlich: Ihre Unternehmensdaten sind für jeden einsehbar, und Kunden prüfen sie vor Vertragsschluss routinemäßig. Die KvK übermittelt Ihre Daten an die Finanzverwaltung, woraus Ihre Umsatzsteuernummer folgt. Die bei der Anmeldung gewählten Tätigkeitscodes prägen deshalb still Ihre spätere steuerliche Lage.',
+        ],
+      },
       forWho: {
         title: 'Mit wem wir hineingehen',
         items: [
@@ -313,6 +345,17 @@ export const business: SectionContent = {
           { title: 'Vorbereiten', text: 'Dokumente, Adresse und Tätigkeitsbeschreibung gemeinsam finalisiert.' },
           { title: 'Registrieren', text: 'Wir begleiten Sie zum KvK-Büro und fangen Überraschungen im Raum ab.' },
           { title: 'Bestätigen', text: 'KvK-Nummer erteilt, Umsatzsteuernummer nachverfolgt und Kopien dort abgelegt, wo Bank und Buchhalter sie brauchen.' },
+        ],
+      },
+      fees: {
+        title: 'Honorar für die KvK-Registrierung',
+        kind: 'fixed',
+        amount: 'Investition ab 395 €',
+        includes: [
+          'Anmeldeformular vorbereitet und die SBI-Tätigkeitscodes richtig gewählt',
+          'KvK-Termin gebucht und gemeinsam wahrgenommen',
+          'Anforderungen an Adresse und Identität vor dem Termin geprüft',
+          'Umsatzsteuernummer nach der Anmeldung beim Belastingdienst nachverfolgt',
         ],
       },
       note: 'Wenn Sie noch kein BSN haben, ist die Registrierung in vielen Situationen trotzdem möglich, aber der Weg ist ein anderer. Erwähnen Sie es, wenn Sie uns kontaktieren, und wir planen es ein.',
@@ -431,6 +474,19 @@ export const business: SectionContent = {
           { title: 'Blaupause', text: 'Ein Plan für Titel, Firma, Zuhause und Familie, mit explizit gemachten Abhängigkeiten.' },
           { title: 'Ausführung', text: 'Wir führen die Arbeitsstränge parallel und berichten Fortschritt in klarer Sprache, nicht in Portal-Updates.' },
           { title: 'Angekommen', text: 'Sie sind angemeldet, untergebracht, mit Konto und operativ, und Ihre Familie weiß, wo die gute Bäckerei ist.' },
+        ],
+      },
+      fees: {
+        title: 'Was ein Umzug für Unternehmer kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Unternehmerinnen und Unternehmer verlegen ein Unternehmen und einen Haushalt zugleich, und beide haben unterschiedliche Fristen. Nach einem ersten Gespräch erhalten Sie ein individuelles Angebot für beides.',
+        includes: [
+          'Unternehmensgründung und Ihr Aufenthaltsweg als eine Abfolge geplant',
+          'Wohnungssuche für Sie und Ihre Familie',
+          'Jede Anmeldung für den Haushalt, gebucht und begleitet',
+          'Kontakte zu Steuerberatern, Notaren und Banken, die mit Internationals arbeiten',
         ],
       },
       conditions: {
@@ -552,6 +608,19 @@ export const business: SectionContent = {
           { title: 'Abstecken', text: 'Wir überführen Gesellschaftsbedarf, Personenzahl, Familien und Deadline in einen Programmplan.' },
           { title: 'Mobilisieren', text: 'Firmenaufbau und Titelanträge laufen, während Wohnungen und Schulen pro Familie gesichert werden.' },
           { title: 'Das Team landen', text: 'Ankünfte werden gestaffelt und begleitet, Anmeldungen abgeschlossen, und Ihre niederländische Operation öffnet mit ihren Leuten vollzählig.' },
+        ],
+      },
+      fees: {
+        title: 'Was eine Betriebsverlagerung kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Eine Betriebsverlagerung hängt davon ab, wie viele Menschen mitkommen, welche Titel sie brauchen und wie schnell das Büro öffnen muss. Sie erhalten ein individuelles Angebot, das sich an der tatsächlichen Personalstärke und dem Zeitplan orientiert.',
+        includes: [
+          'Gesellschaft gegründet und anerkannte Sponsorschaft eingerichtet, wo sie nötig ist',
+          'Immigrationsakten für das Team, abgestimmt auf Ihren Eröffnungstermin',
+          'Wohnraum für mitziehende Mitarbeitende und deren Familien',
+          'Eine Koordination für den gesamten Umzug, die an eine Person auf Ihrer Seite berichtet',
         ],
       },
       conditions: {
@@ -694,6 +763,19 @@ export const business: SectionContent = {
           { title: 'Ankunft und Einleben', text: 'Mitarbeitende und ihre Familien werden bei Anmeldung, Wohnung und der Praxis des Ankommens begleitet.' },
         ],
       },
+      fees: {
+        title: 'Was Immigrationsbegleitung für Arbeitgeber kostet',
+        kind: 'tailored',
+        amount: 'Maßgeschneidertes Angebot',
+        amountNote:
+          'Arbeitgeberbegleitung wird nach Volumen und nach der benötigten Sponsorschaft bemessen, von einer einzelnen Einstellung bis zu einer dauerhaften Zusammenarbeit. Sie erhalten ein Angebot, das sich an Ihrer Einstellungsplanung orientiert.',
+        includes: [
+          'Anerkannte Sponsorschaft beantragt und aufrechterhalten',
+          'Jede Einstellung vor dem Angebot auf Weg, Gehaltsgrenze und Eintrittstermin geprüft',
+          'Anträge für Ihre Kandidatinnen, Kandidaten und deren Familien vorbereitet und eingereicht',
+          'Ihre Aufbewahrungs- und Meldepflichten prüfungssicher gehalten',
+        ],
+      },
       note: 'Wir sind eine Boutique-Agentur, was ebenso sehr eine bewusste Grenze wie ein Versprechen ist. Wir nehmen das Volumen an, das wir persönlich führen können, und sagen offen, wenn eine Anfrage darüber hinausgeht.',
       details: {
         title: 'Details für HR- und Mobility-Teams',
@@ -793,6 +875,19 @@ export const business: SectionContent = {
           { title: 'Profil', text: 'Budget, Gebiete, Familienbedürfnisse und Anmeldeanforderungen in einem Gespräch definiert.' },
           { title: 'Jagen', text: 'Wir wählen aus, buchen und begleiten Besichtigungen schnell, denn gute Wohnungen sind hier in Tagen weg.' },
           { title: 'Sichern', text: 'Angebot verhandelt, Vertrag geprüft, Schlüssel übergeben, Anmeldung organisiert.' },
+        ],
+      },
+      fees: {
+        title: 'Was Wohnungsbegleitung für Unternehmer kostet',
+        kind: 'tailored',
+        amount: 'Auf Anfrage',
+        amountNote:
+          'Gründerinnen und Gründer werden von Vermietern in der Regel anders bewertet als Angestellte, deshalb schwankt der Aufwand mit Ihrer Situation. Nach einem ersten Gespräch erhalten Sie ein Festpreisangebot.',
+        includes: [
+          'Eine Suche, die berücksichtigt, wie Vermieter selbstständige Einkünfte bewerten',
+          'Die Nachweismappe, die Vermieter von Gründern verlangen, vorab erstellt',
+          'Besichtigungen organisiert und begleitet',
+          'Vertrag geprüft und verhandelt, bevor Sie unterschreiben',
         ],
       },
       note: 'Wohnen auf Zeit kann die Lücke überbrücken, während wir suchen, aber nicht jede Short-Stay-Adresse erlaubt die Gemeindeanmeldung. Auf diesen Unterschied weisen wir hin, bevor Sie sich auf irgendetwas festlegen.',

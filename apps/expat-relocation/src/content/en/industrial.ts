@@ -73,6 +73,19 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'What Europoort relocation costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'Port assignments differ in length, rotation and how many people arrive at once. You receive a proposal built around the contract and the crew.',
+        includes: [
+          'Housing within a workable distance of the terminal or plant',
+          'Immigration files for the worker and, where relevant, the family',
+          'Every registration handled around shift patterns',
+          'A contact who answers outside office hours, because the port does not keep them',
+        ],
+      },
       conditions: {
         title: 'What working at Europoort means for your move',
         intro:
@@ -197,6 +210,19 @@ export const industrial: SectionContent = {
             title: 'Start work settled',
             text: 'Paperwork done, home working, and a direct line to us for everything after.',
           },
+        ],
+      },
+      fees: {
+        title: 'What Maasvlakte relocation costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'Maasvlakte postings range from a single specialist on a short commissioning job to a full team on a multi-year contract. You receive a proposal for the actual scope.',
+        includes: [
+          'Housing that makes the commute to the Maasvlakte realistic',
+          'Immigration and permits arranged around the project schedule',
+          'Registrations handled without pulling people off site',
+          'Support for partners and children who arrive later',
         ],
       },
       conditions: {
@@ -325,6 +351,19 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      fees: {
+        title: 'What offshore support costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'Rotation schedules make offshore work unlike any other relocation. You receive a proposal built around your rotation and the length of the contract.',
+        includes: [
+          'Housing that fits a rotation rather than a nine-to-five',
+          'Immigration handled around time offshore',
+          'Appointments scheduled inside your shore weeks',
+          'A permanent point of contact while you are unreachable',
+        ],
+      },
       note: 'Offshore tax and social security positions vary with flag state, employer and days worked; we flag when your situation needs a cross-border tax specialist and connect you with one from our network.',
       conditions: {
         title: 'What rotation work changes',
@@ -450,6 +489,19 @@ export const industrial: SectionContent = {
             title: 'First shift, fully settled',
             text: 'You clock in with your address, number and insurance already sorted.',
           },
+        ],
+      },
+      fees: {
+        title: 'What relocation for logistics professionals costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'Scope depends on whether you arrive alone or with a family, and on how quickly the role starts. You receive one fixed quotation after the first conversation.',
+        includes: [
+          'Housing near the terminals, warehouses or corridor you will actually work in',
+          'Immigration route selected and filed against your start date',
+          'Registrations, insurance and banking arranged on arrival',
+          'Family support where partners and children follow',
         ],
       },
       conditions: {
@@ -580,6 +632,19 @@ export const industrial: SectionContent = {
             title: 'Review and repeat',
             text: 'We debrief with the employer after each landing, so the next one is smoother still.',
           },
+        ],
+      },
+      fees: {
+        title: 'What industrial relocation support costs',
+        kind: 'tailored',
+        amount: 'Tailor-made proposal',
+        amountNote:
+          'Bespoke services tailored to your personal requirements. Following an initial consultation, you will receive a customised proposal based on your objectives, family situation and preferred level of assistance.',
+        includes: [
+          'One plan covering the permit, the home and the registrations',
+          'Employer coordination so the paperwork does not delay a start date',
+          'Support in the languages your team actually speaks',
+          'A single contact for the worker and for your HR department',
         ],
       },
       conditions: {
