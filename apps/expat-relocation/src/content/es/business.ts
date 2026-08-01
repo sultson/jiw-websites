@@ -10,8 +10,8 @@ export const business: SectionContent = {
     'Los despachos de visados tramitan permisos. Los agentes de constitución registran sociedades. Las agencias inmobiliarias encuentran apartamentos. Un emprendedor internacional necesita las tres cosas a la vez, más una familia que de verdad quiera quedarse, y nadie se lo ofrece como un solo servicio. Nosotros sí. Inmigración, creación de la empresa, vivienda y reubicación, coordinadas por un equipo que responde ante usted.',
     'Lo mismo se aplica a escala de empresa. Cuando un negocio traslada personas a los Países Bajos, reubicamos el cuadro completo: la entidad, los directivos, los equipos y cada familia que viene con ellos.',
   ],
-  image: '/images/business-meeting.jpg?v=20260728',
-  imageAlt: 'Emprendedores internacionales planificando su empresa neerlandesa en una mesa de reuniones',
+  image: '/images/rotterdam-evening.jpg',
+  imageAlt: 'El perfil urbano de Róterdam en el Wilhelminapier con luz vespertina',
   cta: {
     title: 'Traiga su empresa a los Países Bajos',
     text: 'Díganos qué quiere construir aquí y quién viene con usted. Trazaremos la ruta completa, de los permisos a las instalaciones, en un solo plan.',
@@ -24,20 +24,32 @@ export const business: SectionContent = {
       title: 'Crear una empresa en los Países Bajos',
       metaTitle: 'Crear una empresa en los Países Bajos como extranjero | E & I',
       metaDescription:
-        'Todo lo que un emprendedor extranjero necesita para crear una empresa en los Países Bajos: la base de residencia correcta, la forma jurídica, los registros y una guía personal en todo el proceso.',
+        'Crear una empresa en los Países Bajos siendo emprendedor extranjero: el permiso de residencia por cuenta propia, sus requisitos, cómo evalúan el IND y la RVO su plan, y nuestros honorarios.',
       eyebrow: 'Emprendimiento',
       intro: [
-        'Los Países Bajos son uno de los lugares más fáciles de Europa para hacer negocios y uno de los más confusos para empezar uno siendo extranjero, porque la cuestión de la residencia y la cuestión de la empresa deben responderse juntas. La forma jurídica correcta depende de su vía de visado, y su vía de visado depende de lo que esté construyendo.',
-        'Deshacemos ese nudo en la primera conversación. Recibe una única hoja de ruta que cubre su base de residencia, la estructura de su empresa y sus primeros registros, más una línea directa de WhatsApp con nosotros a cualquier hora mientras la ejecuta.',
+        'Los Países Bajos son una de las bases más atractivas de Europa para los emprendedores internacionales: economía estable, excelentes infraestructuras y acceso directo al mercado europeo. Crear aquí una empresa siendo ciudadano de fuera de la UE es más que registrar una sociedad, porque en la mayoría de los casos también necesita un permiso de residencia como trabajador autónomo.',
+        'Acompañamos a los fundadores durante todo el proceso, desde la estrategia de inmigración y el plan de negocio hasta la solicitud del permiso de residencia, y después por lo práctico: registro de la empresa, una dirección y la instalación.',
       ],
       cardText: 'Una hoja de ruta para su base de residencia, la estructura de su empresa y los primeros registros.',
       forWho: {
-        title: 'Quién empieza aquí',
+        title: 'Quién puede crear una empresa en los Países Bajos',
         items: [
-          'Emprendedores de fuera de la UE que necesitan permiso y empresa a la vez',
-          'Ciudadanos de la UE que pueden empezar de inmediato pero quieren la puesta en marcha bien hecha',
-          'Freelancers y consultores que traen una actividad existente a los Países Bajos',
+          'Ciudadanos de fuera de la UE y del EEE que quieren establecer o dirigir una empresa aquí',
+          'Autónomos y consultores que trasladan una actividad existente a los Países Bajos',
+          'Ciudadanos de la UE que pueden empezar de inmediato pero quieren la estructura bien planteada',
           'Fundadores que aún eligen entre los Países Bajos y otras bases europeas',
+        ],
+      },
+      conditions: {
+        title: 'Requisitos clave del permiso de residencia para emprendedores',
+        intro:
+          'Las solicitudes se evalúan por el valor económico del negocio para los Países Bajos. Los solicitantes deben demostrar, por lo general:',
+        items: [
+          'un plan de negocio profesional y viable',
+          'experiencia empresarial o profesional relevante',
+          'recursos económicos suficientes',
+          'la inscripción en la Cámara de Comercio neerlandesa (KvK)',
+          'valor económico para la economía neerlandesa',
         ],
       },
       included: {
@@ -62,11 +74,40 @@ export const business: SectionContent = {
         ],
       },
       process: {
-        title: 'De la idea a abrir el negocio',
+        title: 'Nuestro método de trabajo',
         steps: [
-          { title: 'Sesión de estrategia', text: 'Una entrevista que cubre su negocio, su nacionalidad y su familia. Sale con la ruta decidida.' },
-          { title: 'Permiso y papeleo', text: 'Llevamos la solicitud migratoria y la constitución de la empresa en paralelo siempre que es posible.' },
-          { title: 'Puertas abiertas', text: 'Registrado, con banco, asegurado y alojado. Empieza a facturar mientras rematamos los flecos.' },
+          { title: 'Evaluación inicial de inmigración', text: 'Analizamos sus planes y determinamos la vía de inmigración más adecuada para su nacionalidad y su negocio.' },
+          { title: 'Plan de negocio y documentación', text: 'Ayudamos a preparar el plan de negocio y los documentos de los que depende la evaluación.' },
+          { title: 'Solicitud de permiso de residencia', text: 'Preparamos y presentamos la solicitud ante el IND, con la constitución de la empresa en paralelo cuando es posible.' },
+          { title: 'Seguimiento de la solicitud', text: 'Seguimos el expediente y respondemos a las preguntas de las autoridades en su nombre.' },
+        ],
+      },
+      fees: {
+        title: 'Honorarios para una solicitud de permiso de emprendedor',
+        amount: 'desde 2.450 hasta 3.500 euros',
+        includes: [
+          'Asesoramiento y estrategia de inmigración',
+          'Preparación de la solicitud',
+          'Revisión de documentos',
+          'Comunicación con el IND',
+        ],
+        note: 'Las tasas que cobra el IND no están incluidas. El punto de su caso dentro de esta horquilla depende de la complejidad del negocio y de si hay familiares que soliciten con usted.',
+      },
+      details: {
+        title: 'Cómo se evalúa su solicitud',
+        items: [
+          {
+            q: '¿Quién decide, y sobre qué?',
+            a: 'La Agencia Empresarial de los Países Bajos (RVO) asesora al Servicio de Inmigración y Naturalización (IND) antes de la resolución final. La evaluación examina su trayectoria y experiencia profesional, la calidad y viabilidad del plan de negocio, el valor económico de la empresa y su potencial de innovación o de creación de empleo.',
+          },
+          {
+            q: '¿Qué tipo de negocio se valora positivamente?',
+            a: 'Los negocios que aportan innovación, empleo o actividad económica real en los Países Bajos. Un plan que parece un trámite para obtener la residencia, sin mercado, sin clientes y sin capital, es el motivo más frecuente de denegación.',
+          },
+          {
+            q: '¿Qué forma jurídica debe tener la empresa?',
+            a: 'La eenmanszaak es más ligera y barata; la BV limita la responsabilidad y encaja con el crecimiento y los inversores. La respuesta correcta depende de su situación fiscal y de cómo trata sus ingresos la vía elegida, por eso asesoramos caso por caso.',
+          },
         ],
       },
       faq: {
@@ -74,26 +115,32 @@ export const business: SectionContent = {
         items: [
           {
             q: '¿Puedo crear una empresa neerlandesa sin vivir en los Países Bajos?',
-            a: 'Puede ser propietario de una sociedad neerlandesa desde el extranjero, pero dirigirla localmente como nacional de fuera de la UE requiere una base de residencia. Le ayudamos a decidir si de verdad necesita mudarse y, en su caso, con qué permiso.',
+            a: 'Puede poseer una empresa neerlandesa desde el extranjero, pero dirigirla localmente siendo ciudadano de fuera de la UE exige una base de residencia. Le ayudamos a decidir si realmente necesita mudarse y, si es así, con qué permiso.',
           },
           {
             q: '¿Necesito un socio neerlandés?',
-            a: 'No. Los Países Bajos no exigen accionistas ni administradores locales para la mayoría de las estructuras. Su empresa puede ser totalmente suya.',
+            a: 'No. Los Países Bajos no exigen accionistas ni administradores locales para la mayoría de las estructuras. Su empresa puede ser enteramente suya.',
           },
           {
-            q: '¿Cuánto tardo en poder operar de verdad?',
-            a: 'Para ciudadanos de la UE, días. Para fundadores de fuera de la UE, el permiso marca el ritmo, y confirmamos los plazos vigentes del IND durante su entrevista inicial para que su fecha de lanzamiento sea realista desde el primer día.',
+            q: '¿Cuánto falta para poder operar de verdad?',
+            a: 'Para ciudadanos de la UE, días. Para fundadores de fuera de la UE el permiso marca el ritmo, y confirmamos los plazos actuales del IND en la primera consulta para que su fecha de lanzamiento sea realista desde el primer día.',
+          },
+          {
+            q: '¿Hay una vía más sencilla para estadounidenses o startups innovadoras?',
+            a: 'Sí. Los estadounidenses suelen poder solicitar bajo el tratado DAFT, y los fundadores con un concepto innovador pueden usar el visado startup. Ambas evitan la evaluación económica completa, y en la primera consulta comprobamos cuál de las tres vías encaja realmente con usted.',
           },
         ],
       },
       cta: {
-        title: 'Su empresa pertenece a este lugar',
-        text: 'Describa su negocio en dos frases. Volveremos con la ruta, la estructura y los tres primeros pasos.',
+        title: 'Cree su empresa en los Países Bajos',
+        text: 'Describa su negocio en dos frases. Volveremos con la vía, la estructura y los tres primeros pasos.',
         label: 'Trazar mi ruta',
       },
       form: 'immigration',
-      image: '/images/start-business.jpg',
-      imageAlt: 'Emprendedora abriendo la puerta de su nueva oficina',
+      image: '/images/start-business.jpg?v=20260731',
+      imageAlt: 'Fundador en un espacio de trabajo de diseño en los Países Bajos',
+      image2: '/images/business-plan.jpg',
+      image2Alt: 'Emprendedora repasando su plan de negocio con una asesora',
     },
     {
       slug: 'company-registration-netherlands',
@@ -151,6 +198,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'Si su permiso de residencia aún está en trámite, el orden de las operaciones importa: algunos pasos pueden avanzar antes de la llegada y otros no. Planificamos la secuencia en torno a su calendario migratorio.',
+      conditions: {
+        title: 'Lo que exige la constitución',
+        intro:
+          'La forma jurídica que elija la primera semana determinará durante años su fiscalidad, su responsabilidad y su credibilidad ante contrapartes neerlandesas.',
+        items: [
+          'Una BV requiere notario y escritura de constitución. Una empresa individual y una VOF no.',
+          'El capital social de una BV puede ser de un euro, así que el capital ya no es el motivo para elegir una forma u otra.',
+          'Toda empresa necesita un domicilio social neerlandés. La KvK no acepta un apartado de correos.',
+          'Administradores y socios se identifican conforme a las normas UBO, y el titular real consta en un registro aparte.',
+          'El alta en el IVA se deriva automáticamente de la inscripción en la KvK, y la agencia tributaria emite el número por separado.',
+          'Para un nacional de fuera de la UE, un permiso de residencia es requisito previo para operar aquí, y la empresa no lo sustituye.',
+        ],
+      },
+      details: {
+        title: 'Elegir la estructura adecuada',
+        items: [
+          {
+            q: '¿BV o empresa individual?',
+            a:
+              'La empresa individual es más rápida y barata y tributa por IRPF con deducciones de emprendedor, pero usted responde personalmente. La BV separa su responsabilidad, transmite más solidez a clientes y bancos neerlandeses, y resulta fiscalmente eficiente en cuanto los beneficios son relevantes. La mayoría de los consultores empieza como empresa individual y convierte cuando las cifras justifican al notario.',
+          },
+          {
+            q: '¿Cuánto tarda una BV?',
+            a:
+              'Normalmente de una a tres semanas. El notario necesita identificación, la estructura prevista y una comprobación de nombre, y la inscripción en la KvK sigue a la escritura. Si hay socios en el extranjero, los poderes legalizados añaden tiempo, así que empezamos por ellos.',
+          },
+          {
+            q: '¿Puedo constituir antes de tener residencia?',
+            a:
+              'Puede tener participaciones en una sociedad neerlandesa desde el extranjero, pero trabajar en ella en los Países Bajos exige el permiso adecuado. Montar la empresa primero y pensar después en la residencia es la secuencia que causa la mayoría de los problemas que reparamos.',
+          },
+          {
+            q: '¿Y el domicilio social?',
+            a:
+              'Debe ser una dirección real donde la empresa sea efectivamente localizable, y tanto la KvK como los bancos lo verifican ya. Los paquetes de oficina virtual varían enormemente en si superan ese control, y le orientamos a proveedores que lo hacen.',
+          },
+        ],
+      },
       faq: {
         title: 'Antes de constituir',
         items: [
@@ -176,6 +261,8 @@ export const business: SectionContent = {
       form: 'immigration',
       image: '/images/business-signing.jpg?v=20260728',
       imageAlt: 'Fundador firmando documentos de constitución ante un notario neerlandés',
+      image2: '/images/kvk-registration.jpg?v=20260731',
+      image2Alt: 'Empresaria y asesor revisando documentos de la empresa',
     },
     {
       slug: 'kvk-registration-for-foreigners-netherlands',
@@ -229,6 +316,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'Si aún no tiene BSN, el registro sigue siendo posible en muchas situaciones, pero la vía es distinta. Menciónelo cuando nos contacte y lo planificaremos en consecuencia.',
+      conditions: {
+        title: 'Lo que la KvK le pedirá',
+        intro:
+          'La cita en la Cámara de Comercio es corta e inflexible. Todo se decide por lo que lleve consigo.',
+        items: [
+          'Las citas se reservan con antelación, y en periodos de alta demanda la espera puede llegar a varias semanas.',
+          'Necesita pasaporte o documento de identidad válido, un BSN y justificante de su domicilio empresarial neerlandés.',
+          'Los nacionales de fuera de la UE deben mostrar un permiso de residencia que autorice la actividad por cuenta propia.',
+          'El domicilio empresarial debe ser una dirección real. Un apartado de correos será rechazado.',
+          'En la inscripción elige códigos de actividad SBI, y estos le acompañarán en banca, seguros y tratamiento del IVA.',
+          'La inscripción tiene una tasa única, y sus datos pasan al registro mercantil público.',
+        ],
+      },
+      details: {
+        title: 'Hacer bien la inscripción',
+        items: [
+          {
+            q: '¿Por qué importan tanto los códigos SBI?',
+            a:
+              'Describen lo que hace su empresa, y bancos, aseguradoras y la agencia tributaria los leen todos. Un código que sugiera una actividad de mayor riesgo puede retrasar o bloquear una cuenta de empresa, y un código demasiado estrecho complica después la facturación. Los elegimos con usted de forma deliberada en lugar de coger el más parecido en el mostrador.',
+          },
+          {
+            q: '¿Puedo inscribirme sin dirección neerlandesa?',
+            a:
+              'No, y es la causa más frecuente de que una inscripción fracase. Necesita una dirección donde la empresa sea realmente localizable. Organizamos domicilios empresariales conformes para clientes que todavía buscan vivienda, de modo que la empresa pueda arrancar mientras continúa la búsqueda.',
+          },
+          {
+            q: '¿Asisten a la cita?',
+            a:
+              'Sí. La cita se desarrolla en neerlandés, en el mostrador se toman decisiones difíciles de revertir después, y tener al lado a alguien que entiende cada pregunta marca la diferencia entre una cita y tres.',
+          },
+          {
+            q: '¿Qué ocurre inmediatamente después?',
+            a:
+              'Recibe su número KvK el mismo día y su número de IVA poco después, de la agencia tributaria. Luego vienen la banca de empresa, la contabilidad, la facturación y, si procede, el régimen de IVA para pequeñas empresas. Recorremos esa secuencia con usted en lugar de dejarle con un certificado.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas sobre la KvK',
         items: [
@@ -252,8 +377,10 @@ export const business: SectionContent = {
         label: 'Reservar mi registro en la KvK',
       },
       form: 'immigration',
-      image: '/images/kvk-registration.jpg',
-      imageAlt: 'Emprendedor recibiendo un extracto de registro de empresa en un mostrador',
+      image: '/images/kvk-registration.jpg?v=20260731',
+      imageAlt: 'Empresaria y asesor revisando documentos de la empresa',
+      image2: '/images/business-plan.jpg',
+      image2Alt: 'Emprendedores trabajando en un plan de negocio',
     },
     {
       slug: 'relocation-services-for-entrepreneurs-netherlands',
@@ -306,6 +433,44 @@ export const business: SectionContent = {
           { title: 'Instalado', text: 'Está empadronado, alojado, con banco y operativo, y su familia sabe dónde está la buena panadería.' },
         ],
       },
+      conditions: {
+        title: 'Cómo encajan las piezas',
+        intro:
+          'Los fundadores llevan cuatro procesos a la vez, y cada uno depende de otro. La secuencia es todo el servicio.',
+        items: [
+          'Debe existir una base de residencia antes de que la empresa pueda operarse desde los Países Bajos, diga lo que diga el registro.',
+          'El empadronamiento en su dirección produce el BSN, y sin él ni la empresa ni su remuneración funcionan bien.',
+          'Los propietarios valoran a los emprendedores por patrimonio y cuentas en lugar de por nóminas, así que el expediente de alquiler se construye de otra manera.',
+          'La banca de empresa para una sociedad recién creada con fundador extranjero tarda más que la personal y se deniega con más frecuencia.',
+          'El seguro médico es obligatorio desde la llegada para usted y su familia, sea cual sea la estructura societaria.',
+          'Coordinamos el permiso, la empresa y la mudanza. La fiscalidad y la contabilidad quedan en manos de asesores a los que le presentamos.',
+        ],
+      },
+      details: {
+        title: 'Problemas propios de los fundadores',
+        items: [
+          {
+            q: '¿Por qué es tan difícil la banca de empresa?',
+            a:
+              'Los bancos neerlandeses aplican reglas estrictas de admisión a sociedades recién constituidas con fundadores no residentes, y las solicitudes se deniegan por motivos que nunca se explican del todo. Lo que funciona es una descripción de actividad clara, códigos SBI coherentes, una dirección neerlandesa real, prueba de clientes previstos y un fundador ya empadronado. Nos preparamos para eso en lugar de descubrirlo.',
+          },
+          {
+            q: '¿Cómo alquilo sin nóminas neerlandesas?',
+            a:
+              'Con un expediente distinto. Los propietarios aceptan a emprendedores a partir de cuentas anuales, extractos bancarios, patrimonio, una fianza mayor o un aval bancario, y a veces una garantía personal desde la BV. Construimos ese expediente correctamente y lo presentamos en neerlandés, lo que convierte una negativa en una visita.',
+          },
+          {
+            q: '¿Qué debería ir primero?',
+            a:
+              'La evaluación migratoria, siempre. Todo lo demás puede reordenarse, pero construir una empresa sobre una base de residencia que no existe es irrecuperable. Una vez confirmada la vía, empresa, vivienda y asuntos familiares avanzan en paralelo.',
+          },
+          {
+            q: '¿Trabajan con mi contable?',
+            a:
+              'Con mucho gusto, y lo preferimos. Si aún no tiene asesor neerlandés, le presentamos a contables habituados a fundadores internacionales que conocen la regla del 30 por ciento, la facturación transfronteriza y las normas de retribución del administrador.',
+          },
+        ],
+      },
       faq: {
         title: 'Lo que preguntan los emprendedores',
         items: [
@@ -329,8 +494,10 @@ export const business: SectionContent = {
         label: 'Iniciar mi plan de reubicación',
       },
       form: 'immigration',
-      image: '/images/entrepreneur-relocation.jpg',
-      imageAlt: 'Fundador llevando una caja y un portátil a una nueva oficina',
+      image: '/images/entrepreneur-relocation.jpg?v=20260731',
+      imageAlt: 'Emprendedor llegando a un edificio de apartamentos moderno en los Países Bajos',
+      image2: '/images/start-business.jpg?v=20260731',
+      image2Alt: 'Fundador en un espacio de trabajo de diseño en los Países Bajos',
     },
     {
       slug: 'business-relocation-to-the-netherlands',
@@ -387,6 +554,44 @@ export const business: SectionContent = {
           { title: 'Aterrizar al equipo', text: 'Las llegadas se escalonan y acompañan, los registros se completan y su operación neerlandesa abre con su gente al completo.' },
         ],
       },
+      conditions: {
+        title: 'Lo que implica trasladar una empresa',
+        intro:
+          'Mover una entidad es un proyecto con ruta crítica, y la parte migratoria casi siempre está en ella.',
+        items: [
+          'El reconocimiento como patrocinador ante la IND es requisito previo para presentar una sola solicitud de migrante altamente cualificado, y ese reconocimiento lleva semanas.',
+          'Los patrocinadores reconocidos asumen deberes continuos de información, administración y diligencia, y se les audita sobre ellos.',
+          'Cada empleado trasladado tiene su propio expediente, y cada familia acompañante multiplica el trabajo documental.',
+          'Los umbrales salariales se aplican por empleado y se indexan cada año, lo que afecta al presupuesto de las ofertas hechas a final de año.',
+          'El desplazamiento desde otra entidad de la UE es un régimen distinto con su propio deber de notificación, no una versión ligera del mismo.',
+          'Nos ocupamos de inmigración, vivienda e instalación de las familias. Impuesto de sociedades, precios de transferencia y estructuración jurídica siguen con sus asesores.',
+        ],
+      },
+      details: {
+        title: 'Dirigir bien el proyecto',
+        items: [
+          {
+            q: '¿Con cuánta antelación hay que empezar?',
+            a:
+              'De cuatro a seis meses antes de la primera llegada si el reconocimiento aún no existe. Reconocimiento, permisos, vivienda y colegios tienen cada uno su plazo, y la única forma de comprimir el total es llevarlos en paralelo desde un inicio suficientemente temprano.',
+          },
+          {
+            q: '¿A qué nos obliga el reconocimiento como patrocinador?',
+            a:
+              'A llevar un expediente por empleado patrocinado, informar a la IND de los cambios relevantes en cuatro semanas, y cuidar razonablemente la instalación del empleado. La IND audita. Organizamos la administración de modo que una auditoría sea un trámite y no un acontecimiento.',
+          },
+          {
+            q: '¿Pueden atender a varias familias a la vez?',
+            a:
+              'Sí, y es buena parte de lo que hacemos. Cada familia tiene su asesora y su plan, mientras RR. HH. cuenta con un único interlocutor y una visión de conjunto en lugar de quince hilos de correo.',
+          },
+          {
+            q: '¿Qué hace que la gente se marche en menos de un año?',
+            a:
+              'Rara vez el puesto. Es la pareja que no encontró trabajo, el hijo que nunca encajó en el colegio, o una vivienda que nunca llegó a sentirse como un hogar. Son fallos de relocation y no de RR. HH., y son exactamente los que se nos contrata para evitar.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas de recursos humanos y dirección',
         items: [
@@ -410,8 +615,134 @@ export const business: SectionContent = {
         label: 'Hablar de nuestro traslado corporativo',
       },
       form: 'immigration',
-      image: '/images/business-relocation.jpg',
-      imageAlt: 'Equipo trasladando cajas a un edificio de oficinas moderno',
+      image: '/images/business-relocation.jpg?v=20260731',
+      imageAlt: 'Equipo directivo internacional en una sala de juntas de Róterdam',
+      image2: '/images/employer-team.jpg?v=20260731',
+      image2Alt: 'Reunión de equipo internacional en una oficina neerlandesa',
+    },
+    {
+      slug: 'employer-immigration-services-netherlands',
+      menuLabel: 'Inmigración para empleadores',
+      title: 'Servicios de inmigración para empleadores en los Países Bajos',
+      metaTitle: 'Servicios de inmigración para empleadores Países Bajos | Personal de fuera de la UE',
+      metaDescription:
+        'Servicios de inmigración para empleadores en los Países Bajos: solicitudes de migrante altamente cualificado y Tarjeta Azul UE, reconocimiento del IND, desplazamiento y revisión de expedientes.',
+      eyebrow: 'Para empleadores',
+      intro: [
+        'Contratar talento internacional suele ser imprescindible, y contratar personal de fuera de la UE en los Países Bajos rara vez es sencillo. Implica procedimientos de inmigración, obligaciones de cumplimiento y coordinación con el IND, la Inspección de Trabajo neerlandesa y, en algunos casos, el UWV.',
+        'Ayudamos a los empleadores con los procedimientos de inmigración neerlandeses para sus empleados internacionales, desde la contratación de un único especialista hasta una estrategia de plantilla a largo plazo. El objetivo es un proceso previsible y manejable para la empresa y para quien se traslada.',
+      ],
+      cardText: 'Procedimientos de inmigración, patrocinio y cumplimiento para empresas que contratan internacionalmente.',
+      forWho: {
+        title: 'Con quién trabajamos',
+        items: [
+          'Empresas neerlandesas que reclutan especialistas de fuera de la Unión Europea',
+          'Empleadores que trasladan personal desde una oficina extranjera a los Países Bajos',
+          'Responsables de RR. HH. y movilidad que quieren un socio local responsable',
+          'Empresas que valoran el reconocimiento del IND como patrocinador',
+          'Organizaciones que desplazan empleados aquí temporalmente para proyectos o encargos',
+        ],
+      },
+      conditions: {
+        title: 'Lo que los empleadores deben tener en cuenta',
+        intro:
+          'Cada vía de inmigración tiene sus propios requisitos, obligaciones documentales y umbrales salariales. Antes de confirmar una contratación conviene saber que:',
+        items: [
+          'un empleado de fuera de la UE necesita una base de residencia antes de empezar a trabajar',
+          'los umbrales salariales varían según la vía y se fijan por categoría',
+          'los patrocinadores reconocidos asumen obligaciones de cumplimiento permanentes ante el IND',
+          'los patrocinadores deben demostrar fiabilidad, estabilidad financiera y una administración sólida',
+          'el desplazamiento puede activar obligaciones de notificación bajo la normativa laboral neerlandesa',
+          'los plazos de inmigración afectan a la planificación de la selección y a las fechas de incorporación',
+        ],
+      },
+      included: {
+        title: 'Cómo apoyamos a los empleadores',
+        blocks: [
+          {
+            title: 'Elección de la vía de inmigración',
+            text: 'Permisos de migrante altamente cualificado, Tarjeta Azul UE, permiso combinado de residencia y trabajo (GVVA), titulados del año de orientación que pasan a un empleo y traslados dentro del grupo. Determinamos cuál encaja realmente con el puesto y con el candidato.',
+          },
+          {
+            title: 'Solicitudes para sus empleados',
+            text: 'Preparamos las solicitudes de inmigración, coordinamos la documentación para su presentación ante el IND y asesoramos sobre plazos realistas para planificar el traslado.',
+          },
+          {
+            title: 'Reconocimiento del IND como patrocinador',
+            text: 'Preparamos las solicitudes de reconocimiento, asesoramos sobre requisitos y documentación, revisamos los procedimientos administrativos internos y le mantenemos al día de las obligaciones del patrocinador.',
+          },
+          {
+            title: 'Desplazamiento de trabajadores a los Países Bajos',
+            text: 'Analizamos los escenarios de desplazamiento, asesoramos sobre la vía aplicable, tramitamos las solicitudes de residencia o de permiso de trabajo y velamos por el cumplimiento de las obligaciones de notificación.',
+          },
+          {
+            title: 'Estrategia de inmigración',
+            text: 'Asesoramos sobre la estructuración de la contratación internacional, la planificación del traslado y la incorporación, la alineación con los contratos laborales y la gestión del riesgo de cumplimiento.',
+          },
+          {
+            title: 'Revisión de expedientes',
+            text: 'Ante denegaciones, cambios de estatus o dudas de elegibilidad, analizamos la situación en detalle y exponemos las opciones realistas y los siguientes pasos antes de iniciar una nueva solicitud.',
+          },
+        ],
+      },
+      process: {
+        title: 'Cómo se desarrolla un encargo para empleadores',
+        steps: [
+          { title: 'Alcance', text: 'Mapeamos los puestos, las nacionalidades implicadas, los plazos y la situación de cumplimiento de su empresa.' },
+          { title: 'Vía y documentos', text: 'Se confirma la vía de inmigración adecuada para cada empleado y se prepara la documentación para su presentación.' },
+          { title: 'Presentación y contacto', text: 'Las solicitudes llegan al IND y gestionamos la correspondencia, incluidas preguntas y requerimientos adicionales.' },
+          { title: 'Llegada e instalación', text: 'Los empleados y sus familias reciben apoyo con el empadronamiento, la vivienda y lo práctico de la llegada.' },
+        ],
+      },
+      note: 'Somos una agencia boutique, y eso es tanto un límite deliberado como una promesa. Aceptamos el volumen que podemos atender personalmente, y lo decimos con claridad cuando una petición lo supera.',
+      details: {
+        title: 'Detalles para equipos de RR. HH. y movilidad',
+        items: [
+          {
+            q: '¿Qué cambia el reconocimiento como patrocinador?',
+            a: 'Las empresas que contratan con regularidad a profesionales internacionales pueden convertirse en patrocinador reconocido ante el IND. Eso aporta procedimientos más rápidos, solicitudes simplificadas y más flexibilidad. A cambio, la empresa asume obligaciones de cumplimiento permanentes y debe poder demostrar fiabilidad, estabilidad financiera y procedimientos administrativos correctos.',
+          },
+          {
+            q: '¿Cuándo se aplican las normas de desplazamiento?',
+            a: 'Cuando una empresa internacional envía temporalmente empleados aquí para un proyecto, un encargo o un traslado dentro del grupo. Según el caso pueden aplicarse a la vez las normas europeas de desplazamiento, los requisitos de permiso de trabajo, los requisitos de residencia para empleados de fuera de la UE y las obligaciones neerlandesas de notificación. Planificarlo bien es lo que evita retrasos y riesgos de cumplimiento.',
+          },
+          {
+            q: '¿Cuándo merece la pena una revisión de expediente?',
+            a: 'Cuando una solicitud fue denegada, cuando un empleado cambia de estatus o pasa de una categoría de visado a otra, cuando la elegibilidad es realmente dudosa, o cuando un patrocinador reconocido tiene una duda de cumplimiento. La revisión le da un análisis de la situación, de los riesgos y obstáculos, de las opciones disponibles y una recomendación de siguiente paso.',
+          },
+          {
+            q: '¿Trabajan junto a nuestros asesores jurídicos y fiscales?',
+            a: 'Sí, y lo preferimos. Nos ocupamos del lado migratorio y humano del traslado y encajamos en la estructura que diseñan sus asesores.',
+          },
+        ],
+      },
+      faq: {
+        title: 'Preguntas de los empleadores',
+        items: [
+          {
+            q: '¿Cuándo deberíamos implicarles en una contratación?',
+            a: 'Idealmente antes de firmar el contrato. La vía de inmigración influye en el salario, en la fecha de incorporación y a veces en si la contratación es posible, y son descubrimientos caros a posteriori.',
+          },
+          {
+            q: '¿También acompañan al empleado y a su familia?',
+            a: 'Sí. Vivienda, búsqueda de colegio, empadronamiento e instalación forman parte de lo que hacemos, y normalmente son precisamente esos elementos los que determinan si alguien se queda más allá del primer año.',
+          },
+          {
+            q: '¿Pueden ayudar a una empresa aún no establecida en los Países Bajos?',
+            a: 'Sí. Montamos la entidad neerlandesa y la vía de inmigración a la vez, en el orden que permite que cada paso desbloquee el siguiente.',
+          },
+        ],
+      },
+      cta: {
+        title: '¿Está contratando talento internacional?',
+        text: 'Díganos el puesto, la nacionalidad y la fecha de incorporación prevista. Volveremos con la vía, el calendario y lo que su empresa debe tener preparado.',
+        label: 'Hablemos de nuestras contrataciones',
+      },
+      form: 'immigration',
+      image: '/images/employer-immigration.jpg',
+      imageAlt: 'Asesora de RR. HH. y responsable comentando una contratación internacional',
+      image2: '/images/employer-team.jpg',
+      image2Alt: 'Equipo internacional trabajando junto en una oficina neerlandesa',
     },
     {
       slug: 'housing-support-for-entrepreneurs-netherlands',
@@ -465,6 +796,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'La vivienda temporal puede hacer de puente mientras buscamos, pero no toda dirección de corta estancia permite el empadronamiento municipal. Señalamos esa distinción antes de que se comprometa a nada.',
+      conditions: {
+        title: 'Alquilar sin nóminas',
+        intro:
+          'Los propietarios neerlandeses están hechos para leer contratos laborales. Todo lo que sigue trata de darles algo que sí puedan leer.',
+        items: [
+          'Los propietarios suelen querer un ingreso bruto de tres a cuatro veces el alquiler, y en emprendedores buscan el equivalente en cuentas y patrimonio.',
+          'Las sociedades recién creadas no tienen historial, así que normalmente es la situación personal del fundador la que sostiene el expediente.',
+          'Espere que le pidan cuentas anuales, un año de extractos bancarios, un certificado del contable o un aval bancario.',
+          'Las fianzas están limitadas a dos meses de renta base para los contratos firmados desde el 1 de julio de 2023, y no puede exigirse una mayor a cambio.',
+          'Una garantía desde su BV o una garantía personal suele aceptarse donde los documentos por sí solos no bastan.',
+          'Actuamos para usted y no para el propietario, y no cobramos comisión de ninguna de las dos partes.',
+        ],
+      },
+      details: {
+        title: 'Construir un expediente que convenza',
+        items: [
+          {
+            q: '¿Y si mi empresa es totalmente nueva?',
+            a:
+              'Entonces el expediente descansa sobre usted y no sobre ella. Ahorros, ingresos de su país anterior, contratos de clientes existentes, un certificado firmado por un contable y un aval bancario funcionan todos. Lo que no funciona es llegar a una visita con una explicación en lugar de con documentos.',
+          },
+          {
+            q: '¿Es habitual aquí un aval bancario?',
+            a:
+              'Es corriente y perfectamente respetable para un emprendedor. Su banco bloquea un importe, normalmente dos o tres meses de alquiler, y el propietario lo acepta en lugar de un historial laboral. Suele costar una comisión anual moderada y abre viviendas que de otro modo le rechazarían.',
+          },
+          {
+            q: '¿Debo decir que soy autónomo?',
+            a:
+              'Siempre, y pronto. Los propietarios que lo descubren en la fase de contrato se retiran. Los que lo saben desde el principio, y ven un expediente bien preparado en neerlandés, en general siguen adelante. Ocultarlo es la forma más rápida de perder una vivienda ya ganada.',
+          },
+          {
+            q: '¿Puedo alquilar una vivienda y usarla como domicilio empresarial?',
+            a:
+              'A menudo sí, para una consultoría o servicio sin visitas, pero depende del contrato de alquiler y de las normas urbanísticas del municipio. Comprobamos ambos antes de que registre la dirección en la KvK, porque deshacerlo después resulta desagradable.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas de vivienda para emprendedores',
         items: [
@@ -490,6 +859,8 @@ export const business: SectionContent = {
       form: 'immigration',
       image: '/images/entrepreneur-housing.jpg',
       imageAlt: 'Loft luminoso para vivir y trabajar con un escritorio junto a la ventana',
+      image2: '/images/rental-contract.jpg?v=20260731',
+      image2Alt: 'Firma de un contrato de alquiler neerlandés con pluma estilográfica',
     },
   ],
   crossLinks: [

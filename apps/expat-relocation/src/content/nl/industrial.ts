@@ -73,6 +73,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Wat werken op Europoort betekent voor uw verhuizing',
+        intro:
+          'De haven stelt de randvoorwaarden. Wonen, inschrijven en gezinsleven buigen zich naar de poort en het rooster.',
+        items: [
+          'De rit naar Europoort duurt vijfenveertig tot zeventig minuten vanuit centraal Rotterdam, en twintig tot dertig vanuit Hoogvliet, Spijkenisse of Brielle.',
+          'Ploegen- en roosterdiensten maken openbaar vervoer bij de meeste poorten onpraktisch, dus bepalen parkeren en een auto vaak de woonkeuze.',
+          'Toegang tot het terrein vraagt identiteitsdocumenten en voor veel aannemers een geldige veiligheidscertificering zoals VCA.',
+          'Aannemers en gedetacheerden uit andere EU-landen vallen onder andere regels voor inschrijving, verzekering en loonadministratie dan medewerkers in vaste dienst.',
+          'Inschrijving op uw adres blijft de toegangspoort tot BSN, salaris en verzekering, wat uw werkgever ook geregeld heeft.',
+          'Wij dekken specifiek de havenregio. Dit is ons eigen gebied, geen landelijke dienst die hier wordt toegepast.',
+        ],
+      },
+      details: {
+        title: 'Praktische punten voor havenprofessionals',
+        items: [
+          {
+            q: 'Waar kan ik het beste wonen?',
+            a:
+              'Het hangt af van uw poort en uw dienst, en het eerlijke antwoord is vaak niet Rotterdam. Hoogvliet, Spijkenisse, Brielle en Rozenburg brengen u binnen een halfuur van de meeste terminals en kosten wezenlijk minder. Werkt uw partner in de stad, dan verandert de rekensom, en wij modelleren beide voordat u zich aan een adres bindt.',
+          },
+          {
+            q: 'Ik ben gedetacheerd door een buitenlandse werkgever. Wat is anders?',
+            a:
+              'Vrijwel alles administratief. Uw sociale zekerheid kan met een A1-verklaring in uw eigen land blijven, uw werkgever heeft een meldplicht in Nederland, en uw verzekeringsplicht hangt van die structuur af in plaats van van uw adres. Dit verkeerd doen levert dubbele premies of geen dekking op, dus werken wij het specifiek uit.',
+          },
+          {
+            q: 'Kan mijn gezin later volgen?',
+            a:
+              'Ja, en bij ploegen- en rotatiewerk is dat vaak de juiste keuze. Wij plannen de eerste fase rond u en de tweede rond hen, zodat school en woning worden gekozen met het gezin erbij in plaats van vooraf geraden.',
+          },
+          {
+            q: 'Hoe snel kan dit?',
+            a:
+              'Met een aanbieding in handen en documenten gereed duurt een werkende landing drie tot vijf weken: tijdelijke basis, inschrijving, BSN, verzekering, bankzaken en de definitieve woningzoektocht die eronder doorloopt. Gelegaliseerde documenten uit het buitenland zijn het enige dat het betrouwbaar vertraagt.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -96,8 +134,10 @@ export const industrial: SectionContent = {
         label: 'Plan mijn Europoort-verhuizing',
       },
       form: 'relocation',
-      image: '/images/europoort.jpg?v=20260728',
+      image: '/images/europoort.jpg?v=20260731',
       imageAlt: 'Raffinaderij- en terminalinfrastructuur bij Europoort Rotterdam',
+      image2: '/images/industrial-worker.jpg?v=20260731',
+      image2Alt: 'Directielid uit de energiesector in de Rotterdamse haven in het gouden uur',
     },
     {
       slug: 'maasvlakte-expat-relocation-netherlands',
@@ -159,6 +199,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'De werkelijkheid van de Maasvlakte',
+        intro:
+          'Maasvlakte 2 is het verste punt van de haven, en afstand is het ene feit dat elke beslissing eromheen bepaalt.',
+        items: [
+          'De rit duurt zestig tot negentig minuten vanuit centraal Rotterdam, en dertig tot vijfenveertig vanuit de westelijke gemeenten.',
+          'Vlak bij de terminals is vrijwel geen woonruimte, dus elke optie betekent reistijd.',
+          'Werk op de deepseaterminals is sterk ploegendienstgebonden, inclusief nachten en weekenden, wat zowel woonkeuze als kinderopvang raakt.',
+          'Sommige terminals rijden bedrijfsvervoer, en dat verandert de rekensom volledig, dus bevestig het voordat u een adres kiest.',
+          'Terreintoegang vraagt geldige identificatie en voor de meeste aannemersrollen actuele veiligheidscertificering.',
+          'Inschrijving, BSN, verzekering en salaris volgen dezelfde regels als overal, en blijven de toegangspoort tot alles.',
+        ],
+      },
+      details: {
+        title: 'Plannen rond de terminal',
+        items: [
+          {
+            q: 'Welke plaatsen werken het beste?',
+            a:
+              'Brielle, Hellevoetsluis, Spijkenisse, Rozenburg en Oostvoorne brengen de meeste mensen binnen vijfenveertig minuten van de terminals, met meer ruimte en lagere huren dan de stad. Brielle past bijzonder goed bij gezinnen die een historisch stadje willen in plaats van een forensenwijk.',
+          },
+          {
+            q: 'Rijdt mijn werkgever vervoer?',
+            a:
+              'Verschillende terminals doen dat, en het kan een ver adres prima werkbaar maken of een nabij adres overbodig. Het is de eerste vraag die wij stellen, want het antwoord hertekent de hele woningzoektocht.',
+          },
+          {
+            q: 'Hoe raken nachtdiensten de woonkeuze?',
+            a:
+              'Meer dan mensen verwachten. Doorslapen op een doordeweekse ochtend lukt niet in een gehorig appartement boven een drukke straat, en dat is de meest voorkomende reden dat een eerste huurwoning mislukt. Wij toetsen geluid op het tijdstip waarop u werkelijk slaapt, niet op het tijdstip van de bezichtiging.',
+          },
+          {
+            q: 'En gezinsleven bij een draaiend rooster?',
+            a:
+              'Dat werkt, maar het vraagt planning in plaats van improvisatie. Scholen met voor- en naschoolse opvang, een partner die kan rijden en een buurt waar ook op vreemde uren iets te doen is wegen zwaarder dan vierkante meters. Wij bouwen de zoektocht rond het rooster in plaats van rond de advertentie.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -184,6 +262,8 @@ export const industrial: SectionContent = {
       form: 'relocation',
       image: '/images/maasvlakte.jpg?v=20260728',
       imageAlt: 'Containerterminals en kranen in de deepsea-haven op de Maasvlakte',
+      image2: '/images/industrial-worker.jpg?v=20260731',
+      image2Alt: 'Directielid uit de energiesector in de Rotterdamse haven in het gouden uur',
     },
     {
       slug: 'offshore-expat-services-netherlands',
@@ -246,6 +326,44 @@ export const industrial: SectionContent = {
         ],
       },
       note: 'Offshoreposities voor belasting en sociale zekerheid variëren met vlaggenstaat, werkgever en gewerkte dagen; wij signaleren wanneer uw situatie een grensoverschrijdende belastingspecialist vereist en verbinden u met er een uit ons netwerk.',
+      conditions: {
+        title: 'Wat rotatiewerk verandert',
+        intro:
+          'Een offshorerotatie doorbreekt de meeste aannames waarop de Nederlandse administratie is gebouwd. Dit zijn de belangrijkste.',
+        items: [
+          'Inschrijving op een Nederlands adres blijft vereist als Nederland uw hoofdverblijf is, wat uw rotatiepatroon ook is.',
+          'Lange afwezigheid kan de inschrijving, het recht op zorgverzekering en de continuïteit voor permanent verblijf raken.',
+          'Uw sociale zekerheid kan met een A1-verklaring in een ander land liggen, wat uw verzekeringsplicht volledig verandert.',
+          'Verhuurders beoordelen rotatie-inkomen anders, en onregelmatige betaalpatronen moeten in het dossier worden uitgelegd in plaats van erna.',
+          'Zeevarenden en offshoremedewerkers kunnen onder specifieke fiscale en socialezekerheidsregels vallen die niet voor walpersoneel gelden.',
+          'Wij verzorgen de Nederlandse kant. Grensoverschrijdende fiscaliteit en loonadministratie gaan naar specialisten aan wie wij u voorstellen.',
+        ],
+      },
+      details: {
+        title: 'Een rotatie aan wal laten werken',
+        items: [
+          {
+            q: 'Kan alles in één walperiode?',
+            a:
+              'Meestal wel, en zo plannen wij het. Afspraken, bezichtigingen, inschrijving, bankzaken en verzekering persen wij in één intensieve week aan wal in plaats van ze over drie rotaties uit te smeren. Dat vraagt voorbereiding van ons en documenten van u.',
+          },
+          {
+            q: 'Wat gebeurt er terwijl ik op zee ben?',
+            a:
+              'Wij blijven in de praktijk uw adres: post afgehandeld, termijnen bewaakt, vragen van de verhuurder beantwoord, afspraken verzet. Uw gezin, als het hier is, heeft een nummer om te bellen dat geen buitenlands nummer is.',
+          },
+          {
+            q: 'Hoe raakt afwezigheid het permanente verblijf?',
+            a:
+              'Ononderbroken verblijf wordt doorbroken door afwezigheid van meer dan zes aaneengesloten maanden, of meer dan vier maanden per jaar over de kwalificatieperiode. Rotaties blijven daar meestal ruim binnen, maar de rekensom is het bewust maken waard als u naar permanent verblijf toewerkt.',
+          },
+          {
+            q: 'Welke verzekering geldt voor mij?',
+            a:
+              'Dat hangt af van waar uw werkgever gevestigd is, onder welke vlag u vaart en of er een A1-verklaring is. Offshore is het gebied waar wij mensen het vaakst dubbel verzekerd of helemaal niet verzekerd aantreffen, dus dit stellen wij bij de intake vast in plaats van het standaardantwoord aan te nemen.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -269,8 +387,10 @@ export const industrial: SectionContent = {
         label: 'Zet mijn thuisbasis op',
       },
       form: 'relocation',
-      image: '/images/industrial-worker.jpg?v=20260728',
-      imageAlt: 'Een offshoreprofessional in werkkleding bij een havenfaciliteit',
+      image: '/images/industrial-worker.jpg?v=20260731',
+      imageAlt: 'Directielid uit de energiesector in de Rotterdamse haven in het gouden uur',
+      image2: '/images/industrial-hub.jpg',
+      image2Alt: 'Het industriële havencluster in de schemering',
     },
     {
       slug: 'relocation-for-logistics-professionals-netherlands',
@@ -332,6 +452,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Snelheid, en wat haar begrenst',
+        intro:
+          'De logistiek beweegt snel en startdatums wachten zelden. Dit zijn de beperkingen die bepalen hoe snel een landing werkelijk kan.',
+        items: [
+          'Met documenten gereed duurt een werkende landing drie tot vijf weken: basis, inschrijving, BSN, verzekering, bankzaken.',
+          'Gelegaliseerde geboorte- en huwelijksakten kunnen niet meer worden geregeld als u hier al bent, en zijn de meest voorkomende vertragingsoorzaak.',
+          'De beschikbaarheid van gemeentelijke afspraken wisselt per seizoen en kan één tot drie weken toevoegen.',
+          'Ploegendiensten en distributielocaties buiten de stad maken een auto meestal noodzakelijk, wat het woonbudget raakt.',
+          'Werkgevers die meerdere mensen tegelijk aannemen kunnen inschrijvingen en bezichtigingen bundelen, wat de doorlooptijd flink verkort.',
+          'Voor niet-EU-medewerkers moet een vergunningsaanvraag zijn goedgekeurd voordat het werk begint. Geen enkele werkgeversinstructie verandert dat.',
+        ],
+      },
+      details: {
+        title: 'Snel landen zonder bochten af te snijden',
+        items: [
+          {
+            q: 'Wat kan er vóór mijn aankomst gebeuren?',
+            a:
+              'Meer dan de meeste mensen denken. Documentcontroles, legalisatie, het vergunningsdossier, de gemeentelijke afspraak, de woningshortlist en de bezichtigingen kunnen allemaal lopen terwijl u nog in het buitenland bent, zodat de eerste Nederlandse week uitvoering is in plaats van ontdekking.',
+          },
+          {
+            q: 'Wij nemen een groep aan. Helpt dat?',
+            a:
+              'Aanzienlijk. Gebundelde inschrijvingen, een gedeelde tijdelijke basis en gecoördineerde bezichtigingen drukken zowel kosten als tijd per persoon, en één adviseur die de hele groep vasthoudt geeft HR één overzicht in plaats van een rij losse problemen.',
+          },
+          {
+            q: 'Waar kan logistiek personeel het beste wonen?',
+            a:
+              'Dicht bij het distributiecluster in plaats van dicht bij het centrum. De locaties aan de Waalhaven, de Botlek en de A15-corridor zijn het best bereikbaar vanuit Hoogvliet, Spijkenisse, Barendrecht en Ridderkerk, en de huren liggen daar merkbaar lager dan in Rotterdam zelf.',
+          },
+          {
+            q: 'Wat is de meest gemaakte fout?',
+            a:
+              'Beginnen met de woningzoektocht voordat de inschrijfroute duidelijk is. Een woning waar inschrijving niet mag blokkeert het BSN, wat het salaris blokkeert, waardoor een nieuwe medewerker zes weken werkt zonder behoorlijk betaald te worden. Wij regelen de inschrijving altijd eerst.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -355,8 +513,10 @@ export const industrial: SectionContent = {
         label: 'Versnel mijn verhuizing',
       },
       form: 'relocation',
-      image: '/images/logistics-worker.jpg?v=20260728',
-      imageAlt: 'Een logistiek professional aan het werk in een Rotterdams distributiegebied',
+      image: '/images/logistics-worker.jpg?v=20260731',
+      imageAlt: 'Logistiek directeur met uitzicht over de Rotterdamse haventerminal',
+      image2: '/images/europoort.jpg?v=20260731',
+      image2Alt: 'De Rotterdamse haven in het gouden uur',
     },
     {
       slug: 'rotterdam-industrial-expat-services',
@@ -422,6 +582,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Hoe wij met het cluster werken',
+        intro:
+          'Wij bedienen beide kanten van het havenindustriële cluster, werkgevers en werknemers, en dus moeten onze voorwaarden helder zijn.',
+        items: [
+          'Wij dekken Rotterdam, Botlek, Europoort, Maasvlakte, Pernis en de bredere A15-corridor.',
+          'Werkgevers kunnen ons per medewerker, per project of via een raamovereenkomst voor doorlopende werving inschakelen.',
+          'Niet-EU-medewerkers hebben een goedgekeurde vergunning nodig voordat zij beginnen, en erkend referentschap voordat een aanvraag kan worden ingediend.',
+          'Gedetacheerden vanuit andere EU-entiteiten vallen onder een apart meldingsregime met eigen verplichtingen.',
+          'Elke meeverhuizende medewerker wordt individueel ingeschreven, hoe groot de groep ook is, en elk gezin heeft eigen documenten nodig.',
+          'Wij nemen herstelwerk aan voor landingen die al zijn misgegaan, en zeggen duidelijk wat wel en niet te repareren valt.',
+        ],
+      },
+      details: {
+        title: 'Voor werkgevers in het cluster',
+        items: [
+          {
+            q: 'Kunt u een landing overnemen die al mislukt is?',
+            a:
+              'Ja, en dat doen wij regelmatig. Adressen zonder inschrijving, ontbrekende BSN\'s, onbetaalde salarissen omdat de loonadministratie niet kan draaien, een verzekering die nooit is afgesloten, een gezin dat vastzit op een documentprobleem. Het is weinig glamoureus werk en vaak het waardevolste dat wij doen.',
+          },
+          {
+            q: 'Hoe ziet een raamovereenkomst eruit?',
+            a:
+              'Eén aanspreekpunt, afgesproken serviceniveaus per landing, vaste prijzen per medewerker, en één overzicht voor HR over elk lopend dossier. Voor werkgevers die doorlopend werven verdwijnt daarmee de onderhandeling per aanname.',
+          },
+          {
+            q: 'Doet u naast de verhuizing ook de immigratie?',
+            a:
+              'Ja, en dat is de reden dat bedrijven ons inschakelen in plaats van een puur relocationbureau. Vergunningen, referentschap, inschrijving, huisvesting en gezinsbegeleiding liggen bij één kantoor, zodat er niets tussen twee leveranciers in valt.',
+          },
+          {
+            q: 'Hoe helpt u ons mensen te behouden?',
+            a:
+              'Door de eerste zes maanden te laten werken voor het gezin en niet alleen voor de medewerker. De meeste vroege vertrekken uit dit cluster gaan terug op een partner zonder werk, een kind dat nooit aardde of een woonsituatie die nooit goed voelde, en elk daarvan is aan te pakken als iemand vroeg genoeg oplet.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -445,8 +643,10 @@ export const industrial: SectionContent = {
         label: 'Word onze partner',
       },
       form: 'relocation',
-      image: '/images/rotterdam-industrial.jpg',
+      image: '/images/rotterdam-industrial.jpg?v=20260731',
       imageAlt: 'Werknemers in veiligheidshesjes in de haven met de skyline van Rotterdam op de achtergrond',
+      image2: '/images/industrial-hub.jpg?v=20260731',
+      image2Alt: 'Het industriële havencluster in de schemering',
     },
   ],
   cta: {

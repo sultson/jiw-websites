@@ -47,7 +47,7 @@ export const core: CoreContent = {
         'Después de enviar este formulario, Johanna revisa personalmente su situación y le responde en el plazo de un día laborable con una valoración honesta de si podemos ayudarle y cómo. Si su solicitud queda fuera de nuestros servicios o de nuestra región, se lo decimos de inmediato.',
     },
     footer: {
-      tagline: 'Servicios boutique de reubicación e inmigración para expatriados que se mudan a Rotterdam, Europoort y el conjunto de la región portuaria.',
+      tagline: 'Una consultoría boutique de reubicación para profesionales internacionales y familias que se establecen en Róterdam, Europoort y el conjunto de la región portuaria.',
       services: 'Servicios',
       company: 'Empresa',
       contactHeading: 'Contacto',
@@ -61,16 +61,18 @@ export const core: CoreContent = {
       whatsIncluded: 'Qué incluye',
       otherServices: 'Otros servicios',
       relatedGuides: 'Guías relacionadas',
+      conditions: 'Condiciones',
+      investment: 'Inversión',
     },
   },
 
   home: {
     metaTitle: 'Servicios Boutique de Reubicación e Inmigración en los Países Bajos | E & I',
     metaDescription:
-      'Acompañamiento personal de reubicación e inmigración para expatriados, familias y emprendedores que se mudan a Rotterdam, Europoort y la región industrial neerlandesa. Visados, vivienda, BSN, colegios y paquetes VIP.',
+      'Una consultoría boutique de reubicación para profesionales internacionales, familias y emprendedores en Róterdam, Europoort y el conjunto de la región portuaria. Vivienda, colegios, trámites, inmigración y paquetes VIP.',
     hero: {
       h1: 'Servicios Boutique de Reubicación e Inmigración en los Países Bajos',
-      sub: 'Acompañamiento personal de reubicación para expatriados, familias, emprendedores y profesionales internacionales que se mudan a Rotterdam, Europoort y la región industrial neerlandesa.',
+      sub: 'Una consultoría privada de reubicación para profesionales internacionales, familias y emprendedores que se establecen en Róterdam, Europoort y el conjunto de la región portuaria. La inmigración forma parte, nunca es toda la historia.',
       ctaPrimary: 'Reserve una consulta de reubicación',
       ctaWhatsapp: 'Escríbanos por WhatsApp',
       ctaSecondary: 'Comience su reubicación',
@@ -78,7 +80,7 @@ export const core: CoreContent = {
     },
     paths: {
       heading: '¿Cómo podemos ayudarle a llegar?',
-      sub: 'Inmigración, vivienda, reubicación y asistencia VIP, gestionadas a través de una sola empresa. Elija su camino de entrada y una persona conoce su nombre desde el primer mensaje hasta el día en que se siente en casa.',
+      sub: 'Reubicación, vivienda, asistencia VIP e inmigración, atendidas por una sola consultoría. Elija su camino de entrada y una persona conoce su nombre desde el primer mensaje hasta el día en que se siente en casa.',
       items: [
         {
           key: 'immigration',
@@ -86,8 +88,8 @@ export const core: CoreContent = {
           text: 'Visados y permisos para profesionales, parejas, familias y fundadores. Preparados con precisión y guiados personalmente, desde la evaluación hasta la aprobación.',
           label: 'Explorar inmigración',
           path: '/immigration',
-          image: '/images/path-immigration.jpg?v=20260728',
-          imageAlt: 'Asesora guiando a un cliente entre documentos de residencia',
+          image: '/images/path-immigration.jpg?v=20260731',
+          imageAlt: 'Asesora conversando con un cliente internacional',
         },
         {
           key: 'relocation',
@@ -95,7 +97,7 @@ export const core: CoreContent = {
           text: 'Paquetes completos de reubicación o servicios contratados por separado: búsqueda de vivienda, colegios, BSN, seguros y todo lo que hay entre medias.',
           label: 'Explorar reubicación',
           path: '/relocation',
-          image: '/images/path-relocation.jpg?v=20260728',
+          image: '/images/path-relocation.jpg?v=20260731',
           imageAlt: 'Familia llegando a una casa junto a un canal neerlandés',
         },
         {
@@ -104,7 +106,7 @@ export const core: CoreContent = {
           text: 'Para artistas, deportistas, ejecutivos y visitas de fin de semana. Toda su mudanza orquestada en torno a una sola visita, con cada puerta ya abierta.',
           label: 'Explorar servicios VIP',
           path: '/vip-services',
-          image: '/images/path-vip.jpg?v=20260728',
+          image: '/images/path-vip.jpg?v=20260731',
           imageAlt: 'Chófer abriendo la puerta de un coche frente al perfil urbano de Rotterdam',
         },
       ],
@@ -203,8 +205,8 @@ export const core: CoreContent = {
       ],
       label: 'Servicios de reubicación familiar',
       path: '/relocation/family-relocation-netherlands',
-      image: '/images/relocation-family.jpg?v=20260728',
-      imageAlt: 'Padres e hijos desembalando cajas en su nuevo hogar neerlandés',
+      image: '/images/family-unpacking.jpg?v=20260731',
+      imageAlt: 'Familia instalada en su nuevo salón en los Países Bajos',
       links: [
         { label: 'Paquete VIP para Familias', path: '/vip-services/family-relocation-immigration-services-netherlands' },
         { label: 'Búsqueda de colegio', path: '/relocation/school-search-netherlands' },
@@ -213,10 +215,10 @@ export const core: CoreContent = {
     },
     whyBoutique: {
       eyebrow: 'Por qué boutique',
-      heading: 'Una agencia. Una persona. Su nombre.',
+      heading: 'Una consultoría. Una persona. Su nombre.',
       text: [
-        'Las grandes firmas de reubicación le asignan un número de expediente. Una agencia boutique le asigna una persona. Johanna construyó su reputación en el mundo de las embajadas, donde la discreción y la precisión no son cualidades, son la descripción del puesto.',
-        'No somos una agencia generalista de expatriados que ofrece todos los servicios posibles. Hacemos inmigración, vivienda, reubicación y asistencia VIP para una sola región, a través de una sola empresa, y los hacemos de forma completa.',
+        'Las grandes firmas de reubicación le asignan un número de expediente. Una consultoría boutique le asigna una persona. Johanna construyó su reputación en el mundo de las embajadas, donde la discreción y la precisión no son cualidades, son la descripción del puesto.',
+        'No somos una fábrica de reubicaciones que ofrece todos los servicios posibles. Hacemos reubicación, vivienda, asistencia VIP e inmigración para una sola región, a través de una sola consultoría, y los hacemos de forma completa.',
       ],
       points: [
         {

@@ -47,7 +47,7 @@ export const core: CoreContent = {
         'Nachdem Sie dieses Formular abgesendet haben, sieht sich Johanna Ihre Situation persönlich an und antwortet innerhalb eines Werktags mit einer ehrlichen Einschätzung, ob und wie wir helfen können. Liegt Ihr Anliegen außerhalb unserer Leistungen oder unserer Region, sagen wir Ihnen das sofort.',
     },
     footer: {
-      tagline: 'Boutique-Relocation- und Immigrationsservices für Expats, die nach Rotterdam, in den Europoort und die weitere Hafenregion ziehen.',
+      tagline: 'Eine Boutique-Relocation-Beratung für internationale Fachkräfte und Familien, die sich in Rotterdam, im Europoort und in der weiteren Hafenregion niederlassen.',
       services: 'Leistungen',
       company: 'Unternehmen',
       contactHeading: 'Kontakt',
@@ -61,16 +61,18 @@ export const core: CoreContent = {
       whatsIncluded: 'Das ist enthalten',
       otherServices: 'Weitere Leistungen',
       relatedGuides: 'Passende Ratgeber',
+      conditions: 'Voraussetzungen',
+      investment: 'Investition',
     },
   },
 
   home: {
     metaTitle: 'Boutique Relocation & Immigration Services in den Niederlanden | E & I',
     metaDescription:
-      'Persönliche Relocation- und Immigrationsbegleitung für Expats, Familien und Unternehmer in Rotterdam, Europoort und der niederländischen Industrieregion. Visa, Wohnen, BSN, Schulen und VIP-Pakete.',
+      'Eine Boutique-Relocation-Beratung für internationale Fachkräfte, Familien und Unternehmer in Rotterdam, Europoort und der weiteren Hafenregion. Wohnen, Schulen, Behördengänge, Immigration und VIP-Pakete.',
     hero: {
       h1: 'Boutique Relocation & Immigration Services in den Niederlanden',
-      sub: 'Persönliche Relocation-Begleitung für Expats, Familien, Unternehmer und internationale Fachkräfte, die nach Rotterdam, in den Europoort und die niederländische Industrieregion ziehen.',
+      sub: 'Eine private Relocation-Beratung für internationale Fachkräfte, Familien und Unternehmer, die sich in Rotterdam, im Europoort und in der weiteren Hafenregion niederlassen. Immigration gehört dazu, ist aber nie die ganze Geschichte.',
       ctaPrimary: 'Relocation-Beratung buchen',
       ctaWhatsapp: 'Direkt auf WhatsApp schreiben',
       ctaSecondary: 'Starten Sie Ihre Relocation',
@@ -78,7 +80,7 @@ export const core: CoreContent = {
     },
     paths: {
       heading: 'Wie dürfen wir Sie beim Ankommen begleiten?',
-      sub: 'Immigration, Wohnen, Relocation und VIP-Support, abgewickelt über ein einziges Unternehmen. Wählen Sie Ihren Weg hinein, und eine Person kennt Ihren Namen, von der ersten Nachricht bis zu dem Tag, an dem Sie sich zu Hause fühlen.',
+      sub: 'Relocation, Wohnen, VIP-Support und Immigration, betreut von einer einzigen Beratung. Wählen Sie Ihren Weg hinein, und eine Person kennt Ihren Namen, von der ersten Nachricht bis zu dem Tag, an dem Sie sich zu Hause fühlen.',
       items: [
         {
           key: 'immigration',
@@ -86,8 +88,8 @@ export const core: CoreContent = {
           text: 'Visa und Aufenthaltstitel für Fachkräfte, Partner, Familien und Gründer. Präzise vorbereitet, persönlich begleitet, von der ersten Prüfung bis zur Genehmigung.',
           label: 'Immigration entdecken',
           path: '/immigration',
-          image: '/images/path-immigration.jpg?v=20260728',
-          imageAlt: 'Beraterin führt eine Klientin durch Aufenthaltsdokumente',
+          image: '/images/path-immigration.jpg?v=20260731',
+          imageAlt: 'Beraterin im Gespräch mit einem internationalen Klienten',
         },
         {
           key: 'relocation',
@@ -95,7 +97,7 @@ export const core: CoreContent = {
           text: 'Komplette Relocation-Pakete oder einzeln buchbare Leistungen: Wohnungssuche, Schulen, BSN, Versicherungen und alles dazwischen.',
           label: 'Relocation entdecken',
           path: '/relocation',
-          image: '/images/path-relocation.jpg?v=20260728',
+          image: '/images/path-relocation.jpg?v=20260731',
           imageAlt: 'Familie kommt an einem niederländischen Grachtenhaus an',
         },
         {
@@ -104,7 +106,7 @@ export const core: CoreContent = {
           text: 'Für Künstler, Sportler, Führungskräfte und Wochenend-Fly-ins. Ihr gesamter Umzug orchestriert um einen einzigen Besuch, mit Türen, die bereits offen stehen.',
           label: 'VIP-Services entdecken',
           path: '/vip-services',
-          image: '/images/path-vip.jpg?v=20260728',
+          image: '/images/path-vip.jpg?v=20260731',
           imageAlt: 'Chauffeur öffnet eine Wagentür vor der Skyline von Rotterdam',
         },
       ],
@@ -203,8 +205,8 @@ export const core: CoreContent = {
       ],
       label: 'Relocation-Services für Familien',
       path: '/relocation/family-relocation-netherlands',
-      image: '/images/relocation-family.jpg?v=20260728',
-      imageAlt: 'Eltern und Kinder packen Kartons in ihrem neuen niederländischen Zuhause aus',
+      image: '/images/family-unpacking.jpg?v=20260731',
+      imageAlt: 'Familie eingerichtet in ihrem neuen niederländischen Wohnzimmer',
       links: [
         { label: 'VIP-Paket für Familien', path: '/vip-services/family-relocation-immigration-services-netherlands' },
         { label: 'Schulsuche', path: '/relocation/school-search-netherlands' },
@@ -213,10 +215,10 @@ export const core: CoreContent = {
     },
     whyBoutique: {
       eyebrow: 'Warum Boutique',
-      heading: 'Eine Agentur. Eine Person. Ihr Name.',
+      heading: 'Eine Beratung. Eine Person. Ihr Name.',
       text: [
-        'Große Relocation-Firmen geben Ihnen eine Ticketnummer. Eine Boutique-Agentur gibt Ihnen einen Menschen. Johanna hat sich ihren Ruf in der Welt der Botschaften erarbeitet, wo Diskretion und Präzision keine Eigenschaften sind, sondern die Stellenbeschreibung.',
-        'Wir sind keine allgemeine Expat-Agentur, die jede erdenkliche Leistung anbietet. Wir übernehmen Immigration, Wohnen, Relocation und VIP-Support für eine Region, über ein Unternehmen, und das vollständig.',
+        'Große Relocation-Firmen geben Ihnen eine Ticketnummer. Eine Boutique-Beratung gibt Ihnen einen Menschen. Johanna hat sich ihren Ruf in der Welt der Botschaften erarbeitet, wo Diskretion und Präzision keine Eigenschaften sind, sondern die Stellenbeschreibung.',
+        'Wir sind keine Relocation-Fabrik, die jede erdenkliche Leistung anbietet. Wir übernehmen Relocation, Wohnen, VIP-Support und Immigration für eine Region, über ein Unternehmen, und das vollständig.',
       ],
       points: [
         {

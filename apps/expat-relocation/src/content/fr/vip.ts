@@ -10,7 +10,7 @@ export const vip: VipContent = {
     'Des artistes en tournée. Des athlètes entre deux saisons. Des dirigeants avec un seul week-end libre et des fondateurs qui n’en ont aucun. Nos forfaits VIP existent pour ceux dont l’agenda ne plie pas. Alors, ce sont les Pays-Bas qui plient.',
     'Chaque forfait est piloté personnellement par Johanna : rendez-vous regroupés, portes ouvertes à l’avance, et une ligne 24/7 tenue par la personne qui connaît votre dossier, pas par un service client.',
   ],
-  image: '/images/vip-hub.jpg',
+  image: '/images/vip-hub.jpg?v=20260731',
   imageAlt: 'Hôte accueillant un couple arrivant en voiture devant un hôtel au bord d’un canal',
   pricingNote: {
     title: 'Le prix d’un forfait, et pourquoi',
@@ -150,7 +150,7 @@ export const vip: VipContent = {
         text: 'Parlez-nous de votre foyer et de vos dates. Nous concevrons l’arrivée autour de l’année scolaire.',
         label: 'Lancer votre demande VIP',
       },
-      image: '/images/vip-family.jpg?v=20260728',
+      image: '/images/vip-family.jpg?v=20260731',
       imageAlt: 'Famille arrivant dans une villa néerlandaise dans la lumière du soir',
     },
     {
@@ -214,7 +214,7 @@ export const vip: VipContent = {
         text: 'Confiez-nous vos projets et votre fenêtre. Nous reviendrons avec une feuille de route et un devis fixe.',
         label: 'Lancer votre demande VIP',
       },
-      image: '/images/vip-business.jpg?v=20260728',
+      image: '/images/vip-business.jpg?v=20260731',
       imageAlt: 'Dirigeant travaillant à l’arrière d’une voiture avec chauffeur',
     },
     {

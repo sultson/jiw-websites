@@ -10,8 +10,8 @@ export const relocation: SectionContent = {
     'Moving countries is a thousand small tasks wearing the disguise of one big one. The BSN, the municipality, the insurance, the school, the bank, each with its own counter, its own forms and its own idea of a reasonable waiting time. Most agencies hand you a checklist. We are the only boutique expat agency in the Netherlands, and we do something different: one person learns your name, your family and your situation, and then simply takes care of it.',
     'That person does not manage your relocation from behind a desk. She books the appointments, prepares the paperwork, drives to the municipality with you and sits beside you at the counter. From the moment you land until the moment the Netherlands feels like home, you have someone here who already knows the answer to your next question.',
   ],
-  image: '/images/relocation-hub.jpg',
-  imageAlt: 'Movers carrying boxes into a Dutch family home',
+  image: '/images/family-arrival.jpg?v=20260731',
+  imageAlt: 'International family arriving at their Dutch canal house',
   services: [
     {
       slug: 'bsn-registration-netherlands',
@@ -74,6 +74,44 @@ export const relocation: SectionContent = {
         ],
       },
       note: 'A BSN is issued through registration in the Personal Records Database, either as a resident or, for short stays, as a non-resident via an RNI desk. We advise which route fits your situation during intake.',
+      conditions: {
+        title: 'What the municipality will ask for',
+        intro:
+          'The BSN is the key that turns every other lock. Almost every delay we see comes from one of the six points below.',
+        items: [
+          'Registration is at the municipality of your address, and you must have an address where the landlord permits registration.',
+          'Staying longer than four months means registration in the BRP. A shorter stay means the RNI register instead, at one of the designated municipalities.',
+          'Bring your passport, your residence permit or MVV where applicable, and your rental contract.',
+          'Foreign birth and marriage certificates must be legalised or carry an apostille, and be translated by a sworn translator.',
+          'Appointments must usually be made in advance, and in Rotterdam waiting times run from a few days to several weeks depending on the season.',
+          'Every family member needs their own appointment and their own documents, including children.',
+        ],
+      },
+      details: {
+        title: 'Where BSN files go wrong',
+        items: [
+          {
+            q: 'Why is legalisation such a problem?',
+            a:
+              'A certificate that has not been legalised in the country of issue cannot be accepted, and the chain often runs through a local ministry and then a Dutch embassy. It can take weeks or months, and it cannot be started once you are already here. This is the single most common reason an arrival stalls, and it is the first thing we check.',
+          },
+          {
+            q: 'Can I get a BSN without a Dutch address?',
+            a:
+              'Yes, through the RNI register for non-residents, available at nineteen designated municipalities. It gives you a BSN so payroll and banking can start, but it is not residential registration, and you still register properly once you have your address.',
+          },
+          {
+            q: 'What happens straight after the appointment?',
+            a:
+              'Your BSN is usually issued on the spot or within a few days. It then unlocks the DigiD application, health insurance enrolment, a Dutch bank account and correct payroll. We work through that sequence with you rather than leaving you with a number and a list.',
+          },
+          {
+            q: 'Do you come to the appointment with me?',
+            a:
+              'Yes, that is the point of the service. Appointments run in Dutch, officials ask for documents that were not on the published list, and having someone beside you who knows the answer turns a second appointment into no second appointment.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -97,8 +135,10 @@ export const relocation: SectionContent = {
         label: 'Arrange my BSN',
       },
       form: 'relocation',
-      image: '/images/bsn-registration.jpg',
-      imageAlt: 'Receiving a registration document at a municipal counter',
+      image: '/images/bsn-registration.jpg?v=20260731',
+      imageAlt: 'Consultant and client at a private advisory table',
+      image2: '/images/immigration-documents.jpg?v=20260731',
+      image2Alt: 'Leather folio and fountain pen on a desk',
     },
     {
       slug: 'municipality-registration-netherlands',
@@ -160,6 +200,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Rules that catch people out',
+        intro:
+          'The gemeente record follows you through every institution in the country, so an error here reappears everywhere.',
+        items: [
+          'First registration must be made within five days of arrival, and a move within the Netherlands within five days of moving.',
+          'A change of address must be reported to the new municipality, not the old one.',
+          'Registration requires the landlord\'s permission for the address. Registering where it is forbidden puts your tenancy at risk.',
+          'Your marital status, name spelling and place of birth are taken from legalised certificates, and correcting them later is far harder than getting them right once.',
+          'Leaving the Netherlands for more than eight months in a year requires deregistration, which affects insurance, benefits and permits.',
+          'Non-EU nationals normally collect their residence document from the IND, not the municipality. The two appointments are separate.',
+        ],
+      },
+      details: {
+        title: 'Getting the record right',
+        items: [
+          {
+            q: 'Why does the spelling of my name matter so much?',
+            a:
+              'The BRP record feeds your bank, your employer, the tax office, your insurer and the IND. A transliteration that differs from your passport by one letter produces mismatches that surface months later at the worst moment. We check the entry against your passport before the official saves it.',
+          },
+          {
+            q: 'Can you correct a registration that is already wrong?',
+            a:
+              'Usually yes, with the right supporting documents and a formal correction request. Errors in date of birth, marital status and previous nationality are the ones we repair most, and they are worth repairing rather than living with.',
+          },
+          {
+            q: 'What if my landlord will not allow registration?',
+            a:
+              'Then the address is a problem, not an inconvenience. We check registration permission before you sign a contract, and where a landlord refuses after the fact we take up the correspondence, because in most residential situations the refusal has no legal basis.',
+          },
+          {
+            q: 'Do I have to deregister when I leave?',
+            a:
+              'Yes, if you are leaving for more than eight months in a twelve month period. Failing to deregister leaves you liable for Dutch health insurance premiums and local taxes long after you have gone. We handle the exit as carefully as the arrival.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -183,8 +261,10 @@ export const relocation: SectionContent = {
         label: 'Handle my registration',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg?v=20260728',
-      imageAlt: 'Paperwork being completed at a municipal service counter',
+      image: '/images/municipality-registration.jpg?v=20260731',
+      imageAlt: 'Client arriving at a historic Dutch civic building',
+      image2: '/images/consultation.jpg?v=20260731',
+      image2Alt: 'Advisor and client discussing next steps',
     },
     {
       slug: 'health-insurance-guidance-netherlands',
@@ -247,6 +327,44 @@ export const relocation: SectionContent = {
         ],
       },
       note: 'Insurance takes effect retroactively from the date your obligation began, so premiums are owed from that date even if you enroll later. Enrolling promptly costs nothing extra and avoids fines.',
+      conditions: {
+        title: 'How the Dutch system works',
+        intro:
+          'Dutch health insurance is compulsory, private and time bound. Getting the timing wrong is expensive in a way that surprises most arrivals.',
+        items: [
+          'Anyone who lives or works in the Netherlands must take out Dutch basic health insurance within four months of registration.',
+          'Cover is backdated to your first day of residence, so a late enrolment produces a bill for the intervening months, plus a fine.',
+          'The basic package is set by government and identical at every insurer. Only price, service and supplementary cover differ.',
+          'There is a compulsory annual excess set by government, which you pay before most care is reimbursed. The GP is exempt from it.',
+          'You cannot see a specialist without a referral from your registered GP, except in emergencies.',
+          'Low and middle incomes may qualify for zorgtoeslag, a monthly healthcare allowance from the tax office.',
+        ],
+      },
+      details: {
+        title: 'Choosing well, not just quickly',
+        items: [
+          {
+            q: 'Which supplementary cover is actually worth it?',
+            a:
+              'Dental for adults, physiotherapy beyond the statutory minimum, and cover for care abroad are the three that repay themselves for most of our clients. Children are covered free on a parent\'s policy, including dental. Almost everything else is a personal calculation, and we do it with you rather than for you.',
+          },
+          {
+            q: 'Why can I not find a GP?',
+            a:
+              'Practices in Rotterdam and the larger cities regularly close their lists, and registration is required before you need care rather than at the moment you need it. We start the GP search in your first week, and we know which practices in the region are still accepting patients.',
+          },
+          {
+            q: 'I have the 30 percent ruling. Does anything change?',
+            a:
+              'Your insurance obligation does not change. What can change is your entitlement to zorgtoeslag, since the allowance is means tested on taxable income. We check it rather than assume it.',
+          },
+          {
+            q: 'What if I only work here part of the year?',
+            a:
+              'Cross-border and rotational situations are genuinely complicated, and getting them wrong means either double premiums or no cover at all. Offshore workers, posted employees and people with an employer in another EU state each fall under different rules, and we work through yours specifically.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -270,8 +388,10 @@ export const relocation: SectionContent = {
         label: 'Sort my insurance',
       },
       form: 'relocation',
-      image: '/images/health-insurance.jpg',
-      imageAlt: 'Comparing Dutch health insurance options at a kitchen table',
+      image: '/images/health-insurance.jpg?v=20260731',
+      imageAlt: 'Client and advisor discussing Dutch health cover',
+      image2: '/images/relocation-settling.jpg?v=20260731',
+      image2Alt: 'Consultant working through settling-in steps with new arrivals',
     },
     {
       slug: 'school-search-netherlands',
@@ -334,6 +454,44 @@ export const relocation: SectionContent = {
         ],
       },
       note: 'School choice and housing choice are one decision, not two; the address determines the options. If we are also running your housing search, we plan them together.',
+      conditions: {
+        title: 'What families need to know first',
+        intro:
+          'School places, not housing, are usually the real constraint on when a family can move. Plan this before anything else.',
+        items: [
+          'Education is compulsory from age five, and most children start at four.',
+          'International schools in the Rotterdam region have limited places and waiting lists, and popular year groups fill a year ahead.',
+          'Dutch international schools fall into two categories: subsidised Dutch international schools, which are far cheaper but require a demonstrable international background, and private international schools.',
+          'Children who do not yet speak Dutch usually spend a year in a nieuwkomersklas before entering mainstream Dutch education.',
+          'Enrolment normally requires proof of address and a BSN, which links the school timeline to the housing and registration timeline.',
+          'We advise on schools and manage the process. We cannot create a place where a school has none.',
+        ],
+      },
+      details: {
+        title: 'Choosing the right education',
+        items: [
+          {
+            q: 'International school or Dutch school?',
+            a:
+              'It turns on how long you intend to stay. Under three years, an international school protects continuity and the curriculum your child will return to. Beyond five, a Dutch school gives them the language, the friendships and a far easier adolescence. The years in between are a real decision, and we talk it through properly rather than pushing the expensive option.',
+          },
+          {
+            q: 'How early should we start?',
+            a:
+              'Six to nine months before the move for international schools, and three months for Dutch schools. Where you are already inside that window we go directly to the schools that still have movement, which is a different list from the one you will find online.',
+          },
+          {
+            q: 'What does it cost?',
+            a:
+              'Subsidised Dutch international schools are a few thousand euro a year. Private international schools in the region run considerably higher, and fees, registration and materials are usually billed separately. We set out the real annual figure per school on your shortlist so there are no surprises in month two.',
+          },
+          {
+            q: 'Will my child cope with Dutch?',
+            a:
+              'Younger children almost always do, and quickly. The nieuwkomersklas exists precisely for this, and a year in it typically brings a child to the point where mainstream education works. For teenagers approaching exams the calculation is different, and we are candid about that.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -357,8 +515,10 @@ export const relocation: SectionContent = {
         label: 'Find our school',
       },
       form: 'relocation',
-      image: '/images/school-search.jpg',
-      imageAlt: 'Parents and child talking with a teacher at a Dutch school',
+      image: '/images/school-search.jpg?v=20260731',
+      imageAlt: 'Mother and daughter arriving at an international school',
+      image2: '/images/family-relocation.jpg?v=20260731',
+      image2Alt: 'Family cycling along a Dutch canal at golden hour',
     },
     {
       slug: 'settling-in-services-netherlands',
@@ -424,6 +584,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'The order things have to happen in',
+        intro:
+          'Dutch administration is a chain. Attempting step four before step two is why arrivals take months instead of weeks.',
+        items: [
+          'Address first, then registration, then BSN. Nothing meaningful can be arranged before the BSN exists.',
+          'DigiD, the national login, follows the BSN and is required for the tax office, healthcare and most government services.',
+          'Most Dutch banks require a BSN and proof of address, though some accounts can be opened earlier with a passport alone.',
+          'Health insurance must be taken within four months of registration and is backdated to arrival.',
+          'Energy, water and internet contracts are in your name from the day the lease starts, and switching later carries notice periods.',
+          'Exchanging a foreign driving licence is only possible for some countries, and only within a set period after registration.',
+        ],
+      },
+      details: {
+        title: 'The things nobody tells you',
+        items: [
+          {
+            q: 'Which bank should I choose?',
+            a:
+              'It depends less on the bank than on what you need from it. Mortgage ambitions, business banking, an employer that pays from abroad and family in another currency all point to different answers. We open the account with you and make sure iDEAL, the payment method half the country runs on, works from day one.',
+          },
+          {
+            q: 'Can I use my foreign driving licence?',
+            a:
+              'EU and EEA licences remain valid. Licences from a number of other countries, including some US states, can be exchanged without a new test, but only within a limited window after registration and in some cases only if you hold the 30 percent ruling. Miss the window and you sit the full Dutch test. We check your situation early because this deadline is unforgiving.',
+          },
+          {
+            q: 'How do I get a doctor, dentist and pharmacy?',
+            a:
+              'You register with a GP practice near your address, and the practice assigns your pharmacy. Both fill up, so both are done in your first fortnight. Dentists take private patients directly and are easier, though good ones in the centre still have lists.',
+          },
+          {
+            q: 'What about the tax office in year one?',
+            a:
+              'Your first Dutch tax year is almost always worth filing even when you think nothing is owed, because arrival year filings frequently produce a refund. We are relocation consultants rather than tax advisers, so we introduce you to an adviser who handles expat returns rather than guessing on your behalf.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -449,6 +647,8 @@ export const relocation: SectionContent = {
       form: 'relocation',
       image: '/images/relocation-settling.jpg?v=20260728',
       imageAlt: 'A newcomer getting oriented in their new Dutch neighborhood',
+      image2: '/images/couple-moving-in.jpg?v=20260731',
+      image2Alt: 'Couple with the keys to their new Dutch apartment',
     },
     {
       slug: 'airport-pickup-for-expats-netherlands',
@@ -510,6 +710,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'How the transfer works',
+        intro:
+          'A short service with few conditions, all of which exist so that nobody stands in an arrivals hall wondering.',
+        items: [
+          'We cover Schiphol, Rotterdam The Hague and Eindhoven, and private terminals on request.',
+          'Send your flight number and we track it, so a delay changes our timing rather than your welcome.',
+          'Meet and greet is inside the terminal at arrivals, not kerbside.',
+          'Vehicles are chosen to your party size and luggage, including child seats where needed.',
+          'Transfers run to any address in the Rotterdam and port region, and further by arrangement.',
+          'Bookings are confirmed at least twenty-four hours ahead where possible, though we do accommodate last-minute changes.',
+        ],
+      },
+      details: {
+        title: 'The first Dutch hour',
+        items: [
+          {
+            q: 'What happens between the airport and the front door?',
+            a:
+              'You are met with your name, your luggage is handled, and the drive is used for the briefing that matters: how your keys work, where the nearest supermarket is, what to do about the bins, which app runs public transport, and what is happening tomorrow. Most clients find that half hour worth more than the transfer itself.',
+          },
+          {
+            q: 'Can you collect a family arriving separately?',
+            a:
+              'Yes. Split arrivals are common when a partner follows later or children finish a school term. We coordinate multiple flights and, where the gap is a day or two, keep the same driver so there is a familiar face at both ends.',
+          },
+          {
+            q: 'Is the property ready when we arrive?',
+            a:
+              'It is if we arranged it. As part of a relocation package we make sure the keys are collected, the heating is on, the beds are usable and there is coffee, milk and bread in the kitchen. Arriving at midnight to an empty flat is a memory people keep for years, and it is avoidable.',
+          },
+          {
+            q: 'Do you handle departures too?',
+            a:
+              'Yes, and for clients leaving the Netherlands we combine it with the final inspection, deposit recovery and deregistration so the last day is as managed as the first.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -533,8 +771,10 @@ export const relocation: SectionContent = {
         label: 'Book my arrival',
       },
       form: 'relocation',
-      image: '/images/relocation-arrival.jpg?v=20260728',
-      imageAlt: 'A warm welcome at the airport arrivals hall',
+      image: '/images/relocation-arrival.jpg?v=20260731',
+      imageAlt: 'Driver welcoming a client at a private aviation terminal',
+      image2: '/images/vip-welcome.jpg?v=20260731',
+      image2Alt: 'Executive car on a tree-lined Dutch avenue at golden hour',
     },
     {
       slug: 'family-relocation-netherlands',
@@ -604,6 +844,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'How a family move is sequenced',
+        intro:
+          'A family move has more dependencies than any other kind. These are the ones that set the calendar.',
+        items: [
+          'School availability usually determines the moving date, not the job start date.',
+          'Every family member needs their own registration appointment and their own legalised documents, children included.',
+          'The main permit holder must meet the income requirement for accompanying family, currently 2,523.96 euro gross per month including holiday allowance.',
+          'Where one parent is not moving, written consent is required for a child to relocate.',
+          'Health insurance is compulsory for each family member, though children are covered free on a parent\'s policy.',
+          'A partner joining a highly skilled migrant has free access to the Dutch labour market and needs no separate work permit.',
+        ],
+      },
+      details: {
+        title: 'What families ask us',
+        items: [
+          {
+            q: 'In what order should we do things?',
+            a:
+              'Schools, then housing in the catchment that works, then permits and registration, then the practical layer. Reversing the first two is the most common and most expensive family mistake, because a beautiful home forty minutes from the only school with places makes everyone unhappy by November.',
+          },
+          {
+            q: 'My partner is giving up a career to come. What is realistic?',
+            a:
+              'The Dutch labour market is genuinely open to accompanying partners, particularly in English-speaking sectors around Rotterdam and The Hague, and no work permit is needed. What helps most is a Dutch-format CV, an understanding of how local recruitment actually works, and starting before the move rather than after. We make the introductions we can.',
+          },
+          {
+            q: 'How do children adjust?',
+            a:
+              'Better than parents expect, and on a slower timeline than parents hope. The Dutch system is unusually kind to newcomer children and the nieuwkomersklas works. The harder part is usually months three to six, once the novelty has gone, and it helps enormously to have planned sport, music or a club before you need it.',
+          },
+          {
+            q: 'Can everything really run in parallel?',
+            a:
+              'Yes, and it has to. Permits, school applications, housing, registration and insurance each have their own waiting time, so we run them concurrently against one family timeline rather than one after another. That is the difference between a move that takes ten weeks and one that takes six months.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -627,8 +905,10 @@ export const relocation: SectionContent = {
         label: 'Plan our family move',
       },
       form: 'relocation',
-      image: '/images/family-relocation.jpg',
-      imageAlt: 'Family walking with bicycles in their new neighbourhood',
+      image: '/images/family-relocation.jpg?v=20260731',
+      imageAlt: 'Family cycling along a Dutch canal at golden hour',
+      image2: '/images/family-reunification.jpg?v=20260731',
+      image2Alt: 'Family together in a bright Dutch townhouse',
     },
     {
       slug: 'relocation-services-rotterdam',
@@ -690,6 +970,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'What we cover locally',
+        intro:
+          'We are based in this region and we work in it, which means our advice is specific rather than national.',
+        items: [
+          'Rotterdam and the surrounding municipalities, including Schiedam, Capelle aan den IJssel, Barendrecht, Spijkenisse and the Europoort corridor.',
+          'Registration appointments in Rotterdam are made in advance, with waiting times from a few days to several weeks by season.',
+          'The city operates parking zones with per-household permits, and central waiting lists run for months.',
+          'International schools in the region are concentrated in Kralingen and the south of the city, and places are limited.',
+          'Free sector rents start around 1,200 euro for a one bedroom and rise steeply for river-facing new build.',
+          'Assignments outside our region are referred on rather than accepted. We would rather send you to the right firm than be the wrong one.',
+        ],
+      },
+      details: {
+        title: 'Living in Rotterdam',
+        items: [
+          {
+            q: 'Why Rotterdam rather than Amsterdam?',
+            a:
+              'Space, cost and directness. You get materially more home for the money, a shorter commute to the port and industrial cluster, an international population that is professional rather than touristic, and a city that is being rebuilt rather than preserved. Amsterdam is forty minutes away when you want it.',
+          },
+          {
+            q: 'Is English enough here?',
+            a:
+              'For daily life and most workplaces, yes. For municipal correspondence, tenancy disputes, insurance small print and school administration, no, and that is precisely the gap we exist to close. Learning Dutch is still worth doing, and we point you to courses that suit working adults.',
+          },
+          {
+            q: 'How do people get around?',
+            a:
+              'Bicycle first, metro second, car last. The metro reaches most of the city and much of the region, the OV-chipkaart or your bank card covers everything, and a car is genuinely useful only if you work the terminals or have small children in two directions.',
+          },
+          {
+            q: 'What is the international community like?',
+            a:
+              'Large, working, and spread across the region rather than gathered in one quarter. Between the port cluster, Erasmus University, the medical centre and the creative sector, most arrivals find their people faster here than they expect. We make introductions where we can, which for many clients matters more than any administrative step.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -715,6 +1033,8 @@ export const relocation: SectionContent = {
       form: 'relocation',
       image: '/images/rotterdam.jpg?v=20260728',
       imageAlt: 'Rotterdam city center with modern architecture along the Maas',
+      image2: '/images/rotterdam-evening.jpg',
+      image2Alt: 'Rotterdam skyline in the evening',
     },
   ],
   crossLinks: [

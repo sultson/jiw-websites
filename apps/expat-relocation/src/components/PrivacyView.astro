@@ -1,6 +1,7 @@
 ---
 import { type Lang } from '../lib/i18n';
 import { getContent } from '../lib/content';
+import PageHero from './PageHero.astro';
 
 interface Props {
   lang: Lang;
@@ -9,12 +10,7 @@ const { lang } = Astro.props;
 const p = getContent(lang).core.privacy;
 ---
 
-<section class="border-b border-line bg-ivory">
-  <div class="container-site py-14 text-center md:py-18">
-    <h1 class="mx-auto max-w-3xl font-display text-4xl">{p.title}</h1>
-    <span class="gold-rule mx-auto mt-6"></span>
-  </div>
-</section>
+<PageHero title={p.title} />
 
 <article class="container-site py-14 md:py-18">
   <div class="mx-auto max-w-2xl">

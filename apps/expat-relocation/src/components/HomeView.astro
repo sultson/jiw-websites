@@ -12,6 +12,14 @@ const { lang } = Astro.props;
 const c = getContent(lang);
 const h = c.core.home;
 const l = (p: string) => localizePath(p, lang);
+
+/* The three entry paths are ordered here rather than in the content files so all
+   six languages stay in step. Relocation and VIP lead, immigration follows: the
+   brand is a boutique relocation consultancy that also handles immigration. */
+const PATH_ORDER = ['relocation', 'vip', 'immigration'];
+const paths = [...h.paths.items].sort(
+  (a, b) => PATH_ORDER.indexOf(a.key) - PATH_ORDER.indexOf(b.key)
+);
 ---
 
 <!-- 1. Hero: edge-to-edge video, left-aligned copy -->
@@ -80,8 +88,8 @@ const l = (p: string) => localizePath(p, lang);
     <p class="mt-5 leading-relaxed">{h.paths.sub}</p>
   </div>
   <div class="mt-12 grid gap-6 md:grid-cols-3">
-    {h.paths.items.map((item) => (
-      <a href={l(item.path)} class="card group flex flex-col bg-ivory">
+    {paths.map((item) => (
+      <a href={l(item.path)} class="card group flex flex-col bg-sand">
         <img src={item.image} alt={item.imageAlt} class="aspect-[16/10] w-full object-cover" width="800" height="500" loading="lazy" />
         <div class="flex flex-1 flex-col p-7">
           <h3 class="font-display text-2xl transition-colors group-hover:text-gold">{item.title}</h3>
@@ -94,7 +102,7 @@ const l = (p: string) => localizePath(p, lang);
 </section>
 
 <!-- 3. Most requested services -->
-<section class="border-y border-line bg-ivory">
+<section class="border-y border-line-warm band-sand">
   <div class="container-site py-16 md:py-22">
     <div class="text-center">
       <h2 class="font-display text-3xl md:text-4xl">{h.mostRequested.heading}</h2>
@@ -125,7 +133,7 @@ const l = (p: string) => localizePath(p, lang);
       ))}
     </div>
     <img
-      src="/images/europoort.jpg?v=20260728"
+      src="/images/europoort.jpg?v=20260731"
       alt="Container terminals in the port of Rotterdam"
       class="mt-12 aspect-[21/9] w-full rounded-3xl object-cover"
       width="1600"
@@ -164,7 +172,7 @@ const l = (p: string) => localizePath(p, lang);
 <!-- 5. VIP band: full-bleed navy with photo backdrop and gold CTA -->
 <section class="relative overflow-hidden bg-navy">
   <img
-    src="/images/vip-welcome.jpg"
+    src="/images/vip-welcome.jpg?v=20260731"
     alt=""
     class="absolute inset-0 h-full w-full object-cover opacity-30"
     width="1600"
@@ -191,7 +199,7 @@ const l = (p: string) => localizePath(p, lang);
 </section>
 
 <!-- 6. Family relocation -->
-<section class="border-y border-line bg-ivory">
+<section class="border-y border-line-warm band-sand">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2 md:gap-16">
       <div>
@@ -241,7 +249,7 @@ const l = (p: string) => localizePath(p, lang);
 <!-- 8. Housing: image band with overlay card -->
 <section class="relative">
   <img
-    src="/images/housing-canal.jpg?v=20260728"
+    src="/images/canal-colour.jpg"
     alt=""
     class="h-105 w-full object-cover md:h-130"
     width="1600"
@@ -278,11 +286,30 @@ const l = (p: string) => localizePath(p, lang);
       ))}
       <a href={l(SECTIONS.business)} class="link-editorial mt-7">{h.businessBlock.label}</a>
     </div>
-    <img src="/images/business-meeting.jpg?v=20260728" alt="" class="aspect-[4/3] w-full rounded-3xl object-cover" width="800" height="600" loading="lazy" />
+    <img src="/images/business-plan.jpg" alt="" class="aspect-[4/3] w-full rounded-3xl object-cover" width="800" height="600" loading="lazy" />
   </div>
 </section>
 
-<!-- 10. Why boutique (dark band) -->
+<!-- 10. Life here: a full-bleed photo strip, static, no captions -->
+<section aria-hidden="true" class="grid grid-cols-2 md:grid-cols-4">
+  {[
+    { src: '/images/cyclist-canal.jpg', alt: '' },
+    { src: '/images/tulips-canal.jpg', alt: '' },
+    { src: '/images/family-arrival.jpg?v=20260731', alt: '' },
+    { src: '/images/couple-moving-in.jpg?v=20260731', alt: '' },
+  ].map((img) => (
+    <img
+      src={img.src}
+      alt={img.alt}
+      class="aspect-4/3 w-full object-cover md:aspect-square"
+      width="800"
+      height="600"
+      loading="lazy"
+    />
+  ))}
+</section>
+
+<!-- 11. Why boutique (dark band) -->
 <section class="bg-navy">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl text-center">
@@ -312,7 +339,7 @@ const l = (p: string) => localizePath(p, lang);
 </section>
 
 <!-- 11. Reviews: star-led cards -->
-<section class="border-y border-line bg-ivory">
+<section class="border-y border-line-warm band-sand">
   <div class="container-site py-16 md:py-24">
     <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
       <div class="max-w-2xl">
@@ -357,7 +384,7 @@ const l = (p: string) => localizePath(p, lang);
 </section>
 
 <!-- 13. Contact form: details left, form right -->
-<section class="border-t border-line bg-ivory" id="contact-form">
+<section class="border-t border-line-warm band-sand" id="contact-form">
   <div class="container-site py-16 md:py-24">
     <div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
       <div>

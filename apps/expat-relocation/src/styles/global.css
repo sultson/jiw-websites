@@ -4,22 +4,30 @@
 
 /* ------------------------------------------------------------------ *
  * E & I — Expat & Immigration Services
- * Brand sheet: navy #00143a, gold #d4af37, off-white #f5f5f7.
+ * Brand sheet: navy #00143a, gold #d4af37, light blue #e3e6ed.
  * Playfair Display for headings (thin, editorial), Montserrat for body.
  * Gold is jewellery: hairlines, eyebrows, small accents. Never big fills.
+ *
+ * Section rhythm: pages alternate paper → sand → navy so no page reads as a
+ * white sheet. Light blue is the default quiet band; ivory is only for cool greys
+ * next to photography.
  * ------------------------------------------------------------------ */
 @theme {
   --color-navy: #00143a;
   --color-navy-2: #0a2150;
   --color-navy-3: #142e63;
+  --color-navy-deep: #000c22;
   --color-gold: #d4af37;
   --color-gold-soft: #dfc16a;
   --color-gold-pale: #f3e8c8;
   --color-ivory: #f5f5f7;
+  --color-sand: #e3e6ed;
+  --color-sand-deep: #efe6d6;
   --color-paper: #ffffff;
   --color-ink: #45526b;
   --color-ink-soft: #64708a;
   --color-line: rgba(0, 20, 58, 0.12);
+  --color-line-warm: rgba(122, 96, 33, 0.18);
 
   --font-display: 'Playfair Display Variable', 'Playfair Display', Georgia, serif;
   --font-sans: 'Montserrat Variable', 'Montserrat', ui-sans-serif, system-ui, sans-serif;
@@ -44,12 +52,21 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
+  /* Playfair at 400, not 500. The lighter cut is the whole difference between
+     "agency brochure" and "couture": at display sizes the thin strokes stay thin.
+     The small negative tracking stops large headings from looking loose. */
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 400;
+    letter-spacing: -0.015em;
     color: var(--color-navy);
-    line-height: 1.15;
+    line-height: 1.12;
     text-wrap: balance;
+  }
+  /* Small headings need the weight back; 400 disappears below ~1.25rem. */
+  h3, h4 {
+    font-weight: 500;
+    letter-spacing: -0.005em;
   }
   ::selection {
     background: var(--color-gold-pale);
@@ -71,9 +88,9 @@
 @utility eyebrow {
   display: block;
   font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--color-gold);
 }
@@ -87,6 +104,23 @@
   width: 3.5rem;
   height: 1px;
   background: var(--color-gold);
+}
+
+/* Navy scrim over a photo: dark enough for white type, light enough that the
+   picture still reads as a picture. Used by every page hero and image band. */
+@utility photo-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, var(--color-navy) 4%, rgba(0, 20, 58, 0.55) 55%, rgba(0, 20, 58, 0.3) 100%),
+    linear-gradient(to right, rgba(0, 20, 58, 0.88) 0%, rgba(0, 20, 58, 0.5) 45%, rgba(0, 20, 58, 0.15) 100%);
+}
+
+/* Light blue section band. The default alternative to white across inner pages. */
+@utility band-sand {
+  background:
+    radial-gradient(120% 100% at 100% 0%, rgba(212, 175, 55, 0.1) 0%, transparent 55%),
+    var(--color-sand);
 }
 
 @layer components {
@@ -198,6 +232,30 @@
     box-shadow: var(--shadow-card);
   }
 
+  /* Content card with a gold cap rule, so a grid of them has colour without
+     any of them shouting. */
+  .card-capped {
+    position: relative;
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-line-warm);
+    background: #fff;
+    overflow: hidden;
+  }
+  .card-capped::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-gold), rgba(212, 175, 55, 0.15));
+  }
+
+  /* Dark card used inside navy bands (process steps, fee panel). */
+  .card-dark {
+    border-radius: 1.25rem;
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
   /* Editorial link: small caps with gold underline offset. */
   .link-editorial {
     display: inline-flex;
@@ -220,5 +278,57 @@
   }
   .link-editorial-light:hover {
     color: var(--color-gold-soft);
+  }
+}
+
+/* Keep repeated content balanced when a page has fewer items than the
+   default column count. The templates provide the item count so four
+   cards can become a deliberate 2 x 2 layout and partial rows are centered. */
+@media (min-width: 1024px) {
+  .grid-balanced[data-layout='cards'][data-count='2'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .grid-balanced[data-layout='cards'][data-count='3'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid-balanced[data-layout='cards'][data-count='4'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .grid-balanced[data-layout='cards'][data-count='5'] {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .grid-balanced[data-layout='cards'][data-count='5'] > * {
+    grid-column-end: span 2;
+  }
+  .grid-balanced[data-layout='cards'][data-count='5'] > :nth-child(4) {
+    grid-column-start: 2;
+  }
+  .grid-balanced[data-layout='cards'][data-count='6'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid-balanced[data-layout='features'][data-count='7'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid-balanced[data-layout='features'][data-count='7'] > :last-child {
+    grid-column-start: 2;
+  }
+
+  .grid-balanced[data-layout='steps'][data-count='3'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .grid-balanced[data-layout='steps'][data-count='4'] {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .grid-balanced[data-layout='steps'][data-count='5'] {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .grid-balanced[data-layout='steps'][data-count='5'] > * {
+    grid-column-end: span 2;
+  }
+  .grid-balanced[data-layout='steps'][data-count='5'] > :nth-child(4) {
+    grid-column-start: 2;
+  }
+  .grid-balanced[data-layout='steps'][data-count='6'] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

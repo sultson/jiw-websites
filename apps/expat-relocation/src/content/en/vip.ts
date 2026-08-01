@@ -10,7 +10,7 @@ export const vip: VipContent = {
     'Artists on tour schedules. Athletes between seasons. Executives with one free weekend and founders with none. Our VIP packages exist for people whose calendars do not bend, so the Netherlands bends instead.',
     'Every package is run personally by Johanna: appointments consolidated, doors opened in advance, and a 24/7 line that is answered by the person who knows your file, not a service desk.',
   ],
-  image: '/images/vip-hub.jpg',
+  image: '/images/vip-hub.jpg?v=20260731',
   imageAlt: 'Host greeting a couple arriving by car at a canal-side hotel',
   pricingNote: {
     title: 'What a package costs, and why',
@@ -150,7 +150,7 @@ export const vip: VipContent = {
         text: 'Tell us about your household and your dates. We will design the arrival around the school year.',
         label: 'Start your VIP inquiry',
       },
-      image: '/images/vip-family.jpg?v=20260728',
+      image: '/images/vip-family.jpg?v=20260731',
       imageAlt: 'Family arriving at a Dutch villa in the evening light',
     },
     {
@@ -214,7 +214,7 @@ export const vip: VipContent = {
         text: 'Tell us your plans and your window. We will come back with a sequence and a fixed quote.',
         label: 'Start your VIP inquiry',
       },
-      image: '/images/vip-business.jpg?v=20260728',
+      image: '/images/vip-business.jpg?v=20260731',
       imageAlt: 'Executive working in the back of a chauffeured car',
     },
     {

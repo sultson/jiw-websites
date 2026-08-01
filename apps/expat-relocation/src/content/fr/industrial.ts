@@ -73,6 +73,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Ce que travailler à Europoort implique',
+        intro:
+          'Le port fixe les contraintes. Logement, inscription et vie de famille doivent s\'ajuster à la porte et au planning.',
+        items: [
+          'Le trajet vers Europoort dure quarante-cinq à soixante-dix minutes depuis le centre de Rotterdam, et vingt à trente depuis Hoogvliet, Spijkenisse ou Brielle.',
+          'Les régimes postés rendent les transports publics peu praticables pour la plupart des portes, si bien que stationnement et voiture façonnent la décision de logement.',
+          'L\'accès au site exige des documents d\'identité et, pour de nombreux prestataires, une certification sécurité valide de type VCA.',
+          'Les prestataires et salariés détachés d\'autres États de l\'UE relèvent de règles d\'inscription, d\'assurance et de paie différentes des embauches directes.',
+          'L\'inscription à votre adresse reste la porte d\'entrée du BSN, de la paie et de l\'assurance, quoi qu\'ait organisé votre employeur.',
+          'Nous couvrons spécifiquement la région portuaire. C\'est notre propre terrain, et non un service national appliqué localement.',
+        ],
+      },
+      details: {
+        title: 'Points pratiques pour les professionnels du port',
+        items: [
+          {
+            q: 'Où devrais-je vraiment habiter ?',
+            a:
+              'Cela dépend de votre porte et de votre poste, et la réponse honnête est souvent pas Rotterdam. Hoogvliet, Spijkenisse, Brielle et Rozenburg vous placent à moins d\'une demi-heure de la plupart des terminaux pour un coût nettement inférieur. Si votre partenaire travaille en ville le calcul change, et nous modélisons les deux avant que vous ne vous engagiez sur une adresse.',
+          },
+          {
+            q: 'Je suis détaché par un employeur étranger. Qu\'est-ce qui change ?',
+            a:
+              'Presque tout sur le plan administratif. Votre sécurité sociale peut rester dans votre pays via un certificat A1, votre employeur a une obligation de déclaration aux Pays-Bas, et votre obligation d\'assurance dépend de ce montage plutôt que de votre adresse. S\'y tromper produit des cotisations doubles ou aucune couverture, nous le traitons donc spécifiquement.',
+          },
+          {
+            q: 'Ma famille peut-elle suivre plus tard ?',
+            a:
+              'Oui, et pour le travail posté ou en rotation c\'est souvent le bon choix. Nous organisons la première phase autour de vous et la seconde autour d\'eux, afin que école et logement soient choisis avec la famille présente plutôt que devinés à l\'avance.',
+          },
+          {
+            q: 'En combien de temps est-ce faisable ?',
+            a:
+              'Avec une offre en main et des documents prêts, une installation opérationnelle prend trois à cinq semaines : base temporaire, inscription, BSN, assurance, banque, et la recherche de logement définitif qui court en dessous. Les documents légalisés venus de l\'étranger sont la seule chose qui ralentit systématiquement.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -96,8 +134,10 @@ export const industrial: SectionContent = {
         label: 'Planifier mon installation à Europoort',
       },
       form: 'relocation',
-      image: '/images/europoort.jpg?v=20260728',
+      image: '/images/europoort.jpg?v=20260731',
       imageAlt: 'Infrastructures de raffinerie et de terminaux à Europoort Rotterdam',
+      image2: '/images/industrial-worker.jpg?v=20260731',
+      image2Alt: 'Dirigeant du secteur énergétique au port de Rotterdam à l\'heure dorée',
     },
     {
       slug: 'maasvlakte-expat-relocation-netherlands',
@@ -159,6 +199,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Les réalités de la Maasvlakte',
+        intro:
+          'La Maasvlakte 2 est le point le plus éloigné du port, et la distance est le seul fait qui façonne chaque décision autour.',
+        items: [
+          'Le trajet dure soixante à quatre-vingt-dix minutes depuis le centre de Rotterdam, et trente à quarante-cinq depuis les communes de l\'ouest.',
+          'Il n\'existe quasiment pas de logements près des terminaux, chaque option implique donc un trajet.',
+          'Le travail sur les terminaux en eau profonde est fortement posté, nuits et week-ends compris, ce qui touche le choix du logement comme la garde d\'enfants.',
+          'Certains terminaux organisent une navette d\'entreprise, ce qui change entièrement le calcul : confirmez-le avant de choisir une adresse.',
+          'L\'accès au site exige une pièce d\'identité valable et, pour la plupart des postes prestataires, une certification sécurité à jour.',
+          'Inscription, BSN, assurance et paie suivent les mêmes règles que partout et restent la porte d\'entrée de tout le reste.',
+        ],
+      },
+      details: {
+        title: 'Planifier autour du terminal',
+        items: [
+          {
+            q: 'Quelles villes fonctionnent le mieux ?',
+            a:
+              'Brielle, Hellevoetsluis, Spijkenisse, Rozenburg et Oostvoorne placent la plupart des gens à moins de quarante-cinq minutes des terminaux, avec plus d\'espace et des loyers inférieurs à la ville. Brielle convient particulièrement aux familles qui veulent une petite ville historique plutôt qu\'une banlieue pavillonnaire.',
+          },
+          {
+            q: 'Mon employeur organise-t-il un transport ?',
+            a:
+              'Plusieurs terminaux le font, et cela peut rendre une adresse éloignée parfaitement viable ou une adresse proche inutile. C\'est notre première question, car la réponse redessine toute la recherche de logement.',
+          },
+          {
+            q: 'Quel effet ont les postes de nuit sur le logement ?',
+            a:
+              'Plus qu\'on ne le croit. Dormir un matin de semaine est impossible dans un appartement mal isolé au-dessus d\'une rue passante, et c\'est la première cause d\'échec d\'une première location. Nous vérifions le bruit à l\'heure où vous dormirez réellement, pas à l\'heure de la visite.',
+          },
+          {
+            q: 'Et la vie de famille avec un planning tournant ?',
+            a:
+              'Cela fonctionne, mais avec de la planification plutôt que de l\'improvisation. Des écoles avec accueil périscolaire, un partenaire qui conduit et un quartier où il se passe quelque chose à des heures décalées pèsent plus lourd que des mètres carrés. Nous bâtissons la recherche autour du planning et non autour de l\'annonce.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -184,6 +262,8 @@ export const industrial: SectionContent = {
       form: 'relocation',
       image: '/images/maasvlakte.jpg?v=20260728',
       imageAlt: 'Terminaux à conteneurs et grues du port en eaux profondes de la Maasvlakte',
+      image2: '/images/industrial-worker.jpg?v=20260731',
+      image2Alt: 'Dirigeant du secteur énergétique au port de Rotterdam à l\'heure dorée',
     },
     {
       slug: 'offshore-expat-services-netherlands',
@@ -246,6 +326,44 @@ export const industrial: SectionContent = {
         ],
       },
       note: 'Les positions fiscales et de sécurité sociale offshore varient selon l’État du pavillon, l’employeur et les jours travaillés ; nous signalons quand votre situation exige un spécialiste fiscal transfrontalier et vous mettons en relation avec l’un de notre réseau.',
+      conditions: {
+        title: 'Ce que change le travail en rotation',
+        intro:
+          'Une rotation offshore brise la plupart des hypothèses sur lesquelles l\'administration néerlandaise est bâtie. Voici les principales.',
+        items: [
+          'L\'inscription à une adresse néerlandaise reste requise si les Pays-Bas sont votre résidence principale, quel que soit votre rythme de rotation.',
+          'De longues absences peuvent affecter l\'inscription, le droit à l\'assurance maladie et la continuité exigée pour le séjour permanent.',
+          'Votre sécurité sociale peut relever d\'un autre pays via un certificat A1, ce qui change entièrement votre obligation d\'assurance.',
+          'Les bailleurs apprécient différemment un revenu de rotation, et les rythmes de paiement irréguliers doivent être expliqués dans le dossier et non après.',
+          'Marins et travailleurs offshore peuvent relever de règles fiscales et sociales particulières qui ne s\'appliquent pas au personnel à terre.',
+          'Nous prenons en charge le volet néerlandais. Fiscalité et paie transfrontalières vont à des spécialistes auxquels nous vous présentons.',
+        ],
+      },
+      details: {
+        title: 'Faire fonctionner une rotation à terre',
+        items: [
+          {
+            q: 'Tout peut-il se faire en une seule période à terre ?',
+            a:
+              'Le plus souvent oui, et c\'est ainsi que nous planifions. Rendez-vous, visites, inscription, banque et assurance sont concentrés sur une semaine intensive à terre plutôt qu\'étalés sur trois rotations. Cela demande de la préparation de notre côté et des documents prêts du vôtre.',
+          },
+          {
+            q: 'Que se passe-t-il pendant que je suis en mer ?',
+            a:
+              'Nous restons en pratique votre adresse : courrier traité, échéances surveillées, questions du bailleur prises en charge, rendez-vous déplacés. Votre famille, si elle est ici, dispose d\'un numéro à appeler qui n\'est pas un numéro à l\'étranger.',
+          },
+          {
+            q: 'Comment les absences affectent-elles le séjour permanent ?',
+            a:
+              'La continuité est rompue par des absences de plus de six mois consécutifs, ou de plus de quatre mois par an sur la période de référence. Les rotations restent généralement bien en deçà, mais le calcul mérite d\'être fait sciemment si vous visez le statut permanent.',
+          },
+          {
+            q: 'Quelle assurance s\'applique à moi ?',
+            a:
+              'Cela dépend du pays d\'établissement de votre employeur, du pavillon sous lequel vous naviguez et de l\'existence d\'un certificat A1. L\'offshore est le domaine où nous trouvons le plus souvent des personnes doublement assurées ou pas assurées du tout, nous l\'établissons donc dès le premier entretien plutôt que de présumer la réponse standard.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -269,8 +387,10 @@ export const industrial: SectionContent = {
         label: 'Monter ma base à terre',
       },
       form: 'relocation',
-      image: '/images/industrial-worker.jpg?v=20260728',
-      imageAlt: 'Un professionnel offshore en tenue de travail dans une installation portuaire',
+      image: '/images/industrial-worker.jpg?v=20260731',
+      image2: '/images/industrial-hub.jpg?v=20260731',
+      image2Alt: 'Le cluster industriel portuaire au crépuscule',
+      imageAlt: 'Dirigeant du secteur énergétique au port de Rotterdam à l\'heure dorée',
     },
     {
       slug: 'relocation-for-logistics-professionals-netherlands',
@@ -332,6 +452,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'La vitesse, et ce qui la limite',
+        intro:
+          'La logistique va vite et les dates de prise de poste attendent rarement. Voici les contraintes qui déterminent la vitesse réelle d\'une installation.',
+        items: [
+          'Documents prêts, une installation opérationnelle prend trois à cinq semaines : base, inscription, BSN, assurance, banque.',
+          'Les actes de naissance et de mariage légalisés ne peuvent plus être obtenus une fois que vous êtes ici, et constituent la cause de retard la plus fréquente.',
+          'La disponibilité des rendez-vous communaux varie selon la saison et peut ajouter une à trois semaines.',
+          'Les régimes postés et les sites de distribution hors de la ville rendent généralement la voiture nécessaire, ce qui affecte le budget logement.',
+          'Les employeurs qui recrutent plusieurs personnes à la fois peuvent grouper inscriptions et visites, ce qui comprime nettement le calendrier.',
+          'Pour un recrutement hors UE, la demande doit être approuvée avant le début du travail. Aucune consigne d\'employeur n\'y change rien.',
+        ],
+      },
+      details: {
+        title: 'Aller vite sans bâcler',
+        items: [
+          {
+            q: 'Que peut-on faire avant mon arrivée ?',
+            a:
+              'Plus que la plupart ne l\'imaginent. Vérification des documents, légalisation, dossier de titre, rendez-vous communal, sélection de logements et visites peuvent tous avancer pendant que vous êtes encore à l\'étranger, de sorte que la première semaine néerlandaise soit de l\'exécution et non de la découverte.',
+          },
+          {
+            q: 'Nous recrutons un groupe. Est-ce un avantage ?',
+            a:
+              'Considérable. Inscriptions groupées, base temporaire partagée et visites coordonnées réduisent le coût et le temps par personne, et une seule conseillère tenant l\'ensemble du groupe donne aux RH une vue unique plutôt qu\'une file de problèmes individuels.',
+          },
+          {
+            q: 'Où le personnel logistique devrait-il habiter ?',
+            a:
+              'Près du cluster de distribution plutôt que près du centre. Les sites du Waalhaven, du Botlek et du corridor A15 sont mieux desservis depuis Hoogvliet, Spijkenisse, Barendrecht et Ridderkerk, et les loyers y sont sensiblement inférieurs à ceux de Rotterdam même.',
+          },
+          {
+            q: 'Quelle est l\'erreur la plus courante ?',
+            a:
+              'Lancer la recherche de logement avant que la voie d\'inscription ne soit claire. Un logement qui n\'autorise pas l\'inscription bloque le BSN, ce qui bloque la paie, et un nouvel arrivant travaille six semaines sans être payé correctement. Nous réglons toujours l\'inscription en premier.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -355,8 +513,10 @@ export const industrial: SectionContent = {
         label: 'Accélérer mon installation',
       },
       form: 'relocation',
-      image: '/images/logistics-worker.jpg?v=20260728',
-      imageAlt: 'Un professionnel de la logistique au travail dans une zone de distribution de Rotterdam',
+      image: '/images/logistics-worker.jpg?v=20260731',
+      imageAlt: 'Directeur logistique surplombant le terminal portuaire de Rotterdam',
+      image2: '/images/europoort.jpg?v=20260731',
+      image2Alt: 'Le port de Rotterdam à l’heure dorée',
     },
     {
       slug: 'rotterdam-industrial-expat-services',
@@ -422,6 +582,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Comment nous travaillons avec le cluster',
+        intro:
+          'Nous servons les deux côtés du cluster industrialo-portuaire, employeurs et salariés, nos conditions doivent donc être claires.',
+        items: [
+          'Nous couvrons Rotterdam, Botlek, Europoort, Maasvlakte, Pernis et le corridor A15 élargi.',
+          'Les employeurs peuvent nous mandater par salarié, par projet ou via un accord-cadre pour un recrutement continu.',
+          'Les recrutements hors UE exigent un titre approuvé avant la prise de poste, et un statut de sponsor reconnu avant tout dépôt.',
+          'Les salariés détachés d\'autres entités de l\'UE relèvent d\'un régime de déclaration distinct avec ses propres obligations.',
+          'Chaque salarié muté est inscrit individuellement, quelle que soit la taille du groupe, et chaque famille a besoin de ses propres documents.',
+          'Nous acceptons les missions de rattrapage pour des installations déjà mal engagées, et disons clairement ce qui peut être réparé et ce qui ne le peut pas.',
+        ],
+      },
+      details: {
+        title: 'Pour les employeurs du cluster',
+        items: [
+          {
+            q: 'Pouvez-vous reprendre une installation déjà ratée ?',
+            a:
+              'Oui, et nous le faisons régulièrement. Adresses sans inscription, BSN manquants, salaires impayés parce que la paie ne peut pas tourner, assurance jamais souscrite, famille bloquée sur un problème de documents. C\'est un travail sans éclat et souvent le plus utile que nous faisons.',
+          },
+          {
+            q: 'À quoi ressemble un accord-cadre ?',
+            a:
+              'Un interlocuteur unique, des niveaux de service convenus par installation, des tarifs fixes par salarié, et une vue d\'ensemble pour les RH sur chaque dossier en cours. Pour les employeurs qui recrutent en continu, cela supprime toute négociation au cas par cas.',
+          },
+          {
+            q: 'Traitez-vous l\'immigration autant que le déménagement ?',
+            a:
+              'Oui, et c\'est la raison pour laquelle les entreprises nous choisissent plutôt qu\'une agence de relocation pure. Titres, statut de sponsor, inscription, logement et accompagnement familial sont réunis chez un seul cabinet, de sorte que rien ne tombe entre deux prestataires.',
+          },
+          {
+            q: 'Comment nous aidez-vous à retenir les gens ?',
+            a:
+              'En faisant en sorte que les six premiers mois fonctionnent pour la famille et pas seulement pour le salarié. La plupart des départs précoces de ce cluster remontent à un conjoint sans emploi, un enfant qui ne s\'est jamais adapté ou un logement qui n\'a jamais convenu, et chacun de ces points se traite si quelqu\'un y prête attention assez tôt.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -445,8 +643,10 @@ export const industrial: SectionContent = {
         label: 'Devenir partenaire',
       },
       form: 'relocation',
-      image: '/images/rotterdam-industrial.jpg',
+      image: '/images/rotterdam-industrial.jpg?v=20260731',
       imageAlt: 'Ouvriers en gilets haute visibilité dans le port avec la skyline de Rotterdam en arrière-plan',
+      image2: '/images/industrial-hub.jpg?v=20260731',
+      image2Alt: 'Le cluster industriel portuaire au crépuscule',
     },
   ],
   cta: {

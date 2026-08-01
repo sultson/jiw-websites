@@ -10,8 +10,8 @@ export const business: SectionContent = {
     'Visa firms arrange permits. Formation agents register companies. Housing agents find apartments. An international entrepreneur needs all three at once, plus a family that actually wants to stay, and nobody hands you that as one service. We do. Immigration, company setup, housing and relocation, coordinated by one team that answers to you.',
     'The same applies at company scale. When a business moves people to the Netherlands, we relocate the whole picture: the entity, the executives, the teams and every family that comes with them.',
   ],
-  image: '/images/business-meeting.jpg?v=20260728',
-  imageAlt: 'International entrepreneurs planning their Dutch company at a meeting table',
+  image: '/images/rotterdam-evening.jpg',
+  imageAlt: 'Rotterdam skyline on the Wilhelminapier in evening light',
   cta: {
     title: 'Bring your business to the Netherlands',
     text: 'Tell us what you want to build here and who is coming with you. We will lay out the full route, permits to premises, in one plan.',
@@ -24,20 +24,32 @@ export const business: SectionContent = {
       title: 'Starting a Business in the Netherlands',
       metaTitle: 'Starting a Business in the Netherlands as a Foreigner | E & I',
       metaDescription:
-        'Everything a foreign entrepreneur needs to start a business in the Netherlands: the right residence basis, legal form, registrations and a personal guide through all of it.',
+        'Starting a business in the Netherlands as a foreign entrepreneur: the self-employed residence permit, its requirements, how the IND and RVO assess your plan, and our fees.',
       eyebrow: 'Entrepreneurship',
       intro: [
-        'The Netherlands is one of the easiest places in Europe to do business and one of the most confusing places to start one as a foreigner, because the residence question and the company question must be answered together. The right legal form depends on your visa route, and your visa route depends on what you are building.',
-        'We untangle that knot at the very first conversation. You get a single roadmap covering your residence basis, your company structure and your first registrations, plus a direct WhatsApp line to us at any hour while you execute it.',
+        'The Netherlands is one of Europe’s most attractive bases for international entrepreneurs: a stable economy, excellent infrastructure and direct access to the European market. Starting a business here as a non-EU national involves more than registering a company, because in most cases you also need a residence permit as a self-employed entrepreneur.',
+        'We guide founders through the whole process, from immigration strategy and business plan to the residence permit application, and then through the practical side: company registration, an address, and settling in.',
       ],
       cardText: 'One roadmap for your residence basis, company structure and first registrations.',
       forWho: {
-        title: 'Who starts here',
+        title: 'Who can start a business in the Netherlands',
         items: [
-          'Non-EU entrepreneurs who need both a permit and a company',
-          'EU citizens who can start immediately but want the setup done right',
+          'Non-EU and non-EEA nationals who want to establish or operate a business here',
           'Freelancers and consultants bringing an existing practice to the Netherlands',
+          'EU citizens who can start immediately but want the setup done right',
           'Founders still choosing between the Netherlands and other European bases',
+        ],
+      },
+      conditions: {
+        title: 'Key requirements for the entrepreneur residence permit',
+        intro:
+          'Applications are assessed on the economic value of the business for the Netherlands. Applicants must generally demonstrate:',
+        items: [
+          'A professional and viable business plan',
+          'Relevant entrepreneurial or professional experience',
+          'Sufficient financial resources',
+          'Registration with the Dutch Chamber of Commerce (KvK)',
+          'Economic value for the Dutch economy',
         ],
       },
       included: {
@@ -62,11 +74,40 @@ export const business: SectionContent = {
         ],
       },
       process: {
-        title: 'From idea to open for business',
+        title: 'Our working method',
         steps: [
-          { title: 'Strategy session', text: 'One intake covering your business, nationality and family. You leave with the route decided.' },
-          { title: 'Permit and paperwork', text: 'We run the immigration application and the company formation in parallel wherever possible.' },
-          { title: 'Doors open', text: 'Registered, banked, insured and housed. You start invoicing while we finish the loose ends.' },
+          { title: 'Initial immigration assessment', text: 'We evaluate your plans and determine the most suitable immigration route for your nationality and your business.' },
+          { title: 'Business plan and documentation', text: 'We assist in preparing the business plan and the supporting documents the assessment turns on.' },
+          { title: 'Residence permit application', text: 'We prepare and submit the application to the IND, with the company formation running in parallel where possible.' },
+          { title: 'Application monitoring', text: 'We track the file and respond to questions from the authorities on your behalf.' },
+        ],
+      },
+      fees: {
+        title: 'Professional fees for an entrepreneur permit application',
+        amount: 'from 2,450 to 3,500 euro',
+        includes: [
+          'Immigration advice and strategy',
+          'Application preparation',
+          'Document review',
+          'Communication with the IND',
+        ],
+        note: 'Government fees charged by the IND are not included. Where your case falls in this range depends on the complexity of the business and whether family members apply alongside you.',
+      },
+      details: {
+        title: 'How your application is assessed',
+        items: [
+          {
+            q: 'Who decides, and on what?',
+            a: 'The Netherlands Enterprise Agency (RVO) advises the Immigration and Naturalisation Service (IND) before a final decision is made. The assessment looks at your professional background and experience, the quality and feasibility of the business plan, the economic value of the business, and its innovation or employment potential.',
+          },
+          {
+            q: 'What kind of business is viewed favourably?',
+            a: 'Businesses that contribute to innovation, employment or genuine economic activity in the Netherlands. A plan that reads as a formality to obtain residence, with no market, no clients and no capital behind it, is the most common reason applications fail.',
+          },
+          {
+            q: 'Which legal form should the company take?',
+            a: 'An eenmanszaak is lighter and cheaper to run; a BV limits liability and suits growth and investors. The right answer depends on your tax position and how the permit route treats your income, so we advise per case rather than by rule of thumb.',
+          },
         ],
       },
       faq: {
@@ -84,16 +125,22 @@ export const business: SectionContent = {
             q: 'How long before I can actually trade?',
             a: 'For EU citizens, days. For non-EU founders the permit determines the pace, and we confirm current IND timelines during your intake so your launch date is realistic from day one.',
           },
+          {
+            q: 'Is there an easier route for US citizens or innovative startups?',
+            a: 'Yes. Americans can usually apply under the DAFT treaty, and founders with an innovative concept can use the startup visa. Both avoid the full economic assessment, and we check at intake which of the three routes actually fits you.',
+          },
         ],
       },
       cta: {
-        title: 'Your company belongs here',
+        title: 'Start your business in the Netherlands',
         text: 'Describe your business in two sentences. We will come back with the route, the structure and the first three steps.',
         label: 'Map my route',
       },
       form: 'immigration',
-      image: '/images/start-business.jpg',
-      imageAlt: 'Entrepreneur opening the door of her new office space',
+      image: '/images/start-business.jpg?v=20260731',
+      imageAlt: 'Founder in a design-led Dutch workspace',
+      image2: '/images/business-plan.jpg',
+      image2Alt: 'Entrepreneur reviewing a business plan with an advisor',
     },
     {
       slug: 'company-registration-netherlands',
@@ -151,6 +198,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'If your residence permit is still pending, the order of operations matters: some steps can proceed before arrival and some cannot. We plan the sequence around your immigration timeline.',
+      conditions: {
+        title: 'What incorporation requires',
+        intro:
+          'The legal form you choose in week one determines your tax, your liability and your credibility with Dutch counterparties for years.',
+        items: [
+          'A BV requires a civil-law notary and a deed of incorporation. A eenmanszaak and a VOF do not.',
+          'Share capital for a BV can be as little as one euro, so capital is no longer the reason to choose one form over another.',
+          'Every company needs a registered Dutch business address. A postbox is not accepted by the KvK.',
+          'Directors and shareholders must be identified under UBO rules, and the ultimate beneficial owner is recorded in a separate register.',
+          'VAT registration follows automatically from KvK registration, and the tax office issues the number separately.',
+          'A residence permit is a prerequisite for running a business here as a non-EU national, and the company cannot substitute for it.',
+        ],
+      },
+      details: {
+        title: 'Choosing the right structure',
+        items: [
+          {
+            q: 'BV or eenmanszaak?',
+            a:
+              'A eenmanszaak is faster, cheaper and taxed through income tax with entrepreneur deductions, but you are personally liable. A BV separates your liability, reads as more substantial to Dutch clients and banks, and becomes tax-efficient once profits are meaningful. Most consultants start as a eenmanszaak and convert when the numbers justify the notary.',
+          },
+          {
+            q: 'How long does a BV take?',
+            a:
+              'Usually one to three weeks. The notary needs identification, the intended structure and a name check, and the KvK registration follows the deed. Where shareholders are abroad, legalised powers of attorney add time, so we start those first.',
+          },
+          {
+            q: 'Can I incorporate before I have residence?',
+            a:
+              'You can hold shares in a Dutch company from abroad, but working in it in the Netherlands needs the right permit. Setting up the company first and thinking about residence afterwards is the sequence that causes most of the problems we repair.',
+          },
+          {
+            q: 'What about a registered address?',
+            a:
+              'It must be a real address where the company is genuinely reachable, and both the KvK and the banks now check this. Virtual office packages vary enormously in whether they survive that scrutiny, and we point you to providers that do.',
+          },
+        ],
+      },
       faq: {
         title: 'Before you incorporate',
         items: [
@@ -176,6 +261,8 @@ export const business: SectionContent = {
       form: 'immigration',
       image: '/images/business-signing.jpg?v=20260728',
       imageAlt: 'Founder signing incorporation documents at a Dutch notary',
+      image2: '/images/kvk-registration.jpg?v=20260731',
+      image2Alt: 'Entrepreneur and advisor reviewing company papers',
     },
     {
       slug: 'kvk-registration-for-foreigners-netherlands',
@@ -229,6 +316,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'If you do not yet have a BSN, registration is still possible in many situations, but the route differs. Mention it when you contact us and we will plan around it.',
+      conditions: {
+        title: 'What the KvK needs from you',
+        intro:
+          'The Chamber of Commerce appointment is short and unforgiving. Everything is decided by what you bring with you.',
+        items: [
+          'Appointments must be booked in advance, and in busy periods the wait can run to several weeks.',
+          'You need a valid passport or ID, a BSN, and proof of your Dutch business address.',
+          'Non-EU nationals must show a residence permit that allows self-employment.',
+          'The business address must be a real address. A postbox will be refused.',
+          'You choose SBI activity codes at registration, and these follow you into banking, insurance and VAT treatment.',
+          'Registration costs a one-off fee, and your details enter the public commercial register.',
+        ],
+      },
+      details: {
+        title: 'Getting the registration right',
+        items: [
+          {
+            q: 'Why do SBI codes matter so much?',
+            a:
+              'They describe what your company does, and banks, insurers and the tax office all read them. A code that suggests a higher-risk activity can slow or block a business bank account, and a code that is too narrow can complicate invoicing later. We choose them with you deliberately rather than picking the nearest match at the counter.',
+          },
+          {
+            q: 'Can I register without a Dutch address?',
+            a:
+              'No, and this is the most common reason a registration fails. You need an address where the business is actually reachable. We arrange compliant business addresses for clients who are still house hunting, so the company can start while the home search runs.',
+          },
+          {
+            q: 'Do you attend the appointment?',
+            a:
+              'Yes. The appointment runs in Dutch, decisions are made at the desk that are hard to reverse afterwards, and having someone beside you who knows what each question means is the difference between one appointment and three.',
+          },
+          {
+            q: 'What happens immediately afterwards?',
+            a:
+              'You receive your KvK number the same day and your VAT number from the tax office shortly after. Then comes business banking, accounting, invoicing setup and, if relevant, the small business VAT scheme. We work through that sequence with you rather than leaving you with a certificate.',
+          },
+        ],
+      },
       faq: {
         title: 'KvK questions',
         items: [
@@ -252,8 +377,10 @@ export const business: SectionContent = {
         label: 'Book my KvK registration',
       },
       form: 'immigration',
-      image: '/images/kvk-registration.jpg',
-      imageAlt: 'Entrepreneur receiving a company registration extract at a counter',
+      image: '/images/kvk-registration.jpg?v=20260731',
+      imageAlt: 'Entrepreneur and advisor reviewing company papers',
+      image2: '/images/business-plan.jpg',
+      image2Alt: 'Entrepreneurs working through a business plan',
     },
     {
       slug: 'relocation-services-for-entrepreneurs-netherlands',
@@ -306,6 +433,44 @@ export const business: SectionContent = {
           { title: 'Settled', text: 'You are registered, housed, banked and operational, and your family knows where the good bakery is.' },
         ],
       },
+      conditions: {
+        title: 'How the pieces have to fit',
+        intro:
+          'Founders run four processes at once, and each one depends on another. The sequence is the whole service.',
+        items: [
+          'A residence basis has to exist before the business can be operated from the Netherlands, whatever the company registration says.',
+          'Registration at your address produces the BSN, and without it neither the company nor your salary can function properly.',
+          'Landlords assess entrepreneurs on assets and accounts rather than payslips, so the rental file is built differently.',
+          'Business banking for a newly registered company with a foreign founder takes longer than personal banking and is refused more often.',
+          'Health insurance is compulsory from arrival for you and your family, regardless of company structure.',
+          'We coordinate the permit, the company and the move. Tax and accounting are handled by advisers we introduce you to.',
+        ],
+      },
+      details: {
+        title: 'Founder-specific problems',
+        items: [
+          {
+            q: 'Why is business banking so difficult?',
+            a:
+              'Dutch banks apply strict onboarding rules to newly incorporated companies with non-resident founders, and applications are refused for reasons that are never fully explained. What works is a clear business description, coherent SBI codes, a genuine Dutch address, evidence of intended clients and a founder who is already registered. We prepare for that rather than discovering it.',
+          },
+          {
+            q: 'How do I rent without Dutch payslips?',
+            a:
+              'With a different file. Landlords accept entrepreneurs on the basis of business accounts, bank statements, assets, a larger deposit or a bank guarantee, and sometimes a personal guarantee from the BV. We build that file properly and present it in Dutch, which turns a refusal into a viewing.',
+          },
+          {
+            q: 'What should happen first?',
+            a:
+              'The immigration assessment, always. Everything else can be reordered, but building a company on a residence basis that does not exist is unrecoverable. Once the route is confirmed, the company, the housing and the family arrangements run in parallel.',
+          },
+          {
+            q: 'Do you work with my accountant?',
+            a:
+              'Gladly, and we prefer it. Where you have no Dutch adviser yet we introduce you to accountants who work with international founders and understand the 30 percent ruling, cross-border invoicing and the DGA salary rules.',
+          },
+        ],
+      },
       faq: {
         title: 'What entrepreneurs ask',
         items: [
@@ -329,8 +494,10 @@ export const business: SectionContent = {
         label: 'Start my relocation plan',
       },
       form: 'immigration',
-      image: '/images/entrepreneur-relocation.jpg',
-      imageAlt: 'Founder carrying a box and laptop into a new office',
+      image: '/images/entrepreneur-relocation.jpg?v=20260731',
+      imageAlt: 'Entrepreneur arriving at a modern Dutch apartment building',
+      image2: '/images/start-business.jpg?v=20260731',
+      image2Alt: 'Founder in a design-led Dutch workspace',
     },
     {
       slug: 'business-relocation-to-the-netherlands',
@@ -387,6 +554,44 @@ export const business: SectionContent = {
           { title: 'Land the team', text: 'Arrivals are staggered and supported, registrations completed, and your Dutch operation opens with its people whole.' },
         ],
       },
+      conditions: {
+        title: 'What a corporate move involves',
+        intro:
+          'Moving an entity is a project with a critical path, and the immigration piece is almost always on it.',
+        items: [
+          'IND recognised sponsorship is required before a single highly skilled migrant application can be filed, and recognition itself takes weeks.',
+          'Recognised sponsors accept ongoing duties of information, administration and care, and are audited against them.',
+          'Each relocating employee needs their own file, and each accompanying family multiplies the document work.',
+          'Salary thresholds apply per employee and are indexed annually, which affects budgeting for offers made late in the year.',
+          'Posting workers from another EU entity is a different regime with its own notification duty, not a lighter version of the same thing.',
+          'We handle immigration, housing and family landing. Corporate tax, transfer pricing and legal structuring stay with your advisers.',
+        ],
+      },
+      details: {
+        title: 'Running the project properly',
+        items: [
+          {
+            q: 'How early should we start?',
+            a:
+              'Four to six months before the first arrival where sponsorship is not yet in place. Recognition, permits, housing and schools each have their own waiting time, and the only way to compress the total is to run them concurrently from an early enough start.',
+          },
+          {
+            q: 'What does recognised sponsorship commit us to?',
+            a:
+              'Keeping records for each sponsored employee, informing the IND of relevant changes within four weeks, and taking reasonable care of the employee\'s landing. The IND audits. We set the administration up so that an audit is a formality rather than an event.',
+          },
+          {
+            q: 'Can you handle several families at once?',
+            a:
+              'Yes, and it is a large part of what we do. Each family gets an individual consultant and its own plan, while HR gets a single point of contact and one overview rather than fifteen email threads.',
+          },
+          {
+            q: 'What actually causes people to leave within a year?',
+            a:
+              'Rarely the job. It is the partner who could not find work, the child who never settled at school, or a housing situation that never felt like home. Those are relocation failures, not HR failures, and they are the specific things we are engaged to prevent.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions from HR and leadership',
         items: [
@@ -410,8 +615,134 @@ export const business: SectionContent = {
         label: 'Discuss our corporate move',
       },
       form: 'immigration',
-      image: '/images/business-relocation.jpg',
-      imageAlt: 'Team moving crates into a modern office building',
+      image: '/images/business-relocation.jpg?v=20260731',
+      imageAlt: 'International leadership team in a Rotterdam boardroom',
+      image2: '/images/employer-team.jpg?v=20260731',
+      image2Alt: 'International team meeting in a Dutch office',
+    },
+    {
+      slug: 'employer-immigration-services-netherlands',
+      menuLabel: 'Employer immigration',
+      title: 'Employer Immigration Services Netherlands',
+      metaTitle: 'Employer Immigration Services Netherlands | Hiring Non-EU Staff',
+      metaDescription:
+        'Employer immigration services in the Netherlands: highly skilled migrant and EU Blue Card applications, IND recognised sponsorship, posting workers and immigration case review.',
+      eyebrow: 'For employers',
+      intro: [
+        'Hiring international talent is often essential, and hiring non-EU employees in the Netherlands is rarely simple. It involves immigration procedures, compliance obligations and coordination with the IND, the Dutch Labour Authority and in some cases the UWV.',
+        'We assist employers with Dutch immigration procedures for international employees, from a single specialist hire to a long-term workforce strategy. The aim is a process that is predictable and manageable for the company and for the person moving.',
+      ],
+      cardText: 'Immigration procedures, sponsorship and compliance for companies hiring internationally.',
+      forWho: {
+        title: 'Who we work with',
+        items: [
+          'Dutch companies recruiting specialists from outside the European Union',
+          'Employers transferring staff from a foreign office to the Netherlands',
+          'HR and mobility managers who need one accountable local partner',
+          'Companies considering IND recognised sponsorship',
+          'Organisations posting employees here temporarily for projects or assignments',
+        ],
+      },
+      conditions: {
+        title: 'What employers need to account for',
+        intro:
+          'Each immigration route carries its own requirements, documentation obligations and salary thresholds. Before a hire is confirmed it is worth knowing that:',
+        items: [
+          'A non-EU employee needs a residence basis in place before starting work',
+          'Salary thresholds differ per route and are set by category',
+          'Recognised sponsors carry ongoing compliance obligations towards the IND',
+          'Sponsors must demonstrate reliability, financial stability and sound administration',
+          'Posting employees can trigger notification obligations under Dutch labour regulations',
+          'Immigration timelines affect recruitment planning and start dates',
+        ],
+      },
+      included: {
+        title: 'How we support employers',
+        blocks: [
+          {
+            title: 'Choosing the immigration route',
+            text: 'Highly skilled migrant permits, the EU Blue Card, combined residence and work permits (GVVA), orientation year graduates moving into employment, and intra-company transfers. We determine which one actually fits the role and the candidate.',
+          },
+          {
+            title: 'Applications for your employees',
+            text: 'We prepare the immigration applications, coordinate the documentation for IND submissions and advise on realistic timelines for relocation planning.',
+          },
+          {
+            title: 'IND recognised sponsorship',
+            text: 'We prepare recognised sponsor applications, advise on eligibility and documentation, review internal administrative procedures and keep you compliant with sponsor obligations.',
+          },
+          {
+            title: 'Posting workers to the Netherlands',
+            text: 'We review posting scenarios, advise on the applicable route, handle residence or work permit applications and make sure notification obligations are met.',
+          },
+          {
+            title: 'Immigration strategy',
+            text: 'We advise on structuring international hiring, planning timelines for relocation and onboarding, aligning immigration with employment contracts and managing compliance risk.',
+          },
+          {
+            title: 'Immigration case review',
+            text: 'For refused applications, status changes or eligibility questions, we analyse the situation in detail and set out the realistic options and next steps before a new application is started.',
+          },
+        ],
+      },
+      process: {
+        title: 'How an employer engagement runs',
+        steps: [
+          { title: 'Scope', text: 'We map the roles, the nationalities involved, the deadlines and the compliance position of your company.' },
+          { title: 'Route and documents', text: 'The suitable immigration route is confirmed per employee and the documentation is prepared for submission.' },
+          { title: 'Submission and liaison', text: 'Applications go to the IND and we manage the correspondence, including questions and additional requests.' },
+          { title: 'Arrival and settling in', text: 'Employees and their families are supported through registration, housing and the practical side of arriving.' },
+        ],
+      },
+      note: 'We are a boutique agency, which is a deliberate limit as much as a promise. We take on the volume we can run personally, and we say so plainly when a request exceeds it.',
+      details: {
+        title: 'Detail for HR and mobility teams',
+        items: [
+          {
+            q: 'What does recognised sponsorship change?',
+            a: 'Companies that regularly hire international professionals can become a recognised sponsor with the IND. It brings faster procedures, simplified applications and more flexibility when hiring. In return the company accepts ongoing compliance obligations and must be able to demonstrate reliability, financial stability and proper administrative procedures.',
+          },
+          {
+            q: 'When do posting rules apply?',
+            a: 'When an international company temporarily sends employees here for a project, assignment or corporate transfer. Depending on the situation, EU posting rules, work permit requirements, residence permit requirements for non-EU employees and Dutch notification obligations can all apply at once. Planning it carefully is what prevents delays and compliance risk.',
+          },
+          {
+            q: 'When is a case review worth it?',
+            a: 'When an application was previously refused, when an employee is changing immigration status or moving between visa categories, when eligibility is genuinely unclear, or when a recognised sponsor has a compliance question. A review gives you an assessment of the situation, the risks and obstacles, the available options and a recommended next step.',
+          },
+          {
+            q: 'Can you work alongside our legal and tax advisors?',
+            a: 'Yes, and we prefer it. We handle the immigration and human side of the move and slot into the structure your advisors design.',
+          },
+        ],
+      },
+      faq: {
+        title: 'Questions from employers',
+        items: [
+          {
+            q: 'How early should we involve you in a hire?',
+            a: 'Before the contract is signed, ideally. The immigration route influences the salary, the start date and sometimes whether the hire is possible at all, and those are expensive things to discover afterwards.',
+          },
+          {
+            q: 'Do you also support the employee and their family?',
+            a: 'Yes. Housing, school search, municipality registration and settling in are part of what we do, and they are usually what determines whether a hire stays past year one.',
+          },
+          {
+            q: 'Can you help a company that is not yet established in the Netherlands?',
+            a: 'Yes. We set up the Dutch entity and the immigration track together, in the order that lets each step unlock the next.',
+          },
+        ],
+      },
+      cta: {
+        title: 'Hiring international talent?',
+        text: 'Tell us the role, the nationality and the target start date. We will come back with the route, the timeline and what your company needs to have in place.',
+        label: 'Discuss our hiring plans',
+      },
+      form: 'immigration',
+      image: '/images/employer-immigration.jpg',
+      imageAlt: 'HR advisor and manager discussing an international hire',
+      image2: '/images/employer-team.jpg',
+      image2Alt: 'International team working together in a Dutch office',
     },
     {
       slug: 'housing-support-for-entrepreneurs-netherlands',
@@ -465,6 +796,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'Temporary housing can bridge the gap while we search, but not every short-stay address allows municipal registration. We flag that distinction before you commit to anything.',
+      conditions: {
+        title: 'Renting without payslips',
+        intro:
+          'Dutch landlords are built to read employment contracts. Everything below is about giving them something they can read instead.',
+        items: [
+          'Landlords typically want gross income of three to four times the rent, and for entrepreneurs they look for the equivalent in accounts and assets.',
+          'Newly incorporated companies have no track record, so the founder\'s personal position usually carries the file.',
+          'Expect requests for annual accounts, a year of bank statements, an accountant\'s statement, or a bank guarantee.',
+          'Deposits are legally capped at two months of basic rent for contracts signed since 1 July 2023, and a larger deposit cannot be demanded instead.',
+          'A guarantee from your BV or a personal guarantee is often accepted where documents alone are not.',
+          'We act for you rather than for the landlord, and we take no commission from either side.',
+        ],
+      },
+      details: {
+        title: 'Building a file that convinces',
+        items: [
+          {
+            q: 'What if my company is brand new?',
+            a:
+              'Then the file rests on you rather than on it. Personal savings, income from your previous country, existing client contracts, a signed statement from an accountant and a bank guarantee all work. What does not work is arriving at a viewing with an explanation instead of documents.',
+          },
+          {
+            q: 'Is a bank guarantee normal here?',
+            a:
+              'It is common and entirely respectable for entrepreneurs. Your bank blocks an amount, typically two to three months of rent, and the landlord accepts that instead of an employment history. It usually costs a modest annual fee and it opens properties that would otherwise refuse you.',
+          },
+          {
+            q: 'Should I say I am self-employed?',
+            a:
+              'Always, and early. Landlords who discover it at contract stage withdraw. Landlords who are told at the start, and shown a properly prepared file in Dutch, mostly proceed. Concealment is the single fastest way to lose a property you had already won.',
+          },
+          {
+            q: 'Can I rent a home and use it as my business address?',
+            a:
+              'Often yes, for a consultancy or a service business with no visitors, but it depends on the lease and on the municipality\'s zoning rules. We check both before you register the address at the KvK, because unwinding it afterwards is unpleasant.',
+          },
+        ],
+      },
       faq: {
         title: 'Entrepreneur housing questions',
         items: [
@@ -490,6 +859,8 @@ export const business: SectionContent = {
       form: 'immigration',
       image: '/images/entrepreneur-housing.jpg',
       imageAlt: 'Bright live-work loft apartment with a desk by the window',
+      image2: '/images/rental-contract.jpg?v=20260731',
+      image2Alt: 'Signing a Dutch rental contract with a fountain pen',
     },
   ],
   crossLinks: [

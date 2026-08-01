@@ -10,8 +10,8 @@ export const business: SectionContent = {
     'Les cabinets de visas obtiennent des permis. Les agents de constitution immatriculent des sociétés. Les agences immobilières trouvent des appartements. Un entrepreneur international a besoin des trois à la fois, plus une famille qui a réellement envie de rester, et personne ne vous propose cela comme un seul service. Nous, si. Immigration, création d’entreprise, logement et relocation, coordonnés par une équipe qui ne répond qu’à vous.',
     'La même logique vaut à l’échelle de l’entreprise. Quand une société déplace des personnes aux Pays-Bas, nous relocalisons le tableau entier : l’entité, les dirigeants, les équipes et chaque famille qui les accompagne.',
   ],
-  image: '/images/business-meeting.jpg?v=20260728',
-  imageAlt: 'Entrepreneurs internationaux planifiant leur société néerlandaise autour d’une table de réunion',
+  image: '/images/rotterdam-evening.jpg',
+  imageAlt: 'Les gratte-ciel de Rotterdam sur le Wilhelminapier à la lumière du soir',
   cta: {
     title: 'Amenez votre entreprise aux Pays-Bas',
     text: 'Dites-nous ce que vous voulez bâtir ici et qui vous accompagne. Nous tracerons la route complète, des permis aux locaux, en un seul plan.',
@@ -24,20 +24,32 @@ export const business: SectionContent = {
       title: 'Créer une entreprise aux Pays-Bas',
       metaTitle: 'Créer une entreprise aux Pays-Bas en tant qu’étranger | E & I',
       metaDescription:
-        'Tout ce dont un entrepreneur étranger a besoin pour créer une entreprise aux Pays-Bas : la bonne base de séjour, la forme juridique, les immatriculations et un guide personnel à travers tout cela.',
+        'Créer une entreprise aux Pays-Bas en tant qu’entrepreneur étranger : le permis de séjour d’indépendant, ses conditions, la façon dont l’IND et la RVO évaluent votre plan, et nos honoraires.',
       eyebrow: 'Entrepreneuriat',
       intro: [
-        'Les Pays-Bas sont l’un des endroits les plus faciles d’Europe pour faire des affaires et l’un des plus déroutants pour créer une entreprise en tant qu’étranger, car la question du séjour et la question de la société doivent être résolues ensemble. La bonne forme juridique dépend de votre voie de visa, et votre voie de visa dépend de ce que vous bâtissez.',
-        'Nous dénouons ce nœud dès la toute première conversation. Vous recevez une feuille de route unique couvrant votre base de séjour, votre structure de société et vos premières immatriculations, plus une ligne WhatsApp directe vers nous à toute heure pendant que vous l’exécutez.',
+        'Les Pays-Bas comptent parmi les bases les plus attractives d’Europe pour les entrepreneurs internationaux : une économie stable, d’excellentes infrastructures et un accès direct au marché européen. Créer une entreprise ici en tant que ressortissant hors UE va au-delà de l’immatriculation, car dans la plupart des cas il faut aussi un permis de séjour en tant qu’entrepreneur indépendant.',
+        'Nous accompagnons les fondateurs sur tout le processus, de la stratégie d’immigration et du plan d’affaires jusqu’à la demande de permis de séjour, puis sur le concret : immatriculation de la société, adresse et installation.',
       ],
       cardText: 'Une feuille de route unique pour votre base de séjour, votre structure et vos premières immatriculations.',
       forWho: {
-        title: 'Qui commence ici',
+        title: 'Qui peut créer une entreprise aux Pays-Bas',
         items: [
-          'Entrepreneurs hors UE qui ont besoin à la fois d’un permis et d’une société',
-          'Citoyens de l’UE qui peuvent commencer immédiatement mais veulent un montage bien fait',
-          'Freelances et consultants apportant une activité existante aux Pays-Bas',
+          'Ressortissants hors UE et hors EEE qui veulent créer ou exploiter une entreprise ici',
+          'Indépendants et consultants qui transfèrent une activité existante aux Pays-Bas',
+          'Citoyens de l’UE qui peuvent démarrer immédiatement mais veulent une structure bien posée',
           'Fondateurs qui hésitent encore entre les Pays-Bas et d’autres bases européennes',
+        ],
+      },
+      conditions: {
+        title: 'Conditions clés du permis de séjour entrepreneur',
+        intro:
+          'Les demandes sont évaluées sur la valeur économique de l’entreprise pour les Pays-Bas. Les demandeurs doivent en général démontrer :',
+        items: [
+          'un plan d’affaires professionnel et viable',
+          'une expérience entrepreneuriale ou professionnelle pertinente',
+          'des ressources financières suffisantes',
+          'une inscription à la chambre de commerce néerlandaise (KvK)',
+          'une valeur économique pour l’économie néerlandaise',
         ],
       },
       included: {
@@ -62,11 +74,40 @@ export const business: SectionContent = {
         ],
       },
       process: {
-        title: 'De l’idée à l’ouverture',
+        title: 'Notre méthode de travail',
         steps: [
-          { title: 'Session stratégique', text: 'Un entretien couvrant votre activité, votre nationalité et votre famille. Vous repartez avec la route décidée.' },
-          { title: 'Permis et formalités', text: 'Nous menons la demande d’immigration et la constitution de la société en parallèle chaque fois que possible.' },
-          { title: 'Portes ouvertes', text: 'Immatriculé, bancarisé, assuré et logé. Vous commencez à facturer pendant que nous finissons les derniers détails.' },
+          { title: 'Première évaluation d’immigration', text: 'Nous évaluons vos projets et déterminons la voie d’immigration la plus adaptée à votre nationalité et à votre entreprise.' },
+          { title: 'Plan d’affaires et documents', text: 'Nous aidons à préparer le plan d’affaires et les pièces justificatives sur lesquelles repose l’évaluation.' },
+          { title: 'Demande de permis de séjour', text: 'Nous préparons et déposons la demande auprès de l’IND, la création de la société avançant en parallèle lorsque c’est possible.' },
+          { title: 'Suivi de la demande', text: 'Nous suivons le dossier et répondons aux questions des autorités en votre nom.' },
+        ],
+      },
+      fees: {
+        title: 'Honoraires pour une demande de permis entrepreneur',
+        amount: 'à partir de 2 450 à 3 500 euros',
+        includes: [
+          'Conseil et stratégie d’immigration',
+          'Préparation de la demande',
+          'Revue des documents',
+          'Communication avec l’IND',
+        ],
+        note: 'Les taxes perçues par l’IND ne sont pas incluses. La position de votre dossier dans cette fourchette dépend de la complexité de l’entreprise et de la présence ou non de membres de la famille dans la demande.',
+      },
+      details: {
+        title: 'Comment votre demande est évaluée',
+        items: [
+          {
+            q: 'Qui décide, et sur quels critères ?',
+            a: 'L’Agence néerlandaise pour l’entreprise (RVO) conseille le service de l’immigration et de la naturalisation (IND) avant la décision finale. L’évaluation porte sur votre parcours et votre expérience professionnels, la qualité et la faisabilité du plan d’affaires, la valeur économique de l’entreprise et son potentiel d’innovation ou d’emploi.',
+          },
+          {
+            q: 'Quel type d’entreprise est vu favorablement ?',
+            a: 'Les entreprises qui contribuent à l’innovation, à l’emploi ou à une activité économique réelle aux Pays-Bas. Un plan qui ressemble à une formalité pour obtenir un séjour, sans marché, sans clients et sans capital, est la cause la plus fréquente de refus.',
+          },
+          {
+            q: 'Quelle forme juridique choisir ?',
+            a: 'L’eenmanszaak est plus légère et moins coûteuse, la BV limite la responsabilité et convient à la croissance et aux investisseurs. La bonne réponse dépend de votre situation fiscale et de la manière dont la voie choisie traite vos revenus, nous conseillons donc au cas par cas.',
+          },
         ],
       },
       faq: {
@@ -74,26 +115,32 @@ export const business: SectionContent = {
         items: [
           {
             q: 'Puis-je créer une entreprise néerlandaise sans vivre aux Pays-Bas ?',
-            a: 'Vous pouvez détenir une société néerlandaise depuis l’étranger, mais la diriger sur place en tant que ressortissant hors UE exige une base de séjour. Nous vous aidons à décider si vous devez vraiment déménager, et si oui, avec quel permis.',
+            a: 'Vous pouvez détenir une société néerlandaise depuis l’étranger, mais l’exploiter sur place en tant que ressortissant hors UE exige une base de séjour. Nous vous aidons à décider si vous devez vraiment déménager, et si oui, avec quel permis.',
           },
           {
             q: 'Ai-je besoin d’un associé néerlandais ?',
-            a: 'Non. Les Pays-Bas n’exigent ni actionnaires ni administrateurs locaux pour la plupart des structures. Votre société peut être entièrement la vôtre.',
+            a: 'Non. Les Pays-Bas n’exigent pas d’actionnaires ou de dirigeants locaux pour la plupart des structures. Votre société peut être entièrement à vous.',
           },
           {
-            q: 'Combien de temps avant de pouvoir réellement commercer ?',
-            a: 'Pour les citoyens de l’UE, quelques jours. Pour les fondateurs hors UE, le permis dicte le rythme, et nous confirmons les délais IND en vigueur lors de votre entretien pour que votre date de lancement soit réaliste dès le premier jour.',
+            q: 'Combien de temps avant de pouvoir réellement exercer ?',
+            a: 'Pour les citoyens de l’UE, quelques jours. Pour les fondateurs hors UE, le permis dicte le rythme, et nous confirmons les délais actuels de l’IND lors du premier entretien pour que votre date de lancement soit réaliste dès le départ.',
+          },
+          {
+            q: 'Existe-t-il une voie plus simple pour les Américains ou les start-up innovantes ?',
+            a: 'Oui. Les Américains peuvent généralement demander au titre du traité DAFT, et les fondateurs porteurs d’un concept innovant peuvent utiliser le visa start-up. Les deux évitent l’évaluation économique complète, et nous vérifions dès le premier entretien laquelle des trois voies vous convient vraiment.',
           },
         ],
       },
       cta: {
-        title: 'Votre entreprise a sa place ici',
-        text: 'Décrivez votre activité en deux phrases. Nous reviendrons avec la route, la structure et les trois premières étapes.',
-        label: 'Tracer ma route',
+        title: 'Créez votre entreprise aux Pays-Bas',
+        text: 'Décrivez votre entreprise en deux phrases. Nous revenons vers vous avec la voie, la structure et les trois premières étapes.',
+        label: 'Tracer mon parcours',
       },
       form: 'immigration',
-      image: '/images/start-business.jpg',
-      imageAlt: 'Entrepreneuse ouvrant la porte de son nouvel espace de bureau',
+      image: '/images/start-business.jpg?v=20260731',
+      imageAlt: 'Fondateur dans un espace de travail design aux Pays-Bas',
+      image2: '/images/business-plan.jpg',
+      image2Alt: 'Entrepreneuse examinant son plan d’affaires avec une conseillère',
     },
     {
       slug: 'company-registration-netherlands',
@@ -151,6 +198,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'Si votre permis de séjour est encore en cours d’instruction, l’ordre des opérations compte : certaines étapes peuvent avancer avant l’arrivée et d’autres non. Nous planifions la séquence autour de votre calendrier d’immigration.',
+      conditions: {
+        title: 'Ce qu\'exige la constitution',
+        intro:
+          'La forme juridique choisie la première semaine détermine pour des années votre fiscalité, votre responsabilité et votre crédibilité auprès des interlocuteurs néerlandais.',
+        items: [
+          'Une BV exige un notaire et un acte constitutif. Une entreprise individuelle et une VOF non.',
+          'Le capital social d\'une BV peut être d\'un euro, le capital n\'est donc plus la raison de choisir une forme.',
+          'Toute société a besoin d\'une adresse commerciale néerlandaise. Une boîte postale est refusée par la KvK.',
+          'Dirigeants et associés sont identifiés au titre des règles UBO, et le bénéficiaire effectif est inscrit dans un registre distinct.',
+          'L\'immatriculation à la TVA découle automatiquement de l\'inscription à la KvK, et le fisc délivre le numéro séparément.',
+          'Pour un ressortissant hors UE, un titre de séjour est un préalable à toute activité ici, et la société ne peut s\'y substituer.',
+        ],
+      },
+      details: {
+        title: 'Choisir la bonne structure',
+        items: [
+          {
+            q: 'BV ou entreprise individuelle ?',
+            a:
+              'L\'entreprise individuelle est plus rapide, moins coûteuse et imposée à l\'impôt sur le revenu avec des déductions d\'entrepreneur, mais votre responsabilité est personnelle. La BV sépare votre responsabilité, inspire davantage confiance aux clients et banques néerlandais, et devient fiscalement intéressante dès que les bénéfices comptent. La plupart des consultants commencent en individuel et convertissent quand les chiffres justifient le notaire.',
+          },
+          {
+            q: 'Combien de temps prend une BV ?',
+            a:
+              'Généralement une à trois semaines. Le notaire a besoin d\'une identification, de la structure envisagée et d\'une vérification du nom, et l\'inscription à la KvK suit l\'acte. Si des associés sont à l\'étranger, les procurations légalisées ajoutent du délai, nous commençons donc par elles.',
+          },
+          {
+            q: 'Puis-je constituer avant d\'avoir un titre de séjour ?',
+            a:
+              'Vous pouvez détenir des parts dans une société néerlandaise depuis l\'étranger, mais y travailler aux Pays-Bas exige le bon titre. Monter la société d\'abord et penser au séjour ensuite est la séquence qui cause la plupart des problèmes que nous réparons.',
+          },
+          {
+            q: 'Et l\'adresse d\'établissement ?',
+            a:
+              'Ce doit être une adresse réelle où la société est effectivement joignable, et la KvK comme les banques le vérifient désormais. Les offres de domiciliation varient énormément quant à leur capacité à passer ce contrôle, et nous vous orientons vers des prestataires qui y résistent.',
+          },
+        ],
+      },
       faq: {
         title: 'Avant de constituer',
         items: [
@@ -176,6 +261,8 @@ export const business: SectionContent = {
       form: 'immigration',
       image: '/images/business-signing.jpg?v=20260728',
       imageAlt: 'Fondateur signant des actes de constitution chez un notaire néerlandais',
+      image2: '/images/kvk-registration.jpg?v=20260731',
+      image2Alt: 'Entrepreneuse et conseiller examinant des documents d\'entreprise',
     },
     {
       slug: 'kvk-registration-for-foreigners-netherlands',
@@ -229,6 +316,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'Si vous n’avez pas encore de BSN, l’inscription reste possible dans bien des situations, mais la voie diffère. Mentionnez-le quand vous nous contactez et nous planifierons en conséquence.',
+      conditions: {
+        title: 'Ce que la KvK attend de vous',
+        intro:
+          'Le rendez-vous à la Chambre de commerce est court et sans indulgence. Tout se joue sur ce que vous apportez.',
+        items: [
+          'Les rendez-vous se réservent à l\'avance, et en période chargée le délai peut atteindre plusieurs semaines.',
+          'Il vous faut un passeport ou une pièce d\'identité valable, un BSN, et un justificatif de votre adresse commerciale néerlandaise.',
+          'Les ressortissants hors UE doivent présenter un titre de séjour autorisant l\'activité indépendante.',
+          'L\'adresse commerciale doit être une adresse réelle. Une boîte postale sera refusée.',
+          'Vous choisissez à l\'inscription des codes d\'activité SBI, et ceux-ci vous suivent en banque, en assurance et en traitement TVA.',
+          'L\'inscription coûte des frais uniques, et vos données entrent au registre du commerce public.',
+        ],
+      },
+      details: {
+        title: 'Réussir l\'inscription',
+        items: [
+          {
+            q: 'Pourquoi les codes SBI comptent-ils autant ?',
+            a:
+              'Ils décrivent ce que fait votre société, et banques, assureurs et fisc les lisent tous. Un code évoquant une activité plus risquée peut ralentir ou bloquer un compte professionnel, et un code trop étroit complique la facturation ensuite. Nous les choisissons délibérément avec vous plutôt que d\'attraper le plus proche au guichet.',
+          },
+          {
+            q: 'Puis-je m\'inscrire sans adresse néerlandaise ?',
+            a:
+              'Non, et c\'est la raison la plus fréquente d\'échec. Il vous faut une adresse où l\'entreprise est effectivement joignable. Nous organisons des adresses commerciales conformes pour les clients encore en recherche de logement, afin que la société démarre pendant que la recherche se poursuit.',
+          },
+          {
+            q: 'Assistez-vous au rendez-vous ?',
+            a:
+              'Oui. Le rendez-vous se déroule en néerlandais, des décisions difficiles à défaire ensuite se prennent au guichet, et avoir à ses côtés quelqu\'un qui comprend chaque question fait la différence entre un rendez-vous et trois.',
+          },
+          {
+            q: 'Que se passe-t-il juste après ?',
+            a:
+              'Vous recevez votre numéro KvK le jour même et votre numéro de TVA peu après, du fisc. Viennent ensuite la banque professionnelle, la comptabilité, la facturation et, le cas échéant, le régime TVA des petites entreprises. Nous parcourons cette séquence avec vous plutôt que de vous laisser avec un extrait.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions KvK',
         items: [
@@ -252,8 +377,10 @@ export const business: SectionContent = {
         label: 'Réserver mon inscription KvK',
       },
       form: 'immigration',
-      image: '/images/kvk-registration.jpg',
-      imageAlt: 'Entrepreneur recevant un extrait d’immatriculation de société à un guichet',
+      image: '/images/kvk-registration.jpg?v=20260731',
+      image2: '/images/business-plan.jpg?v=20260731',
+      image2Alt: 'Entrepreneurs travaillant sur un plan d’affaires',
+      imageAlt: 'Entrepreneuse et conseiller examinant des documents d\'entreprise',
     },
     {
       slug: 'relocation-services-for-entrepreneurs-netherlands',
@@ -306,6 +433,44 @@ export const business: SectionContent = {
           { title: 'Installé', text: 'Vous êtes inscrit, logé, bancarisé et opérationnel, et votre famille sait où est la bonne boulangerie.' },
         ],
       },
+      conditions: {
+        title: 'Comment les pièces s\'emboîtent',
+        intro:
+          'Les fondateurs mènent quatre processus de front, et chacun dépend d\'un autre. La séquence est toute la prestation.',
+        items: [
+          'Une base de séjour doit exister avant que l\'entreprise puisse être exploitée depuis les Pays-Bas, quoi que dise l\'inscription au registre.',
+          'L\'inscription à votre adresse produit le BSN, et sans lui ni la société ni votre rémunération ne fonctionnent correctement.',
+          'Les bailleurs jugent les entrepreneurs sur le patrimoine et les comptes plutôt que sur les bulletins de paie, le dossier locatif se construit donc autrement.',
+          'L\'ouverture d\'un compte professionnel pour une société récente avec un fondateur étranger prend plus de temps qu\'un compte privé et est refusée plus souvent.',
+          'L\'assurance maladie est obligatoire dès l\'arrivée pour vous et votre famille, quelle que soit la structure de la société.',
+          'Nous coordonnons le titre, la société et le déménagement. La fiscalité et la comptabilité relèvent de conseillers auxquels nous vous présentons.',
+        ],
+      },
+      details: {
+        title: 'Les problèmes propres aux fondateurs',
+        items: [
+          {
+            q: 'Pourquoi la banque professionnelle est-elle si difficile ?',
+            a:
+              'Les banques néerlandaises appliquent des règles d\'entrée en relation strictes aux sociétés nouvellement constituées avec fondateur non résident, et les demandes sont refusées pour des motifs jamais pleinement explicités. Ce qui fonctionne : une description d\'activité claire, des codes SBI cohérents, une véritable adresse néerlandaise, la preuve de clients envisagés et un fondateur déjà inscrit. Nous préparons cela plutôt que de le découvrir.',
+          },
+          {
+            q: 'Comment louer sans bulletins de paie néerlandais ?',
+            a:
+              'Avec un dossier différent. Les bailleurs acceptent les entrepreneurs sur la base de comptes annuels, de relevés bancaires, d\'un patrimoine, d\'un dépôt plus élevé ou d\'une garantie bancaire, parfois d\'une garantie personnelle de la BV. Nous construisons ce dossier correctement et le présentons en néerlandais, ce qui transforme un refus en visite.',
+          },
+          {
+            q: 'Que faut-il faire en premier ?',
+            a:
+              'L\'évaluation migratoire, toujours. Tout le reste peut être réordonné, mais bâtir une entreprise sur une base de séjour inexistante est irrécupérable. Une fois la voie confirmée, société, logement et questions familiales avancent en parallèle.',
+          },
+          {
+            q: 'Travaillez-vous avec mon comptable ?',
+            a:
+              'Volontiers, et nous le préférons. Si vous n\'avez pas encore de conseiller néerlandais, nous vous présentons des comptables habitués aux fondateurs internationaux, qui maîtrisent la règle des 30 pour cent, la facturation transfrontalière et les règles de rémunération du dirigeant.',
+          },
+        ],
+      },
       faq: {
         title: 'Ce que demandent les entrepreneurs',
         items: [
@@ -329,8 +494,10 @@ export const business: SectionContent = {
         label: 'Lancer mon plan de relocation',
       },
       form: 'immigration',
-      image: '/images/entrepreneur-relocation.jpg',
-      imageAlt: 'Fondateur portant un carton et un ordinateur portable dans un nouveau bureau',
+      image: '/images/entrepreneur-relocation.jpg?v=20260731',
+      imageAlt: 'Entrepreneur arrivant devant un immeuble moderne aux Pays-Bas',
+      image2: '/images/start-business.jpg?v=20260731',
+      image2Alt: 'Fondateur dans un espace de travail design aux Pays-Bas',
     },
     {
       slug: 'business-relocation-to-the-netherlands',
@@ -387,6 +554,44 @@ export const business: SectionContent = {
           { title: 'Faire atterrir l’équipe', text: 'Les arrivées sont échelonnées et accompagnées, les inscriptions bouclées, et votre implantation néerlandaise ouvre avec ses équipes au complet.' },
         ],
       },
+      conditions: {
+        title: 'Ce qu\'implique un transfert d\'entreprise',
+        intro:
+          'Déplacer une entité est un projet avec un chemin critique, et le volet migratoire s\'y trouve presque toujours.',
+        items: [
+          'Le statut de sponsor reconnu par l\'IND est requis avant tout dépôt d\'une demande pour un travailleur hautement qualifié, et cette reconnaissance prend elle-même des semaines.',
+          'Les sponsors reconnus acceptent des obligations continues d\'information, d\'administration et de diligence, et sont contrôlés sur ces points.',
+          'Chaque salarié muté a son propre dossier, et chaque famille accompagnante multiplie le travail documentaire.',
+          'Les seuils de salaire s\'appliquent par salarié et sont indexés chaque année, ce qui affecte le budget des offres faites en fin d\'année.',
+          'Le détachement depuis une autre entité de l\'UE relève d\'un régime distinct avec sa propre obligation de déclaration, et non d\'une version allégée du même.',
+          'Nous prenons en charge l\'immigration, le logement et l\'installation des familles. Fiscalité des sociétés, prix de transfert et structuration juridique restent chez vos conseils.',
+        ],
+      },
+      details: {
+        title: 'Bien conduire le projet',
+        items: [
+          {
+            q: 'Quand faut-il commencer ?',
+            a:
+              'Quatre à six mois avant la première arrivée si le statut de sponsor n\'est pas encore acquis. Reconnaissance, titres, logement et écoles ont chacun leur délai, et la seule façon de comprimer le total est de les mener simultanément à partir d\'un démarrage suffisamment précoce.',
+          },
+          {
+            q: 'À quoi nous engage le statut de sponsor reconnu ?',
+            a:
+              'À tenir un dossier par salarié parrainé, à informer l\'IND des changements pertinents sous quatre semaines, et à prendre raisonnablement soin de l\'installation du salarié. L\'IND contrôle. Nous organisons l\'administration pour qu\'un contrôle soit une formalité et non un événement.',
+          },
+          {
+            q: 'Pouvez-vous gérer plusieurs familles à la fois ?',
+            a:
+              'Oui, et cela représente une grande part de notre activité. Chaque famille a sa conseillère et son plan, tandis que les RH disposent d\'un interlocuteur unique et d\'une vue d\'ensemble plutôt que de quinze fils de courriels.',
+          },
+          {
+            q: 'Qu\'est-ce qui pousse réellement les gens à repartir en moins d\'un an ?',
+            a:
+              'Rarement le poste. C\'est le conjoint qui n\'a pas trouvé de travail, l\'enfant qui ne s\'est jamais senti à sa place à l\'école, ou un logement qui n\'est jamais devenu un foyer. Ce sont des échecs de relocation et non de RH, et ce sont précisément ceux que l\'on nous engage à éviter.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions des RH et de la direction',
         items: [
@@ -410,8 +615,134 @@ export const business: SectionContent = {
         label: 'Discuter de notre projet d’entreprise',
       },
       form: 'immigration',
-      image: '/images/business-relocation.jpg',
-      imageAlt: 'Équipe transportant des caisses dans un immeuble de bureaux moderne',
+      image: '/images/business-relocation.jpg?v=20260731',
+      imageAlt: 'Équipe de direction internationale dans une salle de conseil à Rotterdam',
+      image2: '/images/employer-team.jpg?v=20260731',
+      image2Alt: 'Réunion d’équipe internationale dans un bureau néerlandais',
+    },
+    {
+      slug: 'employer-immigration-services-netherlands',
+      menuLabel: 'Immigration pour employeurs',
+      title: 'Services d’immigration pour employeurs aux Pays-Bas',
+      metaTitle: 'Services d’immigration pour employeurs Pays-Bas | Recruter hors UE',
+      metaDescription:
+        'Services d’immigration pour employeurs aux Pays-Bas : demandes migrant hautement qualifié et carte bleue européenne, agrément IND, détachement et revue de dossier.',
+      eyebrow: 'Pour les employeurs',
+      intro: [
+        'Recruter des talents internationaux est souvent essentiel, et embaucher des salariés hors UE aux Pays-Bas est rarement simple. Cela implique des procédures d’immigration, des obligations de conformité et une coordination avec l’IND, l’inspection du travail néerlandaise et, dans certains cas, l’UWV.',
+        'Nous assistons les employeurs dans les procédures d’immigration néerlandaises pour leurs collaborateurs internationaux, d’un recrutement de spécialiste unique à une stratégie de main-d’œuvre de long terme. L’objectif est un processus prévisible et maîtrisable, pour l’entreprise comme pour la personne qui déménage.',
+      ],
+      cardText: 'Procédures d’immigration, agrément et conformité pour les entreprises qui recrutent à l’international.',
+      forWho: {
+        title: 'Avec qui nous travaillons',
+        items: [
+          'Entreprises néerlandaises qui recrutent des spécialistes hors Union européenne',
+          'Employeurs qui transfèrent du personnel d’un bureau étranger vers les Pays-Bas',
+          'Responsables RH et mobilité qui veulent un interlocuteur local responsable',
+          'Entreprises qui envisagent l’agrément IND en tant que sponsor reconnu',
+          'Organisations qui détachent temporairement des salariés ici pour des projets',
+        ],
+      },
+      conditions: {
+        title: 'Ce dont les employeurs doivent tenir compte',
+        intro:
+          'Chaque voie d’immigration a ses propres exigences, obligations documentaires et seuils salariaux. Avant de confirmer un recrutement, il faut savoir que :',
+        items: [
+          'un salarié hors UE a besoin d’une base de séjour avant de commencer à travailler',
+          'les seuils salariaux diffèrent selon la voie et sont fixés par catégorie',
+          'les sponsors reconnus assument des obligations de conformité permanentes envers l’IND',
+          'les sponsors doivent démontrer fiabilité, stabilité financière et administration rigoureuse',
+          'le détachement peut déclencher des obligations de notification en droit du travail néerlandais',
+          'les délais d’immigration influencent la planification des recrutements et les dates d’entrée',
+        ],
+      },
+      included: {
+        title: 'Comment nous accompagnons les employeurs',
+        blocks: [
+          {
+            title: 'Choix de la voie d’immigration',
+            text: 'Permis de migrant hautement qualifié, carte bleue européenne, permis unique de séjour et de travail (GVVA), diplômés de l’année d’orientation passant à un emploi, et transferts intragroupe. Nous déterminons celle qui convient réellement au poste et au candidat.',
+          },
+          {
+            title: 'Demandes pour vos salariés',
+            text: 'Nous préparons les demandes d’immigration, coordonnons les documents pour le dépôt auprès de l’IND et conseillons sur des délais réalistes pour la planification du déménagement.',
+          },
+          {
+            title: 'Agrément IND comme sponsor reconnu',
+            text: 'Nous préparons les demandes d’agrément, conseillons sur l’éligibilité et les documents, examinons vos procédures administratives internes et vous maintenons conformes aux obligations de sponsor.',
+          },
+          {
+            title: 'Détachement aux Pays-Bas',
+            text: 'Nous examinons les scénarios de détachement, conseillons sur la voie applicable, traitons les demandes de séjour ou de permis de travail et veillons au respect des obligations de notification.',
+          },
+          {
+            title: 'Stratégie d’immigration',
+            text: 'Nous conseillons sur la structuration du recrutement international, la planification du déménagement et de l’intégration, l’alignement avec les contrats de travail et la maîtrise des risques de conformité.',
+          },
+          {
+            title: 'Revue de dossier',
+            text: 'En cas de refus, de changement de statut ou de doute sur l’éligibilité, nous analysons la situation en détail et exposons les options réalistes et les prochaines étapes avant d’engager une nouvelle demande.',
+          },
+        ],
+      },
+      process: {
+        title: 'Comment se déroule une mission employeur',
+        steps: [
+          { title: 'Cadrage', text: 'Nous recensons les postes, les nationalités concernées, les échéances et la situation de conformité de votre entreprise.' },
+          { title: 'Voie et documents', text: 'La voie d’immigration adaptée est confirmée pour chaque salarié et les documents sont préparés pour le dépôt.' },
+          { title: 'Dépôt et échanges', text: 'Les demandes partent à l’IND et nous gérons la correspondance, y compris les questions et demandes complémentaires.' },
+          { title: 'Arrivée et installation', text: 'Les salariés et leurs familles sont accompagnés pour l’inscription, le logement et le concret de l’arrivée.' },
+        ],
+      },
+      note: 'Nous sommes une agence boutique, ce qui est autant une limite assumée qu’une promesse. Nous acceptons le volume que nous pouvons suivre personnellement, et nous le disons franchement quand une demande le dépasse.',
+      details: {
+        title: 'Détails pour les équipes RH et mobilité',
+        items: [
+          {
+            q: 'Qu’apporte l’agrément comme sponsor reconnu ?',
+            a: 'Les entreprises qui recrutent régulièrement des professionnels internationaux peuvent devenir sponsor reconnu auprès de l’IND. Cela apporte des procédures plus rapides, des demandes simplifiées et plus de souplesse. En contrepartie, l’entreprise accepte des obligations de conformité permanentes et doit pouvoir démontrer fiabilité, stabilité financière et procédures administratives correctes.',
+          },
+          {
+            q: 'Quand les règles de détachement s’appliquent-elles ?',
+            a: 'Lorsqu’une entreprise internationale envoie temporairement des salariés ici pour un projet, une mission ou un transfert intragroupe. Selon la situation, les règles européennes de détachement, les exigences de permis de travail, les exigences de séjour pour les salariés hors UE et les obligations de notification néerlandaises peuvent s’appliquer simultanément. Une planification soignée évite les retards et les risques de conformité.',
+          },
+          {
+            q: 'Quand une revue de dossier est-elle utile ?',
+            a: 'Lorsqu’une demande a été refusée, lorsqu’un salarié change de statut ou passe d’une catégorie de visa à une autre, lorsque l’éligibilité est réellement incertaine, ou lorsqu’un sponsor reconnu a une question de conformité. La revue vous donne une analyse de la situation, des risques et obstacles, des options disponibles et une recommandation d’étape suivante.',
+          },
+          {
+            q: 'Travaillez-vous avec nos conseils juridiques et fiscaux ?',
+            a: 'Oui, et nous le préférons. Nous prenons en charge le volet immigration et le volet humain du déménagement, et nous nous insérons dans la structure conçue par vos conseils.',
+          },
+        ],
+      },
+      faq: {
+        title: 'Questions des employeurs',
+        items: [
+          {
+            q: 'À quel moment devons-nous vous impliquer dans un recrutement ?',
+            a: 'Idéalement avant la signature du contrat. La voie d’immigration influence le salaire, la date d’entrée et parfois la faisabilité même du recrutement, et ce sont des découvertes coûteuses après coup.',
+          },
+          {
+            q: 'Accompagnez-vous aussi le salarié et sa famille ?',
+            a: 'Oui. Logement, recherche d’école, inscription en mairie et installation font partie de notre travail, et ce sont généralement ces éléments qui déterminent si un recrutement dure au-delà de la première année.',
+          },
+          {
+            q: 'Pouvez-vous aider une entreprise pas encore établie aux Pays-Bas ?',
+            a: 'Oui. Nous mettons en place l’entité néerlandaise et le volet immigration ensemble, dans l’ordre qui permet à chaque étape de débloquer la suivante.',
+          },
+        ],
+      },
+      cta: {
+        title: 'Vous recrutez des talents internationaux ?',
+        text: 'Indiquez-nous le poste, la nationalité et la date d’entrée visée. Nous revenons avec la voie, le calendrier et ce que votre entreprise doit avoir en place.',
+        label: 'Parler de nos recrutements',
+      },
+      form: 'immigration',
+      image: '/images/employer-immigration.jpg',
+      imageAlt: 'Conseillère RH et responsable discutant d’un recrutement international',
+      image2: '/images/employer-team.jpg',
+      image2Alt: 'Équipe internationale travaillant ensemble dans un bureau néerlandais',
     },
     {
       slug: 'housing-support-for-entrepreneurs-netherlands',
@@ -465,6 +796,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'Un logement temporaire peut faire le pont pendant la recherche, mais toutes les adresses de courte durée ne permettent pas l’inscription communale. Nous signalons cette distinction avant que vous ne vous engagiez à quoi que ce soit.',
+      conditions: {
+        title: 'Louer sans bulletins de paie',
+        intro:
+          'Les bailleurs néerlandais sont faits pour lire des contrats de travail. Tout ce qui suit vise à leur donner quelque chose qu\'ils sachent lire.',
+        items: [
+          'Les bailleurs veulent généralement un revenu brut de trois à quatre fois le loyer, et chez les entrepreneurs ils en cherchent l\'équivalent en comptes et en patrimoine.',
+          'Les sociétés récemment créées n\'ont pas d\'antécédents, c\'est donc la situation personnelle du fondateur qui porte le dossier.',
+          'Attendez-vous à des demandes de comptes annuels, d\'un an de relevés bancaires, d\'une attestation d\'expert-comptable ou d\'une garantie bancaire.',
+          'Les dépôts sont plafonnés à deux mois de loyer nu pour les contrats signés depuis le 1er juillet 2023, et un dépôt supérieur ne peut être exigé à la place.',
+          'Une garantie de votre BV ou une garantie personnelle est souvent acceptée là où les documents seuls ne suffisent pas.',
+          'Nous agissons pour vous et non pour le bailleur, et ne percevons de commission d\'aucune des deux parties.',
+        ],
+      },
+      details: {
+        title: 'Bâtir un dossier convaincant',
+        items: [
+          {
+            q: 'Et si ma société vient d\'être créée ?',
+            a:
+              'Alors le dossier repose sur vous et non sur elle. Épargne, revenus de votre pays précédent, contrats clients existants, attestation signée d\'un expert-comptable et garantie bancaire fonctionnent tous. Ce qui ne fonctionne pas, c\'est d\'arriver à une visite avec une explication au lieu de documents.',
+          },
+          {
+            q: 'Une garantie bancaire est-elle courante ici ?',
+            a:
+              'Elle est habituelle et parfaitement respectable pour un entrepreneur. Votre banque bloque un montant, généralement deux à trois mois de loyer, et le bailleur l\'accepte en lieu et place d\'un historique d\'emploi. Cela coûte le plus souvent une commission annuelle modeste et ouvre des biens qui vous refuseraient autrement.',
+          },
+          {
+            q: 'Dois-je dire que je suis indépendant ?',
+            a:
+              'Toujours, et tôt. Les bailleurs qui le découvrent au stade du contrat se retirent. Ceux à qui on le dit dès le départ, avec un dossier soigné présenté en néerlandais, poursuivent en général. Le dissimuler est la façon la plus rapide de perdre un bien déjà gagné.',
+          },
+          {
+            q: 'Puis-je louer un logement et l\'utiliser comme adresse professionnelle ?',
+            a:
+              'Souvent oui, pour une activité de conseil ou de services sans accueil de visiteurs, mais cela dépend du bail et du règlement d\'urbanisme de la commune. Nous vérifions les deux avant que vous n\'inscriviez l\'adresse à la KvK, car revenir en arrière est désagréable.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions logement des entrepreneurs',
         items: [
@@ -490,6 +859,8 @@ export const business: SectionContent = {
       form: 'immigration',
       image: '/images/entrepreneur-housing.jpg',
       imageAlt: 'Loft lumineux mêlant logement et travail avec un bureau près de la fenêtre',
+      image2: '/images/rental-contract.jpg?v=20260731',
+      image2Alt: 'Signature d\'un bail néerlandais au stylo plume',
     },
   ],
   crossLinks: [

@@ -10,7 +10,7 @@ export const vip: VipContent = {
     'Künstler mit Tourneeplänen. Sportler zwischen zwei Saisons. Führungskräfte mit einem freien Wochenende und Gründer ohne ein einziges. Unsere VIP-Pakete existieren für Menschen, deren Kalender sich nicht biegen lässt, also biegen sich stattdessen die Niederlande.',
     'Jedes Paket führt Johanna persönlich: Termine gebündelt, Türen im Voraus geöffnet, und eine 24/7-Nummer, an der die Person antwortet, die Ihre Akte kennt, kein Service-Desk.',
   ],
-  image: '/images/vip-hub.jpg',
+  image: '/images/vip-hub.jpg?v=20260731',
   imageAlt: 'Gastgeber begrüßt ein mit dem Auto ankommendes Paar vor einem Hotel an der Gracht',
   pricingNote: {
     title: 'Was ein Paket kostet, und warum',
@@ -150,7 +150,7 @@ export const vip: VipContent = {
         text: 'Erzählen Sie uns von Ihrem Haushalt und Ihren Terminen. Wir gestalten die Ankunft um das Schuljahr herum.',
         label: 'VIP-Anfrage starten',
       },
-      image: '/images/vip-family.jpg?v=20260728',
+      image: '/images/vip-family.jpg?v=20260731',
       imageAlt: 'Familie kommt im Abendlicht an einer niederländischen Villa an',
     },
     {
@@ -214,7 +214,7 @@ export const vip: VipContent = {
         text: 'Nennen Sie uns Ihre Pläne und Ihr Zeitfenster. Wir kommen mit einer Abfolge und einem festen Angebot zurück.',
         label: 'VIP-Anfrage starten',
       },
-      image: '/images/vip-business.jpg?v=20260728',
+      image: '/images/vip-business.jpg?v=20260731',
       imageAlt: 'Führungskraft arbeitet im Fond eines chauffierten Wagens',
     },
     {

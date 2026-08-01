@@ -12,38 +12,82 @@ interface Props {
   /** English base path of the section, e.g. '/immigration'. */
   basePath: string;
   sectionTitle: string;
+  /** Fallback photo for the supporting band when the service has no image2. */
+  sectionImage?: string;
   siblings: { label: string; path: string }[];
 }
-const { lang, service: s, basePath, sectionTitle, siblings } = Astro.props;
+const { lang, service: s, basePath, sectionTitle, sectionImage, siblings } = Astro.props;
 const c = getContent(lang);
 const l = (p: string) => localizePath(p, lang);
+const supportImage = s.image2 ?? sectionImage;
+const supportAlt = s.image2 ? (s.image2Alt ?? '') : '';
 ---
 
 <PageHero eyebrow={s.eyebrow} title={s.title} intro={s.intro} image={s.image} imageAlt={s.imageAlt} />
 
-<!-- Who it is for -->
+<!-- Who it is for, beside a supporting photo -->
 <section class="container-site py-16 md:py-24">
-  <div class="mx-auto grid max-w-4xl gap-10 md:grid-cols-[1fr_1.4fr] md:gap-16">
-    <h2 class="font-display text-3xl">{s.forWho.title}</h2>
-    <ul class="space-y-4">
-      {s.forWho.items.map((item) => (
-        <li class="flex items-start gap-3.5">
-          <span class="mt-1.5 text-gold"><Icon name="check" size={16} /></span>
-          <span class="text-[0.98rem] leading-relaxed">{item}</span>
-        </li>
-      ))}
-    </ul>
+  <div class="grid items-start gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+    <div>
+      <h2 class="font-display text-3xl md:text-4xl">{s.forWho.title}</h2>
+      <span class="gold-rule mt-6"></span>
+      <ul class="mt-8 space-y-4">
+        {s.forWho.items.map((item) => (
+          <li class="flex items-start gap-3.5">
+            <span class="mt-1.5 text-gold"><Icon name="check" size={16} /></span>
+            <span class="text-[0.98rem] leading-relaxed">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    {supportImage && (
+      <img
+        src={supportImage}
+        alt={supportAlt}
+        class="aspect-4/3 w-full rounded-3xl object-cover shadow-card"
+        width="800"
+        height="600"
+        loading="lazy"
+      />
+    )}
   </div>
 </section>
 
+<!-- Eligibility and legal limits: always visible, never folded away -->
+{s.conditions && (
+  <section class="band-sand border-y border-line-warm">
+    <div class="container-site py-16 md:py-20">
+      <div class="grid gap-8 md:grid-cols-[1fr_1.6fr] md:gap-14">
+        <div>
+          <span class="eyebrow">{c.core.ui.misc.conditions}</span>
+          <h2 class="mt-3 font-display text-3xl">{s.conditions.title}</h2>
+          {s.conditions.intro && <p class="mt-4 text-[0.95rem] leading-relaxed">{s.conditions.intro}</p>}
+        </div>
+        <ul class="grid gap-x-10 gap-y-3.5 sm:grid-cols-2">
+          {s.conditions.items.map((item) => (
+            <li class="flex items-start gap-3 border-b border-line-warm pb-3.5">
+              <span class="mt-1.5 shrink-0 text-gold"><Icon name="check" size={15} /></span>
+              <span class="text-[0.94rem] leading-relaxed text-navy">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+)}
+
 <!-- What is included -->
-<section class="border-y border-line bg-ivory">
+<section class:list={['border-y border-line', s.conditions ? 'bg-white' : 'band-sand border-line-warm']}>
   <div class="container-site py-16 md:py-24">
     <h2 class="text-center font-display text-3xl md:text-4xl">{s.included.title}</h2>
     <span class="gold-rule mx-auto mt-6"></span>
-    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div
+      class="grid-balanced mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+      data-layout="cards"
+      data-count={s.included.blocks.length}
+    >
       {s.included.blocks.map((block) => (
-        <div class="card bg-white p-7">
+        <div class="card-capped p-7">
           <h3 class="font-display text-xl">{block.title}</h3>
           <p class="mt-2.5 text-[0.92rem] leading-relaxed">{block.text}</p>
         </div>
@@ -52,34 +96,88 @@ const l = (p: string) => localizePath(p, lang);
   </div>
 </section>
 
-<!-- Process -->
-<section class="container-site py-16 md:py-24">
-  <h2 class="text-center font-display text-3xl md:text-4xl">{s.process.title}</h2>
-  <span class="gold-rule mx-auto mt-6"></span>
-  <ol class="mx-auto mt-12 grid max-w-5xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
-    {s.process.steps.map((step, i) => (
-      <li>
-        <span class="font-display text-4xl text-gold">{String(i + 1).padStart(2, '0')}</span>
-        <h3 class="mt-3 font-display text-lg">{step.title}</h3>
-        <p class="mt-2 text-[0.9rem] leading-relaxed">{step.text}</p>
-      </li>
-    ))}
-  </ol>
-  {s.note && (
-    <p class="mx-auto mt-12 max-w-2xl border-l-2 border-gold bg-ivory px-6 py-4 text-[0.9rem] italic leading-relaxed">
-      {s.note}
-    </p>
-  )}
+<!-- Process, on navy, with the fee panel alongside -->
+<section class="bg-navy">
+  <div class="container-site py-16 md:py-24">
+    <h2 class="text-center font-display text-3xl text-white md:text-4xl">{s.process.title}</h2>
+    <span class="gold-rule mx-auto mt-6"></span>
+    <ol
+      class="grid-balanced mx-auto mt-12 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-4"
+      data-layout="steps"
+      data-count={s.process.steps.length}
+    >
+      {s.process.steps.map((step, i) => (
+        <li class="border-t border-gold/50 pt-5">
+          <span class="font-display text-4xl text-gold">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="mt-3 font-display text-lg text-white">{step.title}</h3>
+          <p class="mt-2 text-[0.9rem] leading-relaxed text-white/75">{step.text}</p>
+        </li>
+      ))}
+    </ol>
+
+    {s.fees && (
+      <div class="card-dark mx-auto mt-14 max-w-4xl p-8 md:p-10">
+        <div class="grid gap-8 md:grid-cols-[1fr_1.3fr] md:gap-12">
+          <div>
+            <span class="eyebrow">{c.core.ui.misc.investment}</span>
+            <h3 class="mt-3 font-display text-2xl text-white">{s.fees.title}</h3>
+            <p class="mt-4 font-display text-3xl text-gold-soft md:text-4xl">{s.fees.amount}</p>
+          </div>
+          <div>
+            <ul class="space-y-2.5">
+              {s.fees.includes.map((item) => (
+                <li class="flex items-start gap-3 text-[0.93rem] leading-relaxed text-white/85">
+                  <span class="mt-1.5 shrink-0 text-gold"><Icon name="check" size={14} /></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p class="mt-5 border-t border-white/15 pt-4 text-[0.85rem] leading-relaxed text-white/60">{s.fees.note}</p>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {s.note && (
+      <p class="mx-auto mt-12 max-w-2xl border-l-2 border-gold pl-6 text-[0.9rem] leading-relaxed text-white/70">
+        {s.note}
+      </p>
+    )}
+  </div>
 </section>
 
+<!-- Secondary detail, folded away so the page stays scannable -->
+{s.details && (
+  <section class="border-b border-line">
+    <div class="container-site py-16 md:py-20">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="font-display text-3xl">{s.details.title}</h2>
+        <div class="mt-8 border-t border-line">
+          {s.details.items.map((item) => (
+            <details class="group border-b border-line">
+              <summary class="flex cursor-pointer items-center justify-between gap-4 py-5 font-medium text-navy [&::-webkit-details-marker]:hidden">
+                <span class="text-[1.02rem]">{item.q}</span>
+                <span class="shrink-0 text-gold transition-transform duration-200 group-open:rotate-180">
+                  <Icon name="chevronDown" size={18} />
+                </span>
+              </summary>
+              <p class="pb-6 text-[0.95rem] leading-relaxed">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
 <!-- FAQ -->
-<section class="border-t border-line">
+<section class="band-sand border-b border-line-warm">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl">
       <h2 class="font-display text-3xl">{s.faq.title}</h2>
-      <div class="mt-8 border-t border-line">
+      <div class="mt-8 border-t border-line-warm">
         {s.faq.items.map((item) => (
-          <details class="group border-b border-line">
+          <details class="group border-b border-line-warm">
             <summary class="flex cursor-pointer items-center justify-between gap-4 py-5 font-medium text-navy [&::-webkit-details-marker]:hidden">
               <span class="text-[1.02rem]">{item.q}</span>
               <span class="shrink-0 text-gold transition-transform duration-200 group-open:rotate-180">
@@ -95,7 +193,7 @@ const l = (p: string) => localizePath(p, lang);
 </section>
 
 <!-- CTA + tailored form -->
-<section class="border-t border-line bg-ivory" id="inquiry">
+<section id="inquiry">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl text-center">
       <h2 class="font-display text-3xl md:text-4xl">{s.cta.title}</h2>
@@ -108,20 +206,22 @@ const l = (p: string) => localizePath(p, lang);
 </section>
 
 <!-- Other services in this section -->
-<section class="container-site py-14 md:py-20">
-  <p class="eyebrow eyebrow-navy text-center">{c.core.ui.misc.otherServices}</p>
-  <h2 class="mt-3 text-center font-display text-2xl">{sectionTitle}</h2>
-  <div class="mx-auto mt-8 flex max-w-4xl flex-wrap justify-center gap-3">
-    {siblings.map((sib) => (
-      <a
-        href={l(sib.path)}
-        class="rounded-full border border-line px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-navy transition-colors hover:border-gold hover:text-gold"
-      >
-        {sib.label}
+<section class="band-sand border-t border-line-warm">
+  <div class="container-site py-14 md:py-20">
+    <p class="eyebrow eyebrow-navy text-center">{c.core.ui.misc.otherServices}</p>
+    <h2 class="mt-3 text-center font-display text-2xl">{sectionTitle}</h2>
+    <div class="mx-auto mt-8 flex max-w-4xl flex-wrap justify-center gap-3">
+      {siblings.map((sib) => (
+        <a
+          href={l(sib.path)}
+          class="rounded-full border border-line bg-white px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-navy transition-colors hover:border-gold hover:text-gold"
+        >
+          {sib.label}
+        </a>
+      ))}
+      <a href={l(basePath)} class="rounded-full border border-navy bg-navy px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-white transition-colors hover:bg-navy-2">
+        {c.core.ui.cta.allServices}
       </a>
-    ))}
-    <a href={l(basePath)} class="rounded-full border border-navy bg-navy px-5 py-2.5 text-[0.8rem] tracking-[0.06em] text-white transition-colors hover:bg-navy-2">
-      {c.core.ui.cta.allServices}
-    </a>
+    </div>
   </div>
 </section>

@@ -73,6 +73,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Lo que trabajar en Europoort supone para su mudanza',
+        intro:
+          'El puerto fija las condiciones. Vivienda, empadronamiento y vida familiar se adaptan a la puerta y al turno.',
+        items: [
+          'El trayecto a Europoort dura entre cuarenta y cinco y setenta minutos desde el centro de Róterdam, y entre veinte y treinta desde Hoogvliet, Spijkenisse o Brielle.',
+          'Los turnos rotativos hacen que el transporte público sea poco práctico para la mayoría de las puertas, por lo que aparcamiento y coche condicionan la decisión de vivienda.',
+          'El acceso a las instalaciones exige documentación de identidad y, para muchos contratistas, una certificación de seguridad vigente como la VCA.',
+          'Contratistas y trabajadores desplazados de otros Estados de la UE se rigen por normas distintas de empadronamiento, seguro y nómina que los contratados directos.',
+          'El empadronamiento en su dirección sigue siendo la puerta al BSN, la nómina y el seguro, sea cual sea lo que haya organizado su empleador.',
+          'Cubrimos específicamente la región portuaria. Es nuestro propio terreno, no un servicio nacional aplicado aquí.',
+        ],
+      },
+      details: {
+        title: 'Puntos prácticos para profesionales del puerto',
+        items: [
+          {
+            q: '¿Dónde debería vivir realmente?',
+            a:
+              'Depende de su puerta y de su turno, y la respuesta honesta a menudo no es Róterdam. Hoogvliet, Spijkenisse, Brielle y Rozenburg le sitúan a menos de media hora de la mayoría de las terminales y cuestan bastante menos. Si su pareja trabaja en la ciudad el cálculo cambia, y modelamos ambos antes de que se comprometa con una dirección.',
+          },
+          {
+            q: 'Estoy desplazado por un empleador extranjero. ¿Qué cambia?',
+            a:
+              'Casi todo lo administrativo. Su seguridad social puede permanecer en su país mediante un certificado A1, su empleador tiene un deber de notificación en los Países Bajos, y su obligación de seguro depende de ese esquema y no de su dirección. Equivocarse produce primas dobles o ninguna cobertura, así que lo trabajamos de forma específica.',
+          },
+          {
+            q: '¿Puede venir mi familia después?',
+            a:
+              'Sí, y en trabajo por turnos o rotación suele ser lo acertado. Planificamos la primera fase en torno a usted y la segunda en torno a ellos, de modo que colegio y vivienda se elijan con la familia presente en vez de adivinarlo antes.',
+          },
+          {
+            q: '¿En cuánto tiempo puede hacerse?',
+            a:
+              'Con una oferta en la mano y los documentos listos, una instalación operativa lleva de tres a cinco semanas: base temporal, empadronamiento, BSN, seguro, banca, y la búsqueda de vivienda definitiva avanzando por debajo. Los documentos legalizados del extranjero son lo único que la retrasa de forma sistemática.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -96,8 +134,10 @@ export const industrial: SectionContent = {
         label: 'Planificar mi mudanza a Europoort',
       },
       form: 'relocation',
-      image: '/images/europoort.jpg?v=20260728',
+      image: '/images/europoort.jpg?v=20260731',
       imageAlt: 'Infraestructura de refinería y terminales en Europoort Rotterdam',
+      image2: '/images/industrial-worker.jpg?v=20260731',
+      image2Alt: 'Directivo del sector energético en el puerto de Róterdam a la hora dorada',
     },
     {
       slug: 'maasvlakte-expat-relocation-netherlands',
@@ -159,6 +199,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'La realidad de la Maasvlakte',
+        intro:
+          'Maasvlakte 2 es el punto más alejado del puerto, y la distancia es el único hecho que condiciona cada decisión a su alrededor.',
+        items: [
+          'El trayecto dura de sesenta a noventa minutos desde el centro de Róterdam, y de treinta a cuarenta y cinco desde los municipios del oeste.',
+          'Prácticamente no hay vivienda junto a las terminales, así que toda opción implica desplazamiento.',
+          'El trabajo en terminales de aguas profundas es muy dependiente de turnos, incluidas noches y fines de semana, lo que afecta a la vivienda y al cuidado de los hijos.',
+          'Algunas terminales ofrecen transporte de empresa, y eso cambia el cálculo por completo, así que confírmelo antes de elegir dirección.',
+          'El acceso exige identificación válida y, en la mayoría de los puestos de contratista, certificación de seguridad vigente.',
+          'Empadronamiento, BSN, seguro y nómina siguen las mismas reglas que en cualquier sitio y siguen siendo la puerta a todo lo demás.',
+        ],
+      },
+      details: {
+        title: 'Planificar alrededor de la terminal',
+        items: [
+          {
+            q: '¿Qué localidades funcionan mejor?',
+            a:
+              'Brielle, Hellevoetsluis, Spijkenisse, Rozenburg y Oostvoorne sitúan a la mayoría a menos de cuarenta y cinco minutos de las terminales, con más espacio y alquileres más bajos que la ciudad. Brielle encaja especialmente con familias que quieren una localidad histórica en vez de un suburbio de commuters.',
+          },
+          {
+            q: '¿Mi empleador pone transporte?',
+            a:
+              'Varias terminales lo hacen, y puede convertir una dirección lejana en perfectamente viable o una cercana en innecesaria. Es la primera pregunta que hacemos, porque la respuesta redibuja toda la búsqueda de vivienda.',
+          },
+          {
+            q: '¿Cómo afectan los turnos de noche a la vivienda?',
+            a:
+              'Más de lo que se espera. Dormir una mañana entre semana es imposible en un piso con mala insonorización sobre una calle transitada, y es la causa más frecuente de que fracase un primer alquiler. Comprobamos el ruido a la hora en que usted realmente dormirá, no a la hora de la visita.',
+          },
+          {
+            q: '¿Y la vida familiar con turnos rotativos?',
+            a:
+              'Funciona, pero exige planificación en vez de improvisación. Colegios con horario ampliado, una pareja que pueda conducir y un barrio con algo que hacer a horas poco convencionales pesan más que los metros cuadrados. Construimos la búsqueda en torno al turno y no en torno al anuncio.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -184,6 +262,8 @@ export const industrial: SectionContent = {
       form: 'relocation',
       image: '/images/maasvlakte.jpg?v=20260728',
       imageAlt: 'Terminales de contenedores y grúas en el puerto de aguas profundas de la Maasvlakte',
+      image2: '/images/industrial-worker.jpg?v=20260731',
+      image2Alt: 'Directivo del sector energético en el puerto de Róterdam a la hora dorada',
     },
     {
       slug: 'offshore-expat-services-netherlands',
@@ -246,6 +326,44 @@ export const industrial: SectionContent = {
         ],
       },
       note: 'Las posiciones fiscales y de seguridad social offshore varían según el pabellón, el empleador y los días trabajados; le avisamos cuando su situación necesita un especialista fiscal transfronterizo y le ponemos en contacto con uno de nuestra red.',
+      conditions: {
+        title: 'Lo que cambia el trabajo por rotación',
+        intro:
+          'Una rotación offshore rompe la mayoría de los supuestos sobre los que se construye la administración neerlandesa. Estos son los principales.',
+        items: [
+          'El empadronamiento en una dirección neerlandesa sigue siendo obligatorio si los Países Bajos son su residencia principal, sea cual sea su rotación.',
+          'Las ausencias prolongadas pueden afectar al empadronamiento, al derecho al seguro médico y a la continuidad exigida para la residencia permanente.',
+          'Su seguridad social puede corresponder a otro país mediante un certificado A1, lo que cambia por completo su obligación de aseguramiento.',
+          'Los propietarios valoran de otro modo los ingresos por rotación, y los patrones de pago irregulares deben explicarse en el expediente y no después.',
+          'Marinos y trabajadores offshore pueden regirse por normas fiscales y de seguridad social específicas que no aplican al personal en tierra.',
+          'Nos ocupamos de la parte neerlandesa. La fiscalidad y la nómina transfronterizas van a especialistas a los que le presentamos.',
+        ],
+      },
+      details: {
+        title: 'Hacer que una rotación funcione en tierra',
+        items: [
+          {
+            q: '¿Puede hacerse todo en un solo periodo en tierra?',
+            a:
+              'Normalmente sí, y así lo planificamos. Citas, visitas, empadronamiento, banca y seguro se concentran en una semana intensiva en tierra en lugar de repartirse en tres rotaciones. Exige preparación por nuestra parte y documentos listos por la suya.',
+          },
+          {
+            q: '¿Qué ocurre mientras estoy embarcado?',
+            a:
+              'Seguimos siendo en la práctica su dirección: correspondencia gestionada, plazos vigilados, preguntas del propietario atendidas, citas movidas. Su familia, si está aquí, tiene un número al que llamar que no es internacional.',
+          },
+          {
+            q: '¿Cómo afectan las ausencias a la residencia permanente?',
+            a:
+              'La continuidad se rompe con ausencias de más de seis meses seguidos, o de más de cuatro meses al año durante el periodo de cómputo. Las rotaciones suelen quedar bastante por debajo, pero conviene hacer el cálculo conscientemente si va camino de la residencia permanente.',
+          },
+          {
+            q: '¿Qué seguro me corresponde?',
+            a:
+              'Depende de dónde esté establecido su empleador, bajo qué bandera navegue y de si existe un certificado A1. El offshore es el ámbito donde más a menudo encontramos personas doblemente aseguradas o sin seguro alguno, así que lo determinamos en la primera entrevista en lugar de asumir la respuesta estándar.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -269,8 +387,10 @@ export const industrial: SectionContent = {
         label: 'Montar mi base en tierra',
       },
       form: 'relocation',
-      image: '/images/industrial-worker.jpg?v=20260728',
-      imageAlt: 'Un profesional offshore con equipo de trabajo en una instalación portuaria',
+      image: '/images/industrial-worker.jpg?v=20260731',
+      imageAlt: 'Directivo del sector energético en el puerto de Róterdam a la hora dorada',
+      image2: '/images/industrial-hub.jpg',
+      image2Alt: 'El clúster industrial portuario al anochecer',
     },
     {
       slug: 'relocation-for-logistics-professionals-netherlands',
@@ -332,6 +452,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'La velocidad y lo que la limita',
+        intro:
+          'La logística va rápido y las fechas de incorporación rara vez esperan. Estas son las restricciones que deciden cuán rápida puede ser realmente una instalación.',
+        items: [
+          'Con los documentos listos, una instalación operativa lleva de tres a cinco semanas: base, empadronamiento, BSN, seguro, banca.',
+          'Los certificados legalizados de nacimiento y matrimonio no pueden obtenerse una vez está usted aquí, y son la causa más frecuente de retraso.',
+          'La disponibilidad de citas municipales varía con la temporada y puede añadir de una a tres semanas.',
+          'Los turnos y los centros de distribución fuera de la ciudad suelen hacer necesario un coche, lo que afecta al presupuesto de vivienda.',
+          'Los empleadores que contratan a varias personas a la vez pueden agrupar empadronamientos y visitas, lo que comprime mucho el calendario.',
+          'Para contrataciones de fuera de la UE, la solicitud debe estar aprobada antes de empezar a trabajar. Ninguna instrucción del empleador cambia eso.',
+        ],
+      },
+      details: {
+        title: 'Aterrizar rápido sin recortar',
+        items: [
+          {
+            q: '¿Qué puede hacerse antes de mi llegada?',
+            a:
+              'Más de lo que se cree. Revisión de documentos, legalización, el expediente del permiso, la cita municipal, la preselección de viviendas y las visitas pueden avanzar mientras usted sigue en el extranjero, de modo que la primera semana neerlandesa sea ejecución y no descubrimiento.',
+          },
+          {
+            q: 'Contratamos a un grupo. ¿Ayuda?',
+            a:
+              'Considerablemente. Empadronamientos agrupados, una base temporal compartida y visitas coordinadas reducen coste y tiempo por persona, y una sola asesora sosteniendo todo el grupo da a RR. HH. una visión única en lugar de una cola de problemas individuales.',
+          },
+          {
+            q: '¿Dónde debería vivir el personal de logística?',
+            a:
+              'Cerca del clúster de distribución y no del centro. Los emplazamientos del Waalhaven, el Botlek y el corredor A15 se sirven mejor desde Hoogvliet, Spijkenisse, Barendrecht y Ridderkerk, y los alquileres allí son claramente más bajos que en Róterdam.',
+          },
+          {
+            q: '¿Cuál es el error más común?',
+            a:
+              'Empezar la búsqueda de vivienda antes de tener clara la vía de empadronamiento. Una vivienda que no permite empadronarse bloquea el BSN, lo que bloquea la nómina, y un recién llegado trabaja seis semanas sin cobrar como debe. Nosotros resolvemos siempre el empadronamiento primero.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -355,8 +513,10 @@ export const industrial: SectionContent = {
         label: 'Acelerar mi mudanza',
       },
       form: 'relocation',
-      image: '/images/logistics-worker.jpg?v=20260728',
-      imageAlt: 'Un profesional de la logística trabajando en una zona de distribución de Rotterdam',
+      image: '/images/logistics-worker.jpg?v=20260731',
+      imageAlt: 'Director de logística con vistas a la terminal portuaria de Róterdam',
+      image2: '/images/europoort.jpg?v=20260731',
+      image2Alt: 'El puerto de Róterdam a la hora dorada',
     },
     {
       slug: 'rotterdam-industrial-expat-services',
@@ -422,6 +582,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Cómo trabajamos con el clúster',
+        intro:
+          'Atendemos a ambos lados del clúster industrial portuario, empleadores y trabajadores, así que nuestras condiciones deben ser claras.',
+        items: [
+          'Cubrimos Róterdam, Botlek, Europoort, Maasvlakte, Pernis y el corredor A15 ampliado.',
+          'Los empleadores pueden contratarnos por empleado, por proyecto o mediante un acuerdo marco para contratación continua.',
+          'Las contrataciones de fuera de la UE necesitan un permiso aprobado antes de empezar, y reconocimiento como patrocinador antes de poder presentar solicitud.',
+          'Los trabajadores desplazados desde otras entidades de la UE se rigen por un régimen de notificación aparte con sus propias obligaciones.',
+          'Cada empleado trasladado se empadrona individualmente, sea cual sea el tamaño del grupo, y cada familia necesita sus propios documentos.',
+          'Aceptamos trabajos de rescate para instalaciones que ya han salido mal, y decimos con claridad qué puede y qué no puede arreglarse.',
+        ],
+      },
+      details: {
+        title: 'Para empleadores del clúster',
+        items: [
+          {
+            q: '¿Pueden hacerse cargo de una instalación ya fallida?',
+            a:
+              'Sí, y lo hacemos con regularidad. Direcciones sin empadronamiento, BSN que faltan, salarios impagados porque la nómina no puede correr, un seguro que nunca se contrató, una familia atascada por un problema documental. Es un trabajo sin brillo y a menudo lo más valioso que hacemos.',
+          },
+          {
+            q: '¿Cómo es un acuerdo marco?',
+            a:
+              'Un único interlocutor, niveles de servicio acordados por instalación, precios fijos por empleado y una visión de conjunto para RR. HH. de cada caso en curso. Para empleadores que contratan de forma continua elimina por completo la negociación caso a caso.',
+          },
+          {
+            q: '¿Se ocupan también de la inmigración, además de la mudanza?',
+            a:
+              'Sí, y es la razón por la que las empresas nos eligen en lugar de una agencia de relocation pura. Permisos, patrocinio, empadronamiento, vivienda y apoyo familiar están en un solo despacho, de modo que nada cae entre dos proveedores.',
+          },
+          {
+            q: '¿Cómo nos ayudan a retener personas?',
+            a:
+              'Haciendo que los primeros seis meses funcionen para la familia y no solo para el empleado. La mayoría de las salidas tempranas de este clúster se remontan a una pareja sin trabajo, un hijo que nunca encajó o una vivienda que nunca acabó de estar bien, y cada una de esas cosas es abordable si alguien está atento a tiempo.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -445,8 +643,10 @@ export const industrial: SectionContent = {
         label: 'Asóciese con nosotros',
       },
       form: 'relocation',
-      image: '/images/rotterdam-industrial.jpg',
+      image: '/images/rotterdam-industrial.jpg?v=20260731',
       imageAlt: 'Trabajadores con chalecos reflectantes en el puerto con el horizonte de Rotterdam al fondo',
+      image2: '/images/industrial-hub.jpg?v=20260731',
+      image2Alt: 'El clúster industrial portuario al anochecer',
     },
   ],
   cta: {

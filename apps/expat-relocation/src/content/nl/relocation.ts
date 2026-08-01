@@ -10,8 +10,8 @@ export const relocation: SectionContent = {
     'Verhuizen naar een ander land is duizend kleine taken vermomd als één grote. Het BSN, de gemeente, de verzekering, de school, de bank, elk met een eigen loket, eigen formulieren en een eigen idee van een redelijke wachttijd. De meeste bureaus geven u een checklist. Wij zijn het enige boutique expatbureau van Nederland, en wij doen iets anders: één persoon leert uw naam, uw gezin en uw situatie kennen, en zorgt er vervolgens gewoon voor.',
     'Die persoon regelt uw relocation niet vanachter een bureau. Zij boekt de afspraken, bereidt het papierwerk voor, rijdt met u mee naar de gemeente en zit naast u aan het loket. Vanaf het moment dat u landt tot het moment dat Nederland als thuis voelt, heeft u hier iemand die het antwoord op uw volgende vraag al kent.',
   ],
-  image: '/images/relocation-hub.jpg',
-  imageAlt: 'Verhuizers dragen dozen een Nederlands gezinshuis binnen',
+  image: '/images/family-arrival.jpg?v=20260731',
+  imageAlt: 'Internationaal gezin arriveert bij hun Nederlandse grachtenpand',
   services: [
     {
       slug: 'bsn-registration-netherlands',
@@ -74,6 +74,44 @@ export const relocation: SectionContent = {
         ],
       },
       note: 'Een BSN wordt uitgegeven via inschrijving in de Basisregistratie Personen, als ingezetene of, bij kort verblijf, als niet-ingezetene via een RNI-loket. Wij adviseren tijdens de intake welke route bij uw situatie past.',
+      conditions: {
+        title: 'Wat de gemeente van u vraagt',
+        intro:
+          'Het BSN is de sleutel die alle andere sloten opent. Vrijwel elke vertraging die wij zien komt uit een van deze zes punten.',
+        items: [
+          'Inschrijving gebeurt bij de gemeente van uw adres, en de verhuurder moet inschrijving op dat adres toestaan.',
+          'Blijft u langer dan vier maanden, dan schrijft u in de BRP in. Korter betekent het RNI-register bij een van de aangewezen gemeenten.',
+          'Neem uw paspoort mee, uw verblijfsvergunning of mvv indien van toepassing, en uw huurcontract.',
+          'Buitenlandse geboorte- en huwelijksakten moeten gelegaliseerd zijn of een apostille hebben, en beëdigd vertaald zijn.',
+          'Afspraken moeten meestal vooraf worden gemaakt, en in Rotterdam loopt de wachttijd van enkele dagen tot enkele weken, afhankelijk van het seizoen.',
+          'Elk gezinslid heeft een eigen afspraak en eigen documenten nodig, kinderen inbegrepen.',
+        ],
+      },
+      details: {
+        title: 'Waar BSN-dossiers misgaan',
+        items: [
+          {
+            q: 'Waarom is legalisatie zo\'n probleem?',
+            a:
+              'Een akte die niet in het land van afgifte is gelegaliseerd, kan niet worden geaccepteerd, en de keten loopt vaak via een lokaal ministerie en daarna een Nederlandse ambassade. Het kost weken tot maanden en kan niet meer worden gestart als u hier al bent. Dit is de meest voorkomende reden dat een aankomst stilvalt, en het eerste wat wij controleren.',
+          },
+          {
+            q: 'Kan ik een BSN krijgen zonder Nederlands adres?',
+            a:
+              'Ja, via het RNI-register voor niet-ingezetenen, beschikbaar bij negentien aangewezen gemeenten. U krijgt een BSN zodat salaris en bankzaken kunnen starten, maar het is geen woonadresinschrijving, en zodra u een adres heeft schrijft u zich alsnog regulier in.',
+          },
+          {
+            q: 'Wat gebeurt er direct na de afspraak?',
+            a:
+              'Uw BSN wordt meestal ter plekke of binnen enkele dagen verstrekt. Daarmee kunt u DigiD aanvragen, een zorgverzekering afsluiten, een Nederlandse rekening openen en het salaris correct laten lopen. Wij lopen die volgorde met u door in plaats van u met een nummer en een lijstje achter te laten.',
+          },
+          {
+            q: 'Gaat u mee naar de afspraak?',
+            a:
+              'Ja, dat is de kern van deze dienst. Afspraken verlopen in het Nederlands, ambtenaren vragen om documenten die niet op de gepubliceerde lijst stonden, en iemand naast u die het antwoord kent maakt van een tweede afspraak geen tweede afspraak.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -97,8 +135,10 @@ export const relocation: SectionContent = {
         label: 'Regel mijn BSN',
       },
       form: 'relocation',
-      image: '/images/bsn-registration.jpg',
-      imageAlt: 'Een inschrijfdocument wordt overhandigd aan een gemeenteloket',
+      image: '/images/bsn-registration.jpg?v=20260731',
+      imageAlt: 'Adviseur en cliënt aan een private overlegtafel',
+      image2: '/images/immigration-documents.jpg?v=20260731',
+      image2Alt: 'Leren map en vulpen op een bureau',
     },
     {
       slug: 'municipality-registration-netherlands',
@@ -160,6 +200,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Regels waar mensen op stuklopen',
+        intro:
+          'De gemeentelijke registratie volgt u door elke instantie in het land, dus een fout hier duikt overal weer op.',
+        items: [
+          'Eerste inschrijving moet binnen vijf dagen na aankomst, en een verhuizing binnen Nederland binnen vijf dagen na de verhuizing.',
+          'Een adreswijziging meldt u bij de nieuwe gemeente, niet bij de oude.',
+          'Inschrijving vraagt toestemming van de verhuurder voor het adres. Inschrijven waar het verboden is, brengt uw huurcontract in gevaar.',
+          'Uw burgerlijke staat, naamspelling en geboorteplaats komen uit gelegaliseerde akten, en dat later corrigeren is veel lastiger dan het één keer goed doen.',
+          'Langer dan acht maanden per jaar buiten Nederland vraagt om uitschrijving, wat gevolgen heeft voor verzekering, toeslagen en vergunningen.',
+          'Niet-EU-onderdanen halen hun verblijfsdocument normaal bij de IND op, niet bij de gemeente. Dat zijn twee aparte afspraken.',
+        ],
+      },
+      details: {
+        title: 'De registratie kloppend krijgen',
+        items: [
+          {
+            q: 'Waarom is de spelling van mijn naam zo belangrijk?',
+            a:
+              'De BRP voedt uw bank, uw werkgever, de Belastingdienst, uw verzekeraar en de IND. Een transliteratie die één letter afwijkt van uw paspoort levert mismatches op die maanden later op het slechtst denkbare moment opduiken. Wij controleren de invoer tegen uw paspoort voordat de ambtenaar opslaat.',
+          },
+          {
+            q: 'Kunt u een registratie corrigeren die al fout is?',
+            a:
+              'Meestal wel, met de juiste onderbouwing en een formeel correctieverzoek. Fouten in geboortedatum, burgerlijke staat en eerdere nationaliteit herstellen wij het vaakst, en die zijn het herstellen waard in plaats van ermee te leven.',
+          },
+          {
+            q: 'En als mijn verhuurder inschrijving niet toestaat?',
+            a:
+              'Dan is het adres een probleem en geen ongemak. Wij controleren de inschrijfmogelijkheid voordat u tekent, en weigert een verhuurder achteraf, dan nemen wij de correspondentie over, want in de meeste woonsituaties heeft die weigering geen juridische grond.',
+          },
+          {
+            q: 'Moet ik mij uitschrijven als ik vertrek?',
+            a:
+              'Ja, als u langer dan acht maanden binnen twaalf maanden weggaat. Niet uitschrijven laat u aansprakelijk voor Nederlandse zorgpremies en lokale belastingen lang nadat u weg bent. Wij begeleiden het vertrek net zo zorgvuldig als de aankomst.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -183,8 +261,10 @@ export const relocation: SectionContent = {
         label: 'Regel mijn inschrijving',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg?v=20260728',
-      imageAlt: 'Papierwerk wordt ingevuld aan een gemeentelijke servicebalie',
+      image: '/images/municipality-registration.jpg?v=20260731',
+      imageAlt: 'Cliënt op weg naar een historisch Nederlands gemeentegebouw',
+      image2: '/images/consultation.jpg?v=20260731',
+      image2Alt: 'Adviseur en cliënt bespreken de volgende stappen',
     },
     {
       slug: 'health-insurance-guidance-netherlands',
@@ -247,6 +327,44 @@ export const relocation: SectionContent = {
         ],
       },
       note: 'De verzekering gaat met terugwerkende kracht in vanaf de datum waarop uw verzekeringsplicht begon, dus premies zijn vanaf die datum verschuldigd, ook als u zich later aanmeldt. Snel aanmelden kost niets extra en voorkomt boetes.',
+      conditions: {
+        title: 'Hoe het Nederlandse stelsel werkt',
+        intro:
+          'De Nederlandse zorgverzekering is verplicht, privaat en aan termijnen gebonden. De timing verkeerd inschatten kost geld op een manier die nieuwkomers verrast.',
+        items: [
+          'Wie in Nederland woont of werkt moet binnen vier maanden na inschrijving een Nederlandse basisverzekering afsluiten.',
+          'De dekking gaat met terugwerkende kracht in vanaf uw eerste verblijfsdag, dus te laat afsluiten levert een rekening op over de tussenliggende maanden, plus een boete.',
+          'Het basispakket wordt door de overheid vastgesteld en is bij elke verzekeraar identiek. Alleen prijs, service en aanvullende dekking verschillen.',
+          'Er geldt een verplicht eigen risico per jaar, dat u betaalt voordat de meeste zorg wordt vergoed. De huisarts valt daarbuiten.',
+          'Zonder verwijzing van uw huisarts komt u niet bij een specialist, behalve in noodgevallen.',
+          'Lagere en middeninkomens kunnen recht hebben op zorgtoeslag, een maandelijkse tegemoetkoming van de Belastingdienst.',
+        ],
+      },
+      details: {
+        title: 'Goed kiezen, niet alleen snel',
+        items: [
+          {
+            q: 'Welke aanvullende dekking is werkelijk de moeite waard?',
+            a:
+              'Tandheelkunde voor volwassenen, fysiotherapie boven het wettelijke minimum en dekking voor zorg in het buitenland zijn de drie die zich bij de meeste cliënten terugverdienen. Kinderen zijn gratis meeverzekerd op de polis van een ouder, tandarts inbegrepen. Bijna al het andere is een persoonlijke rekensom, en die maken wij mét u en niet vóór u.',
+          },
+          {
+            q: 'Waarom kan ik geen huisarts vinden?',
+            a:
+              'Praktijken in Rotterdam en de grotere steden sluiten hun patiëntenlijst regelmatig, en inschrijven moet vóórdat u zorg nodig heeft in plaats van op het moment zelf. Wij starten de huisartsenzoektocht in uw eerste week, en wij weten welke praktijken in de regio nog aannemen.',
+          },
+          {
+            q: 'Ik heb de 30 procentregeling. Verandert er iets?',
+            a:
+              'Uw verzekeringsplicht verandert niet. Wat wél kan veranderen is uw recht op zorgtoeslag, want die is inkomensafhankelijk. Wij controleren dat in plaats van het aan te nemen.',
+          },
+          {
+            q: 'En als ik hier maar een deel van het jaar werk?',
+            a:
+              'Grensoverschrijdende en rotatiesituaties zijn werkelijk ingewikkeld, en fout zitten betekent dubbele premies of helemaal geen dekking. Offshoremedewerkers, gedetacheerden en mensen met een werkgever in een andere EU-lidstaat vallen elk onder andere regels, en wij werken die van u specifiek uit.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -270,8 +388,10 @@ export const relocation: SectionContent = {
         label: 'Regel mijn verzekering',
       },
       form: 'relocation',
-      image: '/images/health-insurance.jpg',
-      imageAlt: 'Nederlandse zorgverzekeringen vergelijken aan een keukentafel',
+      image: '/images/health-insurance.jpg?v=20260731',
+      imageAlt: 'Cliënt en adviseur bespreken de Nederlandse zorgverzekering',
+      image2: '/images/relocation-settling.jpg?v=20260731',
+      image2Alt: 'Adviseur werkt de eerste stappen door met nieuwe bewoners',
     },
     {
       slug: 'school-search-netherlands',
@@ -334,6 +454,44 @@ export const relocation: SectionContent = {
         ],
       },
       note: 'Schoolkeuze en woningkeuze zijn één beslissing, geen twee; het adres bepaalt de opties. Voeren wij ook uw woningzoektocht uit, dan plannen wij ze samen.',
+      conditions: {
+        title: 'Wat gezinnen als eerste moeten weten',
+        intro:
+          'Schoolplaatsen, niet woningen, bepalen meestal wanneer een gezin werkelijk kan verhuizen. Plan dit vóór al het andere.',
+        items: [
+          'Vanaf vijf jaar is onderwijs leerplichtig, en de meeste kinderen beginnen op hun vierde.',
+          'Internationale scholen in de regio Rotterdam hebben beperkte plaatsen en wachtlijsten, en populaire jaarlagen zitten een jaar vooruit vol.',
+          'Nederlandse internationale scholen vallen in twee categorieën: gesubsidieerde internationale scholen, veel goedkoper maar met een aantoonbaar internationale achtergrond als voorwaarde, en private internationale scholen.',
+          'Kinderen die nog geen Nederlands spreken zitten meestal een jaar in een nieuwkomersklas voordat zij doorstromen naar het reguliere onderwijs.',
+          'Inschrijving vraagt normaal een adres en een BSN, waardoor de schooltijdlijn verbonden is aan de woon- en inschrijftijdlijn.',
+          'Wij adviseren over scholen en begeleiden het proces. Wij kunnen geen plek creëren waar een school er geen heeft.',
+        ],
+      },
+      details: {
+        title: 'Het juiste onderwijs kiezen',
+        items: [
+          {
+            q: 'Internationale school of Nederlandse school?',
+            a:
+              'Het hangt af van hoe lang u blijft. Onder drie jaar beschermt een internationale school de continuïteit en het curriculum waar uw kind naar terugkeert. Boven vijf jaar geeft een Nederlandse school taal, vriendschappen en een veel makkelijkere puberteit. De jaren daartussen zijn een echte afweging, en die bespreken wij eerlijk in plaats van de dure optie te duwen.',
+          },
+          {
+            q: 'Hoe vroeg moeten wij beginnen?',
+            a:
+              'Zes tot negen maanden voor de verhuizing bij internationale scholen, en drie maanden bij Nederlandse scholen. Zit u al binnen dat venster, dan gaan wij direct naar de scholen waar nog beweging is, en dat is een andere lijst dan u online vindt.',
+          },
+          {
+            q: 'Wat kost het?',
+            a:
+              'Gesubsidieerde internationale scholen kosten enkele duizenden euro\'s per jaar. Private internationale scholen in de regio liggen aanzienlijk hoger, en lesgeld, inschrijving en materialen worden meestal apart gefactureerd. Wij zetten per school op uw shortlist het werkelijke jaarbedrag op papier, zodat er in maand twee geen verrassingen zijn.',
+          },
+          {
+            q: 'Redt mijn kind het in het Nederlands?',
+            a:
+              'Jongere kinderen vrijwel altijd, en snel. De nieuwkomersklas bestaat precies hiervoor, en een jaar erin brengt een kind doorgaans op het punt waarop regulier onderwijs werkt. Voor tieners vlak voor hun examens ligt de rekensom anders, en daar zijn wij eerlijk over.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -357,8 +515,10 @@ export const relocation: SectionContent = {
         label: 'Vind onze school',
       },
       form: 'relocation',
-      image: '/images/school-search.jpg',
-      imageAlt: 'Ouders en kind in gesprek met een leerkracht op een Nederlandse school',
+      image: '/images/school-search.jpg?v=20260731',
+      imageAlt: 'Moeder en dochter arriveren bij een internationale school',
+      image2: '/images/family-relocation.jpg?v=20260731',
+      image2Alt: 'Gezin fietst langs een Nederlandse gracht in het gouden uur',
     },
     {
       slug: 'settling-in-services-netherlands',
@@ -424,6 +584,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'De volgorde waarin het moet gebeuren',
+        intro:
+          'De Nederlandse administratie is een ketting. Stap vier proberen vóór stap twee is waarom aankomsten maanden duren in plaats van weken.',
+        items: [
+          'Eerst het adres, dan de inschrijving, dan het BSN. Voor het BSN bestaat, is er niets zinvols te regelen.',
+          'DigiD, de nationale inlog, volgt op het BSN en is nodig voor de Belastingdienst, de zorg en vrijwel alle overheidsdiensten.',
+          'De meeste Nederlandse banken vragen een BSN en een adresbewijs, al kunnen sommige rekeningen eerder open met alleen een paspoort.',
+          'De zorgverzekering moet binnen vier maanden na inschrijving worden afgesloten en gaat met terugwerkende kracht in.',
+          'Energie, water en internet staan vanaf de ingangsdatum van het huurcontract op uw naam, en later overstappen kent opzegtermijnen.',
+          'Een buitenlands rijbewijs omwisselen kan alleen voor bepaalde landen, en alleen binnen een vastgestelde periode na inschrijving.',
+        ],
+      },
+      details: {
+        title: 'De dingen die niemand vertelt',
+        items: [
+          {
+            q: 'Welke bank moet ik kiezen?',
+            a:
+              'Het hangt minder van de bank af dan van wat u ervan nodig heeft. Hypotheekplannen, zakelijk bankieren, een werkgever die vanuit het buitenland betaalt en familie in een andere valuta wijzen elk een andere kant op. Wij openen de rekening met u en zorgen dat iDEAL, waar het halve land op draait, vanaf dag één werkt.',
+          },
+          {
+            q: 'Kan ik mijn buitenlandse rijbewijs gebruiken?',
+            a:
+              'Rijbewijzen uit de EU en EER blijven geldig. Rijbewijzen uit een aantal andere landen, waaronder enkele Amerikaanse staten, kunnen zonder nieuw examen worden omgewisseld, maar alleen binnen een beperkt venster na inschrijving en in sommige gevallen alleen met de 30 procentregeling. Mist u het venster, dan legt u het volledige Nederlandse examen af. Wij toetsen uw situatie vroeg, want deze termijn kent geen coulance.',
+          },
+          {
+            q: 'Hoe kom ik aan een huisarts, tandarts en apotheek?',
+            a:
+              'U schrijft zich in bij een huisartsenpraktijk in de buurt van uw adres, en die praktijk koppelt uw apotheek. Beide zitten vol, dus beide regelen wij in uw eerste twee weken. Tandartsen nemen particuliere patiënten rechtstreeks aan en zijn makkelijker, al hebben goede praktijken in het centrum nog steeds wachtlijsten.',
+          },
+          {
+            q: 'En de Belastingdienst in jaar één?',
+            a:
+              'Uw eerste Nederlandse belastingjaar is bijna altijd de moeite van het aangeven waard, ook als u denkt niets verschuldigd te zijn, want aangiften over het aankomstjaar leveren vaak teruggaaf op. Wij zijn relocationadviseurs en geen belastingadviseurs, dus wij stellen u voor aan een adviseur die expatteruggaven doet in plaats van namens u te gokken.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -449,6 +647,8 @@ export const relocation: SectionContent = {
       form: 'relocation',
       image: '/images/relocation-settling.jpg?v=20260728',
       imageAlt: 'Een nieuwkomer raakt vertrouwd met de nieuwe Nederlandse buurt',
+      image2: '/images/couple-moving-in.jpg?v=20260731',
+      image2Alt: 'Stel met de sleutels van hun nieuwe Nederlandse appartement',
     },
     {
       slug: 'airport-pickup-for-expats-netherlands',
@@ -510,6 +710,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Hoe de transfer werkt',
+        intro:
+          'Een korte dienst met weinig voorwaarden, die er allemaal zijn zodat niemand in een aankomsthal staat te wachten.',
+        items: [
+          'Wij bedienen Schiphol, Rotterdam The Hague en Eindhoven, en op verzoek private terminals.',
+          'Geef uw vluchtnummer door, dan volgen wij de vlucht, zodat vertraging onze timing verandert en niet uw ontvangst.',
+          'Wij ontvangen u binnen in de aankomsthal, niet langs de stoep.',
+          'Voertuigen worden gekozen op gezelschap en bagage, inclusief kinderzitjes waar nodig.',
+          'Transfers rijden naar elk adres in Rotterdam en de havenregio, en verder in overleg.',
+          'Boekingen bevestigen wij bij voorkeur minimaal vierentwintig uur vooraf, al vangen wij last-minute wijzigingen op.',
+        ],
+      },
+      details: {
+        title: 'Het eerste Nederlandse uur',
+        items: [
+          {
+            q: 'Wat gebeurt er tussen het vliegveld en de voordeur?',
+            a:
+              'U wordt ontvangen met uw naam, uw bagage wordt overgenomen, en de rit gebruiken wij voor de briefing die ertoe doet: hoe uw sleutels werken, waar de dichtstbijzijnde supermarkt zit, hoe het met de containers zit, welke app het openbaar vervoer regelt en wat er morgen op de agenda staat. De meeste cliënten vinden dat halfuur meer waard dan de rit zelf.',
+          },
+          {
+            q: 'Kunt u een gezin ophalen dat apart aankomt?',
+            a:
+              'Ja. Gespreide aankomsten komen vaak voor wanneer een partner later volgt of kinderen een schooljaar afmaken. Wij stemmen meerdere vluchten af en houden bij een verschil van een dag of twee dezelfde chauffeur, zodat er aan beide kanten een bekend gezicht staat.',
+          },
+          {
+            q: 'Is de woning klaar als wij aankomen?',
+            a:
+              'Als wij hem geregeld hebben wel. Binnen een relocationpakket zorgen wij dat de sleutels zijn opgehaald, de verwarming aan staat, de bedden bruikbaar zijn en er koffie, melk en brood in de keuken liggen. Om middernacht in een leeg appartement aankomen is een herinnering die mensen jaren bijblijft, en die is te vermijden.',
+          },
+          {
+            q: 'Verzorgt u ook vertrek?',
+            a:
+              'Ja, en voor cliënten die Nederland verlaten combineren wij dat met de eindinspectie, het terughalen van de waarborgsom en de uitschrijving, zodat de laatste dag net zo geregeld is als de eerste.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -533,8 +771,10 @@ export const relocation: SectionContent = {
         label: 'Boek mijn aankomst',
       },
       form: 'relocation',
-      image: '/images/relocation-arrival.jpg?v=20260728',
-      imageAlt: 'Een warm welkom in de aankomsthal van de luchthaven',
+      image: '/images/relocation-arrival.jpg?v=20260731',
+      imageAlt: 'Chauffeur verwelkomt een cliënt bij een private luchtvaartterminal',
+      image2: '/images/vip-welcome.jpg?v=20260731',
+      image2Alt: 'Directieauto op een lommerrijke Nederlandse laan in het gouden uur',
     },
     {
       slug: 'family-relocation-netherlands',
@@ -604,6 +844,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Hoe een gezinsverhuizing wordt opgebouwd',
+        intro:
+          'Een gezinsverhuizing kent meer afhankelijkheden dan welke andere ook. Dit zijn de punten die de kalender bepalen.',
+        items: [
+          'Beschikbaarheid van schoolplaatsen bepaalt meestal de verhuisdatum, niet de startdatum van de baan.',
+          'Elk gezinslid heeft een eigen inschrijfafspraak en eigen gelegaliseerde documenten nodig, kinderen inbegrepen.',
+          'De hoofdvergunninghouder moet voldoen aan de inkomenseis voor meereizende gezinsleden, momenteel 2.523,96 euro bruto per maand inclusief vakantiegeld.',
+          'Verhuist één ouder niet mee, dan is schriftelijke toestemming nodig voordat een kind kan meeverhuizen.',
+          'Een zorgverzekering is voor elk gezinslid verplicht, al zijn kinderen gratis meeverzekerd op de polis van een ouder.',
+          'Een partner die met een kennismigrant meekomt heeft vrije toegang tot de Nederlandse arbeidsmarkt en heeft geen aparte tewerkstellingsvergunning nodig.',
+        ],
+      },
+      details: {
+        title: 'Wat gezinnen ons vragen',
+        items: [
+          {
+            q: 'In welke volgorde moeten wij dit doen?',
+            a:
+              'Scholen, dan woonruimte binnen het bereik dat werkt, dan vergunningen en inschrijving, dan de praktische laag. De eerste twee omdraaien is de meest voorkomende en duurste gezinsfout, want een prachtig huis op veertig minuten van de enige school met plek maakt in november iedereen ongelukkig.',
+          },
+          {
+            q: 'Mijn partner geeft een carrière op om mee te komen. Wat is realistisch?',
+            a:
+              'De Nederlandse arbeidsmarkt staat werkelijk open voor meeverhuizende partners, zeker in Engelstalige sectoren rond Rotterdam en Den Haag, en een tewerkstellingsvergunning is niet nodig. Wat het meest helpt is een cv in Nederlands format, begrip van hoe lokale werving echt loopt, en beginnen vóór de verhuizing in plaats van erna. Wij maken de introducties die wij kunnen maken.',
+          },
+          {
+            q: 'Hoe wennen kinderen?',
+            a:
+              'Beter dan ouders verwachten, en langzamer dan ouders hopen. Het Nederlandse systeem is opvallend vriendelijk voor nieuwkomerskinderen en de nieuwkomersklas werkt. Het zwaarst zijn meestal maand drie tot zes, wanneer het nieuwe eraf is, en het helpt enorm om sport, muziek of een club al geregeld te hebben voordat u het nodig heeft.',
+          },
+          {
+            q: 'Kan werkelijk alles parallel lopen?',
+            a:
+              'Ja, en dat moet ook. Vergunningen, schoolaanmeldingen, woonruimte, inschrijving en verzekering hebben elk hun eigen wachttijd, dus wij laten ze gelijktijdig lopen tegen één gezinstijdlijn in plaats van na elkaar. Dat is het verschil tussen een verhuizing van tien weken en een van zes maanden.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -627,8 +905,10 @@ export const relocation: SectionContent = {
         label: 'Plan onze gezinsverhuizing',
       },
       form: 'relocation',
-      image: '/images/family-relocation.jpg',
-      imageAlt: 'Gezin wandelt met fietsen door hun nieuwe buurt',
+      image: '/images/family-relocation.jpg?v=20260731',
+      imageAlt: 'Gezin fietst langs een Nederlandse gracht in het gouden uur',
+      image2: '/images/family-reunification.jpg?v=20260731',
+      image2Alt: 'Gezin samen in een licht Nederlands herenhuis',
     },
     {
       slug: 'relocation-services-rotterdam',
@@ -690,6 +970,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Wat wij lokaal dekken',
+        intro:
+          'Wij zijn in deze regio gevestigd en werken erin, waardoor ons advies specifiek is in plaats van landelijk.',
+        items: [
+          'Rotterdam en de omliggende gemeenten, waaronder Schiedam, Capelle aan den IJssel, Barendrecht, Spijkenisse en de Europoortcorridor.',
+          'Inschrijfafspraken in Rotterdam worden vooraf gemaakt, met wachttijden van enkele dagen tot enkele weken per seizoen.',
+          'De stad kent parkeerzones met vergunningen per huishouden, en in het centrum lopen de wachtlijsten maanden.',
+          'Internationale scholen in de regio zijn geconcentreerd in Kralingen en het zuiden van de stad, en de plaatsen zijn beperkt.',
+          'Vrijesectorhuren beginnen rond 1.200 euro voor een eenkamerappartement en lopen steil op voor nieuwbouw aan het water.',
+          'Opdrachten buiten onze regio verwijzen wij door in plaats van aan te nemen. Liever sturen wij u naar het juiste kantoor dan dat wij het verkeerde zijn.',
+        ],
+      },
+      details: {
+        title: 'Wonen in Rotterdam',
+        items: [
+          {
+            q: 'Waarom Rotterdam en niet Amsterdam?',
+            a:
+              'Ruimte, kosten en directheid. U krijgt wezenlijk meer woning voor uw geld, een kortere rit naar de haven en het industriële cluster, een internationale bevolking die werkt in plaats van toerist is, en een stad die wordt herbouwd in plaats van geconserveerd. Amsterdam ligt op veertig minuten voor wanneer u er zin in heeft.',
+          },
+          {
+            q: 'Kom ik hier met Engels toe?',
+            a:
+              'Voor het dagelijks leven en de meeste werkvloeren wel. Voor gemeentelijke post, huurgeschillen, de kleine lettertjes van verzekeringen en schooladministratie niet, en precies dat gat bestaan wij om te dichten. Nederlands leren blijft de moeite waard, en wij wijzen u cursussen die passen bij werkende volwassenen.',
+          },
+          {
+            q: 'Hoe verplaatsen mensen zich?',
+            a:
+              'Eerst de fiets, dan de metro, de auto als laatste. De metro bedient het grootste deel van de stad en veel van de regio, de OV-chipkaart of uw bankpas volstaat, en een auto is werkelijk nuttig als u op de terminals werkt of kleine kinderen in twee richtingen brengt.',
+          },
+          {
+            q: 'Hoe is de internationale gemeenschap?',
+            a:
+              'Groot, werkend, en verspreid over de regio in plaats van geconcentreerd in één wijk. Tussen het havencluster, de Erasmus Universiteit, het medisch centrum en de creatieve sector vinden de meeste nieuwkomers hier sneller hun mensen dan zij verwachten. Wij maken introducties waar wij kunnen, en voor veel cliënten telt dat zwaarder dan welke administratieve stap dan ook.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -715,6 +1033,8 @@ export const relocation: SectionContent = {
       form: 'relocation',
       image: '/images/rotterdam.jpg?v=20260728',
       imageAlt: 'Het centrum van Rotterdam met moderne architectuur langs de Maas',
+      image2: '/images/rotterdam-evening.jpg',
+      image2Alt: 'De skyline van Rotterdam in de avond',
     },
   ],
   crossLinks: [

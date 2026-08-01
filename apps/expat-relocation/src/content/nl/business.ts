@@ -10,8 +10,8 @@ export const business: SectionContent = {
     'Visumkantoren regelen vergunningen. Oprichtingsbureaus registreren bedrijven. Woningbureaus vinden appartementen. Een internationale ondernemer heeft alle drie tegelijk nodig, plus een gezin dat werkelijk wil blijven, en niemand biedt u dat als één dienst. Wij wel. Immigratie, bedrijfsoprichting, woonruimte en relocation, gecoördineerd door één team dat aan u verantwoording aflegt.',
     'Hetzelfde geldt op bedrijfsschaal. Wanneer een onderneming mensen naar Nederland verplaatst, verhuizen wij het complete plaatje: de entiteit, de bestuurders, de teams en elk gezin dat meekomt.',
   ],
-  image: '/images/business-meeting.jpg?v=20260728',
-  imageAlt: 'Internationale ondernemers plannen hun Nederlandse bedrijf aan een vergadertafel',
+  image: '/images/rotterdam-evening.jpg',
+  imageAlt: 'Skyline van Rotterdam aan de Wilhelminapier in avondlicht',
   cta: {
     title: 'Breng uw bedrijf naar Nederland',
     text: 'Vertel ons wat u hier wilt bouwen en wie er meekomt. Wij zetten de volledige route uit, van vergunningen tot pand, in één plan.',
@@ -24,20 +24,32 @@ export const business: SectionContent = {
       title: 'Een bedrijf starten in Nederland',
       metaTitle: 'Een bedrijf starten in Nederland als buitenlander | E & I',
       metaDescription:
-        'Alles wat een buitenlandse ondernemer nodig heeft om een bedrijf in Nederland te starten: de juiste verblijfsbasis, rechtsvorm, registraties en een persoonlijke gids door alles heen.',
+        'Een bedrijf starten in Nederland als buitenlandse ondernemer: de verblijfsvergunning voor zelfstandigen, de voorwaarden, hoe de IND en RVO uw plan beoordelen, en onze tarieven.',
       eyebrow: 'Ondernemerschap',
       intro: [
-        'Nederland is een van de makkelijkste plekken van Europa om zaken te doen en een van de meest verwarrende om als buitenlander een bedrijf te starten, omdat de verblijfsvraag en de bedrijfsvraag samen beantwoord moeten worden. De juiste rechtsvorm hangt af van uw visumroute, en uw visumroute hangt af van wat u gaat bouwen.',
-        'Wij ontwarren die knoop bij het allereerste gesprek. U krijgt één routekaart voor uw verblijfsbasis, uw bedrijfsstructuur en uw eerste registraties, plus een directe WhatsApp-lijn naar ons op elk uur terwijl u haar uitvoert.',
+        'Nederland is een van de aantrekkelijkste vestigingsplaatsen van Europa voor internationale ondernemers: een stabiele economie, uitstekende infrastructuur en directe toegang tot de Europese markt. Hier een bedrijf starten als niet-EU-burger is meer dan een inschrijving, want in de meeste gevallen heeft u ook een verblijfsvergunning als zelfstandig ondernemer nodig.',
+        'Wij begeleiden oprichters door het hele proces, van immigratiestrategie en ondernemingsplan tot de aanvraag van de verblijfsvergunning, en daarna door de praktijk: bedrijfsinschrijving, een adres en settelen.',
       ],
       cardText: 'Eén routekaart voor uw verblijfsbasis, bedrijfsstructuur en eerste registraties.',
       forWho: {
-        title: 'Wie hier begint',
+        title: 'Wie een bedrijf in Nederland kan starten',
         items: [
-          'Ondernemers van buiten de EU die zowel een vergunning als een bedrijf nodig hebben',
-          'EU-burgers die direct kunnen starten maar de opzet goed geregeld willen hebben',
+          'Burgers van buiten de EU en de EER die hier een bedrijf willen opzetten of voeren',
           'Freelancers en consultants die een bestaande praktijk naar Nederland brengen',
+          'EU-burgers die direct kunnen starten maar de opzet goed geregeld willen hebben',
           'Oprichters die nog kiezen tussen Nederland en andere Europese vestigingsplaatsen',
+        ],
+      },
+      conditions: {
+        title: 'Kernvoorwaarden voor de ondernemersvergunning',
+        intro:
+          'Aanvragen worden beoordeeld op de economische waarde van het bedrijf voor Nederland. Aanvragers moeten in de regel aantonen:',
+        items: [
+          'een professioneel en haalbaar ondernemingsplan',
+          'relevante ondernemers- of beroepservaring',
+          'voldoende financiële middelen',
+          'inschrijving bij de Kamer van Koophandel (KvK)',
+          'economische waarde voor de Nederlandse economie',
         ],
       },
       included: {
@@ -62,11 +74,40 @@ export const business: SectionContent = {
         ],
       },
       process: {
-        title: 'Van idee tot open voor business',
+        title: 'Onze werkwijze',
         steps: [
-          { title: 'Strategiesessie', text: 'Eén intake over uw bedrijf, nationaliteit en gezin. U vertrekt met de route bepaald.' },
-          { title: 'Vergunning en papierwerk', text: 'Wij laten de immigratieaanvraag en de bedrijfsoprichting waar mogelijk parallel lopen.' },
-          { title: 'Deuren open', text: 'Geregistreerd, gebankierd, verzekerd en gehuisvest. U begint te factureren terwijl wij de losse eindjes afwerken.' },
+          { title: 'Eerste immigratietoets', text: 'Wij beoordelen uw plannen en bepalen de meest geschikte immigratieroute voor uw nationaliteit en uw bedrijf.' },
+          { title: 'Ondernemingsplan en documentatie', text: 'Wij helpen bij het opstellen van het ondernemingsplan en de stukken waarop de beoordeling draait.' },
+          { title: 'Aanvraag verblijfsvergunning', text: 'Wij bereiden de aanvraag voor en dienen deze in bij de IND, terwijl de bedrijfsoprichting waar mogelijk parallel loopt.' },
+          { title: 'Bewaking van de aanvraag', text: 'Wij volgen het dossier en beantwoorden vragen van de autoriteiten namens u.' },
+        ],
+      },
+      fees: {
+        title: 'Tarief voor een aanvraag als zelfstandig ondernemer',
+        amount: 'vanaf 2.450 tot 3.500 euro',
+        includes: [
+          'Immigratieadvies en strategie',
+          'Voorbereiding van de aanvraag',
+          'Controle van de documenten',
+          'Communicatie met de IND',
+        ],
+        note: 'Leges van de IND zijn niet inbegrepen. Waar uw dossier binnen deze bandbreedte valt, hangt af van de complexiteit van het bedrijf en of gezinsleden meeaanvragen.',
+      },
+      details: {
+        title: 'Hoe uw aanvraag wordt beoordeeld',
+        items: [
+          {
+            q: 'Wie beslist, en waarover?',
+            a: 'De Rijksdienst voor Ondernemend Nederland (RVO) adviseert de Immigratie- en Naturalisatiedienst (IND) voordat een definitieve beslissing valt. Beoordeeld worden uw professionele achtergrond en ervaring, de kwaliteit en haalbaarheid van het ondernemingsplan, de economische waarde van het bedrijf en het innovatie- of werkgelegenheidspotentieel.',
+          },
+          {
+            q: 'Welk soort bedrijf wordt gunstig beoordeeld?',
+            a: 'Bedrijven die bijdragen aan innovatie, werkgelegenheid of echte economische activiteit in Nederland. Een plan dat leest als een formaliteit om verblijf te krijgen, zonder markt, zonder klanten en zonder kapitaal, is de meest voorkomende reden dat aanvragen stranden.',
+          },
+          {
+            q: 'Welke rechtsvorm moet het bedrijf krijgen?',
+            a: 'Een eenmanszaak is lichter en goedkoper, een BV beperkt de aansprakelijkheid en past bij groei en investeerders. Het juiste antwoord hangt af van uw fiscale positie en hoe de verblijfsroute uw inkomen behandelt, dus wij adviseren per geval en niet op vuistregel.',
+          },
         ],
       },
       faq: {
@@ -84,16 +125,22 @@ export const business: SectionContent = {
             q: 'Hoe lang duurt het voordat ik echt kan handelen?',
             a: 'Voor EU-burgers dagen. Voor oprichters van buiten de EU bepaalt de vergunning het tempo, en wij bevestigen de actuele IND-doorlooptijden tijdens uw intake, zodat uw lanceerdatum vanaf dag één realistisch is.',
           },
+          {
+            q: 'Is er een eenvoudiger route voor Amerikanen of innovatieve startups?',
+            a: 'Ja. Amerikanen kunnen doorgaans aanvragen onder het DAFT-verdrag, en oprichters met een innovatief concept kunnen het startup visum gebruiken. Beide omzeilen de volledige economische toets, en wij bekijken bij de intake welke van de drie routes werkelijk bij u past.',
+          },
         ],
       },
       cta: {
-        title: 'Uw bedrijf hoort hier thuis',
+        title: 'Start uw bedrijf in Nederland',
         text: 'Beschrijf uw bedrijf in twee zinnen. Wij komen terug met de route, de structuur en de eerste drie stappen.',
         label: 'Breng mijn route in kaart',
       },
       form: 'immigration',
-      image: '/images/start-business.jpg',
-      imageAlt: 'Ondernemer opent de deur van haar nieuwe kantoorruimte',
+      image: '/images/start-business.jpg?v=20260731',
+      imageAlt: 'Oprichter in een designgerichte Nederlandse werkruimte',
+      image2: '/images/business-plan.jpg',
+      image2Alt: 'Ondernemer bespreekt haar ondernemingsplan met een adviseur',
     },
     {
       slug: 'company-registration-netherlands',
@@ -151,6 +198,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'Is uw verblijfsvergunning nog in behandeling, dan telt de volgorde van handelen: sommige stappen kunnen vóór aankomst en sommige niet. Wij plannen de reeks rond uw immigratietijdlijn.',
+      conditions: {
+        title: 'Wat oprichting vereist',
+        intro:
+          'De rechtsvorm die u in week één kiest bepaalt jarenlang uw belasting, uw aansprakelijkheid en uw geloofwaardigheid bij Nederlandse partijen.',
+        items: [
+          'Een bv vraagt een notaris en een oprichtingsakte. Een eenmanszaak en een vof niet.',
+          'Het aandelenkapitaal van een bv kan één euro zijn, dus kapitaal is niet langer de reden om voor een vorm te kiezen.',
+          'Elk bedrijf heeft een Nederlands vestigingsadres nodig. Een postbus accepteert de KvK niet.',
+          'Bestuurders en aandeelhouders worden geïdentificeerd onder de UBO-regels, en de uiteindelijk belanghebbende komt in een apart register.',
+          'De btw-registratie volgt automatisch uit de KvK-inschrijving, en de Belastingdienst geeft het nummer apart af.',
+          'Een verblijfsvergunning is als niet-EU-onderdaan een voorwaarde om hier te ondernemen, en het bedrijf kan die vergunning niet vervangen.',
+        ],
+      },
+      details: {
+        title: 'De juiste structuur kiezen',
+        items: [
+          {
+            q: 'Bv of eenmanszaak?',
+            a:
+              'Een eenmanszaak is sneller en goedkoper en wordt belast via de inkomstenbelasting met ondernemersaftrek, maar u bent privé aansprakelijk. Een bv scheidt uw aansprakelijkheid, oogt steviger richting Nederlandse klanten en banken, en wordt fiscaal interessant zodra de winst er is. De meeste adviseurs beginnen als eenmanszaak en zetten om zodra de cijfers de notaris rechtvaardigen.',
+          },
+          {
+            q: 'Hoe lang duurt een bv?',
+            a:
+              'Meestal één tot drie weken. De notaris heeft identificatie, de beoogde structuur en een naamcontrole nodig, en de KvK-inschrijving volgt op de akte. Zitten aandeelhouders in het buitenland, dan kosten gelegaliseerde volmachten extra tijd, dus daar beginnen wij mee.',
+          },
+          {
+            q: 'Kan ik oprichten voordat ik verblijfsrecht heb?',
+            a:
+              'U kunt vanuit het buitenland aandelen houden in een Nederlandse vennootschap, maar erin werken in Nederland vraagt de juiste vergunning. Eerst het bedrijf opzetten en daarna over verblijf nadenken is de volgorde die de meeste problemen veroorzaakt die wij herstellen.',
+          },
+          {
+            q: 'En dat vestigingsadres?',
+            a:
+              'Het moet een echt adres zijn waar het bedrijf werkelijk bereikbaar is, en zowel de KvK als de banken controleren dat inmiddels. Virtuelekantoorpakketten verschillen enorm in of zij die toets doorstaan, en wij wijzen u aanbieders die dat wel doen.',
+          },
+        ],
+      },
       faq: {
         title: 'Voordat u opricht',
         items: [
@@ -176,6 +261,8 @@ export const business: SectionContent = {
       form: 'immigration',
       image: '/images/business-signing.jpg?v=20260728',
       imageAlt: 'Oprichter ondertekent oprichtingsdocumenten bij een Nederlandse notaris',
+      image2: '/images/kvk-registration.jpg?v=20260731',
+      image2Alt: 'Ondernemer en adviseur nemen bedrijfsdocumenten door',
     },
     {
       slug: 'kvk-registration-for-foreigners-netherlands',
@@ -229,6 +316,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'Heeft u nog geen BSN, dan is inschrijving in veel situaties toch mogelijk, maar de route verschilt. Vermeld het wanneer u contact met ons opneemt en wij plannen eromheen.',
+      conditions: {
+        title: 'Wat de KvK van u vraagt',
+        intro:
+          'De afspraak bij de Kamer van Koophandel is kort en onverbiddelijk. Alles wordt bepaald door wat u meebrengt.',
+        items: [
+          'Afspraken moeten vooraf worden geboekt, en in drukke periodes loopt de wachttijd op tot enkele weken.',
+          'U heeft een geldig paspoort of ID nodig, een BSN, en bewijs van uw Nederlandse bedrijfsadres.',
+          'Niet-EU-onderdanen moeten een verblijfsvergunning tonen die zelfstandig ondernemen toestaat.',
+          'Het bedrijfsadres moet een echt adres zijn. Een postbus wordt geweigerd.',
+          'U kiest bij inschrijving SBI-codes, en die volgen u in bankzaken, verzekeringen en btw-behandeling.',
+          'Inschrijving kost eenmalig een bedrag, en uw gegevens komen in het openbare handelsregister.',
+        ],
+      },
+      details: {
+        title: 'De inschrijving goed doen',
+        items: [
+          {
+            q: 'Waarom zijn SBI-codes zo belangrijk?',
+            a:
+              'Ze beschrijven wat uw bedrijf doet, en banken, verzekeraars en de Belastingdienst lezen ze allemaal. Een code die op een hoger risico duidt kan een zakelijke rekening vertragen of blokkeren, en een te smalle code compliceert later uw facturatie. Wij kiezen ze bewust met u in plaats van aan de balie de dichtstbijzijnde te pakken.',
+          },
+          {
+            q: 'Kan ik inschrijven zonder Nederlands adres?',
+            a:
+              'Nee, en dat is de meest voorkomende reden dat een inschrijving mislukt. U heeft een adres nodig waarop het bedrijf werkelijk bereikbaar is. Wij regelen passende bedrijfsadressen voor cliënten die nog zoeken, zodat het bedrijf kan starten terwijl de woningzoektocht loopt.',
+          },
+          {
+            q: 'Gaat u mee naar de afspraak?',
+            a:
+              'Ja. De afspraak verloopt in het Nederlands, aan de balie worden keuzes gemaakt die achteraf lastig terug te draaien zijn, en iemand naast u die weet wat elke vraag betekent is het verschil tussen één afspraak en drie.',
+          },
+          {
+            q: 'Wat gebeurt er direct daarna?',
+            a:
+              'U krijgt uw KvK-nummer dezelfde dag en uw btw-nummer kort daarna van de Belastingdienst. Daarna volgen zakelijk bankieren, boekhouding, facturatie en waar relevant de kleineondernemersregeling. Wij lopen die volgorde met u door in plaats van u met een uittreksel achter te laten.',
+          },
+        ],
+      },
       faq: {
         title: 'KvK-vragen',
         items: [
@@ -252,8 +377,10 @@ export const business: SectionContent = {
         label: 'Boek mijn KvK-inschrijving',
       },
       form: 'immigration',
-      image: '/images/kvk-registration.jpg',
-      imageAlt: 'Ondernemer ontvangt een uittreksel van de bedrijfsinschrijving aan een balie',
+      image: '/images/kvk-registration.jpg?v=20260731',
+      imageAlt: 'Ondernemer en adviseur nemen bedrijfsdocumenten door',
+      image2: '/images/business-plan.jpg',
+      image2Alt: 'Ondernemers werken een ondernemingsplan door',
     },
     {
       slug: 'relocation-services-for-entrepreneurs-netherlands',
@@ -306,6 +433,44 @@ export const business: SectionContent = {
           { title: 'Gesetteld', text: 'U bent ingeschreven, gehuisvest, gebankierd en operationeel, en uw gezin weet waar de goede bakker zit.' },
         ],
       },
+      conditions: {
+        title: 'Hoe de onderdelen in elkaar passen',
+        intro:
+          'Oprichters draaien vier processen tegelijk, en elk hangt van een ander af. De volgorde is de hele dienst.',
+        items: [
+          'Er moet een verblijfsbasis zijn voordat het bedrijf vanuit Nederland kan worden gevoerd, wat de inschrijving ook zegt.',
+          'Inschrijving op uw adres levert het BSN, en zonder BSN functioneren noch het bedrijf noch uw salaris behoorlijk.',
+          'Verhuurders beoordelen ondernemers op vermogen en cijfers in plaats van op loonstroken, dus het huurdossier wordt anders opgebouwd.',
+          'Zakelijk bankieren duurt voor een nieuw bedrijf met een buitenlandse oprichter langer dan particulier bankieren en wordt vaker geweigerd.',
+          'Een zorgverzekering is vanaf aankomst verplicht voor u en uw gezin, ongeacht de bedrijfsstructuur.',
+          'Wij stemmen vergunning, bedrijf en verhuizing op elkaar af. Fiscaliteit en boekhouding liggen bij adviseurs aan wie wij u voorstellen.',
+        ],
+      },
+      details: {
+        title: 'Problemen die alleen oprichters kennen',
+        items: [
+          {
+            q: 'Waarom is zakelijk bankieren zo lastig?',
+            a:
+              'Nederlandse banken hanteren strenge onboardingregels voor nieuwe vennootschappen met niet-ingezeten oprichters, en aanvragen worden geweigerd om redenen die nooit volledig worden toegelicht. Wat werkt is een heldere bedrijfsomschrijving, samenhangende SBI-codes, een echt Nederlands adres, bewijs van beoogde klanten en een oprichter die al ingeschreven staat. Daar bereiden wij op voor in plaats van het te ontdekken.',
+          },
+          {
+            q: 'Hoe huur ik zonder Nederlandse loonstroken?',
+            a:
+              'Met een ander dossier. Verhuurders accepteren ondernemers op basis van jaarcijfers, bankafschriften, vermogen, een hogere waarborgsom of een bankgarantie, en soms een persoonlijke garantie vanuit de bv. Wij bouwen dat dossier goed op en presenteren het in het Nederlands, waarmee een afwijzing een bezichtiging wordt.',
+          },
+          {
+            q: 'Wat moet er als eerste gebeuren?',
+            a:
+              'De immigratietoets, altijd. Al het andere kan van volgorde wisselen, maar een bedrijf bouwen op een verblijfsbasis die niet bestaat is onherstelbaar. Zodra de route vaststaat lopen het bedrijf, de woning en de gezinszaken parallel.',
+          },
+          {
+            q: 'Werkt u samen met mijn accountant?',
+            a:
+              'Graag, en liever wel. Heeft u nog geen Nederlandse adviseur, dan stellen wij u voor aan accountants die met internationale oprichters werken en de 30 procentregeling, grensoverschrijdende facturatie en het gebruikelijk loon voor de dga kennen.',
+          },
+        ],
+      },
       faq: {
         title: 'Wat ondernemers vragen',
         items: [
@@ -329,8 +494,10 @@ export const business: SectionContent = {
         label: 'Start mijn relocationplan',
       },
       form: 'immigration',
-      image: '/images/entrepreneur-relocation.jpg',
-      imageAlt: 'Oprichter draagt een doos en laptop een nieuw kantoor binnen',
+      image: '/images/entrepreneur-relocation.jpg?v=20260731',
+      imageAlt: 'Ondernemer arriveert bij een modern Nederlands appartementengebouw',
+      image2: '/images/start-business.jpg?v=20260731',
+      image2Alt: 'Oprichter in een designgerichte Nederlandse werkruimte',
     },
     {
       slug: 'business-relocation-to-the-netherlands',
@@ -387,6 +554,44 @@ export const business: SectionContent = {
           { title: 'Het team landen', text: 'Aankomsten worden gespreid en begeleid, inschrijvingen afgerond, en uw Nederlandse vestiging opent met haar mensen compleet.' },
         ],
       },
+      conditions: {
+        title: 'Wat een bedrijfsverhuizing inhoudt',
+        intro:
+          'Een entiteit verplaatsen is een project met een kritiek pad, en de immigratiekant ligt daar vrijwel altijd op.',
+        items: [
+          'Erkend referentschap bij de IND is vereist voordat één kennismigrantenaanvraag kan worden ingediend, en die erkenning kost zelf al weken.',
+          'Erkende referenten aanvaarden doorlopende informatie-, administratie- en zorgplichten, en worden daarop gecontroleerd.',
+          'Elke meeverhuizende medewerker heeft een eigen dossier, en elk meereizend gezin vermenigvuldigt het papierwerk.',
+          'Salarisnormen gelden per medewerker en worden jaarlijks geïndexeerd, wat de begroting raakt bij aanbiedingen laat in het jaar.',
+          'Detachering vanuit een andere EU-entiteit is een apart regime met een eigen meldplicht, en geen lichtere versie van hetzelfde.',
+          'Wij verzorgen immigratie, huisvesting en de landing van het gezin. Vennootschapsbelasting, verrekenprijzen en juridische structurering blijven bij uw adviseurs.',
+        ],
+      },
+      details: {
+        title: 'Het project goed draaien',
+        items: [
+          {
+            q: 'Hoe vroeg moeten wij beginnen?',
+            a:
+              'Vier tot zes maanden voor de eerste aankomst wanneer het referentschap er nog niet is. Erkenning, vergunningen, huisvesting en scholen hebben elk hun eigen wachttijd, en de enige manier om het totaal te verkorten is ze vanaf een vroeg genoeg begin gelijktijdig te laten lopen.',
+          },
+          {
+            q: 'Waartoe verplicht erkend referentschap ons?',
+            a:
+              'Tot het bijhouden van een dossier per gesponsorde medewerker, het binnen vier weken melden van relevante wijzigingen aan de IND, en redelijke zorg voor de landing van de medewerker. De IND controleert. Wij richten de administratie zo in dat een controle een formaliteit is en geen gebeurtenis.',
+          },
+          {
+            q: 'Kunt u meerdere gezinnen tegelijk aan?',
+            a:
+              'Ja, en dat is een groot deel van ons werk. Elk gezin krijgt een eigen adviseur en een eigen plan, terwijl HR één aanspreekpunt heeft en één overzicht in plaats van vijftien mailwisselingen.',
+          },
+          {
+            q: 'Waarom vertrekken mensen binnen een jaar?',
+            a:
+              'Zelden om de baan. Het is de partner die geen werk vond, het kind dat nooit aardde op school, of een woonsituatie die nooit als thuis voelde. Dat zijn relocationfouten en geen HR-fouten, en precies die zijn wij ingehuurd te voorkomen.',
+          },
+        ],
+      },
       faq: {
         title: 'Vragen van HR en leiding',
         items: [
@@ -410,8 +615,134 @@ export const business: SectionContent = {
         label: 'Bespreek onze bedrijfsverhuizing',
       },
       form: 'immigration',
-      image: '/images/business-relocation.jpg',
-      imageAlt: 'Team verhuist kratten naar een modern kantoorgebouw',
+      image: '/images/business-relocation.jpg?v=20260731',
+      imageAlt: 'Internationaal directieteam in een Rotterdamse bestuurskamer',
+      image2: '/images/employer-team.jpg?v=20260731',
+      image2Alt: 'Internationaal teamoverleg op een Nederlands kantoor',
+    },
+    {
+      slug: 'employer-immigration-services-netherlands',
+      menuLabel: 'Immigratie voor werkgevers',
+      title: 'Immigratiediensten voor werkgevers in Nederland',
+      metaTitle: 'Immigratiediensten voor werkgevers Nederland | Personeel van buiten de EU',
+      metaDescription:
+        'Immigratiediensten voor werkgevers in Nederland: aanvragen voor kennismigranten en de EU Blue Card, IND-erkenning als referent, detachering en dossiertoetsing.',
+      eyebrow: 'Voor werkgevers',
+      intro: [
+        'Internationaal talent aannemen is vaak essentieel, en personeel van buiten de EU aannemen in Nederland is zelden eenvoudig. Het brengt immigratieprocedures, complianceverplichtingen en afstemming met de IND, de Nederlandse Arbeidsinspectie en soms het UWV met zich mee.',
+        'Wij ondersteunen werkgevers bij Nederlandse immigratieprocedures voor internationale medewerkers, van één specialist tot een langetermijnstrategie voor personeel. Doel is een proces dat voorspelbaar en beheersbaar blijft voor het bedrijf én voor degene die verhuist.',
+      ],
+      cardText: 'Immigratieprocedures, referentschap en compliance voor bedrijven die internationaal werven.',
+      forWho: {
+        title: 'Met wie wij werken',
+        items: [
+          'Nederlandse bedrijven die specialisten van buiten de Europese Unie werven',
+          'Werkgevers die medewerkers vanuit een buitenlands kantoor naar Nederland overplaatsen',
+          'HR- en mobilitymanagers die één aanspreekbare lokale partner willen',
+          'Bedrijven die IND-erkenning als referent overwegen',
+          'Organisaties die medewerkers tijdelijk hierheen detacheren voor projecten of opdrachten',
+        ],
+      },
+      conditions: {
+        title: 'Waar werkgevers rekening mee moeten houden',
+        intro:
+          'Elke immigratieroute kent eigen eisen, documentatieverplichtingen en salarisdrempels. Voordat een aanname vaststaat is het goed te weten dat:',
+        items: [
+          'een medewerker van buiten de EU een verblijfsbasis nodig heeft vóór de eerste werkdag',
+          'salarisdrempels per route verschillen en per categorie worden vastgesteld',
+          'erkende referenten doorlopende complianceverplichtingen richting de IND hebben',
+          'referenten betrouwbaarheid, financiële stabiliteit en een deugdelijke administratie moeten aantonen',
+          'detachering meldingsplichten onder de Nederlandse arbeidsregels kan activeren',
+          'immigratiedoorlooptijden invloed hebben op wervingsplanning en startdata',
+        ],
+      },
+      included: {
+        title: 'Hoe wij werkgevers ondersteunen',
+        blocks: [
+          {
+            title: 'Keuze van de immigratieroute',
+            text: 'Kennismigrantenvergunningen, de EU Blue Card, gecombineerde vergunning voor verblijf en arbeid (GVVA), afgestudeerden van het zoekjaar die doorstromen naar een baan, en overplaatsingen binnen een concern. Wij bepalen welke route werkelijk past bij de functie en de kandidaat.',
+          },
+          {
+            title: 'Aanvragen voor uw medewerkers',
+            text: 'Wij bereiden de immigratieaanvragen voor, coördineren de documentatie voor indiening bij de IND en adviseren over realistische doorlooptijden voor de verhuisplanning.',
+          },
+          {
+            title: 'IND-erkenning als referent',
+            text: 'Wij bereiden aanvragen voor erkenning voor, adviseren over voorwaarden en documentatie, toetsen interne administratieve procedures en houden u compliant met de referentverplichtingen.',
+          },
+          {
+            title: 'Detachering naar Nederland',
+            text: 'Wij beoordelen detacheringsscenario’s, adviseren over de toepasselijke route, verzorgen verblijfs- of tewerkstellingsvergunningen en zorgen dat meldingsplichten worden nagekomen.',
+          },
+          {
+            title: 'Immigratiestrategie',
+            text: 'Wij adviseren over het inrichten van internationale wervingsprocessen, planning van verhuizing en onboarding, afstemming met arbeidscontracten en het beheersen van compliancerisico’s.',
+          },
+          {
+            title: 'Dossiertoetsing',
+            text: 'Bij afgewezen aanvragen, statuswijzigingen of onduidelijke voorwaarden analyseren wij de situatie in detail en zetten wij de realistische opties en vervolgstappen op een rij vóórdat een nieuwe aanvraag start.',
+          },
+        ],
+      },
+      process: {
+        title: 'Hoe een opdracht voor werkgevers verloopt',
+        steps: [
+          { title: 'Scope', text: 'Wij brengen de functies, de betrokken nationaliteiten, de deadlines en de compliancepositie van uw bedrijf in kaart.' },
+          { title: 'Route en documenten', text: 'De geschikte immigratieroute wordt per medewerker bevestigd en de documentatie wordt klaargemaakt voor indiening.' },
+          { title: 'Indiening en contact', text: 'De aanvragen gaan naar de IND en wij voeren de correspondentie, inclusief vragen en aanvullende verzoeken.' },
+          { title: 'Aankomst en settelen', text: 'Medewerkers en hun gezinnen worden begeleid bij inschrijving, huisvesting en de praktijk van het aankomen.' },
+        ],
+      },
+      note: 'Wij zijn een boutiquebureau, wat evenzeer een bewuste grens is als een belofte. Wij nemen het volume aan dat wij persoonlijk kunnen begeleiden, en zeggen het gewoon wanneer een verzoek daarboven uitkomt.',
+      details: {
+        title: 'Details voor HR- en mobilityteams',
+        items: [
+          {
+            q: 'Wat verandert erkenning als referent?',
+            a: 'Bedrijven die regelmatig internationale professionals aannemen kunnen erkend referent worden bij de IND. Dat levert snellere procedures, eenvoudiger aanvragen en meer flexibiliteit op. Daartegenover staan doorlopende complianceverplichtingen en moet het bedrijf betrouwbaarheid, financiële stabiliteit en deugdelijke administratieve procedures kunnen aantonen.',
+          },
+          {
+            q: 'Wanneer gelden detacheringsregels?',
+            a: 'Wanneer een internationaal bedrijf medewerkers tijdelijk hierheen stuurt voor een project, opdracht of overplaatsing binnen het concern. Afhankelijk van de situatie kunnen EU-detacheringsregels, tewerkstellingsvergunningen, verblijfsvereisten voor medewerkers van buiten de EU en Nederlandse meldingsplichten tegelijk gelden. Zorgvuldige planning voorkomt vertraging en compliancerisico.',
+          },
+          {
+            q: 'Wanneer is een dossiertoetsing zinvol?',
+            a: 'Wanneer een aanvraag eerder is afgewezen, wanneer een medewerker van status of visumcategorie wisselt, wanneer de voorwaarden echt onduidelijk zijn, of wanneer een erkend referent een compliancevraag heeft. Een toetsing geeft u een beoordeling van de situatie, de risico’s en obstakels, de beschikbare opties en een aanbevolen vervolgstap.',
+          },
+          {
+            q: 'Werkt u samen met onze juridisch en fiscaal adviseurs?',
+            a: 'Ja, en het liefst zelfs. Wij nemen de immigratiekant en de menselijke kant van de verhuizing op ons en passen ons in de structuur die uw adviseurs ontwerpen.',
+          },
+        ],
+      },
+      faq: {
+        title: 'Vragen van werkgevers',
+        items: [
+          {
+            q: 'Wanneer moeten wij u bij een aanname betrekken?',
+            a: 'Bij voorkeur vóór de ondertekening van het contract. De immigratieroute beïnvloedt het salaris, de startdatum en soms of de aanname überhaupt mogelijk is, en dat zijn dure ontdekkingen achteraf.',
+          },
+          {
+            q: 'Begeleidt u ook de medewerker en het gezin?',
+            a: 'Ja. Huisvesting, schoolzoektocht, inschrijving bij de gemeente en settelen horen erbij, en meestal bepalen juist die dingen of iemand na jaar één blijft.',
+          },
+          {
+            q: 'Helpt u ook bedrijven zonder Nederlandse vestiging?',
+            a: 'Ja. Wij zetten de Nederlandse entiteit en het immigratietraject samen op, in de volgorde waarin elke stap de volgende mogelijk maakt.',
+          },
+        ],
+      },
+      cta: {
+        title: 'Neemt u internationaal talent aan?',
+        text: 'Noem ons de functie, de nationaliteit en de gewenste startdatum. Wij komen terug met de route, de planning en wat uw bedrijf op orde moet hebben.',
+        label: 'Bespreek onze wervingsplannen',
+      },
+      form: 'immigration',
+      image: '/images/employer-immigration.jpg',
+      imageAlt: 'HR-adviseur en manager bespreken een internationale aanname',
+      image2: '/images/employer-team.jpg',
+      image2Alt: 'Internationaal team werkt samen in een Nederlands kantoor',
     },
     {
       slug: 'housing-support-for-entrepreneurs-netherlands',
@@ -465,6 +796,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'Tijdelijke woonruimte kan het gat overbruggen terwijl wij zoeken, maar niet elk short-stay adres staat gemeentelijke inschrijving toe. Wij wijzen op dat onderscheid voordat u zich ergens aan verbindt.',
+      conditions: {
+        title: 'Huren zonder loonstroken',
+        intro:
+          'Nederlandse verhuurders zijn gebouwd om arbeidscontracten te lezen. Alles hieronder gaat erover hun iets te geven dat zij wél kunnen lezen.',
+        items: [
+          'Verhuurders willen doorgaans een bruto-inkomen van drie tot vier keer de huur, en bij ondernemers zoeken zij het equivalent in cijfers en vermogen.',
+          'Nieuw opgerichte bedrijven hebben geen trackrecord, dus draagt de persoonlijke positie van de oprichter meestal het dossier.',
+          'Verwacht verzoeken om jaarcijfers, een jaar bankafschriften, een accountantsverklaring of een bankgarantie.',
+          'Waarborgsommen zijn voor contracten vanaf 1 juli 2023 gemaximeerd op twee maanden kale huur, en een hogere som mag niet in de plaats worden gevraagd.',
+          'Een garantie vanuit uw bv of een persoonlijke garantie wordt vaak geaccepteerd waar documenten alleen niet volstaan.',
+          'Wij treden op voor u en niet voor de verhuurder, en ontvangen van geen van beide partijen courtage.',
+        ],
+      },
+      details: {
+        title: 'Een dossier bouwen dat overtuigt',
+        items: [
+          {
+            q: 'En als mijn bedrijf gloednieuw is?',
+            a:
+              'Dan rust het dossier op u in plaats van erop. Spaargeld, inkomen uit uw vorige land, bestaande klantcontracten, een ondertekende accountantsverklaring en een bankgarantie werken allemaal. Wat niet werkt is bij een bezichtiging aankomen met een uitleg in plaats van met documenten.',
+          },
+          {
+            q: 'Is een bankgarantie hier gebruikelijk?',
+            a:
+              'Die is gangbaar en volstrekt respectabel voor ondernemers. Uw bank blokkeert een bedrag, doorgaans twee tot drie maanden huur, en de verhuurder accepteert dat in plaats van een arbeidsverleden. Het kost meestal een bescheiden jaarlijkse vergoeding en opent woningen die u anders zouden weigeren.',
+          },
+          {
+            q: 'Moet ik zeggen dat ik zelfstandig ben?',
+            a:
+              'Altijd, en vroeg. Verhuurders die het bij de contractfase ontdekken haken af. Verhuurders die het vanaf het begin horen, met een goed voorbereid dossier in het Nederlands, gaan meestal door. Verzwijgen is de snelste manier om een woning te verliezen die u al gewonnen had.',
+          },
+          {
+            q: 'Mag ik een woning huren en als bedrijfsadres gebruiken?',
+            a:
+              'Vaak wel, voor een adviespraktijk of dienstverlening zonder bezoekers, maar het hangt af van het huurcontract en van het bestemmingsplan van de gemeente. Wij controleren beide voordat u het adres bij de KvK inschrijft, want het terugdraaien is onaangenaam.',
+          },
+        ],
+      },
       faq: {
         title: 'Woonvragen van ondernemers',
         items: [
@@ -490,6 +859,8 @@ export const business: SectionContent = {
       form: 'immigration',
       image: '/images/entrepreneur-housing.jpg',
       imageAlt: 'Licht woon-werk loftappartement met een bureau bij het raam',
+      image2: '/images/rental-contract.jpg?v=20260731',
+      image2Alt: 'Ondertekening van een Nederlands huurcontract met een vulpen',
     },
   ],
   crossLinks: [

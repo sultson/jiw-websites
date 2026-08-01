@@ -19,5 +19,5 @@ const { section, service, basePath, siblings, path } = serviceProps(lang, 'reloc
   image={service.image}
   jsonLd={[serviceJsonLd(service.title, service.metaDescription, path, lang), faqJsonLd(service.faq.items)]}
 >
-  <ServiceView lang={lang} service={service} basePath={basePath} sectionTitle={section.title} siblings={siblings} />
+  <ServiceView lang={lang} service={service} basePath={basePath} sectionTitle={section.title} sectionImage={section.image} siblings={siblings} />
 </Layout>

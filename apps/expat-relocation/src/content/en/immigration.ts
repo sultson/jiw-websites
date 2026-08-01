@@ -10,8 +10,8 @@ export const immigration: SectionContent = {
     'A Dutch visa is not a form. It is the moment your new life either starts on time or sits in a drawer at the IND. We handle the immigration side of your move the way it should be handled: practically, personally, and with someone who has walked hundreds of families through these exact doors. As the only boutique expat agency in the Netherlands, we take on a small number of clients and give each one real attention.',
     'Every case starts with an honest intake. We tell you which permit actually fits your situation, what the IND will ask for, and what we take off your plate. From that point on you have one contact, one plan, and no surprises.',
   ],
-  image: '/images/immigration-hub.jpg',
-  imageAlt: 'Relocation advisor walking with clients to a Dutch government office',
+  image: '/images/canal-evening.jpg',
+  imageAlt: 'Amsterdam canal bridges lit at dusk',
   cta: {
     title: 'Not sure which visa fits your situation?',
     text: 'Tell us where you are coming from and why. We will tell you, plainly, which route makes sense and what it takes.',
@@ -75,6 +75,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'Many highly skilled migrants qualify for the 30% facility, a Dutch tax advantage for incoming employees. Conditions change regularly, so we flag it during intake and connect you with a tax advisor rather than promising numbers.',
+      conditions: {
+        title: 'What the IND requires',
+        intro:
+          'This route runs through your employer rather than through you. These conditions decide the file before it is ever opened.',
+        items: [
+          'Your employer must be an IND recognised sponsor. Without that recognition the route is closed, whatever your salary.',
+          'Gross monthly salary from 5,942 euro if you are 30 or older, and from 4,357 euro if you are under 30 (2026, excluding the 8 percent holiday allowance).',
+          'A reduced criterion of 3,122 euro applies in the year after a Dutch orientation year or a Dutch degree.',
+          'Salary must be paid monthly into a Dutch bank account. Bonuses, allowances and expense budgets do not count towards the threshold.',
+          'The 30 percent ruling is calculated on top of the criterion and can never be used to reach it.',
+          'Thresholds are indexed every 1 January and judged on the figures in force when the application is filed.',
+        ],
+      },
+      details: {
+        title: 'Details worth knowing',
+        items: [
+          {
+            q: 'What if my employer is not a recognised sponsor?',
+            a:
+              'Recognition takes weeks that a start date rarely has. When an employer is not recognised we look at the EU Blue Card, which carries no sponsorship requirement, or we run the recognition application alongside your file if the company intends to hire internationally again.',
+          },
+          {
+            q: 'How fast is the decision in practice?',
+            a:
+              'Recognised sponsors have a legal decision term of ninety days, and complete files are frequently decided in two to four weeks. The delay in this route is almost always a missing legalised document, not the IND.',
+          },
+          {
+            q: 'What happens when I change jobs?',
+            a:
+              'Your permit is tied to your employer. A new employer must also be a recognised sponsor and must file a new application, and you may not start before it is approved. We manage the switch so there is no gap in your residence.',
+          },
+          {
+            q: 'Do I need an MVV as well as the permit?',
+            a:
+              'Most non-EU nationals do, and we apply for both in a single combined procedure. Nationals of the United States, Canada, Japan, Australia, New Zealand, South Korea and the United Kingdom are exempt and travel on the permit alone.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions we hear often',
         items: [
@@ -90,6 +128,11 @@ export const immigration: SectionContent = {
             q: 'Do I need to speak Dutch?',
             a: 'No. There is no language requirement for this permit, and daily life in the international communities around Rotterdam and The Hague runs comfortably in English.',
           },
+                  {
+            q: 'Can my partner work in the Netherlands?',
+            a:
+              'Yes. Partners of highly skilled migrants receive a permit with free access to the labour market, which means no separate work permit and no employer sponsorship. Children are included in the same family application.',
+          },
         ],
       },
       cta: {
@@ -98,8 +141,10 @@ export const immigration: SectionContent = {
         label: 'Check my eligibility',
       },
       form: 'immigration',
-      image: '/images/hsm-visa.jpg',
-      imageAlt: 'International professional working at a Dutch office',
+      image: '/images/hsm-visa.jpg?v=20260731',
+      imageAlt: 'International professional in a Dutch office atrium',
+      image2: '/images/employer-immigration.jpg',
+      image2Alt: 'Two international professionals in conversation outside a Dutch office',
     },
     {
       slug: 'eu-blue-card-netherlands',
@@ -152,6 +197,49 @@ export const immigration: SectionContent = {
           { title: 'Submission and arrival', text: 'After approval we plan your entry, registration and first appointments in the right order.' },
         ],
       },
+      conditions: {
+        title: 'Blue Card conditions',
+        intro:
+          'The Blue Card is decided on three things: your qualification, your contract and your salary. This is where the lines sit.',
+        items: [
+          'A completed higher education programme of at least three years, or for ICT roles at least three years of relevant experience gained in the last seven.',
+          'Gross monthly salary from 5,942 euro, or 4,754 euro under the reduced criterion for recent graduates and shortage professions (2026, excluding holiday allowance).',
+          'An employment contract or binding job offer running for at least six months.',
+          'Foreign diplomas must be evaluated by IDW or Nuffic. Dutch qualifications need no evaluation.',
+          'Your employer does not need to be a recognised sponsor, which is the practical advantage over the highly skilled migrant permit.',
+          'Thresholds are indexed on 1 January and applied as at the filing date, not the contract date.',
+        ],
+      },
+      details: {
+        title: 'The Blue Card in practice',
+        items: [
+          {
+            q: 'How does EU mobility actually work?',
+            a:
+              'After twelve months of legal residence as a Blue Card holder you can move to another member state under a shortened procedure, and years spent in different member states count together towards EU long-term resident status. A Dutch highly skilled migrant permit gives you none of this.',
+          },
+          {
+            q: 'Blue Card or highly skilled migrant?',
+            a:
+              'If your employer is a recognised sponsor and you intend to build your career in the Netherlands, the highly skilled migrant permit is usually faster and simpler. If your employer is not recognised, or your career is likely to move across Europe, the Blue Card is the stronger instrument. You get the comparison in writing before you commit.',
+          },
+          {
+            q: 'Can I qualify on experience instead of a degree?',
+            a:
+              'Only in ICT. Managers and specialists in information and communication technology can qualify on at least three years of relevant experience obtained in the seven years before the application. Every other profession needs the diploma.',
+          },
+          {
+            q: 'How long does diploma evaluation take?',
+            a:
+              'IDW usually returns an evaluation in about four weeks, longer where an institution is slow to confirm authenticity. We start it in parallel with the rest of the file so it never becomes the bottleneck.',
+          },
+          {
+            q: 'What does the Blue Card build towards?',
+            a:
+              'Once you have five years of legal residence in the EU with at least two of them in the Netherlands, you can apply for EU long-term resident status here. That accumulation across borders is unique to this permit.',
+          },
+        ],
+      },
       faq: {
         title: 'Practical questions',
         items: [
@@ -167,6 +255,11 @@ export const immigration: SectionContent = {
             q: 'Can I bring my family?',
             a: 'Yes. Your partner and children can apply with you, and your partner may work in the Netherlands without a separate work permit.',
           },
+                  {
+            q: 'Does the 30 percent ruling count towards the salary threshold?',
+            a:
+              'No. The IND tests your gross salary before the ruling is applied. A contract that only reaches the threshold once the ruling is counted will be refused, and this is one of the most common reasons a Blue Card file fails.',
+          },
         ],
       },
       cta: {
@@ -175,8 +268,10 @@ export const immigration: SectionContent = {
         label: 'Ask about the Blue Card',
       },
       form: 'immigration',
-      image: '/images/eu-blue-card.jpg',
-      imageAlt: 'Engineer reviewing permit documents at a desk',
+      image: '/images/eu-blue-card.jpg?v=20260731',
+      imageAlt: 'Two senior international professionals in discussion',
+      image2: '/images/hsm-visa.jpg?v=20260731',
+      image2Alt: 'International professional in a Dutch office atrium',
     },
     {
       slug: 'orientation-year-visa-netherlands',
@@ -234,6 +329,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'The three-year window after graduation is strict, and rankings lists change per year. If you are close to the edge, contact us before you assume you are out. Questions rarely keep office hours, which is why clients reach us on a personal WhatsApp line day and night.',
+      conditions: {
+        title: 'Who qualifies for the zoekjaar',
+        intro:
+          'The orientation year is generous once you are inside it, and strict about who gets in. The window is the part people miss.',
+        items: [
+          'You must apply within three years of graduating, obtaining your PhD or completing your research.',
+          'Graduates of accredited Dutch bachelor, master and PhD programmes qualify on the Dutch degree alone.',
+          'International graduates need a degree from a university ranked in the top 200 of a recognised global ranking.',
+          'The permit runs for twelve months, cannot be extended, and can only be granted once.',
+          'You may work employed or self-employed for the whole year with no work permit and no salary threshold.',
+          'In the year that follows, the reduced highly skilled migrant criterion of 3,122 euro applies (2026).',
+        ],
+      },
+      details: {
+        title: 'Making the year count',
+        items: [
+          {
+            q: 'What makes me easier to hire during the zoekjaar?',
+            a:
+              'You have free access to the Dutch labour market. Your employer needs no work permit, no sponsorship and pays no IND fee, which removes the exact objection that blocks other non-EU candidates. Put it in your first line, because most Dutch employers do not know it.',
+          },
+          {
+            q: 'What happens at the end of the twelve months?',
+            a:
+              'You switch to another permit, most often the highly skilled migrant permit at the reduced criterion. The switch has to be filed before the orientation year expires, so we begin preparing it around month nine rather than month twelve.',
+          },
+          {
+            q: 'Can I start a business during the year?',
+            a:
+              'You can register at the KvK and work as a self-employed person for the duration. Converting to a permanent entrepreneurial basis afterwards is a separate application with its own test, so it is worth planning from the start.',
+          },
+          {
+            q: 'Does my partner get anything?',
+            a:
+              'Yes. Your partner can apply for a dependent permit for the same twelve months and also has free access to the labour market.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked',
         items: [
@@ -257,8 +390,10 @@ export const immigration: SectionContent = {
         label: 'Check my orientation year',
       },
       form: 'immigration',
-      image: '/images/orientation-year.jpg',
-      imageAlt: 'Graduate with a bicycle in a Dutch city street',
+      image: '/images/orientation-year.jpg?v=20260731',
+      imageAlt: 'Graduate walking along an Amsterdam canal in autumn',
+      image2: '/images/consultation.jpg',
+      image2Alt: 'Advisor and client discussing next steps',
     },
     {
       slug: 'partner-visa-netherlands',
@@ -316,6 +451,44 @@ export const immigration: SectionContent = {
           { title: 'Reunited', text: 'Your partner travels, registers and receives the residence permit. We are there for the landing.' },
         ],
       },
+      conditions: {
+        title: 'What has to be true',
+        intro:
+          'Partner applications are refused on evidence far more often than on eligibility. These are the conditions, and the places files are usually lost.',
+        items: [
+          'The sponsor in the Netherlands must earn at least 2,523.96 euro gross per month including holiday allowance (2026, revised twice a year).',
+          'That income must be durable. A permanent contract clears it outright, a temporary one is judged on what remains.',
+          'The relationship must be exclusive, long-term and demonstrable. Marriage, registered partnership and documented unmarried relationships all qualify.',
+          'Both partners must be at least 21 years old.',
+          'Most partners must pass the basic civic integration exam abroad before an MVV can be issued.',
+          'Foreign birth, marriage and unmarried-status certificates usually need legalisation or an apostille plus a sworn translation.',
+        ],
+      },
+      details: {
+        title: 'The sensitive points we manage',
+        items: [
+          {
+            q: 'What counts as durable income?',
+            a:
+              'A permanent contract clears it outright. On a temporary contract the IND asks whether the income will still be there for the next twelve months, and a contract with at least a year to run, or a three-year employment history, usually satisfies that. Self-employed sponsors are assessed on three years of accounts.',
+          },
+          {
+            q: 'We are not married. Does that count against us?',
+            a:
+              'No, but it raises the evidence bar. We build a relationship file: joint address history, shared finances, travel, photographs across years, communication records and statements from people who know you. This is where refused applications are lost, and where careful preparation wins them.',
+          },
+          {
+            q: 'Who is exempt from the integration exam abroad?',
+            a:
+              'Nationals of the EU, EEA, Switzerland, the United States, Canada, Australia, New Zealand, Japan, South Korea and the United Kingdom, among a few others, plus applicants who cannot sit it for medical reasons or who hold a Dutch or Belgian qualification. Everyone else takes the exam at a Dutch embassy.',
+          },
+          {
+            q: 'We were refused before. Can that be repaired?',
+            a:
+              'Often, yes. A refusal is not a permanent bar, but the second file has to answer the exact ground of the first refusal rather than repeat the first attempt. Send us the decision letter and you will get an honest read on whether a fresh application or a formal objection is the better route.',
+          },
+        ],
+      },
       faq: {
         title: 'Couples ask us',
         items: [
@@ -339,8 +512,10 @@ export const immigration: SectionContent = {
         label: 'Plan our partner visa',
       },
       form: 'immigration',
-      image: '/images/partner-visa.jpg',
-      imageAlt: 'Couple completing application forms at their kitchen table',
+      image: '/images/partner-visa.jpg?v=20260731',
+      imageAlt: 'Couple at home in their Dutch apartment',
+      image2: '/images/daft-couple.jpg',
+      image2Alt: 'Couple together on a Dutch canal at sunset',
     },
     {
       slug: 'family-reunification-netherlands',
@@ -398,6 +573,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'Children’s applications hinge on details parents rarely expect, such as consent from a parent staying behind. Raise your full family situation during intake so nothing surfaces late.',
+      conditions: {
+        title: 'Conditions for the family file',
+        intro:
+          'One sponsor carries the whole family application. Everything below is tested against that person, and against paperwork issued in countries you have already left.',
+        items: [
+          'The main permit holder acts as sponsor and must hold a valid residence permit on a non-temporary basis.',
+          'Income of at least 2,523.96 euro gross per month including holiday allowance, assessed as durable (2026 figure).',
+          'Children must be minors, unmarried, and must have belonged to the family before the move to the Netherlands.',
+          'Where one parent remains abroad, written consent from that parent is required before a child can move.',
+          'Certificates from most countries need legalisation or an apostille and a sworn translation into Dutch, English, French or German.',
+          'Applications filed together with the main applicant are decided faster than applications filed afterwards.',
+        ],
+      },
+      details: {
+        title: 'How family files really run',
+        items: [
+          {
+            q: 'Should we apply together or follow later?',
+            a:
+              'Together whenever it is possible. A simultaneous family application is decided alongside the main file, lands on one timeline and avoids a second income test. Following later is entirely workable, it simply costs an extra procedure and several months apart.',
+          },
+          {
+            q: 'How long does legalisation take?',
+            a:
+              'Between two weeks and six months depending on the country, because in many places the chain runs through the local ministry of foreign affairs and then the Dutch embassy. This is the single most common cause of delay in family files, which is why we start it before anything else.',
+          },
+          {
+            q: 'Can our children start school straight away?',
+            a:
+              'Yes. Children in the Netherlands have both the right and the obligation to attend school regardless of permit status, and international schools and newcomer classes usually admit them within weeks. We run the school search alongside the permit rather than after it.',
+          },
+          {
+            q: 'What if a child turns eighteen during the procedure?',
+            a:
+              'The IND assesses age at the moment of submission, so a child who was a minor when the application was filed does not lose eligibility by having a birthday while it is pending. It is precisely why we file early rather than file perfectly.',
+          },
+        ],
+      },
       faq: {
         title: 'What families want to know',
         items: [
@@ -421,29 +634,42 @@ export const immigration: SectionContent = {
         label: 'Plan our family move',
       },
       form: 'immigration',
-      image: '/images/family-reunification.jpg',
-      imageAlt: 'Family reunited in the arrivals hall at Schiphol',
+      image: '/images/family-reunification.jpg?v=20260731',
+      imageAlt: 'Family together in a bright Dutch townhouse',
+      image2: '/images/family-unpacking.jpg?v=20260731',
+      image2Alt: 'Family settled into their new Dutch living room',
     },
     {
       slug: 'startup-visa-netherlands',
       menuLabel: 'Startup visa',
       title: 'Startup Visa Netherlands',
-      metaTitle: 'Startup Visa Netherlands | Launch Your Company Here',
+      metaTitle: 'Startup Visa Netherlands | For Innovative Entrepreneurs',
       metaDescription:
-        'The Dutch startup visa gives ambitious founders a year to build with a recognized facilitator. We guide the application, the facilitator match and your landing as a founder.',
+        'The startup visa Netherlands gives non-EU founders a one-year residence permit to build an innovative company with a recognised facilitator. Requirements, process and fees.',
       eyebrow: 'Founder visa',
       intro: [
-        'The Netherlands actively recruits founders, and the startup visa is the front door: a one-year residence permit to build an innovative company under the wing of an IND recognized facilitator. Strong idea, credible plan, right facilitator, and you are in one of Europe’s best ecosystems.',
-        'Most advisors stop at the permit. As a boutique agency we take founders through the whole arc: the facilitator introduction, the business plan the IND actually wants to read, and the practical move that lets you spend your energy on the company instead of the paperwork.',
+        'The startup visa Netherlands is designed for international entrepreneurs who want to develop an innovative business here. It grants a one-year startup phase in which you build the company alongside a recognised startup facilitator, inside an ecosystem with real access to investors, incubators and international markets.',
+        'We guide the whole arc, not only the permit: the facilitator match, the startup plan the IND wants to read, and the practical side of arriving, from company registration to a place to live.',
       ],
       cardText: 'A one-year founder permit to build your innovative company in the Dutch ecosystem.',
       forWho: {
-        title: 'Built for founders who are',
+        title: 'Who can apply for the startup visa',
         items: [
-          'Launching an innovative product or service that does not yet exist in the Dutch market',
-          'From outside the EU and need a residence basis to build here',
-          'Ready to work with a recognized facilitator or accelerator',
-          'Planning the step to the self-employed permit after year one',
+          'Non-EU entrepreneurs introducing an innovative product, service or technology to the Dutch market',
+          'Founders ready to work with a recognised facilitator who provides mentorship during the startup phase',
+          'Teams that need a residence basis to develop the business on Dutch soil',
+          'Founders planning the step to the self-employed entrepreneur permit after year one',
+        ],
+      },
+      conditions: {
+        title: 'Startup visa requirements',
+        intro: 'The IND assesses the idea, and the facilitator assesses you. Applicants must demonstrate:',
+        items: [
+          'An innovative business concept',
+          'Cooperation with an approved startup facilitator',
+          'A structured startup development plan',
+          'Sufficient financial means for the first year',
+          'That the founder plays an active role in the business',
         ],
       },
       included: {
@@ -451,15 +677,19 @@ export const immigration: SectionContent = {
         blocks: [
           {
             title: 'Honest viability check',
-            text: 'The IND assesses innovation and the facilitator assesses you. We tell you upfront whether your case is strong, and what to fix if it is not.',
+            text: 'We tell you upfront whether your case meets the innovation criteria, and what to strengthen if it does not, before you commit money or months.',
           },
           {
             title: 'Facilitator matching',
-            text: 'A recognized facilitator must back your application. We help you approach the ones that fit your sector and stage.',
+            text: 'A recognised facilitator must back your application. We help you approach the ones that fit your sector and stage, and coordinate the agreement.',
           },
           {
-            title: 'Application and step plan',
-            text: 'We prepare the IND file, including the step-by-step plan describing your role and the innovation, and manage the submission.',
+            title: 'Startup plan preparation',
+            text: 'We help structure the required development plan describing your role, the innovation and the milestones for the year.',
+          },
+          {
+            title: 'Application handling',
+            text: 'We prepare the IND file, submit it and manage every exchange with the authorities until the decision.',
           },
           {
             title: 'Founder landing',
@@ -468,39 +698,70 @@ export const immigration: SectionContent = {
         ],
       },
       process: {
-        title: 'From pitch to permit',
+        title: 'Our working method',
         steps: [
-          { title: 'Assess', text: 'We stress-test your idea against the IND innovation criteria before you commit.' },
-          { title: 'Match and file', text: 'Facilitator agreement signed, application prepared and submitted.' },
-          { title: 'Build', text: 'You arrive, we handle the settling in, and you get a year of runway on Dutch soil.' },
+          { title: 'Eligibility assessment', text: 'We assess whether your business idea qualifies as an innovative startup under the IND criteria.' },
+          { title: 'Facilitator coordination', text: 'We assist in finding and working with recognised facilitators, and in getting the agreement signed.' },
+          { title: 'Startup plan', text: 'We help structure the development plan the application is judged on.' },
+          { title: 'Residence permit application', text: 'We prepare and submit the startup visa application to the IND, then monitor it.' },
         ],
       },
-      note: 'The startup permit runs for one year and is not extended as such. The planned next step is usually the self-employed permit, and we start preparing that file well before your year ends.',
+      fees: {
+        title: 'Professional fees for a startup visa application',
+        amount: 'from 2,250 to 3,250 euro',
+        includes: [
+          'Immigration strategy and consultation',
+          'Startup visa application preparation',
+          'Facilitator coordination',
+          'Communication with the IND',
+        ],
+        note: 'Government fees are not included. Where your case falls in this range depends on the complexity of the plan and whether family members apply alongside you.',
+      },
+      note: 'The startup permit runs for one year and is not extended as such. The planned next step is the self-employed entrepreneur permit, and we start preparing that file well before your year ends.',
+      details: {
+        title: 'Detail worth reading before you apply',
+        items: [
+          {
+            q: 'What counts as innovation?',
+            a: 'Innovation can mean new technology, an innovative service model or a new production method. In practice the IND is asking whether the product or service is genuinely new to the Netherlands, and your facilitator’s endorsement carries real weight in that judgement.',
+          },
+          {
+            q: 'What happens after the startup year?',
+            a: 'During the year you develop the business and prepare for the next stage. Founders then apply for the self-employed entrepreneur residence permit to continue operating the company in the Netherlands, which is assessed on the economic value of the business.',
+          },
+          {
+            q: 'What does the facilitator actually do?',
+            a: 'A recognised facilitator provides mentorship during the startup phase: guidance on the plan, the market and the milestones. The relationship is a formal condition of the permit, not an optional extra, so the match matters more than most founders expect.',
+          },
+        ],
+      },
       faq: {
         title: 'Founder questions',
         items: [
-          {
-            q: 'What counts as innovative for the IND?',
-            a: 'A product or service that is new to the Netherlands, uses new technology, or introduces a genuinely new working method. Your facilitator’s endorsement carries real weight here, which is why the match matters.',
-          },
           {
             q: 'Can I bring my family on a startup visa?',
             a: 'Yes. Your partner and children can apply for residence alongside you, and your partner is free to work while you build.',
           },
           {
             q: 'Do I need a minimum investment?',
-            a: 'No fixed investment amount is required for the startup visa itself. You do need to show sufficient means to live on for the year, which we help you evidence.',
+            a: 'No fixed investment amount is required for the startup visa. You do need to show sufficient means to live on for the year, which we help you evidence.',
+          },
+          {
+            q: 'Can I apply if my company is already trading abroad?',
+            a: 'Often yes, if the Dutch activity is genuinely new and innovative for this market. We assess that honestly at intake rather than letting you discover it in a refusal.',
           },
         ],
       },
       cta: {
-        title: 'Ready to build in the Netherlands?',
-        text: 'Pitch us the one-line version of your company. We will tell you if the startup visa is your route and who should facilitate it.',
+        title: 'Launch your startup in the Netherlands',
+        text: 'Pitch us the one-line version of your company. We will tell you whether the startup visa is your route and who should facilitate it.',
         label: 'Talk to us about your startup',
       },
       form: 'immigration',
-      image: '/images/startup-visa.jpg',
-      imageAlt: 'Founders working at a whiteboard in a startup office',
+      image: '/images/startup-visa.jpg?v=20260731',
+      imageAlt: 'Founder in a loft office overlooking the Rotterdam waterfront',
+      image2: '/images/startup-team.jpg',
+      image2Alt: 'Founding team working together in a shared office',
     },
     {
       slug: 'daft-visa-netherlands',
@@ -508,20 +769,32 @@ export const immigration: SectionContent = {
       title: 'DAFT Visa Netherlands',
       metaTitle: 'DAFT Visa Netherlands | Dutch American Friendship Treaty',
       metaDescription:
-        'Americans can live and work in the Netherlands under the Dutch American Friendship Treaty with a 4,500 euro business investment. We guide the DAFT process end to end.',
+        'The DAFT visa Netherlands lets US citizens live and work here as entrepreneurs with a 4,500 euro business investment. Requirements, working method and professional fees.',
       eyebrow: 'For US citizens',
       intro: [
-        'For Americans, the Dutch American Friendship Treaty is the quiet superpower of Dutch immigration. Invest 4,500 euros in your own Dutch business, meet the treaty conditions, and you can live and work here as a self-employed professional, no job offer, no points system, no sponsor.',
-        'The route rewards good execution: the business registration, the investment on the balance sheet and the IND file all have to line up. We run DAFT cases from the first bank question to the moment your permit card is in hand, and our clients reach us directly on WhatsApp at any hour while it happens.',
+        'The DAFT visa Netherlands, granted under the Dutch American Friendship Treaty, is the most accessible immigration route for US citizens who want to run their own business here. Because of the treaty between the Netherlands and the United States, American entrepreneurs qualify under more flexible conditions than the standard entrepreneur permit.',
+        'It is the route freelancers, consultants and small business owners use most. Alongside the immigration file we handle the practical side of arriving: company registration, housing, and residence for the family coming with you.',
       ],
       cardText: 'The treaty route that lets Americans live and work in the Netherlands as entrepreneurs.',
       forWho: {
-        title: 'Who uses DAFT',
+        title: 'Who the DAFT visa is for',
         items: [
           'American freelancers and consultants taking their practice to Europe',
           'US entrepreneurs opening a Dutch business',
           'Remote professionals restructuring their work as self-employment',
           'American spouses and families moving along with the applicant',
+        ],
+      },
+      conditions: {
+        title: 'DAFT visa requirements',
+        intro:
+          'The treaty replaces the points-based economic assessment of your business plan with a straightforward investment test. Applicants must generally:',
+        items: [
+          'Hold US citizenship',
+          'Register a company in the Netherlands',
+          'Invest at least 4,500 euro in the business',
+          'Register with the Dutch Chamber of Commerce (KvK)',
+          'Maintain the required business investment',
         ],
       },
       included: {
@@ -550,15 +823,43 @@ export const immigration: SectionContent = {
         ],
       },
       process: {
-        title: 'How your DAFT case runs',
+        title: 'Our working method',
         steps: [
-          { title: 'Plan', text: 'Intake on your business, family and timing. You leave the call knowing exactly what DAFT will ask of you.' },
-          { title: 'Establish', text: 'Company registered, bank account opened, investment placed and documented.' },
-          { title: 'Apply', text: 'The IND file goes in. You can generally await the decision in the Netherlands.' },
-          { title: 'Live and work', text: 'Permit granted, registrations done, and your American practice is officially European.' },
+          { title: 'Immigration consultation', text: 'We assess your eligibility under the DAFT treaty and map the route around your business, family and timing.' },
+          { title: 'Business setup', text: 'We guide you through company registration and the administrative requirements that follow it.' },
+          { title: 'Investment and documentation', text: 'We make sure the required investment is placed and documented the way the IND wants to see it.' },
+          { title: 'Residence permit application', text: 'We prepare and submit the DAFT application to the IND, and handle every exchange until the decision.' },
         ],
       },
-      note: 'The 4,500 euro must remain invested in the business for as long as you hold DAFT status, and renewals look at your balance sheet. Current IND fees and processing times shift, so we confirm them during your intake.',
+      fees: {
+        title: 'Professional fees for a DAFT application',
+        amount: 'from 1,950 to 2,750 euro',
+        includes: [
+          'Immigration consultation',
+          'Preparation of the residence permit application',
+          'Guidance during company registration',
+          'Communication with the IND',
+        ],
+        note: 'Government fees are not included. Where your case falls in this range depends on your company structure and whether family members apply alongside you.',
+      },
+      note: 'The residence permit is typically granted for two years and can be extended. The 4,500 euro must stay invested in the business for as long as you hold DAFT status, because renewals look at your balance sheet.',
+      details: {
+        title: 'Detail worth reading before you apply',
+        items: [
+          {
+            q: 'What exactly is the DAFT residence permit?',
+            a: 'It allows US citizens to live in the Netherlands while operating their own business here. Unlike the regular entrepreneur residence permit, the DAFT route does not require a points-based economic assessment of the business plan. The primary requirement is the minimum business investment.',
+          },
+          {
+            q: 'Eenmanszaak or BV?',
+            a: 'Both can satisfy the treaty. A sole proprietorship is lighter and cheaper to run; a BV limits liability and suits growth and investors. The choice changes how the investment is evidenced and how you are taxed, so we advise on your numbers rather than a rule of thumb.',
+          },
+          {
+            q: 'What does maintaining the investment mean in practice?',
+            a: 'The capital has to remain in the business, visible on the balance sheet, not withdrawn once the permit is granted. Your bookkeeping is the proof at renewal, which is why we introduce clients to accountants who know the treaty well.',
+          },
+        ],
+      },
       faq: {
         title: 'Americans ask us',
         items: [
@@ -571,19 +872,21 @@ export const immigration: SectionContent = {
             a: 'No revenue threshold applies at the start. You need the investment, a registered business and the intent to actually run it. By renewal time your accounts should show a living business.',
           },
           {
-            q: 'How long is the DAFT permit valid?',
-            a: 'The first permit is typically granted for two years and is renewable as long as you keep meeting the treaty conditions. Many of our clients later move on to permanent residence.',
+            q: 'Does DAFT lead to permanent residence?',
+            a: 'It can. After five years of continuous legal residence you may generally apply for permanent residence or naturalisation, subject to the integration requirements. Many of our DAFT clients follow that path.',
           },
         ],
       },
       cta: {
-        title: 'Your American passport opens this door',
+        title: 'Move to the Netherlands under the DAFT treaty',
         text: 'Tell us what you do for a living. We will map your DAFT route, from investment to permit, in one conversation.',
         label: 'Start my DAFT plan',
       },
       form: 'immigration',
-      image: '/images/daft-visa.jpg',
-      imageAlt: 'American entrepreneur working on a laptop in a Dutch cafe',
+      image: '/images/daft-visa.jpg?v=20260731',
+      imageAlt: 'American founder working from a design studio in the Netherlands',
+      image2: '/images/daft-couple.jpg',
+      image2Alt: 'American couple settling into life in a Dutch city',
     },
     {
       slug: 'business-schengen-visa-netherlands',
@@ -637,6 +940,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'A Schengen business visa allows meetings and negotiations, not employment. If your visits are becoming regular work in the Netherlands, talk to us about a work-based permit before it becomes a problem at the border.',
+      conditions: {
+        title: 'What this visa does and does not allow',
+        intro:
+          'The limits matter more than the requirements here, because using this visa for the wrong activity puts both the traveller and the Dutch host at risk.',
+        items: [
+          'A maximum of ninety days of stay within any one hundred and eighty day period across the Schengen area.',
+          'Meetings, negotiations, training, trade fairs and site visits are permitted. Paid work in the Netherlands is not.',
+          'A formal invitation from the Dutch host company is required, and the host may be asked to accept liability for costs.',
+          'Travel medical insurance with at least 30,000 euro of cover, valid throughout Schengen, is mandatory.',
+          'Proof of accommodation, return travel and sufficient means for the stay must be provided.',
+          'File at the Dutch mission only if the Netherlands is your main destination, otherwise the application belongs to the country where you spend most time.',
+        ],
+      },
+      details: {
+        title: 'Getting a stronger decision',
+        items: [
+          {
+            q: 'Why are business visas refused?',
+            a:
+              'Almost always for one of three reasons: the purpose of travel is not credible in the documents, the applicant cannot show sufficient ties to their home country, or earlier Schengen travel was used improperly. All three are file problems, and all three can be addressed before submission.',
+          },
+          {
+            q: 'How do we get a multi-entry visa?',
+            a:
+              'Multi-entry visas of one to five years go to applicants with a clean Schengen travel history and a demonstrable ongoing business relationship. We structure the file so the recurring pattern is visible in the evidence rather than requested as a favour.',
+          },
+          {
+            q: 'How far ahead should we apply?',
+            a:
+              'Applications can be filed up to six months before travel and no later than fifteen days before. Consulate appointment availability is the real constraint, and in busy regions and peak season slots can be six weeks out. Tell us the date early.',
+          },
+          {
+            q: 'Our specialist needs to work on site. Is this the right visa?',
+            a:
+              'No. Installing equipment, delivering a project or performing services for a Dutch client is work, and needs a work-based permit or a notification under the posted workers rules. Using a business visa for it exposes your company and your employee. We will tell you which instrument actually applies.',
+          },
+        ],
+      },
       faq: {
         title: 'Before you book flights',
         items: [
@@ -660,8 +1001,10 @@ export const immigration: SectionContent = {
         label: 'Arrange my business visa',
       },
       form: 'immigration',
-      image: '/images/business-visa.jpg',
-      imageAlt: 'Business traveler walking through a Dutch airport terminal',
+      image: '/images/business-visa.jpg?v=20260731',
+      imageAlt: 'Executive arriving by car at a Dutch head office',
+      image2: '/images/business-signing.jpg',
+      image2Alt: 'Signing documents at a business meeting',
     },
     {
       slug: 'residence-permit-netherlands',
@@ -715,6 +1058,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'Fees and decision periods differ per permit type and change over time, so we confirm the current IND figures during your intake rather than printing them here.',
+      conditions: {
+        title: 'Timing and thresholds',
+        intro:
+          'Almost every permit problem we repair began as a date that passed quietly. These are the ones that matter.',
+        items: [
+          'File a renewal at least three months before expiry. Your right to live and work continues while a timely renewal is pending.',
+          'A change of employer, purpose or relationship needs a new application, and in most cases you may not begin the new activity before approval.',
+          'Permanent residence requires five years of uninterrupted legal residence on a non-temporary basis.',
+          'Study permits and orientation year permits do not count towards those five years.',
+          'Civic integration at level A2, or a formal exemption, is required for permanent residence and for naturalisation.',
+          'Absences of more than six consecutive months, or more than four months a year across the period, break the continuity.',
+        ],
+      },
+      details: {
+        title: 'The questions we are asked most',
+        items: [
+          {
+            q: 'Permanent residence or Dutch nationality?',
+            a:
+              'Permanent residence secures your right to live and work here indefinitely and survives a change of job. Nationality adds a Dutch passport, EU citizenship and the vote, needs the same five years plus integration, and usually requires you to give up your existing nationality. Many clients take permanent residence first and decide about naturalisation later.',
+          },
+          {
+            q: 'My permit expires soon and I have no new job.',
+            a:
+              'Highly skilled migrants have a three-month search period after employment ends, during which residence continues while you find a new recognised sponsor. Act inside that window. Once it closes the position becomes much harder to repair.',
+          },
+          {
+            q: 'I am getting divorced. Do I lose my residence?',
+            a:
+              'Not necessarily. Depending on how long you have held a dependent permit and on your own circumstances, a change of purpose to independent residence is often possible. This is time sensitive, and the earlier you speak to us the more routes stay open.',
+          },
+          {
+            q: 'Can I hold EU long-term resident status as well?',
+            a:
+              'Yes, and it is often the better combination. The EU long-term resident permit adds mobility rights towards other member states that Dutch permanent residence does not carry, and both can be applied for at the same time.',
+          },
+        ],
+      },
       faq: {
         title: 'Residence questions',
         items: [
@@ -738,8 +1119,17 @@ export const immigration: SectionContent = {
         label: 'Review my residence status',
       },
       form: 'immigration',
-      image: '/images/immigration-documents.jpg?v=20260728',
-      imageAlt: 'Dutch residence permit documents ready for renewal',
+      image: '/images/immigration-documents.jpg?v=20260731',
+      imageAlt: 'Leather folio and fountain pen on a desk',
+      image2: '/images/immigration-desk.jpg?v=20260731',
+      image2Alt: 'Advisor and client at a private consultation table',
+    },
+  ],
+  crossLinks: [
+    {
+      path: '/starting-a-business/employer-immigration-services-netherlands',
+      label: 'Employer immigration',
+      text: 'For companies hiring non-EU staff: permit applications, IND recognised sponsorship, posting workers and case review.',
     },
   ],
 };

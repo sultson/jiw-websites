@@ -1,6 +1,7 @@
 ---
 import CtaBand from './CtaBand.astro';
 import Icon from './Icon.astro';
+import PageHero from './PageHero.astro';
 import { type Lang } from '../lib/i18n';
 import { getContent } from '../lib/content';
 
@@ -13,13 +14,12 @@ const a = c.core.about;
 const reviews = c.core.home.reviews;
 ---
 
-<section class="border-b border-line bg-ivory">
-  <div class="container-site py-14 text-center md:py-20">
-    <span class="eyebrow">{a.eyebrow}</span>
-    <h1 class="mx-auto mt-4 max-w-3xl font-display text-4xl md:text-5xl">{a.title}</h1>
-    <span class="gold-rule mx-auto mt-7"></span>
-  </div>
-</section>
+<PageHero
+  eyebrow={a.eyebrow}
+  title={a.title}
+  image="/images/cyclist-canal.jpg"
+  imageAlt="Cyclist beside a colourful canal in a Dutch city"
+/>
 
 <!-- Portrait + story -->
 <section class="container-site py-16 md:py-24">
@@ -38,7 +38,7 @@ const reviews = c.core.home.reviews;
 </section>
 
 <!-- Why boutique -->
-<section class="border-y border-line bg-ivory">
+<section class="border-y border-line-warm band-sand">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl text-center">
       <h2 class="font-display text-3xl md:text-4xl">{a.boutique.heading}</h2>
@@ -61,7 +61,7 @@ const reviews = c.core.home.reviews;
 <!-- Families -->
 <section class="container-site py-16 md:py-24">
   <div class="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2 md:gap-16">
-    <img src="/images/relocation-family.jpg?v=20260728" alt="" class="aspect-[4/3] w-full rounded-3xl object-cover" width="800" height="600" loading="lazy" />
+    <img src="/images/relocation-family.jpg?v=20260731" alt="" class="aspect-[4/3] w-full rounded-3xl object-cover" width="800" height="600" loading="lazy" />
     <div>
       <h2 class="font-display text-3xl">{a.families.heading}</h2>
       {a.families.text.map((p) => (
@@ -72,7 +72,7 @@ const reviews = c.core.home.reviews;
 </section>
 
 <!-- Reviews -->
-<section class="border-t border-line bg-ivory">
+<section class="border-t border-line-warm band-sand">
   <div class="container-site py-16 md:py-24">
     <div class="text-center">
       <h2 class="font-display text-3xl md:text-4xl">{a.reviews.heading}</h2>

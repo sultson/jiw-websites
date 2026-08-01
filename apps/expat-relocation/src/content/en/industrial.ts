@@ -73,6 +73,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'What working at Europoort means for your move',
+        intro:
+          'The port sets the constraints. Housing, registration and family life all have to bend around the gate and the roster.',
+        items: [
+          'Commutes to Europoort run forty-five to seventy minutes from central Rotterdam, and twenty to thirty from Hoogvliet, Spijkenisse or Brielle.',
+          'Shift and roster patterns make public transport impractical for most gates, so parking and a car usually shape the housing decision.',
+          'Site access requires identity documents and, for many contractors, a valid safety certification such as VCA.',
+          'Contractors and posted workers from other EU states fall under different registration, insurance and payroll rules than direct hires.',
+          'Registration at your address remains the gateway to BSN, payroll and insurance, whatever your employer has arranged.',
+          'We cover the port region specifically. This is our own area, not a national service applied locally.',
+        ],
+      },
+      details: {
+        title: 'Practical points for port professionals',
+        items: [
+          {
+            q: 'Where should I actually live?',
+            a:
+              'It depends on your gate and your shift, and the honest answer is often not Rotterdam. Hoogvliet, Spijkenisse, Brielle and Rozenburg put you within half an hour of most terminals and cost materially less. If your partner works in the city the calculation changes, and we model both before you commit to an address.',
+          },
+          {
+            q: 'I am posted here by a foreign employer. What is different?',
+            a:
+              'Almost everything administrative. Your social security may remain in your home country under an A1 certificate, your employer has a notification duty in the Netherlands, and your health insurance obligation depends on that structure rather than on your address. Getting this wrong produces double premiums or no cover, so we work it through specifically.',
+          },
+          {
+            q: 'Can my family follow later?',
+            a:
+              'Yes, and for rotational and shift work it is often the right call. We plan the first phase around you and the second around them, so schools and housing are chosen with the family present rather than guessed at in advance.',
+          },
+          {
+            q: 'How fast can this be done?',
+            a:
+              'With an offer in hand and documents ready, a functional landing takes three to five weeks: temporary base, registration, BSN, insurance, banking and the permanent housing search running underneath. Legalised documents from abroad are the only thing that reliably slows it down.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -96,8 +134,10 @@ export const industrial: SectionContent = {
         label: 'Plan my Europoort move',
       },
       form: 'relocation',
-      image: '/images/europoort.jpg?v=20260728',
+      image: '/images/europoort.jpg?v=20260731',
       imageAlt: 'Refinery and terminal infrastructure at Europoort Rotterdam',
+      image2: '/images/industrial-worker.jpg?v=20260731',
+      image2Alt: 'Energy executive at the Port of Rotterdam at golden hour',
     },
     {
       slug: 'maasvlakte-expat-relocation-netherlands',
@@ -159,6 +199,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Maasvlakte realities',
+        intro:
+          'Maasvlakte 2 is the furthest point of the port, and distance is the single fact that shapes every decision around it.',
+        items: [
+          'Commutes run sixty to ninety minutes from central Rotterdam, and thirty to forty-five from the western municipalities.',
+          'There is almost no housing near the terminals themselves, so every option involves a commute.',
+          'Deep-sea terminal work is heavily shift based, including nights and weekends, which affects both housing choice and childcare.',
+          'Employer shuttle transport exists at some terminals and changes the calculation entirely, so confirm it before choosing an address.',
+          'Site access requires valid identification and, for most contractor roles, current safety certification.',
+          'Registration, BSN, insurance and payroll follow the same rules as anywhere else, and remain the gateway to everything.',
+        ],
+      },
+      details: {
+        title: 'Planning around the terminal',
+        items: [
+          {
+            q: 'Which towns work best?',
+            a:
+              'Brielle, Hellevoetsluis, Spijkenisse, Rozenburg and Oostvoorne put most people within forty-five minutes of the terminals, with more space and lower rents than the city. Brielle in particular suits families who want a historic town rather than a commuter suburb.',
+          },
+          {
+            q: 'Does my employer run transport?',
+            a:
+              'Several terminals do, and it can make a distant address perfectly workable or a nearby one unnecessary. It is the first question we ask, because the answer reshapes the entire housing search.',
+          },
+          {
+            q: 'How do night shifts affect housing?',
+            a:
+              'More than people expect. Sleeping through a weekday morning is impossible in a thin-walled apartment above a busy street, and it is the most common reason a first rental fails. We check noise at the actual time you will be sleeping, not at the time of the viewing.',
+          },
+          {
+            q: 'What about family life on a rotating roster?',
+            a:
+              'It works, but it needs planning rather than improvisation. Schools with wraparound care, a partner who can drive, and a neighbourhood with something to do at odd hours all matter more than square metres. We build the search around the roster instead of around the listing.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -184,6 +262,8 @@ export const industrial: SectionContent = {
       form: 'relocation',
       image: '/images/maasvlakte.jpg?v=20260728',
       imageAlt: 'Container terminals and cranes at the Maasvlakte deep-sea port',
+      image2: '/images/industrial-worker.jpg?v=20260731',
+      image2Alt: 'Energy executive at the Port of Rotterdam at golden hour',
     },
     {
       slug: 'offshore-expat-services-netherlands',
@@ -246,6 +326,44 @@ export const industrial: SectionContent = {
         ],
       },
       note: 'Offshore tax and social security positions vary with flag state, employer and days worked; we flag when your situation needs a cross-border tax specialist and connect you with one from our network.',
+      conditions: {
+        title: 'What rotation work changes',
+        intro:
+          'An offshore rotation breaks most of the assumptions Dutch administration is built on. These are the ones that matter.',
+        items: [
+          'Registration at a Dutch address is still required if the Netherlands is your main residence, whatever your rotation pattern.',
+          'Long absences can affect registration, health insurance entitlement and the continuity needed for permanent residence.',
+          'Social security may sit in another country under an A1 certificate, which changes your insurance obligation entirely.',
+          'Landlords assess rotational income differently, and irregular payment patterns need explaining in the file rather than after it.',
+          'Seafarers and offshore workers can fall under specific tax and social security rules that do not apply to onshore staff.',
+          'We coordinate the Dutch side. Cross-border tax and payroll go to specialists we introduce you to.',
+        ],
+      },
+      details: {
+        title: 'Making a rotation work onshore',
+        items: [
+          {
+            q: 'Can everything be done in one shore period?',
+            a:
+              'Usually yes, and that is how we plan it. Appointments, viewings, registration, banking and insurance are compressed into a single intensive week ashore rather than spread across three rotations. It takes preparation on our side and documents ready on yours.',
+          },
+          {
+            q: 'What happens while I am at sea?',
+            a:
+              'We remain your address in practice: correspondence handled, deadlines watched, landlord questions answered, appointments moved. Your family, if they are here, has a number to call that is not an international one.',
+          },
+          {
+            q: 'How do absences affect permanent residence?',
+            a:
+              'Continuous residence is broken by absences of more than six consecutive months, or more than four months a year across the qualifying period. Rotations are usually well inside that, but the arithmetic is worth doing deliberately if you are working towards permanent status.',
+          },
+          {
+            q: 'Which insurance applies to me?',
+            a:
+              'It depends on where your employer is established, which flag you sail under and whether an A1 certificate is in place. Offshore is the area where we most often find people either double insured or not insured at all, so we establish this at intake rather than assuming the standard answer.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -269,8 +387,10 @@ export const industrial: SectionContent = {
         label: 'Set up my home base',
       },
       form: 'relocation',
-      image: '/images/industrial-worker.jpg?v=20260728',
-      imageAlt: 'An offshore professional in work gear at a port facility',
+      image: '/images/industrial-worker.jpg?v=20260731',
+      imageAlt: 'Energy executive at the Port of Rotterdam at golden hour',
+      image2: '/images/industrial-hub.jpg',
+      image2Alt: 'Port industrial cluster at dusk',
     },
     {
       slug: 'relocation-for-logistics-professionals-netherlands',
@@ -332,6 +452,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Speed, and what limits it',
+        intro:
+          'Logistics moves fast and start dates rarely wait. These are the constraints that decide how fast a landing can actually be.',
+        items: [
+          'With documents ready, a working landing takes three to five weeks: base, registration, BSN, insurance, banking.',
+          'Legalised birth and marriage certificates cannot be obtained once you are already here, and are the most common cause of delay.',
+          'Municipal appointment availability varies by season and can add one to three weeks.',
+          'Shift patterns and distribution locations outside the city usually make a car necessary, which affects the housing budget.',
+          'Employers hiring several people at once can group registrations and viewings, which compresses the timeline considerably.',
+          'A permit application must be approved before work begins for non-EU hires. No employer instruction changes that.',
+        ],
+      },
+      details: {
+        title: 'Landing fast without cutting corners',
+        items: [
+          {
+            q: 'What can be done before I arrive?',
+            a:
+              'More than most people realise. Document checks, legalisation, the permit file, the municipal appointment, the housing shortlist and the viewings can all run while you are still abroad, so the first Dutch week is execution rather than discovery.',
+          },
+          {
+            q: 'We are hiring a group. Does that help?',
+            a:
+              'Considerably. Grouped registrations, a shared temporary base and coordinated viewings cut both cost and time per person, and one consultant holding the whole group means HR gets a single overview instead of a queue of individual problems.',
+          },
+          {
+            q: 'Where should logistics staff live?',
+            a:
+              'Close to the distribution cluster rather than close to the centre. The Waalhaven, Botlek and A15 corridor sites are best served from Hoogvliet, Spijkenisse, Barendrecht and Ridderkerk, and rents there are meaningfully lower than in Rotterdam itself.',
+          },
+          {
+            q: 'What is the most common mistake?',
+            a:
+              'Starting the housing search before the registration route is clear. A property that does not allow registration blocks the BSN, which blocks payroll, which means a new arrival works for six weeks without being paid properly. We settle registration first, always.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -355,8 +513,10 @@ export const industrial: SectionContent = {
         label: 'Fast-track my move',
       },
       form: 'relocation',
-      image: '/images/logistics-worker.jpg?v=20260728',
-      imageAlt: 'A logistics professional at work in a Rotterdam distribution area',
+      image: '/images/logistics-worker.jpg?v=20260731',
+      imageAlt: 'Logistics director overlooking the Rotterdam port terminal',
+      image2: '/images/europoort.jpg?v=20260731',
+      image2Alt: 'The Port of Rotterdam at golden hour',
     },
     {
       slug: 'rotterdam-industrial-expat-services',
@@ -422,6 +582,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'How we work with the cluster',
+        intro:
+          'We serve both sides of the port industrial cluster, employers and employees, which means our terms have to be clear.',
+        items: [
+          'We cover Rotterdam, Botlek, Europoort, Maasvlakte, Pernis and the wider A15 corridor.',
+          'Employers can engage us per employee, per project or on a framework for continuous hiring.',
+          'Non-EU hires need an approved permit before starting work, and recognised sponsorship before an application can be filed.',
+          'Posted workers from other EU entities fall under a separate notification regime with its own obligations.',
+          'Every relocating employee is registered individually, whatever the group size, and each family needs its own documents.',
+          'We take on repair work for landings that have already gone wrong, and we will say plainly what can and cannot be fixed.',
+        ],
+      },
+      details: {
+        title: 'For employers in the cluster',
+        items: [
+          {
+            q: 'Can you take over a landing that has already failed?',
+            a:
+              'Yes, and we do it regularly. Unregistered addresses, missing BSNs, unpaid salaries because payroll cannot run, insurance that was never taken out, a family stuck abroad on a document problem. It is unglamorous work and it is often the most valuable thing we do.',
+          },
+          {
+            q: 'What does a framework arrangement look like?',
+            a:
+              'One point of contact, agreed service levels per landing, fixed pricing per employee, and a single overview for HR across every case in progress. For employers hiring continuously it removes the per-hire negotiation entirely.',
+          },
+          {
+            q: 'Do you handle the immigration side as well as the move?',
+            a:
+              'Yes, and that is the reason companies engage us rather than a pure relocation agency. Permits, sponsorship, registration, housing and family support sit with one firm, so nothing falls into the gap between two suppliers.',
+          },
+          {
+            q: 'How do you help us retain people?',
+            a:
+              'By making the first six months work for the family rather than just the employee. Most early departures from this cluster trace back to a partner without work, a child who never settled or a housing situation that never felt right, and each of those is addressable if someone is paying attention early enough.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -445,8 +643,10 @@ export const industrial: SectionContent = {
         label: 'Partner with us',
       },
       form: 'relocation',
-      image: '/images/rotterdam-industrial.jpg',
+      image: '/images/rotterdam-industrial.jpg?v=20260731',
       imageAlt: 'Workers in hi-vis jackets in the port with the Rotterdam skyline behind',
+      image2: '/images/industrial-hub.jpg?v=20260731',
+      image2Alt: 'Port industrial cluster at dusk',
     },
   ],
   cta: {

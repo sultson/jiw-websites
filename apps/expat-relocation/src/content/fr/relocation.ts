@@ -10,8 +10,8 @@ export const relocation: SectionContent = {
     'Changer de pays, ce sont mille petites tâches déguisées en une seule grande. Le BSN, la commune, l’assurance, l’école, la banque, chacun avec son guichet, ses formulaires et sa propre idée d’un délai raisonnable. La plupart des agences vous tendent une check-list. Nous sommes la seule agence boutique pour expatriés aux Pays-Bas, et nous faisons autre chose : une personne apprend votre nom, votre famille et votre situation, puis s’en occupe, tout simplement.',
     'Cette personne ne pilote pas votre relocation depuis un bureau. Elle prend les rendez-vous, prépare les documents, vous conduit à la commune et s’assied à vos côtés au guichet. Du moment où vous atterrissez jusqu’au moment où les Pays-Bas deviennent chez vous, vous avez ici quelqu’un qui connaît déjà la réponse à votre prochaine question.',
   ],
-  image: '/images/relocation-hub.jpg',
-  imageAlt: 'Déménageurs portant des cartons dans une maison familiale néerlandaise',
+  image: '/images/family-arrival.jpg?v=20260731',
+  imageAlt: 'Famille internationale arrivant à sa maison sur un canal néerlandais',
   services: [
     {
       slug: 'bsn-registration-netherlands',
@@ -74,6 +74,44 @@ export const relocation: SectionContent = {
         ],
       },
       note: 'Un BSN est délivré via l’inscription au registre des personnes, soit comme résident, soit, pour les courts séjours, comme non-résident via un guichet RNI. Nous vous conseillons la voie adaptée à votre situation lors de l’entretien.',
+      conditions: {
+        title: 'Ce que la commune demandera',
+        intro:
+          'Le BSN est la clé qui ouvre toutes les autres serrures. Presque tout retard que nous voyons vient de l\'un de ces six points.',
+        items: [
+          'L\'inscription se fait à la commune de votre adresse, et le bailleur doit autoriser l\'inscription à cette adresse.',
+          'Un séjour de plus de quatre mois implique une inscription au BRP. Plus court signifie le registre RNI, dans l\'une des communes désignées.',
+          'Apportez votre passeport, votre titre de séjour ou MVV le cas échéant, et votre bail.',
+          'Les actes étrangers de naissance et de mariage doivent être légalisés ou porter une apostille, et être traduits par un traducteur assermenté.',
+          'Les rendez-vous se prennent en général à l\'avance, et à Rotterdam le délai va de quelques jours à plusieurs semaines selon la saison.',
+          'Chaque membre de la famille a besoin de son propre rendez-vous et de ses propres documents, enfants compris.',
+        ],
+      },
+      details: {
+        title: 'Là où les dossiers BSN déraillent',
+        items: [
+          {
+            q: 'Pourquoi la légalisation pose-t-elle tant de problèmes ?',
+            a:
+              'Un acte non légalisé dans le pays d\'émission ne peut être accepté, et la chaîne passe souvent par un ministère local puis une ambassade néerlandaise. Cela prend des semaines ou des mois et ne peut plus être engagé une fois que vous êtes ici. C\'est la raison la plus fréquente d\'un enlisement à l\'arrivée, et la première chose que nous vérifions.',
+          },
+          {
+            q: 'Puis-je obtenir un BSN sans adresse néerlandaise ?',
+            a:
+              'Oui, via le registre RNI des non-résidents, disponible dans dix-neuf communes désignées. Vous obtenez un BSN pour que la paie et la banque puissent démarrer, mais ce n\'est pas une inscription de résidence, et vous vous inscrirez normalement dès que vous aurez une adresse.',
+          },
+          {
+            q: 'Que se passe-t-il juste après le rendez-vous ?',
+            a:
+              'Votre BSN est généralement délivré sur place ou en quelques jours. Il ouvre ensuite la demande de DigiD, l\'affiliation à l\'assurance maladie, l\'ouverture d\'un compte néerlandais et une paie correcte. Nous parcourons cette séquence avec vous plutôt que de vous laisser avec un numéro et une liste.',
+          },
+          {
+            q: 'Venez-vous au rendez-vous avec moi ?',
+            a:
+              'Oui, c\'est le cœur de la prestation. Les rendez-vous se déroulent en néerlandais, les agents réclament des documents absents de la liste publiée, et avoir à ses côtés quelqu\'un qui connaît la réponse évite le second rendez-vous.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -97,8 +135,10 @@ export const relocation: SectionContent = {
         label: 'Organiser mon BSN',
       },
       form: 'relocation',
-      image: '/images/bsn-registration.jpg',
-      imageAlt: 'Remise d’un document d’inscription au guichet d’une commune',
+      image: '/images/bsn-registration.jpg?v=20260731',
+      image2: '/images/immigration-documents.jpg?v=20260731',
+      image2Alt: 'Porte-documents en cuir et stylo plume sur un bureau',
+      imageAlt: 'Conseillère et client autour d\'une table de conseil privée',
     },
     {
       slug: 'municipality-registration-netherlands',
@@ -160,6 +200,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Les règles qui piègent',
+        intro:
+          'Le registre communal vous suit dans toutes les institutions du pays, une erreur ici réapparaît donc partout.',
+        items: [
+          'La première inscription doit intervenir dans les cinq jours suivant l\'arrivée, et un déménagement aux Pays-Bas dans les cinq jours suivant le changement.',
+          'Un changement d\'adresse se déclare à la nouvelle commune, pas à l\'ancienne.',
+          'L\'inscription exige l\'accord du bailleur pour l\'adresse. S\'inscrire là où c\'est interdit met votre bail en danger.',
+          'Votre état civil, l\'orthographe de votre nom et votre lieu de naissance sont repris d\'actes légalisés, et les corriger ensuite est bien plus difficile que de les saisir correctement une fois.',
+          'Quitter les Pays-Bas plus de huit mois par an impose une radiation, qui touche l\'assurance, les allocations et les titres de séjour.',
+          'Les ressortissants hors UE retirent normalement leur document de séjour auprès de l\'IND, pas de la commune. Ce sont deux rendez-vous distincts.',
+        ],
+      },
+      details: {
+        title: 'Obtenir un registre exact',
+        items: [
+          {
+            q: 'Pourquoi l\'orthographe de mon nom compte-t-elle autant ?',
+            a:
+              'Le registre BRP alimente votre banque, votre employeur, le fisc, votre assureur et l\'IND. Une translittération qui diffère d\'une lettre de votre passeport produit des incohérences qui ressurgissent des mois plus tard au pire moment. Nous vérifions la saisie contre votre passeport avant que l\'agent n\'enregistre.',
+          },
+          {
+            q: 'Pouvez-vous corriger une inscription déjà erronée ?',
+            a:
+              'Généralement oui, avec les pièces justificatives adéquates et une demande formelle de rectification. Les erreurs de date de naissance, d\'état civil et de nationalité antérieure sont celles que nous réparons le plus, et elles méritent d\'être réparées plutôt que subies.',
+          },
+          {
+            q: 'Et si mon bailleur refuse l\'inscription ?',
+            a:
+              'Alors l\'adresse est un problème et non un désagrément. Nous vérifions la possibilité d\'inscription avant que vous ne signiez, et si un bailleur refuse après coup, nous reprenons la correspondance, car dans la plupart des situations résidentielles ce refus n\'a aucun fondement juridique.',
+          },
+          {
+            q: 'Dois-je me radier en partant ?',
+            a:
+              'Oui, si vous partez plus de huit mois sur douze. Ne pas se radier vous laisse redevable des cotisations d\'assurance maladie néerlandaises et des taxes locales longtemps après votre départ. Nous encadrons le départ avec autant de soin que l\'arrivée.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -183,8 +261,10 @@ export const relocation: SectionContent = {
         label: 'Gérer mon inscription',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg?v=20260728',
-      imageAlt: 'Formalités remplies au guichet d’un service communal',
+      image: '/images/municipality-registration.jpg?v=20260731',
+      image2: '/images/consultation.jpg?v=20260731',
+      image2Alt: 'Conseillère et client évoquant les prochaines étapes',
+      imageAlt: 'Cliente arrivant devant un bâtiment municipal néerlandais historique',
     },
     {
       slug: 'health-insurance-guidance-netherlands',
@@ -247,6 +327,44 @@ export const relocation: SectionContent = {
         ],
       },
       note: 'L’assurance prend effet rétroactivement à la date où votre obligation a commencé : les primes sont donc dues à partir de cette date même si vous souscrivez plus tard. Souscrire rapidement ne coûte rien de plus et évite les amendes.',
+      conditions: {
+        title: 'Comment fonctionne le système néerlandais',
+        intro:
+          'L\'assurance maladie néerlandaise est obligatoire, privée et encadrée par des délais. Se tromper de calendrier coûte cher d\'une manière qui surprend la plupart des arrivants.',
+        items: [
+          'Toute personne qui réside ou travaille aux Pays-Bas doit souscrire une assurance de base néerlandaise dans les quatre mois suivant son inscription.',
+          'La couverture rétroagit au premier jour de résidence : une souscription tardive produit donc une facture pour les mois écoulés, plus une amende.',
+          'Le panier de base est fixé par l\'État et identique chez tous les assureurs. Seuls le prix, le service et les garanties complémentaires diffèrent.',
+          'Une franchise annuelle obligatoire s\'applique avant le remboursement de la plupart des soins. Le médecin généraliste en est exclu.',
+          'Sans orientation de votre généraliste, pas de spécialiste, sauf urgence.',
+          'Les revenus modestes et intermédiaires peuvent ouvrir droit au zorgtoeslag, une aide mensuelle du fisc.',
+        ],
+      },
+      details: {
+        title: 'Bien choisir, pas seulement vite',
+        items: [
+          {
+            q: 'Quelles garanties complémentaires valent vraiment le coût ?',
+            a:
+              'Le dentaire adulte, la kinésithérapie au-delà du minimum légal et la couverture des soins à l\'étranger sont les trois qui se rentabilisent chez la plupart de nos clients. Les enfants sont couverts gratuitement sur la police d\'un parent, dentaire compris. Presque tout le reste est un calcul personnel, et nous le faisons avec vous et non à votre place.',
+          },
+          {
+            q: 'Pourquoi ne trouvé-je pas de médecin traitant ?',
+            a:
+              'Les cabinets de Rotterdam et des grandes villes ferment régulièrement leurs listes, et l\'inscription doit précéder le besoin de soins plutôt que le suivre. Nous lançons la recherche dès votre première semaine et savons quels cabinets de la région acceptent encore des patients.',
+          },
+          {
+            q: 'J\'ai la règle des 30 pour cent. Cela change-t-il quelque chose ?',
+            a:
+              'Votre obligation d\'assurance ne change pas. Ce qui peut changer, c\'est votre droit au zorgtoeslag, car cette aide dépend du revenu imposable. Nous le vérifions plutôt que de le présumer.',
+          },
+          {
+            q: 'Et si je ne travaille ici qu\'une partie de l\'année ?',
+            a:
+              'Les situations transfrontalières et de rotation sont réellement complexes, et une erreur signifie soit des cotisations doubles, soit aucune couverture. Travailleurs offshore, salariés détachés et personnes employées dans un autre État de l\'UE relèvent chacun de règles différentes, et nous traitons la vôtre spécifiquement.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -270,8 +388,10 @@ export const relocation: SectionContent = {
         label: 'Régler mon assurance',
       },
       form: 'relocation',
-      image: '/images/health-insurance.jpg',
-      imageAlt: 'Comparaison des options d’assurance santé néerlandaises à une table de cuisine',
+      image: '/images/health-insurance.jpg?v=20260731',
+      image2: '/images/relocation-settling.jpg?v=20260731',
+      image2Alt: 'Conseillère passant en revue les premières démarches avec de nouveaux arrivants',
+      imageAlt: 'Client et conseillère examinant l\'assurance maladie néerlandaise',
     },
     {
       slug: 'school-search-netherlands',
@@ -334,6 +454,44 @@ export const relocation: SectionContent = {
         ],
       },
       note: 'Le choix de l’école et le choix du logement sont une seule décision, pas deux : l’adresse détermine les options. Si nous menons aussi votre recherche de logement, nous les planifions ensemble.',
+      conditions: {
+        title: 'Ce que les familles doivent savoir en premier',
+        intro:
+          'Ce sont les places à l\'école, et non le logement, qui déterminent le plus souvent quand une famille peut réellement déménager. Planifiez cela avant tout.',
+        items: [
+          'L\'instruction est obligatoire à partir de cinq ans, et la plupart des enfants commencent à quatre.',
+          'Les écoles internationales de la région de Rotterdam ont des places limitées et des listes d\'attente, et les niveaux prisés se remplissent un an à l\'avance.',
+          'Les écoles internationales néerlandaises se répartissent en deux catégories : les écoles internationales subventionnées, bien moins chères mais exigeant un parcours international démontrable, et les écoles internationales privées.',
+          'Les enfants qui ne parlent pas encore néerlandais passent généralement un an en classe d\'accueil avant d\'intégrer le cursus ordinaire.',
+          'L\'inscription exige normalement une adresse et un BSN, ce qui lie le calendrier scolaire à celui du logement et de l\'inscription.',
+          'Nous conseillons sur les écoles et pilotons le processus. Nous ne pouvons pas créer une place là où une école n\'en a pas.',
+        ],
+      },
+      details: {
+        title: 'Choisir la bonne scolarité',
+        items: [
+          {
+            q: 'École internationale ou école néerlandaise ?',
+            a:
+              'Tout dépend de la durée de votre séjour. En dessous de trois ans, l\'école internationale protège la continuité et le programme vers lequel votre enfant reviendra. Au-delà de cinq ans, l\'école néerlandaise lui donne la langue, les amitiés et une adolescence bien plus simple. Les années intermédiaires sont un vrai arbitrage, et nous en parlons franchement plutôt que de pousser l\'option coûteuse.',
+          },
+          {
+            q: 'Quand faut-il s\'y prendre ?',
+            a:
+              'Six à neuf mois avant le déménagement pour les écoles internationales, trois mois pour les écoles néerlandaises. Si vous êtes déjà dans cette fenêtre, nous allons directement vers les établissements où il reste du mouvement, et ce n\'est pas la liste que vous trouverez en ligne.',
+          },
+          {
+            q: 'Combien cela coûte-t-il ?',
+            a:
+              'Les écoles internationales subventionnées coûtent quelques milliers d\'euros par an. Les écoles internationales privées de la région sont nettement plus chères, et frais de scolarité, inscription et fournitures sont généralement facturés séparément. Nous établissons pour chaque école de votre sélection le montant annuel réel, afin qu\'il n\'y ait pas de surprise au deuxième mois.',
+          },
+          {
+            q: 'Mon enfant s\'en sortira-t-il en néerlandais ?',
+            a:
+              'Les plus jeunes presque toujours, et vite. La classe d\'accueil existe exactement pour cela, et une année suffit généralement à amener un enfant au point où le cursus ordinaire fonctionne. Pour un adolescent proche des examens, le calcul est différent, et nous le disons franchement.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -357,8 +515,10 @@ export const relocation: SectionContent = {
         label: 'Trouver notre école',
       },
       form: 'relocation',
-      image: '/images/school-search.jpg',
-      imageAlt: 'Parents et enfant discutant avec une enseignante dans une école néerlandaise',
+      image: '/images/school-search.jpg?v=20260731',
+      imageAlt: 'Mère et fille arrivant à une école internationale',
+      image2: '/images/family-relocation.jpg?v=20260731',
+      image2Alt: 'Famille à vélo le long d\'un canal néerlandais à l\'heure dorée',
     },
     {
       slug: 'settling-in-services-netherlands',
@@ -424,6 +584,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'L\'ordre dans lequel les choses doivent se faire',
+        intro:
+          'L\'administration néerlandaise est une chaîne. Tenter l\'étape quatre avant l\'étape deux, voilà pourquoi certaines arrivées prennent des mois au lieu de semaines.',
+        items: [
+          'L\'adresse d\'abord, puis l\'inscription, puis le BSN. Avant le BSN, rien d\'essentiel ne peut être organisé.',
+          'DigiD, l\'identifiant national, suit le BSN et sert au fisc, à la santé et à la plupart des services publics.',
+          'La plupart des banques néerlandaises exigent un BSN et un justificatif d\'adresse, même si certains comptes s\'ouvrent plus tôt avec le seul passeport.',
+          'L\'assurance maladie doit être souscrite dans les quatre mois suivant l\'inscription et rétroagit à l\'arrivée.',
+          'Énergie, eau et internet sont à votre nom dès le début du bail, et un changement ultérieur comporte des préavis.',
+          'L\'échange d\'un permis de conduire étranger n\'est possible que pour certains pays, et seulement dans un délai déterminé après l\'inscription.',
+        ],
+      },
+      details: {
+        title: 'Ce que personne ne vous dit',
+        items: [
+          {
+            q: 'Quelle banque choisir ?',
+            a:
+              'Cela dépend moins de la banque que de ce que vous en attendez. Un projet de prêt immobilier, un compte professionnel, un employeur qui paie depuis l\'étranger et de la famille dans une autre devise mènent chacun à une réponse différente. Nous ouvrons le compte avec vous et veillons à ce qu\'iDEAL, sur lequel repose la moitié du pays, fonctionne dès le premier jour.',
+          },
+          {
+            q: 'Puis-je utiliser mon permis de conduire étranger ?',
+            a:
+              'Les permis de l\'UE et de l\'EEE restent valables. Les permis de plusieurs autres pays, dont certains États américains, peuvent être échangés sans nouvel examen, mais seulement dans une fenêtre limitée après l\'inscription et parfois uniquement avec la règle des 30 pour cent. Fenêtre manquée, examen néerlandais complet. Nous vérifions votre cas tôt, car ce délai ne pardonne pas.',
+          },
+          {
+            q: 'Comment trouver médecin, dentiste et pharmacie ?',
+            a:
+              'Vous vous inscrivez auprès d\'un cabinet de médecine générale proche de votre adresse, et le cabinet vous rattache une pharmacie. Les deux sont saturés, nous les réglons donc dans vos deux premières semaines. Les dentistes acceptent des patients privés directement et sont plus simples, même si les bons cabinets du centre ont encore des listes.',
+          },
+          {
+            q: 'Et le fisc la première année ?',
+            a:
+              'Votre premier exercice fiscal néerlandais vaut presque toujours une déclaration, même si vous pensez ne rien devoir, car les déclarations de l\'année d\'arrivée débouchent souvent sur un remboursement. Nous sommes conseillers en relocation et non fiscalistes, nous vous présentons donc un conseiller spécialisé dans les déclarations d\'expatriés plutôt que de deviner à votre place.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -449,6 +647,8 @@ export const relocation: SectionContent = {
       form: 'relocation',
       image: '/images/relocation-settling.jpg?v=20260728',
       imageAlt: 'Un nouvel arrivant prenant ses repères dans son nouveau quartier néerlandais',
+      image2: '/images/couple-moving-in.jpg?v=20260731',
+      image2Alt: 'Couple avec les clés de son nouvel appartement aux Pays-Bas',
     },
     {
       slug: 'airport-pickup-for-expats-netherlands',
@@ -510,6 +710,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Comment se déroule le transfert',
+        intro:
+          'Une prestation courte, avec peu de conditions, toutes destinées à ce que personne n\'attende dans un hall d\'arrivée.',
+        items: [
+          'Nous desservons Schiphol, Rotterdam La Haye et Eindhoven, et les terminaux privés sur demande.',
+          'Communiquez votre numéro de vol et nous le suivons, ainsi un retard décale notre horaire et non votre accueil.',
+          'L\'accueil se fait à l\'intérieur, dans le hall d\'arrivée, et non au bord du trottoir.',
+          'Les véhicules sont choisis selon le nombre de passagers et les bagages, sièges enfants inclus si nécessaire.',
+          'Les transferts desservent toute adresse à Rotterdam et dans la région portuaire, et au-delà sur accord.',
+          'Nous confirmons les réservations au moins vingt-quatre heures à l\'avance quand c\'est possible, tout en absorbant les changements de dernière minute.',
+        ],
+      },
+      details: {
+        title: 'La première heure néerlandaise',
+        items: [
+          {
+            q: 'Que se passe-t-il entre l\'aéroport et la porte d\'entrée ?',
+            a:
+              'On vous accueille à votre nom, on prend vos bagages, et le trajet sert au briefing qui compte : comment fonctionnent vos clés, où est le supermarché le plus proche, comment gérer les poubelles, quelle application pilote les transports, et ce qui est prévu demain. La plupart des clients trouvent cette demi-heure plus précieuse que le transfert lui-même.',
+          },
+          {
+            q: 'Pouvez-vous accueillir une famille qui arrive séparément ?',
+            a:
+              'Oui. Les arrivées échelonnées sont fréquentes quand un partenaire suit plus tard ou que des enfants terminent une année scolaire. Nous coordonnons plusieurs vols et, quand l\'écart est d\'un ou deux jours, gardons le même chauffeur pour qu\'un visage connu attende des deux côtés.',
+          },
+          {
+            q: 'Le logement est-il prêt à notre arrivée ?',
+            a:
+              'Il l\'est si nous l\'avons organisé. Dans le cadre d\'un forfait relocation, nous veillons à ce que les clés soient récupérées, le chauffage allumé, les lits utilisables, et le café, le lait et le pain déjà en cuisine. Arriver à minuit dans un appartement vide est un souvenir qui reste des années, et il est évitable.',
+          },
+          {
+            q: 'Assurez-vous aussi les départs ?',
+            a:
+              'Oui, et pour les clients qui quittent les Pays-Bas nous le combinons avec l\'état des lieux de sortie, la récupération du dépôt et la radiation, afin que le dernier jour soit aussi encadré que le premier.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -533,8 +771,10 @@ export const relocation: SectionContent = {
         label: 'Réserver mon accueil',
       },
       form: 'relocation',
-      image: '/images/relocation-arrival.jpg?v=20260728',
-      imageAlt: 'Un accueil chaleureux dans le hall des arrivées de l’aéroport',
+      image: '/images/relocation-arrival.jpg?v=20260731',
+      image2: '/images/vip-welcome.jpg?v=20260731',
+      image2Alt: 'Voiture de direction sur une avenue arborée à l’heure dorée',
+      imageAlt: 'Chauffeur accueillant un client dans un terminal d\'aviation privée',
     },
     {
       slug: 'family-relocation-netherlands',
@@ -604,6 +844,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Comment s\'organise un déménagement familial',
+        intro:
+          'Un déménagement familial comporte plus de dépendances que tout autre. Voici celles qui fixent le calendrier.',
+        items: [
+          'La disponibilité des places scolaires détermine généralement la date du déménagement, et non la date de prise de poste.',
+          'Chaque membre de la famille a besoin de son propre rendez-vous d\'inscription et de ses propres documents légalisés, enfants compris.',
+          'Le titulaire principal doit satisfaire à la condition de revenu pour les membres accompagnants, actuellement 2 523,96 euros bruts par mois, pécule inclus.',
+          'Si un parent ne déménage pas, son consentement écrit est requis avant qu\'un enfant puisse partir.',
+          'L\'assurance maladie est obligatoire pour chaque membre de la famille, les enfants étant couverts gratuitement sur la police d\'un parent.',
+          'Un partenaire accompagnant un travailleur hautement qualifié a libre accès au marché du travail néerlandais et n\'a besoin d\'aucun permis de travail distinct.',
+        ],
+      },
+      details: {
+        title: 'Ce que les familles nous demandent',
+        items: [
+          {
+            q: 'Dans quel ordre procéder ?',
+            a:
+              'Les écoles, puis le logement dans le secteur qui fonctionne, puis les titres et l\'inscription, puis la couche pratique. Inverser les deux premiers est l\'erreur familiale la plus fréquente et la plus coûteuse, car une belle maison à quarante minutes de la seule école ayant des places rend tout le monde malheureux dès novembre.',
+          },
+          {
+            q: 'Mon partenaire renonce à sa carrière. Qu\'est-ce qui est réaliste ?',
+            a:
+              'Le marché du travail néerlandais est réellement ouvert aux partenaires accompagnants, en particulier dans les secteurs anglophones autour de Rotterdam et de La Haye, et aucun permis de travail n\'est nécessaire. Ce qui aide le plus : un CV au format néerlandais, comprendre comment le recrutement local fonctionne vraiment, et commencer avant le déménagement plutôt qu\'après. Nous faisons les présentations que nous pouvons faire.',
+          },
+          {
+            q: 'Comment les enfants s\'adaptent-ils ?',
+            a:
+              'Mieux que les parents ne l\'attendent, et plus lentement qu\'ils ne l\'espèrent. Le système néerlandais est particulièrement bienveillant avec les enfants nouvellement arrivés, et la classe d\'accueil fonctionne. Le plus dur se situe généralement entre le troisième et le sixième mois, une fois la nouveauté passée, et il aide énormément d\'avoir prévu un sport, la musique ou un club avant d\'en avoir besoin.',
+          },
+          {
+            q: 'Tout peut-il vraiment avancer en parallèle ?',
+            a:
+              'Oui, et c\'est même indispensable. Titres, candidatures scolaires, logement, inscription et assurance ont chacun leur délai, nous les menons donc simultanément contre une seule ligne de temps familiale plutôt que l\'un après l\'autre. C\'est la différence entre un déménagement de dix semaines et un de six mois.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -627,8 +905,10 @@ export const relocation: SectionContent = {
         label: 'Planifier notre déménagement familial',
       },
       form: 'relocation',
-      image: '/images/family-relocation.jpg',
-      imageAlt: 'Famille marchant avec des vélos dans son nouveau quartier',
+      image: '/images/family-relocation.jpg?v=20260731',
+      image2: '/images/family-reunification.jpg?v=20260731',
+      image2Alt: 'Famille réunie dans une maison de ville néerlandaise lumineuse',
+      imageAlt: 'Famille à vélo le long d\'un canal néerlandais à l\'heure dorée',
     },
     {
       slug: 'relocation-services-rotterdam',
@@ -690,6 +970,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Ce que nous couvrons localement',
+        intro:
+          'Nous sommes établis dans cette région et nous y travaillons, ce qui rend nos conseils précis plutôt que nationaux.',
+        items: [
+          'Rotterdam et les communes voisines, dont Schiedam, Capelle aan den IJssel, Barendrecht, Spijkenisse et le corridor d\'Europoort.',
+          'Les rendez-vous d\'inscription à Rotterdam se prennent à l\'avance, avec des délais de quelques jours à plusieurs semaines selon la saison.',
+          'La ville applique des zones de stationnement avec permis par foyer, et au centre les listes d\'attente courent sur des mois.',
+          'Les écoles internationales de la région se concentrent à Kralingen et dans le sud de la ville, et les places sont limitées.',
+          'Les loyers du secteur libre débutent vers 1 200 euros pour un une-pièce et grimpent fortement pour le neuf en bord d\'eau.',
+          'Les missions hors de notre région sont réorientées plutôt qu\'acceptées. Nous préférons vous envoyer au bon cabinet que d\'être le mauvais.',
+        ],
+      },
+      details: {
+        title: 'Vivre à Rotterdam',
+        items: [
+          {
+            q: 'Pourquoi Rotterdam plutôt qu\'Amsterdam ?',
+            a:
+              'L\'espace, le coût et la franchise. Vous obtenez sensiblement plus de logement pour votre argent, un trajet plus court vers le port et le cluster industriel, une population internationale qui travaille plutôt qu\'elle ne visite, et une ville qui se reconstruit plutôt qu\'elle ne se conserve. Amsterdam est à quarante minutes quand l\'envie vous prend.',
+          },
+          {
+            q: 'L\'anglais suffit-il ici ?',
+            a:
+              'Pour la vie quotidienne et la plupart des lieux de travail, oui. Pour le courrier administratif, les litiges locatifs, les petites lignes des assurances et l\'administration scolaire, non, et c\'est précisément cet écart que nous existons pour combler. Apprendre le néerlandais reste utile, et nous vous orientons vers des cours adaptés aux adultes qui travaillent.',
+          },
+          {
+            q: 'Comment se déplace-t-on ?',
+            a:
+              'Le vélo d\'abord, le métro ensuite, la voiture en dernier. Le métro dessert l\'essentiel de la ville et une bonne part de la région, la carte OV ou votre carte bancaire suffit, et une voiture n\'est vraiment utile que si vous travaillez sur les terminaux ou conduisez de jeunes enfants dans deux directions.',
+          },
+          {
+            q: 'À quoi ressemble la communauté internationale ?',
+            a:
+              'Vaste, active et répartie dans la région plutôt que rassemblée dans un quartier. Entre le cluster portuaire, l\'université Erasmus, le centre hospitalier et le secteur créatif, la plupart des arrivants trouvent ici leurs semblables plus vite qu\'ils ne l\'imaginent. Nous faisons les présentations que nous pouvons, et pour beaucoup de clients cela compte davantage que n\'importe quelle démarche administrative.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -715,6 +1033,8 @@ export const relocation: SectionContent = {
       form: 'relocation',
       image: '/images/rotterdam.jpg?v=20260728',
       imageAlt: 'Centre-ville de Rotterdam et son architecture moderne le long de la Meuse',
+      image2: '/images/rotterdam-evening.jpg',
+      image2Alt: 'La ligne d\'horizon de Rotterdam le soir',
     },
   ],
   crossLinks: [

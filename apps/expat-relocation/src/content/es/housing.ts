@@ -10,8 +10,8 @@ export const housing: SectionContent = {
     'El mercado de alquiler neerlandés se mueve rápido y premia a quien llega preparado. Los buenos apartamentos se publican por la mañana y desaparecen por la tarde, y los propietarios eligen inquilinos que responden con rapidez y un expediente completo. Ahí es exactamente donde entramos nosotros. Vigilamos el mercado por usted, reaccionamos en cuestión de horas y preparamos su dosier para que, cuando aparezca la vivienda adecuada, usted sea el candidato al que un propietario dice que sí.',
     'Nuestro terreno es Rotterdam y la amplia región portuaria, desde el centro de la ciudad hasta Europoort y la Maasvlakte, aunque buscamos en todos los Países Bajos. Nunca le mandamos solo con una lista de enlaces. Preseleccionamos, asistimos a las visitas con usted, leemos cada contrato antes de que firme y llevamos la conversación con el propietario desde el primer mensaje hasta la entrega de llaves.',
   ],
-  image: '/images/housing-canal.jpg?v=20260728',
-  imageAlt: 'Casas junto a un canal en una ciudad neerlandesa en un día luminoso',
+  image: '/images/canal-colour.jpg',
+  imageAlt: 'Coloridas casas junto al canal reflejadas en el agua de una ciudad neerlandesa',
   services: [
     {
       slug: 'housing-search-assistance-netherlands',
@@ -82,6 +82,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Somos francos en una cosa: ninguna agencia honesta puede garantizarle una vivienda concreta en este mercado. Lo que sí podemos prometer es velocidad, un expediente completo y una red local sólida, que es lo que gana viviendas. El precio depende de su zona de búsqueda y sus plazos y se confirma durante la entrevista inicial.',
+      conditions: {
+        title: 'Lo que exige el mercado de alquiler neerlandés',
+        intro:
+          'El mercado decide más que su presupuesto. Contra estas condiciones construimos su expediente.',
+        items: [
+          'La mayoría de los propietarios exige un ingreso bruto de tres a cuatro veces el alquiler mensual, acreditado con contrato y nóminas recientes.',
+          'Sin historial de ingresos neerlandés, espere que le pidan un certificado del empleador, un aval bancario o una fianza mayor.',
+          'Las fianzas están limitadas a dos meses de renta base para los contratos firmados desde el 1 de julio de 2023.',
+          'No hace falta BSN para firmar, pero sí para empadronarse en la dirección, y ese empadronamiento desbloquea casi todo lo demás.',
+          'Trabajamos en Róterdam, Europoort y la región portuaria ampliada. Fuera de ese radio lo decimos en lugar de aceptar el encargo.',
+          'Actuamos para usted y nunca para el propietario, y no cobramos comisión de ninguna de las dos partes.',
+        ],
+      },
+      details: {
+        title: 'Cómo funciona realmente la búsqueda',
+        items: [
+          {
+            q: '¿Cuánto se tarda en encontrar vivienda?',
+            a:
+              'En la región de Róterdam, de cuatro a ocho semanas es realista en el segmento alto y amueblado, y más por debajo de 1.500 euros al mes, donde la competencia es más dura. Las viviendas más buscadas desaparecen en cuarenta y ocho horas, así que la velocidad de respuesta importa más que la amplitud de la búsqueda.',
+          },
+          {
+            q: '¿Pueden visitar antes de que yo llegue?',
+            a:
+              'Sí, y así empieza la mayoría de nuestros clientes. Acudimos en su nombre y enviamos el mismo día un veredicto por escrito con vídeo, suficiente para comprometerse desde el extranjero sin apostar por unas fotos.',
+          },
+          {
+            q: '¿Contrato temporal o indefinido?',
+            a:
+              'Desde el 1 de julio de 2024 la mayoría de los nuevos contratos de vivienda deben ser indefinidos, y los temporales solo se admiten en situaciones definidas, como la ausencia temporal del propietario. El cambio juega a su favor, y comprobamos bajo qué régimen cae su contrato antes de firmar.',
+          },
+          {
+            q: '¿Amueblado, semiamueblado o vacío?',
+            a:
+              'Los anuncios neerlandeses distinguen kaal, a veces sin suelo ni lámparas, gestoffeerd con suelos y cortinas, y gemeubileerd totalmente amueblado. La diferencia puede suponer varios miles de euros al llegar, y es el detalle que más se les escapa a los recién llegados.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -105,8 +143,10 @@ export const housing: SectionContent = {
         label: 'Iniciar mi búsqueda',
       },
       form: 'relocation',
-      image: '/images/housing-search.jpg',
-      imageAlt: 'Agente y pareja revisando anuncios de apartamentos en un portátil',
+      image: '/images/housing-search.jpg?v=20260731',
+      imageAlt: 'Asesora presentando opciones de vivienda a una pareja',
+      image2: '/images/housing-interior.jpg?v=20260731',
+      image2Alt: 'Salón de un apartamento en una casa junto al canal',
     },
     {
       slug: 'housing-for-expats-rotterdam',
@@ -168,6 +208,44 @@ export const housing: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Antes de elegir barrio',
+        intro:
+          'Róterdam premia a quien elige su dirección en torno a su vida y no en torno a un plano.',
+        items: [
+          'Los alquileres del sector libre arrancan hacia 1.200 euros para un apartamento de una habitación y 1.800 euros para uno familiar, más en la Kop van Zuid y en el centro.',
+          'La vivienda social es en la práctica inaccesible para los expatriados. Los límites de ingresos y las listas de espera de años cierran esa puerta.',
+          'El empadronamiento en la dirección solo es posible si el propietario lo permite, y algunos arrendadores de corta estancia no lo hacen.',
+          'Los permisos de aparcamiento se conceden por hogar y por zona, y en los barrios centrales la lista de espera dura meses.',
+          'Las viviendas con etiqueta energética E, F o G tienen mayores costes de uso y un alquiler legal máximo más bajo según el sistema de puntos.',
+          'Cubrimos Róterdam y los municipios del entorno, entre ellos Schiedam, Capelle, Barendrecht y el corredor de Europoort.',
+        ],
+      },
+      details: {
+        title: 'Róterdam barrio a barrio',
+        items: [
+          {
+            q: '¿Dónde vive la mayoría de los profesionales internacionales?',
+            a:
+              'Kralingen por el espacio, el verde y la cercanía a los colegios internacionales. Kop van Zuid y Wilhelminapier por las vistas al río y la obra nueva. Centrum y Cool para hacerlo todo caminando. Hillegersberg para familias que quieren ambiente de pueblo dentro de la ciudad. Lo acertado depende mucho más de su trayecto y de sus hijos que de cualquier ranking.',
+          },
+          {
+            q: '¿Cuánto se tarda hasta Europoort o Maasvlakte?',
+            a:
+              'Desde el centro de Róterdam, entre cuarenta y cinco y setenta minutos en coche según la puerta y el turno. Desde Hoogvliet, Spijkenisse o Brielle baja a veinte o treinta. Si trabaja en las terminales, elegir barrio antes de calcular el trayecto es el error más caro disponible.',
+          },
+          {
+            q: '¿Hay colegios internacionales cerca?',
+            a:
+              'Róterdam tiene varias opciones internacionales y bilingües, concentradas sobre todo en Kralingen y en el sur de la ciudad, y las plazas son limitadas. Las familias suelen tener que elegir primero el colegio y después el barrio, y planificamos en ese orden.',
+          },
+          {
+            q: '¿Conviene comprar en lugar de alquilar?',
+            a:
+              'A veces, pero rara vez el primer año. Los prestamistas neerlandeses quieren historial laboral y un permiso con horizonte razonable, y los costes de transacción convierten una compra que podría abandonar en dos años en un experimento caro. Le diremos con honestidad cuándo comprar es la mejor decisión.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -191,8 +269,10 @@ export const housing: SectionContent = {
         label: 'Hablar con una local de Rotterdam',
       },
       form: 'relocation',
-      image: '/images/rotterdam-housing.jpg',
-      imageAlt: 'Edificios de apartamentos residenciales modernos en Rotterdam',
+      image: '/images/rotterdam-housing.jpg?v=20260731',
+      imageAlt: 'Edificio de apartamentos frente al agua en Róterdam al atardecer',
+      image2: '/images/rotterdam-evening.jpg?v=20260731',
+      image2Alt: 'El horizonte de Róterdam al anochecer',
     },
     {
       slug: 'viewing-assistance-netherlands',
@@ -259,6 +339,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'La asistencia en visitas puede contratarse por separado o como parte de una búsqueda de vivienda completa. Los honorarios dependen de la ubicación y la frecuencia y se confirman durante la entrevista inicial.',
+      conditions: {
+        title: 'Cómo funciona el acompañamiento a visitas',
+        intro:
+          'Un visitador independiente solo vale si es realmente independiente. Estas son nuestras condiciones.',
+        items: [
+          'Acudimos por todo Róterdam y la región portuaria. Más lejos, según acuerdo y tiempo de desplazamiento.',
+          'Las viviendas más buscadas suelen programarse en veinticuatro horas, así que envíenos el enlace en cuanto lo vea.',
+          'Informamos de lo que vemos. Negociar el alquiler es aparte y forma parte del apoyo a la oferta y el contrato.',
+          'Una visita por vídeo en directo necesita cobertura móvil utilizable, algo que los sótanos y los muros gruesos de las casas de canal no siempre ofrecen.',
+          'No podemos entrar sin el agente o el propietario, y algunas agencias rechazan por completo las visitas de terceros.',
+          'Nuestro veredicto por escrito es honesto. Si una vivienda no le conviene lo decimos, aunque nos cueste el trabajo posterior.',
+        ],
+      },
+      details: {
+        title: 'Lo que revisamos y las fotos esconden',
+        items: [
+          {
+            q: '¿Qué inspeccionan realmente?',
+            a:
+              'Humedad y ventilación, calidad del acristalamiento frente a la etiqueta energética declarada, ruido de tráfico, tranvías, vecinos y ocio nocturno a la hora real del día, presión del agua, antigüedad y estado de la caldera, cobertura móvil y de internet, trastero, aparcamiento de bicicletas, y si el portal común está cuidado o discretamente abandonado.',
+          },
+          {
+            q: '¿Pueden visitar mientras sigo en el extranjero?',
+            a:
+              'Sí, y así empieza la mayoría de nuestros clientes. Recibirá un recorrido en vídeo, fotos de lo que los anuncios nunca muestran y un veredicto por escrito el mismo día, suficiente para decidir con confianza desde otro continente.',
+          },
+          {
+            q: '¿Me dirán que no la coja?',
+            a:
+              'Con frecuencia. Todo el valor de un visitador independiente está en que no tenemos ningún interés en que firme. Alrededor de un tercio de las viviendas que visitamos reciben una recomendación claramente negativa.',
+          },
+          {
+            q: '¿Con qué rapidez pueden acudir?',
+            a:
+              'Normalmente en veinticuatro a cuarenta y ocho horas, y el mismo día cuando la vivienda lo merece. En este mercado una visita lenta es sencillamente una vivienda perdida.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -282,8 +400,10 @@ export const housing: SectionContent = {
         label: 'Reservar una visita',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg?v=20260728',
-      imageAlt: 'Visita a un apartamento neerlandés luminoso con grandes ventanales',
+      image: '/images/viewing-couple.jpg',
+      imageAlt: 'Una agente inmobiliaria enseña a una pareja un apartamento neerlandés luminoso',
+      image2: '/images/housing-viewing.jpg',
+      image2Alt: 'Visita a un apartamento acompañada por una asesora',
     },
     {
       slug: 'rental-contract-review-netherlands',
@@ -346,6 +466,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Revisamos contratos como especialistas en reubicación, no como despacho de abogados. Para disputas legales de verdad le ponemos en contacto con abogados de arrendamientos de nuestra red profesional, una red construida durante años de trabajo junto a embajadas y consulados.',
+      conditions: {
+        title: 'Qué revisamos y qué no podemos hacer',
+        intro:
+          'La ley de arrendamientos neerlandesa le protege más de lo que imaginan la mayoría de los recién llegados. Saber qué protección se aplica lo es todo.',
+        items: [
+          'Las fianzas están limitadas a dos meses de renta base para los contratos firmados desde el 1 de julio de 2023.',
+          'Desde el 1 de julio de 2024 la mayoría de los nuevos contratos de vivienda deben ser indefinidos, y los temporales solo se admiten en casos definidos.',
+          'Los gastos de comunidad y suministros deben estar detallados y liquidarse anualmente contra costes reales. Un importe único con todo incluido no está permitido en la mayoría de los alquileres.',
+          'Los honorarios de agencia no pueden cobrarse al inquilino cuando el agente actúa para el propietario.',
+          'Un alquiler superior al máximo legal del sistema de puntos puede impugnarse ante la Huurcommissie, por regla general dentro de los seis meses siguientes al inicio del contrato.',
+          'Revisamos contratos y explicamos su posición. Somos asesores de relocation y no un despacho de abogados, y para litigar le remitimos a un abogado de vivienda de confianza.',
+        ],
+      },
+      details: {
+        title: 'Cláusulas que cuestan dinero después',
+        items: [
+          {
+            q: '¿Qué cláusulas miran primero?',
+            a:
+              'Cláusulas de rescisión y diplomáticas, quién paga las pequeñas reparaciones, si la fianza se devuelve en un plazo fijo, fórmulas de indexación que superan la inflación, restricciones al empadronamiento en la dirección, provisiones de gastos fijadas de forma poco realista y penalizaciones por terminación anticipada.',
+          },
+          {
+            q: '¿Puedo empadronarme en esta dirección?',
+            a:
+              'Es la cláusula que más importa y la que más a menudo se excluye en silencio. Sin empadronamiento no hay BSN, ni seguro médico, ni cuenta bancaria, ni correspondencia de la IND. Si el contrato lo prohíbe o guarda silencio, lo planteamos antes de firmar y no después.',
+          },
+          {
+            q: '¿Y si el alquiler es demasiado alto para la vivienda?',
+            a:
+              'El sistema de puntos neerlandés fija para la mayoría de las viviendas un alquiler máximo según superficie, etiqueta energética, equipamiento y ubicación. Si el alquiler lo supera, la Huurcommissie puede reducirlo, por regla general con una solicitud presentada dentro de los seis meses posteriores al inicio del contrato. Lo señalamos durante la revisión, mientras esa ventana sigue abierta.',
+          },
+          {
+            q: '¿Cuánto tarda una revisión?',
+            a:
+              'Normalmente un día laborable, y el mismo día cuando la presión por firmar es alta. Un propietario que exige firma en una hora está aplicando una táctica, no describiendo un plazo.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -369,8 +527,10 @@ export const housing: SectionContent = {
         label: 'Revisar mi contrato',
       },
       form: 'relocation',
-      image: '/images/rental-contract.jpg',
-      imageAlt: 'Manos revisando un contrato de alquiler con llaves sobre la mesa',
+      image: '/images/rental-contract.jpg?v=20260731',
+      imageAlt: 'Firma de un contrato de alquiler neerlandés con pluma estilográfica',
+      image2: '/images/housing-interior.jpg?v=20260731',
+      image2Alt: 'Salón de un apartamento en una casa junto al canal',
     },
     {
       slug: 'temporary-housing-for-expats-netherlands',
@@ -436,6 +596,44 @@ export const housing: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'La corta estancia en la práctica',
+        intro:
+          'Una base temporal es un puente, y los puentes se eligen con cuidado. Estas condiciones deciden si el suyo aguanta.',
+        items: [
+          'La corta estancia suele ir de uno a seis meses y cuesta más al mes que un alquiler normal, a menudo entre un treinta y un cincuenta por ciento más.',
+          'El empadronamiento solo es posible cuando lo permiten tanto el propietario como el ayuntamiento, y muchas direcciones de corta estancia no lo permiten.',
+          'Sin empadronamiento no hay BSN, lo que retrasa el seguro médico, la banca y a veces el pago de la nómina.',
+          'La mayoría de estos alojamientos están amueblados con suministros e internet incluidos, pero la limpieza y la ropa de cama a menudo no.',
+          'Estancia mínima, condiciones de cancelación y fianzas varían mucho entre operadores y rara vez son negociables.',
+          'Solo alojamos a clientes en propiedades que usaríamos nosotros mismos, y rechazamos operadores cuyos contratos no nos merecen confianza.',
+        ],
+      },
+      details: {
+        title: 'Usar bien el puente',
+        items: [
+          {
+            q: '¿Puedo empadronarme en una dirección de corta estancia?',
+            a:
+              'A veces, y eso lo cambia todo. Filtramos desde el principio por propiedades donde el empadronamiento es posible, porque una base empadronable permite que BSN, seguro y nómina echen a andar desde la primera semana en lugar del tercer mes. Cuando no es posible, lo planificamos deliberadamente.',
+          },
+          {
+            q: '¿Para cuánto tiempo debo reservar?',
+            a:
+              'De seis a diez semanas encaja con la mayoría de las llegadas. Da aire a la búsqueda definitiva sin pagar el sobreprecio de corta estancia más de lo necesario, y la mayoría de los operadores amplían si la búsqueda se alarga.',
+          },
+          {
+            q: '¿Sale más barato un hotel?',
+            a:
+              'Por debajo de tres semanas, a menudo sí. A partir de ahí los apartamentos de corta estancia ganan en coste y en calidad de vida, sobre todo con familia. El punto de inflexión suele estar en la tercera semana.',
+          },
+          {
+            q: '¿Y mis pertenencias que llegan del extranjero?',
+            a:
+              'Los contratos de corta estancia rara vez incluyen almacenaje. Coordinamos el envío contra la dirección definitiva en lugar de la temporal, y organizamos almacenamiento en la región cuando los plazos no encajan.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -459,8 +657,10 @@ export const housing: SectionContent = {
         label: 'Organizar mi vivienda temporal',
       },
       form: 'relocation',
-      image: '/images/housing-interior.jpg?v=20260728',
-      imageAlt: 'Un apartamento de corta estancia amueblado y listo para un recién llegado',
+      image: '/images/housing-interior.jpg?v=20260731',
+      imageAlt: 'Salón de un apartamento en una casa junto al canal',
+      image2: '/images/entrepreneur-housing.jpg',
+      image2Alt: 'Apartamento amueblado y luminoso listo para un recién llegado',
     },
     {
       slug: 'landlord-communication-support-netherlands',
@@ -523,6 +723,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Para asuntos que de verdad corresponden al tribunal de rentas o a un juzgado, preparamos su expediente y le derivamos a un abogado especializado en arrendamientos. Nunca nos paga por hacer lo que debe hacer un abogado.',
+      conditions: {
+        title: 'Qué podemos y qué no podemos hacer',
+        intro:
+          'La mayoría de los conflictos de alquiler se ganan escribiendo lo correcto, en el idioma correcto, en el momento correcto. Ese es el trabajo.',
+        items: [
+          'Nos comunicamos en neerlandés con propietarios y agencias, en su nombre, con usted en copia de todo lo que sale.',
+          'Las reparaciones que afectan a la seguridad, la calefacción o el agua deben comunicarse primero al propietario. Si no actúa, puede acudirse a la Huurcommissie.',
+          'Las fianzas deben devolverse en un plazo razonable tras la inspección final, y cualquier retención debe estar detallada y justificada.',
+          'El desgaste normal no puede descontarse de su fianza. Los daños reales sí.',
+          'Para conflictos sobre renta, gastos y mantenimiento, la Huurcommissie suele ser mucho más rápida y barata que los tribunales.',
+          'No somos un despacho de abogados. Si un conflicto exige procedimiento judicial, lo pasamos a un abogado de vivienda y seguimos como su intérprete.',
+        ],
+      },
+      details: {
+        title: 'Los conflictos que más tratamos',
+        items: [
+          {
+            q: 'Mi propietario retiene la fianza.',
+            a:
+              'El conflicto más frecuente y normalmente el más ganable. Pedimos un desglose detallado con pruebas, separamos el desgaste normal de los daños reales, contrastamos el acta de entrada con la de salida y fijamos un plazo formal en neerlandés. La mayoría de las fianzas vuelven en esa fase sin ningún procedimiento.',
+          },
+          {
+            q: 'Se ignoran las reparaciones.',
+            a:
+              'Comunicamos formalmente y por escrito, lo que hace correr el plazo jurídicamente y no socialmente. Si no pasa nada, la Huurcommissie puede ordenar una reducción temporal del alquiler hasta que se repare, y solo esa perspectiva suele hacer aparecer a un fontanero.',
+          },
+          {
+            q: 'Mis gastos subieron sin explicación.',
+            a:
+              'El propietario debe entregar una liquidación anual que compare los costes reales con lo que usted pagó. La solicitamos, la contrastamos con las lecturas de contadores e impugnamos las partidas que no pueden justificarse.',
+          },
+          {
+            q: 'Necesito marcharme antes.',
+            a:
+              'La mayoría de los contratos indefinidos permiten al inquilino rescindir con un mes de preaviso, se diga lo que se diga en la puerta. Comprobamos la cláusula, notificamos correctamente y gestionamos la inspección final para que la fianza vuelva intacta.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -546,8 +784,10 @@ export const housing: SectionContent = {
         label: 'Páselo a nuestras manos',
       },
       form: 'relocation',
-      image: '/images/landlord-communication.jpg',
-      imageAlt: 'Consultora estrechando la mano de un propietario en la puerta',
+      image: '/images/landlord-communication.jpg?v=20260731',
+      imageAlt: 'Asesora y propietario estrechándose la mano en un apartamento',
+      image2: '/images/housing-viewing.jpg?v=20260731',
+      image2Alt: 'Visita a un apartamento acompañada por una asesora',
     },
   ],
   cta: {

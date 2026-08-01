@@ -1,5 +1,6 @@
 ---
 import CtaBand from './CtaBand.astro';
+import PageHero from './PageHero.astro';
 import { SECTIONS, localizePath, type Lang } from '../lib/i18n';
 import { getContent } from '../lib/content';
 
@@ -14,48 +15,42 @@ const l = (p: string) => localizePath(p, lang);
 /* Guides carry no image in the content model; card images are mapped
    here by slug (slugs are identical across languages). */
 const guideImages: Record<string, string> = {
-  'moving-to-the-netherlands-guide': '/images/relocation-arrival.jpg?v=20260728',
-  'immigration-process-netherlands-explained': '/images/immigration-documents.jpg?v=20260728',
+  'moving-to-the-netherlands-guide': '/images/relocation-arrival.jpg?v=20260731',
+  'immigration-process-netherlands-explained': '/images/immigration-documents.jpg?v=20260731',
   'housing-guide-for-expats-netherlands': '/images/housing-viewing.jpg?v=20260728',
   'cost-of-relocating-to-the-netherlands': '/images/relocation-settling.jpg?v=20260728',
   'living-in-rotterdam-as-an-expat': '/images/rotterdam.jpg?v=20260728',
-  'relocating-to-europoort-netherlands': '/images/europoort.jpg?v=20260728',
-  'starting-a-business-in-the-netherlands-guide': '/images/start-business.jpg',
+  'relocating-to-europoort-netherlands': '/images/europoort.jpg?v=20260731',
+  'starting-a-business-in-the-netherlands-guide': '/images/start-business.jpg?v=20260731',
 };
 ---
 
-<section class="border-b border-line bg-ivory">
-  <div class="container-site py-14 text-center md:py-20">
-    <span class="eyebrow">{g.eyebrow}</span>
-    <h1 class="mx-auto mt-4 max-w-3xl font-display text-4xl md:text-5xl">{g.title}</h1>
-    <span class="gold-rule mx-auto mt-7"></span>
-    {g.intro.map((p) => (
-      <p class="mx-auto mt-5 max-w-2xl text-[1.02rem] leading-relaxed">{p}</p>
-    ))}
-  </div>
-  <div class="container-site pb-0">
-    <img
-      src="/images/guides-flatlay.jpg?v=20260728"
-      alt=""
-      class="aspect-[5/2] w-full translate-y-14 object-cover shadow-card md:translate-y-20"
-      width="1600"
-      height="640"
-      loading="eager"
-      fetchpriority="high"
-    />
-  </div>
-</section>
-<div class="h-14 md:h-20"></div>
+<PageHero
+  eyebrow={g.eyebrow}
+  title={g.title}
+  intro={g.intro}
+  image="/images/guides-flatlay.jpg?v=20260731"
+  imageAlt=""
+/>
 
 <section class="container-site py-16 md:py-24">
   <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {g.guides.map((guide) => (
-      <a href={l(`${SECTIONS.guides}/${guide.slug}`)} class="card group flex h-full flex-col bg-ivory">
+    {g.guides.map((guide, index) => (
+      <a
+        href={l(`${SECTIONS.guides}/${guide.slug}`)}
+        class:list={[
+          'card group flex h-full flex-col bg-sand',
+          index === g.guides.length - 1 && 'lg:col-span-3 lg:grid lg:h-80 lg:grid-cols-[1.15fr_1fr]',
+        ]}
+      >
         {guideImages[guide.slug] && (
           <img
             src={guideImages[guide.slug]}
             alt=""
-            class="aspect-[16/10] w-full object-cover"
+            class:list={[
+              'aspect-[16/10] w-full object-cover',
+              index === g.guides.length - 1 && 'lg:h-full lg:aspect-auto',
+            ]}
             width="800"
             height="500"
             loading="lazy"

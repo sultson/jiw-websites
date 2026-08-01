@@ -47,7 +47,7 @@ export const core: CoreContent = {
         'Après l’envoi de ce formulaire, Johanna étudie personnellement votre situation et vous répond sous un jour ouvré avec une évaluation honnête de la possibilité et de la manière de vous aider. Si votre demande sort de nos services ou de notre région, nous vous le disons d’emblée.',
     },
     footer: {
-      tagline: 'Services boutique de relocation et d’immigration pour les expatriés qui s’installent à Rotterdam, Europoort et dans la grande région portuaire.',
+      tagline: 'Un cabinet boutique de relocation pour les professionnels internationaux et les familles qui s’installent à Rotterdam, Europoort et dans la grande région portuaire.',
       services: 'Services',
       company: 'Société',
       contactHeading: 'Contact',
@@ -61,16 +61,18 @@ export const core: CoreContent = {
       whatsIncluded: 'Ce qui est inclus',
       otherServices: 'Autres services',
       relatedGuides: 'Guides associés',
+      conditions: 'Conditions',
+      investment: 'Investissement',
     },
   },
 
   home: {
     metaTitle: 'Services boutique de relocation et d’immigration aux Pays-Bas | E & I',
     metaDescription:
-      'Accompagnement personnel en relocation et immigration pour les expatriés, familles et entrepreneurs qui s’installent à Rotterdam, Europoort et dans la région industrielle néerlandaise. Visas, logement, BSN, écoles et forfaits VIP.',
+      'Un cabinet boutique de relocation pour les professionnels internationaux, les familles et les entrepreneurs à Rotterdam, Europoort et dans la grande région portuaire. Logement, écoles, démarches, immigration et forfaits VIP.',
     hero: {
       h1: 'Services boutique de relocation et d’immigration aux Pays-Bas',
-      sub: 'Un accompagnement personnel pour les expatriés, familles, entrepreneurs et professionnels internationaux qui s’installent à Rotterdam, Europoort et dans la région industrielle néerlandaise.',
+      sub: 'Un cabinet de relocation privé pour les professionnels internationaux, les familles et les entrepreneurs qui s’installent à Rotterdam, Europoort et dans la grande région portuaire. L’immigration en fait partie, elle n’est jamais toute l’histoire.',
       ctaPrimary: 'Réserver une consultation de relocation',
       ctaWhatsapp: 'Écrivez-nous sur WhatsApp',
       ctaSecondary: 'Commencer votre relocation',
@@ -78,7 +80,7 @@ export const core: CoreContent = {
     },
     paths: {
       heading: 'Comment pouvons-nous faciliter votre arrivée?',
-      sub: 'Immigration, logement, relocation et accompagnement VIP, réunis dans une seule société. Choisissez votre porte d’entrée et une seule personne connaît votre nom, du premier message au jour où vous vous sentez chez vous.',
+      sub: 'Relocation, logement, accompagnement VIP et immigration, réunis dans un seul cabinet. Choisissez votre porte d’entrée et une seule personne connaît votre nom, du premier message au jour où vous vous sentez chez vous.',
       items: [
         {
           key: 'immigration',
@@ -86,8 +88,8 @@ export const core: CoreContent = {
           text: 'Visas et permis pour les professionnels, partenaires, familles et fondateurs. Des dossiers préparés avec précision et un accompagnement personnel, de l’éligibilité à l’approbation.',
           label: 'Découvrir l’immigration',
           path: '/immigration',
-          image: '/images/path-immigration.jpg?v=20260728',
-          imageAlt: 'Conseillère guidant un client dans ses documents de séjour',
+          image: '/images/path-immigration.jpg?v=20260731',
+          imageAlt: 'Conseillère en entretien avec un client international',
         },
         {
           key: 'relocation',
@@ -95,7 +97,7 @@ export const core: CoreContent = {
           text: 'Des forfaits de relocation complets ou des services à la carte : recherche de logement, écoles, BSN, assurances et tout ce qui les relie.',
           label: 'Découvrir la relocation',
           path: '/relocation',
-          image: '/images/path-relocation.jpg?v=20260728',
+          image: '/images/path-relocation.jpg?v=20260731',
           imageAlt: 'Famille arrivant dans une maison au bord d’un canal néerlandais',
         },
         {
@@ -104,7 +106,7 @@ export const core: CoreContent = {
           text: 'Pour les artistes, athlètes, dirigeants et visites éclair d’un week-end. Toute votre installation orchestrée autour d’une seule visite, chaque porte déjà ouverte.',
           label: 'Découvrir les services VIP',
           path: '/vip-services',
-          image: '/images/path-vip.jpg?v=20260728',
+          image: '/images/path-vip.jpg?v=20260731',
           imageAlt: 'Chauffeur ouvrant la portière d’une voiture devant la skyline de Rotterdam',
         },
       ],
@@ -203,8 +205,8 @@ export const core: CoreContent = {
       ],
       label: 'Services de relocation familiale',
       path: '/relocation/family-relocation-netherlands',
-      image: '/images/relocation-family.jpg?v=20260728',
-      imageAlt: 'Parents et enfants déballant des cartons dans leur nouvelle maison néerlandaise',
+      image: '/images/family-unpacking.jpg?v=20260731',
+      imageAlt: 'Famille installée dans son nouveau salon aux Pays-Bas',
       links: [
         { label: 'Forfait VIP Famille', path: '/vip-services/family-relocation-immigration-services-netherlands' },
         { label: 'Recherche d’école', path: '/relocation/school-search-netherlands' },
@@ -213,10 +215,10 @@ export const core: CoreContent = {
     },
     whyBoutique: {
       eyebrow: 'Pourquoi une boutique',
-      heading: 'Une agence. Une personne. Votre nom.',
+      heading: 'Un cabinet. Une personne. Votre nom.',
       text: [
-        'Les grands cabinets de relocation vous attribuent un numéro de dossier. Une agence boutique vous attribue une personne. Johanna a bâti sa réputation dans le monde des ambassades, où la discrétion et la précision ne sont pas des qualités, mais la définition même du métier.',
-        'Nous ne sommes pas une agence généraliste pour expatriés qui propose tous les services imaginables. Nous faisons l’immigration, le logement, la relocation et l’accompagnement VIP pour une seule région, au sein d’une seule société, et nous les faisons jusqu’au bout.',
+        'Les grands cabinets de relocation vous attribuent un numéro de dossier. Un cabinet boutique vous attribue une personne. Johanna a bâti sa réputation dans le monde des ambassades, où la discrétion et la précision ne sont pas des qualités, mais la définition même du métier.',
+        'Nous ne sommes pas une usine à relocation qui propose tous les services imaginables. Nous faisons la relocation, le logement, l’accompagnement VIP et l’immigration pour une seule région, au sein d’un seul cabinet, et nous les faisons jusqu’au bout.',
       ],
       points: [
         {

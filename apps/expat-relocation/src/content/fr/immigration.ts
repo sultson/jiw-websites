@@ -10,8 +10,8 @@ export const immigration: SectionContent = {
     'Un visa néerlandais n’est pas un formulaire. C’est le moment où votre nouvelle vie commence à l’heure ou reste dans un tiroir de l’IND. Nous prenons en charge le volet immigration de votre installation comme il doit l’être : avec pragmatisme, de façon personnelle, et avec quelqu’un qui a accompagné des centaines de familles à travers ces mêmes portes. Seule agence boutique pour expatriés aux Pays-Bas, nous acceptons un nombre restreint de clients et accordons à chacun une attention véritable.',
     'Chaque dossier commence par un entretien honnête. Nous vous disons quel permis correspond réellement à votre situation, ce que l’IND exigera et ce que nous prenons en charge à votre place. À partir de là, vous avez un seul interlocuteur, un seul plan et aucune surprise.',
   ],
-  image: '/images/immigration-hub.jpg',
-  imageAlt: 'Conseiller en relocation se rendant avec des clients à un bureau administratif néerlandais',
+  image: '/images/canal-evening.jpg',
+  imageAlt: 'Ponts des canaux d’Amsterdam illuminés au crépuscule',
   cta: {
     title: 'Vous ne savez pas quel visa correspond à votre situation ?',
     text: 'Dites-nous d’où vous venez et pourquoi. Nous vous indiquerons, en toute clarté, la voie qui a du sens et ce qu’elle exige.',
@@ -75,6 +75,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'De nombreux migrants hautement qualifiés peuvent bénéficier de la facilité des 30 %, un avantage fiscal néerlandais pour les salariés venant de l’étranger. Les conditions évoluent régulièrement : nous le signalons lors de l’entretien initial et vous mettons en relation avec un conseiller fiscal plutôt que de promettre des chiffres.',
+      conditions: {
+        title: 'Ce que l\'IND exige',
+        intro:
+          'Cette voie passe par votre employeur et non par vous. Les conditions ci-dessous décident du dossier avant même qu\'il ne soit ouvert.',
+        items: [
+          'Votre employeur doit être un sponsor reconnu par l\'IND. Sans cette reconnaissance la voie est fermée, quel que soit votre salaire.',
+          'Salaire brut mensuel à partir de 5 942 euros si vous avez 30 ans ou plus, et à partir de 4 357 euros en dessous de 30 ans (2026, hors 8 pour cent de pécule de vacances).',
+          'Un critère réduit de 3 122 euros s\'applique dans l\'année qui suit une année d\'orientation néerlandaise ou un diplôme néerlandais.',
+          'Le salaire doit être versé mensuellement sur un compte néerlandais. Primes, indemnités et budgets de frais ne comptent pas dans le seuil.',
+          'La règle des 30 pour cent se calcule au-dessus du critère et ne peut jamais servir à l\'atteindre.',
+          'Les montants sont indexés chaque 1er janvier et appréciés selon les chiffres en vigueur au dépôt.',
+        ],
+      },
+      details: {
+        title: 'Ce qu\'il faut savoir en plus',
+        items: [
+          {
+            q: 'Et si mon employeur n\'est pas sponsor reconnu ?',
+            a:
+              'La reconnaissance prend des semaines dont une date d\'entrée dispose rarement. Si votre employeur ne l\'est pas, nous examinons la carte bleue européenne, qui n\'exige aucun sponsoring, ou nous menons la demande de reconnaissance en parallèle de votre dossier si l\'entreprise compte recruter à l\'international.',
+          },
+          {
+            q: 'Quel est le délai réel de décision ?',
+            a:
+              'Les sponsors reconnus disposent d\'un délai légal de quatre-vingt-dix jours, mais les dossiers complets sont fréquemment décidés en deux à quatre semaines. Le retard vient presque toujours d\'un document légalisé manquant, pas de l\'IND.',
+          },
+          {
+            q: 'Que se passe-t-il si je change d\'employeur ?',
+            a:
+              'Votre titre est lié à votre employeur. Le nouvel employeur doit aussi être sponsor reconnu et déposer une nouvelle demande, et vous ne pouvez pas commencer avant l\'approbation. Nous pilotons le changement pour qu\'aucune interruption de séjour n\'apparaisse.',
+          },
+          {
+            q: 'Ai-je besoin d\'un MVV en plus du titre ?',
+            a:
+              'La plupart des ressortissants hors UE oui, et nous demandons les deux dans une procédure combinée unique. Les ressortissants des États-Unis, du Canada, du Japon, d\'Australie, de Nouvelle-Zélande, de Corée du Sud et du Royaume-Uni en sont dispensés et voyagent avec le seul titre.',
+          },
+        ],
+      },
       faq: {
         title: 'Les questions que l’on nous pose souvent',
         items: [
@@ -90,6 +128,11 @@ export const immigration: SectionContent = {
             q: 'Dois-je parler néerlandais ?',
             a: 'Non. Ce permis n’impose aucune exigence linguistique, et la vie quotidienne dans les communautés internationales autour de Rotterdam et de La Haye se déroule aisément en anglais.',
           },
+                  {
+            q: 'Mon partenaire peut-il travailler aux Pays-Bas ?',
+            a:
+              'Oui. Les partenaires de travailleurs hautement qualifiés reçoivent un titre donnant libre accès au marché du travail, donc sans permis de travail distinct et sans sponsoring de l\'employeur. Les enfants sont inclus dans la même demande familiale.',
+          },
         ],
       },
       cta: {
@@ -98,8 +141,10 @@ export const immigration: SectionContent = {
         label: 'Vérifier mon éligibilité',
       },
       form: 'immigration',
-      image: '/images/hsm-visa.jpg',
-      imageAlt: 'Professionnel international travaillant dans un bureau néerlandais',
+      image: '/images/hsm-visa.jpg?v=20260731',
+      image2: '/images/employer-immigration.jpg?v=20260731',
+      image2Alt: 'Deux professionnels internationaux en discussion devant un bureau néerlandais',
+      imageAlt: 'Professionnelle internationale dans l\'atrium d\'un bureau néerlandais',
     },
     {
       slug: 'eu-blue-card-netherlands',
@@ -152,6 +197,49 @@ export const immigration: SectionContent = {
           { title: 'Dépôt et arrivée', text: 'Après l’approbation, nous planifions votre entrée, votre inscription et vos premiers rendez-vous dans le bon ordre.' },
         ],
       },
+      conditions: {
+        title: 'Conditions de la carte bleue',
+        intro:
+          'La carte bleue se joue sur trois éléments : votre qualification, votre contrat et votre salaire. Voici où se situent les lignes.',
+        items: [
+          'Un cursus supérieur achevé d\'au moins trois ans, ou pour les métiers des TIC au moins trois ans d\'expérience pertinente acquise sur les sept dernières années.',
+          'Salaire brut mensuel à partir de 5 942 euros, ou 4 754 euros au titre du critère réduit pour jeunes diplômés et métiers en tension (2026, hors pécule de vacances).',
+          'Un contrat de travail ou une offre ferme d\'une durée d\'au moins six mois.',
+          'Les diplômes étrangers doivent être évalués par IDW ou Nuffic. Les diplômes néerlandais en sont dispensés.',
+          'Votre employeur n\'a pas besoin d\'être sponsor reconnu, et c\'est l\'avantage pratique par rapport au titre de travailleur hautement qualifié.',
+          'Les montants sont indexés au 1er janvier et s\'appliquent à la date de dépôt, non à la date du contrat.',
+        ],
+      },
+      details: {
+        title: 'La carte bleue en pratique',
+        items: [
+          {
+            q: 'Comment fonctionne réellement la mobilité européenne ?',
+            a:
+              'Après douze mois de séjour régulier comme titulaire d\'une carte bleue, vous pouvez rejoindre un autre État membre selon une procédure allégée, et les années passées dans différents États membres se cumulent pour le statut de résident de longue durée UE. Un titre néerlandais de travailleur hautement qualifié n\'offre rien de tel.',
+          },
+          {
+            q: 'Carte bleue ou travailleur hautement qualifié ?',
+            a:
+              'Si votre employeur est sponsor reconnu et que vous construisez votre carrière aux Pays-Bas, le titre de travailleur hautement qualifié est généralement plus rapide et plus simple. Si votre employeur ne l\'est pas, ou si votre carrière est appelée à circuler en Europe, la carte bleue est l\'instrument le plus fort. Vous recevez la comparaison par écrit avant de vous engager.',
+          },
+          {
+            q: 'Puis-je me qualifier sur l\'expérience plutôt que sur un diplôme ?',
+            a:
+              'Uniquement dans les TIC. Les cadres et spécialistes des technologies de l\'information et de la communication peuvent se qualifier sur au moins trois ans d\'expérience pertinente acquise dans les sept ans précédant la demande. Toute autre profession exige le diplôme.',
+          },
+          {
+            q: 'Combien de temps prend l\'évaluation du diplôme ?',
+            a:
+              'IDW rend généralement un avis en quatre semaines environ, davantage lorsqu\'un établissement tarde à confirmer l\'authenticité. Nous lançons cette démarche en parallèle du reste du dossier pour qu\'elle ne devienne jamais le goulot d\'étranglement.',
+          },
+          {
+            q: 'Vers quoi mène la carte bleue ?',
+            a:
+              'Dès que vous comptez cinq ans de séjour régulier dans l\'UE, dont au moins deux aux Pays-Bas, vous pouvez demander ici le statut de résident de longue durée UE. Ce cumul transfrontalier est propre à ce titre.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions pratiques',
         items: [
@@ -167,6 +255,11 @@ export const immigration: SectionContent = {
             q: 'Puis-je venir avec ma famille ?',
             a: 'Oui. Votre partenaire et vos enfants peuvent déposer leur demande avec vous, et votre partenaire peut travailler aux Pays-Bas sans permis de travail distinct.',
           },
+                  {
+            q: 'La règle des 30 pour cent compte-t-elle dans le seuil salarial ?',
+            a:
+              'Non. L\'IND examine votre salaire brut avant application de la règle. Un contrat qui n\'atteint le seuil qu\'une fois la règle comptée sera refusé, et c\'est l\'une des causes les plus fréquentes d\'échec d\'un dossier de carte bleue.',
+          },
         ],
       },
       cta: {
@@ -175,8 +268,10 @@ export const immigration: SectionContent = {
         label: 'Poser une question sur la Carte bleue',
       },
       form: 'immigration',
-      image: '/images/eu-blue-card.jpg',
-      imageAlt: 'Ingénieur examinant des documents de permis à un bureau',
+      image: '/images/eu-blue-card.jpg?v=20260731',
+      imageAlt: 'Deux professionnels internationaux expérimentés en discussion',
+      image2: '/images/hsm-visa.jpg?v=20260731',
+      image2Alt: 'Professionnelle internationale dans l\'atrium d\'un bureau néerlandais',
     },
     {
       slug: 'orientation-year-visa-netherlands',
@@ -234,6 +329,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'La fenêtre de trois ans après le diplôme est stricte, et les listes de classement changent chaque année. Si vous êtes à la limite, contactez-nous avant de conclure que vous êtes exclu. Les questions respectent rarement les horaires de bureau, c’est pourquoi nos clients nous joignent sur une ligne WhatsApp personnelle de jour comme de nuit.',
+      conditions: {
+        title: 'Qui peut prétendre à l\'année d\'orientation',
+        intro:
+          'L\'année d\'orientation est généreuse une fois obtenue, et stricte sur qui y accède. C\'est la fenêtre que l\'on oublie le plus souvent.',
+        items: [
+          'La demande doit être déposée dans les trois ans suivant l\'obtention du diplôme, du doctorat ou la fin de vos recherches.',
+          'Les diplômés de cursus néerlandais accrédités de licence, master et doctorat se qualifient sur le seul diplôme néerlandais.',
+          'Les diplômés internationaux ont besoin d\'un diplôme d\'une université classée dans le top 200 d\'un classement mondial reconnu.',
+          'Le titre court douze mois, ne peut être prolongé et n\'est accordé qu\'une seule fois.',
+          'Vous pouvez travailler toute l\'année en salarié ou en indépendant, sans permis de travail et sans seuil de salaire.',
+          'L\'année suivante, le critère réduit du travailleur hautement qualifié de 3 122 euros s\'applique (2026).',
+        ],
+      },
+      details: {
+        title: 'Faire rendre l\'année',
+        items: [
+          {
+            q: 'Pourquoi suis-je plus facile à recruter pendant cette année ?',
+            a:
+              'Vous avez libre accès au marché du travail néerlandais. Votre employeur n\'a besoin d\'aucun permis de travail, d\'aucun sponsoring et ne paie aucun frais IND, ce qui lève exactement l\'objection qui bloque les autres candidats hors UE. Mettez-le dès la première ligne, car la plupart des employeurs néerlandais l\'ignorent.',
+          },
+          {
+            q: 'Que se passe-t-il au bout des douze mois ?',
+            a:
+              'Vous basculez vers un autre titre, le plus souvent celui de travailleur hautement qualifié au critère réduit. Le changement doit être déposé avant l\'expiration de l\'année d\'orientation, c\'est pourquoi nous le préparons vers le neuvième mois et non le douzième.',
+          },
+          {
+            q: 'Puis-je créer une entreprise pendant cette année ?',
+            a:
+              'Vous pouvez vous inscrire à la KvK et travailler en indépendant sur toute la période. Passer ensuite à une base entrepreneuriale permanente est une demande distincte avec son propre examen, et cela mérite d\'être planifié dès le départ.',
+          },
+          {
+            q: 'Mon partenaire obtient-il quelque chose ?',
+            a:
+              'Oui. Votre partenaire peut demander un titre dépendant pour les mêmes douze mois et bénéficie également d\'un libre accès au marché du travail.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -257,8 +390,10 @@ export const immigration: SectionContent = {
         label: 'Vérifier mon année d’orientation',
       },
       form: 'immigration',
-      image: '/images/orientation-year.jpg',
-      imageAlt: 'Jeune diplômé avec un vélo dans une rue d’une ville néerlandaise',
+      image: '/images/orientation-year.jpg?v=20260731',
+      image2: '/images/consultation.jpg?v=20260731',
+      image2Alt: 'Conseillère et client évoquant les prochaines étapes',
+      imageAlt: 'Jeune diplômée marchant le long d\'un canal d\'Amsterdam en automne',
     },
     {
       slug: 'partner-visa-netherlands',
@@ -316,6 +451,44 @@ export const immigration: SectionContent = {
           { title: 'Réunis', text: 'Votre partenaire voyage, s’inscrit et reçoit son permis de séjour. Nous sommes là pour l’atterrissage.' },
         ],
       },
+      conditions: {
+        title: 'Ce qui doit être vrai',
+        intro:
+          'Les demandes de partenaire échouent bien plus souvent sur la preuve que sur l\'éligibilité. Voici les conditions, et les endroits où les dossiers se perdent.',
+        items: [
+          'Le référent aux Pays-Bas doit percevoir au moins 2 523,96 euros bruts par mois, pécule de vacances inclus (2026, révisé deux fois par an).',
+          'Ce revenu doit être durable. Un contrat à durée indéterminée y satisfait d\'emblée, un contrat temporaire s\'apprécie sur ce qu\'il reste.',
+          'La relation doit être exclusive, durable et démontrable. Mariage, partenariat enregistré et relations non maritales documentées comptent tous.',
+          'Les deux partenaires doivent avoir au moins 21 ans.',
+          'La plupart des partenaires doivent réussir l\'examen d\'intégration de base à l\'étranger avant la délivrance d\'un MVV.',
+          'Les actes étrangers de naissance, de mariage et de célibat exigent généralement une légalisation ou une apostille et une traduction assermentée.',
+        ],
+      },
+      details: {
+        title: 'Les points sensibles que nous pilotons',
+        items: [
+          {
+            q: 'Qu\'est-ce qu\'un revenu durable ?',
+            a:
+              'Un contrat à durée indéterminée y satisfait d\'emblée. Sur un contrat temporaire, l\'IND demande si le revenu sera encore là dans les douze prochains mois, et un contrat avec au moins un an à courir, ou un historique d\'emploi de trois ans, y répond généralement. Les référents indépendants sont appréciés sur trois exercices comptables.',
+          },
+          {
+            q: 'Nous ne sommes pas mariés. Cela nous dessert-il ?',
+            a:
+              'Non, mais cela relève le niveau de preuve. Nous construisons un dossier de relation : historique d\'adresse commune, finances partagées, voyages, photographies dans la durée, traces de communication et attestations de personnes qui vous connaissent. C\'est là que les demandes refusées se perdent, et là qu\'une préparation soignée les gagne.',
+          },
+          {
+            q: 'Qui est dispensé de l\'examen d\'intégration à l\'étranger ?',
+            a:
+              'Les ressortissants de l\'UE, de l\'EEE, de Suisse, des États-Unis, du Canada, d\'Australie, de Nouvelle-Zélande, du Japon, de Corée du Sud et du Royaume-Uni, parmi quelques autres, ainsi que les personnes qui ne peuvent le passer pour raisons médicales ou détiennent un diplôme néerlandais ou belge. Tous les autres le passent dans une ambassade néerlandaise.',
+          },
+          {
+            q: 'Nous avons déjà été refusés. Est-ce réparable ?',
+            a:
+              'Souvent oui. Un refus n\'est pas une interdiction définitive, mais le second dossier doit répondre précisément au motif du premier refus plutôt que répéter la première tentative. Envoyez-nous la décision et vous obtiendrez un avis honnête sur le meilleur choix entre nouvelle demande et recours.',
+          },
+        ],
+      },
       faq: {
         title: 'Les couples nous demandent',
         items: [
@@ -339,8 +512,10 @@ export const immigration: SectionContent = {
         label: 'Planifier notre visa partenaire',
       },
       form: 'immigration',
-      image: '/images/partner-visa.jpg',
-      imageAlt: 'Couple remplissant des formulaires de demande à leur table de cuisine',
+      image: '/images/partner-visa.jpg?v=20260731',
+      imageAlt: 'Couple chez lui dans son appartement néerlandais',
+      image2: '/images/daft-couple.jpg',
+      image2Alt: 'Couple au bord d\'un canal néerlandais au coucher du soleil',
     },
     {
       slug: 'family-reunification-netherlands',
@@ -398,6 +573,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'Les demandes des enfants dépendent de détails que les parents anticipent rarement, comme le consentement d’un parent restant au pays. Exposez votre situation familiale complète lors de l’entretien pour que rien ne surgisse tardivement.',
+      conditions: {
+        title: 'Conditions du dossier familial',
+        intro:
+          'Un seul référent porte toute la demande familiale. Tout ce qui suit s\'apprécie sur cette personne, et sur des papiers issus de pays que vous avez déjà quittés.',
+        items: [
+          'Le titulaire principal agit comme référent et doit détenir un titre valable sur une base non temporaire.',
+          'Un revenu d\'au moins 2 523,96 euros bruts par mois, pécule inclus, apprécié comme durable (montant 2026).',
+          'Les enfants doivent être mineurs, non mariés, et avoir appartenu à la famille avant le départ pour les Pays-Bas.',
+          'Si un parent reste à l\'étranger, son consentement écrit est requis avant qu\'un enfant puisse déménager.',
+          'Les actes de la plupart des pays exigent une légalisation ou une apostille et une traduction assermentée en néerlandais, anglais, français ou allemand.',
+          'Les demandes déposées avec le demandeur principal sont décidées plus vite que celles déposées ensuite.',
+        ],
+      },
+      details: {
+        title: 'Comment se déroulent vraiment les dossiers familiaux',
+        items: [
+          {
+            q: 'Déposer ensemble ou rejoindre plus tard ?',
+            a:
+              'Ensemble chaque fois que c\'est possible. Une demande familiale simultanée se décide à côté du dossier principal, atterrit sur une seule ligne de temps et évite un second examen des revenus. Rejoindre plus tard reste tout à fait faisable, cela coûte simplement une procédure de plus et plusieurs mois de séparation.',
+          },
+          {
+            q: 'Combien de temps prend la légalisation ?',
+            a:
+              'De deux semaines à six mois selon le pays, car la chaîne passe souvent par le ministère local des affaires étrangères puis l\'ambassade néerlandaise. C\'est la cause de retard la plus fréquente dans les dossiers familiaux, et c\'est pourquoi nous commençons par là avant tout le reste.',
+          },
+          {
+            q: 'Nos enfants peuvent-ils être scolarisés tout de suite ?',
+            a:
+              'Oui. Aux Pays-Bas les enfants ont le droit et l\'obligation d\'aller à l\'école quel que soit le statut de séjour, et les écoles internationales et classes d\'accueil les admettent généralement en quelques semaines. Nous menons la recherche d\'école en parallèle du titre et non après.',
+          },
+          {
+            q: 'Et si un enfant atteint dix-huit ans pendant la procédure ?',
+            a:
+              'L\'IND apprécie l\'âge au moment du dépôt : un enfant mineur au dépôt ne perd donc pas son droit en fêtant son anniversaire pendant l\'instruction. C\'est précisément pour cela que nous déposons tôt plutôt que parfaitement.',
+          },
+        ],
+      },
       faq: {
         title: 'Ce que les familles veulent savoir',
         items: [
@@ -421,29 +634,42 @@ export const immigration: SectionContent = {
         label: 'Planifier notre déménagement familial',
       },
       form: 'immigration',
-      image: '/images/family-reunification.jpg',
-      imageAlt: 'Famille réunie dans le hall des arrivées de Schiphol',
+      image: '/images/family-reunification.jpg?v=20260731',
+      imageAlt: 'Famille réunie dans une maison de ville néerlandaise lumineuse',
+      image2: '/images/family-unpacking.jpg?v=20260731',
+      image2Alt: 'Famille installée dans son nouveau salon aux Pays-Bas',
     },
     {
       slug: 'startup-visa-netherlands',
       menuLabel: 'Visa start-up',
       title: 'Visa start-up Pays-Bas',
-      metaTitle: 'Visa start-up Pays-Bas | Lancez votre entreprise ici',
+      metaTitle: 'Visa start-up Pays-Bas | Pour entrepreneurs innovants',
       metaDescription:
-        'Le visa start-up néerlandais offre aux fondateurs ambitieux un an pour bâtir avec un facilitateur reconnu. Nous guidons la demande, la mise en relation avec le facilitateur et votre installation de fondateur.',
+        'Le visa start-up Pays-Bas donne aux fondateurs hors UE un permis de séjour d’un an pour bâtir une entreprise innovante avec un facilitateur reconnu. Conditions, méthode et honoraires.',
       eyebrow: 'Visa fondateur',
       intro: [
-        'Les Pays-Bas recrutent activement des fondateurs, et le visa start-up en est la porte d’entrée : un permis de séjour d’un an pour bâtir une entreprise innovante sous l’aile d’un facilitateur reconnu par l’IND. Une idée forte, un plan crédible, le bon facilitateur, et vous voilà dans l’un des meilleurs écosystèmes d’Europe.',
-        'La plupart des conseillers s’arrêtent au permis. En tant qu’agence boutique, nous accompagnons les fondateurs sur tout l’arc : l’introduction auprès du facilitateur, le plan d’affaires que l’IND a réellement envie de lire, et l’installation pratique qui vous laisse consacrer votre énergie à l’entreprise plutôt qu’aux formalités.',
+        'Le visa start-up Pays-Bas est conçu pour les entrepreneurs internationaux qui veulent développer ici une entreprise innovante. Il accorde une phase de démarrage d’un an pendant laquelle vous bâtissez la société aux côtés d’un facilitateur reconnu, au sein d’un écosystème offrant un accès réel aux investisseurs, aux incubateurs et aux marchés internationaux.',
+        'Nous accompagnons tout le parcours, pas seulement le permis : la mise en relation avec le facilitateur, le plan de démarrage que l’IND veut lire, et le côté pratique de l’arrivée, de l’immatriculation de la société au logement.',
       ],
       cardText: 'Un permis fondateur d’un an pour bâtir votre entreprise innovante dans l’écosystème néerlandais.',
       forWho: {
-        title: 'Pensé pour les fondateurs qui',
+        title: 'Qui peut demander le visa start-up',
         items: [
-          'Lancent un produit ou service innovant qui n’existe pas encore sur le marché néerlandais',
-          'Viennent de l’extérieur de l’UE et ont besoin d’une base de séjour pour bâtir ici',
-          'Sont prêts à travailler avec un facilitateur ou accélérateur reconnu',
-          'Préparent le passage au permis d’indépendant après la première année',
+          'Entrepreneurs hors UE qui introduisent un produit, un service ou une technologie innovants sur le marché néerlandais',
+          'Fondateurs prêts à travailler avec un facilitateur reconnu qui encadre la phase de démarrage',
+          'Équipes qui ont besoin d’une base de séjour pour développer l’entreprise sur le sol néerlandais',
+          'Fondateurs qui préparent le passage au permis d’indépendant après la première année',
+        ],
+      },
+      conditions: {
+        title: 'Conditions du visa start-up',
+        intro: 'L’IND évalue l’idée et le facilitateur vous évalue, vous. Les demandeurs doivent démontrer :',
+        items: [
+          'un concept d’entreprise innovant',
+          'une coopération avec un facilitateur de start-up agréé',
+          'un plan de développement structuré',
+          'des moyens financiers suffisants pour la première année',
+          'que le fondateur joue un rôle actif dans l’entreprise',
         ],
       },
       included: {
@@ -451,15 +677,19 @@ export const immigration: SectionContent = {
         blocks: [
           {
             title: 'Vérification honnête de la viabilité',
-            text: 'L’IND évalue l’innovation et le facilitateur vous évalue, vous. Nous vous disons d’emblée si votre dossier est solide, et quoi corriger s’il ne l’est pas.',
+            text: 'Nous vous disons d’emblée si votre dossier répond aux critères d’innovation, et quoi renforcer sinon, avant que vous n’engagiez de l’argent ou des mois.',
           },
           {
             title: 'Mise en relation avec un facilitateur',
-            text: 'Un facilitateur reconnu doit soutenir votre demande. Nous vous aidons à approcher ceux qui correspondent à votre secteur et à votre stade de développement.',
+            text: 'Un facilitateur reconnu doit soutenir votre demande. Nous vous aidons à approcher ceux qui correspondent à votre secteur et à votre stade, et coordonnons l’accord.',
           },
           {
-            title: 'Demande et plan d’étapes',
-            text: 'Nous préparons le dossier IND, y compris le plan détaillé décrivant votre rôle et l’innovation, et gérons le dépôt.',
+            title: 'Préparation du plan de démarrage',
+            text: 'Nous structurons le plan de développement exigé, décrivant votre rôle, l’innovation et les jalons de l’année.',
+          },
+          {
+            title: 'Gestion de la demande',
+            text: 'Nous préparons le dossier IND, le déposons et gérons chaque échange avec les autorités jusqu’à la décision.',
           },
           {
             title: 'Installation du fondateur',
@@ -468,39 +698,70 @@ export const immigration: SectionContent = {
         ],
       },
       process: {
-        title: 'Du pitch au permis',
+        title: 'Notre méthode de travail',
         steps: [
-          { title: 'Évaluer', text: 'Nous mettons votre idée à l’épreuve des critères d’innovation de l’IND avant que vous ne vous engagiez.' },
-          { title: 'Rapprocher et déposer', text: 'Accord du facilitateur signé, demande préparée et déposée.' },
-          { title: 'Bâtir', text: 'Vous arrivez, nous gérons l’installation, et vous disposez d’un an de piste d’envol sur le sol néerlandais.' },
+          { title: 'Évaluation de l’éligibilité', text: 'Nous vérifions si votre idée se qualifie comme start-up innovante selon les critères de l’IND.' },
+          { title: 'Coordination du facilitateur', text: 'Nous aidons à trouver des facilitateurs reconnus, à travailler avec eux et à signer l’accord.' },
+          { title: 'Plan de démarrage', text: 'Nous structurons le plan de développement sur lequel la demande est jugée.' },
+          { title: 'Demande de permis de séjour', text: 'Nous préparons et déposons la demande de visa start-up auprès de l’IND, puis en assurons le suivi.' },
         ],
       },
+      fees: {
+        title: 'Honoraires pour une demande de visa start-up',
+        amount: 'à partir de 2 250 à 3 250 euros',
+        includes: [
+          'Stratégie d’immigration et consultation',
+          'Préparation de la demande de visa start-up',
+          'Coordination avec le facilitateur',
+          'Communication avec l’IND',
+        ],
+        note: 'Les taxes administratives ne sont pas incluses. La position de votre dossier dans cette fourchette dépend de la complexité du plan et de la présence ou non de membres de la famille dans la demande.',
+      },
       note: 'Le permis start-up dure un an et ne se prolonge pas en tant que tel. L’étape suivante prévue est généralement le permis d’indépendant, et nous commençons à préparer ce dossier bien avant la fin de votre année.',
+      details: {
+        title: 'À lire avant de déposer votre demande',
+        items: [
+          {
+            q: 'Qu’est-ce qui compte comme innovation ?',
+            a: 'L’innovation peut être une technologie nouvelle, un modèle de service innovant ou une nouvelle méthode de production. En pratique, l’IND se demande si le produit ou le service est réellement nouveau aux Pays-Bas, et l’appui de votre facilitateur pèse lourd dans ce jugement.',
+          },
+          {
+            q: 'Que se passe-t-il après l’année de démarrage ?',
+            a: 'Pendant cette année vous développez l’entreprise et préparez l’étape suivante. Les fondateurs demandent ensuite le permis de séjour d’indépendant pour continuer à exploiter la société aux Pays-Bas, évalué sur la valeur économique de l’entreprise.',
+          },
+          {
+            q: 'Que fait réellement le facilitateur ?',
+            a: 'Un facilitateur reconnu encadre la phase de démarrage avec du mentorat sur le plan, le marché et les jalons. Cette relation est une condition formelle du permis, pas une option, ce qui rend la mise en relation plus déterminante que la plupart des fondateurs ne l’imaginent.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions de fondateurs',
         items: [
-          {
-            q: 'Qu’est-ce qui compte comme innovant pour l’IND ?',
-            a: 'Un produit ou service nouveau aux Pays-Bas, utilisant une technologie nouvelle ou introduisant une méthode de travail réellement inédite. L’appui de votre facilitateur pèse lourd ici, d’où l’importance de la bonne mise en relation.',
-          },
           {
             q: 'Puis-je venir avec ma famille avec un visa start-up ?',
             a: 'Oui. Votre partenaire et vos enfants peuvent demander un séjour à vos côtés, et votre partenaire est libre de travailler pendant que vous bâtissez.',
           },
           {
             q: 'Un investissement minimum est-il requis ?',
-            a: 'Aucun montant d’investissement fixe n’est exigé pour le visa start-up lui-même. Vous devez démontrer des moyens suffisants pour vivre pendant l’année, ce que nous vous aidons à justifier.',
+            a: 'Aucun montant d’investissement fixe n’est exigé pour le visa start-up. Vous devez démontrer des moyens suffisants pour vivre pendant l’année, ce que nous vous aidons à justifier.',
+          },
+          {
+            q: 'Puis-je postuler si mon entreprise est déjà active à l’étranger ?',
+            a: 'Souvent oui, si l’activité néerlandaise est réellement nouvelle et innovante pour ce marché. Nous l’évaluons honnêtement dès le premier entretien plutôt que de vous laisser le découvrir dans un refus.',
           },
         ],
       },
       cta: {
-        title: 'Prêt à bâtir aux Pays-Bas ?',
+        title: 'Lancez votre start-up aux Pays-Bas',
         text: 'Présentez-nous votre entreprise en une ligne. Nous vous dirons si le visa start-up est votre voie et qui devrait la faciliter.',
         label: 'Parler de votre start-up',
       },
       form: 'immigration',
-      image: '/images/startup-visa.jpg',
-      imageAlt: 'Fondateurs travaillant devant un tableau blanc dans un bureau de start-up',
+      image: '/images/startup-visa.jpg?v=20260731',
+      imageAlt: 'Fondateur dans un bureau loft surplombant le front de mer de Rotterdam',
+      image2: '/images/startup-team.jpg',
+      image2Alt: 'Équipe fondatrice travaillant ensemble dans un bureau partagé',
     },
     {
       slug: 'daft-visa-netherlands',
@@ -508,20 +769,32 @@ export const immigration: SectionContent = {
       title: 'Visa DAFT Pays-Bas',
       metaTitle: 'Visa DAFT Pays-Bas | Dutch American Friendship Treaty',
       metaDescription:
-        'Les Américains peuvent vivre et travailler aux Pays-Bas grâce au Dutch American Friendship Treaty avec un investissement de 4 500 euros. Nous guidons le processus DAFT de bout en bout.',
+        'Le visa DAFT Pays-Bas permet aux citoyens américains de vivre et de travailler ici comme entrepreneurs avec un investissement de 4 500 euros. Conditions, méthode et honoraires.',
       eyebrow: 'Pour les citoyens américains',
       intro: [
-        'Pour les Américains, le Dutch American Friendship Treaty est le superpouvoir discret de l’immigration néerlandaise. Investissez 4 500 € dans votre propre entreprise néerlandaise, respectez les conditions du traité, et vous pouvez vivre et travailler ici comme professionnel indépendant, sans offre d’emploi, sans système à points, sans sponsor.',
-        'Cette voie récompense la bonne exécution : l’immatriculation de l’entreprise, l’investissement au bilan et le dossier IND doivent s’aligner. Nous menons les dossiers DAFT de la première question bancaire jusqu’au moment où votre carte de séjour est entre vos mains, et nos clients nous joignent directement sur WhatsApp à toute heure pendant ce temps.',
+        'Le visa DAFT Pays-Bas, accordé au titre du Dutch American Friendship Treaty, est la voie d’immigration la plus accessible pour les citoyens américains qui souhaitent diriger leur propre entreprise ici. Grâce au traité entre les Pays-Bas et les États-Unis, les entrepreneurs américains bénéficient de conditions plus souples que celles du permis entrepreneur classique.',
+        'C’est la voie qu’empruntent le plus souvent les indépendants, les consultants et les dirigeants de petites entreprises. Au-delà du dossier d’immigration, nous prenons en charge le côté pratique de l’arrivée : l’immatriculation de la société, le logement et le séjour de la famille qui vous accompagne.',
       ],
       cardText: 'La voie du traité qui permet aux Américains de vivre et travailler aux Pays-Bas comme entrepreneurs.',
       forWho: {
-        title: 'Qui utilise le DAFT',
+        title: 'À qui s’adresse le visa DAFT',
         items: [
-          'Freelances et consultants américains qui portent leur activité en Europe',
-          'Entrepreneurs américains ouvrant une entreprise néerlandaise',
-          'Professionnels à distance restructurant leur travail en activité indépendante',
-          'Conjoints et familles américains accompagnant le demandeur',
+          'Indépendants et consultants américains qui installent leur activité en Europe',
+          'Entrepreneurs américains qui ouvrent une société néerlandaise',
+          'Professionnels à distance qui restructurent leur activité en travail indépendant',
+          'Conjoints et familles américaines qui déménagent avec le demandeur',
+        ],
+      },
+      conditions: {
+        title: 'Conditions du visa DAFT',
+        intro:
+          'Le traité remplace l’évaluation économique à points de votre plan d’affaires par un simple test d’investissement. Les demandeurs doivent en règle générale :',
+        items: [
+          'posséder la nationalité américaine',
+          'immatriculer une société aux Pays-Bas',
+          'investir au moins 4 500 euros dans cette entreprise',
+          'être inscrits à la chambre de commerce néerlandaise (KvK)',
+          'maintenir l’investissement requis dans l’entreprise',
         ],
       },
       included: {
@@ -550,40 +823,70 @@ export const immigration: SectionContent = {
         ],
       },
       process: {
-        title: 'Le déroulé de votre dossier DAFT',
+        title: 'Notre méthode de travail',
         steps: [
-          { title: 'Planifier', text: 'Entretien sur votre activité, votre famille et votre calendrier. Vous sortez de l’appel en sachant exactement ce que le DAFT exigera de vous.' },
-          { title: 'Établir', text: 'Société immatriculée, compte bancaire ouvert, investissement placé et documenté.' },
-          { title: 'Déposer', text: 'Le dossier IND part. Vous pouvez généralement attendre la décision aux Pays-Bas.' },
-          { title: 'Vivre et travailler', text: 'Permis accordé, inscriptions faites, et votre activité américaine est officiellement européenne.' },
+          { title: 'Consultation d’immigration', text: 'Nous évaluons votre éligibilité au titre du traité DAFT et traçons la voie autour de votre entreprise, de votre famille et de votre calendrier.' },
+          { title: 'Création de la société', text: 'Nous vous guidons dans l’immatriculation et les obligations administratives qui en découlent.' },
+          { title: 'Investissement et justificatifs', text: 'Nous veillons à ce que l’investissement requis soit versé et documenté comme l’IND souhaite le voir.' },
+          { title: 'Demande de permis de séjour', text: 'Nous préparons et déposons la demande DAFT auprès de l’IND et gérons chaque échange jusqu’à la décision.' },
         ],
       },
+      fees: {
+        title: 'Honoraires pour une demande DAFT',
+        amount: 'à partir de 1 950 à 2 750 euros',
+        includes: [
+          'Consultation d’immigration',
+          'Préparation de la demande de permis de séjour',
+          'Accompagnement lors de l’immatriculation de la société',
+          'Communication avec l’IND',
+        ],
+      note: 'Le permis de séjour est généralement accordé pour deux ans et peut être prolongé. Les 4 500 euros doivent rester investis dans l’entreprise tant que vous détenez le statut DAFT, car les renouvellements examinent votre bilan.',
+      },
       note: 'Les 4 500 € doivent rester investis dans l’entreprise tant que vous détenez le statut DAFT, et les renouvellements examinent votre bilan. Les frais et délais IND en vigueur évoluent, nous les confirmons lors de votre entretien.',
+      details: {
+        title: 'À lire avant de déposer votre demande',
+        items: [
+          {
+            q: 'Qu’est-ce que le permis de séjour DAFT exactement ?',
+            a: 'Il permet aux citoyens américains de vivre aux Pays-Bas tout en y exploitant leur propre entreprise. Contrairement au permis entrepreneur classique, la voie DAFT n’exige pas d’évaluation économique à points du plan d’affaires. La condition principale est l’investissement minimum.',
+          },
+          {
+            q: 'Eenmanszaak ou BV ?',
+            a: 'Les deux satisfont au traité. L’entreprise individuelle est plus légère et moins coûteuse, la BV limite la responsabilité et convient à la croissance et aux investisseurs. Le choix change la façon dont l’investissement est justifié et dont vous êtes imposé, nous conseillons donc sur vos chiffres plutôt que par principe.',
+          },
+          {
+            q: 'Que signifie maintenir l’investissement en pratique ?',
+            a: 'Le capital doit rester dans l’entreprise et rester visible au bilan, sans être retiré une fois le permis accordé. Au renouvellement, votre comptabilité en est la preuve, raison pour laquelle nous mettons nos clients en relation avec des comptables qui connaissent bien le traité.',
+          },
+        ],
+      },
       faq: {
         title: 'Les Américains nous demandent',
         items: [
           {
             q: 'Mon conjoint peut-il travailler aux Pays-Bas sous DAFT ?',
-            a: 'Oui. Votre conjoint reçoit un permis de séjour avec libre accès au marché du travail : il peut prendre un emploi ou lancer sa propre activité.',
+            a: 'Oui. Votre conjoint reçoit un permis de séjour avec libre accès au marché du travail et peut donc prendre un emploi ou lancer sa propre activité.',
           },
           {
-            q: 'Faut-il des clients ou du chiffre d’affaires avant de déposer ?',
-            a: 'Aucun seuil de revenus ne s’applique au départ. Il vous faut l’investissement, une entreprise immatriculée et l’intention réelle de l’exploiter. Au moment du renouvellement, vos comptes doivent refléter une activité bien vivante.',
+            q: 'Ai-je besoin de clients ou de chiffre d’affaires avant de déposer ?',
+            a: 'Aucun seuil de chiffre d’affaires ne s’applique au départ. Il vous faut l’investissement, une entreprise immatriculée et l’intention réelle de l’exploiter. Au moment du renouvellement, vos comptes doivent montrer une entreprise vivante.',
           },
           {
-            q: 'Quelle est la durée de validité du permis DAFT ?',
-            a: 'Le premier permis est généralement accordé pour deux ans et renouvelable tant que vous respectez les conditions du traité. Beaucoup de nos clients accèdent ensuite à la résidence permanente.',
+            q: 'Le DAFT mène-t-il au séjour permanent ?',
+            a: 'C’est possible. Après cinq ans de séjour légal continu, vous pouvez en principe demander le séjour permanent ou la naturalisation, sous réserve des exigences d’intégration. Beaucoup de nos clients DAFT suivent cette voie.',
           },
         ],
       },
       cta: {
-        title: 'Votre passeport américain ouvre cette porte',
-        text: 'Dites-nous ce que vous faites dans la vie. Nous tracerons votre parcours DAFT, de l’investissement au permis, en une conversation.',
+        title: 'Installez-vous aux Pays-Bas grâce au traité DAFT',
+        text: 'Dites-nous ce que vous faites comme métier. Nous traçons votre parcours DAFT, de l’investissement au permis, en une seule conversation.',
         label: 'Lancer mon plan DAFT',
       },
       form: 'immigration',
-      image: '/images/daft-visa.jpg',
-      imageAlt: 'Entrepreneur américain travaillant sur un ordinateur portable dans un café néerlandais',
+      image: '/images/daft-visa.jpg?v=20260731',
+      imageAlt: 'Fondatrice américaine travaillant depuis un studio de design aux Pays-Bas',
+      image2: '/images/daft-couple.jpg',
+      image2Alt: 'Couple américain prenant ses marques dans une ville néerlandaise',
     },
     {
       slug: 'business-schengen-visa-netherlands',
@@ -637,6 +940,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'Un visa Schengen affaires permet réunions et négociations, pas un emploi. Si vos visites deviennent un travail régulier aux Pays-Bas, parlez-nous d’un permis fondé sur le travail avant que cela ne devienne un problème à la frontière.',
+      conditions: {
+        title: 'Ce que ce visa permet et ne permet pas',
+        intro:
+          'Ici les limites pèsent plus que les conditions, car utiliser ce visa pour la mauvaise activité expose le voyageur comme l\'hôte néerlandais.',
+        items: [
+          'Quatre-vingt-dix jours de séjour maximum sur toute période de cent quatre-vingts jours dans l\'espace Schengen.',
+          'Réunions, négociations, formations, salons et visites de site sont permis. Le travail rémunéré aux Pays-Bas ne l\'est pas.',
+          'Une invitation formelle de l\'entreprise hôte néerlandaise est requise, et l\'hôte peut être appelé à prendre en charge les frais.',
+          'Une assurance voyage d\'au moins 30 000 euros de couverture, valable dans tout l\'espace Schengen, est obligatoire.',
+          'Justificatifs d\'hébergement, de voyage de retour et de moyens suffisants pour le séjour doivent être produits.',
+          'Ne déposez auprès du poste néerlandais que si les Pays-Bas sont votre destination principale, sinon la demande relève du pays où vous séjournez le plus longtemps.',
+        ],
+      },
+      details: {
+        title: 'Obtenir une décision plus solide',
+        items: [
+          {
+            q: 'Pourquoi les visas d\'affaires sont-ils refusés ?',
+            a:
+              'Presque toujours pour l\'une de trois raisons : l\'objet du voyage n\'est pas crédible au vu des pièces, le demandeur ne démontre pas d\'attaches suffisantes dans son pays, ou de précédents voyages Schengen ont été utilisés à mauvais escient. Les trois sont des problèmes de dossier, et les trois se traitent avant le dépôt.',
+          },
+          {
+            q: 'Comment obtenir un visa à entrées multiples ?',
+            a:
+              'Les visas à entrées multiples de un à cinq ans vont aux demandeurs à l\'historique Schengen irréprochable et à la relation d\'affaires suivie démontrable. Nous construisons le dossier pour que le caractère récurrent soit visible dans les pièces, plutôt que sollicité comme une faveur.',
+          },
+          {
+            q: 'Combien de temps à l\'avance déposer ?',
+            a:
+              'Les demandes peuvent être déposées jusqu\'à six mois avant le voyage et au plus tard quinze jours avant. La vraie contrainte est la disponibilité des rendez-vous consulaires, et en région tendue et haute saison cela peut représenter six semaines. Donnez-nous la date tôt.',
+          },
+          {
+            q: 'Notre spécialiste doit intervenir sur site. Est-ce le bon visa ?',
+            a:
+              'Non. Installer un équipement, exécuter un projet ou fournir une prestation à un client néerlandais est un travail, et cela exige un titre lié à l\'emploi ou une déclaration au titre du détachement. Utiliser ce visa pour cela expose votre entreprise et votre collaborateur. Nous vous dirons quel instrument s\'applique réellement.',
+          },
+        ],
+      },
       faq: {
         title: 'Avant de réserver vos vols',
         items: [
@@ -660,8 +1001,10 @@ export const immigration: SectionContent = {
         label: 'Organiser mon visa affaires',
       },
       form: 'immigration',
-      image: '/images/business-visa.jpg',
-      imageAlt: 'Voyageur d’affaires traversant un terminal d’aéroport néerlandais',
+      image: '/images/business-visa.jpg?v=20260731',
+      image2: '/images/business-signing.jpg?v=20260731',
+      image2Alt: 'Signature de documents lors d’un rendez-vous d’affaires',
+      imageAlt: 'Dirigeant arrivant en voiture au siège d\'une entreprise néerlandaise',
     },
     {
       slug: 'residence-permit-netherlands',
@@ -715,6 +1058,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'Les frais et délais de décision varient selon le type de permis et évoluent dans le temps, nous confirmons donc les chiffres IND en vigueur lors de votre entretien plutôt que de les imprimer ici.',
+      conditions: {
+        title: 'Délais et seuils',
+        intro:
+          'Presque chaque problème de titre que nous réparons a commencé par une date passée en silence. Voici celles qui comptent.',
+        items: [
+          'Déposez un renouvellement au moins trois mois avant l\'expiration. Votre droit de vivre et de travailler se poursuit tant qu\'un renouvellement déposé à temps est en cours.',
+          'Un changement d\'employeur, d\'objet ou de relation exige une nouvelle demande, et le plus souvent vous ne pouvez pas commencer la nouvelle activité avant l\'accord.',
+          'Le séjour permanent exige cinq ans de séjour régulier ininterrompu sur une base non temporaire.',
+          'Les titres d\'études et d\'année d\'orientation ne comptent pas dans ces cinq ans.',
+          'L\'intégration civique au niveau A2, ou une exemption formelle, est requise pour le séjour permanent et la naturalisation.',
+          'Des absences de plus de six mois consécutifs, ou de plus de quatre mois par an sur la période, rompent la continuité.',
+        ],
+      },
+      details: {
+        title: 'Les questions qui reviennent le plus',
+        items: [
+          {
+            q: 'Séjour permanent ou nationalité néerlandaise ?',
+            a:
+              'Le séjour permanent sécurise votre droit de vivre et de travailler ici sans limite et survit à un changement d\'emploi. La nationalité ajoute un passeport, la citoyenneté européenne et le droit de vote, exige les mêmes cinq ans plus l\'intégration, et impose généralement de renoncer à votre nationalité actuelle. Beaucoup de clients prennent d\'abord le séjour permanent et tranchent plus tard sur la naturalisation.',
+          },
+          {
+            q: 'Mon titre expire bientôt et je n\'ai pas de nouvel emploi.',
+            a:
+              'Les travailleurs hautement qualifiés disposent d\'une période de recherche de trois mois après la fin du contrat, pendant laquelle le séjour se poursuit le temps de trouver un nouveau sponsor reconnu. Agissez dans cette fenêtre. Une fois refermée, la situation devient bien plus difficile à réparer.',
+          },
+          {
+            q: 'Je divorce. Est-ce que je perds mon séjour ?',
+            a:
+              'Pas nécessairement. Selon la durée pendant laquelle vous avez détenu un titre dépendant et selon votre situation propre, un changement d\'objet vers un séjour autonome est souvent possible. C\'est une question de calendrier, et plus tôt vous nous parlez, plus de voies restent ouvertes.',
+          },
+          {
+            q: 'Puis-je détenir aussi le statut de résident de longue durée UE ?',
+            a:
+              'Oui, et c\'est souvent la meilleure combinaison. Le statut UE ajoute des droits de mobilité vers d\'autres États membres que le séjour permanent néerlandais ne comporte pas, et les deux peuvent être demandés en même temps.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions de séjour',
         items: [
@@ -738,8 +1119,17 @@ export const immigration: SectionContent = {
         label: 'Examiner mon statut de séjour',
       },
       form: 'immigration',
-      image: '/images/immigration-documents.jpg?v=20260728',
-      imageAlt: 'Documents de permis de séjour néerlandais prêts pour le renouvellement',
+      image: '/images/immigration-documents.jpg?v=20260731',
+      imageAlt: 'Porte-documents en cuir et stylo plume sur un bureau',
+      image2: '/images/immigration-desk.jpg?v=20260731',
+      image2Alt: 'Conseillère et client autour d\'une table de consultation privée',
+    },
+  ],
+  crossLinks: [
+    {
+      path: '/starting-a-business/employer-immigration-services-netherlands',
+      label: 'Immigration pour employeurs',
+      text: 'Pour les entreprises qui recrutent hors UE : demandes de permis, agrément IND, détachement et revue de dossier.',
     },
   ],
 };

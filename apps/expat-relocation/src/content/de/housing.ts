@@ -10,8 +10,8 @@ export const housing: SectionContent = {
     'Der niederländische Mietmarkt bewegt sich schnell und belohnt die Vorbereiteten. Gute Wohnungen werden morgens inseriert und sind abends vergeben, und Vermieter wählen Mieter, die schnell mit einer vollständigen Akte reagieren. Genau hier kommen wir ins Spiel. Wir beobachten den Markt für Sie, reagieren innerhalb von Stunden und bereiten Ihr Dossier so vor, dass Sie der Kandidat sind, zu dem ein Vermieter Ja sagt, wenn das richtige Zuhause auftaucht.',
     'Unser Heimatterrain ist Rotterdam und die weitere Hafenregion, vom Stadtzentrum bis hinaus nach Europoort und zur Maasvlakte, wobei wir in den ganzen Niederlanden suchen. Sie werden nie allein mit einer Linkliste losgeschickt. Wir erstellen die Auswahl, begleiten Sie zu Besichtigungen, lesen jeden Vertrag vor der Unterschrift und führen das Gespräch mit dem Vermieter von der ersten Nachricht bis zur Schlüsselübergabe.',
   ],
-  image: '/images/housing-canal.jpg?v=20260728',
-  imageAlt: 'Grachtenhäuser in einer niederländischen Stadt an einem hellen Tag',
+  image: '/images/canal-colour.jpg',
+  imageAlt: 'Bunte Grachtenhäuser spiegeln sich im Wasser einer niederländischen Stadt',
   services: [
     {
       slug: 'housing-search-assistance-netherlands',
@@ -82,6 +82,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'In einem Punkt sind wir offen: Keine ehrliche Agentur kann Ihnen in diesem Markt eine bestimmte Wohnung garantieren. Was wir versprechen können, sind Tempo, eine vollständige Akte und ein starkes lokales Netzwerk, und genau das gewinnt Wohnungen. Die Preise hängen von Suchgebiet und Zeitplan ab und werden im Erstgespräch bestätigt.',
+      conditions: {
+        title: 'Was der niederländische Mietmarkt verlangt',
+        intro:
+          'Der Markt entscheidet mehr als Ihr Budget. Gegen diese Bedingungen bauen wir Ihre Akte auf.',
+        items: [
+          'Die meisten Vermieter verlangen ein Bruttoeinkommen vom Drei- bis Vierfachen der Monatsmiete, belegt durch Vertrag und aktuelle Gehaltsabrechnungen.',
+          'Ohne niederländische Einkommenshistorie sind eine Arbeitgeberbescheinigung, eine Bankbürgschaft oder eine höhere Kaution zu erwarten.',
+          'Kautionen sind für Verträge ab dem 1. Juli 2023 auf zwei Kaltmieten begrenzt.',
+          'Für die Unterschrift braucht es keine BSN, für die Anmeldung an der Adresse schon, und diese Anmeldung öffnet fast alles Weitere.',
+          'Wir arbeiten in Rotterdam, Europoort und der weiteren Hafenregion. Darüber hinaus sagen wir das lieber, als den Auftrag anzunehmen.',
+          'Wir handeln für Sie und nie für den Vermieter, und wir nehmen von keiner Seite Provision.',
+        ],
+      },
+      details: {
+        title: 'Wie die Suche wirklich abläuft',
+        items: [
+          {
+            q: 'Wie lange dauert die Wohnungssuche?',
+            a:
+              'In der Region Rotterdam sind vier bis acht Wochen im gehobenen und möblierten Segment realistisch, und länger unter 1.500 Euro monatlich, wo der Wettbewerb am härtesten ist. Beliebte Objekte sind binnen achtundvierzig Stunden weg, deshalb zählt Reaktionsgeschwindigkeit mehr als Suchbreite.',
+          },
+          {
+            q: 'Können Sie besichtigen, bevor ich ankomme?',
+            a:
+              'Ja, und so beginnen die meisten Klienten. Wir gehen in Ihrem Namen hin und senden noch am selben Tag ein schriftliches Urteil mit Video, genug, um sich aus dem Ausland festzulegen, ohne auf Fotos zu wetten.',
+          },
+          {
+            q: 'Befristet oder unbefristet?',
+            a:
+              'Seit dem 1. Juli 2024 müssen die meisten neuen Wohnraummietverträge unbefristet sein, befristete sind nur in definierten Fällen zulässig, etwa bei vorübergehender Abwesenheit des Vermieters. Die Änderung wirkt zu Ihren Gunsten, und wir prüfen vor der Unterschrift, welchem Regime Ihr Vertrag unterliegt.',
+          },
+          {
+            q: 'Möbliert, teilmöbliert oder leer?',
+            a:
+              'Niederländische Anzeigen unterscheiden kaal, teils ohne Bodenbelag oder Lampen, gestoffeerd mit Böden und Vorhängen, und gemeubileerd voll möbliert. Der Unterschied kann bei Ankunft mehrere tausend Euro betragen, und es ist das Detail, das Neuankömmlinge am häufigsten überlesen.',
+          },
+        ],
+      },
       faq: {
         title: 'Häufig gestellte Fragen',
         items: [
@@ -105,8 +143,10 @@ export const housing: SectionContent = {
         label: 'Meine Suche starten',
       },
       form: 'relocation',
-      image: '/images/housing-search.jpg',
-      imageAlt: 'Makler und Paar sehen sich Wohnungsangebote auf einem Laptop an',
+      image: '/images/housing-search.jpg?v=20260731',
+      imageAlt: 'Beraterin präsentiert einem Paar Wohnungsoptionen',
+      image2: '/images/housing-interior.jpg?v=20260731',
+      image2Alt: 'Wohnzimmer einer Wohnung in einem niederländischen Grachtenhaus',
     },
     {
       slug: 'housing-for-expats-rotterdam',
@@ -168,6 +208,44 @@ export const housing: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Bevor Sie ein Viertel wählen',
+        intro:
+          'Rotterdam belohnt, wer seine Adresse um sein Leben herum wählt statt um eine Karte.',
+        items: [
+          'Mieten im freien Sektor beginnen meist bei rund 1.200 Euro für eine Einzimmerwohnung und 1.800 Euro für eine Familienwohnung, höher auf der Kop van Zuid und im Zentrum.',
+          'Sozialer Wohnraum ist für Expats faktisch unerreichbar. Einkommensgrenzen und mehrjährige Wartelisten verschließen diese Tür.',
+          'Die Anmeldung an der Adresse ist nur möglich, wenn der Vermieter sie erlaubt, und manche Short-Stay-Anbieter tun das nicht.',
+          'Parkausweise werden pro Haushalt und Zone erteilt, und in zentralen Vierteln läuft die Warteliste über Monate.',
+          'Wohnungen mit Energielabel E, F oder G verursachen höhere laufende Kosten und haben nach dem Punktesystem eine niedrigere zulässige Miete.',
+          'Wir decken Rotterdam und die umliegenden Gemeinden ab, darunter Schiedam, Capelle, Barendrecht und den Europoort-Korridor.',
+        ],
+      },
+      details: {
+        title: 'Rotterdam Viertel für Viertel',
+        items: [
+          {
+            q: 'Wo wohnen die meisten internationalen Fachkräfte?',
+            a:
+              'Kralingen wegen Platz, Grün und Nähe zu internationalen Schulen. Kop van Zuid und Wilhelminapier für Flussblick und Neubau. Centrum und Cool, um alles zu Fuß zu erledigen. Hillegersberg für Familien, die ein Dorfgefühl in der Stadt suchen. Was richtig ist, hängt weit mehr von Ihrem Arbeitsweg und Ihren Kindern ab als von irgendeinem Ranking.',
+          },
+          {
+            q: 'Wie lange dauert der Weg nach Europoort oder Maasvlakte?',
+            a:
+              'Vom Zentrum Rotterdams fünfundvierzig bis siebzig Minuten mit dem Auto, je nach Tor und Schicht. Aus Hoogvliet, Spijkenisse oder Brielle sinkt das auf zwanzig bis dreißig. Wer an den Terminals arbeitet und ein Viertel vor der Fahrzeitrechnung wählt, macht den teuersten verfügbaren Fehler.',
+          },
+          {
+            q: 'Gibt es internationale Schulen in der Nähe?',
+            a:
+              'Rotterdam hat mehrere internationale und zweisprachige Optionen, überwiegend in Kralingen und im Süden der Stadt, und die Plätze sind begrenzt. Familien müssen meist zuerst die Schule und dann das Viertel wählen, und in dieser Reihenfolge planen wir.',
+          },
+          {
+            q: 'Sollte ich lieber kaufen als mieten?',
+            a:
+              'Manchmal, aber selten im ersten Jahr. Niederländische Kreditgeber wollen eine Beschäftigungshistorie und eine Erlaubnis mit vernünftigem Horizont, und die Transaktionskosten machen einen Kauf, den Sie binnen zwei Jahren wieder verlassen, zu einem teuren Experiment. Wir sagen ehrlich, wann Kaufen die bessere Entscheidung ist.',
+          },
+        ],
+      },
       faq: {
         title: 'Häufig gestellte Fragen',
         items: [
@@ -191,8 +269,10 @@ export const housing: SectionContent = {
         label: 'Mit einem Rotterdam-Local sprechen',
       },
       form: 'relocation',
-      image: '/images/rotterdam-housing.jpg',
-      imageAlt: 'Moderne Wohngebäude in Rotterdam',
+      image: '/images/rotterdam-housing.jpg?v=20260731',
+      imageAlt: 'Wohngebäude am Wasser in Rotterdam bei Sonnenuntergang',
+      image2: '/images/rotterdam-evening.jpg?v=20260731',
+      image2Alt: 'Die Skyline von Rotterdam am Abend',
     },
     {
       slug: 'viewing-assistance-netherlands',
@@ -259,6 +339,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Der Besichtigungsservice kann einzeln oder als Teil einer vollständigen Wohnungssuche gebucht werden. Die Gebühren hängen von Ort und Häufigkeit ab und werden im Erstgespräch bestätigt.',
+      conditions: {
+        title: 'Wie die Besichtigungsbegleitung funktioniert',
+        intro:
+          'Ein unabhängiger Besichtiger ist nur dann etwas wert, wenn er wirklich unabhängig ist. Das sind unsere Bedingungen.',
+        items: [
+          'Wir sind in ganz Rotterdam und der Hafenregion vor Ort. Weiter entfernt nach Absprache, abhängig von der Fahrzeit.',
+          'Beliebte Objekte werden oft binnen vierundzwanzig Stunden terminiert, senden Sie uns den Link also sofort.',
+          'Wir berichten, was wir sehen. Das Verhandeln der Miete ist separat und gehört zur Angebots- und Vertragsbegleitung.',
+          'Ein Live-Videorundgang braucht brauchbaren Mobilfunkempfang, den Keller und dicke Grachtenhausmauern nicht immer bieten.',
+          'Ohne Makler oder Vermieter kommen wir nicht hinein, und einige Büros lehnen Besichtigungen durch Dritte ganz ab.',
+          'Unser schriftliches Urteil ist ehrlich. Passt ein Objekt nicht zu Ihnen, sagen wir das, auch wenn es uns die Folgearbeit kostet.',
+        ],
+      },
+      details: {
+        title: 'Was wir prüfen und Fotos verbergen',
+        items: [
+          {
+            q: 'Was inspizieren Sie tatsächlich?',
+            a:
+              'Feuchtigkeit und Lüftung, Verglasung im Abgleich mit dem angegebenen Energielabel, Lärm von Verkehr, Straßenbahnen, Nachbarn und Nachtleben zur tatsächlichen Tageszeit, Wasserdruck, Alter und Zustand der Therme, Mobilfunk- und Internetempfang, Abstellraum, Fahrradstellplatz und ob der gemeinsame Eingang gepflegt oder still vernachlässigt wird.',
+          },
+          {
+            q: 'Können Sie besichtigen, während ich noch im Ausland bin?',
+            a:
+              'Ja, und so beginnen die meisten unserer Klienten. Sie erhalten einen Videorundgang, Fotos von dem, was Anzeigen nie zeigen, und noch am selben Tag ein schriftliches Urteil, genug, um von einem anderen Kontinent aus sicher zu entscheiden.',
+          },
+          {
+            q: 'Raten Sie auch ab?',
+            a:
+              'Regelmäßig. Der ganze Wert eines unabhängigen Besichtigers liegt darin, dass wir kein Interesse an Ihrer Unterschrift haben. Rund ein Drittel der besichtigten Objekte erhält eine klare Empfehlung dagegen.',
+          },
+          {
+            q: 'Wie schnell können Sie hin?',
+            a:
+              'Meist binnen vierundzwanzig bis achtundvierzig Stunden, und am selben Tag, wenn ein Objekt es verdient. In diesem Markt ist eine langsame Besichtigung schlicht ein verlorenes Objekt.',
+          },
+        ],
+      },
       faq: {
         title: 'Häufig gestellte Fragen',
         items: [
@@ -282,8 +400,10 @@ export const housing: SectionContent = {
         label: 'Besichtigung buchen',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg?v=20260728',
-      imageAlt: 'Besichtigung einer hellen niederländischen Wohnung mit großen Fenstern',
+      image: '/images/viewing-couple.jpg',
+      imageAlt: 'Maklerin zeigt einem Paar eine helle niederländische Wohnung',
+      image2: '/images/housing-viewing.jpg',
+      image2Alt: 'Wohnungsbesichtigung mit einer Beraterin',
     },
     {
       slug: 'rental-contract-review-netherlands',
@@ -346,6 +466,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Wir prüfen Verträge als Relocation-Spezialisten, nicht als Kanzlei. Bei echten Rechtsstreitigkeiten verbinden wir Sie mit Mietrechtsanwälten aus unserem professionellen Netzwerk, einem Netzwerk, das über Jahre der Arbeit an der Seite von Botschaften und Konsulaten gewachsen ist.',
+      conditions: {
+        title: 'Was wir prüfen und was nicht',
+        intro:
+          'Das niederländische Mietrecht schützt Sie mehr, als die meisten Neuankömmlinge ahnen. Zu wissen, welcher Schutz greift, ist das ganze Spiel.',
+        items: [
+          'Kautionen sind für Verträge ab dem 1. Juli 2023 auf zwei Kaltmieten begrenzt.',
+          'Seit dem 1. Juli 2024 müssen die meisten neuen Wohnraummietverträge unbefristet sein, befristete nur in definierten Fällen.',
+          'Nebenkosten müssen spezifiziert und jährlich gegen die tatsächlichen Kosten abgerechnet werden. Ein einziger All-in-Betrag ist bei den meisten Mietwohnungen unzulässig.',
+          'Maklergebühren dürfen dem Mieter nicht berechnet werden, wenn der Makler für den Vermieter tätig ist.',
+          'Eine Miete über dem nach dem Punktesystem zulässigen Niveau kann bei der Huurcommissie angefochten werden, meist binnen sechs Monaten nach Mietbeginn.',
+          'Wir prüfen Verträge und erklären Ihre Position. Wir sind Relocation-Berater und keine Kanzlei, und für Verfahren verweisen wir an einen Mietrechtsanwalt, dem wir vertrauen.',
+        ],
+      },
+      details: {
+        title: 'Klauseln, die später Geld kosten',
+        items: [
+          {
+            q: 'Auf welche Klauseln schauen Sie zuerst?',
+            a:
+              'Kündigungs- und Diplomatenklauseln, wer Kleinreparaturen zahlt, ob die Kaution binnen fester Frist zurückkommt, Indexierungsformeln, die die Inflation überholen, Beschränkungen der Anmeldung an der Adresse, unrealistisch niedrig angesetzte Nebenkostenvorauszahlungen und Strafen bei vorzeitiger Beendigung.',
+          },
+          {
+            q: 'Darf ich mich an dieser Adresse anmelden?',
+            a:
+              'Das ist die wichtigste Klausel und die am häufigsten still ausgeschlossene. Ohne Anmeldung keine BSN, keine Krankenversicherung, kein Bankkonto und keine Post der IND. Verbietet der Vertrag es oder schweigt er dazu, sprechen wir es vor der Unterschrift an und nicht danach.',
+          },
+          {
+            q: 'Was, wenn die Miete für das Objekt zu hoch ist?',
+            a:
+              'Das niederländische Punktesystem legt für die meisten Wohnungen eine Höchstmiete nach Fläche, Energielabel, Ausstattung und Lage fest. Liegt die Miete darüber, kann die Huurcommissie sie senken, meist auf einen Antrag binnen sechs Monaten nach Mietbeginn. Wir weisen bei der Prüfung darauf hin, solange dieses Fenster offen ist.',
+          },
+          {
+            q: 'Wie schnell geht eine Prüfung?',
+            a:
+              'Normalerweise binnen eines Werktages, und am selben Tag, wenn Sie unter Unterschriftsdruck stehen. Ein Vermieter, der auf Unterschrift binnen einer Stunde besteht, wendet eine Taktik an und beschreibt keine Frist.',
+          },
+        ],
+      },
       faq: {
         title: 'Häufig gestellte Fragen',
         items: [
@@ -369,8 +527,10 @@ export const housing: SectionContent = {
         label: 'Meinen Vertrag prüfen',
       },
       form: 'relocation',
-      image: '/images/rental-contract.jpg',
-      imageAlt: 'Hände prüfen einen Mietvertrag, daneben liegen Schlüssel auf dem Tisch',
+      image: '/images/rental-contract.jpg?v=20260731',
+      imageAlt: 'Unterzeichnung eines niederländischen Mietvertrags mit dem Füllfederhalter',
+      image2: '/images/housing-interior.jpg?v=20260731',
+      image2Alt: 'Wohnzimmer einer Wohnung in einem niederländischen Grachtenhaus',
     },
     {
       slug: 'temporary-housing-for-expats-netherlands',
@@ -436,6 +596,44 @@ export const housing: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Short Stay in der Praxis',
+        intro:
+          'Eine Zwischenlösung ist eine Brücke, und Brücken wählt man sorgfältig. Diese Bedingungen entscheiden, ob Ihre trägt.',
+        items: [
+          'Short Stay läuft meist von einem bis sechs Monaten und kostet pro Monat mehr als eine normale Miete, oft dreißig bis fünfzig Prozent mehr.',
+          'Die Anmeldung an der Adresse ist nur möglich, wenn Vermieter und Gemeinde sie erlauben, und viele Short-Stay-Adressen tun das nicht.',
+          'Ohne Anmeldung keine BSN, was Krankenversicherung, Bankgeschäfte und teils die Gehaltszahlung verzögert.',
+          'Die meisten Short-Stay-Objekte sind möbliert inklusive Energie und Internet, Reinigung und Wäsche jedoch oft nicht.',
+          'Mindestdauer, Stornobedingungen und Kautionen unterscheiden sich stark je nach Anbieter und sind selten verhandelbar.',
+          'Wir vermitteln nur Objekte, die wir selbst nutzen würden, und lehnen Anbieter ab, deren Verträge wir nicht für vertrauenswürdig halten.',
+        ],
+      },
+      details: {
+        title: 'Die Brücke richtig nutzen',
+        items: [
+          {
+            q: 'Kann ich mich an einer Short-Stay-Adresse anmelden?',
+            a:
+              'Manchmal, und das ändert alles. Wir filtern von Anfang an nach anmeldefähigen Objekten, denn eine Basis mit Anmeldung lässt BSN, Versicherung und Gehalt ab Woche eins laufen statt ab Monat drei. Ist eine Anmeldung unmöglich, planen wir bewusst darum herum.',
+          },
+          {
+            q: 'Für wie lange sollte ich buchen?',
+            a:
+              'Sechs bis zehn Wochen passen zu den meisten Ankünften. Das gibt der eigentlichen Suche Luft, ohne den Short-Stay-Aufschlag länger als nötig zu zahlen, und die meisten Anbieter verlängern, wenn die Suche überzieht.',
+          },
+          {
+            q: 'Ist ein Hotel günstiger?',
+            a:
+              'Unter drei Wochen oft ja. Danach gewinnen Short-Stay-Wohnungen sowohl bei den Kosten als auch beim Alltag, besonders für Familien. Der Kipppunkt liegt meist um die dritte Woche.',
+          },
+          {
+            q: 'Und mein Umzugsgut aus dem Ausland?',
+            a:
+              'Short-Stay-Verträge enthalten selten Lagerraum. Wir stimmen die Sendung auf die dauerhafte Adresse ab statt auf die vorübergehende und organisieren Lagerung in der Region, wenn die Zeitpläne nicht zusammenpassen.',
+          },
+        ],
+      },
       faq: {
         title: 'Häufig gestellte Fragen',
         items: [
@@ -459,8 +657,10 @@ export const housing: SectionContent = {
         label: 'Mein Zuhause auf Zeit organisieren',
       },
       form: 'relocation',
-      image: '/images/housing-interior.jpg?v=20260728',
-      imageAlt: 'Ein möbliertes Short-Stay-Apartment, bereit für einen Neuankömmling',
+      image: '/images/housing-interior.jpg?v=20260731',
+      imageAlt: 'Wohnzimmer einer Wohnung in einem niederländischen Grachtenhaus',
+      image2: '/images/entrepreneur-housing.jpg',
+      image2Alt: 'Helle möblierte Wohnung, bereit für einen neuen Bewohner',
     },
     {
       slug: 'landlord-communication-support-netherlands',
@@ -523,6 +723,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Für Angelegenheiten, die wirklich vor die Mietkommission oder ein Gericht gehören, bereiten wir Ihre Akte vor und verweisen Sie an einen spezialisierten Mietrechtsanwalt. Sie zahlen uns nie für das, was ein Anwalt tun sollte.',
+      conditions: {
+        title: 'Was wir tun können und was nicht',
+        intro:
+          'Die meisten Mietstreitigkeiten gewinnt man, indem man zum richtigen Zeitpunkt das Richtige in der richtigen Sprache schreibt. Das ist die Arbeit.',
+        items: [
+          'Wir korrespondieren auf Niederländisch mit Vermietern und Maklern, in Ihrem Namen, mit Ihnen in Kopie bei allem, was hinausgeht.',
+          'Reparaturen an Sicherheit, Heizung oder Wasser sind zuerst dem Vermieter zu melden. Handelt er dann nicht, kann die Huurcommissie eingeschaltet werden.',
+          'Kautionen sind binnen angemessener Frist nach der Endabnahme zurückzuzahlen, und jeder Abzug muss aufgeschlüsselt und belegt sein.',
+          'Normale Abnutzung darf nicht von Ihrer Kaution abgezogen werden. Tatsächliche Schäden schon.',
+          'Bei Streit über Miethöhe, Nebenkosten und Instandhaltung ist die Huurcommissie meist deutlich schneller und günstiger als das Gericht.',
+          'Wir sind keine Kanzlei. Braucht ein Streit ein Verfahren, übergeben wir an einen Mietrechtsanwalt und bleiben Ihr Dolmetscher.',
+        ],
+      },
+      details: {
+        title: 'Die Streitfälle, die wir am häufigsten führen',
+        items: [
+          {
+            q: 'Mein Vermieter behält die Kaution ein.',
+            a:
+              'Der häufigste Streit und meist der aussichtsreichste. Wir fordern eine aufgeschlüsselte Aufstellung mit Belegen, trennen normale Abnutzung von tatsächlichem Schaden, stellen das Einzugsprotokoll neben das Auszugsprotokoll und setzen eine förmliche Frist auf Niederländisch. Die meisten Kautionen kommen in diesem Stadium ohne jedes Verfahren zurück.',
+          },
+          {
+            q: 'Reparaturen werden ignoriert.',
+            a:
+              'Wir melden förmlich und schriftlich, womit die Uhr juristisch läuft statt sozial. Passiert nichts, kann die Huurcommissie eine vorübergehende Mietminderung anordnen, bis repariert ist, und allein diese Aussicht bringt in der Regel einen Installateur.',
+          },
+          {
+            q: 'Meine Nebenkosten stiegen ohne Erklärung.',
+            a:
+              'Vermieter müssen eine Jahresabrechnung mit tatsächlichen Kosten gegenüber Ihren Vorauszahlungen vorlegen. Wir fordern sie an, gleichen sie mit den Zählerständen ab und bestreiten die Positionen, die sich nicht belegen lassen.',
+          },
+          {
+            q: 'Ich muss früher ausziehen.',
+            a:
+              'Die meisten unbefristeten Verträge erlauben dem Mieter die Kündigung mit einem Monat Frist, was auch immer an der Tür gesagt wird. Wir prüfen die Klausel, kündigen formgerecht und begleiten die Endabnahme, damit die Kaution vollständig zurückkommt.',
+          },
+        ],
+      },
       faq: {
         title: 'Häufig gestellte Fragen',
         items: [
@@ -546,8 +784,10 @@ export const housing: SectionContent = {
         label: 'An uns übergeben',
       },
       form: 'relocation',
-      image: '/images/landlord-communication.jpg',
-      imageAlt: 'Berater gibt einem Vermieter an der Tür die Hand',
+      image: '/images/landlord-communication.jpg?v=20260731',
+      imageAlt: 'Beraterin und Vermieter reichen sich in einer Wohnung die Hand',
+      image2: '/images/housing-viewing.jpg?v=20260731',
+      image2Alt: 'Wohnungsbesichtigung mit einer Beraterin',
     },
   ],
   cta: {

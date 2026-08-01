@@ -33,10 +33,24 @@ export interface ServiceContent {
   /** One-liner used on hub cards under the label. */
   cardText: string;
   forWho: { title: string; items: string[] };
+  /** Hard eligibility or legal limits. Always visible, never inside an accordion. */
+  conditions?: { title: string; intro?: string; items: string[] };
   included: { title: string; blocks: { title: string; text: string }[] };
   process: { title: string; steps: { title: string; text: string }[] };
+  /** Published professional fee, where the client quotes one. */
+  fees?: {
+    title: string;
+    /** Localized range, e.g. 'from €1,950 to €2,750'. */
+    amount: string;
+    /** What the professional fee covers. */
+    includes: string[];
+    /** What it does not cover (government/IND charges). */
+    note: string;
+  };
   /** Optional practical note (fees, IND timelines, caveats). */
   note?: string;
+  /** Secondary detail, shown as accordions under the process. */
+  details?: { title: string; items: { q: string; a: string }[] };
   faq: { title: string; items: { q: string; a: string }[] };
   cta: Cta;
   /** Which tailored form this page uses. Never changed per language. */
@@ -44,6 +58,9 @@ export interface ServiceContent {
   /** Path under /images/. Never changed per language. */
   image: string;
   imageAlt: string;
+  /** Optional supporting photo beside "who it is for". Never translated. */
+  image2?: string;
+  image2Alt?: string;
 }
 
 export interface CrossLink {
@@ -191,6 +208,10 @@ export interface UiStrings {
     whatsIncluded: string;
     otherServices: string;
     relatedGuides: string;
+    /** Eyebrow above the always-visible eligibility block. */
+    conditions: string;
+    /** Eyebrow above the published fee panel. */
+    investment: string;
   };
 }
 

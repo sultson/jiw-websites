@@ -10,8 +10,8 @@ export const housing: SectionContent = {
     'Le marché locatif néerlandais va vite et récompense ceux qui sont préparés. Les bons appartements sont publiés le matin et partis le soir, et les propriétaires choisissent les candidats qui répondent rapidement avec un dossier complet. C’est exactement là que nous intervenons. Nous surveillons le marché pour vous, réagissons en quelques heures et préparons votre dossier pour que, lorsque le bon logement apparaît, vous soyez le candidat à qui le propriétaire dit oui.',
     'Notre terrain de prédilection est Rotterdam et la grande région portuaire, du centre-ville jusqu’à Europoort et la Maasvlakte, mais nous cherchons dans tous les Pays-Bas. Vous n’êtes jamais lâché seul avec une liste de liens. Nous présélectionnons, nous assistons aux visites avec vous, nous lisons chaque contrat avant votre signature et nous menons la conversation avec le propriétaire, du premier message à la remise des clés.',
   ],
-  image: '/images/housing-canal.jpg?v=20260728',
-  imageAlt: 'Maisons de canal d’une ville néerlandaise par une journée lumineuse',
+  image: '/images/canal-colour.jpg',
+  imageAlt: 'Maisons de canal colorées se reflétant dans l’eau d’une ville néerlandaise',
   services: [
     {
       slug: 'housing-search-assistance-netherlands',
@@ -82,6 +82,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Nous sommes transparents sur un point : aucune agence honnête ne peut vous garantir un logement précis sur ce marché. Ce que nous pouvons promettre, c’est la rapidité, un dossier complet et un solide réseau local, et c’est cela qui remporte les logements. Le tarif dépend de votre zone de recherche et de votre calendrier et est confirmé lors de votre entretien.',
+      conditions: {
+        title: 'Ce qu\'exige le marché locatif néerlandais',
+        intro:
+          'Le marché décide davantage que votre budget. C\'est contre ces conditions que nous bâtissons votre dossier.',
+        items: [
+          'La plupart des bailleurs exigent un revenu brut de trois à quatre fois le loyer mensuel, justifié par un contrat et des bulletins récents.',
+          'Sans historique de revenus néerlandais, attendez-vous à une attestation d\'employeur, une garantie bancaire ou un dépôt plus élevé.',
+          'Les dépôts sont plafonnés à deux mois de loyer nu pour les contrats signés depuis le 1er juillet 2023.',
+          'Un BSN n\'est pas requis pour signer, mais il l\'est pour s\'inscrire à l\'adresse, et cette inscription débloque presque tout le reste.',
+          'Nous travaillons à Rotterdam, Europoort et dans la région portuaire élargie. Au-delà, nous le disons plutôt que de prendre la mission.',
+          'Nous agissons pour vous et jamais pour le bailleur, et nous ne percevons de commission d\'aucune des deux parties.',
+        ],
+      },
+      details: {
+        title: 'Comment la recherche se passe vraiment',
+        items: [
+          {
+            q: 'Combien de temps pour trouver un logement ?',
+            a:
+              'Dans la région de Rotterdam, quatre à huit semaines est réaliste sur le segment haut et meublé, et davantage sous 1 500 euros par mois où la concurrence est la plus rude. Les biens recherchés partent en quarante-huit heures, la vitesse de réaction compte donc plus que l\'ampleur de la recherche.',
+          },
+          {
+            q: 'Pouvez-vous visiter avant mon arrivée ?',
+            a:
+              'Oui, et c\'est ainsi que commencent la plupart des clients. Nous nous rendons sur place en votre nom et envoyons le jour même un avis écrit accompagné d\'une vidéo, de quoi vous engager depuis l\'étranger sans parier sur des photos.',
+          },
+          {
+            q: 'Bail à durée déterminée ou indéterminée ?',
+            a:
+              'Depuis le 1er juillet 2024, la plupart des nouveaux baux d\'habitation doivent être à durée indéterminée, les baux temporaires n\'étant admis que dans des situations définies, comme l\'absence temporaire du bailleur. Ce changement joue en votre faveur, et nous vérifions de quel régime relève votre contrat avant signature.',
+          },
+          {
+            q: 'Meublé, semi-équipé ou nu ?',
+            a:
+              'Les annonces néerlandaises distinguent kaal, parfois sans revêtement de sol ni luminaires, gestoffeerd avec sols et rideaux, et gemeubileerd entièrement meublé. L\'écart peut représenter plusieurs milliers d\'euros à l\'arrivée, et c\'est le détail que les nouveaux arrivants manquent le plus souvent.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -105,8 +143,10 @@ export const housing: SectionContent = {
         label: 'Lancer ma recherche',
       },
       form: 'relocation',
-      image: '/images/housing-search.jpg',
-      imageAlt: 'Agent et couple consultant des annonces d’appartements sur un ordinateur portable',
+      image: '/images/housing-search.jpg?v=20260731',
+      imageAlt: 'Conseillère présentant des options de logement à un couple',
+      image2: '/images/housing-interior.jpg?v=20260731',
+      image2Alt: 'Salon d\'un appartement dans une maison de canal néerlandaise',
     },
     {
       slug: 'housing-for-expats-rotterdam',
@@ -168,6 +208,44 @@ export const housing: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Avant de choisir un quartier',
+        intro:
+          'Rotterdam récompense ceux qui choisissent leur adresse autour de leur vie plutôt qu\'autour d\'une carte.',
+        items: [
+          'Les loyers du secteur libre débutent vers 1 200 euros pour un une-pièce et 1 800 euros pour un appartement familial, davantage sur la Kop van Zuid et au centre.',
+          'Le logement social est en pratique inaccessible aux expatriés. Plafonds de revenus et listes d\'attente pluriannuelles ferment cette porte.',
+          'L\'inscription à l\'adresse n\'est possible que si le bailleur l\'autorise, et certains loueurs de courte durée ne le font pas.',
+          'Les permis de stationnement sont délivrés par foyer et par zone, et dans les quartiers centraux la liste d\'attente court sur des mois.',
+          'Les logements classés E, F ou G coûtent plus cher à l\'usage et ont un loyer légal plus bas selon le système de points.',
+          'Nous couvrons Rotterdam et les communes voisines, dont Schiedam, Capelle, Barendrecht et le corridor d\'Europoort.',
+        ],
+      },
+      details: {
+        title: 'Rotterdam quartier par quartier',
+        items: [
+          {
+            q: 'Où vivent la plupart des professionnels internationaux ?',
+            a:
+              'Kralingen pour l\'espace, la verdure et la proximité des écoles internationales. Kop van Zuid et Wilhelminapier pour la vue sur le fleuve et le neuf. Centrum et Cool pour tout faire à pied. Hillegersberg pour les familles qui veulent un esprit village dans la ville. Le bon choix dépend bien plus de votre trajet et de vos enfants que de n\'importe quel classement.',
+          },
+          {
+            q: 'Combien de temps jusqu\'à Europoort ou Maasvlakte ?',
+            a:
+              'Depuis le centre de Rotterdam, quarante-cinq à soixante-dix minutes en voiture selon la porte et le poste. Depuis Hoogvliet, Spijkenisse ou Brielle, cela tombe à vingt ou trente. Si vous travaillez sur les terminaux, choisir un quartier avant de calculer le trajet est l\'erreur la plus coûteuse qui soit.',
+          },
+          {
+            q: 'Y a-t-il des écoles internationales à proximité ?',
+            a:
+              'Rotterdam compte plusieurs options internationales et bilingues, concentrées surtout à Kralingen et dans le sud de la ville, et les places sont limitées. Les familles doivent généralement choisir l\'école d\'abord et le quartier ensuite, et nous planifions dans cet ordre.',
+          },
+          {
+            q: 'Vaut-il mieux acheter que louer ?',
+            a:
+              'Parfois, mais rarement la première année. Les prêteurs néerlandais veulent un historique d\'emploi et un titre à horizon raisonnable, et les frais de transaction font d\'un achat que vous quitteriez sous deux ans une expérience coûteuse. Nous dirons honnêtement quand acheter est le meilleur choix.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -191,8 +269,10 @@ export const housing: SectionContent = {
         label: 'Parler à un local de Rotterdam',
       },
       form: 'relocation',
-      image: '/images/rotterdam-housing.jpg',
-      imageAlt: 'Immeubles résidentiels modernes à Rotterdam',
+      image: '/images/rotterdam-housing.jpg?v=20260731',
+      image2: '/images/rotterdam-evening.jpg?v=20260731',
+      image2Alt: 'La ligne d’horizon de Rotterdam le soir',
+      imageAlt: 'Immeuble en bord d\'eau à Rotterdam au coucher du soleil',
     },
     {
       slug: 'viewing-assistance-netherlands',
@@ -259,6 +339,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'L’assistance aux visites se réserve seule ou dans le cadre d’une recherche de logement complète. Les honoraires dépendent du lieu et de la fréquence et sont confirmés lors de votre entretien.',
+      conditions: {
+        title: 'Comment fonctionne l\'accompagnement aux visites',
+        intro:
+          'Un visiteur indépendant ne vaut que s\'il est réellement indépendant. Voici nos conditions.',
+        items: [
+          'Nous nous déplaçons dans tout Rotterdam et la région portuaire. Plus loin sur accord, selon le temps de trajet.',
+          'Les biens recherchés sont souvent programmés sous vingt-quatre heures, envoyez-nous le lien dès que vous le voyez.',
+          'Nous rapportons ce que nous voyons. Négocier le loyer est distinct et relève de l\'accompagnement offre et contrat.',
+          'Une visite vidéo en direct exige un réseau mobile exploitable, ce que les sous-sols et les murs épais des maisons de canal n\'offrent pas toujours.',
+          'Nous ne pouvons pas entrer sans l\'agent ou le bailleur, et quelques agences refusent totalement les visites par un tiers.',
+          'Notre avis écrit est honnête. Si un bien ne vous convient pas, nous le disons, même si cela nous coûte la suite du mandat.',
+        ],
+      },
+      details: {
+        title: 'Ce que nous vérifions et que les photos cachent',
+        items: [
+          {
+            q: 'Qu\'inspectez-vous réellement ?',
+            a:
+              'Humidité et ventilation, qualité du vitrage au regard du label énergétique annoncé, bruit de la circulation, des trams, des voisins et de la vie nocturne au vrai moment de la journée, pression d\'eau, âge et état de la chaudière, réception mobile et internet, rangements, local à vélos, et si l\'entrée commune est entretenue ou discrètement négligée.',
+          },
+          {
+            q: 'Pouvez-vous visiter pendant que je suis encore à l\'étranger ?',
+            a:
+              'Oui, et la plupart de nos clients commencent ainsi. Vous recevez une visite vidéo, des photos de ce que les annonces ne montrent jamais, et un avis écrit le jour même, de quoi décider en confiance depuis un autre continent.',
+          },
+          {
+            q: 'Vous arrive-t-il de me déconseiller un bien ?',
+            a:
+              'Fréquemment. Toute la valeur d\'un visiteur indépendant tient au fait que nous n\'avons aucun intérêt à votre signature. Environ un tiers des biens visités reçoivent un avis clairement défavorable.',
+          },
+          {
+            q: 'Sous quel délai pouvez-vous vous déplacer ?',
+            a:
+              'Généralement sous vingt-quatre à quarante-huit heures, et le jour même quand un bien le mérite. Sur ce marché, une visite lente est simplement un bien perdu.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -282,8 +400,10 @@ export const housing: SectionContent = {
         label: 'Réserver une visite',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg?v=20260728',
-      imageAlt: 'Visite d’un appartement néerlandais lumineux aux grandes fenêtres',
+      image: '/images/viewing-couple.jpg',
+      imageAlt: 'Une agente immobilière fait visiter un appartement néerlandais lumineux à un couple',
+      image2: '/images/housing-viewing.jpg',
+      image2Alt: 'Visite d\'un appartement accompagnée d\'une conseillère',
     },
     {
       slug: 'rental-contract-review-netherlands',
@@ -346,6 +466,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Nous relisons les contrats en tant que spécialistes de la relocation, pas en tant que cabinet d’avocats. Pour les véritables litiges juridiques, nous vous mettons en relation avec des avocats en droit locatif de notre réseau professionnel, un réseau bâti au fil d’années de travail aux côtés des ambassades et consulats.',
+      conditions: {
+        title: 'Ce que nous vérifions, et ce que nous ne pouvons pas',
+        intro:
+          'Le droit locatif néerlandais vous protège plus que ne l\'imaginent la plupart des nouveaux arrivants. Savoir quelle protection s\'applique, c\'est tout l\'enjeu.',
+        items: [
+          'Les dépôts sont plafonnés à deux mois de loyer nu pour les contrats signés depuis le 1er juillet 2023.',
+          'Depuis le 1er juillet 2024, la plupart des nouveaux baux d\'habitation doivent être à durée indéterminée, les baux temporaires n\'étant admis que dans des cas définis.',
+          'Les charges doivent être détaillées et régularisées chaque année sur les coûts réels. Un montant unique tout compris est interdit pour la plupart des locations.',
+          'Les honoraires d\'agence ne peuvent être facturés au locataire lorsque l\'agent agit pour le bailleur.',
+          'Un loyer supérieur au plafond légal issu du système de points peut être contesté devant la Huurcommissie, en principe dans les six mois du début du bail.',
+          'Nous examinons les contrats et expliquons votre position. Nous sommes conseillers en relocation et non cabinet d\'avocats, et pour un contentieux nous vous adressons à un avocat en droit du logement de confiance.',
+        ],
+      },
+      details: {
+        title: 'Les clauses qui coûtent cher ensuite',
+        items: [
+          {
+            q: 'Quelles clauses regardez-vous en premier ?',
+            a:
+              'Clauses de résiliation et clauses diplomatiques, qui paie les petites réparations, si le dépôt est restitué sous un délai fixe, formules d\'indexation qui dépassent l\'inflation, restrictions à l\'inscription à l\'adresse, provisions de charges fixées à un niveau irréaliste, et pénalités de départ anticipé.',
+          },
+          {
+            q: 'Puis-je m\'inscrire à cette adresse ?',
+            a:
+              'C\'est la clause la plus importante et la plus souvent exclue en silence. Sans inscription, pas de BSN, pas d\'assurance maladie, pas de compte bancaire et pas de courrier de l\'IND. Si le contrat l\'interdit ou reste muet, nous le soulevons avant la signature et non après.',
+          },
+          {
+            q: 'Et si le loyer est trop élevé pour le bien ?',
+            a:
+              'Le système de points néerlandais fixe pour la plupart des logements un loyer maximal selon la surface, le label énergétique, les équipements et l\'emplacement. Si le loyer le dépasse, la Huurcommissie peut le réduire, en principe sur demande déposée dans les six mois du début du bail. Nous le signalons lors de l\'examen, tant que cette fenêtre est ouverte.',
+          },
+          {
+            q: 'Quel est le délai d\'un examen ?',
+            a:
+              'Normalement un jour ouvré, et le jour même quand la pression de signer est forte. Un bailleur qui exige une signature dans l\'heure applique une tactique, il ne décrit pas une échéance.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -369,8 +527,10 @@ export const housing: SectionContent = {
         label: 'Relire mon contrat',
       },
       form: 'relocation',
-      image: '/images/rental-contract.jpg',
-      imageAlt: 'Mains examinant un contrat de location avec des clés posées sur la table',
+      image: '/images/rental-contract.jpg?v=20260731',
+      image2: '/images/housing-interior.jpg?v=20260731',
+      image2Alt: 'Salon d\'un appartement dans une maison de canal néerlandaise',
+      imageAlt: 'Signature d\'un bail néerlandais au stylo plume',
     },
     {
       slug: 'temporary-housing-for-expats-netherlands',
@@ -436,6 +596,44 @@ export const housing: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Le court séjour en pratique',
+        intro:
+          'Une base temporaire est un pont, et un pont se choisit avec soin. Ces conditions décident si le vôtre tient.',
+        items: [
+          'Le court séjour court généralement de un à six mois et coûte plus cher au mois qu\'un bail classique, souvent trente à cinquante pour cent de plus.',
+          'L\'inscription à l\'adresse n\'est possible que si le bailleur et la commune l\'autorisent, et beaucoup d\'adresses de court séjour ne le permettent pas.',
+          'Sans inscription, pas de BSN, ce qui retarde l\'assurance maladie, la banque et parfois le versement du salaire.',
+          'La plupart des biens de court séjour sont meublés, énergie et internet compris, mais ménage et linge souvent non.',
+          'Durée minimale, conditions d\'annulation et dépôts varient fortement d\'un opérateur à l\'autre et sont rarement négociables.',
+          'Nous ne plaçons nos clients que dans des biens que nous utiliserions nous-mêmes, et refusons les opérateurs dont les contrats ne nous inspirent pas confiance.',
+        ],
+      },
+      details: {
+        title: 'Bien utiliser le pont',
+        items: [
+          {
+            q: 'Puis-je m\'inscrire à une adresse de court séjour ?',
+            a:
+              'Parfois, et cela change tout. Nous filtrons dès le départ les biens permettant l\'inscription, car une base inscriptible fait courir BSN, assurance et salaire dès la première semaine plutôt qu\'à partir du troisième mois. Quand l\'inscription est impossible, nous organisons délibérément le contournement.',
+          },
+          {
+            q: 'Pour combien de temps réserver ?',
+            a:
+              'Six à dix semaines conviennent à la plupart des arrivées. Cela laisse respirer la recherche définitive sans payer la surprime de court séjour plus longtemps que nécessaire, et la plupart des opérateurs prolongent si la recherche déborde.',
+          },
+          {
+            q: 'Un hôtel est-il moins cher ?',
+            a:
+              'En dessous de trois semaines, souvent oui. Au-delà, les appartements de court séjour l\'emportent sur le coût comme sur le quotidien, surtout en famille. Le point de bascule se situe généralement vers la troisième semaine.',
+          },
+          {
+            q: 'Et mes affaires venant de l\'étranger ?',
+            a:
+              'Les contrats de court séjour incluent rarement du stockage. Nous calons l\'expédition sur l\'adresse définitive plutôt que sur la temporaire, et organisons un stockage dans la région lorsque les calendriers ne se rejoignent pas.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -459,8 +657,10 @@ export const housing: SectionContent = {
         label: 'Organiser mon logement temporaire',
       },
       form: 'relocation',
-      image: '/images/housing-interior.jpg?v=20260728',
-      imageAlt: 'Un appartement de courte durée meublé, prêt pour un nouvel arrivant',
+      image: '/images/housing-interior.jpg?v=20260731',
+      image2: '/images/entrepreneur-housing.jpg?v=20260731',
+      image2Alt: 'Appartement meublé lumineux prêt pour un nouvel arrivant',
+      imageAlt: 'Salon d\'un appartement dans une maison de canal néerlandaise',
     },
     {
       slug: 'landlord-communication-support-netherlands',
@@ -523,6 +723,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Pour les affaires qui relèvent réellement de la commission des loyers ou d’un tribunal, nous préparons votre dossier et vous orientons vers un avocat spécialisé en droit locatif. Vous ne nous payez jamais pour faire ce qu’un avocat doit faire.',
+      conditions: {
+        title: 'Ce que nous pouvons faire et ne pas faire',
+        intro:
+          'La plupart des litiges locatifs se gagnent en écrivant la bonne chose, dans la bonne langue, au bon moment. C\'est là tout le travail.',
+        items: [
+          'Nous correspondons en néerlandais avec bailleurs et agents, en votre nom, avec vous en copie de tout ce qui part.',
+          'Les réparations touchant la sécurité, le chauffage ou l\'eau doivent d\'abord être signalées au bailleur. S\'il n\'agit pas, la Huurcommissie peut être saisie.',
+          'Les dépôts doivent être restitués dans un délai raisonnable après l\'état des lieux de sortie, et toute retenue doit être détaillée et justifiée.',
+          'L\'usure normale ne peut être déduite de votre dépôt. Les dégradations réelles, oui.',
+          'Pour les litiges de loyer, de charges et d\'entretien, la Huurcommissie est généralement bien plus rapide et moins coûteuse qu\'un tribunal.',
+          'Nous ne sommes pas un cabinet d\'avocats. Si un litige exige une procédure, nous passons la main à un avocat en droit du logement et restons votre interprète.',
+        ],
+      },
+      details: {
+        title: 'Les litiges que nous traitons le plus',
+        items: [
+          {
+            q: 'Mon bailleur retient le dépôt.',
+            a:
+              'Le litige le plus fréquent et généralement le plus gagnable. Nous demandons un décompte détaillé avec justificatifs, séparons l\'usure normale des dégradations réelles, confrontons l\'état des lieux d\'entrée à celui de sortie et fixons un délai formel en néerlandais. La plupart des dépôts reviennent à ce stade sans aucune procédure.',
+          },
+          {
+            q: 'Les réparations sont ignorées.',
+            a:
+              'Nous signalons formellement et par écrit, ce qui fait courir le délai juridiquement et non socialement. Si rien ne bouge, la Huurcommissie peut ordonner une réduction temporaire de loyer jusqu\'à la réparation, et cette seule perspective fait généralement venir un plombier.',
+          },
+          {
+            q: 'Mes charges ont augmenté sans explication.',
+            a:
+              'Le bailleur doit fournir une régularisation annuelle comparant les coûts réels à vos provisions. Nous la demandons, la confrontons aux relevés de compteurs et contestons les postes qui ne peuvent être justifiés.',
+          },
+          {
+            q: 'Je dois partir plus tôt.',
+            a:
+              'La plupart des baux à durée indéterminée permettent au locataire de résilier avec un mois de préavis, quoi qu\'on vous dise sur le pas de la porte. Nous vérifions la clause, notifions correctement et pilotons l\'état des lieux pour que le dépôt revienne intact.',
+          },
+        ],
+      },
       faq: {
         title: 'Questions fréquentes',
         items: [
@@ -546,8 +784,10 @@ export const housing: SectionContent = {
         label: 'Nous confier le dossier',
       },
       form: 'relocation',
-      image: '/images/landlord-communication.jpg',
-      imageAlt: 'Consultante serrant la main d’un propriétaire sur le pas de la porte',
+      image: '/images/landlord-communication.jpg?v=20260731',
+      imageAlt: 'Conseillère et propriétaire se serrant la main dans un appartement',
+      image2: '/images/housing-viewing.jpg?v=20260731',
+      image2Alt: 'Visite d’un appartement accompagnée d’une conseillère',
     },
   ],
   cta: {

@@ -10,8 +10,8 @@ export const immigration: SectionContent = {
     'Een Nederlands visum is geen formulier. Het is het moment waarop uw nieuwe leven op tijd begint of in een la bij de IND blijft liggen. Wij regelen de immigratiekant van uw verhuizing zoals het hoort: praktisch, persoonlijk, en met iemand die honderden gezinnen door precies deze deuren heeft geleid. Als het enige boutique expatbureau van Nederland nemen wij een klein aantal cliënten aan en geven wij ieder van hen echte aandacht.',
     'Elk dossier begint met een eerlijke intake. Wij vertellen u welke vergunning werkelijk bij uw situatie past, wat de IND zal vragen en wat wij u uit handen nemen. Vanaf dat moment heeft u één contactpersoon, één plan en geen verrassingen.',
   ],
-  image: '/images/immigration-hub.jpg',
-  imageAlt: 'Relocatieadviseur loopt met cliënten naar een Nederlands overheidskantoor',
+  image: '/images/canal-evening.jpg',
+  imageAlt: 'Verlichte Amsterdamse grachtenbruggen in de schemering',
   cta: {
     title: 'Weet u niet zeker welk visum bij uw situatie past?',
     text: 'Vertel ons waar u vandaan komt en waarom. Wij vertellen u in duidelijke taal welke route zinvol is en wat daarvoor nodig is.',
@@ -75,6 +75,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'Veel kennismigranten komen in aanmerking voor de 30%-regeling, een Nederlands belastingvoordeel voor inkomende werknemers. De voorwaarden veranderen regelmatig, dus wij signaleren het tijdens de intake en brengen u in contact met een belastingadviseur in plaats van bedragen te beloven.',
+      conditions: {
+        title: 'Wat de IND vereist',
+        intro:
+          'Deze route loopt via uw werkgever en niet via uzelf. Onderstaande voorwaarden bepalen het dossier voordat het geopend wordt.',
+        items: [
+          'Uw werkgever moet erkend referent zijn bij de IND. Zonder die erkenning is deze route gesloten, ongeacht uw salaris.',
+          'Brutosalaris vanaf 5.942 euro per maand als u 30 jaar of ouder bent, en vanaf 4.357 euro als u jonger bent dan 30 (2026, exclusief 8 procent vakantiegeld).',
+          'Een verlaagd criterium van 3.122 euro geldt in het jaar na een Nederlands zoekjaar of een Nederlandse opleiding.',
+          'Het salaris moet maandelijks op een Nederlandse rekening worden betaald. Bonussen, toelagen en onkostenvergoedingen tellen niet mee.',
+          'De 30 procentregeling wordt bovenop het criterium berekend en mag er nooit voor gebruikt worden om het te halen.',
+          'De bedragen worden elk jaar per 1 januari geïndexeerd en beoordeeld op de datum van indiening.',
+        ],
+      },
+      details: {
+        title: 'Wat u verder moet weten',
+        items: [
+          {
+            q: 'En als mijn werkgever geen erkend referent is?',
+            a:
+              'Erkenning kost weken die een startdatum zelden heeft. Is uw werkgever niet erkend, dan kijken we naar de Europese blauwe kaart, waarvoor geen referentschap nodig is, of we starten de erkenningsaanvraag naast uw dossier als het bedrijf vaker internationaal wil werven.',
+          },
+          {
+            q: 'Hoe snel volgt de beslissing werkelijk?',
+            a:
+              'Erkende referenten hebben een wettelijke beslistermijn van negentig dagen, maar volledige dossiers worden vaak binnen twee tot vier weken beslist. De vertraging zit vrijwel altijd in een ontbrekend gelegaliseerd document, niet bij de IND.',
+          },
+          {
+            q: 'Wat gebeurt er als ik van baan wissel?',
+            a:
+              'Uw vergunning is gekoppeld aan uw werkgever. Een nieuwe werkgever moet ook erkend referent zijn en een nieuwe aanvraag indienen, en u mag niet beginnen voordat die is goedgekeurd. Wij begeleiden de overstap zodat er geen gat in uw verblijf ontstaat.',
+          },
+          {
+            q: 'Heb ik naast de vergunning ook een mvv nodig?',
+            a:
+              'De meeste niet-EU-onderdanen wel, en we vragen beide aan in één gecombineerde procedure. Onderdanen van de Verenigde Staten, Canada, Japan, Australië, Nieuw-Zeeland, Zuid-Korea en het Verenigd Koninkrijk zijn vrijgesteld en reizen op de vergunning alleen.',
+          },
+        ],
+      },
       faq: {
         title: 'Vragen die wij vaak horen',
         items: [
@@ -90,6 +128,11 @@ export const immigration: SectionContent = {
             q: 'Moet ik Nederlands spreken?',
             a: 'Nee. Voor deze vergunning geldt geen taaleis, en het dagelijks leven in de internationale gemeenschappen rond Rotterdam en Den Haag verloopt prima in het Engels.',
           },
+                  {
+            q: 'Mag mijn partner in Nederland werken?',
+            a:
+              'Ja. Partners van kennismigranten krijgen een vergunning met vrije toegang tot de arbeidsmarkt, dus zonder aparte tewerkstellingsvergunning en zonder referentschap van de werkgever. Kinderen vallen onder dezelfde gezinsaanvraag.',
+          },
         ],
       },
       cta: {
@@ -98,8 +141,10 @@ export const immigration: SectionContent = {
         label: 'Toets mijn situatie',
       },
       form: 'immigration',
-      image: '/images/hsm-visa.jpg',
-      imageAlt: 'Internationale professional aan het werk op een Nederlands kantoor',
+      image: '/images/hsm-visa.jpg?v=20260731',
+      imageAlt: 'Internationale professional in het atrium van een Nederlands kantoor',
+      image2: '/images/employer-immigration.jpg',
+      image2Alt: 'Twee internationale professionals in gesprek bij een Nederlands kantoor',
     },
     {
       slug: 'eu-blue-card-netherlands',
@@ -152,6 +197,49 @@ export const immigration: SectionContent = {
           { title: 'Indiening en aankomst', text: 'Na goedkeuring plannen wij uw inreis, inschrijving en eerste afspraken in de juiste volgorde.' },
         ],
       },
+      conditions: {
+        title: 'Voorwaarden voor de blauwe kaart',
+        intro:
+          'De blauwe kaart wordt op drie punten beoordeeld: uw diploma, uw contract en uw salaris. Hier liggen de grenzen.',
+        items: [
+          'Een afgeronde hogere opleiding van minimaal drie jaar, of voor ICT-functies minimaal drie jaar relevante ervaring opgedaan in de afgelopen zeven jaar.',
+          'Brutosalaris vanaf 5.942 euro per maand, of 4.754 euro onder het verlaagde criterium voor recent afgestudeerden en tekortberoepen (2026, exclusief vakantiegeld).',
+          'Een arbeidsovereenkomst of bindend aanbod met een looptijd van minimaal zes maanden.',
+          'Buitenlandse diploma\'s moeten worden gewaardeerd door IDW of Nuffic. Nederlandse diploma\'s hoeven dat niet.',
+          'Uw werkgever hoeft geen erkend referent te zijn, en dat is het praktische voordeel ten opzichte van de kennismigrantenregeling.',
+          'De bedragen worden per 1 januari geïndexeerd en gelden op de datum van indiening, niet op de datum van uw contract.',
+        ],
+      },
+      details: {
+        title: 'De blauwe kaart in de praktijk',
+        items: [
+          {
+            q: 'Hoe werkt die Europese mobiliteit precies?',
+            a:
+              'Na twaalf maanden rechtmatig verblijf als houder van een blauwe kaart kunt u naar een andere lidstaat verhuizen via een verkorte procedure, en tellen jaren in verschillende lidstaten samen mee voor de EU-status langdurig ingezetene. Een Nederlandse kennismigrantenvergunning geeft u dit alles niet.',
+          },
+          {
+            q: 'Blauwe kaart of kennismigrant?',
+            a:
+              'Is uw werkgever erkend referent en bouwt u uw loopbaan in Nederland op, dan is de kennismigrantenvergunning meestal sneller en eenvoudiger. Is uw werkgever niet erkend, of beweegt uw carrière zich waarschijnlijk door Europa, dan is de blauwe kaart het sterkere instrument. U krijgt de vergelijking op papier voordat u kiest.',
+          },
+          {
+            q: 'Kan ik kwalificeren op ervaring in plaats van een diploma?',
+            a:
+              'Alleen in de ICT. Managers en specialisten in de informatie- en communicatietechnologie kunnen kwalificeren op minimaal drie jaar relevante ervaring, opgedaan in de zeven jaar voor de aanvraag. Elk ander beroep heeft het diploma nodig.',
+          },
+          {
+            q: 'Hoe lang duurt de diplomawaardering?',
+            a:
+              'IDW levert doorgaans binnen ongeveer vier weken, langer wanneer een instelling traag is met het bevestigen van de echtheid. Wij starten dit parallel aan de rest van het dossier zodat het nooit het knelpunt wordt.',
+          },
+          {
+            q: 'Waar bouwt de blauwe kaart naartoe?',
+            a:
+              'Zodra u vijf jaar rechtmatig verblijf in de EU heeft, waarvan minimaal twee in Nederland, kunt u hier de EU-status langdurig ingezetene aanvragen. Die opbouw over grenzen heen is uniek voor deze vergunning.',
+          },
+        ],
+      },
       faq: {
         title: 'Praktische vragen',
         items: [
@@ -167,6 +255,11 @@ export const immigration: SectionContent = {
             q: 'Kan ik mijn gezin meenemen?',
             a: 'Ja. Uw partner en kinderen kunnen tegelijk met u aanvragen, en uw partner mag in Nederland werken zonder aparte werkvergunning.',
           },
+                  {
+            q: 'Telt de 30 procentregeling mee voor de salarisnorm?',
+            a:
+              'Nee. De IND toetst uw brutosalaris vóórdat de regeling wordt toegepast. Een contract dat de norm alleen haalt wanneer de regeling wordt meegerekend, wordt afgewezen, en dat is een van de meest voorkomende redenen waarom een blauwekaartdossier strandt.',
+          },
         ],
       },
       cta: {
@@ -175,8 +268,10 @@ export const immigration: SectionContent = {
         label: 'Vraag naar de blauwe kaart',
       },
       form: 'immigration',
-      image: '/images/eu-blue-card.jpg',
-      imageAlt: 'Ingenieur bekijkt vergunningsdocumenten aan een bureau',
+      image: '/images/eu-blue-card.jpg?v=20260731',
+      imageAlt: 'Twee ervaren internationale professionals in gesprek',
+      image2: '/images/hsm-visa.jpg?v=20260731',
+      image2Alt: 'Internationale professional in het atrium van een Nederlands kantoor',
     },
     {
       slug: 'orientation-year-visa-netherlands',
@@ -234,6 +329,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'De termijn van drie jaar na afstuderen is strikt, en rankinglijsten veranderen per jaar. Zit u dicht bij de grens, neem dan contact met ons op voordat u aanneemt dat u buiten de boot valt. Vragen houden zich zelden aan kantooruren, en daarom bereiken cliënten ons dag en nacht via een persoonlijke WhatsApp-lijn.',
+      conditions: {
+        title: 'Wie in aanmerking komt voor het zoekjaar',
+        intro:
+          'Het zoekjaar is ruimhartig zodra u binnen bent, en streng over wie er binnenkomt. Het venster is wat mensen over het hoofd zien.',
+        items: [
+          'U moet aanvragen binnen drie jaar na afstuderen, promoveren of het afronden van uw onderzoek.',
+          'Afgestudeerden van geaccrediteerde Nederlandse bachelor-, master- en promotietrajecten kwalificeren op het Nederlandse diploma alleen.',
+          'Internationale afgestudeerden hebben een diploma nodig van een universiteit in de top 200 van een erkende wereldranglijst.',
+          'De vergunning loopt twaalf maanden, kan niet worden verlengd en wordt slechts eenmaal verleend.',
+          'U mag het hele jaar in loondienst of als zelfstandige werken, zonder tewerkstellingsvergunning en zonder salarisnorm.',
+          'In het jaar erna geldt het verlaagde kennismigrantencriterium van 3.122 euro (2026).',
+        ],
+      },
+      details: {
+        title: 'Het jaar laten renderen',
+        items: [
+          {
+            q: 'Waarom ben ik tijdens het zoekjaar makkelijker aan te nemen?',
+            a:
+              'U heeft vrije toegang tot de Nederlandse arbeidsmarkt. Uw werkgever heeft geen tewerkstellingsvergunning nodig, geen referentschap en betaalt geen IND-leges, waarmee precies het bezwaar wegvalt dat andere niet-EU-kandidaten blokkeert. Zet het in uw eerste regel, want de meeste Nederlandse werkgevers weten dit niet.',
+          },
+          {
+            q: 'Wat gebeurt er na die twaalf maanden?',
+            a:
+              'U stapt over naar een andere vergunning, meestal de kennismigrantenvergunning tegen het verlaagde criterium. Die overstap moet zijn ingediend vóórdat het zoekjaar afloopt, dus wij bereiden hem voor rond maand negen in plaats van maand twaalf.',
+          },
+          {
+            q: 'Kan ik tijdens het jaar een bedrijf starten?',
+            a:
+              'U kunt zich inschrijven bij de KvK en de hele periode als zelfstandige werken. Overstappen naar een permanente ondernemersbasis is daarna een aparte aanvraag met een eigen toets, dus het loont om dat vanaf het begin te plannen.',
+          },
+          {
+            q: 'Krijgt mijn partner ook iets?',
+            a:
+              'Ja. Uw partner kan een afhankelijke vergunning aanvragen voor dezelfde twaalf maanden en heeft eveneens vrije toegang tot de arbeidsmarkt.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -257,8 +390,10 @@ export const immigration: SectionContent = {
         label: 'Toets mijn zoekjaar',
       },
       form: 'immigration',
-      image: '/images/orientation-year.jpg',
-      imageAlt: 'Afgestudeerde met een fiets in een Nederlandse stadsstraat',
+      image: '/images/orientation-year.jpg?v=20260731',
+      imageAlt: 'Afgestudeerde wandelt in de herfst langs een Amsterdamse gracht',
+      image2: '/images/consultation.jpg',
+      image2Alt: 'Adviseur en cliënt bespreken de volgende stappen',
     },
     {
       slug: 'partner-visa-netherlands',
@@ -316,6 +451,44 @@ export const immigration: SectionContent = {
           { title: 'Herenigd', text: 'Uw partner reist af, schrijft zich in en ontvangt de verblijfsvergunning. Wij zijn er bij de landing.' },
         ],
       },
+      conditions: {
+        title: 'Wat waar moet zijn',
+        intro:
+          'Partneraanvragen worden veel vaker afgewezen op bewijs dan op geschiktheid. Dit zijn de voorwaarden, en de plekken waar dossiers sneuvelen.',
+        items: [
+          'De referent in Nederland moet minimaal 2.523,96 euro bruto per maand verdienen inclusief vakantiegeld (2026, twee keer per jaar herzien).',
+          'Dat inkomen moet duurzaam zijn. Een vast contract voldoet zonder meer, een tijdelijk contract wordt beoordeeld op wat er resteert.',
+          'De relatie moet exclusief, duurzaam en aantoonbaar zijn. Huwelijk, geregistreerd partnerschap en gedocumenteerde ongehuwde relaties tellen alle drie.',
+          'Beide partners moeten minimaal 21 jaar oud zijn.',
+          'De meeste partners moeten het basisexamen inburgering in het buitenland halen voordat een mvv kan worden afgegeven.',
+          'Buitenlandse geboorte-, huwelijks- en ongehuwdverklaringen hebben meestal legalisatie of een apostille plus een beëdigde vertaling nodig.',
+        ],
+      },
+      details: {
+        title: 'De gevoelige punten die wij bewaken',
+        items: [
+          {
+            q: 'Wat geldt als duurzaam inkomen?',
+            a:
+              'Een vast contract voldoet zonder meer. Bij een tijdelijk contract vraagt de IND of het inkomen er de komende twaalf maanden nog is, en een contract met minstens een jaar looptijd, of een arbeidsverleden van drie jaar, voldoet daar meestal aan. Zelfstandige referenten worden beoordeeld op drie jaar cijfers.',
+          },
+          {
+            q: 'Wij zijn niet getrouwd. Werkt dat tegen ons?',
+            a:
+              'Nee, maar het legt de bewijslat hoger. Wij bouwen een relatiedossier op: gedeelde adresgeschiedenis, gezamenlijke financiën, reizen, foto\'s door de jaren heen, communicatie en verklaringen van mensen die u kennen. Hier gaan afgewezen aanvragen verloren, en hier worden ze met goede voorbereiding gewonnen.',
+          },
+          {
+            q: 'Wie is vrijgesteld van het inburgeringsexamen buitenland?',
+            a:
+              'Onderdanen van de EU, EER, Zwitserland, de Verenigde Staten, Canada, Australië, Nieuw-Zeeland, Japan, Zuid-Korea en het Verenigd Koninkrijk, naast enkele andere landen, plus wie het om medische redenen niet kan afleggen of een Nederlands of Belgisch diploma heeft. Alle anderen leggen het examen af op een Nederlandse ambassade.',
+          },
+          {
+            q: 'Wij zijn eerder afgewezen. Is dat te herstellen?',
+            a:
+              'Vaak wel. Een afwijzing is geen permanente blokkade, maar het tweede dossier moet precies de afwijzingsgrond van het eerste beantwoorden in plaats van de eerste poging te herhalen. Stuur ons de beschikking en u krijgt een eerlijk oordeel of een nieuwe aanvraag of een bezwaarprocedure de betere route is.',
+          },
+        ],
+      },
       faq: {
         title: 'Stellen vragen ons',
         items: [
@@ -339,8 +512,10 @@ export const immigration: SectionContent = {
         label: 'Plan ons partnervisum',
       },
       form: 'immigration',
-      image: '/images/partner-visa.jpg',
-      imageAlt: 'Stel vult samen aanvraagformulieren in aan de keukentafel',
+      image: '/images/partner-visa.jpg?v=20260731',
+      imageAlt: 'Stel thuis in hun Nederlandse appartement',
+      image2: '/images/daft-couple.jpg',
+      image2Alt: 'Stel samen aan een Nederlandse gracht bij zonsondergang',
     },
     {
       slug: 'family-reunification-netherlands',
@@ -398,6 +573,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'Aanvragen voor kinderen hangen af van details die ouders zelden verwachten, zoals toestemming van een achterblijvende ouder. Leg uw volledige gezinssituatie op tafel tijdens de intake, zodat niets laat aan het licht komt.',
+      conditions: {
+        title: 'Voorwaarden voor het gezinsdossier',
+        intro:
+          'Eén referent draagt de hele gezinsaanvraag. Alles hieronder wordt getoetst aan die persoon, en aan papieren uit landen die u al verlaten heeft.',
+        items: [
+          'De hoofdvergunninghouder treedt op als referent en moet een geldige vergunning voor niet-tijdelijke doelen hebben.',
+          'Een inkomen van minimaal 2.523,96 euro bruto per maand inclusief vakantiegeld, beoordeeld als duurzaam (bedrag 2026).',
+          'Kinderen moeten minderjarig en ongehuwd zijn, en moeten vóór de verhuizing naar Nederland al tot het gezin hebben behoord.',
+          'Blijft één ouder in het buitenland, dan is schriftelijke toestemming van die ouder nodig voordat een kind kan meeverhuizen.',
+          'Akten uit de meeste landen hebben legalisatie of een apostille nodig plus een beëdigde vertaling naar het Nederlands, Engels, Frans of Duits.',
+          'Aanvragen die tegelijk met de hoofdaanvrager worden ingediend, worden sneller beslist dan aanvragen die later volgen.',
+        ],
+      },
+      details: {
+        title: 'Hoe gezinsdossiers echt verlopen',
+        items: [
+          {
+            q: 'Samen aanvragen of later volgen?',
+            a:
+              'Samen, wanneer het maar kan. Een gelijktijdige gezinsaanvraag wordt naast het hoofddossier beslist, landt op één tijdlijn en vermijdt een tweede inkomenstoets. Later volgen kan prima, het kost simpelweg een extra procedure en enkele maanden apart.',
+          },
+          {
+            q: 'Hoe lang duurt legalisatie?',
+            a:
+              'Tussen twee weken en zes maanden, afhankelijk van het land, omdat de keten vaak via het lokale ministerie van buitenlandse zaken en daarna de Nederlandse ambassade loopt. Dit is de meest voorkomende oorzaak van vertraging in gezinsdossiers, en daarom beginnen wij ermee vóór al het andere.',
+          },
+          {
+            q: 'Kunnen onze kinderen meteen naar school?',
+            a:
+              'Ja. Kinderen in Nederland hebben zowel het recht als de plicht om naar school te gaan, ongeacht hun verblijfsstatus, en internationale scholen en nieuwkomersklassen nemen ze meestal binnen enkele weken op. Wij laten de schoolzoektocht naast de vergunning lopen in plaats van erna.',
+          },
+          {
+            q: 'En als een kind tijdens de procedure achttien wordt?',
+            a:
+              'De IND beoordeelt de leeftijd op het moment van indiening, dus een kind dat bij indiening minderjarig was verliest zijn recht niet door tijdens de behandeling jarig te worden. Precies daarom dienen wij vroeg in plaats van perfect.',
+          },
+        ],
+      },
       faq: {
         title: 'Wat gezinnen willen weten',
         items: [
@@ -421,29 +634,42 @@ export const immigration: SectionContent = {
         label: 'Plan onze gezinsverhuizing',
       },
       form: 'immigration',
-      image: '/images/family-reunification.jpg',
-      imageAlt: 'Gezin herenigd in de aankomsthal van Schiphol',
+      image: '/images/family-reunification.jpg?v=20260731',
+      imageAlt: 'Gezin samen in een licht Nederlands herenhuis',
+      image2: '/images/family-unpacking.jpg?v=20260731',
+      image2Alt: 'Gezin geïnstalleerd in hun nieuwe Nederlandse woonkamer',
     },
     {
       slug: 'startup-visa-netherlands',
       menuLabel: 'Startup visum',
       title: 'Startup visum Nederland',
-      metaTitle: 'Startup visum Nederland | Lanceer uw bedrijf hier',
+      metaTitle: 'Startup visum Nederland | Voor innovatieve ondernemers',
       metaDescription:
-        'Het Nederlandse startup visum geeft ambitieuze oprichters een jaar om te bouwen met een erkende facilitator. Wij begeleiden de aanvraag, de facilitatormatch en uw landing als oprichter.',
+        'Het startup visum Nederland geeft oprichters van buiten de EU een verblijfsvergunning van één jaar om met een erkende facilitator een innovatief bedrijf te bouwen. Voorwaarden, werkwijze en tarieven.',
       eyebrow: 'Oprichtersvisum',
       intro: [
-        'Nederland werft actief oprichters, en het startup visum is de voordeur: een verblijfsvergunning van één jaar om een innovatief bedrijf op te bouwen onder de vleugels van een door de IND erkende facilitator. Een sterk idee, een geloofwaardig plan, de juiste facilitator, en u zit in een van de beste ecosystemen van Europa.',
-        'De meeste adviseurs stoppen bij de vergunning. Als boutiquebureau nemen wij oprichters mee door de hele boog: de introductie bij de facilitator, het ondernemingsplan dat de IND werkelijk wil lezen, en de praktische verhuizing die u uw energie laat steken in het bedrijf in plaats van in het papierwerk.',
+        'Het startup visum Nederland is bedoeld voor internationale ondernemers die hier een innovatief bedrijf willen ontwikkelen. Het geeft een startupfase van één jaar waarin u het bedrijf opbouwt samen met een erkende startupfacilitator, binnen een ecosysteem met echte toegang tot investeerders, incubators en internationale markten.',
+        'Wij begeleiden de hele boog, niet alleen de vergunning: de match met de facilitator, het startupplan dat de IND wil lezen, en de praktische kant van aankomen, van bedrijfsinschrijving tot een plek om te wonen.',
       ],
       cardText: 'Een oprichtersvergunning van één jaar om uw innovatieve bedrijf in het Nederlandse ecosysteem te bouwen.',
       forWho: {
-        title: 'Gebouwd voor oprichters die',
+        title: 'Wie het startup visum kan aanvragen',
         items: [
-          'Een innovatief product of dienst lanceren dat nog niet op de Nederlandse markt bestaat',
-          'Van buiten de EU komen en een verblijfsbasis nodig hebben om hier te bouwen',
-          'Klaar zijn om met een erkende facilitator of accelerator te werken',
-          'De stap naar de vergunning voor zelfstandigen na jaar één plannen',
+          'Ondernemers van buiten de EU die een innovatief product, dienst of technologie naar de Nederlandse markt brengen',
+          'Oprichters die willen werken met een erkende facilitator die de startupfase begeleidt',
+          'Teams die een verblijfsbasis nodig hebben om het bedrijf op Nederlandse bodem te ontwikkelen',
+          'Oprichters die de stap naar de vergunning voor zelfstandigen na jaar één plannen',
+        ],
+      },
+      conditions: {
+        title: 'Voorwaarden voor het startup visum',
+        intro: 'De IND beoordeelt het idee en de facilitator beoordeelt u. Aanvragers moeten aantonen:',
+        items: [
+          'een innovatief bedrijfsconcept',
+          'samenwerking met een erkende startupfacilitator',
+          'een gestructureerd startup-ontwikkelplan',
+          'voldoende financiële middelen voor het eerste jaar',
+          'dat de oprichter een actieve rol speelt in het bedrijf',
         ],
       },
       included: {
@@ -451,15 +677,19 @@ export const immigration: SectionContent = {
         blocks: [
           {
             title: 'Eerlijke haalbaarheidstoets',
-            text: 'De IND beoordeelt de innovatie en de facilitator beoordeelt u. Wij vertellen u vooraf of uw dossier sterk is, en wat er moet worden verbeterd als dat niet zo is.',
+            text: 'Wij vertellen u vooraf of uw dossier aan de innovatiecriteria voldoet en wat er sterker moet als dat niet zo is, voordat u geld of maanden investeert.',
           },
           {
             title: 'Facilitatormatching',
-            text: 'Een erkende facilitator moet uw aanvraag steunen. Wij helpen u de facilitators te benaderen die passen bij uw sector en fase.',
+            text: 'Een erkende facilitator moet uw aanvraag steunen. Wij helpen u de facilitators te benaderen die passen bij uw sector en fase, en coördineren de overeenkomst.',
           },
           {
-            title: 'Aanvraag en stappenplan',
-            text: 'Wij bereiden het IND-dossier voor, inclusief het stappenplan dat uw rol en de innovatie beschrijft, en verzorgen de indiening.',
+            title: 'Voorbereiding van het startupplan',
+            text: 'Wij structureren het vereiste ontwikkelplan dat uw rol, de innovatie en de mijlpalen van het jaar beschrijft.',
+          },
+          {
+            title: 'Afhandeling van de aanvraag',
+            text: 'Wij bereiden het IND-dossier voor, dienen het in en verzorgen elke uitwisseling met de autoriteiten tot de beslissing.',
           },
           {
             title: 'Landing als oprichter',
@@ -468,39 +698,70 @@ export const immigration: SectionContent = {
         ],
       },
       process: {
-        title: 'Van pitch tot vergunning',
+        title: 'Onze werkwijze',
         steps: [
-          { title: 'Beoordelen', text: 'Wij toetsen uw idee kritisch aan de innovatiecriteria van de IND voordat u zich vastlegt.' },
-          { title: 'Matchen en indienen', text: 'Facilitatorovereenkomst getekend, aanvraag voorbereid en ingediend.' },
-          { title: 'Bouwen', text: 'U komt aan, wij regelen het settelen, en u krijgt een jaar aanlooptijd op Nederlandse bodem.' },
+          { title: 'Toets op geschiktheid', text: 'Wij beoordelen of uw bedrijfsidee volgens de IND-criteria kwalificeert als innovatieve startup.' },
+          { title: 'Coördinatie met de facilitator', text: 'Wij helpen bij het vinden van en samenwerken met erkende facilitators en bij het sluiten van de overeenkomst.' },
+          { title: 'Startupplan', text: 'Wij structureren het ontwikkelplan waarop de aanvraag wordt beoordeeld.' },
+          { title: 'Aanvraag verblijfsvergunning', text: 'Wij bereiden de aanvraag voor, dienen deze in bij de IND en houden het dossier in de gaten.' },
         ],
       },
+      fees: {
+        title: 'Tarief voor een startup visum aanvraag',
+        amount: 'vanaf 2.250 tot 3.250 euro',
+        includes: [
+          'Immigratiestrategie en advies',
+          'Voorbereiding van de startup visum aanvraag',
+          'Coördinatie met de facilitator',
+          'Communicatie met de IND',
+        ],
+        note: 'Overheidsleges zijn niet inbegrepen. Waar uw dossier binnen deze bandbreedte valt, hangt af van de complexiteit van het plan en of gezinsleden meeaanvragen.',
+      },
       note: 'De startupvergunning loopt één jaar en wordt als zodanig niet verlengd. De geplande vervolgstap is meestal de vergunning voor zelfstandigen, en wij beginnen dat dossier ruim vóór het einde van uw jaar voor te bereiden.',
+      details: {
+        title: 'Wat u vóór de aanvraag moet weten',
+        items: [
+          {
+            q: 'Wat telt als innovatie?',
+            a: 'Innovatie kan nieuwe technologie betekenen, een innovatief dienstmodel of een nieuwe productiemethode. In de praktijk vraagt de IND of het product of de dienst werkelijk nieuw is voor Nederland, en de steun van uw facilitator weegt in dat oordeel zwaar mee.',
+          },
+          {
+            q: 'Wat gebeurt er na het startupjaar?',
+            a: 'In dat jaar ontwikkelt u het bedrijf en bereidt u de volgende fase voor. Oprichters vragen daarna de verblijfsvergunning voor zelfstandigen aan om het bedrijf in Nederland voort te zetten, die wordt beoordeeld op de economische waarde van de onderneming.',
+          },
+          {
+            q: 'Wat doet de facilitator eigenlijk?',
+            a: 'Een erkende facilitator begeleidt de startupfase met mentoring over het plan, de markt en de mijlpalen. Die relatie is een formele voorwaarde van de vergunning en geen optionele extra, waardoor de match belangrijker is dan de meeste oprichters verwachten.',
+          },
+        ],
+      },
       faq: {
         title: 'Oprichtersvragen',
         items: [
-          {
-            q: 'Wat geldt voor de IND als innovatief?',
-            a: 'Een product of dienst dat nieuw is voor Nederland, nieuwe technologie gebruikt of een werkelijk nieuwe werkwijze introduceert. De steun van uw facilitator weegt hier zwaar, en daarom is de match zo belangrijk.',
-          },
           {
             q: 'Kan ik mijn gezin meenemen op een startup visum?',
             a: 'Ja. Uw partner en kinderen kunnen tegelijk met u verblijf aanvragen, en uw partner is vrij om te werken terwijl u bouwt.',
           },
           {
             q: 'Heb ik een minimale investering nodig?',
-            a: 'Voor het startup visum zelf geldt geen vast investeringsbedrag. U moet wel voldoende middelen aantonen om het jaar van te leven, en wij helpen u dat te onderbouwen.',
+            a: 'Voor het startup visum geldt geen vast investeringsbedrag. U moet wel voldoende middelen aantonen om het jaar van te leven, en wij helpen u dat te onderbouwen.',
+          },
+          {
+            q: 'Kan ik aanvragen als mijn bedrijf in het buitenland al draait?',
+            a: 'Vaak wel, mits de Nederlandse activiteit werkelijk nieuw en innovatief is voor deze markt. Wij beoordelen dat eerlijk bij de intake in plaats van u het te laten ontdekken in een afwijzing.',
           },
         ],
       },
       cta: {
-        title: 'Klaar om in Nederland te bouwen?',
+        title: 'Lanceer uw startup in Nederland',
         text: 'Pitch ons uw bedrijf in één zin. Wij vertellen u of het startup visum uw route is en wie het zou moeten faciliteren.',
         label: 'Praat met ons over uw startup',
       },
       form: 'immigration',
-      image: '/images/startup-visa.jpg',
-      imageAlt: 'Oprichters werken bij een whiteboard in een startupkantoor',
+      image: '/images/startup-visa.jpg?v=20260731',
+      imageAlt: 'Oprichter in een loftkantoor met uitzicht op de Rotterdamse waterkant',
+      image2: '/images/startup-team.jpg',
+      image2Alt: 'Oprichtersteam werkt samen in een gedeeld kantoor',
     },
     {
       slug: 'daft-visa-netherlands',
@@ -508,20 +769,32 @@ export const immigration: SectionContent = {
       title: 'DAFT visum Nederland',
       metaTitle: 'DAFT visum Nederland | Dutch American Friendship Treaty',
       metaDescription:
-        'Amerikanen kunnen onder het Dutch American Friendship Treaty in Nederland wonen en werken met een bedrijfsinvestering van € 4.500. Wij begeleiden het DAFT-traject van begin tot eind.',
+        'Met het DAFT visum Nederland kunnen Amerikanen hier als ondernemer wonen en werken met een investering van 4.500 euro. Voorwaarden, werkwijze en tarieven.',
       eyebrow: 'Voor Amerikanen',
       intro: [
-        'Voor Amerikanen is het Dutch American Friendship Treaty de stille superkracht van de Nederlandse immigratie. Investeer € 4.500 in uw eigen Nederlandse bedrijf, voldoe aan de verdragsvoorwaarden, en u kunt hier wonen en werken als zelfstandig professional, zonder baanaanbod, zonder puntensysteem, zonder referent.',
-        'De route beloont goede uitvoering: de bedrijfsregistratie, de investering op de balans en het IND-dossier moeten allemaal kloppen. Wij begeleiden DAFT-dossiers van de eerste bankvraag tot het moment dat uw vergunningspas in uw hand ligt, en onze cliënten bereiken ons ondertussen rechtstreeks via WhatsApp, op elk uur.',
+        'Het DAFT visum Nederland, verleend onder het Dutch American Friendship Treaty, is de meest toegankelijke immigratieroute voor Amerikanen die hier hun eigen bedrijf willen runnen. Dankzij het verdrag tussen Nederland en de Verenigde Staten gelden voor Amerikaanse ondernemers soepeler voorwaarden dan bij de reguliere ondernemersvergunning.',
+        'Het is de route die freelancers, consultants en eigenaren van kleine bedrijven het vaakst gebruiken. Naast het immigratiedossier verzorgen wij de praktische kant van de aankomst: bedrijfsinschrijving, woonruimte en verblijf voor het gezin dat meekomt.',
       ],
       cardText: 'De verdragsroute waarmee Amerikanen als ondernemer in Nederland kunnen wonen en werken.',
       forWho: {
-        title: 'Wie DAFT gebruikt',
+        title: 'Voor wie het DAFT visum bedoeld is',
         items: [
           'Amerikaanse freelancers en consultants die hun praktijk naar Europa brengen',
           'Amerikaanse ondernemers die een Nederlands bedrijf openen',
           'Remote professionals die hun werk omvormen tot zelfstandig ondernemerschap',
           'Amerikaanse partners en gezinnen die meeverhuizen met de aanvrager',
+        ],
+      },
+      conditions: {
+        title: 'Voorwaarden voor het DAFT visum',
+        intro:
+          'Het verdrag vervangt de puntengebaseerde economische toets van uw ondernemingsplan door een eenvoudige investeringstoets. Aanvragers moeten in de regel:',
+        items: [
+          'de Amerikaanse nationaliteit hebben',
+          'een bedrijf inschrijven in Nederland',
+          'minimaal 4.500 euro in dat bedrijf investeren',
+          'zich inschrijven bij de Kamer van Koophandel (KvK)',
+          'de vereiste bedrijfsinvestering in stand houden',
         ],
       },
       included: {
@@ -550,15 +823,43 @@ export const immigration: SectionContent = {
         ],
       },
       process: {
-        title: 'Zo verloopt uw DAFT-traject',
+        title: 'Onze werkwijze',
         steps: [
-          { title: 'Plannen', text: 'Intake over uw bedrijf, gezin en timing. U verlaat het gesprek met een exact beeld van wat DAFT van u vraagt.' },
-          { title: 'Oprichten', text: 'Bedrijf ingeschreven, bankrekening geopend, investering gestort en gedocumenteerd.' },
-          { title: 'Aanvragen', text: 'Het IND-dossier gaat de deur uit. U kunt de beslissing doorgaans in Nederland afwachten.' },
-          { title: 'Wonen en werken', text: 'Vergunning verleend, inschrijvingen gedaan, en uw Amerikaanse praktijk is officieel Europees.' },
+          { title: 'Immigratieconsult', text: 'Wij toetsen uw situatie aan het DAFT-verdrag en bepalen de route rond uw bedrijf, gezin en timing.' },
+          { title: 'Bedrijfsopzet', text: 'Wij begeleiden u door de bedrijfsinschrijving en de administratieve verplichtingen die daarop volgen.' },
+          { title: 'Investering en documentatie', text: 'Wij zorgen dat de vereiste investering wordt gestort en onderbouwd zoals de IND het wil zien.' },
+          { title: 'Aanvraag verblijfsvergunning', text: 'Wij bereiden de DAFT-aanvraag voor, dienen deze in bij de IND en verzorgen elke uitwisseling tot de beslissing.' },
         ],
       },
+      fees: {
+        title: 'Tarief voor een DAFT-aanvraag',
+        amount: 'vanaf 1.950 tot 2.750 euro',
+        includes: [
+          'Immigratieconsult',
+          'Voorbereiding van de aanvraag verblijfsvergunning',
+          'Begeleiding bij de bedrijfsinschrijving',
+          'Communicatie met de IND',
+        ],
+      note: 'De verblijfsvergunning wordt doorgaans voor twee jaar verleend en is verlengbaar. De 4.500 euro moet in het bedrijf geïnvesteerd blijven zolang u de DAFT-status heeft, want bij verlengingen wordt naar uw balans gekeken.',
+      },
       note: 'De € 4.500 moet in het bedrijf geïnvesteerd blijven zolang u de DAFT-status heeft, en bij verlengingen wordt naar uw balans gekeken. Actuele IND-leges en doorlooptijden verschuiven, dus wij bevestigen ze tijdens uw intake.',
+      details: {
+        title: 'Wat u vóór de aanvraag moet weten',
+        items: [
+          {
+            q: 'Wat is de DAFT-verblijfsvergunning precies?',
+            a: 'Zij staat Amerikanen toe in Nederland te wonen terwijl zij hier hun eigen bedrijf runnen. Anders dan bij de reguliere ondernemersvergunning vraagt de DAFT-route geen puntengebaseerde economische toets van het ondernemingsplan. De belangrijkste voorwaarde is de minimale investering.',
+          },
+          {
+            q: 'Eenmanszaak of BV?',
+            a: 'Beide voldoen aan het verdrag. Een eenmanszaak is lichter en goedkoper, een BV beperkt de aansprakelijkheid en past bij groei en investeerders. De keuze verandert hoe de investering wordt onderbouwd en hoe u wordt belast, dus wij adviseren op uw cijfers en niet op een vuistregel.',
+          },
+          {
+            q: 'Wat betekent het in stand houden van de investering in de praktijk?',
+            a: 'Het kapitaal moet in het bedrijf blijven en zichtbaar zijn op de balans, niet worden opgenomen zodra de vergunning is verleend. Bij verlenging is uw boekhouding het bewijs, en daarom brengen wij cliënten in contact met accountants die het verdrag goed kennen.',
+          },
+        ],
+      },
       faq: {
         title: 'Amerikanen vragen ons',
         items: [
@@ -571,19 +872,21 @@ export const immigration: SectionContent = {
             a: 'Bij de start geldt geen omzetdrempel. U heeft de investering nodig, een ingeschreven bedrijf en de intentie het ook echt te runnen. Tegen de verlenging moet uw administratie een levend bedrijf laten zien.',
           },
           {
-            q: 'Hoe lang is de DAFT-vergunning geldig?',
-            a: 'De eerste vergunning wordt doorgaans voor twee jaar verleend en is verlengbaar zolang u aan de verdragsvoorwaarden blijft voldoen. Veel van onze cliënten stappen later over naar permanent verblijf.',
+            q: 'Leidt DAFT tot permanent verblijf?',
+            a: 'Dat kan. Na vijf jaar onafgebroken rechtmatig verblijf kunt u doorgaans permanent verblijf of naturalisatie aanvragen, mits u aan de inburgeringseisen voldoet. Veel van onze DAFT-cliënten volgen die route.',
           },
         ],
       },
       cta: {
-        title: 'Uw Amerikaanse paspoort opent deze deur',
+        title: 'Verhuis naar Nederland onder het DAFT-verdrag',
         text: 'Vertel ons wat u voor werk doet. Wij brengen uw DAFT-route in kaart, van investering tot vergunning, in één gesprek.',
         label: 'Start mijn DAFT-plan',
       },
       form: 'immigration',
-      image: '/images/daft-visa.jpg',
-      imageAlt: 'Amerikaanse ondernemer werkt op een laptop in een Nederlands café',
+      image: '/images/daft-visa.jpg?v=20260731',
+      imageAlt: 'Amerikaanse oprichter werkt vanuit een designstudio in Nederland',
+      image2: '/images/daft-couple.jpg',
+      image2Alt: 'Amerikaans stel dat zijn draai vindt in een Nederlandse stad',
     },
     {
       slug: 'business-schengen-visa-netherlands',
@@ -637,6 +940,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'Een zakelijk Schengenvisum staat vergaderingen en onderhandelingen toe, geen arbeid. Worden uw bezoeken regulier werk in Nederland, praat dan met ons over een werkvergunning voordat het een probleem wordt aan de grens.',
+      conditions: {
+        title: 'Wat dit visum wel en niet toestaat',
+        intro:
+          'De grenzen wegen hier zwaarder dan de vereisten, want dit visum voor de verkeerde activiteit gebruiken brengt zowel de reiziger als de Nederlandse gastheer in gevaar.',
+        items: [
+          'Maximaal negentig dagen verblijf binnen elke periode van honderdtachtig dagen in het Schengengebied.',
+          'Vergaderingen, onderhandelingen, training, beurzen en locatiebezoeken zijn toegestaan. Betaald werk in Nederland niet.',
+          'Een formele uitnodiging van het Nederlandse gastbedrijf is vereist, en de gastheer kan worden gevraagd garant te staan voor de kosten.',
+          'Een reisverzekering met minimaal 30.000 euro dekking, geldig in heel Schengen, is verplicht.',
+          'Bewijs van accommodatie, terugreis en voldoende middelen voor het verblijf moet worden overgelegd.',
+          'Dien alleen in bij de Nederlandse post als Nederland uw hoofdbestemming is, anders hoort de aanvraag bij het land waar u de meeste tijd doorbrengt.',
+        ],
+      },
+      details: {
+        title: 'Een sterkere beslissing bereiken',
+        items: [
+          {
+            q: 'Waarom worden zakenvisa geweigerd?',
+            a:
+              'Bijna altijd om een van drie redenen: het reisdoel is niet geloofwaardig in de stukken, de aanvrager kan onvoldoende binding met het eigen land aantonen, of eerdere Schengenreizen zijn oneigenlijk gebruikt. Alle drie zijn dossierproblemen, en alle drie zijn vóór indiening aan te pakken.',
+          },
+          {
+            q: 'Hoe krijgen wij een meervoudig visum?',
+            a:
+              'Meervoudige visa van één tot vijf jaar gaan naar aanvragers met een schone Schengenreisgeschiedenis en een aantoonbare doorlopende zakelijke relatie. Wij bouwen het dossier zo op dat het terugkerende patroon zichtbaar is in het bewijs, in plaats van erom te vragen als gunst.',
+          },
+          {
+            q: 'Hoe ver van tevoren moeten wij aanvragen?',
+            a:
+              'Aanvragen kunnen tot zes maanden voor vertrek worden ingediend en uiterlijk vijftien dagen ervoor. De echte beperking is de beschikbaarheid van afspraken bij het consulaat, en in drukke regio\'s en hoogseizoen kan dat zes weken zijn. Geef ons de datum vroeg.',
+          },
+          {
+            q: 'Onze specialist moet op locatie werken. Is dit het juiste visum?',
+            a:
+              'Nee. Apparatuur installeren, een project uitvoeren of diensten verlenen aan een Nederlandse klant is werk, en vraagt om een werkgerelateerde vergunning of een melding onder de detacheringsregels. Dit visum daarvoor gebruiken stelt uw bedrijf en uw medewerker bloot. Wij vertellen u welk instrument werkelijk van toepassing is.',
+          },
+        ],
+      },
       faq: {
         title: 'Voordat u vluchten boekt',
         items: [
@@ -660,8 +1001,10 @@ export const immigration: SectionContent = {
         label: 'Regel mijn zakenvisum',
       },
       form: 'immigration',
-      image: '/images/business-visa.jpg',
-      imageAlt: 'Zakelijke reiziger loopt door een Nederlandse luchthaventerminal',
+      image: '/images/business-visa.jpg?v=20260731',
+      imageAlt: 'Directielid arriveert per auto bij een Nederlands hoofdkantoor',
+      image2: '/images/business-signing.jpg',
+      image2Alt: 'Ondertekening van documenten tijdens een zakelijke bespreking',
     },
     {
       slug: 'residence-permit-netherlands',
@@ -715,6 +1058,44 @@ export const immigration: SectionContent = {
         ],
       },
       note: 'Leges en beslistermijnen verschillen per vergunningstype en veranderen in de tijd, dus wij bevestigen de actuele IND-cijfers tijdens uw intake in plaats van ze hier af te drukken.',
+      conditions: {
+        title: 'Termijnen en drempels',
+        intro:
+          'Bijna elk vergunningsprobleem dat wij herstellen begon als een datum die stil voorbijging. Dit zijn de datums die tellen.',
+        items: [
+          'Dien een verlenging minimaal drie maanden voor het verlopen in. Uw recht om te wonen en werken loopt door zolang een tijdige verlenging in behandeling is.',
+          'Een wisseling van werkgever, doel of relatie vraagt een nieuwe aanvraag, en meestal mag u niet met de nieuwe activiteit beginnen voor de goedkeuring.',
+          'Een permanente verblijfsvergunning vereist vijf jaar ononderbroken rechtmatig verblijf op niet-tijdelijke basis.',
+          'Studievergunningen en zoekjaarvergunningen tellen niet mee voor die vijf jaar.',
+          'Inburgering op niveau A2, of een formele vrijstelling, is vereist voor permanent verblijf en voor naturalisatie.',
+          'Afwezigheid van meer dan zes aaneengesloten maanden, of meer dan vier maanden per jaar over de periode, verbreekt de continuïteit.',
+        ],
+      },
+      details: {
+        title: 'De vragen die wij het vaakst krijgen',
+        items: [
+          {
+            q: 'Permanent verblijf of het Nederlanderschap?',
+            a:
+              'Permanent verblijf verankert uw recht om hier onbeperkt te wonen en werken en overleeft een baanwisseling. Het Nederlanderschap voegt een paspoort, EU-burgerschap en stemrecht toe, vraagt dezelfde vijf jaar plus inburgering, en vereist meestal dat u uw huidige nationaliteit opgeeft. Veel cliënten nemen eerst permanent verblijf en beslissen later over naturalisatie.',
+          },
+          {
+            q: 'Mijn vergunning loopt af en ik heb geen nieuwe baan.',
+            a:
+              'Kennismigranten hebben een zoekperiode van drie maanden na het einde van het dienstverband, waarin het verblijf doorloopt terwijl u een nieuwe erkende referent zoekt. Handel binnen dat venster. Zodra het sluit is de positie veel lastiger te herstellen.',
+          },
+          {
+            q: 'Ik ga scheiden. Verlies ik mijn verblijfsrecht?',
+            a:
+              'Niet noodzakelijk. Afhankelijk van hoe lang u een afhankelijke vergunning had en van uw eigen omstandigheden is een wijziging naar zelfstandig verblijf vaak mogelijk. Dit is tijdgevoelig, en hoe eerder u ons spreekt, hoe meer routes openblijven.',
+          },
+          {
+            q: 'Kan ik ook de EU-status langdurig ingezetene houden?',
+            a:
+              'Ja, en vaak is dat de betere combinatie. De EU-status voegt mobiliteitsrechten naar andere lidstaten toe die het Nederlandse permanente verblijf niet geeft, en beide kunnen tegelijk worden aangevraagd.',
+          },
+        ],
+      },
       faq: {
         title: 'Verblijfsvragen',
         items: [
@@ -738,8 +1119,17 @@ export const immigration: SectionContent = {
         label: 'Beoordeel mijn verblijfsstatus',
       },
       form: 'immigration',
-      image: '/images/immigration-documents.jpg?v=20260728',
-      imageAlt: 'Nederlandse verblijfsdocumenten klaar voor verlenging',
+      image: '/images/immigration-documents.jpg?v=20260731',
+      imageAlt: 'Leren map en vulpen op een bureau',
+      image2: '/images/immigration-desk.jpg?v=20260731',
+      image2Alt: 'Adviseur en cliënt aan een private gesprekstafel',
+    },
+  ],
+  crossLinks: [
+    {
+      path: '/starting-a-business/employer-immigration-services-netherlands',
+      label: 'Immigratie voor werkgevers',
+      text: 'Voor bedrijven die personeel van buiten de EU aannemen: aanvragen, IND-erkenning als referent, detachering en dossiertoetsing.',
     },
   ],
 };

@@ -4,6 +4,7 @@ import LeadForm from './LeadForm.astro';
 import { site } from '../data/site';
 import { type Lang } from '../lib/i18n';
 import { getContent } from '../lib/content';
+import PageHero from './PageHero.astro';
 
 interface Props {
   lang: Lang;
@@ -13,16 +14,13 @@ const c = getContent(lang);
 const ct = c.core.contact;
 ---
 
-<section class="border-b border-line bg-ivory">
-  <div class="container-site py-14 text-center md:py-20">
-    <span class="eyebrow">{ct.eyebrow}</span>
-    <h1 class="mx-auto mt-4 max-w-3xl font-display text-4xl md:text-5xl">{ct.title}</h1>
-    <span class="gold-rule mx-auto mt-7"></span>
-    {ct.intro.map((p) => (
-      <p class="mx-auto mt-5 max-w-2xl text-[1.02rem] leading-relaxed">{p}</p>
-    ))}
-  </div>
-</section>
+<PageHero
+  eyebrow={ct.eyebrow}
+  title={ct.title}
+  intro={ct.intro}
+  image="/images/consultation.jpg"
+  imageAlt="Relocation adviser going through paperwork with a client"
+/>
 
 <section class="container-site py-14 md:py-20">
   <div class="grid gap-12 lg:grid-cols-[2fr_3fr] lg:gap-16">
@@ -63,7 +61,7 @@ const ct = c.core.contact;
         <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="Instagram" class="text-ink-soft hover:text-gold"><Icon name="instagram" size={18} /></a>
         <a href={site.social.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn" class="text-ink-soft hover:text-gold"><Icon name="linkedin" size={18} /></a>
       </div>
-      <div class="card mt-10 bg-ivory p-6">
+      <div class="card mt-10 bg-sand p-6">
         <h3 class="font-display text-lg">{ct.emergency.heading}</h3>
         <p class="mt-2 text-[0.88rem] leading-relaxed">{ct.emergency.text}</p>
       </div>

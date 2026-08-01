@@ -10,8 +10,8 @@ export const housing: SectionContent = {
     'The Dutch rental market moves fast and rewards the prepared. Good apartments are listed in the morning and gone by the evening, and landlords choose tenants who respond quickly with a complete file. That is exactly where we come in. We watch the market for you, react within hours, and prepare your dossier so that when the right home appears, you are the candidate a landlord says yes to.',
     'Our home ground is Rotterdam and the wider port region, from the city center out to Europoort and the Maasvlakte, though we search across the Netherlands. You are never sent out alone with a list of links. We shortlist, we attend viewings with you, we read every contract before you sign, and we handle the landlord conversation from first message to key handover.',
   ],
-  image: '/images/housing-canal.jpg?v=20260728',
-  imageAlt: 'Canal houses in a Dutch city on a bright day',
+  image: '/images/canal-colour.jpg',
+  imageAlt: 'Colourful canal houses reflected in the water of a Dutch city',
   services: [
     {
       slug: 'housing-search-assistance-netherlands',
@@ -82,6 +82,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'We are open about one thing: no honest agency can guarantee you a specific home in this market. What we can promise is speed, a complete file and a strong local network, which is what wins homes. Pricing depends on your search area and timeline and is confirmed during your intake.',
+      conditions: {
+        title: 'What the Dutch rental market demands',
+        intro:
+          'The market decides more than your budget does. These are the conditions we build your file against.',
+        items: [
+          'Most landlords require a gross income of three to four times the monthly rent, evidenced by a contract and recent payslips.',
+          'Without a Dutch income history, expect to be asked for an employer statement, a bank guarantee or a larger deposit.',
+          'Deposits are capped at two months of basic rent for contracts signed since 1 July 2023.',
+          'A BSN is not needed to sign a lease, but it is needed to register at the address, and registration unlocks almost everything else.',
+          'We work in Rotterdam, Europoort and the wider port region. Beyond that radius we will say so rather than take the assignment.',
+          'We act for you and never for the landlord, and we take no commission from either side of the transaction.',
+        ],
+      },
+      details: {
+        title: 'How the search actually works',
+        items: [
+          {
+            q: 'How long does it take to find a home?',
+            a:
+              'In the Rotterdam region, four to eight weeks is realistic in the upper and furnished segment, and longer below 1,500 euro a month where competition is fiercest. Popular properties are gone within forty-eight hours, so speed of response matters more than breadth of search.',
+          },
+          {
+            q: 'Can you view properties before I arrive?',
+            a:
+              'Yes, and most clients start that way. We attend on your behalf and send a written verdict with video the same day, which is enough to commit from abroad without gambling on photographs.',
+          },
+          {
+            q: 'Fixed-term or indefinite contract?',
+            a:
+              'Since 1 July 2024 most new residential leases must be for an indefinite period, with fixed-term contracts allowed only in defined situations such as a landlord\'s temporary absence. The change works in your favour, and we check which regime your contract falls under before you sign.',
+          },
+          {
+            q: 'Furnished, unfurnished, or something in between?',
+            a:
+              'Dutch listings distinguish kaal, sometimes without flooring or even light fittings, gestoffeerd with floors and curtains, and gemeubileerd fully furnished. The difference can run to several thousand euro on arrival, and it is the detail newcomers most often miss in a listing.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -105,8 +143,10 @@ export const housing: SectionContent = {
         label: 'Start my search',
       },
       form: 'relocation',
-      image: '/images/housing-search.jpg',
-      imageAlt: 'Agent and couple reviewing apartment listings on a laptop',
+      image: '/images/housing-search.jpg?v=20260731',
+      imageAlt: 'Consultant presenting property options to a couple',
+      image2: '/images/housing-interior.jpg?v=20260731',
+      image2Alt: 'Living room of a Dutch canal house apartment',
     },
     {
       slug: 'housing-for-expats-rotterdam',
@@ -168,6 +208,44 @@ export const housing: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Before you choose a neighbourhood',
+        intro:
+          'Rotterdam rewards people who choose their address around their life rather than around a map.',
+        items: [
+          'Free sector rents typically start around 1,200 euro for a one bedroom and 1,800 euro for a family apartment, higher on the Kop van Zuid and in the centre.',
+          'Social housing is effectively unavailable to expats. Income limits and multi-year waiting lists put it out of reach.',
+          'Registration at the address is only possible where the landlord permits it, and some short-stay landlords do not.',
+          'Parking permits are issued per household and per zone, and in central districts the waiting list can run for months.',
+          'Homes with energy label E, F or G carry higher running costs and a lower legally permitted rent under the points system.',
+          'We cover Rotterdam and the surrounding municipalities, including Schiedam, Capelle, Barendrecht and the Europoort corridor.',
+        ],
+      },
+      details: {
+        title: 'Rotterdam, neighbourhood by neighbourhood',
+        items: [
+          {
+            q: 'Where do most international professionals live?',
+            a:
+              'Kralingen for space, greenery and proximity to international schools. Kop van Zuid and the Wilhelminapier for river views and new build. Centrum and Cool for walkability. Hillegersberg for families who want a village feel inside the city. Which one is right depends far more on your commute and your children than on any ranking.',
+          },
+          {
+            q: 'How long is the commute to Europoort or Maasvlakte?',
+            a:
+              'From central Rotterdam, forty-five to seventy minutes by car depending on the gate and the shift. From Hoogvliet, Spijkenisse or Brielle it drops to twenty or thirty. If you work the terminals, choosing a neighbourhood before checking the commute is the most expensive mistake available.',
+          },
+          {
+            q: 'Are international schools nearby?',
+            a:
+              'Rotterdam has several international and bilingual options, most of them concentrated in Kralingen and in the south of the city, and places are limited. Families usually have to choose the school first and the neighbourhood second, so we plan it in that order.',
+          },
+          {
+            q: 'Should I buy instead of rent?',
+            a:
+              'Sometimes, but rarely in year one. Dutch lenders want an employment history and a permit with a reasonable horizon, and transaction costs make a purchase you might exit within two years an expensive experiment. We will tell you honestly when buying is the better move.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -191,8 +269,10 @@ export const housing: SectionContent = {
         label: 'Talk to a Rotterdam local',
       },
       form: 'relocation',
-      image: '/images/rotterdam-housing.jpg',
-      imageAlt: 'Modern residential apartment buildings in Rotterdam',
+      image: '/images/rotterdam-housing.jpg?v=20260731',
+      imageAlt: 'Waterfront apartment building in Rotterdam at sunset',
+      image2: '/images/rotterdam-evening.jpg?v=20260731',
+      image2Alt: 'Rotterdam skyline in the evening',
     },
     {
       slug: 'viewing-assistance-netherlands',
@@ -259,6 +339,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Viewing assistance can be booked on its own or as part of a full housing search. Fees depend on location and frequency and are confirmed during your intake.',
+      conditions: {
+        title: 'How viewing assistance works',
+        intro:
+          'An independent viewer is only worth having if they are genuinely independent. These are the terms we work on.',
+        items: [
+          'We attend across Rotterdam and the port region. Viewings further afield are possible by arrangement, subject to travel time.',
+          'Popular listings are often scheduled within twenty-four hours, so send the link the moment you see it.',
+          'We report what we see. Negotiating the rent is separate, and part of offer and contract support.',
+          'A live video walkthrough needs a usable mobile signal, which basements and thick-walled canal houses do not always provide.',
+          'We cannot enter without the agent or landlord present, and a few agencies refuse third-party viewings outright.',
+          'Our written verdict is honest. If a property is wrong for you we say so, even though it costs us the follow-on work.',
+        ],
+      },
+      details: {
+        title: 'What we check that photographs hide',
+        items: [
+          {
+            q: 'What do you actually inspect?',
+            a:
+              'Damp and ventilation, glazing quality against the stated energy label, noise from traffic, trams, neighbours and nightlife at the real time of day, water pressure, the age and state of the boiler, mobile and internet reception, storage, bicycle parking, and whether the shared entrance is maintained or quietly neglected.',
+          },
+          {
+            q: 'Can you view while I am still abroad?',
+            a:
+              'Yes, and most of our clients begin that way. You receive a video walkthrough, photographs of the things listings never show, and a written verdict the same day, which is enough to decide confidently from another continent.',
+          },
+          {
+            q: 'Will you tell me not to take it?',
+            a:
+              'Frequently. The whole value of an independent viewer is that we have no interest in you signing. Roughly a third of the properties we view get a clear recommendation against.',
+          },
+          {
+            q: 'How quickly can you attend?',
+            a:
+              'Usually within twenty-four to forty-eight hours, and the same day when a property warrants it. In this market a slow viewing is simply a lost property.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -282,8 +400,10 @@ export const housing: SectionContent = {
         label: 'Book a viewing',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg?v=20260728',
-      imageAlt: 'A viewing of a bright Dutch apartment with large windows',
+      image: '/images/viewing-couple.jpg',
+      imageAlt: 'Estate agent showing a couple around a bright Dutch apartment',
+      image2: '/images/housing-viewing.jpg',
+      image2Alt: 'Viewing an apartment with a consultant present',
     },
     {
       slug: 'rental-contract-review-netherlands',
@@ -346,6 +466,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'We review contracts as relocation specialists, not as a law firm. For genuine legal disputes we connect you with tenancy lawyers from our professional network, a network built over years of working alongside embassies and consulates.',
+      conditions: {
+        title: 'What we check, and what we cannot',
+        intro:
+          'Dutch tenancy law protects you more than most newcomers realise. Knowing which protections apply is the whole game.',
+        items: [
+          'Deposits are capped at two months of basic rent for contracts signed since 1 July 2023.',
+          'Since 1 July 2024 most new residential leases must be indefinite, with fixed-term contracts permitted only in defined situations.',
+          'Service charges must be specified and settled annually against actual costs. A single all-in figure is not permitted for most rentals.',
+          'Agency fees may not be charged to the tenant where the agent acts for the landlord.',
+          'A rent above the legally permitted level under the points system can be challenged at the Huurcommissie, in most cases within six months of the start of the lease.',
+          'We review contracts and explain your position. We are relocation consultants, not a law firm, and for proceedings we refer you to a Dutch housing lawyer we trust.',
+        ],
+      },
+      details: {
+        title: 'Clauses that cost money later',
+        items: [
+          {
+            q: 'Which clauses do you look for first?',
+            a:
+              'Break options and diplomatic clauses, who pays for minor repairs, whether the deposit is returnable within a fixed period, indexation formulas that outrun inflation, restrictions on registering at the address, service charge estimates set unrealistically low, and penalties for early termination.',
+          },
+          {
+            q: 'Can I register at this address?',
+            a:
+              'This is the clause that matters most and the one most often quietly excluded. Without registration there is no BSN, no health insurance, no bank account and no permit correspondence. If the contract forbids it or stays silent, we raise it before you sign rather than after.',
+          },
+          {
+            q: 'What if the rent is too high for the property?',
+            a:
+              'The Dutch points system sets a maximum legal rent for most homes based on size, energy label, fittings and location. Where a rent exceeds it the Huurcommissie can reduce it, usually on an application made within six months of the start of the lease. We flag this during review while the window is still open.',
+          },
+          {
+            q: 'How fast is a review?',
+            a:
+              'Normally within one business day, and the same day when you are under pressure to sign. A landlord who insists you sign within the hour is applying a tactic, not describing a deadline.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -369,8 +527,10 @@ export const housing: SectionContent = {
         label: 'Review my contract',
       },
       form: 'relocation',
-      image: '/images/rental-contract.jpg',
-      imageAlt: 'Hands reviewing a rental contract with keys on the table',
+      image: '/images/rental-contract.jpg?v=20260731',
+      imageAlt: 'Signing a Dutch rental contract with a fountain pen',
+      image2: '/images/housing-interior.jpg?v=20260731',
+      image2Alt: 'Living room of a Dutch canal house apartment',
     },
     {
       slug: 'temporary-housing-for-expats-netherlands',
@@ -436,6 +596,44 @@ export const housing: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Short stay, in practice',
+        intro:
+          'A temporary base is a bridge, and bridges are worth choosing carefully. These are the conditions that decide whether yours works.',
+        items: [
+          'Short-stay rentals typically run from one to six months and cost more per month than a standard lease, often thirty to fifty percent more.',
+          'Registration at the address is only possible where both the landlord and the municipality permit it, and many short-stay addresses do not.',
+          'Without registration there is no BSN, which delays health insurance, banking and in some cases salary payment.',
+          'Most short-stay properties are furnished with utilities and internet included, but cleaning and linen often are not.',
+          'Minimum stays, cancellation terms and deposits vary widely between operators and are rarely negotiable.',
+          'We place clients only in properties we would use ourselves, and decline operators whose contracts we do not trust.',
+        ],
+      },
+      details: {
+        title: 'Using the bridge properly',
+        items: [
+          {
+            q: 'Can I register at a short-stay address?',
+            a:
+              'Sometimes, and it changes everything. We filter for registration-friendly properties from the start, because a base that allows registration lets your BSN, insurance and salary run from week one instead of month three. Where registration is impossible we plan around it deliberately rather than discover it late.',
+          },
+          {
+            q: 'How long should I book for?',
+            a:
+              'Six to ten weeks suits most arrivals. It gives the permanent search room to breathe without paying the short-stay premium longer than necessary, and most operators will extend if the search runs on.',
+          },
+          {
+            q: 'Is a hotel cheaper?',
+            a:
+              'For under three weeks, often yes. Beyond that, short-stay apartments win on both cost and sanity, particularly for families. The tipping point usually falls around the third week.',
+          },
+          {
+            q: 'What about belongings arriving from abroad?',
+            a:
+              'Short-stay contracts rarely include storage. We coordinate your shipment against the permanent address rather than the temporary one, and arrange storage in the region when the timings will not meet.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -459,8 +657,10 @@ export const housing: SectionContent = {
         label: 'Arrange my temporary home',
       },
       form: 'relocation',
-      image: '/images/housing-interior.jpg?v=20260728',
-      imageAlt: 'A furnished short-stay apartment ready for a new arrival',
+      image: '/images/housing-interior.jpg?v=20260731',
+      imageAlt: 'Living room of a Dutch canal house apartment',
+      image2: '/images/entrepreneur-housing.jpg',
+      image2Alt: 'Bright furnished apartment ready for a new arrival',
     },
     {
       slug: 'landlord-communication-support-netherlands',
@@ -523,6 +723,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'For matters that genuinely belong in front of the rent tribunal or a court, we prepare your file and refer you to a specialized tenancy lawyer. You never pay us to do what a lawyer should do.',
+      conditions: {
+        title: 'What we can and cannot do',
+        intro:
+          'Most tenancy disputes are won by writing the right thing in the right language at the right moment. That is the work.',
+        items: [
+          'We correspond with landlords and agents in Dutch, in your name, with you copied on everything that goes out.',
+          'Repairs affecting safety, heating or water must be reported to the landlord first. A landlord who then fails to act can be taken to the Huurcommissie.',
+          'Deposits must be returned within a reasonable period after the final inspection, and any deduction must be itemised and evidenced.',
+          'Normal wear and tear may not be deducted from your deposit. Actual damage may.',
+          'For disputes about rent level, service charges and maintenance, the Huurcommissie is usually far faster and cheaper than court.',
+          'We are not a law firm. Where a dispute needs legal proceedings we hand over to a Dutch housing lawyer and stay on as your interpreter.',
+        ],
+      },
+      details: {
+        title: 'The disputes we handle most',
+        items: [
+          {
+            q: 'My landlord is withholding the deposit.',
+            a:
+              'The most common dispute and usually the most winnable. We request an itemised statement with evidence, separate normal wear from actual damage, set the check-in report against the check-out, and give a formal deadline in Dutch. Most deposits come back at that stage without any proceedings at all.',
+          },
+          {
+            q: 'Repairs are being ignored.',
+            a:
+              'We report formally and in writing, which starts the clock legally rather than socially. If nothing happens, the Huurcommissie can order a temporary rent reduction until the repair is made, and the prospect of that usually produces a plumber.',
+          },
+          {
+            q: 'My service charges jumped without explanation.',
+            a:
+              'Landlords must provide an annual settlement showing actual costs against what you paid. We request it, check it against meter readings and challenge the parts that cannot be evidenced.',
+          },
+          {
+            q: 'I need to leave early.',
+            a:
+              'Most indefinite contracts allow a tenant to terminate on one month\'s notice, whatever is said at the door. We check the clause, serve notice correctly and manage the final inspection so the deposit comes back intact.',
+          },
+        ],
+      },
       faq: {
         title: 'Frequently asked questions',
         items: [
@@ -546,8 +784,10 @@ export const housing: SectionContent = {
         label: 'Hand it over',
       },
       form: 'relocation',
-      image: '/images/landlord-communication.jpg',
-      imageAlt: 'Consultant shaking hands with a landlord at the door',
+      image: '/images/landlord-communication.jpg?v=20260731',
+      imageAlt: 'Consultant and landlord shaking hands in an apartment',
+      image2: '/images/housing-viewing.jpg?v=20260731',
+      image2Alt: 'Viewing an apartment with a consultant present',
     },
   ],
   cta: {

@@ -47,7 +47,7 @@ export const core: CoreContent = {
         'Nadat u dit formulier verstuurt, bekijkt Johanna uw situatie persoonlijk en reageert zij binnen één werkdag met een eerlijke inschatting of en hoe wij kunnen helpen. Valt uw vraag buiten onze diensten of regio, dan zeggen wij dat direct.',
     },
     footer: {
-      tagline: 'Boutique relocatie- en immigratiediensten voor expats die naar Rotterdam, Europoort en de bredere havenregio verhuizen.',
+      tagline: 'Een boutique relocatie-adviespraktijk voor internationale professionals en gezinnen die zich vestigen in Rotterdam, Europoort en de bredere havenregio.',
       services: 'Diensten',
       company: 'Bedrijf',
       contactHeading: 'Contact',
@@ -61,16 +61,18 @@ export const core: CoreContent = {
       whatsIncluded: 'Wat is inbegrepen',
       otherServices: 'Andere diensten',
       relatedGuides: 'Gerelateerde gidsen',
+      conditions: 'Voorwaarden',
+      investment: 'Investering',
     },
   },
 
   home: {
     metaTitle: 'Boutique Relocatie- & Immigratiediensten in Nederland | E & I',
     metaDescription:
-      'Persoonlijke relocatie- en immigratiebegeleiding voor expats, gezinnen en ondernemers die naar Rotterdam, Europoort en de Nederlandse industrieregio verhuizen. Visa, wonen, BSN, scholen en VIP-pakketten.',
+      'Een boutique relocatie-adviespraktijk voor internationale professionals, gezinnen en ondernemers in Rotterdam, Europoort en de bredere havenregio. Wonen, scholen, inschrijvingen, immigratie en VIP-pakketten.',
     hero: {
       h1: 'Boutique relocatie- en immigratiediensten in Nederland',
-      sub: 'Persoonlijke relocatiebegeleiding voor expats, gezinnen, ondernemers en internationale professionals die naar Rotterdam, Europoort en de Nederlandse industrieregio verhuizen.',
+      sub: 'Een private relocatie-adviespraktijk voor internationale professionals, gezinnen en ondernemers die zich vestigen in Rotterdam, Europoort en de bredere havenregio. Immigratie hoort erbij, maar is nooit het hele verhaal.',
       ctaPrimary: 'Plan een relocatiegesprek',
       ctaWhatsapp: 'Stuur ons direct een WhatsApp',
       ctaSecondary: 'Start uw relocatie',
@@ -78,7 +80,7 @@ export const core: CoreContent = {
     },
     paths: {
       heading: 'Hoe kunnen wij u helpen aankomen?',
-      sub: 'Immigratie, wonen, relocatie en VIP-ondersteuning, geregeld via één bedrijf. Kies uw weg naar binnen en één persoon kent uw naam, van het eerste bericht tot de dag dat u zich thuis voelt.',
+      sub: 'Relocatie, wonen, VIP-ondersteuning en immigratie, begeleid door één adviespraktijk. Kies uw weg naar binnen en één persoon kent uw naam, van het eerste bericht tot de dag dat u zich thuis voelt.',
       items: [
         {
           key: 'immigration',
@@ -86,8 +88,8 @@ export const core: CoreContent = {
           text: 'Visa en vergunningen voor professionals, partners, gezinnen en oprichters. Zorgvuldig voorbereid en persoonlijk begeleid, van toetsing tot goedkeuring.',
           label: 'Ontdek immigratie',
           path: '/immigration',
-          image: '/images/path-immigration.jpg?v=20260728',
-          imageAlt: 'Adviseur die een cliënt begeleidt bij verblijfsdocumenten',
+          image: '/images/path-immigration.jpg?v=20260731',
+          imageAlt: 'Adviseur in gesprek met een internationale cliënt',
         },
         {
           key: 'relocation',
@@ -95,7 +97,7 @@ export const core: CoreContent = {
           text: 'Complete relocatiepakketten of losse diensten: woningzoektocht, scholen, BSN, verzekeringen en alles daartussenin.',
           label: 'Ontdek relocatie',
           path: '/relocation',
-          image: '/images/path-relocation.jpg?v=20260728',
+          image: '/images/path-relocation.jpg?v=20260731',
           imageAlt: 'Gezin dat aankomt bij een Nederlands grachtenpand',
         },
         {
@@ -104,7 +106,7 @@ export const core: CoreContent = {
           text: 'Voor artiesten, sporters, bestuurders en wie maar één weekend heeft. Uw hele verhuizing georkestreerd rond één bezoek, met elke deur al open.',
           label: 'Ontdek VIP-diensten',
           path: '/vip-services',
-          image: '/images/path-vip.jpg?v=20260728',
+          image: '/images/path-vip.jpg?v=20260731',
           imageAlt: 'Chauffeur die een autodeur opent tegen de skyline van Rotterdam',
         },
       ],
@@ -203,8 +205,8 @@ export const core: CoreContent = {
       ],
       label: 'Gezinsrelocatiediensten',
       path: '/relocation/family-relocation-netherlands',
-      image: '/images/relocation-family.jpg?v=20260728',
-      imageAlt: 'Ouders en kinderen die dozen uitpakken in hun nieuwe Nederlandse huis',
+      image: '/images/family-unpacking.jpg?v=20260731',
+      imageAlt: 'Gezin geïnstalleerd in hun nieuwe Nederlandse woonkamer',
       links: [
         { label: 'Family VIP Package', path: '/vip-services/family-relocation-immigration-services-netherlands' },
         { label: 'Scholenzoektocht', path: '/relocation/school-search-netherlands' },
@@ -213,10 +215,10 @@ export const core: CoreContent = {
     },
     whyBoutique: {
       eyebrow: 'Waarom boutique',
-      heading: 'Eén bureau. Eén persoon. Uw naam.',
+      heading: 'Eén adviespraktijk. Eén persoon. Uw naam.',
       text: [
-        'Grote relocatiebureaus geven u een ticketnummer. Een boutique bureau geeft u een persoon. Johanna bouwde haar reputatie op in de ambassadewereld, waar discretie en precisie geen eigenschappen zijn, maar de functieomschrijving.',
-        'Wij zijn geen algemeen expatbureau dat elke denkbare dienst aanbiedt. Wij doen immigratie, wonen, relocatie en VIP-ondersteuning voor één regio, via één bedrijf, en dat doen wij volledig.',
+        'Grote relocatiebureaus geven u een ticketnummer. Een boutique adviespraktijk geeft u een persoon. Johanna bouwde haar reputatie op in de ambassadewereld, waar discretie en precisie geen eigenschappen zijn, maar de functieomschrijving.',
+        'Wij zijn geen relocatiefabriek die elke denkbare dienst aanbiedt. Wij doen relocatie, wonen, VIP-ondersteuning en immigratie voor één regio, via één bedrijf, en dat doen wij volledig.',
       ],
       points: [
         {

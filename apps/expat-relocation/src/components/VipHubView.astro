@@ -40,7 +40,7 @@ const l = (p: string) => localizePath(p, lang);
         href={l(`${SECTIONS.vip}/${p.slug}`)}
         class:list={[
           'card group flex h-full flex-col',
-          p.badge ? 'border-navy bg-navy text-white' : 'bg-ivory',
+          p.badge ? 'border-navy bg-navy text-white' : 'bg-sand',
         ]}
       >
         <div class="relative overflow-hidden">
@@ -82,7 +82,7 @@ const l = (p: string) => localizePath(p, lang);
 </section>
 
 <!-- Pricing context -->
-<section class="border-t border-line bg-ivory">
+<section class="border-t border-line-warm band-sand">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl">
       <h2 class="text-center font-display text-3xl md:text-4xl">{v.pricingNote.title}</h2>

@@ -47,7 +47,7 @@ export const core: CoreContent = {
         'After you send this form, Johanna personally reviews your situation and replies within one business day with an honest assessment of whether and how we can help. If your request falls outside our services or region, we tell you straight away.',
     },
     footer: {
-      tagline: 'Boutique relocation and immigration services for expats moving to Rotterdam, Europoort and the wider port region.',
+      tagline: 'A boutique relocation consultancy for international professionals and families settling in Rotterdam, Europoort and the wider port region.',
       services: 'Services',
       company: 'Company',
       contactHeading: 'Contact',
@@ -61,16 +61,18 @@ export const core: CoreContent = {
       whatsIncluded: 'What is included',
       otherServices: 'Other services',
       relatedGuides: 'Related guides',
+      conditions: 'Conditions',
+      investment: 'Investment',
     },
   },
 
   home: {
     metaTitle: 'Boutique Relocation & Immigration Services in the Netherlands | E & I',
     metaDescription:
-      'Personal relocation and immigration guidance for expats, families and entrepreneurs moving to Rotterdam, Europoort and the Dutch industrial region. Visas, housing, BSN, schools and VIP packages.',
+      'A boutique relocation consultancy for international professionals, families and entrepreneurs settling in Rotterdam, Europoort and the wider port region. Housing, schools, registrations, immigration and VIP packages.',
     hero: {
       h1: 'Boutique Relocation & Immigration Services in the Netherlands',
-      sub: 'Personal relocation guidance for expats, families, entrepreneurs and international professionals moving to Rotterdam, Europoort and the Dutch industrial region.',
+      sub: 'A private relocation consultancy for international professionals, families and entrepreneurs settling in Rotterdam, Europoort and the wider port region. Immigration included, never the whole story.',
       ctaPrimary: 'Book a relocation consultation',
       ctaWhatsapp: 'WhatsApp us directly',
       ctaSecondary: 'Start your relocation',
@@ -78,7 +80,7 @@ export const core: CoreContent = {
     },
     paths: {
       heading: 'How can we help you arrive?',
-      sub: 'Immigration, housing, relocation and VIP support, handled through one company. Choose your way in and one person knows your name from the first message to the day you feel at home.',
+      sub: 'Relocation, housing, VIP support and immigration, handled by one consultancy. Choose your way in and one person knows your name from the first message to the day you feel at home.',
       items: [
         {
           key: 'immigration',
@@ -86,8 +88,8 @@ export const core: CoreContent = {
           text: 'Visas and permits for professionals, partners, families and founders. Prepared precisely, guided personally, from eligibility to approval.',
           label: 'Explore immigration',
           path: '/immigration',
-          image: '/images/path-immigration.jpg?v=20260728',
-          imageAlt: 'Advisor guiding a client through residence documents',
+          image: '/images/path-immigration.jpg?v=20260731',
+          imageAlt: 'Advisor in conversation with an international client',
         },
         {
           key: 'relocation',
@@ -95,7 +97,7 @@ export const core: CoreContent = {
           text: 'Complete relocation packages or individually booked services: housing search, schools, BSN, insurance and everything in between.',
           label: 'Explore relocation',
           path: '/relocation',
-          image: '/images/path-relocation.jpg?v=20260728',
+          image: '/images/path-relocation.jpg?v=20260731',
           imageAlt: 'Family arriving at a Dutch canal-side home',
         },
         {
@@ -104,7 +106,7 @@ export const core: CoreContent = {
           text: 'For artists, athletes, executives and weekend fly-ins. Your entire move orchestrated around one visit, with every door already open.',
           label: 'Explore VIP services',
           path: '/vip-services',
-          image: '/images/path-vip.jpg?v=20260728',
+          image: '/images/path-vip.jpg?v=20260731',
           imageAlt: 'Chauffeur opening a car door against the Rotterdam skyline',
         },
       ],
@@ -203,8 +205,8 @@ export const core: CoreContent = {
       ],
       label: 'Family relocation services',
       path: '/relocation/family-relocation-netherlands',
-      image: '/images/relocation-family.jpg?v=20260728',
-      imageAlt: 'Parents and children unpacking boxes in their new Dutch home',
+      image: '/images/family-unpacking.jpg?v=20260731',
+      imageAlt: 'Family settled into their new Dutch living room',
       links: [
         { label: 'Family VIP Package', path: '/vip-services/family-relocation-immigration-services-netherlands' },
         { label: 'School search', path: '/relocation/school-search-netherlands' },
@@ -213,10 +215,10 @@ export const core: CoreContent = {
     },
     whyBoutique: {
       eyebrow: 'Why boutique',
-      heading: 'One agency. One person. Your name.',
+      heading: 'One consultancy. One person. Your name.',
       text: [
-        'Large relocation firms assign you a ticket number. A boutique agency assigns you a person. Johanna built her reputation in the embassy world, where discretion and precision are not qualities, they are the job description.',
-        'We are not a general expat agency offering every possible service. We do immigration, housing, relocation and VIP support for one region, through one company, and we do those completely.',
+        'Large relocation firms assign you a ticket number. A boutique consultancy assigns you a person. Johanna built her reputation in the embassy world, where discretion and precision are not qualities, they are the job description.',
+        'We are not a volume relocation firm offering every possible service. We do relocation, housing, VIP support and immigration for one region, through one company, and we do those completely.',
       ],
       points: [
         {

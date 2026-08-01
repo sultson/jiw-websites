@@ -10,7 +10,7 @@ export const vip: VipContent = {
     'Artiesten met tourschema’s. Sporters tussen twee seizoenen. Bestuurders met één vrij weekend en oprichters zonder. Onze VIP-pakketten bestaan voor mensen wier agenda niet meebuigt, dus buigt Nederland mee.',
     'Elk pakket wordt persoonlijk geleid door Johanna: afspraken gebundeld, deuren vooraf geopend, en een 24/7-lijn die wordt beantwoord door degene die uw dossier kent, niet door een servicedesk.',
   ],
-  image: '/images/vip-hub.jpg',
+  image: '/images/vip-hub.jpg?v=20260731',
   imageAlt: 'Gastheer verwelkomt een stel dat met de auto aankomt bij een hotel aan de gracht',
   pricingNote: {
     title: 'Wat een pakket kost, en waarom',
@@ -150,7 +150,7 @@ export const vip: VipContent = {
         text: 'Vertel ons over uw huishouden en uw data. Wij ontwerpen de aankomst rond het schooljaar.',
         label: 'Start uw VIP-aanvraag',
       },
-      image: '/images/vip-family.jpg?v=20260728',
+      image: '/images/vip-family.jpg?v=20260731',
       imageAlt: 'Gezin dat in het avondlicht aankomt bij een Nederlandse villa',
     },
     {
@@ -214,7 +214,7 @@ export const vip: VipContent = {
         text: 'Vertel ons uw plannen en uw tijdvenster. Wij komen terug met een volgorde en een vaste offerte.',
         label: 'Start uw VIP-aanvraag',
       },
-      image: '/images/vip-business.jpg?v=20260728',
+      image: '/images/vip-business.jpg?v=20260731',
       imageAlt: 'Bestuurder aan het werk achterin een auto met chauffeur',
     },
     {

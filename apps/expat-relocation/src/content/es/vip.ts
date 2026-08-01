@@ -10,7 +10,7 @@ export const vip: VipContent = {
     'Artistas con calendarios de gira. Deportistas entre temporadas. Ejecutivos con un solo fin de semana libre y fundadores sin ninguno. Nuestros paquetes VIP existen para personas cuyas agendas no se doblan, así que son los Países Bajos los que se doblan.',
     'Cada paquete lo dirige personalmente Johanna: citas consolidadas, puertas abiertas de antemano y una línea 24/7 atendida por la persona que conoce su expediente, no por un centro de atención.',
   ],
-  image: '/images/vip-hub.jpg',
+  image: '/images/vip-hub.jpg?v=20260731',
   imageAlt: 'Anfitrión recibiendo a una pareja que llega en coche a un hotel junto a un canal',
   pricingNote: {
     title: 'Cuánto cuesta un paquete, y por qué',
@@ -150,7 +150,7 @@ export const vip: VipContent = {
         text: 'Cuéntenos sobre su hogar y sus fechas. Diseñaremos la llegada en torno al curso escolar.',
         label: 'Inicie su consulta VIP',
       },
-      image: '/images/vip-family.jpg?v=20260728',
+      image: '/images/vip-family.jpg?v=20260731',
       imageAlt: 'Familia llegando a una villa neerlandesa con la luz del atardecer',
     },
     {
@@ -214,7 +214,7 @@ export const vip: VipContent = {
         text: 'Cuéntenos sus planes y su ventana de tiempo. Volveremos con una secuencia y un presupuesto cerrado.',
         label: 'Inicie su consulta VIP',
       },
-      image: '/images/vip-business.jpg?v=20260728',
+      image: '/images/vip-business.jpg?v=20260731',
       imageAlt: 'Ejecutivo trabajando en la parte trasera de un coche con chófer',
     },
     {

@@ -15,6 +15,8 @@ interface Props {
 const { lang, section, basePath } = Astro.props;
 const c = getContent(lang);
 const l = (p: string) => localizePath(p, lang);
+const crossLinks = section.crossLinks ?? [];
+const cardCount = section.services.length + crossLinks.length;
 ---
 
 <PageHero
@@ -25,36 +27,57 @@ const l = (p: string) => localizePath(p, lang);
   imageAlt={section.imageAlt}
 />
 
-<section class="container-site py-16 md:py-24">
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {section.services.map((s) => (
-      <a href={l(`${basePath}/${s.slug}`)} class="card group flex flex-col bg-ivory">
-        <img
-          src={s.image}
-          alt={s.imageAlt}
-          class="aspect-[16/10] w-full object-cover"
-          width="800"
-          height="500"
-          loading="lazy"
-        />
-        <div class="flex flex-1 flex-col p-6 md:p-7">
-          <h2 class="font-display text-2xl transition-colors group-hover:text-gold">{s.menuLabel}</h2>
-          <p class="mt-2 flex-1 text-[0.92rem] leading-relaxed">{s.cardText}</p>
-          <span class="link-editorial mt-5 self-start">{c.core.ui.cta.readMore}</span>
-        </div>
-      </a>
-    ))}
-    {(section.crossLinks ?? []).map((cl) => (
-      <a href={l(cl.path)} class="card group flex flex-col justify-between bg-white p-6 md:p-7">
-        <div>
-          <h2 class="font-display text-2xl transition-colors group-hover:text-gold">{cl.label}</h2>
-          <p class="mt-2 text-[0.92rem] leading-relaxed">{cl.text}</p>
-        </div>
-        <span class="mt-6 inline-flex items-center gap-2 text-gold">
-          <Icon name="arrow" size={18} />
-        </span>
-      </a>
-    ))}
+<section class="band-sand border-b border-line-warm">
+  <div class="container-site py-16 md:py-24">
+    <div
+      class="grid-balanced grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+      data-layout="cards"
+      data-count={cardCount}
+    >
+      {section.services.map((s) => (
+        <a href={l(`${basePath}/${s.slug}`)} class="card group flex flex-col bg-white">
+          <div class="relative overflow-hidden">
+            <img
+              src={s.image}
+              alt={s.imageAlt}
+              class="aspect-16/10 w-full object-cover"
+              width="800"
+              height="500"
+              loading="lazy"
+            />
+            <div class="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-gold to-gold/10"></div>
+          </div>
+          <div class="flex flex-1 flex-col p-6 md:p-7">
+            <h2 class="font-display text-2xl transition-colors group-hover:text-gold">{s.menuLabel}</h2>
+            <p class="mt-2 flex-1 text-[0.92rem] leading-relaxed">{s.cardText}</p>
+            <span class="link-editorial mt-5 self-start">{c.core.ui.cta.readMore}</span>
+          </div>
+        </a>
+      ))}
+      {crossLinks.map((cl, index) => (
+        <a
+          href={l(cl.path)}
+          class:list={[
+            'card group flex flex-col justify-center bg-navy p-7 md:p-8',
+            cardCount % 3 === 1 && index === crossLinks.length - 1 &&
+              'lg:col-span-3 lg:min-h-56 lg:items-center lg:px-16 lg:text-center',
+          ]}
+        >
+          <span class="gold-rule"></span>
+          <h2 class="mt-5 font-display text-2xl text-white transition-colors group-hover:text-gold-soft">{cl.label}</h2>
+          <p class="mt-2.5 max-w-2xl text-[0.92rem] leading-relaxed text-white/75">{cl.text}</p>
+          <span
+            class:list={[
+              'link-editorial link-editorial-light mt-6 self-start',
+              cardCount % 3 === 1 && index === crossLinks.length - 1 && 'lg:self-center',
+            ]}
+          >
+            {c.core.ui.cta.readMore}
+            <Icon name="arrow" size={14} />
+          </span>
+        </a>
+      ))}
+    </div>
   </div>
 </section>
 

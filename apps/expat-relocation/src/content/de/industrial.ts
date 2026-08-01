@@ -73,6 +73,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Was Europoort für Ihren Umzug bedeutet',
+        intro:
+          'Der Hafen setzt die Rahmenbedingungen. Wohnen, Anmeldung und Familienleben richten sich nach Tor und Schichtplan.',
+        items: [
+          'Der Weg nach Europoort dauert fünfundvierzig bis siebzig Minuten vom Zentrum Rotterdams und zwanzig bis dreißig aus Hoogvliet, Spijkenisse oder Brielle.',
+          'Schicht- und Rotationsdienste machen den Nahverkehr an den meisten Toren unpraktisch, weshalb Parken und ein Auto die Wohnentscheidung prägen.',
+          'Der Zugang zum Gelände verlangt Ausweisdokumente und bei vielen Auftragnehmern eine gültige Sicherheitszertifizierung wie VCA.',
+          'Auftragnehmer und Entsandte aus anderen EU-Staaten unterliegen anderen Regeln für Anmeldung, Versicherung und Lohnabrechnung als Direktangestellte.',
+          'Die Anmeldung an Ihrer Adresse bleibt das Tor zu BSN, Gehalt und Versicherung, was Ihr Arbeitgeber auch geregelt hat.',
+          'Wir decken gezielt die Hafenregion ab. Das ist unser eigenes Gebiet und kein landesweiter Dienst, der hier angewandt wird.',
+        ],
+      },
+      details: {
+        title: 'Praktisches für Hafenfachkräfte',
+        items: [
+          {
+            q: 'Wo sollte ich tatsächlich wohnen?',
+            a:
+              'Das hängt von Ihrem Tor und Ihrer Schicht ab, und die ehrliche Antwort lautet oft nicht Rotterdam. Hoogvliet, Spijkenisse, Brielle und Rozenburg bringen Sie binnen einer halben Stunde zu den meisten Terminals und kosten spürbar weniger. Arbeitet Ihr Partner in der Stadt, ändert sich die Rechnung, und wir modellieren beides, bevor Sie sich auf eine Adresse festlegen.',
+          },
+          {
+            q: 'Ich bin von einem ausländischen Arbeitgeber entsandt. Was ist anders?',
+            a:
+              'Fast alles Verwaltungstechnische. Ihre Sozialversicherung kann mit einer A1-Bescheinigung im Heimatland bleiben, Ihr Arbeitgeber hat in den Niederlanden eine Meldepflicht, und Ihre Versicherungspflicht hängt an dieser Struktur statt an Ihrer Adresse. Das falsch zu machen erzeugt doppelte Beiträge oder gar keinen Schutz, deshalb arbeiten wir es konkret durch.',
+          },
+          {
+            q: 'Kann meine Familie später nachkommen?',
+            a:
+              'Ja, und bei Schicht- und Rotationsarbeit ist das oft richtig. Wir planen die erste Phase um Sie und die zweite um sie, damit Schule und Wohnung mit der Familie vor Ort gewählt werden statt vorab geraten.',
+          },
+          {
+            q: 'Wie schnell geht das?',
+            a:
+              'Mit Angebot in der Hand und bereitliegenden Unterlagen dauert eine funktionierende Landung drei bis fünf Wochen: Zwischenbasis, Anmeldung, BSN, Versicherung, Bankgeschäfte und die darunter laufende dauerhafte Wohnungssuche. Legalisierte Unterlagen aus dem Ausland sind das Einzige, was das verlässlich bremst.',
+          },
+        ],
+      },
       faq: {
         title: 'Häufig gestellte Fragen',
         items: [
@@ -96,8 +134,10 @@ export const industrial: SectionContent = {
         label: 'Meinen Europoort-Umzug planen',
       },
       form: 'relocation',
-      image: '/images/europoort.jpg?v=20260728',
+      image: '/images/europoort.jpg?v=20260731',
       imageAlt: 'Raffinerie- und Terminalinfrastruktur am Europoort Rotterdam',
+      image2: '/images/industrial-worker.jpg?v=20260731',
+      image2Alt: 'Führungskraft der Energiebranche im Rotterdamer Hafen im Abendlicht',
     },
     {
       slug: 'maasvlakte-expat-relocation-netherlands',
@@ -159,6 +199,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Die Realität der Maasvlakte',
+        intro:
+          'Maasvlakte 2 ist der äußerste Punkt des Hafens, und die Entfernung ist die eine Tatsache, die jede Entscheidung darum prägt.',
+        items: [
+          'Der Weg dauert sechzig bis neunzig Minuten vom Zentrum Rotterdams und dreißig bis fünfundvierzig aus den westlichen Gemeinden.',
+          'Unmittelbar an den Terminals gibt es kaum Wohnraum, jede Option bedeutet also Fahrzeit.',
+          'Arbeit an den Tiefseeterminals ist stark schichtgebunden, einschließlich Nächten und Wochenenden, was Wohnwahl und Kinderbetreuung berührt.',
+          'Einige Terminals fahren Werksverkehr, und das ändert die Rechnung vollständig, also klären Sie es, bevor Sie eine Adresse wählen.',
+          'Der Geländezugang verlangt gültige Ausweise und bei den meisten Auftragnehmerrollen eine aktuelle Sicherheitszertifizierung.',
+          'Anmeldung, BSN, Versicherung und Lohnabrechnung folgen denselben Regeln wie überall und bleiben das Tor zu allem.',
+        ],
+      },
+      details: {
+        title: 'Rund um das Terminal planen',
+        items: [
+          {
+            q: 'Welche Orte funktionieren am besten?',
+            a:
+              'Brielle, Hellevoetsluis, Spijkenisse, Rozenburg und Oostvoorne bringen die meisten Menschen binnen fünfundvierzig Minuten zu den Terminals, mit mehr Platz und niedrigeren Mieten als die Stadt. Brielle passt besonders zu Familien, die ein historisches Städtchen wollen statt eines Pendlervororts.',
+          },
+          {
+            q: 'Fährt mein Arbeitgeber Werksverkehr?',
+            a:
+              'Mehrere Terminals tun das, und es kann eine entfernte Adresse gut tragbar oder eine nahe überflüssig machen. Das ist unsere erste Frage, denn die Antwort zeichnet die gesamte Wohnungssuche neu.',
+          },
+          {
+            q: 'Wie wirken sich Nachtschichten auf das Wohnen aus?',
+            a:
+              'Stärker, als Menschen erwarten. An einem Werktagmorgen durchzuschlafen gelingt in einer hellhörigen Wohnung über einer belebten Straße nicht, und das ist der häufigste Grund, warum eine erste Mietwohnung scheitert. Wir prüfen den Lärm zu der Zeit, in der Sie tatsächlich schlafen, nicht zur Besichtigungszeit.',
+          },
+          {
+            q: 'Und Familienleben bei rotierendem Schichtplan?',
+            a:
+              'Das funktioniert, verlangt aber Planung statt Improvisation. Schulen mit Randzeitenbetreuung, ein Partner, der fahren kann, und ein Viertel, in dem auch zu ungewöhnlichen Zeiten etwas los ist, wiegen schwerer als Quadratmeter. Wir bauen die Suche um den Schichtplan statt um die Anzeige.',
+          },
+        ],
+      },
       faq: {
         title: 'Häufig gestellte Fragen',
         items: [
@@ -184,6 +262,8 @@ export const industrial: SectionContent = {
       form: 'relocation',
       image: '/images/maasvlakte.jpg?v=20260728',
       imageAlt: 'Containerterminals und Kräne am Tiefseehafen Maasvlakte',
+      image2: '/images/industrial-worker.jpg?v=20260731',
+      image2Alt: 'Führungskraft der Energiebranche im Rotterdamer Hafen im Abendlicht',
     },
     {
       slug: 'offshore-expat-services-netherlands',
@@ -246,6 +326,44 @@ export const industrial: SectionContent = {
         ],
       },
       note: 'Steuer- und Sozialversicherungspositionen im Offshore-Bereich variieren mit Flaggenstaat, Arbeitgeber und Arbeitstagen; wir melden uns, wenn Ihre Situation einen Spezialisten für grenzüberschreitende Steuern braucht, und verbinden Sie mit einem aus unserem Netzwerk.',
+      conditions: {
+        title: 'Was Rotationsarbeit verändert',
+        intro:
+          'Eine Offshore-Rotation durchbricht die meisten Annahmen, auf denen die niederländische Verwaltung beruht. Dies sind die wichtigsten.',
+        items: [
+          'Die Anmeldung an einer niederländischen Adresse bleibt erforderlich, wenn die Niederlande Ihr Hauptwohnsitz sind, unabhängig vom Rotationsmuster.',
+          'Lange Abwesenheiten können Anmeldung, Anspruch auf Krankenversicherung und die Kontinuität für den Daueraufenthalt berühren.',
+          'Ihre Sozialversicherung kann mit einer A1-Bescheinigung in einem anderen Land liegen, was Ihre Versicherungspflicht vollständig ändert.',
+          'Vermieter beurteilen Rotationseinkommen anders, und unregelmäßige Zahlungsmuster gehören in die Akte erklärt statt danach.',
+          'Seeleute und Offshore-Beschäftigte können unter besondere Steuer- und Sozialversicherungsregeln fallen, die für Landpersonal nicht gelten.',
+          'Wir übernehmen die niederländische Seite. Grenzüberschreitende Steuern und Lohnabrechnung gehen an Spezialisten, denen wir Sie vorstellen.',
+        ],
+      },
+      details: {
+        title: 'Eine Rotation an Land zum Laufen bringen',
+        items: [
+          {
+            q: 'Lässt sich alles in einer Landphase erledigen?',
+            a:
+              'Meist ja, und so planen wir es. Termine, Besichtigungen, Anmeldung, Bankgeschäfte und Versicherung pressen wir in eine intensive Woche an Land, statt sie über drei Rotationen zu verteilen. Das verlangt Vorbereitung von uns und bereitliegende Unterlagen von Ihnen.',
+          },
+          {
+            q: 'Was passiert, während ich auf See bin?',
+            a:
+              'Wir bleiben praktisch Ihre Adresse: Post bearbeitet, Fristen bewacht, Fragen des Vermieters beantwortet, Termine verschoben. Ihre Familie, wenn sie hier ist, hat eine Nummer zum Anrufen, die keine Auslandsnummer ist.',
+          },
+          {
+            q: 'Wie wirken Abwesenheiten auf den Daueraufenthalt?',
+            a:
+              'Ununterbrochener Aufenthalt wird durch Abwesenheiten von mehr als sechs zusammenhängenden Monaten oder mehr als vier Monaten pro Jahr im Qualifikationszeitraum unterbrochen. Rotationen liegen meist deutlich darunter, aber die Rechnung lohnt bewusst, wenn Sie auf den Daueraufenthalt zuarbeiten.',
+          },
+          {
+            q: 'Welche Versicherung gilt für mich?',
+            a:
+              'Das hängt davon ab, wo Ihr Arbeitgeber sitzt, unter welcher Flagge Sie fahren und ob eine A1-Bescheinigung vorliegt. Offshore ist der Bereich, in dem wir am häufigsten doppelt oder gar nicht versicherte Menschen antreffen, deshalb klären wir das beim Erstgespräch, statt die Standardantwort anzunehmen.',
+          },
+        ],
+      },
       faq: {
         title: 'Häufig gestellte Fragen',
         items: [
@@ -269,8 +387,10 @@ export const industrial: SectionContent = {
         label: 'Meine Heimatbasis einrichten',
       },
       form: 'relocation',
-      image: '/images/industrial-worker.jpg?v=20260728',
-      imageAlt: 'Ein Offshore-Profi in Arbeitskleidung an einer Hafenanlage',
+      image: '/images/industrial-worker.jpg?v=20260731',
+      imageAlt: 'Führungskraft der Energiebranche im Rotterdamer Hafen im Abendlicht',
+      image2: '/images/industrial-hub.jpg',
+      image2Alt: 'Das Hafenindustriecluster in der Dämmerung',
     },
     {
       slug: 'relocation-for-logistics-professionals-netherlands',
@@ -332,6 +452,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Tempo, und was es begrenzt',
+        intro:
+          'Die Logistik bewegt sich schnell, und Eintrittstermine warten selten. Diese Grenzen entscheiden, wie schnell eine Landung wirklich sein kann.',
+        items: [
+          'Mit bereitliegenden Unterlagen dauert eine funktionierende Landung drei bis fünf Wochen: Basis, Anmeldung, BSN, Versicherung, Bankgeschäfte.',
+          'Legalisierte Geburts- und Heiratsurkunden lassen sich nicht mehr beschaffen, wenn Sie bereits hier sind, und sind die häufigste Verzögerungsursache.',
+          'Die Verfügbarkeit kommunaler Termine schwankt saisonal und kann ein bis drei Wochen hinzufügen.',
+          'Schichtmodelle und Distributionsstandorte außerhalb der Stadt machen ein Auto meist notwendig, was das Wohnbudget berührt.',
+          'Arbeitgeber, die mehrere Personen gleichzeitig einstellen, können Anmeldungen und Besichtigungen bündeln, was den Zeitplan deutlich verkürzt.',
+          'Für Nicht-EU-Einstellungen muss der Antrag genehmigt sein, bevor die Arbeit beginnt. Keine Arbeitgeberanweisung ändert daran etwas.',
+        ],
+      },
+      details: {
+        title: 'Schnell landen, ohne zu schludern',
+        items: [
+          {
+            q: 'Was lässt sich vor meiner Ankunft erledigen?',
+            a:
+              'Mehr, als die meisten denken. Dokumentenprüfung, Legalisierung, die Antragsakte, der kommunale Termin, die Wohnungsauswahl und die Besichtigungen können alle laufen, während Sie noch im Ausland sind, sodass die erste niederländische Woche Umsetzung ist statt Entdeckung.',
+          },
+          {
+            q: 'Wir stellen eine Gruppe ein. Hilft das?',
+            a:
+              'Erheblich. Gebündelte Anmeldungen, eine gemeinsame Zwischenbasis und koordinierte Besichtigungen senken Kosten und Zeit pro Person, und eine Beraterin, die die ganze Gruppe hält, gibt HR eine Übersicht statt einer Reihe einzelner Probleme.',
+          },
+          {
+            q: 'Wo sollte Logistikpersonal wohnen?',
+            a:
+              'Nahe am Distributionscluster statt nahe am Zentrum. Die Standorte an Waalhaven, Botlek und dem A15-Korridor erreicht man am besten aus Hoogvliet, Spijkenisse, Barendrecht und Ridderkerk, und die Mieten liegen dort spürbar unter denen in Rotterdam selbst.',
+          },
+          {
+            q: 'Was ist der häufigste Fehler?',
+            a:
+              'Mit der Wohnungssuche zu beginnen, bevor der Anmeldeweg klar ist. Eine Wohnung ohne Anmeldemöglichkeit blockiert die BSN, das blockiert die Lohnabrechnung, und ein Neuankömmling arbeitet sechs Wochen ohne ordentliche Bezahlung. Wir klären die Anmeldung immer zuerst.',
+          },
+        ],
+      },
       faq: {
         title: 'Häufig gestellte Fragen',
         items: [
@@ -355,8 +513,10 @@ export const industrial: SectionContent = {
         label: 'Meinen Umzug beschleunigen',
       },
       form: 'relocation',
-      image: '/images/logistics-worker.jpg?v=20260728',
-      imageAlt: 'Ein Logistikprofi bei der Arbeit in einem Rotterdamer Distributionsgebiet',
+      image: '/images/logistics-worker.jpg?v=20260731',
+      imageAlt: 'Logistikleiter mit Blick auf das Rotterdamer Hafenterminal',
+      image2: '/images/europoort.jpg?v=20260731',
+      image2Alt: 'Der Rotterdamer Hafen im Abendlicht',
     },
     {
       slug: 'rotterdam-industrial-expat-services',
@@ -422,6 +582,44 @@ export const industrial: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Wie wir mit dem Cluster arbeiten',
+        intro:
+          'Wir bedienen beide Seiten des Hafenindustrieclusters, Arbeitgeber und Beschäftigte, also müssen unsere Bedingungen klar sein.',
+        items: [
+          'Wir decken Rotterdam, Botlek, Europoort, Maasvlakte, Pernis und den weiteren A15-Korridor ab.',
+          'Arbeitgeber können uns pro Mitarbeiter, pro Projekt oder über einen Rahmenvertrag für laufende Einstellungen beauftragen.',
+          'Nicht-EU-Einstellungen brauchen eine genehmigte Erlaubnis vor Arbeitsbeginn und anerkanntes Sponsoring, bevor ein Antrag gestellt werden kann.',
+          'Entsandte aus anderen EU-Einheiten fallen unter ein eigenes Meldeverfahren mit eigenen Pflichten.',
+          'Jeder mitziehende Mitarbeiter wird einzeln angemeldet, wie groß die Gruppe auch ist, und jede Familie braucht eigene Unterlagen.',
+          'Wir übernehmen Reparaturarbeit für bereits gescheiterte Landungen und sagen klar, was sich beheben lässt und was nicht.',
+        ],
+      },
+      details: {
+        title: 'Für Arbeitgeber im Cluster',
+        items: [
+          {
+            q: 'Können Sie eine bereits gescheiterte Landung übernehmen?',
+            a:
+              'Ja, und das tun wir regelmäßig. Adressen ohne Anmeldung, fehlende BSN, unbezahlte Gehälter, weil die Lohnabrechnung nicht laufen kann, eine nie abgeschlossene Versicherung, eine Familie, die an einem Dokumentenproblem festhängt. Das ist unglamouröse Arbeit und oft das Wertvollste, was wir tun.',
+          },
+          {
+            q: 'Wie sieht ein Rahmenvertrag aus?',
+            a:
+              'Ein Ansprechpartner, vereinbarte Servicelevel je Landung, feste Preise pro Mitarbeiter und eine Übersicht für HR über jeden laufenden Fall. Für Arbeitgeber mit laufendem Bedarf entfällt damit die Verhandlung je Einstellung.',
+          },
+          {
+            q: 'Übernehmen Sie neben dem Umzug auch die Immigration?',
+            a:
+              'Ja, und das ist der Grund, warum Unternehmen uns beauftragen statt einer reinen Relocation-Agentur. Erlaubnisse, Sponsoring, Anmeldung, Wohnen und Familienbetreuung liegen bei einem Haus, sodass nichts zwischen zwei Dienstleister fällt.',
+          },
+          {
+            q: 'Wie helfen Sie uns, Menschen zu halten?',
+            a:
+              'Indem wir die ersten sechs Monate für die Familie funktionieren lassen und nicht nur für den Mitarbeiter. Die meisten frühen Abgänge aus diesem Cluster gehen auf einen Partner ohne Arbeit zurück, ein Kind, das nie ankam, oder eine Wohnsituation, die sich nie richtig anfühlte, und jedes davon ist lösbar, wenn früh genug jemand hinsieht.',
+          },
+        ],
+      },
       faq: {
         title: 'Häufig gestellte Fragen',
         items: [
@@ -445,8 +643,10 @@ export const industrial: SectionContent = {
         label: 'Mit uns partnern',
       },
       form: 'relocation',
-      image: '/images/rotterdam-industrial.jpg',
+      image: '/images/rotterdam-industrial.jpg?v=20260731',
       imageAlt: 'Arbeiter in Warnwesten im Hafen mit der Rotterdamer Skyline im Hintergrund',
+      image2: '/images/industrial-hub.jpg?v=20260731',
+      image2Alt: 'Das Hafenindustriecluster in der Dämmerung',
     },
   ],
   cta: {

@@ -15,13 +15,16 @@ const nav = c.core.ui.nav;
 
 const l = (p: string) => localizePath(p, lang);
 
+/* Order is positioning: this is a relocation consultancy that also handles
+   immigration, not an immigration agency. Relocation, housing and VIP lead;
+   immigration and business follow. Do not put immigration back in first place. */
 const navItems = [
   { label: nav.home, href: l('/') },
-  { label: nav.immigration, href: l(SECTIONS.immigration) },
-  { label: nav.housing, href: l(SECTIONS.housing) },
   { label: nav.relocation, href: l(SECTIONS.relocation) },
-  { label: nav.business, href: l(SECTIONS.business) },
+  { label: nav.housing, href: l(SECTIONS.housing) },
   { label: nav.vip, href: l(SECTIONS.vip) },
+  { label: nav.immigration, href: l(SECTIONS.immigration) },
+  { label: nav.business, href: l(SECTIONS.business) },
   { label: nav.guides, href: l(SECTIONS.guides) },
   { label: nav.about, href: l(SECTIONS.about) },
   { label: nav.contact, href: l(SECTIONS.contact) },
@@ -51,9 +54,11 @@ const isActive = (href: string) => {
           {LANG_LABELS[lang]}
           <Icon name="chevronDown" size={12} />
         </button>
+        <!-- z-20 is load-bearing: the logo row below is `relative`, so without it
+             that row paints over the first menu items and swallows their clicks. -->
         <div
           id="lang-menu"
-          class="absolute left-0 top-full hidden min-w-40 border border-line bg-white py-2 shadow-card"
+          class="absolute left-0 top-full z-20 hidden min-w-40 border border-line bg-white py-2 shadow-card"
         >
           {LANGS.map((lg) => (
             <a

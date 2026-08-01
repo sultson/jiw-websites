@@ -10,8 +10,8 @@ export const business: SectionContent = {
     'Visa-Kanzleien besorgen Aufenthaltstitel. Gründungsagenten registrieren Firmen. Wohnungsmakler finden Apartments. Ein internationaler Unternehmer braucht alle drei gleichzeitig, plus eine Familie, die wirklich bleiben will, und niemand bietet Ihnen das als einen Service. Wir schon. Einwanderung, Firmenaufbau, Wohnraum und Relocation, koordiniert von einem Team, das Ihnen verpflichtet ist.',
     'Dasselbe gilt im Unternehmensmaßstab. Wenn ein Unternehmen Menschen in die Niederlande verlegt, relocaten wir das ganze Bild: die Gesellschaft, die Führungskräfte, die Teams und jede Familie, die mitkommt.',
   ],
-  image: '/images/business-meeting.jpg?v=20260728',
-  imageAlt: 'Internationale Unternehmer planen ihre niederländische Firma am Besprechungstisch',
+  image: '/images/rotterdam-evening.jpg',
+  imageAlt: 'Skyline von Rotterdam an der Wilhelminapier im Abendlicht',
   cta: {
     title: 'Bringen Sie Ihr Unternehmen in die Niederlande',
     text: 'Sagen Sie uns, was Sie hier aufbauen wollen und wer mitkommt. Wir legen den vollständigen Weg dar, von den Genehmigungen bis zu den Räumlichkeiten, in einem Plan.',
@@ -24,20 +24,32 @@ export const business: SectionContent = {
       title: 'Unternehmensgründung in den Niederlanden',
       metaTitle: 'Unternehmensgründung in den Niederlanden als Ausländer | E & I',
       metaDescription:
-        'Alles, was ein ausländischer Unternehmer für die Gründung in den Niederlanden braucht: die richtige Aufenthaltsgrundlage, Rechtsform, Registrierungen und eine persönliche Begleitung durch alles.',
+        'Unternehmensgründung in den Niederlanden als ausländischer Unternehmer: die Aufenthaltserlaubnis für Selbstständige, ihre Voraussetzungen, wie IND und RVO Ihren Plan bewerten, und unsere Honorare.',
       eyebrow: 'Unternehmertum',
       intro: [
-        'Die Niederlande sind einer der einfachsten Orte Europas, um Geschäfte zu machen, und einer der verwirrendsten, um als Ausländer zu gründen, denn die Aufenthaltsfrage und die Firmenfrage müssen zusammen beantwortet werden. Die richtige Rechtsform hängt von Ihrer Visumroute ab, und Ihre Visumroute hängt davon ab, was Sie aufbauen.',
-        'Wir entwirren diesen Knoten im allerersten Gespräch. Sie erhalten eine einzige Roadmap für Ihre Aufenthaltsgrundlage, Ihre Firmenstruktur und Ihre ersten Registrierungen, plus einen direkten WhatsApp-Draht zu uns zu jeder Stunde, während Sie sie umsetzen.',
+        'Die Niederlande sind einer der attraktivsten Standorte Europas für internationale Unternehmer: stabile Wirtschaft, hervorragende Infrastruktur und direkter Zugang zum europäischen Markt. Eine Gründung hier als Nicht-EU-Bürger ist mehr als eine Firmenregistrierung, denn in den meisten Fällen brauchen Sie zusätzlich eine Aufenthaltserlaubnis als selbstständiger Unternehmer.',
+        'Wir begleiten Gründer durch den gesamten Prozess, von Einwanderungsstrategie und Businessplan bis zum Antrag auf Aufenthaltserlaubnis, und danach durch die Praxis: Firmenregistrierung, Adresse und Einleben.',
       ],
       cardText: 'Eine Roadmap für Aufenthaltsgrundlage, Firmenstruktur und die ersten Registrierungen.',
       forWho: {
-        title: 'Wer hier startet',
+        title: 'Wer in den Niederlanden gründen kann',
         items: [
-          'Nicht-EU-Unternehmer, die sowohl einen Titel als auch eine Firma brauchen',
-          'EU-Bürger, die sofort starten können, aber den Aufbau richtig gemacht haben wollen',
+          'Staatsangehörige von außerhalb der EU und des EWR, die hier ein Unternehmen aufbauen oder führen wollen',
           'Freelancer und Berater, die eine bestehende Praxis in die Niederlande bringen',
+          'EU-Bürger, die sofort starten können, aber den Aufbau richtig gemacht haben wollen',
           'Gründer, die noch zwischen den Niederlanden und anderen europäischen Standorten wählen',
+        ],
+      },
+      conditions: {
+        title: 'Kernanforderungen der Aufenthaltserlaubnis für Unternehmer',
+        intro:
+          'Anträge werden nach dem wirtschaftlichen Wert des Unternehmens für die Niederlande bewertet. Antragsteller müssen in der Regel nachweisen:',
+        items: [
+          'einen professionellen und tragfähigen Businessplan',
+          'einschlägige unternehmerische oder berufliche Erfahrung',
+          'ausreichende finanzielle Mittel',
+          'die Eintragung bei der niederländischen Handelskammer (KvK)',
+          'wirtschaftlichen Wert für die niederländische Wirtschaft',
         ],
       },
       included: {
@@ -62,11 +74,40 @@ export const business: SectionContent = {
         ],
       },
       process: {
-        title: 'Von der Idee bis zur Eröffnung',
+        title: 'Unsere Arbeitsweise',
         steps: [
-          { title: 'Strategiesitzung', text: 'Ein Erstgespräch zu Unternehmen, Nationalität und Familie. Sie gehen mit der entschiedenen Route.' },
-          { title: 'Titel und Papierkram', text: 'Wir führen Einwanderungsantrag und Firmengründung wo immer möglich parallel.' },
-          { title: 'Türen offen', text: 'Registriert, mit Konto, versichert und untergebracht. Sie stellen Rechnungen, während wir die letzten Fäden verknoten.' },
+          { title: 'Erste Einwanderungsprüfung', text: 'Wir bewerten Ihre Pläne und bestimmen die passendste Einwanderungsroute für Ihre Nationalität und Ihr Unternehmen.' },
+          { title: 'Businessplan und Unterlagen', text: 'Wir unterstützen bei der Erstellung des Businessplans und der Unterlagen, an denen die Bewertung hängt.' },
+          { title: 'Antrag auf Aufenthaltserlaubnis', text: 'Wir bereiten den Antrag vor und reichen ihn bei der IND ein, während die Firmengründung wo möglich parallel läuft.' },
+          { title: 'Begleitung des Antrags', text: 'Wir verfolgen die Akte und beantworten Rückfragen der Behörden in Ihrem Namen.' },
+        ],
+      },
+      fees: {
+        title: 'Honorar für einen Antrag als selbstständiger Unternehmer',
+        amount: 'ab 2.450 bis 3.500 Euro',
+        includes: [
+          'Einwanderungsberatung und Strategie',
+          'Vorbereitung des Antrags',
+          'Prüfung der Unterlagen',
+          'Kommunikation mit der IND',
+        ],
+        note: 'Von der IND erhobene Behördengebühren sind nicht enthalten. Wo Ihr Fall in dieser Spanne liegt, hängt von der Komplexität des Unternehmens ab und davon, ob Familienmitglieder mit beantragen.',
+      },
+      details: {
+        title: 'Wie Ihr Antrag bewertet wird',
+        items: [
+          {
+            q: 'Wer entscheidet, und worüber?',
+            a: 'Die niederländische Wirtschaftsförderungsagentur (RVO) berät die Einwanderungsbehörde IND, bevor eine endgültige Entscheidung fällt. Bewertet werden Ihr beruflicher Hintergrund und Ihre Erfahrung, Qualität und Machbarkeit des Businessplans, der wirtschaftliche Wert des Unternehmens sowie sein Innovations- oder Beschäftigungspotenzial.',
+          },
+          {
+            q: 'Welche Unternehmen werden positiv bewertet?',
+            a: 'Unternehmen, die zu Innovation, Beschäftigung oder echter wirtschaftlicher Aktivität in den Niederlanden beitragen. Ein Plan, der wie eine Formalie zur Aufenthaltserlangung wirkt, ohne Markt, ohne Kunden und ohne Kapital, ist der häufigste Grund für Ablehnungen.',
+          },
+          {
+            q: 'Welche Rechtsform sollte das Unternehmen haben?',
+            a: 'Eine Eenmanszaak ist schlanker und günstiger, eine BV begrenzt die Haftung und passt zu Wachstum und Investoren. Die richtige Antwort hängt von Ihrer Steuersituation ab und davon, wie die Aufenthaltsroute Ihr Einkommen behandelt, deshalb beraten wir pro Fall statt nach Faustregel.',
+          },
         ],
       },
       faq: {
@@ -84,16 +125,22 @@ export const business: SectionContent = {
             q: 'Wie lange dauert es, bis ich tatsächlich handeln kann?',
             a: 'Für EU-Bürger Tage. Für Nicht-EU-Gründer bestimmt der Titel das Tempo, und wir bestätigen aktuelle IND-Fristen im Erstgespräch, damit Ihr Starttermin von Tag eins an realistisch ist.',
           },
+          {
+            q: 'Gibt es einen einfacheren Weg für US-Bürger oder innovative Startups?',
+            a: 'Ja. Amerikaner können meist unter dem DAFT-Vertrag beantragen, und Gründer mit einem innovativen Konzept können das Startup-Visum nutzen. Beide umgehen die vollständige wirtschaftliche Bewertung, und wir prüfen im Erstgespräch, welche der drei Routen wirklich zu Ihnen passt.',
+          },
         ],
       },
       cta: {
-        title: 'Ihr Unternehmen gehört hierher',
+        title: 'Gründen Sie Ihr Unternehmen in den Niederlanden',
         text: 'Beschreiben Sie Ihr Unternehmen in zwei Sätzen. Wir kommen mit der Route, der Struktur und den ersten drei Schritten zurück.',
         label: 'Meine Route kartieren',
       },
       form: 'immigration',
-      image: '/images/start-business.jpg',
-      imageAlt: 'Unternehmerin öffnet die Tür ihres neuen Büros',
+      image: '/images/start-business.jpg?v=20260731',
+      imageAlt: 'Gründer in einem designorientierten Arbeitsraum in den Niederlanden',
+      image2: '/images/business-plan.jpg',
+      image2Alt: 'Unternehmerin bespricht ihren Businessplan mit einer Beraterin',
     },
     {
       slug: 'company-registration-netherlands',
@@ -151,6 +198,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'Wenn Ihre Aufenthaltserlaubnis noch anhängig ist, zählt die Reihenfolge der Schritte: Manche können vor der Ankunft laufen, manche nicht. Wir planen die Abfolge um Ihren Einwanderungszeitplan.',
+      conditions: {
+        title: 'Was die Gründung verlangt',
+        intro:
+          'Die Rechtsform, die Sie in Woche eins wählen, bestimmt jahrelang Ihre Steuern, Ihre Haftung und Ihre Glaubwürdigkeit bei niederländischen Partnern.',
+        items: [
+          'Eine BV verlangt einen Notar und eine Gründungsurkunde. Eine Einzelfirma und eine VOF nicht.',
+          'Das Stammkapital einer BV kann ein Euro betragen, Kapital ist also nicht mehr der Grund, eine Form zu wählen.',
+          'Jedes Unternehmen braucht eine niederländische Geschäftsadresse. Ein Postfach akzeptiert die KvK nicht.',
+          'Geschäftsführer und Gesellschafter werden nach den UBO-Regeln identifiziert, und der wirtschaftlich Berechtigte wird in einem gesonderten Register erfasst.',
+          'Die Umsatzsteuerregistrierung folgt automatisch aus der KvK-Eintragung, und die Steuerbehörde erteilt die Nummer separat.',
+          'Als Nicht-EU-Staatsangehöriger ist eine Aufenthaltserlaubnis Voraussetzung, um hier zu unternehmen, und das Unternehmen kann sie nicht ersetzen.',
+        ],
+      },
+      details: {
+        title: 'Die richtige Struktur wählen',
+        items: [
+          {
+            q: 'BV oder Einzelfirma?',
+            a:
+              'Eine Einzelfirma ist schneller und günstiger und wird über die Einkommensteuer mit Unternehmerabzügen besteuert, aber Sie haften persönlich. Eine BV trennt Ihre Haftung, wirkt gegenüber niederländischen Kunden und Banken solider und wird steuerlich interessant, sobald Gewinne entstehen. Die meisten Berater starten als Einzelfirma und wandeln um, sobald die Zahlen den Notar rechtfertigen.',
+          },
+          {
+            q: 'Wie lange dauert eine BV?',
+            a:
+              'Meist ein bis drei Wochen. Der Notar braucht Identifikation, die geplante Struktur und eine Namensprüfung, und die KvK-Eintragung folgt der Urkunde. Sitzen Gesellschafter im Ausland, kosten legalisierte Vollmachten zusätzliche Zeit, deshalb beginnen wir damit.',
+          },
+          {
+            q: 'Kann ich gründen, bevor ich Aufenthalt habe?',
+            a:
+              'Sie können aus dem Ausland Anteile an einer niederländischen Gesellschaft halten, aber in ihr in den Niederlanden zu arbeiten verlangt die richtige Erlaubnis. Zuerst das Unternehmen aufzusetzen und danach über den Aufenthalt nachzudenken ist die Reihenfolge, die die meisten Probleme verursacht, die wir reparieren.',
+          },
+          {
+            q: 'Und die Geschäftsadresse?',
+            a:
+              'Sie muss eine echte Adresse sein, unter der das Unternehmen tatsächlich erreichbar ist, und sowohl KvK als auch Banken prüfen das inzwischen. Virtual-Office-Pakete unterscheiden sich enorm darin, ob sie diese Prüfung bestehen, und wir nennen Ihnen Anbieter, die es tun.',
+          },
+        ],
+      },
       faq: {
         title: 'Bevor Sie gründen',
         items: [
@@ -176,6 +261,8 @@ export const business: SectionContent = {
       form: 'immigration',
       image: '/images/business-signing.jpg?v=20260728',
       imageAlt: 'Gründer unterschreibt Gründungsdokumente bei einem niederländischen Notar',
+      image2: '/images/kvk-registration.jpg?v=20260731',
+      image2Alt: 'Unternehmerin und Berater prüfen Unternehmensunterlagen',
     },
     {
       slug: 'kvk-registration-for-foreigners-netherlands',
@@ -229,6 +316,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'Wenn Sie noch kein BSN haben, ist die Registrierung in vielen Situationen trotzdem möglich, aber der Weg ist ein anderer. Erwähnen Sie es, wenn Sie uns kontaktieren, und wir planen es ein.',
+      conditions: {
+        title: 'Was die KvK von Ihnen verlangt',
+        intro:
+          'Der Termin bei der Handelskammer ist kurz und unnachgiebig. Alles entscheidet sich daran, was Sie mitbringen.',
+        items: [
+          'Termine sind vorab zu buchen, und in stark nachgefragten Zeiten reicht die Wartezeit bis zu mehreren Wochen.',
+          'Sie brauchen einen gültigen Pass oder Ausweis, eine BSN und einen Nachweis Ihrer niederländischen Geschäftsadresse.',
+          'Nicht-EU-Staatsangehörige müssen eine Aufenthaltserlaubnis vorlegen, die selbstständige Tätigkeit erlaubt.',
+          'Die Geschäftsadresse muss eine echte Adresse sein. Ein Postfach wird abgelehnt.',
+          'Sie wählen bei der Eintragung SBI-Tätigkeitscodes, und diese begleiten Sie in Bankgeschäfte, Versicherungen und Umsatzsteuerbehandlung.',
+          'Die Eintragung kostet eine einmalige Gebühr, und Ihre Daten gelangen in das öffentliche Handelsregister.',
+        ],
+      },
+      details: {
+        title: 'Die Eintragung richtig machen',
+        items: [
+          {
+            q: 'Warum sind SBI-Codes so wichtig?',
+            a:
+              'Sie beschreiben, was Ihr Unternehmen tut, und Banken, Versicherer und die Steuerbehörde lesen sie alle. Ein Code, der auf höheres Risiko hindeutet, kann ein Geschäftskonto verzögern oder blockieren, und ein zu enger Code erschwert später die Rechnungsstellung. Wir wählen sie bewusst mit Ihnen, statt am Schalter den nächstbesten zu nehmen.',
+          },
+          {
+            q: 'Kann ich mich ohne niederländische Adresse eintragen?',
+            a:
+              'Nein, und das ist der häufigste Grund, warum eine Eintragung scheitert. Sie brauchen eine Adresse, unter der das Unternehmen tatsächlich erreichbar ist. Wir organisieren regelkonforme Geschäftsadressen für Klienten, die noch suchen, damit das Unternehmen starten kann, während die Wohnungssuche läuft.',
+          },
+          {
+            q: 'Begleiten Sie den Termin?',
+            a:
+              'Ja. Der Termin läuft auf Niederländisch, am Schalter werden Entscheidungen getroffen, die sich später schwer zurücknehmen lassen, und jemand neben Ihnen, der jede Frage einordnet, ist der Unterschied zwischen einem Termin und dreien.',
+          },
+          {
+            q: 'Was passiert unmittelbar danach?',
+            a:
+              'Sie erhalten Ihre KvK-Nummer am selben Tag und Ihre Umsatzsteuernummer kurz darauf von der Steuerbehörde. Dann folgen Geschäftskonto, Buchhaltung, Rechnungsstellung und, falls relevant, die Kleinunternehmerregelung. Wir gehen diese Abfolge mit Ihnen durch, statt Sie mit einem Auszug zurückzulassen.',
+          },
+        ],
+      },
       faq: {
         title: 'KvK-Fragen',
         items: [
@@ -252,8 +377,10 @@ export const business: SectionContent = {
         label: 'Meine KvK-Registrierung buchen',
       },
       form: 'immigration',
-      image: '/images/kvk-registration.jpg',
-      imageAlt: 'Unternehmer erhält am Schalter einen Handelsregisterauszug',
+      image: '/images/kvk-registration.jpg?v=20260731',
+      imageAlt: 'Unternehmerin und Berater prüfen Unternehmensunterlagen',
+      image2: '/images/business-plan.jpg',
+      image2Alt: 'Unternehmer arbeiten einen Geschäftsplan durch',
     },
     {
       slug: 'relocation-services-for-entrepreneurs-netherlands',
@@ -306,6 +433,44 @@ export const business: SectionContent = {
           { title: 'Angekommen', text: 'Sie sind angemeldet, untergebracht, mit Konto und operativ, und Ihre Familie weiß, wo die gute Bäckerei ist.' },
         ],
       },
+      conditions: {
+        title: 'Wie die Teile zusammenpassen',
+        intro:
+          'Gründer betreiben vier Prozesse gleichzeitig, und jeder hängt von einem anderen ab. Die Reihenfolge ist die ganze Leistung.',
+        items: [
+          'Eine Aufenthaltsgrundlage muss bestehen, bevor das Unternehmen von den Niederlanden aus geführt werden kann, was die Eintragung auch sagt.',
+          'Die Anmeldung an Ihrer Adresse erzeugt die BSN, und ohne sie funktionieren weder Unternehmen noch Gehalt richtig.',
+          'Vermieter beurteilen Unternehmer nach Vermögen und Abschlüssen statt nach Gehaltsabrechnungen, das Mietdossier wird also anders gebaut.',
+          'Geschäftskonten für ein neu gegründetes Unternehmen mit ausländischem Gründer dauern länger als Privatkonten und werden häufiger abgelehnt.',
+          'Eine Krankenversicherung ist ab Ankunft für Sie und Ihre Familie Pflicht, unabhängig von der Unternehmensstruktur.',
+          'Wir stimmen Erlaubnis, Unternehmen und Umzug ab. Steuern und Buchhaltung liegen bei Beratern, denen wir Sie vorstellen.',
+        ],
+      },
+      details: {
+        title: 'Probleme, die nur Gründer haben',
+        items: [
+          {
+            q: 'Warum sind Geschäftskonten so schwierig?',
+            a:
+              'Niederländische Banken wenden strenge Onboarding-Regeln auf neu gegründete Gesellschaften mit nicht ansässigen Gründern an, und Anträge werden aus Gründen abgelehnt, die nie vollständig erklärt werden. Was funktioniert, sind eine klare Geschäftsbeschreibung, stimmige SBI-Codes, eine echte niederländische Adresse, Nachweise beabsichtigter Kunden und ein bereits angemeldeter Gründer. Darauf bereiten wir vor, statt es zu entdecken.',
+          },
+          {
+            q: 'Wie miete ich ohne niederländische Gehaltsabrechnungen?',
+            a:
+              'Mit einem anderen Dossier. Vermieter akzeptieren Unternehmer auf Basis von Jahresabschlüssen, Kontoauszügen, Vermögen, einer höheren Kaution oder einer Bankbürgschaft, teils auch einer persönlichen Garantie aus der BV. Wir bauen dieses Dossier sauber auf und präsentieren es auf Niederländisch, was aus einer Absage eine Besichtigung macht.',
+          },
+          {
+            q: 'Was sollte zuerst geschehen?',
+            a:
+              'Die Immigrationsprüfung, immer. Alles andere lässt sich umstellen, aber ein Unternehmen auf einer nicht existierenden Aufenthaltsgrundlage aufzubauen ist nicht reparabel. Steht der Weg fest, laufen Unternehmen, Wohnung und Familienangelegenheiten parallel.',
+          },
+          {
+            q: 'Arbeiten Sie mit meinem Steuerberater zusammen?',
+            a:
+              'Gerne, und am liebsten so. Haben Sie noch keinen niederländischen Berater, stellen wir Sie Buchhaltern vor, die mit internationalen Gründern arbeiten und die 30-Prozent-Regelung, grenzüberschreitende Rechnungsstellung und die Gehaltsregeln für den DGA kennen.',
+          },
+        ],
+      },
       faq: {
         title: 'Was Unternehmer fragen',
         items: [
@@ -329,8 +494,10 @@ export const business: SectionContent = {
         label: 'Meinen Relocation-Plan starten',
       },
       form: 'immigration',
-      image: '/images/entrepreneur-relocation.jpg',
-      imageAlt: 'Gründer trägt einen Karton und einen Laptop in ein neues Büro',
+      image: '/images/entrepreneur-relocation.jpg?v=20260731',
+      imageAlt: 'Unternehmer kommt an einem modernen niederländischen Wohngebäude an',
+      image2: '/images/start-business.jpg?v=20260731',
+      image2Alt: 'Gründer in einem designorientierten Arbeitsraum in den Niederlanden',
     },
     {
       slug: 'business-relocation-to-the-netherlands',
@@ -387,6 +554,44 @@ export const business: SectionContent = {
           { title: 'Das Team landen', text: 'Ankünfte werden gestaffelt und begleitet, Anmeldungen abgeschlossen, und Ihre niederländische Operation öffnet mit ihren Leuten vollzählig.' },
         ],
       },
+      conditions: {
+        title: 'Was eine Unternehmensverlagerung umfasst',
+        intro:
+          'Eine Einheit zu verlagern ist ein Projekt mit kritischem Pfad, und der Immigrationsteil liegt fast immer darauf.',
+        items: [
+          'Anerkanntes Sponsoring bei der IND ist Voraussetzung, bevor ein einziger Antrag für hoch qualifizierte Migranten eingereicht werden kann, und die Anerkennung dauert selbst Wochen.',
+          'Anerkannte Sponsoren übernehmen laufende Informations-, Verwaltungs- und Fürsorgepflichten und werden daraufhin geprüft.',
+          'Jeder mitziehende Mitarbeiter hat eine eigene Akte, und jede mitreisende Familie vervielfacht den Papieraufwand.',
+          'Gehaltsschwellen gelten pro Mitarbeiter und werden jährlich indexiert, was Angebote spät im Jahr im Budget berührt.',
+          'Die Entsendung aus einer anderen EU-Einheit ist ein eigenes Regime mit eigener Meldepflicht und keine leichtere Variante desselben.',
+          'Wir übernehmen Immigration, Wohnen und die Landung der Familie. Körperschaftsteuer, Verrechnungspreise und Rechtsstruktur bleiben bei Ihren Beratern.',
+        ],
+      },
+      details: {
+        title: 'Das Projekt sauber führen',
+        items: [
+          {
+            q: 'Wie früh sollten wir beginnen?',
+            a:
+              'Vier bis sechs Monate vor der ersten Ankunft, wenn das Sponsoring noch fehlt. Anerkennung, Erlaubnisse, Wohnraum und Schulen haben jeweils eigene Wartezeiten, und die einzige Möglichkeit, die Summe zu verkürzen, ist, sie ab einem früh genug gesetzten Start gleichzeitig laufen zu lassen.',
+          },
+          {
+            q: 'Wozu verpflichtet uns anerkanntes Sponsoring?',
+            a:
+              'Zur Aktenführung je gefördertem Mitarbeiter, zur Meldung relevanter Änderungen an die IND binnen vier Wochen und zu angemessener Fürsorge für die Landung des Mitarbeiters. Die IND prüft. Wir richten die Verwaltung so ein, dass eine Prüfung eine Formalität ist und kein Ereignis.',
+          },
+          {
+            q: 'Können Sie mehrere Familien gleichzeitig betreuen?',
+            a:
+              'Ja, und das ist ein großer Teil unserer Arbeit. Jede Familie erhält eine eigene Beraterin und einen eigenen Plan, während HR einen Ansprechpartner und eine Übersicht bekommt statt fünfzehn E-Mail-Stränge.',
+          },
+          {
+            q: 'Warum gehen Menschen binnen eines Jahres wieder?',
+            a:
+              'Selten wegen der Stelle. Es ist der Partner, der keine Arbeit fand, das Kind, das in der Schule nie ankam, oder eine Wohnsituation, die sich nie nach Zuhause anfühlte. Das sind Relocation-Fehler und keine HR-Fehler, und genau diese zu verhindern sind wir beauftragt.',
+          },
+        ],
+      },
       faq: {
         title: 'Fragen von HR und Führung',
         items: [
@@ -410,8 +615,134 @@ export const business: SectionContent = {
         label: 'Unseren Corporate-Umzug besprechen',
       },
       form: 'immigration',
-      image: '/images/business-relocation.jpg',
-      imageAlt: 'Team trägt Kisten in ein modernes Bürogebäude',
+      image: '/images/business-relocation.jpg?v=20260731',
+      imageAlt: 'Internationales Führungsteam in einem Rotterdamer Sitzungssaal',
+      image2: '/images/employer-team.jpg?v=20260731',
+      image2Alt: 'Internationales Teammeeting in einem niederländischen Büro',
+    },
+    {
+      slug: 'employer-immigration-services-netherlands',
+      menuLabel: 'Einwanderung für Arbeitgeber',
+      title: 'Einwanderungsservice für Arbeitgeber in den Niederlanden',
+      metaTitle: 'Einwanderungsservice für Arbeitgeber Niederlande | Nicht-EU-Personal',
+      metaDescription:
+        'Einwanderungsservice für Arbeitgeber in den Niederlanden: Anträge für Hochqualifizierte und die EU Blue Card, IND-Anerkennung als Sponsor, Entsendung und Fallprüfung.',
+      eyebrow: 'Für Arbeitgeber',
+      intro: [
+        'Internationale Talente einzustellen ist oft unverzichtbar, und die Einstellung von Beschäftigten aus Nicht-EU-Ländern in den Niederlanden ist selten einfach. Sie umfasst Einwanderungsverfahren, Compliance-Pflichten und die Abstimmung mit der IND, der niederländischen Arbeitsinspektion und in manchen Fällen dem UWV.',
+        'Wir unterstützen Arbeitgeber bei niederländischen Einwanderungsverfahren für internationale Mitarbeitende, von der einzelnen Fachkraft bis zur langfristigen Personalstrategie. Ziel ist ein Prozess, der für das Unternehmen und für die umziehende Person planbar und beherrschbar bleibt.',
+      ],
+      cardText: 'Einwanderungsverfahren, Sponsorstatus und Compliance für international einstellende Unternehmen.',
+      forWho: {
+        title: 'Mit wem wir arbeiten',
+        items: [
+          'Niederländische Unternehmen, die Fachkräfte von außerhalb der EU rekrutieren',
+          'Arbeitgeber, die Personal aus einer Auslandsniederlassung in die Niederlande versetzen',
+          'HR- und Mobility-Verantwortliche, die einen verantwortlichen lokalen Partner brauchen',
+          'Unternehmen, die die IND-Anerkennung als Sponsor erwägen',
+          'Organisationen, die Mitarbeitende vorübergehend für Projekte hierher entsenden',
+        ],
+      },
+      conditions: {
+        title: 'Was Arbeitgeber berücksichtigen müssen',
+        intro:
+          'Jede Einwanderungsroute hat eigene Anforderungen, Dokumentationspflichten und Gehaltsschwellen. Bevor eine Einstellung feststeht, sollte klar sein:',
+        items: [
+          'Beschäftigte aus Nicht-EU-Ländern brauchen vor Arbeitsbeginn eine Aufenthaltsgrundlage',
+          'Gehaltsschwellen unterscheiden sich je Route und werden nach Kategorie festgelegt',
+          'Anerkannte Sponsoren tragen laufende Compliance-Pflichten gegenüber der IND',
+          'Sponsoren müssen Zuverlässigkeit, finanzielle Stabilität und ordentliche Verwaltung nachweisen',
+          'Entsendungen können Meldepflichten nach niederländischem Arbeitsrecht auslösen',
+          'Einwanderungsfristen beeinflussen Recruiting-Planung und Eintrittstermine',
+        ],
+      },
+      included: {
+        title: 'Wie wir Arbeitgeber unterstützen',
+        blocks: [
+          {
+            title: 'Wahl der Einwanderungsroute',
+            text: 'Titel für Hochqualifizierte, EU Blue Card, kombinierte Aufenthalts- und Arbeitserlaubnis (GVVA), Absolventen des Orientierungsjahres beim Wechsel in eine Anstellung und konzerninterne Versetzungen. Wir bestimmen, welche Route wirklich zu Rolle und Kandidat passt.',
+          },
+          {
+            title: 'Anträge für Ihre Mitarbeitenden',
+            text: 'Wir bereiten die Einwanderungsanträge vor, koordinieren die Unterlagen für die IND-Einreichung und beraten zu realistischen Zeitplänen für die Umzugsplanung.',
+          },
+          {
+            title: 'IND-Anerkennung als Sponsor',
+            text: 'Wir bereiten Anträge auf Anerkennung vor, beraten zu Voraussetzungen und Unterlagen, prüfen interne Verwaltungsabläufe und halten Sie bei den Sponsorpflichten compliant.',
+          },
+          {
+            title: 'Entsendung in die Niederlande',
+            text: 'Wir prüfen Entsendungsszenarien, beraten zur anwendbaren Route, übernehmen Aufenthalts- oder Arbeitserlaubnisanträge und sorgen dafür, dass Meldepflichten erfüllt werden.',
+          },
+          {
+            title: 'Einwanderungsstrategie',
+            text: 'Wir beraten zur Struktur internationaler Einstellungsprozesse, zur Zeitplanung von Umzug und Onboarding, zur Abstimmung mit Arbeitsverträgen und zum Umgang mit Compliance-Risiken.',
+          },
+          {
+            title: 'Prüfung einzelner Fälle',
+            text: 'Bei abgelehnten Anträgen, Statuswechseln oder unklarer Berechtigung analysieren wir die Situation im Detail und legen die realistischen Optionen und nächsten Schritte dar, bevor ein neuer Antrag startet.',
+          },
+        ],
+      },
+      process: {
+        title: 'So läuft ein Mandat für Arbeitgeber',
+        steps: [
+          { title: 'Umfang', text: 'Wir erfassen die Rollen, die betroffenen Nationalitäten, die Fristen und die Compliance-Lage Ihres Unternehmens.' },
+          { title: 'Route und Unterlagen', text: 'Die passende Einwanderungsroute wird je Mitarbeitendem bestätigt und die Unterlagen werden zur Einreichung vorbereitet.' },
+          { title: 'Einreichung und Kontakt', text: 'Die Anträge gehen zur IND, und wir führen die Korrespondenz einschließlich Rückfragen und Nachforderungen.' },
+          { title: 'Ankunft und Einleben', text: 'Mitarbeitende und ihre Familien werden bei Anmeldung, Wohnung und der Praxis des Ankommens begleitet.' },
+        ],
+      },
+      note: 'Wir sind eine Boutique-Agentur, was ebenso sehr eine bewusste Grenze wie ein Versprechen ist. Wir nehmen das Volumen an, das wir persönlich führen können, und sagen offen, wenn eine Anfrage darüber hinausgeht.',
+      details: {
+        title: 'Details für HR- und Mobility-Teams',
+        items: [
+          {
+            q: 'Was ändert die Anerkennung als Sponsor?',
+            a: 'Unternehmen, die regelmäßig internationale Fachkräfte einstellen, können anerkannter Sponsor bei der IND werden. Das bringt schnellere Verfahren, vereinfachte Anträge und mehr Flexibilität. Im Gegenzug übernimmt das Unternehmen laufende Compliance-Pflichten und muss Zuverlässigkeit, finanzielle Stabilität und ordentliche Verwaltungsabläufe nachweisen können.',
+          },
+          {
+            q: 'Wann gelten Entsenderegeln?',
+            a: 'Wenn ein internationales Unternehmen Mitarbeitende vorübergehend für ein Projekt, einen Auftrag oder eine konzerninterne Versetzung hierher schickt. Je nach Situation können EU-Entsenderegeln, Arbeitserlaubnispflichten, Aufenthaltserfordernisse für Nicht-EU-Beschäftigte und niederländische Meldepflichten gleichzeitig greifen. Sorgfältige Planung verhindert Verzögerungen und Compliance-Risiken.',
+          },
+          {
+            q: 'Wann lohnt sich eine Fallprüfung?',
+            a: 'Wenn ein Antrag zuvor abgelehnt wurde, wenn Beschäftigte den Status wechseln oder zwischen Visumkategorien wechseln, wenn die Berechtigung wirklich unklar ist oder wenn ein anerkannter Sponsor eine Compliance-Frage hat. Eine Prüfung liefert eine Einschätzung der Lage, der Risiken und Hindernisse, der verfügbaren Optionen und eine Empfehlung für den nächsten Schritt.',
+          },
+          {
+            q: 'Arbeiten Sie mit unseren Rechts- und Steuerberatern zusammen?',
+            a: 'Ja, und wir bevorzugen das sogar. Wir übernehmen die einwanderungsrechtliche und die menschliche Seite des Umzugs und fügen uns in die Struktur ein, die Ihre Berater entwerfen.',
+          },
+        ],
+      },
+      faq: {
+        title: 'Fragen von Arbeitgebern',
+        items: [
+          {
+            q: 'Wann sollten wir Sie bei einer Einstellung einbeziehen?',
+            a: 'Idealerweise bevor der Vertrag unterschrieben ist. Die Einwanderungsroute beeinflusst Gehalt, Eintrittstermin und manchmal, ob die Einstellung überhaupt möglich ist, und das sind teure Erkenntnisse im Nachhinein.',
+          },
+          {
+            q: 'Begleiten Sie auch Mitarbeitende und ihre Familien?',
+            a: 'Ja. Wohnung, Schulsuche, Anmeldung bei der Gemeinde und das Einleben gehören dazu, und meist entscheiden genau diese Dinge, ob jemand über das erste Jahr hinaus bleibt.',
+          },
+          {
+            q: 'Helfen Sie auch Unternehmen ohne niederländische Niederlassung?',
+            a: 'Ja. Wir bauen die niederländische Gesellschaft und die Einwanderungsspur gemeinsam auf, in der Reihenfolge, in der jeder Schritt den nächsten ermöglicht.',
+          },
+        ],
+      },
+      cta: {
+        title: 'Stellen Sie internationale Talente ein?',
+        text: 'Nennen Sie uns Rolle, Nationalität und gewünschten Starttermin. Wir kommen mit Route, Zeitplan und dem zurück, was Ihr Unternehmen bereithalten muss.',
+        label: 'Über unsere Einstellungspläne sprechen',
+      },
+      form: 'immigration',
+      image: '/images/employer-immigration.jpg',
+      imageAlt: 'HR-Beraterin und Führungskraft besprechen eine internationale Einstellung',
+      image2: '/images/employer-team.jpg',
+      image2Alt: 'Internationales Team arbeitet zusammen in einem niederländischen Büro',
     },
     {
       slug: 'housing-support-for-entrepreneurs-netherlands',
@@ -465,6 +796,44 @@ export const business: SectionContent = {
         ],
       },
       note: 'Wohnen auf Zeit kann die Lücke überbrücken, während wir suchen, aber nicht jede Short-Stay-Adresse erlaubt die Gemeindeanmeldung. Auf diesen Unterschied weisen wir hin, bevor Sie sich auf irgendetwas festlegen.',
+      conditions: {
+        title: 'Mieten ohne Gehaltsabrechnungen',
+        intro:
+          'Niederländische Vermieter sind darauf gebaut, Arbeitsverträge zu lesen. Alles Folgende dient dazu, ihnen etwas zu geben, das sie lesen können.',
+        items: [
+          'Vermieter wollen meist ein Bruttoeinkommen vom Drei- bis Vierfachen der Miete, und bei Unternehmern suchen sie das Äquivalent in Abschlüssen und Vermögen.',
+          'Neu gegründete Unternehmen haben keine Historie, deshalb trägt meist die persönliche Lage des Gründers die Akte.',
+          'Rechnen Sie mit Anfragen nach Jahresabschlüssen, einem Jahr Kontoauszügen, einer Bestätigung des Buchhalters oder einer Bankbürgschaft.',
+          'Kautionen sind für Verträge ab dem 1. Juli 2023 auf zwei Kaltmieten begrenzt, und eine höhere Kaution darf nicht ersatzweise verlangt werden.',
+          'Eine Garantie aus Ihrer BV oder eine persönliche Garantie wird oft akzeptiert, wo Unterlagen allein nicht reichen.',
+          'Wir handeln für Sie und nicht für den Vermieter und nehmen von keiner Seite Provision.',
+        ],
+      },
+      details: {
+        title: 'Eine Akte bauen, die überzeugt',
+        items: [
+          {
+            q: 'Und wenn mein Unternehmen brandneu ist?',
+            a:
+              'Dann ruht die Akte auf Ihnen statt auf ihm. Ersparnisse, Einkommen aus Ihrem vorherigen Land, bestehende Kundenverträge, eine unterschriebene Bestätigung des Buchhalters und eine Bankbürgschaft funktionieren alle. Was nicht funktioniert, ist zur Besichtigung mit einer Erklärung statt mit Unterlagen zu kommen.',
+          },
+          {
+            q: 'Ist eine Bankbürgschaft hier üblich?',
+            a:
+              'Sie ist gängig und für Unternehmer völlig respektabel. Ihre Bank sperrt einen Betrag, meist zwei bis drei Monatsmieten, und der Vermieter akzeptiert das anstelle einer Beschäftigungshistorie. Das kostet meist eine moderate Jahresgebühr und öffnet Objekte, die Sie sonst ablehnen würden.',
+          },
+          {
+            q: 'Soll ich sagen, dass ich selbstständig bin?',
+            a:
+              'Immer, und früh. Vermieter, die es erst bei Vertragsschluss erfahren, springen ab. Vermieter, denen man es von Anfang an sagt und eine sauber vorbereitete Akte auf Niederländisch zeigt, ziehen meist mit. Verschweigen ist der schnellste Weg, ein Objekt zu verlieren, das Sie schon gewonnen hatten.',
+          },
+          {
+            q: 'Darf ich eine Wohnung mieten und als Geschäftsadresse nutzen?',
+            a:
+              'Oft ja, für eine Beratungs- oder Dienstleistungstätigkeit ohne Besucher, aber es hängt vom Mietvertrag und vom Bebauungsplan der Gemeinde ab. Wir prüfen beides, bevor Sie die Adresse bei der KvK eintragen, denn das Zurückdrehen ist unangenehm.',
+          },
+        ],
+      },
       faq: {
         title: 'Wohnfragen von Unternehmern',
         items: [
@@ -490,6 +859,8 @@ export const business: SectionContent = {
       form: 'immigration',
       image: '/images/entrepreneur-housing.jpg',
       imageAlt: 'Helles Wohn- und Arbeitsloft mit Schreibtisch am Fenster',
+      image2: '/images/rental-contract.jpg?v=20260731',
+      image2Alt: 'Unterzeichnung eines niederländischen Mietvertrags mit dem Füllfederhalter',
     },
   ],
   crossLinks: [

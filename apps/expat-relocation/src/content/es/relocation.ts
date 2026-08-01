@@ -10,8 +10,8 @@ export const relocation: SectionContent = {
     'Mudarse de país son mil pequeñas tareas disfrazadas de una sola grande. El BSN, el municipio, el seguro, el colegio, el banco, cada uno con su propia ventanilla, sus propios formularios y su propia idea de un tiempo de espera razonable. La mayoría de las agencias le entrega una lista de tareas. Nosotros somos la única agencia boutique para expatriados en los Países Bajos, y hacemos algo distinto: una persona aprende su nombre, su familia y su situación, y sencillamente se ocupa de todo.',
     'Esa persona no dirige su reubicación desde detrás de un escritorio. Reserva las citas, prepara la documentación, conduce con usted hasta el municipio y se sienta a su lado en la ventanilla. Desde el momento en que aterriza hasta el momento en que los Países Bajos se sienten como su hogar, tiene aquí a alguien que ya conoce la respuesta a su próxima pregunta.',
   ],
-  image: '/images/relocation-hub.jpg',
-  imageAlt: 'Operarios de mudanza llevando cajas a una vivienda familiar neerlandesa',
+  image: '/images/family-arrival.jpg?v=20260731',
+  imageAlt: 'Familia internacional llegando a su casa junto a un canal neerlandés',
   services: [
     {
       slug: 'bsn-registration-netherlands',
@@ -74,6 +74,44 @@ export const relocation: SectionContent = {
         ],
       },
       note: 'El BSN se emite mediante la inscripción en la Base de Datos de Registros Personales, ya sea como residente o, para estancias cortas, como no residente a través de una ventanilla RNI. Le aconsejamos qué vía encaja con su situación durante la entrevista inicial.',
+      conditions: {
+        title: 'Lo que pedirá el ayuntamiento',
+        intro:
+          'El BSN es la llave que abre todas las demás cerraduras. Casi todo retraso que vemos procede de uno de estos seis puntos.',
+        items: [
+          'El empadronamiento se hace en el ayuntamiento de su dirección, y el propietario debe permitir el empadronamiento en ella.',
+          'Una estancia superior a cuatro meses implica inscripción en el BRP. Más corta significa el registro RNI, en uno de los municipios designados.',
+          'Lleve su pasaporte, su permiso de residencia o MVV si procede, y su contrato de alquiler.',
+          'Los certificados extranjeros de nacimiento y matrimonio deben estar legalizados o llevar apostilla, y traducidos por traductor jurado.',
+          'Las citas suelen pedirse con antelación, y en Róterdam la espera va de unos días a varias semanas según la temporada.',
+          'Cada miembro de la familia necesita su propia cita y sus propios documentos, incluidos los menores.',
+        ],
+      },
+      details: {
+        title: 'Dónde se tuercen los expedientes de BSN',
+        items: [
+          {
+            q: '¿Por qué la legalización da tantos problemas?',
+            a:
+              'Un certificado no legalizado en el país de emisión no puede aceptarse, y la cadena suele pasar por un ministerio local y después por una embajada neerlandesa. Lleva semanas o meses y ya no puede iniciarse una vez está usted aquí. Es la causa más habitual de que una llegada se atasque, y lo primero que comprobamos.',
+          },
+          {
+            q: '¿Puedo obtener un BSN sin dirección neerlandesa?',
+            a:
+              'Sí, mediante el registro RNI para no residentes, disponible en diecinueve municipios designados. Obtiene un BSN para que la nómina y la banca puedan arrancar, pero no es un empadronamiento residencial, y se inscribirá con normalidad en cuanto tenga dirección.',
+          },
+          {
+            q: '¿Qué ocurre justo después de la cita?',
+            a:
+              'Su BSN suele emitirse en el acto o en pocos días. A partir de ahí puede solicitar el DigiD, contratar el seguro médico, abrir una cuenta neerlandesa y hacer que la nómina funcione correctamente. Recorremos esa secuencia con usted en lugar de dejarle con un número y una lista.',
+          },
+          {
+            q: '¿Me acompañan a la cita?',
+            a:
+              'Sí, ese es el núcleo del servicio. Las citas se desarrollan en neerlandés, los funcionarios piden documentos que no estaban en la lista publicada, y tener al lado a alguien que conoce la respuesta convierte una segunda cita en ninguna.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -97,8 +135,10 @@ export const relocation: SectionContent = {
         label: 'Gestionar mi BSN',
       },
       form: 'relocation',
-      image: '/images/bsn-registration.jpg',
-      imageAlt: 'Recibiendo un documento de empadronamiento en una ventanilla municipal',
+      image: '/images/bsn-registration.jpg?v=20260731',
+      imageAlt: 'Asesora y cliente en una mesa de asesoramiento privada',
+      image2: '/images/immigration-documents.jpg?v=20260731',
+      image2Alt: 'Carpeta de cuero y pluma estilográfica sobre un escritorio',
     },
     {
       slug: 'municipality-registration-netherlands',
@@ -160,6 +200,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Normas con las que la gente tropieza',
+        intro:
+          'El registro municipal le acompaña por todas las instituciones del país, así que un error aquí reaparece en todas partes.',
+        items: [
+          'El primer empadronamiento debe hacerse en los cinco días siguientes a la llegada, y una mudanza dentro del país en los cinco días posteriores al traslado.',
+          'Un cambio de dirección se comunica al nuevo ayuntamiento, no al antiguo.',
+          'El empadronamiento requiere el permiso del propietario para esa dirección. Empadronarse donde está prohibido pone en riesgo su contrato.',
+          'Su estado civil, la grafía de su nombre y su lugar de nacimiento se toman de certificados legalizados, y corregirlos después es mucho más difícil que hacerlo bien una vez.',
+          'Salir de los Países Bajos más de ocho meses al año obliga a darse de baja, lo que afecta a seguro, ayudas y permisos.',
+          'Los nacionales de fuera de la UE recogen normalmente su documento de residencia en la IND, no en el ayuntamiento. Son dos citas distintas.',
+        ],
+      },
+      details: {
+        title: 'Dejar el registro correcto',
+        items: [
+          {
+            q: '¿Por qué importa tanto la grafía de mi nombre?',
+            a:
+              'El registro BRP alimenta a su banco, su empleador, la agencia tributaria, su aseguradora y la IND. Una transliteración que difiera en una letra de su pasaporte genera discrepancias que aparecen meses después en el peor momento. Comprobamos la entrada contra su pasaporte antes de que el funcionario la guarde.',
+          },
+          {
+            q: '¿Pueden corregir un registro ya erróneo?',
+            a:
+              'Normalmente sí, con la documentación adecuada y una solicitud formal de rectificación. Los errores de fecha de nacimiento, estado civil y nacionalidad anterior son los que más reparamos, y merecen repararse en lugar de convivir con ellos.',
+          },
+          {
+            q: '¿Y si mi propietario no permite el empadronamiento?',
+            a:
+              'Entonces la dirección es un problema y no una molestia. Comprobamos la posibilidad de empadronamiento antes de que firme, y si un propietario se niega después, asumimos la correspondencia, porque en la mayoría de las situaciones residenciales esa negativa carece de base legal.',
+          },
+          {
+            q: '¿Debo darme de baja al marcharme?',
+            a:
+              'Sí, si se va más de ocho meses dentro de un periodo de doce. No hacerlo le deja obligado al pago de primas de seguro médico neerlandés e impuestos locales mucho después de haberse ido. Cuidamos la salida con el mismo detalle que la llegada.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -183,8 +261,10 @@ export const relocation: SectionContent = {
         label: 'Gestionar mi empadronamiento',
       },
       form: 'relocation',
-      image: '/images/immigration-desk.jpg?v=20260728',
-      imageAlt: 'Trámites completándose en un mostrador de servicios municipales',
+      image: '/images/municipality-registration.jpg?v=20260731',
+      imageAlt: 'Clienta llegando a un edificio municipal neerlandés histórico',
+      image2: '/images/consultation.jpg?v=20260731',
+      image2Alt: 'Asesora y cliente hablando de los siguientes pasos',
     },
     {
       slug: 'health-insurance-guidance-netherlands',
@@ -247,6 +327,44 @@ export const relocation: SectionContent = {
         ],
       },
       note: 'El seguro entra en vigor con efecto retroactivo desde la fecha en que comenzó su obligación, así que las primas se deben desde esa fecha aunque se afilie más tarde. Afiliarse pronto no cuesta nada extra y evita multas.',
+      conditions: {
+        title: 'Cómo funciona el sistema neerlandés',
+        intro:
+          'El seguro médico neerlandés es obligatorio, privado y sujeto a plazos. Equivocarse con las fechas cuesta dinero de una forma que sorprende a la mayoría.',
+        items: [
+          'Quien viva o trabaje en los Países Bajos debe contratar un seguro básico neerlandés dentro de los cuatro meses siguientes al empadronamiento.',
+          'La cobertura se retrotrae a su primer día de residencia, de modo que contratar tarde genera una factura por los meses intermedios, además de una sanción.',
+          'El paquete básico lo fija el Estado y es idéntico en todas las aseguradoras. Solo cambian el precio, el servicio y las coberturas complementarias.',
+          'Existe una franquicia anual obligatoria que usted asume antes de que se reembolse la mayor parte de la atención. El médico de cabecera queda excluido.',
+          'Sin derivación de su médico de cabecera no accede a un especialista, salvo urgencias.',
+          'Las rentas bajas y medias pueden tener derecho al zorgtoeslag, una ayuda mensual de la agencia tributaria.',
+        ],
+      },
+      details: {
+        title: 'Elegir bien, no solo rápido',
+        items: [
+          {
+            q: '¿Qué cobertura complementaria compensa de verdad?',
+            a:
+              'La dental para adultos, la fisioterapia por encima del mínimo legal y la cobertura de atención en el extranjero son las tres que se rentabilizan en la mayoría de nuestros clientes. Los menores están cubiertos gratis en la póliza de un progenitor, dental incluida. Casi todo lo demás es un cálculo personal, y lo hacemos con usted y no por usted.',
+          },
+          {
+            q: '¿Por qué no encuentro médico de cabecera?',
+            a:
+              'Las consultas de Róterdam y de las grandes ciudades cierran sus listas con regularidad, y hay que inscribirse antes de necesitar atención y no en el momento de necesitarla. Iniciamos la búsqueda en su primera semana y sabemos qué consultas de la región siguen admitiendo pacientes.',
+          },
+          {
+            q: 'Tengo la regla del 30 por ciento. ¿Cambia algo?',
+            a:
+              'Su obligación de aseguramiento no cambia. Lo que sí puede cambiar es su derecho al zorgtoeslag, porque esa ayuda depende de la renta imponible. Lo comprobamos en lugar de darlo por supuesto.',
+          },
+          {
+            q: '¿Y si solo trabajo aquí parte del año?',
+            a:
+              'Las situaciones transfronterizas y de rotación son realmente complejas, y equivocarse significa primas dobles o ninguna cobertura. Trabajadores offshore, empleados desplazados y personas con empleador en otro Estado de la UE se rigen por normas distintas, y tratamos la suya de forma específica.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -270,8 +388,10 @@ export const relocation: SectionContent = {
         label: 'Resolver mi seguro',
       },
       form: 'relocation',
-      image: '/images/health-insurance.jpg',
-      imageAlt: 'Comparando opciones de seguro médico neerlandés en la mesa de la cocina',
+      image: '/images/health-insurance.jpg?v=20260731',
+      imageAlt: 'Cliente y asesora analizando el seguro médico neerlandés',
+      image2: '/images/relocation-settling.jpg?v=20260731',
+      image2Alt: 'Asesora repasando los primeros trámites con recién llegados',
     },
     {
       slug: 'school-search-netherlands',
@@ -334,6 +454,44 @@ export const relocation: SectionContent = {
         ],
       },
       note: 'La elección de colegio y la de vivienda son una sola decisión, no dos; la dirección determina las opciones. Si también llevamos su búsqueda de vivienda, las planificamos juntas.',
+      conditions: {
+        title: 'Lo primero que una familia debe saber',
+        intro:
+          'Son las plazas escolares, y no la vivienda, las que suelen determinar cuándo puede mudarse realmente una familia. Planifíquelo antes que nada.',
+        items: [
+          'La escolarización es obligatoria desde los cinco años, y la mayoría de los niños empieza a los cuatro.',
+          'Los colegios internacionales de la región de Róterdam tienen plazas limitadas y listas de espera, y los cursos más demandados se llenan con un año de antelación.',
+          'Los colegios internacionales neerlandeses se dividen en dos categorías: los internacionales subvencionados, mucho más económicos pero que exigen un trasfondo internacional demostrable, y los internacionales privados.',
+          'Los niños que aún no hablan neerlandés suelen pasar un año en un aula de acogida antes de incorporarse a la enseñanza ordinaria.',
+          'La matriculación exige normalmente domicilio y BSN, lo que enlaza el calendario escolar con el de vivienda y empadronamiento.',
+          'Asesoramos sobre colegios y gestionamos el proceso. No podemos crear una plaza donde un colegio no la tiene.',
+        ],
+      },
+      details: {
+        title: 'Elegir la educación adecuada',
+        items: [
+          {
+            q: '¿Colegio internacional o neerlandés?',
+            a:
+              'Depende de cuánto tiempo vaya a quedarse. Por debajo de tres años, el colegio internacional protege la continuidad y el currículo al que su hijo volverá. Por encima de cinco, el colegio neerlandés le da el idioma, las amistades y una adolescencia mucho más fácil. Los años intermedios son una decisión real, y la hablamos con franqueza en lugar de empujar la opción cara.',
+          },
+          {
+            q: '¿Con cuánta antelación hay que empezar?',
+            a:
+              'De seis a nueve meses antes de la mudanza para colegios internacionales, y tres meses para los neerlandeses. Si ya está dentro de esa ventana, vamos directamente a los centros donde todavía hay movimiento, que son una lista distinta de la que encontrará en internet.',
+          },
+          {
+            q: '¿Cuánto cuesta?',
+            a:
+              'Los colegios internacionales subvencionados cuestan unos pocos miles de euros al año. Los internacionales privados de la región están bastante por encima, y matrícula, inscripción y material suelen facturarse por separado. Preparamos para cada colegio de su lista el importe anual real, para que no haya sorpresas en el segundo mes.',
+          },
+          {
+            q: '¿Se desenvolverá mi hijo en neerlandés?',
+            a:
+              'Los más pequeños casi siempre, y rápido. El aula de acogida existe exactamente para esto, y un año en ella suele llevar a un niño al punto en que la enseñanza ordinaria funciona. Con adolescentes cerca de los exámenes el cálculo es distinto, y lo decimos con claridad.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -357,8 +515,10 @@ export const relocation: SectionContent = {
         label: 'Encontrar nuestro colegio',
       },
       form: 'relocation',
-      image: '/images/school-search.jpg',
-      imageAlt: 'Padres e hijo hablando con una profesora en un colegio neerlandés',
+      image: '/images/school-search.jpg?v=20260731',
+      imageAlt: 'Madre e hija llegando a un colegio internacional',
+      image2: '/images/family-relocation.jpg?v=20260731',
+      image2Alt: 'Familia en bicicleta junto a un canal neerlandés a la hora dorada',
     },
     {
       slug: 'settling-in-services-netherlands',
@@ -424,6 +584,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'El orden en que deben ocurrir las cosas',
+        intro:
+          'La administración neerlandesa es una cadena. Intentar el paso cuatro antes del dos es la razón de que ciertas llegadas duren meses en vez de semanas.',
+        items: [
+          'Primero la dirección, luego el empadronamiento, luego el BSN. Antes del BSN no puede organizarse nada relevante.',
+          'El DigiD, la identificación nacional, viene después del BSN y es necesario para la agencia tributaria, la sanidad y casi todos los servicios públicos.',
+          'La mayoría de los bancos neerlandeses exige BSN y justificante de domicilio, aunque algunas cuentas pueden abrirse antes solo con pasaporte.',
+          'El seguro médico debe contratarse dentro de los cuatro meses siguientes al empadronamiento y se retrotrae a la llegada.',
+          'Energía, agua e internet quedan a su nombre desde el inicio del contrato de alquiler, y cambiar después implica plazos de preaviso.',
+          'Canjear un permiso de conducir extranjero solo es posible para algunos países, y únicamente dentro de un plazo determinado tras el empadronamiento.',
+        ],
+      },
+      details: {
+        title: 'Lo que nadie le cuenta',
+        items: [
+          {
+            q: '¿Qué banco elijo?',
+            a:
+              'Depende menos del banco que de lo que necesite de él. Planes de hipoteca, banca de empresa, un empleador que paga desde el extranjero y familia en otra divisa apuntan a respuestas distintas. Abrimos la cuenta con usted y nos aseguramos de que iDEAL, con el que paga medio país, funcione desde el primer día.',
+          },
+          {
+            q: '¿Puedo usar mi permiso de conducir extranjero?',
+            a:
+              'Los permisos de la UE y del EEE siguen siendo válidos. Los de otros países, incluidos algunos estados de EE. UU., pueden canjearse sin examen, pero solo dentro de una ventana limitada tras el empadronamiento y en algunos casos únicamente con la regla del 30 por ciento. Si se pierde la ventana, toca el examen neerlandés completo. Revisamos su caso pronto, porque este plazo no admite excepciones.',
+          },
+          {
+            q: '¿Cómo consigo médico, dentista y farmacia?',
+            a:
+              'Se inscribe en una consulta de medicina general cerca de su domicilio, y la consulta le asigna la farmacia. Ambas se llenan, así que las resolvemos en sus dos primeras semanas. Los dentistas admiten pacientes privados directamente y son más fáciles, aunque los buenos del centro mantienen listas.',
+          },
+          {
+            q: '¿Y la agencia tributaria el primer año?',
+            a:
+              'Su primer ejercicio fiscal neerlandés casi siempre merece una declaración, aunque crea que no debe nada, porque las declaraciones del año de llegada suelen generar devolución. Somos asesores de relocation y no fiscalistas, así que le presentamos a un asesor especializado en declaraciones de expatriados en lugar de adivinar por usted.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -449,6 +647,8 @@ export const relocation: SectionContent = {
       form: 'relocation',
       image: '/images/relocation-settling.jpg?v=20260728',
       imageAlt: 'Un recién llegado orientándose en su nuevo barrio neerlandés',
+      image2: '/images/couple-moving-in.jpg?v=20260731',
+      image2Alt: 'Pareja con las llaves de su nuevo apartamento en los Países Bajos',
     },
     {
       slug: 'airport-pickup-for-expats-netherlands',
@@ -510,6 +710,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Cómo funciona el traslado',
+        intro:
+          'Un servicio breve con pocas condiciones, todas pensadas para que nadie se quede esperando en una sala de llegadas.',
+        items: [
+          'Cubrimos Schiphol, Róterdam La Haya y Eindhoven, y terminales privadas bajo petición.',
+          'Envíenos su número de vuelo y lo seguimos, de modo que un retraso cambie nuestro horario y no su recibimiento.',
+          'El encuentro es dentro de la terminal, en llegadas, no en la acera.',
+          'Los vehículos se eligen según el número de pasajeros y el equipaje, con sillas infantiles cuando hagan falta.',
+          'Los traslados llegan a cualquier dirección de Róterdam y la región portuaria, y más lejos por acuerdo.',
+          'Confirmamos las reservas con al menos veinticuatro horas de antelación cuando es posible, aunque absorbemos cambios de última hora.',
+        ],
+      },
+      details: {
+        title: 'La primera hora neerlandesa',
+        items: [
+          {
+            q: '¿Qué pasa entre el aeropuerto y la puerta de casa?',
+            a:
+              'Se le recibe con su nombre, se atiende su equipaje y el trayecto sirve para la explicación que importa: cómo funcionan sus llaves, dónde está el supermercado más cercano, qué hacer con la basura, qué aplicación gestiona el transporte público y qué pasará mañana. La mayoría de los clientes considera esa media hora más valiosa que el propio traslado.',
+          },
+          {
+            q: '¿Pueden recoger a una familia que llega por separado?',
+            a:
+              'Sí. Las llegadas escalonadas son frecuentes cuando una pareja llega después o los hijos terminan el curso. Coordinamos varios vuelos y, cuando la diferencia es de uno o dos días, mantenemos el mismo chófer para que haya una cara conocida en ambos extremos.',
+          },
+          {
+            q: '¿Estará la vivienda lista al llegar?',
+            a:
+              'Lo estará si la hemos organizado nosotros. Dentro de un paquete de relocation nos ocupamos de recoger las llaves, encender la calefacción, dejar las camas utilizables y poner café, leche y pan en la cocina. Llegar a medianoche a un piso vacío es un recuerdo que dura años, y es evitable.',
+          },
+          {
+            q: '¿Gestionan también las salidas?',
+            a:
+              'Sí, y para clientes que dejan los Países Bajos lo combinamos con la inspección final, la recuperación de la fianza y la baja municipal, de modo que el último día esté tan organizado como el primero.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -533,8 +771,10 @@ export const relocation: SectionContent = {
         label: 'Reservar mi llegada',
       },
       form: 'relocation',
-      image: '/images/relocation-arrival.jpg?v=20260728',
-      imageAlt: 'Una cálida bienvenida en la sala de llegadas del aeropuerto',
+      image: '/images/relocation-arrival.jpg?v=20260731',
+      imageAlt: 'Chófer recibiendo a un cliente en una terminal de aviación privada',
+      image2: '/images/vip-welcome.jpg?v=20260731',
+      image2Alt: 'Coche ejecutivo en una avenida arbolada a la hora dorada',
     },
     {
       slug: 'family-relocation-netherlands',
@@ -604,6 +844,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Cómo se secuencia una mudanza familiar',
+        intro:
+          'Una mudanza familiar tiene más dependencias que ninguna otra. Estas son las que fijan el calendario.',
+        items: [
+          'La disponibilidad de plazas escolares suele determinar la fecha de la mudanza, no la fecha de incorporación al trabajo.',
+          'Cada miembro de la familia necesita su propia cita de empadronamiento y sus propios documentos legalizados, menores incluidos.',
+          'El titular principal debe cumplir el requisito de ingresos para los familiares acompañantes, actualmente 2.523,96 euros brutos al mes con paga incluida.',
+          'Si un progenitor no se traslada, se requiere su consentimiento por escrito para que un menor pueda hacerlo.',
+          'El seguro médico es obligatorio para cada miembro de la familia, aunque los menores están cubiertos gratis en la póliza de un progenitor.',
+          'Una pareja que acompaña a un migrante altamente cualificado tiene libre acceso al mercado laboral neerlandés y no necesita permiso de trabajo aparte.',
+        ],
+      },
+      details: {
+        title: 'Lo que nos preguntan las familias',
+        items: [
+          {
+            q: '¿En qué orden deberíamos hacerlo?',
+            a:
+              'Colegios, después vivienda en la zona que funcione, después permisos y empadronamiento, y por último la capa práctica. Invertir los dos primeros es el error familiar más frecuente y más caro, porque una casa preciosa a cuarenta minutos del único colegio con plazas hace infeliz a todo el mundo ya en noviembre.',
+          },
+          {
+            q: 'Mi pareja deja su carrera para venir. ¿Qué es realista?',
+            a:
+              'El mercado laboral neerlandés está realmente abierto a las parejas acompañantes, sobre todo en sectores de habla inglesa en torno a Róterdam y La Haya, y no hace falta permiso de trabajo. Lo que más ayuda es un CV en formato neerlandés, entender cómo funciona de verdad la selección local, y empezar antes de la mudanza y no después. Hacemos las presentaciones que están en nuestra mano.',
+          },
+          {
+            q: '¿Cómo se adaptan los niños?',
+            a:
+              'Mejor de lo que los padres esperan y más despacio de lo que desean. El sistema neerlandés es notablemente amable con los niños recién llegados, y el aula de acogida funciona. Lo más duro suelen ser los meses tres a seis, cuando pasa la novedad, y ayuda enormemente tener ya previsto un deporte, música o un club antes de necesitarlo.',
+          },
+          {
+            q: '¿De verdad puede ir todo en paralelo?',
+            a:
+              'Sí, y tiene que ser así. Permisos, solicitudes escolares, vivienda, empadronamiento y seguro tienen cada uno su propio tiempo de espera, así que los llevamos simultáneamente contra una única línea temporal familiar en vez de uno detrás de otro. Esa es la diferencia entre una mudanza de diez semanas y una de seis meses.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -627,8 +905,10 @@ export const relocation: SectionContent = {
         label: 'Planificar nuestra mudanza familiar',
       },
       form: 'relocation',
-      image: '/images/family-relocation.jpg',
-      imageAlt: 'Familia paseando con bicicletas por su nuevo barrio',
+      image: '/images/family-relocation.jpg?v=20260731',
+      imageAlt: 'Familia en bicicleta junto a un canal neerlandés a la hora dorada',
+      image2: '/images/family-reunification.jpg?v=20260731',
+      image2Alt: 'Familia reunida en una luminosa casa neerlandesa',
     },
     {
       slug: 'relocation-services-rotterdam',
@@ -690,6 +970,44 @@ export const relocation: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Lo que cubrimos localmente',
+        intro:
+          'Estamos en esta región y trabajamos en ella, lo que hace que nuestro consejo sea concreto y no genérico.',
+        items: [
+          'Róterdam y los municipios del entorno, entre ellos Schiedam, Capelle aan den IJssel, Barendrecht, Spijkenisse y el corredor de Europoort.',
+          'Las citas de empadronamiento en Róterdam se piden con antelación, con esperas de unos días a varias semanas según la temporada.',
+          'La ciudad tiene zonas de aparcamiento con permisos por hogar, y en el centro las listas de espera duran meses.',
+          'Los colegios internacionales de la región se concentran en Kralingen y en el sur de la ciudad, y las plazas son limitadas.',
+          'Los alquileres del sector libre arrancan hacia 1.200 euros para un apartamento de una habitación y suben con fuerza en la obra nueva frente al agua.',
+          'Los encargos fuera de nuestra región los derivamos en lugar de aceptarlos. Preferimos enviarle al despacho adecuado antes que ser el equivocado.',
+        ],
+      },
+      details: {
+        title: 'Vivir en Róterdam',
+        items: [
+          {
+            q: '¿Por qué Róterdam y no Ámsterdam?',
+            a:
+              'Espacio, coste y franqueza. Obtiene bastante más vivienda por su dinero, un trayecto más corto al puerto y al clúster industrial, una población internacional que trabaja en lugar de visitar, y una ciudad que se reconstruye en vez de conservarse. Ámsterdam está a cuarenta minutos cuando le apetezca.',
+          },
+          {
+            q: '¿Basta con el inglés?',
+            a:
+              'Para la vida diaria y la mayoría de los entornos de trabajo, sí. Para la correspondencia municipal, los conflictos de alquiler, la letra pequeña de los seguros y la administración escolar, no, y ese hueco es exactamente el que existimos para cubrir. Aprender neerlandés sigue mereciendo la pena, y le orientamos a cursos pensados para adultos que trabajan.',
+          },
+          {
+            q: '¿Cómo se mueve la gente?',
+            a:
+              'Primero en bicicleta, después en metro, y el coche al final. El metro llega a casi toda la ciudad y a buena parte de la región, la tarjeta OV o su tarjeta bancaria bastan, y un coche solo resulta realmente útil si trabaja en las terminales o lleva niños pequeños en dos direcciones.',
+          },
+          {
+            q: '¿Cómo es la comunidad internacional?',
+            a:
+              'Amplia, trabajadora y repartida por la región en vez de concentrada en un barrio. Entre el clúster portuario, la Universidad Erasmus, el centro hospitalario y el sector creativo, la mayoría de los recién llegados encuentra aquí a su gente antes de lo que espera. Hacemos las presentaciones que podemos, y para muchos clientes eso pesa más que cualquier trámite.',
+          },
+        ],
+      },
       faq: {
         title: 'Preguntas frecuentes',
         items: [
@@ -715,6 +1033,8 @@ export const relocation: SectionContent = {
       form: 'relocation',
       image: '/images/rotterdam.jpg?v=20260728',
       imageAlt: 'Centro de Rotterdam con arquitectura moderna junto al Mosa',
+      image2: '/images/rotterdam-evening.jpg',
+      image2Alt: 'El horizonte de Róterdam al anochecer',
     },
   ],
   crossLinks: [

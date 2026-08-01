@@ -10,8 +10,8 @@ export const housing: SectionContent = {
     'De Nederlandse huurmarkt beweegt snel en beloont wie voorbereid is. Goede appartementen staan er ’s ochtends op en zijn ’s avonds weg, en verhuurders kiezen huurders die snel reageren met een compleet dossier. Precies daar komen wij in beeld. Wij houden de markt voor u in de gaten, reageren binnen uren en bereiden uw dossier zo voor dat u, wanneer het juiste huis verschijnt, de kandidaat bent tegen wie een verhuurder ja zegt.',
     'Ons thuisterrein is Rotterdam en de bredere havenregio, van het stadscentrum tot Europoort en de Maasvlakte, al zoeken wij door heel Nederland. U wordt nooit alleen op pad gestuurd met een lijst links. Wij maken een shortlist, gaan mee naar bezichtigingen, lezen elk contract voordat u tekent en voeren het gesprek met de verhuurder van het eerste bericht tot de sleuteloverdracht.',
   ],
-  image: '/images/housing-canal.jpg?v=20260728',
-  imageAlt: 'Grachtenpanden in een Nederlandse stad op een heldere dag',
+  image: '/images/canal-colour.jpg',
+  imageAlt: 'Kleurrijke grachtenpanden weerspiegeld in het water van een Nederlandse stad',
   services: [
     {
       slug: 'housing-search-assistance-netherlands',
@@ -82,6 +82,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Over één ding zijn wij open: geen eerlijk bureau kan u in deze markt een specifieke woning garanderen. Wat wij wel kunnen beloven is snelheid, een compleet dossier en een sterk lokaal netwerk, en daarmee win je woningen. De prijs hangt af van uw zoekgebied en tijdlijn en wordt bevestigd tijdens uw intake.',
+      conditions: {
+        title: 'Wat de Nederlandse huurmarkt vraagt',
+        intro:
+          'De markt bepaalt meer dan uw budget. Dit zijn de voorwaarden waar wij uw dossier tegen opbouwen.',
+        items: [
+          'De meeste verhuurders vragen een bruto-inkomen van drie tot vier keer de maandhuur, onderbouwd met een contract en recente loonstroken.',
+          'Zonder Nederlands inkomensverleden kunt u een werkgeversverklaring, een bankgarantie of een hogere waarborgsom verwachten.',
+          'Waarborgsommen zijn voor contracten vanaf 1 juli 2023 wettelijk gemaximeerd op twee maanden kale huur.',
+          'Een BSN is niet nodig om te tekenen, maar wel om u op het adres in te schrijven, en die inschrijving ontsluit vrijwel al het andere.',
+          'Wij werken in Rotterdam, Europoort en de bredere havenregio. Daarbuiten zeggen wij dat liever dan de opdracht aan te nemen.',
+          'Wij treden op voor u en nooit voor de verhuurder, en wij ontvangen van geen van beide partijen courtage.',
+        ],
+      },
+      details: {
+        title: 'Hoe de zoektocht werkelijk verloopt',
+        items: [
+          {
+            q: 'Hoe lang duurt het om een woning te vinden?',
+            a:
+              'In de regio Rotterdam is vier tot acht weken realistisch in het hogere en gemeubileerde segment, en langer onder 1.500 euro per maand waar de concurrentie het hevigst is. Populaire woningen zijn binnen achtenveertig uur weg, dus reactiesnelheid weegt zwaarder dan de breedte van de zoektocht.',
+          },
+          {
+            q: 'Kunt u bezichtigen voordat ik aankom?',
+            a:
+              'Ja, en zo beginnen de meeste cliënten. Wij gaan namens u en sturen dezelfde dag een schriftelijk oordeel met video, genoeg om vanuit het buitenland te beslissen zonder op foto\'s te gokken.',
+          },
+          {
+            q: 'Tijdelijk of onbepaalde tijd?',
+            a:
+              'Sinds 1 juli 2024 moeten de meeste nieuwe huurcontracten voor onbepaalde tijd worden aangegaan, met tijdelijke contracten alleen in omschreven situaties zoals tijdelijke afwezigheid van de verhuurder. Die wijziging werkt in uw voordeel, en wij controleren onder welk regime uw contract valt voordat u tekent.',
+          },
+          {
+            q: 'Gemeubileerd, gestoffeerd of kaal?',
+            a:
+              'Nederlandse advertenties onderscheiden kaal, soms zonder vloer of zelfs lampen, gestoffeerd met vloeren en gordijnen, en gemeubileerd volledig ingericht. Het verschil kan bij aankomst duizenden euro\'s schelen, en het is het detail dat nieuwkomers het vaakst missen.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -105,8 +143,10 @@ export const housing: SectionContent = {
         label: 'Start mijn zoektocht',
       },
       form: 'relocation',
-      image: '/images/housing-search.jpg',
-      imageAlt: 'Makelaar en stel bekijken woningaanbod op een laptop',
+      image: '/images/housing-search.jpg?v=20260731',
+      imageAlt: 'Adviseur presenteert woningopties aan een stel',
+      image2: '/images/housing-interior.jpg?v=20260731',
+      image2Alt: 'Woonkamer van een appartement in een Nederlands grachtenpand',
     },
     {
       slug: 'housing-for-expats-rotterdam',
@@ -168,6 +208,44 @@ export const housing: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Voordat u een wijk kiest',
+        intro:
+          'Rotterdam beloont wie zijn adres kiest rond zijn leven in plaats van rond een plattegrond.',
+        items: [
+          'Vrijesectorhuren beginnen doorgaans rond 1.200 euro voor een eenkamerappartement en 1.800 euro voor een gezinswoning, hoger op de Kop van Zuid en in het centrum.',
+          'Sociale huur is voor expats feitelijk onbereikbaar. Inkomensgrenzen en wachtlijsten van jaren sluiten die deur.',
+          'Inschrijven op het adres kan alleen als de verhuurder dat toestaat, en sommige shortstayverhuurders doen dat niet.',
+          'Parkeervergunningen worden per huishouden en per zone verstrekt, en in centrale wijken loopt de wachtlijst maanden.',
+          'Woningen met energielabel E, F of G kosten meer in gebruik en kennen onder het puntenstelsel een lagere maximale huur.',
+          'Wij dekken Rotterdam en de omliggende gemeenten, waaronder Schiedam, Capelle, Barendrecht en de Europoortcorridor.',
+        ],
+      },
+      details: {
+        title: 'Rotterdam per wijk',
+        items: [
+          {
+            q: 'Waar wonen de meeste internationale professionals?',
+            a:
+              'Kralingen om de ruimte, het groen en de nabijheid van internationale scholen. Kop van Zuid en de Wilhelminapier voor rivierzicht en nieuwbouw. Centrum en Cool om alles lopend te doen. Hillegersberg voor gezinnen die een dorpsgevoel in de stad willen. Wat juist is, hangt veel meer af van uw woon-werkverkeer en uw kinderen dan van welke ranglijst dan ook.',
+          },
+          {
+            q: 'Hoe lang duurt de rit naar Europoort of Maasvlakte?',
+            a:
+              'Vanuit centraal Rotterdam vijfenveertig tot zeventig minuten met de auto, afhankelijk van poort en dienst. Vanuit Hoogvliet, Spijkenisse of Brielle zakt dat naar twintig of dertig. Werkt u op de terminals, dan is een wijk kiezen vóór het narekenen van de reistijd de duurste fout die er is.',
+          },
+          {
+            q: 'Zijn er internationale scholen in de buurt?',
+            a:
+              'Rotterdam heeft meerdere internationale en tweetalige opties, grotendeels geconcentreerd in Kralingen en in het zuiden van de stad, en de plaatsen zijn beperkt. Gezinnen moeten meestal eerst de school kiezen en daarna de wijk, dus plannen wij het in die volgorde.',
+          },
+          {
+            q: 'Kan ik beter kopen dan huren?',
+            a:
+              'Soms, maar zelden in jaar één. Nederlandse geldverstrekkers willen een arbeidsverleden en een vergunning met een redelijke horizon, en de transactiekosten maken een aankoop die u binnen twee jaar weer verlaat een duur experiment. Wij zeggen eerlijk wanneer kopen wél de betere zet is.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -191,8 +269,10 @@ export const housing: SectionContent = {
         label: 'Praat met een Rotterdamse local',
       },
       form: 'relocation',
-      image: '/images/rotterdam-housing.jpg',
-      imageAlt: 'Moderne appartementsgebouwen in Rotterdam',
+      image: '/images/rotterdam-housing.jpg?v=20260731',
+      imageAlt: 'Appartementengebouw aan het water in Rotterdam bij zonsondergang',
+      image2: '/images/rotterdam-evening.jpg?v=20260731',
+      image2Alt: 'De skyline van Rotterdam in de avond',
     },
     {
       slug: 'viewing-assistance-netherlands',
@@ -259,6 +339,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'De bezichtigingsservice is los te boeken of als onderdeel van een volledige woningzoektocht. Tarieven hangen af van locatie en frequentie en worden bevestigd tijdens uw intake.',
+      conditions: {
+        title: 'Hoe bezichtigingsbegeleiding werkt',
+        intro:
+          'Een onafhankelijke bezichtiger is alleen iets waard als hij werkelijk onafhankelijk is. Dit zijn onze voorwaarden.',
+        items: [
+          'Wij gaan door heel Rotterdam en de havenregio. Verder weg kan in overleg, afhankelijk van reistijd.',
+          'Populaire woningen worden vaak binnen vierentwintig uur ingepland, dus stuur de link zodra u hem ziet.',
+          'Wij rapporteren wat wij zien. Onderhandelen over de huur is apart en hoort bij bod- en contractbegeleiding.',
+          'Een live videorondgang vraagt bruikbaar mobiel bereik, en dat hebben kelders en dikke grachtenpandmuren niet altijd.',
+          'Wij kunnen niet naar binnen zonder makelaar of verhuurder, en enkele kantoren weigeren bezichtiging door derden volledig.',
+          'Ons schriftelijke oordeel is eerlijk. Past een woning niet bij u, dan zeggen wij dat, ook al kost het ons het vervolgwerk.',
+        ],
+      },
+      details: {
+        title: 'Wat wij controleren en foto\'s verbergen',
+        items: [
+          {
+            q: 'Wat inspecteert u werkelijk?',
+            a:
+              'Vocht en ventilatie, beglazing afgezet tegen het opgegeven energielabel, geluid van verkeer, trams, buren en uitgaansleven op het echte tijdstip van de dag, waterdruk, leeftijd en staat van de ketel, mobiel en internetbereik, berging, fietsenstalling, en of het gemeenschappelijke portiek onderhouden is of stilletjes verwaarloosd.',
+          },
+          {
+            q: 'Kunt u bezichtigen terwijl ik nog in het buitenland zit?',
+            a:
+              'Ja, en zo beginnen de meeste cliënten. U krijgt een videorondgang, foto\'s van wat advertenties nooit tonen, en dezelfde dag een schriftelijk oordeel, genoeg om vanaf een ander continent met vertrouwen te beslissen.',
+          },
+          {
+            q: 'Zegt u ook wel eens dat ik het niet moet doen?',
+            a:
+              'Regelmatig. De hele waarde van een onafhankelijke bezichtiger is dat wij er geen belang bij hebben dat u tekent. Ongeveer een derde van de woningen die wij bekijken krijgt een duidelijk negatief advies.',
+          },
+          {
+            q: 'Hoe snel kunt u erbij zijn?',
+            a:
+              'Meestal binnen vierentwintig tot achtenveertig uur, en dezelfde dag wanneer een woning dat verdient. In deze markt is een trage bezichtiging simpelweg een verloren woning.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -282,8 +400,10 @@ export const housing: SectionContent = {
         label: 'Boek een bezichtiging',
       },
       form: 'relocation',
-      image: '/images/housing-viewing.jpg?v=20260728',
-      imageAlt: 'Bezichtiging van een licht Nederlands appartement met grote ramen',
+      image: '/images/viewing-couple.jpg',
+      imageAlt: 'Makelaar leidt een stel rond in een licht Nederlands appartement',
+      image2: '/images/housing-viewing.jpg',
+      image2Alt: 'Bezichtiging van een appartement met een adviseur erbij',
     },
     {
       slug: 'rental-contract-review-netherlands',
@@ -346,6 +466,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Wij beoordelen contracten als relocationspecialisten, niet als advocatenkantoor. Voor echte juridische geschillen brengen wij u in contact met huurrechtadvocaten uit ons professionele netwerk, opgebouwd in jaren van werken naast ambassades en consulaten.',
+      conditions: {
+        title: 'Wat wij controleren, en wat niet',
+        intro:
+          'Het Nederlandse huurrecht beschermt u meer dan de meeste nieuwkomers beseffen. Weten welke bescherming geldt, is het hele spel.',
+        items: [
+          'Waarborgsommen zijn voor contracten vanaf 1 juli 2023 gemaximeerd op twee maanden kale huur.',
+          'Sinds 1 juli 2024 moeten de meeste nieuwe huurcontracten voor onbepaalde tijd zijn, met tijdelijke contracten alleen in omschreven situaties.',
+          'Servicekosten moeten gespecificeerd zijn en jaarlijks worden afgerekend tegen werkelijke kosten. Eén all-inbedrag mag bij de meeste huurwoningen niet.',
+          'Bemiddelingskosten mogen niet bij de huurder in rekening worden gebracht wanneer de makelaar voor de verhuurder optreedt.',
+          'Een huur boven het wettelijk toegestane niveau volgens het puntenstelsel kan bij de Huurcommissie worden aangevochten, meestal binnen zes maanden na aanvang.',
+          'Wij toetsen contracten en leggen uw positie uit. Wij zijn relocationadviseurs, geen advocatenkantoor, en voor procedures verwijzen wij naar een huurrechtadvocaat die wij vertrouwen.',
+        ],
+      },
+      details: {
+        title: 'Clausules die later geld kosten',
+        items: [
+          {
+            q: 'Naar welke clausules kijkt u het eerst?',
+            a:
+              'Opzeg- en diplomatenclausules, wie klein onderhoud betaalt, of de waarborgsom binnen een vaste termijn terugkomt, indexeringsformules die de inflatie voorbijlopen, beperkingen op inschrijving op het adres, servicekostenvoorschotten die onrealistisch laag staan, en boetes bij vroegtijdige beëindiging.',
+          },
+          {
+            q: 'Mag ik mij op dit adres inschrijven?',
+            a:
+              'Dit is de belangrijkste clausule en degene die het vaakst stilletjes wordt uitgesloten. Zonder inschrijving geen BSN, geen zorgverzekering, geen bankrekening en geen post van de IND. Verbiedt het contract het of zwijgt het erover, dan kaarten wij het aan vóór u tekent en niet erna.',
+          },
+          {
+            q: 'En als de huur te hoog is voor de woning?',
+            a:
+              'Het Nederlandse puntenstelsel bepaalt voor de meeste woningen een maximale huur op basis van oppervlakte, energielabel, voorzieningen en locatie. Ligt de huur daarboven, dan kan de Huurcommissie hem verlagen, meestal op een verzoek binnen zes maanden na aanvang van de huur. Wij signaleren dit tijdens de toets, terwijl dat venster nog openstaat.',
+          },
+          {
+            q: 'Hoe snel is een toetsing?',
+            a:
+              'Normaal binnen één werkdag, en dezelfde dag wanneer u onder druk staat om te tekenen. Een verhuurder die eist dat u binnen het uur tekent, past een tactiek toe en beschrijft geen deadline.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -369,8 +527,10 @@ export const housing: SectionContent = {
         label: 'Controleer mijn contract',
       },
       form: 'relocation',
-      image: '/images/rental-contract.jpg',
-      imageAlt: 'Handen die een huurcontract doornemen met sleutels op tafel',
+      image: '/images/rental-contract.jpg?v=20260731',
+      imageAlt: 'Ondertekening van een Nederlands huurcontract met een vulpen',
+      image2: '/images/housing-interior.jpg?v=20260731',
+      image2Alt: 'Woonkamer van een appartement in een Nederlands grachtenpand',
     },
     {
       slug: 'temporary-housing-for-expats-netherlands',
@@ -436,6 +596,44 @@ export const housing: SectionContent = {
           },
         ],
       },
+      conditions: {
+        title: 'Shortstay in de praktijk',
+        intro:
+          'Een tijdelijke basis is een brug, en bruggen kies je zorgvuldig. Dit zijn de voorwaarden die bepalen of de uwe werkt.',
+        items: [
+          'Shortstay loopt meestal van één tot zes maanden en kost per maand meer dan een gewone huur, vaak dertig tot vijftig procent meer.',
+          'Inschrijven op het adres kan alleen wanneer zowel de verhuurder als de gemeente dat toestaat, en veel shortstayadressen doen dat niet.',
+          'Zonder inschrijving geen BSN, wat de zorgverzekering, het bankieren en soms de salarisbetaling vertraagt.',
+          'De meeste shortstaywoningen zijn gemeubileerd inclusief energie en internet, maar schoonmaak en linnengoed vaak niet.',
+          'Minimale verblijfsduur, annuleringsvoorwaarden en waarborgsommen verschillen sterk per aanbieder en zijn zelden onderhandelbaar.',
+          'Wij plaatsen cliënten alleen in woningen die wij zelf zouden gebruiken, en weigeren aanbieders wier contracten wij niet vertrouwen.',
+        ],
+      },
+      details: {
+        title: 'De brug goed gebruiken',
+        items: [
+          {
+            q: 'Kan ik mij op een shortstayadres inschrijven?',
+            a:
+              'Soms, en dat verandert alles. Wij filteren vanaf het begin op inschrijfbare woningen, want een basis waar inschrijving mag laat uw BSN, verzekering en salaris vanaf week één lopen in plaats van vanaf maand drie. Kan inschrijving niet, dan plannen wij daar bewust omheen.',
+          },
+          {
+            q: 'Voor hoe lang moet ik boeken?',
+            a:
+              'Zes tot tien weken past bij de meeste aankomsten. Het geeft de definitieve zoektocht lucht zonder de shortstaytoeslag langer te betalen dan nodig, en de meeste aanbieders verlengen als de zoektocht uitloopt.',
+          },
+          {
+            q: 'Is een hotel goedkoper?',
+            a:
+              'Onder de drie weken vaak wel. Daarna winnen shortstayappartementen op zowel kosten als leefbaarheid, zeker voor gezinnen. Het omslagpunt ligt meestal rond de derde week.',
+          },
+          {
+            q: 'En mijn spullen die uit het buitenland komen?',
+            a:
+              'Shortstaycontracten kennen zelden opslag. Wij stemmen uw verhuizing af op het definitieve adres in plaats van op het tijdelijke, en regelen opslag in de regio wanneer de tijdlijnen elkaar niet halen.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -459,8 +657,10 @@ export const housing: SectionContent = {
         label: 'Regel mijn tijdelijke woning',
       },
       form: 'relocation',
-      image: '/images/housing-interior.jpg?v=20260728',
-      imageAlt: 'Een gemeubileerd short-stay appartement klaar voor een nieuwkomer',
+      image: '/images/housing-interior.jpg?v=20260731',
+      imageAlt: 'Woonkamer van een appartement in een Nederlands grachtenpand',
+      image2: '/images/entrepreneur-housing.jpg',
+      image2Alt: 'Licht gemeubileerd appartement klaar voor een nieuwe bewoner',
     },
     {
       slug: 'landlord-communication-support-netherlands',
@@ -523,6 +723,44 @@ export const housing: SectionContent = {
         ],
       },
       note: 'Voor zaken die werkelijk bij de Huurcommissie of de rechter thuishoren, bereiden wij uw dossier voor en verwijzen wij u door naar een gespecialiseerde huurrechtadvocaat. U betaalt ons nooit voor wat een advocaat hoort te doen.',
+      conditions: {
+        title: 'Wat wij wel en niet kunnen doen',
+        intro:
+          'De meeste huurgeschillen worden gewonnen door op het juiste moment het juiste in de juiste taal te schrijven. Dat is het werk.',
+        items: [
+          'Wij corresponderen in het Nederlands met verhuurders en makelaars, op uw naam, met u in de kopie van alles wat uitgaat.',
+          'Reparaties die veiligheid, verwarming of water raken moeten eerst bij de verhuurder worden gemeld. Doet die niets, dan kan de Huurcommissie worden ingeschakeld.',
+          'Waarborgsommen moeten binnen een redelijke termijn na de eindinspectie terug, en elke inhouding moet gespecificeerd en onderbouwd zijn.',
+          'Normale slijtage mag niet van uw waarborgsom worden afgetrokken. Werkelijke schade wel.',
+          'Voor geschillen over huurprijs, servicekosten en onderhoud is de Huurcommissie doorgaans veel sneller en goedkoper dan de rechter.',
+          'Wij zijn geen advocatenkantoor. Vraagt een geschil om een procedure, dan dragen wij over aan een huurrechtadvocaat en blijven wij uw tolk.',
+        ],
+      },
+      details: {
+        title: 'De geschillen die wij het vaakst behandelen',
+        items: [
+          {
+            q: 'Mijn verhuurder houdt de waarborgsom in.',
+            a:
+              'Het meest voorkomende geschil en meestal het best te winnen. Wij vragen een gespecificeerde opgave met bewijs, scheiden normale slijtage van werkelijke schade, leggen het inspectierapport bij aanvang naast dat bij vertrek, en stellen een formele termijn in het Nederlands. De meeste waarborgsommen komen in dat stadium terug zonder enige procedure.',
+          },
+          {
+            q: 'Reparaties worden genegeerd.',
+            a:
+              'Wij melden formeel en schriftelijk, waarmee de klok juridisch gaat lopen in plaats van sociaal. Gebeurt er niets, dan kan de Huurcommissie een tijdelijke huurverlaging opleggen tot het herstel is uitgevoerd, en het vooruitzicht daarvan levert doorgaans een loodgieter op.',
+          },
+          {
+            q: 'Mijn servicekosten stegen zonder uitleg.',
+            a:
+              'Verhuurders moeten een jaarlijkse afrekening geven met werkelijke kosten tegenover wat u betaalde. Wij vragen die op, leggen hem naast de meterstanden en betwisten de onderdelen die niet onderbouwd kunnen worden.',
+          },
+          {
+            q: 'Ik moet eerder weg.',
+            a:
+              'De meeste contracten voor onbepaalde tijd staan opzegging door de huurder toe met één maand opzegtermijn, wat er ook aan de deur wordt gezegd. Wij controleren de clausule, zeggen correct op en begeleiden de eindinspectie zodat de waarborgsom heel terugkomt.',
+          },
+        ],
+      },
       faq: {
         title: 'Veelgestelde vragen',
         items: [
@@ -546,8 +784,10 @@ export const housing: SectionContent = {
         label: 'Draag het over',
       },
       form: 'relocation',
-      image: '/images/landlord-communication.jpg',
-      imageAlt: 'Consultant schudt een verhuurder de hand bij de voordeur',
+      image: '/images/landlord-communication.jpg?v=20260731',
+      imageAlt: 'Adviseur en verhuurder schudden elkaar de hand in een appartement',
+      image2: '/images/housing-viewing.jpg?v=20260731',
+      image2Alt: 'Bezichtiging van een appartement met een adviseur erbij',
     },
   ],
   cta: {
