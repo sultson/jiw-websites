@@ -1,9 +1,11 @@
 import { createFormWorker, type CloudflareFormsEnv } from '@jiw/cloudflare-forms';
 import { expatConfirmationEmails } from './confirmation-email';
 
-export type Env = CloudflareFormsEnv & {
-  ASSETS: Fetcher;
-};
+export type Env = CloudflareFormsEnv;
+
+function matchesFormRoute(pathname: string, formPath: string) {
+  return pathname === formPath || pathname.startsWith(`${formPath}/`);
+}
 
 // One tailored form per visitor path (immigration / relocation & packages /
 // VIP), instead of a single generic contact form.
@@ -13,6 +15,8 @@ const immigrationWorker = createFormWorker({
   ownerName: 'Johanna',
   senderName: 'E & I Expat & Immigration Services',
   subjectPrefix: 'New immigration inquiry',
+  turnstile: false,
+  honeypotField: 'company',
   confirmationEmail: expatConfirmationEmails.immigration,
   confirmationFollowUpSentence:
     'Johanna will personally review your situation and reply within one business day, usually much sooner.',
@@ -38,6 +42,8 @@ const relocationWorker = createFormWorker({
   ownerName: 'Johanna',
   senderName: 'E & I Expat & Immigration Services',
   subjectPrefix: 'New relocation inquiry',
+  turnstile: false,
+  honeypotField: 'company',
   confirmationEmail: expatConfirmationEmails.relocation,
   confirmationFollowUpSentence:
     'Johanna will personally review your plans and reply within one business day, usually much sooner.',
@@ -62,6 +68,8 @@ const vipWorker = createFormWorker({
   ownerName: 'Johanna',
   senderName: 'E & I VIP Relocation',
   subjectPrefix: 'New VIP relocation inquiry',
+  turnstile: false,
+  honeypotField: 'company',
   confirmationEmail: expatConfirmationEmails.vip,
   confirmationFollowUpSentence:
     'Johanna will contact you personally, day or night. For immediate assistance, message us on WhatsApp.',
@@ -84,18 +92,19 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
-    if (url.pathname.startsWith('/api/forms/immigration')) {
+    if (matchesFormRoute(url.pathname, '/api/forms/immigration')) {
       return immigrationWorker.fetch!(request, env, ctx);
     }
-    if (url.pathname.startsWith('/api/forms/relocation')) {
+    if (matchesFormRoute(url.pathname, '/api/forms/relocation')) {
       return relocationWorker.fetch!(request, env, ctx);
     }
-    if (url.pathname.startsWith('/api/forms/vip')) {
+    if (matchesFormRoute(url.pathname, '/api/forms/vip')) {
       return vipWorker.fetch!(request, env, ctx);
     }
 
-    // Static assets are served directly (run_worker_first scopes the Worker to
-    // /api/*), but keep a fallthrough so the Worker stays correct if invoked.
-    return env.ASSETS.fetch(request);
+    return new Response(JSON.stringify({ success: false, error: 'not_found' }), {
+      status: 404,
+      headers: { 'content-type': 'application/json; charset=utf-8' },
+    });
   },
 } satisfies ExportedHandler<Env>;

@@ -106,7 +106,9 @@ function parseRedirects(source) {
 }
 
 function builtHtmlPath(route) {
-  return route === '/' ? join(distDir, 'index.html') : join(distDir, route.slice(1), 'index.html');
+  if (route === '/') return join(distDir, 'index.html');
+  const flatPath = join(distDir, `${route.slice(1)}.html`);
+  return existsSync(flatPath) ? flatPath : join(distDir, route.slice(1), 'index.html');
 }
 
 assert.ok(existsSync(redirectsPath), 'public/_redirects is missing');

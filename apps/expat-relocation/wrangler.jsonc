@@ -1,41 +1,12 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "expat-relocation",
-  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
-  "main": "./worker/index.ts",
-  "compatibility_date": "2026-04-24",
-  "observability": {
-    "enabled": true
-  },
-  "assets": {
-    "directory": "./dist",
-    "binding": "ASSETS",
-    "html_handling": "drop-trailing-slash",
-    "not_found_handling": "404-page",
-    "run_worker_first": ["/api/*"]
-  },
-  "routes": [
+  "compatibility_date": "2026-08-03",
+  "pages_build_output_dir": "./dist",
+  "services": [
     {
-      "pattern": "expat-relocation.jouwidealewebsite.nl",
-      "custom_domain": true
+      "binding": "FORM_BACKEND",
+      "service": "expat-relocation-forms"
     }
-  ],
-  "r2_buckets": [
-    {
-      "binding": "FORM_UPLOADS",
-      "bucket_name": "jiw-form-uploads-prod"
-    }
-  ],
-  "send_email": [
-    {
-      "name": "LEAD_EMAIL",
-      "allowed_sender_addresses": ["expat-relocation@notify.jouwidealewebsite.nl"]
-    }
-  ],
-  "vars": {
-    "SITE_ID": "expat-relocation",
-    "LEAD_RECIPIENT": "info@expat-relocation.nl",
-    "LEAD_SENDER": "expat-relocation@notify.jouwidealewebsite.nl",
-    "TURNSTILE_SECRET_KEY": "dev"
-  }
+  ]
 }

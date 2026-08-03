@@ -9,8 +9,11 @@
     "audit:migration": "node scripts/audit-migration-redirects.mjs",
     "audit:seo": "node scripts/audit-search-metadata.mjs",
     "preview": "astro preview",
-    "ship": "pnpm build && pnpm audit:seo && pnpm audit:migration && wrangler deploy",
-    "ship:dry-run": "pnpm build && pnpm audit:seo && pnpm audit:migration && wrangler deploy --dry-run",
+    "preview:pages": "wrangler pages dev dist",
+    "ship": "pnpm build && pnpm audit:seo && pnpm audit:migration && wrangler pages deploy dist --project-name expat-relocation --branch main",
+    "ship:dry-run": "pnpm build && pnpm audit:seo && pnpm audit:migration && wrangler pages functions build functions --outdir .wrangler/pages-functions",
+    "ship:forms": "wrangler deploy --config wrangler.forms.jsonc",
+    "ship:forms:dry-run": "wrangler deploy --config wrangler.forms.jsonc --dry-run",
     "clean": "rm -rf dist .astro",
     "lint": "astro check && tsc --noEmit -p tsconfig.worker.json",
     "optimize-images": "node scripts/optimize-images.mjs"

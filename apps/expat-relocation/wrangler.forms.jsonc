@@ -1,0 +1,28 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "expat-relocation-forms",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-08-03",
+  "workers_dev": false,
+  "observability": {
+    "enabled": true
+  },
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["expat-relocation@notify.jouwidealewebsite.nl"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "expat-relocation",
+    "LEAD_RECIPIENT": "info@expat-relocation.nl",
+    "LEAD_SENDER": "expat-relocation@notify.jouwidealewebsite.nl"
+  }
+}

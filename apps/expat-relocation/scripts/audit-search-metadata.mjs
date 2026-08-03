@@ -26,14 +26,16 @@ function htmlFiles(directory, out = []) {
   for (const name of readdirSync(directory)) {
     const path = join(directory, name);
     if (statSync(path).isDirectory()) htmlFiles(path, out);
-    else if (name === 'index.html') out.push(path);
+    else if (name.endsWith('.html') && name !== '404.html') out.push(path);
   }
   return out;
 }
 
 function routeFor(file) {
-  const route = `/${relative(distDir, dirname(file)).replaceAll('\\', '/')}`;
-  return route === '/.' ? '/' : route;
+  const path = relative(distDir, file).replaceAll('\\', '/');
+  if (path === 'index.html') return '/';
+  if (path.endsWith('/index.html')) return `/${path.slice(0, -'/index.html'.length)}`;
+  return `/${path.slice(0, -'.html'.length)}`;
 }
 
 function one(html, pattern, label, route) {

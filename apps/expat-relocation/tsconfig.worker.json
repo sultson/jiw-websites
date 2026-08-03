@@ -13,5 +13,5 @@
     "types": ["@cloudflare/workers-types"],
     "noEmit": true
   },
-  "include": ["worker"]
+  "include": ["worker", "functions"]
 }

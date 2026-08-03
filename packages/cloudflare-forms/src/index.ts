@@ -32,6 +32,10 @@ export type LeadFormConfig = {
   allowedFileExtensions?: string[];
   optionalEmailWhen?: LeadFormCondition[];
   skipTurnstileWhen?: LeadFormCondition[];
+  /** Disable Turnstile for this form. Defaults to true so existing clients retain protection. */
+  turnstile?: boolean;
+  /** Optional hidden field that silently accepts bot submissions without storing or emailing them. */
+  honeypotField?: string;
   /**
    * Opt-in, per-submission confirmation email localization and branding.
    * When omitted, the existing Dutch/English confirmation renderer is used.
@@ -167,6 +171,8 @@ function withDefaults(config: LeadFormConfig): ResolvedLeadFormConfig {
     allowedFileExtensions: defaultAllowedFileExtensions,
     optionalEmailWhen: [],
     skipTurnstileWhen: [],
+    turnstile: true,
+    honeypotField: '',
     ...config,
   };
 }
@@ -191,7 +197,11 @@ async function handleSubmission(
   try {
     const form = await request.formData();
     const confirmationLocale = resolveConfirmationLocale(form, config.confirmationEmail);
-    const fields = parseFields(form, Boolean(config.confirmationEmail));
+    if (config.honeypotField && getString(form, config.honeypotField)) {
+      console.log('form_rejected', { reason: 'honeypot', ...reqMeta });
+      return jsonResponse({ ok: true });
+    }
+    const fields = parseFields(form, Boolean(config.confirmationEmail), config.honeypotField);
     const turnstileToken = getString(form, 'cf-turnstile-response');
     const fileEntries = form.getAll('files').filter((value): value is File => value instanceof File && value.size > 0);
     const message = getFieldValue(fields, config.messageField);
@@ -212,7 +222,7 @@ async function handleSubmission(
       return jsonError('validation', validationError, 400);
     }
 
-    const shouldSkipTurnstile = config.skipTurnstileWhen.some((condition) => conditionMatches(fields, condition));
+    const shouldSkipTurnstile = !config.turnstile || config.skipTurnstileWhen.some((condition) => conditionMatches(fields, condition));
     const turnstileValid = shouldSkipTurnstile || (await validateTurnstile(env.TURNSTILE_SECRET_KEY, turnstileToken, request));
     if (!turnstileValid) {
       console.log('form_rejected', { reason: 'turnstile', ...fieldsPresent, ...reqMeta });
@@ -319,7 +329,7 @@ async function handleAttachmentDownload(
   });
 }
 
-function parseFields(form: FormData, excludeConfirmationLocale = false): SubmissionFields {
+function parseFields(form: FormData, excludeConfirmationLocale = false, honeypotField = ''): SubmissionFields {
   const fields: Record<string, string> = {};
 
   form.forEach((value, key) => {
@@ -329,6 +339,7 @@ function parseFields(form: FormData, excludeConfirmationLocale = false): Submiss
       key !== 'firstName' &&
       key !== 'lastName' &&
       key !== 'email' &&
+      (!honeypotField || key !== honeypotField) &&
       (!excludeConfirmationLocale || key !== CONFIRMATION_LOCALE_FIELD) &&
       typeof value === 'string'
     ) {
