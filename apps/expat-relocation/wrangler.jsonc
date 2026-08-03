@@ -29,13 +29,13 @@
   "send_email": [
     {
       "name": "LEAD_EMAIL",
-      "allowed_sender_addresses": ["afspraak@notify.jouwidealewebsite.nl"]
+      "allowed_sender_addresses": ["expat-relocation@notify.jouwidealewebsite.nl"]
     }
   ],
   "vars": {
     "SITE_ID": "expat-relocation",
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
-    "LEAD_SENDER": "afspraak@notify.jouwidealewebsite.nl",
+    "LEAD_RECIPIENT": "info@expat-relocation.nl",
+    "LEAD_SENDER": "expat-relocation@notify.jouwidealewebsite.nl",
     "TURNSTILE_SECRET_KEY": "dev"
   }
 }
