@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import { CONFIRMATION_LOCALE_FIELD } from '@jiw/cloudflare-forms';
 import type { FormKind } from '../content/types';
 import type { Lang } from '../lib/i18n';
 import { getContent } from '../lib/content';
@@ -41,6 +42,7 @@ const selectOptions: string[] =
     data-error-text={f.errorBody}
     novalidate
   >
+    <input type="hidden" name={CONFIRMATION_LOCALE_FIELD} value={lang} />
     <div class="grid gap-5 sm:grid-cols-2">
       <label class="block">
         <span class="form-label">{f.firstName} *</span>

@@ -1,4 +1,5 @@
 import { createFormWorker, type CloudflareFormsEnv } from '@jiw/cloudflare-forms';
+import { expatConfirmationEmails } from './confirmation-email';
 
 export type Env = CloudflareFormsEnv & {
   ASSETS: Fetcher;
@@ -12,6 +13,7 @@ const immigrationWorker = createFormWorker({
   ownerName: 'Johanna',
   senderName: 'E & I Expat & Immigration Services',
   subjectPrefix: 'New immigration inquiry',
+  confirmationEmail: expatConfirmationEmails.immigration,
   confirmationFollowUpSentence:
     'Johanna will personally review your situation and reply within one business day, usually much sooner.',
   messageField: 'message',
@@ -36,6 +38,7 @@ const relocationWorker = createFormWorker({
   ownerName: 'Johanna',
   senderName: 'E & I Expat & Immigration Services',
   subjectPrefix: 'New relocation inquiry',
+  confirmationEmail: expatConfirmationEmails.relocation,
   confirmationFollowUpSentence:
     'Johanna will personally review your plans and reply within one business day, usually much sooner.',
   messageField: 'message',
@@ -59,6 +62,7 @@ const vipWorker = createFormWorker({
   ownerName: 'Johanna',
   senderName: 'E & I VIP Relocation',
   subjectPrefix: 'New VIP relocation inquiry',
+  confirmationEmail: expatConfirmationEmails.vip,
   confirmationFollowUpSentence:
     'Johanna will contact you personally, day or night. For immediate assistance, message us on WhatsApp.',
   messageField: 'message',

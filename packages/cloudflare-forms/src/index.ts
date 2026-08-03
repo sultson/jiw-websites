@@ -32,6 +32,41 @@ export type LeadFormConfig = {
   allowedFileExtensions?: string[];
   optionalEmailWhen?: LeadFormCondition[];
   skipTurnstileWhen?: LeadFormCondition[];
+  /**
+   * Opt-in, per-submission confirmation email localization and branding.
+   * When omitted, the existing Dutch/English confirmation renderer is used.
+   */
+  confirmationEmail?: LocalizedConfirmationEmailConfig;
+};
+
+export const CONFIRMATION_LOCALE_FIELD = '__jiw_confirmation_locale';
+
+export type LocalizedConfirmationEmailConfig = {
+  defaultLocale: string;
+  translations: Record<string, ConfirmationEmailCopy>;
+  brand: ConfirmationEmailBrand;
+};
+
+export type ConfirmationEmailCopy = {
+  subject: string;
+  preheader: string;
+  greeting: string;
+  receiptMessage: string;
+  followUpMessage: string;
+  detailsHeading: string;
+  messageHeading: string;
+  referenceLabel: string;
+  fieldLabels: Record<string, string>;
+  contactPrompt: string;
+  ctaLabel: string;
+  footerText: string;
+};
+
+export type ConfirmationEmailBrand = {
+  logoUrl: string;
+  logoAlt: string;
+  websiteUrl: string;
+  contactEmail: string;
 };
 
 export type LeadFormRequiredField = {
@@ -84,6 +119,10 @@ type TurnstileResponse = {
 const defaultAllowedFileTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif', 'application/pdf'];
 const defaultAllowedFileExtensions = ['jpg', 'jpeg', 'png', 'webp', 'heic', 'heif', 'pdf'];
 
+type ResolvedLeadFormConfig = Required<Omit<LeadFormConfig, 'confirmationEmail'>> & {
+  confirmationEmail?: LocalizedConfirmationEmailConfig;
+};
+
 export function createFormWorker(config: LeadFormConfig): ExportedHandler<CloudflareFormsEnv> {
   const settings = withDefaults(config);
 
@@ -108,7 +147,7 @@ export function createFormWorker(config: LeadFormConfig): ExportedHandler<Cloudf
   };
 }
 
-function withDefaults(config: LeadFormConfig): Required<LeadFormConfig> {
+function withDefaults(config: LeadFormConfig): ResolvedLeadFormConfig {
   return {
     locale: 'nl',
     ownerName: 'Eigenaar',
@@ -135,7 +174,7 @@ function withDefaults(config: LeadFormConfig): Required<LeadFormConfig> {
 async function handleSubmission(
   request: Request,
   env: CloudflareFormsEnv,
-  config: Required<LeadFormConfig>,
+  config: ResolvedLeadFormConfig,
 ): Promise<Response> {
   const cf = (request as Request & { cf?: Record<string, unknown> }).cf ?? {};
   const reqMeta = {
@@ -151,7 +190,8 @@ async function handleSubmission(
 
   try {
     const form = await request.formData();
-    const fields = parseFields(form);
+    const confirmationLocale = resolveConfirmationLocale(form, config.confirmationEmail);
+    const fields = parseFields(form, Boolean(config.confirmationEmail));
     const turnstileToken = getString(form, 'cf-turnstile-response');
     const fileEntries = form.getAll('files').filter((value): value is File => value instanceof File && value.size > 0);
     const message = getFieldValue(fields, config.messageField);
@@ -206,7 +246,7 @@ async function handleSubmission(
 
     const origin = new URL(request.url).origin;
     await sendLeadEmail(env, config, manifest, origin);
-    await sendConfirmationEmail(env, config, manifest);
+    await sendConfirmationEmail(env, config, manifest, confirmationLocale);
 
     console.log('form_accepted', {
       submissionId,
@@ -247,7 +287,7 @@ async function handleClientLog(request: Request): Promise<Response> {
 async function handleAttachmentDownload(
   request: Request,
   env: CloudflareFormsEnv,
-  config: Required<LeadFormConfig>,
+  config: ResolvedLeadFormConfig,
 ): Promise<Response> {
   const url = new URL(request.url);
   const rawParts = url.pathname.slice(`${config.formPath}/attachments/`.length).split('/');
@@ -279,11 +319,19 @@ async function handleAttachmentDownload(
   });
 }
 
-function parseFields(form: FormData): SubmissionFields {
+function parseFields(form: FormData, excludeConfirmationLocale = false): SubmissionFields {
   const fields: Record<string, string> = {};
 
   form.forEach((value, key) => {
-    if (key !== 'files' && key !== 'cf-turnstile-response' && key !== 'firstName' && key !== 'lastName' && key !== 'email' && typeof value === 'string') {
+    if (
+      key !== 'files' &&
+      key !== 'cf-turnstile-response' &&
+      key !== 'firstName' &&
+      key !== 'lastName' &&
+      key !== 'email' &&
+      (!excludeConfirmationLocale || key !== CONFIRMATION_LOCALE_FIELD) &&
+      typeof value === 'string'
+    ) {
       fields[key] = value.trim();
     }
   });
@@ -296,7 +344,7 @@ function parseFields(form: FormData): SubmissionFields {
   };
 }
 
-function validateFields(fields: SubmissionFields, config: Required<LeadFormConfig>): string | null {
+function validateFields(fields: SubmissionFields, config: ResolvedLeadFormConfig): string | null {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const emailRequired = config.requireEmail && !config.optionalEmailWhen.some((condition) => conditionMatches(fields, condition));
   if (config.requireFirstName && !fields.firstName) return config.locale === 'en' ? 'Enter your first name.' : 'Vul uw naam in.';
@@ -315,7 +363,7 @@ function validateFields(fields: SubmissionFields, config: Required<LeadFormConfi
   return null;
 }
 
-function validateAttachments(files: File[], config: Required<LeadFormConfig>): string | null {
+function validateAttachments(files: File[], config: ResolvedLeadFormConfig): string | null {
   if (files.length > config.attachmentMaxFiles) return config.locale === 'en' ? `Attach no more than ${config.attachmentMaxFiles} files.` : `Stuur maximaal ${config.attachmentMaxFiles} bestanden mee.`;
 
   let totalSize = 0;
@@ -329,7 +377,7 @@ function validateAttachments(files: File[], config: Required<LeadFormConfig>): s
   return null;
 }
 
-function isAllowedFile(file: File, config: Required<LeadFormConfig>): boolean {
+function isAllowedFile(file: File, config: ResolvedLeadFormConfig): boolean {
   const extension = file.name.split('.').pop()?.toLowerCase() ?? '';
   return config.allowedFileTypes.includes(file.type) || config.allowedFileExtensions.includes(extension);
 }
@@ -367,6 +415,21 @@ function isLoopback(value: string): boolean {
   return value === 'localhost' || value === '127.0.0.1' || value === '::1' || value === '[::1]';
 }
 
+function resolveConfirmationLocale(form: FormData, config?: LocalizedConfirmationEmailConfig): string | undefined {
+  if (!config) return undefined;
+
+  const requested = getString(form, CONFIRMATION_LOCALE_FIELD).toLowerCase();
+  if (hasOwn(config.translations, requested)) return requested;
+  if (hasOwn(config.translations, config.defaultLocale)) return config.defaultLocale;
+  if (hasOwn(config.translations, 'en')) return 'en';
+
+  return Object.keys(config.translations)[0];
+}
+
+function hasOwn(object: object, key: string): boolean {
+  return Object.prototype.hasOwnProperty.call(object, key);
+}
+
 async function storeAttachments(bucket: R2Bucket, files: File[], prefix: string): Promise<StoredAttachment[]> {
   const attachments: StoredAttachment[] = [];
 
@@ -396,20 +459,30 @@ async function storeAttachments(bucket: R2Bucket, files: File[], prefix: string)
 
 async function sendConfirmationEmail(
   env: CloudflareFormsEnv,
-  config: Required<LeadFormConfig>,
+  config: ResolvedLeadFormConfig,
   manifest: SubmissionManifest,
+  locale?: string,
 ): Promise<void> {
   const { fields } = manifest;
   if (!fields.email) return;
 
   try {
+    const localized = locale && config.confirmationEmail
+      ? { config: config.confirmationEmail, copy: config.confirmationEmail.translations[locale], locale }
+      : undefined;
     await env.LEAD_EMAIL.send({
       from: { email: env.LEAD_SENDER, name: config.senderName },
       to: fields.email,
       replyTo: env.LEAD_RECIPIENT,
-      subject: cleanHeader(config.locale === 'en' ? `Your request has been received - ${config.siteName}` : `Uw offerteaanvraag is ontvangen - ${config.siteName}`),
-      text: renderConfirmationTextEmail(config, manifest),
-      html: renderConfirmationHtmlEmail(config, manifest),
+      subject: cleanHeader(localized
+        ? formatCopy(localized.copy.subject, { siteName: config.siteName })
+        : config.locale === 'en' ? `Your request has been received - ${config.siteName}` : `Uw offerteaanvraag is ontvangen - ${config.siteName}`),
+      text: localized
+        ? renderLocalizedConfirmationTextEmail(config, manifest, localized.config, localized.copy)
+        : renderConfirmationTextEmail(config, manifest),
+      html: localized
+        ? renderLocalizedConfirmationHtmlEmail(config, manifest, localized.config, localized.copy, localized.locale)
+        : renderConfirmationHtmlEmail(config, manifest),
     });
   } catch (error) {
     console.error('Confirmation email failed', {
@@ -422,14 +495,16 @@ async function sendConfirmationEmail(
 
 async function sendLeadEmail(
   env: CloudflareFormsEnv,
-  config: Required<LeadFormConfig>,
+  config: ResolvedLeadFormConfig,
   manifest: SubmissionManifest,
   origin: string,
 ): Promise<void> {
   const { fields } = manifest;
   const subjectParts = [
     config.subjectPrefix,
-    ...config.subjectFields.map((field) => getDisplayFieldValue(fields, field, config)),
+    ...config.subjectFields
+      .filter((field) => !isReservedConfirmationField(field, config))
+      .map((field) => getDisplayFieldValue(fields, field, config)),
   ].filter(Boolean);
   const subject = subjectParts.map(cleanHeader).join(' - ');
 
@@ -450,7 +525,148 @@ async function sendLeadEmail(
   }
 }
 
-function renderConfirmationTextEmail(config: Required<LeadFormConfig>, manifest: SubmissionManifest): string {
+function renderLocalizedConfirmationTextEmail(
+  config: ResolvedLeadFormConfig,
+  manifest: SubmissionManifest,
+  emailConfig: LocalizedConfirmationEmailConfig,
+  copy: ConfirmationEmailCopy,
+): string {
+  const { fields } = manifest;
+  const rows = renderLocalizedConfirmationRows(config, fields, copy);
+  const message = getFieldValue(fields, config.messageField);
+  const replacements = { name: getFullName(fields), siteName: config.siteName };
+
+  return [
+    formatCopy(copy.greeting, replacements),
+    '',
+    formatCopy(copy.receiptMessage, replacements),
+    formatCopy(copy.followUpMessage, replacements),
+    '',
+    copy.detailsHeading,
+    ...rows.map(([label, value]) => `${label}: ${value || '-'}`),
+    '',
+    `${copy.messageHeading}:`,
+    message || '-',
+    '',
+    `${copy.referenceLabel}: ${manifest.submissionId}`,
+    '',
+    copy.contactPrompt,
+    emailConfig.brand.contactEmail,
+    `${copy.ctaLabel}: ${emailConfig.brand.websiteUrl}`,
+    '',
+    copy.footerText,
+  ].join('\n');
+}
+
+function renderLocalizedConfirmationHtmlEmail(
+  config: ResolvedLeadFormConfig,
+  manifest: SubmissionManifest,
+  emailConfig: LocalizedConfirmationEmailConfig,
+  copy: ConfirmationEmailCopy,
+  locale: string,
+): string {
+  const { fields } = manifest;
+  const brand = emailConfig.brand;
+  const rows = renderLocalizedConfirmationRows(config, fields, copy);
+  const message = getFieldValue(fields, config.messageField) || '-';
+  const replacements = { name: getFullName(fields), siteName: config.siteName };
+  const detailRows = rows.map(([label, value], index) => `
+                <tr>
+                  <td style="padding: 11px 12px; border-bottom: 1px solid #e6e0d4; width: 42%; color: #475467; font-size: 14px; line-height: 20px; vertical-align: top;${index === rows.length - 1 ? ' border-bottom: 0;' : ''}"><strong>${escapeHtml(label)}</strong></td>
+                  <td style="padding: 11px 12px; border-bottom: 1px solid #e6e0d4; color: #00143a; font-size: 14px; line-height: 20px; vertical-align: top;${index === rows.length - 1 ? ' border-bottom: 0;' : ''}">${escapeHtml(value || '-')}</td>
+                </tr>`).join('');
+
+  return `<!doctype html>
+<html lang="${escapeHtml(locale)}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${escapeHtml(formatCopy(copy.subject, { siteName: config.siteName }))}</title>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f4f1e8; color: #00143a; font-family: Arial, Helvetica, sans-serif;">
+    <div style="display: none; max-height: 0; overflow: hidden; opacity: 0; color: transparent; mso-hide: all;">${escapeHtml(copy.preheader)}</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; background-color: #f4f1e8;">
+      <tr>
+        <td align="center" style="padding: 24px 12px;">
+          <table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width: 100%; max-width: 640px; border-collapse: collapse; background-color: #ffffff; border-top: 4px solid #d4af37;">
+            <tr>
+              <td align="center" style="padding: 25px 28px 21px; background-color: #fffdf8;">
+                <img src="${escapeHtml(brand.logoUrl)}" width="360" alt="${escapeHtml(brand.logoAlt)}" style="display: block; width: 100%; max-width: 360px; height: auto; border: 0; color: #00143a; font-size: 16px;">
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 28px 36px; background-color: #00143a; color: #ffffff;">
+                <p style="margin: 0 0 10px; color: #d4af37; font-size: 13px; font-weight: bold; letter-spacing: 1.2px; line-height: 18px; text-transform: uppercase;">${escapeHtml(copy.detailsHeading)}</p>
+                <p style="margin: 0; color: #ffffff; font-size: 22px; font-weight: bold; line-height: 30px;">${escapeHtml(formatCopy(copy.receiptMessage, replacements))}</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 32px 36px 16px; background-color: #ffffff;">
+                <p style="margin: 0 0 16px; color: #00143a; font-size: 17px; line-height: 26px;">${escapeHtml(formatCopy(copy.greeting, replacements))}</p>
+                <p style="margin: 0; color: #344054; font-size: 15px; line-height: 24px;">${escapeHtml(formatCopy(copy.followUpMessage, replacements))}</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 16px 36px; background-color: #ffffff;">
+                <h1 style="margin: 0 0 12px; color: #00143a; font-size: 20px; line-height: 28px;">${escapeHtml(copy.detailsHeading)}</h1>
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; border: 1px solid #e6e0d4; background-color: #fffdf8;">${detailRows}
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 16px 36px; background-color: #ffffff;">
+                <h2 style="margin: 0 0 10px; color: #00143a; font-size: 18px; line-height: 26px;">${escapeHtml(copy.messageHeading)}</h2>
+                <p style="margin: 0; padding: 16px; border-left: 3px solid #d4af37; background-color: #fffdf8; color: #344054; font-size: 15px; line-height: 23px;">${escapeHtml(message).replace(/\n/g, '<br>')}</p>
+                <p style="margin: 14px 0 0; color: #667085; font-size: 12px; line-height: 18px;">${escapeHtml(copy.referenceLabel)}: ${escapeHtml(manifest.submissionId)}</p>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" style="padding: 22px 36px 34px; background-color: #ffffff;">
+                <p style="margin: 0 0 15px; color: #344054; font-size: 14px; line-height: 22px;">${escapeHtml(copy.contactPrompt)} <a href="mailto:${escapeHtml(brand.contactEmail)}" style="color: #00143a; font-weight: bold;">${escapeHtml(brand.contactEmail)}</a></p>
+                <a href="${escapeHtml(brand.websiteUrl)}" style="display: inline-block; padding: 13px 22px; background-color: #d4af37; color: #00143a; font-size: 14px; font-weight: bold; line-height: 18px; text-decoration: none;">${escapeHtml(copy.ctaLabel)}</a>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" style="padding: 22px 30px; background-color: #00143a; color: #ffffff;">
+                <p style="margin: 0; color: #ffffff; font-size: 12px; line-height: 19px;">${escapeHtml(copy.footerText)}</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`;
+}
+
+function renderLocalizedConfirmationRows(
+  config: ResolvedLeadFormConfig,
+  fields: SubmissionFields,
+  copy: ConfirmationEmailCopy,
+): [string, string][] {
+  const baseRows: [string, string][] = [
+    [copy.fieldLabels.firstName ?? 'First name', fields.firstName],
+    [copy.fieldLabels.lastName ?? 'Last name', fields.lastName],
+    [copy.fieldLabels.email ?? 'Email address', fields.email],
+  ];
+  const configuredRows = config.emailFields
+    .filter((field) => !isReservedConfirmationField(field.name, config))
+    .filter((field) => conditionMatches(fields, field.when))
+    .map((field): [string, string] => [
+      copy.fieldLabels[field.name] ?? field.label,
+      getDisplayFieldValue(fields, field.name, config) || '-',
+    ]);
+  return [...baseRows, ...configuredRows];
+}
+
+function formatCopy(template: string, replacements: Record<string, string>): string {
+  return Object.entries(replacements).reduce(
+    (result, [key, value]) => result.replaceAll(`{${key}}`, value),
+    template,
+  );
+}
+
+function renderConfirmationTextEmail(config: ResolvedLeadFormConfig, manifest: SubmissionManifest): string {
   const { fields } = manifest;
   const fullName = getFullName(fields);
   const message = getFieldValue(fields, config.messageField);
@@ -476,7 +692,7 @@ function renderConfirmationTextEmail(config: Required<LeadFormConfig>, manifest:
   ].join('\n');
 }
 
-function renderConfirmationHtmlEmail(config: Required<LeadFormConfig>, manifest: SubmissionManifest): string {
+function renderConfirmationHtmlEmail(config: ResolvedLeadFormConfig, manifest: SubmissionManifest): string {
   const { fields } = manifest;
   const rows = renderEmailRows(config, fields);
   const message = getFieldValue(fields, config.messageField);
@@ -498,7 +714,7 @@ function renderConfirmationHtmlEmail(config: Required<LeadFormConfig>, manifest:
 </html>`;
 }
 
-function renderTextEmail(config: Required<LeadFormConfig>, manifest: SubmissionManifest, origin: string): string {
+function renderTextEmail(config: ResolvedLeadFormConfig, manifest: SubmissionManifest, origin: string): string {
   const { fields } = manifest;
   const rows = renderEmailRows(config, fields);
   const message = getFieldValue(fields, config.messageField);
@@ -526,7 +742,7 @@ function renderTextEmail(config: Required<LeadFormConfig>, manifest: SubmissionM
   ].join('\n');
 }
 
-function renderHtmlEmail(config: Required<LeadFormConfig>, manifest: SubmissionManifest, origin: string): string {
+function renderHtmlEmail(config: ResolvedLeadFormConfig, manifest: SubmissionManifest, origin: string): string {
   const { fields } = manifest;
   const rows = renderEmailRows(config, fields);
   const message = getFieldValue(fields, config.messageField);
@@ -554,13 +770,14 @@ function renderHtmlEmail(config: Required<LeadFormConfig>, manifest: SubmissionM
 </html>`;
 }
 
-function renderEmailRows(config: Required<LeadFormConfig>, fields: SubmissionFields): [string, string][] {
+function renderEmailRows(config: ResolvedLeadFormConfig, fields: SubmissionFields): [string, string][] {
   const baseRows: [string, string][] = [
     ['Voornaam', fields.firstName],
     ['Achternaam', fields.lastName],
     ['E-mail', fields.email],
   ];
   const configuredRows = config.emailFields
+    .filter((field) => !isReservedConfirmationField(field.name, config))
     .filter((field) => conditionMatches(fields, field.when))
     .map((field): [string, string] => [field.label, getDisplayFieldValue(fields, field.name, config) || '-']);
   return [...baseRows, ...configuredRows];
@@ -570,7 +787,7 @@ function getFullName(fields: SubmissionFields): string {
   return [fields.firstName, fields.lastName].filter(Boolean).join(' ');
 }
 
-function getDisplayFieldValue(fields: SubmissionFields, name: string, config: Required<LeadFormConfig>): string {
+function getDisplayFieldValue(fields: SubmissionFields, name: string, config: ResolvedLeadFormConfig): string {
   const value = getFieldValue(fields, name);
   if (name === 'service' && value === 'other') return getFieldValue(fields, config.serviceOtherField);
   return value;
@@ -581,13 +798,17 @@ function getFieldValue(fields: SubmissionFields, name: string): string {
   return fields.fields[name] ?? '';
 }
 
+function isReservedConfirmationField(name: string, config: ResolvedLeadFormConfig): boolean {
+  return Boolean(config.confirmationEmail) && name === CONFIRMATION_LOCALE_FIELD;
+}
+
 function conditionMatches(fields: SubmissionFields, condition?: { field: string; equals: string }): boolean {
   if (!condition) return true;
   return getFieldValue(fields, condition.field) === condition.equals;
 }
 
 function attachmentUrl(
-  config: Required<LeadFormConfig>,
+  config: ResolvedLeadFormConfig,
   manifest: SubmissionManifest,
   attachment: StoredAttachment,
   origin: string,
