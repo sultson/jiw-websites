@@ -1,5 +1,5 @@
 export const site = {
-  url: 'https://expat-relocation.jouwidealewebsite.nl',
+  url: 'https://www.expat-relocation.nl',
   name: 'Expat & Immigration Services',
   legalName: 'E & I: Expat, Relocation and Immigration Services The Netherlands',
   shortName: 'E & I',

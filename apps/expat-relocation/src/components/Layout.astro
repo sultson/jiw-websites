@@ -12,7 +12,7 @@ import {
   type Lang,
 } from '../lib/i18n';
 import { OG_LOCALES } from '../lib/i18n';
-import { absoluteUrl, orgJsonLd } from '../lib/seo';
+import { absoluteUrl, orgJsonLd, websiteJsonLd } from '../lib/seo';
 import { getContent } from '../lib/content';
 
 interface Props {
@@ -24,16 +24,20 @@ interface Props {
   image?: string;
   noindex?: boolean;
   jsonLd?: unknown[];
+  /** Limit hreflang and language switching when a page is not yet translated everywhere. */
+  availableLangs?: readonly Lang[];
 }
-const { title, description, lang, path, image = '/images/og.jpg', noindex = false, jsonLd = [] } = Astro.props;
+const { title, description, lang, path, image = '/images/og.jpg', noindex = false, jsonLd = [], availableLangs = LANGS } = Astro.props;
 
 const c = getContent(lang);
 const canonical = absoluteUrl(localizePath(path, lang));
 const ogImage = absoluteUrl(image);
-const fullTitle = title.includes('E & I') || title.includes('Expat & Immigration') ? title : `${title} | Expat & Immigration Services`;
+// Meta titles are authored per page. Appending a second full-length brand suffix
+// made already descriptive titles repetitive and much more likely to be rewritten.
+const fullTitle = title;
 
 // Map of lang → localized URL for hreflang + the banner script.
-const altUrls = Object.fromEntries(LANGS.map((l) => [l, absoluteUrl(localizePath(path, l))]));
+const altUrls = Object.fromEntries(availableLangs.map((l) => [l, absoluteUrl(localizePath(path, l))]));
 ---
 
 <!doctype html>
@@ -46,7 +50,7 @@ const altUrls = Object.fromEntries(LANGS.map((l) => [l, absoluteUrl(localizePath
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    {LANGS.map((l) => <link rel="alternate" hreflang={l} href={altUrls[l]} />)}
+    {availableLangs.map((l) => <link rel="alternate" hreflang={l} href={altUrls[l]} />)}
     <link rel="alternate" hreflang="x-default" href={absoluteUrl(localizePath(path, DEFAULT_LANG))} />
 
     <meta property="og:type" content="website" />
@@ -65,8 +69,11 @@ const altUrls = Object.fromEntries(LANGS.map((l) => [l, absoluteUrl(localizePath
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd())} />
-    {jsonLd.map((block) => <script type="application/ld+json" set:html={JSON.stringify(block)} />)}
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(orgJsonLd())} />
+    {lang === DEFAULT_LANG && path === '/' && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteJsonLd())} />
+    )}
+    {jsonLd.map((block) => <script is:inline type="application/ld+json" set:html={JSON.stringify(block)} />)}
   </head>
   <body>
     <a
@@ -89,7 +96,7 @@ const altUrls = Object.fromEntries(LANGS.map((l) => [l, absoluteUrl(localizePath
       <button id="lang-banner-dismiss" type="button" class="cursor-pointer text-ink-soft hover:text-navy"></button>
     </div>
 
-    <Header lang={lang} path={path} />
+    <Header lang={lang} path={path} availableLangs={availableLangs} />
 
     <main id="main">
       <slot />

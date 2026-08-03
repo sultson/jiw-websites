@@ -9,6 +9,8 @@ export function getStaticPaths() {
 }
 const lang = 'en' as const;
 const { section, service, basePath, siblings, path } = serviceProps(lang, 'immigration', Astro.params.slug);
+const specialist = service.slug === 'artist-visa-netherlands' || service.slug === 'athlete-visa-netherlands';
+const availableLangs = specialist ? (['en', 'nl'] as const) : undefined;
 ---
 
 <Layout
@@ -17,6 +19,7 @@ const { section, service, basePath, siblings, path } = serviceProps(lang, 'immig
   lang={lang}
   path={path}
   image={service.image}
+  availableLangs={availableLangs}
   jsonLd={[serviceJsonLd(service.title, service.metaDescription, path, lang), faqJsonLd(service.faq.items)]}
 >
   <ServiceView lang={lang} service={service} basePath={basePath} sectionTitle={section.title} sectionImage={section.image} siblings={siblings} />

@@ -9,6 +9,11 @@ export function sectionServiceSlugs(key: ServiceSectionKey): string[] {
   return getContent('en')[key].services.map((s) => s.slug);
 }
 
+/** Localized route surface, used when a newly migrated page has fewer translations. */
+export function sectionServiceSlugsForLang(lang: Lang, key: ServiceSectionKey): string[] {
+  return getContent(lang)[key].services.map((s) => s.slug);
+}
+
 export function serviceProps(lang: Lang, key: ServiceSectionKey, slug: string | undefined) {
   const c = getContent(lang);
   const section = c[key];

@@ -36,6 +36,18 @@ export function orgJsonLd() {
   };
 }
 
+/** Google's preferred site-name signal. Only render this on the domain root. */
+export function websiteJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${site.url}/#website`,
+    url: `${site.url}/`,
+    name: site.shortName,
+    alternateName: [site.name, 'expat-relocation.nl'],
+  };
+}
+
 export function serviceJsonLd(name: string, description: string, path: string, lang: Lang) {
   return {
     '@context': 'https://schema.org',

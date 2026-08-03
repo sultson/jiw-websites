@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "astro dev --port 3019 --host",
     "build": "astro build",
+    "audit:migration": "node scripts/audit-migration-redirects.mjs",
+    "audit:seo": "node scripts/audit-search-metadata.mjs",
     "preview": "astro preview",
-    "ship": "pnpm build && wrangler deploy",
-    "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "ship": "pnpm build && pnpm audit:seo && pnpm audit:migration && wrangler deploy",
+    "ship:dry-run": "pnpm build && pnpm audit:seo && pnpm audit:migration && wrangler deploy --dry-run",
     "clean": "rm -rf dist .astro",
     "lint": "astro check && tsc --noEmit -p tsconfig.worker.json",
     "optimize-images": "node scripts/optimize-images.mjs"

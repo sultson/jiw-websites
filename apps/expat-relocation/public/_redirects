@@ -1,0 +1,39 @@
+# Legacy Webflow URL migration. Keep every rule exact and one-hop.
+# English moved from /en/* to the root; Dutch moved from root paths to /nl/*.
+
+/en / 301
+/en/Adviesgesprek /contact 301
+/Adviesgesprek /nl/contact 301
+/en/contact /contact 301
+/en/expat-pakketten /vip-services 301
+/expat-pakketten /nl/vip-services 301
+/en/search / 301
+/search /nl 301
+/en/diensten / 301
+/diensten /nl 301
+/en/over-ons /about 301
+/over-ons /nl/about 301
+/en/expat-pakketten-individueel /relocation 301
+/expat-pakketten-individueel /nl/relocation 301
+/en/expat-pakketten-partner /vip-services/couple-relocation-immigration-package-netherlands 301
+/expat-pakketten-partner /nl/vip-services/couple-relocation-immigration-package-netherlands 301
+/en/expat-pakketten-familie /vip-services/family-relocation-immigration-services-netherlands 301
+/expat-pakketten-familie /nl/vip-services/family-relocation-immigration-services-netherlands 301
+/en/expat-pakketten-zakelijk /vip-services/business-relocation-immigration-services-netherlands 301
+/expat-pakketten-zakelijk /nl/vip-services/business-relocation-immigration-services-netherlands 301
+/en/mvv-visum-verblijfsvergunning /immigration/residence-permit-netherlands 301
+/mvv-visum-verblijfsvergunning /nl/immigration/residence-permit-netherlands 301
+/en/werkvisum-kennismigranten /immigration/highly-skilled-migrant-visa-netherlands 301
+/werkvisum-kennismigranten /nl/immigration/highly-skilled-migrant-visa-netherlands 301
+/en/familiehereniging-gezinsmigratie /immigration/family-reunification-netherlands 301
+/familiehereniging-gezinsmigratie /nl/immigration/family-reunification-netherlands 301
+/en/visum-topsporters /immigration/athlete-visa-netherlands 301
+/visum-topsporters /nl/immigration/athlete-visa-netherlands 301
+/en/visum-artiesten /immigration/artist-visa-netherlands 301
+/visum-artiesten /nl/immigration/artist-visa-netherlands 301
+/en/zakelijke-expat-begeleiding /starting-a-business/relocation-services-for-entrepreneurs-netherlands 301
+/zakelijke-expat-begeleiding /nl/starting-a-business/relocation-services-for-entrepreneurs-netherlands 301
+/en/relocatie-werkgevers /starting-a-business/business-relocation-to-the-netherlands 301
+/relocatie-werkgevers /nl/starting-a-business/business-relocation-to-the-netherlands 301
+/en/expat-services-rotterdam-havengebied /industrial-expat-services/rotterdam-industrial-expat-services 301
+/expat-services-rotterdam-havengebied /nl/industrial-expat-services/rotterdam-industrial-expat-services 301

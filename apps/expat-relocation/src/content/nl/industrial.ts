@@ -576,7 +576,7 @@ export const industrial: SectionContent = {
       title: 'Rotterdam industriële expat services',
       metaTitle: 'Rotterdam industriële expat services | E & I Expat Services',
       metaDescription:
-        'Eén partner voor internationale werknemers in het hele Rotterdamse industriële cluster: relocation, inschrijvingen, woonruimte en gezinsondersteuning voor werkgevers en werknemers.',
+        'Relocatie voor internationale werknemers in het Rotterdamse havencluster: woonruimte, inschrijving en gezinsondersteuning voor werkgevers en werknemers.',
       eyebrow: 'Industrieel cluster',
       intro: [
         'Van de stadshavens tot de westelijkste terminals is het Rotterdamse industriële cluster één doorlopende economie van staal, energie, chemie en lading, op elk niveau bemenst door internationals, van procesoperators tot fabrieksdirecteuren. Werkgevers vechten hier wereldwijd om schaars technisch talent, en elke medewerker die slecht landt is een medewerker die dreigt te vertrekken.',

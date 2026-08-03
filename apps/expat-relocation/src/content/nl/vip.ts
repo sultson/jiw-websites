@@ -4,7 +4,7 @@ export const vip: VipContent = {
   title: 'VIP-relocatiediensten',
   metaTitle: 'VIP Relocatie- & Immigratiepakketten Nederland | E & I',
   metaDescription:
-    'VIP-relocatiepakketten voor stellen, gezinnen en bedrijven die naar Nederland verhuizen. Immigratie, wonen, registraties en settelen, georkestreerd door één persoon. Vanaf € 2.000.',
+    'VIP-relocatie voor stellen, gezinnen en bedrijven die naar Nederland verhuizen. Immigratie, wonen, registratie en settelen via één aanspreekpunt.',
   eyebrow: 'VIP-diensten',
   intro: [
     'Artiesten met tourschema’s. Sporters tussen twee seizoenen. Bestuurders met één vrij weekend en oprichters zonder. Onze VIP-pakketten bestaan voor mensen wier agenda niet meebuigt, dus buigt Nederland mee.',

@@ -8,8 +8,9 @@ interface Props {
   lang: Lang;
   /** Canonical English path of the current page, for language switching. */
   path: string;
+  availableLangs?: readonly Lang[];
 }
-const { lang, path } = Astro.props;
+const { lang, path, availableLangs = LANGS } = Astro.props;
 const c = getContent(lang);
 const nav = c.core.ui.nav;
 
@@ -60,7 +61,7 @@ const isActive = (href: string) => {
           id="lang-menu"
           class="absolute left-0 top-full z-20 hidden min-w-40 border border-line bg-white py-2 shadow-card"
         >
-          {LANGS.map((lg) => (
+          {availableLangs.map((lg) => (
             <a
               href={localizePath(path, lg)}
               data-lang-choice={lg}
@@ -157,7 +158,7 @@ const isActive = (href: string) => {
         {c.core.ui.cta.whatsappLong}
       </a>
       <div class="flex flex-wrap gap-x-4 gap-y-1 text-[0.7rem] uppercase tracking-[0.14em] text-ink-soft">
-        {LANGS.map((lg) => (
+        {availableLangs.map((lg) => (
           <a
             href={localizePath(path, lg)}
             data-lang-choice={lg}

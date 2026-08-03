@@ -71,9 +71,9 @@ export const core: CoreContent = {
   },
 
   home: {
-    metaTitle: 'Boutique Relocation & Immigration Services in the Netherlands | E & I',
+    metaTitle: 'Relocation & Immigration Services Netherlands | E & I',
     metaDescription:
-      'A boutique relocation consultancy for international professionals, families and entrepreneurs settling in Rotterdam, Europoort and the wider port region. Housing, schools, registrations, immigration and VIP packages.',
+      'Boutique relocation support for professionals, families and entrepreneurs moving to the Netherlands. Immigration, housing, registration and settling in.',
     hero: {
       h1: 'Boutique Relocation & Immigration Services in the Netherlands',
       sub: 'A private relocation consultancy for international professionals, families and entrepreneurs settling in Rotterdam, Europoort and the wider port region. Immigration included, never the whole story.',

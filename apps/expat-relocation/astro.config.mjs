@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 // mirrors under their own prefix. The Cloudflare Worker (worker/index.ts)
 // wraps the static `dist/` assets and owns the /api/forms/* routes.
 export default defineConfig({
-  site: 'https://expat-relocation.jouwidealewebsite.nl',
+  site: 'https://www.expat-relocation.nl',
   trailingSlash: 'never',
   build: {
     inlineStylesheets: 'always',

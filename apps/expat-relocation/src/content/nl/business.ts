@@ -561,7 +561,7 @@ export const business: SectionContent = {
       title: 'Bedrijfsverhuizing naar Nederland',
       metaTitle: 'Bedrijfsverhuizing naar Nederland | Corporate & teams',
       metaDescription:
-        'Verplaats uw bedrijf en uw mensen naar Nederland: entiteitsopzet, werkvergunningen en corporate relocations voor complete teams en gezinnen, geregeld door één partner.',
+        'Verplaats uw bedrijf en team naar Nederland: entiteitsopzet, werkvergunningen en corporate relocatie voor werknemers en gezinnen via één partner.',
       eyebrow: 'Corporate',
       intro: [
         'Een bedrijf naar Nederland verplaatsen is in werkelijkheid twee verhuizingen: het bedrijf, met zijn entiteit, contracten en registraties, en de mensen, met hun vergunningen, huizen, scholen en partners. Bedrijven die het eerste plannen en het tweede improviseren, verliezen juist de werknemers voor wie de verhuizing bedoeld was.',

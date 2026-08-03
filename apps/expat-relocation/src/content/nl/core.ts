@@ -71,9 +71,9 @@ export const core: CoreContent = {
   },
 
   home: {
-    metaTitle: 'Boutique Relocatie- & Immigratiediensten in Nederland | E & I',
+    metaTitle: 'Relocatie- & Immigratiediensten Nederland | E & I',
     metaDescription:
-      'Een boutique relocatie-adviespraktijk voor internationale professionals, gezinnen en ondernemers in Rotterdam, Europoort en de bredere havenregio. Wonen, scholen, inschrijvingen, immigratie en VIP-pakketten.',
+      'Boutique relocatie voor professionals, gezinnen en ondernemers die naar Nederland verhuizen. Immigratie, wonen, inschrijving en persoonlijke begeleiding.',
     hero: {
       h1: 'Boutique relocatie- en immigratiediensten in Nederland',
       sub: 'Een private relocatie-adviespraktijk voor internationale professionals, gezinnen en ondernemers die zich vestigen in Rotterdam, Europoort en de bredere havenregio. Immigratie hoort erbij, maar is nooit het hele verhaal.',
@@ -283,7 +283,7 @@ export const core: CoreContent = {
   about: {
     metaTitle: 'Over E & I | Boutique Expat- & Immigratiebureau Nederland',
     metaDescription:
-      'E & I is het enige boutique bureau voor expat-relocatie en immigratie in Nederland. Persoonlijke begeleiding door Johanna, van visum tot woning tot de dag dat u zich thuis voelt.',
+      'Maak kennis met E & I en Johanna: persoonlijke expat-relocatie en immigratie in Nederland, van visum en woning tot een zachte landing.',
     eyebrow: 'Over E & I',
     title: 'De boutique achter duizend aankomsten',
     intro: [
