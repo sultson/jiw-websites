@@ -1,9 +1,9 @@
 ---
 import type { Lang } from '../data/content';
-const { lang='nl', kind='contact', items=[] }=Astro.props as {lang:Lang;kind:'course'|'equipment'|'contact';items?:string[]};
+const { lang='nl', kind='contact', items=[], turnstile=true }=Astro.props as {lang:Lang;kind:'course'|'equipment'|'contact';items?:string[];turnstile?:boolean};
 const nl=lang==='nl';
 const labels={course:nl?'Opleiding of training':'Course or training',equipment:nl?'Product of categorie':'Product or category',contact:nl?'Onderwerp':'Subject'};
-const turnstileKey=import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAAD2h-XD8dN6PHeWG';
+const turnstileKey=turnstile?(import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '0x4AAAAAAD2h-XD8dN6PHeWG'):'';
 ---
 <form class="lead-form" data-lead-form method="post" action={`/api/forms/${lang==='en'?'en/':''}${kind}`}>
   <input type="hidden" name="language" value={lang}/><input type="hidden" name="pageUrl" value="" data-page-url />
