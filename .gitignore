@@ -10,6 +10,8 @@ dist-worker
 .vite
 .turbo
 .astro
+# Sanity Studio's generated runtime entry
+.sanity
 CLAUDE.local.md
 .local.test
 .local.research

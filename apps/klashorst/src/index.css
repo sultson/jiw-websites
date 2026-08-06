@@ -110,6 +110,11 @@ body {
     transition: border-color 0.2s ease;
   }
 
+  textarea.field {
+    display: block;
+    resize: vertical;
+  }
+
   .field::placeholder {
     color: #6a645c;
   }

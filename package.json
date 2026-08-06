@@ -22,7 +22,9 @@
     "dev:adriaan-totaalonderhoud": "pnpm --filter @jiw/adriaan-totaalonderhoud dev",
     "dev:maefluence": "pnpm --filter @jiw/maefluence dev",
     "dev:zk-beauty": "pnpm --filter @jiw/zk-beauty dev",
-    "dev:resq-protec": "pnpm --filter @jiw/resq-protec dev"
+    "dev:resq-protec": "pnpm --filter @jiw/resq-protec dev",
+    "dev:klashorst": "pnpm --filter @jiw/klashorst dev",
+    "dev:klashorst-studio": "pnpm --filter @jiw/klashorst-studio dev"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

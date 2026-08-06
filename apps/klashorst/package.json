@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3063 --host=0.0.0.0",
-    "build": "vite build",
+    "build": "vite build && node scripts/build-studio.mjs",
     "ship": "pnpm build && wrangler deploy",
     "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
     "preview": "vite preview",
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@jiw/cloudflare-forms": "workspace:*",
+    "@portabletext/react": "^7.0.1",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.3.0",
     "@tailwindcss/vite": "^4.1.14",

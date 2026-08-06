@@ -1,9 +1,30 @@
-import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { Component, Suspense, lazy, useEffect, useRef, useState, type ReactNode } from 'react';
 import { Pointer } from 'lucide-react';
-import { roomWorks } from '../data/artworks';
-import type { Copy, Lang } from '../translations';
+import { content, ui, zaalWerken } from '../content';
 
 const Room3D = lazy(() => import('./Room3D'));
+
+/**
+ * The room is an enhancement, never a dependency. A dropped WebGL context, a
+ * chunk that fails to load or anything three.js throws must cost the visitor
+ * the canvas and nothing else: without this, one lost context blanks the whole
+ * page, because an error thrown in render unmounts the tree above it.
+ */
+class RoomBoundary extends Component<{ onFail: () => void; children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  componentDidCatch() {
+    this.props.onFail();
+  }
+
+  render() {
+    return this.state.failed ? null : this.props.children;
+  }
+}
 
 function webglAvailable() {
   try {
@@ -14,7 +35,8 @@ function webglAvailable() {
   }
 }
 
-export default function HeroRoom({ t, lang }: { t: Copy; lang: Lang }) {
+export default function HeroRoom() {
+  const t = content.teksten.hero;
   const holder = useRef<HTMLDivElement>(null);
   const [mount, setMount] = useState(false);
   const [live, setLive] = useState(false);
@@ -22,7 +44,7 @@ export default function HeroRoom({ t, lang }: { t: Copy; lang: Lang }) {
   const [focusIndex, setFocusIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!holder.current || !webglAvailable()) return;
+    if (!holder.current || !webglAvailable() || !zaalWerken.length) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const observer = new IntersectionObserver(
@@ -38,7 +60,14 @@ export default function HeroRoom({ t, lang }: { t: Copy; lang: Lang }) {
     return () => observer.disconnect();
   }, []);
 
-  const focused = focusIndex === null ? null : roomWorks[focusIndex];
+  /** Give up on the canvas and put the plain image strip back. */
+  const retreat = () => {
+    setMount(false);
+    setLive(false);
+    setFocusIndex(null);
+  };
+
+  const focused = focusIndex === null ? null : zaalWerken[focusIndex];
 
   return (
     <section
@@ -51,11 +80,11 @@ export default function HeroRoom({ t, lang }: { t: Copy; lang: Lang }) {
           actually live, so a phone does not hold both in memory. */}
       {!live && (
         <div className="absolute inset-0 flex items-center gap-4 overflow-hidden px-4 opacity-70 sm:gap-8">
-          {roomWorks.map((work, i) => (
+          {zaalWerken.map((work, i) => (
             <img
-              key={work.slug}
-              src={`/art/${work.slug}-room.webp`}
-              alt={`${work.title}, ${work.medium[lang]}, ${work.size}`}
+              key={work.id}
+              src={work.img.room}
+              alt={`${work.titel}, ${[work.techniek, work.afmetingen].filter(Boolean).join(', ')}`}
               loading={i < 2 ? 'eager' : 'lazy'}
               decoding="async"
               className="h-[46vh] w-auto max-w-none shrink-0 object-contain sm:h-[58vh]"
@@ -65,14 +94,17 @@ export default function HeroRoom({ t, lang }: { t: Copy; lang: Lang }) {
       )}
 
       {mount && (
-        <Suspense fallback={null}>
-          <Room3D
-            focusIndex={focusIndex}
-            onSelect={setFocusIndex}
-            onReady={() => setLive(true)}
-            onFirstDrag={() => setDragged(true)}
-          />
-        </Suspense>
+        <RoomBoundary onFail={retreat}>
+          <Suspense fallback={null}>
+            <Room3D
+              focusIndex={focusIndex}
+              onSelect={setFocusIndex}
+              onReady={() => setLive(true)}
+              onFirstDrag={() => setDragged(true)}
+              onLost={retreat}
+            />
+          </Suspense>
+        </RoomBoundary>
       )}
 
       {/* Scrims: keep the type legible over whatever is turning behind it. */}
@@ -100,16 +132,16 @@ export default function HeroRoom({ t, lang }: { t: Copy; lang: Lang }) {
               focused ? 'pointer-events-none translate-y-2 opacity-0' : 'opacity-100'
             }`}
           >
-            <p className="eyebrow">{t.hero.years}</p>
-            <h1 className="display mt-4 text-[clamp(2.75rem,10vw,7rem)]">{t.hero.title}</h1>
-            <p className="display mt-1 text-[clamp(1.1rem,3.4vw,2rem)] text-red-soft">{t.hero.tagline}</p>
-            <p className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-bone/85">{t.hero.lead}</p>
+            <p className="eyebrow">{t.jaren}</p>
+            <h1 className="display mt-4 text-[clamp(2.75rem,10vw,7rem)]">{t.titel}</h1>
+            <p className="display mt-1 text-[clamp(1.1rem,3.4vw,2rem)] text-red-soft">{t.tagline}</p>
+            <p className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-bone/85">{t.lead}</p>
             <div className="pointer-events-auto mt-7 flex flex-wrap gap-3">
               <a href="#werk" className="btn btn-solid">
-                {t.hero.collection}
+                {t.knop}
               </a>
               <a href="#peter" className="btn">
-                {t.nav.peter}
+                {ui.nav.peter}
               </a>
             </div>
           </div>
@@ -120,13 +152,15 @@ export default function HeroRoom({ t, lang }: { t: Copy; lang: Lang }) {
               focused ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'
             }`}
           >
-            <h2 className="display text-xl md:text-2xl">{focused?.title}</h2>
+            <h2 className="display text-xl md:text-2xl">{focused?.titel}</h2>
             <p className="mt-1 text-sm text-muted">
-              {focused ? `${focused.medium[lang]}, ${focused.size}` : ''}
+              {focused ? [focused.techniek, focused.afmetingen].filter(Boolean).join(', ') : ''}
             </p>
-            {focused?.note && <p className="mt-2 text-sm leading-relaxed text-bone/80">{focused.note[lang]}</p>}
+            {focused?.toelichting && (
+              <p className="mt-2 text-sm leading-relaxed text-bone/80">{focused.toelichting}</p>
+            )}
             <button type="button" onClick={() => setFocusIndex(null)} className="eyebrow mt-3 block hover:text-bone">
-              {t.room.back}
+              {ui.zaal.terug}
             </button>
           </div>
         </div>

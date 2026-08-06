@@ -1,3 +1,5 @@
 packages:
   - "apps/*"
+  # A site's CMS Studio lives next to the site it edits.
+  - "apps/*/studio"
   - "packages/*"

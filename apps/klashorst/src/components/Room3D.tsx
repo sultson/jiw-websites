@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useTexture } from '@react-three/drei';
 import * as THREE from 'three';
-import { roomWorks, type Artwork } from '../data/artworks';
+import { zaalWerken, type Werk } from '../content';
 
 /** Distance from the middle of the room to the hanging wall. */
 const RADIUS = 6.2;
@@ -31,7 +31,7 @@ function makeGlowTexture() {
   return new THREE.CanvasTexture(canvas);
 }
 
-type Placed = Artwork & { w: number; h: number; angle: number };
+type Placed = Werk & { w: number; h: number; angle: number };
 
 /**
  * Wordless "this is interactive" marker: a still dot with a ring that swells
@@ -91,11 +91,13 @@ function longSideMetres(size: string) {
   return Math.max(...nums) / 100;
 }
 
-function place(works: Artwork[]): Placed[] {
+function place(works: Werk[]): Placed[] {
   return works.map((work, i) => {
-    // Every source photograph is portrait, so the long side is the height.
-    const h = longSideMetres(work.size) * SCALE;
-    return { ...work, h, w: h * work.ratio, angle: (i / works.length) * Math.PI * 2 };
+    // Every source photograph is portrait, so the long side is the height. The
+    // ratio comes off the photograph itself, so a work uploaded in the CMS
+    // hangs in its true proportion without anyone typing a number.
+    const h = longSideMetres(work.afmetingen) * SCALE;
+    return { ...work, h, w: h * work.img.ratio, angle: (i / works.length) * Math.PI * 2 };
   });
 }
 
@@ -114,7 +116,7 @@ function Piece({
   markerShown: () => boolean;
   onSelect: () => void;
 }) {
-  const texture = useTexture(`/art/${work.slug}-room.webp`);
+  const texture = useTexture(work.img.room);
   const art = useRef<THREE.Mesh>(null);
   const echo = useRef<THREE.Mesh>(null);
   const glow = useRef<THREE.Mesh>(null);
@@ -293,7 +295,7 @@ function Room({
       <group ref={group}>
         {works.map((work, i) => (
           <Piece
-            key={work.slug}
+            key={work.id}
             work={work}
             glowMap={glowMap}
             dimmed={focusIndex !== null && focusIndex !== i}
@@ -325,13 +327,16 @@ export default function Room3D({
   onSelect,
   onReady,
   onFirstDrag,
+  onLost,
 }: {
   focusIndex: number | null;
   onSelect: (index: number | null) => void;
   onReady?: () => void;
   onFirstDrag?: () => void;
+  /** The GPU took the context away. Not an error, just the end of the room. */
+  onLost?: () => void;
 }) {
-  const works = useMemo(() => place(roomWorks), []);
+  const works = useMemo(() => place(zaalWerken), []);
   const dragRef = useRef({ velocity: 0, dragging: false, moved: 0 });
   const lastX = useRef(0);
   const [ready, setReady] = useState(false);
@@ -377,6 +382,10 @@ export default function Room3D({
         camera={{ position: [0, EYE, 0], fov: 50, near: 0.1, far: 60 }}
         onCreated={({ gl }) => {
           gl.setClearColor('#0e0d0c');
+          // A phone under memory pressure drops the context without throwing.
+          // Told about it, the hero can put its image strip back; left alone,
+          // the visitor is looking at an empty black band.
+          gl.domElement.addEventListener('webglcontextlost', () => onLost?.(), { once: true });
           setReady(true);
           onReady?.();
         }}

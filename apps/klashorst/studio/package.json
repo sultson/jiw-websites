@@ -1,0 +1,30 @@
+{
+  "name": "@jiw/klashorst-studio",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev --port 3363",
+    "build": "sanity build",
+    "//deploy": "There is no deploy script. The Studio is built into the site's dist at /beheer by the app's build, so it ships with the site. `sanity deploy` would put it on sanity.studio, where basePath /beheer makes it unreachable.",
+    "seed": "tsx scripts/seed.ts",
+    "migrate-blog": "tsx scripts/migrate-blog.ts",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sanity/icons": "^5.2.1",
+    "@sanity/locale-nl-nl": "^1.1.38",
+    "@sanity/ui": "^3.5.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "sanity": "^6.9.0",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
+    "@sanity/client": "^7.12.0",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.2.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2"
+  }
+}
