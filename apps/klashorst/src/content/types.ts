@@ -1,6 +1,7 @@
 /**
  * The shape the components read. Sanity documents and the bundled defaults are
- * both normalised into this, so no component ever knows where content came from.
+ * both normalised into this, in one language at a time, so no component ever
+ * knows where content came from or that a second language exists.
  */
 
 /** One photograph, in the three sizes the site asks for. */
@@ -15,7 +16,18 @@ export type Img = {
   full: string;
 };
 
-export type Werk = {
+/**
+ * Whether a work can be bought or hired. Three states that matter on the page:
+ * nothing at all, available, and sold. The museum quotes on request, so this
+ * decides a label and a button and never a price at checkout.
+ */
+export type Beschikbaar = {
+  teKoop: boolean;
+  teHuur: boolean;
+  verkocht: boolean;
+};
+
+export type Werk = Beschikbaar & {
   id: string;
   titel: string;
   techniek: string;
@@ -67,18 +79,23 @@ export type BlogPost = {
   /** The article itself. Empty for a post that is only an announcement. */
   body: RichBlock[];
   img: Img | null;
+  /**
+   * True on the English site for a post that has no English version yet, so the
+   * page can say so instead of quietly handing an English reader Dutch.
+   */
+  onvertaald: boolean;
+  /** What the client wrote in the SEO panel, when they wrote anything. */
+  seoTitel?: string;
+  seoOmschrijving?: string;
 };
 
-export type GalerieStatus = 'te-huur' | 'te-koop' | 'huur-en-koop' | 'verkocht';
-
-export type GalerieWerk = {
+export type GalerieWerk = Beschikbaar & {
   id: string;
   titel: string;
   kunstenaar: string;
   techniek?: string;
   afmetingen?: string;
   jaar?: string;
-  status: GalerieStatus;
   prijs?: string;
   huurprijs?: string;
   toelichting?: string;
@@ -86,8 +103,10 @@ export type GalerieWerk = {
 };
 
 export type Teksten = {
-  hero: { jaren: string; titel: string; tagline: string; lead: string; knop: string };
+  hero: { titel: string; tagline: string; lead: string; knop: string };
+  over: { eyebrow: string; titel: string; alineas: string[] };
   werk: { eyebrow: string; titel: string; lead: string };
+  s21: { eyebrow: string; titel: string; lead: string; body: string; knop: string };
   peter: {
     eyebrow: string;
     titel: string;
@@ -97,7 +116,6 @@ export type Teksten = {
     portret: Img | null;
     portretCredit: string;
   };
-  s21: { eyebrow: string; titel: string; lead: string; body: string; knop: string };
   galerie: { eyebrow: string; titel: string; lead: string; leeg: string };
   blog: { eyebrow: string; titel: string; lead: string };
   bezoek: {

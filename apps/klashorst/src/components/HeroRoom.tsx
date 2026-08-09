@@ -71,15 +71,15 @@ export default function HeroRoom() {
 
   return (
     <section
-      id="zaal"
+      id="museum"
       ref={holder}
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink pt-16"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink pt-[4.5rem] md:pt-20"
     >
       {/* Always present in the HTML, so the works are there before any script
           runs and regardless of WebGL support. Dropped once the canvas is
           actually live, so a phone does not hold both in memory. */}
       {!live && (
-        <div className="absolute inset-0 flex items-center gap-4 overflow-hidden px-4 opacity-70 sm:gap-8">
+        <div className="absolute inset-0 flex items-center gap-4 overflow-hidden px-4 sm:gap-8">
           {zaalWerken.map((work, i) => (
             <img
               key={work.id}
@@ -107,20 +107,23 @@ export default function HeroRoom() {
         </RoomBoundary>
       )}
 
-      {/* Scrims: keep the type legible over whatever is turning behind it. */}
-      {/* Seats the nav against the room. Stays put even when a work is
-          brought forward, or the links lose their ground. */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink/85 via-ink/45 to-transparent" />
+      {/* Scrims. They exist to keep the type legible and nothing else, so they
+          are as small as that job allows: the room behind them is the point of
+          the page, and the old ones dimmed the whole of it to protect a corner.
+          This one seats the bar against the room and stays put even when a work
+          is brought forward. */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink/85 via-ink/40 to-transparent" />
 
-      {/* Scrims keep the type legible, but they have to get out of the way
+      {/* These two clear early, so only the corner the copy sits in is darkened
+          and the lit wall keeps its light. They get out of the way entirely
           once a work is brought forward to be looked at. */}
       <div
-        className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-ink from-8% via-ink/55 to-ink/15 transition-opacity duration-500 ${
+        className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-ink from-6% via-ink/45 via-38% to-transparent to-82% transition-opacity duration-500 ${
           focused ? 'opacity-0' : 'opacity-100'
         }`}
       />
       <div
-        className={`pointer-events-none absolute inset-0 bg-gradient-to-r from-ink from-16% via-ink/80 via-44% to-transparent to-74% transition-opacity duration-500 ${
+        className={`pointer-events-none absolute inset-0 bg-gradient-to-r from-ink from-12% via-ink/60 via-32% to-transparent to-58% transition-opacity duration-500 ${
           focused ? 'opacity-0' : 'opacity-100'
         }`}
       />
@@ -132,23 +135,22 @@ export default function HeroRoom() {
               focused ? 'pointer-events-none translate-y-2 opacity-0' : 'opacity-100'
             }`}
           >
-            <p className="eyebrow">{t.jaren}</p>
-            <h1 className="display mt-4 text-[clamp(2.75rem,10vw,7rem)]">{t.titel}</h1>
-            <p className="display mt-1 text-[clamp(1.1rem,3.4vw,2rem)] text-red-soft">{t.tagline}</p>
-            <p className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-bone/85">{t.lead}</p>
+            <h1 className="display text-[clamp(2.5rem,9vw,6.5rem)]">{t.titel}</h1>
+            <p className="display mt-2 text-[clamp(1.1rem,3.4vw,2rem)] text-red-soft">{t.tagline}</p>
+            <p className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-bone/80">{t.lead}</p>
             <div className="pointer-events-auto mt-7 flex flex-wrap gap-3">
               <a href="#werk" className="btn btn-solid">
                 {t.knop}
               </a>
-              <a href="#peter" className="btn">
-                {ui.nav.peter}
+              <a href="#over" className="btn">
+                {ui.nav.over}
               </a>
             </div>
           </div>
 
           {/* Wall label for the work brought forward. */}
           <div
-            className={`pointer-events-auto max-w-sm border-l-2 border-red bg-ink/85 px-5 py-4 transition-all duration-500 ${
+            className={`pointer-events-auto max-w-sm border-l-2 border-red bg-ink/95 px-5 py-4 transition-all duration-500 ${
               focused ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'
             }`}
           >
@@ -159,7 +161,11 @@ export default function HeroRoom() {
             {focused?.toelichting && (
               <p className="mt-2 text-sm leading-relaxed text-bone/80">{focused.toelichting}</p>
             )}
-            <button type="button" onClick={() => setFocusIndex(null)} className="eyebrow mt-3 block hover:text-bone">
+            <button
+              type="button"
+              onClick={() => setFocusIndex(null)}
+              className="eyebrow mt-3 block hover:text-bone"
+            >
               {ui.zaal.terug}
             </button>
           </div>

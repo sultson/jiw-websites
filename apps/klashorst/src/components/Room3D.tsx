@@ -12,8 +12,17 @@ const SCALE = 1.3;
 /** The wall sits just behind the works, so they read as hung rather than floating. */
 const SHELL = 6.35;
 const FLOOR_Y = 0.35;
+/** The pool of light is painted on the wall itself, a hair in front of it. */
+const GLOW_R = 6.32;
 
-/** Soft warm pool of light thrown on the wall behind each work. */
+/**
+ * The picture light: a warm pool thrown on the wall around each work.
+ *
+ * In a dark room this is what says "lit" rather than "left in the dark". It is
+ * a textured quad rather than a real spotlight, because ten spotlights would
+ * cost ten shadow-free lights on every lit surface and buy nothing a gradient
+ * cannot draw.
+ */
 function makeGlowTexture() {
   const canvas = document.createElement('canvas');
   canvas.width = 128;
@@ -22,14 +31,26 @@ function makeGlowTexture() {
   // The frame covers the middle of this quad, so the pool has to stay strong
   // well out towards the edges or nothing is left to see.
   const gradient = ctx.createRadialGradient(64, 64, 4, 64, 64, 64);
-  gradient.addColorStop(0, 'rgba(255, 233, 198, 0.9)');
-  gradient.addColorStop(0.32, 'rgba(255, 224, 180, 0.62)');
-  gradient.addColorStop(0.62, 'rgba(252, 208, 156, 0.22)');
-  gradient.addColorStop(1, 'rgba(250, 200, 145, 0)');
+  gradient.addColorStop(0, 'rgba(255, 236, 205, 1)');
+  gradient.addColorStop(0.32, 'rgba(255, 228, 188, 0.72)');
+  gradient.addColorStop(0.62, 'rgba(252, 212, 162, 0.28)');
+  gradient.addColorStop(1, 'rgba(250, 204, 150, 0)');
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, 128, 128);
   return new THREE.CanvasTexture(canvas);
 }
+
+/**
+ * The lamp on the canvas itself.
+ *
+ * The artwork is unlit, so no light in the scene can reach it: at plain white
+ * it renders at exactly the value of the photograph, which in a dark room reads
+ * as a picture nobody bothered to light. This multiplies it by a little over
+ * one, warm, which is what a gallery lamp does to a canvas. Kept small on
+ * purpose: push it further and the highlights clip, and clipping the highlights
+ * of a painting is worse than a dim room.
+ */
+const CANVAS_LIGHT = new THREE.Color(1.16, 1.13, 1.07);
 
 type Placed = Werk & { w: number; h: number; angle: number };
 
@@ -139,7 +160,7 @@ function Piece({
     }
     if (echo.current) {
       const material = echo.current.material as THREE.MeshBasicMaterial;
-      material.opacity += (target * 0.13 - material.opacity) * k;
+      material.opacity += (target * 0.14 - material.opacity) * k;
     }
     if (glow.current) {
       // Up close the wall pool would fill half the screen, so it steps back.
@@ -149,21 +170,47 @@ function Piece({
   });
 
   return (
-    <group
-      position={[Math.sin(work.angle) * RADIUS, EYE, Math.cos(work.angle) * RADIUS]}
-      // Turned to face the middle of the room, where the visitor stands.
-      rotation={[0, work.angle + Math.PI, 0]}
-    >
+    <>
       {/* Picture light on the wall. Sits behind the frame, so it never washes
-          over the painting itself. */}
-      <mesh ref={glow} position={[0, 0.12, -0.1]}>
-        <planeGeometry args={[frameW * 2.9, frameH * 1.62]} />
-        <meshBasicMaterial map={glowMap} transparent opacity={1} depthWrite={false} />
+          over the painting itself.
+
+          Curved, not flat, and drawn at the room's centre rather than at the
+          work: a flat quad this wide inside a rotunda this tight has its ends
+          outside the cylinder, where the wall cuts them off and leaves a hard
+          vertical edge in the middle of a soft pool. Bent to the wall's own
+          radius it stays inside, and the pool ends where it fades. */}
+      <mesh ref={glow} position={[0, EYE + 0.12, 0]}>
+        <cylinderGeometry
+          args={[
+            GLOW_R,
+            GLOW_R,
+            frameH * 1.62,
+            24,
+            1,
+            true,
+            work.angle - (frameW * 2.9) / GLOW_R / 2,
+            (frameW * 2.9) / GLOW_R,
+          ]}
+        />
+        <meshBasicMaterial
+          map={glowMap}
+          transparent
+          opacity={1}
+          depthWrite={false}
+          side={THREE.BackSide}
+        />
       </mesh>
 
+      <group
+        position={[Math.sin(work.angle) * RADIUS, EYE, Math.cos(work.angle) * RADIUS]}
+        // Turned to face the middle of the room, where the visitor stands.
+        rotation={[0, work.angle + Math.PI, 0]}
+      >
+      {/* The frame catches the pool and picks up its warmth, which is what puts
+          the canvas in front of the wall rather than on it. */}
       <mesh position={[0, 0, -0.05]}>
         <boxGeometry args={[frameW, frameH, 0.1]} />
-        <meshStandardMaterial color="#0a0908" roughness={0.9} />
+        <meshStandardMaterial color="#241f1a" roughness={0.7} />
       </mesh>
 
       <mesh
@@ -177,8 +224,15 @@ function Piece({
         onPointerOut={() => (document.body.style.cursor = '')}
       >
         <planeGeometry args={[work.w, work.h]} />
-        {/* Unlit, so the paintings keep their true colour and the scene stays cheap. */}
-        <meshBasicMaterial map={texture} toneMapped={false} transparent opacity={1} />
+        {/* Unlit, so the paintings keep their hue and the scene stays cheap; the
+            colour multiplier is the gallery lamp on top of it. */}
+        <meshBasicMaterial
+          map={texture}
+          color={CANVAS_LIGHT}
+          toneMapped={false}
+          transparent
+          opacity={1}
+        />
       </mesh>
 
       {/* Top right of the canvas: background in all of these portraits, and
@@ -194,12 +248,13 @@ function Piece({
           map={texture}
           toneMapped={false}
           transparent
-          opacity={0.13}
+          opacity={0.14}
           depthWrite={false}
           depthTest={false}
         />
-      </mesh>
-    </group>
+        </mesh>
+      </group>
+    </>
   );
 }
 
@@ -288,9 +343,11 @@ function Room({
 
   return (
     <>
-      {/* The paintings are unlit, so light only has to shape frames, floor and wall. */}
-      <ambientLight intensity={0.85} />
-      <pointLight position={[0, 4.4, 0]} intensity={40} distance={18} decay={2} color="#f2ddbe" />
+      {/* The paintings are unlit, so light only has to shape frames, floor and
+          wall. Low ambient, one warm lamp overhead: the room stays a dark room
+          and the pools around the works do the lighting. */}
+      <ambientLight intensity={0.75} />
+      <pointLight position={[0, 4.4, 0]} intensity={52} distance={22} decay={2} color="#f7e3c4" />
 
       <group ref={group}>
         {works.map((work, i) => (
@@ -310,13 +367,15 @@ function Room({
         {/* Inside the rotating group, so the light pools stay with their works. */}
         <mesh position={[0, 3.2, 0]}>
           <cylinderGeometry args={[SHELL, SHELL, 11, 64, 1, true]} />
-          <meshStandardMaterial color="#2e2721" roughness={1} side={THREE.BackSide} />
+          <meshStandardMaterial color="#3a322b" roughness={1} side={THREE.BackSide} />
         </mesh>
       </group>
 
+      {/* Polished dark floor: it carries the works back as a reflection, which
+          is half of why a lit room reads as lit. */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, FLOOR_Y, 0]}>
         <circleGeometry args={[SHELL, 64]} />
-        <meshStandardMaterial color="#0c0a09" roughness={0.35} metalness={0.4} />
+        <meshStandardMaterial color="#12100e" roughness={0.32} metalness={0.45} />
       </mesh>
     </>
   );
@@ -396,7 +455,7 @@ export default function Room3D({
           if (dragRef.current.moved < 8) onSelect(null);
         }}
       >
-        <fog attach="fog" args={['#0e0d0c', 5, 15]} />
+        <fog attach="fog" args={['#0e0d0c', 7, 22]} />
         <Room
           works={works}
           focusIndex={focusIndex}

@@ -1,4 +1,6 @@
 import { useEffect, useRef, useSyncExternalStore } from 'react';
+import { lang } from './content';
+import { localePath, splitLang } from './meta';
 
 /**
  * Three kinds of page in one bundle: the museum, the blog, and an article.
@@ -7,15 +9,23 @@ import { useEffect, useRef, useSyncExternalStore } from 'react';
  * shareable and openable in a new tab. Client-side, because the content for
  * every page is already inlined in the document the Worker sent, so moving
  * between them costs no request at all.
+ *
+ * The language is part of the address and not part of the routing: Dutch is at
+ * the root, English one directory in, and everything below works in the
+ * language the page was opened in. Switching language is the one link on the
+ * site that is a real navigation, because the whole document has to be re-read
+ * in the other one.
  */
 
 const listeners = new Set<() => void>();
 
-/** The Worker redirects "/blog/" to "/blog"; match that here so both render. */
-const clean = (pathname: string) =>
-  pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+/** The path without its language and without a trailing slash: what a page is. */
+const clean = (pathname: string) => splitLang(pathname).path;
 
 const getPath = () => clean(window.location.pathname);
+
+/** The same page, in the language this document is in. */
+export const to = (path: string) => localePath(lang, path);
 
 /**
  * Whether the next render arrives because someone clicked a link, or because
@@ -52,10 +62,10 @@ export function usePath(): string {
  * page plus the anchor from anywhere else, so the same nav works everywhere.
  */
 export const sectionHref = (path: string, anchor: string) =>
-  path === '/' ? `#${anchor}` : `/#${anchor}`;
+  path === '/' ? `#${anchor}` : `${to('/')}#${anchor}`;
 
-export function navigate(to: string) {
-  const url = new URL(to, window.location.href);
+export function navigate(target: string) {
+  const url = new URL(target, window.location.href);
 
   // A preview session has to survive a click. Without the key the Worker
   // answers with published content, and the draft the client is looking at
@@ -72,8 +82,9 @@ export function navigate(to: string) {
 /**
  * Turns every internal link on the site into a client-side one, so no component
  * has to import anything to link somewhere. Links that leave the site, open in
- * a new tab, or point into the Studio are left to the browser, and so is an
- * anchor on the page you are already on: that is a scroll, not a navigation.
+ * a new tab, point into the Studio or change the language are left to the
+ * browser, and so is an anchor on the page you are already on: that is a
+ * scroll, not a navigation.
  */
 export function useInternalLinks() {
   useEffect(() => {
@@ -85,11 +96,16 @@ export function useInternalLinks() {
       const href = anchor?.getAttribute('href');
       if (!anchor || !href) return;
       if (anchor.hasAttribute('download') || (anchor.target && anchor.target !== '_self')) return;
+      // The language switch. The document itself is in one language, from the
+      // inlined content down to <html lang>, so the other one is a fresh load.
+      if (anchor.hasAttribute('data-reload')) return;
 
       const url = new URL(href, window.location.href);
       if (url.origin !== window.location.origin) return;
       // The Studio is a separate application served at this same origin.
       if (url.pathname === '/beheer' || url.pathname.startsWith('/beheer/')) return;
+      // A link into the other language is a load, not a navigation.
+      if (splitLang(url.pathname).lang !== lang) return;
       if (clean(url.pathname) === getPath()) return;
 
       event.preventDefault();

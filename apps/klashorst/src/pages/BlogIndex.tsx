@@ -1,6 +1,7 @@
 import BlogCard from '../components/BlogCard';
 import Newsletter from '../components/Newsletter';
 import { blogPosts, content, ui } from '../content';
+import { to } from '../router';
 
 /**
  * The blog: every post there is, newest first.
@@ -13,7 +14,7 @@ export default function BlogIndex() {
   const [nieuwste, ...rest] = blogPosts;
 
   return (
-    <main className="pt-16">
+    <main className="pt-[4.5rem] md:pt-20">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <header className="max-w-2xl py-14 md:py-20">
           <p className="eyebrow">{t.eyebrow}</p>
@@ -26,7 +27,7 @@ export default function BlogIndex() {
         ) : (
           <>
             <a
-              href={`/blog/${nieuwste.slug}`}
+              href={to(`/blog/${nieuwste.slug}`)}
               className="group grid gap-7 border-t border-hair pt-10 md:grid-cols-2 md:gap-12 md:pt-12"
             >
               {nieuwste.img && (

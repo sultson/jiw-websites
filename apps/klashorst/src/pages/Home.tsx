@@ -1,4 +1,5 @@
 import HeroRoom from '../components/HeroRoom';
+import About from '../components/About';
 import Work from '../components/Work';
 import Peter from '../components/Peter';
 import S21 from '../components/S21';
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <main>
       <HeroRoom />
+      <About />
       <Work />
       <Peter />
       <S21 />

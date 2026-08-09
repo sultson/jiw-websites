@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Check } from 'lucide-react';
-import { content, ui } from '../content';
+import { content, lang, ui } from '../content';
 
 type Status = 'idle' | 'sending' | 'done' | 'error';
 
@@ -49,9 +49,11 @@ export default function Newsletter() {
             aria-hidden="true"
             className="absolute h-0 w-0 opacity-0"
           />
+          {/* Which language the confirmation comes back in. */}
+          <input type="hidden" name="taal" value={lang} />
 
           <div>
-            <label htmlFor="nl-name" className="eyebrow text-bone/60">
+            <label htmlFor="nl-name" className="eyebrow text-muted">
               {ui.nieuwsbrief.naam}
             </label>
             <input
@@ -65,7 +67,7 @@ export default function Newsletter() {
           </div>
 
           <div>
-            <label htmlFor="nl-email" className="eyebrow text-bone/60">
+            <label htmlFor="nl-email" className="eyebrow text-muted">
               {ui.nieuwsbrief.email}
             </label>
             <input

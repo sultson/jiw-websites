@@ -4,7 +4,7 @@ export default function Peter() {
   const t = content.teksten.peter;
 
   return (
-    <section id="peter" className="scroll-mt-16 border-t border-hair bg-wall py-20 md:py-28">
+    <section id="peter" className="scroll-mt-20 border-t border-hair bg-wall py-20 md:py-28">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
           <div>
@@ -32,7 +32,7 @@ export default function Peter() {
               ))}
             </div>
 
-            <h3 className="eyebrow mt-12 text-bone/60">{t.feitenTitel}</h3>
+            <h3 className="eyebrow mt-12 text-muted">{t.feitenTitel}</h3>
             <dl className="mt-5 border-t border-hair">
               {t.feiten.map((row) => (
                 <div key={row.jaar + row.wat} className="flex gap-6 border-b border-hair py-3.5">

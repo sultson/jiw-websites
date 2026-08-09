@@ -7,6 +7,7 @@ import { HomeIcon } from '@sanity/icons/Home';
 import { schemaTypes } from './schemas';
 import Start from './tools/Start';
 import SitePreview from './tools/SitePreview';
+import SeoPanel from './tools/SeoPanel';
 
 // Not secrets: the project id is public and read-only, and it also sits in
 // wrangler.jsonc. Hardcoded so a checkout builds without an .env file.
@@ -55,11 +56,15 @@ export default defineConfig({
       structure,
       // Every document gets a second tab showing the live site rendered with
       // this draft, so "hoe ziet dit eruit?" is answered without publishing.
-      defaultDocumentNode: (S) =>
-        S.document().views([
+      // A blog post gets a third: what a search engine will make of it.
+      defaultDocumentNode: (S, { schemaType }) => {
+        const views = [
           S.view.form().title('Bewerken'),
           S.view.component(SitePreview).title('Voorbeeld'),
-        ]),
+        ];
+        if (schemaType === 'nieuws') views.push(S.view.component(SeoPanel).title('Vindbaarheid'));
+        return S.document().views(views);
+      },
     }),
     nlNLLocale(),
   ],

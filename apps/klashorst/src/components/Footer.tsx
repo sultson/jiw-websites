@@ -1,5 +1,5 @@
 import { content, ui } from '../content';
-import { sectionHref } from '../router';
+import { sectionHref, to } from '../router';
 
 export default function Footer({
   path,
@@ -18,25 +18,28 @@ export default function Footer({
             <p className="display text-lg tracking-[0.2em]">
               Klashorst<span className="text-red"> Museum</span>
             </p>
-            <p className="mt-3 max-w-sm text-sm text-muted">{t.rechten} 1957 / 2024</p>
+            <p className="mt-3 max-w-sm text-sm text-muted">{t.rechten}</p>
           </div>
 
           <nav className="flex flex-wrap gap-x-8 gap-y-3">
-            <a href={sectionHref(path, 'werk')} className="eyebrow text-bone/70 hover:text-bone">
+            <a href={sectionHref(path, 'werk')} className="eyebrow hover:text-bone">
               {ui.footer.collectie}
             </a>
-            <a href={sectionHref(path, 'peter')} className="eyebrow text-bone/70 hover:text-bone">
-              {ui.footer.over}
+            <a href={sectionHref(path, 'over')} className="eyebrow hover:text-bone">
+              {ui.nav.over}
             </a>
-            <a href={sectionHref(path, 'galerie')} className="eyebrow text-bone/70 hover:text-bone">
+            <a href={sectionHref(path, 'peter')} className="eyebrow hover:text-bone">
+              {ui.nav.peter}
+            </a>
+            <a href={sectionHref(path, 'galerie')} className="eyebrow hover:text-bone">
               {ui.nav.galerie}
             </a>
-            <a href="/blog" className="eyebrow text-bone/70 hover:text-bone">
+            <a href={to('/blog')} className="eyebrow hover:text-bone">
               {ui.nav.blog}
             </a>
             <a
-              href={newsletterOpDezePagina ? '#nieuwsbrief' : '/#nieuwsbrief'}
-              className="eyebrow text-bone/70 hover:text-bone"
+              href={newsletterOpDezePagina ? '#nieuwsbrief' : `${to('/')}#nieuwsbrief`}
+              className="eyebrow hover:text-bone"
             >
               {ui.nav.cta}
             </a>

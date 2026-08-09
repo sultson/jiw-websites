@@ -27,7 +27,7 @@ const components: PortableTextComponents = {
   },
 
   list: {
-    bullet: ({ children }) => <ul className="mt-5 list-disc space-y-2 pl-5 marker:text-red">{children}</ul>,
+    bullet: ({ children }) => <ul className="mt-5 list-disc space-y-2 pl-5 marker:text-red-soft">{children}</ul>,
     number: ({ children }) => <ol className="mt-5 list-decimal space-y-2 pl-5 marker:text-muted">{children}</ol>,
   },
   listItem: {

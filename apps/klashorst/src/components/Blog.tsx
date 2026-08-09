@@ -1,4 +1,5 @@
 import { blogPosts, content, ui } from '../content';
+import { to } from '../router';
 import BlogCard from './BlogCard';
 
 /**
@@ -10,7 +11,7 @@ export default function Blog() {
   const recent = blogPosts.slice(0, 3);
 
   return (
-    <section id="blog" className="scroll-mt-16 border-t border-hair bg-wall py-20 md:py-28">
+    <section id="blog" className="scroll-mt-20 border-t border-hair bg-wall py-20 md:py-28">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <header className="max-w-2xl">
           <p className="eyebrow">{t.eyebrow}</p>
@@ -28,7 +29,7 @@ export default function Blog() {
               ))}
             </div>
 
-            <a href="/blog" className="btn mt-12">
+            <a href={to('/blog')} className="btn mt-12">
               {ui.blog.alles}
             </a>
           </>

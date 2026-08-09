@@ -1,4 +1,5 @@
 import { ui, type BlogPost } from '../content';
+import { to } from '../router';
 
 /**
  * A post as it appears before you have read it: photograph, date, title and the
@@ -17,7 +18,7 @@ export default function BlogCard({
 
   return (
     <article className="flex flex-col">
-      <a href={`/blog/${post.slug}`} className="group flex flex-col">
+      <a href={to(`/blog/${post.slug}`)} className="group flex flex-col">
         {post.img && (
           <div className="overflow-hidden bg-ink">
             <img

@@ -14,9 +14,21 @@
     // Every page a visitor can land on, as well as the API: the Worker has to
     // see the navigation to inline the CMS content into the HTML and to write
     // the blog post's own title and photograph into the head before it is sent.
-    // /beheer/* too, or the Studio's own routes fall through to the site's SPA
-    // handling.
-    "run_worker_first": ["/", "/blog", "/blog/*", "/api/*", "/beheer", "/beheer/*"]
+    // The English site is the same pages one directory in, so it needs the same
+    // treatment. /beheer/* too, or the Studio's own routes fall through to the
+    // site's SPA handling.
+    "run_worker_first": [
+      "/",
+      "/blog",
+      "/blog/*",
+      "/en",
+      "/en/*",
+      "/robots.txt",
+      "/sitemap.xml",
+      "/api/*",
+      "/beheer",
+      "/beheer/*"
+    ]
   },
   "routes": [
     {
@@ -38,6 +50,10 @@
   ],
   "vars": {
     "SITE_ID": "klashorst",
+    // "true" once this replaces klashorstmuseum.nl. Until then every page is
+    // noindex and robots.txt disallows everything, so the concept build can
+    // never compete with the site it is a proposal for.
+    "SITE_INDEXABLE": "false",
     "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
     "LEAD_SENDER": "contact@notify.jouwidealewebsite.nl",
     "TURNSTILE_SECRET_KEY": "dev",

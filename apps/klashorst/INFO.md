@@ -36,11 +36,86 @@ Everything factual is sourced. Nothing about the museum is invented.
   agreed to would be inventing the museum's business. The section explains
   itself until the first work is added in the Studio.
 - There are no visitor counts, ratings or testimonials anywhere.
+- **Which works are for sale or for hire is the one invented thing**, and it is
+  invented as a demonstration rather than as a fact: the ticks in the Studio are
+  filled in on a handful of works so the client can see all three states on the
+  page. Only the estate knows the real answer. The four S21 canvases carry no
+  ticks and should not get any.
 
 The build is `noindex, nofollow` so it never competes with klashorstmuseum.nl.
-It is Dutch only: the EN toggle was removed because the client asked for Dutch,
-and a second language would double what they have to fill in. Sanity does
-locales for free if they ever want English back.
+One variable turns that around: `SITE_INDEXABLE` in `wrangler.jsonc`. Set to
+`"true"` and the Worker writes `index, follow` into every page and robots.txt
+stops disallowing everything.
+
+## Two languages
+
+Dutch is the site. English is the same site said again, and it is never allowed
+to become a condition for publishing anything.
+
+- **Dutch lives at the root, English one directory in.** `/`, `/blog`,
+  `/blog/<adres>` and `/en`, `/en/blog`, `/en/blog/<adres>`. An address carries
+  its language, so a link can be shared in the language it was read in, and
+  `run_worker_first` lists `/en` and `/en/*` for the same reason it lists `/`.
+- **One address per post, in both languages.** The English article sits at the
+  Dutch slug. Two slugs would mean a language switch could 404, and a museum
+  blog does not need two.
+- **The language is decided once, at boot**, from the path
+  (`splitLang` in `src/meta.ts`). `src/content/index.ts` then resolves the whole
+  site in that one language and exports it, so no component takes a language
+  prop or knows a second one exists. The consequence, on purpose: the NL/EN
+  switch in the nav is the one link on the site that is a real page load, marked
+  `data-reload` so the client-side router leaves it alone. The document is in
+  one language from `<html lang>` down to the inlined content; the other one is
+  a different document.
+- **Every read is English, then Dutch, then the copy this build shipped with.**
+  A half-translated museum is a readable museum. The one place that is not
+  silent is a blog post with no English version at all: an English reader is
+  told so above the article rather than handed Dutch without warning.
+- **In the Studio** every block of texts has an English version folded away
+  underneath it, and the collection, the gallery and the blog each have an
+  English tab. All of it is optional.
+- **Interface labels are not in the CMS** (`src/content/ui.ts` holds both
+  languages), so the English site was complete the moment it existed instead of
+  waiting on someone to fill in forty boxes.
+
+### Translating a blog post
+
+By hand, in the English tab. There is no machine translation here and that is a
+decision, not an omission.
+
+A **Vertaal naar Engels** button was built and then taken out: a Studio document
+action calling Workers AI through an endpoint on this Worker. It worked and it
+cost about $0.001 a post, but it added a Worker endpoint, an AI binding, a model
+name that Cloudflare can retire under us, and a second thing to explain. The
+museum publishes a handful of posts a year. That is not enough writing to be
+worth a moving part, and machine output has to be read by a person before it
+goes out anyway.
+
+What is left is what the client actually needs: an English tab that is plain
+text fields, optional everywhere, with the site falling back to Dutch and saying
+so. If it is ever wanted back, it was one endpoint and one document action, and
+this paragraph is the note saying so. Do not add it for three posts a year.
+
+### Findability
+
+The other half of what a Yoast-shaped question is asking for, without a plugin
+and without a subscription.
+
+- **A Vindbaarheid tab** on every blog post (`studio/tools/SeoPanel.tsx`) reads
+  the post as it is being written and checks it: search term in the headline,
+  the address, the lead and the opening paragraph, how often it turns up in the
+  article, the length of the search-result title and description, word count,
+  average sentence length, subheadings on a long piece, alt text on every
+  photograph, at least one link, and whether an English version exists. Green,
+  amber, red, in Dutch, with the reason. It runs on both languages.
+- **Three fields feed it**: *Zoekterm*, *Titel in de zoekresultaten* and
+  *Omschrijving in de zoekresultaten*, all optional. Where they are empty the
+  site falls back to the headline and the lead.
+- **The page itself carries the rest**, written by the Worker before the HTML is
+  sent, so it is there for a crawler that never runs the script: per-page title
+  and description, canonical, `hreflang` for nl, en and x-default, `og:locale`,
+  JSON-LD (`Museum` on the front page, `BlogPosting` on an article),
+  `/sitemap.xml` with both languages cross-linked, and `/robots.txt`.
 
 ## The CMS
 
@@ -74,6 +149,11 @@ the account that created it.
   *Collectie*, *Galerie: andere kunstenaars*, *Blog*. Section order, buttons
   and interface labels stay in `src/content/ui.ts`, so no edit can restructure
   or break the page.
+- **A work is sold or hired with two tick boxes**, `teKoop` and `teHuur`, plus
+  `verkocht`. Neither ticked is the third state and needs no label: a museum is
+  mostly not a shop, so silence has to be the default rather than "niet te
+  koop". The same two boxes on the collection and on the gallery, so a label
+  means the same thing wherever it appears.
 - **Editing is free-tier-safe.** No personal data goes in Sanity: newsletter
   sign-ups and interest enquiries are e-mail, not documents. A public dataset
   means every *published* document is world-readable, which is fine for a museum
@@ -222,9 +302,24 @@ It touches nothing a client has typed themselves and nothing already migrated.
 
 ## The 3D room
 
-`src/components/Room3D.tsx`. Twelve works hung around the inside of a rotunda,
-the visitor standing in the middle.
+`src/components/Room3D.tsx`. Ten works hung around the inside of a rotunda, the
+visitor standing in the middle.
 
+- **Dark room, lit work.** The client asked for the site to stay dark and for
+  the room to stop reading as a cave. Those pull in opposite directions, so the
+  brightness is spent where it earns something: low ambient (0.75), one warm
+  lamp overhead, a wall lifted to `#3a322b`, and a strong warm pool of light on
+  the wall around every canvas. The room is still black; the work in it is lit.
+- **The canvas gets a lamp of its own.** The artwork is `meshBasicMaterial`, so
+  no light in the scene can reach it: at plain white it renders at exactly the
+  value of the photograph, which in a dark room reads as a picture nobody
+  bothered to light. `CANVAS_LIGHT` multiplies it by 1.16/1.13/1.07, warm and
+  small. Larger clips the highlights, and clipping the highlights of a painting
+  is worse than a dim room.
+- The hero scrims exist to keep the type legible and nothing else, so they are
+  as small as that job allows: the horizontal one clears by 58% of the width and
+  the vertical one by 82% of the height. The old ones dimmed the whole room to
+  protect one corner of it.
 - Works are sized from their real dimensions, so relative scale is honest.
 - Artwork uses `meshBasicMaterial`: unlit, so colour stays true to the
   photograph and the scene costs almost nothing to light.
@@ -256,6 +351,15 @@ turning the room never re-renders it.
 
 ### Things that will bite you here
 
+- **A flat quad cannot lie on a curved wall.** The pool of light around each
+  work used to be a `planeGeometry` parented to the work. It is 2.9 frames wide,
+  the wall is only 0.15 behind the works, and a chord that long inside a
+  rotunda this tight has its ends *outside* the cylinder: the wall clipped them
+  and left a hard vertical edge through the middle of what should be a soft
+  fade. It reads as a rectangle of lighter wall and it is the first thing the
+  eye finds. It is now a `cylinderGeometry` segment at `GLOW_R`, drawn at the
+  room's centre and swept through the arc the pool needs, so it lies on the wall
+  instead of through it. Anything else painted on that wall has to be curved too.
 - **Sanity's image CDN 403s any request that carries an `Origin` header from an
   origin that is not on the project's CORS list.** A plain `<img>` sends no
   Origin and works anywhere; three.js sets `crossOrigin`, so the *room textures*
@@ -314,11 +418,19 @@ behind JS, and nothing on the page depends on the CMS answering.
 
 ## Forms
 
-Two, both through `@jiw/cloudflare-forms`, both to the agency demo inbox.
+Two, both through `@jiw/cloudflare-forms`, both to the agency demo inbox, and
+each of them registered twice.
 
 - `/api/forms/newsletter` — opt-in, address required, name optional.
-- `/api/forms/interesse` — enquiry about a gallery work. The work's title rides
-  along in the subject line. This is what "geen webshop" looks like in practice.
+- `/api/forms/offerte` — a request for a price, on a work from the collection or
+  from the gallery. Same dialog for both, because from the visitor's side it is
+  the same question. The work's title rides along in the subject line. This is
+  what "geen webshop" looks like in practice.
+
+A hidden `taal` field decides which of the two registered workers answers, so a
+Dutch visitor gets a Dutch confirmation and an English visitor an English one.
+The Worker reads it off a `request.clone()`, or the form worker behind it would
+find the body already consumed.
 
 There is no Turnstile widget on this concept build, so the Worker carries the
 `dev` bypass secret and the client sends `cf-turnstile-response=dev`.
@@ -328,7 +440,9 @@ There is no Turnstile widget on this concept build, so the Worker carries the
 - **The S21 series is kept out of the 3D room.** Those four canvases are painted
   after the Khmer Rouge's own photographs of prisoners who were then murdered.
   They have their own section; they do not turn past a headline as scenery. The
-  `reeks` field in the CMS keeps that rule enforced for anything added later.
+  `reeks` field in the CMS keeps that rule enforced for anything added later,
+  and it overrides the `inZaal` tick rather than trusting it. They carry no sale
+  ticks either: they are not stock.
 - Klashorst's figurative nudes stay in the room and the collection grid, because
   they are the work. They are kept out of news thumbnails, where nobody chose to
   look at them.
@@ -350,18 +464,24 @@ There is no Turnstile widget on this concept build, so the Worker carries the
   have seen them, but the trial ending unannounced later would be worse.
 - **The Studio is Dutch but follows the browser.** A Dutch browser gets Dutch.
   Otherwise pick Nederlands once in the user menu.
-- **SEO is client-side.** Content is inlined into the HTML but the markup is
-  rendered in the browser, so per-post OG tags for blog articles do not exist. If
-  this becomes the real klashorstmuseum.nl, port the frontend to Astro SSR on
-  Workers, keeping the room as a React island. The CMS and the content layer do
-  not change.
+- **The markup is still rendered in the browser.** The head is not: the Worker
+  writes title, description, canonical, hreflang, OG tags and JSON-LD into the
+  HTML for the address being requested, so a crawler and a link preview get the
+  right thing. What a crawler does not get is the body text without running the
+  script. If this becomes the real klashorstmuseum.nl, port the frontend to
+  Astro SSR on Workers, keeping the room as a React island. The CMS, the content
+  layer and everything under Findability do not change.
 - **The newsletter stores nothing.** It emails the agency inbox. A real build
   needs a list, double opt-in and unsubscribe before any AVG promise is printed.
 - **Ask the estate to confirm:** who co-founded After Nature in 1987 (sources
   disagree, so the site now names nobody), the publication year of Kunstkannibaal
   (2011 or 2012), and whether "Lust for Life" is their chosen tagline.
 - Several works in the collection are for sale through the estate shop. If the
-  museum's collection differs from the shop stock, the list needs revisiting.
+  museum's collection differs from the shop stock, the list needs revisiting,
+  and so do the te koop / te huur ticks, which are demonstration data.
+- **The English texts are ours, not the museum's.** Everything in
+  `src/content/defaults.ts` was translated here and seeded. The client should
+  read the English site once before it is shown to anyone who only reads English.
 
 ## Commands
 
@@ -369,6 +489,7 @@ There is no Turnstile widget on this concept build, so the Worker carries the
 pnpm --filter @jiw/klashorst dev              # site, port 3063
 pnpm --filter @jiw/klashorst lint
 pnpm --filter @jiw/klashorst ship             # builds the Studio into /beheer too
+node scripts/og-image.mjs                     # remake the share picture after a rename
 
 pnpm --filter @jiw/klashorst-studio dev       # Studio on its own, port 3363
 pnpm --filter @jiw/klashorst-studio seed

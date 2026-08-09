@@ -2,7 +2,8 @@
 
 @theme {
   /* Palette sampled from the paintings themselves: warm gallery blacks,
-     parchment, and the red that recurs across the S21 series. */
+     parchment, and the red that recurs across the S21 series. The room is dark
+     on purpose; what has to be bright is the work hanging in it. */
   --color-ink: #0e0d0c;
   --color-wall: #171513;
   --color-wall-2: #211d1a;
@@ -63,6 +64,24 @@ body {
     color: var(--color-red-soft);
   }
 
+  /* The bar has to be read at a glance from across a room, so its links are
+     bigger and tighter-tracked than an eyebrow, and at full strength rather
+     than the dimmed grey they used to be. */
+  .navlink {
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.92rem;
+    color: var(--color-bone);
+    transition: color 0.2s ease;
+  }
+
+  .navlink:hover,
+  .navlink[aria-current='page'] {
+    color: var(--color-red-soft);
+  }
+
   .rule {
     height: 1px;
     background: var(--color-hair);
@@ -75,7 +94,7 @@ body {
     font-family: var(--font-display);
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    font-size: 0.82rem;
+    font-size: 0.86rem;
     font-weight: 500;
     padding: 0.9rem 1.6rem;
     border: 1px solid var(--color-hair);
@@ -96,6 +115,27 @@ body {
   .btn-solid:hover {
     background: var(--color-red-soft);
     border-color: var(--color-red-soft);
+    color: #fff;
+  }
+
+  /* "Te koop", "Te koop / te huur". Only on work that is actually available,
+     so its absence is the third state and needs no label of its own. */
+  .badge {
+    display: inline-block;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.68rem;
+    font-weight: 500;
+    line-height: 1;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--color-red);
+    color: var(--color-red-soft);
+  }
+
+  .badge-sold {
+    border-color: var(--color-hair);
+    color: var(--color-muted);
   }
 
   .field {

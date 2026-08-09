@@ -5,7 +5,7 @@ export default function S21() {
   if (!s21Werken.length) return null;
 
   return (
-    <section id="s21" className="scroll-mt-16 border-t border-hair py-20 md:py-28">
+    <section id="s21" className="scroll-mt-20 border-t border-hair py-20 md:py-28">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16">
           <header className="lg:sticky lg:top-24">

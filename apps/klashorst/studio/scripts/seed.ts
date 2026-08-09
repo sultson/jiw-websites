@@ -1,10 +1,11 @@
 /**
- * Fills a fresh Sanity dataset with the site as it already stands: every text,
- * every work, every news item, and the photographs from public/art uploaded as
- * real assets.
+ * Fills a fresh Sanity dataset with the site as it already stands: every text
+ * in both languages, every work, every blog post, and the photographs from
+ * public/art uploaded as real assets.
  *
  * So the first thing the client sees in the Studio is their own museum rather
- * than an empty form, and every field is an example of what belongs in it.
+ * than an empty form, and every field is an example of what belongs in it,
+ * including the English half of it.
  *
  * Idempotent: documents are created or replaced by a fixed id, and Sanity
  * deduplicates identical image uploads by hash, so running it twice is safe.
@@ -15,7 +16,7 @@ import { createReadStream } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createClient } from '@sanity/client';
-import { defaults } from '../../src/content/defaults';
+import { defaults, seedBronnen } from '../../src/content/defaults';
 import type { Img } from '../../src/content/types';
 
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID ?? '';
@@ -57,87 +58,133 @@ const imageField = (assetId: string) => ({
   asset: { _type: 'reference', _ref: assetId },
 });
 
+/** Paragraphs as the Studio's editor stores them, with keys of their own. */
+const blokken = (id: string, ...paragrafen: string[]) =>
+  paragrafen
+    .filter(Boolean)
+    .map((tekst, index) => ({
+      _type: 'block',
+      _key: `${id}-${index}`,
+      style: 'normal',
+      markDefs: [],
+      children: [{ _type: 'span', _key: `${id}-${index}-0`, text: tekst, marks: [] }],
+    }));
+
 async function main() {
   console.log(`Seeding ${projectId}/${dataset}`);
 
+  const { werkBronnen, blogBronnen, teksten } = seedBronnen;
+
   console.log('Afbeeldingen uploaden');
   const werkAssets = new Map<string, string>();
-  for (const work of defaults.werk) {
+  for (const work of werkBronnen) {
     werkAssets.set(work.id, await upload(work.img));
   }
   const blogAssets = new Map<string, string>();
-  for (const item of defaults.blog) {
-    if (item.img) blogAssets.set(item.id, await upload(item.img));
+  for (const item of blogBronnen) {
+    blogAssets.set(item.id, await upload(item.img));
   }
-  const portret = defaults.teksten.peter.portret ? await upload(defaults.teksten.peter.portret) : null;
+  const portret = defaults.nl.teksten.peter.portret
+    ? await upload(defaults.nl.teksten.peter.portret)
+    : null;
 
   console.log('Documenten schrijven');
-  const t = defaults.teksten;
+  const nl = teksten.nl;
+  const en = teksten.en;
+  const keys = <T extends object>(rows: T[], prefix: string) =>
+    rows.map((row, i) => ({ _key: `${prefix}-${i}`, ...row }));
 
   await client.createOrReplace({
     _id: 'siteTeksten',
     _type: 'siteTeksten',
-    hero: t.hero,
-    werk: t.werk,
+    hero: { ...nl.hero, en: en.hero },
+    over: { ...nl.over, en: en.over },
+    werk: { ...nl.werk, en: en.werk },
+    s21: { ...nl.s21, en: en.s21 },
     peter: {
-      eyebrow: t.peter.eyebrow,
-      titel: t.peter.titel,
-      alineas: t.peter.alineas,
-      feitenTitel: t.peter.feitenTitel,
-      feiten: t.peter.feiten.map((row, i) => ({ _key: `feit-${i}`, ...row })),
-      portretCredit: t.peter.portretCredit,
+      eyebrow: nl.peter.eyebrow,
+      titel: nl.peter.titel,
+      alineas: nl.peter.alineas,
+      feitenTitel: nl.peter.feitenTitel,
+      feiten: keys(nl.peter.feiten, 'feit'),
+      portretCredit: nl.peter.portretCredit,
       ...(portret ? { portret: imageField(portret) } : {}),
+      en: {
+        eyebrow: en.peter.eyebrow,
+        titel: en.peter.titel,
+        alineas: en.peter.alineas,
+        feitenTitel: en.peter.feitenTitel,
+        feiten: keys(en.peter.feiten, 'feit-en'),
+        portretCredit: en.peter.portretCredit,
+      },
     },
-    s21: t.s21,
-    galerie: t.galerie,
+    galerie: { ...nl.galerie, en: en.galerie },
     // The field is still called `nieuws` in Sanity; the site calls it the blog.
-    nieuws: t.blog,
+    nieuws: { ...nl.blog, en: en.blog },
     bezoek: {
-      eyebrow: t.bezoek.eyebrow,
-      titel: t.bezoek.titel,
-      lead: t.bezoek.lead,
-      rijen: t.bezoek.rijen.map((row, i) => ({ _key: `rij-${i}`, ...row })),
-      note: t.bezoek.note,
+      eyebrow: nl.bezoek.eyebrow,
+      titel: nl.bezoek.titel,
+      lead: nl.bezoek.lead,
+      rijen: keys(nl.bezoek.rijen, 'rij'),
+      note: nl.bezoek.note,
+      en: {
+        eyebrow: en.bezoek.eyebrow,
+        titel: en.bezoek.titel,
+        lead: en.bezoek.lead,
+        rijen: keys(en.bezoek.rijen, 'rij-en'),
+        note: en.bezoek.note,
+      },
     },
-    nieuwsbrief: t.nieuwsbrief,
-    footer: t.footer,
+    nieuwsbrief: { ...nl.nieuwsbrief, en: en.nieuwsbrief },
+    footer: { ...nl.footer, en: en.footer },
   });
 
-  for (const [index, work] of defaults.werk.entries()) {
+  for (const [index, work] of werkBronnen.entries()) {
     await client.createOrReplace({
       _id: `werk-${work.id}`,
       _type: 'werk',
       titel: work.titel,
-      techniek: work.techniek,
+      techniek: work.techniek.nl,
       afmetingen: work.afmetingen,
-      ...(work.toelichting ? { toelichting: work.toelichting } : {}),
+      ...(work.toelichting ? { toelichting: work.toelichting.nl } : {}),
       ...(work.reeks ? { reeks: work.reeks } : {}),
       inZaal: work.inZaal,
+      teKoop: work.teKoop,
+      teHuur: work.teHuur,
+      verkocht: work.verkocht,
       volgorde: (index + 1) * 10,
       afbeelding: imageField(werkAssets.get(work.id)!),
+      en: {
+        techniek: work.techniek.en,
+        ...(work.toelichting ? { toelichting: work.toelichting.en } : {}),
+      },
     });
   }
 
-  for (const item of defaults.blog) {
-    const iso = item.datumISO ?? new Date().toISOString().slice(0, 10);
+  for (const item of blogBronnen) {
+    const iso = item.datumISO;
     // Only where the museum writes the date differently than the date reads.
-    const weergave = item.datum && item.datum !== nlDatum(iso) ? item.datum : undefined;
-    const asset = blogAssets.get(item.id);
+    const weergave = item.datum.nl && item.datum.nl !== nlDatum(iso) ? item.datum.nl : undefined;
     await client.createOrReplace({
       _id: `nieuws-${item.id}`,
       _type: 'nieuws',
-      titel: item.titel,
+      titel: item.titel.nl,
       slug: { _type: 'slug', current: item.slug },
       datum: iso,
       ...(weergave ? { datumWeergave: weergave } : {}),
-      ...(item.intro ? { intro: item.intro } : {}),
-      body: item.body,
-      ...(asset ? { afbeelding: imageField(asset) } : {}),
+      ...(item.intro.nl ? { intro: item.intro.nl } : {}),
+      body: blokken(item.id, item.body.nl),
+      afbeelding: imageField(blogAssets.get(item.id)!),
+      en: {
+        titel: item.titel.en,
+        ...(item.intro.en ? { intro: item.intro.en } : {}),
+        body: blokken(`${item.id}-en`, item.body.en),
+      },
     });
   }
 
   console.log(
-    `Klaar: ${defaults.werk.length} werken, ${defaults.blog.length} blogberichten, teksten en ${uploaded.size} afbeeldingen.`,
+    `Klaar: ${werkBronnen.length} werken, ${blogBronnen.length} blogberichten, teksten in twee talen en ${uploaded.size} afbeeldingen.`,
   );
 }
 

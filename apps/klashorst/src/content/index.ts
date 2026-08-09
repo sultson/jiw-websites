@@ -1,22 +1,14 @@
 import { defaults } from './defaults';
 import { imgFromRef } from './image';
-import { slugify } from '../meta';
+import { DEFAULT_LANG, slugify, splitLang, type Lang } from '../meta';
 import { blocksFromText, samenvatten } from './rich';
+import { uiPerTaal } from './ui';
 
 export { plainText } from './rich';
-import type {
-  BlogPost,
-  Content,
-  GalerieStatus,
-  GalerieWerk,
-  Img,
-  RichBlock,
-  Teksten,
-  Werk,
-} from './types';
+export { beschikbaarLabel, teVragen, type Ui } from './ui';
+import type { BlogPost, Content, GalerieWerk, Img, RichBlock, Teksten, Werk } from './types';
 
 export type { BlogPost, Content, GalerieWerk, Img, RichBlock, Teksten, Werk } from './types';
-export { ui } from './ui';
 
 /**
  * Content arrives inlined in the HTML: the Worker queries Sanity, caches the
@@ -24,6 +16,9 @@ export { ui } from './ui';
  * So the app starts with its content already in hand, there is no second
  * request, nothing pops in late, and the client's edits are live without a
  * build. If the tag is missing or malformed, the bundled defaults render.
+ *
+ * Everything below is resolved in one language, decided by the address. A
+ * component never sees the other one, and never has to ask which it is in.
  */
 
 type RawImage = { asset?: { _ref?: string } | null } | null;
@@ -43,6 +38,15 @@ type RawPayload = {
   } | null;
 };
 
+/**
+ * Which language this page is. Dutch unless the address says otherwise, which
+ * is the client's rule: Dutch is the site, English is the translation.
+ */
+export const lang: Lang =
+  typeof window === 'undefined' ? DEFAULT_LANG : splitLang(window.location.pathname).lang;
+
+export const ui = uiPerTaal[lang];
+
 const text = (value: unknown, fallback: string): string =>
   typeof value === 'string' && value.trim() ? value : fallback;
 
@@ -51,6 +55,16 @@ const maybe = (value: unknown): string | undefined =>
 
 const list = <T>(value: T[] | null | undefined, fallback: T[]): T[] =>
   Array.isArray(value) && value.length ? value : fallback;
+
+/**
+ * The English half of a document or a block of texts, or nothing at all on the
+ * Dutch site. Every read goes English first, Dutch second, bundled copy third,
+ * so a half-translated museum is a readable museum rather than a broken one.
+ */
+const engels = (value: unknown): Record<string, any> =>
+  lang === 'en' && value && typeof value === 'object' && !Array.isArray(value)
+    ? ((value as Record<string, any>).en ?? {})
+    : {};
 
 function readPayload(): RawPayload | null {
   if (typeof document === 'undefined') return null;
@@ -63,20 +77,26 @@ function readPayload(): RawPayload | null {
   }
 }
 
-/** Formats a Sanity date field the way the museum would write it. */
+/** Formats a Sanity date field the way this language would write it. */
 function formatDate(value: unknown): string | undefined {
   if (typeof value !== 'string' || !value) return undefined;
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return undefined;
-  return date.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
+  return date.toLocaleDateString(lang === 'en' ? 'en-GB' : 'nl-NL', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 }
 
+const isBool = (value: unknown): value is boolean => typeof value === 'boolean';
 
 function buildContent(payload: RawPayload | null): Content {
+  const bundled = defaults[lang];
   const projectId = payload?.projectId;
   const dataset = payload?.dataset;
   const data = payload?.data;
-  if (!projectId || !dataset || !data) return defaults;
+  if (!projectId || !dataset || !data) return bundled;
 
   const image = (raw: RawImage): Img | null => {
     const ref = raw?.asset?._ref;
@@ -87,14 +107,20 @@ function buildContent(payload: RawPayload | null): Content {
     .map((doc): Werk | null => {
       const img = image(doc.afbeelding);
       if (!img || !doc._id) return null;
+      const vert = engels(doc);
       return {
         id: String(doc._id),
-        titel: text(doc.titel, 'Zonder titel'),
-        techniek: text(doc.techniek, ''),
+        titel: text(vert.titel, text(doc.titel, 'Zonder titel')),
+        techniek: text(vert.techniek, text(doc.techniek, '')),
         afmetingen: text(doc.afmetingen, ''),
-        toelichting: maybe(doc.toelichting),
+        toelichting: maybe(vert.toelichting) ?? maybe(doc.toelichting),
         reeks: doc.reeks === 's21' ? 's21' : undefined,
+        // The series has a block of its own; nothing from it turns past a
+        // headline, whatever the tick box in the Studio says.
         inZaal: doc.inZaal !== false && doc.reeks !== 's21',
+        teKoop: doc.teKoop === true,
+        teHuur: doc.teHuur === true,
+        verkocht: doc.verkocht === true,
         img,
       };
     })
@@ -124,16 +150,18 @@ function buildContent(payload: RawPayload | null): Content {
   const blog: BlogPost[] = (data.nieuws ?? [])
     .map((doc): BlogPost | null => {
       if (!doc._id) return null;
-      const titel = text(doc.titel, 'Zonder titel');
+      const vert = engels(doc);
+      const titel = text(vert.titel, text(doc.titel, 'Zonder titel'));
       // Written before the rich text editor existed, or written and never
       // moved over: either way the post still has to have an article page.
-      const body = richBody(doc.body);
+      const nlBody = richBody(doc.body);
+      const enBody = richBody(vert.body);
       const legacy = blocksFromText(text(doc.tekst, ''));
-      const full = body.length ? body : legacy;
-      const intro = text(doc.intro, '');
+      const full = enBody.length ? enBody : nlBody.length ? nlBody : legacy;
+      const intro = text(vert.intro, text(doc.intro, ''));
       return {
         id: String(doc._id),
-        slug: text(doc.slug?.current, slugify(titel)),
+        slug: text(doc.slug?.current, slugify(text(doc.titel, titel))),
         datum: text(doc.datumWeergave, formatDate(doc.datum) ?? ''),
         datumISO: maybe(doc.datum),
         vastgezet: doc.vastgezet === true,
@@ -145,6 +173,11 @@ function buildContent(payload: RawPayload | null): Content {
         samenvatting: samenvatten(intro, full),
         body: full,
         img: image(doc.afbeelding),
+        // Nothing English on an English page: say so rather than hand a reader
+        // Dutch without warning.
+        onvertaald: lang === 'en' && !maybe(vert.titel) && !maybe(vert.intro) && !enBody.length,
+        seoTitel: maybe(vert.seoTitel) ?? maybe(doc.seoTitel),
+        seoOmschrijving: maybe(vert.seoOmschrijving) ?? maybe(doc.seoOmschrijving),
       };
     })
     .filter((item): item is BlogPost => item !== null);
@@ -153,108 +186,135 @@ function buildContent(payload: RawPayload | null): Content {
     .map((doc): GalerieWerk | null => {
       const img = image(doc.afbeelding);
       if (!img || !doc._id) return null;
-      const status: GalerieStatus =
-        doc.status === 'te-koop' || doc.status === 'huur-en-koop' || doc.status === 'verkocht'
-          ? doc.status
-          : 'te-huur';
+      const vert = engels(doc);
       return {
         id: String(doc._id),
-        titel: text(doc.titel, 'Zonder titel'),
+        titel: text(vert.titel, text(doc.titel, 'Zonder titel')),
         kunstenaar: text(doc.kunstenaar, ''),
-        techniek: maybe(doc.techniek),
+        techniek: maybe(vert.techniek) ?? maybe(doc.techniek),
         afmetingen: maybe(doc.afmetingen),
         jaar: maybe(doc.jaar),
-        status,
-        prijs: maybe(doc.prijs),
-        huurprijs: maybe(doc.huurprijs),
-        toelichting: maybe(doc.toelichting),
+        // A gallery work is here to be hired or bought, so nothing ticked still
+        // means for hire: that is what this part of the museum is.
+        teKoop: doc.teKoop === true,
+        teHuur: isBool(doc.teHuur) ? doc.teHuur : doc.teKoop !== true,
+        verkocht: doc.verkocht === true,
+        prijs: maybe(vert.prijs) ?? maybe(doc.prijs),
+        huurprijs: maybe(vert.huurprijs) ?? maybe(doc.huurprijs),
+        toelichting: maybe(vert.toelichting) ?? maybe(doc.toelichting),
         img,
       };
     })
     .filter((item): item is GalerieWerk => item !== null);
 
   const cms = data.teksten ?? {};
-  const fallback = defaults.teksten;
+  const fallback = bundled.teksten;
 
-  // Merged field by field: an untouched field in the Studio keeps the copy the
-  // site shipped with, so the page can never go blank because someone has not
-  // filled a box in yet.
+  /**
+   * One block of copy, read English first and Dutch second, with the copy this
+   * build shipped with underneath both. An untouched field in the Studio keeps
+   * that copy, so the page can never go blank because someone has not filled a
+   * box in yet.
+   */
+  const blok = (naam: string) => {
+    const eigen = ((cms as Record<string, any>)[naam] ?? {}) as Record<string, any>;
+    const vert = engels(eigen);
+    return {
+      regel: (key: string, standaard: string) => text(vert[key], text(eigen[key], standaard)),
+      lijst: <T>(key: string, standaard: T[], vorm: (row: any) => T): T[] => {
+        const bron = Array.isArray(vert[key]) && vert[key].length ? vert[key] : eigen[key];
+        return list(Array.isArray(bron) ? bron.map(vorm) : null, standaard);
+      },
+    };
+  };
+
+  const hero = blok('hero');
+  const over = blok('over');
+  const werkT = blok('werk');
+  const s21 = blok('s21');
+  const peter = blok('peter');
+  const galerieT = blok('galerie');
+  const blogT = blok('nieuws');
+  const bezoek = blok('bezoek');
+  const nieuwsbrief = blok('nieuwsbrief');
+  const footer = blok('footer');
+
   const teksten: Teksten = {
     hero: {
-      jaren: text(cms.hero?.jaren, fallback.hero.jaren),
-      titel: text(cms.hero?.titel, fallback.hero.titel),
-      tagline: text(cms.hero?.tagline, fallback.hero.tagline),
-      lead: text(cms.hero?.lead, fallback.hero.lead),
-      knop: text(cms.hero?.knop, fallback.hero.knop),
+      titel: hero.regel('titel', fallback.hero.titel),
+      tagline: hero.regel('tagline', fallback.hero.tagline),
+      lead: hero.regel('lead', fallback.hero.lead),
+      knop: hero.regel('knop', fallback.hero.knop),
+    },
+    over: {
+      eyebrow: over.regel('eyebrow', fallback.over.eyebrow),
+      titel: over.regel('titel', fallback.over.titel),
+      alineas: over.lijst<string>('alineas', fallback.over.alineas, (row) => String(row ?? '')),
     },
     werk: {
-      eyebrow: text(cms.werk?.eyebrow, fallback.werk.eyebrow),
-      titel: text(cms.werk?.titel, fallback.werk.titel),
-      lead: text(cms.werk?.lead, fallback.werk.lead),
-    },
-    peter: {
-      eyebrow: text(cms.peter?.eyebrow, fallback.peter.eyebrow),
-      titel: text(cms.peter?.titel, fallback.peter.titel),
-      alineas: list<string>(cms.peter?.alineas, fallback.peter.alineas),
-      feitenTitel: text(cms.peter?.feitenTitel, fallback.peter.feitenTitel),
-      feiten: list(
-        (cms.peter?.feiten ?? []).map((row: any) => ({
-          jaar: text(row?.jaar, ''),
-          wat: text(row?.wat, ''),
-        })),
-        fallback.peter.feiten,
-      ),
-      portret: image(cms.peter?.portret) ?? fallback.peter.portret,
-      portretCredit: text(cms.peter?.portretCredit, fallback.peter.portretCredit),
+      eyebrow: werkT.regel('eyebrow', fallback.werk.eyebrow),
+      titel: werkT.regel('titel', fallback.werk.titel),
+      lead: werkT.regel('lead', fallback.werk.lead),
     },
     s21: {
-      eyebrow: text(cms.s21?.eyebrow, fallback.s21.eyebrow),
-      titel: text(cms.s21?.titel, fallback.s21.titel),
-      lead: text(cms.s21?.lead, fallback.s21.lead),
-      body: text(cms.s21?.body, fallback.s21.body),
-      knop: text(cms.s21?.knop, fallback.s21.knop),
+      eyebrow: s21.regel('eyebrow', fallback.s21.eyebrow),
+      titel: s21.regel('titel', fallback.s21.titel),
+      lead: s21.regel('lead', fallback.s21.lead),
+      body: s21.regel('body', fallback.s21.body),
+      knop: s21.regel('knop', fallback.s21.knop),
+    },
+    peter: {
+      eyebrow: peter.regel('eyebrow', fallback.peter.eyebrow),
+      titel: peter.regel('titel', fallback.peter.titel),
+      alineas: peter.lijst<string>('alineas', fallback.peter.alineas, (row) => String(row ?? '')),
+      feitenTitel: peter.regel('feitenTitel', fallback.peter.feitenTitel),
+      feiten: peter.lijst('feiten', fallback.peter.feiten, (row: any) => ({
+        jaar: text(row?.jaar, ''),
+        wat: text(row?.wat, ''),
+      })),
+      // The portrait itself is not a translation, so it is read from the Dutch
+      // side whichever language is on screen.
+      portret: image((cms.peter ?? {}).portret) ?? fallback.peter.portret,
+      portretCredit: peter.regel('portretCredit', fallback.peter.portretCredit),
     },
     galerie: {
-      eyebrow: text(cms.galerie?.eyebrow, fallback.galerie.eyebrow),
-      titel: text(cms.galerie?.titel, fallback.galerie.titel),
-      lead: text(cms.galerie?.lead, fallback.galerie.lead),
-      leeg: text(cms.galerie?.leeg, fallback.galerie.leeg),
+      eyebrow: galerieT.regel('eyebrow', fallback.galerie.eyebrow),
+      titel: galerieT.regel('titel', fallback.galerie.titel),
+      lead: galerieT.regel('lead', fallback.galerie.lead),
+      leeg: galerieT.regel('leeg', fallback.galerie.leeg),
     },
     // `nieuws` on the wire, the blog on the site. Same seam as the posts above.
     blog: {
-      eyebrow: text(cms.nieuws?.eyebrow, fallback.blog.eyebrow),
-      titel: text(cms.nieuws?.titel, fallback.blog.titel),
-      lead: text(cms.nieuws?.lead, fallback.blog.lead),
+      eyebrow: blogT.regel('eyebrow', fallback.blog.eyebrow),
+      titel: blogT.regel('titel', fallback.blog.titel),
+      lead: blogT.regel('lead', fallback.blog.lead),
     },
     bezoek: {
-      eyebrow: text(cms.bezoek?.eyebrow, fallback.bezoek.eyebrow),
-      titel: text(cms.bezoek?.titel, fallback.bezoek.titel),
-      lead: text(cms.bezoek?.lead, fallback.bezoek.lead),
-      rijen: list(
-        (cms.bezoek?.rijen ?? []).map((row: any) => ({
-          label: text(row?.label, ''),
-          waarde: text(row?.waarde, ''),
-        })),
-        fallback.bezoek.rijen,
-      ),
-      note: text(cms.bezoek?.note, fallback.bezoek.note),
+      eyebrow: bezoek.regel('eyebrow', fallback.bezoek.eyebrow),
+      titel: bezoek.regel('titel', fallback.bezoek.titel),
+      lead: bezoek.regel('lead', fallback.bezoek.lead),
+      rijen: bezoek.lijst('rijen', fallback.bezoek.rijen, (row: any) => ({
+        label: text(row?.label, ''),
+        waarde: text(row?.waarde, ''),
+      })),
+      note: bezoek.regel('note', fallback.bezoek.note),
     },
     nieuwsbrief: {
-      eyebrow: text(cms.nieuwsbrief?.eyebrow, fallback.nieuwsbrief.eyebrow),
-      titel: text(cms.nieuwsbrief?.titel, fallback.nieuwsbrief.titel),
-      lead: text(cms.nieuwsbrief?.lead, fallback.nieuwsbrief.lead),
-      consent: text(cms.nieuwsbrief?.consent, fallback.nieuwsbrief.consent),
+      eyebrow: nieuwsbrief.regel('eyebrow', fallback.nieuwsbrief.eyebrow),
+      titel: nieuwsbrief.regel('titel', fallback.nieuwsbrief.titel),
+      lead: nieuwsbrief.regel('lead', fallback.nieuwsbrief.lead),
+      consent: nieuwsbrief.regel('consent', fallback.nieuwsbrief.consent),
     },
     footer: {
-      rechten: text(cms.footer?.rechten, fallback.footer.rechten),
-      demo: text(cms.footer?.demo, fallback.footer.demo),
+      rechten: footer.regel('rechten', fallback.footer.rechten),
+      demo: footer.regel('demo', fallback.footer.demo),
     },
   };
 
   return {
     teksten,
-    werk: werk.length ? werk : defaults.werk,
-    blog: blog.length ? blog : defaults.blog,
+    werk: werk.length ? werk : bundled.werk,
+    blog: blog.length ? blog : bundled.blog,
     galerie,
   };
 }

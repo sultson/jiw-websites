@@ -16,12 +16,14 @@ const kaarten = [
   {
     pad: '/beheer/structure/siteTeksten',
     titel: 'Teksten op de site',
-    uitleg: 'De kop bovenaan, de introducties, het verhaal over Peter en de bezoekgegevens.',
+    uitleg:
+      'De kop bovenaan, over ons, het verhaal over Peter en de bezoekgegevens. Elk blok heeft een Engelse versie eronder.',
   },
   {
     pad: '/beheer/structure/werk',
     titel: 'Collectie',
-    uitleg: 'Het werk van Peter Klashorst. Eén foto per werk, de site maakt zelf alle formaten.',
+    uitleg:
+      'Het werk van Peter Klashorst. Eén foto per werk, en twee vinkjes: te koop en te huur. Wat aan staat, krijgt een label en een knop om een offerte aan te vragen.',
   },
   {
     pad: '/beheer/structure/galeriewerk',
@@ -30,8 +32,9 @@ const kaarten = [
   },
   {
     pad: '/beheer/structure/nieuws',
-    titel: 'Nieuws',
-    uitleg: 'Berichten en aankondigingen. Het nieuwste bericht staat vooraan.',
+    titel: 'Blog',
+    uitleg:
+      'Berichten en aankondigingen. Het nieuwste staat vooraan. Op het tabblad English zet u het bericht in het Engels, en Vindbaarheid kijkt met u mee voor Google.',
   },
 ];
 

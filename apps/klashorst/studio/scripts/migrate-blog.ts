@@ -155,7 +155,7 @@ async function hernoemKop() {
   );
   if (!huidig) return;
 
-  const nieuw = defaults.teksten.blog;
+  const nieuw = defaults.nl.teksten.blog;
   const patch: Record<string, string> = {};
   // Only where the client has not written their own words over ours.
   if (huidig.eyebrow === OUD.eyebrow) patch['nieuws.eyebrow'] = nieuw.eyebrow;

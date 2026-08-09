@@ -6,8 +6,8 @@ import Home from './pages/Home';
 import BlogIndex from './pages/BlogIndex';
 import BlogPostPage from './pages/BlogPost';
 import NotFound from './pages/NotFound';
-import { content, findPost, isPreview } from './content';
-import { HOME_DESCRIPTION, HOME_TITLE, clamp, pageTitle } from './meta';
+import { content, findPost, isPreview, lang } from './content';
+import { HOME_DESCRIPTION, HOME_TITLE, HTML_LANG, NOT_FOUND_TITLE, clamp, pageTitle } from './meta';
 import { useInternalLinks, usePath, useScrollOnNavigate } from './router';
 
 /**
@@ -19,8 +19,8 @@ function resolve(path: string) {
   if (path === '/') {
     return {
       page: <Home />,
-      title: HOME_TITLE,
-      description: HOME_DESCRIPTION,
+      title: HOME_TITLE[lang],
+      description: HOME_DESCRIPTION[lang],
       newsletter: true,
     };
   }
@@ -41,8 +41,8 @@ function resolve(path: string) {
     if (post) {
       return {
         page: <BlogPostPage post={post} />,
-        title: pageTitle(post.titel),
-        description: clamp(post.samenvatting),
+        title: pageTitle(post.seoTitel ?? post.titel),
+        description: clamp(post.seoOmschrijving ?? post.samenvatting),
         newsletter: true,
       };
     }
@@ -50,8 +50,8 @@ function resolve(path: string) {
 
   return {
     page: <NotFound />,
-    title: pageTitle('Pagina niet gevonden'),
-    description: HOME_DESCRIPTION,
+    title: pageTitle(NOT_FOUND_TITLE[lang]),
+    description: HOME_DESCRIPTION[lang],
     newsletter: false,
   };
 }
@@ -70,6 +70,12 @@ export default function App() {
     document.title = title;
     document.querySelector('meta[name="description"]')?.setAttribute('content', description);
   }, [title, description]);
+
+  // The document is served in Dutch and read again in English at /en, so the
+  // attribute a screen reader and a search engine go by has to follow.
+  useEffect(() => {
+    document.documentElement.lang = HTML_LANG[lang];
+  }, []);
 
   return (
     <>

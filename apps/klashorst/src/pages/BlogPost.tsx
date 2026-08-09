@@ -3,6 +3,7 @@ import BlogCard from '../components/BlogCard';
 import Newsletter from '../components/Newsletter';
 import RichText from '../components/RichText';
 import { blogPosts, ui, type BlogPost as Post } from '../content';
+import { to } from '../router';
 
 /**
  * One post, in full.
@@ -15,12 +16,12 @@ export default function BlogPost({ post }: { post: Post }) {
   const verder = blogPosts.filter((other) => other.slug !== post.slug).slice(0, 3);
 
   return (
-    <main className="pt-16">
+    <main className="pt-[4.5rem] md:pt-20">
       <article className="mx-auto max-w-[1400px] px-5 md:px-10">
         <header className="max-w-[46rem] py-12 md:py-16">
           <a
-            href="/blog"
-            className="eyebrow inline-flex items-center gap-2 text-bone/70 transition-colors hover:text-bone"
+            href={to('/blog')}
+            className="eyebrow inline-flex items-center gap-2 transition-colors hover:text-bone"
           >
             <ArrowLeft size={14} />
             {ui.blog.terug}
@@ -36,6 +37,14 @@ export default function BlogPost({ post }: { post: Post }) {
 
           {post.intro && (
             <p className="mt-6 text-[1.1rem] leading-relaxed text-bone/85">{post.intro}</p>
+          )}
+
+          {/* An English reader who is about to be handed Dutch is told so
+              first. Better than a silent switch of language mid-page. */}
+          {post.onvertaald && ui.blog.onvertaald && (
+            <p lang="en" className="mt-6 border-l-2 border-hair pl-4 text-sm text-muted">
+              {ui.blog.onvertaald}
+            </p>
           )}
         </header>
 

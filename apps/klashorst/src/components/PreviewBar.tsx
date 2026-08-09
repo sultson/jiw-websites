@@ -5,7 +5,7 @@
  */
 export default function PreviewBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[80] border-t border-red bg-red px-4 py-2 text-center text-[0.72rem] uppercase tracking-[0.16em] text-bone">
+    <div className="fixed inset-x-0 bottom-0 z-[80] border-t border-red bg-red px-4 py-2 text-center text-[0.72rem] uppercase tracking-[0.16em] text-white">
       Voorbeeld: concept, nog niet gepubliceerd
     </div>
   );

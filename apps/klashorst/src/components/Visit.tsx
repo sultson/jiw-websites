@@ -5,7 +5,7 @@ export default function Visit() {
   const t = content.teksten.bezoek;
 
   return (
-    <section id="bezoek" className="scroll-mt-16 border-t border-hair py-20 md:py-28">
+    <section id="bezoek" className="scroll-mt-20 border-t border-hair py-20 md:py-28">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         {/* On a phone the newsletter leads: it is the only thing here that can
             actually be acted on until the opening details exist. */}
@@ -18,7 +18,7 @@ export default function Visit() {
             <dl className="mt-10 border-t border-hair">
               {t.rijen.map((row) => (
                 <div key={row.label} className="flex items-baseline justify-between gap-6 border-b border-hair py-4">
-                  <dt className="eyebrow text-bone/70">{row.label}</dt>
+                  <dt className="eyebrow text-muted">{row.label}</dt>
                   <dd className="text-sm text-muted">{row.waarde}</dd>
                 </div>
               ))}
