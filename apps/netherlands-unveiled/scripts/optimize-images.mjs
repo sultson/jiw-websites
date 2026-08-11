@@ -10,7 +10,7 @@ const OUT = fileURLToPath(new URL('../public/images/', import.meta.url));
 
 // Tour cards render at aspect-ratio 4/3 with object-fit: cover, so crop to 4:3
 // here rather than shipping pixels the card throws away.
-const TOUR_IMAGES = ['amsterdam', 'villages', 'grand-holland', 'nijmegen'];
+const TOUR_IMAGES = ['amsterdam', 'villages', 'den-haag', 'rotterdam', 'delft', 'nijmegen'];
 const TOUR_WIDTHS = [400, 600, 800, 1064];
 
 const jobs = [
