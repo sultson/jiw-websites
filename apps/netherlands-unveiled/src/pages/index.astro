@@ -549,6 +549,18 @@ const contentJson = JSON.stringify(content).replace(/</g, '\\u003c');
           </div>
         </section>
 
+        <section class="section spring-section" aria-label={t.spring.label} data-i18n-attr="aria-label:spring.label">
+          <article class="spring-card">
+            <div class="spring-content">
+              <p class="eyebrow" data-i18n="spring.eyebrow">{t.spring.eyebrow}</p>
+              <h2 data-i18n="spring.title">{t.spring.title}</h2>
+              {t.spring.copy.map((paragraph, index) => (
+                <p data-i18n={`spring.copy.${index}`}>{paragraph}</p>
+              ))}
+            </div>
+          </article>
+        </section>
+
         <section class="band" id="about">
           <div class="section split">
             <div>
@@ -564,18 +576,6 @@ const contentJson = JSON.stringify(content).replace(/</g, '\\u003c');
               </div>
             </div>
           </div>
-        </section>
-
-        <section class="section spring-section" aria-label={t.spring.label} data-i18n-attr="aria-label:spring.label">
-          <article class="spring-card">
-            <div class="spring-content">
-              <p class="eyebrow" data-i18n="spring.eyebrow">{t.spring.eyebrow}</p>
-              <h2 data-i18n="spring.title">{t.spring.title}</h2>
-              {t.spring.copy.map((paragraph, index) => (
-                <p data-i18n={`spring.copy.${index}`}>{paragraph}</p>
-              ))}
-            </div>
-          </article>
         </section>
 
         <section class="section" id="contact">

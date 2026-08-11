@@ -354,14 +354,18 @@ h1 {
   outline: none;
 }
 
+/* Sits directly on the hero photo, which is bright in places, so it carries its
+   own dark fill rather than relying on the image behind it. */
 .btn-ghost {
-  border-color: rgba(255, 250, 241, 0.52);
+  border-color: rgba(255, 250, 241, 0.7);
+  background: rgba(8, 12, 13, 0.62);
   color: #fffaf1;
 }
 
 .btn-ghost:hover,
 .btn-ghost:focus-visible {
-  background: rgba(255, 250, 241, 0.14);
+  border-color: #fffaf1;
+  background: rgba(8, 12, 13, 0.78);
   outline: none;
 }
 
