@@ -39,25 +39,8 @@ const content = {
       label: 'Netherlands Unveiled',
       imageAlt: 'Colorful Netherlands scene with canals, tulips, Delft blue and Dutch city details',
       title: 'Netherlands Unveiled',
-      copy:
-        'Amsterdam city tours and more with Marion, a guide who brings places to life through culture, context and lived experience.',
       primaryCta: 'Plan a tour',
       secondaryCta: 'Explore tours',
-      factsLabel: 'Tour highlights',
-      facts: [
-        {
-          title: 'Travel industry experience',
-          copy: 'From tour guiding to hotel and attraction sales—and back to guiding.',
-        },
-        {
-          title: 'Culture explained',
-          copy: 'Amsterdam and New Amsterdam perspectives, shaped for international guests.',
-        },
-        {
-          title: 'Email or Messenger',
-          copy: 'No phone-first pressure. Send the request and Marion replies.',
-        },
-      ],
     },
     toursSection: {
       title: 'What we offer: Amsterdam city tours and more',
@@ -235,25 +218,8 @@ const content = {
       label: 'Netherlands Unveiled',
       imageAlt: 'Scène colorée des Pays-Bas avec canaux, tulipes, bleu de Delft et détails urbains',
       title: 'Netherlands Unveiled',
-      copy:
-        'Visites d’Amsterdam et plus encore avec Marion, une guide qui donne vie aux lieux grâce à la culture, au contexte et à son expérience personnelle.',
       primaryCta: 'Planifier une visite',
       secondaryCta: 'Voir les visites',
-      factsLabel: 'Points forts des visites',
-      facts: [
-        {
-          title: 'Expérience dans le tourisme',
-          copy: 'Du guidage à la vente hôtelière et d’attractions, puis un retour au guidage.',
-        },
-        {
-          title: 'La culture expliquée',
-          copy: 'Perspectives entre Amsterdam et New Amsterdam, adaptées aux visiteurs internationaux.',
-        },
-        {
-          title: 'E-mail ou Messenger',
-          copy: 'Aucune pression par téléphone. Envoyez votre demande et Marion vous répond.',
-        },
-      ],
     },
     toursSection: {
       title: 'Notre offre : visites d’Amsterdam et plus encore',
@@ -529,24 +495,15 @@ const contentJson = JSON.stringify(content).replace(/</g, '\\u003c');
           <div class="hero-content">
             <div class="hero-copy">
               <h1 data-i18n="hero.title">{t.hero.title}</h1>
-              <p data-i18n="hero.copy">{t.hero.copy}</p>
               <div class="hero-actions">
                 <a class="btn btn-primary" href="#contact" data-i18n="hero.primaryCta">{t.hero.primaryCta}</a>
                 <a class="btn btn-ghost" href="#tours" data-i18n="hero.secondaryCta">{t.hero.secondaryCta}</a>
               </div>
             </div>
           </div>
-          <div class="hero-facts" aria-label={t.hero.factsLabel} data-i18n-attr="aria-label:hero.factsLabel">
-            {t.hero.facts.map((fact, index) => (
-              <div class="fact">
-                <strong data-i18n={`hero.facts.${index}.title`}>{fact.title}</strong>
-                <span data-i18n={`hero.facts.${index}.copy`}>{fact.copy}</span>
-              </div>
-            ))}
-          </div>
         </section>
 
-        <section class="section first" id="tours">
+        <section class="section" id="tours">
           <div class="section-head">
             <h2 data-i18n="toursSection.title">{t.toursSection.title}</h2>
             <p data-i18n="toursSection.copy">{t.toursSection.copy}</p>

@@ -320,19 +320,6 @@ h1 {
   word-break: normal;
 }
 
-.hero-copy p {
-  max-width: 40rem;
-  margin: 1.25rem 0 0;
-  padding: 0.95rem 1.15rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 250, 241, 0.1);
-  background: rgba(8, 12, 13, 0.34);
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
-  color: rgba(255, 250, 241, 0.94);
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -378,48 +365,10 @@ h1 {
   outline: none;
 }
 
-.hero-facts {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: min(1160px, calc(100% - 32px));
-  transform: translate(-50%, 50%);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fffaf1;
-  box-shadow: var(--shadow);
-  color: var(--ink);
-}
-
-.fact {
-  padding: 1.2rem;
-}
-
-.fact + .fact {
-  border-left: 1px solid var(--line);
-}
-
-.fact strong {
-  display: block;
-  font-size: 1.05rem;
-}
-
-.fact span {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
 .section {
   width: min(1160px, calc(100% - 32px));
   margin: 0 auto;
   padding: 6rem 0;
-}
-
-.section.first {
-  padding-top: 8rem;
 }
 
 .section-head {
@@ -857,29 +806,10 @@ textarea:focus {
     padding-bottom: 6rem;
   }
 
-  .hero-facts,
   .section-head,
   .split,
   .contact-wrap {
     grid-template-columns: 1fr;
-  }
-
-  .hero-facts {
-    position: relative;
-    left: auto;
-    bottom: auto;
-    width: min(100% - 32px, 680px);
-    margin: -3.5rem auto 0;
-    transform: none;
-  }
-
-  .fact + .fact {
-    border-top: 1px solid var(--line);
-    border-left: 0;
-  }
-
-  .section.first {
-    padding-top: 4rem;
   }
 
   .tour-grid,
@@ -918,20 +848,9 @@ textarea:focus {
     padding: 4.55rem 0 2.4rem;
   }
 
-  .hero-facts {
-    width: min(100% - 24px, 680px);
-    margin-top: 0;
-  }
-
   h1 {
     max-width: 100%;
     font-size: clamp(2.1rem, 8.8vw, 2.9rem);
-  }
-
-  .hero-copy p {
-    max-width: 100%;
-    padding: 0.78rem 0.85rem;
-    font-size: 0.96rem;
   }
 
   .hero-actions {
