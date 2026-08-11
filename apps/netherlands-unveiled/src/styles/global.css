@@ -295,9 +295,11 @@ textarea {
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.62);
 }
 
+/* Only ever rendered on the light surfaces (band, spring card, contact card),
+   so it needs a colour that clears 4.5:1 against them. */
 .eyebrow {
   margin: 0 0 0.9rem;
-  color: #ffe08b;
+  color: var(--blue);
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -702,15 +704,15 @@ h2 {
 .btn-messenger {
   width: fit-content;
   margin-top: 1.1rem;
-  border-color: #0a7cff;
-  background: #0a7cff;
+  border-color: #0060e6;
+  background: #0060e6;
   color: #fff;
 }
 
 .btn-messenger:hover,
 .btn-messenger:focus-visible {
-  border-color: #006be0;
-  background: #006be0;
+  border-color: #004ec2;
+  background: #004ec2;
   outline: none;
 }
 
