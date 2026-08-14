@@ -23,10 +23,7 @@ export default function Footer({
 
           <nav className="flex flex-wrap gap-x-8 gap-y-3">
             <a href={sectionHref(path, 'werk')} className="eyebrow hover:text-bone">
-              {ui.footer.collectie}
-            </a>
-            <a href={sectionHref(path, 'over')} className="eyebrow hover:text-bone">
-              {ui.nav.over}
+              {ui.nav.werk}
             </a>
             <a href={sectionHref(path, 'peter')} className="eyebrow hover:text-bone">
               {ui.nav.peter}

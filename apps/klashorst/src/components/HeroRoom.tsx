@@ -142,9 +142,6 @@ export default function HeroRoom() {
               <a href="#werk" className="btn btn-solid">
                 {t.knop}
               </a>
-              <a href="#over" className="btn">
-                {ui.nav.over}
-              </a>
             </div>
           </div>
 

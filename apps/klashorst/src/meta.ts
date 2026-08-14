@@ -29,12 +29,15 @@ export const HOME_TITLE: Record<Lang, string> = {
   en: 'Klashorst Museum | The work of Peter Klashorst',
 };
 
-/** What the blog is called before the client renames it in the Studio. */
-export const BLOG_TITLE: Record<Lang, string> = { nl: 'Berichten', en: 'Journal' };
+/**
+ * The blog's own name, the same in both languages, and what it is called before
+ * the client renames it in the Studio.
+ */
+export const BLOG_TITLE: Record<Lang, string> = { nl: 'Dirty Diaries', en: 'Dirty Diaries' };
 
 export const HOME_DESCRIPTION: Record<Lang, string> = {
-  nl: 'Het museum voor het werk van Peter Klashorst: schilder, fotograaf en muzikant. Werk uit de collectie is te zien, te huur en te koop.',
-  en: 'The museum for the work of Peter Klashorst: painter, photographer and musician. Work from the collection is on view, for hire and for sale.',
+  nl: 'Het museum voor het werk van Peter Klashorst: schilder, fotograaf en muzikant. Ruim veertig jaar werk, en een deel van het museum voor andere kunstenaars.',
+  en: 'The museum for the work of Peter Klashorst: painter, photographer and musician. More than forty years of work, and part of the museum for other artists.',
 };
 
 export const NOT_FOUND_TITLE: Record<Lang, string> = {

@@ -72,17 +72,15 @@ const newsletterWorkers: Record<Lang, ReturnType<typeof createFormWorker>> = {
   }),
 };
 
-const offerteWorkers: Record<Lang, ReturnType<typeof createFormWorker>> = {
+const vraagWorkers: Record<Lang, ReturnType<typeof createFormWorker>> = {
   nl: createFormWorker({
-    formPath: '/api/forms/offerte',
+    formPath: '/api/forms/vraag',
     locale: 'nl',
     siteName: 'Klashorst Museum',
     ownerName: 'het museum',
     senderName: 'Klashorst Museum',
-    subjectPrefix: 'Offerteaanvraag',
-    confirmationFollowUpSentence: 'Het museum stuurt u een prijs en de mogelijkheden.',
-    // Which work it is about rides along in the subject line.
-    subjectFields: ['werk'],
+    subjectPrefix: 'Vraag via de site',
+    confirmationFollowUpSentence: 'Het museum neemt contact met u op.',
     messageField: 'bericht',
     requireFirstName: true,
     requireLastName: false,
@@ -90,14 +88,13 @@ const offerteWorkers: Record<Lang, ReturnType<typeof createFormWorker>> = {
     honeypotField: 'company',
   }),
   en: createFormWorker({
-    formPath: '/api/forms/offerte',
+    formPath: '/api/forms/vraag',
     locale: 'en',
     siteName: 'Klashorst Museum',
     ownerName: 'the museum',
     senderName: 'Klashorst Museum',
-    subjectPrefix: 'Quote request',
-    confirmationFollowUpSentence: 'The museum will send you a price and the options.',
-    subjectFields: ['werk'],
+    subjectPrefix: 'Question via the site',
+    confirmationFollowUpSentence: 'The museum will get in touch with you.',
     messageField: 'bericht',
     requireFirstName: true,
     requireLastName: false,
@@ -125,16 +122,16 @@ async function formTaal(request: Request): Promise<Lang> {
  * object on each document is the translation; the app picks a side by address.
  */
 const QUERY = `{
-  "teksten": *[_type == "siteTeksten"][0]{hero, over, werk, s21, peter, galerie, nieuws, bezoek, nieuwsbrief, footer},
+  "teksten": *[_type == "siteTeksten"][0]{hero, werk, peter, galerie, nieuws, bezoek, nieuwsbrief, footer},
   "werk": *[_type == "werk" && defined(afbeelding.asset)] | order(coalesce(volgorde, 9999) asc, _createdAt asc){
-    _id, titel, techniek, afmetingen, toelichting, reeks, inZaal, teKoop, teHuur, verkocht, afbeelding, en
+    _id, titel, techniek, afmetingen, toelichting, inZaal, afbeelding, en
   },
   "nieuws": *[_type == "nieuws"] | order(coalesce(vastgezet, false) desc, datum desc, _createdAt asc){
     _id, titel, slug, datum, datumWeergave, vastgezet, intro, tekst, afbeelding, body,
     seoTitel, seoOmschrijving, seoFocus, en
   },
   "galerie": *[_type == "galeriewerk" && defined(afbeelding.asset)] | order(coalesce(volgorde, 9999) asc, _createdAt desc){
-    _id, titel, kunstenaar, techniek, afmetingen, jaar, teKoop, teHuur, verkocht, prijs, huurprijs, toelichting, afbeelding, en
+    _id, titel, kunstenaar, techniek, afmetingen, jaar, toelichting, afbeelding, en
   }
 }`;
 
@@ -533,8 +530,8 @@ export default {
     // Two forms, named. Everything else under /api is nothing: a catch-all here
     // would quietly accept a newsletter sign-up at any address anyone guessed,
     // and would keep answering at the address of an endpoint that was removed.
-    if (url.pathname === '/api/forms/offerte') {
-      return offerteWorkers[await formTaal(request)].fetch!(request, env, ctx);
+    if (url.pathname === '/api/forms/vraag') {
+      return vraagWorkers[await formTaal(request)].fetch!(request, env, ctx);
     }
     if (url.pathname === '/api/forms/newsletter') {
       return newsletterWorkers[await formTaal(request)].fetch!(request, env, ctx);

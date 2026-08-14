@@ -16,25 +16,12 @@ export type Img = {
   full: string;
 };
 
-/**
- * Whether a work can be bought or hired. Three states that matter on the page:
- * nothing at all, available, and sold. The museum quotes on request, so this
- * decides a label and a button and never a price at checkout.
- */
-export type Beschikbaar = {
-  teKoop: boolean;
-  teHuur: boolean;
-  verkocht: boolean;
-};
-
-export type Werk = Beschikbaar & {
+export type Werk = {
   id: string;
   titel: string;
   techniek: string;
   afmetingen: string;
   toelichting?: string;
-  /** The S21 series has its own section and is kept out of the room. */
-  reeks?: 's21';
   inZaal: boolean;
   img: Img;
 };
@@ -89,24 +76,20 @@ export type BlogPost = {
   seoOmschrijving?: string;
 };
 
-export type GalerieWerk = Beschikbaar & {
+export type GalerieWerk = {
   id: string;
   titel: string;
   kunstenaar: string;
   techniek?: string;
   afmetingen?: string;
   jaar?: string;
-  prijs?: string;
-  huurprijs?: string;
   toelichting?: string;
   img: Img;
 };
 
 export type Teksten = {
   hero: { titel: string; tagline: string; lead: string; knop: string };
-  over: { eyebrow: string; titel: string; alineas: string[] };
   werk: { eyebrow: string; titel: string; lead: string };
-  s21: { eyebrow: string; titel: string; lead: string; body: string; knop: string };
   peter: {
     eyebrow: string;
     titel: string;

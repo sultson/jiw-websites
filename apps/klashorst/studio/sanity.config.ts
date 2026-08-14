@@ -38,9 +38,9 @@ const structure = (S: StructureBuilder) =>
             .views([S.view.form().title('Bewerken'), S.view.component(SitePreview).title('Voorbeeld')]),
         ),
       S.divider(),
-      S.documentTypeListItem('werk').title('Collectie'),
-      S.documentTypeListItem('galeriewerk').title('Galerie: andere kunstenaars'),
-      S.documentTypeListItem('nieuws').title('Blog'),
+      S.documentTypeListItem('werk').title('Klashorst Collectie'),
+      S.documentTypeListItem('galeriewerk').title('Andere Kunst'),
+      S.documentTypeListItem('nieuws').title('Dirty Diaries'),
     ]);
 
 export default defineConfig({

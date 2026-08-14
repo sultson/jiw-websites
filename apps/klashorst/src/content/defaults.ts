@@ -12,9 +12,8 @@ import type { BlogPost, Content, Img, RichBlock, Werk } from './types';
  *
  * Everything here is sourced: biography from Wikipedia and the estate's own
  * copy, medium and dimensions quoted from the catalogue at peterklashorst.com.
- * Opening hours and admission do not exist yet and say so. What is for sale and
- * what is for hire is the one thing here nobody outside the estate can know, so
- * those ticks are examples the client changes in the Studio.
+ * Opening hours and admission do not exist yet and say so. Nothing on the site
+ * is for sale or for hire: the museum shows work, it does not trade in it.
  */
 
 /** The same sentence in both languages. */
@@ -71,9 +70,6 @@ const werkBronnen: WerkBron[] = [
       'Klashorst took on Western art history again and again. Here the Girl with a Pearl Earring is the starting point.',
     ),
     inZaal: true,
-    teKoop: true,
-    teHuur: false,
-    verkocht: false,
     img: local('pearl-earring', 0.76),
   },
   {
@@ -86,9 +82,6 @@ const werkBronnen: WerkBron[] = [
       'Early work from 1984, the years of the Nieuwe Wilden.',
     ),
     inZaal: true,
-    teKoop: true,
-    teHuur: true,
-    verkocht: false,
     img: local('two-ladies-1984', 0.87),
   },
   {
@@ -97,9 +90,6 @@ const werkBronnen: WerkBron[] = [
     techniek: pvc,
     afmetingen: '180 × 160 cm',
     inZaal: true,
-    teKoop: false,
-    teHuur: false,
-    verkocht: false,
     img: local('marlboro-man-rob', 0.757),
   },
   {
@@ -109,9 +99,6 @@ const werkBronnen: WerkBron[] = [
     afmetingen: '135 × 90 cm',
     toelichting: beide('Gemaakt in Gambia, 2022.', 'Made in Gambia, 2022.'),
     inZaal: true,
-    teKoop: true,
-    teHuur: true,
-    verkocht: false,
     img: local('piclasso-gambia', 0.691),
   },
   {
@@ -120,9 +107,6 @@ const werkBronnen: WerkBron[] = [
     techniek: pvc,
     afmetingen: '130 × 90 cm',
     inZaal: true,
-    teKoop: false,
-    teHuur: false,
-    verkocht: false,
     img: local('selfie-big', 0.75),
   },
   {
@@ -131,9 +115,6 @@ const werkBronnen: WerkBron[] = [
     techniek: oliePvc,
     afmetingen: '180 × 130 cm',
     inZaal: true,
-    teKoop: true,
-    teHuur: false,
-    verkocht: false,
     img: local('almost-christmas', 0.697),
   },
   {
@@ -142,9 +123,6 @@ const werkBronnen: WerkBron[] = [
     techniek: oliePvc,
     afmetingen: '180 × 130 cm',
     inZaal: true,
-    teKoop: false,
-    teHuur: false,
-    verkocht: false,
     img: local('jesus-and-fred', 0.708),
   },
   {
@@ -153,9 +131,6 @@ const werkBronnen: WerkBron[] = [
     techniek: pvc,
     afmetingen: '130 × 100 cm',
     inZaal: true,
-    teKoop: true,
-    teHuur: true,
-    verkocht: false,
     img: local('modern-mona-lisa', 0.75),
   },
   {
@@ -164,9 +139,6 @@ const werkBronnen: WerkBron[] = [
     techniek: pvc,
     afmetingen: '105 × 80 cm',
     inZaal: true,
-    teKoop: false,
-    teHuur: false,
-    verkocht: false,
     img: local('picasso-meets-hitler', 0.713),
   },
   {
@@ -175,64 +147,7 @@ const werkBronnen: WerkBron[] = [
     techniek: doek,
     afmetingen: '100 × 80 cm',
     inZaal: true,
-    teKoop: true,
-    teHuur: false,
-    verkocht: false,
     img: local('mouth', 0.788),
-  },
-  /**
-   * The S21 series stays out of the room and has a section of its own. These
-   * four are painted after the Khmer Rouge's own photographs of prisoners who
-   * were then murdered; they belong in their own block rather than turning past
-   * a headline, and they carry no sale ticks: they are not stock.
-   */
-  {
-    id: 's21-i',
-    titel: 'S21 Portrait I',
-    techniek: doek,
-    afmetingen: '180 × 135 cm',
-    reeks: 's21',
-    inZaal: false,
-    teKoop: false,
-    teHuur: false,
-    verkocht: false,
-    img: local('s21-i', 0.743),
-  },
-  {
-    id: 's21-ii',
-    titel: 'S21 Portrait II',
-    techniek: doek,
-    afmetingen: '180 × 135 cm',
-    reeks: 's21',
-    inZaal: false,
-    teKoop: false,
-    teHuur: false,
-    verkocht: false,
-    img: local('s21-ii', 0.765),
-  },
-  {
-    id: 's21-iii',
-    titel: 'S21 Portrait III',
-    techniek: doek,
-    afmetingen: '180 × 135 cm',
-    reeks: 's21',
-    inZaal: false,
-    teKoop: false,
-    teHuur: false,
-    verkocht: false,
-    img: local('s21-iii', 0.756),
-  },
-  {
-    id: 's21-cambodian-man',
-    titel: 'S21 Portrait Cambodian Man',
-    techniek: doek,
-    afmetingen: '180 × 135 cm',
-    reeks: 's21',
-    inZaal: false,
-    teKoop: false,
-    teHuur: false,
-    verkocht: false,
-    img: local('s21-cambodian-man', 0.742),
   },
 ];
 
@@ -339,25 +254,10 @@ const teksten: Record<Lang, Content['teksten']> = {
       lead: 'Het museum voor het werk van Peter Klashorst: schilder, fotograaf en muzikant. Ruim veertig jaar werk, gemaakt in Amsterdam, West-Afrika en Zuidoost-Azië. Een deel van het museum is gereserveerd voor werk van andere kunstenaars.',
       knop: 'Bekijk het werk',
     },
-    over: {
-      eyebrow: 'Over ons',
-      titel: 'Een digitaal museum, en straks een gebouw',
-      alineas: [
-        'Dit is nu een digitaal museum. Het werk hangt hier online, in de zaal bovenaan en in de collectie daaronder.',
-        'We zijn druk bezig een fysiek museum te realiseren, voor het werk van Peter Klashorst en voor werk van andere kunstenaars.',
-      ],
-    },
     werk: {
       eyebrow: 'Collectie',
       titel: 'Het werk',
-      lead: 'Techniek en afmetingen komen uit de opgave van de nalatenschap. Bij werk dat te koop of te huur is, vraagt u een offerte aan.',
-    },
-    s21: {
-      eyebrow: 'Reeks',
-      titel: 'S21',
-      lead: 'In Phnom Penh schilderde Klashorst portretten naar de politiefoto’s die de Rode Khmer maakte van gevangenen in Tuol Sleng, de gevangenis S21. In 2011 waren die portretten daar te zien, in het Tuol Sleng Genocide Museum zelf, met steun van UNESCO.',
-      body: 'Vier doeken uit die reeks horen bij deze collectie. Klashorst zette de gezichten neer in grijstinten en bracht daarna kleur aan.',
-      knop: 'Bekijk de reeks',
+      lead: 'Techniek en afmetingen komen uit de opgave van de nalatenschap.',
     },
     peter: {
       eyebrow: 'De schilder',
@@ -381,9 +281,9 @@ const teksten: Record<Lang, Content['teksten']> = {
       portretCredit: 'Foto: Michael Klinkhamer',
     },
     galerie: {
-      eyebrow: 'Galerie',
+      eyebrow: 'Andere kunst',
       titel: 'Werk van andere kunstenaars',
-      lead: 'Een deel van het museum is gereserveerd voor werk van andere kunstenaars. Dat werk is te huur en te koop. Er is geen webshop: u vraagt een offerte aan en het museum neemt contact met u op.',
+      lead: 'Een deel van het museum is gereserveerd voor kunstenaars naast Peter Klashorst.',
       leeg: 'De eerste werken worden nu geselecteerd. Wilt u hier werk laten hangen? Laat het het museum weten.',
     },
     blog: {
@@ -421,25 +321,10 @@ const teksten: Record<Lang, Content['teksten']> = {
       lead: 'The museum for the work of Peter Klashorst: painter, photographer and musician. More than forty years of work, made in Amsterdam, West Africa and Southeast Asia. Part of the museum is reserved for work by other artists.',
       knop: 'View the work',
     },
-    over: {
-      eyebrow: 'About us',
-      titel: 'A digital museum, and soon a building',
-      alineas: [
-        'For now this is a digital museum. The work hangs here online, in the room at the top of this page and in the collection below it.',
-        'We are working hard to realise a physical museum, for the work of Peter Klashorst and for work by other artists.',
-      ],
-    },
     werk: {
       eyebrow: 'Collection',
       titel: 'The work',
-      lead: 'Medium and dimensions are as stated by the estate. Where a work is for sale or for hire, you can request a quote.',
-    },
-    s21: {
-      eyebrow: 'Series',
-      titel: 'S21',
-      lead: 'In Phnom Penh, Klashorst painted portraits after the police photographs the Khmer Rouge made of prisoners in Tuol Sleng, the prison known as S21. In 2011 those portraits were shown there, in the Tuol Sleng Genocide Museum itself, with support from UNESCO.',
-      body: 'Four canvases from that series belong to this collection. Klashorst set the faces down in greys and brought colour to them afterwards.',
-      knop: 'View the series',
+      lead: 'Medium and dimensions are as stated by the estate.',
     },
     peter: {
       eyebrow: 'The painter',
@@ -463,9 +348,9 @@ const teksten: Record<Lang, Content['teksten']> = {
       portretCredit: 'Photograph: Michael Klinkhamer',
     },
     galerie: {
-      eyebrow: 'Gallery',
+      eyebrow: 'Other art',
       titel: 'Work by other artists',
-      lead: 'Part of the museum is reserved for work by other artists. That work is for hire and for sale. There is no web shop: you request a quote and the museum gets in touch with you.',
+      lead: 'Part of the museum is reserved for artists alongside Peter Klashorst.',
       leeg: 'The first works are being selected now. Would you like to show work here? Let the museum know.',
     },
     blog: {

@@ -15,11 +15,10 @@ import { sectionHref, to } from '../router';
  * bar nobody uses.
  */
 const sections = (path: string) => [
-  { href: sectionHref(path, 'museum'), label: ui.nav.museum },
-  { href: sectionHref(path, 'over'), label: ui.nav.over },
+  // No entry for the room at the top of the page: that is the home page itself,
+  // and the wordmark to its left already goes there.
   { href: sectionHref(path, 'werk'), label: ui.nav.werk },
   { href: sectionHref(path, 'peter'), label: ui.nav.peter },
-  { href: sectionHref(path, 's21'), label: ui.nav.s21 },
   { href: sectionHref(path, 'galerie'), label: ui.nav.galerie },
   { href: to('/blog'), label: ui.nav.blog, blog: true },
   { href: sectionHref(path, 'bezoek'), label: ui.nav.bezoek },
@@ -114,13 +113,16 @@ export default function Nav({
             Klashorst<span className="text-red"> Museum</span>
           </a>
 
-          <nav className="hidden items-center gap-5 xl:flex 2xl:gap-6">
+          {/* The names are the museum's own and longer than one word each, so
+              the bar carries them a size down until there is room for them at
+              full strength. */}
+          <nav className="hidden items-center gap-4 xl:flex 2xl:gap-6">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 aria-current={link.blog && blogActief ? 'page' : undefined}
-                className="navlink"
+                className="navlink whitespace-nowrap !text-[0.8rem] 2xl:!text-[0.92rem]"
               >
                 {link.label}
               </a>

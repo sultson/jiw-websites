@@ -98,9 +98,7 @@ async function main() {
     _id: 'siteTeksten',
     _type: 'siteTeksten',
     hero: { ...nl.hero, en: en.hero },
-    over: { ...nl.over, en: en.over },
     werk: { ...nl.werk, en: en.werk },
-    s21: { ...nl.s21, en: en.s21 },
     peter: {
       eyebrow: nl.peter.eyebrow,
       titel: nl.peter.titel,
@@ -147,11 +145,7 @@ async function main() {
       techniek: work.techniek.nl,
       afmetingen: work.afmetingen,
       ...(work.toelichting ? { toelichting: work.toelichting.nl } : {}),
-      ...(work.reeks ? { reeks: work.reeks } : {}),
       inZaal: work.inZaal,
-      teKoop: work.teKoop,
-      teHuur: work.teHuur,
-      verkocht: work.verkocht,
       volgorde: (index + 1) * 10,
       afbeelding: imageField(werkAssets.get(work.id)!),
       en: {

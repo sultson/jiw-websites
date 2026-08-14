@@ -3,9 +3,8 @@ import { defineField, defineType } from 'sanity';
 /**
  * One work from Peter Klashorst's own collection.
  *
- * Two tick boxes decide what a visitor sees: neither one and the work is simply
- * on show, one or both and it carries a label and a way to ask a price. There
- * is no webshop, so nothing here is a price at checkout.
+ * A work is on show and nothing else: the museum does not sell or hire out the
+ * collection, so there is nothing here about price or availability.
  */
 export const werk = defineType({
   name: 'werk',
@@ -57,47 +56,12 @@ export const werk = defineType({
       description: 'Optioneel. Verschijnt bij het werk in de zaal en op de vergrote weergave.',
     }),
     defineField({
-      name: 'teKoop',
-      title: 'Te koop',
-      type: 'boolean',
-      group: 'nl',
-      initialValue: false,
-      description: 'Aan betekent: het werk krijgt het label Te koop en bezoekers kunnen een offerte aanvragen.',
-    }),
-    defineField({
-      name: 'teHuur',
-      title: 'Te huur',
-      type: 'boolean',
-      group: 'nl',
-      initialValue: false,
-      description: 'Aan betekent: het werk is ook te huur. Staan beide aan, dan staat er Te koop / te huur.',
-    }),
-    defineField({
-      name: 'verkocht',
-      title: 'Verkocht',
-      type: 'boolean',
-      group: 'nl',
-      initialValue: false,
-      description: 'Het werk blijft in de collectie staan, met het label Verkocht en zonder aanvraagknop.',
-    }),
-    defineField({
       name: 'inZaal',
       title: 'Hangt in de 3D-zaal',
       type: 'boolean',
       group: 'nl',
       initialValue: true,
       description: 'Uit betekent: wel in de collectie op de pagina, niet in de draaiende zaal bovenaan.',
-    }),
-    defineField({
-      name: 'reeks',
-      title: 'Hoort bij een reeks',
-      type: 'string',
-      group: 'nl',
-      options: {
-        list: [{ title: 'S21', value: 's21' }],
-        layout: 'radio',
-      },
-      description: 'Werk uit de S21-reeks krijgt zijn eigen blok en hangt niet in de zaal.',
     }),
     defineField({
       name: 'volgorde',
@@ -131,25 +95,11 @@ export const werk = defineType({
       techniek: 'techniek',
       afmetingen: 'afmetingen',
       media: 'afbeelding',
-      teKoop: 'teKoop',
-      teHuur: 'teHuur',
-      verkocht: 'verkocht',
     },
-    prepare: ({ title, techniek, afmetingen, media, teKoop, teHuur, verkocht }) => {
-      const status = verkocht
-        ? 'Verkocht'
-        : teKoop && teHuur
-          ? 'Te koop / te huur'
-          : teKoop
-            ? 'Te koop'
-            : teHuur
-              ? 'Te huur'
-              : '';
-      return {
-        title,
-        subtitle: [techniek, afmetingen, status].filter(Boolean).join(', '),
-        media,
-      };
-    },
+    prepare: ({ title, techniek, afmetingen, media }) => ({
+      title,
+      subtitle: [techniek, afmetingen].filter(Boolean).join(', '),
+      media,
+    }),
   },
 });

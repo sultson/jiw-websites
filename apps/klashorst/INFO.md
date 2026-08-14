@@ -11,9 +11,11 @@ invented statistics. They are collecting quotes from four parties.
 
 Their own words set the brief: uploading texts and photos themselves is
 essential, the site is to be Dutch, the emphasis belongs on this being a
-*museum* with a part reserved for other artists to rent and buy from, no
-webshop, and above all: *"ik wil niet voor iedere wijziging of aanpassing of
-nieuw blog post afhankelijk zijn van jullie buro."*
+*museum* with a part reserved for other artists, and above all: *"ik wil niet
+voor iedere wijziging of aanpassing of nieuw blog post afhankelijk zijn van
+jullie buro."* The first brief had that part of the museum renting and selling
+too; on seeing the build the client asked for buying and hiring to come off the
+site entirely.
 
 So this build answers with two things a WordPress theme demo does not have: a
 real 3D room that gives the work presence, and a CMS the client owns and can
@@ -36,11 +38,10 @@ Everything factual is sourced. Nothing about the museum is invented.
   agreed to would be inventing the museum's business. The section explains
   itself until the first work is added in the Studio.
 - There are no visitor counts, ratings or testimonials anywhere.
-- **Which works are for sale or for hire is the one invented thing**, and it is
-  invented as a demonstration rather than as a fact: the ticks in the Studio are
-  filled in on a handful of works so the client can see all three states on the
-  page. Only the estate knows the real answer. The four S21 canvases carry no
-  ticks and should not get any.
+- **Nothing is for sale or for hire.** At the client's request the whole buy and
+  hire apparatus is gone: no labels, no prices, no quote form, and no tick boxes
+  in the Studio. The museum shows work; the one thing a visitor can send is a
+  question.
 
 The build is `noindex, nofollow` so it never competes with klashorstmuseum.nl.
 One variable turns that around: `SITE_INDEXABLE` in `wrangler.jsonc`. Set to
@@ -146,14 +147,13 @@ the account that created it.
   copy that used to live on sanity.studio has been undeployed, so there is
   exactly one address.
 - **Four things in it:** *Teksten op de site* (one document, all editable copy),
-  *Collectie*, *Galerie: andere kunstenaars*, *Blog*. Section order, buttons
-  and interface labels stay in `src/content/ui.ts`, so no edit can restructure
-  or break the page.
-- **A work is sold or hired with two tick boxes**, `teKoop` and `teHuur`, plus
-  `verkocht`. Neither ticked is the third state and needs no label: a museum is
-  mostly not a shop, so silence has to be the default rather than "niet te
-  koop". The same two boxes on the collection and on the gallery, so a label
-  means the same thing wherever it appears.
+  *Klashorst Collectie*, *Andere Kunst*, *Dirty Diaries*. The names are the
+  client's own, and the Studio uses them so the CMS and the menu say the same
+  thing. Section order, buttons and interface labels stay in
+  `src/content/ui.ts`, so no edit can restructure or break the page.
+- **A work has no availability at all.** No `teKoop`, `teHuur`, `verkocht`,
+  `prijs` or `huurprijs`, on either document type. One tick box is left on a
+  collection work, `inZaal`, which decides whether it hangs in the 3D room.
 - **Editing is free-tier-safe.** No personal data goes in Sanity: newsletter
   sign-ups and interest enquiries are e-mail, not documents. A public dataset
   means every *published* document is world-readable, which is fine for a museum
@@ -422,10 +422,9 @@ Two, both through `@jiw/cloudflare-forms`, both to the agency demo inbox, and
 each of them registered twice.
 
 - `/api/forms/newsletter` — opt-in, address required, name optional.
-- `/api/forms/offerte` — a request for a price, on a work from the collection or
-  from the gallery. Same dialog for both, because from the visitor's side it is
-  the same question. The work's title rides along in the subject line. This is
-  what "geen webshop" looks like in practice.
+- `/api/forms/vraag` — a question to the museum, from the Andere Kunst section.
+  It replaced the quote form when buying and hiring were dropped, and it is how
+  an artist offers work for that wall.
 
 A hidden `taal` field decides which of the two registered workers answers, so a
 Dutch visitor gets a Dutch confirmation and an English visitor an English one.
@@ -437,15 +436,20 @@ There is no Turnstile widget on this concept build, so the Worker carries the
 
 ## Curation decisions
 
-- **The S21 series is kept out of the 3D room.** Those four canvases are painted
-  after the Khmer Rouge's own photographs of prisoners who were then murdered.
-  They have their own section; they do not turn past a headline as scenery. The
-  `reeks` field in the CMS keeps that rule enforced for anything added later,
-  and it overrides the `inZaal` tick rather than trusting it. They carry no sale
-  ticks either: they are not stock.
+- **The S21 series is off the site**, at the client's request: it is to come
+  back as a blog post. So the section, the `reeks` field and the four canvases
+  in `defaults.ts` are gone, and the room and the collection never held them
+  anyway. The photographs stay under `public/art/s21-*.webp` because the post
+  will want them, and the seeded post *De S21-portretten in Phnom Penh* is
+  already the place they belong.
 - Klashorst's figurative nudes stay in the room and the collection grid, because
   they are the work. They are kept out of news thumbnails, where nobody chose to
   look at them.
+- **The sections carry the client's own names.** *Klashorst Collectie*, *De
+  Kunstenaar*, *Andere Kunst* / *Other Art*, *Dirty Diaries*, *Bezoek Museum*.
+  Dirty Diaries is a name rather than a word, so it is the same in both
+  languages and is what `BLOG_TITLE` says. *Over ons* was dropped whole: the
+  section, its CMS block, the hero's second button and the footer link.
 
 ## Open before this becomes a real build
 
@@ -476,9 +480,11 @@ There is no Turnstile widget on this concept build, so the Worker carries the
 - **Ask the estate to confirm:** who co-founded After Nature in 1987 (sources
   disagree, so the site now names nobody), the publication year of Kunstkannibaal
   (2011 or 2012), and whether "Lust for Life" is their chosen tagline.
-- Several works in the collection are for sale through the estate shop. If the
-  museum's collection differs from the shop stock, the list needs revisiting,
-  and so do the te koop / te huur ticks, which are demonstration data.
+- **The dataset still holds the old shape.** The schema no longer has `over`,
+  `s21`, `reeks` or any of the sale fields, and the seed script no longer writes
+  them, but documents seeded earlier keep those values until the seed is run
+  again. Nothing reads them, so nothing shows; re-run `pnpm seed` to be rid of
+  them.
 - **The English texts are ours, not the museum's.** Everything in
   `src/content/defaults.ts` was translated here and seeded. The client should
   read the English site once before it is shown to anyone who only reads English.

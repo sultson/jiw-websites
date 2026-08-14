@@ -1,12 +1,9 @@
 import { defineField, defineType } from 'sanity';
 
 /**
- * The part of the museum reserved for other artists. Prices are free text on
- * purpose: "€ 2.500", "€ 95 per maand" and "Prijs op aanvraag" are all normal
- * things for a gallery to say, and none of this is a checkout.
- *
- * The same two tick boxes as the collection, so a label means the same thing
- * everywhere on the site.
+ * The part of the museum reserved for other artists. The same fields as the
+ * collection: a work hangs here and is described, nothing more. Nothing on the
+ * site is sold or hired out.
  */
 export const galeriewerk = defineType({
   name: 'galeriewerk',
@@ -39,43 +36,6 @@ export const galeriewerk = defineType({
       options: { hotspot: false },
       validation: (rule) => rule.required().error('Zonder foto kan het werk niet getoond worden.'),
     }),
-    defineField({
-      name: 'teKoop',
-      title: 'Te koop',
-      type: 'boolean',
-      group: 'nl',
-      initialValue: false,
-    }),
-    defineField({
-      name: 'teHuur',
-      title: 'Te huur',
-      type: 'boolean',
-      group: 'nl',
-      initialValue: true,
-      description: 'Staan beide aan, dan staat er Te koop / te huur bij het werk.',
-    }),
-    defineField({
-      name: 'verkocht',
-      title: 'Verkocht',
-      type: 'boolean',
-      group: 'nl',
-      initialValue: false,
-      description: 'Het werk blijft staan, met het label Verkocht en zonder aanvraagknop.',
-    }),
-    defineField({
-      name: 'prijs',
-      title: 'Vraagprijs',
-      type: 'string',
-      group: 'nl',
-      description: 'Bijvoorbeeld: € 2.500 of Prijs op aanvraag. Leeg laten mag.',
-    }),
-    defineField({
-      name: 'huurprijs',
-      title: 'Huurprijs',
-      type: 'string',
-      group: 'nl',
-      description: 'Bijvoorbeeld: € 95 per maand. Leeg laten mag.',
-    }),
     defineField({ name: 'techniek', title: 'Techniek', type: 'string', group: 'nl' }),
     defineField({ name: 'afmetingen', title: 'Afmetingen', type: 'string', group: 'nl' }),
     defineField({ name: 'jaar', title: 'Jaar', type: 'string', group: 'nl' }),
@@ -104,8 +64,6 @@ export const galeriewerk = defineType({
       fields: [
         defineField({ name: 'titel', title: 'Title', type: 'string' }),
         defineField({ name: 'techniek', title: 'Medium', type: 'string' }),
-        defineField({ name: 'prijs', title: 'Asking price', type: 'string' }),
-        defineField({ name: 'huurprijs', title: 'Hire price', type: 'string' }),
         defineField({ name: 'toelichting', title: 'Note', type: 'text', rows: 3 }),
       ],
     }),
@@ -115,25 +73,11 @@ export const galeriewerk = defineType({
       title: 'titel',
       kunstenaar: 'kunstenaar',
       media: 'afbeelding',
-      teKoop: 'teKoop',
-      teHuur: 'teHuur',
-      verkocht: 'verkocht',
     },
-    prepare: ({ title, kunstenaar, media, teKoop, teHuur, verkocht }) => {
-      const status = verkocht
-        ? 'Verkocht'
-        : teKoop && teHuur
-          ? 'Te koop / te huur'
-          : teKoop
-            ? 'Te koop'
-            : teHuur
-              ? 'Te huur'
-              : '';
-      return {
-        title,
-        subtitle: [kunstenaar, status].filter(Boolean).join(' · '),
-        media,
-      };
-    },
+    prepare: ({ title, kunstenaar, media }) => ({
+      title,
+      subtitle: kunstenaar,
+      media,
+    }),
   },
 });

@@ -5,7 +5,7 @@ import { blocksFromText, samenvatten } from './rich';
 import { uiPerTaal } from './ui';
 
 export { plainText } from './rich';
-export { beschikbaarLabel, teVragen, type Ui } from './ui';
+export { type Ui } from './ui';
 import type { BlogPost, Content, GalerieWerk, Img, RichBlock, Teksten, Werk } from './types';
 
 export type { BlogPost, Content, GalerieWerk, Img, RichBlock, Teksten, Werk } from './types';
@@ -89,8 +89,6 @@ function formatDate(value: unknown): string | undefined {
   });
 }
 
-const isBool = (value: unknown): value is boolean => typeof value === 'boolean';
-
 function buildContent(payload: RawPayload | null): Content {
   const bundled = defaults[lang];
   const projectId = payload?.projectId;
@@ -114,13 +112,7 @@ function buildContent(payload: RawPayload | null): Content {
         techniek: text(vert.techniek, text(doc.techniek, '')),
         afmetingen: text(doc.afmetingen, ''),
         toelichting: maybe(vert.toelichting) ?? maybe(doc.toelichting),
-        reeks: doc.reeks === 's21' ? 's21' : undefined,
-        // The series has a block of its own; nothing from it turns past a
-        // headline, whatever the tick box in the Studio says.
-        inZaal: doc.inZaal !== false && doc.reeks !== 's21',
-        teKoop: doc.teKoop === true,
-        teHuur: doc.teHuur === true,
-        verkocht: doc.verkocht === true,
+        inZaal: doc.inZaal !== false,
         img,
       };
     })
@@ -194,13 +186,6 @@ function buildContent(payload: RawPayload | null): Content {
         techniek: maybe(vert.techniek) ?? maybe(doc.techniek),
         afmetingen: maybe(doc.afmetingen),
         jaar: maybe(doc.jaar),
-        // A gallery work is here to be hired or bought, so nothing ticked still
-        // means for hire: that is what this part of the museum is.
-        teKoop: doc.teKoop === true,
-        teHuur: isBool(doc.teHuur) ? doc.teHuur : doc.teKoop !== true,
-        verkocht: doc.verkocht === true,
-        prijs: maybe(vert.prijs) ?? maybe(doc.prijs),
-        huurprijs: maybe(vert.huurprijs) ?? maybe(doc.huurprijs),
         toelichting: maybe(vert.toelichting) ?? maybe(doc.toelichting),
         img,
       };
@@ -229,9 +214,7 @@ function buildContent(payload: RawPayload | null): Content {
   };
 
   const hero = blok('hero');
-  const over = blok('over');
   const werkT = blok('werk');
-  const s21 = blok('s21');
   const peter = blok('peter');
   const galerieT = blok('galerie');
   const blogT = blok('nieuws');
@@ -246,22 +229,10 @@ function buildContent(payload: RawPayload | null): Content {
       lead: hero.regel('lead', fallback.hero.lead),
       knop: hero.regel('knop', fallback.hero.knop),
     },
-    over: {
-      eyebrow: over.regel('eyebrow', fallback.over.eyebrow),
-      titel: over.regel('titel', fallback.over.titel),
-      alineas: over.lijst<string>('alineas', fallback.over.alineas, (row) => String(row ?? '')),
-    },
     werk: {
       eyebrow: werkT.regel('eyebrow', fallback.werk.eyebrow),
       titel: werkT.regel('titel', fallback.werk.titel),
       lead: werkT.regel('lead', fallback.werk.lead),
-    },
-    s21: {
-      eyebrow: s21.regel('eyebrow', fallback.s21.eyebrow),
-      titel: s21.regel('titel', fallback.s21.titel),
-      lead: s21.regel('lead', fallback.s21.lead),
-      body: s21.regel('body', fallback.s21.body),
-      knop: s21.regel('knop', fallback.s21.knop),
     },
     peter: {
       eyebrow: peter.regel('eyebrow', fallback.peter.eyebrow),
@@ -344,7 +315,6 @@ export const content: Content = { ...built, blog: withUniqueSlugs(built.blog) };
 export const isPreview = Boolean(payload?.preview);
 
 export const zaalWerken = content.werk.filter((work) => work.inZaal);
-export const s21Werken = content.werk.filter((work) => work.reeks === 's21');
 
 /** Every post, newest first: the order Sanity already sorted them into. */
 export const blogPosts = content.blog;

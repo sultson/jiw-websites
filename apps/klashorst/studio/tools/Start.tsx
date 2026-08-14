@@ -17,22 +17,22 @@ const kaarten = [
     pad: '/beheer/structure/siteTeksten',
     titel: 'Teksten op de site',
     uitleg:
-      'De kop bovenaan, over ons, het verhaal over Peter en de bezoekgegevens. Elk blok heeft een Engelse versie eronder.',
+      'De kop bovenaan, het verhaal over Peter en de bezoekgegevens. Elk blok heeft een Engelse versie eronder.',
   },
   {
     pad: '/beheer/structure/werk',
-    titel: 'Collectie',
+    titel: 'Klashorst Collectie',
     uitleg:
-      'Het werk van Peter Klashorst. Eén foto per werk, en twee vinkjes: te koop en te huur. Wat aan staat, krijgt een label en een knop om een offerte aan te vragen.',
+      'Het werk van Peter Klashorst. Eén foto per werk, met techniek en afmetingen. Eén vinkje bepaalt of het werk ook in de 3D-zaal bovenaan hangt.',
   },
   {
     pad: '/beheer/structure/galeriewerk',
-    titel: 'Galerie: andere kunstenaars',
-    uitleg: 'Werk van andere kunstenaars, te huur of te koop, met prijs en beschikbaarheid.',
+    titel: 'Andere Kunst',
+    uitleg: 'Werk van andere kunstenaars, met kunstenaar, techniek en een korte toelichting.',
   },
   {
     pad: '/beheer/structure/nieuws',
-    titel: 'Blog',
+    titel: 'Dirty Diaries',
     uitleg:
       'Berichten en aankondigingen. Het nieuwste staat vooraan. Op het tabblad English zet u het bericht in het Engels, en Vindbaarheid kijkt met u mee voor Google.',
   },

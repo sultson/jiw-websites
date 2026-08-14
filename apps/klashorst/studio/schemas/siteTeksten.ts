@@ -67,42 +67,14 @@ export const siteTeksten = defineType({
       false,
     ),
     blok(
-      'over',
-      'Over ons',
-      [
-        regel('eyebrow', 'Klein kopje'),
-        regel('titel', 'Kop'),
-        lijst('alineas', 'Tekst', 'Elke regel in deze lijst wordt een alinea.'),
-      ],
-      [regel('eyebrow', 'Klein kopje'), regel('titel', 'Kop'), lijst('alineas', 'Tekst')],
-    ),
-    blok(
       'werk',
-      'Collectie',
+      'Klashorst Collectie',
       [regel('eyebrow', 'Klein kopje'), regel('titel', 'Kop'), alinea('lead', 'Introductie')],
       [regel('eyebrow', 'Klein kopje'), regel('titel', 'Kop'), alinea('lead', 'Introductie')],
-    ),
-    blok(
-      's21',
-      'S21-reeks',
-      [
-        regel('eyebrow', 'Klein kopje'),
-        regel('titel', 'Kop'),
-        alinea('lead', 'Eerste alinea'),
-        alinea('body', 'Tweede alinea'),
-        regel('knop', 'Tekst op de knop'),
-      ],
-      [
-        regel('eyebrow', 'Klein kopje'),
-        regel('titel', 'Kop'),
-        alinea('lead', 'Eerste alinea'),
-        alinea('body', 'Tweede alinea'),
-        regel('knop', 'Tekst op de knop'),
-      ],
     ),
     blok(
       'peter',
-      'Over Peter Klashorst',
+      'De Kunstenaar',
       [
         regel('eyebrow', 'Klein kopje'),
         regel('titel', 'Kop'),
@@ -150,7 +122,7 @@ export const siteTeksten = defineType({
     ),
     blok(
       'galerie',
-      'Galerie: andere kunstenaars',
+      'Andere Kunst',
       [
         regel('eyebrow', 'Klein kopje'),
         regel('titel', 'Kop'),
@@ -167,7 +139,7 @@ export const siteTeksten = defineType({
     // Field name kept: renaming it would empty the block on the live site.
     blok(
       'nieuws',
-      'Blog',
+      'Dirty Diaries',
       [
         regel('eyebrow', 'Klein kopje'),
         regel('titel', 'Kop', 'Staat boven de berichten, en is de titel van de blogpagina.'),
@@ -177,7 +149,7 @@ export const siteTeksten = defineType({
     ),
     blok(
       'bezoek',
-      'Bezoek',
+      'Bezoek Museum',
       [
         regel('eyebrow', 'Klein kopje'),
         regel('titel', 'Kop'),
