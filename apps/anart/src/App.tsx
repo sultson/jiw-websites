@@ -12,15 +12,24 @@ import Reviews from './components/Reviews';
 import Tattoo from './components/Tattoo';
 import Visit from './components/Visit';
 import Faq from './components/Faq';
+import Terms from './components/Terms';
 import Footer from './components/Footer';
 import StickyBookCta from './components/StickyBookCta';
 import BookingModal from './components/BookingModal';
+import AlgemeneVoorwaarden from './pages/AlgemeneVoorwaarden';
+
+const TERMS_PATHS = ['/algemene-voorwaarden', '/terms', '/regulamin'];
 
 export default function App() {
   const { lang, setLang, t } = useLang();
   const [bookingOpen, setBookingOpen] = useState(false);
   const openBooking = () => setBookingOpen(true);
   const closeBooking = () => setBookingOpen(false);
+
+  if (typeof window !== 'undefined') {
+    const path = window.location.pathname.replace(/\/+$/, '').toLowerCase() || '/';
+    if (TERMS_PATHS.includes(path)) return <AlgemeneVoorwaarden />;
+  }
 
   return (
     <div className="min-h-[100dvh] flex flex-col bg-cream">
@@ -38,6 +47,7 @@ export default function App() {
         <Tattoo t={t} />
         <Visit lang={lang} t={t} />
         <Faq t={t} />
+        <Terms t={t} />
       </main>
 
       <Footer t={t} />

@@ -19,9 +19,16 @@ const links = [
   { href: '#bezoek',        key: 'nav.visit' },
 ];
 
+// Op subpagina's (zoals /algemene-voorwaarden) moeten de ankers terug naar de homepage wijzen.
+function homePrefix() {
+  if (typeof window === 'undefined') return '';
+  return window.location.pathname.replace(/\/+$/, '') === '' ? '' : '/';
+}
+
 export default function Nav({ lang, setLang, t, onBook }: Props) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const prefix = homePrefix();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -40,7 +47,7 @@ export default function Nav({ lang, setLang, t, onBook }: Props) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
-          <a href="#top" aria-label="AnArt Studio" className="flex items-center min-w-0">
+          <a href={prefix ? '/' : '#top'} aria-label="AnArt Studio" className="flex items-center min-w-0">
             <span className="font-serif text-xl md:text-2xl tracking-wide">
               An<span className="text-gold">Art</span>
               <span className="text-espresso/40 ml-1 text-base font-sans font-light">Studio</span>
@@ -49,7 +56,11 @@ export default function Nav({ lang, setLang, t, onBook }: Props) {
 
           <div className="hidden lg:flex items-center gap-7">
             {links.map(l => (
-              <a key={l.href} href={l.href} className="text-sm text-espresso/75 hover:text-espresso">
+              <a
+                key={l.href}
+                href={prefix + l.href}
+                className="text-sm text-espresso/75 hover:text-espresso"
+              >
                 {t(l.key)}
               </a>
             ))}
@@ -77,7 +88,7 @@ export default function Nav({ lang, setLang, t, onBook }: Props) {
             {links.map(l => (
               <a
                 key={l.href}
-                href={l.href}
+                href={prefix + l.href}
                 onClick={() => setOpen(false)}
                 className="block py-3 text-lg font-serif text-espresso border-b border-espresso/5 last:border-0"
               >

@@ -14,6 +14,7 @@ type Props = { t: (k: string) => string };
  */
 const images: { src: string; alt: string; cls: string }[] = [
   { src: '/nagels_amandelvorm_nude_gel_extensies.webp',    alt: 'Nude gel extensions amandelvorm',        cls: 'aspect-[3/4]' },
+  { src: '/nagels_blauw_ombre_3d_druppels.webp',          alt: 'Blauwe ombre nagels met 3D druppels',    cls: 'aspect-square' },
   { src: '/nagels_holografisch_glitter_steentjes.webp',   alt: 'Holografisch glitter met steentjes',     cls: 'aspect-square' },
   { src: '/wimperextensie_closeup_volume.webp',           alt: 'Volume wimperextensions',                cls: 'aspect-square' },
 { src: '/wenkbrauwen_henna_behandeling.webp',          alt: 'Henna wenkbrauwen behandeling',          cls: 'aspect-square' },

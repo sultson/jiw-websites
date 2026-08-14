@@ -62,9 +62,9 @@ export default function Kobido({ t, onBook }: Props) {
             </button>
           </div>
 
-          {/* Video */}
+          {/* Video + foto's uit de studio */}
           <div className="relative">
-            <div className="rounded-2xl overflow-hidden aspect-square bg-espresso/40">
+            <div className="relative rounded-2xl overflow-hidden aspect-square bg-espresso/40">
               <video
                 ref={videoRef}
                 className="w-full h-full object-cover"
@@ -79,8 +79,26 @@ export default function Kobido({ t, onBook }: Props) {
                 <source src="/kobido_massage.mp4" type="video/mp4" />
               </video>
             </div>
+
+            <div className="relative mt-3 grid grid-cols-2 gap-3">
+              <img
+                src="/kobido_gezichtsmassage_lifting.webp"
+                alt="Kobido gezichtsmassage tijdens de behandeling"
+                loading="lazy"
+                decoding="async"
+                className="w-full aspect-[4/3] object-cover rounded-2xl"
+              />
+              <img
+                src="/kobido_masker_aanbrengen.webp"
+                alt="Masker aanbrengen na de Kobido-massage"
+                loading="lazy"
+                decoding="async"
+                className="w-full aspect-[4/3] object-cover rounded-2xl"
+              />
+            </div>
+
             {/* Decoratieve achtergrondcirkel */}
-            <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-gold/10 -z-0 pointer-events-none" />
+            <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-gold/10 -z-10 pointer-events-none" />
           </div>
         </div>
       </div>

@@ -2,7 +2,15 @@ import { MapPin, Phone, Instagram } from 'lucide-react';
 
 type Props = { t: (k: string) => string };
 
+// Op subpagina's (zoals /algemene-voorwaarden) moeten de ankers terug naar de homepage wijzen.
+function homePrefix() {
+  if (typeof window === 'undefined') return '';
+  return window.location.pathname.replace(/\/+$/, '') === '' ? '' : '/';
+}
+
 export default function Footer({ t }: Props) {
+  const prefix = homePrefix();
+
   return (
     <footer className="bg-espresso text-cream/85">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16 md:py-20">
@@ -45,18 +53,27 @@ export default function Footer({ t }: Props) {
             >
               <Instagram size={14} className="text-gold-soft" /> @martawel_
             </a>
-<div className="pt-2 space-y-1 text-espresso/50 text-xs">
-              <a href="#behandelingen" className="block hover:text-cream/70">{t('nav.services')}</a>
-              <a href="#kobido"        className="block hover:text-cream/70">{t('nav.kobido')}</a>
-              <a href="#fotos"         className="block hover:text-cream/70">{t('nav.gallery')}</a>
-              <a href="#recensies"     className="block hover:text-cream/70">{t('nav.reviews')}</a>
+<div className="pt-2 space-y-1 text-cream/50 text-xs">
+              <a href={`${prefix}#behandelingen`} className="block hover:text-cream">{t('nav.services')}</a>
+              <a href={`${prefix}#kobido`}        className="block hover:text-cream">{t('nav.kobido')}</a>
+              <a href={`${prefix}#fotos`}         className="block hover:text-cream">{t('nav.gallery')}</a>
+              <a href={`${prefix}#recensies`}     className="block hover:text-cream">{t('nav.reviews')}</a>
+              <a href={`${prefix}#voorwaarden`}   className="block hover:text-cream">{t('nav.terms')}</a>
             </div>
           </div>
         </div>
 
         <div className="mt-14 pt-6 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-cream/40">
           <p>{t('footer.rights')}</p>
-          <p>Kaatsheuvel · Noord-Brabant</p>
+          <div className="flex items-center gap-4">
+            <a
+              href="/algemene-voorwaarden"
+              className="hover:text-cream underline-offset-4 hover:underline"
+            >
+              {t('footer.terms')}
+            </a>
+            <span>Kaatsheuvel · Noord-Brabant</span>
+          </div>
         </div>
 
         <div className="mt-6 pt-6 border-t border-cream/10 flex justify-center items-center gap-2 text-xs text-cream/40">
