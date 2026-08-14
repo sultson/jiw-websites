@@ -1,0 +1,73 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "toonoverleven",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    // Elke pagina waar iemand op kan landen, plus de API: de Worker moet de
+    // navigatie zien om de inhoud uit het beheer in de HTML te zetten en om de
+    // eigen kop en foto van een bericht in de head te schrijven voordat de
+    // pagina verstuurd wordt. /beheer/* ook, anders vallen de routes van de
+    // Studio in de SPA-afhandeling van de site.
+    "run_worker_first": [
+      "/",
+      "/wie-we-zijn",
+      "/agenda",
+      "/nieuws",
+      "/nieuws/*",
+      "/vrijwilliger",
+      "/steun",
+      "/verantwoording",
+      "/contact",
+      "/robots.txt",
+      "/sitemap.xml",
+      "/api/*",
+      "/beheer",
+      "/beheer/*"
+    ]
+  },
+  "routes": [
+    {
+      "pattern": "toonoverleven.jouwidealewebsite.nl",
+      "custom_domain": true
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["contact@notify.jouwidealewebsite.nl"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "toonoverleven",
+    // "true" zodra dit toonoverleven.nl vervangt. Tot die tijd is elke pagina
+    // noindex en verbiedt robots.txt alles, zodat het concept nooit concurreert
+    // met de site waarvoor het een voorstel is.
+    "SITE_INDEXABLE": "false",
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_SENDER": "contact@notify.jouwidealewebsite.nl",
+    "TURNSTILE_SECRET_KEY": "dev",
+    // Leeg zou betekenen dat de site zijn eigen tekst rendert, en dat is een
+    // werkende site in plaats van een kapotte. Geen geheim: openbaar en
+    // alleen-lezen.
+    "SANITY_PROJECT_ID": "z4gex0g7",
+    "SANITY_DATASET": "production",
+    // Gedeeld met het tabblad Voorbeeld in het beheer, dus die sleutel staat
+    // ook in die bundel. Hij opent niets anders dan ongepubliceerde teksten van
+    // deze site; het token dat ze leest is een geheim van de Worker.
+    "PREVIEW_KEY": "iOn8UC59pa0hFXXd-pb8VWkN"
+  }
+}

@@ -25,6 +25,9 @@ apps/manly-clinic/data
 apps/xenon/data
 apps/*/scraped-media
 apps/*/raw-media
+# toonoverleven: 21MB of WordPress/FB/IG source material, input for scripts/ only.
+# Everything the site serves is generated from it into public/img + src/*.json.
+apps/toonoverleven/raw
 /*.png
 # prospecting: keep methodology docs (STRATEGY.md/README.md), exclude data + contact CSVs (PII)
 prospecting/data
