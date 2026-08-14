@@ -1,0 +1,299 @@
+/**
+ * Quicksand stond op de oude site en hoort bij het logo, maar rond en dik
+ * gezet leest het als een site voor kinderen, en dat was precies de klacht.
+ * Fraunces is even warm en een stuk volwassener; Mulish eronder is rustig en
+ * op een telefoon goed leesbaar, ook voor wie ouder is.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Mulish:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Mulish", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+
+  /* Alle kleuren zijn uit het logo geplukt: het diepe groen van het boompje,
+     het zeegroen van de letters, het lichte salie van OVER, het zand van de
+     duin en het mintblauw van de kruin. Niets verzonnen, niets erbij. */
+  --color-groen: #2d5c48;       /* boompje, gebruikt voor tekst */
+  --color-groen-diep: #234739;
+  --color-teal: #5b9586;        /* de letters TOON, gebruikt voor vlakken */
+  --color-teal-tekst: #3d7565;  /* zelfde kleur, donker genoeg om op room te lezen */
+  --color-salie: #c7d9af;       /* OVER */
+  --color-salie-diep: #93b06f;  /* zelfde familie, leesbaar als accent */
+  --color-zand: #f0e3bc;        /* de duin */
+  --color-mint: #c2e0d8;        /* de kruin */
+  --color-room: #fbf8f1;
+  --color-room-diep: #f5efe1;
+  --color-lijn: #e7dfcb;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-room text-groen antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+    font-variation-settings: "opsz" 40;
+    letter-spacing: -0.005em;
+  }
+  h1 {
+    font-variation-settings: "opsz" 96;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+  /* Losse woorden onderaan een kop lezen slordig in een tekst die vooral op
+     een telefoon gelezen wordt. */
+  h1, h2 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  De deur                                                            */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Op de voorpagina staat een deur die je open kunt doen. Erachter zit geen
+ * truc: de foto's staan er al, de deur staat ervoor. Draait hij open, dan zie
+ * je waar je binnenkomt.
+ *
+ * Alles hier is CSS.
+ */
+.deur-scene {
+  perspective: 1400px;
+  perspective-origin: 55% 45%;
+}
+
+.deur-blad {
+  transform-origin: left center;
+  transform: rotateY(0deg);
+  transition: transform 1.15s cubic-bezier(0.22, 0.85, 0.24, 1);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.deur-open .deur-blad {
+  transform: rotateY(-106deg);
+}
+
+/* Het licht dat langs de kier naar buiten valt zolang de deur dicht is. */
+.deur-kier {
+  transition: opacity 0.9s ease;
+}
+
+.deur-open .deur-kier {
+  opacity: 0;
+}
+
+/* De wereld erachter staat er al, maar in het donker; hij komt op met de deur. */
+.deur-wereld {
+  transition: filter 1.3s ease, transform 1.6s ease;
+  filter: brightness(0.52) saturate(0.72);
+  transform: scale(1.06);
+}
+
+.deur-open .deur-wereld {
+  filter: brightness(1) saturate(1);
+  transform: scale(1);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Het kijkje achter de deur                                          */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Achter de deur staat niet één foto maar een kamer waar iets gebeurt.
+ *
+ * Drie echte momenten uit het huis lossen elkaar heel traag af: de tafel op
+ * een creatieve ochtend, de wandelgroep, en de huiskamer als het even stil is.
+ * Elk beeld staat zeven seconden en schuift ondertussen een fractie in, zoals
+ * je hoofd beweegt als je door een deuropening naar binnen kijkt.
+ *
+ * Welke er te zien is, telt DeurHero bij; hier staat alleen hoe de wissel
+ * eruitziet. Het zijn twee overgangen op opacity en transform, dus de browser
+ * doet dit op de compositor: het hapert niet op een telefoon van tachtig euro
+ * en het kost geen bibliotheek.
+ *
+ * De onderste laag blijft altijd staan, ook als een van de andere nog niet
+ * binnen is; zo is er nooit een zwart gat.
+ */
+.kijkje {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+/* Zichtbaar. De onderste laag heeft dit altijd; daarbovenop komt telkens één
+   andere. */
+.kijkje-aan {
+  opacity: 1;
+}
+
+.kijkje img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  /* Even lang als een beeld blijft staan: het schuift de hele tijd dat je
+     ernaar kijkt, en nooit sneller dan dat. */
+  transition: transform 7s linear;
+}
+
+/* Alleen het beeld dat nu aan de beurt is schuift in. De laag eronder staat
+   stil te wachten tot hij weer bovenaan komt. */
+.kijkje-nu img {
+  transform: scale(1.04);
+}
+
+/* De onderrand waarin het bijschrift staat, zoals een onderschrift bij een
+   doorkijkje. De band blijft staan; alleen de regel erin wisselt mee met de
+   foto. Hij ligt boven het vignet, anders drukt die donkere laag de tekst weg. */
+.kijkje-teksten {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 6rem;
+  background: linear-gradient(to top, rgba(10, 28, 21, 0.78), rgba(10, 28, 21, 0));
+}
+
+.kijkje-tekst {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0 1.25rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(10, 28, 21, 0.9);
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.kijkje-tekst-aan {
+  opacity: 1;
+}
+
+/* Het licht uit de kamer valt op de muur eromheen zodra de deur openstaat. */
+.deur-gloed {
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  background: radial-gradient(
+    60% 50% at 50% 50%,
+    rgba(255, 226, 160, 0.5) 0%,
+    rgba(255, 226, 160, 0) 70%
+  );
+}
+
+.deur-open .deur-gloed {
+  opacity: 1;
+}
+
+/* ------------------------------------------------------------------ */
+/*  De strook met kaarten                                              */
+/* ------------------------------------------------------------------ */
+
+/**
+ * De kaarten schuiven traag langs en de strook blijft ondertussen een gewoon
+ * scrollbaar vak: vegen, slepen, het wiel en de twee knoppen ernaast doen het
+ * allemaal. Het doorschuiven zelf zit in beweging.tsx (useStrook).
+ *
+ * De rij staat er twee keer in zodat hij naadloos rond kan lopen; de tweede
+ * helft is verborgen voor schermlezers.
+ */
+.strook {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  cursor: grab;
+  /* De randen vervagen, anders lijkt het of de kaarten worden afgehakt. */
+  mask-image: linear-gradient(to right, transparent, #000 2rem, #000 calc(100% - 2rem), transparent);
+}
+
+.strook::-webkit-scrollbar {
+  display: none;
+}
+
+.strook.sleept {
+  cursor: grabbing;
+}
+
+@media (min-width: 768px) {
+  .strook {
+    mask-image: linear-gradient(to right, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
+  }
+}
+
+.strook-spoor {
+  display: flex;
+  width: max-content;
+}
+
+/* Een strook die niet vanzelf loopt maar wel te vegen is: de agenda. */
+.rij {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 1.25rem;
+}
+
+.rij::-webkit-scrollbar {
+  display: none;
+}
+
+.rij > * {
+  scroll-snap-align: start;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Het stipje bij de eerstvolgende activiteit                         */
+/* ------------------------------------------------------------------ */
+
+.stip {
+  display: inline-block;
+  height: 0.5rem;
+  width: 0.5rem;
+  flex: none;
+  border-radius: 9999px;
+  background: var(--color-salie-diep);
+  animation: klopt 2.8s ease-in-out infinite;
+}
+
+@keyframes klopt {
+  0%, 100% { opacity: 0.45; transform: scale(0.85); }
+  50%      { opacity: 1;    transform: scale(1);    }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Minder beweging                                                    */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Staat 'minder beweging' aan in het systeem, dan zie je overal meteen de
+ * eindstand. Bij dit publiek is dat geen luxe: beweging kan mensen die
+ * misselijk zijn van een behandeling nog misselijker maken. De deur draait dan
+ * niet open maar staat open.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .stip { animation: none; }
+  .deur-blad, .deur-wereld, .deur-kier, .deur-gloed { transition: none; }
+  .strook { mask-image: none; }
+  /* Achter de deur wisselt dan niets meer: één foto, stil. DeurHero hangt de
+     andere lagen er in dat geval niet eens in; dit is het vangnet. */
+  .kijkje, .kijkje img { transition: none; }
+  .kijkje img { transform: none; }
+}
