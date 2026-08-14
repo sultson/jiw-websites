@@ -65,6 +65,8 @@ const pages = htmlFiles(distDir).map((file) => {
   const h1 = one(html, /<h1[^>]*>(.*?)<\/h1>/gs, 'H1', route).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   const ogTitle = decodeHtml(one(html, /<meta property="og:title" content="([^"]*)"/g, 'og:title', route));
   const ogDescription = decodeHtml(one(html, /<meta property="og:description" content="([^"]*)"/g, 'og:description', route));
+  const alternates = [...html.matchAll(/<link rel="alternate" hreflang="([^"]*)"/g)].map((match) => match[1]);
+  const noindex = /<meta name="robots" content="[^"]*noindex/.test(html);
 
   assert.ok(title.trim(), `${route} has an empty title`);
   assert.ok(description.trim(), `${route} has an empty meta description`);
@@ -80,7 +82,7 @@ const pages = htmlFiles(distDir).map((file) => {
     assert.ok(description.length >= 110 && description.length <= 165, `${route} critical description is outside the launch range (${description.length} characters)`);
   }
 
-  return { route, title, description, canonical, lang };
+  return { route, title, description, canonical, lang, alternates, noindex };
 });
 
 for (const route of criticalRoutes) {
@@ -102,7 +104,41 @@ assert.match(home, /"@type":"WebSite"/, 'Home page has no WebSite structured dat
 assert.match(home, /"name":"E & I"/, 'WebSite structured data has the wrong preferred site name');
 assert.match(home, /"alternateName":\["Expat & Immigration Services","expat-relocation.nl"\]/, 'WebSite structured data has no expected alternate names');
 
+// Google merges the sitemap's hreflang annotations with the ones in the markup,
+// so the two have to describe the same set of alternates. A locale present in
+// one and absent from the other, or region codes on one side against bare
+// language codes on the other, reads as a conflict rather than as extra detail.
+const sitemapPath = join(distDir, 'sitemap-0.xml');
+assert.ok(existsSync(sitemapPath), 'sitemap-0.xml is missing; the sitemap integration did not run');
+
+const sitemapEntries = new Map();
+for (const [, block] of readFileSync(sitemapPath, 'utf8').matchAll(/<url>(.*?)<\/url>/gs)) {
+  const loc = /<loc>([^<]*)<\/loc>/.exec(block)?.[1];
+  assert.ok(loc, 'Sitemap contains a <url> without a <loc>');
+  sitemapEntries.set(new URL(loc).pathname.replace(/\/$/, '') || '/', {
+    lastmod: /<lastmod>([^<]*)<\/lastmod>/.exec(block)?.[1],
+    alternates: [...block.matchAll(/hreflang="([^"]*)"/g)].map((match) => match[1]).sort(),
+  });
+}
+
+const indexable = pages.filter((page) => !page.noindex);
+for (const page of pages) {
+  const entry = sitemapEntries.get(page.route);
+  if (page.noindex) {
+    assert.ok(!entry, `noindex page is submitted in the sitemap: ${page.route}`);
+    continue;
+  }
+  assert.ok(entry, `Indexable page is missing from the sitemap: ${page.route}`);
+  assert.ok(entry.lastmod, `Sitemap entry has no lastmod: ${page.route}`);
+  // x-default has no @astrojs/sitemap equivalent, so the markup carries it alone.
+  const inMarkup = page.alternates.filter((code) => code !== 'x-default').sort();
+  assert.deepEqual(entry.alternates, inMarkup, `Sitemap and markup hreflang disagree for ${page.route}`);
+}
+assert.equal(sitemapEntries.size, indexable.length, 'Sitemap lists URLs that were not built');
+
 const robots = readFileSync(join(distDir, 'robots.txt'), 'utf8');
 assert.match(robots, /Sitemap: https:\/\/www\.expat-relocation\.nl\/sitemap-index\.xml/, 'robots.txt points at the wrong sitemap');
 
-console.log(`Search metadata audit passed: ${pages.length} index pages, ${criticalRoutes.size} migration-critical pages.`);
+console.log(
+  `Search metadata audit passed: ${pages.length} built pages, ${indexable.length} submitted in the sitemap, ${criticalRoutes.size} migration-critical pages.`,
+);

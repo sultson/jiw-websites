@@ -76,6 +76,7 @@ const gscPaths = [
   '/en/expat-pakketten',
   '/en/over-ons',
   '/en/zakelijke-expat-begeleiding',
+  '/en/zakelijk-expat-pakket',
 ];
 
 const expectedTopTen = new Map([
@@ -130,6 +131,16 @@ for (const [from, expectedTo] of expectedTopTen) {
 for (const [from, { to }] of rules) {
   assert.ok(!rules.has(to), `Redirect chain found: ${from} -> ${to} -> ${rules.get(to)?.to}`);
   assert.ok(existsSync(builtHtmlPath(to)), `Redirect destination was not built: ${from} -> ${to}`);
+}
+
+// Webflow answered both /path and /path/, so links to both forms exist in the
+// wild. Cloudflare only normalizes the trailing slash for paths that were built
+// as assets, and legacy slugs were not, so each rule needs both spellings.
+for (const [from, { to }] of rules) {
+  if (from.endsWith('/')) continue;
+  const withSlash = `${from}/`;
+  assert.ok(rules.has(withSlash), `Legacy rule has no trailing-slash twin: ${withSlash}`);
+  assert.equal(rules.get(withSlash).to, to, `Trailing-slash twin points elsewhere: ${withSlash}`);
 }
 for (const path of intentionalKeeps) {
   assert.ok(existsSync(builtHtmlPath(path)), `Intentionally retained route was not built: ${path}`);
