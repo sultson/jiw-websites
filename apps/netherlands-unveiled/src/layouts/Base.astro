@@ -1,0 +1,196 @@
+---
+import '../styles/global.css';
+import Flag from '../components/Flag.astro';
+import { chrome, guidingLanguages } from '../content/site';
+import {
+  LANGS,
+  absoluteUrl,
+  homeAnchor,
+  langLabel,
+  langShort,
+  localeTag,
+  ogLocale,
+  routes,
+  type Alternates,
+  type Lang,
+} from '../i18n';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Path of this page in every language, used for hreflang and the switcher. */
+  alternates: Alternates;
+  /** Which header link to mark as the current page. */
+  active?: 'tours' | 'about' | 'reviews' | 'blog' | 'contact' | null;
+  /** Pages without a hero photo need an opaque header instead of a scrim. */
+  solidNav?: boolean;
+  /** Site-root-relative path of the social share image. */
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  /** JSON-LD objects rendered into the head. */
+  schema?: Record<string, unknown>[];
+}
+
+const {
+  lang,
+  title,
+  description,
+  alternates,
+  active = null,
+  solidNav = false,
+  ogImage = '/images/hero-1600.webp',
+  ogType = 'website',
+  noindex = false,
+  schema = [],
+} = Astro.props;
+
+const t = chrome[lang];
+const canonical = absoluteUrl(alternates[lang]);
+
+const navLinks = [
+  { key: 'tours', href: routes.tours[lang] },
+  { key: 'about', href: homeAnchor(lang, '#about') },
+  { key: 'reviews', href: homeAnchor(lang, '#reviews') },
+  { key: 'blog', href: routes.blog[lang] },
+  { key: 'contact', href: homeAnchor(lang, '#contact') },
+] as const;
+---
+
+<!doctype html>
+<html lang={localeTag[lang]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    {/* Each language is a separate URL, so every indexable page declares the
+        full set. The 404 is excluded: both its alternates are the same file. */}
+    {!noindex && (
+      <>
+        {LANGS.map((code) => (
+          <link rel="alternate" hreflang={localeTag[code]} href={absoluteUrl(alternates[code])} />
+        ))}
+        <link rel="alternate" hreflang="x-default" href={absoluteUrl(alternates.en)} />
+      </>
+    )}
+
+    <meta property="og:site_name" content="Netherlands Unveiled" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={absoluteUrl(ogImage)} />
+    <meta property="og:locale" content={ogLocale[lang]} />
+    {LANGS.filter((code) => code !== lang).map((code) => (
+      <meta property="og:locale:alternate" content={ogLocale[code]} />
+    ))}
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600;700&display=swap"
+    />
+    {schema.map((entry) => (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(entry)} />
+    ))}
+    <slot name="head" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <a class="skip-link" href="#main">{lang === 'fr' ? 'Aller au contenu' : 'Skip to content'}</a>
+      <header class:list={['nav', { 'is-solid': solidNav }]} id="nav">
+        <div class="nav-inner">
+          <a class="brand" href={routes.home[lang]} aria-label={t.nav.brandAria}>
+            <strong>Netherlands Unveiled</strong>
+            <span>{t.nav.tagline}</span>
+          </a>
+
+          <nav class="nav-links" id="nav-links" aria-label={t.nav.aria}>
+            {navLinks.map((link) => (
+              <a href={link.href} aria-current={active === link.key ? 'page' : undefined}>
+                {t.nav[link.key]}
+              </a>
+            ))}
+          </nav>
+
+          <nav class="top-flags" aria-label={t.nav.guidingLanguages}>
+            {guidingLanguages.map((entry) => (
+              <a
+                href={entry.anchor ? `${routes.languages[lang]}#${entry.anchor}` : routes.languages[lang]}
+                aria-label={t.languageNames[entry.language]}
+              >
+                <Flag code={entry.code} />
+              </a>
+            ))}
+          </nav>
+
+          {/* Real links, not a toggle: the two languages are two documents. */}
+          <nav class="lang-toggle" aria-label={t.nav.languageToggleLabel}>
+            {LANGS.map((code) => (
+              <a
+                class:list={['lang-option', { 'is-active': code === lang }]}
+                href={alternates[code]}
+                hreflang={localeTag[code]}
+                lang={localeTag[code]}
+                aria-label={langLabel[code]}
+                aria-current={code === lang ? 'true' : undefined}
+              >
+                {langShort[code]}
+              </a>
+            ))}
+          </nav>
+
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+            {t.nav.menu}
+          </button>
+        </div>
+      </header>
+
+      <main id="main">
+        <slot />
+      </main>
+
+      <footer class="footer">
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <strong>{t.footer.brand}</strong>
+            <span>{t.footer.copy}</span>
+          </div>
+          <nav class="footer-links" aria-label={t.footer.nav}>
+            <a href={routes.tours[lang]}>{t.nav.tours}</a>
+            <a href={homeAnchor(lang, '#about')}>{t.nav.about}</a>
+            <a href={routes.blog[lang]}>{t.nav.blog}</a>
+            <a href={routes.languages[lang]}>{t.nav.guidingLanguages}</a>
+            <a href={homeAnchor(lang, '#contact')}>{t.nav.contact}</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const nav = document.getElementById('nav');
+      const menuButton = document.querySelector('.menu-toggle');
+
+      menuButton?.addEventListener('click', () => {
+        const next = nav?.dataset.open !== 'true';
+        if (nav) nav.dataset.open = String(next);
+        menuButton.setAttribute('aria-expanded', String(next));
+      });
+
+      document.querySelectorAll('.nav-links a').forEach((link) => {
+        link.addEventListener('click', () => {
+          if (nav) nav.dataset.open = 'false';
+          menuButton?.setAttribute('aria-expanded', 'false');
+        });
+      });
+    </script>
+  </body>
+</html>

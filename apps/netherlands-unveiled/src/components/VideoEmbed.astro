@@ -1,0 +1,75 @@
+---
+// Click-to-load Vimeo facade. Nothing is requested from vimeo.com until the
+// visitor presses play: until then this is a local poster image and a button,
+// which keeps the About section free of a third-party iframe on first paint.
+interface Props {
+  videoId: string;
+  /** Base name of the poster in public/images. */
+  poster: string;
+  posterAlt: string;
+  playLabel: string;
+  length: string;
+  caption: string;
+  openLabel: string;
+  /** Accessible title handed to the iframe once it loads. */
+  videoTitle: string;
+}
+
+const { videoId, poster, posterAlt, playLabel, length, caption, openLabel, videoTitle } =
+  Astro.props;
+
+const POSTER_WIDTHS = [640, 960, 1280];
+const posterSrcset = POSTER_WIDTHS.map((width) => `/images/${poster}-${width}.webp ${width}w`).join(
+  ', ',
+);
+const vimeoUrl = `https://vimeo.com/${videoId}`;
+const embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1&title=0&byline=0&portrait=0&dnt=1`;
+---
+
+<figure class="video-figure">
+  <div class="video-embed" data-embed-url={embedUrl} data-video-title={videoTitle}>
+    <img
+      class="video-poster"
+      src={`/images/${poster}-960.webp`}
+      srcset={posterSrcset}
+      sizes="(min-width: 981px) 620px, calc(100vw - 32px)"
+      width="1280"
+      height="720"
+      alt={posterAlt}
+      loading="lazy"
+      decoding="async"
+    />
+    {/* The clip carries its own burned-in name caption bottom left, so the
+        duration badge sits bottom right and the button label is centred. */}
+    <button class="video-play" type="button" aria-label={`${playLabel} (${length})`}>
+      <span class="video-play-icon" aria-hidden="true"></span>
+      <span class="video-play-length" aria-hidden="true">{length}</span>
+    </button>
+  </div>
+  <figcaption>
+    {caption}{' '}
+    <a href={vimeoUrl} target="_blank" rel="noopener">{openLabel}</a>
+  </figcaption>
+</figure>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.video-embed').forEach((embed) => {
+    const button = embed.querySelector('.video-play');
+
+    button?.addEventListener('click', () => {
+      const src = embed.dataset.embedUrl;
+      if (!src) return;
+
+      const iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.title = embed.dataset.videoTitle ?? 'Video';
+      iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media';
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      iframe.loading = 'eager';
+
+      embed.replaceChildren(iframe);
+      embed.dataset.playing = 'true';
+    });
+  });
+</script>

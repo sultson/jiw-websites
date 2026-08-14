@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import { toursIndex } from '../content/site';
+import { tours } from '../content/tours';
+import {
+  absoluteUrl,
+  homeAnchor,
+  localeTag,
+  routeAlternates,
+  routes,
+  SITE_URL,
+  tourPath,
+  type Lang,
+} from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = toursIndex[lang];
+const alternates = routeAlternates('tours');
+
+const CARD_SIZES = '(min-width: 1192px) 376px, (min-width: 981px) 31vw, calc(100vw - 32px)';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: t.page.title,
+    description: t.meta.description,
+    url: absoluteUrl(alternates[lang]),
+    inLanguage: localeTag[lang],
+    publisher: { '@id': `${SITE_URL}/#business` },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: tours.map((tour, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: absoluteUrl(tourPath(lang, tour[lang].slug)),
+        name: tour[lang].title,
+      })),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Netherlands Unveiled', item: absoluteUrl(routes.home[lang]) },
+      { '@type': 'ListItem', position: 2, name: t.page.eyebrow, item: absoluteUrl(alternates[lang]) },
+    ],
+  },
+];
+---
+
+<Base
+  lang={lang}
+  title={t.meta.title}
+  description={t.meta.description}
+  alternates={alternates}
+  active="tours"
+  solidNav
+  schema={schema}
+>
+  <div class="page">
+    <section class="section page-head">
+      <p class="eyebrow">{t.page.eyebrow}</p>
+      <h1>{t.page.title}</h1>
+      <p class="lead">{t.page.lead}</p>
+    </section>
+
+    <section class="section blog-section">
+      <div class="blog-grid">
+        {tours.map((tour) => {
+          const copy = tour[lang];
+          const fallbackWidth = tour.widths[tour.widths.length - 1];
+          return (
+            <article class="blog-card">
+              <a class="blog-card-link" href={tourPath(lang, copy.slug)}>
+                <img
+                  class="tour-card-media"
+                  src={`/images/${tour.image}-${tour.widths[2] ?? fallbackWidth}.webp`}
+                  srcset={tour.widths.map((width) => `/images/${tour.image}-${width}.webp ${width}w`).join(', ')}
+                  sizes={CARD_SIZES}
+                  width="800"
+                  height="600"
+                  alt={copy.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="blog-body">
+                  <p class="blog-topic">{copy.eyebrow}</p>
+                  <h2>{copy.title}</h2>
+                  <p>{copy.excerpt}</p>
+                  <span class="text-link">{t.page.readMore}</span>
+                </div>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="section page-cta">
+      <a class="btn btn-primary" href={homeAnchor(lang, '#contact')}>{t.page.cta}</a>
+    </section>
+  </div>
+</Base>

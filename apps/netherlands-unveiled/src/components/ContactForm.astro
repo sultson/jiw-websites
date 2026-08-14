@@ -1,0 +1,141 @@
+---
+import { chrome, home } from '../content/site';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = home[lang].form;
+const languageNames = chrome[lang].languageNames;
+
+const tourOptionValues = Object.keys(t.tourOptions);
+const languageOptionValues = Object.entries(languageNames);
+---
+
+<div class="form-card" id="contact-form">
+  <div class="form-success" id="form-success">{t.success}</div>
+  <form id="lead-form" data-form-path="/api/forms/contact" novalidate>
+    <div class="form-grid">
+      <label>
+        <span>{t.firstName}</span>
+        <input name="firstName" type="text" autocomplete="given-name" required />
+      </label>
+      <label>
+        <span>{t.lastName}</span>
+        <input name="lastName" type="text" autocomplete="family-name" />
+      </label>
+      <label>
+        <span>{t.email}</span>
+        <input name="email" type="email" autocomplete="email" required />
+      </label>
+      <label>
+        <span>{t.contactPreference}</span>
+        <select name="contactPreference">
+          <option value="Email">{t.emailOption}</option>
+          <option value="Messenger">{t.messengerOption}</option>
+        </select>
+      </label>
+      <label>
+        <span>{t.tourInterest}</span>
+        <select name="tourInterest" required>
+          <option value="">{t.chooseTour}</option>
+          {tourOptionValues.map((option) => (
+            <option value={option}>{t.tourOptions[option as keyof typeof t.tourOptions]}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        <span>{t.date}</span>
+        <input name="travelDate" type="text" placeholder={t.datePlaceholder} required />
+      </label>
+      <label>
+        <span>{t.groupSize}</span>
+        <input name="groupSize" type="text" placeholder={t.groupSizePlaceholder} required />
+      </label>
+      <label>
+        <span>{t.language}</span>
+        <select name="language">
+          {languageOptionValues.map(([value, label]) => (
+            <option value={value}>{label}</option>
+          ))}
+        </select>
+      </label>
+      <label class="full">
+        <span>{t.message}</span>
+        <textarea name="message" required placeholder={t.messagePlaceholder}></textarea>
+      </label>
+    </div>
+    <input type="hidden" name="siteLanguage" value={t.siteLanguage} />
+    <input type="hidden" name="cf-turnstile-response" value="dev" />
+    <input type="text" name="company" tabindex="-1" autocomplete="off" hidden aria-hidden="true" />
+    <p class="form-error" id="form-error"></p>
+    <div class="form-footer">
+      <button
+        class="btn btn-primary"
+        type="submit"
+        data-label-idle={t.submit}
+        data-label-busy={t.submitting}
+        data-label-error={t.errorDefault}
+      >
+        <span class="btn-label">{t.submit}</span>
+      </button>
+      <p>{t.privacy}</p>
+    </div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('lead-form');
+  const success = document.getElementById('form-success');
+  const errorBox = document.getElementById('form-error');
+
+  if (form instanceof HTMLFormElement) {
+    const submit = form.querySelector('button[type="submit"]');
+    const label = form.querySelector('.btn-label');
+    const strings = submit instanceof HTMLElement ? submit.dataset : {};
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (errorBox) errorBox.style.display = 'none';
+
+      const honeypot = form.elements.namedItem('company');
+      if (honeypot instanceof HTMLInputElement && honeypot.value) return;
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      submit?.setAttribute('disabled', 'true');
+      if (label) label.textContent = strings.labelBusy ?? 'Sending...';
+
+      try {
+        const path = form.dataset.formPath ?? '/api/forms/contact';
+        const response = await fetch(path, { method: 'POST', body: new FormData(form) });
+        const data = await response.json().catch(() => ({}));
+        const payload = data && typeof data === 'object' ? data : {};
+        if (!response.ok || !('ok' in payload) || !payload.ok) {
+          const message =
+            'message' in payload && typeof payload.message === 'string'
+              ? payload.message
+              : (strings.labelError ?? 'Your request could not be sent.');
+          throw new Error(message);
+        }
+        form.style.display = 'none';
+        if (success) success.style.display = 'block';
+      } catch (error) {
+        if (errorBox) {
+          errorBox.textContent =
+            error instanceof Error
+              ? error.message
+              : (strings.labelError ?? 'Your request could not be sent.');
+          errorBox.style.display = 'block';
+        }
+        submit?.removeAttribute('disabled');
+        if (label) label.textContent = strings.labelIdle ?? 'Send tour request';
+      }
+    });
+  }
+</script>

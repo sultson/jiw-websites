@@ -12,7 +12,11 @@
     "binding": "ASSETS",
     "html_handling": "drop-trailing-slash",
     "not_found_handling": "404-page",
-    "run_worker_first": ["/api/*"]
+    // The Worker has to see page requests, not just the API, or the redirect
+    // from www and the jouwidealewebsite subdomain to the canonical host never
+    // runs. Images stay on the direct asset path so they skip the Worker.
+    // _redirects cannot do this: it only accepts relative URLs.
+    "run_worker_first": ["/*", "!/images/*", "!/favicon.svg"]
   },
   "routes": [
     {

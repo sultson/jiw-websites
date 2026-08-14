@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import Flag from './Flag.astro';
+import { guidingLanguages, languagesPage } from '../content/site';
+import { homeAnchor, routeAlternates, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = languagesPage[lang];
+const alternates = routeAlternates('languages');
+
+// Dutch keeps its flag in the header but has no blurb, on Marion's request.
+const blurbs = guidingLanguages.filter((entry) => entry.message !== null);
+---
+
+<Base
+  lang={lang}
+  title={t.meta.title}
+  description={t.meta.description}
+  alternates={alternates}
+  solidNav
+>
+  <div class="page">
+    <section class="section page-head">
+      <p class="eyebrow">{t.page.eyebrow}</p>
+      <h1>{t.page.title}</h1>
+      <p class="lead">{t.page.lead}</p>
+    </section>
+
+    <section class="lang-band">
+      <div class="section">
+        <ul class="lang-list">
+          {blurbs.map((entry) => (
+            <li class="lang-row" id={entry.anchor ?? undefined}>
+              <Flag code={entry.code} />
+              <p lang={entry.code === 'us' ? 'en' : entry.code}>{entry.message}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section page-cta">
+      <a class="btn btn-primary" href={homeAnchor(lang, '#contact')}>{t.page.cta}</a>
+    </section>
+  </div>
+</Base>

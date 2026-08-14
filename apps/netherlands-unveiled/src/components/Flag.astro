@@ -1,0 +1,66 @@
+---
+// Emoji flags fall back to bare letter pairs on Windows, so the header draws
+// them itself. Shapes only, no coats of arms, which is what the civil flags of
+// Spain and Italy look like anyway at 22px.
+interface Props {
+  code: string;
+}
+
+const { code } = Astro.props;
+
+const STRIPES = Array.from({ length: 7 }, (_, index) => (index * 32) / 13);
+const STARS = Array.from({ length: 4 }, (_, row) =>
+  Array.from({ length: 5 }, (_, column) => ({ x: 1.1 + column * 1.85, y: 1.2 + row * 2.1 })),
+).flat();
+---
+
+<span class="flag" aria-hidden="true">
+  <svg viewBox="0 0 24 16" width="24" height="16" role="presentation" focusable="false">
+    {code === 'nl' && (
+      <>
+        <rect width="24" height="16" fill="#fff" />
+        <rect width="24" height="5.34" fill="#ae1c28" />
+        <rect y="10.66" width="24" height="5.34" fill="#21468b" />
+      </>
+    )}
+    {code === 'de' && (
+      <>
+        <rect width="24" height="16" fill="#dd0000" />
+        <rect width="24" height="5.34" fill="#000" />
+        <rect y="10.66" width="24" height="5.34" fill="#ffce00" />
+      </>
+    )}
+    {code === 'fr' && (
+      <>
+        <rect width="24" height="16" fill="#fff" />
+        <rect width="8" height="16" fill="#002395" />
+        <rect x="16" width="8" height="16" fill="#ed2939" />
+      </>
+    )}
+    {code === 'it' && (
+      <>
+        <rect width="24" height="16" fill="#fff" />
+        <rect width="8" height="16" fill="#009246" />
+        <rect x="16" width="8" height="16" fill="#ce2b37" />
+      </>
+    )}
+    {code === 'es' && (
+      <>
+        <rect width="24" height="16" fill="#aa151b" />
+        <rect y="4" width="24" height="8" fill="#f1bf00" />
+      </>
+    )}
+    {code === 'us' && (
+      <>
+        <rect width="24" height="16" fill="#fff" />
+        {STRIPES.map((y) => (
+          <rect y={y} width="24" height={16 / 13} fill="#b22234" />
+        ))}
+        <rect width="9.6" height="8.62" fill="#3c3b6e" />
+        {STARS.map((star) => (
+          <circle cx={star.x} cy={star.y} r="0.42" fill="#fff" />
+        ))}
+      </>
+    )}
+  </svg>
+</span>

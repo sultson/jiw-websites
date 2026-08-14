@@ -1,0 +1,177 @@
+---
+import Base from '../layouts/Base.astro';
+import { postUi } from '../content/site';
+import { relatedPosts, type Post } from '../content/blog';
+import { absoluteUrl, homeAnchor, localeTag, postPath, routes, SITE_URL, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  post: Post;
+}
+
+const { lang, post } = Astro.props;
+const copy = post[lang];
+const ui = postUi[lang];
+
+// The same article in the other language is a different slug, so alternates are
+// built from the post rather than from a static route table.
+const alternates = { en: postPath('en', post.en.slug), fr: postPath('fr', post.fr.slug) };
+const canonical = absoluteUrl(alternates[lang]);
+
+const HERO_WIDTHS = [360, 540, 720];
+const heroSrcset = (name: string) =>
+  HERO_WIDTHS.map((width) => `/images/${name}-${width}.webp ${width}w`).join(', ');
+
+const related = relatedPosts(post.id);
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: copy.title,
+    description: copy.metaDescription,
+    image: [absoluteUrl(`/images/${post.image}-og.webp`), absoluteUrl(`/images/${post.image}-720.webp`)],
+    inLanguage: localeTag[lang],
+    mainEntityOfPage: canonical,
+    url: canonical,
+    author: { '@type': 'Person', name: 'Marion Baumgarten' },
+    publisher: { '@id': `${SITE_URL}/#business` },
+    isPartOf: { '@id': `${absoluteUrl(routes.blog[lang])}#blog` },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: ui.home, item: absoluteUrl(routes.home[lang]) },
+      { '@type': 'ListItem', position: 2, name: ui.blog, item: absoluteUrl(routes.blog[lang]) },
+      { '@type': 'ListItem', position: 3, name: copy.title, item: canonical },
+    ],
+  },
+];
+---
+
+<Base
+  lang={lang}
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  alternates={alternates}
+  active="blog"
+  solidNav
+  ogType="article"
+  ogImage={`/images/${post.image}-og.webp`}
+  schema={schema}
+>
+  <div class="page">
+    <article class="post">
+      <div class="section post-head">
+        <nav class="breadcrumb" aria-label={ui.breadcrumb}>
+          <a href={routes.home[lang]}>{ui.home}</a>
+          <span aria-hidden="true">/</span>
+          <a href={routes.blog[lang]}>{ui.blog}</a>
+        </nav>
+
+        <div class="post-intro">
+          <div class="post-intro-copy">
+            <p class="eyebrow">{copy.topic}</p>
+            <h1>{copy.title}</h1>
+            <p class="lead">{copy.excerpt}</p>
+          </div>
+          <figure class="post-hero">
+            <img
+              src={`/images/${post.image}-540.webp`}
+              srcset={heroSrcset(post.image)}
+              sizes="(min-width: 981px) 420px, calc(100vw - 32px)"
+              width="720"
+              height="900"
+              alt={copy.alt}
+              fetchpriority="high"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </div>
+
+      <div class="section post-body">
+        <div class="prose">
+          {copy.body.map((block) => {
+            if ('h' in block) return <h2>{block.h}</h2>;
+            if ('list' in block) {
+              return (
+                <ul>
+                  {block.list.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              );
+            }
+            if ('image' in block) {
+              return (
+                <figure class="prose-figure">
+                  <img
+                    src={`/images/${block.image}-540.webp`}
+                    srcset={heroSrcset(block.image)}
+                    sizes="(min-width: 981px) 680px, calc(100vw - 32px)"
+                    width="720"
+                    height="900"
+                    alt={block.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption>{block.caption}</figcaption>
+                </figure>
+              );
+            }
+            return <p>{block.p}</p>;
+          })}
+
+          <p class="post-cta">
+            <a class="text-link" href={homeAnchor(lang, post.ctaAnchor)}>{copy.ctaLabel}</a>
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <section class="band post-plan">
+      <div class="section">
+        <div class="plan-card">
+          <div>
+            <h2>{ui.planTitle}</h2>
+            <p>{ui.planCopy}</p>
+          </div>
+          <a class="btn btn-primary" href={homeAnchor(lang, '#contact')}>{ui.planCta}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section related-section" aria-label={ui.related}>
+      <div class="section-head solo">
+        <h2>{ui.related}</h2>
+      </div>
+      <div class="blog-grid">
+        {related.map((other) => (
+          <article class="blog-card">
+            <a class="blog-card-link" href={postPath(lang, other[lang].slug)}>
+              <img
+                src={`/images/${other.image}-540.webp`}
+                srcset={heroSrcset(other.image)}
+                sizes="(min-width: 1192px) 376px, (min-width: 981px) 31vw, calc(100vw - 32px)"
+                width="720"
+                height="900"
+                alt={other[lang].alt}
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="blog-body">
+                <p class="blog-topic">{other[lang].topic}</p>
+                <h3>{other[lang].title}</h3>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+      <p class="post-back">
+        <a class="text-link" href={routes.blog[lang]}>{ui.backToBlog}</a>
+      </p>
+    </section>
+  </div>
+</Base>

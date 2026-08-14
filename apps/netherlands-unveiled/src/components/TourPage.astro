@@ -1,0 +1,198 @@
+---
+import Base from '../layouts/Base.astro';
+import { postUi, tourUi } from '../content/site';
+import { posts } from '../content/blog';
+import type { Tour } from '../content/tours';
+import {
+  absoluteUrl,
+  homeAnchor,
+  localeTag,
+  postPath,
+  routes,
+  SITE_URL,
+  tourPath,
+  type Lang,
+} from '../i18n';
+
+interface Props {
+  lang: Lang;
+  tour: Tour;
+}
+
+const { lang, tour } = Astro.props;
+const copy = tour[lang];
+const ui = tourUi[lang];
+const plan = postUi[lang];
+
+const alternates = { en: tourPath('en', tour.en.slug), fr: tourPath('fr', tour.fr.slug) };
+const canonical = absoluteUrl(alternates[lang]);
+
+const srcset = tour.widths.map((width) => `/images/${tour.image}-${width}.webp ${width}w`).join(', ');
+const fallbackWidth = tour.widths[tour.widths.length - 1];
+
+const related = tour.related
+  .map((id) => posts.find((post) => post.id === id))
+  .filter((post): post is (typeof posts)[number] => Boolean(post));
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: copy.title,
+    description: copy.metaDescription,
+    image: absoluteUrl(`/images/${tour.image}-${fallbackWidth}.webp`),
+    url: canonical,
+    inLanguage: localeTag[lang],
+    provider: { '@id': `${SITE_URL}/#business` },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: ui.home, item: absoluteUrl(routes.home[lang]) },
+      { '@type': 'ListItem', position: 2, name: ui.tours, item: absoluteUrl(routes.tours[lang]) },
+      { '@type': 'ListItem', position: 3, name: copy.title, item: canonical },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: copy.faq.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  },
+];
+---
+
+<Base
+  lang={lang}
+  title={copy.metaTitle}
+  description={copy.metaDescription}
+  alternates={alternates}
+  active="tours"
+  solidNav
+  ogImage={`/images/${tour.image}-${fallbackWidth}.webp`}
+  schema={schema}
+>
+  <div class="page">
+    <article class="post">
+      <div class="section post-head">
+        <nav class="breadcrumb" aria-label={ui.breadcrumb}>
+          <a href={routes.home[lang]}>{ui.home}</a>
+          <span aria-hidden="true">/</span>
+          <a href={routes.tours[lang]}>{ui.tours}</a>
+        </nav>
+
+        <div class="post-intro">
+          <div class="post-intro-copy">
+            <p class="eyebrow">{copy.eyebrow}</p>
+            <h1>{copy.title}</h1>
+            <p class="lead">{copy.lead}</p>
+            <a class="btn btn-primary tour-cta" href={homeAnchor(lang, '#contact')}>{copy.ctaLabel}</a>
+          </div>
+          <figure class="post-hero tour-hero">
+            <img
+              src={`/images/${tour.image}-${fallbackWidth}.webp`}
+              srcset={srcset}
+              sizes="(min-width: 981px) 460px, calc(100vw - 32px)"
+              width="800"
+              height="600"
+              alt={copy.alt}
+              fetchpriority="high"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </div>
+
+      <div class="section tour-body">
+        <div class="prose">
+          {copy.body.map((block) => {
+            if ('h' in block) return <h2>{block.h}</h2>;
+            if ('list' in block) {
+              return (
+                <ul>
+                  {block.list.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              );
+            }
+            return <p>{block.p}</p>;
+          })}
+        </div>
+
+        <aside class="fact-card" aria-label={ui.facts}>
+          <h2>{ui.facts}</h2>
+          <dl>
+            {copy.facts.map((fact) => (
+              <div>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </aside>
+      </div>
+
+      <div class="section faq-section">
+        <div class="section-head solo">
+          <h2>{ui.faq}</h2>
+        </div>
+        <div class="faq-list">
+          {copy.faq.map((item) => (
+            <details class="faq-item">
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </article>
+
+    <section class="band post-plan">
+      <div class="section">
+        <div class="plan-card">
+          <div>
+            <h2>{plan.planTitle}</h2>
+            <p>{plan.planCopy}</p>
+          </div>
+          <a class="btn btn-primary" href={homeAnchor(lang, '#contact')}>{plan.planCta}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section related-section" aria-label={ui.related}>
+      <div class="section-head solo">
+        <h2>{ui.related}</h2>
+      </div>
+      <div class="blog-grid">
+        {related.map((post) => (
+          <article class="blog-card">
+            <a class="blog-card-link" href={postPath(lang, post[lang].slug)}>
+              <img
+                src={`/images/${post.image}-540.webp`}
+                srcset={`/images/${post.image}-360.webp 360w, /images/${post.image}-540.webp 540w, /images/${post.image}-720.webp 720w`}
+                sizes="(min-width: 1192px) 376px, (min-width: 981px) 31vw, calc(100vw - 32px)"
+                width="720"
+                height="900"
+                alt={post[lang].alt}
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="blog-body">
+                <p class="blog-topic">{post[lang].topic}</p>
+                <h3>{post[lang].title}</h3>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+      <p class="post-back">
+        <a class="text-link" href={routes.tours[lang]}>{ui.all}</a>
+      </p>
+    </section>
+  </div>
+</Base>

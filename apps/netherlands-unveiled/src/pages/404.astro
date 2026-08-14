@@ -1,21 +1,32 @@
 ---
-import '../styles/global.css';
+import Base from '../layouts/Base.astro';
+import { routes } from '../i18n';
+
+// Cloudflare serves this one file for every unmatched path in both languages,
+// so it links to both home pages instead of picking one.
+const alternates = { en: '/404', fr: '/404' };
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Page not found | Netherlands Unveiled</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  </head>
-  <body>
-    <main class="section" style="min-height: 80vh; display: grid; align-content: center;">
+<Base
+  lang="en"
+  title="Page not found | Netherlands Unveiled"
+  description="The page you were looking for is not available."
+  alternates={alternates}
+  solidNav
+  noindex
+>
+  <div class="page">
+    <section class="section page-head" style="min-height: 60svh; align-content: center;">
       <p class="eyebrow">404</p>
-      <h1 style="font-size: clamp(3rem, 10vw, 7rem);">Page not found</h1>
-      <p class="lead" style="margin-top: 1rem;">The page you were looking for is not available.</p>
-      <p style="margin-top: 2rem;"><a class="btn btn-primary" href="/">Back to Netherlands Unveiled</a></p>
-    </main>
-  </body>
-</html>
+      <h1>Page not found</h1>
+      <p class="lead">
+        The page you were looking for is not available.
+        <span lang="fr">La page que vous cherchiez n’est pas disponible.</span>
+      </p>
+      <p style="margin: 2rem 0 0; display: flex; flex-wrap: wrap; gap: 0.75rem;">
+        <a class="btn btn-primary" href={routes.home.en}>Back to Netherlands Unveiled</a>
+        <a class="btn btn-ghost" href={routes.home.fr} lang="fr" hreflang="fr">Retour au site en français</a>
+      </p>
+    </section>
+  </div>
+</Base>
