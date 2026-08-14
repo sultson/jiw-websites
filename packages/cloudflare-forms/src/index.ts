@@ -41,6 +41,23 @@ export type LeadFormConfig = {
    * When omitted, the existing Dutch/English confirmation renderer is used.
    */
   confirmationEmail?: LocalizedConfirmationEmailConfig;
+  /**
+   * Opt-in wording for the lead notification email. The defaults are written for
+   * quote requests ("Nieuwe offerteaanvraag", "Projectomschrijving"), which is
+   * wrong for sites that are not selling a job — a holiday rental takes booking
+   * enquiries, not quotes. Every field falls back to the copy this package has
+   * always used, so a config that leaves this out renders exactly as before.
+   */
+  leadEmail?: LeadEmailCopy;
+};
+
+export type LeadEmailCopy = {
+  /** Headline of the notification. Default: `Nieuwe offerteaanvraag voor {siteName}` (`New request for {siteName}` when locale is 'en'). */
+  heading?: string;
+  /** Heading above the free-text field. Default: `Projectomschrijving` (`Message` when locale is 'en'). */
+  messageHeading?: string;
+  /** Labels of the three built-in rows. These have always been Dutch regardless of locale. */
+  nameLabels?: {firstName?: string; lastName?: string; email?: string};
 };
 
 export const CONFIRMATION_LOCALE_FIELD = '__jiw_confirmation_locale';
@@ -71,6 +88,56 @@ export type ConfirmationEmailBrand = {
   logoAlt: string;
   websiteUrl: string;
   contactEmail: string;
+  /**
+   * Rendered width of the logo in pixels. Defaults to 360, which suits a wide
+   * wordmark; a compact square mark wants something much smaller. Supply the
+   * image at twice this so it stays sharp on a retina screen.
+   */
+  logoWidth?: number;
+  /**
+   * Palette of the confirmation email. The defaults are the navy-and-gold of the
+   * first site that used this renderer, so a brand that leaves this out gets
+   * exactly what it got before — but every other site should pass its own, or
+   * its guests receive an email in someone else's colours.
+   */
+  colors?: Partial<ConfirmationEmailColors>;
+};
+
+export type ConfirmationEmailColors = {
+  /** Behind the email body. */
+  pageBackground: string;
+  /** The card the content sits on. */
+  surface: string;
+  /** Tinted panels: logo bar, detail table, quoted message. */
+  surfaceAlt: string;
+  border: string;
+  /** Dark band, headings and links. */
+  ink: string;
+  /** Text on the dark band. */
+  onInk: string;
+  /** Body copy. */
+  inkSoft: string;
+  muted: string;
+  mutedSoft: string;
+  /** Hairlines and the kicker above the dark band's heading. */
+  accent: string;
+  button: string;
+  onButton: string;
+};
+
+const DEFAULT_CONFIRMATION_COLORS: ConfirmationEmailColors = {
+  pageBackground: '#f4f1e8',
+  surface: '#ffffff',
+  surfaceAlt: '#fffdf8',
+  border: '#e6e0d4',
+  ink: '#00143a',
+  onInk: '#ffffff',
+  inkSoft: '#344054',
+  muted: '#667085',
+  mutedSoft: '#475467',
+  accent: '#d4af37',
+  button: '#d4af37',
+  onButton: '#00143a',
 };
 
 export type LeadFormRequiredField = {
@@ -123,9 +190,24 @@ type TurnstileResponse = {
 const defaultAllowedFileTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif', 'application/pdf'];
 const defaultAllowedFileExtensions = ['jpg', 'jpeg', 'png', 'webp', 'heic', 'heif', 'pdf'];
 
-type ResolvedLeadFormConfig = Required<Omit<LeadFormConfig, 'confirmationEmail'>> & {
+type ResolvedLeadFormConfig = Required<Omit<LeadFormConfig, 'confirmationEmail' | 'leadEmail'>> & {
   confirmationEmail?: LocalizedConfirmationEmailConfig;
+  leadEmail?: LeadEmailCopy;
 };
+
+/** Headline of the lead notification, defaulting to the quote-request wording. */
+function leadHeading(config: ResolvedLeadFormConfig): string {
+  if (config.leadEmail?.heading) return config.leadEmail.heading;
+  return config.locale === 'en'
+    ? `New request for ${config.siteName}`
+    : `Nieuwe offerteaanvraag voor ${config.siteName}`;
+}
+
+/** Heading above the free-text field of the lead notification. */
+function leadMessageHeading(config: ResolvedLeadFormConfig): string {
+  if (config.leadEmail?.messageHeading) return config.leadEmail.messageHeading;
+  return config.locale === 'en' ? 'Message' : 'Projectomschrijving';
+}
 
 export function createFormWorker(config: LeadFormConfig): ExportedHandler<CloudflareFormsEnv> {
   const settings = withDefaults(config);
@@ -578,13 +660,15 @@ function renderLocalizedConfirmationHtmlEmail(
 ): string {
   const { fields } = manifest;
   const brand = emailConfig.brand;
+  const c = { ...DEFAULT_CONFIRMATION_COLORS, ...brand.colors };
+  const logoWidth = brand.logoWidth ?? 360;
   const rows = renderLocalizedConfirmationRows(config, fields, copy);
   const message = getFieldValue(fields, config.messageField) || '-';
   const replacements = { name: getFullName(fields), siteName: config.siteName };
   const detailRows = rows.map(([label, value], index) => `
                 <tr>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #e6e0d4; width: 42%; color: #475467; font-size: 14px; line-height: 20px; vertical-align: top;${index === rows.length - 1 ? ' border-bottom: 0;' : ''}"><strong>${escapeHtml(label)}</strong></td>
-                  <td style="padding: 11px 12px; border-bottom: 1px solid #e6e0d4; color: #00143a; font-size: 14px; line-height: 20px; vertical-align: top;${index === rows.length - 1 ? ' border-bottom: 0;' : ''}">${escapeHtml(value || '-')}</td>
+                  <td style="padding: 11px 12px; border-bottom: 1px solid ${c.border}; width: 42%; color: ${c.mutedSoft}; font-size: 14px; line-height: 20px; vertical-align: top;${index === rows.length - 1 ? ' border-bottom: 0;' : ''}"><strong>${escapeHtml(label)}</strong></td>
+                  <td style="padding: 11px 12px; border-bottom: 1px solid ${c.border}; color: ${c.ink}; font-size: 14px; line-height: 20px; vertical-align: top;${index === rows.length - 1 ? ' border-bottom: 0;' : ''}">${escapeHtml(value || '-')}</td>
                 </tr>`).join('');
 
   return `<!doctype html>
@@ -594,52 +678,52 @@ function renderLocalizedConfirmationHtmlEmail(
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${escapeHtml(formatCopy(copy.subject, { siteName: config.siteName }))}</title>
   </head>
-  <body style="margin: 0; padding: 0; background-color: #f4f1e8; color: #00143a; font-family: Arial, Helvetica, sans-serif;">
+  <body style="margin: 0; padding: 0; background-color: ${c.pageBackground}; color: ${c.ink}; font-family: Arial, Helvetica, sans-serif;">
     <div style="display: none; max-height: 0; overflow: hidden; opacity: 0; color: transparent; mso-hide: all;">${escapeHtml(copy.preheader)}</div>
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; background-color: #f4f1e8;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; background-color: ${c.pageBackground};">
       <tr>
         <td align="center" style="padding: 24px 12px;">
-          <table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width: 100%; max-width: 640px; border-collapse: collapse; background-color: #ffffff; border-top: 4px solid #d4af37;">
+          <table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width: 100%; max-width: 640px; border-collapse: collapse; background-color: ${c.surface}; border-top: 4px solid ${c.accent};">
             <tr>
-              <td align="center" style="padding: 25px 28px 21px; background-color: #fffdf8;">
-                <img src="${escapeHtml(brand.logoUrl)}" width="360" alt="${escapeHtml(brand.logoAlt)}" style="display: block; width: 100%; max-width: 360px; height: auto; border: 0; color: #00143a; font-size: 16px;">
+              <td align="center" style="padding: 25px 28px 21px; background-color: ${c.surfaceAlt};">
+                <img src="${escapeHtml(brand.logoUrl)}" width="${logoWidth}" alt="${escapeHtml(brand.logoAlt)}" style="display: block; width: 100%; max-width: ${logoWidth}px; height: auto; border: 0; color: ${c.ink}; font-size: 16px;">
               </td>
             </tr>
             <tr>
-              <td style="padding: 28px 36px; background-color: #00143a; color: #ffffff;">
-                <p style="margin: 0 0 10px; color: #d4af37; font-size: 13px; font-weight: bold; letter-spacing: 1.2px; line-height: 18px; text-transform: uppercase;">${escapeHtml(copy.detailsHeading)}</p>
-                <p style="margin: 0; color: #ffffff; font-size: 22px; font-weight: bold; line-height: 30px;">${escapeHtml(formatCopy(copy.receiptMessage, replacements))}</p>
+              <td style="padding: 28px 36px; background-color: ${c.ink}; color: ${c.onInk};">
+                <p style="margin: 0 0 10px; color: ${c.accent}; font-size: 13px; font-weight: bold; letter-spacing: 1.2px; line-height: 18px; text-transform: uppercase;">${escapeHtml(copy.detailsHeading)}</p>
+                <p style="margin: 0; color: ${c.onInk}; font-size: 22px; font-weight: bold; line-height: 30px;">${escapeHtml(formatCopy(copy.receiptMessage, replacements))}</p>
               </td>
             </tr>
             <tr>
-              <td style="padding: 32px 36px 16px; background-color: #ffffff;">
-                <p style="margin: 0 0 16px; color: #00143a; font-size: 17px; line-height: 26px;">${escapeHtml(formatCopy(copy.greeting, replacements))}</p>
-                <p style="margin: 0; color: #344054; font-size: 15px; line-height: 24px;">${escapeHtml(formatCopy(copy.followUpMessage, replacements))}</p>
+              <td style="padding: 32px 36px 16px; background-color: ${c.surface};">
+                <p style="margin: 0 0 16px; color: ${c.ink}; font-size: 17px; line-height: 26px;">${escapeHtml(formatCopy(copy.greeting, replacements))}</p>
+                <p style="margin: 0; color: ${c.inkSoft}; font-size: 15px; line-height: 24px;">${escapeHtml(formatCopy(copy.followUpMessage, replacements))}</p>
               </td>
             </tr>
             <tr>
-              <td style="padding: 16px 36px; background-color: #ffffff;">
-                <h1 style="margin: 0 0 12px; color: #00143a; font-size: 20px; line-height: 28px;">${escapeHtml(copy.detailsHeading)}</h1>
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; border: 1px solid #e6e0d4; background-color: #fffdf8;">${detailRows}
+              <td style="padding: 16px 36px; background-color: ${c.surface};">
+                <h1 style="margin: 0 0 12px; color: ${c.ink}; font-size: 20px; line-height: 28px;">${escapeHtml(copy.detailsHeading)}</h1>
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; border: 1px solid ${c.border}; background-color: ${c.surfaceAlt};">${detailRows}
                 </table>
               </td>
             </tr>
             <tr>
-              <td style="padding: 16px 36px; background-color: #ffffff;">
-                <h2 style="margin: 0 0 10px; color: #00143a; font-size: 18px; line-height: 26px;">${escapeHtml(copy.messageHeading)}</h2>
-                <p style="margin: 0; padding: 16px; border-left: 3px solid #d4af37; background-color: #fffdf8; color: #344054; font-size: 15px; line-height: 23px;">${escapeHtml(message).replace(/\n/g, '<br>')}</p>
-                <p style="margin: 14px 0 0; color: #667085; font-size: 12px; line-height: 18px;">${escapeHtml(copy.referenceLabel)}: ${escapeHtml(manifest.submissionId)}</p>
+              <td style="padding: 16px 36px; background-color: ${c.surface};">
+                <h2 style="margin: 0 0 10px; color: ${c.ink}; font-size: 18px; line-height: 26px;">${escapeHtml(copy.messageHeading)}</h2>
+                <p style="margin: 0; padding: 16px; border-left: 3px solid ${c.accent}; background-color: ${c.surfaceAlt}; color: ${c.inkSoft}; font-size: 15px; line-height: 23px;">${escapeHtml(message).replace(/\n/g, '<br>')}</p>
+                <p style="margin: 14px 0 0; color: ${c.muted}; font-size: 12px; line-height: 18px;">${escapeHtml(copy.referenceLabel)}: ${escapeHtml(manifest.submissionId)}</p>
               </td>
             </tr>
             <tr>
-              <td align="center" style="padding: 22px 36px 34px; background-color: #ffffff;">
-                <p style="margin: 0 0 15px; color: #344054; font-size: 14px; line-height: 22px;">${escapeHtml(copy.contactPrompt)} <a href="mailto:${escapeHtml(brand.contactEmail)}" style="color: #00143a; font-weight: bold;">${escapeHtml(brand.contactEmail)}</a></p>
-                <a href="${escapeHtml(brand.websiteUrl)}" style="display: inline-block; padding: 13px 22px; background-color: #d4af37; color: #00143a; font-size: 14px; font-weight: bold; line-height: 18px; text-decoration: none;">${escapeHtml(copy.ctaLabel)}</a>
+              <td align="center" style="padding: 22px 36px 34px; background-color: ${c.surface};">
+                <p style="margin: 0 0 15px; color: ${c.inkSoft}; font-size: 14px; line-height: 22px;">${escapeHtml(copy.contactPrompt)} <a href="mailto:${escapeHtml(brand.contactEmail)}" style="color: ${c.ink}; font-weight: bold;">${escapeHtml(brand.contactEmail)}</a></p>
+                <a href="${escapeHtml(brand.websiteUrl)}" style="display: inline-block; padding: 13px 22px; background-color: ${c.button}; color: ${c.onButton}; font-size: 14px; font-weight: bold; line-height: 18px; text-decoration: none;">${escapeHtml(copy.ctaLabel)}</a>
               </td>
             </tr>
             <tr>
-              <td align="center" style="padding: 22px 30px; background-color: #00143a; color: #ffffff;">
-                <p style="margin: 0; color: #ffffff; font-size: 12px; line-height: 19px;">${escapeHtml(copy.footerText)}</p>
+              <td align="center" style="padding: 22px 30px; background-color: ${c.ink}; color: ${c.onInk};">
+                <p style="margin: 0; color: ${c.onInk}; font-size: 12px; line-height: 19px;">${escapeHtml(copy.footerText)}</p>
               </td>
             </tr>
           </table>
@@ -734,15 +818,15 @@ function renderTextEmail(config: ResolvedLeadFormConfig, manifest: SubmissionMan
     : config.locale === 'en' ? 'No attachments included.' : 'Geen bijlagen meegestuurd.';
 
   if (config.locale === 'en') return [
-    `New request for ${config.siteName}`, '', ...rows.map(([label,value])=>`${label}: ${value||'-'}`), '', 'Message:', message||'-', '', 'Attachments:', attachmentLines,
+    leadHeading(config), '', ...rows.map(([label,value])=>`${label}: ${value||'-'}`), '', `${leadMessageHeading(config)}:`, message||'-', '', 'Attachments:', attachmentLines,
   ].join('\n');
 
   return [
-    `Nieuwe offerteaanvraag voor ${config.siteName}`,
+    leadHeading(config),
     '',
     ...rows.map(([label, value]) => `${label}: ${value || '-'}`),
     '',
-    'Projectomschrijving:',
+    `${leadMessageHeading(config)}:`,
     message || '-',
     '',
     'Bijlagen:',
@@ -763,16 +847,16 @@ function renderHtmlEmail(config: ResolvedLeadFormConfig, manifest: SubmissionMan
         .join('')}</ul>`
     : config.locale === 'en' ? '<p>No attachments included.</p>' : '<p>Geen bijlagen meegestuurd.</p>';
 
-  if (config.locale === 'en') return `<!doctype html><html><body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;"><h1 style="font-size: 20px;">New request for ${escapeHtml(config.siteName)}</h1><table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">${rows.map(([label,value])=>`<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}</table><h2 style="font-size: 16px;">Message</h2><p>${escapeHtml(message||'-').replace(/\n/g,'<br>')}</p><h2 style="font-size: 16px;">Attachments</h2>${attachments}<p style="font-size: 12px; color: #667085;">Submission ${escapeHtml(manifest.submissionId)} received at ${escapeHtml(manifest.createdAt)}.</p></body></html>`;
+  if (config.locale === 'en') return `<!doctype html><html><body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;"><h1 style="font-size: 20px;">${escapeHtml(leadHeading(config))}</h1><table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">${rows.map(([label,value])=>`<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}</table><h2 style="font-size: 16px;">${escapeHtml(leadMessageHeading(config))}</h2><p>${escapeHtml(message||'-').replace(/\n/g,'<br>')}</p><h2 style="font-size: 16px;">Attachments</h2>${attachments}<p style="font-size: 12px; color: #667085;">Submission ${escapeHtml(manifest.submissionId)} received at ${escapeHtml(manifest.createdAt)}.</p></body></html>`;
 
   return `<!doctype html>
 <html>
   <body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;">
-    <h1 style="font-size: 20px;">Nieuwe offerteaanvraag voor ${escapeHtml(config.siteName)}</h1>
+    <h1 style="font-size: 20px;">${escapeHtml(leadHeading(config))}</h1>
     <table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
       ${rows.map(([label, value]) => `<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}
     </table>
-    <h2 style="font-size: 16px;">Projectomschrijving</h2>
+    <h2 style="font-size: 16px;">${escapeHtml(leadMessageHeading(config))}</h2>
     <p>${escapeHtml(message || '-').replace(/\n/g, '<br>')}</p>
     <h2 style="font-size: 16px;">Bijlagen</h2>
     ${attachments}
@@ -782,10 +866,11 @@ function renderHtmlEmail(config: ResolvedLeadFormConfig, manifest: SubmissionMan
 }
 
 function renderEmailRows(config: ResolvedLeadFormConfig, fields: SubmissionFields): [string, string][] {
+  const names = config.leadEmail?.nameLabels;
   const baseRows: [string, string][] = [
-    ['Voornaam', fields.firstName],
-    ['Achternaam', fields.lastName],
-    ['E-mail', fields.email],
+    [names?.firstName ?? 'Voornaam', fields.firstName],
+    [names?.lastName ?? 'Achternaam', fields.lastName],
+    [names?.email ?? 'E-mail', fields.email],
   ];
   const configuredRows = config.emailFields
     .filter((field) => !isReservedConfirmationField(field.name, config))

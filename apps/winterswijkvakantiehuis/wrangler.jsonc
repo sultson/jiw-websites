@@ -1,0 +1,45 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "winterswijkvakantiehuis",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "drop-trailing-slash",
+    // Every route is prerendered to its own file, so there is nothing for an SPA
+    // fallback to do except answer 200 to URLs that do not exist — a soft 404.
+    "not_found_handling": "404-page",
+    "run_worker_first": true
+  },
+  "routes": [
+    { "pattern": "winterswijkvakantiehuis.nl", "custom_domain": true },
+    { "pattern": "www.winterswijkvakantiehuis.nl", "custom_domain": true },
+    // Kept so the address the site launched on keeps resolving; the Worker 301s
+    // it to the apex rather than serving a second copy of the site.
+    { "pattern": "winterswijkvakantiehuis.jouwidealewebsite.nl", "custom_domain": true }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["booking@notify.winterswijkvakantiehuis.nl"]
+    }
+  ],
+  // No TURNSTILE_SECRET_KEY: this form runs with `turnstile: false` and leans on
+  // the server-side honeypot instead, so there is no widget to verify against.
+  "vars": {
+    "SITE_ID": "winterswijkvakantiehuis",
+    "LEAD_RECIPIENT": "achterhoekbooking@gmail.com",
+    "LEAD_SENDER": "booking@notify.winterswijkvakantiehuis.nl"
+  }
+}

@@ -1,0 +1,593 @@
+{
+  "/img/area-bikes.webp": [
+    1264,
+    848,
+    640,
+    1024
+  ],
+  "/img/area-bredevoort.webp": [
+    800,
+    450,
+    640
+  ],
+  "/img/area-hilgelo.webp": [
+    600,
+    450
+  ],
+  "/img/area-landscape.webp": [
+    1264,
+    848,
+    640,
+    1024
+  ],
+  "/img/area-mondriaan.webp": [
+    1200,
+    607,
+    640,
+    1024
+  ],
+  "/img/area-nature.webp": [
+    1264,
+    848,
+    640,
+    1024
+  ],
+  "/img/area-park-autumn.webp": [
+    1200,
+    1040,
+    640,
+    1024
+  ],
+  "/img/area-strandbad.webp": [
+    740,
+    420,
+    640
+  ],
+  "/img/area-town.webp": [
+    1264,
+    848,
+    640,
+    1024
+  ],
+  "/img/chalet-1.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/chalet-10.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/chalet-11.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/chalet-12.webp": [
+    400,
+    600
+  ],
+  "/img/chalet-13.webp": [
+    400,
+    600
+  ],
+  "/img/chalet-14.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/chalet-15.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/chalet-16.webp": [
+    400,
+    600
+  ],
+  "/img/chalet-2.webp": [
+    400,
+    600
+  ],
+  "/img/chalet-3.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/chalet-4.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/chalet-5.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/chalet-6.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/chalet-7.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/chalet-8.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/chalet-9.webp": [
+    400,
+    600
+  ],
+  "/img/curacao-appartement.webp": [
+    720,
+    960,
+    640
+  ],
+  "/img/curacao-drempelvrij.webp": [
+    1600,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-fenya-kamer-2.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-fenya-kamer-3.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-fenya-master.webp": [
+    1184,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-keuken-studio.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-logo.webp": [
+    800,
+    259,
+    640
+  ],
+  "/img/curacao-terrein.webp": [
+    1050,
+    1400,
+    640,
+    1024
+  ],
+  "/img/curacao-uitzicht.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-villa.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-woonkamer.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-yeva-badkamer.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-yeva-gezin.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-yeva-slaapkamer.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-yeva-uitzicht.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-zorgbed.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-zwembad-1.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-zwembad-2.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/curacao-zwembad-3.webp": [
+    1600,
+    1600,
+    640,
+    1024
+  ],
+  "/img/hero-park.webp": [
+    1600,
+    973,
+    640,
+    1024
+  ],
+  "/img/jonkersweg-1.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg-10.webp": [
+    1600,
+    1200,
+    640,
+    1024
+  ],
+  "/img/jonkersweg-11.webp": [
+    1400,
+    967,
+    640,
+    1024
+  ],
+  "/img/jonkersweg-12.webp": [
+    1600,
+    1200,
+    640,
+    1024
+  ],
+  "/img/jonkersweg-2.webp": [
+    1600,
+    1295,
+    640,
+    1024
+  ],
+  "/img/jonkersweg-3.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg-4.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg-5.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg-6.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg-7.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg-8.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg-9.webp": [
+    1600,
+    1200,
+    640,
+    1024
+  ],
+  "/img/jonkersweg57-1.webp": [
+    1600,
+    1200,
+    640,
+    1024
+  ],
+  "/img/jonkersweg57-2.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg57-3.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg57-4.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg57-5.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg57-6.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg65-1.webp": [
+    1600,
+    1200,
+    640,
+    1024
+  ],
+  "/img/jonkersweg65-2.webp": [
+    1600,
+    1200,
+    640,
+    1024
+  ],
+  "/img/jonkersweg65-3.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg65-4.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg65-5.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg65-6.webp": [
+    1080,
+    1440,
+    640,
+    1024
+  ],
+  "/img/jonkersweg65-7.webp": [
+    1080,
+    1440,
+    640,
+    1024
+  ],
+  "/img/kattenberg6-1.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg6-10.webp": [
+    400,
+    600
+  ],
+  "/img/kattenberg6-11.webp": [
+    400,
+    600
+  ],
+  "/img/kattenberg6-12.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg6-13.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg6-2.webp": [
+    800,
+    525,
+    640
+  ],
+  "/img/kattenberg6-3.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg6-4.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg6-5.webp": [
+    450,
+    600
+  ],
+  "/img/kattenberg6-6.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg6-7.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg6-8.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg6-9.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg8-1.webp": [
+    800,
+    527,
+    640
+  ],
+  "/img/kattenberg8-10.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg8-11.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg8-12.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg8-13.webp": [
+    400,
+    600
+  ],
+  "/img/kattenberg8-14.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg8-2.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg8-3.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg8-4.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg8-5.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg8-6.webp": [
+    800,
+    450,
+    640
+  ],
+  "/img/kattenberg8-7.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg8-8.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/kattenberg8-9.webp": [
+    800,
+    533,
+    640
+  ],
+  "/img/logo-light.webp": [
+    512,
+    540
+  ],
+  "/img/logo.webp": [
+    512,
+    540
+  ],
+  "/img/nature-flamingos.webp": [
+    1200,
+    900,
+    640,
+    1024
+  ],
+  "/img/nature-lake.webp": [
+    1200,
+    914,
+    640,
+    1024
+  ],
+  "/img/nature-owl-flight.webp": [
+    1400,
+    932,
+    640,
+    1024
+  ],
+  "/img/nature-owl-nest.webp": [
+    1000,
+    1375,
+    640
+  ],
+  "/img/nature-owl-pair.webp": [
+    1100,
+    1124,
+    640,
+    1024
+  ],
+  "/img/nature-robin-2.webp": [
+    1100,
+    1013,
+    640,
+    1024
+  ],
+  "/img/nature-robin.webp": [
+    1100,
+    1144,
+    640,
+    1024
+  ],
+  "/img/nature-squirrel.webp": [
+    1200,
+    800,
+    640,
+    1024
+  ],
+  "/img/paarden-knhs.webp": [
+    1199,
+    1600,
+    640,
+    1024
+  ],
+  "/img/paarden-koets.webp": [
+    1600,
+    1301,
+    640,
+    1024
+  ]
+}

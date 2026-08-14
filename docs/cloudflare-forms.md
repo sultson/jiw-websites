@@ -26,6 +26,25 @@ Cloudflare Email Service sending can be used directly from Workers with a `send_
 - Keep Purelymail untouched for normal mailbox hosting.
 - Use the Email Service sender domain/subdomain configured in Cloudflare.
 
+## Lead notification wording
+
+The notification sent to the site owner defaults to quote-request wording
+("Nieuwe offerteaanvraag voor {siteName}", "Projectomschrijving", and the row
+labels Voornaam / Achternaam / E-mail, which stay Dutch whatever `locale` is).
+Sites that are not selling a job override it per form with `leadEmail`:
+
+```ts
+leadEmail: {
+  heading: 'Nieuwe aanvraag voor Winterswijk Vakantiehuis',
+  messageHeading: 'Bericht van de gast',
+  nameLabels: { firstName: 'Voornaam', lastName: 'Achternaam', email: 'E-mailadres' },
+}
+```
+
+Every field is optional and falls back to the original copy, so a form that
+leaves `leadEmail` out is unchanged. `tests/lead-email-copy.test.mjs` pins both
+the overrides and the defaults.
+
 ## Adding another site
 
 1. Add `@jiw/cloudflare-forms` as a workspace dependency for the app.
