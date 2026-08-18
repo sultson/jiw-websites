@@ -21,6 +21,7 @@
  */
 
 import {createContext, useCallback, useContext, useEffect, useRef, useState} from 'react';
+import {trace} from './trace';
 
 export type Taal = 'en' | 'nl' | 'pap';
 
@@ -124,14 +125,8 @@ function taalVanZone(): Taal {
  * buiten. Duurt een fractie van een seconde en corrigeert de gok hierboven.
  */
 async function landVanIp(): Promise<string | null> {
-  try {
-    const r = await fetch('/cdn-cgi/trace', {cache: 'no-store'});
-    if (!r.ok) return null;
-    const m = /(?:^|\n)loc=([A-Z]{2})/.exec(await r.text());
-    return m ? m[1] : null;
-  } catch {
-    return null;
-  }
+  const loc = (await trace()).loc;
+  return /^[A-Z]{2}$/.test(loc ?? '') ? loc : null;
 }
 
 function taalVanLand(land: string): Taal {

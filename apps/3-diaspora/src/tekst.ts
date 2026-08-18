@@ -47,6 +47,17 @@ const T = {
   },
   naarInhoud: {en: 'Skip to content', nl: 'Naar de inhoud', pap: 'Bai na e kontenido'},
 
+  /* Alleen voor een schermlezer. Op het scherm staan er cijfers en verder
+     niets; wie de pagina hoort in plaats van ziet krijgt er dit bij, anders is
+     het een rij losse getallen zonder betekenis. */
+  aftellen: {
+    opent: {en: 'The site opens in', nl: 'De site gaat open over', pap: 'E sitio ta habri den'},
+    dag: {en: 'days', nl: 'dagen', pap: 'dia'},
+    uur: {en: 'hours', nl: 'uur', pap: 'ora'},
+    minuut: {en: 'minutes', nl: 'minuten', pap: 'minüt'},
+    seconde: {en: 'seconds', nl: 'seconden', pap: 'sekònde'},
+  },
+
   /* ------------------------------------------------------------------ hero */
   hero: {
     kicker: {

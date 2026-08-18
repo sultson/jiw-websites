@@ -15,6 +15,7 @@ import {
   komende,
 } from './Paginas';
 import {GalerijPagina} from './Galerij';
+import Aftellen from './Aftellen';
 import {ArrowRight, Facebook, Heart, Instagram, Linkedin, Menu, X} from 'lucide-react';
 
 /* ------------------------------------------------------------- taalknopje */
@@ -838,6 +839,10 @@ export default function App() {
   return (
     <TaalProvider>
       <Site />
+      {/* Buiten Site, want dit hoort niet bij een pagina maar bij de site als
+          geheel: het ligt erover tot het moment van lanceren en verdwijnt
+          daarna vanzelf. */}
+      <Aftellen />
     </TaalProvider>
   );
 }

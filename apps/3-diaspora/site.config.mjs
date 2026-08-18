@@ -20,6 +20,27 @@ export const SITE_NAAM = '3 Diaspora';
 export const CONTACT_EMAIL = 'bdoaf.bon@gmail.com';
 
 /* ------------------------------------------------------------------ */
+/*  De lancering                                                       */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Het moment waarop de site opengaat, met de tijdzone erin geschreven.
+ *
+ * Curacao staat het hele jaar op UTC-4 en kent geen zomertijd, dus -04:00 is
+ * hier geen aanname die in oktober omvalt. Door de zone in de tekst te zetten
+ * is dit een vast moment op de wereldklok: een bezoeker in Amsterdam telt af
+ * naar hetzelfde punt als een bezoeker in Kralendijk, alleen staat het op zijn
+ * eigen klok dan 02:18 's nachts.
+ *
+ * Is dit moment voorbij, dan verdwijnt het aftellen vanzelf en blijft er niets
+ * van over; src/Aftellen.tsx hoeft daarna niet weggehaald te worden.
+ */
+export const LANCERING = '2026-08-18T20:18:00-04:00';
+
+/** Hoe lang na de lancering een nieuwe bezoeker nog confetti krijgt. */
+export const CONFETTI_VENSTER_MS = 5 * 60 * 1000;
+
+/* ------------------------------------------------------------------ */
 /*  De talen en de pagina's                                            */
 /* ------------------------------------------------------------------ */
 

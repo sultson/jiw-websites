@@ -302,7 +302,7 @@ export function Kente({hoogte = 12, klasse = ''}: {hoogte?: number; klasse?: str
 
 /**
  * Interne link. Het pad is taalonafhankelijk (/bonaire), de href krijgt er het
- * taalvoorvoegsel bij (#/pap/bonaire), zodat een gedeelde link ook in de goede
+ * taalvoorvoegsel bij (/pap/bonaire), zodat een gedeelde link ook in de goede
  * taal opent.
  */
 export function Link({
