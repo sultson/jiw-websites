@@ -1,0 +1,25 @@
+import {spawn} from 'node:child_process';
+import {mkdtempSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+const url = process.argv[2];
+import {CHROME} from './chrome.mjs';
+const poort = 9500 + (process.pid % 200);
+const profiel = mkdtempSync(join(tmpdir(), 'diag-'));
+const chrome = spawn(CHROME, ['--headless=new','--disable-gpu',`--remote-debugging-port=${poort}`,`--user-data-dir=${profiel}`,'--no-first-run','about:blank']);
+const wacht = (ms) => new Promise((r) => setTimeout(r, ms));
+async function doelen(){for(let i=0;i<40;i++){try{const r=await fetch(`http://127.0.0.1:${poort}/json/list`);const l=await r.json();const p=l.find(t=>t.type==='page');if(p)return p;}catch{}await wacht(250);}throw new Error('geen chrome');}
+const page = await doelen();
+const ws = new WebSocket(page.webSocketDebuggerUrl);
+await new Promise((r)=>(ws.onopen=r));
+let id=0; const open=new Map();
+ws.onmessage=(e)=>{const m=JSON.parse(e.data); if(m.id&&open.has(m.id)){open.get(m.id)(m.result);open.delete(m.id);} if(m.method==='Runtime.consoleAPICalled'&&m.params.type==='error')console.log('CONSOLE ERROR', JSON.stringify(m.params.args.map(a=>a.value||a.description)));if(m.method==='Runtime.exceptionThrown')console.log('EXCEPTION', m.params.exceptionDetails.exception?.description||m.params.exceptionDetails.text);};
+const stuur=(method,params={})=>new Promise((res)=>{const e=++id;open.set(e,res);ws.send(JSON.stringify({id:e,method,params}));});
+await stuur('Runtime.enable');
+await stuur('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+await stuur('Page.enable');
+await stuur('Page.navigate',{url});
+await wacht(6000);
+const r = await stuur('Runtime.evaluate',{expression:`JSON.stringify({h:document.documentElement.scrollHeight, secties:[...document.querySelectorAll('main > *, main section, main header')].map(e=>e.tagName+':'+Math.round(e.getBoundingClientRect().top+window.scrollY)+'+'+Math.round(e.getBoundingClientRect().height)).slice(0,20)})`,returnByValue:true});
+console.log(r.result.value);
+ws.close();chrome.kill();process.exit(0);

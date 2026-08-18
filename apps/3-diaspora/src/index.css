@@ -1,0 +1,159 @@
+/**
+ * Kleur en letter.
+ *
+ * Het goud #b89838 komt uit hun eigen logo, dat de omtrek van Afrika en Bonaire
+ * tekent. Daaromheen staat nu een veel bredere aardepalet: indigo (het geverfde
+ * doek en de oceaan ertussen), klei, koper, palm en zee. Die kleuren dragen hele
+ * secties in plaats van alleen een randje, zodat de pagina van vlak naar vlak
+ * van kleur wisselt in plaats van eindeloos zand-met-goud te blijven.
+ *
+ * Fraunces staat op zijn SOFT- en WONK-as. Dat is de reden dat hij gekozen is:
+ * met WONK aan krijgen de a, g en y een schuine, bijna handgesneden vorm. Zonder
+ * die assen is het een net tijdschriftserif, met die assen heeft hij karakter.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:SOFT,WONK,opsz,wght@0..100,0..1,9..144,300..900&family=Karla:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+
+  /* donkere gronden, warm bruin in plaats van grijs */
+  --color-nacht: #1b110a;
+  --color-nacht-zacht: #2b1a10;
+  --color-nacht-diep: #110a05;
+
+  /* goud, uit hun logo */
+  --color-goud: #b89838;
+  --color-goud-licht: #e0c069;
+  --color-goud-diep: #7f631a;
+
+  /* indigo, de geverfde stof en de oceaan ertussen */
+  --color-indigo: #16375a;
+  --color-indigo-diep: #0c2138;
+  --color-indigo-licht: #6f9fc6;
+
+  /* aardekleuren */
+  --color-klei: #a4482f;         /* Nederland */
+  --color-klei-licht: #d8815b;
+  --color-koper: #c2632c;
+  --color-palm: #2c4c34;
+  --color-palm-licht: #7aa87c;
+  --color-zee: #1b5f70;          /* Curacao */
+  --color-zee-licht: #63aab6;
+
+  /* lichte gronden */
+  --color-zand: #f8f0e0;
+  --color-zand-diep: #f0e2c9;
+  --color-zand-warm: #e9d4b2;
+  --color-lijn: #ddcbaa;
+
+  --color-inkt: #2b1c11;         /* leestekst op zand */
+  --color-grijs: #6f5b44;        /* bijschriften op zand */
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-zand text-inkt antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+    font-variation-settings: "opsz" 120, "SOFT" 40, "WONK" 1;
+    letter-spacing: -0.02em;
+  }
+  /* Op klein formaat is WONK te druk en opsz te fijn, daar houden we hem rustig. */
+  h4, .fijn-display {
+    font-variation-settings: "opsz" 20, "SOFT" 30, "WONK" 0;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+  ::selection {
+    background: var(--color-goud);
+    color: #1b110a;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-goud);
+    outline-offset: 3px;
+  }
+  img { color: transparent; }   /* geen alt-tekst in beeld terwijl hij nog laadt */
+}
+
+@layer utilities {
+  .wrap  { @apply mx-auto w-full max-w-[76rem] px-5 sm:px-8; }
+  .ruim  { @apply mx-auto w-full max-w-[88rem] px-5 sm:px-8; }
+  .smal  { @apply mx-auto w-full max-w-[46rem] px-5 sm:px-8; }
+
+  .kicker { @apply text-[0.76rem] font-semibold uppercase tracking-[0.2em]; }
+  .lees   { @apply text-[1.05rem] leading-[1.8]; }
+
+  /* Beeldkader. Stond eerst als deuropening (boven rond, onder recht), maar dat
+     leest als een halve maan en snijdt de bovenkant van een foto weg. Nu een
+     rechthoek met verzachte hoeken, dezelfde ronding als de rest van de site. */
+  .boog { border-radius: 1rem; }
+
+  /* Een grote beginletter voor het openen van een lang stuk. */
+  .kapitaal::first-letter {
+    @apply font-display float-left mr-3 mt-1 text-[3.6rem] leading-[0.78] text-goud-diep;
+    font-variation-settings: "opsz" 144, "SOFT" 20, "WONK" 1;
+  }
+
+  /* Schuine, gedraaide stand voor foto's die als afdruk op tafel moeten liggen. */
+  .kiep-l { transform: rotate(-1.6deg); }
+  .kiep-r { transform: rotate(1.4deg); }
+}
+
+/**
+ * Kentestrook. De scheringstrepen van geweven Ghanese doek: smalle banen goud,
+ * klei, palm en indigo, telkens gescheiden door een zwarte draad. Het is geen
+ * ontleend patroon maar de opbouw ervan, en het doet op deze site het werk dat
+ * een grijs streepje anders zou doen.
+ */
+.kente {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-goud)         0px, var(--color-goud)         34px,
+    var(--color-nacht)       34px, var(--color-nacht)        40px,
+    var(--color-klei)        40px, var(--color-klei)         62px,
+    var(--color-nacht)       62px, var(--color-nacht)        68px,
+    var(--color-goud-diep)   68px, var(--color-goud-diep)    86px,
+    var(--color-nacht)       86px, var(--color-nacht)        92px,
+    var(--color-palm)        92px, var(--color-palm)        118px,
+    var(--color-nacht)      118px, var(--color-nacht)       124px,
+    var(--color-goud)       124px, var(--color-goud)        148px,
+    var(--color-nacht)      148px, var(--color-nacht)       154px,
+    var(--color-indigo)     154px, var(--color-indigo)      182px,
+    var(--color-nacht)      182px, var(--color-nacht)       188px
+  );
+}
+/* De inslag: fijne dwarsdraden over de scheringstrepen heen. */
+.kente::after {
+  content: "";
+  @apply absolute inset-0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.13) 0px, rgba(255, 255, 255, 0.13) 1px,
+    transparent 1px, transparent 4px
+  );
+}
+
+/* Het doek achter de donkere vlakken schuift heel traag. Precies een veld, want
+   anders springt hij bij het herhalen. */
+@keyframes doek-schuif {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-190px, -190px, 0); }
+}
+.doek { animation: doek-schuif 180s linear infinite; }
+
+@keyframes schuif {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+.loop-baan { animation: schuif 48s linear infinite; }
+.loop:hover .loop-baan { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .doek, .loop-baan { animation: none !important; }
+}

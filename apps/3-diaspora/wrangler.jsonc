@@ -1,0 +1,52 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "3-diaspora",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // De site is één HTML-bestand met een router erin. /nl/bonaire is geen
+    // bestand op de schijf, dus zonder deze regel is elke pagina behalve de
+    // startpagina een 404 zodra iemand hem ververst of rechtstreeks opent.
+    "not_found_handling": "single-page-application",
+    // De Worker moet paginaverzoeken zien, niet alleen de API: anders draait de
+    // omleiding van www en het opleveradres naar de canonieke host nooit. De
+    // bestanden met een hash in hun naam gaan er wel omheen, die hebben er
+    // niets te halen.
+    "run_worker_first": ["/*", "!/assets/*", "!/img/*", "!/video/*", "!/logo-email.png"]
+  },
+  "routes": [
+    { "pattern": "3diaspora.jouwidealewebsite.nl", "custom_domain": true },
+
+    // Het eigen domein van de stichtingen. Beide varianten: het is makkelijk de
+    // www te vergeten, en dan is de helft van de bezoekers bij een foutpagina.
+    // De Worker leidt www en het opleveradres door naar de kale domeinnaam.
+    { "pattern": "3diaspora.org", "custom_domain": true },
+    { "pattern": "www.3diaspora.org", "custom_domain": true }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["no-reply@notify.3diaspora.org"]
+    }
+  ],
+  // Geen TURNSTILE_SECRET_KEY: dit formulier draait met `turnstile: false` en
+  // leunt op het verborgen veld in worker/index.ts, dus er is geen widget om
+  // tegen te controleren.
+  "vars": {
+    "SITE_ID": "3-diaspora",
+    "LEAD_RECIPIENT": "bdoaf.bon@gmail.com",
+    "LEAD_SENDER": "no-reply@notify.3diaspora.org"
+  }
+}
