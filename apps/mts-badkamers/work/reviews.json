@@ -1,0 +1,53 @@
+{
+  "source": "https://www.werkspot.nl/profiel/m-techno-service",
+  "fetched": "2026-08-17",
+  "note": "averageRatingScore is de Werkspot-schaal van 10. 10/10 = 5 sterren. Het gemiddelde over alle 7 (8,6/10) staat op verzoek van de klant niet op de site.",
+  "profileRating": 8.6,
+  "reviews": [
+    {
+      "id": "996134",
+      "score10": 10,
+      "stars": 5,
+      "createdAt": "2026-08-03T10:31:53+00:00",
+      "name": "Stefan",
+      "anonymous": false,
+      "text": "Zeer tevreden over Mike, hij heeft de complete installatie van onze badkamer verzorgd. Mike heeft oog voor detail en denkt goed mee. Ik kan hem aan iedereen aanraden. "
+    },
+    {
+      "id": "979007",
+      "score10": 10,
+      "stars": 5,
+      "createdAt": "2026-06-02T14:28:18+00:00",
+      "name": "Floris",
+      "anonymous": false,
+      "text": "Geweldig geholpen door Mike, hij heeft onze hele badkamer gedaan. Van het sloopwerk tot het volledig installeren van alles. Mike kwam zijn afspraken altijd na. Absoluut aan te raden!!"
+    },
+    {
+      "id": "938063",
+      "score10": 2,
+      "stars": 1,
+      "createdAt": "2026-01-02T13:34:05+00:00",
+      "name": null,
+      "anonymous": true,
+      "text": null
+    },
+    {
+      "id": "882162",
+      "score10": 10,
+      "stars": 5,
+      "createdAt": "2025-06-06T05:45:11+00:00",
+      "name": null,
+      "anonymous": true,
+      "text": null
+    },
+    {
+      "id": "867078",
+      "score10": 10,
+      "stars": 5,
+      "createdAt": "2025-04-14T11:53:17+00:00",
+      "name": "Martin",
+      "anonymous": false,
+      "text": "Vakman met een enorm gevoel voor detail! De badkamer is werkelijk prachtig. Prettige communicatie en erg net gewerkt. "
+    }
+  ]
+}

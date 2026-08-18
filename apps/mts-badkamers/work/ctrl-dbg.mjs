@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path';
+const MIME={'.html':'text/html','.css':'text/css','.js':'text/javascript','.jpg':'image/jpeg','.webp':'image/webp','.svg':'image/svg+xml','.png':'image/png','.woff2':'font/woff2','.json':'application/json','.xml':'text/xml','.txt':'text/plain','.mp4':'video/mp4'};
+const srv=http.createServer((req,res)=>{let p=decodeURIComponent(req.url.split('?')[0]);if(p.endsWith('/'))p+='index.html';const f=path.join('site',p);if(!fs.existsSync(f)||fs.statSync(f).isDirectory()){res.writeHead(404);return res.end('x');}res.writeHead(200,{'Content-Type':MIME[path.extname(f)]||'application/octet-stream'});fs.createReadStream(f).pipe(res);});
+await new Promise(r=>srv.listen(8904,r));
+const b=await chromium.launch(); const ctx=await b.newContext({viewport:{width:1440,height:940}}); const page=await ctx.newPage();
+await page.goto('http://127.0.0.1:8904/',{waitUntil:'load'});
+await page.evaluate(()=>document.getElementById('werkgebied').scrollIntoView());
+await page.waitForTimeout(6000);
+console.log(await page.evaluate(()=>{const g=document.querySelector('.mapboxgl-ctrl-group'); return g? {cls:g.className, bg:getComputedStyle(g).backgroundColor, inMapBox:!!g.closest('.map-box')} : 'none';}));
+await b.close(); srv.close();

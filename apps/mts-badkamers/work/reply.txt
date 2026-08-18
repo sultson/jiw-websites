@@ -1,0 +1,20 @@
+Kritisch doorgelicht en gelijk verbouwd. Staat live: https://m-techno-service-concept.jouwidealewebsite.nl
+
+Wat er echt fout was:
+1. Watermerken. 16 fotos hadden "REDMI NOTE 6 PRO / MI DUAL CAMERA" ingebrand, waaronder de hero-foto van een compleet project. Alle 16 opgespoord en de band weggesneden.
+2. Beeldgewicht. Elke gridfoto was een 900px jpg van 60-75 KB, ook op mobiel. Nu webp met srcset 480/900/1600 plus jpg-fallback, dus mobiel laadt ongeveer een kwart. Alle fotos hebben width/height, dus niks springt meer.
+3. Oneerlijke sterren. In de chip stonden 5 volle sterren naast de tekst 4,3 en elke review kreeg 5 sterren die we niet weten. Nu wordt 4,3 ook echt als 4,3 getekend en de losse reviews hebben geen verzonnen score meer.
+4. SEO stond zo goed als uit. Toegevoegd: canonical, og:image, JSON-LD LocalBusiness met rating en werkgebied, FAQPage, kruimelpad-schema per project, sitemap.xml, robots.txt, favicon, 404-pagina. Homepage-titel is nu "Badkamerspecialist Apeldoorn".
+
+Wat er miste vergeleken met De Loos v2b:
+5. Voor en na. Nieuwe sectie met 6 paren uit dezelfde badkamer, zelfde standpunt, met een slider van voor naar na. Dit is jullie sterkste verkoopargument en het stond nergens.
+6. FAQ. 9 vragen die klanten echt stellen (kost, duur, thuis blijven wonen, materiaal, garantie).
+7. Werkgebied. Plaatsen met afstand vanaf Apeldoorn, in drie groepen. Goed voor lokale vindbaarheid.
+8. Contact was alleen twee knoppen. Nu een formulier dat een net WhatsApp-bericht opbouwt (naam, plaats, klus, wanneer) en wa.me opent. Geen backend, dus niks kan stukgaan.
+9. Afwerking: scroll-animaties, voortgangsbalk, kruimelpad en meta op projectpagina's, galerij start op 9 fotos in plaats van 12, lightbox met teller en preload, skip-link en focusrand voor toetsenbord.
+
+Geen calculator dus, net als in v2b. Prijzen zeggen we bewust niks over, alleen "opname, dan vaste prijsopgave".
+
+Twee dingen voor jou: de FAQ-antwoorden zijn mijn conceptteksten, dus laat Mike de doorlooptijden (twee tot drie weken voor een badkamer) en het stuk over elektra even nakijken. En er liggen nog 12 fotos/filmpjes die in geen project zitten.
+
+Stuur je nieuwe projecten maar door, dan zet ik ze erbij.

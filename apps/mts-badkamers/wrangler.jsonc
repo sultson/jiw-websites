@@ -1,0 +1,56 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "mts-badkamers",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    // build.mjs schrijft de hele site (vier talen, 68 adressen) als kant en
+    // klare HTML naar site/. Er wordt op de client niets nagerenderd, dus elke
+    // crawler krijgt dezelfde pagina als een bezoeker.
+    "directory": "./site",
+    "binding": "ASSETS",
+    // Elke canonical en elk adres in de sitemap eindigt op een schuine streep
+    // (/werk/<slug>/). Cloudflare moet die vorm serveren, anders is elke
+    // canonical eerst nog een omleiding.
+    "html_handling": "force-trailing-slash",
+    // Alles staat als eigen bestand op schijf: er valt voor een SPA-terugval
+    // niets te doen behalve 200 antwoorden op een adres dat niet bestaat, en
+    // dat is een zachte 404 die indexruimte kost.
+    "not_found_handling": "404-page",
+    // De Worker moet paginaverzoeken zien, anders draait de omleiding van www
+    // en de oude jouwidealewebsite-adressen naar de canonieke host nooit. De
+    // media, fonts en gehashte bestanden gaan er omheen: daar valt niets om te
+    // leiden en het scheelt een Worker-aanroep per foto.
+    "run_worker_first": [
+      "/*",
+      "!/m/*",
+      "!/f/*",
+      "!/video/*",
+      "!/poster/*",
+      "!/styles.*.css",
+      "!/app.*.js",
+      "!/logo.svg",
+      "!/logo-light.svg",
+      "!/werkspot.svg",
+      "!/icon.png",
+      "!/favicon.svg"
+    ]
+  },
+  "routes": [
+    // Het eigen domein is de canonieke host. www staat er los bij: het is
+    // makkelijk te vergeten en dan staat de helft van de bezoekers bij een
+    // foutpagina.
+    { "pattern": "mts-badkamers.nl", "custom_domain": true },
+    { "pattern": "www.mts-badkamers.nl", "custom_domain": true },
+
+    // De twee adressen waarop de site eerder stond. Ze blijven eraan hangen
+    // zodat eerder gedeelde links werken; worker/index.ts stuurt ze met een 301
+    // door naar mts-badkamers.nl.
+    { "pattern": "m-techno-service.jouwidealewebsite.nl", "custom_domain": true },
+    { "pattern": "m-techno-service-concept.jouwidealewebsite.nl", "custom_domain": true }
+  ]
+}

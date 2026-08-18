@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ args: ['--autoplay-policy=no-user-gesture-required'] });
+const ctx = await b.newContext({ viewport: { width: 390, height: 664 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+const pg = await ctx.newPage();
+await pg.goto('https://m-techno-service.jouwidealewebsite.nl/', { waitUntil: 'domcontentloaded' });
+await pg.waitForTimeout(2500);
+await pg.screenshot({ path: 'work/gen/mob-mid.png' });
+await pg.waitForTimeout(5000);
+await pg.screenshot({ path: 'work/gen/mob-end.png' });
+console.log(JSON.stringify(await pg.evaluate(() => { const v=document.querySelector('.hero-vid'); return v?{live:v.classList.contains('is-live'),t:+v.currentTime.toFixed(2)}:'removed'; })));
+await b.close();

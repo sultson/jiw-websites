@@ -1,0 +1,18 @@
+import { webkit, chromium, devices } from 'playwright';
+import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path';
+const MIME={'.html':'text/html','.css':'text/css','.js':'text/javascript','.jpg':'image/jpeg','.webp':'image/webp','.svg':'image/svg+xml','.mp4':'video/mp4','.xml':'text/xml','.txt':'text/plain','.png':'image/png'};
+const srv=http.createServer((req,res)=>{let p=decodeURIComponent(req.url.split('?')[0]);if(p.endsWith('/'))p+='index.html';const f=path.join('site',p);if(!fs.existsSync(f)||fs.statSync(f).isDirectory()){res.writeHead(404);return res.end('x');}res.writeHead(200,{'Content-Type':MIME[path.extname(f)]||'application/octet-stream'});fs.createReadStream(f).pipe(res);});
+await new Promise(r=>srv.listen(8899,r));
+const b=await webkit.launch();
+const ctx=await b.newContext({...devices['iPhone 13']}); const page=await ctx.newPage();
+await page.goto('http://127.0.0.1:8899/',{waitUntil:'load'}); await page.waitForTimeout(700);
+await page.screenshot({path:'work/wk-hero-mob.png'});
+console.log('webkit hero', await page.evaluate(()=>{const h=document.querySelector('.hero').getBoundingClientRect();const i=document.querySelector('.hero-shot img').getBoundingClientRect();return `hero ${Math.round(h.height)} img ${Math.round(i.width)}x${Math.round(i.height)} vh ${innerHeight}`;}));
+await page.goto('http://127.0.0.1:8899/werk/woonkamer-en-keuken/',{waitUntil:'load'});
+await page.evaluate(async()=>{for(let y=0;y<document.body.scrollHeight;y+=500){scrollTo(0,y);await new Promise(r=>setTimeout(r,40));}});
+const secs = await page.evaluate(()=>[...document.querySelectorAll('article.proj > section')].map(s=>s.className+' :: '+(s.querySelector('h1,h2')?.textContent||'').trim()));
+console.log(secs.join('\n'));
+const y = await page.evaluate(()=>{const s=[...document.querySelectorAll('.story')].find(e=>/resultaat/i.test(e.textContent));return s?s.getBoundingClientRect().top+scrollY:0;});
+await page.evaluate(v=>scrollTo(0,v-40), y); await page.waitForTimeout(500);
+await page.screenshot({path:'work/wk-tail.png'});
+await b.close(); srv.close();

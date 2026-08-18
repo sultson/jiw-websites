@@ -1,0 +1,27 @@
+{
+  "name": "@jiw/mts-badkamers",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm build && npx --yes http-server site -p 3066 -c-1 --silent",
+    "build": "node work/media.mjs && node build.mjs",
+    "preview": "npx --yes http-server site -p 4766 -c-1 --silent",
+    "lint": "tsc --noEmit -p tsconfig.worker.json",
+    "clean": "rm -rf site/m site/en site/tr site/ru site/werk site/index.html site/404.html site/sitemap.xml site/robots.txt site/favicon.svg site/_headers site/styles.*.css site/app.*.js dist-worker",
+    "media": "node work/media.mjs --force",
+    "posters": "node work/posters.mjs",
+    "ship": "pnpm build && pnpm audit:seo && wrangler deploy",
+    "ship:dry-run": "pnpm build && pnpm audit:seo && wrangler deploy --dry-run --outdir=dist-worker",
+    "audit:seo": "node work/audit-seo.mjs",
+    "audit:js-off": "node work/js-off.mjs"
+  },
+  "dependencies": {
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "playwright": "^1.49.1",
+    "typescript": "~5.8.2"
+  }
+}

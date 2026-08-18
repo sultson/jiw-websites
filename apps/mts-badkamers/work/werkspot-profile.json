@@ -1,0 +1,669 @@
+{
+ "props": {
+  "pageProps": {
+   "_sentryTraceData": "6a983a0a689a0ded1830bc348ec983fc-9b600171f48acd43-0",
+   "_sentryBaggage": "sentry-environment=production,sentry-release=18311faa54eac713d4081e29a919501d4d0c2070,sentry-public_key=d95f163efeb94a758959c59e233b2bd4,sentry-trace_id=6a983a0a689a0ded1830bc348ec983fc,sentry-org_id=1151178,sentry-sampled=false,sentry-sample_rand=0.2839146695766115,sentry-sample_rate=0.005"
+  },
+  "apolloState": {
+   "ROOT_QUERY": {
+    "__typename": "Query",
+    "experiment({\"name\":\"sticky-get-in-touch-profile-button\"})": {
+     "__typename": "Experiment",
+     "name": "sticky-get-in-touch-profile-button",
+     "assignedVariant": {
+      "__typename": "Variant",
+      "value": "control-show-original-get-in-touch"
+     }
+    },
+    "serviceProBySlugSafe({\"serviceProSlug\":\"m-techno-service\"})": {
+     "__ref": "ServicePro:{\"slug\":\"m-techno-service\"}"
+    }
+   },
+   "Image:12745978": {
+    "__typename": "Image",
+    "id": 12745978,
+    "sizes": {
+     "__typename": "ImageSizes",
+     "medium": "https://www.werkspot.nl/images/sp/thumbnail_medium/927b9e88-dc06-4ae4-b89f-f374e92ff3f2.jpg"
+    }
+   },
+   "Locality:105": {
+    "__typename": "Locality",
+    "id": "105",
+    "name": "Apeldoorn"
+   },
+   "Location:{\"localityNode\":{\"id\":\"105\"}}": {
+    "__typename": "Location",
+    "localityNode": {
+     "__ref": "Locality:105",
+     "id": "105"
+    }
+   },
+   "Profession:2": {
+    "__typename": "Profession",
+    "id": 2,
+    "name": "Installatiebedrijf",
+    "iconSlug": "hvac-contractor"
+   },
+   "Profession:17": {
+    "__typename": "Profession",
+    "id": 17,
+    "name": "Loodgieter",
+    "iconSlug": "plumber"
+   },
+   "Profession:19": {
+    "__typename": "Profession",
+    "id": 19,
+    "name": "Tegelzetter",
+    "iconSlug": "tiler"
+   },
+   "Profession:23": {
+    "__typename": "Profession",
+    "id": 23,
+    "name": "Badkamer specialist",
+    "iconSlug": "bathroom-fitter"
+   },
+   "Consumer:2327861": {
+    "__typename": "Consumer",
+    "id": 2327861,
+    "firstName": "Stefan"
+   },
+   "ServiceRequest:{\"id\":7115312}": {
+    "__typename": "ServiceRequest",
+    "id": 7115312,
+    "slug": "badkamer-plaatsen-of-renoveren-nieuwe-badkamer-installatie",
+    "title": "Badkamer plaatsen of renoveren: Nieuwe badkamer installatie",
+    "location": {
+     "__ref": "Location:{\"localityNode\":{\"id\":\"105\"}}"
+    }
+   },
+   "Image:12736955": {
+    "__typename": "Image",
+    "id": 12736955,
+    "fileId": "8ab93a6b-bacc-4087-81cc-e3730d093a00",
+    "name": "IMG-20260805-WA0029.jpg",
+    "sizes": {
+     "__typename": "ImageSizes",
+     "small": "https://www.werkspot.nl/images/sr/small/8ab93a6b-bacc-4087-81cc-e3730d093a00.jpg",
+     "medium": "https://www.werkspot.nl/images/sr/medium/8ab93a6b-bacc-4087-81cc-e3730d093a00.jpg",
+     "original": "https://www.werkspot.nl/images/sr/original/8ab93a6b-bacc-4087-81cc-e3730d093a00.jpg"
+    }
+   },
+   "Image:12736956": {
+    "__typename": "Image",
+    "id": 12736956,
+    "fileId": "d753191f-71cb-4a13-8666-4f072cd9658f",
+    "name": "IMG-20260805-WA0022.jpg",
+    "sizes": {
+     "__typename": "ImageSizes",
+     "small": "https://www.werkspot.nl/images/sr/small/d753191f-71cb-4a13-8666-4f072cd9658f.jpg",
+     "medium": "https://www.werkspot.nl/images/sr/medium/d753191f-71cb-4a13-8666-4f072cd9658f.jpg",
+     "original": "https://www.werkspot.nl/images/sr/original/d753191f-71cb-4a13-8666-4f072cd9658f.jpg"
+    }
+   },
+   "Image:12736957": {
+    "__typename": "Image",
+    "id": 12736957,
+    "fileId": "a86aa84a-8985-405e-b2a2-6bf54082f16c",
+    "name": "IMG-20260805-WA0028.jpg",
+    "sizes": {
+     "__typename": "ImageSizes",
+     "small": "https://www.werkspot.nl/images/sr/small/a86aa84a-8985-405e-b2a2-6bf54082f16c.jpg",
+     "medium": "https://www.werkspot.nl/images/sr/medium/a86aa84a-8985-405e-b2a2-6bf54082f16c.jpg",
+     "original": "https://www.werkspot.nl/images/sr/original/a86aa84a-8985-405e-b2a2-6bf54082f16c.jpg"
+    }
+   },
+   "ConsumerReview:996134": {
+    "__typename": "ConsumerReview",
+    "id": "996134",
+    "averageRatingScore": 10,
+    "createdAt": "2026-08-03T10:31:53+00:00",
+    "updatedAt": "2026-08-09T19:35:17+00:00",
+    "clientExperience": "Zeer tevreden over Mike, hij heeft de complete installatie van onze badkamer verzorgd. Mike heeft oog voor detail en denkt goed mee. Ik kan hem aan iedereen aanraden. ",
+    "status": "APPROVED",
+    "isAnonymous": false,
+    "displayName": null,
+    "consumer": {
+     "__ref": "Consumer:2327861"
+    },
+    "serviceRequest": {
+     "__ref": "ServiceRequest:{\"id\":7115312}"
+    },
+    "images": [
+     {
+      "__ref": "Image:12736955"
+     },
+     {
+      "__ref": "Image:12736956"
+     },
+     {
+      "__ref": "Image:12736957"
+     }
+    ],
+    "response": null
+   },
+   "Consumer:2746160": {
+    "__typename": "Consumer",
+    "id": 2746160,
+    "firstName": "Floris"
+   },
+   "Locality:112": {
+    "__typename": "Locality",
+    "id": "112",
+    "name": "Arnhem"
+   },
+   "Location:{\"localityNode\":{\"id\":\"112\"}}": {
+    "__typename": "Location",
+    "localityNode": {
+     "__ref": "Locality:112",
+     "id": "112"
+    }
+   },
+   "ServiceRequest:{\"id\":6740932}": {
+    "__typename": "ServiceRequest",
+    "id": 6740932,
+    "slug": "badkamer-plaatsen-of-renoveren-nieuwe-badkamer-installatie-6-m2",
+    "title": "Badkamer plaatsen of renoveren: Nieuwe badkamer installatie; 6 m²",
+    "location": {
+     "__ref": "Location:{\"localityNode\":{\"id\":\"112\"}}"
+    }
+   },
+   "Image:12560380": {
+    "__typename": "Image",
+    "id": 12560380,
+    "fileId": "432665e7-23ba-4953-aa43-151d115cc9ec",
+    "name": "IMG_8236.jpeg",
+    "sizes": {
+     "__typename": "ImageSizes",
+     "small": "https://www.werkspot.nl/images/sr/small/432665e7-23ba-4953-aa43-151d115cc9ec.jpg",
+     "medium": "https://www.werkspot.nl/images/sr/medium/432665e7-23ba-4953-aa43-151d115cc9ec.jpg",
+     "original": "https://www.werkspot.nl/images/sr/original/432665e7-23ba-4953-aa43-151d115cc9ec.jpg"
+    }
+   },
+   "Image:12560381": {
+    "__typename": "Image",
+    "id": 12560381,
+    "fileId": "469e1c42-89a8-4c5b-9a15-686e68f84f1e",
+    "name": "IMG_8240.jpeg",
+    "sizes": {
+     "__typename": "ImageSizes",
+     "small": "https://www.werkspot.nl/images/sr/small/469e1c42-89a8-4c5b-9a15-686e68f84f1e.jpg",
+     "medium": "https://www.werkspot.nl/images/sr/medium/469e1c42-89a8-4c5b-9a15-686e68f84f1e.jpg",
+     "original": "https://www.werkspot.nl/images/sr/original/469e1c42-89a8-4c5b-9a15-686e68f84f1e.jpg"
+    }
+   },
+   "Image:12560382": {
+    "__typename": "Image",
+    "id": 12560382,
+    "fileId": "1bdd7f2c-b67a-47ef-9038-b9896769adac",
+    "name": "IMG_8244.jpeg",
+    "sizes": {
+     "__typename": "ImageSizes",
+     "small": "https://www.werkspot.nl/images/sr/small/1bdd7f2c-b67a-47ef-9038-b9896769adac.jpg",
+     "medium": "https://www.werkspot.nl/images/sr/medium/1bdd7f2c-b67a-47ef-9038-b9896769adac.jpg",
+     "original": "https://www.werkspot.nl/images/sr/original/1bdd7f2c-b67a-47ef-9038-b9896769adac.jpg"
+    }
+   },
+   "Image:12560383": {
+    "__typename": "Image",
+    "id": 12560383,
+    "fileId": "d650ff07-6cbc-44c1-8c11-4b5d0bf23477",
+    "name": "IMG_8245.jpeg",
+    "sizes": {
+     "__typename": "ImageSizes",
+     "small": "https://www.werkspot.nl/images/sr/small/d650ff07-6cbc-44c1-8c11-4b5d0bf23477.jpg",
+     "medium": "https://www.werkspot.nl/images/sr/medium/d650ff07-6cbc-44c1-8c11-4b5d0bf23477.jpg",
+     "original": "https://www.werkspot.nl/images/sr/original/d650ff07-6cbc-44c1-8c11-4b5d0bf23477.jpg"
+    }
+   },
+   "ConsumerReview:979007": {
+    "__typename": "ConsumerReview",
+    "id": "979007",
+    "averageRatingScore": 10,
+    "createdAt": "2026-06-02T14:28:18+00:00",
+    "updatedAt": "2026-06-02T14:30:46+00:00",
+    "clientExperience": "Geweldig geholpen door Mike, hij heeft onze hele badkamer gedaan. Van het sloopwerk tot het volledig installeren van alles. Mike kwam zijn afspraken altijd na. Absoluut aan te raden!!",
+    "status": "APPROVED",
+    "isAnonymous": false,
+    "displayName": null,
+    "consumer": {
+     "__ref": "Consumer:2746160"
+    },
+    "serviceRequest": {
+     "__ref": "ServiceRequest:{\"id\":6740932}"
+    },
+    "images": [
+     {
+      "__ref": "Image:12560380"
+     },
+     {
+      "__ref": "Image:12560381"
+     },
+     {
+      "__ref": "Image:12560382"
+     },
+     {
+      "__ref": "Image:12560383"
+     }
+    ],
+    "response": null
+   },
+   "ServiceRequest:{\"id\":6734958}": {
+    "__typename": "ServiceRequest",
+    "id": 6734958,
+    "slug": "badkamer-plaatsen-of-renoveren-volledige-renovatie-10-m2",
+    "title": "Badkamer plaatsen of renoveren: Volledige renovatie; 10 m²",
+    "location": {
+     "__ref": "Location:{\"localityNode\":{\"id\":\"112\"}}"
+    }
+   },
+   "ReviewResponse:82733": {
+    "__typename": "ReviewResponse",
+    "id": "82733",
+    "response": "If you want work at prices below market prices, contact amateurs",
+    "createdAt": "2026-01-03T15:39:58+00:00",
+    "updatedAt": null,
+    "images": []
+   },
+   "ConsumerReview:938063": {
+    "__typename": "ConsumerReview",
+    "id": "938063",
+    "averageRatingScore": 2,
+    "createdAt": "2026-01-02T13:34:05+00:00",
+    "updatedAt": "2026-01-02T13:34:05+00:00",
+    "clientExperience": null,
+    "status": "APPROVED",
+    "isAnonymous": true,
+    "displayName": null,
+    "consumer": null,
+    "serviceRequest": {
+     "__ref": "ServiceRequest:{\"id\":6734958}"
+    },
+    "images": [],
+    "response": {
+     "__ref": "ReviewResponse:82733"
+    }
+   },
+   "Locality:2012": {
+    "__typename": "Locality",
+    "id": "2012",
+    "name": "Swifterbant"
+   },
+   "Location:{\"localityNode\":{\"id\":\"2012\"}}": {
+    "__typename": "Location",
+    "localityNode": {
+     "__ref": "Locality:2012",
+     "id": "2012"
+    }
+   },
+   "ServiceRequest:{\"id\":6424246}": {
+    "__typename": "ServiceRequest",
+    "id": 6424246,
+    "slug": "badkamer-plaatsen-of-renoveren",
+    "title": "Badkamer plaatsen of renoveren",
+    "location": {
+     "__ref": "Location:{\"localityNode\":{\"id\":\"2012\"}}"
+    }
+   },
+   "ConsumerReview:882162": {
+    "__typename": "ConsumerReview",
+    "id": "882162",
+    "averageRatingScore": 10,
+    "createdAt": "2025-06-06T05:45:11+00:00",
+    "updatedAt": "2025-06-06T05:45:11+00:00",
+    "clientExperience": null,
+    "status": "APPROVED",
+    "isAnonymous": true,
+    "displayName": null,
+    "consumer": null,
+    "serviceRequest": {
+     "__ref": "ServiceRequest:{\"id\":6424246}"
+    },
+    "images": [],
+    "response": null
+   },
+   "Consumer:591160": {
+    "__typename": "Consumer",
+    "id": 591160,
+    "firstName": "Martin"
+   },
+   "Locality:976": {
+    "__typename": "Locality",
+    "id": "976",
+    "name": "Huissen"
+   },
+   "Location:{\"localityNode\":{\"id\":\"976\"}}": {
+    "__typename": "Location",
+    "localityNode": {
+     "__ref": "Locality:976",
+     "id": "976"
+    }
+   },
+   "ServiceRequest:{\"id\":6303186}": {
+    "__typename": "ServiceRequest",
+    "id": 6303186,
+    "slug": "badkamer-plaatsen-of-renoveren-3-m2-complete-renovatie",
+    "title": "Badkamer plaatsen of renoveren: 3 m²; Complete renovatie",
+    "location": {
+     "__ref": "Location:{\"localityNode\":{\"id\":\"976\"}}"
+    }
+   },
+   "Image:11471129": {
+    "__typename": "Image",
+    "id": 11471129,
+    "fileId": "54c02142-6ec8-44f2-9904-4bc966b520eb",
+    "name": "8d7d87dd-fbc5-4e2a-9aca-56c0e199d605.jpeg",
+    "sizes": {
+     "__typename": "ImageSizes",
+     "small": "https://www.werkspot.nl/images/sr/small/54c02142-6ec8-44f2-9904-4bc966b520eb.jpg",
+     "medium": "https://www.werkspot.nl/images/sr/medium/54c02142-6ec8-44f2-9904-4bc966b520eb.jpg",
+     "original": "https://www.werkspot.nl/images/sr/original/54c02142-6ec8-44f2-9904-4bc966b520eb.jpg"
+    }
+   },
+   "ConsumerReview:867078": {
+    "__typename": "ConsumerReview",
+    "id": "867078",
+    "averageRatingScore": 10,
+    "createdAt": "2025-04-14T11:53:17+00:00",
+    "updatedAt": "2025-04-14T12:00:26+00:00",
+    "clientExperience": "Vakman met een enorm gevoel voor detail! De badkamer is werkelijk prachtig. Prettige communicatie en erg net gewerkt. ",
+    "status": "APPROVED",
+    "isAnonymous": false,
+    "displayName": null,
+    "consumer": {
+     "__ref": "Consumer:591160"
+    },
+    "serviceRequest": {
+     "__ref": "ServiceRequest:{\"id\":6303186}"
+    },
+    "images": [
+     {
+      "__ref": "Image:11471129"
+     }
+    ],
+    "response": null
+   },
+   "Locality:2469": {
+    "__typename": "Locality",
+    "id": "2469",
+    "name": "Zutphen"
+   },
+   "Service:15": {
+    "__typename": "Service",
+    "id": 15,
+    "name": "Badkamer plaatsen of renoveren",
+    "slug": "badkamer-plaatsen-renoveren",
+    "defaultJobFunnel": {
+     "__typename": "JobFunnel",
+     "slug": "badkamer-plaatsen-renoveren"
+    }
+   },
+   "Service:222": {
+    "__typename": "Service",
+    "id": 222,
+    "name": "Toilet renovatie",
+    "slug": "toiletruimte-verbouwen",
+    "defaultJobFunnel": {
+     "__typename": "JobFunnel",
+     "slug": "toiletruimte-verbouwen"
+    }
+   },
+   "Service:238": {
+    "__typename": "Service",
+    "id": 238,
+    "name": "Douche of bad reparatie",
+    "slug": "douche-bad-reparatie",
+    "defaultJobFunnel": {
+     "__typename": "JobFunnel",
+     "slug": "douche-bad-reparatie"
+    }
+   },
+   "Service:142": {
+    "__typename": "Service",
+    "id": 142,
+    "name": "IKEA badkamer",
+    "slug": "ikea-badkamer",
+    "defaultJobFunnel": {
+     "__typename": "JobFunnel",
+     "slug": "ikea-badkamer"
+    }
+   },
+   "Service:79": {
+    "__typename": "Service",
+    "id": 79,
+    "name": "Kraan plaatsen, vervangen of repareren",
+    "slug": "kraan-plaatsen-vervangen-of-repareren",
+    "defaultJobFunnel": {
+     "__typename": "JobFunnel",
+     "slug": "kraan-plaatsen-vervangen-of-repareren"
+    }
+   },
+   "Service:87": {
+    "__typename": "Service",
+    "id": 87,
+    "name": "Radiator (ver)plaatsen of vervangen",
+    "slug": "radiator-verplaatsen-vervangen",
+    "defaultJobFunnel": {
+     "__typename": "JobFunnel",
+     "slug": "radiator-verplaatsen-vervangen"
+    }
+   },
+   "Service:158": {
+    "__typename": "Service",
+    "id": 158,
+    "name": "Sanitair plaatsen of vervangen",
+    "slug": "sanitair-plaatsen-vervangen",
+    "defaultJobFunnel": {
+     "__typename": "JobFunnel",
+     "slug": "sanitair-plaatsen-vervangen"
+    }
+   },
+   "Service:34": {
+    "__typename": "Service",
+    "id": 34,
+    "name": "Wand- of vloertegels zetten",
+    "slug": "wand-vloertegels-zetten",
+    "defaultJobFunnel": {
+     "__typename": "JobFunnel",
+     "slug": "wand-vloertegels-zetten"
+    }
+   },
+   "Service:5": {
+    "__typename": "Service",
+    "id": 5,
+    "name": "Waterleiding en riolering (ver)plaatsen of vervangen",
+    "slug": "waterleiding-riolering-verplaatsen-vervangen",
+    "defaultJobFunnel": {
+     "__typename": "JobFunnel",
+     "slug": "waterleiding-riolering-verplaatsen-vervangen"
+    }
+   },
+   "ServicePro:{\"slug\":\"m-techno-service\"}": {
+    "__typename": "ServicePro",
+    "id": 2595892,
+    "slug": "m-techno-service",
+    "ableToInteract": true,
+    "firstAbleToInteractAt": "2024-01-04T09:57:20+00:00",
+    "badges": [],
+    "isApproved": true,
+    "companyNumber": "91131537",
+    "verifications": [
+     "VALID_ID",
+     "VERIFIED_LICENSE"
+    ],
+    "warrantyIsProvided": true,
+    "externalUrl": null,
+    "companyProfile": {
+     "__typename": "CompanyProfile",
+     "slug": "m-techno-service",
+     "companyName": "M.Techno Service",
+     "rating": 8.6,
+     "companyBio": "M.Techno Service kan je helpen met je Installatiebedrijf, Loodgieter, Tegelzetter, Badkamer specialist klus in Apeldoorn en omgeving. Zij staan klaar om al je vragen over CV-ketel installeren of vervangen, Waterleiding en riolering (ver)plaatsen of vervangen, Badkamer plaatsen of renoveren, Wand- of vloertegels zetten, Kraan plaatsen, vervangen of repareren... te beantwoorden. Neem direct contact op met M.Techno Service om je klus te bespreken, en een prijsopgave aan te vragen.",
+     "companyLogo": {
+      "__ref": "Image:12745978"
+     },
+     "hasContactDetailsOnCompanyBio": false,
+     "primaryLocation": {
+      "__ref": "Location:{\"localityNode\":{\"id\":\"105\"}}"
+     },
+     "professions": [
+      {
+       "__ref": "Profession:2"
+      },
+      {
+       "__ref": "Profession:17"
+      },
+      {
+       "__ref": "Profession:19"
+      },
+      {
+       "__ref": "Profession:23"
+      }
+     ]
+    },
+    "reviews({\"first\":5})": {
+     "__typename": "ReviewsConnection",
+     "totalCount": 7,
+     "edges": [
+      {
+       "__typename": "ReviewsEdge",
+       "cursor": "YXJyYXljb25uZWN0aW9uOjA=",
+       "isRecommendation": true,
+       "node": {
+        "__ref": "ConsumerReview:996134"
+       }
+      },
+      {
+       "__typename": "ReviewsEdge",
+       "cursor": "YXJyYXljb25uZWN0aW9uOjE=",
+       "isRecommendation": true,
+       "node": {
+        "__ref": "ConsumerReview:979007"
+       }
+      },
+      {
+       "__typename": "ReviewsEdge",
+       "cursor": "YXJyYXljb25uZWN0aW9uOjI=",
+       "isRecommendation": false,
+       "node": {
+        "__ref": "ConsumerReview:938063"
+       }
+      },
+      {
+       "__typename": "ReviewsEdge",
+       "cursor": "YXJyYXljb25uZWN0aW9uOjM=",
+       "isRecommendation": true,
+       "node": {
+        "__ref": "ConsumerReview:882162"
+       }
+      },
+      {
+       "__typename": "ReviewsEdge",
+       "cursor": "YXJyYXljb25uZWN0aW9uOjQ=",
+       "isRecommendation": true,
+       "node": {
+        "__ref": "ConsumerReview:867078"
+       }
+      }
+     ]
+    },
+    "workArea": {
+     "__typename": "WorkArea",
+     "locality": {
+      "__ref": "Locality:2469"
+     }
+    },
+    "permittedServices": {
+     "__typename": "ServiceConnection",
+     "edges": [
+      {
+       "__typename": "ServiceEdge",
+       "node": {
+        "__ref": "Service:15"
+       }
+      },
+      {
+       "__typename": "ServiceEdge",
+       "node": {
+        "__ref": "Service:222"
+       }
+      },
+      {
+       "__typename": "ServiceEdge",
+       "node": {
+        "__ref": "Service:238"
+       }
+      },
+      {
+       "__typename": "ServiceEdge",
+       "node": {
+        "__ref": "Service:142"
+       }
+      },
+      {
+       "__typename": "ServiceEdge",
+       "node": {
+        "__ref": "Service:79"
+       }
+      },
+      {
+       "__typename": "ServiceEdge",
+       "node": {
+        "__ref": "Service:87"
+       }
+      },
+      {
+       "__typename": "ServiceEdge",
+       "node": {
+        "__ref": "Service:158"
+       }
+      },
+      {
+       "__typename": "ServiceEdge",
+       "node": {
+        "__ref": "Service:34"
+       }
+      },
+      {
+       "__typename": "ServiceEdge",
+       "node": {
+        "__ref": "Service:5"
+       }
+      }
+     ]
+    },
+    "serviceProPublicProfile": null,
+    "answeredQuestions({\"first\":5})": {
+     "__typename": "AskATradeAnsweredQuestionsConnection",
+     "totalCount": 0,
+     "edges": []
+    }
+   }
+  },
+  "host": "www.werkspot.nl",
+  "universalCookies": {
+   "changeListeners": [],
+   "HAS_DOCUMENT_COOKIE": false,
+   "cookies": {},
+   "defaultSetOptions": {}
+  },
+  "ssrSafeHeaders": {}
+ },
+ "page": "/i18n-service-pro/[serviceProSlug]",
+ "query": {
+  "serviceProSlug": "m-techno-service"
+ },
+ "buildId": "18311faa54eac713d4081e29a919501d4d0c2070",
+ "isFallback": false,
+ "isExperimentalCompile": false,
+ "appGip": true,
+ "scriptLoader": [
+  {
+   "id": "google-tag-manager",
+   "strategy": "afterInteractive",
+   "type": "text/plain",
+   "data-cookieconsent": "",
+   "children": " \n              (function(w,d,s,l,i){ \n              w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'}); \n              var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:''; \n              j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); \n              })(window,document,'script','dataLayer','GTM-KB78DR'); \n            "
+  }
+ ]
+}

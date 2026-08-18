@@ -28,7 +28,8 @@
     "dev:toonoverleven": "pnpm --filter @jiw/toonoverleven dev",
     "dev:winterswijkvakantiehuis": "pnpm --filter @jiw/winterswijkvakantiehuis dev",
     "dev:fleurig": "pnpm --filter @jiw/fleurig dev",
-    "dev:3-diaspora": "pnpm --filter @jiw/3-diaspora dev"
+    "dev:3-diaspora": "pnpm --filter @jiw/3-diaspora dev",
+    "dev:mts-badkamers": "pnpm --filter @jiw/mts-badkamers dev"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

@@ -1,0 +1,1107 @@
+/* MTS Badkamers */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Huisstijl-fonts, zelf gehost. Instrument Serif voor koppen, Satoshi voor de
+   rest -- allebei uit de merkkaart. Zelf hosten en niet via Google/Fontshare:
+   een derde partij minder in het kritieke pad en geen extra DNS-ronde. */
+@font-face { font-family: 'Instrument Serif'; src: url('/f/instrumentserif-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/f/satoshi-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/f/satoshi-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Satoshi'; src: url('/f/satoshi-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+
+:root {
+  /* Kleuren uit de merkkaart: #111418 #5A6066 #BFC3C7 #C9B59B #F6F6F4 */
+  --ink: #111418;
+  --ink-2: #5a6066;
+  --ink-3: #8d9299;
+  --paper: #f6f6f4;
+  --paper-2: #ecebe7;
+  --line: #dedcd7;
+  --line-2: #bfc3c7;
+  /* Tan is de merkkleur, maar #C9B59B op #F6F6F4 haalt geen 2:1 en is dus
+     onbruikbaar voor tekst. Vandaar twee tinten van dezelfde kleur: --tan
+     decoratief (op donker, en voor lijnen/balken), --clay voor tekst op papier
+     (5:1). Zelfde hoek op de kleurencirkel, alleen donkerder. */
+  --tan: #c9b59b;
+  --clay: #7d6849;
+  --clay-d: #665338;
+  --dark: #111418;
+  --dark-2: #191d23;
+  /* Alleen voor de hero. De footer en de dock blijven --dark; de hero was daar
+     even donker als de footer en dat maakte de bovenkant van de pagina zwaar. */
+  --hero-bg: #1d2026;
+  --wa: #25d366;
+  --wa-d: #128c7e;
+  /* De kraan in het beeldmerk. Op papier de teal uit het logo zelf; op donker
+     (footer, dock) wordt hij lichter gezet, anders zakt hij weg in de grond. */
+  --logo-teal: #1c7f7c;
+  --r: 4px;
+  --wrap: 1240px;
+  --serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --sans: 'Satoshi', Inter, system-ui, -apple-system, sans-serif;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* Instrument Serif heeft alleen een 400. font-weight: 500 zou de browser een
+   nepvet laten tekenen, dus expliciet 400 met wat negatieve tracking. */
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.08; letter-spacing: -0.01em; margin: 0; }
+h1 { font-size: clamp(2.6rem, 6vw, 4.7rem); }
+h2 { font-size: clamp(2rem, 3.6vw, 3.1rem); }
+h3 { font-size: 1.08rem; font-family: var(--sans); font-weight: 500; letter-spacing: 0; line-height: 1.4; }
+p { margin: 0 0 1.05em; }
+
+.wrap { width: min(100% - 44px, var(--wrap)); margin-inline: auto; }
+.hidden { display: none !important; }
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 60;
+  background: rgba(246, 246, 244, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-in { display: flex; align-items: center; gap: 26px; height: 76px; }
+/* ---------- merklockup ---------- */
+/* Het beeldmerk uit de huisstijl: de M met het tan streepje eronder. De M staat
+   op currentColor zodat dezelfde markup op papier (donker) en in de footer
+   (licht) werkt; alleen het streepje houdt de merkkleur. */
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-right: auto; color: var(--ink); }
+.brand-mark { width: 38px; height: 37px; flex: none; display: block; color: var(--ink); }
+.brand-mark .lg-b { fill: currentColor; }
+.brand-mark .lg-t { fill: var(--logo-teal); }
+.brand-txt { display: flex; flex-direction: column; gap: 2px; line-height: 1; }
+/* De wordmark uit de merkkaart: brede tracking, geen vet. */
+.brand-txt b { font-size: 0.9rem; font-weight: 500; letter-spacing: 0.12em; white-space: nowrap; }
+.brand-txt i { font-style: normal; font-size: 0.58rem; letter-spacing: 0.3em; color: var(--clay); font-weight: 500; }
+.nav-links { display: flex; gap: 26px; }
+.nav-links a { text-decoration: none; font-size: 0.92rem; color: var(--ink-2); padding: 4px 0; border-bottom: 1px solid transparent; }
+.nav-links a:hover, .nav-links a.on { color: var(--ink); border-color: var(--clay); }
+.burger { display: none; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  padding: 14px 24px; border-radius: 999px;
+  background: var(--ink); color: var(--paper);
+  font-size: 0.94rem; font-weight: 500; text-decoration: none;
+  border: 1px solid var(--ink); cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-sm { padding: 10px 17px; font-size: 0.87rem; }
+.btn-lg { padding: 16px 28px; font-size: 1rem; }
+.btn-wa { background: var(--wa-d); border-color: var(--wa-d); color: #fff; }
+.btn-wa:hover { background: #0f7a6d; box-shadow: 0 8px 24px rgba(18, 140, 126, 0.28); }
+.btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.5); }
+.btn-ghost:hover { background: rgba(255,255,255,0.12); }
+.btn-ghost-l { background: transparent; color: #fff; border-color: rgba(255,255,255,0.45); }
+.btn-ghost-l:hover { background: rgba(255,255,255,0.12); }
+.btn i { font-style: normal; }
+.wa-i { width: 19px; height: 19px; fill: currentColor; flex: none; }
+
+/* ---------- hero ---------- */
+/* .only-wide is standaard zichtbaar en verdwijnt in de mobiele media query;
+   .only-narrow is het spiegelbeeld en moet hier dus uit. */
+.only-narrow { display: none; }
+/* Was --dark (#111418), gelijk aan de footer: dat leest als een zwart gat waar de
+   foto in geplakt zit en dat is precies de klacht ("een tikje te donker"). Nu een
+   warme grafiettint uit dezelfde familie als de merkkleur, plus een zachte
+   opklaring achter de tekstkolom. Contrast blijft ruim: wit op #1d2026 is 14:1. */
+/* De opklaring zit in de background-shorthand en niet in een ::before: een
+   gepositioneerde pseudo met z-index 0 schildert over de niet-gepositioneerde
+   tekstkolom heen en legt dan een waas over de kop. */
+.hero {
+  position: relative; color: #fff; overflow: hidden;
+  background:
+    radial-gradient(75% 90% at 22% 40%, rgba(201, 181, 155, 0.13), rgba(201, 181, 155, 0) 70%),
+    var(--hero-bg);
+}
+/* De video ligt over de foto, niet in de plaats ervan. object-fit: cover, dus de
+   9:16-video vult zowel het 4/5-kaartje op desktop als het volle scherm op mobiel.
+   Start onzichtbaar en komt pas in beeld als hij echt speelt (.is-live, gezet in
+   app.js) -- anders zie je bij geblokkeerde autoplay de poster van de kale
+   bouwstaat als hero staan, en dat is de slechtst denkbare binnenkomer. */
+.hero-vid {
+  position: absolute; inset: 0; z-index: 1;
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transition: opacity 0.5s ease;
+}
+.hero-vid.is-live { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .hero-vid { display: none; } }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 64px 0 66px; }
+/* Flexkolom met expliciete volgorde. In de DOM staat de trust-chip vooraan (een
+   schermlezer hoort hem dan meteen bij de kop), maar visueel hoort hij onder
+   de knoppen: bewijs pal naast de handeling. Bovenaan stond hij bovendien direct
+   boven de kicker, en dan lees je twee regels klein grut voordat de kop begint --
+   op mobiel kostte dat ook nog een hele regel middenin de foto. */
+.hero-txt { max-width: 560px; display: flex; flex-direction: column; }
+.hero-kick { order: 1; }
+.hero h1 { order: 2; }
+.hero-sub { order: 3; }
+.hero-cta { order: 4; }
+.trust-chip { order: 5; }
+/* Kicker boven de kop. .eyebrow bestaat al, maar die staat op var(--clay) en dat
+   is op de donkere hero (en op een foto) te weinig contrast; hier een lichtere
+   warme tint. De schaduw is stevig: op mobiel ligt deze regel over de lichte
+   spiegelwand en zonder schaduw zakt de tint daar weg. */
+.hero-kick {
+  font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600;
+  color: var(--tan); margin: 0 0 14px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 2px 16px rgba(0,0,0,0.75);
+}
+.hero h1 { color: #fff; margin-bottom: 22px; }
+/* Geen kleuraccent in de kop geprobeerd (tweede zinsdeel in kleiwarm): het staat
+   leuk op een egale ondergrond, maar op mobiel ligt de kop over een lichte
+   tegelwand en zakt die tint daar weg. Wit heeft daar het meeste contrast, en
+   contrast is op een foto belangrijker dan een kleuraccent. De kicker draagt de
+   warme tint nu alleen. */
+.hero-sub { font-size: 1.08rem; color: rgba(255,255,255,0.78); margin-bottom: 30px; }
+.hero-cta { display: flex; gap: 13px; flex-wrap: wrap; }
+.hero-art { position: relative; }
+.hero-art figure { margin: 0; }
+/* Hoogte via padding-top en niet via aspect-ratio: een aspect-ratio-doos met
+   alleen absolute kinderen klapt in WebKit dicht naar 0 bij 0 (zie .ba-stage). */
+.hero-shot {
+  position: relative; width: 100%; padding-top: 112%; overflow: hidden;
+  border-radius: var(--r); box-shadow: 0 30px 70px rgba(0,0,0,0.45); background: #0d0f12;
+}
+.hero-shot picture { position: absolute; inset: 0; display: block; }
+.hero-shot img { width: 100%; height: 100%; object-fit: cover; }
+/* Warme gloed achter de foto: de hero is donkerbruin en de foto is gedempt beige,
+   zonder dit zit het beeld dood op de achtergrond geplakt. */
+.hero-art::before {
+  content: ""; position: absolute; z-index: 0;
+  left: -8%; right: -8%; top: 4%; bottom: 4%;
+  background: radial-gradient(60% 55% at 50% 45%, rgba(201, 181, 155, 0.30), rgba(201, 181, 155, 0) 72%);
+  filter: blur(24px); pointer-events: none;
+}
+.hero-a { position: relative; z-index: 1; }
+.hero-cap {
+  margin-top: 14px; font-size: 0.8rem; letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.55); text-align: center;
+}
+.trust-chip {
+  display: inline-flex; align-items: center; gap: 9px;
+  align-self: flex-start; margin: 20px 0 0;
+  background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.24);
+  padding: 8px 16px; border-radius: 999px; font-size: 0.86rem; color: #fff;
+  backdrop-filter: blur(6px);
+}
+/* Vinkje in plaats van de sterrenbalk. flex:none, anders drukt de tekst ernaast
+   het icoon smal bij weinig ruimte. */
+.chk { width: 15px; height: 15px; flex: none; color: #7fc48b; display: block; }
+.hero-strip { position: relative; border-top: 1px solid rgba(255,255,255,0.14); background: rgba(0,0,0,0.25); }
+.strip-in { display: flex; flex-wrap: wrap; gap: 12px 40px; padding: 16px 0; color: rgba(255,255,255,0.82); font-size: 0.82rem; }
+.strip-in span { position: relative; padding-left: 18px; }
+.strip-in span::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--clay); }
+
+/* ---------- sections ---------- */
+.sec { padding: 72px 0; }
+/* kop + lead naast elkaar in plaats van onder elkaar: scheelt een halve sectie */
+.sec-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; }
+.sec-head .sec-h, .sec-head .sec-lead, .sec-head .rev-score { margin-bottom: 0; }
+.sec-alt { background: var(--paper-2); }
+.sec-dark { background: var(--dark); color: rgba(255,255,255,0.9); }
+.sec-dark h2, .sec-dark h3 { color: #fff; }
+.eyebrow { display: block; font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay); margin-bottom: 14px; font-weight: 600; }
+.eyebrow-l { color: var(--tan); }
+.sec-h { margin-bottom: 14px; max-width: 20ch; }
+.sec-lead { color: var(--ink-2); max-width: 62ch; margin-bottom: 44px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1.25fr; gap: 56px; }
+.wide-gap { gap: 76px; }
+.va-center { align-items: center; }
+.intro-txt { color: var(--ink-2); }
+.intro-txt p:last-child { margin-bottom: 0; }
+.ticks { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 11px; }
+.ticks li { position: relative; padding-left: 30px; font-size: 0.96rem; color: var(--ink); }
+.ticks li::before { content: ""; position: absolute; left: 0; top: 7px; width: 15px; height: 8px; border-left: 2px solid var(--clay); border-bottom: 2px solid var(--clay); transform: rotate(-45deg); }
+
+/* ---------- project cards ---------- */
+.card {
+  text-decoration: none; display: flex; flex-direction: column;
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r);
+  overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(17,20,24,0.1); border-color: var(--clay); }
+.card-img { overflow: hidden; background: var(--paper-2); position: relative; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/3; transition: transform 0.5s ease; }
+.card:hover .card-img img { transform: scale(1.03); }
+.card-n {
+  position: absolute; left: 0; bottom: 0; background: var(--paper); color: var(--ink-3);
+  font-size: 0.72rem; letter-spacing: 0.1em; font-weight: 600; padding: 6px 11px;
+}
+.card-txt { padding: 24px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+.card-kick { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--clay); font-weight: 600; }
+.card h3 { font-family: var(--serif); font-weight: 500; font-size: 1.34rem; margin: 10px 0 10px; letter-spacing: -0.01em; }
+.card p { color: var(--ink-2); font-size: 0.9rem; margin-bottom: 16px; }
+.card-go { margin-top: auto; font-size: 0.87rem; font-weight: 500; color: var(--clay); }
+
+/* ---------- diensten ---------- */
+/* Diensten als lijst met dunne scheidingen in plaats van tien kaarten met 26px
+   padding. Op een telefoon vervalt de omschrijving; de titels zeggen het al. */
+.svc-l { list-style: none; margin: 22px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.svc-l li { display: flex; flex-direction: column; gap: 2px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.svc-l b { font-weight: 500; font-size: 0.98rem; }
+.svc-l span { color: var(--ink-2); font-size: 0.87rem; }
+
+.svc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.svc-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 26px; }
+.sec-alt .svc-card { background: #fff; }
+.svc-lead { grid-column: span 2; background: var(--dark); color: rgba(255,255,255,0.82); border-color: var(--dark); }
+.svc-lead h3 { color: #fff; font-family: var(--serif); font-weight: 500; font-size: 1.5rem; }
+.svc-card h3 { margin-bottom: 8px; }
+.svc-card p { color: var(--ink-2); font-size: 0.9rem; margin: 0; }
+.svc-lead p { color: rgba(255,255,255,0.72); }
+
+/* ---------- werkwijze ---------- */
+.steps-head p { color: rgba(255,255,255,0.72); max-width: 40ch; margin-bottom: 28px; }
+.steps { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 0; }
+.steps li { display: flex; gap: 16px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
+.steps li:first-child { border-top: 1px solid rgba(255,255,255,0.12); }
+.steps .n { font-family: var(--serif); color: var(--clay); font-size: 0.9rem; padding-top: 2px; flex: none; }
+.steps h3 { margin-bottom: 1px; font-size: 0.98rem; font-weight: 500; }
+.steps p { color: rgba(255,255,255,0.66); font-size: 0.87rem; margin: 0; }
+
+/* ---------- reviews ---------- */
+.revs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.rev { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 24px; display: flex; flex-direction: column; }
+.rev p { font-family: var(--serif); font-size: 1rem; line-height: 1.5; margin: 0 0 16px; }
+.rev cite { font-style: normal; font-size: 0.9rem; font-weight: 500; margin-top: auto; display: flex; flex-direction: column; }
+.rev cite i { font-style: normal; font-size: 0.79rem; color: var(--ink-3); font-weight: 400; margin-top: 2px; }
+.rev-link { margin-top: 28px; font-size: 0.92rem; }
+.rev-link a { color: var(--clay); }
+
+/* ---------- over ---------- */
+/* vaste verhouding: een staande bronfoto maakte deze sectie op mobiel anders
+   twee schermen hoog */
+.over-img { margin: 0; }
+/* De radius zit op de picture, niet op de figure: de figcaption eronder hoort
+   buiten het kader te vallen. */
+.over-img picture { display: block; border-radius: var(--r); overflow: hidden; }
+/* Vierkant en vanaf onderen uitgesneden: de bronfoto (970x1095) is een selfie waarop
+   de vier gezichten in de onderste tweederde zitten en de bovenrand kale wand is. Bij
+   4/5 zou het kader smaller zijn dan de foto en werden links en rechts iemand afgesneden;
+   1/1 houdt de volle breedte en snijdt alleen die wand weg. */
+/* height: auto is hier geen opsmuk. De <img> heeft width/height-attributen (tegen
+   layout shift); die height komt als CSS-hint binnen en is dus een vaste hoogte, en
+   dan wordt aspect-ratio genegeerd. Zonder deze regel stond de foto op zijn volle
+   1095px - de sectie was op mobiel bijna twee schermen hoog, precies wat de vaste
+   verhouding hierboven had moeten voorkomen. */
+.over-img img { width: 100%; height: auto; aspect-ratio: 1/1; object-fit: cover; object-position: center bottom; display: block; }
+.over-img figcaption { margin-top: 12px; font-size: 0.8rem; color: var(--ink-2); }
+.facts { display: flex; gap: 40px; margin-top: 32px; flex-wrap: wrap; }
+.facts div { display: flex; flex-direction: column; }
+.facts b { font-family: var(--serif); font-size: 2.1rem; font-weight: 500; line-height: 1; }
+.facts span { font-size: 0.79rem; color: var(--ink-3); margin-top: 6px; }
+
+/* ---------- CTA ---------- */
+.sec-cta { background: var(--dark); color: #fff; text-align: center; padding: 76px 0; }
+.cta-in { max-width: 660px; margin-inline: auto; }
+.sec-cta h2 { color: #fff; margin-bottom: 16px; }
+.sec-cta p { color: rgba(255,255,255,0.74); }
+.cta-btns { display: flex; gap: 13px; justify-content: center; flex-wrap: wrap; margin: 30px 0 20px; }
+.cta-note { font-size: 0.83rem; color: rgba(255,255,255,0.5); margin: 0; }
+
+/* ---------- footer ---------- */
+.foot { background: #0b0d10; color: rgba(255,255,255,0.66); padding: 66px 0 0; font-size: 0.9rem; }
+.foot-in { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 44px; padding-bottom: 46px; }
+.foot h4 { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; margin: 0 0 16px; font-weight: 600; }
+.foot a { display: block; text-decoration: none; margin-bottom: 9px; color: rgba(255,255,255,0.66); }
+.foot a:hover { color: #fff; }
+.foot p { margin: 0 0 7px; }
+.foot-name { color: #fff; font-family: var(--serif); font-size: 1.16rem; margin: 14px 0 6px; }
+.foot-sub { max-width: 34ch; }
+.foot-wa { display: inline-flex !important; align-items: center; gap: 8px; margin-top: 14px; color: var(--wa) !important; font-weight: 500; }
+.foot-bot { display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding: 22px 0; font-size: 0.79rem; color: rgba(255,255,255,0.4); }
+
+/* ---------- project page ---------- */
+.p-hero { background: var(--dark); color: #fff; overflow: hidden; }
+.p-hero-grid { display: grid; grid-template-columns: 1fr 0.85fr; gap: 60px; align-items: center; padding: 62px 0 74px; }
+.p-hero-txt { max-width: 600px; }
+.p-hero-art { margin: 0; border-radius: var(--r); overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,0.45); }
+.p-hero-art img { width: 100%; height: auto; }
+.p-hero h1 { color: #fff; margin: 6px 0 18px; }
+.back { display: inline-block; color: rgba(255,255,255,0.78); text-decoration: none; font-size: 0.86rem; margin-bottom: 26px; }
+.back:hover { color: #fff; }
+.p-lead { font-size: 1.1rem; color: rgba(255,255,255,0.88); max-width: 62ch; }
+.chips { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 22px; }
+.chips span { border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 6px 15px; font-size: 0.79rem; color: rgba(255,255,255,0.86); }
+.p-intro { padding: 52px 0 8px; }
+.p-intro .intro-txt { font-size: 1.06rem; }
+
+.story { padding: 34px 0; }
+.story-in { max-width: 760px; margin-inline: auto; }
+.story-txt h2 { margin-bottom: 10px; }
+.story-txt p { color: var(--ink-2); }
+.story-result { background: var(--paper-2); margin-top: 26px; }
+
+/* fotos (layout zit in de rails onderaan dit bestand) */
+.ph { margin: 0; position: relative; border-radius: var(--r); overflow: hidden; background: var(--paper-2); cursor: zoom-in; }
+.ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.ph.is-portrait img { aspect-ratio: 3/4; }
+.ph.is-land img { aspect-ratio: 4/3; }
+.ph:hover img { transform: scale(1.03); }
+.ph figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 30px 16px 13px; font-size: 0.82rem; color: #fff;
+  background: linear-gradient(to top, rgba(10,12,15,0.85), transparent);
+}
+.ph .play {
+  position: absolute; inset: 0; margin: auto; width: 60px; height: 60px; border-radius: 50%;
+  background: rgba(255,255,255,0.92); pointer-events: none;
+}
+.ph .play::after { content: ""; position: absolute; inset: 0; margin: auto; width: 0; height: 0; border-left: 18px solid var(--ink); border-top: 11px solid transparent; border-bottom: 11px solid transparent; transform: translateX(3px); }
+
+.p-nav-sec { padding: 40px 0 60px; }
+.p-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; border-top: 1px solid var(--line); padding-top: 34px; }
+.p-nav a { text-decoration: none; display: flex; flex-direction: column; gap: 5px; padding: 22px 26px; border: 1px solid var(--line); border-radius: var(--r); transition: border-color 0.15s ease; }
+.p-nav a:hover { border-color: var(--ink); }
+.p-nav span { font-size: 0.74rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--clay); font-weight: 600; }
+.p-nav b { font-family: var(--serif); font-weight: 500; font-size: 1.16rem; }
+.p-nav-r { text-align: right; align-items: flex-end; }
+
+/* ---------- lightbox ---------- */
+.lb { position: fixed; inset: 0; z-index: 100; background: rgba(10,12,15,0.96); display: flex; align-items: center; justify-content: center; }
+.lb[hidden] { display: none; }
+.lb-stage { max-width: 92vw; max-height: 86vh; display: flex; align-items: center; justify-content: center; }
+.lb-stage img, .lb-stage video { max-width: 92vw; max-height: 86vh; object-fit: contain; border-radius: 3px; }
+.lb-cap { position: absolute; bottom: 22px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,0.72); font-size: 0.86rem; padding: 0 60px; }
+.lb button { position: absolute; background: rgba(255,255,255,0.1); border: 0; color: #fff; cursor: pointer; border-radius: 50%; display: grid; place-items: center; }
+.lb button:hover { background: rgba(255,255,255,0.22); }
+.lb-x { top: 20px; right: 20px; width: 46px; height: 46px; font-size: 1.9rem; line-height: 1; }
+.lb-p, .lb-n { top: 50%; transform: translateY(-50%); width: 52px; height: 52px; font-size: 2rem; line-height: 1; }
+.lb-p { left: 18px; }
+.lb-n { right: 18px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1040px) {
+  .svc { grid-template-columns: repeat(2, 1fr); }
+  .revs { grid-template-columns: 1fr; }
+  .foot-in { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 880px) {
+  html { scroll-padding-top: 68px; }
+  .nav-in { height: 68px; gap: 14px; }
+  .nav-links {
+    position: fixed; inset: 68px 0 auto; flex-direction: column; gap: 0;
+    background: var(--paper); border-bottom: 1px solid var(--line); padding: 10px 22px 22px;
+    transform: translateY(-130%); transition: transform 0.25s ease;
+  }
+  .nav-links.open { transform: translateY(0); }
+  .nav-links a { padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
+  .burger { display: grid; gap: 5px; background: none; border: 0; padding: 10px 4px; cursor: pointer; }
+  .burger span { display: block; width: 22px; height: 2px; background: var(--ink); }
+  .nav .btn-sm span { display: none; }
+  .nav .btn-sm { padding: 10px; }
+
+  .grid-2, .wide-gap { grid-template-columns: 1fr; gap: 28px; }
+  .sec { padding: 48px 0; }
+  .sec-head { grid-template-columns: 1fr; gap: 14px; }
+  .hero-grid, .p-hero-grid { grid-template-columns: 1fr; gap: 30px; padding: 40px 0 44px; }
+  .hero-txt, .p-hero-txt { max-width: none; }
+  /* Foto boven de kop en niet als los kaartje meer: op een telefoon vult hij het
+     scherm en staat de tekst er overheen. Als kaartje kostte de hero 1039px op een
+     scherm van 664 -- de knoppen stonden dus altijd onder de vouw. */
+  .hero { position: relative; }
+  .hero-art {
+    position: absolute; inset: 0; z-index: 0; order: -1; padding: 0;
+  }
+  .hero-art::before { display: none; }
+  .hero-art figure, .hero-a { height: 100%; }
+  .hero-shot {
+    height: 100%; padding-top: 0; border-radius: 0; box-shadow: none;
+  }
+  /* De hero is smaller dan de foto, dus de browser toont de volle hoogte en snijdt
+     links en rechts bij: alleen de X telt hier, een Y-percentage doet niets.
+     18% houdt de hele ronde spiegel in beeld -- op 38% liep de linkerrand van de
+     halo het kader uit en was het een halve cirkel. */
+  .hero-shot img { object-position: 18% center; }
+  .hero-cap { display: none; }
+  /* Verloop van de foto naar de sectiekleur. Het hield de foto eerder al vanaf 24%
+     tegen (0,22 zwart) en zat op 44% al op 0,72: de bovenste helft van het beeld
+     werd daardoor grijs en de foto verloor zijn contrast, terwijl de tekst pas veel
+     lager begint. Nu blijft de foto tot 40% zo goed als onaangeraakt en gaat het
+     verloop daarna in een korte klap naar de sectiekleur -- meer contrast in het
+     beeld en tegelijk een donkerdere ondergrond onder de tekst. */
+  /* Lichter gezet na "hij is een tikje te donker". Het verloop liep op 54% al op
+     0,88 en op 66% op 0,97, dus tweederde van het beeld was praktisch dichtgeverfd
+     en je zag vooral zwart met een randje badkamer. Nu blijft de foto tot 46%
+     onaangeraakt en haalt hij pas onderaan de sectiekleur. De leesbaarheid komt
+     daardoor niet meer van het verloop maar van de tekstschaduwen eronder, die
+     daarvoor zijn aangezet. */
+  .hero::after {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 1;
+    background: linear-gradient(180deg,
+      rgba(29,32,38,0) 0%, rgba(29,32,38,0.04) 30%, rgba(29,32,38,0.22) 46%,
+      rgba(29,32,38,0.62) 60%, rgba(29,32,38,0.88) 74%, var(--hero-bg) 92%);
+    pointer-events: none;
+  }
+  .only-wide { display: none; }
+  .only-narrow { display: inline; }
+  /* twee knoppen naast elkaar in plaats van onder elkaar: scheelt een rij van 76px,
+     en die ruimte gaat naar de foto */
+  .hero-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hero-cta .btn { padding: 15px 10px; font-size: 0.95rem; }
+  /* let op: .hero-grid mag zelf niet gepositioneerd worden, anders wordt hij het
+     containing block van .hero-art en loopt de foto niet meer tot de schermrand */
+  /* Deze padding bepaalt hoe hoog de foto boven de tekst staat, en dus de hoogte
+     van de hele hero. Die moet onder de vouw blijven (iPhone 13: 664 - 64 nav):
+     staat hij hoger, dan valt de onderkant van de foto weg en zie je van het bad
+     alleen de rand. work/hero-shot.mjs meet het na. */
+  .hero-grid { padding: 170px 0 18px; gap: 0; }
+  .hero-txt { position: relative; z-index: 2; }
+  .hero-strip { z-index: 2; }
+  /* De kop stond op 2rem met de normale regelafstand: op een foto leest dat als
+     bijschrift in plaats van als belofte. Groter, strakker gezet en met een schaduw
+     die niet als waas over het beeld ligt maar de letter zelf van de foto tilt. */
+  /* text-wrap: balance verdeelt de drie regels gelijk; zonder dat bleef "voeg."
+     als los woord op regel drie staan. Browsers die het niet kennen negeren het. */
+  .hero h1 {
+    font-size: clamp(2.25rem, 9.6vw, 2.9rem); line-height: 1.02; letter-spacing: -0.03em;
+    margin-bottom: 12px; text-wrap: balance;
+    /* Zwaardere schaduw dan eerst: het verloop eronder is lichter geworden, dus de
+       leesbaarheid moet nu van de letter zelf komen in plaats van van een donkere
+       deken over het hele beeld. Strak op de letter, geen brede waas. */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.72), 0 2px 10px rgba(0,0,0,0.6), 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .hero-sub {
+    font-size: 1.02rem; line-height: 1.5; margin-bottom: 18px;
+    color: rgba(255,255,255,0.94);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 2px 14px rgba(0,0,0,0.62);
+  }
+  /* De trust-chip stond hierboven, tussen de kop en de bovenkant van het beeld.
+     Dat kostte een hele regel midden in de foto en zette het bewijs ver van de
+     knop af. Op mobiel is .hero-txt daarom een flexkolom en schuift de chip met
+     order naar onder de knoppen. De DOM-volgorde (chip eerst) blijft goed voor
+     desktop en voor een schermlezer. */
+  .hero-kick { font-size: 0.72rem; letter-spacing: 0.15em; margin-bottom: 9px; }
+  /* De chip hangt op mobiel over de foto: doorzichtig grijs viel daar weg tegen
+     een lichte tegelwand. Nu een dichte pil met een dunne rand, dus hij leest als
+     een badge en niet als tekst die toevallig over het beeld ligt.
+     align-self, anders rekt de flexkolom hem over de volle breedte uit. */
+  /* Op mobiel stond er over de foto: kicker, kop, subregel, twee knoppen, een
+     trust-pil en daaronder een strip met vier bulletpunten. Dat is zes lagen tekst
+     op een beeld dat het verhaal zelf vertelt, en het is de "te druk"-klacht.
+     De pil gaat eruit: hij zei "één vakman voor de hele klus" en de subregel
+     zegt op mobiel al "van sloop tot afmontage". Op desktop blijft hij staan,
+     daar staat hij naast het beeld en niet erop. */
+  .trust-chip { display: none; }
+  /* Van vier bulletpunten naar twee. "Biedt garantie" en het KvK-nummer staan
+     allebei ook in de FAQ en de footer; wat hier telt is dat het geverifieerd is
+     en dat het in de buurt is. */
+  .strip-in { gap: 10px 22px; padding: 13px 0; font-size: 0.78rem; }
+  .strip-in span:nth-child(2), .strip-in span:nth-child(3) { display: none; }
+  .p-hero-art { max-width: 480px; }
+  .svc-lead { grid-column: span 2; }
+  .facts { gap: 26px; }
+  .p-nav { grid-template-columns: 1fr; }
+  .p-nav-r { text-align: left; align-items: flex-start; }
+  .lb-cap { padding: 0 20px; bottom: 14px; }
+}
+
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .wrap { width: min(100% - 32px, var(--wrap)); }
+  .svc { grid-template-columns: 1fr; }
+  .svc-lead { grid-column: span 1; }
+  /* titel is genoeg op een telefoon; de omschrijving verdubbelde de sectiehoogte */
+  .svc-l span, .steps p { display: none; }
+  .steps li { padding: 9px 0; }
+  .svc-l li { padding: 9px 0; }
+  .foot-in { grid-template-columns: 1fr 1fr; gap: 22px 24px; }
+  .ph figcaption { font-size: 0.78rem; }
+  .lb-p, .lb-n { width: 44px; height: 44px; }
+}
+
+/* =========================================================================
+   Uitbreiding: voor & na, werkgebied, FAQ, contactformulier, motion, a11y
+   ========================================================================= */
+
+/* ---------- a11y + chrome ---------- */
+.skip {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  background: var(--ink); color: var(--paper); padding: 12px 18px; border-radius: 0 0 var(--r) 0;
+}
+.skip:focus { left: 0; }
+:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+.sec-dark :focus-visible, .p-hero :focus-visible, .hero :focus-visible, .sec-cta :focus-visible { outline-color: var(--tan); }
+
+.prog { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 90; pointer-events: none; }
+.prog i { display: block; height: 100%; background: var(--clay); transform: scaleX(0); transform-origin: 0 50%; }
+.nav.is-stuck { box-shadow: 0 6px 24px rgba(17,20,24,0.07); }
+
+picture { display: block; }
+.ph picture, .card-img picture, .p-hero-art picture, .hero-art picture { height: 100%; }
+
+/* ---------- reveal ----------
+   Stond hier als opacity: 0 met een transform, en pas zichtbaar zodra een
+   IntersectionObserver er 'in' op zette. Dat is precies de constructie die op
+   een middenklasse Android telefoon lege gaten laat vallen: de JS loopt achter
+   op de scroll, dus je scrollt langs een gat dat pas een halve seconde later
+   een kaart wordt. En het kostte hier ook echt iets: wie op /#diensten of
+   /#faq binnenkwam kreeg blokken te zien die op opacity 0 bleven staan
+   (work/anchor-check.mjs vond er drie).
+
+   De klasse blijft in de HTML staan, want hij zit in build.mjs op tientallen
+   plekken en zegt nog steeds "dit is een blok". Alleen het verstoppen is eruit:
+   alles staat in de HTML en is bij de eerste paint zichtbaar. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- kruimelpad + projectmeta ---------- */
+.crumbs { display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 22px; }
+.crumbs a { color: rgba(255,255,255,0.78); text-decoration: none; }
+.crumbs a:hover { color: #fff; }
+.crumbs b { font-weight: 500; color: #fff; }
+.p-meta { display: flex; gap: 34px; flex-wrap: wrap; margin: 28px 0 0; }
+.p-meta div { display: flex; flex-direction: column; gap: 4px; }
+.p-meta dt { font-size: 0.72rem; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+.p-meta dd { margin: 0; font-family: var(--serif); font-size: 1.15rem; color: #fff; }
+.story-n { display: block; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--clay); font-weight: 600; margin-bottom: 10px; }
+.p-nav { grid-template-columns: 1fr auto 1fr; align-items: center; }
+.p-nav-c { border: 0 !important; text-align: center; font-size: 0.86rem; color: var(--ink-3); }
+.p-nav-c:hover { color: var(--ink); }
+
+/* ---------- voor & na ---------- */
+.ba-sec { padding: 72px 0; }
+.ba-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 34px; }
+.ba-head p { color: rgba(255,255,255,0.7); max-width: 46ch; margin: 0; }
+.ba-tabs { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 22px; }
+.ba-tab {
+  background: transparent; color: rgba(255,255,255,0.75); cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.22); border-radius: 999px;
+  padding: 9px 18px; font: inherit; font-size: 0.86rem; transition: all 0.15s ease;
+}
+.ba-tab:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+.ba-tab.on { background: var(--clay); border-color: var(--clay); color: #fff; }
+.ba { display: grid; grid-template-columns: 0.9fr 1fr; gap: 0; align-items: stretch; }
+/* Hoogte komt uit padding-top, niet uit aspect-ratio. Safari/WebKit rekent een
+   grid-item met aspect-ratio en uitsluitend absolute kinderen terug naar 0x0 —
+   dan stond hier op elke iPhone helemaal geen foto. padding-% werkt overal en
+   overleeft ook het stretchen van de grid-rij. */
+.ba-stage {
+  position: relative; overflow: hidden; border-radius: var(--r) 0 0 var(--r);
+  padding-top: 125%; background: #0d0f12; cursor: ew-resize; touch-action: pan-y;
+}
+.ba-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* Echte wipe in plaats van een crossfade: de "na" staat LINKS van de lijn en
+   wordt van rechts weggeknipt tot --wipe. 0% = volledig voor, 100% = volledig na,
+   dus naar rechts slepen schuift het resultaat over de oude badkamer heen. De
+   scheidingslijn staat op dezelfde variabele, dus lijn en beeld kunnen niet uit
+   de pas lopen. */
+.ba-na { clip-path: inset(0 calc(100% - var(--wipe, 55%)) 0 0); }
+.ba.swap .ba-img { opacity: 0; transition: opacity 0.16s ease; }
+.ba-div {
+  position: absolute; top: 0; bottom: 0; left: var(--wipe, 55%); z-index: 4;
+  width: 2px; margin-left: -1px; background: rgba(255,255,255,0.92);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.25), 0 0 22px rgba(0,0,0,0.45);
+  pointer-events: none;
+}
+.ba-div::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%;
+  background: rgba(255,255,255,0.96); box-shadow: 0 6px 22px rgba(0,0,0,0.45);
+}
+.ba-div::before {
+  content: ''; position: absolute; top: 50%; left: 50%; z-index: 1;
+  width: 46px; height: 46px; margin: -23px 0 0 -23px;
+  background: no-repeat center/13px 9px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 18'%3E%3Cpath fill='%23111418' d='M7 0 0 9l7 9zM19 0l7 9-7 9z'/%3E%3C/svg%3E");
+}
+.ba-stage.dragging .ba-div { box-shadow: 0 0 0 1px rgba(0,0,0,0.25), 0 0 30px rgba(0,0,0,0.6); }
+/* De intro-veeg bij binnenkomst; de duur staat in app.js via een rAF-tween,
+   dus geen CSS-transitie die met slepen zou vechten. */
+@media (prefers-reduced-motion: reduce) {
+  .ba-na { transition: none; }
+}
+/* Er stonden hier VOOR/NA-pillen op de twee helften. Weg: zie de toelichting in
+   build.mjs. Het label hoort op de as (de schuifbalk), niet op een helft die
+   tijdens het slepen van eigenaar wisselt. */
+.ba-ctrl {
+  background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.12); border-left: 0;
+  border-radius: 0 var(--r) var(--r) 0; padding: 44px 46px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.ba-title { font-family: var(--serif); font-weight: 500; font-size: clamp(1.6rem, 2.4vw, 2.2rem); color: #fff; margin: 0 0 14px; letter-spacing: -0.01em; }
+.ba-cap { color: rgba(255,255,255,0.72); font-size: 0.98rem; margin: 0 0 30px; max-width: 46ch; }
+.ba-slide { display: block; margin-bottom: 26px; }
+.ba-slide-lbl { display: flex; justify-content: space-between; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+.ba-slide-lbl b { font-weight: 500; color: rgba(255,255,255,0.72); }
+.ba-hint { display: block; margin-top: 4px; font-size: 0.78rem; color: rgba(255,255,255,0.42); }
+.ba-ctrl input[type=range] { width: 100%; -webkit-appearance: none; appearance: none; background: transparent; height: 26px; cursor: ew-resize; }
+.ba-ctrl input[type=range]::-webkit-slider-runnable-track { height: 3px; background: rgba(255,255,255,0.22); border-radius: 3px; }
+.ba-ctrl input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; margin-top: -11px; border-radius: 50%; background: var(--clay); border: 3px solid #fff; box-shadow: 0 4px 14px rgba(0,0,0,0.4); }
+.ba-ctrl input[type=range]::-moz-range-track { height: 3px; background: rgba(255,255,255,0.22); border-radius: 3px; }
+.ba-ctrl input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--clay); border: 3px solid #fff; }
+.ba-link { color: var(--tan); text-decoration: none; font-size: 0.9rem; }
+.ba-link:hover { color: #fff; }
+.ba-head h2 { max-width: 15ch; }
+
+/* ---------- werkwijze op licht ---------- */
+.sec-alt .steps-head p { color: var(--ink-2); }
+.sec-alt .steps li { border-bottom-color: var(--line); }
+.sec-alt .steps li:first-child { border-top-color: var(--line); }
+.sec-alt .steps p { color: var(--ink-2); }
+
+/* ---------- reviews op donker ---------- */
+.sec-dark .rev { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.13); }
+.sec-dark .rev p { color: #fff; }
+.sec-dark .rev cite { color: rgba(255,255,255,0.9); }
+.sec-dark .rev cite i { color: rgba(255,255,255,0.5); }
+.sec-dark .rev-link a { color: var(--tan); }
+.rev-score { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+.rev-score p { margin: 0; color: rgba(255,255,255,0.72); font-size: 0.94rem; }
+.rev-score a { color: var(--tan); }
+
+/* ---------- werkgebied: drie regels in plaats van drie kaarten ---------- */
+.fq-a .area-l:first-child { margin-top: 2px; }
+.area-l { display: flex; flex-direction: column; gap: 1px; margin: 0 0 12px; }
+.area-l b { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--clay); font-weight: 600; }
+.area-l span { color: var(--ink-2); font-size: 0.92rem; }
+.area-note { font-size: 0.87rem; color: var(--ink-3); margin: 0; }
+
+.area-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; }
+.area-head .sec-lead { margin-bottom: 0; }
+.area { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 44px; }
+.area-g { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 26px 26px 22px; }
+.area-g h3 { font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--clay); margin-bottom: 14px; }
+.area-g ul { list-style: none; margin: 0; padding: 0; }
+.area-g li { display: flex; justify-content: space-between; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 0.95rem; }
+.area-g li:last-child { border-bottom: 0; }
+.area-g li span { color: var(--ink-3); font-size: 0.84rem; }
+
+/* ---------- FAQ ---------- */
+.faq-head p { color: var(--ink-2); max-width: 38ch; margin-bottom: 26px; }
+.faq { border-top: 1px solid var(--line); }
+.fq { border-bottom: 1px solid var(--line); }
+.fq summary {
+  cursor: pointer; list-style: none; padding: 21px 40px 21px 0; position: relative;
+  font-family: var(--serif); font-size: 1.12rem; line-height: 1.35;
+}
+.fq summary::-webkit-details-marker { display: none; }
+.fq summary::after {
+  content: ""; position: absolute; right: 6px; top: 30px; width: 11px; height: 11px;
+  border-right: 2px solid var(--clay); border-bottom: 2px solid var(--clay);
+  transform: rotate(45deg); transition: transform 0.2s ease;
+}
+.fq[open] summary::after { transform: rotate(-135deg); }
+.fq summary:hover { color: var(--clay); }
+.fq-a { padding: 0 30px 22px 0; }
+.fq-a p { color: var(--ink-2); margin: 0; font-size: 0.97rem; }
+
+/* ---------- contact + formulier ---------- */
+.sec-cta { text-align: left; }
+.cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.cta-txt h2 { margin-bottom: 16px; }
+.cta-line { font-size: 0.9rem; color: rgba(255,255,255,0.6) !important; margin: 14px 0 24px; }
+.cta-list { list-style: none; padding: 0; margin: 22px 0 28px; display: grid; gap: 10px; }
+.cta-list li { position: relative; padding-left: 28px; font-size: 0.94rem; color: rgba(255,255,255,0.82); }
+.cta-list li::before { content: ""; position: absolute; left: 0; top: 7px; width: 14px; height: 7px; border-left: 2px solid var(--clay); border-bottom: 2px solid var(--clay); transform: rotate(-45deg); }
+.cta-btns { justify-content: flex-start; }
+.form { background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.13); border-radius: var(--r); padding: 30px; }
+.form-kop { font-family: var(--serif); font-size: 1.3rem; color: #fff; margin: 0 0 6px; }
+.form-sub { font-size: 0.87rem; color: rgba(255,255,255,0.55); margin: 0 0 22px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form label { display: block; font-size: 0.79rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 14px; }
+.form input, .form select, .form textarea {
+  display: block; width: 100%; margin-top: 7px; font: inherit; font-size: 0.95rem;
+  background: rgba(0,0,0,0.28); color: #fff; border: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--r); padding: 12px 14px; text-transform: none; letter-spacing: 0;
+}
+.form textarea { resize: vertical; }
+.form input::placeholder, .form textarea::placeholder { color: rgba(255,255,255,0.34); }
+.form input:focus, .form select:focus, .form textarea:focus { border-color: var(--clay); outline: none; }
+.form select option { color: #111418; }
+.form-go { width: 100%; margin-top: 6px; }
+.form-note { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin: 14px 0 0; text-transform: none; }
+
+/* ---------- overig ---------- */
+.btn-ghost-d { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-ghost-d:hover { border-color: var(--ink); }
+.foot-more { color: var(--clay) !important; margin-top: 4px; }
+.nf { padding: 120px 0 130px; }
+.nf h1 { margin: 6px 0 14px; }
+.nf p { color: var(--ink-2); margin-bottom: 26px; }
+.nf .btn-ghost { color: var(--ink); border-color: var(--line); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1040px) {
+  .area { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 880px) {
+  .ba-head, .area-head, .cta-grid { grid-template-columns: 1fr; gap: 22px; }
+  .ba-sec { padding: 48px 0; }
+  .ba { grid-template-columns: 1fr; }
+  .ba-stage { padding-top: 100%; border-radius: var(--r) var(--r) 0 0; }
+  .ba-ctrl { border-left: 1px solid rgba(255,255,255,0.12); border-top: 0; border-radius: 0 0 var(--r) var(--r); padding: 20px 20px 22px; }
+  .p-nav { grid-template-columns: 1fr; }
+  .p-nav-c { text-align: left; }
+  .p-meta { gap: 24px; }
+  .sec-cta { padding: 48px 0; }
+  .form { padding: 20px; }
+}
+@media (max-width: 620px) {
+  .area { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .form label { margin-bottom: 10px; font-size: 0.72rem; }
+  .form input, .form select, .form textarea { padding: 10px 12px; font-size: 0.9rem; }
+  .ba-tabs { gap: 7px; }
+  .ba-tab { padding: 8px 14px; font-size: 0.82rem; }
+  .fq summary { font-size: 1.02rem; }
+}
+
+/* =========================================================================
+   Zijwaartse rails + meelopende CTA
+   ========================================================================= */
+
+/* De rail bloedt door tot de schermrand; de padding-inline zet het eerste item
+   weer netjes onder de tekst. overflow-x: clip op body vangt de 100vw-overloop
+   op zonder een scrollcontainer te maken (position: sticky blijft dus werken). */
+html, body { overflow-x: clip; }
+
+.rail-wrap { position: relative; margin-top: 24px; margin-inline: calc(50% - 50vw); }
+.rail {
+  display: flex; gap: 16px; overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity; scroll-behavior: smooth;
+  padding: 4px max(22px, calc((100vw - var(--wrap)) / 2)) 6px;
+  scroll-padding-inline-start: max(22px, calc((100vw - var(--wrap)) / 2));
+  scrollbar-width: none; -ms-overflow-style: none;
+  cursor: grab;
+  /* pan-x pan-y expliciet: horizontaal is van de rail, verticaal blijft de
+     pagina. Let op: alleen pan-y zou zijwaarts scrollen juist uitschakelen. */
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+.rail::-webkit-scrollbar { display: none; }
+.rail.dragging { cursor: grabbing; scroll-behavior: auto; scroll-snap-type: none; }
+.rail.dragging * { pointer-events: none; }
+/* snap-align: start, niet center. Een item dat breder is dan het scrollvenster
+   wordt bij center steeds teruggetrokken naar zijn midden - dan veert de rail
+   na elke veeg terug naar dezelfde foto en lijkt zijwaarts scrollen kapot. */
+.rail > * { flex: none; scroll-snap-align: start; }
+.rail:focus-visible { outline: 2px solid var(--clay); outline-offset: 4px; }
+
+/* fotorail: gelijke hoogte, breedte volgt uit de verhouding. Staand naast liggend
+   staat daardoor netjes op één lijn. */
+.rail-ph .ph { height: clamp(230px, 44vh, 480px); }
+.rail-ph .ph img { height: 100%; width: auto; max-width: none; object-fit: cover; }
+.rail-ph .ph.is-portrait img { aspect-ratio: 3/4; }
+.rail-ph .ph.is-land img { aspect-ratio: 4/3; }
+.rail-ph .ph picture { height: 100%; }
+
+.rail-vid .ph { height: clamp(280px, 52vh, 500px); }
+.rail-vid .ph img { height: 100%; width: auto; max-width: none; aspect-ratio: 9/16; object-fit: cover; }
+.rail-vid .ph picture { height: 100%; }
+
+/* bouwmap: twee rijen, dan is de rail half zo lang. justify-content: start is
+   nodig, anders trekt de grid de kolommen uit elkaar over de volle breedte. */
+.rail-thumb {
+  display: grid; grid-auto-flow: column; grid-template-rows: repeat(2, auto);
+  grid-auto-columns: max-content; justify-content: start; gap: 12px;
+}
+.rail-thumb .ph { width: clamp(140px, 26vw, 220px); border-radius: 3px; }
+.rail-thumb .ph img { width: 100%; height: auto; aspect-ratio: 1/1; }
+
+.rail-card .card { width: min(78vw, 370px); }
+
+/* reviews: op desktop passen alle drie erin en zet de controller zelf
+   .rail-static, op een telefoon is het een strip */
+.rail-rev .rev { width: min(80vw, 372px); }
+
+/* Pijlen: op elk formaat zichtbaar, ook op een telefoon. Ze staan in de
+   voetregel; vanaf 701px tilt de CSS ze eruit en legt ze over de foto's. */
+.rail-nav { display: flex; gap: 8px; flex: none; }
+.rail-b {
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line);
+  background: var(--paper); color: var(--ink); font-size: 1.4rem; line-height: 1;
+  display: grid; place-items: center; cursor: pointer; padding-bottom: 3px;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+.rail-b:hover:not(:disabled) { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.rail-b:disabled { opacity: 0.3; cursor: default; }
+.sec-dark .rail-b { background: var(--paper); }
+.sec-dark .rail-nav .rail-b { border-color: rgba(255,255,255,0.25); }
+
+/* vanaf tablet: over de foto's, groter, met schaduw. Daar wordt met de muis
+   gesleept of geklikt, dus ze zitten geen veeg in de weg. */
+@media (min-width: 701px) {
+  .rail-b {
+    position: absolute; top: calc(50% - 28px); transform: translateY(-50%); z-index: 5;
+    width: 48px; height: 48px; font-size: 1.7rem; padding-bottom: 4px;
+    box-shadow: 0 6px 22px rgba(17,20,24,0.22);
+  }
+  .rail-prev { left: max(10px, calc((100vw - var(--wrap)) / 2 - 24px)); }
+  .rail-next { right: max(10px, calc((100vw - var(--wrap)) / 2 - 24px)); }
+  .story-result .rail-b { background: var(--paper); }
+}
+
+/* Verloop aan de rechterrand: laat zien dat er nog meer naast staat. De kleur
+   volgt de sectie via --fade-to. */
+.rail-wrap { --fade-to: var(--paper); }
+.sec-alt .rail-wrap, .story-result .rail-wrap { --fade-to: var(--paper-2); }
+.sec-dark .rail-wrap { --fade-to: var(--dark); }
+.rail-wrap::after {
+  content: ""; position: absolute; right: 0; top: 0; bottom: 58px; width: 56px;
+  background: linear-gradient(to right, transparent, var(--fade-to));
+  pointer-events: none; z-index: 4; opacity: 1; transition: opacity 0.2s ease;
+}
+.rail-wrap.at-end::after, .rail-static::after { opacity: 0; }
+
+/* voortgang onder de rail */
+.rail-foot {
+  display: flex; align-items: center; gap: 16px; margin-top: 14px;
+  padding-inline: max(22px, calc((100vw - var(--wrap)) / 2));
+}
+.rail-hint {
+  display: inline-flex; align-items: center; gap: 8px; font-size: 0.76rem; flex: none;
+  color: var(--ink-2); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px;
+}
+.sec-dark .rail-hint { border-color: rgba(255,255,255,0.2); }
+.rail-hand { width: 18px; height: 10px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: skewX(-14deg) scaleY(0.6); opacity: 0.65; }
+.rail-count { font-size: 0.78rem; color: var(--ink-3); font-variant-numeric: tabular-nums; flex: none; }
+.rail-bar { flex: 1; height: 2px; background: var(--line); position: relative; overflow: hidden; }
+.rail-bar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--clay); width: 30%; transition: transform 0.15s linear, width 0.15s linear; }
+.rail-static .rail-foot { display: none; }
+.rail-static .rail { cursor: default; }
+.sec-dark .rail-hint, .sec-dark .rail-count { color: rgba(255,255,255,0.55); }
+.sec-dark .rail-bar { background: rgba(255,255,255,0.16); }
+.story-result .rail-bar { background: var(--line-2); }
+
+@media (max-width: 620px) {
+  .rail { gap: 10px; padding-inline: 16px; }
+  .rail-wrap::after { width: 40px; }
+  .rail-foot { padding-inline: 16px; gap: 10px; }
+  .rail-thumb { gap: 8px; }
+}
+
+/* ---------- meelopende CTA ---------- */
+.dock {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 80;
+  transform: translateY(115%); transition: transform 0.32s cubic-bezier(0.2,0.8,0.2,1);
+  pointer-events: none;
+  padding: 0 0 env(safe-area-inset-bottom);
+}
+.dock.on { transform: none; }
+.dock-in {
+  pointer-events: auto;
+  display: flex; align-items: center; gap: 18px;
+  background: rgba(17,20,24,0.97); backdrop-filter: blur(10px);
+  color: #fff; padding: 13px 18px;
+  box-shadow: 0 -8px 34px rgba(0,0,0,0.28);
+}
+.dock-txt { display: flex; flex-direction: column; gap: 3px; margin-right: auto; min-width: 0; }
+.dock-txt b { font-family: var(--serif); font-weight: 500; font-size: 1.1rem; }
+.dock-sub { display: flex; align-items: center; gap: 7px; font-size: 0.78rem; color: rgba(255,255,255,0.6); white-space: nowrap; }
+.dock-sub .chk { width: 12px; height: 12px; }
+.dock-btns { display: flex; gap: 9px; flex: none; }
+.dock .btn { padding: 12px 20px; font-size: 0.9rem; }
+.dock-tel { background: transparent; color: #fff; border-color: rgba(255,255,255,0.28); }
+.dock-tel:hover { background: rgba(255,255,255,0.12); }
+
+@media (min-width: 900px) {
+  .dock { padding: 0 0 22px; }
+  .dock-in {
+    width: min(100% - 44px, 760px); margin-inline: auto;
+    border-radius: 999px; padding: 12px 12px 12px 28px;
+    box-shadow: 0 18px 44px rgba(0,0,0,0.34);
+  }
+}
+@media (max-width: 899px) {
+  .dock-txt b { font-size: 0.98rem; }
+  .dock-sub { font-size: 0.72rem; }
+  .dock .btn { padding: 12px 15px; }
+  .dock-tel span { display: none; }
+  body.has-dock .foot-bot { padding-bottom: 84px; }
+}
+/* Op een telefoon past er geen kopregel naast twee knoppen zonder te breken.
+   Dan wordt het gewoon een balk met twee knoppen, elk op halve breedte. */
+@media (max-width: 560px) {
+  .dock-txt { display: none; }
+  .dock-in { padding: 10px 14px; gap: 10px; }
+  .dock-btns { flex: 1; }
+  .dock .btn { flex: 1; padding: 14px 10px; }
+  .dock-tel span { display: inline; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dock { transition: none; }
+  .rail { scroll-behavior: auto; }
+}
+
+/* ---------- extra inkorting ---------- */
+.ba-cap { margin-bottom: 20px !important; }
+.faq-head .btn-sm { margin-top: 4px; }
+
+/* op een telefoon zeggen de pijlen het al; de hint mag weg uit de voetregel */
+@media (max-width: 700px) {
+  .rail-hint { display: none; }
+  .rail-foot { gap: 12px; }
+}
+
+/* de zwevende balk onderaan heeft dezelfde knop al: op een telefoon hoeft die
+   in de FAQ-kop niet nog een keer */
+@media (max-width: 700px) {
+  .faq-head .btn-sm { display: none; }
+  .cta-btns { gap: 10px; }
+  .cta-btns .btn { flex: 1; }
+}
+
+/* =========================================================================
+   Huisstijl: reviews in Werkspot-vorm, werkgebiedkaart, merklockup
+   ========================================================================= */
+
+/* ---------- footer-lockup ---------- */
+.foot .brand { margin-right: 0; color: #fff; }
+.foot .brand-mark { width: 42px; height: 40px; color: var(--paper); --logo-teal: #54b8b3; }
+.foot .brand-txt b { color: #fff; }
+.foot .brand-txt i { color: var(--tan); }
+
+/* ---------- reviews in Werkspot-vorm ----------
+   Ze stonden als losse citaten op de donkere sectie en lazen daardoor als tekst
+   die wij zelf hadden opgeschreven. Nu een witte kaart met het Werkspot-logo,
+   sterren en een geverifieerd-regel: de vorm waarin ze op Werkspot zelf staan.
+   De sterren zijn geen opsmuk maar de echte score: alle drie deze reviews staan
+   op Werkspot op 10 van de 10 (zie work/reviews.json). */
+.rev-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 8px; }
+.ws-logo { height: 22px; width: auto; display: block; }
+.ws-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: #fff; border: 1px solid var(--line); border-radius: 999px;
+  padding: 7px 15px 7px 12px; font-size: 0.82rem; color: var(--ink-2);
+}
+.ws-badge .ws-logo { height: 16px; }
+.rev {
+  margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 8px;
+  padding: 22px 24px 20px; display: flex; flex-direction: column;
+  box-shadow: 0 1px 2px rgba(17,20,24,0.04);
+}
+.rev-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 13px; }
+.stars { display: inline-flex; gap: 2px; }
+.stars svg { width: 17px; height: 17px; fill: #f5a623; display: block; }
+.rev-date { font-size: 0.78rem; color: var(--ink-3); white-space: nowrap; }
+.rev p { font-family: var(--sans); font-size: 0.97rem; line-height: 1.55; color: var(--ink); margin: 0 0 18px; }
+.rev-by { display: flex; align-items: center; gap: 11px; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--line); }
+.rev-av {
+  width: 34px; height: 34px; border-radius: 50%; flex: none;
+  background: var(--paper-2); color: var(--ink-2);
+  display: grid; place-items: center; font-size: 0.9rem; font-weight: 500;
+}
+.rev cite { font-style: normal; font-size: 0.9rem; font-weight: 500; display: flex; flex-direction: column; gap: 2px; }
+.rev cite i { font-style: normal; font-size: 0.75rem; color: var(--ink-3); font-weight: 400; }
+.rev-verif { display: inline-flex; align-items: center; gap: 5px; }
+.rev-verif svg { width: 12px; height: 12px; fill: #128c7e; flex: none; }
+.rev-all { margin-top: 22px; font-size: 0.9rem; }
+.rev-all a { color: var(--clay); }
+
+/* ---------- werkgebied met kaart ----------
+   Stond als dichtgeklapt FAQ-item op de pagina: goed voor de lengte, maar je
+   zag er niets van. Een kaart laat in een oogopslag zien hoe ver de straal
+   reikt; de plaatsnamen blijven eronder staan voor Google. */
+/* Een tint lichter dan --dark: het contactblok eronder is ook donker en zonder
+   dit stapje lopen die twee als een blok in elkaar over. */
+.map-sec { background: var(--dark-2); color: rgba(255,255,255,0.86); padding: 72px 0; }
+.map-sec h2 { color: #fff; }
+.map-grid { display: grid; grid-template-columns: 1fr 1.35fr; gap: 52px; align-items: center; }
+.map-txt p { color: rgba(255,255,255,0.66); max-width: 40ch; }
+.map-box {
+  position: relative; border-radius: 8px; overflow: hidden;
+  height: clamp(320px, 46vh, 480px); background: #16191e;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+/* Twee klassen, geen een. mapbox-gl.css wordt pas bij het scrollen ingeladen en
+   staat dus NA dit bestand; zijn `.mapboxgl-map { position: relative }` heeft
+   dezelfde specificiteit en won daardoor. Het gevolg was een doos van 0 hoog met
+   het canvas eruit geknipt: de kaart laadde, maar je zag zwart. */
+.map-box > .map-canvas { position: absolute; inset: 0; }
+.map-box .mapboxgl-ctrl-logo, .map-box .mapboxgl-ctrl-attrib { opacity: 0.6; }
+.map-box .mapboxgl-ctrl-attrib { font-size: 10px; }
+.map-mk { position: relative; display: block; width: 11px; height: 11px; }
+.map-pin { display: block; width: 11px; height: 11px; border-radius: 50%; background: var(--tan); box-shadow: 0 0 0 3px rgba(201,181,155,0.22); }
+.map-pin.hq {
+  width: 15px; height: 15px; margin: -2px; background: #fff;
+  box-shadow: 0 0 0 5px rgba(255,255,255,0.18), 0 2px 10px rgba(0,0,0,0.6);
+}
+.map-lbl {
+  position: absolute; top: 15px; left: 50%; transform: translateX(-50%);
+  font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.03em;
+  color: rgba(255,255,255,0.92); text-shadow: 0 1px 4px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.8);
+  white-space: nowrap; pointer-events: none;
+}
+.map-lbl.up { top: auto; bottom: 17px; }
+/* Apeldoorn ligt midden in de drukste hoek van de kaart, dus zijn label botst
+   altijd met een buur. Een dichte pil eromheen (en een z-index erboven) maakt
+   dat leesbaar in plaats van te proberen alles vrij te houden. */
+.map-lbl.hq {
+  font-size: 11.5px; letter-spacing: 0.13em; text-transform: uppercase; color: #fff;
+  background: rgba(17,20,24,0.9); border: 1px solid rgba(201,181,155,0.5);
+  padding: 3px 9px; border-radius: 999px; text-shadow: none;
+}
+.map-box .mapboxgl-marker:has(.hq) { z-index: 5; }
+/* De zoomknoppen staan standaard in wit; op een donkere kaart is dat een vlek. */
+.map-box .mapboxgl-ctrl-group { background: rgba(17,20,24,0.86); border: 1px solid rgba(255,255,255,0.16); }
+.map-box .mapboxgl-ctrl-group button { background-color: transparent; }
+.map-box .mapboxgl-ctrl-group button:hover { background-color: rgba(255,255,255,0.12); }
+.map-box .mapboxgl-ctrl-group button + button { border-top-color: rgba(255,255,255,0.16); }
+.map-box .mapboxgl-ctrl-group button .mapboxgl-ctrl-icon { filter: invert(1); opacity: 0.85; }
+.map-box .mapboxgl-ctrl-attrib.mapboxgl-compact { background: rgba(17,20,24,0.7); }
+.map-fallback {
+  position: absolute; inset: 0; display: grid; place-items: center; padding: 24px;
+  text-align: center; color: rgba(255,255,255,0.5); font-size: 0.9rem;
+}
+.area-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 40px; }
+.area-col b {
+  display: block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--tan); font-weight: 500; margin-bottom: 10px;
+}
+.area-col p { color: rgba(255,255,255,0.7); font-size: 0.92rem; margin: 0; line-height: 1.7; }
+.map-note { font-size: 0.82rem; color: rgba(255,255,255,0.42); margin: 26px 0 0; }
+
+@media (max-width: 880px) {
+  .map-sec { padding: 48px 0; }
+  .map-grid { grid-template-columns: 1fr; gap: 26px; }
+  .map-box { height: 320px; }
+  .area-cols { grid-template-columns: 1fr; gap: 18px; margin-top: 28px; }
+  .rev-head { gap: 10px; }
+}
+@media (max-width: 620px) {
+  .rev { padding: 18px 18px 16px; }
+}
+
+/* ---------- taalwisselaar ---------- */
+/* Staat binnen #navLinks en daarmee in een keer op beide plekken: rechts in de
+   balk op desktop, bovenin het uitklapmenu op mobiel. Een tweede exemplaar
+   buiten het menu zou naast de burger en de app-knop moeten passen, en die
+   ruimte is er op een telefoon niet.
+   Alleen de landcode is zichtbaar; de hele taalnaam staat er onzichtbaar bij
+   voor schermlezers (en als title voor de muis). Vier volle namen naast elkaar
+   passen niet op 360px. */
+.lang { display: flex; align-items: center; gap: 2px; padding: 3px; background: #fff;
+  border: 1px solid var(--line); border-radius: 999px; }
+.nav-links .lang a { padding: 5px 9px; border: 0; border-radius: 999px; font-size: 0.76rem;
+  letter-spacing: 0.06em; font-weight: 500; color: var(--ink-2); }
+.nav-links .lang a:hover { color: var(--ink); background: rgba(17, 20, 24, 0.06); }
+.nav-links .lang a.on { background: var(--ink); color: var(--paper); }
+.lang-f { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media (max-width: 880px) {
+  /* Bovenaan het uitklapmenu, over de volle breedte: dat is de eerste plek waar
+     iemand kijkt die de site niet in het Nederlands wil lezen. */
+  .nav-links .lang { order: -1; margin: 2px 0 12px; padding: 4px; gap: 4px; border-radius: 12px; }
+  .nav-links .lang a { flex: 1; text-align: center; padding: 11px 4px; font-size: 0.9rem; border-radius: 9px; }
+}

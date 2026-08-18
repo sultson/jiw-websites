@@ -33,3 +33,24 @@ apps/toonoverleven/raw
 prospecting/data
 prospecting/*.csv
 tmp
+
+# mts-badkamers bouwt met build.mjs naar apps/mts-badkamers/site/. Die map is
+# half bron, half bouwsel: styles.css, app.js, f/, video/, poster/, de losse
+# svg's en icon.png horen in git, de rest wordt gegenereerd.
+apps/mts-badkamers/site/index.html
+apps/mts-badkamers/site/404.html
+apps/mts-badkamers/site/sitemap.xml
+apps/mts-badkamers/site/robots.txt
+apps/mts-badkamers/site/favicon.svg
+apps/mts-badkamers/site/_headers
+apps/mts-badkamers/site/styles.*.css
+apps/mts-badkamers/site/app.*.js
+apps/mts-badkamers/site/m/
+apps/mts-badkamers/site/en/
+apps/mts-badkamers/site/tr/
+apps/mts-badkamers/site/ru/
+apps/mts-badkamers/site/werk/
+# De ruwe telefoonvideo's (236 MB) zijn bronmateriaal, geen site-bestand: de
+# webklare versies staan in site/video/ en de posters in site/poster/. Zie de
+# README van de app voor hoe je ze uit deze bronnen opnieuw maakt.
+apps/mts-badkamers/assets/media/*.mp4
