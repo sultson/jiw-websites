@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rouwbloemen Oud-Beijerland | Fleurig! Bloemenwinkel</title>
+    <meta name="description" content="Rouwboeket, bloemstuk voor op de kist, hart of krans, in de kleuren die bij hem of haar pasten. Op tijd op de plek van de dienst. Bel ons gerust even." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0d2a21" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/img/icon-96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- De twee letters staan onder een vaste naam in /fonts (zie
+         scripts/fonts.mjs), zodat ze hier bij naam genoemd kunnen worden. Zonder
+         deze twee regels ontdekt de browser ze pas nadat hij het stijlblad heeft
+         gelezen, en staat de tekst tot dat moment in een vervangende letter. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-wght.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-latin-wght.woff2" crossorigin />
+
+    <link rel="preload" as="image" href="/img/rouwbloemwerk.webp" type="image/webp" fetchpriority="high" />
+    <link rel="canonical" href="%SITE_URL%/rouwbloemen/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fleurig! Bloemenwinkel" />
+    <meta property="og:title" content="Rouwbloemen Oud-Beijerland | Fleurig! Bloemenwinkel" />
+    <meta property="og:description" content="Een boeket, een stuk voor op de kist, een hart of een krans. Met zorg gemaakt en op tijd op de juiste plek." />
+    <meta property="og:url" content="%SITE_URL%/rouwbloemen/" />
+    <meta property="og:image" content="%SITE_URL%/img/og-rouwbloemen.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Liggend rouwbloemstuk in wit en groen" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": "%SITE_URL%/rouwbloemen/#dienst",
+      "name": "Rouwbloemen",
+      "serviceType": "Rouwbloemwerk",
+      "description": "Rouwboeketten, bloemstukken voor op de kist, harten en kransen. Gemaakt in de kleuren die bij de overledene pasten, met een lint met tekst indien gewenst, en op tijd bezorgd op de locatie van de dienst.",
+      "url": "%SITE_URL%/rouwbloemen/",
+      "isPartOf": { "@id": "%SITE_URL%/#website" },
+      "areaServed": [
+        { "@type": "City", "name": "Oud-Beijerland" },
+        { "@type": "AdministrativeArea", "name": "Hoeksche Waard" }
+      ],
+      "provider": { "@id": "%SITE_URL%/#winkel" }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Fleurig! Bloemenwinkel", "item": "%SITE_URL%/" },
+        { "@type": "ListItem", "position": 2, "name": "Rouwbloemen", "item": "%SITE_URL%/rouwbloemen/" }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/pages/rouwbloemen.entry.tsx"></script>
+  </body>
+</html>

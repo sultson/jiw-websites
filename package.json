@@ -26,7 +26,8 @@
     "dev:klashorst": "pnpm --filter @jiw/klashorst dev",
     "dev:klashorst-studio": "pnpm --filter @jiw/klashorst-studio dev",
     "dev:toonoverleven": "pnpm --filter @jiw/toonoverleven dev",
-    "dev:winterswijkvakantiehuis": "pnpm --filter @jiw/winterswijkvakantiehuis dev"
+    "dev:winterswijkvakantiehuis": "pnpm --filter @jiw/winterswijkvakantiehuis dev",
+    "dev:fleurig": "pnpm --filter @jiw/fleurig dev"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

@@ -1,0 +1,40 @@
+{
+  "name": "@jiw/fleurig",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3064 --host=0.0.0.0",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs && node scripts/seo.mjs",
+    "preview": "vite preview --port=4364",
+    "clean": "rm -rf dist dist-ssr dist-worker",
+    "lint": "tsc --noEmit && tsc --noEmit -p tsconfig.worker.json",
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "ship": "pnpm build && pnpm audit:seo && wrangler deploy",
+    "ship:dry-run": "pnpm build && pnpm audit:seo && wrangler deploy --dry-run --outdir=dist-worker",
+    "audit:seo": "node scripts/audit-seo.mjs",
+    "fonts": "node scripts/fonts.mjs",
+    "icons": "node scripts/icons.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@jiw/cloudflare-forms": "workspace:*",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "lucide-react": "^0.546.0",
+    "mapbox-gl": "^3.27.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.14",
+    "vite": "^6.2.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "sharp": "^0.35.3",
+    "typescript": "~5.8.2"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
+    "types": ["vite/client"],
+    "noEmit": true
+  },
+  // De Worker staat er niet bij: die draait niet in een browser en heeft zijn
+  // eigen omgeving (tsconfig.worker.json). Zonder deze grens loopt worker/ mee
+  // in de browsercontrole, en dan kent hij R2 en de mailkoppeling niet.
+  "include": ["src", "vite.config.ts", "site.config.d.mts"]
+}

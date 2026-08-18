@@ -1,0 +1,56 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "fleurig",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // De canonicals en de sitemap noemen elke pagina met een schuine streep aan
+    // het eind (/boeketten/). Cloudflare moet dezelfde vorm serveren, anders
+    // wijst elke canonical naar een adres dat eerst nog een omleiding is.
+    "html_handling": "force-trailing-slash",
+    // Elke pagina is als eigen bestand gebakken, dus er valt voor een
+    // SPA-terugval niets te doen behalve 200 antwoorden op een adres dat niet
+    // bestaat. Dat is een zachte 404, en die kost indexruimte.
+    "not_found_handling": "404-page",
+    // De Worker moet paginaverzoeken zien, niet alleen de API: anders draait de
+    // omleiding van www en het oude adres naar de canonieke host nooit. De
+    // bestanden met een hash in hun naam gaan er wel omheen, die hebben er
+    // niets te halen.
+    "run_worker_first": ["/*", "!/assets/*", "!/img/*", "!/favicon.svg", "!/logo-email.png"]
+  },
+  "routes": [
+    { "pattern": "fleurig.jouwidealewebsite.nl", "custom_domain": true },
+
+    // Bij het koppelen van het eigen domein komen deze twee erbij, en gaat
+    // SITE_URL in site.config.mjs mee om. Beide: het is makkelijk de www-variant
+    // te vergeten, en dan is de helft van de bezoekers bij een foutpagina.
+    { "pattern": "bloemenwinkelfleurig.nl", "custom_domain": true },
+    { "pattern": "www.bloemenwinkelfleurig.nl", "custom_domain": true }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["aanvraag@notify.bloemenwinkelfleurig.nl"]
+    }
+  ],
+  // Geen TURNSTILE_SECRET_KEY: dit formulier draait met `turnstile: false` en
+  // leunt op het verborgen veld in worker/index.ts, dus er is geen widget om
+  // tegen te controleren.
+  "vars": {
+    "SITE_ID": "fleurig",
+    "LEAD_RECIPIENT": "fleurig26@gmail.com",
+    "LEAD_SENDER": "aanvraag@notify.bloemenwinkelfleurig.nl"
+  }
+}

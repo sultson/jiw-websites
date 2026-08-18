@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bloemenabonnement Oud-Beijerland | Fleurig! Bloemenwinkel</title>
+    <meta name="description" content="Wekelijks, tweewekelijks of maandelijks een vers boeket voor een vaste prijs per boeket, klassiek rond of pluk. Voor thuis of voor de zaak, in en om Oud-Beijerland." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0d2a21" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/img/icon-96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- De twee letters staan onder een vaste naam in /fonts (zie
+         scripts/fonts.mjs), zodat ze hier bij naam genoemd kunnen worden. Zonder
+         deze twee regels ontdekt de browser ze pas nadat hij het stijlblad heeft
+         gelezen, en staat de tekst tot dat moment in een vervangende letter. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-wght.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-latin-wght.woff2" crossorigin />
+
+    <link rel="preload" as="image" href="/img/abo-hero.webp" type="image/webp" fetchpriority="high" />
+    <link rel="canonical" href="%SITE_URL%/abonnement/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fleurig! Bloemenwinkel" />
+    <meta property="og:title" content="Bloemenabonnement Oud-Beijerland | Fleurig! Bloemenwinkel" />
+    <meta property="og:description" content="Wekelijks, tweewekelijks of maandelijks een vers boeket, tegen een vaste prijs per boeket. Klassiek rond of een plukboeket." />
+    <meta property="og:url" content="%SITE_URL%/abonnement/" />
+    <meta property="og:image" content="%SITE_URL%/img/og-abonnement.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Emmers met verse pioenen in de winkel" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": "%SITE_URL%/abonnement/#dienst",
+      "name": "Bloemenabonnement",
+      "serviceType": "Bloemenabonnement voor thuis of de zaak",
+      "description": "Wekelijks, tweewekelijks of maandelijks een vers boeket tegen een vaste prijs per boeket. Keuze uit een klassiek rond boeket of een plukboeket. Overslaan of stoppen kan altijd.",
+      "url": "%SITE_URL%/abonnement/",
+      "isPartOf": { "@id": "%SITE_URL%/#website" },
+      "areaServed": [
+        { "@type": "City", "name": "Oud-Beijerland" },
+        { "@type": "AdministrativeArea", "name": "Hoeksche Waard" }
+      ],
+      "provider": { "@id": "%SITE_URL%/#winkel" }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Fleurig! Bloemenwinkel", "item": "%SITE_URL%/" },
+        { "@type": "ListItem", "position": 2, "name": "Abonnement", "item": "%SITE_URL%/abonnement/" }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/pages/abonnement.entry.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bedankt voor uw aanvraag | Fleurig! Bloemenwinkel</title>
+    <meta name="description" content="Uw aanvraag is onderweg naar Fleurig! Bloemenwinkel aan de Molendijk 9-11 in Oud-Beijerland. We laten u weten wat we voor u kunnen maken." />
+    <!-- Een bevestigingspagina hoort niet in Google: hij zegt niets tegen wie
+         nog geen aanvraag deed, en hij zou het formulier in de resultaten
+         verdringen. -->
+    <meta name="robots" content="noindex, follow" />
+    <meta name="theme-color" content="#0d2a21" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/img/icon-96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- De twee letters staan onder een vaste naam in /fonts (zie
+         scripts/fonts.mjs), zodat ze hier bij naam genoemd kunnen worden. Zonder
+         deze twee regels ontdekt de browser ze pas nadat hij het stijlblad heeft
+         gelezen, en staat de tekst tot dat moment in een vervangende letter. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-wght.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-latin-wght.woff2" crossorigin />
+    <link rel="canonical" href="%SITE_URL%/bedankt/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fleurig! Bloemenwinkel" />
+    <meta property="og:image" content="%SITE_URL%/img/og-home.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="De winkelpui van Fleurig! aan de Molendijk in Oud-Beijerland" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/pages/bedankt.entry.tsx"></script>
+  </body>
+</html>

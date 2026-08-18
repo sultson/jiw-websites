@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bloemist Oud-Beijerland | Fleurig! Bloemenwinkel</title>
+    <meta name="description" content="Verse bloemen aan de Molendijk in Oud-Beijerland. Boeketten om mee te nemen of op maat, een bloemenabonnement, rouw- en trouwbloemen. Wo t/m za 8:00-17:30." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0d2a21" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/img/icon-96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- De twee letters staan onder een vaste naam in /fonts (zie
+         scripts/fonts.mjs), zodat ze hier bij naam genoemd kunnen worden. Zonder
+         deze twee regels ontdekt de browser ze pas nadat hij het stijlblad heeft
+         gelezen, en staat de tekst tot dat moment in een vervangende letter. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-wght.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-latin-wght.woff2" crossorigin />
+
+    <link rel="preload" as="image" href="/img/hero-dahlias.webp" type="image/webp" media="(max-width: 1023px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/img/hero-dahlias-wide.webp" type="image/webp" media="(min-width: 1024px)" fetchpriority="high" />
+    <link rel="canonical" href="%SITE_URL%/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fleurig! Bloemenwinkel" />
+    <meta property="og:title" content="Fleurig! Bloemenwinkel Oud-Beijerland" />
+    <meta property="og:description" content="Verse bloemen aan de Molendijk in Oud-Beijerland. Neem een boeket mee dat klaarstaat of laat er een samenstellen naar eigen keuze. Rouw- en trouwbloemen op aanvraag." />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:image" content="%SITE_URL%/img/og-home.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="De winkelpui van Fleurig! aan de Molendijk in Oud-Beijerland, met de emmers bloemen buiten" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Florist",
+      "@id": "%SITE_URL%/#winkel",
+      "name": "Fleurig! Bloemenwinkel",
+      "description": "Bloemenwinkel in het centrum van Oud-Beijerland. Verse bloemen, kant-en-klare boeketten en boeketten samengesteld naar eigen keuze, een bloemenabonnement voor thuis of de zaak, en rouwbloemen, trouwbloemen en boeketten op maat op aanvraag.",
+      "url": "%SITE_URL%/",
+      "image": [
+        "%SITE_URL%/img/og-home.jpg",
+        "%SITE_URL%/img/winkelpui.webp",
+        "%SITE_URL%/img/hero-dahlias.webp"
+      ],
+      "logo": "%SITE_URL%/img/icon-512.png",
+      "email": "fleurig26@gmail.com",
+      "hasMap": "https://www.google.com/maps/dir/?api=1&destination=Molendijk+9%2C+3262+AH+Oud-Beijerland",
+      "telephone": "+31630943626",
+      "priceRange": "€€",
+      "currenciesAccepted": "EUR",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Molendijk 9-11",
+        "postalCode": "3262 AH",
+        "addressLocality": "Oud-Beijerland",
+        "addressRegion": "Zuid-Holland",
+        "addressCountry": "NL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.82671,
+        "longitude": 4.41076
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "08:00",
+          "closes": "17:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Sunday", "Monday", "Tuesday"],
+          "opens": "00:00",
+          "closes": "00:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/fleurigbloemenwinkel/",
+        "https://www.facebook.com/share/17wKUrpu1R/"
+      ],
+      "areaServed": [
+        { "@type": "City", "name": "Oud-Beijerland" },
+        { "@type": "City", "name": "Nieuw-Beijerland" },
+        { "@type": "City", "name": "Zuid-Beijerland" },
+        { "@type": "City", "name": "Piershil" },
+        { "@type": "City", "name": "Klaaswaal" },
+        { "@type": "City", "name": "Numansdorp" },
+        { "@type": "City", "name": "Westmaas" },
+        { "@type": "City", "name": "Mijnsheerenland" },
+        { "@type": "City", "name": "Heinenoord" },
+        { "@type": "City", "name": "Puttershoek" },
+        { "@type": "City", "name": "'s-Gravendeel" },
+        { "@type": "City", "name": "Strijen" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Bloemwerk",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kant-en-klaar boeket uit de winkel" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Boeket samengesteld naar eigen keuze" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Boeket op maat" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bloemenabonnement voor thuis of de zaak" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rouwbloemen" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Trouwbloemen" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cadeaubon" } }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Hier stond een FAQPage-blok met zes vragen. Google heeft het FAQ rich
+         result op 7 mei 2026 uit de zoekresultaten gehaald en in juni 2026 ook
+         de rapportage en de documentatie verwijderd; het levert dus niets meer
+         op. De vragen zelf staan gewoon als tekst op de pagina, waar ze voor
+         een lezer en voor een taalmodel even goed werken. -->
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "%SITE_URL%/#website",
+      "name": "Fleurig! Bloemenwinkel",
+      "alternateName": "Fleurig! Oud-Beijerland",
+      "url": "%SITE_URL%/",
+      "inLanguage": "nl-NL",
+      "publisher": { "@id": "%SITE_URL%/#winkel" }
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

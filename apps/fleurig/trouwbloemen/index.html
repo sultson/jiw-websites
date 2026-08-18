@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trouwbloemen en bruidsboeket Oud-Beijerland | Fleurig!</title>
+    <meta name="description" content="Bruidsboeket, corsages en de bloemen op uw locatie, allemaal in dezelfde lijn. Eerst een gesprek over kleur en sfeer, dan een voorstel. Oud-Beijerland." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0d2a21" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/img/icon-96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- De twee letters staan onder een vaste naam in /fonts (zie
+         scripts/fonts.mjs), zodat ze hier bij naam genoemd kunnen worden. Zonder
+         deze twee regels ontdekt de browser ze pas nadat hij het stijlblad heeft
+         gelezen, en staat de tekst tot dat moment in een vervangende letter. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-wght.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-latin-wght.woff2" crossorigin />
+
+    <link rel="preload" as="image" href="/img/bruidsboeket-bruid.webp" type="image/webp" fetchpriority="high" />
+    <link rel="canonical" href="%SITE_URL%/trouwbloemen/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fleurig! Bloemenwinkel" />
+    <meta property="og:title" content="Trouwbloemen en bruidsboeket Oud-Beijerland | Fleurig!" />
+    <meta property="og:description" content="Van het bruidsboeket tot de corsages en de bloemen op de locatie. Eerst overleg, dan een voorstel." />
+    <meta property="og:url" content="%SITE_URL%/trouwbloemen/" />
+    <meta property="og:image" content="%SITE_URL%/img/og-trouwbloemen.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Een bruidsboeket van Fleurig! Bloemenwinkel" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": "%SITE_URL%/trouwbloemen/#dienst",
+      "name": "Trouwbloemen",
+      "serviceType": "Bruidsbloemen en trouwbloemwerk",
+      "description": "Bruidsboeketten, corsages en opstekers, en de bloemen op de trouwlocatie. Allemaal van dezelfde soorten en kleuren, na een vrijblijvend gesprek en een voorstel vooraf.",
+      "url": "%SITE_URL%/trouwbloemen/",
+      "isPartOf": { "@id": "%SITE_URL%/#website" },
+      "areaServed": [
+        { "@type": "City", "name": "Oud-Beijerland" },
+        { "@type": "AdministrativeArea", "name": "Hoeksche Waard" }
+      ],
+      "provider": { "@id": "%SITE_URL%/#winkel" }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Fleurig! Bloemenwinkel", "item": "%SITE_URL%/" },
+        { "@type": "ListItem", "position": 2, "name": "Trouwbloemen", "item": "%SITE_URL%/trouwbloemen/" }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/pages/trouwbloemen.entry.tsx"></script>
+  </body>
+</html>
