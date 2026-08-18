@@ -211,8 +211,8 @@ const t = {
       prev: 'Eerder', next: 'Later',
       fromToday: 'Vanaf deze maand',
       openTab: 'Kalender openen op huurkalender.nl',
-      soonTitle: 'Kalender wordt aangesloten',
-      soonText: 'Voor dit huis loopt de koppeling met onze kalender nog. Vraag de beschikbaarheid even bij ons op, u krijgt meestal dezelfde dag antwoord.',
+      askTitle: 'Beschikbaarheid opvragen',
+      askText: 'Vraag de beschikbaarheid voor uw datums even bij ons op, u krijgt meestal dezelfde dag antwoord.',
     },
     area: {
       title: 'Te doen in de buurt',
@@ -229,7 +229,6 @@ const t = {
       allButton: 'Alles om te doen in de buurt',
       eventsTitle: 'Wat er nu speelt',
       eventsSub: 'Een greep uit de agenda van Winterswijk. Vraag ons naar de actuele agenda voor uw aankomstdatum: wij weten wat er die week speelt en wat de moeite waard is.',
-      eventsNote: 'Data onder voorbehoud. Vraag ons naar de actuele agenda voor uw aankomstdatum.',
       parkTitle: 'Het park vanuit de lucht',
       photoBy: 'Foto:',
       parkText: 'Recreatiepark Den Möllenhof in Winterswijk Meddo, met de bosranden en het water op loopafstand.',
@@ -384,7 +383,7 @@ const t = {
       ctaTitle: 'Interesse in Curaçao?',
       ctaText: 'Laat ons weten wanneer u wilt komen en met hoeveel personen, dan vertellen we u alles over de verblijven en de beschikbaarheid. Dezelfde persoonlijke aanpak als in Winterswijk.',
     },
-    footer: {tagline: 'Vakantiehuizen in Winterswijk & de Achterhoek', rights: 'Alle rechten voorbehouden.', placeholder: 'Concept. Alle huizen en foto’s zijn van de eigenaar; de exacte indeling per woning en de live beschikbaarheidskalender worden nog aangevuld.'},
+    footer: {tagline: 'Vakantiehuizen in Winterswijk & de Achterhoek', rights: 'Alle rechten voorbehouden.'},
   },
   en: {
     nav: {homes: 'Homes', horses: 'Horses', curacao: 'Curaçao', area: 'The area', availability: 'Availability', about: 'About', contact: 'Contact'},
@@ -470,8 +469,8 @@ const t = {
       prev: 'Earlier', next: 'Later',
       fromToday: 'From this month',
       openTab: 'Open the calendar on huurkalender.nl',
-      soonTitle: 'Calendar being connected',
-      soonText: 'This home is still being linked up to our calendar. Just ask us for its availability and you will usually hear back the same day.',
+      askTitle: 'Ask about availability',
+      askText: 'Just ask us about availability for your dates and you will usually hear back the same day.',
     },
     area: {
       title: 'Things to do nearby',
@@ -488,7 +487,6 @@ const t = {
       allButton: 'Everything to do nearby',
       eventsTitle: 'What is on right now',
       eventsSub: 'A selection from the Winterswijk agenda. Ask us for the current agenda for your arrival date: we know what is on that week and what is worth your time.',
-      eventsNote: 'Dates subject to change. Ask us for the current agenda for your arrival date.',
       parkTitle: 'The park from above',
       photoBy: 'Photo:',
       parkText: 'Den Möllenhof holiday park in Winterswijk Meddo, with woodland edges and open water within walking distance.',
@@ -630,7 +628,7 @@ const t = {
       ctaTitle: 'Interested in Curaçao?',
       ctaText: 'Tell us when you would like to come and with how many, and we will talk you through the stays and what is available. The same personal approach as in Winterswijk.',
     },
-    footer: {tagline: 'Vacation homes in Winterswijk & the Achterhoek', rights: 'All rights reserved.', placeholder: 'Concept. Every home and photo comes from the owner; the exact layout per home and the live availability calendar are still being added.'},
+    footer: {tagline: 'Vacation homes in Winterswijk & the Achterhoek', rights: 'All rights reserved.'},
   },
   de: {
     nav: {homes: 'Häuser', horses: 'Pferde', curacao: 'Curaçao', area: 'Umgebung', availability: 'Verfügbarkeit', about: 'Über uns', contact: 'Kontakt'},
@@ -716,8 +714,8 @@ const t = {
       prev: 'Früher', next: 'Später',
       fromToday: 'Ab diesem Monat',
       openTab: 'Kalender auf huurkalender.nl öffnen',
-      soonTitle: 'Kalender wird angebunden',
-      soonText: 'Dieses Haus wird gerade mit unserem Kalender verbunden. Fragen Sie die Verfügbarkeit einfach kurz bei uns an, meist antworten wir noch am selben Tag.',
+      askTitle: 'Verfügbarkeit anfragen',
+      askText: 'Fragen Sie die Verfügbarkeit für Ihre Termine einfach kurz bei uns an, meist antworten wir noch am selben Tag.',
     },
     area: {
       title: 'In der Umgebung',
@@ -734,7 +732,6 @@ const t = {
       allButton: 'Alles in der Umgebung',
       eventsTitle: 'Was gerade läuft',
       eventsSub: 'Eine Auswahl aus dem Winterswijker Veranstaltungskalender. Fragen Sie uns nach dem aktuellen Programm für Ihren Anreisetag: wir wissen, was in dieser Woche läuft und was sich lohnt.',
-      eventsNote: 'Termine unter Vorbehalt. Fragen Sie uns nach dem aktuellen Kalender für Ihren Anreisetag.',
       parkTitle: 'Der Park von oben',
       photoBy: 'Foto:',
       parkText: 'Ferienpark Den Möllenhof in Winterswijk Meddo, mit Waldrändern und Wasser in Gehweite.',
@@ -876,7 +873,7 @@ const t = {
       ctaTitle: 'Interesse an Curaçao?',
       ctaText: 'Sagen Sie uns, wann Sie kommen möchten und mit wie vielen Personen, dann erzählen wir Ihnen alles über die Unterkünfte und die Verfügbarkeit. Dieselbe persönliche Betreuung wie in Winterswijk.',
     },
-    footer: {tagline: 'Ferienhäuser in Winterswijk & im Achterhoek', rights: 'Alle Rechte vorbehalten.', placeholder: 'Konzept. Alle Häuser und Fotos stammen vom Eigentümer; die genaue Aufteilung je Haus und der Live-Verfügbarkeitskalender werden noch ergänzt.'},
+    footer: {tagline: 'Ferienhäuser in Winterswijk & im Achterhoek', rights: 'Alle Rechte vorbehalten.'},
   },
 };
 
@@ -2763,7 +2760,7 @@ function HomeDetail({home, lang, L}: {home: Home; lang: Lang; L: any}) {
             {/* CALENDARS OFF — availText reads "below is this home's live calendar",
                 which is only true with the calendar section switched on, so every
                 home falls back to the "ask us for the dates" copy for now. */}
-            <p className="mt-2 text-sm text-stone-600">{L.hk.soonText}</p>
+            <p className="mt-2 text-sm text-stone-600">{L.hk.askText}</p>
             <a href={waLink} target="_blank" rel="noopener noreferrer" className="mt-4 w-full inline-flex items-center justify-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white px-5 py-3 rounded-full font-medium transition-colors">
               <Send size={17} /> {L.detail.bookWa}
             </a>
@@ -2804,14 +2801,14 @@ function HomeDetail({home, lang, L}: {home: Home; lang: Lang; L: any}) {
           above; HomeAvailability is still in this file.
       <section id="house-availability" className="max-w-6xl mx-auto px-5 mt-14 scroll-mt-24">
         <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{L.detail.availTitle}</h2>
-        <p className="mt-2 text-stone-600 max-w-2xl">{home.calId ? L.detail.availText : L.hk.soonText}</p>
+        <p className="mt-2 text-stone-600 max-w-2xl">{home.calId ? L.detail.availText : L.hk.askText}</p>
         <div className="mt-6">
           {home.calId ? (
             <HomeAvailability home={home} lang={lang} L={L} />
           ) : (
             <div className="rounded-3xl border-2 border-dashed border-brand-green/25 bg-white p-10 text-center">
               <Calendar size={34} className="mx-auto text-brand-green/45" />
-              <h3 className="mt-3 font-serif text-lg text-brand-green-dark">{L.hk.soonTitle}</h3>
+              <h3 className="mt-3 font-serif text-lg text-brand-green-dark">{L.hk.askTitle}</h3>
               <a href={waLink} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors">
                 <Send size={16} /> {L.detail.bookWa}
               </a>
@@ -2896,7 +2893,6 @@ function TodoPage({lang, L}: {lang: Lang; L: any}) {
               </div>
             ))}
           </div>
-          <p className="mt-5 text-xs text-stone-400 text-center">{L.area.eventsNote}</p>
         </div>
 
         {/* What sits within reach of the homes — from the facilities page of the Kattenberg. */}
@@ -3461,7 +3457,6 @@ function Footer({route, lang, L}: {route: Route; lang: Lang; L: any}) {
               </span>
             ))}
           </div>
-          <p className="mt-2 text-xs text-brand-cream/40 max-w-xs">{L.footer.placeholder}</p>
           <p className="mt-1 text-xs">© {new Date().getFullYear()} Winterswijk Vakantiehuis. {L.footer.rights}</p>
         </div>
       </div>
