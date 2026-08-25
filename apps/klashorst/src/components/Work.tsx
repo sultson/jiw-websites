@@ -39,10 +39,13 @@ export default function Work() {
   return (
     <section id="werk" className="scroll-mt-20 border-t border-hair py-20 md:py-28">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-        <header className="max-w-2xl">
+        <header className="max-w-5xl">
           <p className="eyebrow">{t.eyebrow}</p>
-          <h2 className="display mt-4 text-4xl md:text-6xl">{t.titel}</h2>
-          <p className="mt-5 text-[0.98rem] leading-relaxed text-muted">{t.lead}</p>
+          <div className="mt-4 flex flex-wrap items-center gap-x-7 gap-y-3 md:gap-x-10">
+            <h2 className="display text-4xl md:text-6xl">{t.titel}</h2>
+            <span className="klashorst-signature" aria-hidden="true" />
+          </div>
+          <p className="mt-5 max-w-2xl text-[0.98rem] leading-relaxed text-muted">{t.lead}</p>
         </header>
 
         {/* A collection emptied in the Studio is an empty collection here. The

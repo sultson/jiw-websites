@@ -241,3 +241,16 @@ body {
 .room-canvas:active {
   cursor: grabbing;
 }
+
+/* Peter's handwritten mark belongs to the collection heading. It is a mask
+   rather than a recoloured photograph, so only the original strokes remain
+   and the paper background can never show against the gallery wall. */
+.klashorst-signature {
+  display: block;
+  flex: none;
+  width: clamp(10rem, 24vw, 20rem);
+  aspect-ratio: 1200 / 396;
+  background-color: var(--color-red-soft);
+  -webkit-mask: url('/signature-peter-klashorst.png') center / contain no-repeat;
+  mask: url('/signature-peter-klashorst.png') center / contain no-repeat;
+}

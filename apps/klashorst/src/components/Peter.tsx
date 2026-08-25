@@ -12,9 +12,11 @@ export default function Peter() {
             <h2 className="display mt-4 text-4xl md:text-6xl">{t.titel}</h2>
 
             {t.portret && (
-              <figure className="mt-10 max-w-[260px]">
+              <figure className="mt-10 w-full max-w-[30rem]">
                 <img
                   src={t.portret.grid}
+                  srcSet={`${t.portret.grid} 700w, ${t.portret.full} 2200w`}
+                  sizes="(min-width: 1024px) 480px, 100vw"
                   alt={t.titel}
                   loading="lazy"
                   decoding="async"

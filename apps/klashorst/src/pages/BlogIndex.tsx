@@ -31,7 +31,7 @@ export default function BlogIndex() {
               className="group grid gap-7 border-t border-hair pt-10 md:grid-cols-2 md:gap-12 md:pt-12"
             >
               {nieuwste.img && (
-                <div className="overflow-hidden bg-ink">
+                <div className="flex aspect-[4/3] items-center justify-center overflow-hidden bg-ink">
                   <img
                     src={nieuwste.img.grid}
                     srcSet={`${nieuwste.img.grid} 700w, ${nieuwste.img.full} 2200w`}
@@ -40,7 +40,7 @@ export default function BlogIndex() {
                     // The first thing on the page: not something to wait for.
                     fetchPriority="high"
                     decoding="async"
-                    className="aspect-[4/3] w-full object-cover"
+                    className="max-h-full max-w-full object-contain"
                   />
                 </div>
               )}

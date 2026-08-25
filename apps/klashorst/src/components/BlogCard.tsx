@@ -20,13 +20,13 @@ export default function BlogCard({
     <article className="flex flex-col">
       <a href={to(`/blog/${post.slug}`)} className="group flex flex-col">
         {post.img && (
-          <div className="overflow-hidden bg-ink">
+          <div className="flex aspect-[4/3] items-center justify-center overflow-hidden bg-ink">
             <img
               src={post.img.grid}
               alt=""
               loading="lazy"
               decoding="async"
-              className="aspect-[4/3] w-full object-cover"
+              className="max-h-full max-w-full object-contain"
             />
           </div>
         )}
