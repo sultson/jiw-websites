@@ -129,7 +129,7 @@ export default function Work() {
 
           {current.toelichting && (
             <div className="mx-auto flex max-w-2xl flex-col items-center px-5 pb-6">
-              <p className="text-center text-sm leading-relaxed text-bone/75">{current.toelichting}</p>
+              <p className="text-center text-sm leading-relaxed text-bone">{current.toelichting}</p>
             </div>
           )}
         </div>

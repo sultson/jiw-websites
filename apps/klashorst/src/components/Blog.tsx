@@ -20,7 +20,7 @@ export default function Blog() {
         </header>
 
         {recent.length === 0 ? (
-          <p className="mt-10 max-w-xl text-[0.95rem] leading-relaxed text-bone/80">{ui.blog.leeg}</p>
+          <p className="mt-10 max-w-xl text-[0.95rem] leading-relaxed text-bone">{ui.blog.leeg}</p>
         ) : (
           <>
             <div className="mt-12 grid gap-8 md:mt-16 md:grid-cols-3 md:gap-6">

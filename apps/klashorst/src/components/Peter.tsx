@@ -26,7 +26,7 @@ export default function Peter() {
           </div>
 
           <div>
-            <div className="space-y-5 text-[1rem] leading-relaxed text-bone/85">
+            <div className="space-y-5 text-[1rem] leading-relaxed text-bone">
               {t.alineas.map((paragraph) => (
                 <p key={paragraph.slice(0, 24)}>{paragraph}</p>
               ))}
@@ -37,7 +37,7 @@ export default function Peter() {
               {t.feiten.map((row) => (
                 <div key={row.jaar + row.wat} className="flex gap-6 border-b border-hair py-3.5">
                   <dt className="display w-32 shrink-0 text-sm text-red-soft md:text-base">{row.jaar}</dt>
-                  <dd className="text-sm text-bone/85 md:text-[0.95rem]">{row.wat}</dd>
+                  <dd className="text-sm text-bone md:text-[0.95rem]">{row.wat}</dd>
                 </div>
               ))}
             </dl>

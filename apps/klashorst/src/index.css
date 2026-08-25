@@ -3,12 +3,17 @@
 @theme {
   /* Palette sampled from the paintings themselves: warm gallery blacks,
      parchment, and the red that recurs across the S21 series. The room is dark
-     on purpose; what has to be bright is the work hanging in it. */
+     on purpose; what has to be bright is the work hanging in it.
+
+     `muted` is a warm white, not a grey. It used to be #9c958a, which read as
+     6.5:1 on the wall and was hard work for an older visitor at caption size on
+     a phone. It carries the whole site's small print, so it is now a hair below
+     bone: still a step down from a heading, still legible at 14.2:1. */
   --color-ink: #0e0d0c;
   --color-wall: #171513;
   --color-wall-2: #211d1a;
   --color-bone: #efe9dc;
-  --color-muted: #9c958a;
+  --color-muted: #e2dcd0;
   --color-hair: #332e29;
   --color-red: #d24b3f;
   --color-red-soft: #e0705f;
@@ -135,8 +140,9 @@ body {
     resize: vertical;
   }
 
+  /* Faint enough to stay a hint rather than an answer, strong enough to read. */
   .field::placeholder {
-    color: #6a645c;
+    color: #9c958a;
   }
 
   .field:focus {

@@ -42,7 +42,7 @@ export default function BlogCard({
         </Heading>
 
         {post.samenvatting && (
-          <p className="mt-3 text-sm leading-relaxed text-bone/75">{post.samenvatting}</p>
+          <p className="mt-3 text-sm leading-relaxed text-bone">{post.samenvatting}</p>
         )}
 
         <span className="eyebrow mt-4 self-start border-b border-red pb-1 text-bone/80 transition-colors group-hover:text-bone">

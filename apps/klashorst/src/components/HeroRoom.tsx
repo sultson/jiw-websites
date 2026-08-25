@@ -137,7 +137,7 @@ export default function HeroRoom() {
           >
             <h1 className="display text-[clamp(2.5rem,9vw,6.5rem)]">{t.titel}</h1>
             <p className="display mt-2 text-[clamp(1.1rem,3.4vw,2rem)] text-red-soft">{t.tagline}</p>
-            <p className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-bone/80">{t.lead}</p>
+            <p className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-bone">{t.lead}</p>
             <div className="pointer-events-auto mt-7 flex flex-wrap gap-3">
               <a href="#werk" className="btn btn-solid">
                 {t.knop}
@@ -156,7 +156,7 @@ export default function HeroRoom() {
               {focused ? [focused.techniek, focused.afmetingen].filter(Boolean).join(', ') : ''}
             </p>
             {focused?.toelichting && (
-              <p className="mt-2 text-sm leading-relaxed text-bone/80">{focused.toelichting}</p>
+              <p className="mt-2 text-sm leading-relaxed text-bone">{focused.toelichting}</p>
             )}
             <button
               type="button"

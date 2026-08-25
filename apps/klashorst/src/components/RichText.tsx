@@ -20,7 +20,7 @@ const components: PortableTextComponents = {
       <h3 className="display mt-9 text-lg tracking-[0.04em] md:text-xl">{children}</h3>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-9 border-l-2 border-red pl-5 text-[1.05rem] italic text-bone/85 md:pl-7">
+      <blockquote className="my-9 border-l-2 border-red pl-5 text-[1.05rem] italic text-bone md:pl-7">
         {children}
       </blockquote>
     ),
@@ -82,7 +82,7 @@ const components: PortableTextComponents = {
 export default function RichText({ value }: { value: RichBlock[] }) {
   if (!value.length) return null;
   return (
-    <div className="text-[1.02rem] leading-[1.8] text-bone/85">
+    <div className="text-[1.02rem] leading-[1.8] text-bone">
       {/* The blocks are Portable Text as Sanity stores it; the images inside
           them have had their asset reference resolved into URLs already. */}
       <PortableText value={value as never} components={components} />

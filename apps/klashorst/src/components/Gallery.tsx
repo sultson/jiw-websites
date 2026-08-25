@@ -26,7 +26,7 @@ export default function Gallery() {
 
         {werken.length === 0 ? (
           <div className="mt-10 max-w-xl border border-hair bg-wall p-7 md:p-9">
-            <p className="text-[0.95rem] leading-relaxed text-bone/80">{t.leeg}</p>
+            <p className="text-[0.95rem] leading-relaxed text-bone">{t.leeg}</p>
           </div>
         ) : (
           <div className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 md:mt-16 md:grid-cols-3 md:gap-x-8 md:gap-y-14 lg:grid-cols-4">
@@ -43,7 +43,7 @@ export default function Gallery() {
                 </div>
 
                 <h3 className="display mt-3 text-base leading-tight md:text-lg">{work.titel}</h3>
-                {work.kunstenaar && <p className="mt-1 text-sm text-bone/80">{work.kunstenaar}</p>}
+                {work.kunstenaar && <p className="mt-1 text-sm text-bone">{work.kunstenaar}</p>}
                 {label(work) && (
                   <p className="mt-1 text-xs text-muted md:text-[0.8rem]">{label(work)}</p>
                 )}

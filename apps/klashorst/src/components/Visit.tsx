@@ -24,7 +24,7 @@ export default function Visit() {
               ))}
             </dl>
 
-            <p className="mt-6 text-sm leading-relaxed text-bone/75">{t.note}</p>
+            <p className="mt-6 text-sm leading-relaxed text-bone">{t.note}</p>
           </div>
 
           <div className="order-1 lg:order-2">

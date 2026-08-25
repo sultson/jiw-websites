@@ -23,7 +23,7 @@ export default function BlogIndex() {
         </header>
 
         {!nieuwste ? (
-          <p className="max-w-xl pb-20 text-[0.95rem] leading-relaxed text-bone/80">{ui.blog.leeg}</p>
+          <p className="max-w-xl pb-20 text-[0.95rem] leading-relaxed text-bone">{ui.blog.leeg}</p>
         ) : (
           <>
             <a
@@ -54,7 +54,7 @@ export default function BlogIndex() {
                   {nieuwste.titel}
                 </h2>
                 {nieuwste.samenvatting && (
-                  <p className="mt-5 max-w-xl text-[0.98rem] leading-relaxed text-bone/80">
+                  <p className="mt-5 max-w-xl text-[0.98rem] leading-relaxed text-bone">
                     {nieuwste.samenvatting}
                   </p>
                 )}
