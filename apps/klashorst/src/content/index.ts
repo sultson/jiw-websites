@@ -282,10 +282,21 @@ function buildContent(payload: RawPayload | null): Content {
     },
   };
 
+  /**
+   * An empty list is an answer. The CMS returns an array for every list it was
+   * asked about, so a list that came back as an array is the museum's list,
+   * even when there is nothing in it: someone who empties the collection in
+   * the Studio and presses publish has to see it empty on the site. Only a
+   * query that came back without the field at all is a broken answer rather
+   * than an empty one, and that is the case the bundled copy is for.
+   */
+  const geantwoord = <T>(rauw: unknown, gelezen: T[], bundel: T[]): T[] =>
+    Array.isArray(rauw) ? gelezen : bundel;
+
   return {
     teksten,
-    werk: werk.length ? werk : bundled.werk,
-    blog: blog.length ? blog : bundled.blog,
+    werk: geantwoord(data.werk, werk, bundled.werk),
+    blog: geantwoord(data.nieuws, blog, bundled.blog),
     galerie,
   };
 }

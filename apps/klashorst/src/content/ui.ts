@@ -25,6 +25,7 @@ const nl = {
   },
   werk: {
     vergroot: 'Vergroot',
+    leeg: 'Er staat op dit moment geen werk in de collectie. Zodra er werk is opgenomen, staat het hier.',
   },
   lightbox: {
     sluiten: 'Sluiten',
@@ -90,6 +91,7 @@ const en: Ui = {
   },
   werk: {
     vergroot: 'Enlarge',
+    leeg: 'There is no work in the collection at the moment. As soon as work is added, it appears here.',
   },
   lightbox: {
     sluiten: 'Close',

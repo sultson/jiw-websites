@@ -45,33 +45,40 @@ export default function Work() {
           <p className="mt-5 text-[0.98rem] leading-relaxed text-muted">{t.lead}</p>
         </header>
 
-        <div className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 md:mt-16 md:grid-cols-3 md:gap-x-8 md:gap-y-14 lg:grid-cols-4">
-          {werken.map((work, i) => (
-            <article key={work.id} className="flex flex-col">
-              <button
-                type="button"
-                onClick={() => setIndex(i)}
-                className="group text-left"
-                aria-label={`${ui.werk.vergroot}: ${work.titel}`}
-              >
-                {/* One fixed box for every card, so the titles underneath sit
-                    on a single baseline across the row. The work is contained
-                    rather than cropped: an art site must not recrop the art. */}
-                <div className="flex aspect-[3/4] items-center justify-center overflow-hidden bg-wall">
-                  <img
-                    src={work.img.grid}
-                    alt={`${work.titel}, ${label(work)}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="max-h-full max-w-full object-contain transition-opacity duration-300 group-hover:opacity-85"
-                  />
-                </div>
-                <h3 className="display mt-3 text-base leading-tight md:text-lg">{work.titel}</h3>
-                <p className="mt-1 text-xs text-muted md:text-[0.8rem]">{label(work)}</p>
-              </button>
-            </article>
-          ))}
-        </div>
+        {/* A collection emptied in the Studio is an empty collection here. The
+            section says so rather than quietly falling back to the works this
+            build shipped with, which is what made deleting them look broken. */}
+        {werken.length === 0 ? (
+          <p className="mt-10 max-w-xl text-[0.95rem] leading-relaxed text-muted">{ui.werk.leeg}</p>
+        ) : (
+          <div className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 md:mt-16 md:grid-cols-3 md:gap-x-8 md:gap-y-14 lg:grid-cols-4">
+            {werken.map((work, i) => (
+              <article key={work.id} className="flex flex-col">
+                <button
+                  type="button"
+                  onClick={() => setIndex(i)}
+                  className="group text-left"
+                  aria-label={`${ui.werk.vergroot}: ${work.titel}`}
+                >
+                  {/* One fixed box for every card, so the titles underneath sit
+                      on a single baseline across the row. The work is contained
+                      rather than cropped: an art site must not recrop the art. */}
+                  <div className="flex aspect-[3/4] items-center justify-center overflow-hidden bg-wall">
+                    <img
+                      src={work.img.grid}
+                      alt={`${work.titel}, ${label(work)}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="max-h-full max-w-full object-contain transition-opacity duration-300 group-hover:opacity-85"
+                    />
+                  </div>
+                  <h3 className="display mt-3 text-base leading-tight md:text-lg">{work.titel}</h3>
+                  <p className="mt-1 text-xs text-muted md:text-[0.8rem]">{label(work)}</p>
+                </button>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
 
       {current && (
