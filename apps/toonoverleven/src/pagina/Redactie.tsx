@@ -232,7 +232,7 @@ function BlokWeergave({ blok, eerste, sleuf }: { blok: Blok; eerste: boolean; sl
           {blok.kicker && <Kicker>{blok.kicker}</Kicker>}
           {blok.kop && <h2 className="mb-3 max-w-[25ch] text-[1.8rem] md:text-[2.2rem] lg:text-[2.75rem]">{schrijfNaam(blok.kop)}</h2>}
           {blok.intro && (
-            <p className="mb-6 max-w-[72ch] text-[1.04rem] leading-relaxed text-inkt-zacht">
+            <p className="mb-6 max-w-[72ch] text-[1.04rem] leading-relaxed text-inkt">
               <Regel tekst={blok.intro} />
             </p>
           )}
@@ -295,7 +295,7 @@ function BlokWeergave({ blok, eerste, sleuf }: { blok: Blok; eerste: boolean; sl
             <Kaartraster>
               {blok.kaarten.map((kaart, i) => (
                 <Kaart key={kaart.kop + i} icoon={kaart.icoon} kop={kaart.kop} i={i} acties={kaart.acties}>
-                  <Alineas tekst={kaart.tekst} className="max-w-none text-inkt-doffer" />
+                  <Alineas tekst={kaart.tekst} className="max-w-none" kleur="text-inkt-doffer" />
                 </Kaart>
               ))}
             </Kaartraster>
@@ -328,7 +328,7 @@ function Inzicht({ kaart, i }: { kaart: { icoon?: string | null; kop: string; te
     <article className={`rounded-[1.25rem] border border-lijn p-5 ${tint}`}>
       <IcoonVlak naam={kaart.icoon} i={i} />
       <h3 className="mb-1.5 mt-3.5 text-[1.08rem] text-inkt">{schrijfNaam(kaart.kop)}</h3>
-      <Alineas tekst={kaart.tekst} className="max-w-none text-[0.93rem] text-inkt-doffer" />
+      <Alineas tekst={kaart.tekst} className="max-w-none text-[0.93rem]" kleur="text-inkt-doffer" />
     </article>
   );
 }

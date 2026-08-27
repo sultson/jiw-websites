@@ -44,7 +44,7 @@ export default function BerichtKaart({
           )}
           {bericht.datum}
         </p>
-        <strong className="my-2 font-display text-[1.16rem] font-medium leading-tight text-wijn-diep">
+        <strong className="my-2 font-display text-[1.16rem] font-bold leading-tight text-wijn-diep">
           {schrijfNaam(bericht.titel)}
         </strong>
         <span className="line-clamp-3 flex-1 text-[0.9rem] leading-relaxed text-inkt-doffer">

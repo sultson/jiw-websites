@@ -41,7 +41,7 @@ function Blokkop({ titel, intro }: { titel: string; intro?: string }) {
         {schrijfNaam(titel)}
       </h2>
       {intro && (
-        <p className="mt-4 max-w-[68ch] leading-relaxed text-inkt-zacht">{schrijfNaam(intro)}</p>
+        <p className="mt-4 max-w-[68ch] leading-relaxed text-inkt">{schrijfNaam(intro)}</p>
       )}
     </header>
   );
@@ -57,7 +57,7 @@ function Terugval({
 }) {
   return (
     <div className="rounded-[1.25rem] border border-lijn bg-room-diep p-6">
-      <p className="max-w-[62ch] leading-relaxed text-inkt-zacht">{tekst}</p>
+      <p className="max-w-[62ch] leading-relaxed text-inkt">{tekst}</p>
       {actie && (
         <p className="mt-3.5">
           <Tekstlink href={actie.href}>{actie.label}</Tekstlink>
@@ -137,7 +137,7 @@ export function DoneerBlok({ teksten }: { teksten: Teksten }): ReactElement {
       </p>
 
       {teksten.steun.anbi && (
-        <p className="mt-6 max-w-[68ch] rounded-[1.25rem] bg-blos px-[1.15rem] py-4 leading-relaxed text-inkt-zacht">
+        <p className="mt-6 max-w-[68ch] rounded-[1.25rem] bg-blos px-[1.15rem] py-4 leading-relaxed text-inkt">
           {schrijfNaam(teksten.steun.anbi)}
         </p>
       )}
@@ -291,7 +291,7 @@ function Namenlijst({
           ))}
         </ul>
       ) : (
-        <p className="mt-3.5 leading-relaxed text-inkt-zacht">{leegTekst}</p>
+        <p className="mt-3.5 leading-relaxed text-inkt">{leegTekst}</p>
       )}
     </div>
   );

@@ -221,7 +221,7 @@ export default function Nav() {
                 // De rubriek waar je staat begint opengeklapt: dat scheelt een
                 // tik en laat zien waar je bent.
                 <details key={punt.pad} open={isHier(punt.pad) || undefined} className="group border-b border-lijn">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-4 font-display text-[1.2rem] text-wijn-diep [&::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-4 text-[1.05rem] font-bold text-wijn-diep [&::-webkit-details-marker]:hidden">
                     {punt.label}
                     <ChevronDown
                       className="h-4 w-4 flex-none text-wijn transition-transform duration-200 group-open:rotate-180"

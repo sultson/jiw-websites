@@ -43,7 +43,7 @@ function NogGeenVerhaal() {
       <div>
         <Kicker>Plek voor authentieke inhoud</Kicker>
         <h2 className="mb-2 max-w-[22ch] text-[1.6rem] md:text-[2rem]">Hier komt een echt verhaal</h2>
-        <p className="max-w-[60ch] leading-relaxed text-inkt-zacht">
+        <p className="max-w-[60ch] leading-relaxed text-inkt">
           Een AI-verhaal zou overtuigend kunnen klinken, maar is geen ervaring van een bezoeker.
           Daarom staat hier pas een verhaal zodra iemand die Toon over Leven zelf bezocht heeft het
           vertelt en toestemming geeft om het te publiceren.
@@ -83,7 +83,7 @@ function VerhaalKaart({ verhaal, i }: { verhaal: Verhaal; i: number }) {
 
         {verhaal.link ? (
           <>
-            <p className="mt-4 max-w-[68ch] leading-relaxed text-inkt-zacht">
+            <p className="mt-4 max-w-[68ch] leading-relaxed text-inkt">
               {schrijfNaam(verhaal.samenvatting)}
             </p>
             <div className="mt-6">

@@ -85,13 +85,29 @@ export function Regel({ tekst }: { tekst: Tekst }) {
   );
 }
 
-/** Een rijtje alinea's uit de redactielaag. */
-export function Alineas({ tekst, className = '' }: { tekst?: Tekst[]; className?: string }) {
+/**
+ * Een rijtje alinea's uit de redactielaag.
+ *
+ * De leeskleur is de gewone inkt, zoals in het voorstel: lopende tekst staat
+ * daar op volle sterkte en alleen een kaart of de kop van de pagina wordt een
+ * tint zachter. Eén doffer blok tekst leest als iets wat minder belangrijk is,
+ * en dat is precies wat het niet mag zijn.
+ */
+export function Alineas({
+  tekst,
+  className = '',
+  kleur = 'text-inkt',
+}: {
+  tekst?: Tekst[];
+  className?: string;
+  /** Eén klasse, want twee kleuren op één alinea laten de volgorde beslissen. */
+  kleur?: string;
+}) {
   if (!tekst?.length) return null;
   return (
     <>
       {tekst.map((regel, i) => (
-        <p key={i} className={`max-w-[68ch] leading-relaxed text-inkt-zacht ${i ? 'mt-4' : ''} ${className}`}>
+        <p key={i} className={`max-w-[68ch] leading-relaxed ${kleur} ${i ? 'mt-4' : ''} ${className}`}>
           <Regel tekst={regel} />
         </p>
       ))}
@@ -105,7 +121,7 @@ export function Punten({ punten }: { punten?: Tekst[] }) {
   return (
     <ul className="mt-5 grid max-w-[68ch] gap-2.5">
       {punten.map((punt, i) => (
-        <li key={i} className="relative pl-6 leading-relaxed text-inkt-zacht">
+        <li key={i} className="relative pl-6 leading-relaxed text-inkt">
           <span
             aria-hidden="true"
             className="absolute left-0.5 top-[0.65em] h-2 w-2 rounded-full bg-salie"
@@ -260,7 +276,7 @@ export function Kop({
         {titel}
       </h2>
       {intro && (
-        <p className={`mt-4 max-w-[72ch] text-[1.04rem] leading-relaxed ${licht ? 'text-white/80' : 'text-inkt-zacht'}`}>
+        <p className={`mt-4 max-w-[72ch] text-[1.04rem] leading-relaxed ${licht ? 'text-white/80' : 'text-inkt'}`}>
           {intro}
         </p>
       )}
@@ -290,7 +306,7 @@ export function Kruimels({ pad }: { pad: Kruimel[] }) {
                 {stap.label}
               </a>
             ) : (
-              <span aria-current="page" className="truncate text-inkt-zacht">
+              <span aria-current="page" className="truncate">
                 {stap.label}
               </span>
             )}
@@ -396,7 +412,7 @@ export function Zorggrens({ kop, children }: { kop: string; children: ReactNode 
         i
       </span>
       <strong className="text-wijn-diep">{schrijfNaam(kop)}</strong>
-      <div className="mt-1 text-[0.9rem] leading-relaxed text-inkt-zacht">{children}</div>
+      <div className="mt-1 text-[0.9rem] leading-relaxed text-inkt">{children}</div>
     </aside>
   );
 }
@@ -420,7 +436,7 @@ export function BronKaart({ bron }: { bron: Bron }) {
       <span className="text-[0.7rem] font-extrabold uppercase tracking-[0.08em] text-teal">
         {bron.bron}
       </span>
-      <strong className="my-2 font-display text-[1.15rem] font-medium leading-tight text-wijn-diep">
+      <strong className="my-2 font-display text-[1.15rem] font-bold leading-tight text-wijn-diep">
         {bron.kop}
       </strong>
       <span className="text-[0.86rem] leading-relaxed text-grijs">{bron.tekst}</span>
@@ -455,7 +471,7 @@ export function ContactKaart({
   return (
     <div className="rounded-[1.25rem] bg-gradient-to-br from-teal-licht to-[#f4f8f6] p-6 shadow-[var(--shadow-zacht)]">
       {kicker && <Kicker>{kicker}</Kicker>}
-      <h2 className="mb-2.5 text-[1.25rem] text-inkt">{schrijfNaam(kop)}</h2>
+      <h2 className="mb-2.5 font-sans text-[1.25rem] font-bold text-inkt">{schrijfNaam(kop)}</h2>
       {tekst?.map((regel, i) => (
         <p key={i} className="text-[0.9rem] leading-relaxed text-[#4f5f5e]">
           <Regel tekst={regel} />

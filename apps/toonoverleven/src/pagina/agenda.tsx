@@ -86,7 +86,7 @@ export function KomendeMomenten({
       {kop && (
         <h2 className="mb-3 max-w-[22ch] text-[1.75rem] md:text-[2.15rem] lg:text-[2.65rem]">{kop}</h2>
       )}
-      {intro && <p className="max-w-[68ch] leading-relaxed text-inkt-zacht">{intro}</p>}
+      {intro && <p className="max-w-[68ch] leading-relaxed text-inkt">{intro}</p>}
 
       {momenten.length ? (
         <Raster>
@@ -530,7 +530,7 @@ function Leeg({ kop, children }: { kop: string; children: ReactNode }) {
   return (
     <div className="mt-6 rounded-[1.25rem] border border-lijn bg-white p-6">
       <p className="text-[1.08rem] font-bold text-wijn-diep">{kop}</p>
-      <div className="mt-2 max-w-[62ch] leading-relaxed text-inkt-zacht">{children}</div>
+      <div className="mt-2 max-w-[62ch] leading-relaxed text-inkt">{children}</div>
       <p className="mt-4 text-[0.9rem] text-grijs">
         Liever even overleggen? <Tekstlink href="/praktisch/contact">Neem contact op</Tekstlink>
       </p>
