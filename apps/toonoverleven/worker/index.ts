@@ -1,17 +1,21 @@
 import { createFormWorker, type CloudflareFormsEnv } from '@jiw/cloudflare-forms';
 import { assetVanRef } from '../src/content/image';
+import { contentVan, type RawPayload } from '../src/content';
+import { tekenPagina } from '../src/entry-server';
+import { vindPagina } from '../src/inhoud';
+import { metFeiten } from '../src/inhoud/feiten';
+import { berichtJsonLd, metaVoorPagina, robotsTxt, sitemapXml, type PaginaMeta } from './seo';
 import {
   NIET_GEVONDEN,
   PADEN,
   PAGINAS,
-  SITE_NAAM,
   SITE_URL,
   absoluutUrl,
   kort,
   paginaTitel,
   schoonPad,
   slugify,
-  type Pad,
+  VERHUISD,
 } from '../src/meta';
 
 export type Env = CloudflareFormsEnv & {
@@ -45,7 +49,7 @@ const contactWorker = createFormWorker({
   senderName: 'Toon over Leven',
   subjectPrefix: 'Bericht via de site',
   confirmationFollowUpSentence:
-    'Een van onze vrijwilligers neemt contact met u op. Wilt u liever meteen iemand spreken, bel dan 036-8450265.',
+    'Een van onze vrijwilligers neemt contact met je op. Wil je liever meteen iemand spreken, bel dan 036-8450265.',
   subjectFields: ['onderwerp'],
   messageField: 'bericht',
   emailFields: [
@@ -75,11 +79,15 @@ const query = (vandaag: string) => `{
     (defined(herhaling) && herhaling != "eenmalig") || coalesce(totDatum, datum) >= "${vandaag}"
   )] | order(datum asc){
     _id, soort, titel, categorie, omschrijving, afbeelding, datum, totDatum, heleDag,
-    begintijd, eindtijd, herhaling, herhaalTot, overslaan, aanmelden, bijdrage, locatie
+    begintijd, eindtijd, herhaling, herhaalTot, overslaan, aanmelden, bijdrage, locatie,
+    doelgroepen, themas
   },
   "nieuws": *[_type == "nieuws"] | order(coalesce(vastgezet, false) desc, datum desc){
     _id, titel, slug, datum, vastgezet, intro, body, afbeelding, instagram, facebook,
     seoTitel, seoOmschrijving
+  },
+  "verhalen": *[_type == "verhaal" && toestemming == true && status == "gepubliceerd"] | order(datum desc){
+    _id, kop, verteller, rubriek, intro, body, afbeelding, datum, link
   },
   "sponsoren": *[_type == "sponsor" && defined(logo.asset)] | order(coalesce(volgorde, 9999) asc, naam asc){
     naam, logo, website
@@ -150,24 +158,7 @@ async function laadInhoud(
 /** JSON is veilig in een scripttag zodra `<` geen sluittag kan beginnen. */
 const inlineJson = (waarde: unknown) => JSON.stringify(waarde).replace(/</g, '\\u003c');
 
-const escapeHtml = (waarde: string) =>
-  waarde
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-
 type Doc = Record<string, any>;
-
-type PaginaMeta = {
-  titel: string;
-  omschrijving: string;
-  pad: string;
-  beeld: string | null;
-  type: 'website' | 'article';
-  /** JSON-LD voor deze pagina, al omgezet naar tekst. */
-  jsonLd: string | null;
-};
 
 /**
  * Het adres waarop elk bericht staat. Dezelfde regel als in de browser: het
@@ -215,91 +206,53 @@ const eersteTekst = (...waarden: unknown[]): string => {
 };
 
 /**
- * Gestructureerde gegevens. Geen versiering: dit is wat een stichting in een
- * kennispaneel zet en een bericht in een nieuwscarrousel, en het is de helft
- * van het werk die een pagina met metatags alleen niet kan doen.
+ * De head van de gevraagde pagina.
+ *
+ * De titels, de omschrijvingen en de gestructureerde gegevens van de
+ * tweeënzeventig vastgestelde pagina's komen uit worker/seo.ts, dat dezelfde
+ * inhoudsboom leest als de site zelf. Alleen het nieuws komt uit het beheer en
+ * wordt hier opgelost.
  */
-const stichtingJsonLd = () =>
-  JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'NGO',
-    name: SITE_NAAM,
-    // Alleen de oude naam: wie daarop zoekt moet hier uitkomen. Een tweede
-    // schrijfwijze van de huidige naam hoort hier niet, die is er maar één.
-    alternateName: ['Toon Hermans Huis Zeewolde'],
-    description: PAGINAS['/'].omschrijving,
-    url: `${SITE_URL}/`,
-    logo: `${SITE_URL}/img/logo-vol.png`,
-    image: `${SITE_URL}/img/deel.jpg`,
-    telephone: '+31368450265',
-    email: 'info@toonoverleven.nl',
-    nonprofitStatus: 'NonprofitANBI',
-    taxID: '820209685',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Mazerhard 37',
-      postalCode: '3891 BR',
-      addressLocality: 'Zeewolde',
-      addressRegion: 'Flevoland',
-      addressCountry: 'NL',
-    },
-    geo: { '@type': 'GeoCoordinates', latitude: 52.333788, longitude: 5.538774 },
-    openingHoursSpecification: [
-      { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Thursday', opens: '10:00', closes: '12:00' },
-    ],
-    sameAs: [
-      'https://www.facebook.com/ToonHermansHuisZeewolde',
-      'https://www.instagram.com/toon_over_leven_zeewolde/',
-    ],
-    memberOf: { '@type': 'Organization', name: 'IPSO', url: 'https://ipso.nl' },
-    areaServed: ['Zeewolde', 'Harderwijk', 'Nijkerk', 'Almere', 'Ermelo', 'Putten'].map((naam) => ({
-      '@type': 'City',
-      name: naam,
-    })),
-  });
-
-const berichtJsonLd = (opts: {
-  titel: string;
-  omschrijving: string;
-  url: string;
-  beeld: string | null;
-  datum?: string;
-}) =>
-  JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: opts.titel,
-    description: opts.omschrijving,
-    inLanguage: 'nl',
-    mainEntityOfPage: opts.url,
-    ...(opts.beeld ? { image: opts.beeld } : {}),
-    ...(opts.datum ? { datePublished: opts.datum } : {}),
-    publisher: { '@type': 'Organization', name: SITE_NAAM, url: SITE_URL },
-  });
-
 function paginaMeta(
   pad: string,
   data: Doc | null,
+  teksten: ReturnType<typeof contentVan>['teksten'],
   projectId: string,
   dataset: string,
 ): { meta: PaginaMeta | null; ontbreekt: boolean } {
-  if ((PADEN as readonly string[]).includes(pad)) {
-    const vast = PAGINAS[pad as Pad];
+  const vast = metaVoorPagina(pad);
+  if (vast) {
+    // De omschrijving in een zoekresultaat hoort te zeggen wat er op de pagina
+    // staat. Op een paar pagina's is die tekst hier bijgewerkt met wat het
+    // bestuur inmiddels bevestigd heeft, dus die versie wint.
+    const bron = vindPagina(pad);
+    const bijgewerkt = bron ? metFeiten(bron, teksten).omschrijving : '';
+    return {
+      meta: bijgewerkt ? { ...vast, omschrijving: kort(bijgewerkt) } : vast,
+      ontbreekt: false,
+    };
+  }
+
+  if (pad === '/nieuws') {
+    const overzicht = PAGINAS['/nieuws'];
     return {
       meta: {
-        titel: pad === '/' ? vast.titel : paginaTitel(vast.titel),
-        omschrijving: kort(vast.omschrijving),
+        titel: paginaTitel(overzicht.titel),
+        omschrijving: kort(overzicht.omschrijving),
         pad,
         beeld: null,
         type: 'website',
-        jsonLd: pad === '/' ? stichtingJsonLd() : null,
+        jsonLd: null,
       },
       ontbreekt: false,
     };
   }
 
+  // Geen vastgestelde pagina, niet het nieuwsoverzicht en geen bericht: dan
+  // bestaat dit adres niet. Dat hoort een 404 te zijn en niet een pagina die
+  // dat toevallig zegt, anders ziet geen enkele linkchecker het verschil.
   const artikel = /^\/nieuws\/([^/]+)$/.exec(pad);
-  if (!artikel) return { meta: null, ontbreekt: false };
+  if (!artikel) return { meta: null, ontbreekt: true };
 
   // Sanity onbereikbaar: de app valt terug op de berichten waarmee hij gebouwd
   // is, dus dit is niet het moment om te zeggen dat het bericht niet bestaat.
@@ -336,7 +289,6 @@ function paginaMeta(
     ),
   );
   const beeld = deelBeeld(bericht.afbeelding, projectId, dataset);
-  const url = absoluutUrl(`/nieuws/${slug}`);
   return {
     meta: {
       titel,
@@ -347,9 +299,9 @@ function paginaMeta(
       jsonLd: berichtJsonLd({
         titel: kop,
         omschrijving,
-        url,
+        pad: `/nieuws/${slug}`,
         beeld,
-        datum: typeof bericht.datum === 'string' ? bericht.datum : undefined,
+        gepubliceerd: typeof bericht.datum === 'string' ? bericht.datum : undefined,
       }),
     },
     ontbreekt: false,
@@ -395,15 +347,15 @@ function zetMeta(rewriter: HTMLRewriter, meta: PaginaMeta, indexeerbaar: boolean
 
 /** Elk adres dat het waard is om te doorzoeken. */
 function sitemap(data: Doc | null): string {
-  const paden: string[] = [...PADEN];
+  const regels: { pad: string; gewijzigd?: string }[] = PADEN.map((pad) => ({ pad }));
   const berichten = Array.isArray(data?.nieuws) ? (data!.nieuws as Doc[]) : [];
-  for (const { slug } of metAdres(berichten)) paden.push(`/nieuws/${slug}`);
-
-  const regels = paden
-    .map((pad) => `<url><loc>${escapeHtml(absoluutUrl(pad))}</loc></url>`)
-    .join('');
-
-  return `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${regels}</urlset>`;
+  for (const { slug, bericht } of metAdres(berichten)) {
+    regels.push({
+      pad: `/nieuws/${slug}`,
+      gewijzigd: typeof bericht.datum === 'string' ? bericht.datum : undefined,
+    });
+  }
+  return sitemapXml(regels);
 }
 
 export default {
@@ -413,6 +365,15 @@ export default {
 
     if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
       url.pathname = url.pathname.slice(0, -1);
+      return Response.redirect(url.toString(), 301);
+    }
+
+    // De site heette acht pagina's lang anders. Een oude link uit een mail, een
+    // folder of Google hoort op de nieuwe plek uit te komen en niet op een
+    // foutmelding, en met een 301 verhuist de vindbaarheid mee.
+    const nieuwePlek = VERHUISD[schoonPad(url.pathname)];
+    if (nieuwePlek) {
+      url.pathname = nieuwePlek;
       return Response.redirect(url.toString(), 301);
     }
 
@@ -437,15 +398,15 @@ export default {
     }
 
     if (url.pathname === '/robots.txt') {
-      const body = indexeerbaar
-        ? `User-agent: *\nDisallow: /beheer\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
-        : `# Conceptversie. Niets hiervan hoort in de index zolang toonoverleven.nl bestaat.\nUser-agent: *\nDisallow: /\n`;
-      return new Response(body, {
+      return new Response(robotsTxt(indexeerbaar), {
         headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'max-age=300' },
       });
     }
 
     if (url.pathname === '/sitemap.xml') {
+      // Een concept hoort niet alleen buiten de index te blijven, maar ook
+      // buiten de kaart die je aan een zoekmachine geeft.
+      if (!indexeerbaar) return new Response('Niet gevonden', { status: 404 });
       const data = (await laadInhoud(env, { vers: false, voorbeeld: false }, ctx)) as Doc | null;
       return new Response(sitemap(data), {
         headers: { 'content-type': 'application/xml; charset=utf-8', 'cache-control': 'max-age=300' },
@@ -465,21 +426,53 @@ export default {
 
     const projectId = env.SANITY_PROJECT_ID ?? '';
     const dataset = env.SANITY_DATASET || 'production';
-    const { meta, ontbreekt } = paginaMeta(pad, data, projectId, dataset);
-    if (!data && !meta) return antwoord;
+
+    // De inhoud wordt hier één keer opgebouwd, en daarna twee keer gebruikt:
+    // om de pagina te tekenen en om de head te schrijven. Zo kan de HTML die
+    // verstuurd wordt niet iets anders zeggen dan wat erin staat.
+    const payload: RawPayload = { projectId, dataset, preview: voorbeeld, data: data as never };
+    const inhoud = contentVan(data ? payload : null);
+
+    const { meta, ontbreekt } = paginaMeta(pad, data, inhoud.teksten, projectId, dataset);
 
     let rewriter = new HTMLRewriter();
 
+    // Het moment waarop deze pagina getekend wordt. De browser rekent er bij
+    // het overnemen mee, anders kan de agenda daar net één keer anders
+    // uitvallen dan in de HTML en gooit React de hele server-versie weg.
+    const nu = Date.now();
+    rewriter = rewriter.on('html', {
+      element(html) {
+        html.setAttribute('data-nu', String(nu));
+      },
+    });
+
     if (data) {
-      const payload = inlineJson({ projectId, dataset, preview: voorbeeld, data });
+      const meegestuurd = inlineJson({ projectId, dataset, preview: voorbeeld, data });
       rewriter = rewriter.on('head', {
         element(head) {
           head.append(
-            `<script id="toonoverleven-content" type="application/json">${payload}</script>`,
+            `<script id="toonoverleven-content" type="application/json">${meegestuurd}</script>`,
             { html: true },
           );
         },
       });
+    }
+
+    // De pagina getekend meesturen. De opdrachtgever vraagt er in zijn eigen
+    // eisen om: iedere pagina moet zijn hoofdinhoud in de broncode hebben, voor
+    // een zoekmachine, een voorleesprogramma en een trage verbinding. Gaat het
+    // tekenen mis, dan gaat de lege huls eruit en tekent de browser hem alsnog.
+    try {
+      const getekend = await tekenPagina({ pad, inhoud, voorbeeld, nu });
+      rewriter = rewriter.on('#root', {
+        element(wortel) {
+          wortel.setInnerContent(getekend, { html: true });
+        },
+      });
+    } catch {
+      // Doorlopen: een pagina die de browser zelf tekent is nog altijd een
+      // pagina, en een storing hier mag het inloophuis niet offline halen.
     }
 
     if (meta) rewriter = zetMeta(rewriter, meta, indexeerbaar && !voorbeeld);

@@ -154,7 +154,7 @@ const teksten: Teksten = {
   },
   steun: {
     kicker: 'Steun ons',
-    titel: 'Wij hebben uw steun nu echt nodig',
+    titel: 'We hebben je steun nu echt nodig',
     lead: 'Toon over Leven krijgt geen vaste financiering en draait volledig op giften. Zonder nieuwe inkomsten kunnen we de activiteiten aan het Mazerhard niet volhouden.',
     manieren: [
       {
@@ -163,25 +163,25 @@ const teksten: Teksten = {
       },
       {
         kop: 'Sponsor worden',
-        tekst: 'Als bedrijf of fonds. Van een jaarlijkse bijdrage tot het leveren van koffie, materialen of een dienst. Uw logo komt op deze pagina te staan.',
+        tekst: 'Als bedrijf of fonds. Van een jaarlijkse bijdrage tot het leveren van koffie, materialen of een dienst. Je logo komt op deze pagina te staan.',
       },
       {
         kop: 'Gratis steunen',
-        tekst: 'Doe uw online aankopen via SponsorKliks, dan krijgen wij een percentage van uw bestelling zonder dat het u een cent extra kost. Kies daar voorlopig nog THHZ in het keuzemenu.',
+        tekst: 'Doe je online aankopen via SponsorKliks, dan krijgen wij een percentage van je bestelling zonder dat het je een cent extra kost. Kies daar voorlopig nog THHZ in het keuzemenu.',
       },
       {
-        kop: 'Geef uw tijd',
+        kop: 'Geef je tijd',
         tekst: 'Geld is niet de enige manier. Een paar uur op donderdagochtend is voor het huis net zo veel waard als een gift.',
       },
     ],
-    anbi: 'Wij zijn een ANBI-stichting, dus uw gift is onder voorwaarden aftrekbaar van de belasting. Niemand binnen de stichting ontvangt een beloning of salaris, dus uw geld gaat naar de koffie, de materialen en het huis.',
+    anbi: 'Wij zijn een ANBI-stichting, dus je gift is onder voorwaarden aftrekbaar van de belasting. Niemand binnen de stichting ontvangt een beloning of salaris, dus je geld gaat naar de koffie, de materialen en het huis.',
     sponsorenTitel: 'Zeewolde houdt dit huis overeind',
     sponsorenTekst: 'Bedrijven, fondsen en ondernemers uit het dorp en daarbuiten dragen bij met geld, materialen of hun vak.',
   },
   verantwoording: {
     kicker: 'Verantwoording',
     titel: 'Waar het geld heen gaat, en wie erover gaat',
-    lead: 'Wij zijn een ANBI-stichting. Dat betekent dat wij verplicht zijn openbaar te maken wat we doen, wat we ontvangen en wat we uitgeven. Alle stukken staan hieronder en u kunt ze gewoon downloaden.',
+    lead: 'Wij zijn een ANBI-stichting. Dat betekent dat wij verplicht zijn openbaar te maken wat we doen, wat we ontvangen en wat we uitgeven. Alle stukken staan hieronder en je kunt ze gewoon downloaden.',
     doel: 'Laagdrempelige, professionele en warme psychosociale ondersteuning bieden aan mensen die leven met en na kanker, en aan hun naasten. Vanuit het gedachtegoed van Positieve Gezondheid ondersteunen wij hen bij het versterken van veerkracht, eigen regie en kwaliteit van leven, zodat zij zich gezien, gehoord en gesteund voelen. Daarbij is er ook aandacht voor de eenzaamheid die bij kanker hoort.',
     beloning: 'Binnen de stichting ontvangt niemand op enigerlei wijze een beloning of salaris. Kosten die iemand voor zijn functie maakt, kunnen worden gedeclareerd. De enige uitzondering die in de toekomst kan ontstaan is een deels betaalde coördinator, en dan alleen als die van elders wordt gefinancierd.',
     bestuur: [
@@ -204,6 +204,41 @@ const teksten: Teksten = {
     formulierTekst: 'Je hoeft niet uit te leggen wat er speelt en je hoeft geen naam van een ziekte te noemen. Een berichtje met alleen je naam en de vraag of je een keer mag komen kijken is genoeg. Er reageert altijd een mens, meestal binnen een dag.',
     openingstijden: 'Elke donderdag van 10:00 tot 12:00\nElke derde donderdag van de maand ook ’s avonds\nIn de zomer- en kerstvakantie is er geen inloop',
   },
+  praktisch: {
+    openingstijden: {
+      ochtend: 'Elke donderdag van 10:00 tot 12:00 uur.',
+      avond: 'Elke derde donderdag van de maand van 19:30 tot 21:30 uur.',
+      afwijkingen:
+        'In de zomervakantie en de kerstvakantie is er geen inloop. Wanneer de deur weer opengaat, staat in de agenda.',
+    },
+    kosten: {
+      inloop: 'De inloop en de wandelingen kosten niets.',
+      activiteiten:
+        'Voor een enkele workshop vragen we een bijdrage, en die ligt altijd onder wat je er elders voor betaalt. Wat een activiteit kost, staat erbij in de agenda.',
+      drempel:
+        'Is een bijdrage een drempel, zeg het gerust, dan zoeken we samen een oplossing.',
+    },
+    locatie: {
+      adres: 'Mazerhard 37\n3891 BR Zeewolde',
+      route:
+        'Het huis staat in een woonwijk in Zeewolde. Zet Mazerhard 37 in je routeplanner voor de route met de auto, de fiets of het openbaar vervoer.',
+      // Hoe het parkeren er ter plaatse uitziet, hebben zij ons niet verteld.
+      // Dan staat er wat wél waar is: dat je het kunt vragen.
+      parkeren: 'Wil je vooraf weten hoe het parkeren bij het huis werkt, bel dan even.',
+      ingang:
+        'Het is een gewoon woonhuis, geen instelling: je loopt er naar binnen zoals je bij iemand thuis binnenstapt. Wil je vooraf weten of het huis aansluit bij wat jij nodig hebt, bel dan even, dan bespreken we het voordat je vertrekt.',
+      elders:
+        'Een activiteit kan ergens anders plaatsvinden. Bij ieder moment in de agenda staat de locatie van die dag.',
+    },
+    contact: {
+      wieReageert: 'Aan de telefoon en achter de mail zitten de vrijwilligers van het huis.',
+      watGebeurtEr:
+        'Je hoeft niet uit te leggen wat er speelt en je hoeft geen naam van een ziekte te noemen. Een bericht met alleen je naam en de vraag of je een keer mag komen kijken is genoeg.',
+      reactietijd: 'Er reageert altijd een mens, meestal binnen een dag.',
+    },
+    verwijzers:
+      'Er is geen verwijzing nodig en aanmelden hoeft niet. Iemand kan op een inloopmoment zo binnenlopen, en eerst bellen of mailen kan ook. Wij zijn aangesloten bij IPSO en werken met vrijwilligers die daarvoor een basistraining volgen.',
+  },
 };
 
 /**
@@ -218,6 +253,8 @@ const agenda: AgendaBron[] = [
   {
     id: 'inloopochtend',
     soort: 'activiteit',
+    doelgroepen: ['iedereen'],
+    themas: ['ontmoeten'],
     titel: 'Inloopochtend',
     categorie: 'Inloop',
     omschrijving:
@@ -235,6 +272,8 @@ const agenda: AgendaBron[] = [
   {
     id: 'inloopavond',
     soort: 'activiteit',
+    doelgroepen: ['iedereen'],
+    themas: ['ontmoeten'],
     titel: 'Inloopavond',
     categorie: 'Inloop',
     omschrijving:
@@ -252,6 +291,8 @@ const agenda: AgendaBron[] = [
   {
     id: 'wandelgroep',
     soort: 'activiteit',
+    doelgroepen: ['iedereen'],
+    themas: ['bewegen-en-ontspannen', 'ontmoeten'],
     titel: 'Wandelgroep',
     categorie: 'Bewegen',
     omschrijving:
@@ -269,6 +310,8 @@ const agenda: AgendaBron[] = [
   {
     id: 'zenmeditatie',
     soort: 'activiteit',
+    doelgroepen: ['iedereen'],
+    themas: ['bewegen-en-ontspannen', 'herstel-en-energie'],
     titel: 'Zenmeditatie op stoel',
     categorie: 'Wellness',
     omschrijving:
@@ -286,6 +329,8 @@ const agenda: AgendaBron[] = [
   {
     id: 'mandalagroep',
     soort: 'activiteit',
+    doelgroepen: ['iedereen'],
+    themas: ['informatie-en-inspiratie', 'ontmoeten'],
     titel: 'Mandala stippen',
     categorie: 'Creatief',
     omschrijving:
@@ -303,6 +348,8 @@ const agenda: AgendaBron[] = [
   {
     id: 'encaustic-augustus',
     soort: 'activiteit',
+    doelgroepen: ['iedereen'],
+    themas: ['informatie-en-inspiratie', 'ontmoeten'],
     titel: 'Encaustic art',
     categorie: 'Creatief',
     omschrijving:
@@ -319,6 +366,8 @@ const agenda: AgendaBron[] = [
   {
     id: 'mixedmedia-augustus',
     soort: 'activiteit',
+    doelgroepen: ['iedereen'],
+    themas: ['informatie-en-inspiratie', 'ontmoeten'],
     titel: 'Mixed media',
     categorie: 'Creatief',
     omschrijving:
@@ -436,4 +485,6 @@ const nieuws: Bericht[] = (socialsJson as {
 
 const sponsoren = sponsorenJson as Sponsor[];
 
-export const defaults: Content = { teksten, agenda, nieuws, sponsoren };
+// Er staan nog geen verhalen van bezoekers klaar: die komen alleen uit het
+// beheer en alleen met toestemming van de verteller.
+export const defaults: Content = { teksten, agenda, nieuws, sponsoren, verhalen: [] };

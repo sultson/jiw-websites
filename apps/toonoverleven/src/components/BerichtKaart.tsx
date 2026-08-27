@@ -1,6 +1,6 @@
-import { ArrowRight, Facebook, Instagram } from 'lucide-react';
+import { Facebook, Instagram } from 'lucide-react';
 import type { Bericht } from '../content/types';
-import { bron } from '../content';
+import { bron } from '../content/image';
 import { schrijfNaam } from '../ui';
 
 /**
@@ -9,6 +9,10 @@ import { schrijfNaam } from '../ui';
  * De kaart is een doorkijkje: erop klikken opent het bericht op de site zelf en
  * niet Facebook. Staat hetzelfde bericht ook op de socials, dan staat dat er
  * klein bij, want daar kijken hun bezoekers ook.
+ *
+ * De vorm is die van de andere kaarten op de site: dezelfde ronding, dezelfde
+ * lijn, dezelfde pijl achter de vervolgstap. Een bericht is geen ander soort
+ * ding dan een activiteit of een onderwerp.
  */
 export default function BerichtKaart({
   bericht,
@@ -22,7 +26,7 @@ export default function BerichtKaart({
       href={`/nieuws/${bericht.slug}`}
       tabIndex={bereikbaar ? undefined : -1}
       aria-hidden={bereikbaar ? undefined : true}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-lijn bg-white transition duration-300 hover:border-wijn/30 hover:shadow-lg"
+      className="flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-lijn bg-white no-underline shadow-[0_8px_24px_rgba(55,28,38,0.04)] transition hover:-translate-y-0.5 hover:border-blos-diep"
     >
       {bericht.img && (
         <img
@@ -33,20 +37,24 @@ export default function BerichtKaart({
           decoding="async"
         />
       )}
-      <div className="flex flex-1 flex-col p-6">
-        <p className="text-xs font-bold uppercase tracking-[0.16em] text-wijn">
+      <div className="flex flex-1 flex-col p-[1.4rem]">
+        <p className="flex flex-wrap items-center gap-2 text-[0.7rem] font-extrabold uppercase tracking-[0.08em] text-teal">
+          {bericht.vastgezet && (
+            <span className="rounded-full bg-blos px-2 py-0.5 text-wijn">Blijft staan</span>
+          )}
           {bericht.datum}
         </p>
-        <h3 className="mt-2 text-xl leading-snug">{schrijfNaam(bericht.titel)}</h3>
-        <p className="mt-2.5 line-clamp-3 flex-1 leading-relaxed text-inkt/70">
+        <strong className="my-2 font-display text-[1.16rem] font-medium leading-tight text-wijn-diep">
+          {schrijfNaam(bericht.titel)}
+        </strong>
+        <span className="line-clamp-3 flex-1 text-[0.9rem] leading-relaxed text-inkt-doffer">
           {schrijfNaam(bericht.samenvatting)}
-        </p>
-        <span className="mt-5 flex items-center justify-between gap-3">
-          <span className="inline-flex items-center gap-2 text-sm font-semibold text-wijn">
-            Lees verder
-            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+        </span>
+        <span className="mt-auto flex items-center justify-between gap-3 pt-3.5">
+          <span className="text-[0.82rem] font-extrabold text-wijn">
+            Lees verder <span aria-hidden="true">→</span>
           </span>
-          <span className="flex items-center gap-2 text-inkt/35">
+          <span className="flex items-center gap-2 text-inkt/30">
             {bericht.instagram && <Instagram className="h-4 w-4" aria-label="Ook op Instagram" />}
             {bericht.facebook && <Facebook className="h-4 w-4" aria-label="Ook op Facebook" />}
           </span>

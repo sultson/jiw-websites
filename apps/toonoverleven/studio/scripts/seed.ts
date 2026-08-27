@@ -112,6 +112,7 @@ async function teksten() {
       advies: sleutels(t.verantwoording.advies, (p) => p.naam),
     },
     contact: t.contact,
+    praktisch: t.praktisch,
   });
   console.log('Teksten op de site klaar');
 }

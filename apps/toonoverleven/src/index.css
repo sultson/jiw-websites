@@ -1,67 +1,89 @@
 /**
- * Quicksand stond op de oude site en hoort bij het logo, maar rond en dik
- * gezet leest het als een site voor kinderen, en dat was precies de klacht.
- * Fraunces is even warm en een stuk volwassener; Mulish eronder is rustig en
- * op een telefoon goed leesbaar, ook voor wie ouder is.
+ * De vormtaal komt uit de bestuursmock-up die de klant aanleverde: bordeaux als
+ * hoofdkleur, room als papier, en zeegroen en salie als accenten. De waarden
+ * hieronder zijn die van assets/styles-v4.css uit de mock-up, één op één, zodat
+ * de gebouwde site en het goedgekeurde voorstel dezelfde site zijn.
+ *
+ * Wat wél anders is: het lettertype en het logo. De mock-up zet koppen in
+ * Georgia en tekent een eigen merkteken van vier cirkels; het echte logo van de
+ * stichting is de boom met de duinrand, en Fraunces doet wat Georgia daar doet
+ * maar op een scherm netter. Quicksand van de oude site is bewust weg: rond en
+ * dik gezet las het als een site voor kinderen.
  */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Mulish:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Mulish:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Mulish", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Fraunces", ui-serif, Georgia, serif;
 
-  /* De hoofdkleur van het ontwerp: diep bordeaux. Koppen, knoppen en accenten
-     staan hierin, en verder is de pagina room. Het logo blijft groen, dus de
-     groenen uit het logo staan eronder als accentkleuren voor de labels bij
-     de activiteiten. */
-  --color-wijn: #7d1f41;
-  --color-wijn-diep: #63172f;
+  /* Bordeaux: koppen, knoppen, accenten. */
+  --color-wijn: #80163f;
+  --color-wijn-diep: #5b0f2e;
   --color-wijn-licht: #a34a68;
 
-  /* De zachte roze vlakken uit het ontwerp: een vraag die vaker gesteld wordt,
-     een uitnodiging, een icoontje. Nooit als tekstkleur. */
-  --color-blos: #fbeaee;
-  --color-blos-diep: #f6d8e0;
+  /* De zachte roze vlakken: een uitnodiging, een icoontje, een kaart. Nooit
+     als tekstkleur. */
+  --color-blos: #f5e5e8;
+  --color-blos-diep: #eacbd3;
 
-  /* Leestekst. Warm bijna-zwart in plaats van zwart, want naast room leest
-     zwart hard. */
-  --color-inkt: #43363b;
+  /* Zeegroen en salie, de twee accenten die de kaarten om en om kleuren. */
+  --color-teal: #347f7d;
+  --color-teal-licht: #e4f0ee;
+  --color-teal-diep: #dcebea;
+  --color-salie: #8fa36c;
+  --color-salie-licht: #edf1e5;
+  --color-salie-diep: #e1e8d3;
+  --color-salie-tekst: #667c45;
 
-  --color-room: #fdf8f2;
-  --color-room-diep: #f8f1e7;
-  --color-lijn: #ece0d3;
+  /* Papier en lijnen. */
+  --color-room: #fffefa;
+  --color-room-diep: #fbf8f3;
+  --color-lijn: #e8e0dc;
 
-  /* Uit het logo: het diepe groen van het boompje, het zeegroen van de
-     letters, het lichte salie van OVER, het zand van de duin en het mintblauw
-     van de kruin. */
-  --color-groen: #2d5c48;
-  --color-groen-diep: #234739;
-  --color-teal: #5b9586;
-  --color-teal-tekst: #3d7565;
-  --color-salie: #c7d9af;
-  --color-salie-diep: #7f9d5c;
-  --color-zand: #f0e3bc;
-  --color-mint: #c2e0d8;
+  /* Leestekst: warm bijna-zwart, want naast room leest zwart hard. */
+  --color-inkt: #231b20;
+  --color-inkt-zacht: #433a3f;
+  --color-inkt-doffer: #554a50;
+  --color-grijs: #6d6268;
+
+  /* Het waarschuwingsvlak dat de grens tussen ontmoeting en zorg markeert. */
+  --color-zorg: #fbf2eb;
+  --color-zorg-lijn: #ead8cc;
+
+  /* De voet is het enige donkere vlak van de site. */
+  --color-voet: #2e2529;
+  --color-voet-tekst: #cfc4c8;
+  --color-voet-lijn: #50464b;
+
+  --radius-kaart: 1.25rem;
+  --shadow-zacht: 0 18px 50px rgba(55, 28, 38, 0.09);
+  --shadow-kaart: 0 8px 24px rgba(55, 28, 38, 0.04);
 }
 
 @layer base {
+  html {
+    background: var(--color-room);
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+  }
   body {
     @apply font-sans bg-room text-inkt antialiased;
+    line-height: 1.62;
+    overflow-x: clip;
   }
-  /* Koppen staan in bordeaux, zoals in het ontwerp. Een kop op een donker vlak
-     zet zijn kleur zelf. */
+  /* Koppen staan in bordeaux, zoals in het voorstel. Een kop op een donker
+     vlak zet zijn kleur zelf. */
   h1, h2, h3 {
-    @apply font-display text-wijn;
+    @apply font-display text-wijn-diep;
     font-variation-settings: "opsz" 40;
-    letter-spacing: -0.005em;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    font-weight: 500;
   }
   h1 {
     font-variation-settings: "opsz" 96;
-  }
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    letter-spacing: -0.03em;
   }
   /* Losse woorden onderaan een kop lezen slordig in een tekst die vooral op
      een telefoon gelezen wordt. */
@@ -70,6 +92,11 @@
   }
   p {
     text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-wijn);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 }
 
@@ -81,9 +108,6 @@
  * De kaarten schuiven traag langs en de strook blijft ondertussen een gewoon
  * scrollbaar vak: vegen, slepen, het wiel en de twee knoppen ernaast doen het
  * allemaal. Het doorschuiven zelf zit in beweging.tsx (useStrook).
- *
- * De rij staat er twee keer in zodat hij naadloos rond kan lopen; de tweede
- * helft is verborgen voor schermlezers.
  */
 .strook {
   overflow-x: auto;
@@ -92,17 +116,11 @@
   -ms-overflow-style: none;
   overscroll-behavior-x: contain;
   cursor: grab;
-  /* De randen vervagen, anders lijkt het of de kaarten worden afgehakt. */
   mask-image: linear-gradient(to right, transparent, #000 2rem, #000 calc(100% - 2rem), transparent);
 }
 
-.strook::-webkit-scrollbar {
-  display: none;
-}
-
-.strook.sleept {
-  cursor: grabbing;
-}
+.strook::-webkit-scrollbar { display: none; }
+.strook.sleept { cursor: grabbing; }
 
 @media (min-width: 768px) {
   .strook {
@@ -126,12 +144,36 @@
   scroll-padding-left: 1.25rem;
 }
 
-.rij::-webkit-scrollbar {
-  display: none;
+.rij::-webkit-scrollbar { display: none; }
+.rij > * { scroll-snap-align: start; }
+
+/* ------------------------------------------------------------------ */
+/*  Het beeld naast de kop                                             */
+/* ------------------------------------------------------------------ */
+
+/**
+ * De asymmetrische ronding uit het voorstel: links twee grote hoeken, rechts
+ * strak tegen de rand. Op een telefoon loopt hij door tot buiten de marge en
+ * krijgt hij een zachte golf onderaan.
+ */
+.beeldvlak {
+  border-radius: 5rem 0 0 5rem;
 }
 
-.rij > * {
-  scroll-snap-align: start;
+.beeldvlak--route {
+  border-radius: 4.5rem 0 4.5rem 4.5rem;
+}
+
+@media (max-width: 1023px) {
+  .beeldvlak, .beeldvlak--route { border-radius: 3.5rem; }
+}
+
+@media (max-width: 640px) {
+  .beeldvlak, .beeldvlak--route {
+    width: calc(100% + 2.5rem);
+    margin-inline: -1.25rem;
+    border-radius: 0 0 48% 12% / 0 0 22% 10%;
+  }
 }
 
 /* ------------------------------------------------------------------ */
@@ -144,7 +186,7 @@
   width: 0.5rem;
   flex: none;
   border-radius: 9999px;
-  background: var(--color-salie-diep);
+  background: var(--color-salie);
   animation: klopt 2.8s ease-in-out infinite;
 }
 
@@ -166,4 +208,5 @@
   html { scroll-behavior: auto; }
   .stip { animation: none; }
   .strook { mask-image: none; }
+  *, *::before, *::after { transition: none !important; }
 }

@@ -74,6 +74,59 @@ export const activiteit = defineType({
       },
     }),
     defineField({
+      name: 'doelgroepen',
+      title: 'Voor wie is het',
+      type: 'array',
+      of: [{ type: 'string' }],
+      initialValue: ['iedereen'],
+      description:
+        'De site heeft aparte pagina\'s voor jongeren, voor 35 tot 50 en voor naasten. Wat u hier aankruist, komt daar vanzelf op te staan. Kruist u niets aan, dan is het voor iedereen.',
+      hidden: isMededeling,
+      options: {
+        layout: 'grid',
+        list: [
+          { title: 'Iedereen', value: 'iedereen' },
+          { title: 'Jongeren en jongvolwassenen (15 tot 35)', value: 'jongeren-15-35' },
+          { title: 'Mensen van 35 tot 50', value: '35-50' },
+          { title: 'Naasten: partner, kind, familie of vriend', value: 'naasten' },
+        ],
+      },
+      validation: (rule) => rule.unique(),
+    }),
+    defineField({
+      name: 'themas',
+      title: 'Thema\'s',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description:
+        'Waar gaat dit over? Elk thema heeft een eigen pagina, en wat u aankruist verschijnt daar tussen de andere momenten. Meerdere thema\'s mag: een wandeling kan ontmoeten én bewegen zijn.',
+      hidden: isMededeling,
+      options: {
+        layout: 'grid',
+        list: [
+          { title: 'Ontmoeten', value: 'ontmoeten' },
+          { title: 'Bewegen & ontspannen', value: 'bewegen-en-ontspannen' },
+          { title: 'Werk & studie', value: 'werk-en-studie' },
+          { title: 'Herstel & energie', value: 'herstel-en-energie' },
+          { title: 'Relaties & gezin', value: 'relaties-en-gezin' },
+          { title: 'Informatie & inspiratie', value: 'informatie-en-inspiratie' },
+        ],
+      },
+      // Een waarschuwing en geen fout: zonder thema kan het gewoon in de agenda
+      // staan, alleen niet op een themapagina. Dat mag de invuller weten zonder
+      // dat het opslaan erdoor tegengehouden wordt.
+      validation: (rule) =>
+        rule
+          .unique()
+          .custom((waarde) =>
+            Array.isArray(waarde) && waarde.length
+              ? true
+              : 'Zonder thema komt dit alleen in de agenda te staan en niet op een themapagina.',
+          )
+          .warning(),
+    }),
+
+    defineField({
       name: 'omschrijving',
       title: 'Waar gaat het over',
       type: 'text',

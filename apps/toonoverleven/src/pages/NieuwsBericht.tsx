@@ -1,9 +1,11 @@
+import type { ReactNode } from 'react';
 import { Facebook, Instagram } from 'lucide-react';
 import type { Bericht } from '../content/types';
-import { bron } from '../content';
+import { bron } from '../content/image';
+import { vindPagina } from '../inhoud';
 import RijkeTekst from '../components/RijkeTekst';
-import BerichtKaart from '../components/BerichtKaart';
-import { Kruimels, schrijfNaam } from '../ui';
+import NieuwsStrook from '../components/NieuwsStrook';
+import { ContactKaart, Kruimels, PaginaHero, Schil, schrijfNaam } from '../ui';
 
 /**
  * Eén bericht, op een adres van zichzelf.
@@ -11,7 +13,15 @@ import { Kruimels, schrijfNaam } from '../ui';
  * Dat is het hele punt van de verhuizing van de socialstrook naar het beheer:
  * een kaart op de voorpagina opent nu het hele verhaal op deze site, en deze
  * pagina is te delen, te openen in een nieuw tabblad en te vinden via Google.
+ *
+ * De pagina heeft dezelfde vorm als de andere pagina's van de site: waar je
+ * bent, waar het over gaat, de tekst links en de uitnodiging rechts. Een
+ * bericht is geen apart eiland.
  */
+
+/** De uitnodiging naast de pagina staat in de vastgestelde tekst van de rubriek. */
+const ZIJKAART = vindPagina('/ervaringen')?.zijkaart;
+
 export default function NieuwsBericht({
   bericht,
   berichten,
@@ -19,92 +29,108 @@ export default function NieuwsBericht({
   bericht: Bericht;
   berichten: Bericht[];
 }) {
-  const verder = berichten.filter((b) => b.id !== bericht.id).slice(0, 3);
+  const verder = berichten.filter((ander) => ander.id !== bericht.id).slice(0, 2);
 
   return (
     <>
-      <article className="bg-room">
-        <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
-          <Kruimels
-            pad={[
-              { label: 'Nieuws & Blog', href: '/nieuws' },
-              { label: schrijfNaam(bericht.titel) },
-            ]}
-          />
+      <Schil>
+        <Kruimels
+          pad={[
+            { label: 'Home', href: '/' },
+            { label: 'Ervaringen', href: '/ervaringen' },
+            { label: 'Nieuws en verhalen', href: '/nieuws' },
+            { label: schrijfNaam(bericht.titel) },
+          ]}
+        />
+      </Schil>
 
-          <p className="text-sm font-bold uppercase tracking-[0.16em] text-wijn">
-            {bericht.datum}
-          </p>
-          <h1 className="mt-3 text-[2.1rem] leading-tight md:text-[2.8rem]">
-            {schrijfNaam(bericht.titel)}
-          </h1>
-          {bericht.intro && (
-            <p className="mt-5 text-lg leading-relaxed text-inkt/75">
-              {schrijfNaam(bericht.intro)}
-            </p>
-          )}
-        </div>
+      <PaginaHero
+        kicker={bericht.datum || 'Nieuws en verhalen'}
+        titel={schrijfNaam(bericht.titel)}
+        lead={bericht.intro ? schrijfNaam(bericht.intro) : undefined}
+        smal
+      />
 
-        {/* Hun eigen aankondigingen staan vaak rechtop. Op de volle breedte zou
-            zo'n staande poster de halve pagina zijn, dus de hoogte is begrensd
-            en het beeld staat gecentreerd. */}
-        {bericht.img && (
-          <div className="mx-auto max-w-5xl px-5 md:px-8">
-            <img
-              src={bron(bericht.img, 'vol')}
-              alt=""
-              className="mx-auto max-h-[32rem] w-auto rounded-3xl object-cover"
-              loading="eager"
-              decoding="async"
-            />
-          </div>
-        )}
-
-        <div className="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
-          <RijkeTekst blokken={bericht.body} />
+      <Schil className="grid items-start gap-10 pb-20 lg:grid-cols-[minmax(0,1fr)_19rem] lg:gap-16 xl:gap-[5.5rem]">
+        <article className="min-w-0">
+          <section className="py-9 md:py-11">
+            {/* Hun eigen aankondigingen staan vaak rechtop. Op de volle breedte
+                zou zo'n staande poster de halve pagina zijn, dus de hoogte is
+                begrensd en het beeld staat gecentreerd. */}
+            {bericht.img && (
+              <img
+                src={bron(bericht.img, 'vol')}
+                alt=""
+                className="mx-auto mb-8 max-h-[30rem] w-auto rounded-[1.25rem] object-cover"
+                loading="eager"
+                decoding="async"
+              />
+            )}
+            <RijkeTekst blokken={bericht.body} />
+          </section>
 
           {(bericht.instagram || bericht.facebook) && (
-            <div className="mt-12 flex flex-wrap items-center gap-3 border-t border-lijn pt-8">
-              <p className="text-[15px] text-inkt/65">Dit bericht staat ook op</p>
-              {bericht.instagram && (
-                <a
-                  href={bericht.instagram}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-inkt/25 px-4 py-2 text-sm font-semibold text-inkt transition hover:border-inkt/60"
-                >
-                  <Instagram className="h-4 w-4" /> Instagram
-                </a>
-              )}
-              {bericht.facebook && (
-                <a
-                  href={bericht.facebook}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-inkt/25 px-4 py-2 text-sm font-semibold text-inkt transition hover:border-inkt/60"
-                >
-                  <Facebook className="h-4 w-4" /> Facebook
-                </a>
-              )}
-            </div>
+            <section className="border-t border-lijn py-9 md:py-11">
+              <div className="flex flex-wrap items-center gap-3">
+                <p className="text-[0.9rem] text-grijs">Dit bericht staat ook op</p>
+                {bericht.instagram && (
+                  <Deellink href={bericht.instagram} naam="Instagram">
+                    <Instagram className="h-4 w-4" aria-hidden="true" />
+                  </Deellink>
+                )}
+                {bericht.facebook && (
+                  <Deellink href={bericht.facebook} naam="Facebook">
+                    <Facebook className="h-4 w-4" aria-hidden="true" />
+                  </Deellink>
+                )}
+              </div>
+            </section>
           )}
-        </div>
-      </article>
 
-      {verder.length > 0 && (
-        <section className="bg-room-diep py-14 md:py-20">
-          <div className="mx-auto max-w-6xl px-5 md:px-8">
-            <h2 className="text-2xl">Meer berichten</h2>
-            <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {verder.map((ander) => (
-                <li key={ander.id}>
-                  <BerichtKaart bericht={ander} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
+          {verder.length > 0 && (
+            <section className="border-t border-lijn py-9 md:py-11">
+              <h2 className="mb-5 max-w-[22ch] text-[1.75rem] md:text-[2.15rem]">Meer berichten</h2>
+              <NieuwsStrook berichten={verder} />
+            </section>
+          )}
+        </article>
+
+        {ZIJKAART && (
+          <aside className="lg:sticky lg:top-[7.2rem]">
+            <ContactKaart
+              kicker={ZIJKAART.kicker}
+              kop={ZIJKAART.kop}
+              tekst={ZIJKAART.tekst}
+              acties={ZIJKAART.acties}
+            />
+          </aside>
+        )}
+      </Schil>
     </>
+  );
+}
+
+/** De verwijzing naar hetzelfde bericht op de socials. */
+function Deellink({
+  href,
+  naam,
+  children,
+}: {
+  href: string;
+  naam: string;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 rounded-full border border-lijn bg-white px-4 py-2 text-[0.82rem] font-extrabold text-inkt-zacht no-underline transition hover:border-blos-diep hover:text-wijn"
+    >
+      {children}
+      {naam}
+      <span aria-hidden="true">↗</span>
+      <span className="sr-only">(opent in een nieuw tabblad)</span>
+    </a>
   );
 }

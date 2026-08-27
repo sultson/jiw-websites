@@ -10,7 +10,7 @@
  * Draaien met: node scripts/images.mjs
  */
 import sharp from 'sharp';
-import {mkdirSync} from 'node:fs';
+import {mkdirSync, readdirSync, existsSync, writeFileSync} from 'node:fs';
 
 const UIT = 'public/img';
 mkdirSync(UIT, {recursive: true});
@@ -134,6 +134,41 @@ async function fotos() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Sfeerbeeld                                                         */
+/* ------------------------------------------------------------------ */
+
+/**
+ * De gemaakte beelden uit scripts/sfeerbeelden.mjs.
+ *
+ * Ze staan hier apart van de foto's, en ze heten allemaal `sfeer-`, zodat in
+ * één oogopslag te zien is wat gefotografeerd is en wat niet. Wie later een
+ * echte foto van hetzelfde onderwerp krijgt, zet die onder de gewone naam neer
+ * en haalt de `sfeer-` variant uit beelden.ts weg.
+ *
+ * Webp in plaats van jpeg: bij hetzelfde oog scheelt dat op deze beelden ruim
+ * de helft, en de hero is het eerste dat een bezoeker moet zien.
+ */
+async function sfeerbeeld() {
+  const bron = 'raw/sfeer2';
+  if (!existsSync(bron)) return;
+  for (const bestand of readdirSync(bron).filter((b) => b.endsWith('.jpg'))) {
+    const naam = bestand.replace(/\.jpg$/, '');
+    // Een lege kamer comprimeert tot 60 kB, een bos of een border met duizend
+    // blaadjes loopt bij dezelfde kwaliteit op tot ruim het viervoudige. Dus
+    // niet één vaste kwaliteit, maar zakken tot het beeld onder de 200 kB past.
+    let bestand_uit;
+    for (const kwaliteit of [76, 66, 56, 48]) {
+      bestand_uit = await sharp(`${bron}/${bestand}`)
+        .resize({width: 1264, withoutEnlargement: true})
+        .webp({quality: kwaliteit})
+        .toBuffer();
+      if (bestand_uit.length <= 200 * 1024) break;
+    }
+    writeFileSync(`${UIT}/sfeer-${naam}.webp`, bestand_uit);
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /*  Bijgesneden varianten                                              */
 /* ------------------------------------------------------------------ */
 
@@ -148,9 +183,20 @@ async function snedes() {
     .resize(1200, 630, {fit: 'cover', position: sharp.strategy.attention})
     .jpeg({quality: 78, mozjpeg: true})
     .toFile(`${UIT}/deel.jpg`);
+
+  /* De atelierfoto staat rechtop, en de hero is liggend. Midden uitsnijden zou
+     alleen de rode teil overhouden; de bovenkant van de tafel laat zien waar
+     het om gaat: handen, kwasten en werk dat half af is. Daarom hier met de
+     hand bijgesneden in plaats van door sharp laten kiezen. */
+  await sharp('raw/nieuw/atelier-tafel.jpg')
+    .extract({left: 0, top: 120, width: 1500, height: 1000})
+    .resize({width: 1400})
+    .jpeg({quality: 78, mozjpeg: true})
+    .toFile(`${UIT}/atelier-breed.jpg`);
 }
 
 await logo();
 await fotos();
+await sfeerbeeld();
 await snedes();
 console.log('klaar');

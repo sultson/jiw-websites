@@ -1,6 +1,8 @@
 import { defaults, nlDatum } from './defaults';
 import { imgVanRef } from './image';
 import { blokkenVanTekst, samenvatten } from './rich';
+import { verhalenVan } from './verhalen';
+import type { Verhaal, VerhaalRubriek } from './verhalen';
 import { slugify } from '../meta';
 import type {
   AgendaBron,
@@ -17,6 +19,7 @@ import type {
 export { platteTekst } from './rich';
 export { bron } from './image';
 export type * from './types';
+export type { Verhaal, VerhaalRubriek } from './verhalen';
 
 /**
  * De inhoud komt mee in de HTML: de Worker vraagt hem op bij Sanity, houdt het
@@ -31,7 +34,7 @@ export type * from './types';
 
 type RawImage = { asset?: { _ref?: string } | null } | null;
 
-type RawPayload = {
+export type RawPayload = {
   projectId?: string;
   dataset?: string;
   preview?: boolean;
@@ -40,6 +43,7 @@ type RawPayload = {
     agenda?: Record<string, any>[] | null;
     nieuws?: Record<string, any>[] | null;
     sponsoren?: Record<string, any>[] | null;
+    verhalen?: Record<string, any>[] | null;
   } | null;
 };
 
@@ -171,6 +175,13 @@ function bouwContent(payload: RawPayload | null): Content {
     .filter((item): item is Bericht => item !== null);
 
   /* ---------------------------------------------------------------- */
+  /*  Verhalen van bezoekers                                           */
+  /* ---------------------------------------------------------------- */
+
+  // Alles wat er niet met toestemming gepubliceerd hoort te zijn valt hier af.
+  const verhalen = verhalenVan(data.verhalen, beeld);
+
+  /* ---------------------------------------------------------------- */
   /*  Sponsoren                                                        */
   /* ---------------------------------------------------------------- */
 
@@ -213,6 +224,19 @@ function bouwContent(payload: RawPayload | null): Content {
     };
   };
 
+  /**
+   * Eén onderwerp binnen de praktische gegevens. Die staan in het beheer een
+   * laag dieper dan de blokken hierboven, omdat ze daar op één tabblad bij
+   * elkaar horen. Verder werkt het hetzelfde: leeg is de gebundelde tekst.
+   */
+  const praktischeRegel = (onderwerp: string) => {
+    const eigen = (((cms as Record<string, any>).praktisch ?? {})[onderwerp] ?? {}) as Record<
+      string,
+      any
+    >;
+    return (sleutel: string, standaard: string) => tekst(eigen[sleutel], standaard);
+  };
+
   const hero = blok('hero');
   const open = blok('open');
   const nieuwsBlok = blok('nieuwsBlok');
@@ -226,6 +250,11 @@ function bouwContent(payload: RawPayload | null): Content {
   const steun = blok('steun');
   const verantwoording = blok('verantwoording');
   const contact = blok('contact');
+  const praktisch = blok('praktisch');
+  const openingstijden = praktischeRegel('openingstijden');
+  const kosten = praktischeRegel('kosten');
+  const locatie = praktischeRegel('locatie');
+  const bereikbaar = praktischeRegel('contact');
 
   const kopTekst = (rij: any) => ({ kop: tekst(rij?.kop, ''), tekst: tekst(rij?.tekst, '') });
   const persoon = (rij: any) => ({ naam: tekst(rij?.naam, ''), rol: tekst(rij?.rol, '') });
@@ -337,6 +366,31 @@ function bouwContent(payload: RawPayload | null): Content {
       formulierTekst: contact.regel('formulierTekst', terugval.contact.formulierTekst),
       openingstijden: contact.regel('openingstijden', terugval.contact.openingstijden),
     },
+    praktisch: {
+      openingstijden: {
+        ochtend: openingstijden('ochtend', terugval.praktisch.openingstijden.ochtend),
+        avond: openingstijden('avond', terugval.praktisch.openingstijden.avond),
+        afwijkingen: openingstijden('afwijkingen', terugval.praktisch.openingstijden.afwijkingen),
+      },
+      kosten: {
+        inloop: kosten('inloop', terugval.praktisch.kosten.inloop),
+        activiteiten: kosten('activiteiten', terugval.praktisch.kosten.activiteiten),
+        drempel: kosten('drempel', terugval.praktisch.kosten.drempel),
+      },
+      locatie: {
+        adres: locatie('adres', terugval.praktisch.locatie.adres),
+        route: locatie('route', terugval.praktisch.locatie.route),
+        parkeren: locatie('parkeren', terugval.praktisch.locatie.parkeren),
+        ingang: locatie('ingang', terugval.praktisch.locatie.ingang),
+        elders: locatie('elders', terugval.praktisch.locatie.elders),
+      },
+      contact: {
+        wieReageert: bereikbaar('wieReageert', terugval.praktisch.contact.wieReageert),
+        watGebeurtEr: bereikbaar('watGebeurtEr', terugval.praktisch.contact.watGebeurtEr),
+        reactietijd: bereikbaar('reactietijd', terugval.praktisch.contact.reactietijd),
+      },
+      verwijzers: praktisch.regel('verwijzers', terugval.praktisch.verwijzers),
+    },
   };
 
   return {
@@ -346,6 +400,8 @@ function bouwContent(payload: RawPayload | null): Content {
     agenda: agenda.length ? agenda : gebundeld.agenda,
     nieuws: nieuws.length ? nieuws : gebundeld.nieuws,
     sponsoren: sponsoren.length ? sponsoren : gebundeld.sponsoren,
+    // Geen terugval: een verhaal dat niemand verteld heeft, bestaat niet.
+    verhalen,
   };
 }
 
@@ -365,15 +421,35 @@ function metEigenAdres(berichten: Bericht[]): Bericht[] {
   });
 }
 
-const payload = leesPayload();
-const gebouwd = bouwContent(payload);
+/**
+ * De inhoud opgebouwd uit een payload. Geen DOM, dus ook de Worker kan hem
+ * aanroepen: die rendert de pagina met dezelfde inhoud als de browser er
+ * daarna op zet, en dat is precies wat hydratie nodig heeft.
+ */
+export function contentVan(payload: RawPayload | null): Content {
+  const gebouwd = bouwContent(payload);
+  return { ...gebouwd, nieuws: metEigenAdres(gebouwd.nieuws) };
+}
 
-export const content: Content = { ...gebouwd, nieuws: metEigenAdres(gebouwd.nieuws) };
+/** Of deze payload concepten uit het beheer draagt. */
+export function isVoorbeeldVan(payload: RawPayload | null): boolean {
+  return Boolean(payload?.preview);
+}
+
+const payload = leesPayload();
+
+export const content: Content = contentVan(payload);
 
 /** Waar of de Worker concepten heeft geserveerd: het voorbeeld uit het beheer. */
-export const isVoorbeeld = Boolean(payload?.preview);
+export const isVoorbeeld = isVoorbeeldVan(payload);
 
 export const berichten = content.nieuws;
 
 export const vindBericht = (slug: string): Bericht | undefined =>
   berichten.find((bericht) => bericht.slug === slug);
+
+export const verhalen = content.verhalen;
+
+/** De verhalen van één pagina onder Ervaringen. */
+export const verhalenIn = (rubriek: VerhaalRubriek): Verhaal[] =>
+  verhalen.filter((verhaal) => verhaal.rubriek === rubriek);

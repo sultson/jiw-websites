@@ -1,3 +1,5 @@
+import { PAGINAS as REDACTIE, vindPagina } from './inhoud';
+
 /**
  * Hoe een pagina heet, in het tabblad en in een voorbeeld van een gedeelde
  * link.
@@ -13,73 +15,81 @@
 export const SITE_NAAM = 'Toon over Leven';
 export const SITE_URL = 'https://toonoverleven.jouwidealewebsite.nl';
 
-/** De pagina's die de site heeft, in de volgorde van het menu. */
-export const PADEN = [
-  '/',
-  '/wie-we-zijn',
-  '/agenda',
-  '/nieuws',
-  '/vrijwilliger',
-  '/steun',
-  '/verantwoording',
-  '/contact',
-] as const;
-
-export type Pad = (typeof PADEN)[number];
-
 type PaginaMeta = { titel: string; omschrijving: string };
 
 /**
- * De voorpagina houdt de titel van de site zelf; de rest zet zijn eigen naam
- * ervoor. Zo leest een zoekresultaat als "Agenda | Toon over Leven" in plaats
- * van acht keer dezelfde regel.
+ * De pagina's die niet uit de redactielaag komen omdat ze uit het beheer
+ * gevuld worden: het nieuws en de losse berichten eronder.
  */
-export const PAGINAS: Record<Pad, PaginaMeta> = {
-  '/': {
-    titel: 'Toon over Leven Zeewolde | Inloophuis voor leven met en na kanker',
-    omschrijving:
-      'Loop binnen aan het Mazerhard 37 in Zeewolde. Elke donderdag van 10:00 tot 12:00, zonder afspraak en zonder verwijzing. Voor iedereen die met kanker te maken heeft of heeft gehad, en voor hun naasten.',
-  },
-  '/wie-we-zijn': {
-    titel: 'Wie we zijn en wat we doen',
-    omschrijving:
-      'Een huis met een huiskamer, een grote tafel en een tuin, gerund door vrijwilligers uit Zeewolde. Koffie, gesprekken, creatieve workshops, wandelen en meditatie.',
-  },
-  '/agenda': {
-    titel: 'Agenda',
-    omschrijving:
-      'Alles wat er de komende tijd te doen is bij Toon over Leven in Zeewolde: de inloop, creatieve workshops, wandelingen en meditatie. Met datum, tijd en of aanmelden nodig is.',
-  },
+const EIGEN: Record<string, PaginaMeta> = {
   '/nieuws': {
-    titel: 'Nieuws & Blog',
+    titel: 'Nieuws en verhalen',
     omschrijving:
       'Nieuwe workshops, een wandeling die verzet wordt, een dag die goed uitpakte. Wat er bij Toon over Leven in Zeewolde gebeurt.',
   },
-  '/vrijwilliger': {
-    titel: 'Vrijwilliger worden',
-    omschrijving:
-      'Het inloophuis draait volledig op vrijwilligers. Gastheer, gastvrouw of meehelpen achter de schermen: een zorgachtergrond is niet nodig, de training krijgt u van ons.',
-  },
-  '/steun': {
-    titel: 'Steun ons',
-    omschrijving:
-      'Toon over Leven krijgt geen vaste financiering en draait op giften. Doneren, vriend worden, sponsoren of gratis steunen via SponsorKliks.',
-  },
-  '/verantwoording': {
-    titel: 'Verantwoording en ANBI',
-    omschrijving:
-      'Beleidsplan, jaarverslagen en ANBI-verantwoording van Stichting Toon Hermans Huis Zeewolde, sinds 1 juli 2026 Toon over Leven. Alle stukken als PDF.',
-  },
-  '/contact': {
-    titel: 'Kom langs',
-    omschrijving:
-      'Mazerhard 37 in Zeewolde. Bel 036-8450265, mail info@toonoverleven.nl of stuur een bericht. Aanmelden hoeft niet.',
-  },
+};
+
+/**
+ * Elk adres dat de site heeft: de 72 bestemmingen uit de vastgestelde
+ * structuur, plus het nieuws uit het beheer.
+ */
+export const PADEN: readonly string[] = [
+  ...REDACTIE.map((p) => p.pad),
+  ...Object.keys(EIGEN),
+];
+
+export type Pad = string;
+
+/**
+ * Twee koppen komen in de vastgestelde structuur meer dan één keer voor, en
+ * een zoekresultaat waarin twee regels hetzelfde heten helpt niemand. Alleen
+ * de titel in het tabblad verandert; de kop op de pagina blijft zoals het
+ * bestuur hem heeft vastgesteld.
+ */
+const EIGEN_TITEL: Record<string, string> = {
+  '/voor-naasten/activiteiten-voor-naasten': 'Iets doen als naaste',
+  '/ervaringen/jong-en-kanker': 'Ervaringen van jonge mensen',
+  '/voor-jou/jong-en-kanker': 'Jong en kanker: waar wil je beginnen',
+};
+
+const REDACTIEMETA: Record<string, PaginaMeta> = Object.fromEntries(
+  REDACTIE.map((p) => [p.pad, { titel: p.titel, omschrijving: p.omschrijving }]),
+);
+
+export const PAGINAS: Record<string, PaginaMeta> = Object.fromEntries(
+  Object.entries({ ...REDACTIEMETA, ...EIGEN }).map(([pad, meta]) => [
+    pad,
+    EIGEN_TITEL[pad] ? { ...meta, titel: EIGEN_TITEL[pad] } : meta,
+  ]),
+);
+
+/**
+ * De site heette eerder acht pagina's lang anders. Wie een oude link opent of
+ * er een bewaard heeft, hoort op de nieuwe plek uit te komen en niet op een
+ * foutmelding.
+ */
+export const VERHUISD: Record<string, string> = {
+  '/wie-we-zijn': '/over-ons/wie-wij-zijn',
+  '/agenda': '/activiteiten/agenda',
+  '/vrijwilliger': '/over-ons/vrijwilliger-worden',
+  '/steun': '/over-ons/steun-ons',
+  '/verantwoording': '/over-ons/organisatie-en-verantwoording',
+  '/contact': '/praktisch/contact',
+  '/over-ons/index.html': '/over-ons',
+  '/voor-jou': '/',
 };
 
 export const NIET_GEVONDEN = 'Pagina niet gevonden';
 
-export const paginaTitel = (kop: string) => `${kop} | ${SITE_NAAM}`;
+export const paginaTitel = (kop: string) => `${kop} · ${SITE_NAAM}`;
+
+
+/** De titel zoals hij in het tabblad hoort te staan. */
+export function titelVan(pad: string): string {
+  const vast = PAGINAS[pad];
+  if (!vast) return paginaTitel(NIET_GEVONDEN);
+  return pad === '/' ? `${vast.titel} · ${SITE_NAAM}` : paginaTitel(vast.titel);
+}
 
 /** Het adres zonder afsluitende schuine streep: wat een pagina is. */
 export function schoonPad(pathname: string): string {
@@ -89,14 +99,17 @@ export function schoonPad(pathname: string): string {
 
 export const absoluutUrl = (pad: string): string => `${SITE_URL}${pad === '/' ? '/' : pad}`;
 
+/** Of dit adres een pagina uit de vastgestelde structuur is. */
+export const isRedactiePad = (pad: string): boolean => Boolean(vindPagina(pad));
+
 /**
  * Een kop omgezet naar een adres: "Nieuwe mandalagroep" wordt
  * "nieuwe-mandalagroep". Waar een bericht op terugvalt als er in het beheer
  * nooit een adres is gegenereerd, zodat elk bericht hoe dan ook bereikbaar is.
  *
- * Gedeeld om dezelfde reden als de titels hierboven: de Worker lost een
- * binnenkomend adres hiermee op, de app lost hetzelfde adres in de browser op,
- * en die twee moeten het over elk bericht eens zijn.
+ * Gedeeld met de Worker: die lost een binnenkomend adres hiermee op, de app
+ * lost hetzelfde adres in de browser op, en die twee moeten het over elk
+ * bericht eens zijn.
  */
 export function slugify(waarde: string): string {
   const slug = waarde

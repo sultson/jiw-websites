@@ -12,7 +12,12 @@ import { defineArrayMember, defineField, defineType } from 'sanity';
  * rest is optioneel en staat er alleen voor als het van pas komt.
  */
 
-const artikel = [
+/**
+ * De tekstverwerker: alinea's, tussenkoppen, een citaat, opsommingen, links en
+ * een foto tussen de tekst. Hij staat hier maar wordt ook door een verhaal van
+ * een bezoeker gebruikt, zodat er in het beheer één manier van schrijven is.
+ */
+export const tekstblokken = [
   defineArrayMember({
     type: 'block',
     styles: [
@@ -150,8 +155,8 @@ export const nieuws = defineType({
       type: 'array',
       group: 'bericht',
       description:
-        'Het bericht zelf. Typ gewoon door; met de knoppen maakt u een tussenkop, een opsomming, vette tekst of een link. Met + voegt u een foto tussen de tekst toe.',
-      of: artikel,
+        'Het bericht zelf. Typ gewoon door; met de knoppen maak je een tussenkop, een opsomming, vette tekst of een link. Met + zet je een foto tussen de tekst.',
+      of: tekstblokken,
     }),
 
     defineField({

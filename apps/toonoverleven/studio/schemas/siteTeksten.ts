@@ -52,6 +52,26 @@ const blok = (name: string, title: string, group: string, fields: FieldDefinitio
     fields,
   });
 
+/**
+ * Eén onderwerp binnen de praktische gegevens. Die horen op één tabblad bij
+ * elkaar, want wie een tijd bijstelt kijkt meestal meteen ook naar de kosten
+ * en de vakanties.
+ */
+const onderdeel = (
+  name: string,
+  title: string,
+  description: string,
+  fields: FieldDefinition[],
+): FieldDefinition =>
+  defineField({
+    name,
+    title,
+    type: 'object',
+    description,
+    options: { collapsible: true, collapsed: false },
+    fields,
+  }) as FieldDefinition;
+
 export const siteTeksten = defineType({
   name: 'siteTeksten',
   title: 'Teksten op de site',
@@ -62,6 +82,7 @@ export const siteTeksten = defineType({
     { name: 'meedoen', title: 'Meedoen' },
     { name: 'zakelijk', title: 'Verantwoording' },
     { name: 'contact', title: 'Contact' },
+    { name: 'praktisch', title: 'Praktisch' },
   ],
   fields: [
     blok('hero', 'Bovenaan de voorpagina', 'home', [
@@ -234,6 +255,82 @@ export const siteTeksten = defineType({
       regel('formulierTitel', 'Kop boven het formulier'),
       alinea('formulierTekst', 'Tekst boven het formulier', undefined, 3),
       alinea('openingstijden', 'Inloopmomenten', 'Elke regel hieronder komt onder elkaar te staan.', 3),
+    ]),
+
+    blok('praktisch', 'Praktische gegevens', 'praktisch', [
+      onderdeel(
+        'openingstijden',
+        'Openingstijden',
+        'Deze regels staan op Openingstijden en op Contact. Verander je ze hier, dan veranderen ze op allebei mee.',
+        [
+          regel('ochtend', 'De inloopochtend', 'Bijvoorbeeld: elke donderdag van 10:00 tot 12:00 uur.'),
+          regel('avond', 'De inloopavond'),
+          alinea(
+            'afwijkingen',
+            'Vakanties en tijdelijke wijzigingen',
+            'Wanneer de deur dicht blijft. Zet een tijdelijke wijziging hier neer en haal hem er weer af zodra hij voorbij is.',
+            3,
+          ),
+        ],
+      ),
+      onderdeel(
+        'kosten',
+        'Kosten',
+        'Wat een bezoek kost. Wat één activiteit kost, vul je bij die activiteit zelf in.',
+        [
+          alinea('inloop', 'Wat de inloop en de wandelingen kosten', undefined, 2),
+          alinea('activiteiten', 'Wat een workshop kost', undefined, 3),
+          alinea(
+            'drempel',
+            'Als een bijdrage niet uitkomt',
+            'De regel die duidelijk maakt dat geld niemand hoeft tegen te houden.',
+            3,
+          ),
+        ],
+      ),
+      onderdeel(
+        'locatie',
+        'Locatie en bereikbaarheid',
+        'Waar het huis staat en hoe je er komt.',
+        [
+          alinea('adres', 'Adres', 'Elke regel hieronder komt onder elkaar te staan.', 2),
+          alinea('route', 'Met de auto, de fiets of het openbaar vervoer', undefined, 3),
+          alinea(
+            'parkeren',
+            'Parkeren',
+            'Vul aan hoe het parkeren bij het huis werkt. Zolang dat er niet staat, leest een bezoeker dat hij het kan vragen.',
+            3,
+          ),
+          alinea(
+            'ingang',
+            'Ingang en toegankelijkheid',
+            'Schrijf hier alleen wat je zeker weet: welke ingang, hoeveel drempel, of er een toilet beneden is. Beloof niets wat je niet kunt waarmaken.',
+            4,
+          ),
+          alinea('elders', 'Een activiteit op een andere plek', undefined, 3),
+        ],
+      ),
+      onderdeel(
+        'contact',
+        'Bellen en mailen',
+        'Wat er gebeurt nadat iemand belt of mailt. Het nummer en het mailadres zelf staan in de voettekst van de site.',
+        [
+          alinea('wieReageert', 'Wie er opneemt of terugschrijft', undefined, 2),
+          alinea('watGebeurtEr', 'Wat iemand moet vertellen', undefined, 4),
+          alinea(
+            'reactietijd',
+            'Hoe snel er antwoord komt',
+            'Noem alleen een termijn die je waar kunt maken.',
+            2,
+          ),
+        ],
+      ),
+      alinea(
+        'verwijzers',
+        'Voor verwijzers',
+        'De alinea voor huisartsen, ziekenhuizen en het sociaal domein op de pagina Voor verwijzers.',
+        5,
+      ),
     ]),
   ],
   preview: { prepare: () => ({ title: 'Teksten op de site' }) },

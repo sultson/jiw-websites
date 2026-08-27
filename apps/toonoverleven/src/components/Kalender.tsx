@@ -16,12 +16,20 @@ export default function Kalender({
   activiteiten,
   gekozen,
   bijKiezen,
+  nu,
 }: {
   activiteiten: Activiteit[];
   gekozen: string | null;
   bijKiezen: (sleutel: string | null) => void;
+  /**
+   * Welk moment "vandaag" is. De Worker rendert dezelfde kalender als de
+   * browser, en zonder meegegeven moment zou de dikgedrukte dag aan weerskanten
+   * van middernacht een andere kunnen zijn.
+   */
+  nu?: Date;
 }) {
-  const vandaag = useMemo(() => new Date(), []);
+  const moment = nu?.getTime();
+  const vandaag = useMemo(() => (moment === undefined ? new Date() : new Date(moment)), [moment]);
   const [maand, setMaand] = useState(() => new Date(vandaag.getFullYear(), vandaag.getMonth(), 1));
 
   /** Per dag wat er die dag is, zodat het raster niets hoeft te zoeken. */
@@ -61,9 +69,9 @@ export default function Kalender({
   const aantalDagen = new Date(maand.getFullYear(), maand.getMonth() + 1, 0).getDate();
 
   return (
-    <div className="rounded-3xl border border-lijn bg-white p-5 md:p-6">
-      <div className="flex items-center justify-between gap-4">
-        <h3 className="text-xl">
+    <div className="rounded-[1.25rem] border border-lijn bg-white p-4 shadow-[var(--shadow-kaart)] sm:p-5">
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="text-[1.15rem]">
           {MAANDEN[maand.getMonth()]} {maand.getFullYear()}
         </h3>
         <div className="flex gap-2">
@@ -74,7 +82,7 @@ export default function Kalender({
 
       <div className="mt-5 grid grid-cols-7 gap-1 text-center">
         {WEEKKOPPEN.map((kop) => (
-          <div key={kop} className="pb-2 text-xs font-semibold uppercase tracking-wide text-inkt/40">
+          <div key={kop} className="pb-2 text-[0.7rem] font-extrabold uppercase tracking-[0.08em] text-grijs">
             {kop}
           </div>
         ))}
@@ -94,7 +102,7 @@ export default function Kalender({
             return (
               <div
                 key={sleutel}
-                className={`grid aspect-square place-items-center rounded-xl text-[15px] ${
+                className={`grid aspect-square place-items-center rounded-[0.7rem] text-[15px] ${
                   isVandaag ? 'font-bold text-inkt' : 'text-inkt/35'
                 }`}
               >
@@ -116,12 +124,12 @@ export default function Kalender({
               aria-label={`${i + 1} ${MAANDEN[maand.getMonth()]}, ${items.length} ${
                 items.length === 1 ? 'activiteit' : 'activiteiten'
               }`}
-              className={`grid aspect-square place-items-center rounded-xl text-[15px] transition ${
+              className={`grid aspect-square place-items-center rounded-[0.7rem] text-[15px] transition ${
                 isGekozen
                   ? 'bg-wijn text-white'
                   : isVandaag
-                    ? 'bg-blos font-bold text-wijn hover:bg-blos-diep'
-                    : 'font-semibold text-inkt hover:bg-room-diep'
+                    ? 'bg-blos font-bold text-wijn hover:bg-wijn hover:text-white'
+                    : 'font-semibold text-inkt hover:bg-blos hover:text-wijn'
               }`}
             >
               <span className="flex flex-col items-center gap-1">
@@ -142,7 +150,7 @@ export default function Kalender({
         })}
       </div>
 
-      <p className="mt-5 border-t border-lijn pt-4 text-sm text-inkt/55">
+      <p className="mt-4 border-t border-lijn pt-3.5 text-[0.85rem] leading-relaxed text-grijs">
         Een stip is een activiteit. Klik een dag aan, dan staat er in de lijst alleen wat er die dag
         is.
       </p>
@@ -158,7 +166,7 @@ function Blader({ kant, uit, bij }: { kant: 'vorige' | 'volgende'; uit: boolean;
       onClick={bij}
       disabled={uit}
       aria-label={vorige ? 'Vorige maand' : 'Volgende maand'}
-      className="grid h-10 w-10 place-items-center rounded-full border border-wijn/20 text-wijn transition hover:border-wijn disabled:cursor-not-allowed disabled:border-lijn disabled:text-inkt/25"
+      className="grid h-11 w-11 place-items-center rounded-full border border-lijn bg-white text-wijn transition hover:border-wijn hover:bg-blos disabled:cursor-not-allowed disabled:border-lijn disabled:bg-white disabled:text-inkt/25"
     >
       {vorige ? <ChevronLeft className="h-5 w-5" /> : <ChevronRight className="h-5 w-5" />}
     </button>

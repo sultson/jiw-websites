@@ -11,26 +11,20 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "single-page-application",
-    // Elke pagina waar iemand op kan landen, plus de API: de Worker moet de
+    // De site heeft nu tweeënzeventig vastgestelde bestemmingen plus het
+    // nieuws, en die lijst hier bijhouden is een lijst die stilletjes achterloopt
+    // zodra het bestuur een pagina toevoegt. Dus andersom: alles gaat langs de
+    // Worker, behalve de mappen die gewoon bestanden zijn. De Worker moet elke
     // navigatie zien om de inhoud uit het beheer in de HTML te zetten en om de
-    // eigen kop en foto van een bericht in de head te schrijven voordat de
-    // pagina verstuurd wordt. /beheer/* ook, anders vallen de routes van de
-    // Studio in de SPA-afhandeling van de site.
+    // eigen kop en foto van een pagina in de head te schrijven voordat hij
+    // verstuurd wordt.
     "run_worker_first": [
-      "/",
-      "/wie-we-zijn",
-      "/agenda",
-      "/nieuws",
-      "/nieuws/*",
-      "/vrijwilliger",
-      "/steun",
-      "/verantwoording",
-      "/contact",
-      "/robots.txt",
-      "/sitemap.xml",
-      "/api/*",
-      "/beheer",
-      "/beheer/*"
+      "/*",
+      "!/assets/*",
+      "!/img/*",
+      "!/docs/*",
+      "!/static/*",
+      "!/vendor/*"
     ]
   },
   "routes": [

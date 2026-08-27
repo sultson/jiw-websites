@@ -15,6 +15,22 @@ const luisteraars = new Set<() => void>();
 const huidigPad = () => schoonPad(window.location.pathname);
 
 /**
+ * Het adres waarop de Worker deze pagina tekende.
+ *
+ * Op de server bestaat `window` niet, dus daar moet het adres van buiten komen.
+ * In de browser leest dezelfde functie gewoon de balk: React roept hem bij het
+ * hydrateren namelijk óók aan, en dan moet er hetzelfde uitkomen als wat de
+ * server rendeerde. Dat is precies het pad van de pagina waar je op staat.
+ */
+let startPad = '/';
+
+export function zetStartPad(pad: string) {
+  startPad = pad;
+}
+
+const beginSnapshot = () => (typeof window === 'undefined' ? startPad : huidigPad());
+
+/**
  * Of de volgende weergave komt doordat iemand op een link klikte, of doordat
  * hij terugging. Een klik begint bovenaan zijn nieuwe pagina; terug heeft een
  * plek in de oude om naar terug te keren, en die kent de browser.
@@ -41,7 +57,7 @@ function abonneer(bijWijziging: () => void) {
 
 /** Het huidige adres, en alles wat het leest tekent opnieuw als het verandert. */
 export function usePad(): string {
-  return useSyncExternalStore(abonneer, huidigPad, () => '/');
+  return useSyncExternalStore(abonneer, huidigPad, beginSnapshot);
 }
 
 export function ganaar(doel: string) {

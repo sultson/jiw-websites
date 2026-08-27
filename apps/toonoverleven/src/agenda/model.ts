@@ -1,4 +1,4 @@
-import type { Activiteit, AgendaBron, Categorie } from '../content/types';
+import type { Activiteit, AgendaBron, Categorie, Doelgroep, Thema } from '../content/types';
 
 /**
  * De agenda rekenen.
@@ -42,14 +42,43 @@ export const CATEGORIE_FOTO: Record<Categorie, string> = {
   Overig: '/img/sfeer-huiskamer.jpg',
 };
 
-/** Elke categorie krijgt een kleur uit het logo. */
-export const CATEGORIE_STIJL: Record<Categorie, { vlak: string; stip: string; rand: string }> = {
-  Inloop: { vlak: 'bg-teal/12 text-teal-tekst', stip: 'bg-teal', rand: 'border-teal/30' },
-  Creatief: { vlak: 'bg-zand text-groen', stip: 'bg-[#c9a227]', rand: 'border-[#c9a227]/35' },
-  Bewegen: { vlak: 'bg-salie/45 text-groen', stip: 'bg-salie-diep', rand: 'border-salie-diep/35' },
-  Wellness: { vlak: 'bg-mint/50 text-groen', stip: 'bg-[#6aa79b]', rand: 'border-[#6aa79b]/35' },
-  Overig: { vlak: 'bg-groen/10 text-groen', stip: 'bg-groen', rand: 'border-groen/25' },
+/**
+ * Elke categorie krijgt een kleur uit de vormtaal van het voorstel: bordeaux,
+ * salie, zeegroen. Meer kleuren dan die drie zijn er niet, dus wat overblijft
+ * staat grijs; een verzonnen zesde kleur zou de kalender een kermis maken.
+ */
+export const CATEGORIE_STIJL: Record<Categorie, { vlak: string; stip: string }> = {
+  Inloop: { vlak: 'bg-blos text-wijn', stip: 'bg-wijn' },
+  Creatief: { vlak: 'bg-salie-diep text-salie-tekst', stip: 'bg-salie' },
+  Bewegen: { vlak: 'bg-teal-diep text-teal', stip: 'bg-teal' },
+  Wellness: { vlak: 'bg-salie-licht text-salie-tekst', stip: 'bg-salie-tekst' },
+  Overig: { vlak: 'bg-room-diep text-inkt-zacht', stip: 'bg-grijs' },
 };
+
+/**
+ * De zes thema's, in de woorden waarin ze in het menu en op hun eigen pagina
+ * staan. De volgorde is die van /activiteiten/per-thema, zodat de filterknopjes
+ * dezelfde volgorde hebben als de pagina's erachter.
+ */
+export const THEMA_LABEL: Record<Thema, string> = {
+  ontmoeten: 'Ontmoeten',
+  'bewegen-en-ontspannen': 'Bewegen & ontspannen',
+  'werk-en-studie': 'Werk & studie',
+  'herstel-en-energie': 'Herstel & energie',
+  'relaties-en-gezin': 'Relaties & gezin',
+  'informatie-en-inspiratie': 'Informatie & inspiratie',
+};
+
+export const THEMAS = Object.keys(THEMA_LABEL) as Thema[];
+
+export const DOELGROEP_LABEL: Record<Doelgroep, string> = {
+  'jongeren-15-35': 'Jongeren 15–35',
+  '35-50': '35–50 jaar',
+  naasten: 'Naasten',
+  iedereen: 'Iedereen',
+};
+
+export const DOELGROEPEN = Object.keys(DOELGROEP_LABEL) as Doelgroep[];
 
 /** "2026-09-03" plus "10:00" wordt lokale tijd in Zeewolde, niet UTC. */
 export function leesDatum(iso: string, tijd?: string): Date {
@@ -175,7 +204,28 @@ function maak(bron: AgendaBron, start: Date, eind: Date): Activiteit {
     aanmelden: bron.aanmelden,
     bijdrage: bron.bijdrage,
     locatie: bron.locatie,
+    // Wie in het beheer geen hokje aankruist, bedoelt niet "voor niemand". Dat
+    // wordt hier één keer rechtgezet, zodat geen enkele pagina het hoeft te
+    // raden en de doelgroeppagina's op één regel kunnen filteren.
+    doelgroepen: bron.doelgroepen?.length ? bron.doelgroepen : ['iedereen'],
+    themas: bron.themas ?? [],
   };
+}
+
+/**
+ * Hoort deze keer bij een thema of bij een doelgroep?
+ *
+ * Wat voor iedereen is, hoort ook bij de jongerenpagina: het staat immers voor
+ * hen open. Andersom niet, want een jongerenmoment is geen moment voor
+ * iedereen. Zonder thema komt iets alleen in de agenda te staan; een activiteit
+ * krijgt hier geen thema toebedeeld dat niemand heeft ingevuld.
+ */
+export function hoortBij(a: Activiteit, thema?: Thema, doelgroep?: Doelgroep): boolean {
+  if (thema && !a.themas.includes(thema)) return false;
+  if (doelgroep && doelgroep !== 'iedereen') {
+    if (!a.doelgroepen.includes(doelgroep) && !a.doelgroepen.includes('iedereen')) return false;
+  }
+  return true;
 }
 
 /**
@@ -229,6 +279,17 @@ export function tijdvak(a: Activiteit): string {
   if (a.heleDag) return 'hele dag';
   const tijd = (d: Date) => `${d.getHours()}:${String(d.getMinutes()).padStart(2, '0')}`;
   return `${tijd(a.start)} tot ${tijd(a.eind)}`;
+}
+
+/**
+ * De datum voluit, met het jaar erbij: "donderdag 3 september 2026".
+ *
+ * Het jaar staat er niet voor de sier. Hun eigen overdracht vraagt er
+ * nadrukkelijk om, en terecht: een agenda die "donderdag 3 september" zegt,
+ * laat iemand die in december kijkt in het ongewisse over welk jaar dat is.
+ */
+export function volledigeDatum(d: Date): string {
+  return `${dagNaam(d)} ${d.getDate()} ${maandNaam(d)} ${d.getFullYear()}`;
 }
 
 /** Alleen de begintijd, voor de smalle kaartjes en de kalender. */
