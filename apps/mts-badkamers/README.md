@@ -33,7 +33,7 @@ Vanuit de root van de monorepo:
 pnpm --filter @jiw/mts-badkamers build         # media (alleen wat ontbreekt) + de vier talen
 pnpm --filter @jiw/mts-badkamers dev           # bouwt en serveert site/ op :3066
 pnpm --filter @jiw/mts-badkamers audit:seo     # sitemap, canonicals, hreflang, titels
-pnpm --filter @jiw/mts-badkamers audit:js-off  # alle 68 pagina's met JavaScript uit
+pnpm --filter @jiw/mts-badkamers audit:js-off  # alle 88 pagina's met JavaScript uit
 set -a && source .env && set +a                # wrangler leest de root-.env niet zelf
 pnpm --filter @jiw/mts-badkamers ship          # build + audit + wrangler deploy
 ```
@@ -56,15 +56,17 @@ De controlescripts in `work/` draaien op Playwright. De browsers komen niet met
 | bestand | rol |
 | --- | --- |
 | `projects.mjs` | de 16 projecten: titels, fasen, captions, media-indices, `BIZ` (namen, KvK) |
-| `content.mjs` | voor/na-paren, werkgebied en FAQ (Nederlandse bron; vertalingen in `i18n-content*.mjs`) |
+| `content.mjs` | voor/na-paren, werkgebied, FAQ en de vier dienstenpagina's (Nederlandse bron; vertalingen in `i18n-content*.mjs`) |
 | `build.mjs` | alle HTML-generatie, JSON-LD, sitemap, robots, favicon. `railBlock()` maakt elke zijwaartse rail |
 | `brand/logo-mark.svg` | het beeldmerk zonder kleur; `logoMark()` in `build.mjs` leest het in |
 | `worker/index.ts` | de Worker: een adres voor de site, verder niets |
 | `work/media.mjs` | mediapijplijn: watermerk-crops + webp/jpg-derivaten in `site/m/` |
 | `work/posters.mjs` | posterbeeld op 1,000 s uit elke video naar `site/poster/` |
-| `work/audit-seo.mjs` | draait mee in `ship`: sitemap, canonicals, hreflang, titels, en of de HTML compleet is |
+| `work/video-meta.mjs` | duur en afmetingen per video met ffprobe naar `_video.json` (input voor de VideoObject) |
+| `work/audit-seo.mjs` | draait mee in `ship`: sitemap, canonicals, hreflang, titels, lastmod, videositemap, en of de HTML compleet is |
 | `work/js-off.mjs` | dezelfde vraag met een echte browser en JavaScript uit |
 | `_media.json` | afmetingen per bestand ná de crop (input voor `build.mjs`) |
+| `_video.json` | duur en afmetingen per video; gemaakt door `work/video-meta.mjs`, gelezen door `build.mjs` |
 | `site/` | half bron, half bouwsel (zie hieronder); `wrangler.jsonc` wijst hierheen |
 
 ### Wat er in `site/` bron is en wat gebouwd
@@ -75,8 +77,10 @@ uitvoer. Bron (staat in git, met de hand geschreven of eenmalig gemaakt):
 `logo-light.svg`, `werkspot.svg`, `icon.png`.
 
 Gebouwd (staat in de root-`.gitignore`, komt uit `build.mjs` en `work/media.mjs`):
-`index.html`, `404.html`, `en/`, `tr/`, `ru/`, `werk/`, `m/`, `sitemap.xml`,
-`robots.txt`, `favicon.svg`, `_headers`, `styles.<hash>.css`, `app.<hash>.js`.
+`index.html`, `404.html`, `en/`, `tr/`, `ru/`, `werk/`, `badkamerrenovatie/`,
+`toiletrenovatie/`, `tegelwerk/`, `loodgieter-en-cv/`, `m/`, `sitemap.xml`,
+`sitemap-video.xml`, `robots.txt`, `favicon.svg`, `_headers`,
+`styles.<hash>.css`, `app.<hash>.js`.
 
 Wie hier iets bijzet: zet het in de goede helft en houd de `.gitignore` bij, want
 een bronbestand dat per ongeluk onder een gegenereerde naam valt is na de
@@ -417,7 +421,7 @@ Wat daarvoor is gedaan, zodat het niet ongemerkt terugkruipt:
 - Sectiepadding 96 -> 72 (mobiel 66 -> 48), `.sec-head` zet kop en lead naast elkaar.
 - Projectpagina: `.story` 56 -> 34px padding, fotorail-hoogte `clamp(230px, 44vh, 480px)`.
 
-`work/check.mjs` meet de hoogte per sectie, `work/smoke.mjs` loopt alle 18 paginas na op
+`work/check.mjs` meet de hoogte per sectie, `work/smoke.mjs` loopt alle 23 paginas na op
 JS-fouten, horizontale overloop, pijlknoppen, teller en lightbox. Beide tegen
 `BASE=http://127.0.0.1:8788` (`python -m http.server 8788` in `site/`) of tegen de live URL.
 
@@ -427,6 +431,94 @@ vanuit de projectmap): `verify.mjs` (elke pagina in chromium + webkit), `wipe-ch
 wipe op loopt, per pixel, plus de labels), `anchor-check.mjs` (ankerlandingen laten geen
 onzichtbare blokken achter), `ba-look.mjs` (schiet het Voor & na-blok met de lijn in het
 midden, desktop + mobiel, om te beoordelen).
+
+## Vindbaarheid: welke pagina's er zijn en waarom
+
+De site had zeventien Nederlandse adressen: de home en zestien projecten. Dat is
+te weinig. De home moest in haar eentje scoren op badkamerrenovatie,
+toiletrenovatie, tegelwerk, loodgieterswerk, cv en negentien plaatsnamen
+tegelijk, met per dienst een lijstje van een halve regel als enige tekst. Eén
+pagina kan niet voor zes verschillende zoekopdrachten het beste antwoord zijn.
+
+Daar zijn vijf adressen bij gekomen. De secties op de home zijn niet veranderd;
+ze linken er nu naartoe.
+
+| adres | wat het is | bron |
+| --- | --- | --- |
+| `/werk/` | de projecthub: alle zestien met kaart en telling, plus de vier diensten | `buildWerkHub()`, `L.hub` |
+| `/badkamerrenovatie/` | complete badkamers | `SERVICES` in `content.mjs` |
+| `/toiletrenovatie/` | toilet, inbouwreservoir, fonteintje | idem |
+| `/tegelwerk/` | visgraat, chevron, hexagon, grootformaat | idem |
+| `/loodgieter-en-cv/` | water, afvoer, radiatoren, cv-ketel | idem |
+
+**`/werk/` gaf een 404.** De zestien projecten hingen onder die map maar het
+adres zelf bestond niet: elke gedeelde of geraden link liep dood, en de enige
+route naar de projecten was een anker op de home (`/#projecten`). De nav, het
+kruimelpad, de footer en de 404-knop wijzen nu allemaal naar `/werk/`; dat anker
+komt in de HTML niet meer voor.
+
+Een dienstenpagina is opgebouwd uit wat er al lag: `omvat` (wat er onder valt),
+de projecten uit `projects.mjs` die het bewijs zijn, en de FAQ-antwoorden die bij
+die klus horen. Elke pagina draagt een `Service` met `hasOfferCatalog`, een
+`BreadcrumbList` en een `FAQPage` met **alleen** de vragen die er ook echt op
+staan. Een FAQPage met vragen die niet op de pagina staan is precies wat Google
+als misleidend aanmerkt.
+
+**Plaatspagina's zijn er bewust nog niet.** Deventer, Zutphen, Epe, Vaassen en
+Twello zouden kunnen, maar alleen met eigen projecten, eigen foto's en eigen
+tekst per plaats. Negentien plaatsen met dezelfde tekst en een andere naam erin
+is een doorway en kost posities in plaats van dat het ze oplevert.
+
+### Wat er in de structured data staat
+
+- **LocalBusiness** op de home: `geo` en `serviceArea` (30 km rond Apeldoorn),
+  `logo`, `areaServed` uit `AREA`, `sameAs` uit `BIZ.werkspot` plus alles wat er
+  in `BIZ.profielen` is ingevuld, en het KvK-nummer als `identifier`.
+  `aggregateRating` blijft er bewust uit (zie hieronder).
+- **`email`, `priceRange` en `openingHoursSpecification` staan leeg.** Ze komen
+  alleen in de JSON-LD als ze in `BIZ` zijn ingevuld, en elke bouw meldt welke
+  er nog ontbreken. Niet invullen met een gok: Google legt ze naast het
+  Google-bedrijfsprofiel en naast wat bezoekers melden.
+- **Projectpagina's** dragen `og:type: article` met `datePublished` (de dag dat
+  de site live ging, `BIZ.published`) en `dateModified` (uit de bronbestanden,
+  zie hieronder). Niet de datum van de verbouwing zelf: die is nergens
+  vastgelegd, WhatsApp haalt de EXIF uit elke foto.
+- **`VideoObject` per video.** De zestien video's staan als `data-video` in de
+  HTML en worden pas door `app.js` ingeladen, dus een crawler komt ze bij het
+  lezen van de pagina nooit tegen. Zonder deze markup en zonder
+  `sitemap-video.xml` bestaan ze voor Google niet. `duration` en de afmetingen
+  komen uit `_video.json` (`node work/video-meta.mjs`, draait op ffprobe).
+  Let op: `p.videos` is de lijst voor het videoblok en deugt **niet** als
+  telling. Drie indices erin zijn in werkelijkheid foto's, en er staan video's
+  in de fase-, opleverings- en bouwmaprails die er niet in staan.
+  `buildProject()` verzamelt daarom wat er werkelijk gerenderd is in
+  `videosPerProject`, en de hub, de JSON-LD en de videositemap lezen alle drie
+  uit die map.
+
+### lastmod
+
+Er stond op geen enkel adres een `<lastmod>`. Google plant zijn hercrawl er mede
+op. De datum komt uit de bronbestanden die de pagina maken (`build.mjs`,
+`content.mjs`, `projects.mjs`, de i18n-bestanden) en niet uit de klok: een bouw
+zonder inhoudelijke wijziging mag de datum niet vooruitschuiven, want dan is het
+signaal binnen twee deploys niets meer waard. Per bestand de laatste van de
+git-commitdatum en de mtime, zodat een aanpassing die nog niet gecommit is toch
+meetelt en de bouw ook werkt zonder git-geschiedenis.
+
+### Alt-teksten
+
+43 van de 277 foto's droegen allemaal dezelfde tekst: "Werk van MTS Badkamers".
+Dat waren de rails zonder bijschrift (oplevering, video's, bouwmap).
+`figure()` heeft nu een vierde argument `alt`, en die rails geven er
+"Bouwfoto 3 van 12: <projecttitel>" aan mee. Genummerd, zodat een schermlezer
+twaalf foto's uit elkaar kan houden in plaats van twaalf keer dezelfde regel te
+horen. De foto's mét bijschrift houden hun bijschrift als alt.
+
+### De 404
+
+Stond op `index, follow` en kon zo als lege pagina in de zoekresultaten
+belanden. Staat nu op `noindex, follow`; `work/audit-seo.mjs` faalt als dat
+terugdraait.
 
 ## Huisstijl, Werkspot en de kaart
 
@@ -516,7 +608,7 @@ zichtbaar; de hele taalnaam staat er onzichtbaar bij voor schermlezers. Elke kno
 **dezelfde** pagina in die taal, niet naar de homepage.
 
 Verder in de build: `lang` per pagina, `hreflang` voor alle vier plus `x-default` op de
-NL-versie, canonical met prefix, `og:locale`, en een sitemap met `xhtml:link` per taal (68
+NL-versie, canonical met prefix, `og:locale`, en een sitemap met `xhtml:link` per taal (88
 adressen). De WhatsApp-voorinvulling staat in de taal van de pagina; de labels van het bericht
 dat het formulier opbouwt komen als JSON mee in `#i18n`, want app.js kan ze niet uit de HTML
 lezen.
@@ -554,7 +646,7 @@ staat los, elk met zijn eigen servertje, dus `node work/<x>.mjs` vanuit deze map
 | script | wat het bewaakt |
 | --- | --- |
 | `audit-seo.mjs` | sitemap, canonicals, hreflang, titels, beschrijvingen, en of de HTML op zichzelf compleet is |
-| `js-off.mjs` | dezelfde 68 pagina's in een echte browser met JavaScript uit |
+| `js-off.mjs` | dezelfde 88 pagina's in een echte browser met JavaScript uit |
 | `smoke.mjs` | JS-fouten, horizontale overloop, pijlknoppen, teller, lightbox |
 | `verify.mjs` | elke pagina in chromium en webkit, mobiel en desktop |
 | `webkit-sweep.mjs` | blokken die in WebKit op 0 uitkomen, kapotte foto's, vastzittende rails |

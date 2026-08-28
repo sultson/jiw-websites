@@ -244,3 +244,92 @@ export const TR_TEXT = {
     },
   ],
 };
+
+// ---- hizmet sayfaları -------------------------------------------------------
+// t = title, h = h1, k = kicker, l = lead, d = meta description, i = intro,
+// o = kapsam (çiftler), s = kapanış paragrafı.
+export const TR_SVC = {
+  badkamerrenovatie: {
+    t: 'Apeldoorn Banyo Yenileme',
+    k: 'Komple banyolar',
+    h: 'Sökümden teslime kadar komple banyo',
+    l: 'Eski banyo ile yenisi arasındaki her iş aynı ustanın elinden çıkıyor: söküm, tesisat, su yalıtımı, fayans ve montaj.',
+    d: 'Apeldoorn ve çevresinde komple banyo yenileme. Söküm, tesisat, su yalıtımı, fayans ve montaj tek ustadan. Keşiften sonra sabit fiyat.',
+    i: [
+      'Banyo yenilemek tek bir iş değil, altı ayrı iştir ve çoğu firmada her iş için başka biri gelir. Burada öyle değil. Söküm, su, gider, ısıtma, fayans ve montaj işlerinin hepsini Mike kendisi yapıyor. Bu da tadilatın insanları en çok yoran kısmını ortadan kaldırıyor: bir şey yolunda gitmediğinde kimi arayacağınızı bulmak.',
+      'Sıralama sabittir, çünkü işin kendisi bunu dayatır. Önce her şey kaba yapıya kadar sökülür, çünkü duvarın arkasında ne olduğunu ancak o zaman görürsünüz. Sonra tesisat gelir ve vitrifiyenin geleceği yere göre ölçülür. Ardından su yalıtımı yapılır; bu, fayansları sökmeden sonradan asla onaramayacağınız tek aşamadır. Fayans işi ancak bundan sonra başlar.',
+      'Komple bir banyo genellikle iki ila üç haftalık iştir. Hangi haftalar olduğunu keşifte öğrenirsiniz ve bir sapma olursa hemen haberiniz olur. Alan kapatılır, moloz her gün çıkarılır ve tuvalet mümkün olduğunca uzun süre kullanımda kalır.',
+    ],
+    o: [
+      ['Söküm ve moloz', 'Eski banyo tamamen sökülür, şapa veya kaba yapıya kadar. Moloz her gün çıkar.'],
+      ['Tesisat ve gider', 'Yeni temiz su ve pis su tesisatı, yeni vitrifiyenin yerine göre ölçülür.'],
+      ['Yerden ısıtma', 'Elektrikli ya da kombiye bağlı, böylece radyatör yer kaplamaz.'],
+      ['Su yalıtımı', 'Zemin, köşeler ve duş alanı, tek bir fayans döşenmeden önce yalıtılır.'],
+      ['Duvar ve yer fayansı', 'Kesim öncesi planlanır. Balıksırtı, altıgen, büyük ebat veya doğal taş görünümü.'],
+      ['Vitrifiye ve montaj', 'Lavabo, dolap, duş kabini, klozet, bataryalar ve radyatör takılır ve bağlanır.'],
+    ],
+    s: 'Elektrik için ne gerektiğini keşifte konuşuruz. Malzemeyi kendiniz showroomdan seçmek isterseniz, onu da bizim getirdiğimiz kadar özenle monte ederiz.',
+  },
+  toiletrenovatie: {
+    t: 'Apeldoorn Tuvalet Yenileme',
+    k: 'Klozet ve el yıkama lavabosu',
+    h: 'Birkaç günde yeni bir tuvalet',
+    l: 'Asma klozet, gömme rezervuar, fayans ve küçük lavabo. Evin en küçük odası ve özensiz işin en çabuk göze battığı yer.',
+    d: 'Apeldoorn ve çevresinde tuvalet yenileme. Asma klozet, gömme rezervuar, fayans ve el yıkama lavabosu, çoğunlukla birkaç gün içinde biter.',
+    i: [
+      'Tuvalet birkaç metrekaredir ve tam da bu yüzden orada her şey görünür. Devam etmeyen bir derz, yanlış yerden kesilmiş bir fayans, bir santim şaşmış bir rezervuar: banyoda bunlar odanın büyüklüğü içinde kaybolur, tuvalette tam göz hizasında durur.',
+      'Tuvalet yenilemede eski klozet sökülür, duvara gömme rezervuar girer ve gider yeni yüksekliğe alınır. Etrafındaki duvar kapatılır ve istediğiniz yüksekliğe kadar kaplanır: tavana kadar ya da yarısına kadar, üstü sıvalı.',
+      'Çoğu tuvalet iki ila dört günde biter. Bu bir banyodan kısadır, ama evde en çok eksikliğini hissettiğiniz odadır. Bu yüzden başka işlerin arasına sıkıştırılmaz, tek seferde bitirilir.',
+    ],
+    o: [
+      ['Gömme rezervuarlı asma klozet', 'Rezervuar duvarın içinde, gider doğru yükseklikte, duvar kapatılıp kaplanır.'],
+      ['Fayans', 'Zemin ve duvar, tavana kadar ya da bordüre kadar, üstü sıvalı.'],
+      ['El yıkama lavabosu ve batarya', 'Su ve gider dahil, daha önce hiç lavabo olmamış olsa bile.'],
+      ['Tadilatsız klozet değişimi', 'Sadece klozet ve rezervuar, fayanslar olduğu gibi kalır.'],
+      ['Havalandırma', 'Aspiratör bağlanır ya da değiştirilir, böylece nem gerçekten dışarı çıkar.'],
+    ],
+    s: 'Yerden klozeti asma klozetle değiştirmek de mümkün. Bu durumda gider yer değiştirir, ona keşifte bakarız.',
+  },
+  tegelwerk: {
+    t: 'Apeldoorn Fayans Ustası',
+    k: 'Duvar ve yer fayansı',
+    h: 'Çizgileri birbirini takip eden fayans işi',
+    l: 'Balıksırtı, chevron, altıgen, büyük ebat ve doğal taş görünümü. Banyonun geri kalanı dururken sadece fayans işi de yapılır.',
+    d: 'Apeldoorn ve çevresinde fayans ustası. Balıksırtı, chevron, altıgen ve büyük ebat fayans, komple yenileme olmadan tek başına iş olarak da.',
+    i: [
+      'Bir fayans zeminde, ustanın planlama yapıp yapmadığı bir saniyede anlaşılır. Planlamak, desenin nerede biteceğini önceden hesaplamak demektir; böylece göz hizasında iki santimlik bir parçayla bitirmezsiniz ve derzler köşeyi döndükten sonra da devam eder.',
+      'Balıksırtı ve chevron gibi desenler bunu en çok isteyenlerdir. Yalnızca zemin tam düzse çalışırlar, çünkü desen her pürüzü gizlemek yerine büyütür. Büyük ebat fayanslarda da aynı şey başka bir nedenle geçerlidir: fayans büyüdükçe, eğri bir zemin yapıştırıcıyla daha az telafi edilebilir.',
+      'Fayans işinin komple bir tadilatın parçası olması gerekmez. Sadece bir duş duvarı, mutfak tezgah arası, bir hol zemini ya da bir tuvalet: bunlar tek başına iş olarak yapılabilir. Yine aynı sırayla, yani önce altında ne olduğuna bakarız.',
+    ],
+    o: [
+      ['Balıksırtı ve chevron', 'Önceden planlanır, çünkü bu desende bir santimlik sapma hemen görünür.'],
+      ['Büyük ebat fayans', 'Önce düz zemin, yoksa fayans asla düzgün oturmaz.'],
+      ['Altıgen ve mozaik', 'Duşta ya da lavabo arkasında vurgu yüzeyi olarak da.'],
+      ['Doğal taş ve taş görünümü', 'Traverten, mermer görünümü ve terrazzo, gereken bakım işlemleri dahil.'],
+      ['Yerden ısıtma üzerine fayans', 'Önce şap düzeltilir, sonra fayans döşenir.'],
+      ['Derz ve silikon', 'Eski derz ya da silikon yenilenmesi gerekiyorsa tek başına da yapılır.'],
+    ],
+    s: 'Fayansları kendiniz seçebilir ya da bizimle birlikte sipariş edebilirsiniz. Keşife bir fotoğraf ya da numune getirin, ne kadar gerektiğini hemen hesaplayalım.',
+  },
+  'loodgieter-en-cv': {
+    t: 'Apeldoorn Tesisatçı ve Kombi',
+    k: 'Su, gider ve ısıtma',
+    h: 'Tesisat, kombi ve duvarın arkasındaki her şey',
+    l: 'Su tesisatı, gider, radyatör ve kombi. Teslimden sonra bir daha görmeyeceğiniz iş, tam da bu yüzden ilk seferde doğru olmalı.',
+    d: 'Apeldoorn ve çevresinde tesisatçı. Su tesisatı, gider, su kaçağı, radyatör ve kombi montajı, banyo tadilatı olmadan da.',
+    i: [
+      'Tesisat işinin çoğu bir duvarın arkasında ya da bir zeminin altında kaybolur. Bu onu daha az önemli yapmaz, sadece sonradan düzeltmeyi pahalı hale getirir. Yanlış yükseklikte bir çıkış, yeterli eğimi olmayan bir gider ya da bir daha asla ulaşamayacağınız bir ek yeri: bir tadilat yıllar sonra tam da bunlar yüzünden tıkanır.',
+      'MTS Badkamers’te tesisat işi fayans işiyle aynı ellerdedir. Bu bir ayrıntı değil. Boruyu çeken adam fayansların nereye geleceğini bilir, fayansı döşeyen adam duvarın arkasında ne olduğunu bilir. Banyoda bu, iki ayrı ekibin kimin yanlış ölçtüğü konusundaki klasik tartışmasını ortadan kaldırır.',
+      'Etrafında tadilat olmadan tek başına işler de yapılır. Su kaçağı gidermek, batarya ya da radyatör değiştirmek, yeni su tesisatı çekmek ya da kolektör ve genleşme tankı dahil kombi değiştirmek.',
+    ],
+    o: [
+      ['Su tesisatı', 'Yeri değiştirilir, yenilenir ya da bakır veya plastikle sıfırdan çekilir.'],
+      ['Gider ve pis su', 'Doğru eğimle yeni gider, vitrifiye yer değiştirse de.'],
+      ['Su kaçağı tespiti ve onarımı', 'Önce nereden geldiğini bulmak, açmak sonra.'],
+      ['Kombi montajı', 'Değişim ya da yeni montaj, kolektör ve genleşme tankı dahil.'],
+      ['Radyatörler', 'Dizayn ve havlupan radyatörler takılır ya da taşınır, borulama dahil.'],
+      ['Yerden ısıtma', 'Kombiye bağlanır ya da fayans altına elektrikli mat olarak döşenir.'],
+    ],
+    s: 'Elektrik için ne gerektiğini keşifte konuşuruz. Su kaçağı ya da arızalı kombi için fotoğraflı bir mesaj en hızlısı.',
+  },
+};

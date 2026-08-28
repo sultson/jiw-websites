@@ -19,6 +19,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { projects } from '../projects.mjs';
+import { SERVICES } from '../content.mjs';
 import { LOCALES, DEFAULT_LOCALE, prefix, HTML_LANG } from '../i18n.mjs';
 
 const SITE = 'site';
@@ -70,7 +71,15 @@ if (!fs.existsSync(SITE)) {
 /*  Welke pagina's horen er te zijn                                    */
 /* ------------------------------------------------------------------ */
 
-const paden = ['/', ...projects.map((p) => `/werk/${p.slug}/`)];
+// De home, de vier dienstenpagina's, de projecthub en de zestien projecten. De
+// hub en de diensten kwamen erbij toen bleek dat /werk/ een 404 gaf en dat de
+// home in haar eentje op vier verschillende zoekopdrachten moest scoren.
+const paden = [
+  '/',
+  ...SERVICES.map((sv) => `/${sv.slug}/`),
+  '/werk/',
+  ...projects.map((p) => `/werk/${p.slug}/`),
+];
 const verwacht = LOCALES.flatMap((loc) => paden.map((pad) => ({ loc, pad, url: `${prefix(loc)}${pad}` })));
 
 const titels = new Map();
@@ -175,6 +184,42 @@ if (!fs.existsSync(sitemapBestand)) {
   // 404 hoort er niet in: een pagina die met een 404 antwoordt indexeren vragen
   // is een fout die Search Console je maanden blijft melden.
   eis(!sitemap.includes('/404'), 'sitemap noemt de 404-pagina');
+  // Zonder lastmod plant Google zijn hercrawl op niets. Er stond er lang geen
+  // enkele in; deze eis houdt dat zo.
+  const lastmods = [...sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+  eis(lastmods.length === inSitemap.length, `${lastmods.length} van de ${inSitemap.length} adressen heeft een lastmod`);
+  eis(
+    lastmods.every((d) => /^\d{4}-\d{2}-\d{2}$/.test(d)),
+    'sitemap heeft een lastmod die geen datum is',
+  );
+}
+
+// De video's staan als data-video in de HTML en worden pas door app.js
+// ingeladen. Deze sitemap en de VideoObject in de pagina zijn samen het enige
+// wat een crawler over die zestien bestanden te horen krijgt.
+const videoSitemap = path.join(SITE, 'sitemap-video.xml');
+if (!fs.existsSync(videoSitemap)) {
+  bezwaren.push('sitemap-video.xml ontbreekt');
+} else {
+  const xml = fs.readFileSync(videoSitemap, 'utf8');
+  const aantal = [...xml.matchAll(/<video:content_loc>([^<]+)<\/video:content_loc>/g)].map((m) => m[1]);
+  eis(aantal.length > 0, 'sitemap-video.xml noemt geen enkele video');
+  for (const v of aantal) {
+    eis(v.startsWith(`${ORIGIN}/video/`), `videositemap noemt een bestand buiten /video/: ${v}`);
+    const opSchijf = path.join(SITE, v.slice(ORIGIN.length));
+    eis(fs.existsSync(opSchijf), `videositemap noemt ${v}, maar dat bestand staat niet in site/`);
+  }
+  // Elke VideoObject op een pagina hoort ook in de sitemap te staan en andersom.
+  const inPaginas = new Set();
+  for (const p of projects) {
+    const bestand = path.join(SITE, 'werk', p.slug, 'index.html');
+    if (!fs.existsSync(bestand)) continue;
+    for (const m of fs.readFileSync(bestand, 'utf8').matchAll(/"contentUrl":"([^"]+)"/g)) inPaginas.add(m[1]);
+  }
+  eis(
+    inPaginas.size === aantal.length,
+    `${inPaginas.size} VideoObject op de paginas tegen ${aantal.length} in de videositemap`,
+  );
 }
 
 const robotsBestand = path.join(SITE, 'robots.txt');
@@ -188,6 +233,17 @@ if (!fs.existsSync(robotsBestand)) {
 
 for (const los of ['404.html', '_headers', 'favicon.svg', 'icon.png', 'logo.svg']) {
   eis(fs.existsSync(path.join(SITE, los)), `${los} ontbreekt in site/`);
+}
+
+// De foutpagina stond op index,follow en kon zo als lege pagina in de
+// zoekresultaten belanden.
+for (const loc of LOCALES) {
+  const bestand = path.join(SITE, prefix(loc).replace(/^\//, ''), '404.html');
+  if (!fs.existsSync(bestand)) continue;
+  eis(
+    /<meta name="robots" content="noindex/.test(fs.readFileSync(bestand, 'utf8')),
+    `${prefix(loc)}/404.html staat niet op noindex`,
+  );
 }
 
 /* ------------------------------------------------------------------ */

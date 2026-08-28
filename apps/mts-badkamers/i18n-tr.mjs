@@ -16,7 +16,15 @@ export const TR = {
     cta: 'Hemen yazın',
   },
   rail: { hint: 'Yana kaydırın', prev: 'Sola', next: 'Sağa' },
-  fig: { video: 'Videoyu oynat', foto: 'Fotoğrafı büyüt', alt: 'MTS Badkamers işi' },
+  fig: {
+    video: 'Videoyu oynat',
+    foto: 'Fotoğrafı büyüt',
+    alt: 'MTS Badkamers işi',
+    altProj: '{soort} {n}/{van}: {titel}',
+    soortOplevering: 'Teslim fotoğrafı',
+    soortBouw: 'Yapım fotoğrafı',
+    soortVideo: 'Video',
+  },
   lb: { title: 'Fotoğrafı görüntüle', close: 'Kapat', prev: 'Önceki', next: 'Sonraki' },
   waPrefill: 'Merhaba Mike, sitenizi gördüm ve banyom için teklif almak istiyorum.',
 
@@ -186,6 +194,7 @@ export const TR = {
     videoH: 'İşin videoları',
     videoP: 'Mekânda kısa bir tur, teslim sırasında veya hemen sonrasında çekildi.',
     videoLabel: 'Bu projenin videoları',
+    videoName: 'Teslim edilen banyoda gezinti: {titel}',
     bouwmap: 'İş dosyası',
     galH: 'Bu projenin tüm fotoğrafları',
     galP: 'İş dosyasından {n} kare: söküm, tesisat, fayans ve detay fotoğrafları.',
@@ -195,6 +204,34 @@ export const TR = {
     next: 'Sonraki',
     all: 'Tüm projeler',
     titleSuffix: 'MTS Badkamers Apeldoorn',
+  },
+
+  hub: {
+    title: 'Yaptığımız işler: Apeldoorn’da {n} banyo | MTS Badkamers',
+    desc: 'MTS Badkamers’in {n} projesinin tamamı, söküm fotoğrafından teslime kadar. Apeldoorn ve çevresinde banyo, tuvalet ve fayans işleri.',
+    kick: 'Yaptığımız işler',
+    h1: 'Söküm fotoğrafından teslime, {n} projenin tamamı',
+    lead: 'Katalogdan alınmış konsept görseller değil. Bunlar işin kendisi: yapım sırasında ve teslim günü çekildi.',
+    intro: [
+      'Aşağıdaki her projenin kendi sayfası var ve orada tüm yapım dosyası duruyor: duvarın arkasındaki tesisat, su yalıtımı, fayans planı ve sonuç. Bu bilinçli bir tercih. Teslim fotoğrafı banyonun nasıl göründüğünü gösterir, yapım fotoğrafları ise nasıl yapıldığını.',
+      'Projeler karışık sıralanmış: komple banyolar, tek başına tuvalet yenilemeleri, fayans işleri ve teslimden sonra duvarın arkasında kaybolan tesisat işleri. Belirli bir iş arıyorsanız, hizmet sayfaları bu sayfanın altında.',
+    ],
+    statP: 'proje',
+    statF: 'fotoğraf',
+    statV: 'video',
+    svcH: 'Belirli bir iş mi arıyorsunuz?',
+    svcLead: 'Neyin dahil olduğunu, ne kadar tuttuğunu ve ne kadar sürdüğünü anlatan dört sayfa.',
+  },
+
+  svcPage: {
+    crumbs: 'Hizmetler',
+    omvatH: 'Neler dahil',
+    werkH: 'Bu iş nasıl görünüyor',
+    werkLead: 'Bu işi içeren tamamlanmış projeler. Her projenin tüm yapım dosyasını içeren kendi sayfası var.',
+    faqH: 'Bu iş hakkında sorular',
+    alle: 'Tüm hizmetler',
+    alleWerk: 'Tüm işleri gör',
+    andere: 'Diğer hizmetler',
   },
 
   nf: {

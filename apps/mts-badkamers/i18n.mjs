@@ -37,7 +37,17 @@ export const UI = {
       cta: 'App direct',
     },
     rail: { hint: 'Veeg opzij', prev: 'Naar links', next: 'Naar rechts' },
-    fig: { video: 'Video afspelen', foto: 'Foto vergroten', alt: 'Werk van MTS Badkamers' },
+    fig: {
+      video: 'Video afspelen',
+      foto: 'Foto vergroten',
+      alt: 'Werk van MTS Badkamers',
+      // Alt voor de foto's zonder eigen bijschrift: welk soort opname, de
+      // hoeveelste, en van welk project.
+      altProj: '{soort} {n} van {van}: {titel}',
+      soortOplevering: 'Opleveringsfoto',
+      soortBouw: 'Bouwfoto',
+      soortVideo: 'Video',
+    },
     lb: { title: 'Foto bekijken', close: 'Sluiten', prev: 'Vorige', next: 'Volgende' },
     waPrefill: 'Hallo Mike, ik zag jullie site en wil graag een offerte voor mijn badkamer.',
 
@@ -209,6 +219,7 @@ export const UI = {
       videoH: "Video's van de klus",
       videoP: 'Rondje door de ruimte, opgenomen tijdens of vlak na de oplevering.',
       videoLabel: "Video's van dit project",
+      videoName: 'Rondgang door de opgeleverde badkamer: {titel}',
       bouwmap: 'Bouwmap',
       galH: "Alle foto's van dit project",
       galP: "{n} opnames uit de bouwmap: sloop, techniek, tegelwerk en detailfoto's.",
@@ -218,6 +229,34 @@ export const UI = {
       next: 'Volgende',
       all: 'Alle projecten',
       titleSuffix: 'MTS Badkamers Apeldoorn',
+    },
+
+    hub: {
+      title: "Ons werk: {n} badkamers in Apeldoorn | MTS Badkamers",
+      desc: 'Alle {n} projecten van MTS Badkamers, van sloopfoto tot oplevering. Badkamers, toiletten en tegelwerk in Apeldoorn en omgeving.',
+      kick: 'Ons werk',
+      h1: 'Alle {n} projecten, van sloopfoto tot oplevering',
+      lead: 'Geen sfeerbeelden uit een catalogus. Dit zijn de klussen zelf, gefotografeerd tijdens de bouw en op de dag van oplevering.',
+      intro: [
+        'Elk project hieronder heeft een eigen pagina met de hele bouwmap: het leidingwerk achter de wand, de waterdichting, het uitzetten van het tegelwerk en het resultaat. Dat is bewust. Aan een opleverfoto zie je hoe een badkamer eruitziet, aan de bouwfotos zie je hoe hij gemaakt is.',
+        'De projecten staan door elkaar: complete badkamers, losse toiletrenovaties, tegelwerk en het installatiewerk dat na de oplevering achter de wand verdwijnt. Zoek je een bepaald soort klus, dan staan de dienstenpagina\u2019s onderaan deze pagina.',
+      ],
+      statP: 'projecten',
+      statF: "foto's",
+      statV: "video's",
+      svcH: 'Zoek je een bepaalde klus?',
+      svcLead: 'Vier pagina\u2019s met wat er onder valt, wat het kost en hoe lang het duurt.',
+    },
+
+    svcPage: {
+      crumbs: 'Diensten',
+      omvatH: 'Wat er onder valt',
+      werkH: 'Zo ziet dat eruit',
+      werkLead: 'Uitgevoerde klussen waar dit werk in zit. Elk project heeft een eigen pagina met de hele bouwmap.',
+      faqH: 'Vragen over deze klus',
+      alle: 'Alle diensten',
+      alleWerk: 'Bekijk al het werk',
+      andere: 'Andere diensten',
     },
 
     nf: {
@@ -257,7 +296,15 @@ export const UI = {
       cta: 'Message us',
     },
     rail: { hint: 'Swipe sideways', prev: 'Scroll left', next: 'Scroll right' },
-    fig: { video: 'Play video', foto: 'Enlarge photo', alt: 'Work by MTS Badkamers' },
+    fig: {
+      video: 'Play video',
+      foto: 'Enlarge photo',
+      alt: 'Work by MTS Badkamers',
+      altProj: '{soort} {n} of {van}: {titel}',
+      soortOplevering: 'Handover photo',
+      soortBouw: 'Build photo',
+      soortVideo: 'Video',
+    },
     lb: { title: 'View photo', close: 'Close', prev: 'Previous', next: 'Next' },
     waPrefill: 'Hi Mike, I saw your website and would like a quote for my bathroom.',
 
@@ -428,6 +475,7 @@ export const UI = {
       videoH: 'Videos of the job',
       videoP: 'A walk through the room, filmed during or just after handover.',
       videoLabel: 'Videos of this project',
+      videoName: 'Walkthrough of the finished bathroom: {titel}',
       bouwmap: 'Job file',
       galH: 'All photos of this project',
       galP: '{n} shots from the job file: strip-out, pipework, tiling and detail photos.',
@@ -437,6 +485,34 @@ export const UI = {
       next: 'Next',
       all: 'All projects',
       titleSuffix: 'MTS Badkamers Apeldoorn',
+    },
+
+    hub: {
+      title: 'Our work: {n} bathrooms in Apeldoorn | MTS Badkamers',
+      desc: 'All {n} projects by MTS Badkamers, from strip-out photo to handover. Bathrooms, toilets and tiling in Apeldoorn and the surrounding area.',
+      kick: 'Our work',
+      h1: 'All {n} projects, from strip-out photo to handover',
+      lead: 'No mood shots from a catalogue. These are the jobs themselves, photographed during the build and on handover day.',
+      intro: [
+        'Every project below has its own page with the full build record: the pipework behind the wall, the waterproofing, the setting out of the tiles and the result. That is deliberate. A handover photo shows you what a bathroom looks like; the build photos show you how it was made.',
+        'The projects are mixed together: complete bathrooms, standalone toilet renovations, tiling, and the installation work that disappears behind the wall after handover. If you are looking for a particular kind of job, the service pages are at the bottom of this page.',
+      ],
+      statP: 'projects',
+      statF: 'photos',
+      statV: 'videos',
+      svcH: 'Looking for a particular job?',
+      svcLead: 'Four pages covering what is included, what it costs and how long it takes.',
+    },
+
+    svcPage: {
+      crumbs: 'Services',
+      omvatH: 'What it covers',
+      werkH: 'What that looks like',
+      werkLead: 'Completed jobs that include this work. Every project has its own page with the full build record.',
+      faqH: 'Questions about this job',
+      alle: 'All services',
+      alleWerk: 'See all the work',
+      andere: 'Other services',
     },
 
     nf: {

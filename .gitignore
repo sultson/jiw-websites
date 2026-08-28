@@ -40,6 +40,7 @@ tmp
 apps/mts-badkamers/site/index.html
 apps/mts-badkamers/site/404.html
 apps/mts-badkamers/site/sitemap.xml
+apps/mts-badkamers/site/sitemap-video.xml
 apps/mts-badkamers/site/robots.txt
 apps/mts-badkamers/site/favicon.svg
 apps/mts-badkamers/site/_headers
@@ -50,6 +51,12 @@ apps/mts-badkamers/site/en/
 apps/mts-badkamers/site/tr/
 apps/mts-badkamers/site/ru/
 apps/mts-badkamers/site/werk/
+# De vier dienstenpagina's. Elk is een eigen map op de root van site/, dus ze
+# vallen niet onder een van de regels hierboven en moeten er los bij staan.
+apps/mts-badkamers/site/badkamerrenovatie/
+apps/mts-badkamers/site/toiletrenovatie/
+apps/mts-badkamers/site/tegelwerk/
+apps/mts-badkamers/site/loodgieter-en-cv/
 # De ruwe telefoonvideo's (236 MB) zijn bronmateriaal, geen site-bestand: de
 # webklare versies staan in site/video/ en de posters in site/poster/. Zie de
 # README van de app voor hoe je ze uit deze bronnen opnieuw maakt.

@@ -11,8 +11,8 @@
 // leeuwendeel van de tekst en verandert het vaakst; niemand kiest een
 // badkamerbouwer op een fotobijschrift.
 
-import { TR_PROJ, TR_TEXT } from './i18n-content-tr.mjs';
-import { RU_PROJ, RU_TEXT } from './i18n-content-ru.mjs';
+import { TR_PROJ, TR_TEXT, TR_SVC } from './i18n-content-tr.mjs';
+import { RU_PROJ, RU_TEXT, RU_SVC } from './i18n-content-ru.mjs';
 
 // ---- projecten --------------------------------------------------------------
 // t = title, k = kicker, g = tags, b = blurb, i = intro-alineas
@@ -262,8 +262,98 @@ const EN_TEXT = {
   ],
 };
 
+// ---- dienstenpagina's -------------------------------------------------------
+// t = title, h = h1, k = kicker, l = lead, d = meta description, i = intro,
+// o = omvat (paren), s = slotalinea. Zelfde terugval per veld als de projecten.
+const EN_SVC = {
+  badkamerrenovatie: {
+    t: 'Bathroom Renovation Apeldoorn',
+    k: 'Complete bathrooms',
+    h: 'A complete bathroom, from strip-out to handover',
+    l: 'Everything between the old bathroom and the new one, done by the same craftsman: stripping out, pipework, waterproofing, tiling and fitting.',
+    d: 'Complete bathroom renovation in Apeldoorn and the surrounding area. Strip-out, pipework, waterproofing, tiling and fitting by one craftsman. Fixed price after the survey.',
+    i: [
+      'Renovating a bathroom is not one job but six, and at most firms a different person turns up for each one. Not here. The strip-out, the water, the drainage, the heating, the tiling and the fitting are all done by Mike himself. That saves you the part of a renovation people usually find worst: working out who to call when something is not right.',
+      'The order is fixed because the building work demands it. First everything comes out, back to the shell, because only then can you see what sits behind the wall. Then the pipework, measured out around where the sanitaryware will go. Then the waterproofing, and that is the one part you can never repair later without taking the tiles off. Only after that does the tiling start.',
+      'A complete bathroom is usually two to three weeks of work. You hear at the survey which weeks those are, and you hear straight away if anything shifts. The room is sealed off, the rubble leaves every day and the toilet stays in service as long as possible.',
+    ],
+    o: [
+      ['Strip-out and disposal', 'Old bathroom out, back to the screed or back to the shell. Rubble leaves every day.'],
+      ['Pipework and drainage', 'New water pipes and waste, measured out around the new sanitaryware.'],
+      ['Underfloor heating', 'Electric or run off the boiler, so no radiator has to steal space.'],
+      ['Waterproofing', 'Floor, corners and shower zone sealed before a single tile goes on.'],
+      ['Wall and floor tiles', 'Set out before anything is cut. Herringbone, hexagon, large format or stone look.'],
+      ['Sanitaryware and fitting', 'Basin, unit, shower screen, toilet, taps and radiator fitted and connected.'],
+    ],
+    s: 'What the electrics need is discussed at the survey. If you would rather pick the materials yourself in a showroom, we fit those just as readily as anything we order.',
+  },
+  toiletrenovatie: {
+    t: 'Toilet Renovation Apeldoorn',
+    k: 'Toilet and cloakroom basin',
+    h: 'A new toilet in a few days',
+    l: 'Wall-hung toilet, concealed cistern, tiling and a small basin. The smallest room in the house, and the one where sloppy work shows up fastest.',
+    d: 'Toilet renovation in Apeldoorn and the surrounding area. Wall-hung toilet, concealed cistern, tiling and cloakroom basin, usually finished within a few days.',
+    i: [
+      'A toilet is a couple of square metres, which is exactly why you see everything in it. A grout line that does not run through, a tile cut in the wrong place, a cistern a centimetre out of true: in a bathroom that disappears against the size of the room, in a toilet it sits at eye level.',
+      'In a toilet renovation the old pan comes out, a concealed cistern goes into the wall and the waste is set at the new height. The wall around it is boarded and tiled as far up as you want: all the way to the ceiling, or halfway with plaster above it.',
+      'Most toilets are finished in two to four days. That is shorter than a bathroom, but it is the room you miss most at home. So it gets finished in one run rather than slotted in between other jobs.',
+    ],
+    o: [
+      ['Wall-hung toilet with concealed cistern', 'Cistern in the wall, waste at the right height, wall boarded and tiled.'],
+      ['Tiling', 'Floor and wall, to the ceiling or up to a tile trim with plaster above.'],
+      ['Cloakroom basin and tap', 'Including water and waste, even where there has never been a basin.'],
+      ['Replacing a toilet without building work', 'Just the pan and cistern, tiling stays as it is.'],
+      ['Ventilation', 'Extraction connected or replaced, so the damp actually leaves.'],
+    ],
+    s: 'Swapping a floor-standing toilet for a wall-hung one is possible too. That moves the waste, so it is something we look at during the survey.',
+  },
+  tegelwerk: {
+    t: 'Tiler in Apeldoorn',
+    k: 'Wall and floor tiles',
+    h: 'Tiling where the lines run through',
+    l: 'Herringbone, chevron, hexagon, large format and stone look. Also when tiling is the only job and the rest of the bathroom stays put.',
+    d: 'Tiler in Apeldoorn and the surrounding area. Herringbone, chevron, hexagon and large-format tiling, also as a standalone job without a full renovation.',
+    i: [
+      'On a tiled floor you can tell within a second whether someone set it out or simply started in a corner. Setting out means working out in advance where the pattern lands, so you do not finish with a two-centimetre sliver in full view and the grout lines carry on around the corner.',
+      'Patterns like herringbone and chevron demand that most. They only work if the substrate is dead straight, because any unevenness gets magnified by the pattern rather than hidden by it. Large-format tiles are the same for a different reason: the bigger the tile, the less an uneven substrate can be worked away in the adhesive.',
+      'Tiling does not have to be part of a full renovation. Just a shower wall redone, a kitchen splashback, a hallway floor or a toilet: that works as a standalone job. Still in the same order, so we look at what is underneath first.',
+    ],
+    o: [
+      ['Herringbone and chevron', 'Set out in advance, because in this pattern a centimetre out shows immediately.'],
+      ['Large-format tiles', 'Flat substrate first, otherwise the tile will never sit true.'],
+      ['Hexagon and mosaic', 'Also as a feature panel in a shower or behind a basin.'],
+      ['Natural stone and stone look', 'Travertine, marble look and terrazzo, including the treatment that goes with them.'],
+      ['Floor tiles over underfloor heating', 'Level the screed first, then tile.'],
+      ['Grouting and silicone', 'Also on its own, when the old grout or silicone line is due for replacement.'],
+    ],
+    s: 'You can choose the tiles yourself or order them with us. Bring a photo or a sample to the survey and we will work out how much you need on the spot.',
+  },
+  'loodgieter-en-cv': {
+    t: 'Plumber and Boilers Apeldoorn',
+    k: 'Water, waste and heating',
+    h: 'Pipework, boilers and everything behind the wall',
+    l: 'Water pipes, drainage, radiators and boilers. The work you never see again after handover, which is exactly why you want it right first time.',
+    d: 'Plumber in Apeldoorn and the surrounding area. Water pipes, drainage, leaks, radiators and boiler installation, also without a bathroom renovation.',
+    i: [
+      'Most installation work disappears behind a wall or under a floor. That does not make it less important, it only makes it more expensive to put right later. A branch at the wrong height, a waste pipe with too little fall, or a joint you can never reach again: those are the things a renovation still comes unstuck on years afterwards.',
+      'At MTS Badkamers the installation work sits in the same pair of hands as the tiling. That is not a detail. The man running the pipes knows where the tiles are going, and the man tiling knows what is behind that wall. On a bathroom it saves you the classic argument between two trades about who measured wrong.',
+      'Standalone jobs are fine too, with no renovation around them. Fixing a leak, replacing a tap or a radiator, running new water pipes, or replacing a boiler including the manifold and expansion vessel.',
+    ],
+    o: [
+      ['Water pipes', 'Moved, replaced or run completely new, in copper or plastic.'],
+      ['Drainage and waste', 'New waste with the right fall, including where sanitaryware moves.'],
+      ['Finding and fixing leaks', 'Find where it is coming from first, open things up after.'],
+      ['Boiler installation', 'Replacement or new installation, including manifold and expansion vessel.'],
+      ['Radiators', 'Designer and towel radiators fitted or moved, including the pipework to them.'],
+      ['Underfloor heating', 'Laid and connected to the boiler, or as an electric mat under the tiles.'],
+    ],
+    s: 'What the electrics need is discussed at the survey. For a leak or a dead boiler, a message with a photo is quickest.',
+  },
+};
+
 const PROJ = { en: EN_PROJ, tr: TR_PROJ, ru: RU_PROJ };
 const TEXT = { en: EN_TEXT, tr: TR_TEXT, ru: RU_TEXT };
+const SVC = { en: EN_SVC, tr: TR_SVC, ru: RU_SVC };
 
 // ---- getters ----------------------------------------------------------------
 // Elk van deze valt per veld terug op de Nederlandse bron. Per veld en niet per
@@ -303,4 +393,21 @@ export function tArea(loc, i, h) {
 export function tReview(loc, i, r) {
   const t = TEXT[loc]?.reviews?.[i];
   return { ...r, d: t?.d || r.d, t: t?.t || r.t };
+}
+
+// Dienstenpagina's. Zelfde terugval per veld: een dienst zonder vertaling levert
+// een Engelse pagina met Nederlandse alinea's op, niet een lege pagina.
+export function tService(loc, s) {
+  const t = SVC[loc]?.[s.slug];
+  return {
+    ...s,
+    title: t?.t || s.title,
+    kicker: t?.k || s.kicker,
+    h1: t?.h || s.h1,
+    lead: t?.l || s.lead,
+    desc: t?.d || s.desc,
+    intro: t?.i || s.intro,
+    omvat: t?.o || s.omvat,
+    slot: t?.s || s.slot,
+  };
 }

@@ -17,7 +17,18 @@ const srv = http.createServer((req, res) => {
 });
 await new Promise((r) => srv.listen(8902, r));
 
-const pages = ['/', ...fs.readdirSync('site/werk').map((d) => `/werk/${d}/`), '/404.html'];
+// site/werk bevat sinds de projecthub ook een index.html; alleen de mappen zijn
+// projectpagina's.
+const pages = [
+  '/',
+  '/werk/',
+  ...['badkamerrenovatie', 'toiletrenovatie', 'tegelwerk', 'loodgieter-en-cv'].map((d) => `/${d}/`),
+  ...fs
+    .readdirSync('site/werk')
+    .filter((d) => fs.statSync(`site/werk/${d}`).isDirectory())
+    .map((d) => `/werk/${d}/`),
+  '/404.html',
+];
 const b = await webkit.launch();
 let bad = 0;
 for (const [lbl, opts] of [['mobiel', { ...devices['iPhone 13'] }], ['desktop', { viewport: { width: 1440, height: 900 } }]]) {

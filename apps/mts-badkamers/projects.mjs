@@ -16,6 +16,46 @@ export const BIZ = {
   waNumber: '31647093103',
   waDisplay: '+31 6 47093103',
   werkspot: 'https://www.werkspot.nl/profiel/m-techno-service',
+
+  // Coordinaten van de thuisbasis, gelijk aan HQ in content.mjs. Google koppelt
+  // een LocalBusiness aan een plek op de kaart; zonder geo blijft het een naam.
+  geo: { lat: 52.2112, lon: 5.9699 },
+
+  // De dag dat de site op mts-badkamers.nl live ging. Dit is datePublished op de
+  // projectpaginas: niet de datum van de verbouwing (die is nergens vastgelegd,
+  // WhatsApp haalt de EXIF eruit) maar de datum waarop deze pagina er kwam. Dat
+  // is precies wat schema.org met datePublished bedoelt.
+  published: '2026-08-18',
+
+  // ---- nog in te vullen door Mike -------------------------------------------
+  // Alle drie staan bewust leeg. build.mjs zet ze alleen in de structured data
+  // als er iets staat en waarschuwt bij elke bouw zolang dat niet zo is. Een
+  // verzonnen openingstijd of prijsklasse is erger dan een ontbrekend veld:
+  // Google vergelijkt ze met het Google-bedrijfsprofiel en met wat bezoekers
+  // melden.
+  //
+  //   email: 'info@mts-badkamers.nl',
+  //   priceRange: '$$',                       // grove klasse, geen bedragen
+  //   hours: [
+  //     { dagen: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], van: '07:30', tot: '17:00' },
+  //     { dagen: ['Saturday'], van: '09:00', tot: '13:00' },
+  //   ],
+  email: '',
+  priceRange: '',
+  hours: [],
+
+  // Sociale en zakelijke profielen. Elk adres hier komt in sameAs terecht en
+  // vertelt Google dat dit dezelfde onderneming is. Lege regels worden
+  // overgeslagen, dus een profiel toevoegen is een adres invullen.
+  //
+  // Het Google-bedrijfsprofiel is het belangrijkste en bestaat nog niet; zodra
+  // het geverifieerd is hoort de deel-URL hier.
+  profielen: {
+    google: '',
+    instagram: '',
+    facebook: '',
+    trustoo: '',
+  },
 };
 
 export const projects = [

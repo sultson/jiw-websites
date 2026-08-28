@@ -1105,3 +1105,46 @@ html, body { overflow-x: clip; }
   .nav-links .lang { order: -1; margin: 2px 0 12px; padding: 4px; gap: 4px; border-radius: 12px; }
   .nav-links .lang a { flex: 1; text-align: center; padding: 11px 4px; font-size: 0.9rem; border-radius: 9px; }
 }
+
+/* ---- dienstenpagina's en de projecthub -------------------------------------
+   Vier dienstenpagina's en /werk/ zijn erbij gekomen. Ze lenen zo veel mogelijk
+   van wat er al stond (.card, .svc-l, .fq, .p-hero, .p-meta, .eyebrow); dit blok
+   is alleen wat die twee pagina's echt nodig hebben. */
+
+/* Kop van een overzichtspagina: geen hero met foto, maar wel dezelfde ruimte
+   boven de vouw als een projectpagina. */
+.sec-head-page { padding-top: 40px; }
+.sec-head-page .eyebrow { display: block; margin-bottom: 10px; }
+.sec-head-page h1 { max-width: 16ch; margin: 0 0 14px; }
+.sec-head-page .sec-lead { max-width: 52ch; }
+.sec-head-page .p-meta { margin: 26px 0 30px; }
+.sec-head-page .intro-txt { max-width: 62ch; }
+
+/* De vier dienstenkaarten onderaan /werk/. Kaarten die een link zijn, dus ze
+   moeten ook als link voelen; .svc-card zelf blijft de statische variant op de
+   home. */
+.svc-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+a.svc-card { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: inherit; transition: border-color 0.18s ease; }
+a.svc-card:hover, a.svc-card:focus-visible { border-color: var(--ink); }
+a.svc-card h3 { margin: 0; }
+a.svc-card .card-go { margin-top: auto; padding-top: 12px; }
+.svc-kick { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--clay); }
+
+/* "Wat er onder valt" krijgt op een brede kolom twee kolommen: zes regels onder
+   elkaar op volle breedte laat de halve pagina leeg. */
+.svc-l-wide { columns: 2; column-gap: 40px; }
+.svc-l-wide li { break-inside: avoid; }
+.svc-slot { max-width: 58ch; margin: 24px 0 0; color: var(--ink-2); }
+
+/* Doorlinken naar de andere drie diensten. */
+.svc-other { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.svc-other a {
+  border: 1px solid var(--line); border-radius: var(--r); padding: 10px 16px;
+  text-decoration: none; color: inherit; font-size: 0.92rem;
+}
+.svc-other a:hover, .svc-other a:focus-visible { border-color: var(--ink); }
+
+@media (max-width: 700px) {
+  .svc-l-wide { columns: 1; }
+  .sec-head-page h1 { max-width: none; }
+}

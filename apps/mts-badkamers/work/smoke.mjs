@@ -3,7 +3,18 @@ import { chromium, devices } from 'playwright';
 import fs from 'node:fs';
 
 const BASE = process.env.BASE || 'http://127.0.0.1:8788';
-const paths = ['/', '/404.html', ...fs.readdirSync('site/werk').map((s) => `/werk/${s}/`)];
+// De projecthub en de vier dienstenpagina's staan er sinds kort bij; readdirSync
+// op site/werk levert nu ook index.html op, dus die eruit filteren.
+const paths = [
+  '/',
+  '/404.html',
+  '/werk/',
+  ...['badkamerrenovatie', 'toiletrenovatie', 'tegelwerk', 'loodgieter-en-cv'].map((s) => `/${s}/`),
+  ...fs
+    .readdirSync('site/werk')
+    .filter((s) => fs.statSync(`site/werk/${s}`).isDirectory())
+    .map((s) => `/werk/${s}/`),
+];
 const browser = await chromium.launch();
 let fails = 0;
 

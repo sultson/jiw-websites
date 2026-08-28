@@ -1,12 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { projects, BIZ } from './projects.mjs';
-import { FAQ, AREA, HQ, BA, REVIEWS } from './content.mjs';
+import { FAQ, AREA, HQ, BA, REVIEWS, SERVICES } from './content.mjs';
 import {
   LOCALES, DEFAULT_LOCALE, prefix, UI, fill, LANG_NAME, LANG_SHORT, OG_LOCALE, HTML_LANG,
 } from './i18n.mjs';
-import { tProject, tFaq, tBa, tArea, tReview } from './i18n-content.mjs';
+import { tProject, tFaq, tBa, tArea, tReview, tService } from './i18n-content.mjs';
 
 // Actieve taal, module-level. Zo goed als elke functie hieronder rendert tekst;
 // ze allemaal een locale-parameter geven zou zestig aanroepen raken zonder dat
@@ -44,6 +45,61 @@ if (!MAPBOX_TOKEN.startsWith('pk.')) {
 // met een 301 hierheen gestuurd (worker/index.ts), zodat gedeelde links blijven
 // werken zonder dat er twee vindbare kopieen van de site ontstaan.
 const ORIGIN = 'https://mts-badkamers.nl';
+
+// ---- lastmod -----------------------------------------------------------------
+// Elk adres in de sitemap hoort een <lastmod> te hebben: Google plant zijn
+// hercrawl er mede op, en juist bij een site waar projecten bij komen is dat het
+// verschil tussen binnen een week of binnen een maand opgemerkt worden. Er stond
+// er geen enkele in.
+//
+// De datum komt uit de bronbestanden die de pagina maken, niet uit de klok: een
+// bouw zonder inhoudelijke wijziging mag de datum niet vooruitschuiven, want dan
+// is het signaal binnen twee deploys niets meer waard. Git is de nauwkeurigste
+// bron (de commitdatum van het bestand), met de wijzigingsdatum op schijf als
+// terugval voor een omgeving zonder git-geschiedenis.
+const bronDatums = new Map();
+function bronDatum(bestand) {
+  if (bronDatums.has(bestand)) return bronDatums.get(bestand);
+  let datum;
+  try {
+    datum = execFileSync('git', ['log', '-1', '--format=%cs', '--', bestand], {
+      cwd: ROOT,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+  } catch {
+    datum = '';
+  }
+  // De laatste van de twee. Git is de nauwkeurigste bron, maar een bestand dat
+  // is aangepast en nog niet gecommit zou dan een oude datum houden; de mtime
+  // vangt dat op. Ontbreekt git, dan blijft alleen de mtime over.
+  const opSchijf = fs.statSync(path.join(ROOT, bestand)).mtime.toISOString().slice(0, 10);
+  datum = /^\d{4}-\d{2}-\d{2}$/.test(datum) && datum > opSchijf ? datum : opSchijf;
+  bronDatums.set(bestand, datum);
+  return datum;
+}
+// De laatste van een reeks bronbestanden. `content.mjs` en `projects.mjs` dragen
+// de inhoud, `build.mjs` de vorm; verandert een van de drie, dan is de pagina
+// veranderd.
+const laatste = (...bestanden) => bestanden.map(bronDatum).sort().at(-1);
+const LASTMOD = {
+  home: laatste('build.mjs', 'content.mjs', 'projects.mjs', 'i18n.mjs'),
+  project: laatste('build.mjs', 'projects.mjs', 'i18n-content.mjs'),
+  dienst: laatste('build.mjs', 'content.mjs', 'i18n-content.mjs'),
+};
+
+// Duur en afmetingen per video, gemeten met ffprobe door work/video-meta.mjs.
+// Nodig voor VideoObject: zonder duration en thumbnailUrl komt een video niet in
+// de videoresultaten van Google. Ontbreekt het bestand, dan blijft de rest van de
+// bouw gewoon werken en vervalt alleen de videomarkup.
+const videoMeta = (() => {
+  const f = path.join(ROOT, '_video.json');
+  if (!fs.existsSync(f)) {
+    console.warn('let op: _video.json ontbreekt, geen VideoObject in de structured data (draai node work/video-meta.mjs)');
+    return {};
+  }
+  return JSON.parse(fs.readFileSync(f, 'utf8'));
+})();
 
 // ---- css/js met contenthash --------------------------------------------------
 // styles.css en app.js stonden op een vaste URL met max-age=3600. Bij een deploy
@@ -222,7 +278,12 @@ function heroVideo() {
   </video>`;
 }
 
-function figure(m, caption, cls = '') {
+// `alt` is de omschrijving als er geen bijschrift is. De rails met opleverings- en
+// bouwmapfoto's hebben er geen (43 van de 277 foto's droegen daardoor allemaal
+// dezelfde tekst "Werk van MTS Badkamers"), dus geeft de aanroeper daar de
+// projectnaam mee. Het blijft waar wat het is - een bouwfoto van dat project -
+// zonder te doen alsof we weten wat er precies op staat.
+function figure(m, caption, cls = '', alt = '') {
   const orient = m.portrait ? 'is-portrait' : 'is-land';
   const vid = m.video ? ' is-video' : '';
   const data = m.video
@@ -230,7 +291,7 @@ function figure(m, caption, cls = '') {
     : `data-full="/m/${m.base}-1600.jpg"`;
   const label = caption || (m.video ? L.fig.video : L.fig.foto);
   return `<figure class="ph ${orient}${vid} ${cls}" ${data} tabindex="0" role="button" aria-label="${esc(label)}">
-    ${pic(m, { sizes: GRID_SIZES, alt: caption || L.fig.alt })}
+    ${pic(m, { sizes: GRID_SIZES, alt: caption || alt || L.fig.alt })}
     ${m.video ? '<span class="play" aria-hidden="true"></span>' : ''}
     ${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}
   </figure>`;
@@ -286,7 +347,7 @@ function werkspotLogo(cls = '') {
   return `<img class="ws-logo ${cls}" src="/werkspot.svg" width="237" height="32" alt="Werkspot" loading="lazy" decoding="async">`;
 }
 
-function head(title, desc, canonical, { ogImage, extraHead = '' } = {}) {
+function head(title, desc, canonical, { ogImage, extraHead = '', ogType = 'website', robots = 'index, follow' } = {}) {
   const og = ogImage || `/m/${media(93).base}-1600.jpg`;
   // hreflang naar dezelfde pagina in elke taal, plus x-default op de NL-versie:
   // die staat op de root en is de versie waar Google op mag terugvallen.
@@ -304,12 +365,12 @@ function head(title, desc, canonical, { ogImage, extraHead = '' } = {}) {
 <link rel="canonical" href="${ORIGIN}${U(canonical)}">
 ${alts}
 <meta name="theme-color" content="#111418">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="${robots}">
 <meta property="og:site_name" content="${esc(BIZ.name)}">
 <meta property="og:locale" content="${OG_LOCALE[LOC]}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="${ogType}">
 <meta property="og:url" content="${ORIGIN}${U(canonical)}">
 <meta property="og:image" content="${ORIGIN}${og}">
 <meta name="twitter:card" content="summary_large_image">
@@ -375,7 +436,7 @@ function nav(active = '') {
   <div class="wrap nav-in">
     <a class="brand" href="${U('/')}" aria-label="${esc(L.brandAria)}">${brandLockup()}</a>
     <nav class="nav-links" id="navLinks" aria-label="${esc(L.mainMenu)}">
-      <a href="${U('/#projecten')}"${active === 'werk' ? ' class="on"' : ''}>${esc(L.nav.projecten)}</a>
+      <a href="${U('/werk/')}"${active === 'werk' ? ' class="on"' : ''}>${esc(L.nav.projecten)}</a>
       <a href="${U('/#voorna')}">${esc(L.nav.voorna)}</a>
       <a href="${U('/#diensten')}">${esc(L.nav.diensten)}</a>
       <a href="${U('/#werkwijze')}">${esc(L.nav.werkwijze)}</a>
@@ -512,11 +573,11 @@ function footer(dockKop) {
     <div>
       <h4>${esc(L.foot.projecten)}</h4>
       ${links}
-      <a class="foot-more" href="${U('/#projecten')}">${esc(fill(L.foot.alle, { n: projects.length }))}</a>
+      <a class="foot-more" href="${U('/werk/')}">${esc(fill(L.foot.alle, { n: projects.length }))}</a>
     </div>
     <div>
       <h4>${esc(L.foot.diensten)}</h4>
-${L.foot.dienstenLinks.map((t) => `      <a href="${U('/#diensten')}">${t}</a>`).join('\n')}
+${SERVICES.map((sv) => `      <a href="${U(`/${sv.slug}/`)}">${esc(tService(LOC, sv).title)}</a>`).join('\n')}
       <a href="${U('/#werkgebied')}">${esc(L.foot.werkgebied)}</a>
     </div>
     <div>
@@ -563,9 +624,38 @@ function ldBusiness() {
     telephone: `+${BIZ.waNumber}`,
     image: `${ORIGIN}/m/${media(93).base}-1600.jpg`,
     address: { '@type': 'PostalAddress', addressLocality: 'Apeldoorn', addressCountry: 'NL' },
+    // Zonder geo blijft een LocalBusiness een naam; hiermee hangt hij aan een
+    // plek op de kaart. Coordinaten van de thuisbasis, gelijk aan HQ.
+    geo: { '@type': 'GeoCoordinates', latitude: BIZ.geo.lat, longitude: BIZ.geo.lon },
+    // De straal waarbinnen we komen. AREA is de lijst plaatsen, dit is de vorm
+    // waarin Google een servicegebied verwacht van een bedrijf zonder winkel.
+    serviceArea: {
+      '@type': 'GeoCircle',
+      geoMidpoint: { '@type': 'GeoCoordinates', latitude: BIZ.geo.lat, longitude: BIZ.geo.lon },
+      geoRadius: '30000',
+    },
+    logo: `${ORIGIN}/icon.png`,
     areaServed: AREA.flatMap((g) => g.places).map((p) => ({ '@type': 'City', name: p.n })),
-    sameAs: [BIZ.werkspot],
+    // Elk profiel dat hetzelfde bedrijf beschrijft. Lege regels vallen eruit, dus
+    // een profiel toevoegen is een adres invullen in BIZ.profielen.
+    sameAs: [BIZ.werkspot, ...Object.values(BIZ.profielen)].filter(Boolean),
     identifier: { '@type': 'PropertyValue', name: 'KvK', value: BIZ.kvk },
+    // De laatste drie staan alleen in de structured data als Mike ze heeft
+    // ingevuld. Een verzonnen openingstijd of prijsklasse is erger dan een leeg
+    // veld: Google legt ze naast het bedrijfsprofiel en naast wat bezoekers
+    // melden. buildAll waarschuwt zolang ze leeg zijn.
+    ...(BIZ.email ? { email: BIZ.email } : {}),
+    ...(BIZ.priceRange ? { priceRange: BIZ.priceRange } : {}),
+    ...(BIZ.hours.length
+      ? {
+          openingHoursSpecification: BIZ.hours.map((h) => ({
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: h.dagen,
+            opens: h.van,
+            closes: h.tot,
+          })),
+        }
+      : {}),
     // Bewust geen aggregateRating: de Werkspot-score staat op verzoek nergens
     // meer op de site, dus hij hoort ook niet in de structured data (Google zou
     // hem anders alsnog als sterren in de zoekresultaten tonen).
@@ -596,7 +686,54 @@ function ldProject(p) {
     image: `${ORIGIN}/m/${media(p.hero).base}-1600.jpg`,
     creator: { '@id': `${ORIGIN}/#business` },
     about: (t.tags || []).join(', '),
+    // Wanneer deze pagina er kwam en wanneer hij voor het laatst veranderde.
+    // Niet de datum van de verbouwing zelf: die is nergens vastgelegd, WhatsApp
+    // haalt de EXIF uit elke foto. Zonder deze twee kan Google niet zien dat er
+    // werk bij komt en blijft de hele map even oud.
+    datePublished: BIZ.published,
+    dateModified: LASTMOD.project,
   };
+}
+
+// Een VideoObject per video op de pagina.
+//
+// De video's staan als data-video in de HTML en worden pas door app.js ingeladen
+// (16 bestanden van samen 83 MB vooraf laden zou de pagina slopen). Daardoor ziet
+// een crawler ze niet: er staat geen <video>-element en dus ook geen video. Deze
+// markup is wat dat gat dicht. Google leest contentUrl, thumbnailUrl en duration
+// en kan de video dan als miniatuur in het zoekresultaat zetten.
+//
+// name/description komen uit het project waar de video bij hoort: een generieke
+// omschrijving levert wel markup op maar geen resultaat.
+function ldVideos(p, indices) {
+  const t = tProject(LOC, p);
+  return indices
+    .map((i) => {
+      const m = media(i);
+      const meta = videoMeta[path.basename(m.videoSrc || '')];
+      if (!meta) return null;
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'VideoObject',
+        name: fill(L.page.videoName, { titel: t.title }),
+        description: `${t.blurb} ${L.page.videoP}`.trim(),
+        inLanguage: LOC,
+        thumbnailUrl: [`${ORIGIN}/m/${m.base}-900.jpg`, `${ORIGIN}/m/${m.base}-1600.jpg`],
+        contentUrl: `${ORIGIN}${m.videoSrc}`,
+        // uploadDate is verplicht. Dit is de dag dat de video op de site kwam,
+        // niet de dag van de opname; dat laatste weet niemand meer.
+        uploadDate: BIZ.published,
+        duration: meta.duration,
+        width: meta.w,
+        height: meta.h,
+        isFamilyFriendly: true,
+        publisher: { '@id': `${ORIGIN}/#business` },
+        // Zodat de video aan de pagina hangt waar hij op staat en niet als los
+        // bestand in de index belandt.
+        embedUrl: `${ORIGIN}${U(`/werk/${p.slug}/`)}#video`,
+      };
+    })
+    .filter(Boolean);
 }
 
 function ldCrumbs(p) {
@@ -605,7 +742,7 @@ function ldCrumbs(p) {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: L.page.home, item: `${ORIGIN}${U('/')}` },
-      { '@type': 'ListItem', position: 2, name: L.page.projecten, item: `${ORIGIN}${U('/#projecten')}` },
+      { '@type': 'ListItem', position: 2, name: L.page.projecten, item: `${ORIGIN}${U('/werk/')}` },
       { '@type': 'ListItem', position: 3, name: tProject(LOC, p).title, item: `${ORIGIN}${U(`/werk/${p.slug}/`)}` },
     ],
   };
@@ -615,6 +752,10 @@ const ld = (...objs) =>
   objs.map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join('\n');
 
 // ---- project pages ----------------------------------------------------------
+// Per project de video-indices die op de pagina terechtkwamen; buildExtras maakt
+// er de videositemap van.
+const videosPerProject = new Map();
+
 function buildProject(p, prev, next) {
   PATH = `/werk/${p.slug}/`;
   const T = tProject(LOC, p);
@@ -648,6 +789,10 @@ function buildProject(p, prev, next) {
 
   const results = (p.results || []).filter((x) => kept(x.i));
   (p.results || []).forEach((x) => mark(x.i));
+  // Alt-teksten voor de rails zonder bijschrift. Per foto genummerd, zodat een
+  // schermlezer twaalf foto's uit elkaar kan houden in plaats van twaalf keer
+  // dezelfde regel te horen.
+  const altVoor = (soort, n, van) => fill(L.fig.altProj, { soort, n, van, titel: T.title });
   const resultBlock = results.length
     ? `<section class="story story-result">
   <div class="wrap story-in reveal">
@@ -658,7 +803,7 @@ function buildProject(p, prev, next) {
     </div>
   </div>
   <div class="wrap">${railBlock(
-    results.map((x) => figure(media(x.i), x.c)),
+    results.map((x, n) => figure(media(x.i), x.c, '', altVoor(L.fig.soortOplevering, n + 1, results.length))),
     { label: L.page.resultLabel },
   )}</div>
 </section>`
@@ -667,7 +812,7 @@ function buildProject(p, prev, next) {
   const vids = p.videos || [];
   vids.forEach((i) => mark(i));
   const videoBlock = vids.length
-    ? `<section class="story">
+    ? `<section class="story" id="video">
   <div class="wrap story-in reveal">
     <div class="story-txt">
       <span class="story-n">${esc(L.page.video)}</span>
@@ -676,7 +821,7 @@ function buildProject(p, prev, next) {
     </div>
   </div>
   <div class="wrap">${railBlock(
-    vids.map((i) => figure(media(i), '')),
+    vids.map((i, n) => figure(media(i), '', '', altVoor(L.fig.soortVideo, n + 1, vids.length))),
     { label: L.page.videoLabel, kind: 'vid' },
   )}</div>
 </section>`
@@ -694,12 +839,18 @@ function buildProject(p, prev, next) {
     </div>
   </div>
   <div class="wrap">${railBlock(
-    rest.map((i) => figure(media(i), '')),
+    rest.map((i, n) => figure(media(i), '', '', altVoor(L.fig.soortBouw, n + 1, rest.length))),
     // Onder de acht restfotos is een tweede rij zonde: dan gewoon de grote strip.
     { label: fill(L.page.galLabel, { n: rest.length }), kind: rest.length >= 8 ? 'thumb' : 'ph' },
   )}</div>
 </section>`
     : '';
+
+  // Welke video's er werkelijk op deze pagina staan. Niet p.videos afgaan: dat
+  // is de lijst voor het videoblok, maar er zitten ook video's in de fase- en
+  // opleveringsrails en in de bouwmap, en drie indices in p.videos zijn in
+  // werkelijkheid foto's. Alleen wat gerenderd is, mag in de structured data.
+  const videoIdx = [...used, ...rest].filter((i) => byIdx.has(i) && byIdx.get(i).video && kept(i));
 
   const tags = (T.tags || []).map((t) => `<span>${esc(t)}</span>`).join('');
   const intro = (T.intro || []).map((t) => `<p>${esc(t)}</p>`).join('\n      ');
@@ -708,7 +859,10 @@ function buildProject(p, prev, next) {
 
   const html = `${head(`${T.title} | ${L.page.titleSuffix}`, T.blurb, `/werk/${p.slug}/`, {
     ogImage: `/m/${hero.base}-1600.jpg`,
-    extraHead: ld(ldProject(p), ldCrumbs(p)),
+    // Een projectpagina is een artikel over een uitgevoerde klus, geen
+    // website-startpunt. Met article leest een deelkaart hem ook als zodanig.
+    ogType: 'article',
+    extraHead: ld(ldProject(p), ldCrumbs(p), ...ldVideos(p, videoIdx)),
   })}
 ${nav('werk')}
 <main id="main">
@@ -717,7 +871,7 @@ ${nav('werk')}
     <div class="wrap p-hero-grid">
       <div class="p-hero-txt">
         <nav class="crumbs" aria-label="${esc(L.page.crumbs)}">
-          <a href="${U('/')}">${esc(L.page.home)}</a><span>/</span><a href="${U('/#projecten')}">${esc(
+          <a href="${U('/')}">${esc(L.page.home)}</a><span>/</span><a href="${U('/werk/')}">${esc(
             L.page.projecten,
           )}</a><span>/</span><b>${esc(T.title)}</b>
         </nav>
@@ -754,7 +908,7 @@ ${galleryBlock}
       <a class="p-nav-l" href="${U(`/werk/${prev.slug}/`)}"><span>${esc(L.page.prev)}</span><b>${esc(
         Tprev.title,
       )}</b></a>
-      <a class="p-nav-c" href="${U('/#projecten')}">${esc(L.page.all)}</a>
+      <a class="p-nav-c" href="${U('/werk/')}">${esc(L.page.all)}</a>
       <a class="p-nav-r" href="${U(`/werk/${next.slug}/`)}"><span>${esc(L.page.next)}</span><b>${esc(
         Tnext.title,
       )}</b></a>
@@ -769,6 +923,10 @@ ${footer(L.dock.proj)}`;
   const dir = path.join(outDir(), 'werk', p.slug);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), html);
+  // videoIdx gaat mee terug: de videositemap moet precies dezelfde lijst
+  // aanmelden als de pagina zelf beschrijft, anders meldt hij bestanden aan die
+  // nergens op de site staan.
+  videosPerProject.set(p.slug, videoIdx);
   return { rest: rest.length, used: used.size };
 }
 
@@ -1058,9 +1216,320 @@ ${footer()}`;
 }
 
 // ---- 404, robots, sitemap, favicon -----------------------------------------
+// ---- /werk/ : de projecthub --------------------------------------------------
+// Deze map bestond niet als pagina. De zestien projecten hingen eronder en het
+// adres zelf gaf een 404: elke gedeelde of geraden link naar /werk/ liep dood en
+// er was geen pagina die de projecten aan elkaar knoopte, alleen een anker op de
+// home. Nu is het de hub waar de nav, het kruimelpad en de footer naartoe wijzen.
+function buildWerkHub() {
+  PATH = '/werk/';
+  const n = projects.length;
+
+  const cards = projects.map((p, i) => {
+    const m = media(p.card);
+    const T = tProject(LOC, p);
+    return `<a class="card" href="${U(`/werk/${p.slug}/`)}">
+      <div class="card-img">${pic(m, { sizes: '(min-width: 700px) 380px, 78vw', alt: T.title })}<span class="card-n">${String(i + 1).padStart(2, '0')}</span></div>
+      <div class="card-txt">
+        <span class="card-kick">${esc(T.kicker)}</span>
+        <h3>${esc(T.title)}</h3>
+        <p>${esc(T.blurb)}</p>
+        <span class="card-go">${esc(L.proj.go)} &rarr;</span>
+      </div>
+    </a>`;
+  });
+
+  // Tellen wat er werkelijk staat, niet wat we denken dat er staat: de aantallen
+  // schuiven mee zodra er een project of een reeks foto's bij komt.
+  const fotos = new Set();
+  let videos = 0;
+  for (const p of projects) {
+    for (const i of RANGES[p.slug] || []) if (byIdx.has(i) && kept(i)) fotos.add(i);
+    // videosPerProject en niet p.videos: dat laatste is de lijst voor het
+    // videoblok en klopt niet als telling (drie indices erin zijn foto's, en er
+    // staan video's in de fase- en opleveringsrails die er niet in staan).
+    // buildProject vult de map, en die draait voor deze pagina.
+    videos += (videosPerProject.get(p.slug) || []).length;
+  }
+
+  const svcKaarten = SERVICES.map((sv) => {
+    const S = tService(LOC, sv);
+    return `<a class="svc-card" href="${U(`/${sv.slug}/`)}">
+      <span class="svc-kick">${esc(S.kicker)}</span>
+      <h3>${esc(S.title)}</h3>
+      <p>${esc(S.lead)}</p>
+      <span class="card-go">${esc(L.proj.go)} &rarr;</span>
+    </a>`;
+  }).join('\n      ');
+
+  const crumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: L.page.home, item: `${ORIGIN}${U('/')}` },
+      { '@type': 'ListItem', position: 2, name: L.page.projecten, item: `${ORIGIN}${U('/werk/')}` },
+    ],
+  };
+  // Een ItemList met alle zestien: dit is een overzichtspagina, en zo leest
+  // Google hem ook als een lijst in plaats van als zestien losse links.
+  const lijst = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: fill(L.hub.h1, { n }),
+    numberOfItems: n,
+    itemListElement: projects.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${ORIGIN}${U(`/werk/${p.slug}/`)}`,
+      name: tProject(LOC, p).title,
+    })),
+  };
+
+  // Dezelfde opleverfoto die de site als deelbeeld gebruikt: dit is de pagina
+  // die het werk als geheel moet verkopen.
+  const heroHub = media(93);
+  const html = `${head(fill(L.hub.title, { n }), fill(L.hub.desc, { n }), '/werk/', {
+    ogImage: `/m/${heroHub.base}-1600.jpg`,
+    extraHead: ld(crumbs, lijst),
+  })}
+${nav('werk')}
+<main id="main">
+<article class="proj">
+  <section class="p-hero">
+    <div class="wrap p-hero-grid">
+      <div class="p-hero-txt">
+        <nav class="crumbs" aria-label="${esc(L.page.crumbs)}">
+          <a href="${U('/')}">${esc(L.page.home)}</a><span>/</span><b>${esc(L.page.projecten)}</b>
+        </nav>
+        <span class="eyebrow eyebrow-l">${esc(L.hub.kick)}</span>
+        <h1>${esc(fill(L.hub.h1, { n }))}</h1>
+        <p class="p-lead">${esc(L.hub.lead)}</p>
+        <dl class="p-meta">
+          <div><dt>${esc(L.hub.statP)}</dt><dd>${n}</dd></div>
+          <div><dt>${esc(L.hub.statF)}</dt><dd>${fotos.size}</dd></div>
+          <div><dt>${esc(L.hub.statV)}</dt><dd>${videos}</dd></div>
+        </dl>
+      </div>
+      <figure class="p-hero-art">
+        ${pic(heroHub, { sizes: '(min-width: 1000px) 46vw, 92vw', alt: L.hero.alt, eager: true, full: true })}
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec p-intro">
+    <div class="wrap reveal">
+      <div class="story-in intro-txt">
+      ${L.hub.intro.map((t) => `<p>${esc(t)}</p>`).join('\n      ')}
+      </div>
+    </div>
+  </section>
+
+<section class="sec sec-alt" id="projecten">
+  <div class="wrap">${railBlock(cards, { label: fill(L.proj.railLabel, { n }), kind: 'card' })}</div>
+</section>
+
+<section class="sec" id="diensten">
+  <div class="wrap sec-head reveal">
+    <h2 class="sec-h">${esc(L.hub.svcH)}</h2>
+    <p class="sec-lead">${esc(L.hub.svcLead)}</p>
+  </div>
+  <div class="wrap svc-cards">
+      ${svcKaarten}
+  </div>
+</section>
+</article>
+
+${contactBlock(L.cta.projKop, L.cta.projTxt)}
+</main>
+${footer(L.dock.proj)}`;
+
+  const dir = path.join(outDir(), 'werk');
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'index.html'), html);
+}
+
+// ---- dienstenpagina's --------------------------------------------------------
+// De home moest in haar eentje scoren op badkamerrenovatie, toiletrenovatie,
+// tegelwerk en loodgieterswerk tegelijk, met een lijstje van tien regels als
+// enige tekst per dienst. Deze vier pagina's zijn de landingspagina per dienst:
+// wat er onder valt, welke uitgevoerde klussen het bewijs zijn, en de vragen die
+// juist bij deze klus horen. De secties op de home blijven staan en linken hier
+// naartoe.
+function buildService(sv) {
+  PATH = `/${sv.slug}/`;
+  const S = tService(LOC, sv);
+  const hero = media(sv.hero);
+
+  const omvat = S.omvat
+    .map(([kop, tekst]) => `<li><b>${kop}</b><span>${esc(tekst)}</span></li>`)
+    .join('\n      ');
+
+  const eigen = sv.projects.map((slug) => projects.find((p) => p.slug === slug));
+  const kaarten = eigen.map((p) => {
+    const m = media(p.card);
+    const T = tProject(LOC, p);
+    return `<a class="card" href="${U(`/werk/${p.slug}/`)}">
+      <div class="card-img">${pic(m, { sizes: '(min-width: 700px) 380px, 78vw', alt: T.title })}</div>
+      <div class="card-txt">
+        <span class="card-kick">${esc(T.kicker)}</span>
+        <h3>${esc(T.title)}</h3>
+        <p>${esc(T.blurb)}</p>
+        <span class="card-go">${esc(L.proj.go)} &rarr;</span>
+      </div>
+    </a>`;
+  });
+
+  // Zelfde markup als de FAQ op de home (.fq / .fq-a), zodat er geen tweede
+  // uitklapper met eigen opmaak naast komt te staan.
+  const vragen = sv.faq
+    .map((i) => {
+      const t = tFaq(LOC, i, FAQ[i]);
+      return `<details class="fq">
+        <summary><span>${esc(t.q)}</span></summary>
+        <div class="fq-a"><p>${esc(t.a)}</p></div>
+      </details>`;
+    })
+    .join('\n      ');
+
+  const andere = SERVICES.filter((x) => x.slug !== sv.slug)
+    .map((x) => `<a href="${U(`/${x.slug}/`)}">${esc(tService(LOC, x).title)}</a>`)
+    .join('\n      ');
+
+  const crumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: L.page.home, item: `${ORIGIN}${U('/')}` },
+      { '@type': 'ListItem', position: 2, name: L.svcPage.crumbs, item: `${ORIGIN}${U('/')}#diensten` },
+      { '@type': 'ListItem', position: 3, name: S.title, item: `${ORIGIN}${U(`/${sv.slug}/`)}` },
+    ],
+  };
+  // Een Service die aan het bedrijf hangt, met het gebied waarin hij geleverd
+  // wordt. Dit is de vorm waarin Google een dienst van een lokaal bedrijf leest;
+  // de losse Offer-regels in de LocalBusiness op de home blijven daarnaast staan.
+  const dienst = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: S.title,
+    description: S.desc,
+    inLanguage: LOC,
+    url: `${ORIGIN}${U(`/${sv.slug}/`)}`,
+    serviceType: S.kicker,
+    provider: { '@id': `${ORIGIN}/#business` },
+    areaServed: AREA.flatMap((g) => g.places).map((p) => ({ '@type': 'City', name: p.n })),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: S.title,
+      itemListElement: S.omvat.map(([kop]) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: kop.replace(/&amp;/g, '&') },
+      })),
+    },
+  };
+  // Alleen de vragen die op deze pagina staan; een FAQPage met vragen die er niet
+  // staan is precies wat Google als misleidend aanmerkt.
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: sv.faq.map((i) => {
+      const t = tFaq(LOC, i, FAQ[i]);
+      return { '@type': 'Question', name: t.q, acceptedAnswer: { '@type': 'Answer', text: t.a } };
+    }),
+  };
+
+  const html = `${head(`${S.title} | ${BIZ.name}`, S.desc, `/${sv.slug}/`, {
+    ogImage: `/m/${hero.base}-1600.jpg`,
+    extraHead: ld(crumbs, dienst, faqLd),
+  })}
+${nav('diensten')}
+<main id="main">
+<article class="proj">
+  <section class="p-hero">
+    <div class="wrap p-hero-grid">
+      <div class="p-hero-txt">
+        <nav class="crumbs" aria-label="${esc(L.page.crumbs)}">
+          <a href="${U('/')}">${esc(L.page.home)}</a><span>/</span><b>${esc(S.title)}</b>
+        </nav>
+        <span class="eyebrow eyebrow-l">${esc(S.kicker)}</span>
+        <h1>${esc(S.h1)}</h1>
+        <p class="p-lead">${esc(S.lead)}</p>
+        <div class="hero-cta">
+          <a class="btn btn-wa" href="${waLink()}" target="_blank" rel="noopener">${waIcon()} <span>${esc(L.hero.cta1)}</span></a>
+          <a class="btn btn-ghost" href="#werk">${esc(L.svcPage.werkH)}</a>
+        </div>
+        <dl class="p-meta">
+          <div><dt>${esc(L.page.plaats)}</dt><dd>${esc(L.page.plaatsVal)}</dd></div>
+          <div><dt>${esc(L.hub.statP)}</dt><dd>${eigen.length}</dd></div>
+        </dl>
+      </div>
+      <figure class="p-hero-art">
+        ${pic(hero, { sizes: '(min-width: 1000px) 46vw, 92vw', alt: S.h1, eager: true, full: true })}
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec p-intro">
+    <div class="wrap reveal">
+      <div class="story-in intro-txt">
+      ${S.intro.map((t) => `<p>${esc(t)}</p>`).join('\n      ')}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-alt">
+    <div class="wrap sec-head reveal">
+      <h2 class="sec-h">${esc(L.svcPage.omvatH)}</h2>
+    </div>
+    <div class="wrap">
+      <ul class="svc-l svc-l-wide">
+      ${omvat}
+      </ul>
+      <p class="svc-slot">${esc(S.slot)}</p>
+    </div>
+  </section>
+
+  <section class="sec" id="werk">
+    <div class="wrap sec-head reveal">
+      <h2 class="sec-h">${esc(L.svcPage.werkH)}</h2>
+      <p class="sec-lead">${esc(L.svcPage.werkLead)}</p>
+    </div>
+    <div class="wrap">${railBlock(kaarten, { label: L.svcPage.werkH, kind: 'card' })}</div>
+    <div class="wrap"><a class="foot-more" href="${U('/werk/')}">${esc(L.svcPage.alleWerk)} &rarr;</a></div>
+  </section>
+
+  <section class="sec sec-alt" id="vragen">
+    <div class="wrap sec-head reveal">
+      <h2 class="sec-h">${esc(L.svcPage.faqH)}</h2>
+    </div>
+    <div class="wrap faq">
+      ${vragen}
+    </div>
+  </section>
+
+  <section class="sec p-nav-sec">
+    <div class="wrap">
+      <h2 class="sec-h">${esc(L.svcPage.andere)}</h2>
+      <div class="svc-other">
+      ${andere}
+      </div>
+    </div>
+  </section>
+</article>
+
+${contactBlock(L.cta.homeKop, L.cta.homeTxt)}
+</main>
+${footer(L.dock.proj)}`;
+
+  const dir = path.join(outDir(), sv.slug);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'index.html'), html);
+}
+
 function buildExtras() {
   PATH = '/404.html';
-  const html404 = `${head(L.nf.title, L.nf.desc, '/404.html')}
+  // De foutpagina hoort niet in de index: hij stond op index,follow en kon dus
+  // als lege pagina in de zoekresultaten belanden.
+  const html404 = `${head(L.nf.title, L.nf.desc, '/404.html', { robots: 'noindex, follow' })}
 ${nav()}
 <main id="main">
 <section class="sec nf">
@@ -1069,7 +1538,7 @@ ${nav()}
     <h1>${esc(L.nf.h1)}</h1>
     <p>${esc(L.nf.p)}</p>
     <div class="hero-cta">
-      <a class="btn" href="${U('/#projecten')}">${esc(L.nf.btn)}</a>
+      <a class="btn" href="${U('/werk/')}">${esc(L.nf.btn)}</a>
       <a class="btn btn-wa" href="${waLink()}" target="_blank" rel="noopener">${waIcon()} <span>${esc(L.nf.wa)}</span></a>
     </div>
   </div>
@@ -1082,25 +1551,82 @@ ${footer()}`;
   // Een sitemap voor alle talen samen, met xhtml:link per taal: dat is de vorm
   // die Google voor meertalige sites vraagt. Losse sitemaps per taal mag ook,
   // maar dan moet elke variant alsnog naar de andere wijzen.
-  const paths = ['/', ...projects.map((p) => `/werk/${p.slug}/`)];
+  // Elk adres met een <lastmod>: die stond er op geen enkele van de 68 in, en
+  // Google plant zijn hercrawl er mede op. De datum komt uit de bronbestanden
+  // (zie LASTMOD), niet uit de klok, zodat een bouw zonder wijziging hem niet
+  // vooruitschuift.
+  //
+  // Prioriteit vertelt Google alleen iets over de onderlinge verhouding binnen
+  // deze site: de home bovenaan, daarna de dienstenpagina's (dat zijn de
+  // landingspagina's voor de zoekopdrachten waar de omzet in zit), dan de hub,
+  // dan de losse projecten als bewijsmateriaal eronder.
+  const paths = [
+    { u: '/', prio: '1.0', mod: LASTMOD.home },
+    ...SERVICES.map((sv) => ({ u: `/${sv.slug}/`, prio: '0.9', mod: LASTMOD.dienst })),
+    { u: '/werk/', prio: '0.8', mod: LASTMOD.project },
+    ...projects.map((p) => ({ u: `/werk/${p.slug}/`, prio: '0.7', mod: LASTMOD.project })),
+  ];
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${paths
-  .flatMap((u) =>
+  .flatMap(({ u, prio, mod }) =>
     LOCALES.map(
       (l) => `  <url><loc>${ORIGIN}${prefix(l)}${u}</loc>
 ${LOCALES.map((a) => `    <xhtml:link rel="alternate" hreflang="${a}" href="${ORIGIN}${prefix(a)}${u}"/>`).join('\n')}
     <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}${u}"/>
-    <changefreq>monthly</changefreq><priority>${u === '/' ? '1.0' : '0.7'}</priority></url>`,
+    <lastmod>${mod}</lastmod><changefreq>monthly</changefreq><priority>${prio}</priority></url>`,
     ),
   )
   .join('\n')}
 </urlset>`;
   fs.writeFileSync(path.join(SITE, 'sitemap.xml'), sitemap);
 
+  // Aparte videositemap. De zestien video's staan als data-video in de HTML en
+  // worden pas door app.js ingeladen, dus een crawler komt ze bij het lezen van
+  // de pagina niet tegen. De VideoObject in de structured data beschrijft ze,
+  // deze sitemap wijst Google er ook naartoe. Alleen de Nederlandse pagina's:
+  // dezelfde video op vier adressen aanmelden is viermaal hetzelfde bestand.
+  const videoUrls = projects
+    .filter((p) => (videosPerProject.get(p.slug) || []).length)
+    .map((p) => {
+      const T = tProject(DEFAULT_LOCALE, p);
+      const items = (videosPerProject.get(p.slug) || [])
+        .map((i) => {
+          const m = media(i);
+          const meta = videoMeta[path.basename(m.videoSrc || '')];
+          if (!meta) return '';
+          return `    <video:video>
+      <video:thumbnail_loc>${ORIGIN}/m/${m.base}-900.jpg</video:thumbnail_loc>
+      <video:title>${esc(fill(UI[DEFAULT_LOCALE].page.videoName, { titel: T.title }))}</video:title>
+      <video:description>${esc(T.blurb)}</video:description>
+      <video:content_loc>${ORIGIN}${m.videoSrc}</video:content_loc>
+      <video:duration>${meta.seconds}</video:duration>
+      <video:publication_date>${BIZ.published}</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>`;
+        })
+        .filter(Boolean)
+        .join('\n');
+      return items
+        ? `  <url>
+    <loc>${ORIGIN}/werk/${p.slug}/</loc>
+${items}
+  </url>`
+        : '';
+    })
+    .filter(Boolean)
+    .join('\n');
+  fs.writeFileSync(
+    path.join(SITE, 'sitemap-video.xml'),
+    `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+${videoUrls}
+</urlset>\n`,
+  );
+
   fs.writeFileSync(
     path.join(SITE, 'robots.txt'),
-    `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`,
+    `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\nSitemap: ${ORIGIN}/sitemap-video.xml\n`,
   );
 
   fs.writeFileSync(
@@ -1156,10 +1682,26 @@ for (const loc of LOCALES) {
     if (loc === DEFAULT_LOCALE) console.log(`  ${p.slug}: ${info.used} gebruikt, ${info.rest} in galerij`);
   }
   buildHome();
+  buildWerkHub();
+  for (const sv of SERVICES) buildService(sv);
   buildExtras();
 }
 LOC = DEFAULT_LOCALE;
 L = UI[DEFAULT_LOCALE];
+
+// Drie velden in de LocalBusiness die Google graag ziet en die niemand hier kan
+// verzinnen: ze moeten kloppen met het Google-bedrijfsprofiel en met wat
+// bezoekers melden. Zolang ze leeg zijn staan ze niet in de structured data, en
+// herinnert de bouw eraan dat ze er nog niet zijn.
+const ontbreekt = [
+  !BIZ.email && 'email',
+  !BIZ.priceRange && 'priceRange',
+  !BIZ.hours.length && 'openingHoursSpecification',
+  !BIZ.profielen.google && 'het Google-bedrijfsprofiel in sameAs',
+].filter(Boolean);
+if (ontbreekt.length) {
+  console.log(`\nnog in te vullen in BIZ (projects.mjs): ${ontbreekt.join(', ')}`);
+}
 
 // dekking controleren
 const covered = new Set();
