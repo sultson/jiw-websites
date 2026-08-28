@@ -146,7 +146,7 @@ export const STICHTINGEN: Stichting[] = [
         },
       },
     ],
-    email: 'bdoaf.bon@gmail.com',
+    email: 'info@3diaspora.org',
     /* Uittreksel Handelsregister KvK Bonaire (dossiernummer 16071), aangeleverd
        op 18-08-2026 door Dévid zelf. Het uittreksel noemt als adres van de zaak
        'Kaya Pos di Amor 6 Bonaire, Caribisch Nederland'. De plaats staat een
@@ -242,10 +242,9 @@ export const STICHTINGEN: Stichting[] = [
         },
       },
     ],
-    /* Aangeleverd door de stichting zelf (07-08-2026). cdoaf = Curaçao
-       Diaspora Of Africa Foundation, .cw = Curaçao, dus dit hoort hier en niet
-       bij Bonaire of Nederland. Laat het wel even bevestigen. */
-    email: 'cdoaf.cw@gmail.com',
+    /* De drie stichtingen gebruiken sinds 28-08-2026 het gedeelde adres op het
+       eigen domein; de oude gmail-adressen zijn vervallen. */
+    email: 'info@3diaspora.org',
     /* Uittreksel Handelsregister Curaçao (dossiernummer 170355) en het
        Belastingplichtige-blad met het CRIB-nummer, allebei aangeleverd op
        18-08-2026. Adres, oprichtingsdatum en beide nummers komen daar
@@ -501,11 +500,10 @@ export const STICHTINGEN: Stichting[] = [
       },
     ],
     /* Aangeleverd op 18-08-2026: het KVK-blad van de Nederlandse stichting
-       (Helmond, Kortenaerstraat 28, KVK 42130908) en het e-mailadres. Zij
-       melden er zelf bij dat alle adressen later naar een eigen domein
-       (3diaspora.org) gaan, dus dit is een tussenstand. Een CRIB-nummer staat
+       (Helmond, Kortenaerstraat 28, KVK 42130908). Het e-mailadres is per
+       28-08-2026 het gedeelde adres op het eigen domein. Een CRIB-nummer staat
        hier bewust op false: dat bestaat in Nederland niet. */
-    email: 'info.tnda@gmail.com',
+    email: 'info@3diaspora.org',
     adres: 'Kortenaerstraat 28, Helmond',
     opgericht: null,
     kvk: '42130908',
@@ -1110,6 +1108,6 @@ export const ANBI_VELDEN: {kop: Tekst; waarde: string | null}[] = [
     waarde: '42130908',
   },
   {kop: {nl: 'Postadres', en: 'Postal address', pap: 'Adres postal'}, waarde: 'Kortenaerstraat 28, Helmond'},
-  {kop: {nl: 'E-mailadres', en: 'Email address', pap: 'Adres di e-mail'}, waarde: 'info.tnda@gmail.com'},
+  {kop: {nl: 'E-mailadres', en: 'Email address', pap: 'Adres di e-mail'}, waarde: 'info@3diaspora.org'},
   {kop: {nl: 'Telefoonnummer', en: 'Telephone number', pap: 'Number di telefòn'}, waarde: null},
 ];

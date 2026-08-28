@@ -46,7 +46,7 @@
   // tegen te controleren.
   "vars": {
     "SITE_ID": "3-diaspora",
-    "LEAD_RECIPIENT": "bdoaf.bon@gmail.com",
+    "LEAD_RECIPIENT": "info@3diaspora.org",
     "LEAD_SENDER": "no-reply@notify.3diaspora.org"
   }
 }

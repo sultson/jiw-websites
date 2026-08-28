@@ -17,7 +17,7 @@ export const VORIG_ADRES = 'https://3diaspora.jouwidealewebsite.nl';
 export const SITE_NAAM = '3 Diaspora';
 
 /** Waar het formulier en de directe mailtjes heen gaan. */
-export const CONTACT_EMAIL = 'bdoaf.bon@gmail.com';
+export const CONTACT_EMAIL = 'info@3diaspora.org';
 
 /* ------------------------------------------------------------------ */
 /*  De lancering                                                       */

@@ -419,9 +419,9 @@ const T = {
     bestandGekozen: {en: 'file selected', nl: 'bestand gekozen', pap: 'dokumento skohí'},
     bestandenGekozen: {en: 'files selected', nl: 'bestanden gekozen', pap: 'dokumento skohí'},
     fout: {
-      en: 'Sending failed. Please try again, or email bdoaf.bon@gmail.com directly.',
-      nl: 'Het versturen lukte niet. Probeer het opnieuw, of mail rechtstreeks naar bdoaf.bon@gmail.com.',
-      pap: 'E mensahe no a sali. Purba atrobe, of manda un e-mail direktamente na bdoaf.bon@gmail.com.',
+      en: 'Sending failed. Please try again, or email info@3diaspora.org directly.',
+      nl: 'Het versturen lukte niet. Probeer het opnieuw, of mail rechtstreeks naar info@3diaspora.org.',
+      pap: 'E mensahe no a sali. Purba atrobe, of manda un e-mail direktamente na info@3diaspora.org.',
     },
     bezig: {en: 'Sending', nl: 'Bezig met versturen', pap: 'Ta manda'},
     verstuur: {en: 'Send message', nl: 'Verstuur bericht', pap: 'Manda mensahe'},

@@ -816,9 +816,9 @@ export function SteunPagina() {
           <p className="mt-7 text-[0.95rem]">
             <span className="kicker text-nacht/60">{t(T.steun.citaatContact)}</span>{' '}
             <a
-              href="mailto:cdoaf.cw@gmail.com"
+              href="mailto:info@3diaspora.org"
               className="font-medium underline decoration-nacht/30 underline-offset-4 transition hover:decoration-nacht">
-              cdoaf.cw@gmail.com
+              info@3diaspora.org
             </a>
           </p>
         </div>

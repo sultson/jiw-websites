@@ -286,8 +286,8 @@ function Footer() {
             </div>
             <p className="mt-4 text-[0.85rem] leading-relaxed">
               {t(T.footer.bereikbaar)}{' '}
-              <a href="mailto:bdoaf.bon@gmail.com" className="underline decoration-goud underline-offset-4">
-                bdoaf.bon@gmail.com
+              <a href="mailto:info@3diaspora.org" className="underline decoration-goud underline-offset-4">
+                info@3diaspora.org
               </a>
               .
             </p>
