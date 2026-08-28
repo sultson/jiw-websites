@@ -45,6 +45,55 @@ Every field is optional and falls back to the original copy, so a form that
 leaves `leadEmail` out is unchanged. `tests/lead-email-copy.test.mjs` pins both
 the overrides and the defaults.
 
+## Subject line and owner-only rows
+
+Two options exist for sites whose owner wants the notification shaped their way:
+
+- `subjectSeparator` replaces the default `' - '` between the subject prefix and
+  the `subjectFields` values. The Immigration Services NL landers use `' | '` so
+  the subject reads `NEW LEAD | inburgeringsplichtig.nl | Naam`.
+- `leadOnlyEmailFields` adds rows to the owner notification only. Campaign
+  attribution (UTM parameters, gclid, landing URL, referrer) belongs there:
+  `emailFields` rows are also rendered in the confirmation the visitor receives,
+  and nobody wants their own `utm_campaign` mailed back to them.
+
+## Confirmation wording
+
+The confirmation the visitor receives from the default renderer was written for
+quote requests: subject "Uw offerteaanvraag is ontvangen - {siteName}", the line
+"Uw offerteaanvraag voor {siteName} is verstuurd.", and the headings "Uw
+aanvraag" and "Projectomschrijving". Any form that is not a quote request
+confirms the wrong thing, and the visitor notices. Klashorst Museum's client
+read back a newsletter opt-in confirmed as an offerteaanvraag and asked what the
+quote was for. Override it per form with `confirmationCopy`:
+
+```ts
+confirmationCopy: {
+  subject: 'Uw aanmelding voor de nieuwsbrief is ontvangen - {siteName}',
+  openingSentence: 'Uw aanmelding voor de nieuwsbrief van het {siteName} is verstuurd.',
+  detailsHeading: 'Uw gegevens',
+  messageHeading: 'Uw vraag',
+  // An opt-in that asks for a name and an address has nothing worth reading back.
+  includeSubmission: false,
+}
+```
+
+`{siteName}` is substituted in `subject` and `openingSentence`. Every field is
+optional and falls back to the copy this package has always sent, and the whole
+block is ignored when `confirmationEmail` is set: that renderer carries its own
+translations. `leadEmail` gained the same treatment for the owner notification:
+`includeMessage: false` and `includeAttachments: false` drop the blocks a form
+with no free-text field and no uploads would otherwise mail empty every time.
+
+Two rules the renderers now follow on their own:
+
+- A built-in name row the form does not require and the visitor left empty is
+  dropped, instead of mailing both parties "Achternaam: -".
+- `leadOnlyEmailFields` stay out of the confirmation, which is what they were
+  added for. They used to reach both emails.
+
+`tests/confirmation-copy.test.mjs` pins the overrides and the defaults.
+
 ## Adding another site
 
 1. Add `@jiw/cloudflare-forms` as a workspace dependency for the app.

@@ -20,6 +20,18 @@ export type LeadFormConfig = {
   requiredFields?: LeadFormRequiredField[];
   emailFields?: LeadFormEmailField[];
   subjectFields?: string[];
+  /**
+   * Glue between the subject prefix and the subject fields. Defaults to the
+   * ' - ' every existing site was built against; a site whose owner wants a
+   * pipe-delimited subject ("NEW LEAD | domain.nl | Name") passes ' | '.
+   */
+  subjectSeparator?: string;
+  /**
+   * Extra rows for the owner notification only. Campaign attribution (source,
+   * medium, campaign, landing URL, referrer) belongs in the lead email but not
+   * in the confirmation the visitor receives, so it cannot go in `emailFields`.
+   */
+  leadOnlyEmailFields?: LeadFormEmailField[];
   messageField?: string;
   serviceOtherField?: string;
   requireFirstName?: boolean;
@@ -42,6 +54,18 @@ export type LeadFormConfig = {
    */
   confirmationEmail?: LocalizedConfirmationEmailConfig;
   /**
+   * Opt-in wording for the confirmation the visitor receives from the default
+   * renderer, which was written for quote requests ("Uw offerteaanvraag voor
+   * {siteName} is verstuurd", "Uw aanvraag", "Projectomschrijving"). That is
+   * the wrong word wherever the form is not a quote: a museum's newsletter
+   * opt-in confirmed as an offerteaanvraag reads to the visitor as a mistake,
+   * and a client reads it as one too. Every field falls back to the copy this
+   * package has always sent, so a form that leaves this out is unchanged.
+   * Ignored when `confirmationEmail` is set: that renderer carries its own
+   * translations.
+   */
+  confirmationCopy?: ConfirmationCopy;
+  /**
    * Opt-in wording for the lead notification email. The defaults are written for
    * quote requests ("Nieuwe offerteaanvraag", "Projectomschrijving"), which is
    * wrong for sites that are not selling a job — a holiday rental takes booking
@@ -58,6 +82,32 @@ export type LeadEmailCopy = {
   messageHeading?: string;
   /** Labels of the three built-in rows. These have always been Dutch regardless of locale. */
   nameLabels?: {firstName?: string; lastName?: string; email?: string};
+  /**
+   * Whether the notification carries the free-text field. Default true. A form
+   * that has none (a newsletter opt-in asks for a name and an address) mails
+   * the owner an empty project description under a heading, every time.
+   */
+  includeMessage?: boolean;
+  /** Whether the notification carries the attachments block. Default true; a form that takes no files says "Geen bijlagen meegestuurd." forever. */
+  includeAttachments?: boolean;
+};
+
+export type ConfirmationCopy = {
+  /** Subject. Default: `Uw offerteaanvraag is ontvangen - {siteName}` (`Your request has been received - {siteName}` when locale is 'en'). `{siteName}` is substituted. */
+  subject?: string;
+  /** The sentence under the greeting. Default: `Uw offerteaanvraag voor {siteName} is verstuurd.` (`Your request to {siteName} has been sent.`). `{siteName}` is substituted. */
+  openingSentence?: string;
+  /** Heading above the copy of what was filled in. Default: `Uw aanvraag` (`Your request`). */
+  detailsHeading?: string;
+  /** Heading above the free-text field. Default: `Projectomschrijving` (`Message`). */
+  messageHeading?: string;
+  /**
+   * Whether the confirmation reads back what was filled in. Default true. An
+   * opt-in that asks for nothing but a name and an address has nothing worth
+   * repeating: it would tell the visitor their own address and then print an
+   * empty project description under a heading calling it a request.
+   */
+  includeSubmission?: boolean;
 };
 
 export const CONFIRMATION_LOCALE_FIELD = '__jiw_confirmation_locale';
@@ -190,9 +240,12 @@ type TurnstileResponse = {
 const defaultAllowedFileTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif', 'application/pdf'];
 const defaultAllowedFileExtensions = ['jpg', 'jpeg', 'png', 'webp', 'heic', 'heif', 'pdf'];
 
-type ResolvedLeadFormConfig = Required<Omit<LeadFormConfig, 'confirmationEmail' | 'leadEmail'>> & {
+type ResolvedLeadFormConfig = Required<
+  Omit<LeadFormConfig, 'confirmationEmail' | 'leadEmail' | 'confirmationCopy'>
+> & {
   confirmationEmail?: LocalizedConfirmationEmailConfig;
   leadEmail?: LeadEmailCopy;
+  confirmationCopy?: ConfirmationCopy;
 };
 
 /** Headline of the lead notification, defaulting to the quote-request wording. */
@@ -207,6 +260,49 @@ function leadHeading(config: ResolvedLeadFormConfig): string {
 function leadMessageHeading(config: ResolvedLeadFormConfig): string {
   if (config.leadEmail?.messageHeading) return config.leadEmail.messageHeading;
   return config.locale === 'en' ? 'Message' : 'Projectomschrijving';
+}
+
+/** Whether the notification carries the free-text field. */
+function leadShowsMessage(config: ResolvedLeadFormConfig): boolean {
+  return config.leadEmail?.includeMessage !== false;
+}
+
+/** Whether the notification carries the attachments block. */
+function leadShowsAttachments(config: ResolvedLeadFormConfig): boolean {
+  return config.leadEmail?.includeAttachments !== false;
+}
+
+/** Subject of the confirmation, defaulting to the quote-request wording. */
+function confirmationSubject(config: ResolvedLeadFormConfig): string {
+  const copy = config.confirmationCopy?.subject;
+  if (copy) return formatCopy(copy, { siteName: config.siteName });
+  return config.locale === 'en'
+    ? `Your request has been received - ${config.siteName}`
+    : `Uw offerteaanvraag is ontvangen - ${config.siteName}`;
+}
+
+/** What the confirmation says was sent, under the greeting. */
+function confirmationOpeningSentence(config: ResolvedLeadFormConfig): string {
+  const copy = config.confirmationCopy?.openingSentence;
+  if (copy) return formatCopy(copy, { siteName: config.siteName });
+  return config.locale === 'en'
+    ? `Your request to ${config.siteName} has been sent.`
+    : `Uw offerteaanvraag voor ${config.siteName} is verstuurd.`;
+}
+
+/** Heading above the copy of what was filled in. */
+function confirmationDetailsHeading(config: ResolvedLeadFormConfig): string {
+  return config.confirmationCopy?.detailsHeading ?? (config.locale === 'en' ? 'Your request' : 'Uw aanvraag');
+}
+
+/** Heading above the free-text field of the confirmation. */
+function confirmationMessageHeading(config: ResolvedLeadFormConfig): string {
+  return config.confirmationCopy?.messageHeading ?? (config.locale === 'en' ? 'Message' : 'Projectomschrijving');
+}
+
+/** Whether the confirmation reads back what was filled in. */
+function confirmationShowsSubmission(config: ResolvedLeadFormConfig): boolean {
+  return config.confirmationCopy?.includeSubmission !== false;
 }
 
 export function createFormWorker(config: LeadFormConfig): ExportedHandler<CloudflareFormsEnv> {
@@ -241,6 +337,8 @@ function withDefaults(config: LeadFormConfig): ResolvedLeadFormConfig {
     requiredFields: [],
     emailFields: [],
     subjectFields: [],
+    subjectSeparator: ' - ',
+    leadOnlyEmailFields: [],
     messageField: 'message',
     serviceOtherField: 'serviceOther',
     requireFirstName: true,
@@ -569,7 +667,7 @@ async function sendConfirmationEmail(
       replyTo: env.LEAD_RECIPIENT,
       subject: cleanHeader(localized
         ? formatCopy(localized.copy.subject, { siteName: config.siteName })
-        : config.locale === 'en' ? `Your request has been received - ${config.siteName}` : `Uw offerteaanvraag is ontvangen - ${config.siteName}`),
+        : confirmationSubject(config)),
       text: localized
         ? renderLocalizedConfirmationTextEmail(config, manifest, localized.config, localized.copy)
         : renderConfirmationTextEmail(config, manifest),
@@ -599,7 +697,7 @@ async function sendLeadEmail(
       .filter((field) => !isReservedConfirmationField(field, config))
       .map((field) => getDisplayFieldValue(fields, field, config)),
   ].filter(Boolean);
-  const subject = subjectParts.map(cleanHeader).join(' - ');
+  const subject = subjectParts.map(cleanHeader).join(config.subjectSeparator);
 
   try {
     await env.LEAD_EMAIL.send({
@@ -763,74 +861,76 @@ function formatCopy(template: string, replacements: Record<string, string>): str
 
 function renderConfirmationTextEmail(config: ResolvedLeadFormConfig, manifest: SubmissionManifest): string {
   const { fields } = manifest;
-  const fullName = getFullName(fields);
+  const english = config.locale === 'en';
   const message = getFieldValue(fields, config.messageField);
-  const rows = renderEmailRows(config, fields);
+  const submission = confirmationShowsSubmission(config)
+    ? [
+        '',
+        `${confirmationDetailsHeading(config)}:`,
+        ...renderEmailRows(config, fields, false).map(([label, value]) => `${label}: ${value || '-'}`),
+        '',
+        `${confirmationMessageHeading(config)}:`,
+        message || '-',
+      ]
+    : [];
 
-  if (config.locale === 'en') return [
-    `Dear ${fullName},`, '', `Your request to ${config.siteName} has been sent.`, config.confirmationFollowUpSentence, '', 'Your request:',
-    ...rows.map(([label, value]) => `${label}: ${value || '-'}`), '', 'Message:', message || '-', '', `Reference: ${manifest.submissionId}`,
-  ].join('\n');
   return [
-    `Beste ${fullName},`,
+    `${english ? 'Dear' : 'Beste'} ${getFullName(fields)},`,
     '',
-    `Uw offerteaanvraag voor ${config.siteName} is verstuurd.`,
+    confirmationOpeningSentence(config),
     config.confirmationFollowUpSentence,
+    ...submission,
     '',
-    'Uw aanvraag:',
-    ...rows.map(([label, value]) => `${label}: ${value || '-'}`),
-    '',
-    'Projectomschrijving:',
-    message || '-',
-    '',
-    `Referentie: ${manifest.submissionId}`,
+    `${english ? 'Reference' : 'Referentie'}: ${manifest.submissionId}`,
   ].join('\n');
 }
 
 function renderConfirmationHtmlEmail(config: ResolvedLeadFormConfig, manifest: SubmissionManifest): string {
   const { fields } = manifest;
-  const rows = renderEmailRows(config, fields);
+  const english = config.locale === 'en';
   const message = getFieldValue(fields, config.messageField);
-
-  if (config.locale === 'en') return `<!doctype html><html><body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;"><p>Dear ${escapeHtml(getFullName(fields))},</p><p>Your request to ${escapeHtml(config.siteName)} has been sent. ${escapeHtml(config.confirmationFollowUpSentence)}</p><h1 style="font-size: 20px;">Your request</h1><table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">${rows.map(([label,value])=>`<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}</table><h2 style="font-size: 16px;">Message</h2><p>${escapeHtml(message||'-').replace(/\n/g,'<br>')}</p><p style="font-size: 12px; color: #667085;">Reference ${escapeHtml(manifest.submissionId)}.</p></body></html>`;
-  return `<!doctype html>
-<html>
-  <body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;">
-    <p>Beste ${escapeHtml(getFullName(fields))},</p>
-    <p>Uw offerteaanvraag voor ${escapeHtml(config.siteName)} is verstuurd. ${escapeHtml(config.confirmationFollowUpSentence)}</p>
-    <h1 style="font-size: 20px;">Uw aanvraag</h1>
+  const rows = renderEmailRows(config, fields, false);
+  const submission = confirmationShowsSubmission(config)
+    ? `<h1 style="font-size: 20px;">${escapeHtml(confirmationDetailsHeading(config))}</h1>
     <table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
       ${rows.map(([label, value]) => `<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}
     </table>
-    <h2 style="font-size: 16px;">Projectomschrijving</h2>
+    <h2 style="font-size: 16px;">${escapeHtml(confirmationMessageHeading(config))}</h2>
     <p>${escapeHtml(message || '-').replace(/\n/g, '<br>')}</p>
-    <p style="font-size: 12px; color: #667085;">Referentie ${escapeHtml(manifest.submissionId)}.</p>
+    `
+    : '';
+
+  return `<!doctype html>
+<html>
+  <body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;">
+    <p>${english ? 'Dear' : 'Beste'} ${escapeHtml(getFullName(fields))},</p>
+    <p>${escapeHtml(confirmationOpeningSentence(config))} ${escapeHtml(config.confirmationFollowUpSentence)}</p>
+    ${submission}<p style="font-size: 12px; color: #667085;">${english ? 'Reference' : 'Referentie'} ${escapeHtml(manifest.submissionId)}.</p>
   </body>
 </html>`;
 }
 
 function renderTextEmail(config: ResolvedLeadFormConfig, manifest: SubmissionManifest, origin: string): string {
   const { fields } = manifest;
+  const english = config.locale === 'en';
   const rows = renderEmailRows(config, fields);
   const message = getFieldValue(fields, config.messageField);
   const attachmentLines = manifest.attachments.length
     ? manifest.attachments.map((attachment) => `- ${attachment.name}: ${attachmentUrl(config, manifest, attachment, origin)}`).join('\n')
-    : config.locale === 'en' ? 'No attachments included.' : 'Geen bijlagen meegestuurd.';
+    : english ? 'No attachments included.' : 'Geen bijlagen meegestuurd.';
+  const messageBlock = leadShowsMessage(config) ? ['', `${leadMessageHeading(config)}:`, message || '-'] : [];
+  const attachmentBlock = leadShowsAttachments(config) ? ['', english ? 'Attachments:' : 'Bijlagen:', attachmentLines] : [];
 
-  if (config.locale === 'en') return [
-    leadHeading(config), '', ...rows.map(([label,value])=>`${label}: ${value||'-'}`), '', `${leadMessageHeading(config)}:`, message||'-', '', 'Attachments:', attachmentLines,
+  if (english) return [
+    leadHeading(config), '', ...rows.map(([label,value])=>`${label}: ${value||'-'}`), ...messageBlock, ...attachmentBlock,
   ].join('\n');
 
   return [
     leadHeading(config),
     '',
     ...rows.map(([label, value]) => `${label}: ${value || '-'}`),
-    '',
-    `${leadMessageHeading(config)}:`,
-    message || '-',
-    '',
-    'Bijlagen:',
-    attachmentLines,
+    ...messageBlock,
+    ...attachmentBlock,
     '',
     `Inzending: ${manifest.submissionId}`,
     `Ontvangen: ${manifest.createdAt}`,
@@ -839,15 +939,22 @@ function renderTextEmail(config: ResolvedLeadFormConfig, manifest: SubmissionMan
 
 function renderHtmlEmail(config: ResolvedLeadFormConfig, manifest: SubmissionManifest, origin: string): string {
   const { fields } = manifest;
+  const english = config.locale === 'en';
   const rows = renderEmailRows(config, fields);
   const message = getFieldValue(fields, config.messageField);
   const attachments = manifest.attachments.length
     ? `<ul>${manifest.attachments
         .map((attachment) => `<li><a href="${escapeHtml(attachmentUrl(config, manifest, attachment, origin))}">${escapeHtml(attachment.name)}</a></li>`)
         .join('')}</ul>`
-    : config.locale === 'en' ? '<p>No attachments included.</p>' : '<p>Geen bijlagen meegestuurd.</p>';
+    : english ? '<p>No attachments included.</p>' : '<p>Geen bijlagen meegestuurd.</p>';
+  const messageBlock = leadShowsMessage(config)
+    ? `<h2 style="font-size: 16px;">${escapeHtml(leadMessageHeading(config))}</h2><p>${escapeHtml(message || '-').replace(/\n/g, '<br>')}</p>`
+    : '';
+  const attachmentBlock = leadShowsAttachments(config)
+    ? `<h2 style="font-size: 16px;">${english ? 'Attachments' : 'Bijlagen'}</h2>${attachments}`
+    : '';
 
-  if (config.locale === 'en') return `<!doctype html><html><body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;"><h1 style="font-size: 20px;">${escapeHtml(leadHeading(config))}</h1><table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">${rows.map(([label,value])=>`<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}</table><h2 style="font-size: 16px;">${escapeHtml(leadMessageHeading(config))}</h2><p>${escapeHtml(message||'-').replace(/\n/g,'<br>')}</p><h2 style="font-size: 16px;">Attachments</h2>${attachments}<p style="font-size: 12px; color: #667085;">Submission ${escapeHtml(manifest.submissionId)} received at ${escapeHtml(manifest.createdAt)}.</p></body></html>`;
+  if (english) return `<!doctype html><html><body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;"><h1 style="font-size: 20px;">${escapeHtml(leadHeading(config))}</h1><table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">${rows.map(([label,value])=>`<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}</table>${messageBlock}${attachmentBlock}<p style="font-size: 12px; color: #667085;">Submission ${escapeHtml(manifest.submissionId)} received at ${escapeHtml(manifest.createdAt)}.</p></body></html>`;
 
   return `<!doctype html>
 <html>
@@ -856,23 +963,34 @@ function renderHtmlEmail(config: ResolvedLeadFormConfig, manifest: SubmissionMan
     <table cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
       ${rows.map(([label, value]) => `<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`).join('')}
     </table>
-    <h2 style="font-size: 16px;">${escapeHtml(leadMessageHeading(config))}</h2>
-    <p>${escapeHtml(message || '-').replace(/\n/g, '<br>')}</p>
-    <h2 style="font-size: 16px;">Bijlagen</h2>
-    ${attachments}
+    ${messageBlock}
+    ${attachmentBlock}
     <p style="font-size: 12px; color: #667085;">Inzending ${escapeHtml(manifest.submissionId)} ontvangen op ${escapeHtml(manifest.createdAt)}.</p>
   </body>
 </html>`;
 }
 
-function renderEmailRows(config: ResolvedLeadFormConfig, fields: SubmissionFields): [string, string][] {
+function renderEmailRows(
+  config: ResolvedLeadFormConfig,
+  fields: SubmissionFields,
+  /** The owner notification takes the owner-only rows; the confirmation must not. */
+  ownerOnlyRows = true,
+): [string, string][] {
   const names = config.leadEmail?.nameLabels;
-  const baseRows: [string, string][] = [
-    [names?.firstName ?? 'Voornaam', fields.firstName],
-    [names?.lastName ?? 'Achternaam', fields.lastName],
-    [names?.email ?? 'E-mail', fields.email],
-  ];
-  const configuredRows = config.emailFields
+  // A row for a name the form never asks for reads "Achternaam: -" in both
+  // emails, which is the visitor being told something untrue about their own
+  // submission. A field the form does require keeps its row whatever came back,
+  // so a missing answer still shows up as missing.
+  const baseRows = (
+    [
+      [names?.firstName ?? 'Voornaam', fields.firstName, config.requireFirstName],
+      [names?.lastName ?? 'Achternaam', fields.lastName, config.requireLastName],
+      [names?.email ?? 'E-mail', fields.email, config.requireEmail],
+    ] as [string, string, boolean][]
+  )
+    .filter(([, value, required]) => required || value)
+    .map(([label, value]): [string, string] => [label, value]);
+  const configuredRows = [...config.emailFields, ...(ownerOnlyRows ? config.leadOnlyEmailFields : [])]
     .filter((field) => !isReservedConfirmationField(field.name, config))
     .filter((field) => conditionMatches(fields, field.when))
     .map((field): [string, string] => [field.label, getDisplayFieldValue(fields, field.name, config) || '-']);
