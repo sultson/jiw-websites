@@ -4,6 +4,7 @@ import Peter from '../components/Peter';
 import Gallery from '../components/Gallery';
 import Blog from '../components/Blog';
 import Visit from '../components/Visit';
+import Ask from '../components/Ask';
 
 /** The museum itself, on one page, in the order a visitor walks through it. */
 export default function Home() {
@@ -12,9 +13,10 @@ export default function Home() {
       <HeroRoom />
       <Work />
       <Peter />
-      <Gallery />
       <Blog />
+      <Gallery />
       <Visit />
+      <Ask />
     </main>
   );
 }

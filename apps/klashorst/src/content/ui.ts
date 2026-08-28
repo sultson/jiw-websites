@@ -15,6 +15,7 @@ const nl = {
     galerie: 'Andere Kunst',
     blog: 'Dirty Diaries',
     bezoek: 'Bezoek Museum',
+    contact: 'Contact',
     cta: 'Nieuwsbrief',
     menu: 'Menu',
     sluiten: 'Sluiten',
@@ -25,6 +26,9 @@ const nl = {
   },
   werk: {
     vergroot: 'Vergroot',
+    // Never on screen: the name a screen reader is given for a work that has
+    // no title of its own.
+    zonderTitel: 'Werk zonder titel',
     leeg: 'Er staat op dit moment geen werk in de collectie. Zodra er werk is opgenomen, staat het hier.',
   },
   lightbox: {
@@ -34,8 +38,19 @@ const nl = {
   },
   vraag: {
     knop: 'Stel een vraag',
-    formTitel: 'Stel een vraag',
-    uitleg: 'Laat uw gegevens achter, dan neemt het museum contact met u op.',
+    eyebrow: 'Contact',
+    titel: 'Stel een vraag',
+    lead: 'Uw bericht komt rechtstreeks bij het museum binnen. U krijgt antwoord op het adres dat u achterlaat.',
+    waarvoor: [
+      {
+        label: 'Over het werk',
+        wat: 'Een vraag over een schilderij, over de collectie of over een bezoek.',
+      },
+      {
+        label: 'Werk aanbieden',
+        wat: 'Kunstenaars die werk willen laten hangen in de zaal met werk van anderen.',
+      },
+    ],
     naam: 'Naam',
     email: 'E-mailadres',
     bericht: 'Bericht',
@@ -44,7 +59,6 @@ const nl = {
     bezig: 'Bezig',
     gelukt: 'Dank u. Het museum neemt contact met u op.',
     mislukt: 'Er ging iets mis. Probeer het opnieuw.',
-    annuleren: 'Annuleren',
   },
   blog: {
     lees: 'Lees verder',
@@ -81,6 +95,7 @@ const en: Ui = {
     // The blog's own name, so it reads the same in both languages.
     blog: 'Dirty Diaries',
     bezoek: 'Visit Museum',
+    contact: 'Contact',
     cta: 'Newsletter',
     menu: 'Menu',
     sluiten: 'Close',
@@ -91,6 +106,7 @@ const en: Ui = {
   },
   werk: {
     vergroot: 'Enlarge',
+    zonderTitel: 'Untitled work',
     leeg: 'There is no work in the collection at the moment. As soon as work is added, it appears here.',
   },
   lightbox: {
@@ -100,8 +116,19 @@ const en: Ui = {
   },
   vraag: {
     knop: 'Ask a question',
-    formTitel: 'Ask a question',
-    uitleg: 'Leave your details and the museum will get in touch with you.',
+    eyebrow: 'Contact',
+    titel: 'Ask a question',
+    lead: 'Your message goes straight to the museum. You will get an answer at the address you leave.',
+    waarvoor: [
+      {
+        label: 'About the work',
+        wat: 'A question about a painting, about the collection or about visiting the museum.',
+      },
+      {
+        label: 'Offering work',
+        wat: 'Artists who would like to show work in the room reserved for other artists.',
+      },
+    ],
     naam: 'Name',
     email: 'Email address',
     bericht: 'Message',
@@ -110,7 +137,6 @@ const en: Ui = {
     bezig: 'Sending',
     gelukt: 'Thank you. The museum will be in touch.',
     mislukt: 'Something went wrong. Please try again.',
-    annuleren: 'Cancel',
   },
   blog: {
     lees: 'Read more',

@@ -20,7 +20,9 @@ export const werk = defineType({
       title: 'Titel',
       type: 'string',
       group: 'nl',
-      validation: (rule) => rule.required().error('Een werk heeft een titel nodig.'),
+      // Not every doek is named. Leaving this empty leaves the line off the
+      // site altogether, rather than putting "Zonder titel" under the work.
+      description: 'Optioneel. Heeft het werk geen titel, laat dit dan leeg.',
     }),
     defineField({
       name: 'afbeelding',
@@ -97,7 +99,9 @@ export const werk = defineType({
       media: 'afbeelding',
     },
     prepare: ({ title, techniek, afmetingen, media }) => ({
-      title,
+      // Only in this list: a work without a title has to be findable in the
+      // Studio, but on the site it simply has no title line.
+      title: title || 'Werk zonder titel',
       subtitle: [techniek, afmetingen].filter(Boolean).join(', '),
       media,
     }),

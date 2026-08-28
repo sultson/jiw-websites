@@ -84,7 +84,10 @@ export default function HeroRoom() {
             <img
               key={work.id}
               src={work.img.room}
-              alt={`${work.titel}, ${[work.techniek, work.afmetingen].filter(Boolean).join(', ')}`}
+              alt={
+                [work.titel, work.techniek, work.afmetingen].filter(Boolean).join(', ') ||
+                ui.werk.zonderTitel
+              }
               loading={i < 2 ? 'eager' : 'lazy'}
               decoding="async"
               className="h-[46vh] w-auto max-w-none shrink-0 object-contain sm:h-[58vh]"
@@ -151,8 +154,10 @@ export default function HeroRoom() {
               focused ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'
             }`}
           >
-            <h2 className="display text-xl md:text-2xl">{focused?.titel}</h2>
-            <p className="mt-1 text-sm text-muted">
+            {/* No title line for a work that has none: the technique then
+                names the work instead of sitting under an empty heading. */}
+            {focused?.titel && <h2 className="display text-xl md:text-2xl">{focused.titel}</h2>}
+            <p className={`text-sm ${focused?.titel ? 'mt-1 text-muted' : 'text-bone'}`}>
               {focused ? [focused.techniek, focused.afmetingen].filter(Boolean).join(', ') : ''}
             </p>
             {focused?.toelichting && (

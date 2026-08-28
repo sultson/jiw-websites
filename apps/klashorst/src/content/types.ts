@@ -18,6 +18,7 @@ export type Img = {
 
 export type Werk = {
   id: string;
+  /** Empty for a work that has no title: the site then shows no title line. */
   titel: string;
   techniek: string;
   afmetingen: string;

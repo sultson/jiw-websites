@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type TouchEvent } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { content, ui, type Werk } from '../content';
 
@@ -10,6 +10,9 @@ export default function Work() {
   const t = content.teksten.werk;
   const werken = content.werk;
   const [index, setIndex] = useState<number | null>(null);
+  /** How far the finger has carried the enlarged work, while it is carrying it. */
+  const [shift, setShift] = useState(0);
+  const swipe = useRef<{ x: number; y: number; dx: number; sideways: boolean | null } | null>(null);
 
   const step = useCallback(
     (delta: number) => {
@@ -35,6 +38,53 @@ export default function Work() {
 
   const current = index === null ? null : werken[index];
   const label = (work: Werk) => [work.techniek, work.afmetingen].filter(Boolean).join(', ');
+  /**
+   * What to call a work out loud. Not every work is named, and one that isn't
+   * still needs a name for the button that opens it and for a screen reader.
+   */
+  const describe = (work: Werk) =>
+    [work.titel, label(work)].filter(Boolean).join(', ') || ui.werk.zonderTitel;
+
+  /**
+   * Swiping between works, because on a phone the chevrons are a small target
+   * and a photograph is something you expect to be able to push aside. The
+   * work follows the finger so the gesture answers, and a swipe that does not
+   * carry far enough simply slides back.
+   */
+  const touchStart = (event: TouchEvent) => {
+    // A finger that lands on a chevron is pressing it, not swiping.
+    if ((event.target as HTMLElement).closest('button')) return;
+    const touch = event.touches[0];
+    swipe.current = { x: touch.clientX, y: touch.clientY, dx: 0, sideways: null };
+  };
+
+  const touchMove = (event: TouchEvent) => {
+    const start = swipe.current;
+    if (!start || event.touches.length > 1) return;
+    const touch = event.touches[0];
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    // Decided once, on the first few pixels: the gesture is either sideways
+    // between works or it belongs to the page, and it never changes its mind.
+    if (start.sideways === null) {
+      if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+      start.sideways = Math.abs(dx) > Math.abs(dy);
+    }
+    if (!start.sideways) return;
+    start.dx = dx;
+    setShift(dx);
+  };
+
+  const touchEnd = () => {
+    const start = swipe.current;
+    swipe.current = null;
+    setShift(0);
+    if (!start?.sideways) return;
+    // Far enough to be meant, measured against the screen so the gesture asks
+    // the same of a phone as of a tablet.
+    const enough = Math.min(90, Math.max(40, window.innerWidth * 0.12));
+    if (Math.abs(start.dx) >= enough) step(start.dx < 0 ? 1 : -1);
+  };
 
   return (
     <section id="werk" className="scroll-mt-20 border-t border-hair py-20 md:py-28">
@@ -61,7 +111,7 @@ export default function Work() {
                   type="button"
                   onClick={() => setIndex(i)}
                   className="group text-left"
-                  aria-label={`${ui.werk.vergroot}: ${work.titel}`}
+                  aria-label={`${ui.werk.vergroot}: ${describe(work)}`}
                 >
                   {/* One fixed box for every card, so the titles underneath sit
                       on a single baseline across the row. The work is contained
@@ -69,14 +119,22 @@ export default function Work() {
                   <div className="flex aspect-[3/4] items-center justify-center overflow-hidden bg-wall">
                     <img
                       src={work.img.grid}
-                      alt={`${work.titel}, ${label(work)}`}
+                      alt={describe(work)}
                       loading="lazy"
                       decoding="async"
                       className="max-h-full max-w-full object-contain transition-opacity duration-300 group-hover:opacity-85"
                     />
                   </div>
-                  <h3 className="display mt-3 text-base leading-tight md:text-lg">{work.titel}</h3>
-                  <p className="mt-1 text-xs text-muted md:text-[0.8rem]">{label(work)}</p>
+                  {/* A work without a title gets no title line: the technique
+                      moves up into its place rather than a placeholder. */}
+                  {work.titel && (
+                    <h3 className="display mt-3 text-base leading-tight md:text-lg">{work.titel}</h3>
+                  )}
+                  {label(work) && (
+                    <p className={`text-xs text-muted md:text-[0.8rem] ${work.titel ? 'mt-1' : 'mt-3'}`}>
+                      {label(work)}
+                    </p>
+                  )}
                 </button>
               </article>
             ))}
@@ -89,12 +147,20 @@ export default function Work() {
           className="fixed inset-0 z-[70] flex flex-col bg-ink"
           role="dialog"
           aria-modal="true"
-          aria-label={current.titel}
+          aria-label={describe(current)}
         >
           <div className="flex items-center justify-between gap-5 border-b border-hair px-5 py-3 md:px-8">
             <div>
-              <h3 className="display text-lg md:text-xl">{current.titel}</h3>
-              <p className="text-xs text-muted md:text-sm">{label(current)}</p>
+              {current.titel && <h3 className="display text-lg md:text-xl">{current.titel}</h3>}
+              {/* Without a title this line is what names the work, so it is
+                  read at full strength rather than as a caption under one. */}
+              <p
+                className={
+                  current.titel ? 'text-xs text-muted md:text-sm' : 'text-sm text-bone md:text-base'
+                }
+              >
+                {label(current)}
+              </p>
             </div>
             <button
               type="button"
@@ -106,11 +172,23 @@ export default function Work() {
             </button>
           </div>
 
-          <div className="relative flex flex-1 items-center justify-center overflow-hidden p-4 md:p-8">
+          <div
+            className="relative flex flex-1 items-center justify-center overflow-hidden p-4 md:p-8"
+            style={{ touchAction: 'pan-y' }}
+            onTouchStart={touchStart}
+            onTouchMove={touchMove}
+            onTouchEnd={touchEnd}
+            onTouchCancel={touchEnd}
+          >
             <img
               src={current.img.full}
-              alt={`${current.titel}, ${label(current)}`}
-              className="max-h-full max-w-full object-contain"
+              alt={describe(current)}
+              draggable={false}
+              className="max-h-full max-w-full select-none object-contain"
+              style={{
+                transform: shift ? `translateX(${shift}px)` : undefined,
+                transition: shift ? 'none' : 'transform 220ms ease-out',
+              }}
             />
             <button
               type="button"

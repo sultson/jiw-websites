@@ -108,7 +108,9 @@ function buildContent(payload: RawPayload | null): Content {
       const vert = engels(doc);
       return {
         id: String(doc._id),
-        titel: text(vert.titel, text(doc.titel, 'Zonder titel')),
+        // Empty when the work has no title. Not every doek is named, and the
+        // site leaves the line off rather than inventing one.
+        titel: text(vert.titel, text(doc.titel, '')),
         techniek: text(vert.techniek, text(doc.techniek, '')),
         afmetingen: text(doc.afmetingen, ''),
         toelichting: maybe(vert.toelichting) ?? maybe(doc.toelichting),

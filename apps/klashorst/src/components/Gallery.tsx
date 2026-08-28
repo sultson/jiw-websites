@@ -1,17 +1,14 @@
-import { useState } from 'react';
 import { content, ui, type GalerieWerk } from '../content';
-import ContactDialog from './ContactDialog';
 
 /**
  * The part of the museum reserved for other artists. Nothing here is on offer:
  * the works hang, and the one thing a visitor can do is ask the museum
- * something, which is also how an artist offers work for this wall.
+ * something, which is also how an artist offers work for this wall. That ask
+ * has a section of its own at the foot of the page; this points at it.
  */
 export default function Gallery() {
   const t = content.teksten.galerie;
   const werken = content.galerie;
-  const [vragen, setVragen] = useState(false);
-
   const label = (work: GalerieWerk) =>
     [work.techniek, work.afmetingen, work.jaar].filter(Boolean).join(', ');
 
@@ -58,12 +55,10 @@ export default function Gallery() {
           </div>
         )}
 
-        <button type="button" onClick={() => setVragen(true)} className="btn mt-10">
+        <a href="#contact" className="btn btn-solid mt-10">
           {ui.vraag.knop}
-        </button>
+        </a>
       </div>
-
-      {vragen && <ContactDialog onClose={() => setVragen(false)} />}
     </section>
   );
 }

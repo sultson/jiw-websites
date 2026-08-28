@@ -19,9 +19,10 @@ const sections = (path: string) => [
   // and the wordmark to its left already goes there.
   { href: sectionHref(path, 'werk'), label: ui.nav.werk },
   { href: sectionHref(path, 'peter'), label: ui.nav.peter },
-  { href: sectionHref(path, 'galerie'), label: ui.nav.galerie },
   { href: to('/blog'), label: ui.nav.blog, blog: true },
+  { href: sectionHref(path, 'galerie'), label: ui.nav.galerie },
   { href: sectionHref(path, 'bezoek'), label: ui.nav.bezoek },
+  { href: sectionHref(path, 'contact'), label: ui.nav.contact },
 ];
 
 /** Both languages, always both visible: a single toggle hides the one you want. */

@@ -28,17 +28,20 @@ export default function Footer({
             <a href={sectionHref(path, 'peter')} className="eyebrow hover:text-bone">
               {ui.nav.peter}
             </a>
-            <a href={sectionHref(path, 'galerie')} className="eyebrow hover:text-bone">
-              {ui.nav.galerie}
-            </a>
             <a href={to('/blog')} className="eyebrow hover:text-bone">
               {ui.nav.blog}
+            </a>
+            <a href={sectionHref(path, 'galerie')} className="eyebrow hover:text-bone">
+              {ui.nav.galerie}
             </a>
             <a
               href={newsletterOpDezePagina ? '#nieuwsbrief' : `${to('/')}#nieuwsbrief`}
               className="eyebrow hover:text-bone"
             >
               {ui.nav.cta}
+            </a>
+            <a href={sectionHref(path, 'contact')} className="eyebrow hover:text-bone">
+              {ui.nav.contact}
             </a>
           </nav>
         </div>

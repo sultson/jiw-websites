@@ -39,6 +39,12 @@ export type Env = CloudflareFormsEnv & {
  * Two forms, and each of them twice: a Dutch visitor gets a Dutch confirmation
  * and an English visitor an English one. Which it is rides along in a hidden
  * `taal` field, because the language is in the address the form was filled in on.
+ *
+ * Both forms spell out their own wording. The package's default confirmation is
+ * written for quote requests, and a museum sends neither: someone who signs up
+ * for the newsletter is not asking for a quote, and neither is someone asking a
+ * question. Left alone it confirms an "offerteaanvraag", which the museum read
+ * as a mistake, and it was right to.
  */
 const newsletterWorkers: Record<Lang, ReturnType<typeof createFormWorker>> = {
   nl: createFormWorker({
@@ -49,7 +55,23 @@ const newsletterWorkers: Record<Lang, ReturnType<typeof createFormWorker>> = {
     senderName: 'Klashorst Museum',
     subjectPrefix: 'Nieuwe aanmelding nieuwsbrief',
     confirmationFollowUpSentence:
-      'U hoort van ons zodra de openingsdatum bekend is en wanneer er nieuw werk in de collectie komt.',
+      'U hoort van ons zodra er nieuwe ontwikkelingen zijn. Hartelijk dank voor uw interesse.',
+    confirmationCopy: {
+      subject: 'Uw aanmelding voor de nieuwsbrief is ontvangen - {siteName}',
+      openingSentence: 'Uw aanmelding voor de nieuwsbrief van het {siteName} is verstuurd.',
+      // An opt-in has nothing worth reading back: it would return the visitor
+      // their own address and then an empty project description.
+      includeSubmission: false,
+    },
+    leadEmail: {
+      heading: 'Nieuwe aanmelding voor de nieuwsbrief',
+      nameLabels: { firstName: 'Naam', email: 'E-mailadres' },
+      // The opt-in asks for a name and an address. Without this the museum is
+      // mailed an empty project description and a note about the attachments
+      // the form cannot take.
+      includeMessage: false,
+      includeAttachments: false,
+    },
     // An opt-in only needs an address; a name is welcome but never demanded.
     requireFirstName: false,
     requireLastName: false,
@@ -64,7 +86,18 @@ const newsletterWorkers: Record<Lang, ReturnType<typeof createFormWorker>> = {
     senderName: 'Klashorst Museum',
     subjectPrefix: 'Newsletter sign-up',
     confirmationFollowUpSentence:
-      'You will hear from us as soon as the opening date is known and when new work enters the collection.',
+      'You will hear from us as soon as there is news. Thank you for your interest.',
+    confirmationCopy: {
+      subject: 'Your newsletter sign-up has been received - {siteName}',
+      openingSentence: 'Your sign-up for the {siteName} newsletter has been sent.',
+      includeSubmission: false,
+    },
+    leadEmail: {
+      heading: 'New newsletter sign-up',
+      nameLabels: { firstName: 'Name', email: 'Email address' },
+      includeMessage: false,
+      includeAttachments: false,
+    },
     requireFirstName: false,
     requireLastName: false,
     requireEmail: true,
@@ -80,7 +113,19 @@ const vraagWorkers: Record<Lang, ReturnType<typeof createFormWorker>> = {
     ownerName: 'het museum',
     senderName: 'Klashorst Museum',
     subjectPrefix: 'Vraag via de site',
-    confirmationFollowUpSentence: 'Het museum neemt contact met u op.',
+    confirmationFollowUpSentence: 'Het museum neemt contact met u op. Hartelijk dank voor uw interesse.',
+    confirmationCopy: {
+      subject: 'Uw vraag is ontvangen - {siteName}',
+      openingSentence: 'Uw vraag aan het {siteName} is verstuurd.',
+      detailsHeading: 'Uw gegevens',
+      messageHeading: 'Uw vraag',
+    },
+    leadEmail: {
+      heading: 'Nieuwe vraag via de site',
+      messageHeading: 'De vraag',
+      nameLabels: { firstName: 'Naam', email: 'E-mailadres' },
+      includeAttachments: false,
+    },
     messageField: 'bericht',
     requireFirstName: true,
     requireLastName: false,
@@ -94,7 +139,19 @@ const vraagWorkers: Record<Lang, ReturnType<typeof createFormWorker>> = {
     ownerName: 'the museum',
     senderName: 'Klashorst Museum',
     subjectPrefix: 'Question via the site',
-    confirmationFollowUpSentence: 'The museum will get in touch with you.',
+    confirmationFollowUpSentence: 'The museum will get in touch with you. Thank you for your interest.',
+    confirmationCopy: {
+      subject: 'Your question has been received - {siteName}',
+      openingSentence: 'Your question to the {siteName} has been sent.',
+      detailsHeading: 'Your details',
+      messageHeading: 'Your question',
+    },
+    leadEmail: {
+      heading: 'New question via the site',
+      messageHeading: 'The question',
+      nameLabels: { firstName: 'Name', email: 'Email address' },
+      includeAttachments: false,
+    },
     messageField: 'bericht',
     requireFirstName: true,
     requireLastName: false,
