@@ -1,0 +1,73 @@
+---
+import Icon from './Icon.astro';
+import { whatsappUrl } from '../lib/brand';
+import type { LanderContent } from '../sites';
+
+interface Props {
+  c: LanderContent;
+}
+const { c } = Astro.props;
+const wa = whatsappUrl(c.whatsapp.text);
+---
+
+<!-- Mobile: sticky CTA bar (brief §23). Desktop: WhatsApp only, as the
+     secondary channel (brief §24). Both hide while the form is on screen. -->
+<div
+  class="pointer-events-none fixed inset-x-0 bottom-0 z-40 transition-opacity duration-200 md:hidden"
+  data-floating
+>
+  <div class="pointer-events-auto flex items-center gap-2 border-t border-line-soft bg-paper/95 px-3 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur">
+    <a href="#contact" class="btn btn-accent flex-1 py-3 text-[0.95rem]" data-track="cta_click" data-situation="Sticky bar">
+      {c.stickyCta}
+    </a>
+    <a
+      href={wa}
+      target="_blank"
+      rel="noopener"
+      aria-label={c.whatsapp.aria}
+      data-track="whatsapp_click"
+      class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-line text-navy"
+    >
+      <Icon name="whatsapp" size={22} />
+    </a>
+  </div>
+</div>
+
+<a
+  href={wa}
+  target="_blank"
+  rel="noopener"
+  aria-label={c.whatsapp.aria}
+  data-track="whatsapp_click"
+  data-floating
+  class="fixed bottom-6 right-6 z-40 hidden h-13 items-center gap-2.5 rounded-full bg-navy px-5 py-3.5 text-[0.88rem] font-semibold text-white shadow-[0_18px_40px_-18px_rgba(12,28,54,0.9)] transition-opacity duration-200 hover:bg-navy-soft md:inline-flex"
+>
+  <Icon name="whatsapp" size={19} />
+  {c.whatsapp.label}
+</a>
+
+<script>
+  // Keep the bar out of the way once the visitor reaches a form.
+  const targets = document.querySelectorAll<HTMLElement>('[data-floating]');
+  // Both the hero form and the closing form: the buttons must never sit on top
+  // of the form the visitor is filling in.
+  const forms = document.querySelectorAll<HTMLElement>('#aanvraag, #contact');
+  if (forms.length && targets.length) {
+    const visible = new Set<Element>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) visible.add(entry.target);
+          else visible.delete(entry.target);
+        });
+        const hide = visible.size > 0;
+        targets.forEach((el) => {
+          el.style.opacity = hide ? '0' : '1';
+          el.style.pointerEvents = hide ? 'none' : '';
+        });
+      },
+      { rootMargin: '-5% 0px -25% 0px' },
+    );
+    forms.forEach((form) => observer.observe(form));
+  }
+</script>

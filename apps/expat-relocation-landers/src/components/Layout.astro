@@ -1,0 +1,118 @@
+---
+import '../styles/global.css';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import FloatingCta from './FloatingCta.astro';
+import { site, PAGES, type Lang, type LanderContent } from '../sites';
+
+interface Props {
+  lang: Lang;
+  c: LanderContent;
+  title: string;
+  description: string;
+  /** Dutch (canonical) path of this page, used to build both language URLs. */
+  page: keyof typeof PAGES;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>[];
+  /** The thank-you page has no nav CTA and no sticky bar: the visitor converted. */
+  chrome?: boolean;
+}
+const { lang, c, title, description, page, noindex = false, jsonLd = [], chrome = true } = Astro.props;
+
+const canonical = new URL(PAGES[page][lang], Astro.site).toString();
+const alternates = [
+  { hreflang: 'nl', href: new URL(PAGES[page].nl, Astro.site).toString() },
+  { hreflang: 'en', href: new URL(PAGES[page].en, Astro.site).toString() },
+  { hreflang: 'x-default', href: new URL(PAGES[page].nl, Astro.site).toString() },
+];
+const ogImage = new URL(site.heroImage, Astro.site).toString();
+const heroNarrow = site.heroImage.replace(/\.jpg$/, '-640.jpg');
+---
+
+<!doctype html>
+<html lang={lang === 'nl' ? 'nl-NL' : 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Immigration Services NL" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'nl' ? 'nl_NL' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Must carry the same srcset/sizes as the hero <img>, or a phone preloads the
+         1264w file and then downloads the 640w one it actually renders. -->
+    <link
+      rel="preload"
+      as="image"
+      href={site.heroImage}
+      imagesrcset={`${heroNarrow} 640w, ${site.heroImage} 1264w`}
+      imagesizes="(min-width: 1024px) 44rem, 100vw"
+      fetchpriority="high"
+    />
+    <meta name="theme-color" content="#143a5e" />
+
+    {jsonLd.map((data) => <script is:inline type="application/ld+json" set:html={JSON.stringify(data)} />)}
+  </head>
+  <body class="bg-paper">
+    <a
+      href="#contact"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-navy-deep focus:px-5 focus:py-2 focus:text-white"
+    >
+      {lang === 'nl' ? 'Naar het formulier' : 'Skip to the form'}
+    </a>
+
+    <Header lang={lang} c={c} page={page} chrome={chrome} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} c={c} />
+    {chrome && <FloatingCta c={c} />}
+
+    <script is:inline>
+      // Campaign attribution: every lead has to arrive with the source that
+      // produced it (brief §27). Captured once on landing, kept for the session
+      // so it survives the hop to the thank-you page.
+      (function () {
+        window.dataLayer = window.dataLayer || [];
+        var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid'];
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var stored = JSON.parse(sessionStorage.getItem('isnl_attribution') || '{}');
+          KEYS.forEach(function (k) {
+            var v = params.get(k);
+            if (v) stored[k] = v;
+          });
+          if (!stored.referrer && document.referrer && document.referrer.indexOf(window.location.host) === -1) {
+            stored.referrer = document.referrer;
+          }
+          sessionStorage.setItem('isnl_attribution', JSON.stringify(stored));
+          window.__attribution = stored;
+        } catch (e) {
+          window.__attribution = {};
+        }
+
+        // CTA and WhatsApp clicks are tracked separately (brief §24, §28).
+        document.addEventListener('click', function (e) {
+          var el = e.target instanceof Element ? e.target.closest('[data-track]') : null;
+          if (!el) return;
+          window.dataLayer.push({
+            event: el.getAttribute('data-track'),
+            cta_label: (el.textContent || '').trim().slice(0, 80),
+            cta_situation: el.getAttribute('data-situation') || '',
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

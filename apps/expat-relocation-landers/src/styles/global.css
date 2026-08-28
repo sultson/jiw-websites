@@ -1,0 +1,270 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/figtree';
+@import '@fontsource-variable/dm-sans';
+
+/* ------------------------------------------------------------------ *
+ * Immigration Services NL — landing pages
+ *
+ * The client's feedback on the first concept: keep the professional quality,
+ * but drop the luxury/boutique register of the expat website. These visitors
+ * are couples trying to find a route to live together, not executives
+ * relocating for a job. So: no editorial serif, no near-black navy, no
+ * moody dusk photography. A friendly Dutch blue, a warm orange for action,
+ * warm off-white grounds, and a humanist sans throughout.
+ *
+ * Figtree carries the headings: open, rounded, plainly readable at a glance.
+ * DM Sans keeps the body copy and the form quick to read.
+ * ------------------------------------------------------------------ */
+@theme {
+  /* Delft-ish blue rather than midnight navy: authoritative, not severe. */
+  --color-navy: #1a4b7a;
+  --color-navy-deep: #143a5e;
+  --color-navy-soft: #2b689d;
+  --color-navy-tint: #e8f0f7;
+
+  --color-accent: #d1590f;
+  --color-accent-bright: #ef7420;
+  --color-accent-tint: #ffe9d6;
+
+  --color-paper: #ffffff;
+  /* Warm grounds. Warm carries most alternating sections; sand is the deeper
+     step for a block that has to sit forward of warm. */
+  --color-warm: #fff7f0;
+  --color-sand: #fdeadb;
+  --color-canvas: #f5f8fb;
+  --color-mist: #e9f0f6;
+
+  --color-ink: #24303d;
+  --color-ink-soft: #5a6877;
+  --color-line: rgba(26, 75, 122, 0.16);
+  --color-line-soft: rgba(26, 75, 122, 0.09);
+  --color-line-warm: rgba(209, 89, 15, 0.16);
+
+  --font-display: 'Figtree Variable', 'Figtree', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(20, 58, 94, 0.04), 0 16px 36px -26px rgba(20, 58, 94, 0.28);
+  --shadow-lift: 0 2px 4px rgba(20, 58, 94, 0.05), 0 28px 56px -34px rgba(20, 58, 94, 0.4);
+  --shadow-form: 0 2px 6px rgba(20, 58, 94, 0.06), 0 32px 64px -34px rgba(20, 58, 94, 0.42);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-paper);
+    scroll-behavior: smooth;
+    /* Anchor CTAs land below the sticky header. */
+    scroll-padding-top: 5.5rem;
+  }
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    font-size: 1.02rem;
+    line-height: 1.72;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Room for the mobile sticky CTA bar. */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-navy-deep);
+    line-height: 1.18;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+  }
+  h1 {
+    font-weight: 650;
+    line-height: 1.08;
+    letter-spacing: -0.026em;
+  }
+  p { text-wrap: pretty; }
+  ::selection {
+    background: var(--color-accent-tint);
+    color: var(--color-navy-deep);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  img { max-width: 100%; }
+}
+
+@utility container-site {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 76rem;
+  padding-inline: 1.25rem;
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  &::before {
+    content: '';
+    width: 1.6rem;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+}
+
+@utility eyebrow-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #f6ad76;
+  &::before {
+    content: '';
+    width: 1.6rem;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+}
+
+@utility section {
+  padding-block: 4.5rem;
+  @media (min-width: 768px) {
+    padding-block: 6.5rem;
+  }
+}
+
+@utility section-tight {
+  padding-block: 3.25rem;
+  @media (min-width: 768px) {
+    padding-block: 4.25rem;
+  }
+}
+
+@utility heading-xl {
+  font-size: 1.9rem;
+  @media (min-width: 768px) {
+    font-size: 2.4rem;
+  }
+}
+
+@utility lede {
+  font-size: 1.05rem;
+  line-height: 1.72;
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+  }
+}
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 9999px;
+  padding: 1rem 1.75rem;
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+@utility btn-accent {
+  background-color: var(--color-accent);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(20, 58, 94, 0.12), 0 16px 30px -18px rgba(209, 89, 15, 0.9);
+  &:hover { background-color: var(--color-accent-bright); }
+}
+
+@utility btn-navy {
+  background-color: var(--color-navy);
+  color: #fff;
+  &:hover { background-color: var(--color-navy-soft); }
+}
+
+@utility btn-outline {
+  border: 1px solid var(--color-line);
+  color: var(--color-navy);
+  background-color: #fff;
+  &:hover { border-color: var(--color-navy); background-color: var(--color-navy-tint); }
+}
+
+@utility btn-outline-light {
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #fff;
+  &:hover { border-color: #fff; background-color: rgba(255, 255, 255, 0.08); }
+}
+
+@utility card {
+  background-color: var(--color-paper);
+  border: 1px solid var(--color-line-soft);
+  border-radius: 1.35rem;
+  box-shadow: var(--shadow-card);
+}
+
+@utility card-warm {
+  background-color: var(--color-warm);
+  border: 1px solid var(--color-line-warm);
+  border-radius: 1.35rem;
+}
+
+@utility form-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-navy-deep);
+}
+
+@utility form-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-line);
+  background-color: #fff;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--color-ink);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  &::placeholder { color: #9aa6b3; }
+  &:focus {
+    outline: none;
+    border-color: var(--color-navy-soft);
+    box-shadow: 0 0 0 3px rgba(43, 104, 157, 0.14);
+  }
+}
+
+/* Checkmark list used for benefits and package contents. */
+@utility check-list {
+  display: grid;
+  gap: 0.6rem;
+}
+
+/* Numerals in the trust bar and the step markers. */
+@utility stat-figure {
+  font-family: var(--font-display);
+  font-weight: 650;
+  letter-spacing: -0.022em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-navy-deep);
+}
+
+@layer components {
+  .prose-lander p + p {
+    margin-top: 1.05rem;
+  }
+}

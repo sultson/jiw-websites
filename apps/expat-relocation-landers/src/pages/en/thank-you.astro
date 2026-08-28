@@ -1,0 +1,12 @@
+---
+import Layout from '../../components/Layout.astro';
+import ThanksView from '../../components/ThanksView.astro';
+import { content } from '../../sites';
+
+const lang = 'en' as const;
+const c = content(lang);
+---
+
+<Layout lang={lang} c={c} title={c.thanks.metaTitle} description={c.thanks.body[0]} page="thanks" noindex chrome={false}>
+  <ThanksView lang={lang} c={c} />
+</Layout>

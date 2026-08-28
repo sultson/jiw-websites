@@ -1,0 +1,25 @@
+---
+import Layout from '../../components/Layout.astro';
+import LanderPage from '../../components/LanderPage.astro';
+import { content, PAGES } from '../../sites';
+import { organizationJsonLd, faqJsonLd, webPageJsonLd } from '../../lib/seo';
+
+const lang = 'en' as const;
+const c = content(lang);
+const siteUrl = Astro.site!.toString().replace(/\/$/, '');
+---
+
+<Layout
+  lang={lang}
+  c={c}
+  title={c.meta.title}
+  description={c.meta.description}
+  page="home"
+  jsonLd={[
+    organizationJsonLd(siteUrl),
+    faqJsonLd(c),
+    webPageJsonLd(siteUrl, `${siteUrl}${PAGES.home.en}`, c),
+  ]}
+>
+  <LanderPage lang={lang} c={c} />
+</Layout>

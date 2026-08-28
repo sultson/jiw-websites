@@ -1,0 +1,64 @@
+---
+import Icon from './Icon.astro';
+import { PAGES, type Lang, type LanderContent } from '../sites';
+
+interface Props {
+  lang: Lang;
+  c: LanderContent;
+  page: keyof typeof PAGES;
+  chrome: boolean;
+}
+const { lang, c, page, chrome } = Astro.props;
+const other: Lang = lang === 'nl' ? 'en' : 'nl';
+const home = PAGES.home[lang];
+---
+
+<!-- No service menu: the header exists to keep the visitor in the funnel (brief §22). -->
+<header class="sticky top-0 z-40 border-b border-line-soft bg-paper/92 backdrop-blur-sm">
+  <div class="container-site flex h-16 items-center justify-between gap-6 md:h-[4.5rem]">
+    <a href={home} class="flex items-baseline gap-2 leading-none">
+      <span class="font-display text-[0.98rem] font-semibold tracking-tight text-navy sm:text-[1.15rem] md:text-[1.3rem]">
+        Immigration Services
+      </span>
+      <span class="rounded bg-navy px-1.5 py-0.5 text-[0.58rem] font-bold tracking-[0.14em] text-white sm:text-[0.62rem]">NL</span>
+    </a>
+
+    <div class="flex items-center gap-2 md:gap-5">
+      {chrome && (
+        <nav class="hidden items-center gap-6 lg:flex">
+          {c.nav.links.map((l) => (
+            <a href={l.href} class="text-[0.9rem] font-medium text-ink-soft transition-colors hover:text-navy">
+              {l.label}
+            </a>
+          ))}
+        </nav>
+      )}
+
+      <!-- Always reachable: on these pages the foreign partner is often the one
+           searching, on a phone, and cannot read the Dutch version. -->
+      <a
+        href={PAGES[page][other]}
+        hreflang={other}
+        aria-label={c.nav.langSwitch}
+        class="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1.5 text-[0.78rem] font-semibold text-ink-soft transition-colors hover:border-navy hover:text-navy sm:px-3"
+      >
+        <Icon name="globe" size={14} />
+        <span class="sm:hidden">{other.toUpperCase()}</span>
+        <span class="hidden sm:inline">{c.nav.langSwitch}</span>
+      </a>
+
+      {chrome && (
+        <!-- On a phone the sticky bottom bar carries the CTA (brief §23), so the
+             header keeps the wordmark and the language switch on one line. -->
+        <a
+          href={c.nav.cta.href}
+          class="btn btn-accent hidden px-4 py-2 text-[0.8rem] sm:inline-flex sm:px-5 sm:py-2.5 sm:text-[0.88rem]"
+          data-track="cta_click"
+          data-situation="Header"
+        >
+          {c.nav.cta.label}
+        </a>
+      )}
+    </div>
+  </div>
+</header>

@@ -1,0 +1,74 @@
+---
+import Icon from './Icon.astro';
+import { brand, whatsappUrl } from '../lib/brand';
+import { PAGES, type Lang, type LanderContent } from '../sites';
+
+interface Props {
+  lang: Lang;
+  c: LanderContent;
+}
+const { lang, c } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-navy-deep text-white/72">
+  <div class="container-site py-14 md:py-16">
+    <div class="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div>
+        <div class="flex items-baseline gap-2 leading-none">
+          <span class="font-display text-[1.2rem] font-semibold text-white">Immigration Services</span>
+          <span class="rounded bg-white/14 px-1.5 py-0.5 text-[0.62rem] font-bold tracking-[0.14em] text-white">NL</span>
+        </div>
+        <p class="mt-4 max-w-sm text-[0.92rem] leading-relaxed">{c.footer.about}</p>
+      </div>
+
+      <div>
+        <h2 class="text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-white">{c.footer.contactHeading}</h2>
+        <ul class="mt-4 grid gap-2.5 text-[0.92rem]">
+          <li>
+            <a href={`tel:${brand.phone.e164}`} class="inline-flex items-center gap-2.5 transition-colors hover:text-white">
+              <Icon name="phone" size={15} />{brand.phone.display}
+            </a>
+          </li>
+          <li>
+            <a
+              href={whatsappUrl(c.whatsapp.text)}
+              target="_blank"
+              rel="noopener"
+              data-track="whatsapp_click"
+              class="inline-flex items-center gap-2.5 transition-colors hover:text-white"
+            >
+              <Icon name="whatsapp" size={15} />{brand.whatsapp.display}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${brand.email}`} class="inline-flex items-center gap-2.5 transition-colors hover:text-white">
+              <Icon name="mail" size={15} />{brand.email}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-white">{c.footer.legalHeading}</h2>
+        <address class="mt-4 not-italic text-[0.92rem] leading-relaxed">
+          {brand.legalName}<br />
+          {brand.address.line1}<br />
+          {brand.address.postcode} {brand.address.city}<br />
+          KvK {brand.kvk}
+        </address>
+        <a href={PAGES.privacy[lang]} class="mt-4 inline-block text-[0.92rem] underline underline-offset-4 transition-colors hover:text-white">
+          {c.footer.privacy}
+        </a>
+      </div>
+    </div>
+
+    <!-- Independence statement, required on every page (brief §26). -->
+    <p class="mt-12 border-t border-white/12 pt-8 text-[0.78rem] leading-relaxed text-white/55">
+      {c.disclaimer}
+    </p>
+    <p class="mt-6 text-[0.78rem] text-white/45">
+      © {year} Immigration Services NL. {c.footer.rights}
+    </p>
+  </div>
+</footer>

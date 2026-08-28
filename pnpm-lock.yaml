@@ -947,6 +947,52 @@ importers:
         specifier: ^4.85.0
         version: 4.85.0(@cloudflare/workers-types@4.20260424.1)
 
+  apps/expat-relocation-landers:
+    dependencies:
+      '@astrojs/sitemap':
+        specifier: ^3.7.0
+        version: 3.7.3
+      '@fontsource-variable/dm-sans':
+        specifier: ^5.2.6
+        version: 5.3.0
+      '@fontsource-variable/figtree':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource-variable/source-serif-4':
+        specifier: ^5.2.5
+        version: 5.3.0
+      '@jiw/cloudflare-forms':
+        specifier: workspace:*
+        version: link:../../packages/cloudflare-forms
+      '@tailwindcss/vite':
+        specifier: ^4.1.14
+        version: 4.2.2(vite@6.4.2(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.33.0)(tsx@4.23.7)(yaml@2.9.0))
+      astro:
+        specifier: ^5.16.0
+        version: 5.18.2(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.33.0)(rollup@4.60.1)(tsx@4.23.7)(typescript@5.8.3)(yaml@2.9.0)
+      tailwindcss:
+        specifier: ^4.1.14
+        version: 4.2.2
+    devDependencies:
+      '@astrojs/check':
+        specifier: ^0.9.4
+        version: 0.9.9(prettier@3.8.4)(typescript@5.8.3)
+      '@cloudflare/workers-types':
+        specifier: ^4.20260424.1
+        version: 4.20260424.1
+      sharp:
+        specifier: ^0.34.5
+        version: 0.34.5
+      typescript:
+        specifier: ~5.8.2
+        version: 5.8.3
+      vite:
+        specifier: ^6.4.2
+        version: 6.4.2(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.33.0)(tsx@4.23.7)(yaml@2.9.0)
+      wrangler:
+        specifier: ^4.85.0
+        version: 4.85.0(@cloudflare/workers-types@4.20260424.1)
+
   apps/fleurig:
     dependencies:
       '@fontsource-variable/fraunces':
@@ -4909,6 +4955,12 @@ packages:
   '@floating-ui/utils@0.2.12':
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
 
+  '@fontsource-variable/dm-sans@5.3.0':
+    resolution: {integrity: sha512-BpUG5bqePiDFMBM4ZtLSlPdAIOM990uB1dlXzIf4aw21yQR7BmykedLXXXMqGWsR18aMLOsbWccwJNh3ztTQaA==}
+
+  '@fontsource-variable/figtree@5.3.0':
+    resolution: {integrity: sha512-VRVodD7OiG7apQwE8/2fMjaqpY/a0qRJqL5HtYj8CKIVps+9amaFcdfKmDIf7iqYQx6iPLlArVXAfKeIZmVcNQ==}
+
   '@fontsource-variable/fraunces@5.3.0':
     resolution: {integrity: sha512-9BYGySn4AHEJdgp9Z28tQ3X+laJMEOITXkQarZXeloWQZDq5oOvXJ3kDA8c7MGIfpogIaZfjrQBqmda8POOCKA==}
 
@@ -4920,6 +4972,9 @@ packages:
 
   '@fontsource-variable/playfair-display@5.3.0':
     resolution: {integrity: sha512-IHdzTvE8eGIXHteZql7KXoqdc3Gfm+Zs1u4XlSC3MeplkwviT3sx/P6gI0tLwg/xIYLF4ZJYveZ5V+bl9cnDwA==}
+
+  '@fontsource-variable/source-serif-4@5.3.0':
+    resolution: {integrity: sha512-9vch9WqxjaaA+1o9Ur8pOgIGbCYLjRReOUel23A6lOpD1syptgjtkORevvNmldJ5kGXQL29onQUqI5Ltz0s3bQ==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -11888,6 +11943,10 @@ snapshots:
 
   '@floating-ui/utils@0.2.12': {}
 
+  '@fontsource-variable/dm-sans@5.3.0': {}
+
+  '@fontsource-variable/figtree@5.3.0': {}
+
   '@fontsource-variable/fraunces@5.3.0': {}
 
   '@fontsource-variable/inter@5.3.0': {}
@@ -11895,6 +11954,8 @@ snapshots:
   '@fontsource-variable/montserrat@5.3.0': {}
 
   '@fontsource-variable/playfair-display@5.3.0': {}
+
+  '@fontsource-variable/source-serif-4@5.3.0': {}
 
   '@img/colour@1.1.0': {}
 

@@ -1,0 +1,19 @@
+---
+import Layout from '../components/Layout.astro';
+import { content, PAGES } from '../sites';
+
+const lang = 'nl' as const;
+const c = content(lang);
+---
+
+<Layout lang={lang} c={c} title="Pagina niet gevonden" description="Deze pagina bestaat niet." page="home" noindex chrome={false}>
+  <section class="section">
+    <div class="container-site max-w-xl text-center">
+      <h1 class="text-[2rem]">Deze pagina bestaat niet</h1>
+      <p class="mt-4 text-ink-soft">
+        Mogelijk is de link verouderd. Ga terug naar de startpagina om verder te gaan.
+      </p>
+      <a href={PAGES.home.nl} class="btn btn-navy mt-8">Naar de startpagina</a>
+    </div>
+  </section>
+</Layout>

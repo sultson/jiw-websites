@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://inburgeringsplichtig.jouwidealewebsite.nl/sitemap-index.xml

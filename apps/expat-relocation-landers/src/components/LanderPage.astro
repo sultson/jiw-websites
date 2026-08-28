@@ -1,0 +1,588 @@
+---
+import Icon from './Icon.astro';
+import Photo from './Photo.astro';
+import LeadForm from './LeadForm.astro';
+import { brand, whatsappUrl } from '../lib/brand';
+import type { Lang, LanderContent } from '../sites';
+
+interface Props {
+  lang: Lang;
+  c: LanderContent;
+}
+const { lang, c } = Astro.props;
+// Destructured so TypeScript keeps the narrowing inside the .map() callbacks
+// below; the optional sections are what make one template serve eight briefs.
+const { explain, packages, journey, routing, distinction, steps, band, aside } = c;
+---
+
+<!--
+  1. HERO + SHORT INTRODUCTION + LEAD FORM (brief §8).
+  A light, warm hero rather than a dark scrim over a dusk photograph: the
+  client asked for approachable and Dutch, not boutique. The photo is a real
+  element, not a background, and on a phone it comes before the headline so
+  the first thing a visitor sees is a couple, not a wall of text.
+-->
+<section class="bg-warm">
+  <div class="container-site grid gap-10 py-9 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-14 lg:py-16">
+    <div class="flex flex-col">
+      <Photo
+        src={c.hero.photo.src}
+        alt={c.hero.photo.alt}
+        sizes="(min-width: 1024px) 44rem, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="aspect-[4/3] w-full rounded-[1.35rem] object-cover shadow-lift sm:aspect-[16/9] lg:aspect-[16/6.2] lg:object-[50%_22%]"
+      />
+
+      <div class="mt-8 lg:mt-9">
+        <span class="eyebrow">{c.hero.eyebrow}</span>
+        <h1 class="mt-4 text-[2.15rem] sm:text-[2.6rem] lg:text-[3.1rem]">{c.hero.h1}</h1>
+
+        <div class="prose-lander mt-5 max-w-[38rem] text-[1.04rem] leading-relaxed text-ink-soft">
+          {c.hero.intro.map((p) => <p>{p}</p>)}
+        </div>
+
+        <ul class="mt-7 grid gap-2.5 sm:grid-cols-2 sm:gap-x-7">
+          {c.hero.benefits.map((b) => (
+            <li class="flex items-start gap-2.5 text-[0.95rem] leading-snug">
+              <span class="mt-0.5 flex h-[1.15rem] w-[1.15rem] shrink-0 items-center justify-center rounded-full bg-accent text-white">
+                <Icon name="check" size={11} />
+              </span>
+              {b}
+            </li>
+          ))}
+        </ul>
+
+        {c.hero.offer && (
+          <div class="mt-8 rounded-2xl border border-line-warm bg-paper px-6 py-5 sm:max-w-[27rem]">
+            <p class="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-ink-soft">{c.hero.offer.name}</p>
+            <p class="stat-figure mt-1 text-[1.65rem] leading-none">{c.hero.offer.price}</p>
+            <p class="mt-2.5 text-[0.76rem] leading-relaxed text-ink-soft">{c.hero.offer.note}</p>
+          </div>
+        )}
+
+        <div class="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6">
+          <a href={c.hero.cta.href} class="btn btn-accent" data-track="cta_click" data-situation={c.hero.cta.situation}>
+            {c.hero.cta.label}
+            <Icon name="arrow" size={17} />
+          </a>
+          <a
+            href={`tel:${brand.phone.e164}`}
+            class="inline-flex items-center gap-2.5 text-[0.95rem] font-semibold text-navy hover:text-accent"
+          >
+            <Icon name="phone" size={16} />{brand.phone.display}
+          </a>
+        </div>
+        <p class="mt-4 text-[0.85rem] leading-snug text-ink-soft">{c.hero.note}</p>
+      </div>
+    </div>
+
+    <div id="aanvraag" class="scroll-mt-24 lg:sticky lg:top-24">
+      <LeadForm lang={lang} c={c} id="lead-hero" source="Hero" fields="short" />
+    </div>
+  </div>
+</section>
+
+<!-- 2. TRUST BAR (brief §8 section 2). Substantiated claims only. -->
+<section class="border-b border-line-soft bg-paper">
+  <div class="container-site grid gap-7 py-10 sm:grid-cols-2 md:py-12 lg:grid-cols-4">
+    {c.stats.map((s) => (
+      <div class="lg:border-l lg:border-line-soft lg:pl-7 lg:first:border-l-0 lg:first:pl-0">
+        <p class="stat-figure text-[1.8rem] leading-none text-accent md:text-[2rem]">{s.value}</p>
+        <p class="mt-2.5 text-[0.9rem] leading-snug text-ink-soft">{s.label}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+{explain && (
+  <!-- 3. RECOGNITION + SHORT INFORMATION (brief §8 section 3) -->
+  <section class="section" id={routing ? 'uitleg' : 'situatie'}>
+    <div class="container-site grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
+      <div class="relative">
+        <Photo
+          src={explain.photo.src}
+          alt={explain.photo.alt}
+          sizes="(min-width: 1024px) 34rem, 100vw"
+          class="aspect-[5/4] w-full rounded-[1.35rem] object-cover shadow-lift"
+        />
+        <div class="card-warm relative -mt-12 ml-5 mr-3 p-5 md:absolute md:-bottom-9 md:-right-7 md:ml-0 md:mr-0 md:mt-0 md:max-w-[20rem]">
+          <p class="text-[0.92rem] leading-relaxed text-navy-deep">{explain.photoNote}</p>
+        </div>
+      </div>
+
+      <div class="lg:pt-4">
+        <span class="eyebrow">{explain.eyebrow}</span>
+        <h2 class="heading-xl mt-4">{explain.heading}</h2>
+        <div class="prose-lander lede mt-6 text-ink">
+          {explain.body.map((p) => <p>{p}</p>)}
+        </div>
+        <ul class="check-list mt-8">
+          {explain.points.map((p) => (
+            <li class="flex items-start gap-3 text-[0.98rem]">
+              <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-tint text-accent">
+                <Icon name="check" size={13} />
+              </span>
+              {p}
+            </li>
+          ))}
+        </ul>
+        <a href={explain.cta.href} class="btn btn-navy mt-9" data-track="cta_click" data-situation={explain.cta.situation}>
+          {explain.cta.label}
+          <Icon name="arrow" size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+)}
+
+{packages && (
+  <!-- 4. CHOOSE THE RIGHT LEVEL OF ASSISTANCE. Two clearly defined services,
+       one lead form behind both (brief §9: never eight competing boxes). -->
+  <section class="section bg-warm" id="begeleiding">
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <span class="eyebrow">{packages.eyebrow}</span>
+        <h2 class="heading-xl mt-4">{packages.heading}</h2>
+        <p class="lede mt-5 text-ink-soft">{packages.intro}</p>
+      </div>
+
+      <div class="mt-12 grid gap-6 lg:grid-cols-2 lg:gap-8">
+        {packages.cards.map((card) => (
+          <article
+            class={`card flex h-full flex-col p-7 md:p-9 ${card.featured ? 'ring-2 ring-accent/45' : ''}`}
+          >
+            {card.badge && (
+              <span class="mb-5 inline-flex w-fit rounded-full bg-accent px-3.5 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.1em] text-white">
+                {card.badge}
+              </span>
+            )}
+            <h3 class="text-[1.35rem]">{card.title}</h3>
+            <p class="stat-figure mt-3 text-[2.1rem] leading-none text-accent">{card.price}</p>
+            <p class="mt-4 text-[0.96rem] leading-relaxed text-ink-soft">{card.body}</p>
+
+            {card.includesHeading && (
+              <p class="mt-7 text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-ink-soft">
+                {card.includesHeading}
+              </p>
+            )}
+            <ul class="check-list mt-4 flex-1">
+              {card.includes.map((i) => (
+                <li class="flex items-start gap-2.5 text-[0.94rem] leading-relaxed">
+                  <span class="mt-1 text-accent"><Icon name="check" size={13} /></span>
+                  {i}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={card.cta.href}
+              class={`btn mt-8 w-full ${card.featured ? 'btn-accent' : 'btn-outline'}`}
+              data-track="cta_click"
+              data-situation={card.cta.situation}
+            >
+              {card.cta.label}
+              {card.featured && <Icon name="arrow" size={16} />}
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <p class="mt-8 max-w-3xl text-[0.82rem] leading-relaxed text-ink-soft">{packages.note}</p>
+    </div>
+  </section>
+)}
+
+{journey && (
+  <!-- 5. ONE COORDINATED TRAJECTORY -->
+  <section class="section" id="traject">
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <span class="eyebrow">{journey.eyebrow}</span>
+        <h2 class="heading-xl mt-4">{journey.heading}</h2>
+        <p class="lede mt-5 text-ink-soft">{journey.intro}</p>
+      </div>
+
+      <ol class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {journey.items.map((s, i) => (
+          <li class="relative rounded-[1.35rem] border border-line-soft bg-canvas p-7">
+            <span class="stat-figure block text-[2.3rem] leading-none text-accent/50">{`0${i + 1}`}</span>
+            <h3 class="mt-4 text-[1.1rem]">{s.title}</h3>
+            <p class="mt-2.5 text-[0.93rem] leading-relaxed text-ink-soft">{s.body}</p>
+            {i < journey.items.length - 1 && (
+              <span class="absolute -right-[1.15rem] top-1/2 hidden -translate-y-1/2 text-line lg:block" aria-hidden="true">
+                <Icon name="arrow" size={20} />
+              </span>
+            )}
+          </li>
+        ))}
+      </ol>
+
+      <div class="mt-11 flex flex-col items-start gap-6 rounded-[1.35rem] bg-navy-tint p-7 md:flex-row md:items-center md:justify-between md:p-9">
+        <p class="max-w-xl font-display text-[1.12rem] font-semibold leading-snug text-navy-deep">{journey.outcome}</p>
+        <a
+          href={journey.cta.href}
+          class="btn btn-navy shrink-0"
+          data-track="cta_click"
+          data-situation={journey.cta.situation}
+        >
+          {journey.cta.label}
+          <Icon name="arrow" size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+)}
+
+{routing && (
+  <!-- WHICH SITUATION APPLIES TO YOU -->
+  <section class="section bg-warm" id="situatie">
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <span class="eyebrow">{routing.eyebrow}</span>
+        <h2 class="heading-xl mt-4">{routing.heading}</h2>
+        <p class="lede mt-5 text-ink-soft">{routing.intro}</p>
+      </div>
+
+      <div class="mt-12 grid gap-6 lg:grid-cols-3">
+        {routing.cards.map((card) => (
+          <article class="card flex flex-col overflow-hidden transition-colors hover:border-accent/35">
+            <Photo
+              src={card.photo.src}
+              alt={card.photo.alt}
+              sizes="(min-width: 1024px) 24rem, 100vw"
+              class="h-44 w-full object-cover"
+            />
+            <div class="flex flex-1 flex-col p-7">
+              <h3 class="text-[1.2rem] leading-snug">{card.title}</h3>
+              <p class="mt-3.5 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">{card.body}</p>
+              {card.price && (
+                <p class="mt-6 rounded-xl bg-accent-tint px-4 py-3 text-[0.9rem] font-semibold text-navy-deep">{card.price}</p>
+              )}
+              <a
+                href={card.cta.href}
+                class="btn btn-outline mt-6 w-full text-[0.9rem]"
+                data-track="cta_click"
+                data-situation={card.cta.situation}
+              >
+                {card.cta.label}
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+{distinction && (
+  <!-- BEFORE OR AFTER ARRIVAL -->
+  <section class="section">
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <span class="eyebrow">{distinction.eyebrow}</span>
+        <h2 class="heading-xl mt-4">{distinction.heading}</h2>
+        <p class="lede mt-5 text-ink-soft">{distinction.intro}</p>
+      </div>
+
+      <div class="mt-12 grid gap-7 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
+        <article class="card overflow-hidden ring-2 ring-accent/40">
+          <div class="relative">
+            <Photo
+              src={distinction.abroad.photo.src}
+              alt={distinction.abroad.photo.alt}
+              class="h-56 w-full object-cover md:h-64"
+            />
+            <span class="absolute left-6 top-6 rounded-full bg-accent px-3.5 py-1.5 text-[0.72rem] font-bold uppercase tracking-[0.1em] text-white">
+              {distinction.abroad.badge}
+            </span>
+          </div>
+          <div class="p-7 md:p-8">
+            <h3 class="text-[1.35rem]">{distinction.abroad.title}</h3>
+            <p class="mt-3.5 text-[0.96rem] leading-relaxed text-ink-soft">{distinction.abroad.body}</p>
+
+            <div class="mt-7 rounded-2xl border border-line-warm bg-warm p-6">
+              <p class="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-ink-soft">
+                {distinction.abroad.packageName}
+              </p>
+              <p class="stat-figure mt-1.5 text-[1.9rem]">{distinction.abroad.price}</p>
+              <ul class="check-list mt-5">
+                {distinction.abroad.includes.map((i) => (
+                  <li class="flex items-start gap-2.5 text-[0.92rem] leading-relaxed">
+                    <span class="mt-1 text-accent"><Icon name="check" size={13} /></span>
+                    {i}
+                  </li>
+                ))}
+              </ul>
+              <p class="mt-5 text-[0.76rem] leading-relaxed text-ink-soft">{distinction.abroad.priceNote}</p>
+            </div>
+
+            <a
+              href={distinction.abroad.cta.href}
+              class="btn btn-accent mt-7 w-full"
+              data-track="cta_click"
+              data-situation={distinction.abroad.cta.situation}
+            >
+              {distinction.abroad.cta.label}
+              <Icon name="arrow" size={16} />
+            </a>
+          </div>
+        </article>
+
+        <article class="card overflow-hidden">
+          <Photo
+            src={distinction.inNl.photo.src}
+            alt={distinction.inNl.photo.alt}
+            class="h-56 w-full object-cover md:h-64"
+          />
+          <div class="p-7 md:p-8">
+            <h3 class="text-[1.35rem]">{distinction.inNl.title}</h3>
+            <div class="prose-lander mt-3.5 text-[0.96rem] leading-relaxed text-ink-soft">
+              {distinction.inNl.body.map((p) => <p>{p}</p>)}
+            </div>
+            <a
+              href={distinction.inNl.cta.href}
+              class="btn btn-outline mt-7 w-full"
+              data-track="cta_click"
+              data-situation={distinction.inNl.cta.situation}
+            >
+              {distinction.inNl.cta.label}
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- 6. WHY IMMIGRATION SERVICES NL (brief §8 section 4) -->
+<section class="section bg-navy text-white" id="waarom">
+  <div class="container-site">
+    <div class="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:gap-20">
+      <div>
+        <span class="eyebrow-light">{c.help.eyebrow}</span>
+        <h2 class="heading-xl mt-4 text-white">{c.help.heading}</h2>
+        <p class="lede mt-5 text-white/78">{c.help.intro}</p>
+        <a href={c.help.cta.href} class="btn btn-accent mt-8" data-track="cta_click" data-situation={c.help.cta.situation}>
+          {c.help.cta.label}
+          <Icon name="arrow" size={16} />
+        </a>
+      </div>
+      <Photo
+        src={c.help.photo.src}
+        alt={c.help.photo.alt}
+        sizes="(min-width: 1024px) 32rem, 100vw"
+        class="aspect-[4/3] w-full rounded-[1.35rem] object-cover"
+      />
+    </div>
+
+    <div class="mt-14 grid gap-x-10 gap-y-8 border-t border-white/14 pt-12 sm:grid-cols-2 lg:grid-cols-4">
+      {c.help.items.map((item) => (
+        <div>
+          <h3 class="font-display text-[1.1rem] font-semibold text-white">{item.title}</h3>
+          <p class="mt-2.5 text-[0.93rem] leading-relaxed text-white/75">{item.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+{steps && (
+  <!-- HOW IT WORKS (brief §8 section 5) -->
+  <section class="section bg-warm" id="werkwijze">
+    <div class="container-site">
+      <div class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">{steps.eyebrow}</span>
+        <h2 class="heading-xl mt-4">{steps.heading}</h2>
+        <p class="lede mt-5 text-ink-soft">{steps.intro}</p>
+      </div>
+
+      <ol class="mt-12 grid gap-6 md:grid-cols-3">
+        {steps.items.map((s, i) => (
+          <li class="card overflow-hidden">
+            <span class="block h-1.5 w-full bg-accent/70"></span>
+            <div class="p-8">
+              <span class="stat-figure block text-[2.4rem] leading-none text-accent/50">{`0${i + 1}`}</span>
+              <h3 class="mt-4 text-[1.15rem]">{s.title}</h3>
+              <p class="mt-2.5 text-[0.95rem] leading-relaxed text-ink-soft">{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="mt-11 text-center">
+        <a href={steps.cta.href} class="btn btn-navy" data-track="cta_click" data-situation={steps.cta.situation}>
+          {steps.cta.label}
+          <Icon name="arrow" size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- 7. REVIEWS. Only reviews actually received (brief §21). -->
+<section class="section" id="ervaringen">
+  <div class="container-site">
+    <div class="max-w-2xl">
+      <span class="eyebrow">{c.reviews.eyebrow}</span>
+      <h2 class="heading-xl mt-4">{c.reviews.heading}</h2>
+      <p class="lede mt-5 text-ink-soft">{c.reviews.intro}</p>
+    </div>
+
+    <div class="mt-11 grid gap-6 md:grid-cols-2">
+      {c.reviews.items.map((r) => (
+        <figure class="card-warm p-8">
+          <span class="stat-figure block text-[2.4rem] leading-none text-accent/35">&ldquo;</span>
+          <blockquote class="mt-2 font-display text-[1.2rem] font-medium leading-relaxed text-navy-deep">{r.quote}</blockquote>
+          <figcaption class="mt-6 flex items-center gap-3 text-[0.88rem]">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-navy/8 text-navy">
+              <Icon name="user" size={17} />
+            </span>
+            <span>
+              <span class="block font-semibold text-navy-deep">{r.name}</span>
+              <span class="block text-ink-soft">{r.context}</span>
+            </span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2.5">
+      <span class="text-[0.86rem] font-semibold text-navy-deep">{c.reviews.countriesLabel}</span>
+      {c.reviews.countries.map((country) => (
+        <span class="rounded-full border border-line-soft bg-canvas px-3 py-1.5 text-[0.84rem] text-ink-soft">
+          {country}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
+
+{band && (
+  <!-- 8. PHOTO BAND: the human reason for the procedure -->
+  <section class="relative isolate overflow-hidden bg-navy-deep text-white">
+    <Photo
+      src={band.photo.src}
+      alt={band.photo.alt}
+      sizes="100vw"
+      class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_42%]"
+    />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-navy-deep/86 to-navy-deep/74 md:hidden"></div>
+    <div class="absolute inset-0 -z-10 hidden bg-gradient-to-r from-navy-deep/94 from-6% via-navy-deep/74 via-48% to-navy-deep/15 md:block"></div>
+
+    <div class="container-site py-20 md:py-28">
+      <div class="max-w-xl">
+        <h2 class="text-[1.85rem] text-white md:text-[2.3rem]">{band.heading}</h2>
+        <p class="lede mt-5 text-white/85">{band.body}</p>
+        <a href={band.cta.href} class="btn btn-accent mt-8" data-track="cta_click" data-situation={band.cta.situation}>
+          {band.cta.label}
+          <Icon name="arrow" size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+)}
+
+{aside && (
+  <!-- A visitor this page is not for, kept inside the group (brief §9). -->
+  <section class="section-tight bg-navy-tint">
+    <div class="container-site flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-10">
+      <div class="max-w-2xl">
+        <h2 class="text-[1.15rem]">{aside.heading}</h2>
+        <p class="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">{aside.body}</p>
+      </div>
+      <a
+        href={aside.href}
+        class="inline-flex shrink-0 items-center gap-2 text-[0.95rem] font-semibold text-navy underline underline-offset-4 hover:text-accent"
+      >
+        {aside.linkLabel}
+        <Icon name="arrow" size={15} />
+      </a>
+    </div>
+  </section>
+)}
+
+<!-- 9. FAQ. CSS-only accordion, no JS gating of content. -->
+<section class="section bg-warm" id="vragen">
+  <div class="container-site grid gap-11 lg:grid-cols-[0.8fr_1fr] lg:items-start lg:gap-16">
+    <div class="lg:sticky lg:top-28">
+      <span class="eyebrow">{c.faq.eyebrow}</span>
+      <h2 class="heading-xl mt-4">{c.faq.heading}</h2>
+      <p class="mt-5 text-[1rem] leading-relaxed text-ink-soft">{c.faq.intro}</p>
+      <a
+        href={whatsappUrl(c.whatsapp.text)}
+        target="_blank"
+        rel="noopener"
+        data-track="whatsapp_click"
+        class="mt-6 inline-flex items-center gap-2.5 text-[0.95rem] font-semibold text-navy underline underline-offset-4 hover:text-accent"
+      >
+        <Icon name="whatsapp" size={18} />
+        {c.whatsapp.label}
+      </a>
+    </div>
+
+    <div class="grid gap-3">
+      {c.faq.items.map((item, i) => (
+        <details class="group card px-6" open={i === 0}>
+          <summary
+            class="flex cursor-pointer list-none items-start justify-between gap-6 py-5 font-display text-[1.02rem] font-semibold text-navy-deep [&::-webkit-details-marker]:hidden"
+          >
+            {item.q}
+            <span class="mt-1 shrink-0 text-accent transition-transform duration-200 group-open:rotate-180">
+              <Icon name="chevron" size={18} />
+            </span>
+          </summary>
+          <p class="pb-6 pr-6 text-[0.96rem] leading-relaxed text-ink-soft">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- 10. FINAL CTA + LEAD FORM -->
+<section class="section relative isolate overflow-hidden bg-navy-deep text-white" id="contact">
+  <Photo
+    src={(c.finalCta.photo ?? c.hero.photo).src}
+    alt=""
+    sizes="100vw"
+    class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_45%] opacity-30"
+  />
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-navy-deep/94 via-navy-deep/88 to-navy-deep/96"></div>
+
+  <div class="container-site">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="eyebrow-light">{c.finalCta.eyebrow}</span>
+      <h2 class="heading-xl mt-4 text-white">{c.finalCta.heading}</h2>
+      <p class="lede mt-5 text-white/80">{c.finalCta.body}</p>
+
+      <ul class="mt-8 flex flex-wrap justify-center gap-2.5">
+        {c.finalCta.assurances.map((a) => (
+          <li class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-2 text-[0.85rem] text-white/90 ring-1 ring-white/16">
+            <span class="text-accent-bright"><Icon name="check" size={14} /></span>
+            {a}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="mx-auto mt-11 max-w-3xl">
+      <LeadForm lang={lang} c={c} id="lead-final" source="Afsluitende CTA" fields="full" columns={2} />
+    </div>
+
+    <div class="mx-auto mt-9 flex max-w-3xl flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-white/12 pt-8 text-[0.98rem]">
+      <p class="text-[0.9rem] text-white/65">{c.finalCta.directContact}</p>
+      <a href={`tel:${brand.phone.e164}`} class="inline-flex items-center gap-2.5 text-white hover:text-accent-bright">
+        <Icon name="phone" size={16} />{brand.phone.display}
+      </a>
+      <a
+        href={whatsappUrl(c.whatsapp.text)}
+        target="_blank"
+        rel="noopener"
+        data-track="whatsapp_click"
+        class="inline-flex items-center gap-2.5 text-white hover:text-accent-bright"
+      >
+        <Icon name="whatsapp" size={17} />{brand.whatsapp.display}
+      </a>
+    </div>
+  </div>
+</section>

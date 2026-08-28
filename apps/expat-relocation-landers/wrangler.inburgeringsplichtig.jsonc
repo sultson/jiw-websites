@@ -1,0 +1,44 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "inburgeringsplichtig",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-08-03",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  "routes": [
+    {
+      "pattern": "inburgeringsplichtig.jouwidealewebsite.nl",
+      "custom_domain": true
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["immigration@notify.jouwidealewebsite.nl"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "inburgeringsplichtig",
+    // Leads land in the same mailbox as the main E & I site until
+    // info@immigration-services.nl exists.
+    "LEAD_RECIPIENT": "info@expat-relocation.nl",
+    "LEAD_SENDER": "immigration@notify.jouwidealewebsite.nl",
+    // Unused: these forms run with turnstile disabled and a honeypot instead.
+    "TURNSTILE_SECRET_KEY": "dev"
+  }
+}

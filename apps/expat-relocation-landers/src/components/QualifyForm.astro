@@ -1,0 +1,132 @@
+---
+import Icon from './Icon.astro';
+import { site, type Lang, type LanderContent } from '../sites';
+
+interface Props {
+  lang: Lang;
+  c: LanderContent;
+}
+const { lang, c } = Astro.props;
+const t = c.thanks;
+---
+
+<!--
+  Second step of capture-first-qualify-second (brief §6). The lead is already
+  saved and emailed; nothing here is required, and abandoning it costs nothing.
+-->
+<form
+  class="card p-6 md:p-8"
+  data-qualify-form
+  data-form-path={`/api/forms/${site.formKind}-qualify`}
+  data-sending={t.submitting}
+  data-error={t.error}
+  novalidate
+>
+  <h2 class="font-display text-[1.35rem] text-navy">{t.qualifyHeading}</h2>
+  <p class="mt-2 text-[0.92rem] leading-relaxed text-ink-soft">{t.qualifyIntro}</p>
+
+  <div class="mt-7 grid gap-5 md:grid-cols-2">
+    <label class="block">
+      <span class="form-label">{t.fields.location.label}</span>
+      <select name="location" class="form-input">
+        <option value="">{t.choose}</option>
+        {t.fields.location.options.map((o) => <option value={o}>{o}</option>)}
+      </select>
+    </label>
+
+    <label class="block">
+      <span class="form-label">{t.fields.exam.label}</span>
+      <select name="exam" class="form-input">
+        <option value="">{t.choose}</option>
+        {t.fields.exam.options.map((o) => <option value={o}>{o}</option>)}
+      </select>
+    </label>
+
+    <label class="block md:col-span-2">
+      <span class="form-label">{t.fields.situation.label}</span>
+      <select name="situation" class="form-input">
+        <option value="">{t.choose}</option>
+        {t.fields.situation.options.map((o) => <option value={o}>{o}</option>)}
+      </select>
+    </label>
+
+    <label class="block">
+      <span class="form-label">{t.fields.nationality.label}</span>
+      <input name="nationality" type="text" class="form-input" />
+    </label>
+
+    <label class="block">
+      <span class="form-label">{t.fields.arrival.label}</span>
+      <input name="arrival" type="text" class="form-input" placeholder={t.fields.arrival.hint} />
+    </label>
+
+    <label class="block md:col-span-2">
+      <span class="form-label">{t.fields.notes.label}</span>
+      <textarea name="message" rows="3" class="form-input resize-y" placeholder={t.fields.notes.placeholder}></textarea>
+    </label>
+  </div>
+
+  <!-- Identifies the lead this belongs to; both are filled in on load. -->
+  <input type="hidden" name="firstName" data-qualify-name value="" />
+  <input type="hidden" name="reference" data-qualify-ref value="" />
+  <input type="hidden" name="domain" value={site.domain} />
+  <input type="hidden" name="language" value={lang === 'nl' ? 'Nederlands' : 'English'} />
+  <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+  <p class="mt-5 hidden rounded-xl border border-red-800/25 bg-red-50 px-4 py-3 text-[0.88rem] text-red-900" data-qualify-error></p>
+
+  <div class="mt-7 flex flex-wrap items-center gap-4">
+    <button type="submit" class="btn btn-navy">
+      <span data-qualify-label>{t.submit}</span>
+      <Icon name="arrow" size={16} />
+    </button>
+  </div>
+</form>
+
+<div class="card hidden p-8 text-center" data-qualify-success>
+  <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent-tint text-accent">
+    <Icon name="check" size={22} />
+  </span>
+  <h2 class="mt-4 font-display text-[1.35rem] text-navy">{t.done}</h2>
+  <p class="mt-2 text-[0.95rem] text-ink-soft">{t.doneBody}</p>
+</div>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('form[data-qualify-form]');
+  if (form) {
+    const success = document.querySelector('[data-qualify-success]');
+    const errorBox = form.querySelector('[data-qualify-error]');
+    const label = form.querySelector<HTMLElement>('[data-qualify-label]');
+    const original = label?.textContent ?? '';
+
+    const ref = new URLSearchParams(window.location.search).get('ref') ?? '';
+    const refField = form.querySelector<HTMLInputElement>('[data-qualify-ref]');
+    if (refField) refField.value = ref;
+    // The lead worker requires a name field; reuse the reference so the two
+    // emails can be matched without asking the visitor to type their name again.
+    const nameField = form.querySelector<HTMLInputElement>('[data-qualify-name]');
+    if (nameField) nameField.value = ref ? `Aanvulling ${ref.slice(0, 8)}` : 'Aanvulling';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox?.classList.add('hidden');
+      if ((form.elements.namedItem('company') as HTMLInputElement)?.value) return;
+
+      if (label) label.textContent = form.dataset.sending ?? '...';
+      try {
+        const res = await fetch(form.dataset.formPath ?? '', { method: 'POST', body: new FormData(form) });
+        const data = await res.json().catch(() => ({}) as any);
+        if (!res.ok || data?.ok === false) throw new Error('failed');
+        form.classList.add('hidden');
+        success?.classList.remove('hidden');
+        (window as any).dataLayer?.push({ event: 'lead_qualified' });
+      } catch {
+        if (errorBox) {
+          errorBox.textContent = form.dataset.error ?? 'Error';
+          errorBox.classList.remove('hidden');
+        }
+        if (label) label.textContent = original;
+      }
+    });
+  }
+</script>

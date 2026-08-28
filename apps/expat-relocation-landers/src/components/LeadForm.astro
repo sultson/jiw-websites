@@ -1,0 +1,201 @@
+---
+import Icon from './Icon.astro';
+import { CONFIRMATION_LOCALE_FIELD } from '@jiw/cloudflare-forms';
+import { site, PAGES, type Lang, type LanderContent } from '../sites';
+
+interface Props {
+  lang: Lang;
+  c: LanderContent;
+  id: string;
+  /** Which block the visitor submitted from, sent along with the lead. */
+  source: string;
+  /**
+   * `short` drops the optional message: in the hero the form sits beside the
+   * headline and a five-row column reads as work. The message field is on the
+   * closing form, and the real qualification happens on the thank-you page.
+   */
+  fields?: 'short' | 'full';
+  columns?: 1 | 2;
+}
+const { lang, c, id, source, fields = 'full', columns = 1 } = Astro.props;
+const f = c.form;
+const short = fields === 'short';
+const wide = columns === 2;
+---
+
+<!--
+  Short by design: name, email, phone, optional message (brief §5). No
+  eligibility questionnaire in front of the lead; qualification happens on the
+  thank-you page.
+-->
+<form
+  id={id}
+  class={`rounded-[1.5rem] bg-paper p-6 shadow-form md:p-7 ${wide ? 'md:p-9' : ''}`}
+  data-lead-form
+  data-form-path={`/api/forms/${site.formKind}`}
+  data-thanks={PAGES.thanks[lang]}
+  data-sending={f.submitting}
+  data-error={f.error}
+  novalidate
+>
+  <span class="inline-flex items-center gap-2 rounded-full bg-accent-tint px-3 py-1.5 text-[0.74rem] font-semibold text-accent">
+    <Icon name="check" size={13} />
+    {f.badge}
+  </span>
+  <h2 class={`mt-3.5 font-display leading-snug text-navy ${wide ? 'text-[1.6rem]' : 'text-[1.35rem]'}`}>{f.heading}</h2>
+  {!short && <p class="mt-2.5 text-[0.92rem] leading-relaxed text-ink-soft">{f.intro}</p>}
+
+  <div class={`mt-6 grid gap-4 ${wide ? 'md:grid-cols-2' : ''}`}>
+    <label class="block">
+      <span class="form-label">{f.name} *</span>
+      <input
+        name="firstName"
+        type="text"
+        required
+        autocomplete="name"
+        placeholder={f.namePlaceholder}
+        class="form-input"
+      />
+    </label>
+
+    <label class="block">
+      <span class="form-label">{f.email} *</span>
+      <input name="email" type="email" required autocomplete="email" inputmode="email" class="form-input" />
+    </label>
+
+    <label class={`block ${wide ? 'md:col-span-2' : ''}`}>
+      <span class="form-label">{f.phone} *</span>
+      <input
+        name="phone"
+        type="tel"
+        required
+        autocomplete="tel"
+        inputmode="tel"
+        placeholder="+31 6 12345678"
+        class="form-input"
+      />
+      <span class="mt-1.5 block text-[0.76rem] text-ink-soft">{f.phoneHint}</span>
+    </label>
+
+    {!short && (
+      <label class={`block ${wide ? 'md:col-span-2' : ''}`}>
+        <span class="form-label">
+          {f.message} <span class="font-normal normal-case text-ink-soft">({f.optional})</span>
+        </span>
+        <textarea name="message" rows="3" placeholder={f.messagePlaceholder} class="form-input resize-y"></textarea>
+      </label>
+    )}
+  </div>
+
+  <label class="mt-5 flex items-start gap-3 text-[0.84rem] leading-relaxed text-ink-soft">
+    <input
+      name="consent"
+      type="checkbox"
+      required
+      value="ja"
+      class="mt-1 h-4 w-4 shrink-0 rounded border-line accent-[#d1590f]"
+    />
+    <span>
+      {f.consent}{' '}
+      <a href={PAGES.privacy[lang]} class="text-navy underline underline-offset-2">{f.consentLink}</a>.
+    </span>
+  </label>
+
+  <!-- Honeypot -->
+  <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+  <input type="hidden" name={CONFIRMATION_LOCALE_FIELD} value={lang} />
+  <input type="hidden" name="domain" value={site.domain} />
+  <input type="hidden" name="language" value={lang === 'nl' ? 'Nederlands' : 'English'} />
+  <input type="hidden" name="situation" value={source} data-situation-field />
+  <input type="hidden" name="pageUrl" data-page-url />
+  <input type="hidden" name="referrer" data-attribution="referrer" />
+  <input type="hidden" name="utmSource" data-attribution="utm_source" />
+  <input type="hidden" name="utmMedium" data-attribution="utm_medium" />
+  <input type="hidden" name="utmCampaign" data-attribution="utm_campaign" />
+  <input type="hidden" name="utmTerm" data-attribution="utm_term" />
+  <input type="hidden" name="utmContent" data-attribution="utm_content" />
+  <input type="hidden" name="gclid" data-attribution="gclid" />
+
+  <p class="mt-5 hidden rounded-xl border border-red-800/25 bg-red-50 px-4 py-3 text-[0.88rem] text-red-900" data-lead-error></p>
+
+  <div class={wide ? 'mt-7 flex flex-col items-center gap-4' : 'mt-6'}>
+    <button
+      type="submit"
+      class={`btn btn-accent text-[1rem] ${wide ? 'w-full sm:w-auto sm:min-w-[18rem]' : 'w-full'}`}
+      data-track="lead_submit"
+    >
+      <span data-lead-label>{f.submit}</span>
+      <Icon name="arrow" size={17} />
+    </button>
+
+    <p class={`flex items-start gap-2 text-[0.78rem] leading-relaxed text-ink-soft ${wide ? 'text-center' : 'mt-4'}`}>
+      <Icon name="shield" size={14} class="mt-0.5 shrink-0" />
+      {f.privacyNote}
+    </p>
+  </div>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[data-lead-form]').forEach((form) => {
+    const errorBox = form.querySelector('[data-lead-error]');
+    const label = form.querySelector<HTMLElement>('[data-lead-label]');
+    const original = label?.textContent ?? '';
+
+    // Attribution and page URL are filled in at runtime, not at build time:
+    // the page is static and cached, the campaign parameters are per visitor.
+    const attribution = (window as any).__attribution ?? {};
+    form.querySelectorAll<HTMLInputElement>('[data-attribution]').forEach((input) => {
+      input.value = attribution[input.dataset.attribution ?? ''] ?? '';
+    });
+    const pageUrl = form.querySelector<HTMLInputElement>('[data-page-url]');
+    if (pageUrl) pageUrl.value = window.location.href;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox?.classList.add('hidden');
+
+      if ((form.elements.namedItem('company') as HTMLInputElement)?.value) return;
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (label) label.textContent = form.dataset.sending ?? '...';
+      try {
+        const res = await fetch(form.dataset.formPath ?? '', { method: 'POST', body: new FormData(form) });
+        const data = await res.json().catch(() => ({}) as any);
+        if (!res.ok || data?.ok === false) throw new Error(data?.message || 'failed');
+
+        (window as any).dataLayer?.push({
+          event: 'generate_lead',
+          form_domain: (form.querySelector('[name="domain"]') as HTMLInputElement)?.value,
+          form_situation: (form.querySelector('[data-situation-field]') as HTMLInputElement)?.value,
+        });
+
+        // Conversion is registered on a dedicated thank-you page (brief §6).
+        const thanks = form.dataset.thanks ?? '/';
+        const ref = data?.submissionId ? `?ref=${encodeURIComponent(data.submissionId)}` : '';
+        window.location.assign(`${thanks}${ref}`);
+      } catch (err) {
+        if (errorBox) {
+          errorBox.textContent = form.dataset.error ?? 'Error';
+          errorBox.classList.remove('hidden');
+        }
+        if (label) label.textContent = original;
+      }
+    });
+  });
+
+  // Every CTA on the page scrolls to a form and records which block it came
+  // from, so the lead email says what the visitor clicked.
+  document.querySelectorAll<HTMLAnchorElement>('a[data-situation]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const value = link.dataset.situation ?? '';
+      if (!value) return;
+      document.querySelectorAll<HTMLInputElement>('[data-situation-field]').forEach((input) => {
+        input.value = value;
+      });
+    });
+  });
+</script>

@@ -1,0 +1,26 @@
+---
+import type { LanderContent } from '../sites';
+
+interface Props {
+  c: LanderContent;
+}
+const { c } = Astro.props;
+---
+
+<section class="section">
+  <div class="container-site max-w-3xl">
+    <h1 class="text-[2rem] md:text-[2.4rem]">{c.privacy.heading}</h1>
+    <p class="mt-3 text-[0.88rem] text-ink-soft">{c.privacy.updated}</p>
+
+    <div class="mt-10 grid gap-9">
+      {c.privacy.sections.map((s) => (
+        <section>
+          <h2 class="text-[1.25rem]">{s.heading}</h2>
+          <div class="prose-lander mt-3 text-[0.98rem] leading-relaxed text-ink-soft">
+            {s.body.map((p) => <p>{p}</p>)}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</section>

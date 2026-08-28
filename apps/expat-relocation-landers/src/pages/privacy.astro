@@ -1,0 +1,12 @@
+---
+import Layout from '../components/Layout.astro';
+import PrivacyView from '../components/PrivacyView.astro';
+import { content } from '../sites';
+
+const lang = 'nl' as const;
+const c = content(lang);
+---
+
+<Layout lang={lang} c={c} title={c.privacy.metaTitle} description={c.privacy.heading} page="privacy" noindex>
+  <PrivacyView c={c} />
+</Layout>

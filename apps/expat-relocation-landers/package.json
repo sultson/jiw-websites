@@ -1,0 +1,38 @@
+{
+  "name": "@jiw/expat-relocation-landers",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "SITE=${SITE:-partnerhereniging} astro dev --port 3046 --host",
+    "build": "SITE=${SITE:-partnerhereniging} astro build",
+    "build:inburgeringsplichtig": "SITE=inburgeringsplichtig astro build",
+    "build:partnerhereniging": "SITE=partnerhereniging astro build",
+    "preview": "SITE=${SITE:-partnerhereniging} astro preview",
+    "ship": "pnpm ship:inburgeringsplichtig && pnpm ship:partnerhereniging",
+    "ship:inburgeringsplichtig": "pnpm build:inburgeringsplichtig && wrangler deploy --config wrangler.inburgeringsplichtig.jsonc",
+    "ship:partnerhereniging": "pnpm build:partnerhereniging && wrangler deploy --config wrangler.partnerhereniging.jsonc",
+    "ship:dry-run": "pnpm build:partnerhereniging && wrangler deploy --config wrangler.partnerhereniging.jsonc --dry-run",
+    "clean": "rm -rf dist .astro",
+    "lint": "astro check && tsc --noEmit -p tsconfig.worker.json",
+    "optimize-images": "node scripts/optimize-images.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
+    "@fontsource-variable/dm-sans": "^5.2.6",
+    "@fontsource-variable/figtree": "^5.3.0",
+    "@fontsource-variable/source-serif-4": "^5.2.5",
+    "@jiw/cloudflare-forms": "workspace:*",
+    "@tailwindcss/vite": "^4.1.14",
+    "astro": "^5.16.0",
+    "tailwindcss": "^4.1.14"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "sharp": "^0.34.5",
+    "typescript": "~5.8.2",
+    "vite": "^6.4.2",
+    "wrangler": "^4.85.0"
+  }
+}

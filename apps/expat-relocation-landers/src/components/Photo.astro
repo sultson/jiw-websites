@@ -1,0 +1,41 @@
+---
+/**
+ * One generated photo plus its 640w variant. Every image in public/images ships
+ * as `name.jpg` and `name-640.jpg` (scripts/optimize-images.mjs), so the srcset
+ * is derived from the source path rather than repeated at every call site.
+ *
+ * width/height carry the intrinsic ratio of the generator output. Where a
+ * caller crops with object-cover plus a height class that class wins, which is
+ * the point: the attributes only need to be right for the uncropped case.
+ */
+interface Props {
+  src: string;
+  alt: string;
+  sizes?: string;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'auto';
+}
+const {
+  src,
+  alt,
+  sizes = '(min-width: 1024px) 40rem, 100vw',
+  class: className = '',
+  loading = 'lazy',
+  fetchpriority = 'auto',
+} = Astro.props;
+const narrow = src.replace(/\.jpg$/, '-640.jpg');
+---
+
+<img
+  src={src}
+  srcset={`${narrow} 640w, ${src} 1264w`}
+  sizes={sizes}
+  alt={alt}
+  width="1264"
+  height="848"
+  loading={loading}
+  decoding="async"
+  fetchpriority={fetchpriority}
+  class={className}
+/>

@@ -1,0 +1,58 @@
+---
+import Icon from './Icon.astro';
+import QualifyForm from './QualifyForm.astro';
+import { PAGES, type Lang, type LanderContent } from '../sites';
+import { brand, whatsappUrl } from '../lib/brand';
+
+interface Props {
+  lang: Lang;
+  c: LanderContent;
+}
+const { lang, c } = Astro.props;
+const t = c.thanks;
+---
+
+<section class="section bg-warm">
+  <div class="container-site max-w-3xl">
+    <span class="flex h-14 w-14 items-center justify-center rounded-full bg-accent-tint text-accent">
+      <Icon name="check" size={26} />
+    </span>
+    <h1 class="mt-6 text-[2rem] md:text-[2.4rem]">{t.heading}</h1>
+    <div class="prose-lander mt-5 text-[1.02rem] leading-relaxed text-ink-soft">
+      {t.body.map((p) => <p>{p}</p>)}
+    </div>
+
+    <div class="mt-8 flex flex-wrap items-center gap-4 text-[0.92rem]">
+      <a href={`tel:${brand.phone.e164}`} class="inline-flex items-center gap-2 text-navy">
+        <Icon name="phone" size={15} />{brand.phone.display}
+      </a>
+      <a
+        href={whatsappUrl(c.whatsapp.text)}
+        target="_blank"
+        rel="noopener"
+        data-track="whatsapp_click"
+        class="inline-flex items-center gap-2 text-navy"
+      >
+        <Icon name="whatsapp" size={16} />{brand.whatsapp.display}
+      </a>
+    </div>
+
+    <div class="mt-10">
+      <QualifyForm lang={lang} c={c} />
+    </div>
+
+    <a href={PAGES.home[lang]} class="mt-8 inline-flex items-center gap-2 text-[0.92rem] text-ink-soft hover:text-navy">
+      {t.skip}
+    </a>
+  </div>
+</section>
+
+<script>
+  // The conversion fires on the thank-you page, once per submitted lead
+  // (brief §6, §28). Consumed by GA4 / Google Ads once the tags are installed.
+  (window as any).dataLayer = (window as any).dataLayer || [];
+  (window as any).dataLayer.push({
+    event: 'lead_confirmed',
+    lead_reference: new URLSearchParams(window.location.search).get('ref') ?? '',
+  });
+</script>
