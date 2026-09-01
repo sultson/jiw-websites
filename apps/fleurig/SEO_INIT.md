@@ -1,32 +1,38 @@
 # SEO_INIT: Fleurig! Bloemenwinkel
 
-Wat er moet gebeuren zodra `bloemenwinkelfleurig.nl` aan deze site wordt gekoppeld, en wat er daarna moet gebeuren om gevonden te worden.
+Op welk adres deze site staat, en wat er moet gebeuren om gevonden te worden.
 
-**Stand van zaken: de koppeling is in de code al gemaakt.** `SITE_URL` staat op `https://bloemenwinkelfleurig.nl`, de drie `custom_domain` routes staan aan (het kale domein, `www`, en het oude adres dat blijft doorsturen), en de aanvragen gaan naar `fleurig26@gmail.com`. Wat er nog moet gebeuren staat in Deel 2: de afzender van de bevestigingsmail, en de deploy.
+**Stand van zaken: de site staat op `https://fleurig.jouwidealewebsite.nl` en dat is het enige adres.** `SITE_URL` staat daarop, er is één `custom_domain` route, en de aanvragen gaan naar `fleurig26@gmail.com`.
 
-Het domein staat al bij Cloudflare (zone actief, nameservers `dean` en `lindsey.ns.cloudflare.com`, oorspronkelijk mijn.host) maar serveert nog niets: op het moment van schrijven staat er geen enkel DNS-record in. De A-records maakt Cloudflare zelf aan zodra de routes worden uitgerold; de mailrecords niet, en dat is de enige stap die echt op iets wacht.
+**Waarom niet op `bloemenwinkelfleurig.nl`.** Dat was het plan en het heeft ook een tijd in de code gestaan, maar het domein is nooit gaan werken. De zone staat wel actief in het Cloudflare-account (nameservers `dean` en `lindsey.ns.cloudflare.com`, oorspronkelijk mijn.host) en heeft **geen enkel DNS-record**, en de twee `custom_domain` routes zijn nooit aan de Worker vast komen te zitten: het account kent alleen `fleurig.jouwidealewebsite.nl`. De site was daardoor onbereikbaar, want de Worker stuurde het enige werkende adres met een 301 door naar een domein dat niet resolvet. Op 1 september 2026 is dat teruggedraaid.
 
-Er is **geen echte migratie**: het oude adres is een demo-subdomein zonder geschiedenis, dus geen 301-ketens en geen posities om te verliezen. Wel betekent het dat het nieuwe domein op dag één bij nul begint.
+Wil het eigen domein er later alsnog komen, dan is de volgorde: eerst DNS en de `custom_domain` routes echt aangesloten krijgen en controleren dat het domein antwoordt, dan pas `SITE_URL` omzetten. Andersom haalt de canonical de site uit de index en loopt elke bezoeker op de omleiding vast. Dat is precies wat hier gebeurd is.
+
+Er is **geen migratie** geweest: er heeft nooit iets op het eigen domein gestaan, dus er zijn geen 301-ketens en geen posities verloren. Het adres waar de site nu op staat begint wel op dag één bij nul, want het is niet eerder geïndexeerd.
 
 ---
 
 ## In één oogopslag
 
 **Al gedaan, in de code**
-- [x] `SITE_URL` op `https://bloemenwinkelfleurig.nl`
-- [x] De drie `custom_domain` routes aan (kaal domein, www, en het oude adres dat blijft doorsturen)
+- [x] `SITE_URL` op `https://fleurig.jouwidealewebsite.nl`
+- [x] Eén `custom_domain` route, op dat adres
+- [x] Afzender op het geverifieerde `aanvraag@notify.jouwidealewebsite.nl`
 - [x] Ontvanger op `fleurig26@gmail.com`
 
 **Voor het uitrollen**
-- [ ] **Afzenderdomein `notify.bloemenwinkelfleurig.nl` verifiëren in Cloudflare Email Service** *(2.1, zonder dit faalt elk formulier)*
 - [ ] `apps/fleurig` in git zetten, anders laat de sitemap `lastmod` weg *(2.2)*
 
 **Uitrollen**
 - [ ] `pnpm --filter @jiw/fleurig ship` *(2.3)*
-- [ ] Omleidingen, canonical, sitemap, robots en de 404 nalopen *(2.4)*
+- [ ] Canonical, sitemap, robots en de 404 nalopen *(2.4)*
 - [ ] Een echte aanvraag versturen en de bevestiging in Gmail én Outlook bekijken *(2.4)*
+
+**Alleen als het eigen domein er alsnog komt**
+- [ ] DNS en de twee `custom_domain` routes echt aangesloten, en gecontroleerd dat het domein antwoordt *(2.1)*
+- [ ] Pas daarna `SITE_URL` omzetten *(2.1)*
+- [ ] Afzenderdomein `notify.bloemenwinkelfleurig.nl` verifiëren in Cloudflare Email Service, plus een DMARC-record *(2.1)*
 - [ ] Adreswijziging melden in Search Console, met een aantekening op die datum *(2.5)*
-- [ ] DMARC-record op `_dmarc.bloemenwinkelfleurig.nl` *(2.1)*
 
 **Daarna**
 - [ ] **Google Bedrijfsprofiel: hoofdcategorie op `Bloemist` zetten (staat nu op `Winkel`)** *(Deel 4)*
@@ -50,7 +56,7 @@ Zodat duidelijk is wat je niet meer hoeft te doen.
 | | |
 |---|---|
 | **Voorgerenderd** | Alle 7 pagina's gaan als complete HTML de deur uit (`scripts/prerender.mjs`). Een crawler die geen JavaScript draait, en dat geldt voor de meeste taalmodellen, ziet de hele pagina. |
-| **Eén adres** | Canonical, `og:url`, sitemap en de omleiding van www komen alle uit `SITE_URL` in `site.config.mjs`. Eén regel omzetten verzet ze allemaal. |
+| **Eén adres** | Canonical, `og:url`, sitemap, de afzenderlogo-URL in de bevestigingsmail en de omleiding naar de canonieke host komen alle uit `SITE_URL` in `site.config.mjs`. Eén regel omzetten verzet ze allemaal. Die regel mag pas om als het nieuwe adres echt antwoordt. |
 | **Sitemap** | `/sitemap.xml`, opgebouwd uit de paginalijst, met `lastmod` uit de laatste commit die die pagina raakte. Weet het script het niet, dan laat hij de regel wég in plaats van de datum van vandaag te stempelen: Google gebruikt `lastmod` alleen als hij klopt. Geen `changefreq` en geen `priority`, want die negeert Google. |
 | **robots.txt** | Eén groep: iedereen mag alles, taalmodellen inbegrepen. Hier stonden eerst twintig identieke groepen, één per crawler, en dat is een val: een crawler leest precies één groep, dus een latere wijziging in de `*`-groep zou aan Googlebot voorbijgaan. De bedankpagina staat er niet in: die draagt `noindex`, en een crawler die er niet mag komen leest dat nooit. |
 | **Gegevens** | `Florist` met een vast `@id` en `WebSite` op de homepage; `Service` + `BreadcrumbList` per onderwerppagina, met de dienst die naar diezelfde winkel verwijst. NAP, geo, `areaServed` met 12 kernen, en openingstijden inclusief de drie dagen dat de deur dicht is (`00:00`-`00:00`, Googles eigen notatie: een dag zonder regel leest hij als onbekend, niet als gesloten). Geen `FAQPage`: dat rich result heeft Google in mei 2026 uit de resultaten gehaald. |
@@ -65,26 +71,24 @@ Wat er **niet** is, en bewust niet: geen Turnstile op het formulier (verborgen v
 
 ## Deel 2. Live gaan
 
-De code staat klaar. Wat er nu nog tussen zit is één ding met een wachttijd, en dan de deploy zelf.
+De code staat klaar en het adres werkt. Wat er nog moet gebeuren is de deploy en het nalopen.
 
 ### 2.1 De afzender van de bevestigingsmail
 
-**Doe dit eerst.** Het formulier verstuurt vanaf `aanvraag@notify.bloemenwinkelfleurig.nl`. Dat adres werkt pas als het subdomein in Cloudflare Email Service is aangemeld en de bijbehorende DKIM- en SPF-records in de zone staan.
+Het formulier verstuurt vanaf `aanvraag@notify.jouwidealewebsite.nl`. Dat afzenderdomein is in Cloudflare Email Service geverifieerd en wordt door de andere sites in deze monorepo gebruikt, dus hier hoeft niets meer te wachten. Het lokale deel voor de `@` is vrij te kiezen; `aanvraag@` houdt de mail herkenbaar.
 
-Op 14 augustus 2026 gaf een rechtstreekse bevraging van Cloudflares eigen nameservers (`dean.ns.cloudflare.com`) **geen enkel record** terug voor `bloemenwinkelfleurig.nl` of `notify.bloemenwinkelfleurig.nl`: geen TXT, geen MX, geen DKIM op de gangbare selectors. Als dat nog zo is, faalt `env.LEAD_EMAIL.send()` en krijgt elke bezoeker een foutmelding in plaats van een verstuurde aanvraag.
+Het stond op `aanvraag@notify.bloemenwinkelfleurig.nl`, en dat kon niet werken. Een rechtstreekse bevraging van Cloudflares eigen nameservers gaf op 14 augustus 2026 en opnieuw op 1 september 2026 **geen enkel record** terug voor `bloemenwinkelfleurig.nl` of `notify.bloemenwinkelfleurig.nl`: geen TXT, geen MX, geen DKIM op de gangbare selectors. Zonder DKIM en SPF vertrekt de mail niet, faalt `env.LEAD_EMAIL.send()` en krijgt de bezoeker een foutmelding in plaats van een verstuurde aanvraag.
 
-Controleer het zo, zonder API-sleutel:
+**Alleen relevant als het eigen domein er alsnog komt.** Verhuizen naar een afzender op het eigen domein gaat zo:
 
 ```bash
 dig +short @dean.ns.cloudflare.com TXT notify.bloemenwinkelfleurig.nl
 dig +short @dean.ns.cloudflare.com TXT cf2024-1._domainkey.notify.bloemenwinkelfleurig.nl
 ```
 
-Komt daar niets uit: Cloudflare dashboard → account `aec64586d4d04a644f4f9b8225d7ca28` → **Email** → **Email Sending** → afzenderdomein `notify.bloemenwinkelfleurig.nl` toevoegen en de verificatie aflopen.
+Komt daar niets uit: Cloudflare dashboard → account `aec64586d4d04a644f4f9b8225d7ca28` → **Email** → **Email Sending** → afzenderdomein `notify.bloemenwinkelfleurig.nl` toevoegen en de verificatie aflopen. Pas als die records er staan mogen `LEAD_SENDER` en `allowed_sender_addresses` in `wrangler.jsonc` mee om.
 
-Moet de site eerder live dan de afzender klaar is, zet dan tijdelijk zowel `LEAD_SENDER` als `allowed_sender_addresses` in `wrangler.jsonc` op `offerte@notify.jouwidealewebsite.nl`. Dat adres is al geverifieerd; het formulier werkt dan meteen, alleen staat de afzender nog niet op het eigen domein.
-
-**Zet er meteen een DMARC-record bij.** De aanvragen gaan naar een Gmail-adres, en Gmail is de strengste ontvanger. Cloudflare publiceert SPF en DKIM voor het afzenderdomein, maar geen DMARC. Een TXT-record op `_dmarc.bloemenwinkelfleurig.nl` met `v=DMARC1; p=none; rua=mailto:fleurig26@gmail.com` kost niets en helpt de bezorging.
+**Zet er dan meteen een DMARC-record bij.** De aanvragen gaan naar een Gmail-adres, en Gmail is de strengste ontvanger. Cloudflare publiceert SPF en DKIM voor het afzenderdomein, maar geen DMARC. Een TXT-record op `_dmarc.bloemenwinkelfleurig.nl` met `v=DMARC1; p=none; rua=mailto:fleurig26@gmail.com` kost niets en helpt de bezorging.
 
 ### 2.2 De app in git
 
@@ -104,40 +108,42 @@ pnpm --filter @jiw/fleurig ship
 
 `ship` draait `build` → `audit:seo` → `wrangler deploy`. Struikelt de audit, dan gaat er niets de deur uit.
 
-Het domein heeft nu nog geen DNS-records; die zet Cloudflare zelf klaar zodra de `custom_domain` routes worden aangemaakt. Reken op een paar minuten voordat het certificaat er is. In dat venster kan `https://bloemenwinkelfleurig.nl` even een certificaatfout geven, en heeft het logo in een bevestigingsmail nog geen bereikbaar adres. Beide lossen zichzelf op.
+`fleurig.jouwidealewebsite.nl` hangt al aan de Worker en heeft zijn certificaat, dus er is geen wachttijd en geen venster waarin de site even onbereikbaar is.
 
 ### 2.4 Nalopen, meteen na het uitrollen
 
 ```bash
-# het kale domein moet 200 geven, de andere twee een enkele 301 daarnaartoe
-for h in bloemenwinkelfleurig.nl www.bloemenwinkelfleurig.nl fleurig.jouwidealewebsite.nl; do
-  curl -s -o /dev/null -m 15 -w "$h -> %{http_code} %{redirect_url}\n" "https://$h/boeketten/"
+# elke pagina moet rechtstreeks 200 geven, zonder omleiding onderweg
+for p in / /boeketten/ /abonnement/ /rouwbloemen/ /trouwbloemen/; do
+  curl -s -o /dev/null -m 15 -w "$p -> %{http_code} %{redirect_url}\n" "https://fleurig.jouwidealewebsite.nl$p"
 done
 
-curl -s https://bloemenwinkelfleurig.nl/ | grep -o '<link rel="canonical"[^>]*>'
-curl -s https://bloemenwinkelfleurig.nl/ | grep -c Molendijk          # moet > 0 zijn
-curl -s -o /dev/null -w "robots %{http_code}\n"  https://bloemenwinkelfleurig.nl/robots.txt
-curl -s -o /dev/null -w "sitemap %{http_code}\n" https://bloemenwinkelfleurig.nl/sitemap.xml
-curl -s -o /dev/null -w "404 geeft %{http_code}\n" https://bloemenwinkelfleurig.nl/bestaat-niet
+curl -s https://fleurig.jouwidealewebsite.nl/ | grep -o '<link rel="canonical"[^>]*>'
+curl -s https://fleurig.jouwidealewebsite.nl/ | grep -c Molendijk          # moet > 0 zijn
+curl -s -o /dev/null -w "robots %{http_code}\n"  https://fleurig.jouwidealewebsite.nl/robots.txt
+curl -s -o /dev/null -w "sitemap %{http_code}\n" https://fleurig.jouwidealewebsite.nl/sitemap.xml
+curl -s -o /dev/null -w "404 geeft %{http_code}\n" https://fleurig.jouwidealewebsite.nl/bestaat-niet
 ```
+
+Staat er ergens nog een 301 naar `bloemenwinkelfleurig.nl`, dan draait er een oude versie van de Worker: dat is precies de storing die dit document beschrijft.
 
 **En dan het formulier, met je eigen adres.** Dit is de enige test die er echt toe doet:
 
 ```bash
-curl -X POST https://bloemenwinkelfleurig.nl/api/forms/aanvraag \
+curl -X POST https://fleurig.jouwidealewebsite.nl/api/forms/aanvraag \
   -F "firstName=Test" -F "lastName=Aanvraag" -F "email=JOUW@ADRES.nl" \
   -F "soort=Boeket" -F "leveringId=ophalen" -F "wensen=Test" -F "bedrijf="
 ```
 
-Verwacht `{"ok":true,...}`. Komt er `{"ok":false,"error":"server",...}`, dan is de afzender uit 2.1 nog niet klaar. Controleer daarna of de aanvraag in `fleurig26@gmail.com` staat en of de bevestiging bij jou aankwam, **in Gmail én in Outlook**, in de inbox en niet in spam, met het logo zichtbaar.
-
-`fleurig.jouwidealewebsite.nl` blijft als route staan en stuurt door. Niet weghalen bij het opruimen: die omleiding bestaat alleen zolang de host aan de Worker hangt.
+Verwacht `{"ok":true,...}`. Komt er `{"ok":false,"error":"server",...}`, dan klopt er iets niet aan de afzender uit 2.1. Controleer daarna of de aanvraag in `fleurig26@gmail.com` staat en of de bevestiging bij jou aankwam, **in Gmail én in Outlook**, in de inbox en niet in spam, met het logo zichtbaar.
 
 ### 2.5 Adreswijziging melden
 
-Het gereedschap in Search Console werkt op hostniveau en een subdomein is een geldige bron (Googles eigen voorbeeld is `m.example.com`). Er valt weinig door te geven, want het oude adres heeft nauwelijks geschiedenis, maar het verschuift de crawlaandacht naar het nieuwe domein en het is tien minuten. Let op de aanscherping van 17 juni 2026: dien hem in voor **alle varianten** van de oude naam. Vereist eigenaarschap van beide eigenschappen in hetzelfde Google-account, dus maak ze eerst allebei aan (Deel 4).
+**Nu niet aan de orde**, want er is niets verhuisd: de site heeft altijd op `fleurig.jouwidealewebsite.nl` gestaan.
 
-Zet meteen een **aantekening** op die datum in het Prestaties-rapport (rechtsklik op de grafiek). Over een half jaar wil je die markering hebben.
+Komt het eigen domein er later alsnog, dan hoort dit erbij. Het gereedschap in Search Console werkt op hostniveau en een subdomein is een geldige bron (Googles eigen voorbeeld is `m.example.com`). Let op de aanscherping van 17 juni 2026: dien hem in voor **alle varianten** van de oude naam. Vereist eigenaarschap van beide eigenschappen in hetzelfde Google-account, dus maak ze eerst allebei aan (Deel 4).
+
+Zet dan meteen een **aantekening** op die datum in het Prestaties-rapport (rechtsklik op de grafiek). Over een half jaar wil je die markering hebben.
 
 ## Deel 3. AI-zoekmachines, wat wel en wat niet
 
@@ -271,7 +277,9 @@ Als het profiel er staat: zet de Google Maps-URL erbij in `sameAs` in de `Floris
 
 ### Search Console en Bing
 
-**Google Search Console.** Maak een **domeineigenschap** (`bloemenwinkelfleurig.nl`), niet een URL-prefix. Een domeineigenschap dekt http, https, www en elk subdomein in één keer; een prefix-eigenschap dekt maar één van die vier en dan mis je de helft van je eigen gegevens. Verifiëren gaat via een DNS-record, en de DNS staat al bij Cloudflare, dus dat is een minuut werk.
+**Google Search Console.** De site staat op een subdomein van `jouwidealewebsite.nl`, dus maak hier een **URL-prefix-eigenschap** op `https://fleurig.jouwidealewebsite.nl/`. Een domeineigenschap op `jouwidealewebsite.nl` zou alle klantsites in dat account op één hoop gooien; een prefix-eigenschap houdt deze site apart. Verifiëren kan via een DNS-record in de Cloudflare-zone.
+
+Komt het eigen domein er later, maak dan wél een **domeineigenschap** (`bloemenwinkelfleurig.nl`), niet een URL-prefix. Een domeineigenschap dekt http, https, www en elk subdomein in één keer; een prefix-eigenschap dekt maar één van die vier en dan mis je de helft van je eigen gegevens.
 
 Daarna:
 - Sitemap indienen: `sitemap.xml`.
@@ -378,7 +386,7 @@ Verwachtingen eerst: een nieuw domein zonder geschiedenis staat niet in week twe
 | Dag 1 tot 3 | Search Console → Pagina-indexering | De vijf adressen staan op "Gecrawld" of "Geïndexeerd" |
 | Week 1 | Search Console → URL-inspectie op de homepage | "URL staat op Google", canonical = het adres dat jij koos |
 | Week 1 | Search Console → Verbeteringen | De `Florist`- en `BreadcrumbList`-gegevens worden herkend, zonder fouten |
-| Week 2 | Zoek op `site:bloemenwinkelfleurig.nl` | Vijf resultaten, met de titles die jij schreef en niet door Google herschreven |
+| Week 2 | Zoek op `site:fleurig.jouwidealewebsite.nl` | Vijf resultaten, met de titles die jij schreef en niet door Google herschreven |
 | Week 2 tot 4 | Search Console → Prestaties | Eerste vertoningen op "fleurig oud-beijerland" en "bloemist oud-beijerland" |
 | Maand 1 | Google Business Profile → Prestaties | Routeaanvragen en telefoontjes; dat zijn de handelingen die geld opleveren, niet de weergaven |
 | Maand 1 | Search Console → Core Web Vitals | Alle adressen groen. Zo niet, dan is er iets kapot, want de site is hier ruim onder de drempels gebouwd |

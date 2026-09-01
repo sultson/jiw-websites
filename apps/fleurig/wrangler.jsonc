@@ -18,20 +18,22 @@
     // SPA-terugval niets te doen behalve 200 antwoorden op een adres dat niet
     // bestaat. Dat is een zachte 404, en die kost indexruimte.
     "not_found_handling": "404-page",
-    // De Worker moet paginaverzoeken zien, niet alleen de API: anders draait de
-    // omleiding van www en het oude adres naar de canonieke host nooit. De
-    // bestanden met een hash in hun naam gaan er wel omheen, die hebben er
-    // niets te halen.
+    // De Worker moet paginaverzoeken zien, niet alleen de API: anders krijgt de
+    // HTML zijn Cache-Control niet mee en draait een eventuele omleiding naar de
+    // canonieke host nooit. De bestanden met een hash in hun naam gaan er wel
+    // omheen, die hebben er niets te halen.
     "run_worker_first": ["/*", "!/assets/*", "!/img/*", "!/favicon.svg", "!/logo-email.png"]
   },
+  // Eén adres, en dat is dit. bloemenwinkelfleurig.nl stond hier ook, maar dat
+  // domein is nooit aan de Worker vast komen te zitten: de zone bestaat in het
+  // account en heeft geen enkel DNS-record, dus het adres bestond voor een
+  // bezoeker niet. Zolang dat zo is hoort het hier niet te staan.
+  //
+  // Wordt het domein later alsnog gekoppeld, dan komen deze twee er weer bij
+  // (allebei: de www-variant vergeten zet de helft van de bezoekers op een
+  // foutpagina) en gaat SITE_URL in site.config.mjs mee om.
   "routes": [
-    { "pattern": "fleurig.jouwidealewebsite.nl", "custom_domain": true },
-
-    // Bij het koppelen van het eigen domein komen deze twee erbij, en gaat
-    // SITE_URL in site.config.mjs mee om. Beide: het is makkelijk de www-variant
-    // te vergeten, en dan is de helft van de bezoekers bij een foutpagina.
-    { "pattern": "bloemenwinkelfleurig.nl", "custom_domain": true },
-    { "pattern": "www.bloemenwinkelfleurig.nl", "custom_domain": true }
+    { "pattern": "fleurig.jouwidealewebsite.nl", "custom_domain": true }
   ],
   "r2_buckets": [
     {
@@ -39,10 +41,16 @@
       "bucket_name": "jiw-form-uploads-prod"
     }
   ],
+  // Verstuurd vanaf het gedeelde afzenderdomein notify.jouwidealewebsite.nl, dat
+  // in Cloudflare Email Service geverifieerd is en door de andere sites in deze
+  // monorepo gebruikt wordt. Het stond op notify.bloemenwinkelfleurig.nl, maar
+  // daar staat geen DKIM of SPF omdat de zone leeg is, en een aanvraag vanaf een
+  // niet-geverifieerd afzenderdomein vertrekt niet. Het lokale deel voor de @ is
+  // vrij, dus de aanvraag blijft herkenbaar als aanvraag.
   "send_email": [
     {
       "name": "LEAD_EMAIL",
-      "allowed_sender_addresses": ["aanvraag@notify.bloemenwinkelfleurig.nl"]
+      "allowed_sender_addresses": ["aanvraag@notify.jouwidealewebsite.nl"]
     }
   ],
   // Geen TURNSTILE_SECRET_KEY: dit formulier draait met `turnstile: false` en
@@ -51,6 +59,6 @@
   "vars": {
     "SITE_ID": "fleurig",
     "LEAD_RECIPIENT": "fleurig26@gmail.com",
-    "LEAD_SENDER": "aanvraag@notify.bloemenwinkelfleurig.nl"
+    "LEAD_SENDER": "aanvraag@notify.jouwidealewebsite.nl"
   }
 }

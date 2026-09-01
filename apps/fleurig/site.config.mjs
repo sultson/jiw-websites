@@ -8,17 +8,18 @@
  *
  * Dit is het adres waarop de site echt te bereiken hoort te zijn. Wijst het naar
  * een domein dat nog niet antwoordt, dan haalt een canonical de pagina uit de
- * index in plaats van hem alvast klaar te zetten, en stuurt de Worker het oude
- * adres door naar een deur die dicht zit.
+ * index in plaats van hem alvast klaar te zetten, en stuurt de Worker het
+ * werkende adres door naar een deur die dicht zit. Dat is precies wat hier
+ * gebeurde toen dit op bloemenwinkelfleurig.nl stond: dat domein staat wel in
+ * het Cloudflare-account maar heeft geen enkel DNS-record, dus elke bezoeker
+ * liep op de omleiding vast.
  *
- * De kale domeinnaam, niet www: de Worker leidt www en het oude adres op
- * jouwidealewebsite.nl hierheen met één 301, en dat rijtje leidt hij af van
- * precies deze regel.
+ * Komt bloemenwinkelfleurig.nl er later alsnog, dan is dit weer de enige regel
+ * die om hoeft: zet hem terug, zet de twee custom_domain routes terug in
+ * wrangler.jsonc, en meld notify.bloemenwinkelfleurig.nl aan bij Cloudflare
+ * Email Service voordat je het afzenderadres meeneemt.
  */
-export const SITE_URL = 'https://bloemenwinkelfleurig.nl';
-
-/** Het adres waarop de site is opgeleverd. Blijft doorsturen; niet weghalen. */
-export const VORIG_ADRES = 'https://fleurig.jouwidealewebsite.nl';
+export const SITE_URL = 'https://fleurig.jouwidealewebsite.nl';
 
 export const SITE_NAAM = 'Fleurig! Bloemenwinkel';
 

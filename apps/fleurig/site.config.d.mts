@@ -10,7 +10,6 @@
  */
 
 export declare const SITE_URL: string;
-export declare const VORIG_ADRES: string;
 export declare const SITE_NAAM: string;
 
 export declare const WINKEL: {

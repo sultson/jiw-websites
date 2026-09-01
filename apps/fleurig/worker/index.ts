@@ -28,7 +28,7 @@ const formulier = createFormWorker({
   /* De standaardtekst van het pakket is geschreven voor offertes voor een klus.
      Dit is een bloemenwinkel: er wordt niet geoffreerd, er wordt gemaakt. */
   leadEmail: {
-    heading: 'Nieuwe aanvraag via bloemenwinkelfleurig',
+    heading: 'Nieuwe aanvraag via de website',
     messageHeading: 'Wensen van de klant',
     nameLabels: {firstName: 'Voornaam', lastName: 'Achternaam', email: 'E-mailadres'},
   },
@@ -81,15 +81,19 @@ const formulier = createFormWorker({
 /* ------------------------------------------------------------------ */
 
 /**
- * Zodra bloemenwinkelfleurig.nl gekoppeld is, wijzen www, de kale domeinnaam en
- * het oude adres op jouwidealewebsite.nl alle drie naar deze Worker. Zonder
- * omleiding staat de site dan op drie adressen tegelijk in de index en verdeelt
- * hij zijn eigen positie over drie kopieën. Daarom: één host wint, de rest
- * stuurt zijn bezoekers en zijn links daarheen door met één 301.
+ * Wijzen er meerdere adressen naar deze Worker, dan staat de site op evenveel
+ * adressen tegelijk in de index en verdeelt hij zijn eigen positie over de
+ * kopieën. Daarom: één host wint, de rest stuurt zijn bezoekers en zijn links
+ * daarheen door met één 301.
  *
- * De lijst wordt afgeleid van SITE_URL, dus het omzetten van dat ene adres in
- * site.config.mjs zet ook deze omleiding goed: wat er dan overblijft in
- * ANDERE_HOSTS wordt vanzelf het rijtje dat doorstuurt.
+ * Op dit moment is er maar één host gekoppeld en doet deze omleiding dus niets:
+ * bloemenwinkelfleurig.nl staat niet meer in de routes, want dat domein heeft
+ * geen DNS en bestond voor een bezoeker niet. Het rijtje blijft staan omdat het
+ * van SITE_URL wordt afgeleid: wordt dat domein later alsnog gekoppeld, dan is
+ * het omzetten van die ene regel in site.config.mjs genoeg om de omleiding
+ * meteen de goede kant op te laten wijzen. Een host die niet in de routes van
+ * wrangler.jsonc staat komt hier nooit langs, dus wat hier te veel in staat
+ * kost niets.
  */
 const CANONIEKE_HOST = new URL(SITE_URL).hostname;
 
