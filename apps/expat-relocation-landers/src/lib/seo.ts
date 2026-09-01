@@ -1,4 +1,5 @@
 import { brand } from './brand';
+import { asset } from './assets';
 import { site } from '../sites';
 import type { LanderContent } from '../sites';
 
@@ -12,7 +13,7 @@ export function organizationJsonLd(siteUrl: string) {
     url: siteUrl,
     email: brand.email,
     telephone: brand.phone.e164,
-    image: `${siteUrl}${site.heroImage}`,
+    image: `${siteUrl}${asset(site.heroImage)}`,
     address: {
       '@type': 'PostalAddress',
       streetAddress: brand.address.line1,

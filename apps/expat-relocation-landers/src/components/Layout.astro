@@ -4,6 +4,7 @@ import Header from './Header.astro';
 import Footer from './Footer.astro';
 import FloatingCta from './FloatingCta.astro';
 import { site, PAGES, type Lang, type LanderContent } from '../sites';
+import { asset } from '../lib/assets';
 
 interface Props {
   lang: Lang;
@@ -25,8 +26,9 @@ const alternates = [
   { hreflang: 'en', href: new URL(PAGES[page].en, Astro.site).toString() },
   { hreflang: 'x-default', href: new URL(PAGES[page].nl, Astro.site).toString() },
 ];
-const ogImage = new URL(site.heroImage, Astro.site).toString();
-const heroNarrow = site.heroImage.replace(/\.jpg$/, '-640.jpg');
+const ogImage = new URL(asset(site.heroImage), Astro.site).toString();
+const heroWide = asset(site.heroImage);
+const heroNarrow = asset(site.heroImage.replace(/\.jpg$/, '-640.jpg'));
 ---
 
 <!doctype html>
@@ -55,19 +57,19 @@ const heroNarrow = site.heroImage.replace(/\.jpg$/, '-640.jpg');
     <link
       rel="preload"
       as="image"
-      href={site.heroImage}
-      imagesrcset={`${heroNarrow} 640w, ${site.heroImage} 1264w`}
-      imagesizes="(min-width: 1024px) 44rem, 100vw"
+      href={heroWide}
+      imagesrcset={`${heroNarrow} 640w, ${heroWide} 1264w`}
+      imagesizes="100vw"
       fetchpriority="high"
     />
-    <meta name="theme-color" content="#143a5e" />
+    <meta name="theme-color" content="#0e3a3d" />
 
     {jsonLd.map((data) => <script is:inline type="application/ld+json" set:html={JSON.stringify(data)} />)}
   </head>
-  <body class="bg-paper">
+  <body class="bg-cream">
     <a
       href="#contact"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-navy-deep focus:px-5 focus:py-2 focus:text-white"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-deeper focus:px-5 focus:py-2 focus:text-white"
     >
       {lang === 'nl' ? 'Naar het formulier' : 'Skip to the form'}
     </a>

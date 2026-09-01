@@ -34,6 +34,11 @@ prospecting/data
 prospecting/*.csv
 tmp
 
+# expat-relocation-landers: generated image candidates, kept out of public/ so
+# they are not copied into every build. Only the picks are promoted to
+# public/images.
+apps/expat-relocation-landers/image-candidates
+
 # mts-badkamers bouwt met build.mjs naar apps/mts-badkamers/site/. Die map is
 # half bron, half bouwsel: styles.css, app.js, f/, video/, poster/, de losse
 # svg's en icon.png horen in git, de rest wordt gegenereerd.

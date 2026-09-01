@@ -12,18 +12,18 @@ const { lang, c } = Astro.props;
 const t = c.thanks;
 ---
 
-<section class="section bg-warm">
+<section class="section bg-cream">
   <div class="container-site max-w-3xl">
-    <span class="flex h-14 w-14 items-center justify-center rounded-full bg-accent-tint text-accent">
+    <span class="flex h-14 w-14 items-center justify-center rounded-xl bg-flame text-white">
       <Icon name="check" size={26} />
     </span>
-    <h1 class="mt-6 text-[2rem] md:text-[2.4rem]">{t.heading}</h1>
-    <div class="prose-lander mt-5 text-[1.02rem] leading-relaxed text-ink-soft">
+    <h1 class="display-2 mt-7">{t.heading}</h1>
+    <div class="prose-lander lede mt-5 text-ink-soft">
       {t.body.map((p) => <p>{p}</p>)}
     </div>
 
-    <div class="mt-8 flex flex-wrap items-center gap-4 text-[0.92rem]">
-      <a href={`tel:${brand.phone.e164}`} class="inline-flex items-center gap-2 text-navy">
+    <div class="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-line pt-6 text-[0.95rem]">
+      <a href={`tel:${brand.phone.e164}`} class="inline-flex items-center gap-2.5 font-semibold text-deep hover:text-flame-ink">
         <Icon name="phone" size={15} />{brand.phone.display}
       </a>
       <a
@@ -31,7 +31,7 @@ const t = c.thanks;
         target="_blank"
         rel="noopener"
         data-track="whatsapp_click"
-        class="inline-flex items-center gap-2 text-navy"
+        class="inline-flex items-center gap-2.5 font-semibold text-deep hover:text-flame-ink"
       >
         <Icon name="whatsapp" size={16} />{brand.whatsapp.display}
       </a>
@@ -41,7 +41,7 @@ const t = c.thanks;
       <QualifyForm lang={lang} c={c} />
     </div>
 
-    <a href={PAGES.home[lang]} class="mt-8 inline-flex items-center gap-2 text-[0.92rem] text-ink-soft hover:text-navy">
+    <a href={PAGES.home[lang]} class="mt-8 inline-flex items-center gap-2 text-[0.94rem] text-ink-soft hover:text-deep">
       {t.skip}
     </a>
   </div>

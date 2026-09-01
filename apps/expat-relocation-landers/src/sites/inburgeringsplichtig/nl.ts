@@ -25,7 +25,7 @@ export const nl: LanderContent = {
   },
   hero: {
     eyebrow: 'Inburgering in Nederland',
-    h1: 'Bent u inburgeringsplichtig in Nederland?',
+    h1: 'Bent u <span class="hl">inburgeringsplichtig</span> in Nederland?',
     intro: [
       'Heeft u bericht gekregen dat u moet inburgeren, of weet u niet zeker welke eisen in uw situatie gelden? Dat hangt af van uw verblijfssituatie, wanneer u naar Nederland kwam en welke inburgeringsroute op u van toepassing is.',
       'Wij brengen uw situatie in kaart en helpen u bepalen wat uw juiste vervolgstap is.',

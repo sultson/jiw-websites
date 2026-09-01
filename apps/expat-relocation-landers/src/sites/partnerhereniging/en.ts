@@ -11,7 +11,7 @@ export const en: LanderContent = {
     title: 'Partner Reunification Netherlands: MVV/TEV Application Assistance',
     description:
       'Would you like your foreign partner to come and live with you in the Netherlands? We professionally prepare your MVV/TEV partner application, documents included. From €799 excl. VAT.',
-    imageAlt: 'A couple laughing together in the arrivals hall of a Dutch airport',
+    imageAlt: 'A couple holding each other and laughing in the arrivals hall of a Dutch airport',
   },
   nav: {
     links: [
@@ -26,7 +26,8 @@ export const en: LanderContent = {
   },
   hero: {
     eyebrow: 'Partner reunification in the Netherlands',
-    h1: 'Want to bring your partner to the Netherlands?',
+    route: { from: 'Your partner abroad', to: 'Together in the Netherlands' },
+    h1: 'Want to bring your partner <span class="hl">to the Netherlands</span>?',
     intro: [
       'Does your partner still live abroad, and would you like to build a life together in the Netherlands? Depending on your situation, requirements may apply regarding your income, your relationship, the documents you submit, the civic integration examination abroad and the MVV/TEV procedure.',
       'We professionally prepare your partner application and, where required, provide the A1 examination preparation as well, so the whole trajectory sits with one provider.',
@@ -46,7 +47,7 @@ export const en: LanderContent = {
     note: 'We contact you personally, usually within one business day.',
     photo: {
       src: '/images/ph-hero.jpg',
-      alt: 'A couple laughing together in the arrivals hall of a Dutch airport',
+      alt: 'A couple holding each other and laughing in the arrivals hall of a Dutch airport',
     },
   },
   stats: [
@@ -60,31 +61,33 @@ export const en: LanderContent = {
     heading: 'Is this your situation?',
     body: [
       'In a partner reunification you apply, as the sponsor in the Netherlands, for residence for your partner who still lives abroad. This usually runs through the TEV procedure, in which the provisional residence permit (MVV) and the residence permit are assessed in a single application.',
-      'What exactly has to be demonstrated depends on the form of your relationship, your income and your partner’s nationality. That is where it most often goes wrong in practice. A file that is incomplete on a single point leads to questions and delay.',
+      'What exactly has to be demonstrated depends on your income, your partner’s nationality and the form of your relationship: married, registered partners or unmarried partners living together. That is where it most often goes wrong in practice. A file that is incomplete on a single point leads to questions and delay.',
     ],
+    pointsStyle: 'quotes',
     points: [
-      'Your partner currently lives outside the Netherlands.',
-      'You want to live together permanently in the Netherlands.',
-      'You are married, registered partners or unmarried partners.',
-      'You are unsure whether you meet the income requirement.',
-      'Your partner may require an MVV.',
-      'Your partner may first need to pass the civic integration examination abroad.',
+      'My partner still lives abroad.',
+      'We want to build a life together, here in the Netherlands.',
+      'We are not married, but we have been together for years.',
+      'I do not know whether my income is enough.',
+      'Does my partner need an MVV?',
+      'Does my partner have to pass the examination first?',
     ],
     cta: { label: 'Discuss my situation', href: '#contact', situation: 'Your situation' },
     photo: {
-      src: '/images/ph-keukentafel.jpg',
-      alt: 'A couple going through the documents for their application at the kitchen table',
+      src: '/images/ph-situatie.jpg',
+      alt: 'A couple sitting on the living room floor sorting the paperwork for their application',
     },
     photoNote:
       'Unsure about the income requirement or your supporting documents? Leave your details and we will go through your situation with you.',
   },
   packages: {
     eyebrow: 'Assistance',
-    heading: 'Choose the right level of assistance',
+    heading: 'Choose the assistance that fits you',
     intro:
       'Two options. Which one fits you depends on a single question: does your partner still need to sit the civic integration examination abroad?',
     cards: [
       {
+        badge: 'Examination already passed or exempt',
         title: 'MVV/TEV partner application',
         price: '€799 excl. VAT',
         body: 'For clients who have already passed the required examination, are exempt, or do not need A1 preparation from us.',
@@ -200,8 +203,8 @@ export const en: LanderContent = {
     body: 'Behind every application there is a couple who simply want to be together. That is why you get one point of contact who knows your file and whom you can call when something changes.',
     cta: { label: 'Start my partner application', href: '#contact', situation: 'Photo band' },
     photo: {
-      src: '/images/ph-samen.jpg',
-      alt: 'A couple walking hand in hand down a Dutch residential street',
+      src: '/images/ph-tuin.jpg',
+      alt: 'A couple eating with Dutch family and friends at a long table in the garden',
     },
   },
   aside: {

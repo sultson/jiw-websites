@@ -7,7 +7,8 @@ import { writeFile } from 'node:fs/promises';
 import sharp from 'sharp';
 import crypto from 'node:crypto';
 
-const KEY = 'n31amyHUqDm25NnCNUu52tcUjjZStVyC';
+const KEY = process.env.RUNWARE_API_KEY;
+if (!KEY) throw new Error('RUNWARE_API_KEY is not set. Run: set -a && source ../../.env && set +a');
 const URL_API = 'https://api.runware.ai/v1';
 const OUT = new URL('file:///Users/alfred/Projects/jiw-websites/apps/expat-relocation-landers/public/images/');
 

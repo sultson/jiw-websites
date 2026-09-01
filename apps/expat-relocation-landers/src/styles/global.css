@@ -1,270 +1,460 @@
 @import 'tailwindcss';
-@import '@fontsource-variable/figtree';
-@import '@fontsource-variable/dm-sans';
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/schibsted-grotesk';
 
 /* ------------------------------------------------------------------ *
- * Immigration Services NL — landing pages
+ * Immigration Services NL — landing pages, design system v2
  *
- * The client's feedback on the first concept: keep the professional quality,
- * but drop the luxury/boutique register of the expat website. These visitors
- * are couples trying to find a route to live together, not executives
- * relocating for a job. So: no editorial serif, no near-black navy, no
- * moody dusk photography. A friendly Dutch blue, a warm orange for action,
- * warm off-white grounds, and a humanist sans throughout.
+ * The client's brief in one line: these are not executives relocating for a
+ * job, they are couples trying to find a route to live together. So the page
+ * has to read Dutch, warm and human, and it has to look like nothing else in
+ * this market — which is uniformly navy, gold and stock-photo boardrooms.
  *
- * Figtree carries the headings: open, rounded, plainly readable at a glance.
- * DM Sans keeps the body copy and the form quick to read.
+ * Three decisions carry the whole system:
+ *
+ * 1. Ground, not cards. Sections are flat planes of cream, sand, petrol and
+ *    full-bleed photography that meet edge to edge. Almost nothing floats on a
+ *    soft shadow, because floating rounded white boxes are what every generic
+ *    landing page looks like.
+ * 2. The route. A hairline with station dots — the visual grammar of a Dutch
+ *    journey map — carries the trajectory sections and reappears in the
+ *    wordmark, the step markers and the situation list. It is the signature,
+ *    and it is functional rather than decorative: the product literally is a
+ *    route from one country to one address.
+ * 3. Petrol and Dutch orange on warm paper. Deep petrol reads authoritative
+ *    without the cold navy cliché; the orange is the action colour and never
+ *    small text (see --color-flame-ink for that).
  * ------------------------------------------------------------------ */
 @theme {
-  /* Delft-ish blue rather than midnight navy: authoritative, not severe. */
-  --color-navy: #1a4b7a;
-  --color-navy-deep: #143a5e;
-  --color-navy-soft: #2b689d;
-  --color-navy-tint: #e8f0f7;
+  /* Structure. Petrol rather than navy: serious, warm, unmistakably not a bank. */
+  --color-deep: #0e3a3d;
+  --color-deeper: #0a2b2e;
+  --color-petrol: #1c5f63;
+  --color-petrol-tint: #dce9e8;
 
-  --color-accent: #d1590f;
-  --color-accent-bright: #ef7420;
-  --color-accent-tint: #ffe9d6;
+  /* Action. `flame` fills, `flame-ink` is the only one safe as small text. */
+  --color-flame: #da5a22;
+  --color-flame-bright: #ed6e2e;
+  --color-flame-ink: #af4318;
+  --color-flame-soft: #f7dccb;
+  --color-flame-light: #f6c09a;
 
+  /* Grounds. */
   --color-paper: #ffffff;
-  /* Warm grounds. Warm carries most alternating sections; sand is the deeper
-     step for a block that has to sit forward of warm. */
-  --color-warm: #fff7f0;
-  --color-sand: #fdeadb;
-  --color-canvas: #f5f8fb;
-  --color-mist: #e9f0f6;
+  --color-cream: #fbf4e9;
+  --color-sand: #f2e5d2;
 
-  --color-ink: #24303d;
-  --color-ink-soft: #5a6877;
-  --color-line: rgba(26, 75, 122, 0.16);
-  --color-line-soft: rgba(26, 75, 122, 0.09);
-  --color-line-warm: rgba(209, 89, 15, 0.16);
+  --color-ink: #1b2e31;
+  --color-ink-soft: #56696c;
+  --color-line: rgba(27, 46, 49, 0.14);
+  --color-line-soft: rgba(27, 46, 49, 0.08);
+  --color-line-strong: rgba(27, 46, 49, 0.26);
 
-  --font-display: 'Figtree Variable', 'Figtree', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Schibsted Grotesk Variable', 'Schibsted Grotesk', ui-sans-serif, system-ui, sans-serif;
 
-  --shadow-card: 0 1px 2px rgba(20, 58, 94, 0.04), 0 16px 36px -26px rgba(20, 58, 94, 0.28);
-  --shadow-lift: 0 2px 4px rgba(20, 58, 94, 0.05), 0 28px 56px -34px rgba(20, 58, 94, 0.4);
-  --shadow-form: 0 2px 6px rgba(20, 58, 94, 0.06), 0 32px 64px -34px rgba(20, 58, 94, 0.42);
+  /* Used on the two elements that genuinely sit above the page: the lead form
+     and the sticky bar. Everything else is flat. */
+  --shadow-panel: 0 2px 4px rgba(10, 43, 46, 0.04), 0 32px 64px -36px rgba(10, 43, 46, 0.5);
 }
 
 @layer base {
   html {
-    background-color: var(--color-paper);
+    background-color: var(--color-cream);
     scroll-behavior: smooth;
-    /* Anchor CTAs land below the sticky header. */
     scroll-padding-top: 5.5rem;
   }
   body {
     font-family: var(--font-sans);
     color: var(--color-ink);
-    font-size: 1.02rem;
-    line-height: 1.72;
+    font-size: 1.0625rem;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    /* Room for the mobile sticky CTA bar. */
     padding-bottom: env(safe-area-inset-bottom);
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     font-weight: 600;
-    color: var(--color-navy-deep);
-    line-height: 1.18;
-    letter-spacing: -0.018em;
+    color: var(--color-deep);
+    line-height: 1.12;
+    letter-spacing: -0.022em;
     text-wrap: balance;
   }
   h1 {
-    font-weight: 650;
-    line-height: 1.08;
-    letter-spacing: -0.026em;
+    line-height: 0.98;
+    letter-spacing: -0.038em;
   }
-  p { text-wrap: pretty; }
+  p {
+    text-wrap: pretty;
+  }
   ::selection {
-    background: var(--color-accent-tint);
-    color: var(--color-navy-deep);
+    background: var(--color-flame);
+    color: #fff;
   }
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-flame-ink);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 3px;
   }
-  img { max-width: 100%; }
+  img {
+    max-width: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }
 
 @utility container-site {
   margin-inline: auto;
   width: 100%;
-  max-width: 76rem;
+  max-width: 78rem;
   padding-inline: 1.25rem;
   @media (min-width: 768px) {
     padding-inline: 2rem;
   }
 }
 
-@utility eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-family: var(--font-sans);
-  font-size: 0.73rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  &::before {
-    content: '';
-    width: 1.6rem;
-    height: 2px;
-    border-radius: 2px;
-    background: currentColor;
-  }
-}
-
-@utility eyebrow-light {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-family: var(--font-sans);
-  font-size: 0.73rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #f6ad76;
-  &::before {
-    content: '';
-    width: 1.6rem;
-    height: 2px;
-    border-radius: 2px;
-    background: currentColor;
-  }
-}
-
 @utility section {
-  padding-block: 4.5rem;
+  padding-block: 4.75rem;
   @media (min-width: 768px) {
-    padding-block: 6.5rem;
+    padding-block: 7rem;
   }
 }
 
 @utility section-tight {
-  padding-block: 3.25rem;
+  padding-block: 3rem;
   @media (min-width: 768px) {
-    padding-block: 4.25rem;
+    padding-block: 4rem;
   }
 }
 
-@utility heading-xl {
-  font-size: 1.9rem;
-  @media (min-width: 768px) {
-    font-size: 2.4rem;
-  }
+/* --- Section label -------------------------------------------------- *
+ * A numbered tab rather than a floating eyebrow: it sits on a hairline that
+ * runs to the edge of the column, so every section opens like a chapter.    */
+@utility tab {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.85rem;
+  border-top: 2px solid var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+@utility tab-num {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--color-flame-ink);
+}
+
+@utility tab-light {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.85rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.45);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* --- Type ----------------------------------------------------------- */
+@utility display-1 {
+  font-size: clamp(2.6rem, 6.2vw, 4.4rem);
+  font-weight: 600;
+}
+
+@utility display-2 {
+  font-size: clamp(1.95rem, 3.9vw, 3rem);
+  font-weight: 600;
+}
+
+@utility display-3 {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 600;
 }
 
 @utility lede {
-  font-size: 1.05rem;
-  line-height: 1.72;
+  font-size: 1.075rem;
+  line-height: 1.66;
   @media (min-width: 768px) {
-    font-size: 1.1rem;
+    font-size: 1.16rem;
   }
 }
 
+/* A marker stroke under a phrase in a heading. Human, hand-made, and the one
+   piece of decoration on the page. Used once, never more.
+   The background box of an inline span runs from the ascender to the descender,
+   so the baseline sits at roughly 80% of it: the stroke starts below that and
+   stops short of the descender depth. */
+@utility hl {
+  background-image: linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 84%,
+    var(--color-flame) 84%,
+    var(--color-flame) 96%,
+    transparent 96%
+  );
+  padding-inline: 0.04em;
+}
+
+@utility hl-light {
+  background-image: linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 84%,
+    var(--color-flame-bright) 84%,
+    var(--color-flame-bright) 96%,
+    transparent 96%
+  );
+  padding-inline: 0.04em;
+}
+
+/* --- Buttons -------------------------------------------------------- *
+ * Soft rectangles, not pills. A pill is the default of every template on the
+ * internet; a 12px rectangle reads as a control someone designed.           */
 @utility btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  border-radius: 9999px;
-  padding: 1rem 1.75rem;
-  font-family: var(--font-display);
-  font-size: 0.98rem;
+  gap: 0.65rem;
+  border-radius: 0.7rem;
+  padding: 1.02rem 1.6rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
   text-align: center;
-  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  transition:
+    background-color 0.16s ease,
+    color 0.16s ease,
+    border-color 0.16s ease;
 }
 
-@utility btn-accent {
-  background-color: var(--color-accent);
+@utility btn-flame {
+  background-color: var(--color-flame);
   color: #fff;
-  box-shadow: 0 1px 2px rgba(20, 58, 94, 0.12), 0 16px 30px -18px rgba(209, 89, 15, 0.9);
-  &:hover { background-color: var(--color-accent-bright); }
+  &:hover {
+    background-color: var(--color-flame-bright);
+  }
 }
 
-@utility btn-navy {
-  background-color: var(--color-navy);
+@utility btn-ink {
+  background-color: var(--color-deep);
   color: #fff;
-  &:hover { background-color: var(--color-navy-soft); }
+  &:hover {
+    background-color: var(--color-petrol);
+  }
 }
 
 @utility btn-outline {
-  border: 1px solid var(--color-line);
-  color: var(--color-navy);
-  background-color: #fff;
-  &:hover { border-color: var(--color-navy); background-color: var(--color-navy-tint); }
+  border: 1.5px solid var(--color-line-strong);
+  color: var(--color-deep);
+  background-color: transparent;
+  &:hover {
+    border-color: var(--color-deep);
+    background-color: rgba(14, 58, 61, 0.05);
+  }
 }
 
 @utility btn-outline-light {
-  border: 1px solid rgba(255, 255, 255, 0.32);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
   color: #fff;
-  &:hover { border-color: #fff; background-color: rgba(255, 255, 255, 0.08); }
+  &:hover {
+    border-color: #fff;
+    background-color: rgba(255, 255, 255, 0.09);
+  }
 }
 
-@utility card {
+@utility btn-cream {
+  background-color: var(--color-cream);
+  color: var(--color-deep);
+  &:hover {
+    background-color: #fff;
+  }
+}
+
+/* --- The route ------------------------------------------------------ *
+ * One hairline, one dot per stop. Vertical on a phone, horizontal from md up.
+ * --route-ring paints the gap between the dot and the line, so the dot has to
+ * know the colour of the ground it sits on.                                 */
+@utility route {
+  --route-ring: var(--color-cream);
+  display: grid;
+  gap: 2.25rem;
+  @media (min-width: 768px) {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@utility route-stop {
+  position: relative;
+  padding-left: 2.5rem;
+  @media (min-width: 768px) {
+    padding-left: 0;
+    padding-top: 2.5rem;
+  }
+}
+
+@utility route-dot {
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 9999px;
+  background: var(--color-flame);
+  box-shadow: 0 0 0 5px var(--route-ring);
+  @media (min-width: 768px) {
+    top: 0;
+    left: 0;
+  }
+}
+
+@utility route-line {
+  position: absolute;
+  left: 0.4rem;
+  top: 1.5rem;
+  bottom: -2.25rem;
+  width: 2px;
+  background: var(--color-line-strong);
+  @media (min-width: 768px) {
+    left: 1.35rem;
+    right: -2.5rem;
+    top: 0.4rem;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+  }
+}
+
+/* --- Surfaces ------------------------------------------------------- */
+@utility panel {
   background-color: var(--color-paper);
-  border: 1px solid var(--color-line-soft);
-  border-radius: 1.35rem;
-  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
 }
 
-@utility card-warm {
-  background-color: var(--color-warm);
-  border: 1px solid var(--color-line-warm);
-  border-radius: 1.35rem;
+@utility panel-flat {
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
 }
 
-@utility form-label {
+/* A square tick, not the universal round one. */
+@utility tick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 0.3rem;
+  background: var(--color-flame);
+  color: #fff;
+}
+
+@utility tick-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 0.3rem;
+  background: var(--color-flame-soft);
+  color: var(--color-flame-ink);
+}
+
+/* The price strip. Tabular figures, a rule above, a notch cut out of the left
+   edge: reads as a tariff on a document rather than a pricing card. */
+@utility ticket {
+  position: relative;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 0.7rem;
+  background: var(--color-paper);
+  padding: 1.05rem 1.35rem;
+}
+
+@utility figure-num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Form ----------------------------------------------------------- */
+@utility field-label {
   display: block;
   margin-bottom: 0.35rem;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--color-navy-deep);
+  letter-spacing: 0.005em;
+  color: var(--color-deep);
 }
 
-@utility form-input {
+@utility field {
   width: 100%;
-  border-radius: 0.75rem;
-  border: 1px solid var(--color-line);
+  border-radius: 0.6rem;
+  border: 1.5px solid var(--color-line);
   background-color: #fff;
-  padding: 0.85rem 1rem;
+  padding: 0.85rem 0.95rem;
+  font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.4;
   color: var(--color-ink);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  &::placeholder { color: #9aa6b3; }
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+  &::placeholder {
+    color: #93a3a4;
+  }
   &:focus {
     outline: none;
-    border-color: var(--color-navy-soft);
-    box-shadow: 0 0 0 3px rgba(43, 104, 157, 0.14);
+    border-color: var(--color-petrol);
+    box-shadow: 0 0 0 3px rgba(28, 95, 99, 0.16);
   }
-}
-
-/* Checkmark list used for benefits and package contents. */
-@utility check-list {
-  display: grid;
-  gap: 0.6rem;
-}
-
-/* Numerals in the trust bar and the step markers. */
-@utility stat-figure {
-  font-family: var(--font-display);
-  font-weight: 650;
-  letter-spacing: -0.022em;
-  font-variant-numeric: tabular-nums;
-  color: var(--color-navy-deep);
 }
 
 @layer components {
   .prose-lander p + p {
     margin-top: 1.05rem;
+  }
+  /* The FAQ marker: a plus that becomes a minus. No rotation of a chevron. */
+  .faq-mark::before,
+  .faq-mark::after {
+    content: '';
+    position: absolute;
+    background: var(--color-flame-ink);
+    border-radius: 2px;
+    transition: transform 0.18s ease;
+  }
+  .faq-mark::before {
+    inset: calc(50% - 1px) 0 auto 0;
+    height: 2px;
+  }
+  .faq-mark::after {
+    inset: 0 calc(50% - 1px) 0 auto;
+    width: 2px;
+  }
+  details[open] .faq-mark::after {
+    transform: scaleY(0);
   }
 }

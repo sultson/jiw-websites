@@ -27,10 +27,14 @@ const wide = columns === 2;
   Short by design: name, email, phone, optional message (brief §5). No
   eligibility questionnaire in front of the lead; qualification happens on the
   thank-you page.
+
+  The panel is built like a letterhead — a solid petrol bar carrying the
+  heading, plain white paper underneath — so the one thing on the page the
+  visitor has to fill in reads as an actual document rather than a widget.
 -->
 <form
   id={id}
-  class={`rounded-[1.5rem] bg-paper p-6 shadow-form md:p-7 ${wide ? 'md:p-9' : ''}`}
+  class="overflow-hidden rounded-2xl border border-line bg-paper shadow-panel"
   data-lead-form
   data-form-path={`/api/forms/${site.formKind}`}
   data-thanks={PAGES.thanks[lang]}
@@ -38,98 +42,95 @@ const wide = columns === 2;
   data-error={f.error}
   novalidate
 >
-  <span class="inline-flex items-center gap-2 rounded-full bg-accent-tint px-3 py-1.5 text-[0.74rem] font-semibold text-accent">
-    <Icon name="check" size={13} />
-    {f.badge}
-  </span>
-  <h2 class={`mt-3.5 font-display leading-snug text-navy ${wide ? 'text-[1.6rem]' : 'text-[1.35rem]'}`}>{f.heading}</h2>
-  {!short && <p class="mt-2.5 text-[0.92rem] leading-relaxed text-ink-soft">{f.intro}</p>}
-
-  <div class={`mt-6 grid gap-4 ${wide ? 'md:grid-cols-2' : ''}`}>
-    <label class="block">
-      <span class="form-label">{f.name} *</span>
-      <input
-        name="firstName"
-        type="text"
-        required
-        autocomplete="name"
-        placeholder={f.namePlaceholder}
-        class="form-input"
-      />
-    </label>
-
-    <label class="block">
-      <span class="form-label">{f.email} *</span>
-      <input name="email" type="email" required autocomplete="email" inputmode="email" class="form-input" />
-    </label>
-
-    <label class={`block ${wide ? 'md:col-span-2' : ''}`}>
-      <span class="form-label">{f.phone} *</span>
-      <input
-        name="phone"
-        type="tel"
-        required
-        autocomplete="tel"
-        inputmode="tel"
-        placeholder="+31 6 12345678"
-        class="form-input"
-      />
-      <span class="mt-1.5 block text-[0.76rem] text-ink-soft">{f.phoneHint}</span>
-    </label>
-
-    {!short && (
-      <label class={`block ${wide ? 'md:col-span-2' : ''}`}>
-        <span class="form-label">
-          {f.message} <span class="font-normal normal-case text-ink-soft">({f.optional})</span>
-        </span>
-        <textarea name="message" rows="3" placeholder={f.messagePlaceholder} class="form-input resize-y"></textarea>
-      </label>
-    )}
+  <div class={`bg-deep px-6 py-5 ${wide ? 'md:px-9 md:py-7' : 'md:px-7'}`}>
+    <span class="inline-flex items-center gap-2 text-[0.72rem] font-bold uppercase tracking-[0.14em] text-flame-light">
+      <Icon name="clock" size={13} />
+      {f.badge}
+    </span>
+    <h2 class={`mt-2.5 font-display font-semibold leading-tight text-white ${wide ? 'text-[1.7rem]' : 'text-[1.4rem]'}`}>
+      {f.heading}
+    </h2>
+    {!short && <p class="mt-2 max-w-lg text-[0.92rem] leading-relaxed text-white/70">{f.intro}</p>}
   </div>
 
-  <label class="mt-5 flex items-start gap-3 text-[0.84rem] leading-relaxed text-ink-soft">
-    <input
-      name="consent"
-      type="checkbox"
-      required
-      value="ja"
-      class="mt-1 h-4 w-4 shrink-0 rounded border-line accent-[#d1590f]"
-    />
-    <span>
-      {f.consent}{' '}
-      <a href={PAGES.privacy[lang]} class="text-navy underline underline-offset-2">{f.consentLink}</a>.
-    </span>
-  </label>
+  <div class={`px-6 py-6 ${wide ? 'md:px-9 md:py-8' : 'md:px-7'}`}>
+    <div class={`grid gap-4 ${wide ? 'md:grid-cols-2' : ''}`}>
+      <label class="block">
+        <span class="field-label">{f.name} *</span>
+        <input name="firstName" type="text" required autocomplete="name" placeholder={f.namePlaceholder} class="field" />
+      </label>
 
-  <!-- Honeypot -->
-  <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+      <label class="block">
+        <span class="field-label">{f.email} *</span>
+        <input name="email" type="email" required autocomplete="email" inputmode="email" class="field" />
+      </label>
 
-  <input type="hidden" name={CONFIRMATION_LOCALE_FIELD} value={lang} />
-  <input type="hidden" name="domain" value={site.domain} />
-  <input type="hidden" name="language" value={lang === 'nl' ? 'Nederlands' : 'English'} />
-  <input type="hidden" name="situation" value={source} data-situation-field />
-  <input type="hidden" name="pageUrl" data-page-url />
-  <input type="hidden" name="referrer" data-attribution="referrer" />
-  <input type="hidden" name="utmSource" data-attribution="utm_source" />
-  <input type="hidden" name="utmMedium" data-attribution="utm_medium" />
-  <input type="hidden" name="utmCampaign" data-attribution="utm_campaign" />
-  <input type="hidden" name="utmTerm" data-attribution="utm_term" />
-  <input type="hidden" name="utmContent" data-attribution="utm_content" />
-  <input type="hidden" name="gclid" data-attribution="gclid" />
+      <label class={`block ${wide ? 'md:col-span-2' : ''}`}>
+        <span class="field-label">{f.phone} *</span>
+        <input
+          name="phone"
+          type="tel"
+          required
+          autocomplete="tel"
+          inputmode="tel"
+          placeholder="+31 6 12345678"
+          class="field"
+        />
+        <span class="mt-1.5 block text-[0.76rem] text-ink-soft">{f.phoneHint}</span>
+      </label>
 
-  <p class="mt-5 hidden rounded-xl border border-red-800/25 bg-red-50 px-4 py-3 text-[0.88rem] text-red-900" data-lead-error></p>
+      {!short && (
+        <label class={`block ${wide ? 'md:col-span-2' : ''}`}>
+          <span class="field-label">
+            {f.message} <span class="font-normal text-ink-soft">({f.optional})</span>
+          </span>
+          <textarea name="message" rows="3" placeholder={f.messagePlaceholder} class="field resize-y"></textarea>
+        </label>
+      )}
+    </div>
 
-  <div class={wide ? 'mt-7 flex flex-col items-center gap-4' : 'mt-6'}>
-    <button
-      type="submit"
-      class={`btn btn-accent text-[1rem] ${wide ? 'w-full sm:w-auto sm:min-w-[18rem]' : 'w-full'}`}
-      data-track="lead_submit"
+    <label class="mt-5 flex items-start gap-3 text-[0.85rem] leading-relaxed text-ink-soft">
+      <input
+        name="consent"
+        type="checkbox"
+        required
+        value="ja"
+        class="mt-1 h-4 w-4 shrink-0 rounded-sm border-line accent-[#da5a22]"
+      />
+      <span>
+        {f.consent}{' '}
+        <a href={PAGES.privacy[lang]} class="font-medium text-flame-ink underline underline-offset-2">{f.consentLink}</a>.
+      </span>
+    </label>
+
+    <!-- Honeypot -->
+    <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+    <input type="hidden" name={CONFIRMATION_LOCALE_FIELD} value={lang} />
+    <input type="hidden" name="domain" value={site.domain} />
+    <input type="hidden" name="language" value={lang === 'nl' ? 'Nederlands' : 'English'} />
+    <input type="hidden" name="situation" value={source} data-situation-field />
+    <input type="hidden" name="pageUrl" data-page-url />
+    <input type="hidden" name="referrer" data-attribution="referrer" />
+    <input type="hidden" name="utmSource" data-attribution="utm_source" />
+    <input type="hidden" name="utmMedium" data-attribution="utm_medium" />
+    <input type="hidden" name="utmCampaign" data-attribution="utm_campaign" />
+    <input type="hidden" name="utmTerm" data-attribution="utm_term" />
+    <input type="hidden" name="utmContent" data-attribution="utm_content" />
+    <input type="hidden" name="gclid" data-attribution="gclid" />
+
+    <p
+      class="mt-5 hidden rounded-lg border border-red-800/25 bg-red-50 px-4 py-3 text-[0.88rem] text-red-900"
+      data-lead-error
     >
+    </p>
+
+    <button type="submit" class="btn btn-flame mt-6 w-full text-[1.02rem]" data-track="lead_submit">
       <span data-lead-label>{f.submit}</span>
       <Icon name="arrow" size={17} />
     </button>
 
-    <p class={`flex items-start gap-2 text-[0.78rem] leading-relaxed text-ink-soft ${wide ? 'text-center' : 'mt-4'}`}>
+    <p class="mt-4 flex items-start gap-2 text-[0.78rem] leading-relaxed text-ink-soft">
       <Icon name="shield" size={14} class="mt-0.5 shrink-0" />
       {f.privacyNote}
     </p>

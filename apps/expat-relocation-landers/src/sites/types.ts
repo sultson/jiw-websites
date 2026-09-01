@@ -67,7 +67,16 @@ export type LanderContent = {
   };
   hero: {
     eyebrow: string;
+    /**
+     * Rendered with set:html so one phrase can carry the marker stroke
+     * (`<span class="hl">…</span>`). Content is ours, never visitor input.
+     */
     h1: string;
+    /**
+     * The two ends of the route, shown above the H1 as the page's opening
+     * image: where the partner is now, and where the couple wants to be.
+     */
+    route?: { from: string; to: string };
     intro: string[];
     benefits: Benefit[];
     /** Shown only where the price genuinely belongs to the searched service. */
@@ -84,9 +93,15 @@ export type LanderContent = {
     heading: string;
     body: string[];
     points: string[];
+    /**
+     * `quotes` renders the points as things the visitor would say out loud,
+     * which is what makes the block read "this is us" rather than "checklist".
+     * `checks` (the default) is for landers whose points are explanatory.
+     */
+    pointsStyle?: 'quotes' | 'checks';
     cta: Cta;
     photo: Photo;
-    /** Small caption card laid over the photo. */
+    /** Caption block that overlaps the bottom of the photo. */
     photoNote: string;
   };
   /** The commercial section: two or three clearly defined priced services. */

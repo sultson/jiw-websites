@@ -14,7 +14,7 @@ export const nl: LanderContent = {
     title: 'Partnerhereniging Nederland: hulp bij de MVV/TEV-aanvraag',
     description:
       'Wilt u uw partner uit het buitenland naar Nederland halen? Wij bereiden uw MVV/TEV-partneraanvraag professioneel voor, inclusief documentencheck en begeleiding. Vanaf €799 excl. btw.',
-    imageAlt: 'Stel lacht samen in de aankomsthal van een Nederlandse luchthaven',
+    imageAlt: 'Stel omhelst elkaar lachend in de aankomsthal van een Nederlandse luchthaven',
   },
   nav: {
     links: [
@@ -29,7 +29,8 @@ export const nl: LanderContent = {
   },
   hero: {
     eyebrow: 'Partnerhereniging in Nederland',
-    h1: 'Wilt u uw partner naar Nederland halen?',
+    route: { from: 'Uw partner in het buitenland', to: 'Samen in Nederland' },
+    h1: 'Wilt u uw partner <span class="hl">naar Nederland</span> halen?',
     intro: [
       'Woont uw partner nog in het buitenland en wilt u samen in Nederland verder? Afhankelijk van uw situatie gelden er eisen aan uw inkomen, aan uw relatie, aan de documenten die u aanlevert, aan het basisexamen inburgering buitenland en aan de MVV/TEV-procedure.',
       'Wij bereiden uw partneraanvraag professioneel voor en verzorgen waar nodig ook de A1-examenvoorbereiding, zodat het hele traject bij één partij ligt.',
@@ -49,7 +50,7 @@ export const nl: LanderContent = {
     note: 'Wij nemen persoonlijk contact met u op, meestal binnen één werkdag.',
     photo: {
       src: '/images/ph-hero.jpg',
-      alt: 'Stel lacht samen in de aankomsthal van een Nederlandse luchthaven',
+      alt: 'Stel omhelst elkaar lachend in de aankomsthal van een Nederlandse luchthaven',
     },
   },
   stats: [
@@ -63,31 +64,33 @@ export const nl: LanderContent = {
     heading: 'Is dit uw situatie?',
     body: [
       'Bij partnerhereniging vraagt u als referent in Nederland verblijf aan voor uw partner die nog in het buitenland woont. Meestal loopt dat via de TEV-procedure, waarin de machtiging tot voorlopig verblijf (MVV) en de verblijfsvergunning in één aanvraag worden beoordeeld.',
-      'Wat u precies moet aantonen, hangt af van uw relatievorm, uw inkomen en de nationaliteit van uw partner. Daar gaat het in de praktijk het vaakst mis. Een dossier dat op één onderdeel niet compleet is, levert vragen en vertraging op.',
+      'Wat u precies moet aantonen, hangt af van uw inkomen, de nationaliteit van uw partner en uw relatievorm: gehuwd, geregistreerd partner of ongehuwd samenwonend. Daar gaat het in de praktijk het vaakst mis. Een dossier dat op één onderdeel niet compleet is, levert vragen en vertraging op.',
     ],
+    pointsStyle: 'quotes',
     points: [
-      'Uw partner woont op dit moment buiten Nederland.',
-      'U wilt samen en blijvend in Nederland wonen.',
-      'U bent getrouwd, geregistreerd partner of ongehuwd partner.',
-      'U twijfelt of u aan de inkomenseis voldoet.',
-      'Uw partner heeft mogelijk een MVV nodig.',
-      'Uw partner moet mogelijk eerst het basisexamen inburgering buitenland halen.',
+      'Mijn partner woont nog in het buitenland.',
+      'Wij willen samen verder, hier in Nederland.',
+      'Wij zijn niet getrouwd, maar wel al jaren samen.',
+      'Ik weet niet of mijn inkomen genoeg is.',
+      'Heeft mijn partner een MVV nodig?',
+      'Moet mijn partner eerst het basisexamen halen?',
     ],
     cta: { label: 'Bespreek mijn situatie', href: '#contact', situation: 'Uw situatie' },
     photo: {
-      src: '/images/ph-keukentafel.jpg',
-      alt: 'Stel bekijkt samen aan de keukentafel de documenten voor hun aanvraag',
+      src: '/images/ph-situatie.jpg',
+      alt: 'Stel zit samen op de grond in de woonkamer en sorteert de papieren voor de aanvraag',
     },
     photoNote:
       'Twijfelt u over de inkomenseis of over uw bewijsstukken? Laat uw gegevens achter, dan lopen wij uw situatie met u door.',
   },
   packages: {
     eyebrow: 'Begeleiding',
-    heading: 'Kies het niveau van begeleiding dat bij u past',
+    heading: 'Kies de begeleiding die bij u past',
     intro:
       'Twee mogelijkheden. Welke bij u past, hangt af van één vraag: moet uw partner nog het basisexamen inburgering buitenland afleggen?',
     cards: [
       {
+        badge: 'Examen al behaald of vrijgesteld',
         title: 'MVV/TEV-partneraanvraag',
         price: '€799 excl. btw',
         body: 'Voor cliënten die het vereiste examen al hebben behaald, daarvan zijn vrijgesteld, of geen A1-voorbereiding van ons nodig hebben.',
@@ -203,8 +206,8 @@ export const nl: LanderContent = {
     body: 'Achter elke aanvraag zit een stel dat samen verder wil. Daarom krijgt u bij ons één aanspreekpunt dat uw dossier kent en dat u kunt bellen als er iets verandert.',
     cta: { label: 'Start mijn partneraanvraag', href: '#contact', situation: 'Fotoband' },
     photo: {
-      src: '/images/ph-samen.jpg',
-      alt: 'Stel loopt hand in hand door een Nederlandse woonstraat',
+      src: '/images/ph-tuin.jpg',
+      alt: 'Stel eet met Nederlandse familie en vrienden aan een lange tafel in de tuin',
     },
   },
   aside: {

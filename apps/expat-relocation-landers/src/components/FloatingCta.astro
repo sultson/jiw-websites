@@ -16,8 +16,10 @@ const wa = whatsappUrl(c.whatsapp.text);
   class="pointer-events-none fixed inset-x-0 bottom-0 z-40 transition-opacity duration-200 md:hidden"
   data-floating
 >
-  <div class="pointer-events-auto flex items-center gap-2 border-t border-line-soft bg-paper/95 px-3 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur">
-    <a href="#contact" class="btn btn-accent flex-1 py-3 text-[0.95rem]" data-track="cta_click" data-situation="Sticky bar">
+  <div
+    class="pointer-events-auto flex items-center gap-2.5 border-t border-line bg-cream/97 px-3 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] backdrop-blur"
+  >
+    <a href="#contact" class="btn btn-flame flex-1 py-3.5 text-[0.96rem]" data-track="cta_click" data-situation="Sticky bar">
       {c.stickyCta}
     </a>
     <a
@@ -26,7 +28,7 @@ const wa = whatsappUrl(c.whatsapp.text);
       rel="noopener"
       aria-label={c.whatsapp.aria}
       data-track="whatsapp_click"
-      class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-line text-navy"
+      class="flex h-[3.1rem] w-[3.1rem] shrink-0 items-center justify-center rounded-lg border-[1.5px] border-line-strong text-deep"
     >
       <Icon name="whatsapp" size={22} />
     </a>
@@ -40,7 +42,7 @@ const wa = whatsappUrl(c.whatsapp.text);
   aria-label={c.whatsapp.aria}
   data-track="whatsapp_click"
   data-floating
-  class="fixed bottom-6 right-6 z-40 hidden h-13 items-center gap-2.5 rounded-full bg-navy px-5 py-3.5 text-[0.88rem] font-semibold text-white shadow-[0_18px_40px_-18px_rgba(12,28,54,0.9)] transition-opacity duration-200 hover:bg-navy-soft md:inline-flex"
+  class="fixed bottom-6 right-6 z-40 hidden items-center gap-2.5 rounded-xl bg-deep px-5 py-3.5 text-[0.9rem] font-semibold text-white shadow-panel transition-colors duration-200 hover:bg-petrol md:inline-flex"
 >
   <Icon name="whatsapp" size={19} />
   {c.whatsapp.label}

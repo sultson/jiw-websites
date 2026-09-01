@@ -15,54 +15,54 @@ const t = c.thanks;
   saved and emailed; nothing here is required, and abandoning it costs nothing.
 -->
 <form
-  class="card p-6 md:p-8"
+  class="rounded-2xl border border-line bg-paper p-6 md:p-8"
   data-qualify-form
   data-form-path={`/api/forms/${site.formKind}-qualify`}
   data-sending={t.submitting}
   data-error={t.error}
   novalidate
 >
-  <h2 class="font-display text-[1.35rem] text-navy">{t.qualifyHeading}</h2>
+  <h2 class="font-display text-[1.35rem] text-deep">{t.qualifyHeading}</h2>
   <p class="mt-2 text-[0.92rem] leading-relaxed text-ink-soft">{t.qualifyIntro}</p>
 
   <div class="mt-7 grid gap-5 md:grid-cols-2">
     <label class="block">
-      <span class="form-label">{t.fields.location.label}</span>
-      <select name="location" class="form-input">
+      <span class="field-label">{t.fields.location.label}</span>
+      <select name="location" class="field">
         <option value="">{t.choose}</option>
         {t.fields.location.options.map((o) => <option value={o}>{o}</option>)}
       </select>
     </label>
 
     <label class="block">
-      <span class="form-label">{t.fields.exam.label}</span>
-      <select name="exam" class="form-input">
+      <span class="field-label">{t.fields.exam.label}</span>
+      <select name="exam" class="field">
         <option value="">{t.choose}</option>
         {t.fields.exam.options.map((o) => <option value={o}>{o}</option>)}
       </select>
     </label>
 
     <label class="block md:col-span-2">
-      <span class="form-label">{t.fields.situation.label}</span>
-      <select name="situation" class="form-input">
+      <span class="field-label">{t.fields.situation.label}</span>
+      <select name="situation" class="field">
         <option value="">{t.choose}</option>
         {t.fields.situation.options.map((o) => <option value={o}>{o}</option>)}
       </select>
     </label>
 
     <label class="block">
-      <span class="form-label">{t.fields.nationality.label}</span>
-      <input name="nationality" type="text" class="form-input" />
+      <span class="field-label">{t.fields.nationality.label}</span>
+      <input name="nationality" type="text" class="field" />
     </label>
 
     <label class="block">
-      <span class="form-label">{t.fields.arrival.label}</span>
-      <input name="arrival" type="text" class="form-input" placeholder={t.fields.arrival.hint} />
+      <span class="field-label">{t.fields.arrival.label}</span>
+      <input name="arrival" type="text" class="field" placeholder={t.fields.arrival.hint} />
     </label>
 
     <label class="block md:col-span-2">
-      <span class="form-label">{t.fields.notes.label}</span>
-      <textarea name="message" rows="3" class="form-input resize-y" placeholder={t.fields.notes.placeholder}></textarea>
+      <span class="field-label">{t.fields.notes.label}</span>
+      <textarea name="message" rows="3" class="field resize-y" placeholder={t.fields.notes.placeholder}></textarea>
     </label>
   </div>
 
@@ -73,21 +73,21 @@ const t = c.thanks;
   <input type="hidden" name="language" value={lang === 'nl' ? 'Nederlands' : 'English'} />
   <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
 
-  <p class="mt-5 hidden rounded-xl border border-red-800/25 bg-red-50 px-4 py-3 text-[0.88rem] text-red-900" data-qualify-error></p>
+  <p class="mt-5 hidden rounded-lg border border-red-800/25 bg-red-50 px-4 py-3 text-[0.88rem] text-red-900" data-qualify-error></p>
 
   <div class="mt-7 flex flex-wrap items-center gap-4">
-    <button type="submit" class="btn btn-navy">
+    <button type="submit" class="btn btn-ink">
       <span data-qualify-label>{t.submit}</span>
       <Icon name="arrow" size={16} />
     </button>
   </div>
 </form>
 
-<div class="card hidden p-8 text-center" data-qualify-success>
-  <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent-tint text-accent">
+<div class="hidden rounded-2xl border border-line bg-paper p-8 text-center" data-qualify-success>
+  <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-flame text-white">
     <Icon name="check" size={22} />
   </span>
-  <h2 class="mt-4 font-display text-[1.35rem] text-navy">{t.done}</h2>
+  <h2 class="mt-4 font-display text-[1.35rem] text-deep">{t.done}</h2>
   <p class="mt-2 text-[0.95rem] text-ink-soft">{t.doneBody}</p>
 </div>
 

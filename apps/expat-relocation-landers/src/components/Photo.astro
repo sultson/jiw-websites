@@ -1,8 +1,11 @@
 ---
+import { asset } from '../lib/assets';
+
 /**
  * One generated photo plus its 640w variant. Every image in public/images ships
  * as `name.jpg` and `name-640.jpg` (scripts/optimize-images.mjs), so the srcset
- * is derived from the source path rather than repeated at every call site.
+ * is derived from the source path rather than repeated at every call site, and
+ * both variants get the same cache-busting version.
  *
  * width/height carry the intrinsic ratio of the generator output. Where a
  * caller crops with object-cover plus a height class that class wins, which is
@@ -24,12 +27,13 @@ const {
   loading = 'lazy',
   fetchpriority = 'auto',
 } = Astro.props;
-const narrow = src.replace(/\.jpg$/, '-640.jpg');
+const wide = asset(src);
+const narrow = asset(src.replace(/\.jpg$/, '-640.jpg'));
 ---
 
 <img
-  src={src}
-  srcset={`${narrow} 640w, ${src} 1264w`}
+  src={wide}
+  srcset={`${narrow} 640w, ${wide} 1264w`}
   sizes={sizes}
   alt={alt}
   width="1264"

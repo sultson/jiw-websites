@@ -25,7 +25,7 @@ export const en: LanderContent = {
   },
   hero: {
     eyebrow: 'Civic integration in the Netherlands',
-    h1: 'Required to integrate in the Netherlands?',
+    h1: 'Required to <span class="hl">integrate</span> in the Netherlands?',
     intro: [
       'Have you been informed that you must integrate, or are you unsure which requirements apply to your situation? That depends on your residence situation, when you came to the Netherlands and which integration route applies to you.',
       'We assess your situation and help you determine the appropriate next step.',
