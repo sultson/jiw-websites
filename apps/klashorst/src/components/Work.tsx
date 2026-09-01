@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type TouchEvent } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { content, ui, type Werk } from '../content';
+import Paragraphs from './Paragraphs';
 
 /**
  * The collection. Nothing here is on offer: the museum shows the work, and a
@@ -90,19 +91,23 @@ export default function Work() {
     <section id="werk" className="scroll-mt-20 border-t border-hair py-20 md:py-28">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <header className="max-w-5xl">
-          <p className="eyebrow">{t.eyebrow}</p>
-          <div className="mt-4 flex flex-wrap items-center gap-x-7 gap-y-3 md:gap-x-10">
-            <h2 className="display text-4xl md:text-6xl">{t.titel}</h2>
+          {t.eyebrow && <p className="eyebrow">{t.eyebrow}</p>}
+          <div className={`flex flex-wrap items-center gap-x-7 gap-y-3 md:gap-x-10 ${t.eyebrow ? 'mt-4' : ''}`}>
+            {t.titel && <h2 className="display text-4xl md:text-6xl">{t.titel}</h2>}
             <span className="klashorst-signature" aria-hidden="true" />
           </div>
-          <p className="mt-5 max-w-2xl text-[0.98rem] leading-relaxed text-muted">{t.lead}</p>
+          <div className="mt-5 max-w-2xl">
+            <Paragraphs value={t.lead} className="text-[0.98rem] leading-relaxed text-muted" />
+          </div>
         </header>
 
         {/* A collection emptied in the Studio is an empty collection here. The
             section says so rather than quietly falling back to the works this
             build shipped with, which is what made deleting them look broken. */}
         {werken.length === 0 ? (
-          <p className="mt-10 max-w-xl text-[0.95rem] leading-relaxed text-muted">{ui.werk.leeg}</p>
+          <div className="mt-10 max-w-xl">
+            <Paragraphs value={t.leeg} className="text-[0.95rem] leading-relaxed text-muted" />
+          </div>
         ) : (
           <div className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 md:mt-16 md:grid-cols-3 md:gap-x-8 md:gap-y-14 lg:grid-cols-4">
             {werken.map((work, i) => (
@@ -210,7 +215,11 @@ export default function Work() {
 
           {current.toelichting && (
             <div className="mx-auto flex max-w-2xl flex-col items-center px-5 pb-6">
-              <p className="text-center text-sm leading-relaxed text-bone">{current.toelichting}</p>
+              <Paragraphs
+                value={current.toelichting}
+                className="text-center text-sm leading-relaxed text-bone"
+                gap="mt-3"
+              />
             </div>
           )}
         </div>

@@ -1,5 +1,6 @@
 import BlogCard from '../components/BlogCard';
 import Newsletter from '../components/Newsletter';
+import Paragraphs from '../components/Paragraphs';
 import { blogPosts, content, ui } from '../content';
 import { to } from '../router';
 
@@ -17,13 +18,19 @@ export default function BlogIndex() {
     <main className="pt-[4.5rem] md:pt-20">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <header className="max-w-2xl py-14 md:py-20">
-          <p className="eyebrow">{t.eyebrow}</p>
-          <h1 className="display mt-4 text-5xl md:text-7xl">{t.titel}</h1>
-          <p className="mt-5 text-[0.98rem] leading-relaxed text-muted">{t.lead}</p>
+          {t.eyebrow && <p className="eyebrow">{t.eyebrow}</p>}
+          {t.titel && (
+            <h1 className={`display text-5xl md:text-7xl ${t.eyebrow ? 'mt-4' : ''}`}>{t.titel}</h1>
+          )}
+          <div className="mt-5">
+            <Paragraphs value={t.lead} className="text-[0.98rem] leading-relaxed text-muted" />
+          </div>
         </header>
 
         {!nieuwste ? (
-          <p className="max-w-xl pb-20 text-[0.95rem] leading-relaxed text-bone">{ui.blog.leeg}</p>
+          <div className="max-w-xl pb-20">
+            <Paragraphs value={t.leeg} className="text-[0.95rem] leading-relaxed text-bone" />
+          </div>
         ) : (
           <>
             <a
@@ -53,11 +60,13 @@ export default function BlogIndex() {
                 <h2 className="display mt-3 text-3xl leading-tight transition-colors group-hover:text-red-soft md:text-5xl">
                   {nieuwste.titel}
                 </h2>
-                {nieuwste.samenvatting && (
-                  <p className="mt-5 max-w-xl text-[0.98rem] leading-relaxed text-bone">
-                    {nieuwste.samenvatting}
-                  </p>
-                )}
+                <div className="mt-5 max-w-xl">
+                  <Paragraphs
+                    value={nieuwste.samenvatting}
+                    className="text-[0.98rem] leading-relaxed text-bone"
+                    gap="mt-3"
+                  />
+                </div>
                 <span className="eyebrow mt-6 inline-block border-b border-red pb-1 text-bone/80 transition-colors group-hover:text-bone">
                   {ui.blog.lees}
                 </span>

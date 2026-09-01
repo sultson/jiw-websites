@@ -23,12 +23,13 @@ const kaarten = [
     pad: '/beheer/structure/werk',
     titel: 'Klashorst Collectie',
     uitleg:
-      'Het werk van Peter Klashorst. Eén foto per werk, met techniek en afmetingen. Eén vinkje bepaalt of het werk ook in de 3D-zaal bovenaan hangt.',
+      'Het werk van Peter Klashorst. Eén foto per werk, met techniek en afmetingen. Eén vinkje bepaalt of het werk ook in de 3D-zaal bovenaan hangt. In Volgorde van de collectie sleept u de werken op hun plek, in dezelfde rasterweergave als op de site.',
   },
   {
     pad: '/beheer/structure/galeriewerk',
     titel: 'Andere Kunst',
-    uitleg: 'Werk van andere kunstenaars, met kunstenaar, techniek en een korte toelichting.',
+    uitleg:
+      'Werk van andere kunstenaars, met kunstenaar, techniek en een korte toelichting. In Volgorde van Andere Kunst sleept u ze op hun plek.',
   },
   {
     pad: '/beheer/structure/nieuws',

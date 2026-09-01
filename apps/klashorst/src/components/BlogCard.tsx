@@ -1,4 +1,5 @@
 import { ui, type BlogPost } from '../content';
+import Paragraphs from './Paragraphs';
 import { to } from '../router';
 
 /**
@@ -41,9 +42,9 @@ export default function BlogCard({
           {post.titel}
         </Heading>
 
-        {post.samenvatting && (
-          <p className="mt-3 text-sm leading-relaxed text-bone">{post.samenvatting}</p>
-        )}
+        <div className="mt-3">
+          <Paragraphs value={post.samenvatting} className="text-sm leading-relaxed text-bone" gap="mt-2" />
+        </div>
 
         <span className="eyebrow mt-4 self-start border-b border-red pb-1 text-bone/80 transition-colors group-hover:text-bone">
           {ui.blog.lees}

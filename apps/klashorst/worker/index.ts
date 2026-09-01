@@ -1,4 +1,5 @@
-import { createFormWorker, type CloudflareFormsEnv } from '@jiw/cloudflare-forms';
+import { type CloudflareFormsEnv } from '@jiw/cloudflare-forms';
+import { newsletterWorkers, vraagWorkers } from './forms';
 import { assetFromRef } from '../src/content/image';
 import {
   BLOG_TITLE,
@@ -36,131 +37,6 @@ export type Env = CloudflareFormsEnv & {
 };
 
 /**
- * Two forms, and each of them twice: a Dutch visitor gets a Dutch confirmation
- * and an English visitor an English one. Which it is rides along in a hidden
- * `taal` field, because the language is in the address the form was filled in on.
- *
- * Both forms spell out their own wording. The package's default confirmation is
- * written for quote requests, and a museum sends neither: someone who signs up
- * for the newsletter is not asking for a quote, and neither is someone asking a
- * question. Left alone it confirms an "offerteaanvraag", which the museum read
- * as a mistake, and it was right to.
- */
-const newsletterWorkers: Record<Lang, ReturnType<typeof createFormWorker>> = {
-  nl: createFormWorker({
-    formPath: '/api/forms/newsletter',
-    locale: 'nl',
-    siteName: 'Klashorst Museum',
-    ownerName: 'het museum',
-    senderName: 'Klashorst Museum',
-    subjectPrefix: 'Nieuwe aanmelding nieuwsbrief',
-    confirmationFollowUpSentence:
-      'U hoort van ons zodra er nieuwe ontwikkelingen zijn. Hartelijk dank voor uw interesse.',
-    confirmationCopy: {
-      subject: 'Uw aanmelding voor de nieuwsbrief is ontvangen - {siteName}',
-      openingSentence: 'Uw aanmelding voor de nieuwsbrief van het {siteName} is verstuurd.',
-      // An opt-in has nothing worth reading back: it would return the visitor
-      // their own address and then an empty project description.
-      includeSubmission: false,
-    },
-    leadEmail: {
-      heading: 'Nieuwe aanmelding voor de nieuwsbrief',
-      nameLabels: { firstName: 'Naam', email: 'E-mailadres' },
-      // The opt-in asks for a name and an address. Without this the museum is
-      // mailed an empty project description and a note about the attachments
-      // the form cannot take.
-      includeMessage: false,
-      includeAttachments: false,
-    },
-    // An opt-in only needs an address; a name is welcome but never demanded.
-    requireFirstName: false,
-    requireLastName: false,
-    requireEmail: true,
-    honeypotField: 'company',
-  }),
-  en: createFormWorker({
-    formPath: '/api/forms/newsletter',
-    locale: 'en',
-    siteName: 'Klashorst Museum',
-    ownerName: 'the museum',
-    senderName: 'Klashorst Museum',
-    subjectPrefix: 'Newsletter sign-up',
-    confirmationFollowUpSentence:
-      'You will hear from us as soon as there is news. Thank you for your interest.',
-    confirmationCopy: {
-      subject: 'Your newsletter sign-up has been received - {siteName}',
-      openingSentence: 'Your sign-up for the {siteName} newsletter has been sent.',
-      includeSubmission: false,
-    },
-    leadEmail: {
-      heading: 'New newsletter sign-up',
-      nameLabels: { firstName: 'Name', email: 'Email address' },
-      includeMessage: false,
-      includeAttachments: false,
-    },
-    requireFirstName: false,
-    requireLastName: false,
-    requireEmail: true,
-    honeypotField: 'company',
-  }),
-};
-
-const vraagWorkers: Record<Lang, ReturnType<typeof createFormWorker>> = {
-  nl: createFormWorker({
-    formPath: '/api/forms/vraag',
-    locale: 'nl',
-    siteName: 'Klashorst Museum',
-    ownerName: 'het museum',
-    senderName: 'Klashorst Museum',
-    subjectPrefix: 'Vraag via de site',
-    confirmationFollowUpSentence: 'Het museum neemt contact met u op. Hartelijk dank voor uw interesse.',
-    confirmationCopy: {
-      subject: 'Uw vraag is ontvangen - {siteName}',
-      openingSentence: 'Uw vraag aan het {siteName} is verstuurd.',
-      detailsHeading: 'Uw gegevens',
-      messageHeading: 'Uw vraag',
-    },
-    leadEmail: {
-      heading: 'Nieuwe vraag via de site',
-      messageHeading: 'De vraag',
-      nameLabels: { firstName: 'Naam', email: 'E-mailadres' },
-      includeAttachments: false,
-    },
-    messageField: 'bericht',
-    requireFirstName: true,
-    requireLastName: false,
-    requireEmail: true,
-    honeypotField: 'company',
-  }),
-  en: createFormWorker({
-    formPath: '/api/forms/vraag',
-    locale: 'en',
-    siteName: 'Klashorst Museum',
-    ownerName: 'the museum',
-    senderName: 'Klashorst Museum',
-    subjectPrefix: 'Question via the site',
-    confirmationFollowUpSentence: 'The museum will get in touch with you. Thank you for your interest.',
-    confirmationCopy: {
-      subject: 'Your question has been received - {siteName}',
-      openingSentence: 'Your question to the {siteName} has been sent.',
-      detailsHeading: 'Your details',
-      messageHeading: 'Your question',
-    },
-    leadEmail: {
-      heading: 'New question via the site',
-      messageHeading: 'The question',
-      nameLabels: { firstName: 'Name', email: 'Email address' },
-      includeAttachments: false,
-    },
-    messageField: 'bericht',
-    requireFirstName: true,
-    requireLastName: false,
-    requireEmail: true,
-    honeypotField: 'company',
-  }),
-};
-
-/**
  * Which language a submission was made in. Read from a clone, so the form
  * worker still gets an unread body to parse for itself.
  */
@@ -177,17 +53,23 @@ async function formTaal(request: Request): Promise<Lang> {
  * Everything the page needs, in one query, in both languages. Small enough to
  * inline into the HTML, which is exactly what the Worker does below. The `en`
  * object on each document is the translation; the app picks a side by address.
+ *
+ * Both walls hang in `orderRank` order: the string the Studio's drag-and-drop
+ * list writes, which sorts lexicographically into the order the museum dragged
+ * the works into. `_createdAt` only settles a tie.
  */
 const QUERY = `{
-  "teksten": *[_type == "siteTeksten"][0]{hero, werk, peter, galerie, nieuws, bezoek, nieuwsbrief, footer},
-  "werk": *[_type == "werk" && defined(afbeelding.asset)] | order(coalesce(volgorde, 9999) asc, _createdAt asc){
+  "teksten": *[_type == "siteTeksten"][0]{
+    hero, werk, peter, galerie, nieuws, bezoek, nieuwsbrief, contact, menu, nietGevonden, footer, vindbaarheid
+  },
+  "werk": *[_type == "werk" && defined(afbeelding.asset)] | order(orderRank asc, _createdAt asc){
     _id, titel, techniek, afmetingen, toelichting, inZaal, afbeelding, en
   },
   "nieuws": *[_type == "nieuws"] | order(coalesce(vastgezet, false) desc, datum desc, _createdAt asc){
     _id, titel, slug, datum, datumWeergave, vastgezet, intro, tekst, afbeelding, body,
     seoTitel, seoOmschrijving, seoFocus, en
   },
-  "galerie": *[_type == "galeriewerk" && defined(afbeelding.asset)] | order(coalesce(volgorde, 9999) asc, _createdAt desc){
+  "galerie": *[_type == "galeriewerk" && defined(afbeelding.asset)] | order(orderRank asc, _createdAt asc){
     _id, titel, kunstenaar, techniek, afmetingen, jaar, toelichting, afbeelding, en
   }
 }`;
@@ -391,10 +273,13 @@ function pageMeta(
   dataset: string,
 ): { meta: PageMeta | null; missing: boolean } {
   if (path === '/') {
+    // What the museum wrote in the Studio, or the copy this build shipped with.
+    const blok = data?.teksten?.vindbaarheid ?? {};
+    const vert = engels(blok, lang);
     return {
       meta: {
-        title: HOME_TITLE[lang],
-        description: HOME_DESCRIPTION[lang],
+        title: firstString(vert.titel, blok.titel, HOME_TITLE[lang]),
+        description: clamp(firstString(vert.omschrijving, blok.omschrijving, HOME_DESCRIPTION[lang])),
         path: '/',
         image: null,
         type: 'website',
@@ -432,9 +317,10 @@ function pageMeta(
   const wanted = decodeURIComponent(article[1]);
   const found = addressed(posts).find((entry) => entry.slug === wanted);
   if (!found) {
+    const weg = data?.teksten?.nietGevonden ?? {};
     return {
       meta: {
-        title: pageTitle(NOT_FOUND_TITLE[lang]),
+        title: pageTitle(firstString(engels(weg, lang).titel, weg.titel, NOT_FOUND_TITLE[lang])),
         description: clamp(HOME_DESCRIPTION[lang]),
         path: '/blog',
         image: null,

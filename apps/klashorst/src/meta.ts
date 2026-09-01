@@ -45,7 +45,13 @@ export const NOT_FOUND_TITLE: Record<Lang, string> = {
   en: 'Page not found',
 };
 
-export const pageTitle = (heading: string) => `${heading} | ${SITE_NAME}`;
+/**
+ * A page's title in the tab. The heading comes from the CMS and may be empty,
+ * and " | Klashorst Museum" with nothing in front of it is a broken title
+ * rather than a short one.
+ */
+export const pageTitle = (heading: string) =>
+  heading.trim() ? `${heading.trim()} | ${SITE_NAME}` : SITE_NAME;
 
 /**
  * Dutch lives at the root and English one directory in, because Dutch is the

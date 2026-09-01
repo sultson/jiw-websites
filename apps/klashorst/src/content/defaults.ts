@@ -1,4 +1,4 @@
-import { BLOG_TITLE, type Lang } from '../meta';
+import { BLOG_TITLE, HOME_DESCRIPTION, HOME_TITLE, type Lang } from '../meta';
 import { samenvatten } from './rich';
 import type { BlogPost, Content, Img, RichBlock, Werk } from './types';
 
@@ -258,6 +258,7 @@ const teksten: Record<Lang, Content['teksten']> = {
       eyebrow: 'Collectie',
       titel: 'Het werk',
       lead: 'Techniek en afmetingen komen uit de opgave van de nalatenschap.',
+      leeg: 'Er staat op dit moment geen werk in de collectie. Zodra er werk is opgenomen, staat het hier.',
     },
     peter: {
       eyebrow: 'De schilder',
@@ -268,17 +269,11 @@ const teksten: Record<Lang, Content['teksten']> = {
         'Vanaf de jaren negentig werkt hij grote delen van het jaar buiten Nederland: Senegal, Gambia, Kenia, Cambodja en Thailand. Dat werk oogst evenveel bewondering als scherpe kritiek. In 2011 verschijnt zijn autobiografie Kunstkannibaal.',
         'Peter Klashorst overlijdt op 11 september 2024 in Amsterdam, 67 jaar oud.',
       ],
-      feitenTitel: 'In het kort',
-      feiten: [
-        { jaar: '1957', wat: 'Geboren in Santpoort' },
-        { jaar: '1976 / 1981', wat: 'Gerrit Rietveld Academie' },
-        { jaar: '1983', wat: 'Koninklijke Subsidie voor Vrije Schilderkunst' },
-        { jaar: '1987', wat: 'Medeoprichter van After Nature' },
-        { jaar: '2011', wat: 'Autobiografie Kunstkannibaal' },
-        { jaar: '2024', wat: 'Overleden in Amsterdam' },
-      ],
       portret,
       portretCredit: 'Foto: Michael Klinkhamer',
+      // The museum adds this one in the Studio; the build ships without it.
+      tweedeFoto: null,
+      tweedeFotoCredit: '',
     },
     galerie: {
       eyebrow: 'Andere kunst',
@@ -290,6 +285,7 @@ const teksten: Record<Lang, Content['teksten']> = {
       eyebrow: 'Blog',
       titel: BLOG_TITLE.nl,
       lead: 'Aankondigingen van het museum en verhalen uit het archief van de schilder.',
+      leeg: 'Het eerste bericht staat er nog niet. Zodra er nieuws is, komt het hier te staan.',
     },
     bezoek: {
       eyebrow: 'Bezoek',
@@ -307,11 +303,46 @@ const teksten: Record<Lang, Content['teksten']> = {
       titel: 'Blijf op de hoogte',
       lead: 'Een bericht bij de opening, bij nieuwe tentoonstellingen en bij nieuw werk in de collectie. Niet vaker.',
       consent: 'Alleen museumnieuws. Uw adres gaat niet naar anderen.',
+      knop: 'Aanmelden',
+      gelukt: 'Dank u. U hoort van ons zodra er nieuws is.',
+    },
+    contact: {
+      eyebrow: 'Contact',
+      titel: 'Stel een vraag',
+      lead: 'Uw bericht komt rechtstreeks bij het museum binnen. U krijgt antwoord op het adres dat u achterlaat.',
+      waarvoor: [
+        {
+          label: 'Over het werk',
+          wat: 'Een vraag over een schilderij, over de collectie of over een bezoek.',
+        },
+        {
+          label: 'Werk aanbieden',
+          wat: 'Kunstenaars die werk willen laten hangen in de zaal met werk van anderen.',
+        },
+      ],
+      knop: 'Vraag versturen',
+      gelukt: 'Dank u. Het museum neemt contact met u op.',
+      mailVraag: 'Liever zelf een mail versturen?',
+      mail: 'klashorstmuseum@gmail.com',
+    },
+    menu: {
+      werk: 'Klashorst Collectie',
+      peter: 'De Kunstenaar',
+      galerie: 'Andere Kunst',
+      blog: 'Dirty Diaries',
+      bezoek: 'Bezoek Museum',
+      contact: 'Contact',
+      nieuwsbrief: 'Nieuwsbrief',
+    },
+    nietGevonden: {
+      titel: 'Deze pagina bestaat niet',
+      tekst: 'Het bericht is verplaatst of het adres klopt niet helemaal.',
     },
     footer: {
       rechten: 'Werk van Peter Klashorst',
       demo: 'Dit is een conceptversie.',
     },
+    vindbaarheid: { titel: HOME_TITLE.nl, omschrijving: HOME_DESCRIPTION.nl },
   },
 
   en: {
@@ -325,6 +356,7 @@ const teksten: Record<Lang, Content['teksten']> = {
       eyebrow: 'Collection',
       titel: 'The work',
       lead: 'Medium and dimensions are as stated by the estate.',
+      leeg: 'There is no work in the collection at the moment. As soon as work is added, it appears here.',
     },
     peter: {
       eyebrow: 'The painter',
@@ -335,17 +367,10 @@ const teksten: Record<Lang, Content['teksten']> = {
         'From the nineteen-nineties he spent large parts of the year working outside the Netherlands: Senegal, Gambia, Kenya, Cambodia and Thailand. That work drew as much admiration as sharp criticism. His autobiography Kunstkannibaal appeared in 2011.',
         'Peter Klashorst died in Amsterdam on 11 September 2024, aged 67.',
       ],
-      feitenTitel: 'In brief',
-      feiten: [
-        { jaar: '1957', wat: 'Born in Santpoort' },
-        { jaar: '1976 / 1981', wat: 'Gerrit Rietveld Academie' },
-        { jaar: '1983', wat: 'Royal Award for Painting' },
-        { jaar: '1987', wat: 'Co-founder of After Nature' },
-        { jaar: '2011', wat: 'Autobiography Kunstkannibaal' },
-        { jaar: '2024', wat: 'Died in Amsterdam' },
-      ],
       portret,
       portretCredit: 'Photograph: Michael Klinkhamer',
+      tweedeFoto: null,
+      tweedeFotoCredit: '',
     },
     galerie: {
       eyebrow: 'Other art',
@@ -357,6 +382,7 @@ const teksten: Record<Lang, Content['teksten']> = {
       eyebrow: 'Journal',
       titel: BLOG_TITLE.en,
       lead: 'Announcements from the museum and stories from the painter’s archive.',
+      leeg: 'The first post is not there yet. As soon as there is news, it will appear here.',
     },
     bezoek: {
       eyebrow: 'Visit',
@@ -374,11 +400,47 @@ const teksten: Record<Lang, Content['teksten']> = {
       titel: 'Stay informed',
       lead: 'A message when the museum opens, when there is a new exhibition and when new work enters the collection. No more often than that.',
       consent: 'Museum news only. Your address does not go to anyone else.',
+      knop: 'Sign up',
+      gelukt: 'Thank you. You will hear from us as soon as there is news.',
+    },
+    contact: {
+      eyebrow: 'Contact',
+      titel: 'Ask a question',
+      lead: 'Your message goes straight to the museum. You will get an answer at the address you leave.',
+      waarvoor: [
+        {
+          label: 'About the work',
+          wat: 'A question about a painting, about the collection or about visiting the museum.',
+        },
+        {
+          label: 'Offering work',
+          wat: 'Artists who would like to show work in the room reserved for other artists.',
+        },
+      ],
+      knop: 'Send question',
+      gelukt: 'Thank you. The museum will be in touch.',
+      mailVraag: 'Prefer to send an email yourself?',
+      mail: 'klashorstmuseum@gmail.com',
+    },
+    menu: {
+      werk: 'Klashorst Collection',
+      peter: 'The Artist',
+      // The blog's own name, so it reads the same in both languages.
+      galerie: 'Other Art',
+      blog: 'Dirty Diaries',
+      bezoek: 'Visit Museum',
+      contact: 'Contact',
+      nieuwsbrief: 'Newsletter',
+    },
+    nietGevonden: {
+      titel: 'This page does not exist',
+      tekst: 'The post has moved, or the address is not quite right.',
     },
     footer: {
       rechten: 'Work by Peter Klashorst',
       demo: 'This is a concept version.',
     },
+    vindbaarheid: { titel: HOME_TITLE.en, omschrijving: HOME_DESCRIPTION.en },
   },
 };
 

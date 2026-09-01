@@ -16,6 +16,7 @@ import { createReadStream } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createClient } from '@sanity/client';
+import { LexoRank } from 'lexorank';
 import { defaults, seedBronnen } from '../../src/content/defaults';
 import type { Img } from '../../src/content/types';
 
@@ -37,6 +38,23 @@ const nlDatum = (iso: string) =>
   new Date(iso).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const uploaded = new Map<string, string>();
+
+/**
+ * The nth position in a drag-and-drop list. LexoRank strings sort
+ * lexicographically into the order they were generated, and the Studio inserts
+ * new ranks between two existing ones when a work is dragged.
+ */
+const rang = (() => {
+  let rank = LexoRank.middle();
+  const gemaakt: string[] = [];
+  return (index: number) => {
+    while (gemaakt.length <= index) {
+      gemaakt.push(rank.toString());
+      rank = rank.genNext();
+    }
+    return gemaakt[index];
+  };
+})();
 
 /** Uploads the largest prepared version of a photograph and returns its asset id. */
 async function upload(img: Img): Promise<string> {
@@ -103,16 +121,12 @@ async function main() {
       eyebrow: nl.peter.eyebrow,
       titel: nl.peter.titel,
       alineas: nl.peter.alineas,
-      feitenTitel: nl.peter.feitenTitel,
-      feiten: keys(nl.peter.feiten, 'feit'),
       portretCredit: nl.peter.portretCredit,
       ...(portret ? { portret: imageField(portret) } : {}),
       en: {
         eyebrow: en.peter.eyebrow,
         titel: en.peter.titel,
         alineas: en.peter.alineas,
-        feitenTitel: en.peter.feitenTitel,
-        feiten: keys(en.peter.feiten, 'feit-en'),
         portretCredit: en.peter.portretCredit,
       },
     },
@@ -134,7 +148,30 @@ async function main() {
       },
     },
     nieuwsbrief: { ...nl.nieuwsbrief, en: en.nieuwsbrief },
+    contact: {
+      eyebrow: nl.contact.eyebrow,
+      titel: nl.contact.titel,
+      lead: nl.contact.lead,
+      waarvoor: keys(nl.contact.waarvoor, 'waarvoor'),
+      knop: nl.contact.knop,
+      gelukt: nl.contact.gelukt,
+      mailVraag: nl.contact.mailVraag,
+      mail: nl.contact.mail,
+      en: {
+        eyebrow: en.contact.eyebrow,
+        titel: en.contact.titel,
+        lead: en.contact.lead,
+        waarvoor: keys(en.contact.waarvoor, 'waarvoor-en'),
+        knop: en.contact.knop,
+        gelukt: en.contact.gelukt,
+        mailVraag: en.contact.mailVraag,
+        mail: en.contact.mail,
+      },
+    },
+    menu: { ...nl.menu, en: en.menu },
+    nietGevonden: { ...nl.nietGevonden, en: en.nietGevonden },
     footer: { ...nl.footer, en: en.footer },
+    vindbaarheid: { ...nl.vindbaarheid, en: en.vindbaarheid },
   });
 
   for (const [index, work] of werkBronnen.entries()) {
@@ -146,7 +183,8 @@ async function main() {
       afmetingen: work.afmetingen,
       ...(work.toelichting ? { toelichting: work.toelichting.nl } : {}),
       inZaal: work.inZaal,
-      volgorde: (index + 1) * 10,
+      // The order the museum drags them into, seeded in catalogue order.
+      orderRank: rang(index),
       afbeelding: imageField(werkAssets.get(work.id)!),
       en: {
         techniek: work.techniek.en,

@@ -9,12 +9,16 @@
     "//deploy": "There is no deploy script. The Studio is built into the site's dist at /beheer by the app's build, so it ships with the site. `sanity deploy` would put it on sanity.studio, where basePath /beheer makes it unreachable.",
     "seed": "tsx scripts/seed.ts",
     "migrate-blog": "tsx scripts/migrate-blog.ts",
+    "fill-blocks": "tsx scripts/fill-blocks.ts",
+    "set-order-rank": "tsx scripts/set-order-rank.ts",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
     "@sanity/icons": "^5.2.1",
     "@sanity/locale-nl-nl": "^1.1.38",
+    "@sanity/orderable-document-list": "^2.0.23",
     "@sanity/ui": "^3.5.1",
+    "lexorank": "^1.0.5",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "sanity": "^6.9.0",

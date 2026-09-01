@@ -16,14 +16,27 @@ type Veld = ReturnType<typeof defineField>;
 const regel = (name: string, title: string, description?: string) =>
   defineField({ name, title, type: 'string', description });
 
+/**
+ * How a text box behaves on the site, said in every text box, because the
+ * client was typing both of these and reading them back unchanged: blank lines
+ * arrived as one block of text and asterisks arrived as asterisks.
+ */
+const OPMAAK = 'Een witregel begint een nieuwe alinea. *schuin* en **vet** mogen.';
+
 const alinea = (name: string, title: string, description?: string) =>
-  defineField({ name, title, type: 'text', rows: 4, description });
+  defineField({
+    name,
+    title,
+    type: 'text',
+    rows: 4,
+    description: description ? `${description} ${OPMAAK}` : OPMAAK,
+  });
 
 const lijst = (name: string, title: string, description?: string) =>
   defineField({
     name,
     title,
-    description,
+    description: description ? `${description} ${OPMAAK}` : OPMAAK,
     type: 'array',
     of: [{ type: 'text', rows: 4 }],
   });
@@ -69,8 +82,18 @@ export const siteTeksten = defineType({
     blok(
       'werk',
       'Klashorst Collectie',
-      [regel('eyebrow', 'Klein kopje'), regel('titel', 'Kop'), alinea('lead', 'Introductie')],
-      [regel('eyebrow', 'Klein kopje'), regel('titel', 'Kop'), alinea('lead', 'Introductie')],
+      [
+        regel('eyebrow', 'Klein kopje'),
+        regel('titel', 'Kop'),
+        alinea('lead', 'Introductie'),
+        alinea('leeg', 'Tekst zolang er nog geen werk in staat'),
+      ],
+      [
+        regel('eyebrow', 'Klein kopje'),
+        regel('titel', 'Kop'),
+        alinea('lead', 'Introductie'),
+        alinea('leeg', 'Tekst zolang er nog geen werk in staat'),
+      ],
     ),
     blok(
       'peter',
@@ -86,38 +109,23 @@ export const siteTeksten = defineType({
           options: { hotspot: false },
         }),
         regel('portretCredit', 'Fotograaf', 'Bijvoorbeeld: Foto: Michael Klinkhamer'),
-        regel('feitenTitel', 'Kop boven de jaartallen'),
+        // A second photograph, under the first, in the space the biography
+        // leaves open next to it. Optional: left empty there is simply one.
         defineField({
-          name: 'feiten',
-          title: 'Jaartallen',
-          type: 'array',
-          of: [
-            {
-              type: 'object',
-              fields: [regel('jaar', 'Jaar'), regel('wat', 'Wat er gebeurde')],
-              preview: { select: { title: 'jaar', subtitle: 'wat' } },
-            },
-          ],
+          name: 'tweedeFoto',
+          title: 'Tweede foto',
+          type: 'image',
+          options: { hotspot: false },
+          description: 'Optioneel. Komt onder de portretfoto te staan.',
         }),
+        regel('tweedeFotoCredit', 'Fotograaf tweede foto'),
       ],
       [
         regel('eyebrow', 'Klein kopje'),
         regel('titel', 'Kop'),
         lijst('alineas', 'Tekst'),
         regel('portretCredit', 'Fotograaf'),
-        regel('feitenTitel', 'Kop boven de jaartallen'),
-        defineField({
-          name: 'feiten',
-          title: 'Jaartallen',
-          type: 'array',
-          of: [
-            {
-              type: 'object',
-              fields: [regel('jaar', 'Jaar'), regel('wat', 'Wat er gebeurde')],
-              preview: { select: { title: 'jaar', subtitle: 'wat' } },
-            },
-          ],
-        }),
+        regel('tweedeFotoCredit', 'Fotograaf tweede foto'),
       ],
     ),
     blok(
@@ -144,8 +152,14 @@ export const siteTeksten = defineType({
         regel('eyebrow', 'Klein kopje'),
         regel('titel', 'Kop', 'Staat boven de berichten, en is de titel van de blogpagina.'),
         alinea('lead', 'Introductie'),
+        alinea('leeg', 'Tekst zolang er nog geen bericht is'),
       ],
-      [regel('eyebrow', 'Klein kopje'), regel('titel', 'Kop'), alinea('lead', 'Introductie')],
+      [
+        regel('eyebrow', 'Klein kopje'),
+        regel('titel', 'Kop'),
+        alinea('lead', 'Introductie'),
+        alinea('leeg', 'Tekst zolang er nog geen bericht is'),
+      ],
     ),
     blok(
       'bezoek',
@@ -196,19 +210,156 @@ export const siteTeksten = defineType({
         regel('titel', 'Kop'),
         alinea('lead', 'Introductie'),
         alinea('consent', 'Zin naast de knop', 'Wat er met het e-mailadres gebeurt.'),
+        regel('knop', 'Tekst op de knop'),
+        alinea('gelukt', 'Bevestiging op de pagina', 'Wat de bezoeker leest zodra de aanmelding verstuurd is.'),
       ],
       [
         regel('eyebrow', 'Klein kopje'),
         regel('titel', 'Kop'),
         alinea('lead', 'Introductie'),
         alinea('consent', 'Zin naast de knop'),
+        regel('knop', 'Tekst op de knop'),
+        alinea('gelukt', 'Bevestiging op de pagina'),
       ],
+    ),
+    blok(
+      'contact',
+      'Stel een vraag',
+      [
+        regel('eyebrow', 'Klein kopje'),
+        regel('titel', 'Kop'),
+        alinea('lead', 'Introductie', 'De zin onder de kop, boven het formulier.'),
+        defineField({
+          name: 'waarvoor',
+          title: 'Waarvoor mensen schrijven',
+          description:
+            'De blokjes onder de introductie. Per blokje een kopje en een zin, zodat een bezoeker weet of zijn vraag hier thuishoort.',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [regel('label', 'Kopje'), alinea('wat', 'Zin eronder')],
+              preview: { select: { title: 'label', subtitle: 'wat' } },
+            },
+          ],
+        }),
+        regel('knop', 'Tekst op de knop'),
+        alinea('gelukt', 'Bevestiging op de pagina', 'Wat de bezoeker leest zodra de vraag verstuurd is.'),
+        regel('mailVraag', 'Zin boven het e-mailadres', 'Bijvoorbeeld: Liever zelf een mail versturen?'),
+        defineField({
+          name: 'mail',
+          title: 'E-mailadres van het museum',
+          type: 'string',
+          description:
+            'Staat onder het formulier en opent het mailprogramma van de bezoeker. Leeg laten mag: dan staat er alleen een formulier. Let op: dit verandert alleen wat er op de pagina staat. Waar het ingevulde formulier zelf naartoe wordt gestuurd, staat vast in de site; laat het ons weten als dat ergens anders heen moet.',
+          validation: (rule) =>
+            rule
+              .regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, { name: 'e-mailadres' })
+              .warning('Dit lijkt geen geldig e-mailadres.'),
+        }),
+      ],
+      [
+        regel('eyebrow', 'Klein kopje'),
+        regel('titel', 'Kop'),
+        alinea('lead', 'Introductie'),
+        defineField({
+          name: 'waarvoor',
+          title: 'Waarvoor mensen schrijven',
+          type: 'array',
+          of: [
+            {
+              type: 'object',
+              fields: [regel('label', 'Kopje'), alinea('wat', 'Zin eronder')],
+              preview: { select: { title: 'label', subtitle: 'wat' } },
+            },
+          ],
+        }),
+        regel('knop', 'Tekst op de knop'),
+        alinea('gelukt', 'Bevestiging op de pagina'),
+        regel('mailVraag', 'Zin boven het e-mailadres'),
+        regel('mail', 'E-mailadres van het museum'),
+      ],
+    ),
+    // The bar at the top and the same links again at the foot of the page. The
+    // section headings above are the museum's own and longer; these are what
+    // fits in a menu, so they are their own boxes rather than a copy.
+    blok(
+      'menu',
+      'Menu bovenaan en onderaan',
+      [
+        regel('werk', 'Klashorst Collectie'),
+        regel('peter', 'De Kunstenaar'),
+        regel('blog', 'Dirty Diaries'),
+        regel('galerie', 'Andere Kunst'),
+        regel('bezoek', 'Bezoek Museum'),
+        regel('contact', 'Contact'),
+        regel('nieuwsbrief', 'Knop Nieuwsbrief'),
+      ],
+      [
+        regel('werk', 'Klashorst Collectie'),
+        regel('peter', 'De Kunstenaar'),
+        regel('blog', 'Dirty Diaries'),
+        regel('galerie', 'Andere Kunst'),
+        regel('bezoek', 'Bezoek Museum'),
+        regel('contact', 'Contact'),
+        regel('nieuwsbrief', 'Knop Nieuwsbrief'),
+      ],
+    ),
+    blok(
+      'nietGevonden',
+      'Pagina niet gevonden (404)',
+      [
+        regel('titel', 'Kop'),
+        alinea('tekst', 'Tekst eronder', 'Wat een bezoeker leest die op een verlopen link klikt.'),
+      ],
+      [regel('titel', 'Kop'), alinea('tekst', 'Tekst eronder')],
     ),
     blok(
       'footer',
       'Onderaan de pagina',
       [regel('rechten', 'Regel onder de naam'), regel('demo', 'Kleine regel onderaan')],
       [regel('rechten', 'Regel onder de naam'), regel('demo', 'Kleine regel onderaan')],
+    ),
+    // What the front page looks like in Google and in a shared link. Every
+    // blog post already has this on its own Vindbaarheid-tabblad; the page the
+    // museum will be found by first had it only in the code.
+    blok(
+      'vindbaarheid',
+      'Vindbaarheid van de voorpagina',
+      [
+        defineField({
+          name: 'titel',
+          title: 'Titel in de zoekresultaten',
+          type: 'string',
+          description:
+            'De blauwe regel in Google, en de naam van het tabblad. Leeg laten mag: dan gebruikt de site zijn eigen titel. Tussen de 30 en 60 tekens leest het beste.',
+          validation: (rule) => rule.max(70).warning('Google kapt langere titels af.'),
+        }),
+        defineField({
+          name: 'omschrijving',
+          title: 'Omschrijving in de zoekresultaten',
+          type: 'text',
+          rows: 3,
+          description:
+            'De twee regels onder de blauwe link, en de tekst onder een gedeelde link. Tussen de 70 en 160 tekens.',
+          validation: (rule) => rule.max(180).warning('Google kapt langere omschrijvingen af.'),
+        }),
+      ],
+      [
+        defineField({
+          name: 'titel',
+          title: 'Titel in de zoekresultaten',
+          type: 'string',
+          validation: (rule) => rule.max(70).warning('Google kapt langere titels af.'),
+        }),
+        defineField({
+          name: 'omschrijving',
+          title: 'Omschrijving in de zoekresultaten',
+          type: 'text',
+          rows: 3,
+          validation: (rule) => rule.max(180).warning('Google kapt langere omschrijvingen af.'),
+        }),
+      ],
     ),
   ],
   preview: {

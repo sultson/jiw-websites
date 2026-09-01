@@ -7,7 +7,7 @@ import BlogIndex from './pages/BlogIndex';
 import BlogPostPage from './pages/BlogPost';
 import NotFound from './pages/NotFound';
 import { content, findPost, isPreview, lang } from './content';
-import { HOME_DESCRIPTION, HOME_TITLE, HTML_LANG, NOT_FOUND_TITLE, clamp, pageTitle } from './meta';
+import { HTML_LANG, clamp, pageTitle } from './meta';
 import { useInternalLinks, usePath, useScrollOnNavigate } from './router';
 
 /**
@@ -17,10 +17,11 @@ import { useInternalLinks, usePath, useScrollOnNavigate } from './router';
  */
 function resolve(path: string) {
   if (path === '/') {
+    const t = content.teksten.vindbaarheid;
     return {
       page: <Home />,
-      title: HOME_TITLE[lang],
-      description: HOME_DESCRIPTION[lang],
+      title: t.titel,
+      description: clamp(t.omschrijving),
       newsletter: true,
     };
   }
@@ -50,8 +51,8 @@ function resolve(path: string) {
 
   return {
     page: <NotFound />,
-    title: pageTitle(NOT_FOUND_TITLE[lang]),
-    description: HOME_DESCRIPTION[lang],
+    title: pageTitle(content.teksten.nietGevonden.titel),
+    description: clamp(content.teksten.vindbaarheid.omschrijving),
     newsletter: false,
   };
 }

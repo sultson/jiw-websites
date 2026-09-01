@@ -54,7 +54,11 @@
     // noindex and robots.txt disallows everything, so the concept build can
     // never compete with the site it is a proposal for.
     "SITE_INDEXABLE": "false",
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // Where both forms land: the museum's own inbox, and the address a
+    // visitor's confirmation replies to. The sender stays on
+    // notify.jouwidealewebsite.nl, which is the configured Email Service
+    // sender; any other sending domain makes LEAD_EMAIL.send() throw.
+    "LEAD_RECIPIENT": "klashorstmuseum@gmail.com",
     "LEAD_SENDER": "contact@notify.jouwidealewebsite.nl",
     "TURNSTILE_SECRET_KEY": "dev",
     // Empty would mean the site renders its bundled copy, which is a working

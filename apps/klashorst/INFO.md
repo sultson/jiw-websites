@@ -151,6 +151,17 @@ the account that created it.
   client's own, and the Studio uses them so the CMS and the menu say the same
   thing. Section order, buttons and interface labels stay in
   `src/content/ui.ts`, so no edit can restructure or break the page.
+- **Both walls are hung by dragging, and there are two ways to do it.** Both
+  collections sort on `orderRank` (`@sanity/orderable-document-list`). The
+  plugin's own list is one of them. Next to each list sits *Volgorde van de
+  collectie* / *Volgorde van Andere Kunst* (`studio/tools/Volgorde.tsx`): the
+  same drag in the grid the visitor gets, two, three, four columns of portrait
+  frames read left to right, because a column of 35-pixel thumbnails does not
+  tell the museum what they are moving or where it lands. Both write the same
+  field, so they cannot disagree. The grid patches a work's draft and published
+  version together, so a move is on the site without publishing, and it
+  renumbers the whole wall only when LexoRank has no room left between two
+  neighbours or a neighbour was never ranked.
 - **A work has no availability at all.** No `teKoop`, `teHuur`, `verkocht`,
   `prijs` or `huurprijs`, on either document type. One tick box is left on a
   collection work, `inZaal`, which decides whether it hangs in the 3D room.

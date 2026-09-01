@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Check } from 'lucide-react';
 import { content, lang, ui } from '../content';
+import Paragraphs from './Paragraphs';
 
 type Status = 'idle' | 'sending' | 'done' | 'error';
 
@@ -29,14 +30,18 @@ export default function Newsletter() {
 
   return (
     <div id="nieuwsbrief" className="scroll-mt-24 border border-hair bg-wall p-7 md:p-10">
-      <p className="eyebrow">{t.eyebrow}</p>
-      <h3 className="display mt-3 text-3xl md:text-4xl">{t.titel}</h3>
-      <p className="mt-4 text-[0.95rem] leading-relaxed text-muted">{t.lead}</p>
+      {t.eyebrow && <p className="eyebrow">{t.eyebrow}</p>}
+      {t.titel && (
+        <h3 className={`display text-3xl md:text-4xl ${t.eyebrow ? 'mt-3' : ''}`}>{t.titel}</h3>
+      )}
+      <div className="mt-4">
+        <Paragraphs value={t.lead} className="text-[0.95rem] leading-relaxed text-muted" />
+      </div>
 
       {status === 'done' ? (
         <p className="mt-8 flex items-center gap-3 text-[0.95rem] text-bone">
           <Check size={20} className="text-red-soft" />
-          {ui.nieuwsbrief.gelukt}
+          {t.gelukt}
         </p>
       ) : (
         <form onSubmit={onSubmit} className="mt-8 space-y-6">
@@ -83,9 +88,11 @@ export default function Newsletter() {
 
           <div className="flex flex-wrap items-center gap-4 pt-1">
             <button type="submit" className="btn btn-solid" disabled={status === 'sending'}>
-              {status === 'sending' ? ui.nieuwsbrief.bezig : ui.nieuwsbrief.versturen}
+              {status === 'sending' ? ui.nieuwsbrief.bezig : t.knop}
             </button>
-            <p className="text-xs text-muted">{t.consent}</p>
+            <div className="text-xs text-muted">
+              <Paragraphs value={t.consent} gap="mt-2" />
+            </div>
           </div>
 
           {status === 'error' && <p className="text-sm text-red-soft">{ui.nieuwsbrief.mislukt}</p>}

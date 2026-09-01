@@ -1,3 +1,4 @@
+import { orderRankField, orderRankOrdering } from '@sanity/orderable-document-list';
 import { defineField, defineType } from 'sanity';
 
 /**
@@ -9,6 +10,7 @@ export const galeriewerk = defineType({
   name: 'galeriewerk',
   title: 'Werk van een andere kunstenaar',
   type: 'document',
+  orderings: [orderRankOrdering],
   groups: [
     { name: 'nl', title: 'Nederlands', default: true },
     { name: 'en', title: 'English' },
@@ -19,14 +21,20 @@ export const galeriewerk = defineType({
       title: 'Titel van het werk',
       type: 'string',
       group: 'nl',
-      validation: (rule) => rule.required().error('Een werk heeft een titel nodig.'),
+      // Not every work is named, and a title should never stand between the
+      // museum and hanging a photograph. Left empty, the site leaves the line
+      // off rather than putting "Zonder titel" under the work.
+      description: 'Optioneel. Heeft het werk geen titel, laat dit dan leeg.',
     }),
     defineField({
       name: 'kunstenaar',
       title: 'Kunstenaar',
       type: 'string',
       group: 'nl',
-      validation: (rule) => rule.required().error('Vul in van wie dit werk is.'),
+      description: 'Van wie dit werk is. Deze zaal is voor werk van anderen, dus dit is het vermelden waard.',
+      // A nudge, not a lock: publishing a work whose maker is not yet known
+      // has to be possible, and the yellow hint is there to be answered later.
+      validation: (rule) => rule.required().warning('Nog niet ingevuld van wie dit werk is.'),
     }),
     defineField({
       name: 'afbeelding',
@@ -47,13 +55,7 @@ export const galeriewerk = defineType({
       group: 'nl',
       description: 'Optioneel. Een paar regels over het werk of de kunstenaar.',
     }),
-    defineField({
-      name: 'volgorde',
-      title: 'Volgorde',
-      type: 'number',
-      group: 'nl',
-      description: 'Lager getal staat vooraan. Leeg laten mag.',
-    }),
+    orderRankField({ type: 'galeriewerk' }),
     defineField({
       name: 'en',
       title: 'English',
@@ -75,7 +77,9 @@ export const galeriewerk = defineType({
       media: 'afbeelding',
     },
     prepare: ({ title, kunstenaar, media }) => ({
-      title,
+      // Only in this list: a work without a title has to be findable in the
+      // Studio, but on the site it simply has no title line.
+      title: title || 'Werk zonder titel',
       subtitle: kunstenaar,
       media,
     }),

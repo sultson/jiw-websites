@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Check } from 'lucide-react';
-import { lang, ui } from '../content';
+import { content, lang, ui } from '../content';
+import Paragraphs from './Paragraphs';
 
 type Status = 'idle' | 'sending' | 'done' | 'error';
 
@@ -15,7 +16,11 @@ type Status = 'idle' | 'sending' | 'done' | 'error';
  * It goes to the museum as e-mail, in the language the page was read in.
  */
 export default function Ask() {
+  // What the section says comes from the CMS; what the form calls its own
+  // boxes does not. A label is part of how the form works, not part of what
+  // the museum has to say.
   const t = ui.vraag;
+  const tekst = content.teksten.contact;
   const [status, setStatus] = useState<Status>('idle');
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -42,20 +47,30 @@ export default function Ask() {
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="flex flex-col gap-12 lg:grid lg:grid-cols-2 lg:gap-20">
           <div>
-            <p className="eyebrow">{t.eyebrow}</p>
-            <h2 className="display mt-4 text-4xl md:text-6xl">{t.titel}</h2>
-            <p className="mt-5 max-w-md text-[0.98rem] leading-relaxed text-muted">{t.lead}</p>
+            {tekst.eyebrow && <p className="eyebrow">{tekst.eyebrow}</p>}
+            {tekst.titel && (
+              <h2 className={`display text-4xl md:text-6xl ${tekst.eyebrow ? 'mt-4' : ''}`}>
+                {tekst.titel}
+              </h2>
+            )}
+            <div className="mt-5 max-w-md">
+              <Paragraphs value={tekst.lead} className="text-[0.98rem] leading-relaxed text-muted" />
+            </div>
 
             {/* Who the form is for, said once, so nobody has to guess whether
                 their reason counts as a reason to write. */}
-            <dl className="mt-10 max-w-md border-t border-hair">
-              {t.waarvoor.map((row) => (
-                <div key={row.label} className="border-b border-hair py-5">
-                  <dt className="eyebrow text-muted">{row.label}</dt>
-                  <dd className="mt-2 text-sm leading-relaxed text-bone">{row.wat}</dd>
-                </div>
-              ))}
-            </dl>
+            {tekst.waarvoor.length > 0 && (
+              <dl className="mt-10 max-w-md border-t border-hair">
+                {tekst.waarvoor.map((row) => (
+                  <div key={row.label + row.wat} className="border-b border-hair py-5">
+                    {row.label && <dt className="eyebrow text-muted">{row.label}</dt>}
+                    <dd className={row.label ? 'mt-2' : ''}>
+                      <Paragraphs value={row.wat} className="text-sm leading-relaxed text-bone" gap="mt-3" />
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            )}
           </div>
 
           {/* Deliberately not a bordered card: the newsletter one sits a band
@@ -65,7 +80,7 @@ export default function Ask() {
             {status === 'done' ? (
               <p className="flex items-center gap-3 text-[0.95rem] text-bone">
                 <Check size={20} className="text-red-soft" />
-                {t.gelukt}
+                {tekst.gelukt}
               </p>
             ) : (
               <form onSubmit={onSubmit} className="space-y-6">
@@ -124,12 +139,27 @@ export default function Ask() {
 
                 <div className="pt-1">
                   <button type="submit" className="btn btn-solid" disabled={status === 'sending'}>
-                    {status === 'sending' ? t.bezig : t.versturen}
+                    {status === 'sending' ? t.bezig : tekst.knop}
                   </button>
                 </div>
 
                 {status === 'error' && <p className="text-sm text-red-soft">{t.mislukt}</p>}
               </form>
+            )}
+
+            {/* Some people would simply rather write the mail themselves, and
+                a form is a wall in front of them. Stays put after the form has
+                been sent: the address is worth having either way. */}
+            {tekst.mail && (
+              <p className="mt-8 border-t border-hair pt-6 text-sm text-muted">
+                {tekst.mailVraag && <span className="mr-1.5">{tekst.mailVraag}</span>}
+                <a
+                  href={`mailto:${tekst.mail}`}
+                  className="text-bone underline decoration-red underline-offset-4 transition-colors hover:text-red-soft"
+                >
+                  {tekst.mail}
+                </a>
+              </p>
             )}
           </div>
         </div>

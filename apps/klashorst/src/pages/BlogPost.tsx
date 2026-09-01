@@ -1,6 +1,7 @@
 import { ArrowLeft } from 'lucide-react';
 import BlogCard from '../components/BlogCard';
 import Newsletter from '../components/Newsletter';
+import Paragraphs from '../components/Paragraphs';
 import RichText from '../components/RichText';
 import { blogPosts, ui, type BlogPost as Post } from '../content';
 import { to } from '../router';
@@ -35,9 +36,9 @@ export default function BlogPost({ post }: { post: Post }) {
 
           <h1 className="display mt-3 text-4xl leading-[1.03] md:text-6xl">{post.titel}</h1>
 
-          {post.intro && (
-            <p className="mt-6 text-[1.1rem] leading-relaxed text-bone">{post.intro}</p>
-          )}
+          <div className="mt-6">
+            <Paragraphs value={post.intro} className="text-[1.1rem] leading-relaxed text-bone" />
+          </div>
 
           {/* An English reader who is about to be handed Dutch is told so
               first. Better than a silent switch of language mid-page. */}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { lang, ui } from '../content';
+import { content, lang, ui } from '../content';
+import Wordmark from './Wordmark';
 import { localePath, type Lang } from '../meta';
 import { sectionHref, to } from '../router';
 
@@ -14,16 +15,23 @@ import { sectionHref, to } from '../router';
  * museum's front page is mostly picture, and a bar that whispers over it is a
  * bar nobody uses.
  */
-const sections = (path: string) => [
-  // No entry for the room at the top of the page: that is the home page itself,
-  // and the wordmark to its left already goes there.
-  { href: sectionHref(path, 'werk'), label: ui.nav.werk },
-  { href: sectionHref(path, 'peter'), label: ui.nav.peter },
-  { href: to('/blog'), label: ui.nav.blog, blog: true },
-  { href: sectionHref(path, 'galerie'), label: ui.nav.galerie },
-  { href: sectionHref(path, 'bezoek'), label: ui.nav.bezoek },
-  { href: sectionHref(path, 'contact'), label: ui.nav.contact },
-];
+const sections = (path: string) => {
+  const menu = content.teksten.menu;
+  return (
+    [
+      // No entry for the room at the top of the page: that is the home page
+      // itself, and the wordmark to its left already goes there.
+      { href: sectionHref(path, 'werk'), label: menu.werk },
+      { href: sectionHref(path, 'peter'), label: menu.peter },
+      { href: to('/blog'), label: menu.blog, blog: true },
+      { href: sectionHref(path, 'galerie'), label: menu.galerie },
+      { href: sectionHref(path, 'bezoek'), label: menu.bezoek },
+      { href: sectionHref(path, 'contact'), label: menu.contact },
+    ]
+      // A link the museum left unnamed is a link nobody can read or click.
+      .filter((link) => link.label)
+  );
+};
 
 /** Both languages, always both visible: a single toggle hides the one you want. */
 function Talen({
@@ -111,7 +119,7 @@ export default function Nav({
             href={home ? '#museum' : to('/')}
             className="display whitespace-nowrap text-[0.82rem] tracking-[0.16em] sm:text-base sm:tracking-[0.2em] md:text-lg"
           >
-            Klashorst<span className="text-red"> Museum</span>
+            <Wordmark />
           </a>
 
           {/* The names are the museum's own and longer than one word each, so
@@ -137,12 +145,14 @@ export default function Nav({
 
             {/* The newsletter is the client's headline ask, so it is the one
                 solid button in the bar and stays reachable on a phone too. */}
-            <a
-              href={nieuwsbrief}
-              className="btn btn-solid !px-3.5 !py-2.5 !text-[0.7rem] sm:!px-6 sm:!py-3 sm:!text-[0.84rem]"
-            >
-              {ui.nav.cta}
-            </a>
+            {content.teksten.menu.nieuwsbrief && (
+              <a
+                href={nieuwsbrief}
+                className="btn btn-solid !px-3.5 !py-2.5 !text-[0.7rem] sm:!px-6 sm:!py-3 sm:!text-[0.84rem]"
+              >
+                {content.teksten.menu.nieuwsbrief}
+              </a>
+            )}
 
             <button
               type="button"
@@ -161,9 +171,7 @@ export default function Nav({
       {open && (
         <div className="fixed inset-0 z-[60] flex flex-col bg-ink xl:hidden">
           <div className="flex h-[4.5rem] items-center justify-between px-5 md:h-20 md:px-10">
-            <span className="display text-[0.82rem] tracking-[0.16em] sm:text-base sm:tracking-[0.2em] md:text-lg">
-              Klashorst<span className="text-red"> Museum</span>
-            </span>
+            <Wordmark className="display text-[0.82rem] tracking-[0.16em] sm:text-base sm:tracking-[0.2em] md:text-lg" />
             <button
               type="button"
               onClick={() => setOpen(false)}
@@ -185,9 +193,11 @@ export default function Nav({
                 {link.label}
               </a>
             ))}
-            <a href={nieuwsbrief} onClick={() => setOpen(false)} className="btn btn-solid mt-4 self-start">
-              {ui.nav.cta}
-            </a>
+            {content.teksten.menu.nieuwsbrief && (
+              <a href={nieuwsbrief} onClick={() => setOpen(false)} className="btn btn-solid mt-4 self-start">
+                {content.teksten.menu.nieuwsbrief}
+              </a>
+            )}
             <Talen path={path} onPick={() => setOpen(false)} className="mt-2 flex" />
           </nav>
         </div>

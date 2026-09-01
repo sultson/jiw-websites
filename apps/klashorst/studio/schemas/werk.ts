@@ -1,3 +1,4 @@
+import { orderRankField, orderRankOrdering } from '@sanity/orderable-document-list';
 import { defineField, defineType } from 'sanity';
 
 /**
@@ -10,6 +11,8 @@ export const werk = defineType({
   name: 'werk',
   title: 'Werk in de collectie',
   type: 'document',
+  // So the drag-and-drop list and every other view agree on the order.
+  orderings: [orderRankOrdering],
   groups: [
     { name: 'nl', title: 'Nederlands', default: true },
     { name: 'en', title: 'English' },
@@ -65,13 +68,9 @@ export const werk = defineType({
       initialValue: true,
       description: 'Uit betekent: wel in de collectie op de pagina, niet in de draaiende zaal bovenaan.',
     }),
-    defineField({
-      name: 'volgorde',
-      title: 'Volgorde',
-      type: 'number',
-      group: 'nl',
-      description: 'Lager getal staat vooraan. Leeg laten mag.',
-    }),
+    // The order of the collection, kept by the list itself rather than by a
+    // number the client has to work out. Hidden: it is dragged, never typed.
+    orderRankField({ type: 'werk' }),
     defineField({
       name: 'en',
       title: 'English',

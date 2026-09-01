@@ -53,13 +53,10 @@ const text = (value: unknown, fallback: string): string =>
 const maybe = (value: unknown): string | undefined =>
   typeof value === 'string' && value.trim() ? value : undefined;
 
-const list = <T>(value: T[] | null | undefined, fallback: T[]): T[] =>
-  Array.isArray(value) && value.length ? value : fallback;
-
 /**
  * The English half of a document or a block of texts, or nothing at all on the
- * Dutch site. Every read goes English first, Dutch second, bundled copy third,
- * so a half-translated museum is a readable museum rather than a broken one.
+ * Dutch site. Every read goes English first and Dutch second, so a
+ * half-translated museum is a readable museum rather than a broken one.
  */
 const engels = (value: unknown): Record<string, any> =>
   lang === 'en' && value && typeof value === 'object' && !Array.isArray(value)
@@ -183,7 +180,9 @@ function buildContent(payload: RawPayload | null): Content {
       const vert = engels(doc);
       return {
         id: String(doc._id),
-        titel: text(vert.titel, text(doc.titel, 'Zonder titel')),
+        // Empty when the work has no title, the same rule the collection
+        // follows: the site leaves the line off rather than inventing one.
+        titel: text(vert.titel, text(doc.titel, '')),
         kunstenaar: text(doc.kunstenaar, ''),
         techniek: maybe(vert.techniek) ?? maybe(doc.techniek),
         afmetingen: maybe(doc.afmetingen),
@@ -195,22 +194,30 @@ function buildContent(payload: RawPayload | null): Content {
     .filter((item): item is GalerieWerk => item !== null);
 
   const cms = data.teksten ?? {};
-  const fallback = bundled.teksten;
 
   /**
-   * One block of copy, read English first and Dutch second, with the copy this
-   * build shipped with underneath both. An untouched field in the Studio keeps
-   * that copy, so the page can never go blank because someone has not filled a
-   * box in yet.
+   * One block of copy, read English first and Dutch second.
+   *
+   * There is deliberately no third step. The copy this build ships with is what
+   * renders when the CMS never answered at all, and nothing else: once a query
+   * came back, what the museum wrote is the site, and a box they emptied is an
+   * empty box. Falling back per field meant a section the client had cleared
+   * kept showing the seeded text, so from the outside the CMS looked broken and
+   * deleting something changed nothing. Every component below renders nothing
+   * for an empty field rather than an empty element.
+   *
+   * English still falls back to Dutch. That is not bundled copy, it is the
+   * museum's own sentence, and it is the documented promise of every English
+   * box in the Studio: leave it empty and the Dutch one is shown.
    */
   const blok = (naam: string) => {
     const eigen = ((cms as Record<string, any>)[naam] ?? {}) as Record<string, any>;
     const vert = engels(eigen);
     return {
-      regel: (key: string, standaard: string) => text(vert[key], text(eigen[key], standaard)),
-      lijst: <T>(key: string, standaard: T[], vorm: (row: any) => T): T[] => {
+      regel: (key: string) => text(vert[key], text(eigen[key], '')),
+      lijst: <T>(key: string, vorm: (row: any) => T): T[] => {
         const bron = Array.isArray(vert[key]) && vert[key].length ? vert[key] : eigen[key];
-        return list(Array.isArray(bron) ? bron.map(vorm) : null, standaard);
+        return Array.isArray(bron) ? bron.map(vorm) : [];
       },
     };
   };
@@ -222,65 +229,100 @@ function buildContent(payload: RawPayload | null): Content {
   const blogT = blok('nieuws');
   const bezoek = blok('bezoek');
   const nieuwsbrief = blok('nieuwsbrief');
+  const contact = blok('contact');
+  const menu = blok('menu');
+  const nietGevonden = blok('nietGevonden');
   const footer = blok('footer');
+  const vindbaarheid = blok('vindbaarheid');
 
   const teksten: Teksten = {
     hero: {
-      titel: hero.regel('titel', fallback.hero.titel),
-      tagline: hero.regel('tagline', fallback.hero.tagline),
-      lead: hero.regel('lead', fallback.hero.lead),
-      knop: hero.regel('knop', fallback.hero.knop),
+      titel: hero.regel('titel'),
+      tagline: hero.regel('tagline'),
+      lead: hero.regel('lead'),
+      knop: hero.regel('knop'),
     },
     werk: {
-      eyebrow: werkT.regel('eyebrow', fallback.werk.eyebrow),
-      titel: werkT.regel('titel', fallback.werk.titel),
-      lead: werkT.regel('lead', fallback.werk.lead),
+      eyebrow: werkT.regel('eyebrow'),
+      titel: werkT.regel('titel'),
+      lead: werkT.regel('lead'),
+      leeg: werkT.regel('leeg'),
     },
     peter: {
-      eyebrow: peter.regel('eyebrow', fallback.peter.eyebrow),
-      titel: peter.regel('titel', fallback.peter.titel),
-      alineas: peter.lijst<string>('alineas', fallback.peter.alineas, (row) => String(row ?? '')),
-      feitenTitel: peter.regel('feitenTitel', fallback.peter.feitenTitel),
-      feiten: peter.lijst('feiten', fallback.peter.feiten, (row: any) => ({
-        jaar: text(row?.jaar, ''),
-        wat: text(row?.wat, ''),
-      })),
+      eyebrow: peter.regel('eyebrow'),
+      titel: peter.regel('titel'),
+      alineas: peter.lijst<string>('alineas', (row) => String(row ?? '')),
       // The portrait itself is not a translation, so it is read from the Dutch
       // side whichever language is on screen.
-      portret: image((cms.peter ?? {}).portret) ?? fallback.peter.portret,
-      portretCredit: peter.regel('portretCredit', fallback.peter.portretCredit),
+      portret: image((cms.peter ?? {}).portret),
+      portretCredit: peter.regel('portretCredit'),
+      tweedeFoto: image((cms.peter ?? {}).tweedeFoto),
+      tweedeFotoCredit: peter.regel('tweedeFotoCredit'),
     },
     galerie: {
-      eyebrow: galerieT.regel('eyebrow', fallback.galerie.eyebrow),
-      titel: galerieT.regel('titel', fallback.galerie.titel),
-      lead: galerieT.regel('lead', fallback.galerie.lead),
-      leeg: galerieT.regel('leeg', fallback.galerie.leeg),
+      eyebrow: galerieT.regel('eyebrow'),
+      titel: galerieT.regel('titel'),
+      lead: galerieT.regel('lead'),
+      leeg: galerieT.regel('leeg'),
     },
     // `nieuws` on the wire, the blog on the site. Same seam as the posts above.
     blog: {
-      eyebrow: blogT.regel('eyebrow', fallback.blog.eyebrow),
-      titel: blogT.regel('titel', fallback.blog.titel),
-      lead: blogT.regel('lead', fallback.blog.lead),
+      eyebrow: blogT.regel('eyebrow'),
+      titel: blogT.regel('titel'),
+      lead: blogT.regel('lead'),
+      leeg: blogT.regel('leeg'),
     },
     bezoek: {
-      eyebrow: bezoek.regel('eyebrow', fallback.bezoek.eyebrow),
-      titel: bezoek.regel('titel', fallback.bezoek.titel),
-      lead: bezoek.regel('lead', fallback.bezoek.lead),
-      rijen: bezoek.lijst('rijen', fallback.bezoek.rijen, (row: any) => ({
+      eyebrow: bezoek.regel('eyebrow'),
+      titel: bezoek.regel('titel'),
+      lead: bezoek.regel('lead'),
+      rijen: bezoek.lijst('rijen', (row: any) => ({
         label: text(row?.label, ''),
         waarde: text(row?.waarde, ''),
       })),
-      note: bezoek.regel('note', fallback.bezoek.note),
+      note: bezoek.regel('note'),
     },
     nieuwsbrief: {
-      eyebrow: nieuwsbrief.regel('eyebrow', fallback.nieuwsbrief.eyebrow),
-      titel: nieuwsbrief.regel('titel', fallback.nieuwsbrief.titel),
-      lead: nieuwsbrief.regel('lead', fallback.nieuwsbrief.lead),
-      consent: nieuwsbrief.regel('consent', fallback.nieuwsbrief.consent),
+      eyebrow: nieuwsbrief.regel('eyebrow'),
+      titel: nieuwsbrief.regel('titel'),
+      lead: nieuwsbrief.regel('lead'),
+      consent: nieuwsbrief.regel('consent'),
+      knop: nieuwsbrief.regel('knop'),
+      gelukt: nieuwsbrief.regel('gelukt'),
+    },
+    contact: {
+      eyebrow: contact.regel('eyebrow'),
+      titel: contact.regel('titel'),
+      lead: contact.regel('lead'),
+      waarvoor: contact.lijst('waarvoor', (row: any) => ({
+        label: text(row?.label, ''),
+        wat: text(row?.wat, ''),
+      })),
+      knop: contact.regel('knop'),
+      gelukt: contact.regel('gelukt'),
+      mailVraag: contact.regel('mailVraag'),
+      mail: contact.regel('mail'),
+    },
+    menu: {
+      werk: menu.regel('werk'),
+      peter: menu.regel('peter'),
+      galerie: menu.regel('galerie'),
+      blog: menu.regel('blog'),
+      bezoek: menu.regel('bezoek'),
+      contact: menu.regel('contact'),
+      nieuwsbrief: menu.regel('nieuwsbrief'),
+    },
+    nietGevonden: {
+      titel: nietGevonden.regel('titel'),
+      tekst: nietGevonden.regel('tekst'),
     },
     footer: {
-      rechten: footer.regel('rechten', fallback.footer.rechten),
-      demo: footer.regel('demo', fallback.footer.demo),
+      rechten: footer.regel('rechten'),
+      demo: footer.regel('demo'),
+    },
+    vindbaarheid: {
+      titel: vindbaarheid.regel('titel'),
+      omschrijving: vindbaarheid.regel('omschrijving'),
     },
   };
 

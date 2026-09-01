@@ -79,7 +79,9 @@ export type BlogPost = {
 
 export type GalerieWerk = {
   id: string;
+  /** Empty for a work that has no title: the site then shows no title line. */
   titel: string;
+  /** Empty until the museum fills it in: the line is then simply absent. */
   kunstenaar: string;
   techniek?: string;
   afmetingen?: string;
@@ -88,20 +90,31 @@ export type GalerieWerk = {
   img: Img;
 };
 
+/**
+ * Every sentence the museum can change, in one shape.
+ *
+ * All of it comes from the CMS and none of it is propped up by the copy this
+ * build ships with: a field the museum emptied is an empty string here, and
+ * the component that reads it renders nothing rather than an element holding
+ * open a gap. The bundled copy in defaults.ts is what a CMS that never
+ * answered falls back to, and what the seed writes; it is not a per-field
+ * safety net.
+ */
 export type Teksten = {
   hero: { titel: string; tagline: string; lead: string; knop: string };
-  werk: { eyebrow: string; titel: string; lead: string };
+  werk: { eyebrow: string; titel: string; lead: string; leeg: string };
   peter: {
     eyebrow: string;
     titel: string;
     alineas: string[];
-    feitenTitel: string;
-    feiten: { jaar: string; wat: string }[];
     portret: Img | null;
     portretCredit: string;
+    /** A second photograph under the portrait, when the museum added one. */
+    tweedeFoto: Img | null;
+    tweedeFotoCredit: string;
   };
   galerie: { eyebrow: string; titel: string; lead: string; leeg: string };
-  blog: { eyebrow: string; titel: string; lead: string };
+  blog: { eyebrow: string; titel: string; lead: string; leeg: string };
   bezoek: {
     eyebrow: string;
     titel: string;
@@ -109,8 +122,41 @@ export type Teksten = {
     rijen: { label: string; waarde: string }[];
     note: string;
   };
-  nieuwsbrief: { eyebrow: string; titel: string; lead: string; consent: string };
+  nieuwsbrief: {
+    eyebrow: string;
+    titel: string;
+    lead: string;
+    consent: string;
+    knop: string;
+    /** What the visitor reads once the sign-up has gone through. */
+    gelukt: string;
+  };
+  contact: {
+    eyebrow: string;
+    titel: string;
+    lead: string;
+    /** Who the form is for: one heading and one sentence per reason to write. */
+    waarvoor: { label: string; wat: string }[];
+    knop: string;
+    gelukt: string;
+    /** For a visitor who would rather open their own mail programme. */
+    mailVraag: string;
+    mail: string;
+  };
+  /** The bar at the top and the same links again at the foot of the page. */
+  menu: {
+    werk: string;
+    peter: string;
+    galerie: string;
+    blog: string;
+    bezoek: string;
+    contact: string;
+    nieuwsbrief: string;
+  };
+  nietGevonden: { titel: string; tekst: string };
   footer: { rechten: string; demo: string };
+  /** What the front page is called in Google and in a shared link. */
+  vindbaarheid: { titel: string; omschrijving: string };
 };
 
 export type Content = {

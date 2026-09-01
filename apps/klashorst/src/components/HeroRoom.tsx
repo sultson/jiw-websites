@@ -1,6 +1,7 @@
 import { Component, Suspense, lazy, useEffect, useRef, useState, type ReactNode } from 'react';
 import { Pointer } from 'lucide-react';
 import { content, ui, zaalWerken } from '../content';
+import Paragraphs from './Paragraphs';
 
 const Room3D = lazy(() => import('./Room3D'));
 
@@ -138,14 +139,21 @@ export default function HeroRoom() {
               focused ? 'pointer-events-none translate-y-2 opacity-0' : 'opacity-100'
             }`}
           >
-            <h1 className="display text-[clamp(2.5rem,9vw,6.5rem)]">{t.titel}</h1>
-            <p className="display mt-2 text-[clamp(1.1rem,3.4vw,2rem)] text-red-soft">{t.tagline}</p>
-            <p className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-bone">{t.lead}</p>
-            <div className="pointer-events-auto mt-7 flex flex-wrap gap-3">
-              <a href="#werk" className="btn btn-solid">
-                {t.knop}
-              </a>
+            {t.titel && <h1 className="display text-[clamp(2.5rem,9vw,6.5rem)]">{t.titel}</h1>}
+            {t.tagline && (
+              <p className="display mt-2 text-[clamp(1.1rem,3.4vw,2rem)] text-red-soft">{t.tagline}</p>
+            )}
+            <div className="mt-5 max-w-md">
+              <Paragraphs value={t.lead} className="text-[0.95rem] leading-relaxed text-bone" />
             </div>
+            {/* A button the museum left unnamed is not a button. */}
+            {t.knop && (
+              <div className="pointer-events-auto mt-7 flex flex-wrap gap-3">
+                <a href="#werk" className="btn btn-solid">
+                  {t.knop}
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Wall label for the work brought forward. */}
@@ -160,9 +168,9 @@ export default function HeroRoom() {
             <p className={`text-sm ${focused?.titel ? 'mt-1 text-muted' : 'text-bone'}`}>
               {focused ? [focused.techniek, focused.afmetingen].filter(Boolean).join(', ') : ''}
             </p>
-            {focused?.toelichting && (
-              <p className="mt-2 text-sm leading-relaxed text-bone">{focused.toelichting}</p>
-            )}
+            <div className="mt-2">
+              <Paragraphs value={focused?.toelichting} className="text-sm leading-relaxed text-bone" gap="mt-2" />
+            </div>
             <button
               type="button"
               onClick={() => setFocusIndex(null)}

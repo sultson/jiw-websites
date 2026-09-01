@@ -1,4 +1,5 @@
 import { content, ui, type GalerieWerk } from '../content';
+import Paragraphs from './Paragraphs';
 
 /**
  * The part of the museum reserved for other artists. Nothing here is on offer:
@@ -11,20 +12,33 @@ export default function Gallery() {
   const werken = content.galerie;
   const label = (work: GalerieWerk) =>
     [work.techniek, work.afmetingen, work.jaar].filter(Boolean).join(', ');
+  /**
+   * What to call a work out loud. Neither the title nor the maker is demanded
+   * by the Studio, so a photograph still has to describe itself to a screen
+   * reader when the museum hung it without either.
+   */
+  const describe = (work: GalerieWerk) =>
+    [work.titel, work.kunstenaar].filter(Boolean).join(', ') || ui.werk.zonderTitel;
 
   return (
     <section id="galerie" className="scroll-mt-20 border-t border-hair py-20 md:py-28">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <header className="max-w-2xl">
-          <p className="eyebrow">{t.eyebrow}</p>
-          <h2 className="display mt-4 text-4xl md:text-6xl">{t.titel}</h2>
-          <p className="mt-5 text-[0.98rem] leading-relaxed text-muted">{t.lead}</p>
+          {t.eyebrow && <p className="eyebrow">{t.eyebrow}</p>}
+          {t.titel && (
+            <h2 className={`display text-4xl md:text-6xl ${t.eyebrow ? 'mt-4' : ''}`}>{t.titel}</h2>
+          )}
+          <div className="mt-5">
+            <Paragraphs value={t.lead} className="text-[0.98rem] leading-relaxed text-muted" />
+          </div>
         </header>
 
         {werken.length === 0 ? (
-          <div className="mt-10 max-w-xl border border-hair bg-wall p-7 md:p-9">
-            <p className="text-[0.95rem] leading-relaxed text-bone">{t.leeg}</p>
-          </div>
+          t.leeg && (
+            <div className="mt-10 max-w-xl border border-hair bg-wall p-7 md:p-9">
+              <Paragraphs value={t.leeg} className="text-[0.95rem] leading-relaxed text-bone" />
+            </div>
+          )
         ) : (
           <div className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 md:mt-16 md:grid-cols-3 md:gap-x-8 md:gap-y-14 lg:grid-cols-4">
             {werken.map((work) => (
@@ -32,32 +46,50 @@ export default function Gallery() {
                 <div className="flex aspect-[3/4] items-center justify-center overflow-hidden bg-wall">
                   <img
                     src={work.img.grid}
-                    alt={`${work.titel}, ${work.kunstenaar}`}
+                    alt={describe(work)}
                     loading="lazy"
                     decoding="async"
                     className="max-h-full max-w-full object-contain"
                   />
                 </div>
 
-                <h3 className="display mt-3 text-base leading-tight md:text-lg">{work.titel}</h3>
-                {work.kunstenaar && <p className="mt-1 text-sm text-bone">{work.kunstenaar}</p>}
-                {label(work) && (
-                  <p className="mt-1 text-xs text-muted md:text-[0.8rem]">{label(work)}</p>
+                {/* A work without a title gets no title line: the maker moves
+                    up into its place rather than a placeholder. */}
+                {work.titel && (
+                  <h3 className="display mt-3 text-base leading-tight md:text-lg">{work.titel}</h3>
                 )}
-
-                {work.toelichting && (
-                  <p className="mt-3 text-xs leading-relaxed text-muted md:text-[0.8rem]">
-                    {work.toelichting}
+                {work.kunstenaar && (
+                  <p className={`text-sm text-bone ${work.titel ? 'mt-1' : 'mt-3'}`}>
+                    {work.kunstenaar}
                   </p>
                 )}
+                {label(work) && (
+                  <p
+                    className={`text-xs text-muted md:text-[0.8rem] ${
+                      work.titel || work.kunstenaar ? 'mt-1' : 'mt-3'
+                    }`}
+                  >
+                    {label(work)}
+                  </p>
+                )}
+
+                <div className="mt-3">
+                  <Paragraphs
+                    value={work.toelichting}
+                    className="text-xs leading-relaxed text-muted md:text-[0.8rem]"
+                    gap="mt-2"
+                  />
+                </div>
               </article>
             ))}
           </div>
         )}
 
-        <a href="#contact" className="btn btn-solid mt-10">
-          {ui.vraag.knop}
-        </a>
+        {content.teksten.contact.titel && (
+          <a href="#contact" className="btn btn-solid mt-10">
+            {content.teksten.contact.titel}
+          </a>
+        )}
       </div>
     </section>
   );
