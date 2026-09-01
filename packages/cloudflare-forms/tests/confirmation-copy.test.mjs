@@ -173,3 +173,29 @@ test('a form with no free-text field and no uploads can drop those blocks from t
   assert.doesNotMatch(owner.text, /Projectomschrijving|Bijlagen/);
   assert.doesNotMatch(owner.html, /Projectomschrijving|Bijlagen/);
 });
+
+// A form that does not demand a name greeted whoever left it out as "Beste ,".
+// A newsletter opt-in is exactly that form: it needs an address and takes a
+// name if one is offered.
+test('a submission without a name is greeted without one, in both languages', async () => {
+  const nameless = { firstName: '', lastName: '' };
+  const config = { requireFirstName: false, requireLastName: false };
+
+  const dutch = await createHarness(createConfig(config)).submit(nameless);
+  assert.match(dutch.confirmation.text, /^Goedendag,$/m);
+  assert.match(dutch.confirmation.html, /<p>Goedendag,<\/p>/);
+  assert.doesNotMatch(dutch.confirmation.text, /Beste ,/);
+  assert.doesNotMatch(dutch.confirmation.html, /Beste ,/);
+
+  const english = await createHarness(createConfig({ ...config, locale: 'en' })).submit(nameless);
+  assert.match(english.confirmation.text, /^Hello,$/m);
+  assert.match(english.confirmation.html, /<p>Hello,<\/p>/);
+  assert.doesNotMatch(english.confirmation.text, /Dear ,/);
+});
+
+test('a name that is given is still used in the greeting', async () => {
+  const { confirmation } = await createHarness(createConfig()).submit();
+
+  assert.match(confirmation.text, /^Beste Ada Lovelace,$/m);
+  assert.match(confirmation.html, /<p>Beste Ada Lovelace,<\/p>/);
+});

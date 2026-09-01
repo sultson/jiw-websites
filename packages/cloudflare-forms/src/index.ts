@@ -116,15 +116,37 @@ export type LocalizedConfirmationEmailConfig = {
   defaultLocale: string;
   translations: Record<string, ConfirmationEmailCopy>;
   brand: ConfirmationEmailBrand;
+  /**
+   * Whether the mail reads back what was filled in. Default true. The same
+   * choice `ConfirmationCopy.includeSubmission` offers the plain renderer, and
+   * for the same reason: an opt-in that asks only for an address would
+   * otherwise show the visitor their own address under a heading, and an empty
+   * message quoted beneath it.
+   */
+  includeSubmission?: boolean;
 };
 
 export type ConfirmationEmailCopy = {
   subject: string;
   preheader: string;
+  /** Opens the mail. `{name}` is substituted. */
   greeting: string;
+  /**
+   * Used instead of `greeting` when the form collected no name, so a greeting
+   * written as `Beste {name},` cannot arrive as `Beste ,`. Falls back to
+   * `greeting`, so a form that always has a name need not set it.
+   */
+  greetingWithoutName?: string;
   receiptMessage: string;
   followUpMessage: string;
   detailsHeading: string;
+  /**
+   * The small line above the headline in the dark band. Defaults to
+   * `detailsHeading`, which is what this renderer has always shown there —
+   * but that prints the same words twice on a mail that also has a details
+   * table, so a form with one is better off saying something else here.
+   */
+  kicker?: string;
   messageHeading: string;
   referenceLabel: string;
   fieldLabels: Record<string, string>;
@@ -134,8 +156,15 @@ export type ConfirmationEmailCopy = {
 };
 
 export type ConfirmationEmailBrand = {
-  logoUrl: string;
-  logoAlt: string;
+  /**
+   * Optional. Without one the bar carries `wordmark` (or the site name) set in
+   * type instead, because a brand whose mark is lettering has no image to
+   * point at, and an empty src renders as a broken image in every client.
+   */
+  logoUrl?: string;
+  logoAlt?: string;
+  /** The name as type, for a brand with no logo image. Defaults to the site name. */
+  wordmark?: string;
   websiteUrl: string;
   contactEmail: string;
   /**
@@ -716,6 +745,11 @@ async function sendLeadEmail(
   }
 }
 
+/** The greeting of a branded confirmation, with a nameless fallback. */
+function localizedGreeting(copy: ConfirmationEmailCopy, fields: SubmissionFields): string {
+  return getFullName(fields) ? copy.greeting : (copy.greetingWithoutName ?? copy.greeting);
+}
+
 function renderLocalizedConfirmationTextEmail(
   config: ResolvedLeadFormConfig,
   manifest: SubmissionManifest,
@@ -726,18 +760,24 @@ function renderLocalizedConfirmationTextEmail(
   const rows = renderLocalizedConfirmationRows(config, fields, copy);
   const message = getFieldValue(fields, config.messageField);
   const replacements = { name: getFullName(fields), siteName: config.siteName };
+  const submission =
+    emailConfig.includeSubmission === false
+      ? []
+      : [
+          '',
+          copy.detailsHeading,
+          ...rows.map(([label, value]) => `${label}: ${value || '-'}`),
+          '',
+          `${copy.messageHeading}:`,
+          message || '-',
+        ];
 
   return [
-    formatCopy(copy.greeting, replacements),
+    formatCopy(localizedGreeting(copy, fields), replacements),
     '',
     formatCopy(copy.receiptMessage, replacements),
     formatCopy(copy.followUpMessage, replacements),
-    '',
-    copy.detailsHeading,
-    ...rows.map(([label, value]) => `${label}: ${value || '-'}`),
-    '',
-    `${copy.messageHeading}:`,
-    message || '-',
+    ...submission,
     '',
     `${copy.referenceLabel}: ${manifest.submissionId}`,
     '',
@@ -763,6 +803,7 @@ function renderLocalizedConfirmationHtmlEmail(
   const rows = renderLocalizedConfirmationRows(config, fields, copy);
   const message = getFieldValue(fields, config.messageField) || '-';
   const replacements = { name: getFullName(fields), siteName: config.siteName };
+  const toont = emailConfig.includeSubmission !== false;
   const detailRows = rows.map(([label, value], index) => `
                 <tr>
                   <td style="padding: 11px 12px; border-bottom: 1px solid ${c.border}; width: 42%; color: ${c.mutedSoft}; font-size: 14px; line-height: 20px; vertical-align: top;${index === rows.length - 1 ? ' border-bottom: 0;' : ''}"><strong>${escapeHtml(label)}</strong></td>
@@ -784,22 +825,24 @@ function renderLocalizedConfirmationHtmlEmail(
           <table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width: 100%; max-width: 640px; border-collapse: collapse; background-color: ${c.surface}; border-top: 4px solid ${c.accent};">
             <tr>
               <td align="center" style="padding: 25px 28px 21px; background-color: ${c.surfaceAlt};">
-                <img src="${escapeHtml(brand.logoUrl)}" width="${logoWidth}" alt="${escapeHtml(brand.logoAlt)}" style="display: block; width: 100%; max-width: ${logoWidth}px; height: auto; border: 0; color: ${c.ink}; font-size: 16px;">
+                ${brand.logoUrl
+                  ? `<img src="${escapeHtml(brand.logoUrl)}" width="${logoWidth}" alt="${escapeHtml(brand.logoAlt ?? config.siteName)}" style="display: block; width: 100%; max-width: ${logoWidth}px; height: auto; border: 0; color: ${c.ink}; font-size: 16px;">`
+                  : `<p style="margin: 0; color: ${c.ink}; font-size: 19px; font-weight: bold; letter-spacing: 2.6px; line-height: 26px; text-transform: uppercase;">${escapeHtml(brand.wordmark ?? config.siteName)}</p>`}
               </td>
             </tr>
             <tr>
               <td style="padding: 28px 36px; background-color: ${c.ink}; color: ${c.onInk};">
-                <p style="margin: 0 0 10px; color: ${c.accent}; font-size: 13px; font-weight: bold; letter-spacing: 1.2px; line-height: 18px; text-transform: uppercase;">${escapeHtml(copy.detailsHeading)}</p>
+                <p style="margin: 0 0 10px; color: ${c.accent}; font-size: 13px; font-weight: bold; letter-spacing: 1.2px; line-height: 18px; text-transform: uppercase;">${escapeHtml(copy.kicker ?? copy.detailsHeading)}</p>
                 <p style="margin: 0; color: ${c.onInk}; font-size: 22px; font-weight: bold; line-height: 30px;">${escapeHtml(formatCopy(copy.receiptMessage, replacements))}</p>
               </td>
             </tr>
             <tr>
               <td style="padding: 32px 36px 16px; background-color: ${c.surface};">
-                <p style="margin: 0 0 16px; color: ${c.ink}; font-size: 17px; line-height: 26px;">${escapeHtml(formatCopy(copy.greeting, replacements))}</p>
+                <p style="margin: 0 0 16px; color: ${c.ink}; font-size: 17px; line-height: 26px;">${escapeHtml(formatCopy(localizedGreeting(copy, fields), replacements))}</p>
                 <p style="margin: 0; color: ${c.inkSoft}; font-size: 15px; line-height: 24px;">${escapeHtml(formatCopy(copy.followUpMessage, replacements))}</p>
               </td>
             </tr>
-            <tr>
+            ${toont ? `<tr>
               <td style="padding: 16px 36px; background-color: ${c.surface};">
                 <h1 style="margin: 0 0 12px; color: ${c.ink}; font-size: 20px; line-height: 28px;">${escapeHtml(copy.detailsHeading)}</h1>
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; border: 1px solid ${c.border}; background-color: ${c.surfaceAlt};">${detailRows}
@@ -810,7 +853,11 @@ function renderLocalizedConfirmationHtmlEmail(
               <td style="padding: 16px 36px; background-color: ${c.surface};">
                 <h2 style="margin: 0 0 10px; color: ${c.ink}; font-size: 18px; line-height: 26px;">${escapeHtml(copy.messageHeading)}</h2>
                 <p style="margin: 0; padding: 16px; border-left: 3px solid ${c.accent}; background-color: ${c.surfaceAlt}; color: ${c.inkSoft}; font-size: 15px; line-height: 23px;">${escapeHtml(message).replace(/\n/g, '<br>')}</p>
-                <p style="margin: 14px 0 0; color: ${c.muted}; font-size: 12px; line-height: 18px;">${escapeHtml(copy.referenceLabel)}: ${escapeHtml(manifest.submissionId)}</p>
+              </td>
+            </tr>` : ''}
+            <tr>
+              <td style="padding: ${toont ? '2px' : '4px'} 36px 0; background-color: ${c.surface};">
+                <p style="margin: 0; color: ${c.muted}; font-size: 12px; line-height: 18px;">${escapeHtml(copy.referenceLabel)}: ${escapeHtml(manifest.submissionId)}</p>
               </td>
             </tr>
             <tr>
@@ -837,11 +884,19 @@ function renderLocalizedConfirmationRows(
   fields: SubmissionFields,
   copy: ConfirmationEmailCopy,
 ): [string, string][] {
-  const baseRows: [string, string][] = [
-    [copy.fieldLabels.firstName ?? 'First name', fields.firstName],
-    [copy.fieldLabels.lastName ?? 'Last name', fields.lastName],
-    [copy.fieldLabels.email ?? 'Email address', fields.email],
-  ];
+  // Same rule as the plain renderer: a row for a name the form never asks for
+  // reads "Last name: -", which tells the visitor something untrue about their
+  // own submission, in the renderer's language rather than theirs. A field the
+  // form does require keeps its row whatever came back.
+  const baseRows = (
+    [
+      [copy.fieldLabels.firstName ?? 'First name', fields.firstName, config.requireFirstName],
+      [copy.fieldLabels.lastName ?? 'Last name', fields.lastName, config.requireLastName],
+      [copy.fieldLabels.email ?? 'Email address', fields.email, config.requireEmail],
+    ] as [string, string, boolean][]
+  )
+    .filter(([, value, required]) => required || value)
+    .map(([label, value]): [string, string] => [label, value]);
   const configuredRows = config.emailFields
     .filter((field) => !isReservedConfirmationField(field.name, config))
     .filter((field) => conditionMatches(fields, field.when))
@@ -875,7 +930,7 @@ function renderConfirmationTextEmail(config: ResolvedLeadFormConfig, manifest: S
     : [];
 
   return [
-    `${english ? 'Dear' : 'Beste'} ${getFullName(fields)},`,
+    greetingLine(fields, english),
     '',
     confirmationOpeningSentence(config),
     config.confirmationFollowUpSentence,
@@ -903,7 +958,7 @@ function renderConfirmationHtmlEmail(config: ResolvedLeadFormConfig, manifest: S
   return `<!doctype html>
 <html>
   <body style="font-family: Arial, sans-serif; color: #1d2939; line-height: 1.5;">
-    <p>${english ? 'Dear' : 'Beste'} ${escapeHtml(getFullName(fields))},</p>
+    <p>${escapeHtml(greetingLine(fields, english))}</p>
     <p>${escapeHtml(confirmationOpeningSentence(config))} ${escapeHtml(config.confirmationFollowUpSentence)}</p>
     ${submission}<p style="font-size: 12px; color: #667085;">${english ? 'Reference' : 'Referentie'} ${escapeHtml(manifest.submissionId)}.</p>
   </body>
@@ -999,6 +1054,19 @@ function renderEmailRows(
 
 function getFullName(fields: SubmissionFields): string {
   return [fields.firstName, fields.lastName].filter(Boolean).join(' ');
+}
+
+/**
+ * How the confirmation opens. A form that does not demand a name (a newsletter
+ * opt-in asks for an address and takes a name if one is offered) otherwise
+ * greets whoever left it out as "Beste ,", which reads as a broken mail merge
+ * rather than a confirmation. Without a name to use, the greeting simply does
+ * not name anyone.
+ */
+function greetingLine(fields: SubmissionFields, english: boolean): string {
+  const name = getFullName(fields);
+  if (!name) return english ? 'Hello,' : 'Goedendag,';
+  return `${english ? 'Dear' : 'Beste'} ${name},`;
 }
 
 function getDisplayFieldValue(fields: SubmissionFields, name: string, config: ResolvedLeadFormConfig): string {
