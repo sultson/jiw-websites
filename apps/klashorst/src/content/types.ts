@@ -109,7 +109,7 @@ export type Teksten = {
     alineas: string[];
     portret: Img | null;
     portretCredit: string;
-    /** A second photograph under the portrait, when the museum added one. */
+    /** A second photograph under the biography, when the museum added one. */
     tweedeFoto: Img | null;
     tweedeFotoCredit: string;
   };

@@ -109,14 +109,14 @@ export const siteTeksten = defineType({
           options: { hotspot: false },
         }),
         regel('portretCredit', 'Fotograaf', 'Bijvoorbeeld: Foto: Michael Klinkhamer'),
-        // A second photograph, under the first, in the space the biography
-        // leaves open next to it. Optional: left empty there is simply one.
+        // A second photograph, at the foot of the biography. Optional: left
+        // empty the section is the portrait and the text and nothing else.
         defineField({
           name: 'tweedeFoto',
           title: 'Tweede foto',
           type: 'image',
           options: { hotspot: false },
-          description: 'Optioneel. Komt onder de portretfoto te staan.',
+          description: 'Optioneel. Komt onder de tekst te staan.',
         }),
         regel('tweedeFotoCredit', 'Fotograaf tweede foto'),
       ],
