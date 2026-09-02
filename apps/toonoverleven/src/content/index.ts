@@ -1,6 +1,7 @@
 import { defaults, nlDatum } from './defaults';
 import { imgVanRef } from './image';
 import { blokkenVanTekst, samenvatten } from './rich';
+import { DOELGROEPEN, THEMAS } from '../agenda/model';
 import { verhalenVan } from './verhalen';
 import type { Verhaal, VerhaalRubriek } from './verhalen';
 import { slugify } from '../meta';
@@ -59,6 +60,15 @@ const lijst = <T>(waarde: T[] | null | undefined, terugval: T[]): T[] =>
 const CATEGORIEEN: Categorie[] = ['Inloop', 'Creatief', 'Bewegen', 'Wellness', 'Overig'];
 const HERHALINGEN: Herhaling[] = ['eenmalig', 'wekelijks', 'tweewekelijks', 'maandelijks'];
 
+/**
+ * De aangekruiste hokjes uit het beheer, ontdaan van wat de site niet kent.
+ *
+ * Een waarde die hier niet in de lijst staat komt uit een oud document of uit
+ * een hokje dat inmiddels anders heet, en die hoort niet als thema of doelgroep
+ * mee te tellen: de pagina's eronder filteren erop.
+ */
+const gekozen = <T extends string>(waarde: unknown, toegestaan: readonly T[]): T[] =>
+  Array.isArray(waarde) ? waarde.filter((v): v is T => toegestaan.includes(v as T)) : [];
 
 function leesPayload(): RawPayload | null {
   if (typeof document === 'undefined') return null;
@@ -117,6 +127,13 @@ function bouwContent(payload: RawPayload | null): Content {
         aanmelden: doc.aanmelden === true,
         bijdrage: misschien(doc.bijdrage),
         locatie: misschien(doc.locatie),
+        // Waar de themapagina's en de doelgroeppagina's op filteren, en waar de
+        // agendapagina zijn filterknopjes uit opmaakt. Zonder deze twee regels
+        // komt alles uit het beheer binnen als "voor iedereen, zonder thema" en
+        // staan die elf pagina's leeg zodra het bestuur zijn eerste activiteit
+        // invoert, terwijl het hokje in het beheer wel aangekruist is.
+        doelgroepen: gekozen(doc.doelgroepen, DOELGROEPEN),
+        themas: gekozen(doc.themas, THEMAS),
       };
     })
     .filter((item): item is AgendaBron => item !== null);

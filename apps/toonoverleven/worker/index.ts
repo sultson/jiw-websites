@@ -69,11 +69,18 @@ const contactWorker = createFormWorker({
  *
  * De agenda wordt bij de bron al ingekort: een eenmalige activiteit die voorbij
  * is hoeft niet meegestuurd te worden, een reeks wel, want die loopt door.
+ *
+ * Elk blok dat het beheer kent staat hier opgesomd, `praktisch` inbegrepen: de
+ * openingstijden, de kosten, het adres en de alinea voor verwijzers. Die staan
+ * op tien pagina's en veranderen zonder dat er iemand aan de site werkt. Wat
+ * hier niet opgesomd staat wordt niet opgehaald, en dan blijft de site de tekst
+ * tonen waarmee hij gebouwd is terwijl het beheer iets anders zegt. Komt er een
+ * blok bij in studio/schemas/siteTeksten.ts, dan hoort het hier ook bij.
  */
 const query = (vandaag: string) => `{
   "teksten": *[_type == "siteTeksten"][0]{
     hero, open, nieuwsBlok, agendaBlok, welkom, wieWeZijn, watWeDoen, naam, jongeren,
-    vrijwilliger, steun, verantwoording, contact
+    vrijwilliger, steun, verantwoording, contact, praktisch
   },
   "agenda": *[_type == "activiteit" && (
     (defined(herhaling) && herhaling != "eenmalig") || coalesce(totDatum, datum) >= "${vandaag}"

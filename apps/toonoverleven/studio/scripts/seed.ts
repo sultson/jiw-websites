@@ -129,6 +129,11 @@ async function agenda() {
       soort: regel.soort,
       titel: regel.titel,
       categorie: regel.categorie,
+      // Voor wie het is en waar het over gaat. Zonder deze twee staat een
+      // activiteit alleen in de agenda en op geen enkele thema- of
+      // doelgroeppagina, terwijl de hokjes in het beheer er wel op wachten.
+      ...(regel.doelgroepen?.length ? { doelgroepen: regel.doelgroepen } : {}),
+      ...(regel.themas?.length ? { themas: regel.themas } : {}),
       omschrijving: regel.omschrijving,
       datum: regel.datum,
       ...(regel.totDatum ? { totDatum: regel.totDatum } : {}),
