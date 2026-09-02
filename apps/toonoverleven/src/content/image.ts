@@ -39,6 +39,7 @@ export function imgVanRef(ref: string, projectId: string, dataset: string): Img 
 
   return {
     ratio: asset.breedte / asset.hoogte,
+    mini: bij(240),
     klein: bij(560),
     breed: bij(1100),
     vol: bij(1800),

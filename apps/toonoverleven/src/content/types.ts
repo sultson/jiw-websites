@@ -3,6 +3,8 @@ import type { Verhaal } from './verhalen';
 /** Een foto uit het beheer, in de maten die de site nodig heeft. */
 export type Img = {
   ratio: number;
+  /** Zo klein als een logo in de voet staat: een paar centimeter breed. */
+  mini: string;
   klein: string;
   breed: string;
   vol: string;
@@ -110,7 +112,12 @@ export type Bericht = {
   seoOmschrijving?: string;
 };
 
-export type Sponsor = { naam: string; beeld: string; web?: string };
+/**
+ * Een sponsor met zijn logo in twee maten: op zijn eigen pagina staat het
+ * groot genoeg om te lezen, in de voet van elke pagina zo klein dat het daar
+ * niet twintig keer een foto kost.
+ */
+export type Sponsor = { naam: string; beeld: string; strook: string; web?: string };
 
 export type KopTekst = { kop: string; tekst: string };
 export type Persoon = { naam: string; rol: string };

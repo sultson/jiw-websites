@@ -429,6 +429,12 @@ export const PER_PAGINA: Record<string, Beeld> = {
     src: '/img/cheque-rabo.jpg',
     alt: 'Een cheque van Rabo ClubSupport wordt in de huiskamer overhandigd.',
   },
+  // ECHT. De wand met logo's staat er zelf op: dit is wat sponsoren opleveren
+  // en wat ze ervoor terugkrijgen, in één foto.
+  '/over-ons/onze-sponsors': {
+    src: '/img/swim-cheque.jpg',
+    alt: 'De opbrengst van Swim to Fight Cancer wordt overhandigd voor een wand met logo’s van sponsoren.',
+  },
   '/over-ons/vrijwilliger-worden': {
     src: '/img/swim-kraam.jpg',
     alt: 'De kraam van Toon over Leven, met de vlag en werk uit de workshops.',

@@ -59,6 +59,7 @@ const lijst = <T>(waarde: T[] | null | undefined, terugval: T[]): T[] =>
 const CATEGORIEEN: Categorie[] = ['Inloop', 'Creatief', 'Bewegen', 'Wellness', 'Overig'];
 const HERHALINGEN: Herhaling[] = ['eenmalig', 'wekelijks', 'tweewekelijks', 'maandelijks'];
 
+
 function leesPayload(): RawPayload | null {
   if (typeof document === 'undefined') return null;
   const tag = document.getElementById('toonoverleven-content');
@@ -189,7 +190,12 @@ function bouwContent(payload: RawPayload | null): Content {
     .map((doc): Sponsor | null => {
       const logo = beeld(doc.logo);
       if (!logo || !doc.naam) return null;
-      return { naam: String(doc.naam), beeld: logo.klein, web: misschien(doc.website) };
+      return {
+        naam: String(doc.naam),
+        beeld: logo.klein,
+        strook: logo.mini,
+        web: misschien(doc.website),
+      };
     })
     .filter((item): item is Sponsor => item !== null);
 

@@ -1,4 +1,5 @@
 import ruw from './paginas.json';
+import { metSponsorpagina } from './sponsorpagina';
 
 /**
  * De inhoud van de site zoals het bestuur hem heeft vastgesteld.
@@ -95,7 +96,11 @@ const bestand = ruw as unknown as { iconen: Record<string, string>; paginas: Pag
 
 export const ICOONPADEN: Record<string, string> = bestand.iconen;
 
-export const PAGINAS: Pagina[] = bestand.paginas;
+/**
+ * De vastgestelde pagina's, met de sponsorpagina ertussen. Die staat niet in
+ * de mock-up en dus niet in paginas.json; zie sponsorpagina.ts.
+ */
+export const PAGINAS: Pagina[] = metSponsorpagina(bestand.paginas);
 
 /**
  * Wanneer de teksten voor het laatst inhoudelijk zijn nagekeken.

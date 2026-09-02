@@ -42,7 +42,7 @@ export default function SitePreview(props: {
       : naam === 'activiteit'
         ? '/agenda'
         : naam === 'sponsor'
-          ? '/steun'
+          ? '/over-ons/onze-sponsors'
           : '/';
 
   const url = `${SITE}${pad}?preview=${PREVIEW_KEY}`;

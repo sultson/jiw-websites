@@ -57,7 +57,7 @@ export default function App({ start }: { start?: Start } = {}) {
       <main id="inhoud" className="flex-1">
         <Pagina pad={pad} bronnen={bronnen} />
       </main>
-      <Voet />
+      <Voet sponsoren={inhoud.sponsoren} />
       <ContactKnop />
     </div>
   );

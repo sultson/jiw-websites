@@ -163,7 +163,7 @@ const teksten: Teksten = {
       },
       {
         kop: 'Sponsor worden',
-        tekst: 'Als bedrijf of fonds. Van een jaarlijkse bijdrage tot het leveren van koffie, materialen of een dienst. Je logo komt op deze pagina te staan.',
+        tekst: 'Als bedrijf of fonds. Van een jaarlijkse bijdrage tot het leveren van koffie, materialen of een dienst. Je logo komt op onze sponsorpagina en in de voet van elke pagina te staan.',
       },
       {
         kop: 'Gratis steunen',
@@ -483,7 +483,11 @@ const nieuws: Bericht[] = (socialsJson as {
   };
 });
 
-const sponsoren = sponsorenJson as Sponsor[];
+/* De meegeleverde logo's staan al op de maat van de site (320 bij 120), dus
+   de voet en de pagina delen hetzelfde bestand. */
+const sponsoren: Sponsor[] = (
+  sponsorenJson as { naam: string; web: string | null; beeld: string }[]
+).map(({ naam, web, beeld }) => ({ naam, beeld, strook: beeld, ...(web ? { web } : {}) }));
 
 // Er staan nog geen verhalen van bezoekers klaar: die komen alleen uit het
 // beheer en alleen met toestemming van de verteller.

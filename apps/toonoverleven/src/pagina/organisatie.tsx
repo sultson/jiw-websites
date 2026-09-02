@@ -3,7 +3,7 @@ import { Download } from 'lucide-react';
 import type { Sponsor, Teksten } from '../content/types';
 import Formulier from '../components/Formulier';
 import { VERANTWOORDING, type Stuk } from '../documenten';
-import { CONTACT } from '../navigatie';
+import { CONTACT, SPONSORS } from '../navigatie';
 import { DONATIE, Knop, ROUTE, Tekstlink, schrijfNaam } from '../ui';
 
 /**
@@ -149,7 +149,17 @@ export function DoneerBlok({ teksten }: { teksten: Teksten }): ReactElement {
 /*  Wie het huis overeind houden                                       */
 /* ------------------------------------------------------------------ */
 
-/** De logo's uit het beheer. Zonder logo's geen leeg raster, maar een vraag. */
+/**
+ * De logo's uit het beheer, met de naam en het adres van de sponsor erbij.
+ *
+ * Op de eigen pagina is een logo geen versiering maar een vermelding: wie
+ * erop drukt hoort bij het bedrijf zelf uit te komen, want dat is wat een
+ * sponsor ervoor terugkrijgt. Daarom is de hele kaart de link, staat de naam
+ * eronder voor wie het logo niet kent, en staat het adres eronder voor wie
+ * wil weten waar hij heen gaat voordat hij klikt.
+ *
+ * Zonder logo's geen leeg raster, maar een vraag.
+ */
 export function SponsorBlok({
   sponsoren,
   teksten,
@@ -162,20 +172,13 @@ export function SponsorBlok({
       <Blokkop titel={teksten.steun.sponsorenTitel} intro={teksten.steun.sponsorenTekst} />
 
       {sponsoren.length ? (
-        <>
-          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {sponsoren.map((sponsor) => (
-              <li key={sponsor.naam}>
-                <SponsorVlak sponsor={sponsor} />
-              </li>
-            ))}
-          </ul>
-          <div className="mt-6">
-            <Knop href={CONTACT.pad} soort="rand" className="max-sm:w-full max-sm:justify-between">
-              Ook sponsor worden
-            </Knop>
-          </div>
-        </>
+        <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          {sponsoren.map((sponsor) => (
+            <li key={sponsor.naam}>
+              <SponsorKaart sponsor={sponsor} />
+            </li>
+          ))}
+        </ul>
       ) : (
         <Terugval
           tekst="Er staan nog geen logo’s in het beheer. Steun je het huis als bedrijf, fonds of ondernemer, dan zetten we je logo hier graag neer."
@@ -186,29 +189,69 @@ export function SponsorBlok({
   );
 }
 
-function SponsorVlak({ sponsor }: { sponsor: Sponsor }) {
-  const vlak = 'grid h-24 place-items-center rounded-[1.25rem] border border-lijn bg-white p-4';
-  const beeld = (
-    <img
-      src={sponsor.beeld}
-      alt={sponsor.naam}
-      className="max-h-14 w-auto max-w-full object-contain"
-      loading="lazy"
-      decoding="async"
-    />
+/** Het adres zoals je het noemt: zonder protocol, zonder www, zonder streep. */
+function webnaam(web: string): string {
+  try {
+    return new URL(web).hostname.replace(/^www\./, '');
+  } catch {
+    return web.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, '');
+  }
+}
+
+function SponsorKaart({ sponsor }: { sponsor: Sponsor }) {
+  const kaart =
+    'flex h-full flex-col gap-3 rounded-[1.25rem] border border-lijn bg-white p-4 text-center sm:gap-4 sm:p-5';
+  const binnen = (
+    <>
+      <span className="grid h-16 place-items-center sm:h-20">
+        <img
+          src={sponsor.beeld}
+          alt=""
+          className="max-h-12 w-auto max-w-full object-contain sm:max-h-16"
+          loading="lazy"
+          decoding="async"
+        />
+      </span>
+      <span className="mt-auto">
+        <span className="block break-words font-bold text-inkt">{sponsor.naam}</span>
+        {sponsor.web && (
+          <span className="mt-1 block break-words text-[0.8rem] text-wijn sm:text-[0.85rem]">
+            {webnaam(sponsor.web)}
+            <span className="sr-only"> (opent in een nieuw tabblad)</span>
+          </span>
+        )}
+      </span>
+    </>
   );
 
-  if (!sponsor.web) return <div className={vlak}>{beeld}</div>;
+  if (!sponsor.web) return <div className={kaart}>{binnen}</div>;
   return (
     <a
       href={sponsor.web}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${vlak} transition hover:-translate-y-0.5 hover:border-blos-diep`}
+      className={`${kaart} no-underline transition-colors hover:border-blos-diep hover:bg-room-diep`}
     >
-      {beeld}
-      <span className="sr-only"> (opent in een nieuw tabblad)</span>
+      {binnen}
     </a>
+  );
+}
+
+/**
+ * Wat er onderaan Steun ons van de sponsoren overblijft.
+ *
+ * De logo's staan nu in de voet van elke pagina en op hun eigen pagina. Ze hier
+ * voor de derde keer neerzetten maakt de pagina langer zonder er iets aan toe
+ * te voegen, dus staat er een regel met de weg ernaartoe.
+ */
+export function SponsorVerwijzing({ teksten }: { teksten: Teksten }): ReactElement {
+  return (
+    <div>
+      <Blokkop titel={teksten.steun.sponsorenTitel} intro={teksten.steun.sponsorenTekst} />
+      <Knop href={SPONSORS.pad} soort="rand" className="max-sm:w-full max-sm:justify-between">
+        {SPONSORS.label}
+      </Knop>
+    </div>
   );
 }
 

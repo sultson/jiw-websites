@@ -8,6 +8,7 @@ import {
   DoneerBlok,
   RouteBlok,
   SponsorBlok,
+  SponsorVerwijzing,
   VrijwilligerBlok,
 } from './organisatie';
 import type { Pagina, Tekst } from '../inhoud';
@@ -82,7 +83,7 @@ const plat = (tekst: Tekst): string =>
 
 export function sleuvenVoor(pagina: Pagina, bronnen: Bronnen): Sleuven | undefined {
   const pad = pagina.pad;
-  const { agenda, nu, verhalen, teksten } = bronnen;
+  const { agenda, nu, sponsoren, verhalen, teksten } = bronnen;
 
   const aanbod = AANBODBLOK[pad];
   if (aanbod) {
@@ -116,6 +117,12 @@ export function sleuvenVoor(pagina: Pagina, bronnen: Bronnen): Sleuven | undefin
     // plaats. De knop die het bestuur eronder zette blijft wel staan.
     case '/over-ons/steun-ons':
       return { 'eenmalig-geven': { vervang: <DoneerBlok teksten={teksten} /> } };
+    // De pagina met de logo's. De kop en de uitleg erboven staan in het beheer,
+    // dus het hele blok komt daarvandaan en niet uit de tekst eromheen.
+    case '/over-ons/onze-sponsors':
+      return {
+        'onze-sponsors': { vervang: <SponsorBlok sponsoren={sponsoren} teksten={teksten} /> },
+      };
     case '/over-ons/organisatie-en-verantwoording':
       return {
         'bestuur-en-toezicht-of-advies': { vervang: <BestuurBlok teksten={teksten} advies /> },
@@ -141,7 +148,7 @@ export function sleuvenVoor(pagina: Pagina, bronnen: Bronnen): Sleuven | undefin
 
 /** Wat er na de laatste sectie van een pagina komt. */
 export function onderaanVoor(pad: string, bronnen: Bronnen): ReactNode {
-  const { berichten, sponsoren, teksten } = bronnen;
+  const { berichten, teksten } = bronnen;
 
   switch (pad) {
     case '/':
@@ -166,7 +173,7 @@ export function onderaanVoor(pad: string, bronnen: Bronnen): ReactNode {
     case '/over-ons/steun-ons':
       return (
         <section className="border-t border-lijn py-9 md:py-11">
-          <SponsorBlok sponsoren={sponsoren} teksten={teksten} />
+          <SponsorVerwijzing teksten={teksten} />
         </section>
       );
     case '/praktisch/locatie-en-bereikbaarheid':

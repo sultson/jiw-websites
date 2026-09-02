@@ -91,6 +91,9 @@ export const MENU: Menupunt[] = [
 
 export const CONTACT = { pad: '/praktisch/contact', label: 'Neem contact op' };
 
+/** De pagina met de logo's, waar de voet en Steun ons naartoe wijzen. */
+export const SPONSORS = { pad: '/over-ons/onze-sponsors', label: 'Bekijk onze sponsors' };
+
 /** De kolommen onderaan de pagina, zoals in het vastgestelde voorstel. */
 export const VOETMENU: { kop: string; links: { pad: string; label: string }[] }[] = [
   {
@@ -130,6 +133,7 @@ export const VOETMENU: { kop: string; links: { pad: string; label: string }[] }[
       { pad: '/over-ons/onze-mensen', label: 'Onze mensen' },
       { pad: '/over-ons/vrijwilliger-worden', label: 'Vrijwilliger worden' },
       { pad: '/over-ons/steun-ons', label: 'Steun ons' },
+      { pad: '/over-ons/onze-sponsors', label: 'Onze sponsors' },
       { pad: '/over-ons/organisatie-en-verantwoording', label: 'Verantwoording' },
     ],
   },

@@ -1,6 +1,7 @@
 import { Facebook, FileText, Instagram } from 'lucide-react';
-import { VOETMENU } from '../navigatie';
+import { SPONSORS, VOETMENU } from '../navigatie';
 import { VERANTWOORDING } from '../documenten';
+import type { Sponsor } from '../content/types';
 import {
   FACEBOOK,
   INSTAGRAM,
@@ -27,7 +28,7 @@ import {
  * ze het raster van de mock-up scheeftrekken, en zo blijven ze op elke breedte
  * te lezen.
  */
-export default function Voet() {
+export default function Voet({ sponsoren = [] }: { sponsoren?: Sponsor[] }) {
   return (
     <footer className="bg-voet pt-16 text-voet-tekst">
       <Schil>
@@ -102,6 +103,8 @@ export default function Voet() {
           ))}
         </div>
 
+        {sponsoren.length > 0 && <Sponsorstrook sponsoren={sponsoren} />}
+
         {/* Een ANBI hoort haar beleidsplan en jaarstukken openbaar te maken, en
             een bezoeker hoort ze te kunnen vinden zonder te hoeven zoeken. */}
         <div className="border-t border-voet-lijn py-7">
@@ -147,5 +150,72 @@ export default function Voet() {
         </div>
       </Schil>
     </footer>
+  );
+}
+
+/**
+ * De logo's van de sponsoren, op elke pagina.
+ *
+ * Ze staan boven de jaarstukken en niet tussen de kolommen: de voet is de plek
+ * waar de site verantwoording aflegt, en wie het huis betaalt hoort daarbij.
+ * In grijstinten, want ze mogen op geen enkele pagina harder roepen dan de
+ * inhoud erboven; kleur komt terug zodra je er met de muis overheen gaat, en
+ * daarmee is meteen te zien dat er iets achter zit.
+ *
+ * De volgorde is die uit het beheer, dus de stichting bepaalt zelf wie vooraan
+ * staat. Een logo is een link naar het bedrijf zelf; van wie geen adres in het
+ * beheer staat, staat het logo er zonder link, want een dode link is erger dan
+ * geen link.
+ */
+function Sponsorstrook({ sponsoren }: { sponsoren: Sponsor[] }) {
+  return (
+    <div className="border-t border-voet-lijn py-7">
+      <h2 className="mb-4 font-sans text-[0.78rem] font-bold uppercase tracking-[0.1em] text-white">
+        Mogelijk gemaakt door
+      </h2>
+      <ul className="flex flex-wrap items-center gap-2.5">
+        {sponsoren.map((sponsor) => (
+          <li key={sponsor.naam}>
+            <Sponsorlogo sponsor={sponsor} />
+          </li>
+        ))}
+      </ul>
+      <p className="mt-4">
+        <a
+          href={SPONSORS.pad}
+          className="text-[0.85rem] text-white/85 no-underline hover:text-white hover:underline"
+        >
+          {SPONSORS.label}
+        </a>
+      </p>
+    </div>
+  );
+}
+
+function Sponsorlogo({ sponsor }: { sponsor: Sponsor }) {
+  /* De logo's staan op wit ingebrand, dus ze krijgen hier een wit plaatje
+     onder zich in plaats van een witte rand die niet klopt met de voet. */
+  const plaat = 'grid h-11 w-[6.5rem] place-items-center rounded-[0.6rem] bg-white/90 px-2';
+  const beeld = (
+    <img
+      src={sponsor.strook}
+      alt={sponsor.naam}
+      className="max-h-7 w-auto max-w-full object-contain grayscale transition-[filter] group-hover:grayscale-0"
+      loading="lazy"
+      decoding="async"
+    />
+  );
+
+  if (!sponsor.web) return <div className={plaat}>{beeld}</div>;
+  return (
+    <a
+      href={sponsor.web}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group ${plaat} transition-colors hover:bg-white`}
+    >
+      {beeld}
+      <span className="sr-only"> (opent in een nieuw tabblad)</span>
+    </a>
   );
 }
