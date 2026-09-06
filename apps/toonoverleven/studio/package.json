@@ -8,6 +8,7 @@
     "build": "sanity build",
     "//deploy": "Er is geen deploy-script. De Studio wordt door de build van de site in dist/beheer gezet en gaat dus met de site mee. `sanity deploy` zou hem op sanity.studio zetten, waar basePath /beheer hem onbereikbaar maakt.",
     "seed": "tsx scripts/seed.ts",
+    "backfill:agenda-fotos": "tsx scripts/backfill-agenda-fotos.ts",
     "lint": "tsc --noEmit"
   },
   "dependencies": {

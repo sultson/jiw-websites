@@ -12,6 +12,7 @@
     "optimize-images": "node scripts/images.mjs && node scripts/sponsors.mjs",
     "socials": "node scripts/socials.mjs",
     "seed": "pnpm -C studio seed",
+    "backfill:agenda-fotos": "pnpm -C studio backfill:agenda-fotos",
     "ship:dry-run": "pnpm build && wrangler deploy --dry-run --outdir=dist-worker",
     "ship": "pnpm build && wrangler deploy"
   },
