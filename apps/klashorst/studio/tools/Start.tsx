@@ -10,7 +10,9 @@ import { useRouter } from 'sanity/router';
  * is here, in their language, and points at the four things they can do.
  */
 
-const SITE = 'https://klashorst.jouwidealewebsite.nl';
+// The museum's own domain. The address this was built at still answers and
+// redirects here, so an old link works, but it costs a hop.
+const SITE = 'https://klashorstmuseum.nl';
 
 const kaarten = [
   {
@@ -23,13 +25,13 @@ const kaarten = [
     pad: '/beheer/structure/werk',
     titel: 'Klashorst Collectie',
     uitleg:
-      'Het werk van Peter Klashorst. Eén foto per werk, met techniek en afmetingen. Eén vinkje bepaalt of het werk ook in de 3D-zaal bovenaan hangt. In Volgorde van de collectie sleept u de werken op hun plek, in dezelfde rasterweergave als op de site.',
+      'Het werk van Peter Klashorst, in dezelfde rasterweergave als op de site. Eén foto per werk, met techniek en afmetingen. Eén vinkje bepaalt of het werk ook in de 3D-zaal bovenaan hangt. Sleep de werken op hun plek, en voeg er een toe met de + rechtsboven.',
   },
   {
     pad: '/beheer/structure/galeriewerk',
     titel: 'Andere Kunst',
     uitleg:
-      'Werk van andere kunstenaars, met kunstenaar, techniek en een korte toelichting. In Volgorde van Andere Kunst sleept u ze op hun plek.',
+      'Werk van andere kunstenaars, met kunstenaar, techniek en een korte toelichting. Dezelfde rasterweergave: sleep ze op hun plek, voeg er een toe met de + rechtsboven.',
   },
   {
     pad: '/beheer/structure/nieuws',

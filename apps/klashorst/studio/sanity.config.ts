@@ -1,7 +1,5 @@
 import { defineConfig } from 'sanity';
 import { structureTool, type StructureBuilder, type UserComponent } from 'sanity/structure';
-import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list';
-import type { ConfigContext } from 'sanity';
 import { nlNLLocale } from '@sanity/locale-nl-nl';
 // Subpath import: @sanity/icons v5's barrel does not re-export the icons the
 // bundler can see, so `from '@sanity/icons'` fails the build with MISSING_EXPORT.
@@ -11,7 +9,8 @@ import { schemaTypes } from './schemas';
 import Start from './tools/Start';
 import SitePreview from './tools/SitePreview';
 import SeoPanel from './tools/SeoPanel';
-import { VolgordeCollectie, VolgordeGalerie } from './tools/Volgorde';
+import { NIEUW, VolgordeCollectie, VolgordeGalerie } from './tools/Volgorde';
+import AlleenConcepten from './tools/AlleenConcepten';
 
 // Not secrets: the project id is public and read-only, and it also sits in
 // wrangler.jsonc. Hardcoded so a checkout builds without an .env file.
@@ -19,24 +18,34 @@ const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'banas90d';
 const dataset = process.env.SANITY_STUDIO_DATASET || 'production';
 
 /**
- * The same drag as the list above it, in the grid the visitor sees: big
- * thumbnails, four to a row, so the museum arranges the wall by looking at the
- * work rather than at a column of stamps. Both write the same `orderRank`, so
- * the two can never disagree about where a work hangs.
+ * A wall, as one screen: the works in the grid the visitor sees, big thumbnails,
+ * four to a row, dragged into place, with the + that adds one in the header.
+ *
+ * There used to be two entries per wall, the plugin's own list and this grid,
+ * which split the editing over two screens that looked nothing alike. The list
+ * had exactly one thing the grid did not, the + button, so that moved here and
+ * the list went.
+ *
+ * The + is an intent rather than a button of our own: Sanity answers it with the
+ * type's initial values, which is where a new work gets the `orderRank` that
+ * hangs it at the end of the wall. `canHandleIntent` keeps the answer inside
+ * this pane, so the new work opens next to the grid it was added to.
  *
  * The child is spelled out because a hand-built node reaches neither
  * `defaultDocumentNode` nor the views it hands out, and a work opened from a
- * tile has to be the same editor as one opened from the list.
+ * tile has to be the same editor as one opened from anywhere else.
  */
-const volgorde = (S: StructureBuilder, type: string, title: string, component: UserComponent) =>
+const wand = (S: StructureBuilder, type: string, title: string, component: UserComponent) =>
   S.listItem()
-    .id(`volgorde-${type}`)
+    .id(type)
     .title(title)
     .icon(ThLargeIcon)
     .child(
       S.component(component)
-        .id(`volgorde-${type}`)
+        .id(type)
         .title(title)
+        .menuItems([S.menuItem().title(NIEUW[type]).intent({ type: 'create', params: { type } })])
+        .canHandleIntent((_intent, params) => params?.type === type)
         .child((documentId: string) =>
           S.document()
             .documentId(documentId)
@@ -48,10 +57,10 @@ const volgorde = (S: StructureBuilder, type: string, title: string, component: U
 /**
  * The whole editing surface, in Dutch, with four things in it: the texts on the
  * site, the collection, the gallery for other artists, and the blog. Anything
- * that would let an edit break the page is deliberately not here. Each of the
- * two walls is followed by the screen that arranges it.
+ * that would let an edit break the page is deliberately not here. One entry per
+ * wall: adding, editing and arranging a work all happen on the same screen.
  */
-const structure = (S: StructureBuilder, context: ConfigContext) =>
+const structure = (S: StructureBuilder) =>
   S.list()
     .title('Museum')
     .items([
@@ -71,23 +80,10 @@ const structure = (S: StructureBuilder, context: ConfigContext) =>
         ),
       S.divider(),
       // Both walls are hung by dragging, not by typing a number into every
-      // work and hoping the gaps still add up. The order in these two lists is
-      // the order on the page, in the grid and in the 3D room.
-      orderableDocumentListDeskItem({
-        type: 'werk',
-        title: 'Klashorst Collectie',
-        S,
-        context,
-      }),
-      volgorde(S, 'werk', 'Volgorde van de collectie', VolgordeCollectie),
-      S.divider(),
-      orderableDocumentListDeskItem({
-        type: 'galeriewerk',
-        title: 'Andere Kunst',
-        S,
-        context,
-      }),
-      volgorde(S, 'galeriewerk', 'Volgorde van Andere Kunst', VolgordeGalerie),
+      // work and hoping the gaps still add up. The order in these two grids is
+      // the order on the page, in the collection and in the 3D room.
+      wand(S, 'werk', 'Klashorst Collectie', VolgordeCollectie),
+      wand(S, 'galeriewerk', 'Andere Kunst', VolgordeGalerie),
       S.divider(),
       // A blog is ordered by date, so this one stays a plain list.
       S.documentTypeListItem('nieuws').title('Dirty Diaries'),
@@ -119,11 +115,18 @@ export default defineConfig({
     nlNLLocale(),
   ],
   schema: { types: schemaTypes },
+  // One editor, one museum, nothing scheduled: a release is a way of preparing
+  // a batch of changes for a date, and there is no such date here. Left on, its
+  // switcher is only a way for the client to put their own Studio in read-only.
+  releases: { enabled: false },
+  scheduledDrafts: { enabled: false },
+  studio: { components: { layout: AlleenConcepten } },
   // First tool wins the landing route, so /beheer opens on a welcome screen
-  // rather than the structure list's empty right-hand pane.
+  // rather than the structure list's empty right-hand pane. The Releases tab
+  // goes with the feature above; leaving it would be a tab onto nothing.
   tools: (previous) => [
     { name: 'start', title: 'Start', icon: HomeIcon, component: Start },
-    ...previous,
+    ...previous.filter((tool) => tool.name !== 'releases'),
   ],
   document: {
     // There is one texts document and it already exists. Offering "new" here

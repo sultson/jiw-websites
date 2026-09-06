@@ -5,7 +5,7 @@ import { usePaneRouter } from 'sanity/structure';
 import { LexoRank } from 'lexorank';
 
 /**
- * Hanging a wall, on the wall.
+ * A wall, on the wall.
  *
  * The Studio's drag-and-drop list orders documents in a column of 35-pixel
  * thumbnails, which is a list of file names with a stamp next to it: the client
@@ -14,14 +14,27 @@ import { LexoRank } from 'lexorank';
  * gets: the same two, three, four columns, the same portrait frames, reading
  * left to right. Where a work lands here is where it lands on the site.
  *
- * It writes the one field the site sorts on, `orderRank`, the same field the
- * drag-and-drop list writes, so the two can never disagree. Both the draft and
+ * This is the whole wall, not a second opinion about it: adding a work, opening
+ * one and moving one all happen here, so there is one screen per wall rather
+ * than a list and a grid that have to be kept in the same order by hand.
+ *
+ * It writes the one field the site sorts on, `orderRank`. Both the draft and
  * the published version of a work are given the new rank, so the order on the
  * site changes when the museum lets go of the work rather than when they next
  * publish it.
  */
 
 const API_VERSION = '2025-02-19';
+
+/**
+ * What adding a work is called, on the + in the pane header and on the last
+ * tile in the grid. Both say the same thing because both do the same thing, and
+ * `sanity.config.ts` reads the header one from here.
+ */
+export const NIEUW: Record<string, string> = {
+  werk: 'Nieuw werk toevoegen',
+  galeriewerk: 'Werk van een andere kunstenaar toevoegen',
+};
 
 /** A work as the query returns it, draft and published alike. */
 type Bron = {
@@ -110,7 +123,7 @@ export function maakVolgorde(opties: Opties) {
     // decide for itself which one the museum is looking at.
     const client = useMemo(() => basis.withConfig({ perspective: 'raw', useCdn: false }), [basis]);
     const { projectId, dataset } = client.config();
-    const { ChildLink } = usePaneRouter();
+    const { ChildLink, navigateIntent } = usePaneRouter();
     const toast = useToast();
 
     const [tegels, setTegels] = useState<Tegel[] | null>(null);
@@ -268,6 +281,15 @@ export function maakVolgorde(opties: Opties) {
       [client, laad, tegels, toast],
     );
 
+    /**
+     * The same + as the one in the pane header, at the end of the wall, which is
+     * where a new work is hung: the rank the schema hands it comes after the
+     * last one. Sanity opens the empty work next to the grid.
+     */
+    const voegToe = useCallback(() => {
+      navigateIntent('create', { type, template: type });
+    }, [navigateIntent]);
+
     /** Dropped on the half of a tile that decides which side of it to land. */
     const legDaar = (index: number, na: boolean) => {
       if (sleept === null) return;
@@ -312,154 +334,185 @@ export function maakVolgorde(opties: Opties) {
           </Flex>
         </Card>
 
-        {tegels.length === 0 ? (
-          <Box padding={4}>
-            <Text size={1} muted>
-              Er staat nog geen {wat} in deze lijst.
-            </Text>
-          </Box>
-        ) : (
-          <Box padding={4}>
-            {/* The visitor's grid: two columns on a phone, three on a tablet,
-                four on a wide screen, exactly as the page lays it out. */}
-            <Grid columns={[2, 2, 3, 4]} gap={3}>
-              {tegels.map((tegel, index) => {
-                const url = thumbnail(tegel.ref, projectId ?? '', dataset ?? '');
-                const markeer = boven?.index === index && sleept !== null;
-                return (
-                  <Card
-                    key={tegel.id}
-                    padding={2}
-                    radius={2}
-                    border
-                    tone={sleept === index ? 'primary' : 'default'}
-                    draggable
-                    onDragStart={(event) => {
-                      setSleept(index);
-                      event.dataTransfer.effectAllowed = 'move';
-                      // Firefox refuses to start a drag without payload.
-                      event.dataTransfer.setData('text/plain', tegel.id);
-                    }}
-                    onDragOver={(event) => {
-                      if (sleept === null) return;
-                      event.preventDefault();
-                      event.dataTransfer.dropEffect = 'move';
-                      const vak = event.currentTarget.getBoundingClientRect();
-                      setBoven({ index, na: event.clientX > vak.left + vak.width / 2 });
-                    }}
-                    onDrop={(event) => {
-                      event.preventDefault();
-                      const vak = event.currentTarget.getBoundingClientRect();
-                      legDaar(index, event.clientX > vak.left + vak.width / 2);
-                    }}
-                    onDragEnd={() => {
-                      setSleept(null);
-                      setBoven(null);
-                    }}
-                    style={{
-                      cursor: 'grab',
-                      opacity: sleept === index ? 0.4 : 1,
-                      boxShadow: markeer
-                        ? `inset ${boven?.na ? '-3px' : '3px'} 0 0 var(--card-focus-ring-color, #2276fc)`
-                        : undefined,
-                    }}
-                  >
-                    <Stack space={3}>
+        <Box padding={4}>
+          {tegels.length === 0 && (
+            <Box paddingBottom={4}>
+              <Text size={1} muted>
+                Er hangt nog geen {wat} aan deze wand.
+              </Text>
+            </Box>
+          )}
+          {/* The visitor's grid: two columns on a phone, three on a tablet,
+              four on a wide screen, exactly as the page lays it out. */}
+          <Grid columns={[2, 2, 3, 4]} gap={3}>
+            {tegels.map((tegel, index) => {
+              const url = thumbnail(tegel.ref, projectId ?? '', dataset ?? '');
+              const markeer = boven?.index === index && sleept !== null;
+              return (
+                <Card
+                  key={tegel.id}
+                  padding={2}
+                  radius={2}
+                  border
+                  tone={sleept === index ? 'primary' : 'default'}
+                  draggable
+                  onDragStart={(event) => {
+                    setSleept(index);
+                    event.dataTransfer.effectAllowed = 'move';
+                    // Firefox refuses to start a drag without payload.
+                    event.dataTransfer.setData('text/plain', tegel.id);
+                  }}
+                  onDragOver={(event) => {
+                    if (sleept === null) return;
+                    event.preventDefault();
+                    event.dataTransfer.dropEffect = 'move';
+                    const vak = event.currentTarget.getBoundingClientRect();
+                    setBoven({ index, na: event.clientX > vak.left + vak.width / 2 });
+                  }}
+                  onDrop={(event) => {
+                    event.preventDefault();
+                    const vak = event.currentTarget.getBoundingClientRect();
+                    legDaar(index, event.clientX > vak.left + vak.width / 2);
+                  }}
+                  onDragEnd={() => {
+                    setSleept(null);
+                    setBoven(null);
+                  }}
+                  style={{
+                    cursor: 'grab',
+                    opacity: sleept === index ? 0.4 : 1,
+                    boxShadow: markeer
+                      ? `inset ${boven?.na ? '-3px' : '3px'} 0 0 var(--card-focus-ring-color, #2276fc)`
+                      : undefined,
+                  }}
+                >
+                  <Stack space={3}>
+                    <Box
+                      style={{
+                        position: 'relative',
+                        aspectRatio: '3 / 4',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        overflow: 'hidden',
+                        background: 'var(--card-code-bg-color, rgba(0,0,0,.2))',
+                      }}
+                    >
+                      {url ? (
+                        <img
+                          src={url}
+                          alt=""
+                          draggable={false}
+                          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                        />
+                      ) : (
+                        <Text size={1} muted>
+                          Geen foto
+                        </Text>
+                      )}
+                      <Box style={{ position: 'absolute', top: 6, left: 6 }}>
+                        <Badge tone="default" fontSize={0}>
+                          {index + 1}
+                        </Badge>
+                      </Box>
+                    </Box>
+
+                    <Stack space={2}>
+                      <Text size={1} weight="medium" textOverflow="ellipsis">
+                        {tegel.titel}
+                      </Text>
+                      {tegel.onder && (
+                        <Text size={0} muted textOverflow="ellipsis">
+                          {tegel.onder}
+                        </Text>
+                      )}
+                      {(tegel.concept || tegel.waarschuwing) && (
+                        <Inline space={1}>
+                          {tegel.concept && (
+                            <Badge tone="caution" fontSize={0}>
+                              Concept
+                            </Badge>
+                          )}
+                          {tegel.waarschuwing && (
+                            <Badge tone="default" fontSize={0}>
+                              {tegel.waarschuwing}
+                            </Badge>
+                          )}
+                        </Inline>
+                      )}
+                    </Stack>
+
+                    {/* The same move, for a touchscreen and for a keyboard,
+                        because dragging is neither. */}
+                    <Flex gap={1}>
+                      <Button
+                        mode="bleed"
+                        fontSize={0}
+                        padding={2}
+                        text="←"
+                        title="Een plek naar voren"
+                        disabled={index === 0 || bezig}
+                        onClick={() => verplaats(index, index - 1)}
+                      />
+                      <Button
+                        mode="bleed"
+                        fontSize={0}
+                        padding={2}
+                        text="→"
+                        title="Een plek naar achteren"
+                        disabled={index === tegels.length - 1 || bezig}
+                        onClick={() => verplaats(index, index + 1)}
+                      />
+                      <Box flex={1} />
                       <Box
-                        style={{
-                          position: 'relative',
-                          aspectRatio: '3 / 4',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          overflow: 'hidden',
-                          background: 'var(--card-code-bg-color, rgba(0,0,0,.2))',
+                        onDragStart={(event) => {
+                          event.preventDefault();
+                          event.stopPropagation();
                         }}
                       >
-                        {url ? (
-                          <img
-                            src={url}
-                            alt=""
-                            draggable={false}
-                            style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
-                          />
-                        ) : (
-                          <Text size={1} muted>
-                            Geen foto
-                          </Text>
-                        )}
-                        <Box style={{ position: 'absolute', top: 6, left: 6 }}>
-                          <Badge tone="default" fontSize={0}>
-                            {index + 1}
-                          </Badge>
-                        </Box>
+                        <ChildLink childId={tegel.id}>
+                          <Button as="span" mode="bleed" fontSize={0} padding={2} text="Bewerken" />
+                        </ChildLink>
                       </Box>
+                    </Flex>
+                  </Stack>
+                </Card>
+              );
+            })}
 
-                      <Stack space={2}>
-                        <Text size={1} weight="medium" textOverflow="ellipsis">
-                          {tegel.titel}
-                        </Text>
-                        {tegel.onder && (
-                          <Text size={0} muted textOverflow="ellipsis">
-                            {tegel.onder}
-                          </Text>
-                        )}
-                        {(tegel.concept || tegel.waarschuwing) && (
-                          <Inline space={1}>
-                            {tegel.concept && (
-                              <Badge tone="caution" fontSize={0}>
-                                Concept
-                              </Badge>
-                            )}
-                            {tegel.waarschuwing && (
-                              <Badge tone="default" fontSize={0}>
-                                {tegel.waarschuwing}
-                              </Badge>
-                            )}
-                          </Inline>
-                        )}
-                      </Stack>
-
-                      {/* The same move, for a touchscreen and for a keyboard,
-                          because dragging is neither. */}
-                      <Flex gap={1}>
-                        <Button
-                          mode="bleed"
-                          fontSize={0}
-                          padding={2}
-                          text="←"
-                          title="Een plek naar voren"
-                          disabled={index === 0 || bezig}
-                          onClick={() => verplaats(index, index - 1)}
-                        />
-                        <Button
-                          mode="bleed"
-                          fontSize={0}
-                          padding={2}
-                          text="→"
-                          title="Een plek naar achteren"
-                          disabled={index === tegels.length - 1 || bezig}
-                          onClick={() => verplaats(index, index + 1)}
-                        />
-                        <Box flex={1} />
-                        <Box
-                          onDragStart={(event) => {
-                            event.preventDefault();
-                            event.stopPropagation();
-                          }}
-                        >
-                          <ChildLink childId={tegel.id}>
-                            <Button as="span" mode="bleed" fontSize={0} padding={2} text="Bewerken" />
-                          </ChildLink>
-                        </Box>
-                      </Flex>
-                    </Stack>
-                  </Card>
-                );
-              })}
-            </Grid>
-          </Box>
-        )}
+            {/* The last tile is the empty frame at the end of the wall: the
+                place a new work is hung, and the same thing the + in the
+                header does. Not draggable, so it stays at the end. */}
+            <Card
+              as="button"
+              type="button"
+              padding={2}
+              radius={2}
+              onClick={voegToe}
+              style={{
+                cursor: 'pointer',
+                appearance: 'none',
+                font: 'inherit',
+                width: '100%',
+                background: 'none',
+                border: '1px dashed var(--card-border-color, rgba(255,255,255,.2))',
+              }}
+            >
+              <Stack space={3}>
+                <Flex align="center" justify="center" style={{ aspectRatio: '3 / 4' }}>
+                  <Text size={4} muted>
+                    +
+                  </Text>
+                </Flex>
+                <Box paddingBottom={1}>
+                  <Text size={1} weight="medium" align="center">
+                    {NIEUW[type] ?? 'Toevoegen'}
+                  </Text>
+                </Box>
+              </Stack>
+            </Card>
+          </Grid>
+        </Box>
       </Box>
     );
   };

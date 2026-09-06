@@ -14,7 +14,9 @@ import { Box, Button, Card, Flex, Text } from '@sanity/ui';
  * type, and an iframe that reloads under your hands is unusable.
  */
 
-const SITE = 'https://klashorst.jouwidealewebsite.nl';
+// The museum's own domain. The address this was built at still answers and
+// redirects here, so an old link works, but it costs a hop.
+const SITE = 'https://klashorstmuseum.nl';
 const PREVIEW_KEY = '9ZdDXvc80iVY6m1jvTmvamKW';
 
 /** Land on the part of the page this document belongs to. */
