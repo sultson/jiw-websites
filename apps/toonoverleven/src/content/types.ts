@@ -45,7 +45,8 @@ export type AgendaBron = {
   titel: string;
   categorie: Categorie;
   omschrijving: string;
-  img: Img | null;
+  /** Uit het beheer een Img, in de meegeleverde agenda een adres in public/img. */
+  img: Img | string | null;
   /** ISO-datum, zoals 2026-09-03. Lokale tijd in Zeewolde, geen UTC. */
   datum: string;
   totDatum?: string;
@@ -76,7 +77,7 @@ export type Activiteit = {
   titel: string;
   categorie: Categorie;
   omschrijving: string;
-  img: Img | null;
+  img: Img | string | null;
   /** Hoe de reeks loopt waar deze keer uit komt: voor "elke donderdag". */
   herhaling: Herhaling;
   start: Date;
@@ -119,71 +120,34 @@ export type Bericht = {
  */
 export type Sponsor = { naam: string; beeld: string; strook: string; web?: string };
 
-export type KopTekst = { kop: string; tekst: string };
 export type Persoon = { naam: string; rol: string };
 
+/**
+ * De teksten die het bestuur zelf bijhoudt en die op de site uitkomen.
+ *
+ * Bewust klein. De koppen en alinea's van de 72 vastgestelde pagina's staan in
+ * de site zelf (inhoud/paginas.json); wat hier staat zijn de stukken die
+ * veranderen zonder dat er aan de site gewerkt wordt: wie er in het bestuur
+ * zit, welke rollen open staan, de regel boven het formulier en de praktische
+ * gegevens. Elk veld hieronder komt ergens op de site uit. Een veld dat nergens
+ * uitkomt hoort hier niet, want in het beheer is dat een belofte die de site
+ * niet waarmaakt.
+ */
 export type Teksten = {
-  hero: {
-    kicker: string;
-    titel: string;
-    lead: string;
-    knop: string;
-    knopTwee: string;
-  };
-  open: { titel: string; tekst: string; punten: KopTekst[] };
-  nieuwsBlok: { kicker: string; titel: string; lead: string };
-  agendaBlok: { kicker: string; titel: string; lead: string; paginaLead: string };
-  welkom: { kicker: string; titel: string; alineas: string[]; knop: string };
-  wieWeZijn: {
-    kicker: string;
-    titel: string;
-    lead: string;
-    alineas: string[];
-    voorWie: string[];
-  };
-  watWeDoen: {
-    kicker: string;
-    titel: string;
-    lead: string;
-    items: { kop: string; wanneer: string; tekst: string; foto: Img | string }[];
-    kosten: string;
-  };
-  naam: { kicker: string; titel: string; alineas: string[]; slot: string };
-  jongeren: { kicker: string; titel: string; lead: string; alineas: string[]; knop: string };
+  /** Op Wie wij zijn, onder de kop Naam en organisatie. */
+  naam: { alineas: string[]; slot: string };
+  /** Op Vrijwilliger worden: de inleiding, de rollen en de uitnodiging onderaan. */
   vrijwilliger: {
-    kicker: string;
-    titel: string;
     lead: string;
     rollen: { kop: string; tekst: string; punten: string[]; slot: string }[];
-    uitnodigingTitel: string;
     uitnodiging: string;
   };
-  steun: {
-    kicker: string;
-    titel: string;
-    lead: string;
-    manieren: KopTekst[];
-    anbi: string;
-    sponsorenTitel: string;
-    sponsorenTekst: string;
-  };
-  verantwoording: {
-    kicker: string;
-    titel: string;
-    lead: string;
-    doel: string;
-    beloning: string;
-    bestuur: Persoon[];
-    advies: Persoon[];
-  };
-  contact: {
-    kicker: string;
-    titel: string;
-    lead: string;
-    formulierTitel: string;
-    formulierTekst: string;
-    openingstijden: string;
-  };
+  /** Op Steun ons en op Onze sponsors. */
+  steun: { anbi: string; sponsorenTitel: string; sponsorenTekst: string };
+  /** Op Onze mensen en op Organisatie en verantwoording. */
+  verantwoording: { beloning: string; bestuur: Persoon[]; advies: Persoon[] };
+  /** Boven het formulier, op Contact en op Vrijwilliger worden. */
+  contact: { formulierTitel: string; formulierTekst: string };
   praktisch: Praktisch;
 };
 

@@ -61,7 +61,7 @@ export const activiteit = defineType({
       type: 'string',
       initialValue: 'Inloop',
       description:
-        'Bepaalt de kleur in de kalender, het label op de kaart en onder welk filter het op de agendapagina valt.',
+        'Bepaalt de kleur van de stip in de kalender, en welk sfeerbeeld de kaart krijgt zolang er geen eigen foto is. Het label op de kaart en de filters op de agendapagina komen van de thema\'s hieronder.',
       hidden: isMededeling,
       options: {
         list: [

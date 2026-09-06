@@ -54,9 +54,6 @@ const tekst = (waarde: unknown, terugval: string): string =>
 const misschien = (waarde: unknown): string | undefined =>
   typeof waarde === 'string' && waarde.trim() ? waarde : undefined;
 
-const lijst = <T>(waarde: T[] | null | undefined, terugval: T[]): T[] =>
-  Array.isArray(waarde) && waarde.length ? waarde : terugval;
-
 const CATEGORIEEN: Categorie[] = ['Inloop', 'Creatief', 'Bewegen', 'Wellness', 'Overig'];
 const HERHALINGEN: Herhaling[] = ['eenmalig', 'wekelijks', 'tweewekelijks', 'maandelijks'];
 
@@ -86,6 +83,8 @@ function bouwContent(payload: RawPayload | null): Content {
   const projectId = payload?.projectId;
   const dataset = payload?.dataset;
   const data = payload?.data;
+  // Geen inhoud uit het beheer: de site zoals hij gebouwd is, agenda en
+  // berichten inbegrepen. Dit is de storing, niet het lege beheer.
   if (!projectId || !dataset || !data) return gebundeld;
 
   const beeld = (ruw: RawImage): Img | null => {
@@ -224,26 +223,32 @@ function bouwContent(payload: RawPayload | null): Content {
   const terugval = gebundeld.teksten;
 
   /**
-   * Eén blok tekst, met de tekst waarmee deze build geleverd is eronder. Een
-   * veld waar in het beheer niets in staat, houdt die tekst, dus de pagina kan
-   * nooit leeg raken omdat iemand een vakje niet heeft ingevuld.
+   * Eén blok tekst, met de tekst waarmee deze build geleverd is eronder.
+   *
+   * Een los veld waar in het beheer niets in staat, houdt die tekst, dus de
+   * pagina kan nooit leeg raken omdat iemand een vakje niet heeft ingevuld.
+   * Een lijst is de uitzondering: leeg is leeg. Wie het bestuur uit het beheer
+   * haalt, krijgt op de site geen bestuur uit de code terug maar de regel dat
+   * het nog niet in het beheer staat. Alleen een lijst die er nog nooit in
+   * gestaan heeft (een veld dat later is bijgekomen) valt terug.
    */
   const blok = (naam: string) => {
     const eigen = ((cms as Record<string, any>)[naam] ?? {}) as Record<string, any>;
     return {
       regel: (sleutel: string, standaard: string) => tekst(eigen[sleutel], standaard),
       alineas: (sleutel: string, standaard: string[]): string[] =>
-        lijst(
-          Array.isArray(eigen[sleutel])
-            ? eigen[sleutel].map((r: unknown) => String(r ?? '')).filter(Boolean)
-            : null,
-          standaard,
-        ),
-      rijen: <T>(sleutel: string, standaard: T[], vorm: (rij: any, i: number) => T): T[] =>
-        lijst(
-          Array.isArray(eigen[sleutel]) ? eigen[sleutel].map((rij: any, i: number) => vorm(rij, i)) : null,
-          standaard,
-        ),
+        Array.isArray(eigen[sleutel])
+          ? eigen[sleutel].map((r: unknown) => String(r ?? '').trim()).filter(Boolean)
+          : standaard,
+      rijen: <T>(
+        sleutel: string,
+        standaard: T[],
+        vorm: (rij: any) => T,
+        geldig: (rij: T) => boolean,
+      ): T[] =>
+        Array.isArray(eigen[sleutel])
+          ? eigen[sleutel].map((rij: any) => vorm(rij)).filter(geldig)
+          : standaard,
     };
   };
 
@@ -260,15 +265,7 @@ function bouwContent(payload: RawPayload | null): Content {
     return (sleutel: string, standaard: string) => tekst(eigen[sleutel], standaard);
   };
 
-  const hero = blok('hero');
-  const open = blok('open');
-  const nieuwsBlok = blok('nieuwsBlok');
-  const agendaBlok = blok('agendaBlok');
-  const welkom = blok('welkom');
-  const wieWeZijn = blok('wieWeZijn');
-  const watWeDoen = blok('watWeDoen');
   const naam = blok('naam');
-  const jongeren = blok('jongeren');
   const vrijwilliger = blok('vrijwilliger');
   const steun = blok('steun');
   const verantwoording = blok('verantwoording');
@@ -279,115 +276,47 @@ function bouwContent(payload: RawPayload | null): Content {
   const locatie = praktischeRegel('locatie');
   const bereikbaar = praktischeRegel('contact');
 
-  const kopTekst = (rij: any) => ({ kop: tekst(rij?.kop, ''), tekst: tekst(rij?.tekst, '') });
   const persoon = (rij: any) => ({ naam: tekst(rij?.naam, ''), rol: tekst(rij?.rol, '') });
+  // Een regel zonder naam of zonder kop is een lege regel in het beheer, geen
+  // persoon of rol die op de site hoort te staan.
+  const metNaam = (p: { naam: string }) => Boolean(p.naam);
+  const metKop = (r: { kop: string }) => Boolean(r.kop);
 
   const teksten: Teksten = {
-    hero: {
-      kicker: hero.regel('kicker', terugval.hero.kicker),
-      titel: hero.regel('titel', terugval.hero.titel),
-      lead: hero.regel('lead', terugval.hero.lead),
-      knop: hero.regel('knop', terugval.hero.knop),
-      knopTwee: hero.regel('knopTwee', terugval.hero.knopTwee),
-    },
-    open: {
-      titel: open.regel('titel', terugval.open.titel),
-      tekst: open.regel('tekst', terugval.open.tekst),
-      punten: open.rijen('punten', terugval.open.punten, kopTekst),
-    },
-    nieuwsBlok: {
-      kicker: nieuwsBlok.regel('kicker', terugval.nieuwsBlok.kicker),
-      titel: nieuwsBlok.regel('titel', terugval.nieuwsBlok.titel),
-      lead: nieuwsBlok.regel('lead', terugval.nieuwsBlok.lead),
-    },
-    agendaBlok: {
-      kicker: agendaBlok.regel('kicker', terugval.agendaBlok.kicker),
-      titel: agendaBlok.regel('titel', terugval.agendaBlok.titel),
-      lead: agendaBlok.regel('lead', terugval.agendaBlok.lead),
-      paginaLead: agendaBlok.regel('paginaLead', terugval.agendaBlok.paginaLead),
-    },
-    welkom: {
-      kicker: welkom.regel('kicker', terugval.welkom.kicker),
-      titel: welkom.regel('titel', terugval.welkom.titel),
-      alineas: welkom.alineas('alineas', terugval.welkom.alineas),
-      knop: welkom.regel('knop', terugval.welkom.knop),
-    },
-    wieWeZijn: {
-      kicker: wieWeZijn.regel('kicker', terugval.wieWeZijn.kicker),
-      titel: wieWeZijn.regel('titel', terugval.wieWeZijn.titel),
-      lead: wieWeZijn.regel('lead', terugval.wieWeZijn.lead),
-      alineas: wieWeZijn.alineas('alineas', terugval.wieWeZijn.alineas),
-      voorWie: wieWeZijn.alineas('voorWie', terugval.wieWeZijn.voorWie),
-    },
-    watWeDoen: {
-      kicker: watWeDoen.regel('kicker', terugval.watWeDoen.kicker),
-      titel: watWeDoen.regel('titel', terugval.watWeDoen.titel),
-      lead: watWeDoen.regel('lead', terugval.watWeDoen.lead),
-      items: watWeDoen.rijen('items', terugval.watWeDoen.items, (rij: any, i: number) => ({
-        kop: tekst(rij?.kop, ''),
-        wanneer: tekst(rij?.wanneer, ''),
-        tekst: tekst(rij?.tekst, ''),
-        // Zonder eigen foto blijft de foto staan die de site meegekregen heeft,
-        // op dezelfde plek in het rijtje. Een activiteit zonder beeld zou hier
-        // een gat in het raster zijn.
-        foto: beeld(rij?.foto) ?? terugval.watWeDoen.items[i]?.foto ?? '/img/huis-binnen.jpg',
-      })),
-      kosten: watWeDoen.regel('kosten', terugval.watWeDoen.kosten),
-    },
     naam: {
-      kicker: naam.regel('kicker', terugval.naam.kicker),
-      titel: naam.regel('titel', terugval.naam.titel),
       alineas: naam.alineas('alineas', terugval.naam.alineas),
       slot: naam.regel('slot', terugval.naam.slot),
     },
-    jongeren: {
-      kicker: jongeren.regel('kicker', terugval.jongeren.kicker),
-      titel: jongeren.regel('titel', terugval.jongeren.titel),
-      lead: jongeren.regel('lead', terugval.jongeren.lead),
-      alineas: jongeren.alineas('alineas', terugval.jongeren.alineas),
-      knop: jongeren.regel('knop', terugval.jongeren.knop),
-    },
     vrijwilliger: {
-      kicker: vrijwilliger.regel('kicker', terugval.vrijwilliger.kicker),
-      titel: vrijwilliger.regel('titel', terugval.vrijwilliger.titel),
       lead: vrijwilliger.regel('lead', terugval.vrijwilliger.lead),
-      rollen: vrijwilliger.rijen('rollen', terugval.vrijwilliger.rollen, (rij: any) => ({
-        kop: tekst(rij?.kop, ''),
-        tekst: tekst(rij?.tekst, ''),
-        punten: Array.isArray(rij?.punten) ? rij.punten.map((p: unknown) => String(p ?? '')) : [],
-        slot: tekst(rij?.slot, ''),
-      })),
-      uitnodigingTitel: vrijwilliger.regel(
-        'uitnodigingTitel',
-        terugval.vrijwilliger.uitnodigingTitel,
+      rollen: vrijwilliger.rijen(
+        'rollen',
+        terugval.vrijwilliger.rollen,
+        (rij: any) => ({
+          kop: tekst(rij?.kop, ''),
+          tekst: tekst(rij?.tekst, ''),
+          punten: Array.isArray(rij?.punten)
+            ? rij.punten.map((p: unknown) => String(p ?? '').trim()).filter(Boolean)
+            : [],
+          slot: tekst(rij?.slot, ''),
+        }),
+        metKop,
       ),
       uitnodiging: vrijwilliger.regel('uitnodiging', terugval.vrijwilliger.uitnodiging),
     },
     steun: {
-      kicker: steun.regel('kicker', terugval.steun.kicker),
-      titel: steun.regel('titel', terugval.steun.titel),
-      lead: steun.regel('lead', terugval.steun.lead),
-      manieren: steun.rijen('manieren', terugval.steun.manieren, kopTekst),
       anbi: steun.regel('anbi', terugval.steun.anbi),
       sponsorenTitel: steun.regel('sponsorenTitel', terugval.steun.sponsorenTitel),
       sponsorenTekst: steun.regel('sponsorenTekst', terugval.steun.sponsorenTekst),
     },
     verantwoording: {
-      kicker: verantwoording.regel('kicker', terugval.verantwoording.kicker),
-      titel: verantwoording.regel('titel', terugval.verantwoording.titel),
-      lead: verantwoording.regel('lead', terugval.verantwoording.lead),
-      doel: verantwoording.regel('doel', terugval.verantwoording.doel),
       beloning: verantwoording.regel('beloning', terugval.verantwoording.beloning),
-      bestuur: verantwoording.rijen('bestuur', terugval.verantwoording.bestuur, persoon),
-      advies: verantwoording.rijen('advies', terugval.verantwoording.advies, persoon),
+      bestuur: verantwoording.rijen('bestuur', terugval.verantwoording.bestuur, persoon, metNaam),
+      advies: verantwoording.rijen('advies', terugval.verantwoording.advies, persoon, metNaam),
     },
     contact: {
-      kicker: contact.regel('kicker', terugval.contact.kicker),
-      titel: contact.regel('titel', terugval.contact.titel),
-      lead: contact.regel('lead', terugval.contact.lead),
       formulierTitel: contact.regel('formulierTitel', terugval.contact.formulierTitel),
       formulierTekst: contact.regel('formulierTekst', terugval.contact.formulierTekst),
-      openingstijden: contact.regel('openingstijden', terugval.contact.openingstijden),
     },
     praktisch: {
       openingstijden: {
@@ -416,16 +345,11 @@ function bouwContent(payload: RawPayload | null): Content {
     },
   };
 
-  return {
-    teksten,
-    // Staat de agenda in het beheer nog leeg, dan blijft de meegeleverde agenda
-    // staan. Een lege agendapagina zou zeggen dat er niets te doen is.
-    agenda: agenda.length ? agenda : gebundeld.agenda,
-    nieuws: nieuws.length ? nieuws : gebundeld.nieuws,
-    sponsoren: sponsoren.length ? sponsoren : gebundeld.sponsoren,
-    // Geen terugval: een verhaal dat niemand verteld heeft, bestaat niet.
-    verhalen,
-  };
+  // Wat uit het beheer komt is wat er is, ook als dat niets is. Een agenda
+  // waar het bestuur alles uit gehaald heeft, is leeg; de pagina zegt dat dan
+  // en verzint geen voorbeeldagenda. De gebundelde inhoud is er alleen voor
+  // de storing, hierboven.
+  return { teksten, agenda, nieuws, sponsoren, verhalen };
 }
 
 /**

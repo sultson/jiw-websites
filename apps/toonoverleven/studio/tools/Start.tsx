@@ -6,7 +6,8 @@ import { useRouter } from 'sanity/router';
  *
  * Sanity opent standaard op een lijst met een lege rechterhelft, en een leeg
  * scherm is precies het moment waarop iemand die geen CMS wilde leren besluit
- * dat dit ingewikkeld is. Hier staat wat er te doen is, in hun eigen woorden.
+ * dat dit ingewikkeld is. Hier staat wat er te doen is, in hun eigen woorden,
+ * en per onderdeel waar het op de site terechtkomt.
  */
 
 const SITE = 'https://toonoverleven.jouwidealewebsite.nl';
@@ -16,24 +17,31 @@ const kaarten = [
     pad: '/beheer/structure/agenda',
     titel: 'Agenda',
     uitleg:
-      'De maand met alles erop, zoals hij op de site komt te staan. Klik iets aan om het te wijzigen, of klik een lege dag om er iets op te zetten. Een wekelijkse inloop vult u één keer in met "elke week" en staat dan vanzelf op elke donderdag; valt een keer uit, dan zet u die keer uit in de lijst onderaan het formulier.',
+      'De maand met alles erop, zoals hij op de site komt te staan. Klik iets aan om het te wijzigen, of klik een lege dag om er iets op te zetten. Een wekelijkse inloop vult u één keer in met "elke week" en staat dan vanzelf op elke donderdag; valt een keer uit, dan zet u die keer uit in de lijst onderaan het formulier. Wat u aankruist bij thema en doelgroep bepaalt op welke pagina\'s het ook nog staat.',
   },
   {
     pad: '/beheer/structure/nieuws',
     titel: 'Nieuws & Blog',
     uitleg:
-      'De berichten die op de voorpagina langskomen. Elk bericht krijgt een eigen pagina, dus u kunt het hele verhaal kwijt en de link delen op Facebook en Instagram.',
+      'De berichten op de voorpagina en onder Ervaringen. Elk bericht krijgt een eigen pagina, dus u kunt het hele verhaal kwijt en de link delen op Facebook en Instagram.',
+  },
+  {
+    pad: '/beheer/structure/verhaal',
+    titel: 'Verhalen van bezoekers',
+    uitleg:
+      'De verhalen onder Ervaringen. Een verhaal komt pas op de site als de verteller toestemming heeft gegeven en u het op gepubliceerd zet, en gaat er met één klik weer af.',
   },
   {
     pad: '/beheer/structure/siteTeksten',
     titel: 'Teksten op de site',
     uitleg:
-      'De kop op de voorpagina, wie we zijn, wat we doen, vrijwilliger worden, steun en verantwoording. Per pagina bij elkaar gezet.',
+      'De praktische gegevens (openingstijden, kosten, adres, wie er reageert), het bestuur en de raad van advies, de rollen voor vrijwilligers en de regel boven het formulier. Bij elk veld staat op welke pagina het uitkomt.',
   },
   {
     pad: '/beheer/structure/sponsor',
     titel: 'Sponsoren',
-    uitleg: 'De logo’s onderaan de pagina Steun ons. Naam, logo en eventueel een website.',
+    uitleg:
+      'De logo\'s onderaan elke pagina en op de pagina Onze sponsors. Naam, logo en eventueel een website.',
   },
 ];
 

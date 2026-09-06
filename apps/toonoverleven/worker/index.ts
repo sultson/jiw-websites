@@ -70,18 +70,14 @@ const contactWorker = createFormWorker({
  * De agenda wordt bij de bron al ingekort: een eenmalige activiteit die voorbij
  * is hoeft niet meegestuurd te worden, een reeks wel, want die loopt door.
  *
- * Elk blok dat het beheer kent staat hier opgesomd, `praktisch` inbegrepen: de
- * openingstijden, de kosten, het adres en de alinea voor verwijzers. Die staan
- * op tien pagina's en veranderen zonder dat er iemand aan de site werkt. Wat
- * hier niet opgesomd staat wordt niet opgehaald, en dan blijft de site de tekst
- * tonen waarmee hij gebouwd is terwijl het beheer iets anders zegt. Komt er een
- * blok bij in studio/schemas/siteTeksten.ts, dan hoort het hier ook bij.
+ * De teksten komen als heel document mee, zonder opsomming van blokken. Er
+ * heeft hier één keer een lijst gestaan waar een nieuw blok uit het beheer
+ * niet in stond, en de site bleef toen de tekst tonen waarmee hij gebouwd is
+ * terwijl het beheer iets anders zei. Wat content/index.ts niet kent, laat
+ * het gewoon liggen.
  */
 const query = (vandaag: string) => `{
-  "teksten": *[_type == "siteTeksten"][0]{
-    hero, open, nieuwsBlok, agendaBlok, welkom, wieWeZijn, watWeDoen, naam, jongeren,
-    vrijwilliger, steun, verantwoording, contact, praktisch
-  },
+  "teksten": *[_type == "siteTeksten"][0],
   "agenda": *[_type == "activiteit" && (
     (defined(herhaling) && herhaling != "eenmalig") || coalesce(totDatum, datum) >= "${vandaag}"
   )] | order(datum asc){
@@ -115,14 +111,30 @@ const LAATST_GOED = `${SITE_URL}/__cms-content`;
  */
 const randCache = () => (caches as unknown as { default: Cache }).default;
 
+/**
+ * Wat er terugkomt: de inhoud, en of daar concepten in zitten.
+ *
+ * Dat tweede is geen herhaling van de vraag. Concepten lezen vraagt het
+ * leestoken, en ontbreekt dat, dan komt er gepubliceerde tekst terug terwijl
+ * er om een voorbeeld gevraagd is. De pagina hoort dan niet te zeggen dat het
+ * een voorbeeld is: een balk die "met uw wijzigingen" belooft boven een pagina
+ * zonder die wijzigingen is erger dan geen balk.
+ */
+type Geladen = { data: unknown; concepten: boolean };
+
 async function laadInhoud(
   env: Env,
   opts: { vers: boolean; voorbeeld: boolean },
   ctx: ExecutionContext,
-): Promise<unknown> {
-  if (!env.SANITY_PROJECT_ID) return null;
+): Promise<Geladen> {
+  if (!env.SANITY_PROJECT_ID) return { data: null, concepten: false };
   const dataset = env.SANITY_DATASET || 'production';
   const voorbeeld = opts.voorbeeld && Boolean(env.SANITY_READ_TOKEN);
+  if (opts.voorbeeld && !voorbeeld) {
+    console.warn(
+      'Voorbeeld gevraagd, maar SANITY_READ_TOKEN is niet gezet: de gepubliceerde tekst wordt geserveerd.',
+    );
+  }
   const vandaag = new Date().toISOString().slice(0, 10);
 
   const url =
@@ -148,7 +160,7 @@ async function laadInhoud(
           ),
         );
       }
-      return resultaat;
+      return { data: resultaat, concepten: voorbeeld && resultaat !== null };
     }
   } catch {
     // Doorlopen: een CMS die niet bereikbaar is mag het inloophuis niet
@@ -157,9 +169,9 @@ async function laadInhoud(
 
   // Concepten worden nooit uit een kopie geserveerd: een oud concept is erger
   // dan geen concept.
-  if (voorbeeld) return null;
+  if (voorbeeld) return { data: null, concepten: false };
   const bewaard = await randCache().match(LAATST_GOED);
-  return bewaard ? await bewaard.json() : null;
+  return { data: bewaard ? await bewaard.json() : null, concepten: false };
 }
 
 /** JSON is veilig in een scripttag zodra `<` geen sluittag kan beginnen. */
@@ -414,8 +426,8 @@ export default {
       // Een concept hoort niet alleen buiten de index te blijven, maar ook
       // buiten de kaart die je aan een zoekmachine geeft.
       if (!indexeerbaar) return new Response('Niet gevonden', { status: 404 });
-      const data = (await laadInhoud(env, { vers: false, voorbeeld: false }, ctx)) as Doc | null;
-      return new Response(sitemap(data), {
+      const { data } = await laadInhoud(env, { vers: false, voorbeeld: false }, ctx);
+      return new Response(sitemap(data as Doc | null), {
         headers: { 'content-type': 'application/xml; charset=utf-8', 'cache-control': 'max-age=300' },
       });
     }
@@ -425,11 +437,16 @@ export default {
 
     const pad = schoonPad(url.pathname);
     const voorbeeld = Boolean(env.PREVIEW_KEY) && url.searchParams.get('preview') === env.PREVIEW_KEY;
-    const data = (await laadInhoud(
+    const geladen = await laadInhoud(
       env,
       { vers: url.searchParams.get('fresh') === '1', voorbeeld },
       ctx,
-    )) as Doc | null;
+    );
+    const data = geladen.data as Doc | null;
+    // Alleen een pagina waar werkelijk concepten in zitten heet een voorbeeld.
+    // De sleutel in het adres bepaalt wel dat de pagina niet bewaard en niet
+    // geïndexeerd wordt; dat blijft aan `voorbeeld` hangen.
+    const concepten = geladen.concepten;
 
     const projectId = env.SANITY_PROJECT_ID ?? '';
     const dataset = env.SANITY_DATASET || 'production';
@@ -437,7 +454,7 @@ export default {
     // De inhoud wordt hier één keer opgebouwd, en daarna twee keer gebruikt:
     // om de pagina te tekenen en om de head te schrijven. Zo kan de HTML die
     // verstuurd wordt niet iets anders zeggen dan wat erin staat.
-    const payload: RawPayload = { projectId, dataset, preview: voorbeeld, data: data as never };
+    const payload: RawPayload = { projectId, dataset, preview: concepten, data: data as never };
     const inhoud = contentVan(data ? payload : null);
 
     const { meta, ontbreekt } = paginaMeta(pad, data, inhoud.teksten, projectId, dataset);
@@ -455,7 +472,7 @@ export default {
     });
 
     if (data) {
-      const meegestuurd = inlineJson({ projectId, dataset, preview: voorbeeld, data });
+      const meegestuurd = inlineJson({ projectId, dataset, preview: concepten, data });
       rewriter = rewriter.on('head', {
         element(head) {
           head.append(
@@ -471,7 +488,7 @@ export default {
     // een zoekmachine, een voorleesprogramma en een trage verbinding. Gaat het
     // tekenen mis, dan gaat de lege huls eruit en tekent de browser hem alsnog.
     try {
-      const getekend = await tekenPagina({ pad, inhoud, voorbeeld, nu });
+      const getekend = await tekenPagina({ pad, inhoud, voorbeeld: concepten, nu });
       rewriter = rewriter.on('#root', {
         element(wortel) {
           wortel.setInnerContent(getekend, { html: true });

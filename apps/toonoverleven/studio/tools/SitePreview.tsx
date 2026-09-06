@@ -20,7 +20,38 @@ import { Box, Button, Card, Flex, Text } from '@sanity/ui';
 const SITE = 'https://toonoverleven.jouwidealewebsite.nl';
 const PREVIEW_KEY = 'iOn8UC59pa0hFXXd-pb8VWkN';
 
-type Displayed = { slug?: { current?: string }; soort?: string };
+type Displayed = { slug?: { current?: string }; rubriek?: string };
+
+/** De vier pagina's onder Ervaringen waar een verhaal op terecht kan komen. */
+const RUBRIEKPAD: Record<string, string> = {
+  bezoekers: '/ervaringen/verhalen-van-bezoekers',
+  jong: '/ervaringen/jong-en-kanker',
+  naasten: '/ervaringen/naasten',
+  'na-behandeling': '/ervaringen/leven-na-behandeling',
+};
+
+/**
+ * Elk soort document hoort bij een pagina waar het te zien is. Een bericht
+ * heeft er een van zichzelf; een verhaal staat op de pagina van zijn rubriek;
+ * de teksten staan verspreid over de site en openen op Openingstijden, het
+ * veld dat het vaakst verandert.
+ */
+function paginaVoor(naam: string | undefined, getoond: Displayed | undefined): string {
+  switch (naam) {
+    case 'nieuws':
+      return getoond?.slug?.current ? `/nieuws/${getoond.slug.current}` : '/nieuws';
+    case 'activiteit':
+      return '/activiteiten/agenda';
+    case 'verhaal':
+      return RUBRIEKPAD[getoond?.rubriek ?? ''] ?? RUBRIEKPAD.bezoekers;
+    case 'sponsor':
+      return '/over-ons/onze-sponsors';
+    case 'siteTeksten':
+      return '/praktisch/openingstijden';
+    default:
+      return '/';
+  }
+}
 
 export default function SitePreview(props: {
   schemaType?: { name?: string } | string;
@@ -29,22 +60,7 @@ export default function SitePreview(props: {
   const [ronde, setRonde] = useState(0);
 
   const naam = typeof props.schemaType === 'string' ? props.schemaType : props.schemaType?.name;
-  const slug = props.document?.displayed?.slug?.current;
-
-  // Elk soort document hoort bij een pagina. Een blogbericht heeft er zelfs een
-  // van zichzelf, dus zolang het adres al gegenereerd is opent het voorbeeld
-  // dat bericht en niet het overzicht.
-  const pad =
-    naam === 'nieuws'
-      ? slug
-        ? `/nieuws/${slug}`
-        : '/nieuws'
-      : naam === 'activiteit'
-        ? '/agenda'
-        : naam === 'sponsor'
-          ? '/over-ons/onze-sponsors'
-          : '/';
-
+  const pad = paginaVoor(naam, props.document?.displayed);
   const url = `${SITE}${pad}?preview=${PREVIEW_KEY}`;
 
   return (
@@ -53,6 +69,8 @@ export default function SitePreview(props: {
         <Flex align="center" gap={3} paddingX={2}>
           <Text size={1} muted style={{ flex: 1 }}>
             Zo ziet de site eruit met uw wijzigingen, inclusief wat nog niet gepubliceerd is.
+            {naam === 'siteTeksten' &&
+              ' Het voorbeeld opent op Openingstijden; bij elk veld staat op welke pagina het uitkomt, en u kunt hier gewoon doorklikken.'}
           </Text>
           <Button
             mode="ghost"

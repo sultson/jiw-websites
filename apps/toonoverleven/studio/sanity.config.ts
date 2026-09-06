@@ -7,6 +7,7 @@ import { HomeIcon } from '@sanity/icons/Home';
 import { CalendarIcon } from '@sanity/icons/Calendar';
 import { ThListIcon as ListIcon } from '@sanity/icons/ThList';
 import { EditIcon } from '@sanity/icons/Edit';
+import { CommentIcon } from '@sanity/icons/Comment';
 import { DocumentTextIcon } from '@sanity/icons/DocumentText';
 import { HeartIcon } from '@sanity/icons/Heart';
 import { schemaTypes } from './schemas';
@@ -52,6 +53,10 @@ const structure = (S: StructureBuilder) =>
             .defaultOrdering([{ field: 'datum', direction: 'asc' }]),
         ),
       S.documentTypeListItem('nieuws').title('Nieuws & Blog').icon(EditIcon),
+      // De verhalen onder Ervaringen. Ze stonden in het schema en op de site,
+      // maar niet in dit menu, en een document dat je niet kunt terugvinden
+      // kun je ook niet intrekken. Dat is precies waar dat schema om draait.
+      S.documentTypeListItem('verhaal').title('Verhalen van bezoekers').icon(CommentIcon),
       S.divider(),
       S.listItem()
         .title('Teksten op de site')
