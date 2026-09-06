@@ -6,20 +6,55 @@
  * dan is een verhuizing naar een eigen domein een zoekactie door zeven
  * bestanden waarbij er altijd één blijft staan. Nu is het één regel.
  *
- * Dit is het adres waarop de site echt te bereiken hoort te zijn. Wijst het naar
- * een domein dat nog niet antwoordt, dan haalt een canonical de pagina uit de
- * index in plaats van hem alvast klaar te zetten, en stuurt de Worker het
- * werkende adres door naar een deur die dicht zit. Dat is precies wat hier
- * gebeurde toen dit op bloemenwinkelfleurig.nl stond: dat domein staat wel in
- * het Cloudflare-account maar heeft geen enkel DNS-record, dus elke bezoeker
- * liep op de omleiding vast.
+ * Dit is het eigen domein van de winkel. Het stond hier eerder ook al en is toen
+ * teruggezet op het adres op jouwidealewebsite.nl, omdat de zone in Cloudflare
+ * wel bestond maar geen enkel DNS-record had: het domein bestond voor een
+ * bezoeker niet, dus wees elke canonical naar een deur die dicht zat. Nu staan
+ * de twee custom_domain routes weer in wrangler.jsonc, en die koppelen het
+ * domein echt aan de Worker: Cloudflare zet bij het koppelen zelf het
+ * DNS-record klaar, wat een gewone route niet doet.
  *
- * Komt bloemenwinkelfleurig.nl er later alsnog, dan is dit weer de enige regel
- * die om hoeft: zet hem terug, zet de twee custom_domain routes terug in
- * wrangler.jsonc, en meld notify.bloemenwinkelfleurig.nl aan bij Cloudflare
- * Email Service voordat je het afzenderadres meeneemt.
+ * Het adres waarop de site is opgeleverd blijft gekoppeld en stuurt zijn
+ * bezoekers hierheen met één 301. Dat rijtje leidt worker/index.ts af van
+ * precies deze regel.
  */
-export const SITE_URL = 'https://fleurig.jouwidealewebsite.nl';
+export const SITE_URL = 'https://bloemenwinkelfleurig.nl';
+
+/** Het adres waarop de site is opgeleverd. Blijft doorsturen; niet weghalen. */
+export const VORIG_ADRES = 'https://fleurig.jouwidealewebsite.nl';
+
+/* ------------------------------------------------------------------ */
+/*  Tijdelijk gesloten                                                 */
+/* ------------------------------------------------------------------ */
+
+/**
+ * De winkel is dicht en neemt geen aanvragen aan.
+ *
+ * Eén schakelaar voor de hele site. Eraan hangen: de balk boven aan elke
+ * pagina, de kop van de homepage, de openingstijden in de statuskaart, de
+ * strip, het rooster en de aftiteling, het aanvraagformulier en elke knop die
+ * daarheen wees. De Worker weigert er ook het formulieradres mee, zodat een
+ * tabblad dat nog openstond geen aanvraag meer binnen kan brengen.
+ *
+ * Gaat de winkel weer open, dan is `false` genoeg: er is niets weggehaald, de
+ * openingstijden staan er nog, en dan komt ook de meta description van de
+ * homepage weer terug op wat de winkel doet in plaats van dat hij dicht is.
+ */
+export const TIJDELIJK_GESLOTEN = true;
+
+/**
+ * De melding staat op zeven plekken in beeld en hoort overal hetzelfde te
+ * zeggen. Vandaar hier, en niet zeven keer overgeschreven.
+ */
+export const GESLOTEN = {
+  kop: 'Tijdelijk gesloten',
+  kort: 'De winkel is dicht en we nemen geen aanvragen aan.',
+  lang:
+    'Fleurig! aan de Molendijk is tijdelijk gesloten. De winkel is dicht en we ' +
+    'nemen op dit moment geen aanvragen of bestellingen aan, ook niet voor rouw- ' +
+    'en trouwbloemen. Zodra we weer opengaan, staat het hier en op Instagram en ' +
+    'Facebook.',
+};
 
 export const SITE_NAAM = 'Fleurig! Bloemenwinkel';
 

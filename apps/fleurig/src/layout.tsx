@@ -1,14 +1,15 @@
 import {useEffect, useState} from 'react';
 import {
-  ArrowLeft, Camera, Instagram, Mail, Menu, MessageCircle,
+  ArrowLeft, Camera, CircleAlert, Instagram, Mail, Menu, MessageCircle,
   Navigation, Phone, X,
 } from 'lucide-react';
 import Aanvraag from './Aanvraag';
 import KaartLazy from './KaartLazy';
 import {usePad} from './pad';
 import {
-  BEZORGGEBIED, BEZORGKERNEN, BEZORGKOSTEN, Bullet, EMAIL, FACEBOOK, INSTAGRAM, Kicker, Merk,
-  PLAATS, ROUTE, Section, STRAAT, TEL, TEL_DISPLAY, WHATSAPP, useFormKnopInBeeld, KNOP_HOOFD,
+  BEZORGGEBIED, BEZORGKERNEN, BEZORGKOSTEN, Bullet, EMAIL, FACEBOOK, GESLOTEN, INSTAGRAM, Kicker,
+  Merk, PLAATS, ROUTE, Section, STRAAT, TEL, TEL_DISPLAY, TIJDELIJK_GESLOTEN, WHATSAPP,
+  useFormKnopInBeeld, KNOP_HOOFD,
 } from './ui';
 
 /* ------------------------------------------------------------------ */
@@ -21,6 +22,97 @@ import {
  * daaronder "Waar u ons vindt", dus die horen op één plek te staan in plaats
  * van vier keer overgeschreven te worden.
  */
+
+/* ------------------------------------------------------------------ */
+/*  Tijdelijk gesloten                                                 */
+/* ------------------------------------------------------------------ */
+
+/**
+ * De melding zit in de vaste kop en niet ergens in de pagina. Dat is met opzet:
+ * hij staat zo op elke pagina, hij staat er meteen, en hij blijft staan terwijl
+ * de bezoeker doorleest. Wie hier komt voor bloemen hoort het te weten voordat
+ * hij een pagina lang bekijkt wat we allemaal maken, en niet pas onderaan bij
+ * de openingstijden.
+ *
+ * Framboos en niet groen: de rest van de kop is donkergroen, en een melding die
+ * dezelfde kleur heeft als waar hij op ligt is geen melding.
+ */
+function GeslotenBalk() {
+  return (
+    <div className="bg-roze text-white">
+      <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-5 py-2 text-center sm:px-8">
+        <CircleAlert className="h-4 w-4 shrink-0" aria-hidden="true" />
+        <p className="text-xs font-semibold leading-snug sm:text-sm">
+          <span className="uppercase tracking-wider">{GESLOTEN.kop}.</span> {GESLOTEN.kort}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* Dezelfde randknop als op de donkere vlakken, een maat kleiner: hier staan er
+   twee naast elkaar en zijn het geen hoofdknoppen. */
+const KNOP_TWEEDE_DONKER_KLEIN =
+  'inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 px-5 py-2.5 ' +
+  'text-sm font-semibold text-white/90 transition hover:border-white hover:bg-white/10';
+
+/**
+ * Het briefje in de kop van een onderwerppagina, op de plek waar de knoppen
+ * naar het formulier stonden. Vier pagina's, dus één keer opschrijven: anders
+ * staat er op Rouwbloemen straks iets anders dan op Trouwbloemen.
+ */
+export function GeslotenKopMelding() {
+  return (
+    <div className="mt-8 flex max-w-xl items-start gap-3 rounded-2xl border border-white/15 bg-white/[0.06] p-4 text-sm leading-relaxed text-white/75">
+      <CircleAlert className="mt-0.5 h-4 w-4 shrink-0 text-bloesem" aria-hidden="true" />
+      <p>
+        <span className="font-semibold text-white">{GESLOTEN.kop}.</span> We nemen op dit moment geen
+        aanvragen aan. Wat hieronder staat, maken we zodra we weer open zijn.
+      </p>
+    </div>
+  );
+}
+
+/**
+ * Wat er staat waar het formulier stond. Dezelfde plek, dezelfde sprong
+ * (#vraag-aan), zodat elke knop en elke link die daarheen wees hier uitkomt en
+ * leest waarom er niets in te vullen valt, in plaats van bij een leeg vlak.
+ */
+export function GeslotenPaneel() {
+  return (
+    <div className="mx-auto max-w-2xl text-center">
+      <span className="inline-flex items-center gap-2 rounded-full bg-roze px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white">
+        <CircleAlert className="h-4 w-4" aria-hidden="true" /> {GESLOTEN.kop}
+      </span>
+      <h2 className="mt-6 text-3xl font-semibold sm:text-4xl">De winkel is tijdelijk gesloten</h2>
+      <p className="mt-5 leading-relaxed text-white/75">{GESLOTEN.lang}</p>
+
+      {/* Bellen, appen en mailen blijven staan. Ze zijn er om iemand te
+          bereiken die er al mee bezig was, niet om alsnog iets te bestellen:
+          vandaar geen roze knop, alleen de gegevens. */}
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-white/10 pt-7 text-sm">
+        <a href={`tel:${TEL}`} className="flex items-center gap-2 text-white/85 transition hover:text-accent">
+          <Phone className="h-4 w-4 text-accent" /> {TEL_DISPLAY}
+        </a>
+        <a href={WHATSAPP} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-white/85 transition hover:text-accent">
+          <MessageCircle className="h-4 w-4 text-accent" /> WhatsApp
+        </a>
+        <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 text-white/85 transition hover:text-accent">
+          <Mail className="h-4 w-4 text-accent" /> {EMAIL}
+        </a>
+      </div>
+
+      <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+        <a href={INSTAGRAM} target="_blank" rel="noreferrer" className={KNOP_TWEEDE_DONKER_KLEIN}>
+          <Instagram className="h-4 w-4 text-accent" /> Instagram
+        </a>
+        <a href={FACEBOOK} target="_blank" rel="noreferrer" className={KNOP_TWEEDE_DONKER_KLEIN}>
+          <Camera className="h-4 w-4 text-accent" /> Facebook
+        </a>
+      </div>
+    </div>
+  );
+}
 
 /**
  * De balk bovenaan was een lijst sprongen binnen de homepage. Dat werkt op de
@@ -40,7 +132,9 @@ const MENU: [string, string][] = [
   ['Rouwbloemen', '/rouwbloemen/'],
   ['Trouwbloemen', '/trouwbloemen/'],
   ['Over ons', '#over'],
-  ['Openingstijden', '#bezoek'],
+  /* Zolang de winkel dicht is staan er geen openingstijden onder deze sprong
+     maar de melding en het adres, en dan hoort er ook iets anders te staan. */
+  [TIJDELIJK_GESLOTEN ? 'Contact' : 'Openingstijden', '#bezoek'],
 ];
 
 export function Nav() {
@@ -119,6 +213,8 @@ export function Nav() {
         </div>
       </div>
 
+      {TIJDELIJK_GESLOTEN && <GeslotenBalk />}
+
       {open && (
         <div id="hoofdmenu" className="border-t border-white/10 bg-ink xl:hidden">
           <div className="mx-auto max-w-6xl px-5 py-3">
@@ -164,7 +260,8 @@ export function PaginaKop({
   children?: React.ReactNode;
 }) {
   return (
-    <Section tone="ink" ranken={1} className="pt-16 sm:pt-20">
+    /* De meldingsbalk maakt de vaste kop hoger, dus begint de inhoud lager. */
+    <Section tone="ink" ranken={1} className={TIJDELIJK_GESLOTEN ? 'pt-24 sm:pt-28' : 'pt-16 sm:pt-20'}>
       <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
         <div>
           <a
@@ -195,6 +292,18 @@ export function PaginaKop({
 /* ------------------------------------------------------------------ */
 
 export function VraagAan() {
+  /* Geen formulier zolang de winkel dicht is. De sectie blijft staan, met
+     hetzelfde adres (#vraag-aan), zodat elke knop die daarheen wees hier
+     uitkomt en leest waarom er niets aan te vragen valt. De Worker weigert het
+     formulieradres ook, voor het tabblad dat nog openstond. */
+  if (TIJDELIJK_GESLOTEN) {
+    return (
+      <Section id="vraag-aan" tone="ink" ranken={2} className="border-t border-white/10">
+        <GeslotenPaneel />
+      </Section>
+    );
+  }
+
   return (
     <Section id="vraag-aan" tone="ink" ranken={2} className="border-t border-white/10">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-14">
@@ -268,32 +377,47 @@ export function Bezoek({bezorggebied = false}: {bezorggebied?: boolean} = {}) {
           <Kicker>Waar u ons vindt</Kicker>
           <h2 className="text-3xl font-semibold sm:text-4xl">Molendijk 9-11</h2>
           <p className="mt-4 leading-relaxed text-ink/65">
-            Midden in het centrum van Oud-Beijerland, in de overdekte winkelstraat. De emmers staan buiten,
-            u ziet ons zo staan.
+            Midden in het centrum van Oud-Beijerland, in de overdekte winkelstraat.{' '}
+            {TIJDELIJK_GESLOTEN
+              ? 'De deur is op dit moment dicht en er staan geen emmers buiten.'
+              : 'De emmers staan buiten, u ziet ons zo staan.'}
           </p>
 
-          {bezorggebied && (
+          {/* De bezorgbelofte staat uit zolang er niets te bezorgen valt. */}
+          {bezorggebied && !TIJDELIJK_GESLOTEN && (
             <p className="mt-4 leading-relaxed text-ink/65">
               Bezorgen doen we in de hele {BEZORGGEBIED} voor {BEZORGKOSTEN} euro: {BEZORGKERNEN.slice(0, -1).join(', ')}{' '}
               en {BEZORGKERNEN.at(-1)}. Woont de ontvanger daarbuiten, dan overleggen we even wat het kost.
             </p>
           )}
 
-          <dl className="mt-7 divide-y divide-line border-y border-line text-sm">
-            {ROOSTER.map(([dag, tijd]) => {
-              const isVandaag = dag === vandaag;
-              const dicht = tijd === 'Gesloten';
-              return (
-                <div key={dag} className={`flex items-center justify-between py-2.5 ${isVandaag ? 'text-ink' : 'text-ink/70'}`}>
-                  <dt className={isVandaag ? 'font-semibold' : ''}>
-                    {dag}
-                    {isVandaag && <span className="ml-2 rounded-full bg-accent-dark/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent-dark">vandaag</span>}
-                  </dt>
-                  <dd className={dicht ? 'text-ink/40' : isVandaag ? 'font-semibold' : ''}>{tijd}</dd>
-                </div>
-              );
-            })}
-          </dl>
+          {TIJDELIJK_GESLOTEN ? (
+            <div className="mt-7 rounded-2xl border border-roze/25 bg-roze-zacht p-5">
+              <p className="flex items-center gap-2 font-semibold text-roze">
+                <CircleAlert className="h-4 w-4 shrink-0" aria-hidden="true" /> {GESLOTEN.kop}
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-ink/70">
+                Er zijn op dit moment geen openingstijden: de winkel is dicht en we nemen geen aanvragen
+                aan. Zodra we weer opengaan staat het hier.
+              </p>
+            </div>
+          ) : (
+            <dl className="mt-7 divide-y divide-line border-y border-line text-sm">
+              {ROOSTER.map(([dag, tijd]) => {
+                const isVandaag = dag === vandaag;
+                const dicht = tijd === 'Gesloten';
+                return (
+                  <div key={dag} className={`flex items-center justify-between py-2.5 ${isVandaag ? 'text-ink' : 'text-ink/70'}`}>
+                    <dt className={isVandaag ? 'font-semibold' : ''}>
+                      {dag}
+                      {isVandaag && <span className="ml-2 rounded-full bg-accent-dark/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent-dark">vandaag</span>}
+                    </dt>
+                    <dd className={dicht ? 'text-ink/40' : isVandaag ? 'font-semibold' : ''}>{tijd}</dd>
+                  </div>
+                );
+              })}
+            </dl>
+          )}
 
           <div className="mt-7 space-y-3 text-sm">
             <a href={ROUTE} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-ink/80 transition hover:text-accent-dark">
@@ -348,7 +472,10 @@ export function Footer() {
         <div className="sm:col-span-2 lg:col-span-1">
           <Merk maat="h-[38px]" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/55">
-            Bloemenwinkel aan de Molendijk in Oud-Beijerland. Verse bloemen en bloemwerk op aanvraag.
+            Bloemenwinkel aan de Molendijk in Oud-Beijerland.{' '}
+            {TIJDELIJK_GESLOTEN
+              ? 'Op dit moment tijdelijk gesloten.'
+              : 'Verse bloemen en bloemwerk op aanvraag.'}
           </p>
           <div className="mt-5 flex gap-3">
             <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram" className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white/70 transition hover:border-accent hover:text-accent">
@@ -378,8 +505,14 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-white/60">
             <li>{STRAAT}</li>
             <li>{PLAATS}</li>
-            <li className="pt-2">Woensdag t/m zaterdag</li>
-            <li>8:00 - 17:30</li>
+            {TIJDELIJK_GESLOTEN ? (
+              <li className="pt-2 font-semibold text-white/80">{GESLOTEN.kop}</li>
+            ) : (
+              <>
+                <li className="pt-2">Woensdag t/m zaterdag</li>
+                <li>8:00 - 17:30</li>
+              </>
+            )}
           </ul>
         </div>
 
@@ -414,6 +547,9 @@ export function Footer() {
  */
 export function MobielBalk() {
   const hoofdknopInBeeld = useFormKnopInBeeld();
+  /* Deze balk duwt de bezoeker naar de winkel. Zolang die dicht is, is dat
+     precies de verkeerde kant op, en de melding staat al vast in de kop. */
+  if (TIJDELIJK_GESLOTEN) return null;
   if (hoofdknopInBeeld) return null;
 
   return (
@@ -461,7 +597,7 @@ export function Pagina({children}: {children: React.ReactNode}) {
   return (
     <>
       <Nav />
-      <main id="inhoud" className="pb-20 md:pb-0">
+      <main id="inhoud" className={TIJDELIJK_GESLOTEN ? '' : 'pb-20 md:pb-0'}>
         {children}
         <VraagAan />
         <Bezoek />

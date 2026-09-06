@@ -1,5 +1,11 @@
 import {useEffect, useRef, useState, useSyncExternalStore} from 'react';
 import {Check} from 'lucide-react';
+import {GESLOTEN, TIJDELIJK_GESLOTEN} from '../site.config.mjs';
+
+/* De schakelaar en de tekst staan in site.config.mjs, want de Worker en de
+   bouwscripts hebben ze ook nodig en die kunnen geen .tsx inlezen. Hier weer
+   naar buiten, zodat de rest van de site alles uit dezelfde plek haalt. */
+export {GESLOTEN, TIJDELIJK_GESLOTEN};
 
 /* ------------------------------------------------------------------ */
 /*  Constanten                                                         */
@@ -102,12 +108,24 @@ const ROOSTER_STATUS: Status = {
   onder: 'Woensdag tot en met zaterdag, 8:00 tot 17:30',
 };
 
+/**
+ * Zolang de winkel tijdelijk gesloten is klopt het rooster niet en de klok
+ * evenmin: er gaat geen deur open, ook niet morgen om 8:00. Dan staat hier de
+ * melding, en verder niets dat op een openingstijd lijkt.
+ *
+ * De berekening hierboven blijft staan. Gaat de winkel weer open, dan is
+ * TIJDELIJK_GESLOTEN op false zetten genoeg.
+ */
+const GESLOTEN_STATUS: Status = {open: false, kop: GESLOTEN.kop, onder: GESLOTEN.kort};
+
 export function useWinkelStatus(): Status {
-  const [status, setStatus] = useState<Status>(ROOSTER_STATUS);
+  const [status, setStatus] = useState<Status>(TIJDELIJK_GESLOTEN ? GESLOTEN_STATUS : ROOSTER_STATUS);
   useEffect(() => {
+    if (TIJDELIJK_GESLOTEN) return;
     setStatus(bepaalStatus(new Date()));
   }, []);
   useEffect(() => {
+    if (TIJDELIJK_GESLOTEN) return;
     /* Elke minuut bijwerken, zodat de melding niet blijft hangen op een
        pagina die lang openstaat. */
     const t = setInterval(() => setStatus(bepaalStatus(new Date())), 60_000);

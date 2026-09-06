@@ -1,7 +1,7 @@
 import {ArrowRight, Clock, Flower2, Gift, Hand, Phone, Sparkles} from 'lucide-react';
-import {Pagina, PaginaKop} from '../layout';
+import {GeslotenKopMelding, Pagina, PaginaKop} from '../layout';
 import {
-  Bullet, KNOP_HOOFD, KNOP_TWEEDE_DONKER, Kicker, Section, TEL, TEL_DISPLAY,
+  Bullet, KNOP_HOOFD, KNOP_TWEEDE_DONKER, Kicker, Section, TEL, TEL_DISPLAY, TIJDELIJK_GESLOTEN,
 } from '../ui';
 
 /* ------------------------------------------------------------------ */
@@ -82,14 +82,18 @@ export default function Boeketten() {
         img="/img/plukboeket.webp"
         alt="Een net gebonden boeket in de winkel aan de Molendijk"
       >
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          <a href="#vraag-aan" className={KNOP_HOOFD}>
-            Boeket aanvragen <ArrowRight className="h-4 w-4" />
-          </a>
-          <a href={`tel:${TEL}`} className={KNOP_TWEEDE_DONKER}>
-            <Phone className="h-4 w-4 text-accent" /> {TEL_DISPLAY}
-          </a>
-        </div>
+        {TIJDELIJK_GESLOTEN ? (
+          <GeslotenKopMelding />
+        ) : (
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#vraag-aan" className={KNOP_HOOFD}>
+              Boeket aanvragen <ArrowRight className="h-4 w-4" />
+            </a>
+            <a href={`tel:${TEL}`} className={KNOP_TWEEDE_DONKER}>
+              <Phone className="h-4 w-4 text-accent" /> {TEL_DISPLAY}
+            </a>
+          </div>
+        )}
       </PaginaKop>
 
       {/* -------------------------------------------------------------- */}
@@ -142,16 +146,23 @@ export default function Boeketten() {
           </div>
         ))}
 
-        <p className="mt-12 text-sm leading-relaxed text-ink/55">
-          Iets anders in gedachten? Zeg welke kleuren u mooi vindt en wat u wilt besteden, dan maken wij er
-          iets van dat past.{' '}
-          <a
-            href="#vraag-aan"
-            className="font-semibold text-accent-dark underline decoration-accent-dark/25 underline-offset-4 transition hover:decoration-accent-dark"
-          >
-            Vertel wat u zoekt
-          </a>
-        </p>
+        {TIJDELIJK_GESLOTEN ? (
+          <p className="mt-12 text-sm leading-relaxed text-ink/55">
+            Iets anders in gedachten? Zodra de winkel weer open is maken we er iets van dat past. Op dit
+            moment nemen we geen aanvragen aan.
+          </p>
+        ) : (
+          <p className="mt-12 text-sm leading-relaxed text-ink/55">
+            Iets anders in gedachten? Zeg welke kleuren u mooi vindt en wat u wilt besteden, dan maken wij er
+            iets van dat past.{' '}
+            <a
+              href="#vraag-aan"
+              className="font-semibold text-accent-dark underline decoration-accent-dark/25 underline-offset-4 transition hover:decoration-accent-dark"
+            >
+              Vertel wat u zoekt
+            </a>
+          </p>
+        )}
       </Section>
 
       {/* -------------------------------------------------------------- */}

@@ -1,7 +1,7 @@
 import {ArrowRight, Briefcase, Flower2, Phone, Repeat, Scissors, Sparkles, Wallet} from 'lucide-react';
-import {Pagina, PaginaKop} from '../layout';
+import {GeslotenKopMelding, Pagina, PaginaKop} from '../layout';
 import {
-  Bullet, KNOP_HOOFD, KNOP_TWEEDE_DONKER, Kicker, Section, TEL, TEL_DISPLAY,
+  Bullet, KNOP_HOOFD, KNOP_TWEEDE_DONKER, Kicker, Section, TEL, TEL_DISPLAY, TIJDELIJK_GESLOTEN,
 } from '../ui';
 
 /* ------------------------------------------------------------------ */
@@ -76,14 +76,18 @@ export default function Abonnement() {
         img="/img/abo-hero.webp"
         alt="Een arm vol verse pioenen voor de winkel aan de Molendijk"
       >
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          <a href="#vraag-aan" className={KNOP_HOOFD}>
-            Abonnement aanvragen <ArrowRight className="h-4 w-4" />
-          </a>
-          <a href={`tel:${TEL}`} className={KNOP_TWEEDE_DONKER}>
-            <Phone className="h-4 w-4 text-accent" /> {TEL_DISPLAY}
-          </a>
-        </div>
+        {TIJDELIJK_GESLOTEN ? (
+          <GeslotenKopMelding />
+        ) : (
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#vraag-aan" className={KNOP_HOOFD}>
+              Abonnement aanvragen <ArrowRight className="h-4 w-4" />
+            </a>
+            <a href={`tel:${TEL}`} className={KNOP_TWEEDE_DONKER}>
+              <Phone className="h-4 w-4 text-accent" /> {TEL_DISPLAY}
+            </a>
+          </div>
+        )}
       </PaginaKop>
 
       {/* -------------------------------------------------------------- */}
@@ -206,9 +210,15 @@ export default function Abonnement() {
             <div className="mt-7 flex gap-3.5 border-t border-line pt-6">
               <Briefcase className="mt-0.5 h-5 w-5 shrink-0 text-accent-dark" />
               <p className="text-sm leading-relaxed text-ink/65">
-                Zakelijk en wilt u eerst een voorstel? Bel ons op{' '}
-                <a href={`tel:${TEL}`} className="font-semibold text-accent-dark hover:underline">{TEL_DISPLAY}</a>,
-                dan kijken we mee naar de ruimte en het budget.
+                {TIJDELIJK_GESLOTEN ? (
+                  'Zakelijk en wilt u eerst een voorstel? Dat pakken we op zodra de winkel weer open is; dan kijken we mee naar de ruimte en het budget.'
+                ) : (
+                  <>
+                    Zakelijk en wilt u eerst een voorstel? Bel ons op{' '}
+                    <a href={`tel:${TEL}`} className="font-semibold text-accent-dark hover:underline">{TEL_DISPLAY}</a>,
+                    dan kijken we mee naar de ruimte en het budget.
+                  </>
+                )}
               </p>
             </div>
           </div>

@@ -1,13 +1,13 @@
 import {useEffect, useState} from 'react';
 import {
-  ArrowRight, Briefcase, Camera, ChevronDown, Clock, Flower2, Gift, Heart, Instagram,
+  ArrowRight, Briefcase, Camera, ChevronDown, CircleAlert, Clock, Flower2, Gift, Heart, Instagram,
   MapPin, Navigation, Phone, Repeat, Sparkles, Wallet,
 } from 'lucide-react';
 import {Bezoek, Footer, MobielBalk, Nav, VraagAan} from './layout';
 import {
-  FACEBOOK, INSTAGRAM, KNOP_DERDE, KNOP_HOOFD, KNOP_TWEEDE_DONKER,
+  FACEBOOK, GESLOTEN, INSTAGRAM, KNOP_DERDE, KNOP_HOOFD, KNOP_TWEEDE_DONKER,
   KNOP_TWEEDE_LICHT, Kicker, PLAATS, ROUTE, Section, STRAAT,
-  TEL, TEL_DISPLAY, WHATSAPP, useKnopInBeeld, useWinkelStatus,
+  TEL, TEL_DISPLAY, TIJDELIJK_GESLOTEN, WHATSAPP, useKnopInBeeld, useWinkelStatus,
 } from './ui';
 
 /* ------------------------------------------------------------------ */
@@ -64,7 +64,7 @@ function StatusKaart() {
   return (
     <div className="rounded-2xl border border-line bg-white p-5 text-ink shadow-[0_24px_60px_-30px_rgb(0_0_0_/_0.7)]">
       <div className="flex items-center gap-2.5">
-        <span className={`relative flex h-2.5 w-2.5 ${status.open ? 'text-accent-dark' : 'text-ink/30'}`}>
+        <span className={`relative flex h-2.5 w-2.5 ${status.open ? 'text-accent-dark' : TIJDELIJK_GESLOTEN ? 'text-roze' : 'text-ink/30'}`}>
           <span className={`absolute inline-flex h-full w-full rounded-full ${status.open ? 'animate-ping bg-accent-dark/60' : ''}`} />
           <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-current" />
         </span>
@@ -75,7 +75,11 @@ function StatusKaart() {
       <dl className="mt-4 space-y-2 border-t border-line pt-4 text-sm">
         <div className="flex gap-3">
           <dt className="shrink-0 text-ink/45"><Clock className="h-4 w-4" /></dt>
-          <dd>Woensdag tot en met zaterdag, 8:00 tot 17:30</dd>
+          <dd>
+            {TIJDELIJK_GESLOTEN
+              ? 'Geen openingstijden zolang de winkel dicht is'
+              : 'Woensdag tot en met zaterdag, 8:00 tot 17:30'}
+          </dd>
         </div>
         <div className="flex gap-3">
           <dt className="shrink-0 text-ink/45"><MapPin className="h-4 w-4" /></dt>
@@ -87,7 +91,7 @@ function StatusKaart() {
           ernaast. Nu vertelt hij alleen of de deur openstaat; de knoppen staan
           op één plek, bij de tekst. */}
       <p className="mt-4 border-t border-line pt-4 text-sm text-ink/55">
-        Liever eerst even overleggen?{' '}
+        {TIJDELIJK_GESLOTEN ? 'Een vraag over iets dat al liep?' : 'Liever eerst even overleggen?'}{' '}
         <a
           href={WHATSAPP}
           target="_blank"
@@ -132,34 +136,77 @@ function Hero() {
           overal somber, terwijl alleen de plek onder de tekst rustig hoeft te
           zijn. De foto staat nu onbedekt in beeld. */}
 
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 pb-14 pt-28 sm:px-8 sm:pb-20 sm:pt-32 lg:grid-cols-[1.05fr_0.85fr] lg:gap-14 lg:pb-24 lg:pt-36">
+      {/* De meldingsbalk maakt de vaste kop hoger, dus begint de hero lager. */}
+      <div
+        className={
+          'mx-auto grid max-w-6xl items-center gap-10 px-5 pb-14 sm:px-8 sm:pb-20 ' +
+          'lg:grid-cols-[1.05fr_0.85fr] lg:gap-14 lg:pb-24 ' +
+          (TIJDELIJK_GESLOTEN ? 'pt-36 sm:pt-40 lg:pt-44' : 'pt-28 sm:pt-32 lg:pt-36')
+        }
+      >
         {/* Het randje staat op de kolom en niet per regel, want text-shadow
             erft: zo dragen de kicker, de kop, de alinea en de tekstlink hem
             alledrie zonder dat er ergens een klasse vergeten kan worden. Op de
             knoppen zet ik hem uit, die hebben een eigen vlak. */}
         <div className={`${PANEEL} ${TEKST_HALO}`}>
           <Kicker bloesem>Bloemenwinkel op de Molendijk, Oud-Beijerland</Kicker>
-          <h1 className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-[3.4rem]">
-            Verse bloemen,<br />
-            <span className="text-bloesem">dagelijks nieuw</span>
-          </h1>
-          <p className="mt-5 max-w-md text-lg leading-relaxed text-white">
-            Loop binnen en stel zelf een boeket samen, of neem er een mee die al klaarstaat.
-            Rouwboeketten, bruidsboeketten en boeketten op maat maken we op aanvraag.
-          </p>
 
-          {/* Eén hoofdknop. De winkel leeft van mensen die binnenlopen, dus dat
-              is de route. Bellen staat er als rand naast, en doorbladeren is
-              alleen een tekstlink: het is een sprong op dezelfde pagina, geen
-              stap die om aandacht hoort te vragen. */}
-          <div className="mt-7 flex flex-wrap items-center gap-3 [text-shadow:none]">
-            <a ref={knopRef} href={ROUTE} target="_blank" rel="noreferrer" className={KNOP_HOOFD}>
-              <Navigation className="h-4 w-4" /> Route naar de winkel
-            </a>
-            <a href={`tel:${TEL}`} className={`${KNOP_TWEEDE_DONKER} bg-white/10`}>
-              <Phone className="h-4 w-4 text-bloesem" /> {TEL_DISPLAY}
-            </a>
-          </div>
+          {TIJDELIJK_GESLOTEN ? (
+            <>
+              {/* Het eerste wat iemand op deze pagina leest. Een balk bovenaan
+                  is te missen als je meteen naar de foto kijkt; dit niet. */}
+              <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-roze px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white [text-shadow:none]">
+                <CircleAlert className="h-4 w-4" aria-hidden="true" /> {GESLOTEN.kop}
+              </span>
+              <h1 className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-[3.4rem]">
+                De winkel is<br />
+                <span className="text-bloesem">tijdelijk gesloten</span>
+              </h1>
+              <p className="mt-5 max-w-md text-lg leading-relaxed text-white">{GESLOTEN.lang}</p>
+
+              {/* Geen roze knop: er is niets om op te drukken dat iets oplevert.
+                  Wat er staat is waar het nieuws straks als eerste komt te
+                  staan, en het nummer voor wie iets moet vragen. */}
+              <div className="mt-7 flex flex-wrap items-center gap-3 [text-shadow:none]">
+                <a
+                  ref={knopRef}
+                  href={INSTAGRAM}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`${KNOP_TWEEDE_DONKER} bg-white/10`}
+                >
+                  <Instagram className="h-4 w-4 text-bloesem" /> Volg ons op Instagram
+                </a>
+                <a href={`tel:${TEL}`} className={`${KNOP_TWEEDE_DONKER} bg-white/10`}>
+                  <Phone className="h-4 w-4 text-bloesem" /> {TEL_DISPLAY}
+                </a>
+              </div>
+            </>
+          ) : (
+            <>
+              <h1 className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-[3.4rem]">
+                Verse bloemen,<br />
+                <span className="text-bloesem">dagelijks nieuw</span>
+              </h1>
+              <p className="mt-5 max-w-md text-lg leading-relaxed text-white">
+                Loop binnen en stel zelf een boeket samen, of neem er een mee die al klaarstaat.
+                Rouwboeketten, bruidsboeketten en boeketten op maat maken we op aanvraag.
+              </p>
+
+              {/* Eén hoofdknop. De winkel leeft van mensen die binnenlopen, dus dat
+                  is de route. Bellen staat er als rand naast, en doorbladeren is
+                  alleen een tekstlink: het is een sprong op dezelfde pagina, geen
+                  stap die om aandacht hoort te vragen. */}
+              <div className="mt-7 flex flex-wrap items-center gap-3 [text-shadow:none]">
+                <a ref={knopRef} href={ROUTE} target="_blank" rel="noreferrer" className={KNOP_HOOFD}>
+                  <Navigation className="h-4 w-4" /> Route naar de winkel
+                </a>
+                <a href={`tel:${TEL}`} className={`${KNOP_TWEEDE_DONKER} bg-white/10`}>
+                  <Phone className="h-4 w-4 text-bloesem" /> {TEL_DISPLAY}
+                </a>
+              </div>
+            </>
+          )}
 
           <a href="#winkel" className={`${KNOP_DERDE} mt-5 text-sm text-white/90`}>
             Bekijk wat we doen <ArrowRight className="h-4 w-4" />
@@ -178,12 +225,21 @@ function Hero() {
 /*  Strip                                                              */
 /* ------------------------------------------------------------------ */
 
-const STRIP = [
-  {icon: Clock, kop: 'Woensdag t/m zaterdag', onder: '8:00 tot 17:30'},
-  {icon: MapPin, kop: STRAAT, onder: 'In het centrum van Oud-Beijerland'},
-  {icon: Sparkles, kop: 'Dagelijks nieuwe aanvoer', onder: 'Wat er staat, staat er vers'},
-  {icon: Flower2, kop: 'Bloemen van dichtbij', onder: 'Bloemen uit de Hoeksche Waard'},
-];
+/* De eerste twee regels gaan over openingstijden en aanvoer. Zolang de winkel
+   dicht is kloppen ze geen van beide, dus staat daar wat er wel klopt. */
+const STRIP = TIJDELIJK_GESLOTEN
+  ? [
+      {icon: CircleAlert, kop: GESLOTEN.kop, onder: 'De winkel is dicht'},
+      {icon: MapPin, kop: STRAAT, onder: 'In het centrum van Oud-Beijerland'},
+      {icon: Clock, kop: 'Geen aanvragen', onder: 'We nemen nu geen bestellingen aan'},
+      {icon: Instagram, kop: 'Nieuws op Instagram', onder: 'Daar staat het als we opengaan'},
+    ]
+  : [
+      {icon: Clock, kop: 'Woensdag t/m zaterdag', onder: '8:00 tot 17:30'},
+      {icon: MapPin, kop: STRAAT, onder: 'In het centrum van Oud-Beijerland'},
+      {icon: Sparkles, kop: 'Dagelijks nieuwe aanvoer', onder: 'Wat er staat, staat er vers'},
+      {icon: Flower2, kop: 'Bloemen van dichtbij', onder: 'Bloemen uit de Hoeksche Waard'},
+    ];
 
 /* Licht in plaats van donker: de hero is al een donker vlak, en twee groene
    banden onder elkaar maken de bovenkant van de pagina zwaar. */
@@ -254,7 +310,9 @@ const WINKELKAARTEN = [
     img: '/img/cadeaubon.webp',
     icon: Gift,
     titel: 'Cadeaubon',
-    tekst: 'Laat de ontvanger zelf uitzoeken. De bon ligt in de winkel klaar.',
+    tekst: TIJDELIJK_GESLOTEN
+      ? 'Laat de ontvanger zelf uitzoeken. De bon ligt klaar zodra de winkel weer open is.'
+      : 'Laat de ontvanger zelf uitzoeken. De bon ligt in de winkel klaar.',
     href: null,
   },
 ];
@@ -264,10 +322,16 @@ function InDeWinkel() {
     <Section id="winkel" tone="wit">
       <div className="max-w-2xl">
         <Kicker>In de winkel</Kicker>
-        <h2 className="text-3xl font-semibold sm:text-4xl">Kom gerust even binnen</h2>
+        {/* "Kom gerust even binnen" boven een dichte deur is een uitnodiging
+            die niemand kan aannemen. Wat we maken blijft staan, in de tijd die
+            erbij hoort. */}
+        <h2 className="text-3xl font-semibold sm:text-4xl">
+          {TIJDELIJK_GESLOTEN ? 'Dit maken we' : 'Kom gerust even binnen'}
+        </h2>
         <p className="mt-4 text-lg leading-relaxed text-ink/70">
-          De winkel staat vol met verse bloemen die we dagelijks aanvullen. Neem een boeket mee dat al
-          klaar staat of laat er een samenstellen naar eigen keuze. Uiteraard denken wij graag met u mee.
+          {TIJDELIJK_GESLOTEN
+            ? 'Normaal staat de winkel vol met verse bloemen die we dagelijks aanvullen, om mee te nemen of om samen te stellen naar eigen keuze. Zolang we gesloten zijn kan dat niet; dit is wat er weer staat zodra we opengaan.'
+            : 'De winkel staat vol met verse bloemen die we dagelijks aanvullen. Neem een boeket mee dat al klaar staat of laat er een samenstellen naar eigen keuze. Uiteraard denken wij graag met u mee.'}
         </p>
       </div>
 
@@ -409,8 +473,9 @@ function OpAanvraag() {
         <Kicker>Op aanvraag</Kicker>
         <h2 className="text-3xl font-semibold sm:text-4xl">Bloemwerk op bestelling</h2>
         <p className="mt-4 text-lg leading-relaxed text-ink/70">
-          Naast wat er in de winkel staat maken we bloemwerk op aanvraag. Bel ons, loop binnen of vul het
-          formulier in, dan denken we met u mee.
+          {TIJDELIJK_GESLOTEN
+            ? 'Naast wat er in de winkel staat maken we bloemwerk op bestelling. Dat ligt nu stil: zolang de winkel gesloten is nemen we geen aanvragen aan. Dit is wat we maken zodra we weer open zijn.'
+            : 'Naast wat er in de winkel staat maken we bloemwerk op aanvraag. Bel ons, loop binnen of vul het formulier in, dan denken we met u mee.'}
         </p>
       </div>
 
@@ -433,10 +498,14 @@ function OpAanvraag() {
         ))}
       </div>
 
+      {/* Geen knop naar het formulier zolang er geen formulier is. Het nummer
+          blijft staan voor wie iets moet vragen over wat al liep. */}
       <div className="mt-9 flex flex-wrap items-center gap-3">
-        <a href="#vraag-aan" className={KNOP_HOOFD}>
-          Aanvraag doen <ArrowRight className="h-4 w-4" />
-        </a>
+        {!TIJDELIJK_GESLOTEN && (
+          <a href="#vraag-aan" className={KNOP_HOOFD}>
+            Aanvraag doen <ArrowRight className="h-4 w-4" />
+          </a>
+        )}
         <a href={`tel:${TEL}`} className={KNOP_TWEEDE_LICHT}>
           <Phone className="h-4 w-4 text-accent-dark" /> {TEL_DISPLAY}
         </a>
@@ -516,11 +585,13 @@ function Abonnement() {
           </div>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <a href="#vraag-aan" className={KNOP_HOOFD}>
-              Abonnement aanvragen <ArrowRight className="h-4 w-4" />
-            </a>
-            <a href="/abonnement/" className={KNOP_TWEEDE_LICHT}>
-              Meer informatie <ArrowRight className="h-4 w-4 text-accent-dark" />
+            {!TIJDELIJK_GESLOTEN && (
+              <a href="#vraag-aan" className={KNOP_HOOFD}>
+                Abonnement aanvragen <ArrowRight className="h-4 w-4" />
+              </a>
+            )}
+            <a href="/abonnement/" className={TIJDELIJK_GESLOTEN ? KNOP_HOOFD : KNOP_TWEEDE_LICHT}>
+              Meer informatie <ArrowRight className={`h-4 w-4 ${TIJDELIJK_GESLOTEN ? '' : 'text-accent-dark'}`} />
             </a>
           </div>
         </div>
@@ -559,7 +630,9 @@ function Over() {
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink/70">
             <p>
               Op 11 februari 2026 openden wij Fleurig! in het oude, vertrouwde bloemenpand aan de Molendijk.
-              Sindsdien staan we hier vier dagen per week met een winkel vol verse bloemen.
+              {TIJDELIJK_GESLOTEN
+                ? ' Sinds die dag stonden we hier vier dagen per week met een winkel vol verse bloemen. Op dit moment is de winkel tijdelijk gesloten.'
+                : ' Sindsdien staan we hier vier dagen per week met een winkel vol verse bloemen.'}
             </p>
             <p>
               We halen zoveel mogelijk Hollandse en duurzaam gekweekte bloemen. Een deel komt rechtstreeks
@@ -567,7 +640,9 @@ function Over() {
               de emmer.
             </p>
             <p>
-              Loop gerust binnen om te kijken. Weet u niet wat u zoekt, dan denken we graag met u mee.
+              {TIJDELIJK_GESLOTEN
+                ? 'Zodra we weer opengaan kunt u gerust binnenlopen om te kijken. Weet u niet wat u zoekt, dan denken we graag met u mee.'
+                : 'Loop gerust binnen om te kijken. Weet u niet wat u zoekt, dan denken we graag met u mee.'}
             </p>
           </div>
 
@@ -590,18 +665,28 @@ function Over() {
 /* ------------------------------------------------------------------ */
 
 const VRAGEN: [string, string][] = [
-  [
-    'Kan ik zomaar binnenlopen?',
-    'Ja. Woensdag tot en met zaterdag van 8:00 tot 17:30 staat de winkel open, zonder afspraak. Voor bloemwerk op bestelling is even bellen of een aanvraag doen handiger.',
-  ],
+  TIJDELIJK_GESLOTEN
+    ? [
+        'Zijn jullie open?',
+        'Nee, de winkel is tijdelijk gesloten. De deur is dicht en we nemen op dit moment geen aanvragen of bestellingen aan, ook niet voor rouw- en trouwbloemen. Zodra we weer opengaan staat het hier op de site en op Instagram en Facebook.',
+      ]
+    : [
+        'Kan ik zomaar binnenlopen?',
+        'Ja. Woensdag tot en met zaterdag van 8:00 tot 17:30 staat de winkel open, zonder afspraak. Voor bloemwerk op bestelling is even bellen of een aanvraag doen handiger.',
+      ],
   [
     'Kan ik zelf een boeket laten samenstellen?',
     'Dat kan. U wijst aan welke bloemen u mooi vindt, wij snijden ze en binden er een boeket van. Wilt u liever iets meenemen dat al klaarstaat, dan kan dat ook.',
   ],
-  [
-    'Hoe snel kunnen jullie een rouwboeket maken?',
-    'Bel ons even, dan bespreken we wat er nog past voor de datum van de dienst. Vertel gerust in welke kleuren u denkt en of er een lint met tekst bij moet.',
-  ],
+  TIJDELIJK_GESLOTEN
+    ? [
+        'Kan ik nog rouwbloemen bestellen?',
+        'Op dit moment niet. Zolang de winkel gesloten is maken we geen rouwbloemen, ook niet met haast. Voor een dienst die binnenkort is kunt u het beste bij een andere bloemist in de buurt terecht.',
+      ]
+    : [
+        'Hoe snel kunnen jullie een rouwboeket maken?',
+        'Bel ons even, dan bespreken we wat er nog past voor de datum van de dienst. Vertel gerust in welke kleuren u denkt en of er een lint met tekst bij moet.',
+      ],
   [
     'Maken jullie ook bruidsboeketten?',
     'Ja. We beginnen met een gesprek over de kleuren en de sfeer van uw dag, en komen daarna met een voorstel voor het boeket, de corsages en de bloemen op de locatie.',
@@ -612,7 +697,9 @@ const VRAGEN: [string, string][] = [
   ],
   [
     'Hebben jullie een cadeaubon?',
-    'Die hebben we. Handig als u iets moois wilt geven maar de ontvanger liever zelf laat kiezen. De bon ligt in de winkel klaar.',
+    TIJDELIJK_GESLOTEN
+      ? 'Die hebben we. Handig als u iets moois wilt geven maar de ontvanger liever zelf laat kiezen. Hij is te koop zodra de winkel weer open is.'
+      : 'Die hebben we. Handig als u iets moois wilt geven maar de ontvanger liever zelf laat kiezen. De bon ligt in de winkel klaar.',
   ],
 ];
 
@@ -656,7 +743,7 @@ export default function App() {
   return (
     <>
       <Nav />
-      <main id="inhoud" className="pb-20 md:pb-0">
+      <main id="inhoud" className={TIJDELIJK_GESLOTEN ? '' : 'pb-20 md:pb-0'}>
         <Hero />
         <Strip />
         <InDeWinkel />

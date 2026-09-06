@@ -10,7 +10,16 @@
  */
 
 export declare const SITE_URL: string;
+export declare const VORIG_ADRES: string;
 export declare const SITE_NAAM: string;
+
+export declare const TIJDELIJK_GESLOTEN: boolean;
+
+export declare const GESLOTEN: {
+  kop: string;
+  kort: string;
+  lang: string;
+};
 
 export declare const WINKEL: {
   telefoon: string;

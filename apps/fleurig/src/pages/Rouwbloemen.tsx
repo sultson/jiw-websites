@@ -1,7 +1,8 @@
 import {ArrowRight, Clock, Heart, MessageCircle, Phone} from 'lucide-react';
-import {Pagina, PaginaKop} from '../layout';
+import {GeslotenKopMelding, Pagina, PaginaKop} from '../layout';
 import {
-  Bullet, KNOP_HOOFD, KNOP_TWEEDE_DONKER, Kicker, Section, TEL, TEL_DISPLAY, WHATSAPP,
+  Bullet, KNOP_HOOFD, KNOP_TWEEDE_DONKER, Kicker, Section, TEL, TEL_DISPLAY, TIJDELIJK_GESLOTEN,
+  WHATSAPP,
 } from '../ui';
 
 /* ------------------------------------------------------------------ */
@@ -69,19 +70,28 @@ export default function Rouwbloemen() {
         img="/img/rouwbloemwerk.webp"
         alt="Rouwbloemwerk gemaakt in de winkel aan de Molendijk"
       >
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          <a href={`tel:${TEL}`} className={KNOP_HOOFD}>
-            <Phone className="h-4 w-4" /> Bel ons: {TEL_DISPLAY}
-          </a>
-          <a href="#vraag-aan" className={KNOP_TWEEDE_DONKER}>
-            Aanvraag doen <ArrowRight className="h-4 w-4 text-accent" />
-          </a>
-        </div>
-        {/* Hier staat bellen bovenaan en niet het formulier: wie dit zoekt heeft
-            vaak haast en wil een mens spreken, geen invulvelden. */}
-        <p className="mt-5 flex items-center gap-2 text-sm text-white/55">
-          <Clock className="h-4 w-4 shrink-0 text-accent" /> Moet het snel? Bel gerust, ook als het morgen al moet.
-        </p>
+        {TIJDELIJK_GESLOTEN ? (
+          /* Geen "bel gerust, ook als het morgen al moet": dat is een belofte
+             die we nu niet waar kunnen maken, en juist op deze pagina heeft
+             iemand er niets aan om dat pas na een telefoontje te horen. */
+          <GeslotenKopMelding />
+        ) : (
+          <>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a href={`tel:${TEL}`} className={KNOP_HOOFD}>
+                <Phone className="h-4 w-4" /> Bel ons: {TEL_DISPLAY}
+              </a>
+              <a href="#vraag-aan" className={KNOP_TWEEDE_DONKER}>
+                Aanvraag doen <ArrowRight className="h-4 w-4 text-accent" />
+              </a>
+            </div>
+            {/* Hier staat bellen bovenaan en niet het formulier: wie dit zoekt heeft
+                vaak haast en wil een mens spreken, geen invulvelden. */}
+            <p className="mt-5 flex items-center gap-2 text-sm text-white/55">
+              <Clock className="h-4 w-4 shrink-0 text-accent" /> Moet het snel? Bel gerust, ook als het morgen al moet.
+            </p>
+          </>
+        )}
       </PaginaKop>
 
       {/* -------------------------------------------------------------- */}
@@ -156,13 +166,20 @@ export default function Rouwbloemen() {
           </div>
         ))}
 
-        <p className="mt-12 text-ink/70">
-          Iets anders in gedachten, of een hart, een krans of een lint met tekst?{' '}
-          <a href="#vraag-aan" className="font-semibold text-accent-dark underline-offset-4 hover:underline">
-            Vertel ons wat u zoekt
-          </a>{' '}
-          of bel ons even.
-        </p>
+        {TIJDELIJK_GESLOTEN ? (
+          <p className="mt-12 text-ink/70">
+            Iets anders in gedachten, of een hart, een krans of een lint met tekst? Dat maken we zodra de
+            winkel weer open is. Op dit moment nemen we geen aanvragen aan.
+          </p>
+        ) : (
+          <p className="mt-12 text-ink/70">
+            Iets anders in gedachten, of een hart, een krans of een lint met tekst?{' '}
+            <a href="#vraag-aan" className="font-semibold text-accent-dark underline-offset-4 hover:underline">
+              Vertel ons wat u zoekt
+            </a>{' '}
+            of bel ons even.
+          </p>
+        )}
       </Section>
 
       {/* -------------------------------------------------------------- */}
@@ -174,8 +191,9 @@ export default function Rouwbloemen() {
             <h2 className="text-3xl font-semibold sm:text-4xl">U hoeft het niet alleen uit te zoeken</h2>
             <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink/70">
               <p>
-                Bel ons of loop binnen. We vragen wanneer de dienst is en waar het bloemwerk naartoe moet, en
-                bespreken daarna rustig de vorm, de kleuren en wat het ongeveer gaat kosten.
+                {TIJDELIJK_GESLOTEN
+                  ? 'Zodra we weer open zijn belt u ons of loopt u binnen. We vragen wanneer de dienst is en waar het bloemwerk naartoe moet, en bespreken daarna rustig de vorm, de kleuren en wat het ongeveer gaat kosten.'
+                  : 'Bel ons of loop binnen. We vragen wanneer de dienst is en waar het bloemwerk naartoe moet, en bespreken daarna rustig de vorm, de kleuren en wat het ongeveer gaat kosten.'}
               </p>
               <p>
                 Is er weinig tijd, zeg dat dan meteen. Vaak kunnen we meer dan u denkt, ook als het de volgende

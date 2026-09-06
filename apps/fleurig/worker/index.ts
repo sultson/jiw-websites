@@ -1,6 +1,6 @@
 import {createFormWorker, type CloudflareFormsEnv} from '@jiw/cloudflare-forms';
 import {fleurigConfirmationEmail} from './confirmation-email';
-import {SITE_URL} from '../site.config.mjs';
+import {GESLOTEN, SITE_URL, TIJDELIJK_GESLOTEN, VORIG_ADRES} from '../site.config.mjs';
 
 export type Env = CloudflareFormsEnv & {
   ASSETS: Fetcher;
@@ -86,19 +86,16 @@ const formulier = createFormWorker({
  * kopieën. Daarom: één host wint, de rest stuurt zijn bezoekers en zijn links
  * daarheen door met één 301.
  *
- * Op dit moment is er maar één host gekoppeld en doet deze omleiding dus niets:
- * bloemenwinkelfleurig.nl staat niet meer in de routes, want dat domein heeft
- * geen DNS en bestond voor een bezoeker niet. Het rijtje blijft staan omdat het
- * van SITE_URL wordt afgeleid: wordt dat domein later alsnog gekoppeld, dan is
- * het omzetten van die ene regel in site.config.mjs genoeg om de omleiding
- * meteen de goede kant op te laten wijzen. Een host die niet in de routes van
- * wrangler.jsonc staat komt hier nooit langs, dus wat hier te veel in staat
- * kost niets.
+ * Welke host wint komt uit SITE_URL, zodat een verhuizing één regel in
+ * site.config.mjs is en niet ook nog een lijst hier. De andere twee zijn het
+ * opleveradres en de variant van het eigen domein die overblijft. Een host die
+ * niet in de routes van wrangler.jsonc staat komt hier nooit langs, dus wat er
+ * te veel in staat kost niets.
  */
 const CANONIEKE_HOST = new URL(SITE_URL).hostname;
 
 const ANDERE_HOSTS = [
-  'fleurig.jouwidealewebsite.nl',
+  new URL(VORIG_ADRES).hostname,
   'bloemenwinkelfleurig.nl',
   'www.bloemenwinkelfleurig.nl',
 ].filter((host) => host !== CANONIEKE_HOST);
@@ -108,6 +105,27 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname.startsWith('/api/')) {
+      /**
+       * De winkel is tijdelijk gesloten en het formulier staat niet meer op de
+       * pagina. Dat is genoeg voor wie de site nu opent, maar niet voor een
+       * tabblad dat al openstond, een pagina uit de cache van de browser, of
+       * iemand die het adres kent: die kunnen hier nog steeds op posten, en dan
+       * komt er een aanvraag binnen waar niemand op zit te wachten en gaat er
+       * een bevestiging uit die belooft dat we ernaar kijken.
+       *
+       * 503 en niet 404: het adres bestaat, het doet nu alleen even niets. Zo
+       * blijft het ook voor een logregel te onderscheiden van een verdwaald
+       * verzoek.
+       */
+      if (TIJDELIJK_GESLOTEN) {
+        return Response.json(
+          /* Dezelfde vorm als de fouten van @jiw/cloudflare-forms ({ok, error,
+             message}), zodat een oude pagina die hier nog op post de melding
+             gewoon laat zien in plaats van "er ging iets mis". */
+          {ok: false, error: 'store_closed', message: `${GESLOTEN.kop}. ${GESLOTEN.kort}`},
+          {status: 503},
+        );
+      }
       return formulier.fetch!(request, env, ctx);
     }
 

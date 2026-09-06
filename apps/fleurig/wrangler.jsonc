@@ -24,15 +24,20 @@
     // omheen, die hebben er niets te halen.
     "run_worker_first": ["/*", "!/assets/*", "!/img/*", "!/favicon.svg", "!/logo-email.png"]
   },
-  // Eén adres, en dat is dit. bloemenwinkelfleurig.nl stond hier ook, maar dat
-  // domein is nooit aan de Worker vast komen te zitten: de zone bestaat in het
-  // account en heeft geen enkel DNS-record, dus het adres bestond voor een
-  // bezoeker niet. Zolang dat zo is hoort het hier niet te staan.
+  // Drie hosts, één site. bloemenwinkelfleurig.nl is de canonieke host (zie
+  // SITE_URL in site.config.mjs); de andere twee sturen hun bezoekers daarheen
+  // met één 301 in worker/index.ts.
   //
-  // Wordt het domein later alsnog gekoppeld, dan komen deze twee er weer bij
-  // (allebei: de www-variant vergeten zet de helft van de bezoekers op een
-  // foutpagina) en gaat SITE_URL in site.config.mjs mee om.
+  // Allebei de varianten van het eigen domein, niet alleen de kale: wie de
+  // www-variant vergeet zet de helft van de bezoekers op een foutpagina.
+  //
+  // custom_domain en geen gewone route: bij het koppelen zet Cloudflare zelf het
+  // DNS-record klaar. Dat is precies wat hier eerder ontbrak, want de zone stond
+  // wel in het account maar had geen enkel record, en het API-token in .env mag
+  // geen DNS-records schrijven.
   "routes": [
+    { "pattern": "bloemenwinkelfleurig.nl", "custom_domain": true },
+    { "pattern": "www.bloemenwinkelfleurig.nl", "custom_domain": true },
     { "pattern": "fleurig.jouwidealewebsite.nl", "custom_domain": true }
   ],
   "r2_buckets": [
@@ -44,9 +49,13 @@
   // Verstuurd vanaf het gedeelde afzenderdomein notify.jouwidealewebsite.nl, dat
   // in Cloudflare Email Service geverifieerd is en door de andere sites in deze
   // monorepo gebruikt wordt. Het stond op notify.bloemenwinkelfleurig.nl, maar
-  // daar staat geen DKIM of SPF omdat de zone leeg is, en een aanvraag vanaf een
-  // niet-geverifieerd afzenderdomein vertrekt niet. Het lokale deel voor de @ is
-  // vrij, dus de aanvraag blijft herkenbaar als aanvraag.
+  // dat afzenderdomein is nooit aangemeld: geen DKIM en geen SPF, en een mail
+  // vanaf een niet-geverifieerd afzenderdomein vertrekt niet. Het domein is nu
+  // wel gekoppeld, maar aanmelden bij Email Service is een aparte stap die het
+  // API-token in .env niet mag zetten. Zolang die niet gezet is blijft dit staan.
+  //
+  // De binding staat er nog terwijl het formulier uitstaat (TIJDELIJK_GESLOTEN):
+  // hem nu weghalen betekent hem straks weer moeten terugzetten.
   "send_email": [
     {
       "name": "LEAD_EMAIL",

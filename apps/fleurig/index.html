@@ -3,8 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bloemist Oud-Beijerland | Fleurig! Bloemenwinkel</title>
-    <meta name="description" content="Verse bloemen aan de Molendijk in Oud-Beijerland. Boeketten om mee te nemen of op maat, een bloemenabonnement, rouw- en trouwbloemen. Wo t/m za 8:00-17:30." />
+    <!-- Tijdelijk gesloten. Wie de winkel zoekt hoort het in het zoekresultaat te
+         lezen en niet pas op de stoep, dus staat het in de title en niet alleen
+         op de pagina. Gaat de winkel weer open, dan komt hier terug:
+         "Bloemist Oud-Beijerland | Fleurig! Bloemenwinkel" met de beschrijving
+         "Verse bloemen aan de Molendijk in Oud-Beijerland. Boeketten om mee te
+         nemen of op maat, een bloemenabonnement, rouw- en trouwbloemen.
+         Wo t/m za 8:00-17:30." Zie ook TIJDELIJK_GESLOTEN in site.config.mjs. -->
+    <title>Tijdelijk gesloten | Fleurig! Bloemenwinkel Oud-Beijerland</title>
+    <meta name="description" content="Fleurig! Bloemenwinkel aan de Molendijk in Oud-Beijerland is tijdelijk gesloten. De winkel is dicht en we nemen op dit moment geen aanvragen aan." />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0d2a21" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -25,8 +32,8 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Fleurig! Bloemenwinkel" />
-    <meta property="og:title" content="Fleurig! Bloemenwinkel Oud-Beijerland" />
-    <meta property="og:description" content="Verse bloemen aan de Molendijk in Oud-Beijerland. Neem een boeket mee dat klaarstaat of laat er een samenstellen naar eigen keuze. Rouw- en trouwbloemen op aanvraag." />
+    <meta property="og:title" content="Tijdelijk gesloten | Fleurig! Bloemenwinkel" />
+    <meta property="og:description" content="De bloemenwinkel aan de Molendijk in Oud-Beijerland is tijdelijk gesloten. We nemen op dit moment geen aanvragen of bestellingen aan." />
     <meta property="og:url" content="%SITE_URL%/" />
     <meta property="og:image" content="%SITE_URL%/img/og-home.jpg" />
     <meta property="og:image:width" content="1200" />
@@ -41,7 +48,7 @@
       "@type": "Florist",
       "@id": "%SITE_URL%/#winkel",
       "name": "Fleurig! Bloemenwinkel",
-      "description": "Bloemenwinkel in het centrum van Oud-Beijerland. Verse bloemen, kant-en-klare boeketten en boeketten samengesteld naar eigen keuze, een bloemenabonnement voor thuis of de zaak, en rouwbloemen, trouwbloemen en boeketten op maat op aanvraag.",
+      "description": "Bloemenwinkel in het centrum van Oud-Beijerland, op dit moment tijdelijk gesloten: de winkel is dicht en er worden geen aanvragen aangenomen. Normaal verse bloemen, kant-en-klare boeketten en boeketten samengesteld naar eigen keuze, een bloemenabonnement voor thuis of de zaak, en rouwbloemen, trouwbloemen en boeketten op maat op aanvraag.",
       "url": "%SITE_URL%/",
       "image": [
         "%SITE_URL%/img/og-home.jpg",
@@ -70,13 +77,9 @@
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "08:00",
-          "closes": "17:30"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Sunday", "Monday", "Tuesday"],
+          "dayOfWeek": [
+            "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+          ],
           "opens": "00:00",
           "closes": "00:00"
         }

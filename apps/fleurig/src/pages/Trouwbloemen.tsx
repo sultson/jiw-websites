@@ -1,7 +1,7 @@
 import {ArrowRight, Flower2, Heart, Phone, Sparkles} from 'lucide-react';
-import {Pagina, PaginaKop} from '../layout';
+import {GeslotenKopMelding, Pagina, PaginaKop} from '../layout';
 import {
-  Bullet, KNOP_HOOFD, KNOP_TWEEDE_DONKER, Kicker, Section, TEL, TEL_DISPLAY,
+  Bullet, KNOP_HOOFD, KNOP_TWEEDE_DONKER, Kicker, Section, TEL, TEL_DISPLAY, TIJDELIJK_GESLOTEN,
 } from '../ui';
 
 /* ------------------------------------------------------------------ */
@@ -55,14 +55,18 @@ export default function Trouwbloemen() {
         img="/img/bruidsboeket-bruid.webp"
         alt="Bruid met haar bruidsboeket van zachtroze rozen, dahlia's en eucalyptus"
       >
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          <a href="#vraag-aan" className={KNOP_HOOFD}>
-            Vrijblijvend een gesprek <ArrowRight className="h-4 w-4" />
-          </a>
-          <a href={`tel:${TEL}`} className={KNOP_TWEEDE_DONKER}>
-            <Phone className="h-4 w-4 text-accent" /> {TEL_DISPLAY}
-          </a>
-        </div>
+        {TIJDELIJK_GESLOTEN ? (
+          <GeslotenKopMelding />
+        ) : (
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#vraag-aan" className={KNOP_HOOFD}>
+              Vrijblijvend een gesprek <ArrowRight className="h-4 w-4" />
+            </a>
+            <a href={`tel:${TEL}`} className={KNOP_TWEEDE_DONKER}>
+              <Phone className="h-4 w-4 text-accent" /> {TEL_DISPLAY}
+            </a>
+          </div>
+        )}
       </PaginaKop>
 
       {/* -------------------------------------------------------------- */}
