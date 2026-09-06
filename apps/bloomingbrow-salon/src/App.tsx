@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
+  ArrowDown,
   Award,
   CalendarCheck,
   Check,
@@ -12,6 +13,7 @@ import {
   MapPin,
   Menu,
   MessageCircle,
+  Palette,
   Phone,
   Scissors,
   Sparkles,
@@ -39,10 +41,8 @@ type Copy = {
   nav: string[];
   book: string;
   app: string;
-  heroKicker: string;
   heroTitle: string;
-  heroSub: string;
-  heroTrust: string[];
+  heroCaption: string;
   proof: { value: string; label: string }[];
   introKicker: string;
   introTitle: string;
@@ -57,6 +57,11 @@ type Copy = {
   signatureKicker: string;
   signatureTitle: string;
   signatureSub: string;
+  ombreKicker: string;
+  ombreTitle: string;
+  ombreText: string;
+  ombrePointsIntro: string;
+  ombrePoints: string[];
   priceKicker: string;
   priceTitle: string;
   priceSub: string;
@@ -69,6 +74,7 @@ type Copy = {
   resultsSub: string;
   powderTab: string;
   hybridTab: string;
+  lipblushTab: string;
   trainingKicker: string;
   trainingTitle: string;
   trainingSub: string;
@@ -101,11 +107,8 @@ const copy: Record<Lang, Copy> = {
     nav: ['Over Bloem', 'Behandelingen', 'Resultaten', 'Reviews', 'Bezoek'],
     book: 'Boek nu',
     app: 'App Bloem',
-    heroKicker: 'PMU brows en browstyling in Schagen',
-    heroTitle: 'Brows die jouw gezicht laten spreken.',
-    heroSub:
-      'Ik kijk niet alleen naar je wenkbrauwen, maar naar je hele gezicht. In mijn salon in Schagen neem ik de tijd voor vorm, kleur en uitleg, zodat je brows verzorgd voelen en echt bij jou passen.',
-    heroTrust: ['5,0 op Google', 'Persoonlijke aandacht', 'Online boeken'],
+    heroTitle: 'Let your brows do the talking.',
+    heroCaption: 'PMU brows en browstyling in Schagen',
     proof: [
       { value: '5,0', label: 'Google rating' },
       { value: 'PMU', label: 'Gecertificeerd' },
@@ -116,7 +119,7 @@ const copy: Record<Lang, Copy> = {
     introTitle: 'Een salon waar je niet alleen mooier weggaat, maar ook stralender binnenkomt.',
     introText:
       'Bloomingbrow is klein, persoonlijk en precies. Bloem neemt de tijd om naar jouw gezicht, je natuurlijke haargroei en je voorkeur te kijken. Zo ogen je brows nooit gemaakt, maar verzorgd, fris en in balans.',
-    introPoints: ['Persoonlijke browmapping', 'Rustige uitleg bij elke stap', 'Lashes, brows en PMU op één plek'],
+    introPoints: ['Persoonlijke browmapping', 'Rustige uitleg bij elke stap'],
     aboutKicker: 'Meet your PMU artist',
     aboutTitle: 'Hi, ik ben Bloem 🌸',
     aboutLead:
@@ -131,7 +134,19 @@ const copy: Record<Lang, Copy> = {
     signatureKicker: 'Wat ik aanbied',
     signatureTitle: 'Vier behandelingen, één doel: jouw look in balans.',
     signatureSub:
-      'Voor strakke shape, frisse kleur, gelifte wimpers of langer wakker worden met vorm. Kies wat bij jou past.',
+      'Voor strakke shape, frisse kleur, zachte lipkleur of langer wakker worden met vorm. Kies wat bij jou past.',
+    ombreKicker: 'Uitgelicht',
+    ombreTitle: 'Wat is ombre lips?',
+    ombreText:
+      'Ombre lips is een vorm van semi-permanente make-up waarbij de lippen subtiel worden ingekleurd en geaccentueerd met een zachte kleurverloop. De lipcontour wordt verfijnd en de kleur wordt geleidelijk zachter richting het midden van de lippen, waardoor je een natuurlijke, frisse en voller ogende lip krijgt.',
+    ombrePointsIntro: 'De behandeling is perfect wanneer je:',
+    ombrePoints: [
+      'je lippen meer definitie wilt geven',
+      'een mooiere, gelijkmatigere lipkleur wilt',
+      'optisch meer volume wilt creëren',
+      'minder afhankelijk wilt zijn van lipliner en lipstick',
+      'iedere dag een verzorgde lipkleur wilt',
+    ],
     priceKicker: 'Behandelingen en prijzen',
     priceTitle: 'Alle prijzen overzichtelijk bij elkaar.',
     priceSub:
@@ -143,9 +158,10 @@ const copy: Record<Lang, Copy> = {
     resultsKicker: 'Echte klanten · echte resultaten',
     resultsTitle: 'Brows die in jouw gezicht thuishoren.',
     resultsSub:
-      'Een greep uit recente powderbrows en hybrid tint resultaten: geen filters, geen retouche, alleen mooi werk.',
+      'Een greep uit recente powderbrows, hybrid tint en ombre lipblush resultaten: geen filters, geen retouche, alleen mooi werk.',
     powderTab: 'Powderbrows',
     hybridTab: 'Hybrid tint',
+    lipblushTab: 'Ombre lipblush',
     trainingKicker: 'Opgeleid en bijgehouden',
     trainingTitle: 'Het werk van Bloem rust op échte certificering.',
     trainingSub:
@@ -184,11 +200,8 @@ const copy: Record<Lang, Copy> = {
     nav: ['About Bloem', 'Treatments', 'Results', 'Reviews', 'Visit'],
     book: 'Book now',
     app: 'WhatsApp Bloem',
-    heroKicker: 'PMU brows and brow styling in Schagen',
-    heroTitle: 'Brows that let your face speak.',
-    heroSub:
-      'I don\'t just look at your brows, I look at your whole face. In my salon in Schagen I take the time for shape, colour and explanation, so your brows feel groomed and truly suit you.',
-    heroTrust: ['5.0 on Google', 'Personal attention', 'Online booking'],
+    heroTitle: 'Let your brows do the talking.',
+    heroCaption: 'PMU brows and brow styling in Schagen',
     proof: [
       { value: '5.0', label: 'Google rating' },
       { value: 'PMU', label: 'Certified' },
@@ -199,7 +212,7 @@ const copy: Record<Lang, Copy> = {
     introTitle: 'A studio where you leave prettier and arrive feeling lighter.',
     introText:
       'Bloomingbrow is small, personal and precise. Bloem takes time to look at your face, natural growth and your wishes. So brows look groomed and balanced, never overdone.',
-    introPoints: ['Personal brow mapping', 'Calm, step-by-step explanation', 'Lashes, brows and PMU in one place'],
+    introPoints: ['Personal brow mapping', 'Calm, step-by-step explanation'],
     aboutKicker: 'Meet your PMU artist',
     aboutTitle: 'Hi, I\'m Bloem 🌸',
     aboutLead:
@@ -214,7 +227,19 @@ const copy: Record<Lang, Copy> = {
     signatureKicker: 'What I offer',
     signatureTitle: 'Four treatments, one goal: your look in balance.',
     signatureSub:
-      'For a clean shape, fresh colour, lifted lashes or waking up with shape. Pick what suits you.',
+      'For a clean shape, fresh colour, soft lip colour or waking up with shape. Pick what suits you.',
+    ombreKicker: 'In focus',
+    ombreTitle: 'What are ombre lips?',
+    ombreText:
+      'Ombre lips is a form of semi-permanent make-up in which the lips are subtly filled in and accented with a soft colour gradient. The lip contour is refined and the colour softens gradually towards the middle of the lips, which gives you a natural, fresh and fuller looking lip.',
+    ombrePointsIntro: 'The treatment is perfect when you want to:',
+    ombrePoints: [
+      'give your lips more definition',
+      'have a nicer, more even lip colour',
+      'create the look of more volume',
+      'rely less on lip liner and lipstick',
+      'wake up with a polished lip colour every day',
+    ],
     priceKicker: 'Treatments and prices',
     priceTitle: 'All prices in one clear overview.',
     priceSub:
@@ -226,9 +251,10 @@ const copy: Record<Lang, Copy> = {
     resultsKicker: 'Real clients · real results',
     resultsTitle: 'Brows that belong on your face.',
     resultsSub:
-      'A look at recent powder brows and hybrid tint results: no filters, no retouching, just clean work.',
+      'A look at recent powder brows, hybrid tint and ombre lipblush results: no filters, no retouching, just clean work.',
     powderTab: 'Powder brows',
     hybridTab: 'Hybrid tint',
+    lipblushTab: 'Ombre lipblush',
     trainingKicker: 'Trained and up to date',
     trainingTitle: 'Bloem\'s work rests on real certification.',
     trainingSub:
@@ -270,10 +296,18 @@ const signatureTreatments = {
     {
       title: 'Powderbrows',
       text: 'Voor wie elke ochtend wakker wil worden met vorm. Bloem mapt eerst rustig uit en stemt de kleur af op jouw gezicht.',
-      price: 'vanaf €250',
+      price: 'vanaf €275',
       duration: '240 min',
       image: '/powderbrows-new-3.webp',
       badge: 'PMU',
+    },
+    {
+      title: 'Ombre lipblush',
+      text: 'De tint kiezen we samen, afgestemd op je huid en je eigen lipkleur. Zo blijft het resultaat natuurlijk en draagbaar.',
+      price: 'vanaf €300',
+      duration: '240 min',
+      image: '/lipblush-1.webp',
+      badge: 'PMU lips',
     },
     {
       title: 'Hybrid brows',
@@ -291,23 +325,23 @@ const signatureTreatments = {
       image: '/harsen-verven-result.webp',
       badge: 'Shape & tint',
     },
-    {
-      title: 'Lashlift',
-      text: 'Een lift én verven van je eigen wimpers, voor open ogen en een wakker gezicht zonder mascara.',
-      price: '€45,00',
-      duration: '60 min',
-      image: '/lashlift-result.webp',
-      badge: 'Lashes',
-    },
   ],
   en: [
     {
       title: 'Powder brows',
       text: 'For anyone who wants to wake up with shape every morning. Bloem maps first and matches the colour to your face.',
-      price: 'from €250',
+      price: 'from €275',
       duration: '240 min',
       image: '/powderbrows-new-3.webp',
       badge: 'PMU',
+    },
+    {
+      title: 'Ombre lipblush',
+      text: 'We choose the shade together, matched to your skin and your natural lip colour. That keeps the result natural and easy to wear.',
+      price: 'from €300',
+      duration: '240 min',
+      image: '/lipblush-1.webp',
+      badge: 'PMU lips',
     },
     {
       title: 'Hybrid brows',
@@ -325,14 +359,6 @@ const signatureTreatments = {
       image: '/harsen-verven-result.webp',
       badge: 'Shape & tint',
     },
-    {
-      title: 'Lash lift',
-      text: 'A lift and tint of your own lashes, for open eyes and an awake face without mascara.',
-      price: '€45.00',
-      duration: '60 min',
-      image: '/lashlift-result.webp',
-      badge: 'Lashes',
-    },
   ],
 };
 
@@ -348,14 +374,14 @@ const serviceCategories = {
         ['Browlamination inclusief shape', '60', '€35,00'],
         ['Hybrid tint inclusief shape', '60', '€37,50'],
         ['Verven & shape PPD verf', '60', '€37,50'],
-        ['Browlamination + hybrid tint & shape', '90', '€45,00'],
+        ['Browlamination + hybrid tint & shape', '90', '€55,00'],
       ],
     },
     {
       title: 'Permanente make-up',
       icon: WandSparkles,
       services: [
-        ['Powderbrows new set', '240', '€250,00'],
+        ['Powderbrows new set', '240', '€275,00'],
         ['Touch up', '120', '€50,00'],
         ['Extra touch up', '60', '€35,00'],
         ['Touch up binnen 10 maanden', '120', '€110,00'],
@@ -366,10 +392,17 @@ const serviceCategories = {
       ],
     },
     {
+      title: 'Ombre lipblush',
+      icon: Palette,
+      services: [
+        ['Ombre lips new set', '240', '€300,00'],
+        ['Touch up na 6/8 weken', '60', '€50,00'],
+      ],
+    },
+    {
       title: 'Lashes',
       icon: Sparkles,
       services: [
-        ['Lashlift incl. verven', '60', '€45,00'],
         ['Wimpers verven', '20', '€15,00'],
       ],
     },
@@ -393,14 +426,14 @@ const serviceCategories = {
         ['Brow lamination incl. shape', '60', '€35.00'],
         ['Hybrid tint incl. shape', '60', '€37.50'],
         ['Tint & shape PPD dye', '60', '€37.50'],
-        ['Brow lamination + hybrid tint & shape', '90', '€45.00'],
+        ['Brow lamination + hybrid tint & shape', '90', '€55.00'],
       ],
     },
     {
       title: 'Permanent make-up',
       icon: WandSparkles,
       services: [
-        ['Powder brows new set', '240', '€250.00'],
+        ['Powder brows new set', '240', '€275.00'],
         ['Touch up', '120', '€50.00'],
         ['Extra touch up', '60', '€35.00'],
         ['Touch up within 10 months', '120', '€110.00'],
@@ -411,10 +444,17 @@ const serviceCategories = {
       ],
     },
     {
+      title: 'Ombre lipblush',
+      icon: Palette,
+      services: [
+        ['Ombre lips new set', '240', '€300.00'],
+        ['Touch up after 6/8 weeks', '60', '€50.00'],
+      ],
+    },
+    {
       title: 'Lashes',
       icon: Sparkles,
       services: [
-        ['Lash lift incl. tint', '60', '€45.00'],
         ['Lash tint', '20', '€15.00'],
       ],
     },
@@ -465,6 +505,12 @@ const hybridResults = [
   '/hybrid-tint-result-6.webp',
 ];
 
+const lipblushResults = [
+  '/lipblush-2.webp',
+  '/lipblush-3.webp',
+  '/lipblush-1.webp',
+];
+
 const gallery = [
   ['/brand-shelf.webp', 'Sfeer in de salon'],
   ['/pmu-overhead.webp', 'PMU behandeling'],
@@ -513,7 +559,7 @@ const faqs = {
   nl: [
     {
       q: 'Welke behandeling past bij mij?',
-      a: 'Wil je vooral een nette vorm, kies dan shape of shape & verven. Wil je meer huidafdruk en definitie, dan is hybrid tint mooi. Wil je langer wakker worden met vorm, dan zijn powderbrows de meest complete keuze. Twijfel je? Stuur een appje, dan denk ik mee.',
+      a: 'Wil je vooral een nette vorm, kies dan shape of shape & verven. Wil je meer huidafdruk en definitie, dan is hybrid tint mooi. Wil je langer wakker worden met vorm, dan zijn powderbrows de meest complete keuze. Gaat het om je lippen, dan geeft ombre lipblush zachte kleur en een egalere lijn. Twijfel je? Stuur een appje, dan denk ik mee.',
     },
     {
       q: 'Kan ik powderbrows boeken als ik oude PMU heb?',
@@ -527,7 +573,7 @@ const faqs = {
   en: [
     {
       q: 'Which treatment should I choose?',
-      a: 'For a clean shape, choose shape or shape & tint. For more skin stain and definition, hybrid tint is a good option. For longer-lasting shape, powder brows are the most complete choice. Not sure? Send a message and I\'ll think along.',
+      a: 'For a clean shape, choose shape or shape & tint. For more skin stain and definition, hybrid tint is a good option. For longer-lasting shape, powder brows are the most complete choice. For your lips, ombre lipblush adds soft colour and a more even lip line. Not sure? Send a message and I\'ll think along.',
     },
     {
       q: 'Can I book powder brows if I have old PMU?',
@@ -613,9 +659,10 @@ function StickyBook({ label, onBook }: { label: string; onBook: () => void }) {
 export default function App() {
   const { lang, setLang } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navSolid, setNavSolid] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
-  const [resultsTab, setResultsTab] = useState<'powder' | 'hybrid'>('powder');
+  const [resultsTab, setResultsTab] = useState<'powder' | 'hybrid' | 'lipblush'>('powder');
   const c = copy[lang];
   const signature = signatureTreatments[lang];
   const categories = serviceCategories[lang];
@@ -642,14 +689,25 @@ export default function App() {
     return () => document.body.classList.remove('menu-open');
   }, [menuOpen]);
 
-  const activeResults = resultsTab === 'powder' ? powderResults : hybridResults;
+  useEffect(() => {
+    const onScroll = () => setNavSolid(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const resultTabs = [
+    ['powder', c.powderTab, powderResults],
+    ['hybrid', c.hybridTab, hybridResults],
+    ['lipblush', c.lipblushTab, lipblushResults],
+  ] as const;
+  const activeResults = resultTabs.find(([key]) => key === resultsTab)?.[2] ?? powderResults;
 
   return (
     <div className="site-shell">
-      <header className="site-nav">
+      <header className={`site-nav${navSolid || menuOpen ? ' is-solid' : ''}`}>
         <a href="#top" className="brand" aria-label="Bloomingbrow salon">
           <span>Blooming<span>brow</span></span>
-          <small>Salon Schagen · est. 2025</small>
         </a>
 
         <nav className="nav-links" aria-label="Hoofdnavigatie">
@@ -694,47 +752,28 @@ export default function App() {
 
       <main id="top">
         <section className="hero-section">
-          <img src="/bloem-portrait-hero.webp" alt="" className="hero-bg" fetchPriority="high" />
+          <picture className="hero-media">
+            <source media="(max-width: 699px)" srcSet="/hero-bloem-centered-sm.webp" />
+            <img
+              src="/hero-bloem-centered.webp"
+              alt="Bloem Boekel in haar Bloomingbrow salon in Schagen"
+              fetchPriority="high"
+              width={1200}
+              height={2005}
+            />
+          </picture>
           <div className="hero-shade" />
           <div className="hero-content">
-            <div className="hero-copy">
-              <span className="kicker kicker-light">{c.heroKicker}</span>
-              <h1>{c.heroTitle}</h1>
-              <p>{c.heroSub}</p>
-              <div className="hero-actions">
-                <button type="button" className="btn btn-gold" onClick={openBooking}>
-                  <CalendarCheck size={18} />
-                  {c.book}
-                </button>
-                <a className="btn btn-light" href={whatsappUrl} target="_blank" rel="noreferrer">
-                  <MessageCircle size={18} />
-                  {c.app}
-                </a>
-              </div>
-              <div className="hero-trust">
-                {c.heroTrust.map(item => (
-                  <span key={item}>{item}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="hero-collage" aria-hidden="true">
-              <div className="hero-photo hero-photo-main">
-                <img src="/bloem-portrait-hero.webp" alt="" />
-              </div>
-              <div className="hero-photo hero-photo-portrait">
-                <img src="/brow-result-closeup.webp" alt="" />
-              </div>
-              <div className="hero-photo hero-photo-result">
-                <img src="/brand-business-card.webp" alt="" />
-              </div>
-              <div className="hero-note">
-                <Stars />
-                <strong>5,0 Google</strong>
-                <span>{lang === 'nl' ? 'Bij Bloem zelf' : 'With Bloem herself'}</span>
-              </div>
-            </div>
+            <h1>{c.heroTitle}</h1>
+            <button type="button" className="btn btn-gold hero-cta" onClick={openBooking}>
+              <CalendarCheck size={18} />
+              {c.book}
+            </button>
           </div>
+          <a className="hero-scroll" href="#over">
+            <em>{c.heroCaption}</em>
+            <ArrowDown size={26} strokeWidth={1} aria-hidden="true" />
+          </a>
         </section>
 
         <section className="proof-strip" aria-label="Vertrouwen">
@@ -822,6 +861,30 @@ export default function App() {
               </article>
             ))}
           </div>
+
+          <article className="ombre-panel">
+            <div className="ombre-media">
+              <img src="/lipblush-2.webp" alt="Ombre lips resultaat bij Bloomingbrow salon" loading="lazy" />
+            </div>
+            <div className="ombre-copy">
+              <span className="kicker">{c.ombreKicker}</span>
+              <h3>{c.ombreTitle}</h3>
+              <p>{c.ombreText}</p>
+              <p className="ombre-intro">{c.ombrePointsIntro}</p>
+              <ul className="ombre-points">
+                {c.ombrePoints.map(point => (
+                  <li key={point}>
+                    <Check size={16} />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+              <button type="button" className="btn btn-outline ombre-cta" onClick={openBooking}>
+                <CalendarCheck size={16} />
+                {c.book}
+              </button>
+            </div>
+          </article>
         </section>
 
         <section id="resultaten" className="results-section">
@@ -831,24 +894,18 @@ export default function App() {
             <p>{c.resultsSub}</p>
           </div>
           <div className="results-tabs" role="tablist">
-            <button
-              type="button"
-              role="tab"
-              aria-selected={resultsTab === 'powder'}
-              className={resultsTab === 'powder' ? 'active' : ''}
-              onClick={() => setResultsTab('powder')}
-            >
-              {c.powderTab}
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={resultsTab === 'hybrid'}
-              className={resultsTab === 'hybrid' ? 'active' : ''}
-              onClick={() => setResultsTab('hybrid')}
-            >
-              {c.hybridTab}
-            </button>
+            {resultTabs.map(([key, label]) => (
+              <button
+                key={key}
+                type="button"
+                role="tab"
+                aria-selected={resultsTab === key}
+                className={resultsTab === key ? 'active' : ''}
+                onClick={() => setResultsTab(key)}
+              >
+                {label}
+              </button>
+            ))}
           </div>
           <div className="results-grid">
             {activeResults.map(src => (
