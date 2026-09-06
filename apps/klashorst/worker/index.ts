@@ -1,6 +1,10 @@
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { type CloudflareFormsEnv } from '@jiw/cloudflare-forms';
 import { newsletterWorkers, vraagWorkers } from './forms';
-import { assetFromRef } from '../src/content/image';
+import { HERO_STRIP, HeroShell, type StilWerk } from '../src/components/HeroStill';
+import { uiPerTaal } from '../src/content/ui';
+import { STRIP_SIZES, assetFromRef, imgFromRef } from '../src/content/image';
 import {
   BLOG_TITLE,
   HOME_DESCRIPTION,
@@ -9,6 +13,8 @@ import {
   LANGS,
   NOT_FOUND_TITLE,
   OG_LOCALE,
+  PRIVACY_DESCRIPTION,
+  PRIVACY_TITLE,
   SITE_NAME,
   SITE_URL,
   clamp,
@@ -89,7 +95,7 @@ const QUERY = `{
  * page back to the copy this build shipped with, and a client watching their
  * own edit disappear for one request does not think "transient".
  */
-const LAST_GOOD = 'https://klashorst.jouwidealewebsite.nl/__cms-content';
+const LAST_GOOD = `${SITE_URL}/__cms-content`;
 
 /**
  * `caches.default` is a Workers extension. This tsconfig loads the WebWorker
@@ -265,6 +271,29 @@ const articleJsonLd = (opts: {
     publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
   });
 
+/**
+ * The head for an address the site has no page for.
+ *
+ * Deliberately without a canonical and without alternates: a 404 that names the
+ * homepage as its canonical is exactly what makes a search engine file it as a
+ * soft 404 and index it anyway. It keeps the page's own title, so a visitor who
+ * shares the link sends something that reads as what it is.
+ */
+function notFound(path: string, lang: Lang, data: Doc | null): { meta: PageMeta; missing: true } {
+  const weg = data?.teksten?.nietGevonden ?? {};
+  return {
+    meta: {
+      title: pageTitle(firstString(engels(weg, lang).titel, weg.titel, NOT_FOUND_TITLE[lang])),
+      description: clamp(HOME_DESCRIPTION[lang]),
+      path,
+      image: null,
+      type: 'website',
+      jsonLd: null,
+    },
+    missing: true,
+  };
+}
+
 function pageMeta(
   path: string,
   lang: Lang,
@@ -306,30 +335,42 @@ function pageMeta(
     };
   }
 
+  if (path === '/privacy') {
+    return {
+      meta: {
+        title: pageTitle(PRIVACY_TITLE[lang]),
+        description: clamp(PRIVACY_DESCRIPTION[lang]),
+        path: '/privacy',
+        image: null,
+        type: 'website',
+        jsonLd: null,
+      },
+      missing: false,
+    };
+  }
+
   const article = /^\/blog\/([^/]+)$/.exec(path);
-  if (!article) return { meta: null, missing: false };
+  // Not the museum, the blog, the privacy page or an article: there is no page
+  // at this address. The app has always drawn its own "page not found" here;
+  // what it was answered with was a 200.
+  if (!article) return notFound(path, lang, data);
 
   // Sanity unreachable: the app falls back to the copy it was built with, so
   // this is not the moment to tell anyone the post does not exist.
   const posts = Array.isArray(data?.nieuws) ? (data!.nieuws as Doc[]) : null;
   if (!posts) return { meta: null, missing: false };
 
-  const wanted = decodeURIComponent(article[1]);
-  const found = addressed(posts).find((entry) => entry.slug === wanted);
-  if (!found) {
-    const weg = data?.teksten?.nietGevonden ?? {};
-    return {
-      meta: {
-        title: pageTitle(firstString(engels(weg, lang).titel, weg.titel, NOT_FOUND_TITLE[lang])),
-        description: clamp(HOME_DESCRIPTION[lang]),
-        path: '/blog',
-        image: null,
-        type: 'website',
-        jsonLd: null,
-      },
-      missing: true,
-    };
+  // A slug is whatever is in the address, and an address can be malformed.
+  // `/blog/%zz` is a request for a post that cannot exist, which is a 404; it
+  // is not a reason for the Worker to throw.
+  let wanted: string;
+  try {
+    wanted = decodeURIComponent(article[1]);
+  } catch {
+    return notFound(path, lang, data);
   }
+  const found = addressed(posts).find((entry) => entry.slug === wanted);
+  if (!found) return notFound(path, lang, data);
 
   const { post, slug } = found;
   const vert = engels(post, lang);
@@ -377,6 +418,7 @@ function applyMeta(
   meta: PageMeta,
   lang: Lang,
   indexable: boolean,
+  missing: boolean,
 ): HTMLRewriter {
   const attr = (selector: string, name: string, value: string) =>
     rewriter.on(selector, {
@@ -400,12 +442,31 @@ function applyMeta(
   attr('meta[name="description"]', 'content', meta.description);
   attr('meta[property="og:title"]', 'content', meta.title);
   attr('meta[property="og:description"]', 'content', meta.description);
-  attr('meta[property="og:url"]', 'content', canonical);
   attr('meta[property="og:type"]', 'content', meta.type);
   attr('meta[property="og:locale"]', 'content', OG_LOCALE[lang]);
+  if (meta.image) attr('meta[property="og:image"]', 'content', meta.image);
+
+  // An address with no page behind it has no canonical address either, and no
+  // version of itself in the other language. The tags the file ships with name
+  // the homepage, so they are removed rather than rewritten. The status is what
+  // keeps this page out of the index; `noindex` covers the crawl that has
+  // already fetched the page before it reads the status line.
+  if (missing) {
+    const drop = (selector: string) =>
+      rewriter.on(selector, {
+        element(element) {
+          element.remove();
+        },
+      });
+    drop('link[rel="canonical"]');
+    drop('meta[property="og:url"]');
+    attr('meta[name="robots"]', 'content', 'noindex, follow');
+    return rewriter;
+  }
+
+  attr('meta[property="og:url"]', 'content', canonical);
   attr('link[rel="canonical"]', 'href', canonical);
   attr('meta[name="robots"]', 'content', indexable ? 'index, follow' : 'noindex, nofollow');
-  if (meta.image) attr('meta[property="og:image"]', 'content', meta.image);
 
   // The same page in the other language, named for whoever is looking for it.
   const alternates = [
@@ -428,9 +489,135 @@ function applyMeta(
   return rewriter;
 }
 
+/**
+ * The painting the first screen is mostly made of.
+ *
+ * A fallback for the page that could not be given a hero to paint: without one,
+ * the strip is rendered by the app, from content in a script tag, so the request
+ * for it would start only once the bundle had been fetched and parsed. Named
+ * here it starts with the document instead.
+ *
+ * Same address, same srcset and same sizes as the component, or the preload is
+ * a second download rather than a head start.
+ */
+function heroPreload(data: Doc | null, projectId: string, dataset: string): string {
+  const werken = Array.isArray(data?.werk) ? (data!.werk as Doc[]) : [];
+  const eerste = werken.find(
+    (doc) => doc?.inZaal !== false && typeof doc?.afbeelding?.asset?._ref === 'string',
+  );
+  const img = eerste ? imgFromRef(eerste.afbeelding.asset._ref as string, projectId, dataset) : null;
+  if (!img) return '';
+  return (
+    `<link rel="preload" as="image" fetchpriority="high" href="${escapeHtml(img.strip)}"` +
+    ` imagesrcset="${escapeHtml(img.stripSet)}" imagesizes="${escapeHtml(STRIP_SIZES)}">`
+  );
+}
+
+/**
+ * The hero's photographs, on the museum's own address.
+ *
+ * A pass-through to Sanity's image CDN and nothing more, so the one image the
+ * front page waits for arrives over the connection that already carried the
+ * document instead of paying for a second host. Held at the edge for a year:
+ * a Sanity asset id is a hash of the file, so this address and these bytes are
+ * the same pair forever.
+ *
+ * Deliberately narrow. Only a real asset filename and only the handful of
+ * parameters `imgFromRef` writes get through, or this is an open image proxy
+ * that anyone can point at anything and have the museum pay for.
+ */
+const FOTO_BESTAND = /^[a-f0-9]{40}-\d{1,5}x\d{1,5}\.(?:webp|jpe?g|png)$/;
+const FOTO_PARAMS = new Set(['w', 'h', 'q', 'fit', 'fm', 'auto']);
+
+async function foto(url: URL, env: Env, ctx: ExecutionContext): Promise<Response> {
+  const bestand = url.pathname.slice('/foto/'.length);
+  if (!FOTO_BESTAND.test(bestand) || !env.SANITY_PROJECT_ID) {
+    return new Response('Not found', { status: 404 });
+  }
+
+  const params = new URLSearchParams();
+  for (const key of FOTO_PARAMS) {
+    const value = url.searchParams.get(key);
+    if (value !== null && /^[a-zA-Z0-9=,.-]{1,32}$/.test(value)) params.set(key, value);
+  }
+
+  const dataset = env.SANITY_DATASET || 'production';
+  const bron = `https://cdn.sanity.io/images/${env.SANITY_PROJECT_ID}/${dataset}/${bestand}?${params}`;
+
+  const sleutel = new Request(url.toString(), { method: 'GET' });
+  const bewaard = await edgeCache().match(sleutel);
+  if (bewaard) return bewaard;
+
+  const antwoord = await fetch(bron, { cf: { cacheTtl: 31536000, cacheEverything: true } });
+  if (!antwoord.ok) {
+    return new Response('Not found', { status: antwoord.status === 404 ? 404 : 502 });
+  }
+
+  const headers = new Headers();
+  headers.set('content-type', antwoord.headers.get('content-type') ?? 'image/webp');
+  headers.set('cache-control', 'public, max-age=31536000, immutable');
+  const uit = new Response(antwoord.body, { headers });
+  ctx.waitUntil(edgeCache().put(sleutel, uit.clone()));
+  return uit;
+}
+
+/**
+ * The first screen, written into the page before it is sent.
+ *
+ * Without this the museum's opening screen is a black rectangle until a phone
+ * has fetched, parsed and run the whole bundle: the room's photographs, the
+ * name of the museum and its opening sentence all live in React, and React is
+ * the last thing to arrive. Rendered here they are simply in the HTML, painted
+ * the moment the document lands, and the bundle replaces them with the same
+ * markup a second later.
+ *
+ * It is the app's own components doing the rendering — `HeroShell` is what
+ * `HeroRoom` builds its resting state out of — so this cannot drift into a
+ * second, slightly different hero that shifts the page when React catches up.
+ *
+ * Only the first screen. Everything below it is off screen at first paint and
+ * belongs to the bundle.
+ */
+function heroShell(data: Doc | null, lang: Lang, projectId: string, dataset: string): string {
+  const hero = data?.teksten?.hero ?? {};
+  const vert = engels(hero, lang);
+  const t = {
+    titel: firstString(vert.titel, hero.titel),
+    tagline: firstString(vert.tagline, hero.tagline),
+    lead: firstString(vert.lead, hero.lead),
+    knop: firstString(vert.knop, hero.knop),
+  };
+
+  // The same four works the strip shows, chosen the same way: hung in the
+  // room, photographed, in the order the museum dragged them into.
+  const zonderTitel = uiPerTaal[lang].werk.zonderTitel;
+  const werken: StilWerk[] = [];
+  for (const doc of Array.isArray(data?.werk) ? (data!.werk as Doc[]) : []) {
+    if (werken.length >= HERO_STRIP) break;
+    if (doc?.inZaal === false) continue;
+    const ref = doc?.afbeelding?.asset?._ref;
+    if (typeof ref !== 'string' || !doc._id) continue;
+    const img = imgFromRef(ref, projectId, dataset);
+    if (!img) continue;
+    const werkVert = engels(doc, lang);
+    const alt =
+      [
+        firstString(werkVert.titel, doc.titel),
+        firstString(werkVert.techniek, doc.techniek),
+        firstString(doc.afmetingen),
+      ]
+        .filter(Boolean)
+        .join(', ') || zonderTitel;
+    werken.push({ id: String(doc._id), alt, img });
+  }
+
+  if (!werken.length && !t.titel) return '';
+  return renderToStaticMarkup(createElement(HeroShell, { t, werken }));
+}
+
 /** Every address worth crawling, in both languages, pointing at each other. */
 function sitemap(data: Doc | null): string {
-  const paths = ['/', '/blog'];
+  const paths = ['/', '/blog', '/privacy'];
   const posts = Array.isArray(data?.nieuws) ? (data!.nieuws as Doc[]) : [];
   for (const { slug } of addressed(posts)) paths.push(`/blog/${slug}`);
 
@@ -449,10 +636,32 @@ function sitemap(data: Doc | null): string {
   return `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${entries}</urlset>`;
 }
 
+/**
+ * The museum has one address. The Worker also answers on www and on the
+ * jouwidealewebsite.nl subdomain this was built at, and both send a visitor
+ * (and a crawler) on rather than serving a second copy of the site for a search
+ * engine to pick between.
+ *
+ * Only over https, and only for a request that can be repeated: `wrangler dev`
+ * hands the Worker the custom domain's own hostname over http, so without that
+ * guard local development redirects itself to production, and a 301 on a form
+ * POST would drop the submission.
+ */
+const CANONICAL_HOST = new URL(SITE_URL).host;
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const indexable = env.SITE_INDEXABLE === 'true';
+
+    if (
+      url.protocol === 'https:' &&
+      url.host !== CANONICAL_HOST &&
+      (request.method === 'GET' || request.method === 'HEAD')
+    ) {
+      url.host = CANONICAL_HOST;
+      return Response.redirect(url.toString(), 301);
+    }
 
     if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
       url.pathname = url.pathname.slice(0, -1);
@@ -482,6 +691,8 @@ export default {
     if (url.pathname.startsWith('/api/')) {
       return new Response('Not found', { status: 404 });
     }
+
+    if (url.pathname.startsWith('/foto/')) return foto(url, env, ctx);
 
     if (url.pathname === '/robots.txt') {
       const body = indexable
@@ -519,16 +730,33 @@ export default {
 
     if (data) {
       const payload = inlineJson({ projectId, dataset, preview, data });
+      // Only the museum page has the room, so only it names a photograph and
+      // only it is worth painting before the bundle arrives.
+      const shell = path === '/' ? heroShell(data, lang, projectId, dataset) : '';
+      // The shell puts the photograph in the document itself, which is a better
+      // head start than a link to it; the preload is for the page that has no
+      // shell to paint.
+      const preload = path === '/' && !shell ? heroPreload(data, projectId, dataset) : '';
+
       rewriter = rewriter.on('head', {
         element(head) {
-          head.append(`<script id="klashorst-content" type="application/json">${payload}</script>`, {
-            html: true,
-          });
+          head.append(
+            `${preload}<script id="klashorst-content" type="application/json">${payload}</script>`,
+            { html: true },
+          );
         },
       });
+
+      if (shell) {
+        rewriter = rewriter.on('#root', {
+          element(root) {
+            root.setInnerContent(shell, { html: true });
+          },
+        });
+      }
     }
 
-    if (meta) rewriter = applyMeta(rewriter, meta, lang, indexable && !preview);
+    if (meta) rewriter = applyMeta(rewriter, meta, lang, indexable && !preview, missing);
 
     const page = rewriter.transform(response);
 

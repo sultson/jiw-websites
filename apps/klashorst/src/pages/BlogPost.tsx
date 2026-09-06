@@ -52,10 +52,12 @@ export default function BlogPost({ post }: { post: Post }) {
         {post.img && (
           <figure className="max-w-[68rem]">
             <img
-              src={post.img.full}
-              srcSet={`${post.img.grid} 700w, ${post.img.full} 2200w`}
+              src={post.img.grid}
+              srcSet={`${post.img.gridSet}, ${post.img.full} 2200w`}
               sizes="(min-width: 1140px) 1088px, 100vw"
               alt={post.titel}
+              width={Math.round(1200 * post.img.ratio)}
+              height={1200}
               fetchPriority="high"
               decoding="async"
               // Capped by height as well as width: a photograph of an upright

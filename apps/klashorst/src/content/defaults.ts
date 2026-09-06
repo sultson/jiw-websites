@@ -24,12 +24,25 @@ const beide = (nl: string, en: string): Vertaald => ({ nl, en });
 const local = (slug: string, ratio: number): Img => ({
   ratio,
   grid: `/art/${slug}.webp`,
+  // One file per size, so there is nothing for a srcset to choose between.
+  // These only ever render when Sanity did not answer at all.
+  gridSet: `/art/${slug}.webp`,
+  strip: `/art/${slug}-room.webp`,
+  stripSet: `/art/${slug}-room.webp`,
   room: `/art/${slug}-room.webp`,
   full: `/art/${slug}-full.webp`,
 });
 
 /** A photograph that exists in one size only. */
-const single = (path: string, ratio: number): Img => ({ ratio, grid: path, room: path, full: path });
+const single = (path: string, ratio: number): Img => ({
+  ratio,
+  grid: path,
+  gridSet: path,
+  strip: path,
+  stripSet: path,
+  room: path,
+  full: path,
+});
 
 /** Paragraphs, shaped the way the Studio's text editor stores them. */
 const alineas = (id: string, ...paragrafen: string[]): RichBlock[] =>

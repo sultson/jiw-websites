@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type TouchEvent } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { content, ui, type Werk } from '../content';
+import { GRID_SIZES } from '../content/image';
 import Paragraphs from './Paragraphs';
 
 /**
@@ -124,7 +125,14 @@ export default function Work() {
                   <div className="flex aspect-[3/4] items-center justify-center overflow-hidden bg-wall">
                     <img
                       src={work.img.grid}
+                      srcSet={work.img.gridSet}
+                      sizes={GRID_SIZES}
                       alt={describe(work)}
+                      // The photograph's own proportion. The box above is a
+                      // fixed 3:4 either way, but without these the browser has
+                      // no size for the image inside it until the bytes land.
+                      width={Math.round(1200 * work.img.ratio)}
+                      height={1200}
                       loading="lazy"
                       decoding="async"
                       className="max-h-full max-w-full object-contain transition-opacity duration-300 group-hover:opacity-85"

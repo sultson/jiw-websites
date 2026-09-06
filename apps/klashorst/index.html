@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Concept build. The Worker turns this into "index, follow" the day
-         SITE_INDEXABLE is set, so it never competes with klashorstmuseum.nl
-         before it replaces it. -->
-    <meta name="robots" content="noindex, nofollow" />
+    <!-- The Worker writes this per page: "index, follow" while SITE_INDEXABLE
+         is set, "noindex, nofollow" the moment it is not, and never anything
+         but noindex on a preview. This is only what the file ships with. -->
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0e0d0c" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png" />
@@ -15,15 +15,32 @@
       name="description"
       content="Het museum voor het werk van Peter Klashorst: schilder, fotograaf en muzikant. Ruim veertig jaar werk, en een deel van het museum voor andere kunstenaars."
     />
-    <link rel="canonical" href="https://klashorst.jouwidealewebsite.nl/" />
+    <link rel="canonical" href="https://klashorstmuseum.nl/" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Self-hosted. The two faces the first screen is set in are fetched
+         alongside the stylesheet rather than after a round trip to a second
+         origin; the rest of the family follows from @font-face when a page
+         needs it. The room's own photograph is preloaded by the Worker, which
+         is the only thing that knows which work hangs first. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Poppins:wght@300;400;500&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/oswald-var-latin.woff2"
+      crossorigin
     />
-    <link rel="preload" as="image" href="/art/pearl-earring-room.webp" />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/poppins-300-latin.woff2"
+      crossorigin
+    />
+    <!-- Every photograph on the site comes from here, and the first of them is
+         what the page is waiting for. No `crossorigin`: a plain <img> is fetched
+         in no-cors mode, and a preconnect in the other mode warms a connection
+         the image cannot use. -->
+    <link rel="preconnect" href="https://cdn.sanity.io" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="nl_NL" />
@@ -33,8 +50,8 @@
       property="og:description"
       content="Schilder, fotograaf en muzikant. Loop het museum in en bekijk het werk."
     />
-    <meta property="og:url" content="https://klashorst.jouwidealewebsite.nl/" />
-    <meta property="og:image" content="https://klashorst.jouwidealewebsite.nl/og-preview.jpg?v=20260807b" />
+    <meta property="og:url" content="https://klashorstmuseum.nl/" />
+    <meta property="og:image" content="https://klashorstmuseum.nl/og-preview.jpg?v=20260807b" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />

@@ -7,9 +7,11 @@ import { content } from '../content';
  * so renaming the museum renames it everywhere rather than in the hero only
  * while two hardcoded copies of the old name stay behind.
  *
- * The last word carries the accent. Splitting on the final space is enough for
- * a name of that shape and degrades quietly: a one-word name is simply set in
- * one colour, and an empty field renders nothing at all.
+ * The last word carries the accent, in the lighter of the two reds: the accent
+ * red is a fill and a hairline colour, and at word size on the gallery wall it
+ * reads at 4.2:1, which is under the line. Splitting on the final space is
+ * enough for a name of that shape and degrades quietly: a one-word name is
+ * simply set in one colour, and an empty field renders nothing at all.
  */
 export default function Wordmark({ className = '' }: { className?: string }) {
   const naam = content.teksten.hero.titel.trim();
@@ -22,7 +24,7 @@ export default function Wordmark({ className = '' }: { className?: string }) {
   return (
     <span className={className}>
       {eerste}
-      {laatste && <span className="text-red">{laatste}</span>}
+      {laatste && <span className="text-red-soft">{laatste}</span>}
     </span>
   );
 }

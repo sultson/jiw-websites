@@ -1,4 +1,5 @@
 import { ui, type BlogPost } from '../content';
+import { GRID_SIZES } from '../content/image';
 import Paragraphs from './Paragraphs';
 import { to } from '../router';
 
@@ -24,7 +25,11 @@ export default function BlogCard({
           <div className="flex aspect-[4/3] items-center justify-center overflow-hidden bg-ink">
             <img
               src={post.img.grid}
+              srcSet={post.img.gridSet}
+              sizes={GRID_SIZES}
               alt=""
+              width={Math.round(1200 * post.img.ratio)}
+              height={1200}
               loading="lazy"
               decoding="async"
               className="max-h-full max-w-full object-contain"

@@ -1,6 +1,7 @@
-import { content } from '../content';
+import { content, lang } from '../content';
 import Paragraphs from './Paragraphs';
 import Wordmark from './Wordmark';
+import { PRIVACY_TITLE } from '../meta';
 import { sectionHref, to } from '../router';
 
 export default function Footer({
@@ -48,8 +49,18 @@ export default function Footer({
         </div>
 
         <div className="rule mt-10" />
-        <div className="mt-5">
-          <Paragraphs value={t.demo} className="text-xs text-muted" gap="mt-2" />
+        {/* The small print, and the one link that belongs in it. Not in the
+            list above: that list is the museum, and this is the paperwork. */}
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between">
+          <div>
+            <Paragraphs value={t.demo} className="text-xs text-muted" gap="mt-2" />
+          </div>
+          <a
+            href={to('/privacy')}
+            className="text-xs text-muted underline decoration-hair underline-offset-4 transition-colors hover:text-bone"
+          >
+            {PRIVACY_TITLE[lang]}
+          </a>
         </div>
       </div>
     </footer>

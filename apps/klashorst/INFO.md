@@ -1,7 +1,15 @@
-# Klashorst Museum — concept build
+# Klashorst Museum
 
-Pitch demo for the Peter Klashorst Museum (klashorstmuseum.nl), a Trustoo lead.
-Site: `klashorst.jouwidealewebsite.nl`. CMS: `klashorst.jouwidealewebsite.nl/beheer`.
+The Peter Klashorst Museum's site, live on its own domain.
+Site: `klashorstmuseum.nl`. CMS: `klashorstmuseum.nl/beheer`.
+
+`www.klashorstmuseum.nl` and the address this was built at,
+`klashorst.jouwidealewebsite.nl`, both answer and redirect to the apex with a
+301, so there is one address and one thing for a search engine to index. The
+redirect is in the Worker, guarded on `https:` — `wrangler dev` serves the
+custom domain's own hostname over http, and without the guard local development
+bounces itself to production — and skipped for anything but GET and HEAD, so a
+form POST is never redirected.
 
 ## Why this exists
 
@@ -43,10 +51,20 @@ Everything factual is sourced. Nothing about the museum is invented.
   in the Studio. The museum shows work; the one thing a visitor can send is a
   question.
 
-The build is `noindex, nofollow` so it never competes with klashorstmuseum.nl.
-One variable turns that around: `SITE_INDEXABLE` in `wrangler.jsonc`. Set to
-`"true"` and the Worker writes `index, follow` into every page and robots.txt
-stops disallowing everything.
+The site is indexable: `SITE_INDEXABLE` in `wrangler.jsonc` is `"true"`, so the
+Worker writes `index, follow` into every page and robots.txt points at the
+sitemap. It was `"false"` for as long as this was a proposal living on a
+jouwidealewebsite.nl subdomain next to the client's old WordPress site; set it
+back and the whole site goes noindex again in one deploy. A preview is noindex
+whatever the variable says.
+
+**The privacy statement** is its own page at `/privacy` and `/en/privacy`,
+linked from the foot of every page, and it is in `src/content/privacy.ts`
+rather than in the Studio. It is a legal text the museum's administrator wrote
+and signed off; it changes when the law or the list of processors changes,
+which is a deployment, not a Tuesday. Note that it names Google Analytics as a
+processor and the site does not load Google Analytics — either the statement or
+the site needs to catch up with the other.
 
 ## Two languages
 
@@ -123,10 +141,24 @@ and without a subscription.
 Sanity. Free plan, project `banas90d`, dataset `production` (public), owned by
 the account that created it.
 
-- **Studio:** <https://klashorst.jouwidealewebsite.nl/beheer>, on the museum's
-  own domain rather than a sanity.studio hostname, so the client has one address
-  to remember and it moves with them to klashorstmuseum.nl/beheer later. Dutch
-  interface via `@sanity/locale-nl-nl`. Source in `studio/`.
+- **Studio:** <https://klashorstmuseum.nl/beheer>, on the museum's own domain
+  rather than a sanity.studio hostname, so the client has one address to
+  remember. Dutch interface via `@sanity/locale-nl-nl`. Source in `studio/`.
+- **The Studio only ever edits drafts.** Sanity's navbar carries a perspective
+  switcher — "Concepten", "Gepubliceerd", any content release — that looks like
+  a filter and is not one: choosing "Gepubliceerd" puts the entire Studio in
+  read-only, because a published document is not a thing you edit. Every field
+  greys out, the image field says "Alleen-lezen" with its Uploaden button dead,
+  and a new document opens with "Kan geen gepubliceerd document maken". From the
+  client's side that is indistinguishable from a broken CMS, and it cost the
+  museum a day of not being able to add a work. `studio/tools/AlleenConcepten.tsx`
+  is a layout component that pins the perspective back to drafts and hides the
+  switcher; `releases` and `scheduledDrafts` are off and the Releases tab is
+  filtered out of the tool list. Nothing is lost: one editor, no releases, and
+  the "Voorbeeld" tab already shows the site rendered with the draft, which is
+  the only thing the published perspective was ever wanted for. The reset has to
+  stay alongside the hiding, or a Studio left in that state opens read-only with
+  no visible way out.
 - **It opens on a welcome screen**, `studio/tools/Start.tsx`, registered as the
   first tool so `/beheer` lands there. Sanity's own landing is the structure
   list, which leaves the right half of the screen empty until you click
@@ -151,17 +183,21 @@ the account that created it.
   client's own, and the Studio uses them so the CMS and the menu say the same
   thing. Section order, buttons and interface labels stay in
   `src/content/ui.ts`, so no edit can restructure or break the page.
-- **Both walls are hung by dragging, and there are two ways to do it.** Both
-  collections sort on `orderRank` (`@sanity/orderable-document-list`). The
-  plugin's own list is one of them. Next to each list sits *Volgorde van de
-  collectie* / *Volgorde van Andere Kunst* (`studio/tools/Volgorde.tsx`): the
-  same drag in the grid the visitor gets, two, three, four columns of portrait
-  frames read left to right, because a column of 35-pixel thumbnails does not
-  tell the museum what they are moving or where it lands. Both write the same
-  field, so they cannot disagree. The grid patches a work's draft and published
-  version together, so a move is on the site without publishing, and it
-  renumbers the whole wall only when LexoRank has no room left between two
-  neighbours or a neighbour was never ranked.
+- **Both walls are hung by dragging, on one screen each.** Both collections sort
+  on `orderRank` (`@sanity/orderable-document-list` supplies the field and its
+  initial value; the plugin's own desk list is not used). Each wall is
+  `studio/tools/Volgorde.tsx`: the drag in the grid the visitor gets, two,
+  three, four columns of portrait frames read left to right, because a column of
+  35-pixel thumbnails does not tell the museum what they are moving or where it
+  lands. There used to be a plugin list next to each grid, which split adding a
+  work from arranging it over two screens that looked nothing alike; the list
+  had exactly one thing the grid did not, so the + moved into the grid's pane
+  header (a `create` intent plus `canHandleIntent`, which is what gives a new
+  work its `orderRank`) and the list went. The last tile in the grid is the same
+  +, at the end of the wall, which is where the new work is hung. The grid
+  patches a work's draft and published version together, so a move is on the
+  site without publishing, and it renumbers the whole wall only when LexoRank
+  has no room left between two neighbours or a neighbour was never ranked.
 - **A work has no availability at all.** No `teKoop`, `teHuur`, `verkocht`,
   `prijs` or `huurprijs`, on either document type. One tick box is left on a
   collection work, `inZaal`, which decides whether it hangs in the 3D room.
@@ -283,8 +319,20 @@ as you type and an iframe that reloads under your hands is unusable.
 
 The client uploads one photograph per work. Everything else is derived:
 
-- 700px for the collection grid, 1100px WebP for the 3D room texture, 2200px for
-  the lightbox, all from `cdn.sanity.io`.
+- A srcset from 320 to 1000px for the collection grid, 400 to 1000px WebP for
+  the still hero strip, 900px WebP for the 3D room texture, 2200px for the
+  lightbox. Quality is per job, not one number: these are thickly painted
+  canvases and they encode expensively, so the thumbnail and the strip sit at
+  q=72–74 while the lightbox and the room, which are the sizes a visitor
+  actually studies a work at, stay at q=78–82.
+- Everything but the hero strip comes straight from `cdn.sanity.io`. The strip
+  comes from **`/foto/<bestand>?<params>` on this origin**, a pass-through in the
+  Worker that fetches the same CDN address and holds it at the edge for a year.
+  The first painting is the largest thing on the front page and the one image the
+  page waits for, and a second host costs a DNS lookup, a connection and a TLS
+  handshake before a byte of it moves. That route is deliberately narrow — a real
+  asset filename and a handful of parameters only — or it is an open image proxy
+  anyone can point at anything.
 - The **aspect ratio is read out of the asset reference**
   (`image-<id>-<w>x<h>-<ext>`), so a work uploaded in the Studio hangs in the 3D
   room in its true proportion without anyone typing a number. The old hardcoded
@@ -381,7 +429,12 @@ turning the room never re-renders it.
 - **The Studio's origin needs `allowCredentials: true` in the project's CORS
   list**, unlike the read-only image entries: it makes authenticated requests as
   the logged-in user. Both live on the same origin here, so that one entry
-  carries both.
+  carries both. This bit when the site moved to klashorstmuseum.nl: that origin
+  was already on the list, added for the images, *without* credentials — so the
+  site worked and the Studio showed "Enable credentials for this Studio" and
+  could not log in. Sanity cannot edit a CORS entry, so the fix is to delete and
+  re-add it: `npx sanity cors delete https://… -p banas90d` then
+  `npx sanity cors add https://… --credentials -p banas90d`.
 - **`basePath` moves the Studio's router, not its asset URLs.** The build still
   emits absolute `/static/*` and `/vendor/*`, which is why `build-studio.mjs`
   puts the page at `dist/beheer/index.html` and those two directories at the
@@ -422,10 +475,46 @@ turning the room never re-renders it.
 
 ## Graceful degradation
 
-The works are in the HTML as a plain image strip before any script runs. The 3D
-canvas mounts over it only when WebGL is available, the section is near the
-viewport, and the visitor has not asked for reduced motion. Nothing is gated
-behind JS, and nothing on the page depends on the CMS answering.
+The museum's first screen is in the HTML: the Worker renders it with the site's
+own components before the page is sent, so the works, the name and the opening
+sentence are painted from the document itself and not after a phone has booted
+React. The 3D canvas mounts over that strip only when WebGL is available, the
+section has been on screen, the visitor has not asked for reduced motion, **and
+the visitor has done something** — moved a mouse, touched the screen, scrolled,
+pressed a key. Nothing is gated behind JS, and nothing on the page depends on
+the CMS answering.
+
+## Speed
+
+Mobile Lighthouse went from 30 to 98 and desktop to 100 without taking anything
+off the page. What it took, in order of what it was worth:
+
+- **The room waits for the visitor.** three.js is a quarter of a megabyte plus a
+  texture per work, and loading it with the document cost a phone six seconds of
+  main thread before the page could be scrolled. Gated on a first gesture, total
+  blocking time is zero. On a desktop it starts on the first mouse move, so
+  nobody notices the difference.
+- **The first screen is server-rendered.** `src/components/HeroStill.tsx` holds
+  the pieces of the resting hero; `HeroRoom` builds its own resting state out of
+  them and the Worker renders `HeroShell` into `<div id="root">` with
+  `renderToStaticMarkup`. They are the same components, so the two cannot drift
+  into two slightly different heroes that shift the page when React takes over.
+  `main.tsx` clears the root in the same task as the first render.
+- **The hero photograph comes from this origin** (`/foto/*`, above), which is
+  worth about six tenths of a second of connection setup on the LCP image.
+- **The fonts are self-hosted** in `public/fonts`, latin and latin-ext, Oswald
+  as one variable file. The Google Fonts stylesheet was a render-blocking round
+  trip to a second origin before a single letter could be drawn.
+- **The strip renders four works, not thirteen.** The row runs off the right of
+  the screen and is never scrolled; the rest were downloaded and never seen.
+- **Every image has `width` and `height`.** Cumulative layout shift is 0; it was
+  0.144, all of it the strip reflowing as each painting landed.
+
+Two things that were tried and measured worse, so they are not here: inlining
+the stylesheet into the document (it serialises what the browser was already
+fetching in parallel, and cost 300ms of FCP), and preconnecting to
+`cdn.sanity.io` with `crossorigin` (a plain `<img>` is fetched in no-cors mode
+and cannot use that connection).
 
 ## Forms
 

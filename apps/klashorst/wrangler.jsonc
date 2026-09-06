@@ -11,26 +11,44 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "single-page-application",
-    // Every page a visitor can land on, as well as the API: the Worker has to
-    // see the navigation to inline the CMS content into the HTML and to write
-    // the blog post's own title and photograph into the head before it is sent.
-    // The English site is the same pages one directory in, so it needs the same
-    // treatment. /beheer/* too, or the Studio's own routes fall through to the
-    // site's SPA handling.
+    // Every navigation, not a list of the pages that exist: the Worker has to
+    // see it to inline the CMS content into the HTML and to write the blog
+    // post's own title and photograph into the head before it is sent, and an
+    // address that is *not* a page has to reach it too. Left to the assets
+    // layer, an unknown path gets `not_found_handling` above and is answered
+    // with the app and a 200 — a soft 404, which Google indexes. Only the
+    // Worker knows which addresses are real, so only the Worker can say 404.
+    //
+    // Everything below is a file that is served as it lies, and is sent
+    // straight to the assets layer to save the hop: the site's own build
+    // (/assets), the paintings (/art), the fonts, and the Studio's assets,
+    // which its build writes with absolute /static and /vendor URLs.
     "run_worker_first": [
-      "/",
-      "/blog",
-      "/blog/*",
-      "/en",
-      "/en/*",
-      "/robots.txt",
-      "/sitemap.xml",
-      "/api/*",
-      "/beheer",
-      "/beheer/*"
+      "/*",
+      "!/assets/*",
+      "!/art/*",
+      "!/fonts/*",
+      "!/static/*",
+      "!/vendor/*",
+      "!/favicon.ico",
+      "!/favicon-64.png",
+      "!/apple-touch-icon.png",
+      "!/og-preview.jpg",
+      "!/signature-peter-klashorst.webp"
     ]
   },
+  // The museum's own domain is the site; the other two answer and redirect to
+  // it, which is why they are still here. Both the apex and its www: a domain
+  // wired up without the www is a domain half the visitors cannot reach.
   "routes": [
+    {
+      "pattern": "klashorstmuseum.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.klashorstmuseum.nl",
+      "custom_domain": true
+    },
     {
       "pattern": "klashorst.jouwidealewebsite.nl",
       "custom_domain": true
@@ -50,10 +68,10 @@
   ],
   "vars": {
     "SITE_ID": "klashorst",
-    // "true" once this replaces klashorstmuseum.nl. Until then every page is
-    // noindex and robots.txt disallows everything, so the concept build can
-    // never compete with the site it is a proposal for.
-    "SITE_INDEXABLE": "false",
+    // The site is the museum's own klashorstmuseum.nl now, so every page says
+    // "index, follow" and robots.txt points at the sitemap. Back to "false"
+    // and the whole site goes noindex again in one deploy.
+    "SITE_INDEXABLE": "true",
     // Where both forms land: the museum's own inbox, and the address a
     // visitor's confirmation replies to. The sender stays on
     // notify.jouwidealewebsite.nl, which is the configured Email Service

@@ -1,4 +1,5 @@
 import { content, ui, type GalerieWerk } from '../content';
+import { GRID_SIZES } from '../content/image';
 import Paragraphs from './Paragraphs';
 
 /**
@@ -46,7 +47,11 @@ export default function Gallery() {
                 <div className="flex aspect-[3/4] items-center justify-center overflow-hidden bg-wall">
                   <img
                     src={work.img.grid}
+                    srcSet={work.img.gridSet}
+                    sizes={GRID_SIZES}
                     alt={describe(work)}
+                    width={Math.round(1200 * work.img.ratio)}
+                    height={1200}
                     loading="lazy"
                     decoding="async"
                     className="max-h-full max-w-full object-contain"

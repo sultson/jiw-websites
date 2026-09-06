@@ -24,12 +24,14 @@ export default function Peter() {
               <figure className="mt-10 w-full max-w-[30rem]">
                 <img
                   src={t.portret.grid}
-                  srcSet={`${t.portret.grid} 700w, ${t.portret.full} 2200w`}
+                  srcSet={`${t.portret.gridSet}, ${t.portret.full} 2200w`}
                   sizes="(min-width: 1024px) 480px, 100vw"
                   alt={t.titel}
+                  width={Math.round(1200 * t.portret.ratio)}
+                  height={1200}
                   loading="lazy"
                   decoding="async"
-                  className="w-full grayscale"
+                  className="h-auto w-full grayscale"
                 />
                 {t.portretCredit && (
                   <figcaption className="mt-2 text-xs text-muted">{t.portretCredit}</figcaption>
@@ -55,12 +57,14 @@ export default function Peter() {
               <figure className={alineas.length ? 'mt-10' : ''}>
                 <img
                   src={t.tweedeFoto.grid}
-                  srcSet={`${t.tweedeFoto.grid} 700w, ${t.tweedeFoto.full} 2200w`}
+                  srcSet={`${t.tweedeFoto.gridSet}, ${t.tweedeFoto.full} 2200w`}
                   sizes="(min-width: 1024px) 660px, 100vw"
                   alt={t.titel}
+                  width={Math.round(1200 * t.tweedeFoto.ratio)}
+                  height={1200}
                   loading="lazy"
                   decoding="async"
-                  className="w-full"
+                  className="h-auto w-full"
                 />
                 {t.tweedeFotoCredit && (
                   <figcaption className="mt-2 text-xs text-muted">{t.tweedeFotoCredit}</figcaption>

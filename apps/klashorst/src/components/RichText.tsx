@@ -63,9 +63,11 @@ const components: PortableTextComponents = {
         <figure className="my-10">
           <img
             src={img.grid}
-            srcSet={`${img.grid} 700w, ${img.full} 2200w`}
+            srcSet={`${img.gridSet}, ${img.full} 2200w`}
             sizes="(min-width: 768px) 760px, 100vw"
             alt={alt ?? ''}
+            width={Math.round(1200 * img.ratio)}
+            height={1200}
             loading="lazy"
             decoding="async"
             // Same reasoning as the photograph at the top: an upright painting

@@ -21,7 +21,7 @@ export const HTML_LANG: Record<Lang, string> = { nl: 'nl', en: 'en' };
 export const OG_LOCALE: Record<Lang, string> = { nl: 'nl_NL', en: 'en_GB' };
 
 export const SITE_NAME = 'Klashorst Museum';
-export const SITE_URL = 'https://klashorst.jouwidealewebsite.nl';
+export const SITE_URL = 'https://klashorstmuseum.nl';
 
 /** The home page keeps the title and description the site shipped with. */
 export const HOME_TITLE: Record<Lang, string> = {
@@ -43,6 +43,20 @@ export const HOME_DESCRIPTION: Record<Lang, string> = {
 export const NOT_FOUND_TITLE: Record<Lang, string> = {
   nl: 'Pagina niet gevonden',
   en: 'Page not found',
+};
+
+/**
+ * The privacy statement. Its own page rather than a section, because it is the
+ * document a visitor is sent to from the foot of every page and from a form.
+ */
+export const PRIVACY_TITLE: Record<Lang, string> = {
+  nl: 'Privacyverklaring',
+  en: 'Privacy statement',
+};
+
+export const PRIVACY_DESCRIPTION: Record<Lang, string> = {
+  nl: 'Welke persoonsgegevens het Peter Klashorst Museum via deze website verzamelt, waarom, met wie ze gedeeld worden en welke rechten u heeft.',
+  en: 'Which personal data the Peter Klashorst Museum collects through this website, why, who it is shared with, and what rights you have.',
 };
 
 /**

@@ -41,9 +41,11 @@ export default function BlogIndex() {
                 <div className="flex aspect-[4/3] items-center justify-center overflow-hidden bg-ink">
                   <img
                     src={nieuwste.img.grid}
-                    srcSet={`${nieuwste.img.grid} 700w, ${nieuwste.img.full} 2200w`}
+                    srcSet={`${nieuwste.img.gridSet}, ${nieuwste.img.full} 2200w`}
                     sizes="(min-width: 768px) 50vw, 100vw"
                     alt=""
+                    width={Math.round(1200 * nieuwste.img.ratio)}
+                    height={1200}
                     // The first thing on the page: not something to wait for.
                     fetchPriority="high"
                     decoding="async"

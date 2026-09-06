@@ -4,13 +4,18 @@
  * knows where content came from or that a second language exists.
  */
 
-/** One photograph, in the three sizes the site asks for. */
+/** One photograph, in the sizes the site asks for. */
 export type Img = {
   /** width / height of the source photograph. */
   ratio: number;
   /** Collection grid and news card. */
   grid: string;
-  /** Texture for the 3D room and the pre-script image strip. */
+  /** The same card, at every width a screen might want it. */
+  gridSet: string;
+  /** The still strip behind the room, before the room is asked for. */
+  strip: string;
+  stripSet: string;
+  /** Texture for the 3D room. */
   room: string;
   /** Lightbox. */
   full: string;

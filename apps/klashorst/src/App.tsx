@@ -6,8 +6,9 @@ import Home from './pages/Home';
 import BlogIndex from './pages/BlogIndex';
 import BlogPostPage from './pages/BlogPost';
 import NotFound from './pages/NotFound';
+import Privacy from './pages/Privacy';
 import { content, findPost, isPreview, lang } from './content';
-import { HTML_LANG, clamp, pageTitle } from './meta';
+import { HTML_LANG, PRIVACY_DESCRIPTION, PRIVACY_TITLE, clamp, pageTitle } from './meta';
 import { useInternalLinks, usePath, useScrollOnNavigate } from './router';
 
 /**
@@ -36,9 +37,30 @@ function resolve(path: string) {
     };
   }
 
+  if (path === '/privacy') {
+    return {
+      page: <Privacy />,
+      title: pageTitle(PRIVACY_TITLE[lang]),
+      description: clamp(PRIVACY_DESCRIPTION[lang]),
+      // Its own page, and not one the newsletter belongs on: the nav's button
+      // has to point back at the page that carries the form.
+      newsletter: false,
+    };
+  }
+
   const article = /^\/blog\/([^/]+)$/.exec(path);
   if (article) {
-    const post = findPost(decodeURIComponent(article[1]));
+    // A slug comes out of the address bar, so it can be malformed: `%zz` is
+    // not a post, and decoding it throws. Without the guard that throw takes
+    // the render with it and the visitor gets a blank page instead of the
+    // page that says the post is not there.
+    let slug: string | null = null;
+    try {
+      slug = decodeURIComponent(article[1]);
+    } catch {
+      slug = null;
+    }
+    const post = slug === null ? undefined : findPost(slug);
     if (post) {
       return {
         page: <BlogPostPage post={post} />,

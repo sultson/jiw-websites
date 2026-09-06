@@ -10,10 +10,11 @@ import { sectionHref, to } from '../router';
  * scroll when you are already there and still work from the blog; the blog is a
  * page of its own and is linked as one.
  *
- * Deliberately loud: bigger type than the rest of the site, a solid button for
- * the newsletter, and a labelled menu rather than three lines on their own. A
- * museum's front page is mostly picture, and a bar that whispers over it is a
- * bar nobody uses.
+ * Deliberately loud: bigger type than the rest of the site and a labelled menu
+ * rather than three lines on their own. A museum's front page is mostly
+ * picture, and a bar that whispers over it is a bar nobody uses. Nothing in it
+ * is a filled button: the bar is one row of names, and the newsletter is one of
+ * them.
  */
 const sections = (path: string) => {
   const menu = content.teksten.menu;
@@ -139,17 +140,15 @@ export default function Nav({
           </nav>
 
           <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
-            {/* On a phone the bar has room for the button and the menu and
+            {/* On a phone the bar has room for the newsletter and the menu and
                 nothing else; the languages are the first thing inside it. */}
             <Talen path={path} className="hidden sm:flex" />
 
-            {/* The newsletter is the client's headline ask, so it is the one
-                solid button in the bar and stays reachable on a phone too. */}
+            {/* The newsletter is the client's headline ask, so it keeps its
+                place at the right-hand end of the bar where it stays reachable
+                on a phone. It reads as one of the names, not as a button. */}
             {content.teksten.menu.nieuwsbrief && (
-              <a
-                href={nieuwsbrief}
-                className="btn btn-solid !px-3.5 !py-2.5 !text-[0.7rem] sm:!px-6 sm:!py-3 sm:!text-[0.84rem]"
-              >
+              <a href={nieuwsbrief} className="navlink whitespace-nowrap !text-[0.8rem] 2xl:!text-[0.92rem]">
                 {content.teksten.menu.nieuwsbrief}
               </a>
             )}
@@ -194,7 +193,11 @@ export default function Nav({
               </a>
             ))}
             {content.teksten.menu.nieuwsbrief && (
-              <a href={nieuwsbrief} onClick={() => setOpen(false)} className="btn btn-solid mt-4 self-start">
+              <a
+                href={nieuwsbrief}
+                onClick={() => setOpen(false)}
+                className="display text-3xl text-bone"
+              >
                 {content.teksten.menu.nieuwsbrief}
               </a>
             )}
