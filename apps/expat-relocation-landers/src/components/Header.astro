@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import Wordmark from './Wordmark.astro';
+import { brand, whatsappUrl } from '../lib/brand';
 import { PAGES, type Lang, type LanderContent } from '../sites';
 
 interface Props {
@@ -15,8 +16,36 @@ const home = PAGES.home[lang];
 ---
 
 <!-- No service menu: the header exists to keep the visitor in the funnel (brief §22). -->
-<header class="sticky top-0 z-40 border-b border-line bg-cream/95 backdrop-blur-sm">
-  <div class="container-site flex h-16 items-center justify-between gap-6 md:h-[4.6rem]">
+<header class="sticky top-0 z-40 border-b border-line bg-mist/95 backdrop-blur-sm">
+  {chrome && c.nav.tagline && (
+    <!-- The trust strip: one substantiated line and the two direct channels,
+         before the visitor has read a single heading. Desktop only; a phone
+         has the sticky bar for that. -->
+    <div class="hidden bg-deep text-white md:block">
+      <div class="container-site flex h-9 items-center justify-between gap-6 text-[0.8rem]">
+        <p class="flex items-center gap-2 font-medium text-white/85">
+          <span class="h-1.5 w-1.5 rounded-full bg-flame" aria-hidden="true"></span>
+          {c.nav.tagline}
+        </p>
+        <div class="flex items-center gap-5">
+          <a href={`tel:${brand.phone.e164}`} class="inline-flex items-center gap-1.5 font-semibold hover:text-flame-light">
+            <Icon name="phone" size={13} />{brand.phone.display}
+          </a>
+          <a
+            href={whatsappUrl(c.whatsapp.text)}
+            target="_blank"
+            rel="noopener"
+            data-track="whatsapp_click"
+            class="inline-flex items-center gap-1.5 font-semibold hover:text-flame-light"
+          >
+            <Icon name="whatsapp" size={14} />WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <div class="container-site flex h-16 items-center justify-between gap-6 md:h-[4.4rem]">
     <a href={home} aria-label="Immigration Services NL"><Wordmark /></a>
 
     <div class="flex items-center gap-2 md:gap-6">
@@ -25,7 +54,7 @@ const home = PAGES.home[lang];
           {c.nav.links.map((l) => (
             <a
               href={l.href}
-              class="relative py-1 text-[0.92rem] font-medium text-ink-soft transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[2px] after:origin-left after:scale-x-0 after:bg-flame after:transition-transform hover:text-deep hover:after:scale-x-100"
+              class="relative py-1 text-[0.93rem] font-semibold text-ink-soft transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[2px] after:origin-left after:scale-x-0 after:bg-flame after:transition-transform hover:text-deep hover:after:scale-x-100"
             >
               {l.label}
             </a>

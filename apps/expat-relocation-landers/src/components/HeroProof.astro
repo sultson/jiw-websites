@@ -1,0 +1,30 @@
+---
+import Icon from './Icon.astro';
+
+/**
+ * One real client quote, in the hero.
+ *
+ * It is rendered twice and shown once, because the right place for it differs
+ * per breakpoint: on a desktop it floats over the quiet corner of the
+ * photograph, on a phone it belongs *after* the headline and the benefits.
+ * Placing it inside the photo block on a phone would push the H1 below the
+ * fold, and the first screen has to say what the page is for.
+ */
+interface Props {
+  proof: { quote: string; name: string; context: string };
+  class?: string;
+}
+const { proof, class: className = '' } = Astro.props;
+---
+
+<figure class={`rounded-xl bg-paper p-4 text-ink shadow-chip md:p-5 ${className}`}>
+  <span class="text-flame"><Icon name="quote" size={18} /></span>
+  <blockquote class="mt-2 font-display text-[0.98rem] font-semibold leading-snug text-deep">{proof.quote}</blockquote>
+  <figcaption class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8rem]">
+    <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-flame-soft font-display text-[0.7rem] font-bold text-flame-ink">
+      {proof.name.charAt(0)}
+    </span>
+    <span class="font-bold text-deep">{proof.name}</span>
+    <span class="text-ink-soft">{proof.context}</span>
+  </figcaption>
+</figure>

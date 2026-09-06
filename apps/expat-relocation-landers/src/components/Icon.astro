@@ -10,7 +10,8 @@ interface Props {
     | 'shield'
     | 'globe'
     | 'quote'
-    | 'clock';
+    | 'clock'
+    | 'heart';
   size?: number;
   class?: string;
 }
@@ -30,6 +31,8 @@ const paths: Record<Props['name'], string> = {
   quote:
     '<path d="M9 5.5C6 6.7 4 9.4 4 12.8V18a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 10 18v-5a.5.5 0 0 0-.5-.5H7c0-2 1-3.4 2.6-4.2z" fill="currentColor" stroke="none"/><path d="M19 5.5c-3 1.2-5 3.9-5 7.3V18a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-5a.5.5 0 0 0-.5-.5H17c0-2 1-3.4 2.6-4.2z" fill="currentColor" stroke="none"/>',
   clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  heart:
+    '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z" fill="currentColor" stroke="none"/>',
 };
 ---
 

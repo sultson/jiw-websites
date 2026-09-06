@@ -64,6 +64,8 @@ export type LanderContent = {
     links: { label: string; href: string }[];
     cta: Cta;
     langSwitch: string;
+    /** One line of trust in the strip above the header, next to the phone number. */
+    tagline?: string;
   };
   hero: {
     eyebrow: string;
@@ -82,11 +84,59 @@ export type LanderContent = {
     /** Shown only where the price genuinely belongs to the searched service. */
     offer?: Offer;
     cta: Cta;
+    /** Second, lower-commitment action beside the primary CTA. */
+    secondaryCta?: Cta;
+    /** Label of the WhatsApp button beside the primary CTA (brief §24). */
+    whatsappCta?: string;
     note: string;
     photo: Photo;
+    /**
+     * Four short substantiated facts on the hero's bottom rule. The visitor has
+     * to be able to answer "why these people" without scrolling (client
+     * feedback, 31-08: within a few seconds, why they should choose us).
+     */
+    trust?: string[];
+    /**
+     * A real client quote, floated over the hero photograph. Social proof above
+     * the fold is the single biggest lift on a page like this, so it is part of
+     * the hero rather than something the visitor has to scroll to.
+     */
+    proof?: { quote: string; name: string; context: string };
   };
   /** Trust bar. Substantiated claims only, no invented success rates (brief §2). */
   stats: { value: string; label: string }[];
+  /**
+   * The situation checker. Three questions, answered in place, that end in a
+   * plain-language read of the visitor's route and a CTA that carries their
+   * answers into the lead form.
+   *
+   * It never gates the form: the brief forbids an eligibility questionnaire in
+   * front of lead capture (§5), so this sits beside the funnel as a reason to
+   * engage, and its result panel ships with real copy in the HTML rather than
+   * waiting for JS.
+   */
+  checker?: {
+    eyebrow: string;
+    heading: string;
+    intro: string;
+    questions: {
+      /** Written into the lead message as "<label>: <option>". */
+      id: string;
+      label: string;
+      options: string[];
+    }[];
+    /** Shown before the visitor has answered anything. Never blank. */
+    resultDefault: { title: string; body: string };
+    /**
+     * Keyed on the answer to the question whose id is `resultKey`. Any answer
+     * without an entry falls back to `resultDefault`.
+     */
+    resultKey: string;
+    results: Record<string, { title: string; body: string }>;
+    note: string;
+    cta: Cta;
+    photo?: Photo;
+  };
   /** Recognition + short substantive information (brief §8 section 3). */
   explain?: {
     eyebrow: string;
@@ -123,6 +173,21 @@ export type LanderContent = {
     note: string;
     photo?: Photo;
   };
+  /**
+   * Doing it yourself against doing it with us, line by line. The client asked
+   * for "why clients should choose us" to be answered concretely; a comparison
+   * does that without a single superlative.
+   */
+  compare?: {
+    eyebrow: string;
+    heading: string;
+    intro: string;
+    selfLabel: string;
+    usLabel: string;
+    rows: { topic: string; self: string; us: string }[];
+    note: string;
+    cta: Cta;
+  };
   /** The trajectory as a sequence, so the visitor sees one coordinated route. */
   journey?: {
     eyebrow: string;
@@ -131,6 +196,21 @@ export type LanderContent = {
     items: { title: string; body: string }[];
     outcome: string;
     cta: Cta;
+    /** One photo per stop, so the route is a strip of pictures, not a list. */
+    photos?: Photo[];
+  };
+  /**
+   * Married, registered, unmarried: the three relationship forms, as a CSS-only
+   * tab set. Recognition plus the search terms, without three more paragraphs.
+   */
+  relationship?: {
+    eyebrow: string;
+    heading: string;
+    intro: string;
+    tabs: { label: string; title: string; body: string; points: string[] }[];
+    note: string;
+    cta: Cta;
+    photo?: Photo;
   };
   /** Situation routing, for landers whose visitors arrive at different stages. */
   routing?: {
@@ -175,6 +255,12 @@ export type LanderContent = {
     items: { title: string; body: string }[];
     cta: Cta;
     photo: Photo;
+    /**
+     * Who actually picks up the phone. The client's feedback (31-08) asked for
+     * a personal touch; a named person beats a paragraph about "personal
+     * guidance". Only the owner's first name, which she publishes herself.
+     */
+    contact?: { heading: string; body: string; name: string; role: string };
   };
   steps?: {
     eyebrow: string;
@@ -191,6 +277,26 @@ export type LanderContent = {
     /** "Clients from India, Nigeria, ..." — the client's own claim. */
     countriesLabel: string;
     countries: string[];
+    /** One extra line under the countries, e.g. the television couples. */
+    countriesNote?: string;
+    cta?: Cta;
+    /**
+     * The second cell of the review grid. Not a testimonial: a factual panel,
+     * so a lander with only one or two genuine reviews still reads as a
+     * finished section instead of inviting an invented third (brief §21).
+     */
+    panel?: { heading: string; body: string; cta: Cta };
+  };
+  /**
+   * The photo wall. Not decoration: it is the only place on the page that shows
+   * what the visitor is actually buying — an ordinary Dutch life, together.
+   */
+  gallery?: {
+    eyebrow: string;
+    heading: string;
+    intro: string;
+    photos: Photo[];
+    cta: Cta;
   };
   /** Full-bleed photo band between the reviews and the questions. */
   band?: {
@@ -251,6 +357,17 @@ export type LanderContent = {
     aria: string;
     /** Prefilled WhatsApp message. */
     text: string;
+  };
+  /**
+   * Desktop only, once per session, on the way to the tab bar (brief §25).
+   * Never a timed pop-up: it fires on exit intent and nothing else.
+   */
+  exitIntent?: {
+    heading: string;
+    body: string;
+    cta: Cta;
+    dismiss: string;
+    ariaClose: string;
   };
   stickyCta: string;
   disclaimer: string;

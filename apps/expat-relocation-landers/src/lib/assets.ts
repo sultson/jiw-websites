@@ -8,7 +8,7 @@
  *
  * Bump this on the day you swap an asset.
  */
-export const ASSET_VERSION = '20260829';
+export const ASSET_VERSION = '20260901';
 
 export function asset(src: string): string {
   return src.includes('?') ? src : `${src}?v=${ASSET_VERSION}`;

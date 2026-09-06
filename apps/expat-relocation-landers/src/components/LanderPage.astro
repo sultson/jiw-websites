@@ -2,6 +2,8 @@
 import Icon from './Icon.astro';
 import Photo from './Photo.astro';
 import LeadForm from './LeadForm.astro';
+import HeroProof from './HeroProof.astro';
+import Gable from './Gable.astro';
 import { brand, whatsappUrl } from '../lib/brand';
 import type { Lang, LanderContent } from '../sites';
 
@@ -12,24 +14,23 @@ interface Props {
 const { lang, c } = Astro.props;
 // Destructured so TypeScript keeps the narrowing inside the .map() callbacks
 // below; the optional sections are what make one template serve eight briefs.
-const { explain, packages, journey, routing, distinction, steps, band, aside } = c;
+const { explain, checker, packages, compare, journey, relationship, routing, distinction, steps, gallery, band, aside } =
+  c;
 
-// The tab number in front of each section label. Sections are optional per
-// lander, so the count is built from what this page actually renders rather
-// than hard-coded, and the numbering never skips.
-const order = [
-  explain && 'explain',
-  packages && 'packages',
-  journey && 'journey',
-  routing && 'routing',
-  distinction && 'distinction',
-  'help',
-  steps && 'steps',
-  'reviews',
-  'faq',
-  'final',
-].filter(Boolean) as string[];
-const num = (key: string) => String(order.indexOf(key) + 1).padStart(2, '0');
+const wa = whatsappUrl(c.whatsapp.text);
+const waLabel = c.hero.whatsappCta ?? c.whatsapp.label;
+
+// The trajectory strip is a horizontal scroller on a phone and one column per
+// stop from md up. Static class names, so Tailwind can see them; a dynamic
+// `grid-template-columns` would also apply on the phone and squeeze every
+// stop into the same screen.
+const JOURNEY_COLS: Record<number, string> = {
+  3: 'md:grid-cols-3',
+  4: 'md:grid-cols-4',
+  5: 'md:grid-cols-5',
+  6: 'md:grid-cols-6',
+};
+const journeyCols = JOURNEY_COLS[journey?.items.length ?? 0] ?? 'md:grid-cols-4';
 
 // The badge strip is what keeps two cards of different heights aligned at the
 // top, so it is drawn on every card as soon as one card carries a label.
@@ -37,137 +38,143 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
 ---
 
 <!--
-  1. HERO + SHORT INTRODUCTION + LEAD FORM (brief §8).
+  1. HERO (brief §8 section 1; rebuilt after the client's 31-08 feedback,
+  restyled after her own reference draft of 02-09, and thinned out on 03-09).
 
-  Warm paper, one very large headline, and the lead form built as a letterhead
-  beside it. The photograph is not a rounded card floating in the layout: it
-  runs the full width of the viewport directly underneath, so the first scroll
-  hands the visitor a full-bleed picture of the thing they are trying to reach.
+  Six things, no more: who this is for (chip + H1), what we do (one short
+  paragraph), what you get (four benefits), what to do next (two buttons),
+  what it costs (one line), and the form. The photograph of a couple runs down
+  the right of the screen and the form sits on its lower edge, sharing its
+  exact left and right edges so the two read as one object. WhatsApp sits
+  beside the primary button, as it does in every block: for this audience it
+  is the channel they already use to talk to each other across the distance.
 -->
-<section class="bg-cream">
-  <div class="container-site grid gap-10 py-10 lg:grid-cols-[1.06fr_0.94fr] lg:gap-16 lg:py-16">
-    <div class="lg:pr-6">
-      {c.hero.route ? (
-        <p
-          class="flex flex-col gap-1.5 text-[0.76rem] font-bold uppercase tracking-[0.15em] text-ink-soft sm:flex-row sm:items-center sm:gap-3.5"
-        >
-          <span class="flex items-center gap-2.5">
-            <span class="h-2 w-2 shrink-0 rounded-full bg-line-strong" aria-hidden="true"></span>
-            {c.hero.route.from}
-          </span>
-          <span class="ml-[0.19rem] h-3.5 w-[2px] bg-line-strong sm:ml-0 sm:h-[2px] sm:w-8" aria-hidden="true"></span>
-          <span class="flex items-center gap-2.5 text-deep">
-            <span class="h-2 w-2 shrink-0 rounded-full bg-flame" aria-hidden="true"></span>
-            {c.hero.route.to}
-          </span>
-        </p>
-      ) : (
-        <p class="tab">{c.hero.eyebrow}</p>
+<section class="relative isolate overflow-hidden bg-deep text-white">
+  <div
+    class="pointer-events-none absolute -left-40 -top-40 -z-10 h-[38rem] w-[38rem] rounded-full opacity-70"
+    style="background: radial-gradient(closest-side, rgba(31,95,168,0.8), transparent 72%)"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-site grid gap-y-6 py-7 lg:grid-cols-[1.04fr_0.96fr] lg:items-start lg:gap-x-14 lg:py-16">
+    <!-- Photograph. First thing on a phone, top-right on a desktop. -->
+    <div class="relative order-1 lg:order-2 lg:col-start-2 lg:row-start-1">
+      <Photo
+        src={c.hero.photo.src}
+        alt={c.hero.photo.alt}
+        sizes="(min-width: 1024px) 36rem, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="h-[15rem] w-full rounded-2xl object-cover object-[50%_22%] sm:h-[20rem] lg:h-[28rem]"
+      />
+      {c.hero.proof && (
+        <HeroProof proof={c.hero.proof} class="hidden lg:absolute lg:right-4 lg:top-4 lg:block lg:max-w-[15.5rem]" />
       )}
+    </div>
 
-      <h1 class="display-1 mt-6" set:html={c.hero.h1} />
+    <!-- Copy. -->
+    <div class="order-2 lg:order-1 lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:pr-4">
+      <p class="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[0.66rem] font-bold uppercase tracking-[0.12em] text-white/90 sm:text-[0.74rem] sm:tracking-[0.13em]">
+        <span class="h-2 w-2 shrink-0 rounded-full bg-flame" aria-hidden="true"></span>
+        {c.hero.eyebrow}
+      </p>
 
-      <div class="prose-lander lede mt-6 max-w-[35rem] text-ink-soft">
+      <h1 class="display-1 mt-5 text-white" set:html={c.hero.h1} />
+
+      <div class="prose-lander lede mt-5 max-w-[33rem] text-white/82">
         {c.hero.intro.map((p) => <p>{p}</p>)}
       </div>
 
-      <ul class="mt-8 grid max-w-[36rem] gap-x-8 gap-y-3 sm:grid-cols-2">
+      <ul class="mt-6 grid max-w-[34rem] gap-x-6 gap-y-2.5 sm:grid-cols-2">
         {c.hero.benefits.map((b) => (
-          <li class="flex items-start gap-2.5 text-[0.96rem] leading-snug">
-            <span class="tick mt-0.5"><Icon name="check" size={12} /></span>
+          <li class="flex items-center gap-2.5 text-[0.96rem] font-medium leading-snug text-white">
+            <span class="tick"><Icon name="check" size={12} /></span>
             {b}
           </li>
         ))}
       </ul>
 
-      {c.hero.offer && (
-        <div class="mt-9 max-w-[31rem]">
-          <div class="ticket flex items-center gap-5 border-l-[6px] border-l-flame">
-            <div>
-              <p class="text-[0.72rem] font-bold uppercase tracking-[0.14em] text-ink-soft">{c.hero.offer.name}</p>
-              <p class="figure-num mt-1.5 text-[1.6rem] leading-none text-deep">{c.hero.offer.price}</p>
-            </div>
-          </div>
-          <p class="mt-3 text-[0.77rem] leading-relaxed text-ink-soft">{c.hero.offer.note}</p>
-        </div>
-      )}
-
-      <div class="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8">
+      <div class="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
         <a href={c.hero.cta.href} class="btn btn-flame" data-track="cta_click" data-situation={c.hero.cta.situation}>
           {c.hero.cta.label}
           <Icon name="arrow" size={17} />
         </a>
-        <a
-          href={`tel:${brand.phone.e164}`}
-          class="inline-flex items-center gap-2.5 text-[0.98rem] font-semibold text-deep underline decoration-flame decoration-2 underline-offset-[6px] hover:text-flame-ink"
-        >
-          <Icon name="phone" size={16} />{brand.phone.display}
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-wa" data-track="whatsapp_click">
+          <Icon name="whatsapp" size={18} />{waLabel}
         </a>
       </div>
-      <p class="mt-4 text-[0.87rem] leading-snug text-ink-soft">{c.hero.note}</p>
+
+      {c.hero.offer && (
+        <div class="mt-6 max-w-[33rem] border-t border-white/15 pt-5">
+          <p class="text-[0.95rem] text-white/85">
+            <span class="font-semibold text-white">{c.hero.offer.name}</span>
+            <span class="px-2 text-flame-light" aria-hidden="true">·</span>
+            <span class="figure-num inline-block whitespace-nowrap text-[1.15rem] text-white">{c.hero.offer.price}</span>
+          </p>
+          <p class="mt-1.5 text-[0.76rem] leading-relaxed text-white/55">{c.hero.offer.note}</p>
+        </div>
+      )}
     </div>
 
-    <div id="aanvraag" class="scroll-mt-24 lg:sticky lg:top-24 lg:self-start">
+    <!-- Lead form. Above the fold on a desktop, sitting on the lower edge of
+         the photograph; after the copy on a phone. -->
+    <div id="aanvraag" class="relative z-10 order-3 scroll-mt-24 lg:col-start-2 lg:row-start-2 lg:-mt-24">
       <LeadForm lang={lang} c={c} id="lead-hero" source="Hero" fields="short" />
     </div>
+
+    {c.hero.proof && <HeroProof proof={c.hero.proof} class="order-4 lg:hidden" />}
   </div>
+
+  <Gable />
 </section>
 
-<!-- The hero photograph, full width. -->
-<Photo
-  src={c.hero.photo.src}
-  alt={c.hero.photo.alt}
-  sizes="100vw"
-  loading="eager"
-  fetchpriority="high"
-  class="h-[15rem] w-full object-cover object-[50%_30%] sm:h-[21rem] lg:h-[28rem]"
-/>
-
 <!-- 2. TRUST BAR (brief §8 section 2). Substantiated claims only. -->
-<section class="bg-deep text-white">
-  <div class="container-site grid md:grid-cols-4">
-    {c.stats.map((s) => (
-      <div class="border-t border-white/14 py-6 first:border-t-0 md:border-l md:border-t-0 md:py-10 md:pl-8 md:first:border-l-0 md:first:pl-0">
-        <p class="figure-num text-[1.5rem] leading-none text-flame-light md:text-[1.7rem]">{s.value}</p>
-        <p class="mt-2.5 text-[0.9rem] leading-snug text-white/72">{s.label}</p>
-      </div>
-    ))}
+<section class="bg-mist">
+  <div class="container-site -mt-1 pb-2 pt-6 md:pt-8">
+    <div class="card grid divide-y divide-line-soft md:grid-cols-4 md:divide-x md:divide-y-0">
+      {c.stats.map((s) => (
+        <div class="px-6 py-5 md:px-7 md:py-6">
+          <p class="figure-num text-[1.55rem] leading-none text-deep md:text-[1.7rem]">{s.value}</p>
+          <p class="mt-2 text-[0.9rem] leading-snug text-ink-soft">{s.label}</p>
+        </div>
+      ))}
+    </div>
   </div>
 </section>
 
 {explain && (
-  <!-- 3. RECOGNITION + SHORT INFORMATION (brief §8 section 3).
-       A wall of situations in the visitor's own words, laid out as a hairline
-       grid rather than a checklist, so the section reads "this is us". -->
-  <section class="section bg-sand" id={routing ? 'uitleg' : 'situatie'}>
-    <div class="container-site grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
-      <div class="lg:sticky lg:top-28 lg:self-start">
-        <p class="tab"><span class="tab-num">{num('explain')}</span>{explain.eyebrow}</p>
-        <h2 class="display-2 mt-6">{explain.heading}</h2>
+  <!-- 3. RECOGNITION (brief §8 section 3). A wall of situations in the
+       visitor's own words, so the section reads "this is us". -->
+  <section class="section bg-mist" id={routing ? 'uitleg' : 'situatie'}>
+    <div class="container-site grid gap-12 lg:grid-cols-[0.84fr_1.16fr] lg:gap-16">
+      <div class="lg:sticky lg:top-32 lg:self-start">
+        <p class="tab">{explain.eyebrow}</p>
+        <h2 class="display-2 mt-5">{explain.heading}</h2>
         <div class="prose-lander mt-6 text-[1.02rem] leading-relaxed text-ink-soft">
           {explain.body.map((p) => <p>{p}</p>)}
         </div>
-        <a
-          href={explain.cta.href}
-          class="btn btn-ink mt-8"
-          data-track="cta_click"
-          data-situation={explain.cta.situation}
-        >
-          {explain.cta.label}
-          <Icon name="arrow" size={16} />
-        </a>
+        <div class="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+          <a href={explain.cta.href} class="btn btn-flame" data-track="cta_click" data-situation={explain.cta.situation}>
+            {explain.cta.label}
+            <Icon name="arrow" size={16} />
+          </a>
+          <a href={wa} target="_blank" rel="noopener" class="btn btn-outline" data-track="whatsapp_click">
+            <Icon name="whatsapp" size={17} class="text-wa" />{waLabel}
+          </a>
+        </div>
       </div>
 
       <div>
-        <ul class="grid gap-px overflow-hidden rounded-2xl border border-line-strong bg-line-strong sm:grid-cols-2">
+        <ul class="grid gap-3.5 sm:grid-cols-2">
           {explain.points.map((p) =>
             explain.pointsStyle === 'quotes' ? (
-              <li class="bg-cream px-6 py-6">
+              <li class="card px-6 py-5">
                 <span class="block text-flame"><Icon name="quote" size={20} /></span>
-                <p class="mt-3 font-display text-[1.04rem] font-medium leading-snug text-deep">{p}</p>
+                <p class="mt-2.5 font-display text-[1.05rem] font-semibold leading-snug text-deep">{p}</p>
               </li>
             ) : (
-              <li class="flex items-start gap-3 bg-cream px-6 py-6 text-[0.98rem] leading-snug">
+              <li class="card flex items-start gap-3 px-6 py-5 text-[0.98rem] leading-snug">
                 <span class="tick-quiet mt-0.5"><Icon name="check" size={12} /></span>
                 {p}
               </li>
@@ -175,14 +182,14 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
           )}
         </ul>
 
-        <div class="mt-4">
+        <div class="mt-5">
           <Photo
             src={explain.photo.src}
             alt={explain.photo.alt}
             sizes="(min-width: 1024px) 44rem, 100vw"
-            class="h-[15rem] w-full rounded-2xl object-cover sm:h-[20rem]"
+            class="h-[15rem] w-full rounded-2xl object-cover sm:h-[21rem]"
           />
-          <div class="relative mx-5 -mt-12 rounded-2xl bg-deep p-6 text-[0.96rem] leading-relaxed text-white sm:mx-9 sm:max-w-lg md:p-7">
+          <div class="card-deep relative mx-4 -mt-12 p-6 text-[0.97rem] leading-relaxed sm:mx-8 sm:max-w-lg md:p-7">
             {explain.photoNote}
           </div>
         </div>
@@ -191,35 +198,113 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
   </section>
 )}
 
-{packages && (
-  <!-- 4. CHOOSE THE RIGHT LEVEL OF ASSISTANCE. Two clearly defined services,
-       one lead form behind both (brief §9: never eight competing boxes). The
-       primary goal is the only dark object on a warm page, so the eye has
-       nowhere else to go. -->
-  <section class="section bg-cream" id="begeleiding">
+{checker && (
+  <!-- 4. THE SITUATION CHECKER.
+       Three questions the visitor answers in place. It is not a gate in front
+       of the form (brief §5 forbids that) — it is the interactive element the
+       client asked for, and its answers travel with the lead so the first call
+       starts from something real. The result panel ships with copy in the HTML;
+       JS only swaps it. -->
+  <section class="section bg-haze" id="check">
     <div class="container-site">
-      <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
+      <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
         <div>
-          <p class="tab"><span class="tab-num">{num('packages')}</span>{packages.eyebrow}</p>
-          <h2 class="display-2 mt-6">{packages.heading}</h2>
+          <p class="tab">{checker.eyebrow}</p>
+          <h2 class="display-2 mt-5">{checker.heading}</h2>
+        </div>
+        <p class="lede text-ink-soft lg:pb-1">{checker.intro}</p>
+      </div>
+
+      <div
+        class="mt-10 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-8"
+        data-checker
+        data-result-key={checker.resultKey}
+        data-results={JSON.stringify(checker.results)}
+        data-default={JSON.stringify(checker.resultDefault)}
+      >
+        <div class="card p-6 md:p-9">
+          {checker.questions.map((q, qi) => (
+            <fieldset class={qi > 0 ? 'mt-8 border-t border-line pt-8' : ''}>
+              <legend class="flex items-center gap-3 font-display text-[1.06rem] font-bold text-deep">
+                <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-flame-soft text-[0.8rem] font-bold text-flame-ink">
+                  {qi + 1}
+                </span>
+                {q.label}
+              </legend>
+              <div class="mt-4 flex flex-wrap gap-2.5">
+                {q.options.map((opt) => (
+                  <label class="opt">
+                    <input type="radio" name={`check-${q.id}`} value={opt} data-question={q.label} />
+                    <span>{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          ))}
+        </div>
+
+        <div class="flex flex-col gap-5">
+          <div class="card-deep p-7 md:p-8">
+            <p class="tab-light">{checker.note}</p>
+            <h3 class="mt-4 text-[1.3rem] text-white" data-check-title>{checker.resultDefault.title}</h3>
+            <p class="mt-3 text-[0.97rem] leading-relaxed text-white/80" data-check-body>
+              {checker.resultDefault.body}
+            </p>
+            <a
+              href={checker.cta.href}
+              class="btn btn-flame mt-7 w-full"
+              data-track="cta_click"
+              data-situation={checker.cta.situation}
+              data-check-cta
+            >
+              {checker.cta.label}
+              <Icon name="arrow" size={16} />
+            </a>
+          </div>
+
+          {checker.photo && (
+            <Photo
+              src={checker.photo.src}
+              alt={checker.photo.alt}
+              sizes="(min-width: 1024px) 28rem, 100vw"
+              class="hidden h-[14rem] w-full rounded-2xl object-cover lg:block"
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{packages && (
+  <!-- 5. CHOOSE THE RIGHT LEVEL OF ASSISTANCE. Two clearly defined services,
+       one lead form behind both (brief §9: never eight competing boxes). The
+       primary goal is the only dark object on a light page, so the eye has
+       nowhere else to go. -->
+  <section class="section bg-mist" id="begeleiding">
+    <div class="container-site">
+      <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
+        <div>
+          <p class="tab">{packages.eyebrow}</p>
+          <h2 class="display-2 mt-5">{packages.heading}</h2>
         </div>
         <p class="lede text-ink-soft lg:pb-1">{packages.intro}</p>
       </div>
 
-      <div class="mt-14 grid items-start gap-6 lg:grid-cols-2 lg:gap-8">
+      <div class="mt-12 grid items-start gap-6 lg:grid-cols-2 lg:gap-8">
         {packages.cards.map((card) => (
           <article
-            class={`flex h-full flex-col overflow-hidden rounded-2xl ${
-              card.featured ? 'bg-deep text-white lg:-mt-10' : 'border border-line bg-paper'
+            class={`flex h-full flex-col overflow-hidden ${
+              card.featured ? 'card-deep ring-2 ring-flame lg:-mt-8' : 'card'
             }`}
           >
             {cardBadges && (
               <p
-                class={`px-7 py-3 text-[0.71rem] font-bold uppercase tracking-[0.14em] md:px-9 ${
-                  card.featured ? 'bg-flame text-white' : 'border-b border-line text-ink-soft'
+                class={`px-7 py-3 text-[0.72rem] font-bold uppercase tracking-[0.14em] md:px-9 ${
+                  card.featured ? 'bg-flame text-white' : 'border-b border-line-soft bg-haze text-flame-ink'
                 }`}
               >
-                {card.badge ?? '\u00A0'}
+                {card.badge ?? ' '}
               </p>
             )}
 
@@ -232,28 +317,28 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
               >
                 {card.price}
               </p>
-              <p class={`mt-4 text-[0.97rem] leading-relaxed ${card.featured ? 'text-white/72' : 'text-ink-soft'}`}>
+              <p class={`mt-4 text-[0.97rem] leading-relaxed ${card.featured ? 'text-white/75' : 'text-ink-soft'}`}>
                 {card.body}
               </p>
 
               {card.includesHeading && (
                 <p
-                  class={`mt-8 border-t pt-4 text-[0.71rem] font-bold uppercase tracking-[0.15em] ${
-                    card.featured ? 'border-white/20 text-white/60' : 'border-line text-ink-soft'
+                  class={`mt-8 border-t pt-4 text-[0.72rem] font-bold uppercase tracking-[0.15em] ${
+                    card.featured ? 'border-white/20 text-white/65' : 'border-line text-ink-soft'
                   }`}
                 >
                   {card.includesHeading}
                 </p>
               )}
-              <ul class="mt-5 flex-1 grid gap-2.5">
+              <ul class="mt-5 grid flex-1 gap-2.5">
                 {card.includes.map((i) => (
                   <li
                     class={`flex items-start gap-3 text-[0.95rem] leading-relaxed ${
-                      card.featured ? 'text-white/88' : ''
+                      card.featured ? 'text-white/90' : ''
                     }`}
                   >
-                    <span class={card.featured ? 'mt-1 text-flame-light' : 'mt-1 text-flame-ink'}>
-                      <Icon name="check" size={14} />
+                    <span class={card.featured ? 'tick-light mt-0.5' : 'tick-quiet mt-0.5'}>
+                      <Icon name="check" size={12} />
                     </span>
                     {i}
                   </li>
@@ -267,53 +352,70 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
                 data-situation={card.cta.situation}
               >
                 {card.cta.label}
-                {card.featured && <Icon name="arrow" size={16} />}
+                <Icon name="arrow" size={16} />
               </a>
             </div>
           </article>
         ))}
       </div>
 
-      <p class="mt-10 max-w-3xl text-[0.82rem] leading-relaxed text-ink-soft">{packages.note}</p>
+      <p class="mt-9 max-w-3xl text-[0.82rem] leading-relaxed text-ink-soft">{packages.note}</p>
     </div>
   </section>
 )}
 
-{journey && (
-  <!-- 5. ONE COORDINATED TRAJECTORY. The route: one line, one stop per step. -->
-  <section class="section bg-sand" id="traject">
+{compare && (
+  <!-- 6. SELF vs. WITH US. The client asked for "why choose us" to be
+       answered properly. A comparison answers it with facts instead of
+       adjectives, and it is the section that converts the researcher. -->
+  <section class="section bg-haze" id="waarom-wij">
     <div class="container-site">
-      <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
+      <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
         <div>
-          <p class="tab"><span class="tab-num">{num('journey')}</span>{journey.eyebrow}</p>
-          <h2 class="display-2 mt-6">{journey.heading}</h2>
+          <p class="tab">{compare.eyebrow}</p>
+          <h2 class="display-2 mt-5">{compare.heading}</h2>
         </div>
-        <p class="lede text-ink-soft lg:pb-1">{journey.intro}</p>
+        <p class="lede text-ink-soft lg:pb-1">{compare.intro}</p>
       </div>
 
-      <ol class="route mt-16" style="--route-ring: #f2e5d2">
-        {journey.items.map((s, i) => (
-          <li class="route-stop">
-            <span class="route-dot"></span>
-            {i < journey.items.length - 1 && <span class="route-line"></span>}
-            <span class="figure-num block text-[0.8rem] tracking-[0.12em] text-flame-ink">
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <h3 class="mt-2 text-[1.14rem]">{s.title}</h3>
-            <p class="mt-2.5 text-[0.95rem] leading-relaxed text-ink-soft">{s.body}</p>
-          </li>
-        ))}
-      </ol>
+      <div class="card mt-10 overflow-hidden">
+        <div class="hidden grid-cols-[1.1fr_1fr_1.15fr] border-b border-line md:grid">
+          <p class="px-7 py-4 text-[0.72rem] font-bold uppercase tracking-[0.15em] text-ink-soft">&nbsp;</p>
+          <p class="px-7 py-4 text-[0.72rem] font-bold uppercase tracking-[0.15em] text-ink-soft">
+            {compare.selfLabel}
+          </p>
+          <p class="bg-deep px-7 py-4 text-[0.72rem] font-bold uppercase tracking-[0.15em] text-flame-light">
+            {compare.usLabel}
+          </p>
+        </div>
 
-      <div class="mt-16 flex flex-col gap-7 rounded-2xl bg-deep p-8 text-white md:flex-row md:items-center md:justify-between md:gap-12 md:p-10">
-        <p class="max-w-2xl font-display text-[1.25rem] font-semibold leading-snug md:text-[1.5rem]">{journey.outcome}</p>
-        <a
-          href={journey.cta.href}
-          class="btn btn-flame shrink-0"
-          data-track="cta_click"
-          data-situation={journey.cta.situation}
-        >
-          {journey.cta.label}
+        {compare.rows.map((row) => (
+          <div class="grid border-b border-line last:border-b-0 md:grid-cols-[1.1fr_1fr_1.15fr]">
+            <p class="px-7 pt-6 font-display text-[1.02rem] font-bold text-deep md:py-6">{row.topic}</p>
+            <p class="flex items-start gap-3 px-7 pt-3 text-[0.94rem] leading-relaxed text-ink-soft md:py-6">
+              <span class="mt-[0.15rem] shrink-0 text-ink-soft/60 md:hidden">
+                <Icon name="check" size={14} />
+              </span>
+              <span>
+                <span class="font-semibold text-ink md:hidden">{compare.selfLabel}: </span>
+                {row.self}
+              </span>
+            </p>
+            <p class="mt-3 flex items-start gap-3 bg-deep px-7 py-5 text-[0.94rem] leading-relaxed text-white/90 md:mt-0 md:py-6">
+              <span class="tick mt-0.5 shrink-0"><Icon name="check" size={11} /></span>
+              <span>
+                <span class="font-semibold text-white md:hidden">{compare.usLabel}: </span>
+                {row.us}
+              </span>
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-8 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <p class="max-w-2xl text-[0.86rem] leading-relaxed text-ink-soft">{compare.note}</p>
+        <a href={compare.cta.href} class="btn btn-flame shrink-0" data-track="cta_click" data-situation={compare.cta.situation}>
+          {compare.cta.label}
           <Icon name="arrow" size={16} />
         </a>
       </div>
@@ -321,21 +423,144 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
   </section>
 )}
 
+{journey && (
+  <!-- 7. ONE COORDINATED TRAJECTORY. The route: one line, one stop per step,
+       and a picture above every stop so the process reads as a story that ends
+       at the front door, not at a decision letter. A scroller on a phone. -->
+  <section class="section bg-mist" id="traject">
+    <div class="container-site">
+      <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
+        <div>
+          <p class="tab">{journey.eyebrow}</p>
+          <h2 class="display-2 mt-5">{journey.heading}</h2>
+        </div>
+        <p class="lede text-ink-soft lg:pb-1">{journey.intro}</p>
+      </div>
+
+      <ol
+        class={`mt-12 grid snap-x snap-mandatory auto-cols-[76%] grid-flow-col gap-4 overflow-x-auto pb-2 [scrollbar-width:none] sm:auto-cols-[46%] md:auto-cols-auto md:grid-flow-row md:gap-x-10 md:overflow-visible ${journeyCols}`}
+        style="--route-ring: #fbf7f1"
+      >
+        {journey.items.map((s, i) => (
+          <li class="snap-start">
+            {journey.photos?.[i] && (
+              <Photo
+                src={journey.photos[i].src}
+                alt={journey.photos[i].alt}
+                sizes="(min-width: 768px) 16rem, 76vw"
+                class="aspect-[4/3] w-full rounded-xl object-cover"
+              />
+            )}
+            <div class="route-stop mt-5">
+              <span class="route-dot">{i + 1}</span>
+              {i < journey.items.length - 1 && <span class="route-line hidden md:block"></span>}
+              <h3 class="text-[1.1rem] md:pt-0.5">{s.title}</h3>
+              <p class="mt-2 text-[0.94rem] leading-relaxed text-ink-soft">{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="card-deep mt-12 flex flex-col gap-6 p-7 md:flex-row md:items-center md:justify-between md:gap-12 md:p-9">
+        <p class="max-w-2xl font-display text-[1.25rem] font-bold leading-snug md:text-[1.45rem]">{journey.outcome}</p>
+        <div class="flex shrink-0 flex-col gap-3 sm:flex-row">
+          <a href={journey.cta.href} class="btn btn-flame" data-track="cta_click" data-situation={journey.cta.situation}>
+            {journey.cta.label}
+            <Icon name="arrow" size={16} />
+          </a>
+          <a href={wa} target="_blank" rel="noopener" class="btn btn-outline-light" data-track="whatsapp_click">
+            <Icon name="whatsapp" size={17} />{waLabel}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{relationship && (
+  <!-- 8. RELATIONSHIP FORM. A CSS-only tab set: married, registered,
+       unmarried. Three answers in the space of one, and the first panel is in
+       the HTML so nothing waits for JS. -->
+  <section class="section bg-haze" id="relatievorm">
+    <div class="container-site">
+      <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
+        <div>
+          <p class="tab">{relationship.eyebrow}</p>
+          <h2 class="display-2 mt-5">{relationship.heading}</h2>
+        </div>
+        <p class="lede text-ink-soft lg:pb-1">{relationship.intro}</p>
+      </div>
+
+      <div class="mt-10 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10">
+        <div class="tabset relative">
+          {relationship.tabs.map((_tab, i) => (
+            <input type="radio" name="relatievorm" id={`rel-${i}`} checked={i === 0} />
+          ))}
+          <div class="tab-list grid gap-2.5 sm:grid-cols-3">
+            {relationship.tabs.map((t, i) => (
+              <label class="tab-btn" for={`rel-${i}`}>{t.label}</label>
+            ))}
+          </div>
+          <div class="tab-panels card mt-5 p-7 md:p-9">
+            {relationship.tabs.map((t) => (
+              <div class="tab-panel">
+                <h3 class="text-[1.3rem]">{t.title}</h3>
+                <p class="mt-3.5 text-[0.98rem] leading-relaxed text-ink-soft">{t.body}</p>
+                <ul class="mt-6 grid gap-2.5">
+                  {t.points.map((p) => (
+                    <li class="flex items-start gap-3 text-[0.95rem] leading-relaxed">
+                      <span class="tick-quiet mt-0.5"><Icon name="check" size={12} /></span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-5">
+          {relationship.photo && (
+            <Photo
+              src={relationship.photo.src}
+              alt={relationship.photo.alt}
+              sizes="(min-width: 1024px) 28rem, 100vw"
+              class="h-[14rem] w-full rounded-2xl object-cover lg:h-[18rem]"
+            />
+          )}
+          <div class="card-deep p-7 md:p-8">
+            <p class="text-[0.97rem] leading-relaxed text-white/85">{relationship.note}</p>
+            <a
+              href={relationship.cta.href}
+              class="btn btn-flame mt-6 w-full"
+              data-track="cta_click"
+              data-situation={relationship.cta.situation}
+            >
+              {relationship.cta.label}
+              <Icon name="arrow" size={16} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
 {routing && (
   <!-- WHICH SITUATION APPLIES TO YOU -->
-  <section class="section bg-cream" id="situatie">
+  <section class="section bg-mist" id="situatie">
     <div class="container-site">
-      <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
+      <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
         <div>
-          <p class="tab"><span class="tab-num">{num('routing')}</span>{routing.eyebrow}</p>
-          <h2 class="display-2 mt-6">{routing.heading}</h2>
+          <p class="tab">{routing.eyebrow}</p>
+          <h2 class="display-2 mt-5">{routing.heading}</h2>
         </div>
         <p class="lede text-ink-soft lg:pb-1">{routing.intro}</p>
       </div>
 
-      <div class="mt-14 grid gap-6 lg:grid-cols-3">
+      <div class="mt-12 grid gap-6 lg:grid-cols-3">
         {routing.cards.map((card) => (
-          <article class="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper">
+          <article class="card flex flex-col overflow-hidden">
             <Photo
               src={card.photo.src}
               alt={card.photo.alt}
@@ -346,7 +571,7 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
               <h3 class="text-[1.2rem] leading-snug">{card.title}</h3>
               <p class="mt-3.5 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">{card.body}</p>
               {card.price && (
-                <p class="mt-6 border-l-[3px] border-flame bg-sand py-3 pl-4 text-[0.9rem] font-semibold text-deep">
+                <p class="mt-6 border-l-[3px] border-flame bg-haze py-3 pl-4 text-[0.9rem] font-semibold text-deep">
                   {card.price}
                 </p>
               )}
@@ -368,18 +593,18 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
 
 {distinction && (
   <!-- BEFORE OR AFTER ARRIVAL -->
-  <section class="section bg-sand">
+  <section class="section bg-haze">
     <div class="container-site">
-      <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
+      <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
         <div>
-          <p class="tab"><span class="tab-num">{num('distinction')}</span>{distinction.eyebrow}</p>
-          <h2 class="display-2 mt-6">{distinction.heading}</h2>
+          <p class="tab">{distinction.eyebrow}</p>
+          <h2 class="display-2 mt-5">{distinction.heading}</h2>
         </div>
         <p class="lede text-ink-soft lg:pb-1">{distinction.intro}</p>
       </div>
 
-      <div class="mt-14 grid gap-7 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
-        <article class="overflow-hidden rounded-2xl bg-deep text-white">
+      <div class="mt-12 grid gap-7 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
+        <article class="card-deep overflow-hidden">
           <div class="relative">
             <Photo
               src={distinction.abroad.photo.src}
@@ -392,22 +617,22 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
           </div>
           <div class="p-7 md:p-9">
             <h3 class="text-[1.4rem] text-white">{distinction.abroad.title}</h3>
-            <p class="mt-3.5 text-[0.97rem] leading-relaxed text-white/72">{distinction.abroad.body}</p>
+            <p class="mt-3.5 text-[0.97rem] leading-relaxed text-white/75">{distinction.abroad.body}</p>
 
             <div class="mt-8 border-t border-white/20 pt-6">
-              <p class="text-[0.71rem] font-bold uppercase tracking-[0.15em] text-white/60">
+              <p class="text-[0.71rem] font-bold uppercase tracking-[0.15em] text-white/65">
                 {distinction.abroad.packageName}
               </p>
               <p class="figure-num mt-2 text-[2.1rem] leading-none text-flame-light">{distinction.abroad.price}</p>
               <ul class="mt-6 grid gap-2.5">
                 {distinction.abroad.includes.map((i) => (
-                  <li class="flex items-start gap-3 text-[0.94rem] leading-relaxed text-white/88">
-                    <span class="mt-1 text-flame-light"><Icon name="check" size={14} /></span>
+                  <li class="flex items-start gap-3 text-[0.94rem] leading-relaxed text-white/90">
+                    <span class="tick-light mt-0.5"><Icon name="check" size={12} /></span>
                     {i}
                   </li>
                 ))}
               </ul>
-              <p class="mt-5 text-[0.77rem] leading-relaxed text-white/55">{distinction.abroad.priceNote}</p>
+              <p class="mt-5 text-[0.77rem] leading-relaxed text-white/60">{distinction.abroad.priceNote}</p>
             </div>
 
             <a
@@ -422,7 +647,7 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
           </div>
         </article>
 
-        <article class="overflow-hidden rounded-2xl border border-line bg-paper">
+        <article class="card overflow-hidden">
           <Photo
             src={distinction.inNl.photo.src}
             alt={distinction.inNl.photo.alt}
@@ -448,42 +673,73 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
   </section>
 )}
 
-<!-- 6. WHY IMMIGRATION SERVICES NL (brief §8 section 4).
-     The photograph runs off the left edge of the viewport: the one place the
-     layout breaks its own grid, and the reason the page reads as designed
-     rather than assembled. -->
-<section class="section overflow-hidden bg-cream" id="waarom">
+<!-- 9. WHY IMMIGRATION SERVICES NL (brief §8 section 4). A photograph of an
+     adviser at the table with a couple, the person who picks up the phone
+     named underneath it, and four plain reasons in cards. -->
+<section class="section bg-mist" id="waarom">
   <div class="container-site">
-    <div class="grid gap-12 lg:grid-cols-[0.98fr_1.02fr] lg:items-center lg:gap-16">
-      <div class="lg:[margin-left:calc(-1*max(2rem,calc((100vw-78rem)/2+2rem)))]">
+    <div class="grid gap-12 lg:grid-cols-[0.94fr_1.06fr] lg:items-center lg:gap-16">
+      <div class="relative">
         <Photo
           src={c.help.photo.src}
           alt={c.help.photo.alt}
-          sizes="(min-width: 1024px) 46rem, 100vw"
-          class="aspect-[5/4] w-full rounded-2xl object-cover lg:rounded-l-none"
+          sizes="(min-width: 1024px) 40rem, 100vw"
+          class="aspect-[5/4] w-full rounded-2xl object-cover"
         />
+        {c.help.contact && (
+          <div class="card relative mx-4 -mt-14 p-6 sm:mx-8 md:p-7">
+            <p class="tab">{c.help.contact.heading}</p>
+            <p class="mt-3 text-[0.97rem] leading-relaxed text-ink-soft">{c.help.contact.body}</p>
+            <div class="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-4">
+              <div class="flex items-center gap-3">
+                <span class="flex h-11 w-11 items-center justify-center rounded-full bg-flame font-display text-[1.05rem] font-bold text-white">
+                  {c.help.contact.name.charAt(0)}
+                </span>
+                <div class="leading-tight">
+                  <p class="font-display text-[1.02rem] font-bold text-deep">{c.help.contact.name}</p>
+                  <p class="text-[0.82rem] text-ink-soft">{c.help.contact.role}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <a
+                  href={`tel:${brand.phone.e164}`}
+                  class="flex h-10 w-10 items-center justify-center rounded-full bg-deep text-white hover:bg-blue"
+                  aria-label={brand.phone.display}
+                >
+                  <Icon name="phone" size={16} />
+                </a>
+                <a
+                  href={wa}
+                  target="_blank"
+                  rel="noopener"
+                  data-track="whatsapp_click"
+                  class="flex h-10 w-10 items-center justify-center rounded-full bg-wa text-white hover:bg-wa-bright"
+                  aria-label={c.whatsapp.aria}
+                >
+                  <Icon name="whatsapp" size={17} />
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <div>
-        <p class="tab"><span class="tab-num">{num('help')}</span>{c.help.eyebrow}</p>
-        <h2 class="display-2 mt-6">{c.help.heading}</h2>
-        <p class="lede mt-6 text-ink-soft">{c.help.intro}</p>
+        <p class="tab">{c.help.eyebrow}</p>
+        <h2 class="display-2 mt-5">{c.help.heading}</h2>
+        <p class="lede mt-5 text-ink-soft">{c.help.intro}</p>
 
-        <ul class="mt-9 border-t border-line">
+        <ul class="mt-8 grid gap-4 sm:grid-cols-2">
           {c.help.items.map((item, i) => (
-            <li class="flex gap-5 border-b border-line py-5">
-              <span class="figure-num w-7 shrink-0 pt-0.5 text-[0.85rem] text-flame-ink">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <div>
-                <h3 class="text-[1.08rem]">{item.title}</h3>
-                <p class="mt-1.5 text-[0.95rem] leading-relaxed text-ink-soft">{item.body}</p>
-              </div>
+            <li class="card p-6">
+              <span class="figure-num text-[1.1rem] text-flame">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="mt-2 text-[1.06rem]">{item.title}</h3>
+              <p class="mt-1.5 text-[0.93rem] leading-relaxed text-ink-soft">{item.body}</p>
             </li>
           ))}
         </ul>
 
-        <a href={c.help.cta.href} class="btn btn-ink mt-9" data-track="cta_click" data-situation={c.help.cta.situation}>
+        <a href={c.help.cta.href} class="btn btn-flame mt-8" data-track="cta_click" data-situation={c.help.cta.situation}>
           {c.help.cta.label}
           <Icon name="arrow" size={16} />
         </a>
@@ -492,83 +748,130 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
   </div>
 </section>
 
-{steps && (
-  <!-- HOW IT WORKS (brief §8 section 5). The route again, three stops. -->
-  <section class="section bg-sand" id="werkwijze">
+<!-- 10. REVIEWS. Only reviews actually received (brief §21). -->
+<section class="section bg-haze" id="ervaringen">
+  <div class="container-site">
+    <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
+      <div>
+        <p class="tab">{c.reviews.eyebrow}</p>
+        <h2 class="display-2 mt-5">{c.reviews.heading}</h2>
+      </div>
+      <p class="lede text-ink-soft lg:pb-1">{c.reviews.intro}</p>
+    </div>
+
+    <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {c.reviews.items.map((r) => (
+        <figure class="card flex h-full flex-col p-7 md:p-8">
+          <span class="text-flame"><Icon name="quote" size={24} /></span>
+          <blockquote class="mt-4 flex-1 font-display text-[1.14rem] font-semibold leading-[1.4] text-deep md:text-[1.2rem]">
+            {r.quote}
+          </blockquote>
+          <figcaption class="mt-6 flex items-center gap-3 border-t border-line pt-4 text-[0.88rem]">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-flame-soft font-display text-[0.85rem] font-bold text-flame-ink">
+              {r.name.charAt(0)}
+            </span>
+            <span class="font-bold text-deep">{r.name}</span>
+            <span class="text-ink-soft">{r.context}</span>
+          </figcaption>
+        </figure>
+      ))}
+
+      {c.reviews.panel && (
+        <div class="card-deep flex h-full flex-col p-7 md:p-8 lg:col-span-2">
+          <h3 class="text-[1.25rem] text-white md:text-[1.35rem]">{c.reviews.panel.heading}</h3>
+          <p class="mt-4 flex-1 text-[0.98rem] leading-relaxed text-white/80">{c.reviews.panel.body}</p>
+          <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={c.reviews.panel.cta.href}
+              class="btn btn-flame"
+              data-track="cta_click"
+              data-situation={c.reviews.panel.cta.situation}
+            >
+              {c.reviews.panel.cta.label}
+              <Icon name="arrow" size={16} />
+            </a>
+            <a href={wa} target="_blank" rel="noopener" class="btn btn-outline-light" data-track="whatsapp_click">
+              <Icon name="whatsapp" size={17} />{waLabel}
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
+
+    <div class="mt-10 flex flex-col gap-7 border-t border-line pt-7 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p class="text-[0.75rem] font-bold uppercase tracking-[0.15em] text-ink-soft">{c.reviews.countriesLabel}</p>
+        <!-- flex-wrap rather than inline text: rendered inline the separators
+             leave no break opportunity, so the whole list becomes one
+             unbreakable word and pushes a phone into horizontal scroll. -->
+        <div
+          class="mt-3 flex max-w-3xl flex-wrap items-center font-display text-[1.05rem] font-semibold leading-relaxed text-deep md:text-[1.15rem]"
+        >
+          {c.reviews.countries.map((country, i) => (
+            <span class="inline-flex items-center">
+              {i > 0 && <span class="px-2 text-flame" aria-hidden="true">·</span>}
+              {country}
+            </span>
+          ))}
+        </div>
+        {c.reviews.countriesNote && (
+          <p class="mt-3 flex items-start gap-2 text-[0.92rem] text-ink-soft">
+            <span class="mt-1 text-flame"><Icon name="heart" size={14} /></span>
+            {c.reviews.countriesNote}
+          </p>
+        )}
+      </div>
+      {c.reviews.cta && (
+        <a href={c.reviews.cta.href} class="btn btn-flame shrink-0" data-track="cta_click" data-situation={c.reviews.cta.situation}>
+          {c.reviews.cta.label}
+          <Icon name="arrow" size={16} />
+        </a>
+      )}
+    </div>
+  </div>
+</section>
+
+{gallery && (
+  <!-- 11. THE PHOTO WALL. What the visitor is actually buying: an ordinary
+       Dutch life, together. A real scroller on a phone, a grid from md up. -->
+  <section class="section bg-mist" id="samen">
     <div class="container-site">
-      <div class="max-w-2xl">
-        <p class="tab"><span class="tab-num">{num('steps')}</span>{steps.eyebrow}</p>
-        <h2 class="display-2 mt-6">{steps.heading}</h2>
-        <p class="lede mt-5 text-ink-soft">{steps.intro}</p>
+      <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
+        <div>
+          <p class="tab">{gallery.eyebrow}</p>
+          <h2 class="display-2 mt-5">{gallery.heading}</h2>
+        </div>
+        <p class="lede text-ink-soft lg:pb-1">{gallery.intro}</p>
       </div>
 
-      <ol class="route mt-16" style="--route-ring: #f2e5d2">
-        {steps.items.map((s, i) => (
-          <li class="route-stop">
-            <span class="route-dot"></span>
-            {i < steps.items.length - 1 && <span class="route-line"></span>}
-            <span class="figure-num block text-[0.8rem] tracking-[0.12em] text-flame-ink">
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <h3 class="mt-2 text-[1.14rem]">{s.title}</h3>
-            <p class="mt-2.5 text-[0.95rem] leading-relaxed text-ink-soft">{s.body}</p>
-          </li>
+      <div class="rail mt-10">
+        {gallery.photos.map((p) => (
+          <figure class="overflow-hidden rounded-xl bg-haze">
+            <Photo
+              src={p.src}
+              alt={p.alt}
+              sizes="(min-width: 768px) 20rem, 78vw"
+              class="aspect-[4/3] w-full object-cover"
+            />
+          </figure>
         ))}
-      </ol>
+      </div>
 
-      <div class="mt-14">
-        <a href={steps.cta.href} class="btn btn-ink" data-track="cta_click" data-situation={steps.cta.situation}>
-          {steps.cta.label}
+      <div class="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+        <a href={gallery.cta.href} class="btn btn-flame" data-track="cta_click" data-situation={gallery.cta.situation}>
+          {gallery.cta.label}
           <Icon name="arrow" size={16} />
+        </a>
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-outline" data-track="whatsapp_click">
+          <Icon name="whatsapp" size={17} class="text-wa" />{waLabel}
         </a>
       </div>
     </div>
   </section>
 )}
 
-<!-- 7. REVIEWS. Only reviews actually received (brief §21). -->
-<section class="section bg-cream" id="ervaringen">
-  <div class="container-site">
-    <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:gap-16">
-      <div>
-        <p class="tab"><span class="tab-num">{num('reviews')}</span>{c.reviews.eyebrow}</p>
-        <h2 class="display-2 mt-6">{c.reviews.heading}</h2>
-      </div>
-      <p class="lede text-ink-soft lg:pb-1">{c.reviews.intro}</p>
-    </div>
-
-    <div class="mt-14 grid gap-6 md:grid-cols-2">
-      {c.reviews.items.map((r) => (
-        <figure class="flex h-full flex-col rounded-2xl bg-sand p-8 md:p-10">
-          <span class="text-flame"><Icon name="quote" size={26} /></span>
-          <blockquote class="mt-5 flex-1 font-display text-[1.28rem] font-medium leading-[1.35] text-deep md:text-[1.42rem]">
-            {r.quote}
-          </blockquote>
-          <figcaption class="mt-8 flex items-center gap-3 border-t border-line pt-5 text-[0.9rem]">
-            <span class="h-2.5 w-2.5 shrink-0 rounded-full bg-flame"></span>
-            <span class="font-semibold text-deep">{r.name}</span>
-            <span class="text-ink-soft">{r.context}</span>
-          </figcaption>
-        </figure>
-      ))}
-    </div>
-
-    <div class="mt-12 border-t border-line pt-7">
-      <p class="text-[0.75rem] font-bold uppercase tracking-[0.15em] text-ink-soft">{c.reviews.countriesLabel}</p>
-      <p class="mt-3 font-display text-[1.05rem] font-medium leading-relaxed text-deep md:text-[1.2rem]">
-        {c.reviews.countries.map((country, i) => (
-          <>
-            {i > 0 && <span class="px-2 text-flame" aria-hidden="true">·</span>}
-            {country}
-          </>
-        ))}
-      </p>
-    </div>
-  </div>
-</section>
-
 {band && (
-  <!-- 8. PHOTO BAND: the human reason for the procedure -->
+  <!-- 12. PHOTO BAND: the human reason for the procedure -->
   <section class="relative isolate overflow-hidden bg-deeper text-white">
     <Photo
       src={band.photo.src}
@@ -582,12 +885,44 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
     >
     </div>
 
-    <div class="container-site py-24 md:py-32">
+    <div class="container-site py-20 md:py-28">
       <div class="max-w-xl">
         <h2 class="display-2 text-white">{band.heading}</h2>
-        <p class="lede mt-6 text-white/85">{band.body}</p>
-        <a href={band.cta.href} class="btn btn-flame mt-9" data-track="cta_click" data-situation={band.cta.situation}>
+        <p class="lede mt-5 text-white/88">{band.body}</p>
+        <a href={band.cta.href} class="btn btn-flame mt-8" data-track="cta_click" data-situation={band.cta.situation}>
           {band.cta.label}
+          <Icon name="arrow" size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+)}
+
+{steps && (
+  <!-- 13. HOW IT WORKS (brief §8 section 5). Three steps, no more: this is the
+       reassurance that removes the last hesitation in front of the form. -->
+  <section class="section-tight bg-mist" id="werkwijze">
+    <div class="container-site">
+      <div class="max-w-2xl">
+        <p class="tab">{steps.eyebrow}</p>
+        <h2 class="display-2 mt-5">{steps.heading}</h2>
+        <p class="lede mt-4 text-ink-soft">{steps.intro}</p>
+      </div>
+
+      <ol class="route mt-10" style="--route-ring: #fbf7f1">
+        {steps.items.map((s, i) => (
+          <li class="route-stop">
+            <span class="route-dot">{i + 1}</span>
+            {i < steps.items.length - 1 && <span class="route-line"></span>}
+            <h3 class="text-[1.12rem] md:pt-0.5">{s.title}</h3>
+            <p class="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">{s.body}</p>
+          </li>
+        ))}
+      </ol>
+
+      <div class="mt-10">
+        <a href={steps.cta.href} class="btn btn-flame" data-track="cta_click" data-situation={steps.cta.situation}>
+          {steps.cta.label}
           <Icon name="arrow" size={16} />
         </a>
       </div>
@@ -597,16 +932,16 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
 
 {aside && (
   <!-- A visitor this page is not for, kept inside the group (brief §9). -->
-  <section class="section-tight bg-cream">
+  <section class="section-tight bg-mist">
     <div class="container-site">
-      <div class="flex flex-col gap-4 border-l-[3px] border-flame pl-6 md:flex-row md:items-center md:justify-between md:gap-10">
+      <div class="card flex flex-col gap-4 border-l-4 border-l-flame p-6 md:flex-row md:items-center md:justify-between md:gap-10 md:p-7">
         <div class="max-w-2xl">
           <h2 class="text-[1.15rem]">{aside.heading}</h2>
           <p class="mt-2 text-[0.96rem] leading-relaxed text-ink-soft">{aside.body}</p>
         </div>
         <a
           href={aside.href}
-          class="inline-flex shrink-0 items-center gap-2 text-[0.96rem] font-semibold text-flame-ink underline underline-offset-4 hover:text-deep"
+          class="inline-flex shrink-0 items-center gap-2 text-[0.96rem] font-bold text-flame-ink underline underline-offset-4 hover:text-deep"
         >
           {aside.linkLabel}
           <Icon name="arrow" size={15} />
@@ -616,30 +951,24 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
   </section>
 )}
 
-<!-- 9. FAQ. CSS-only accordion, no JS gating of content. -->
-<section class="section bg-sand" id="vragen">
-  <div class="container-site grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
-    <div class="lg:sticky lg:top-28 lg:self-start">
-      <p class="tab"><span class="tab-num">{num('faq')}</span>{c.faq.eyebrow}</p>
-      <h2 class="display-2 mt-6">{c.faq.heading}</h2>
+<!-- 14. FAQ. CSS-only accordion, no JS gating of content. -->
+<section class="section bg-haze" id="vragen">
+  <div class="container-site grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+    <div class="lg:sticky lg:top-32 lg:self-start">
+      <p class="tab">{c.faq.eyebrow}</p>
+      <h2 class="display-2 mt-5">{c.faq.heading}</h2>
       <p class="mt-5 text-[1.02rem] leading-relaxed text-ink-soft">{c.faq.intro}</p>
-      <a
-        href={whatsappUrl(c.whatsapp.text)}
-        target="_blank"
-        rel="noopener"
-        data-track="whatsapp_click"
-        class="mt-6 inline-flex items-center gap-2.5 text-[0.96rem] font-semibold text-flame-ink underline underline-offset-4 hover:text-deep"
-      >
+      <a href={wa} target="_blank" rel="noopener" data-track="whatsapp_click" class="btn btn-wa mt-6">
         <Icon name="whatsapp" size={18} />
         {c.whatsapp.label}
       </a>
     </div>
 
-    <div class="border-t border-line-strong">
+    <div class="card px-6 md:px-8">
       {c.faq.items.map((item, i) => (
-        <details class="group border-b border-line-strong" open={i === 0}>
+        <details class="group border-b border-line last:border-b-0" open={i === 0}>
           <summary
-            class="flex cursor-pointer list-none items-center justify-between gap-8 py-5 font-display text-[1.06rem] font-semibold text-deep [&::-webkit-details-marker]:hidden"
+            class="flex cursor-pointer list-none items-center justify-between gap-8 py-5 font-display text-[1.06rem] font-bold text-deep [&::-webkit-details-marker]:hidden"
           >
             {item.q}
             <span class="faq-mark relative h-3.5 w-3.5 shrink-0" aria-hidden="true"></span>
@@ -651,45 +980,39 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
   </div>
 </section>
 
-<!-- 10. FINAL CTA + LEAD FORM -->
+<!-- 15. FINAL CTA + LEAD FORM -->
 <section class="section relative isolate overflow-hidden bg-deeper text-white" id="contact">
   <Photo
     src={(c.finalCta.photo ?? c.hero.photo).src}
     alt=""
     sizes="100vw"
-    class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_45%] opacity-25"
+    class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_45%] opacity-30"
   />
-  <div class="absolute inset-0 -z-10 bg-deeper/82"></div>
+  <div class="absolute inset-0 -z-10 bg-deeper/80"></div>
 
   <div class="container-site grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-16">
-    <div class="lg:sticky lg:top-28">
-      <p class="tab-light"><span class="text-flame-light">{num('final')}</span>{c.finalCta.eyebrow}</p>
-      <h2 class="display-2 mt-6 text-white">{c.finalCta.heading}</h2>
-      <p class="lede mt-6 text-white/82">{c.finalCta.body}</p>
+    <div class="lg:sticky lg:top-32">
+      <p class="tab-light">{c.finalCta.eyebrow}</p>
+      <h2 class="display-2 mt-5 text-white">{c.finalCta.heading}</h2>
+      <p class="lede mt-5 text-white/85">{c.finalCta.body}</p>
 
       <ul class="mt-8 grid gap-3">
         {c.finalCta.assurances.map((a) => (
-          <li class="flex items-start gap-3 text-[0.97rem] text-white/88">
-            <span class="mt-1 text-flame-light"><Icon name="check" size={15} /></span>
+          <li class="flex items-start gap-3 text-[0.97rem] text-white/90">
+            <span class="tick mt-0.5"><Icon name="check" size={11} /></span>
             {a}
           </li>
         ))}
       </ul>
 
       <div class="mt-9 border-t border-white/16 pt-7">
-        <p class="text-[0.88rem] text-white/60">{c.finalCta.directContact}</p>
-        <div class="mt-3 flex flex-wrap items-center gap-x-7 gap-y-3 text-[0.98rem]">
-          <a href={`tel:${brand.phone.e164}`} class="inline-flex items-center gap-2.5 text-white hover:text-flame-light">
-            <Icon name="phone" size={16} />{brand.phone.display}
+        <p class="text-[0.88rem] text-white/65">{c.finalCta.directContact}</p>
+        <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a href={wa} target="_blank" rel="noopener" data-track="whatsapp_click" class="btn btn-wa">
+            <Icon name="whatsapp" size={18} />{brand.whatsapp.display}
           </a>
-          <a
-            href={whatsappUrl(c.whatsapp.text)}
-            target="_blank"
-            rel="noopener"
-            data-track="whatsapp_click"
-            class="inline-flex items-center gap-2.5 text-white hover:text-flame-light"
-          >
-            <Icon name="whatsapp" size={17} />{brand.whatsapp.display}
+          <a href={`tel:${brand.phone.e164}`} class="btn btn-outline-light">
+            <Icon name="phone" size={16} />{brand.phone.display}
           </a>
         </div>
       </div>
@@ -698,3 +1021,115 @@ const cardBadges = packages?.cards.some((card) => card.badge) ?? false;
     <LeadForm lang={lang} c={c} id="lead-final" source="Afsluitende CTA" fields="full" columns={2} />
   </div>
 </section>
+
+{c.exitIntent && (
+  <!-- Desktop only, once per session, on exit intent (brief §25). Hidden with
+       the `hidden` attribute rather than a class so it never flashes. -->
+  <div
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-deeper/70 px-6"
+    data-exit-intent
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="exit-heading"
+    hidden
+  >
+    <div class="w-full max-w-md rounded-2xl bg-paper p-8 shadow-panel">
+      <h2 id="exit-heading" class="text-[1.45rem]">{c.exitIntent.heading}</h2>
+      <p class="mt-3 text-[0.97rem] leading-relaxed text-ink-soft">{c.exitIntent.body}</p>
+      <a
+        href={c.exitIntent.cta.href}
+        class="btn btn-flame mt-7 w-full"
+        data-track="cta_click"
+        data-situation={c.exitIntent.cta.situation}
+        data-exit-accept
+      >
+        {c.exitIntent.cta.label}
+        <Icon name="arrow" size={16} />
+      </a>
+      <button type="button" class="mt-4 w-full text-[0.9rem] font-medium text-ink-soft hover:text-deep" data-exit-close>
+        {c.exitIntent.dismiss}
+      </button>
+    </div>
+  </div>
+)}
+
+<script>
+  /* --- The situation checker ---------------------------------------- *
+   * Reads the three radio groups, swaps the result panel, and carries the
+   * answers into the lead form: the hidden `situation` field gets a one-line
+   * summary and the closing form's message box is pre-filled, so the first
+   * phone call starts from something real instead of from zero.           */
+  const checker = document.querySelector<HTMLElement>('[data-checker]');
+  if (checker) {
+    const results = JSON.parse(checker.dataset.results ?? '{}') as Record<string, { title: string; body: string }>;
+    const fallback = JSON.parse(checker.dataset.default ?? '{}') as { title: string; body: string };
+    const key = checker.dataset.resultKey ?? '';
+    const title = checker.querySelector<HTMLElement>('[data-check-title]');
+    const body = checker.querySelector<HTMLElement>('[data-check-body]');
+    const cta = checker.querySelector<HTMLAnchorElement>('[data-check-cta]');
+    const baseSituation = cta?.dataset.situation ?? '';
+
+    const update = () => {
+      const answers: string[] = [];
+      let outcome = fallback;
+      checker.querySelectorAll<HTMLInputElement>('input[type="radio"]:checked').forEach((input) => {
+        answers.push(`${input.dataset.question ?? ''} ${input.value}`);
+        if (input.name === `check-${key}`) outcome = results[input.value] ?? fallback;
+      });
+      if (title) title.textContent = outcome.title;
+      if (body) body.textContent = outcome.body;
+      if (cta && answers.length) cta.dataset.situation = `${baseSituation}: ${answers.join(' | ')}`;
+    };
+
+    checker.addEventListener('change', update);
+
+    // The answers are worth more in the message box than in a tracking field,
+    // so they are written there too — but only if the visitor has not already
+    // typed something of their own.
+    cta?.addEventListener('click', () => {
+      const lines: string[] = [];
+      checker.querySelectorAll<HTMLInputElement>('input[type="radio"]:checked').forEach((input) => {
+        lines.push(`${input.dataset.question ?? ''} ${input.value}`);
+      });
+      if (!lines.length) return;
+      document.querySelectorAll<HTMLTextAreaElement>('textarea[name="message"]').forEach((box) => {
+        if (!box.value.trim()) box.value = lines.join('\n');
+      });
+    });
+  }
+
+  /* --- Exit intent (desktop only, once per session) ------------------ */
+  const modal = document.querySelector<HTMLElement>('[data-exit-intent]');
+  if (modal && window.matchMedia('(min-width: 1024px)').matches) {
+    const KEY = 'isnl_exit_shown';
+    const close = () => {
+      modal.hidden = true;
+      modal.classList.remove('flex');
+    };
+    const open = () => {
+      if (sessionStorage.getItem(KEY)) return;
+      // Never interrupt someone who is already converting.
+      if (document.querySelector('form[data-lead-form] input:focus, form[data-lead-form] textarea:focus')) return;
+      try {
+        sessionStorage.setItem(KEY, '1');
+      } catch (e) {
+        /* private mode: show it once and never track it */
+      }
+      modal.hidden = false;
+      modal.classList.add('flex');
+      (window as any).dataLayer?.push({ event: 'exit_intent_shown' });
+    };
+
+    document.addEventListener('mouseout', (e) => {
+      if (e.relatedTarget === null && (e as MouseEvent).clientY <= 0) open();
+    });
+    modal.querySelector('[data-exit-close]')?.addEventListener('click', close);
+    modal.querySelector('[data-exit-accept]')?.addEventListener('click', close);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.hidden) close();
+    });
+  }
+</script>

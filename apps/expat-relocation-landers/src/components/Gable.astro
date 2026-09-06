@@ -1,0 +1,42 @@
+---
+/**
+ * A canal-house roofline, cut out of the bottom edge of a dark band.
+ *
+ * The client asked for something quietly Dutch in the design rather than in the
+ * photography alone. A row of gables — stepped, pitched, one after another the
+ * way an ordinary Dutch street actually looks — does that in one hairline and
+ * without a single tulip or windmill.
+ *
+ * It is painted in the colour of the section *below*, so it reads as the next
+ * section's ground rising into the skyline rather than as an ornament stuck on
+ * the bottom of this one.
+ *
+ * Drawn as a repeating background rather than one stretched <svg>: a viewBox
+ * scaled to the viewport width would flatten the gables into ramps on a wide
+ * screen. A fixed 240x34 tile keeps every roof the same shape at every width.
+ */
+interface Props {
+  /** Background colour of the section below this one. */
+  fill?: string;
+  class?: string;
+}
+const { fill = '#fbf7f1', class: className = '' } = Astro.props;
+
+// One tile. It opens and closes mid-roof at the same height, so the ridge
+// carries on into the next tile and the repeat is invisible.
+const TILE =
+  'M0,34 V17 L8,10 L16,17 V13 H22 V9 H28 V5 H35 V9 H41 V13 H47 V18 L63,7 L79,18 ' +
+  'V14 H86 V10 H93 V6 H100 V10 H107 V14 H114 V19 H121 V15 H128 V11 H135 V7 H143 ' +
+  'V11 H150 V15 H157 V18 L173,7 L189,18 V13 H196 V9 H203 V5 H210 V9 H217 V13 H224 ' +
+  'V17 L232,10 L240,17 V34 Z';
+
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="240" height="34" viewBox="0 0 240 34"><path d="${TILE}" fill="${fill}"/></svg>`;
+const url = `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+---
+
+<div
+  class={`h-[26px] w-full md:h-[34px] ${className}`}
+  style={`background-image:${url};background-repeat:repeat-x;background-position:bottom left;background-size:240px 34px`}
+  aria-hidden="true"
+>
+</div>

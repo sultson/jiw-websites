@@ -10,8 +10,8 @@ interface Props {
   class?: string;
 }
 const { tone = 'dark', class: className = '' } = Astro.props;
-const line = tone === 'light' ? 'rgba(255,255,255,0.45)' : 'rgba(27,46,49,0.32)';
-const from = tone === 'light' ? '#ffffff' : '#0e3a3d';
+const line = tone === 'light' ? 'rgba(255,255,255,0.45)' : 'rgba(18,38,60,0.32)';
+const from = tone === 'light' ? '#ffffff' : '#0f2f55';
 const word = tone === 'light' ? 'text-white' : 'text-deep';
 const suffix = tone === 'light' ? 'text-flame-light' : 'text-flame-ink';
 ---
@@ -20,7 +20,7 @@ const suffix = tone === 'light' ? 'text-flame-light' : 'text-flame-ink';
   <svg width="34" height="14" viewBox="0 0 34 14" fill="none" aria-hidden="true" class="shrink-0">
     <path d="M7 7h20" stroke={line} stroke-width="2" stroke-linecap="round" />
     <circle cx="7" cy="7" r="4.5" fill={from} />
-    <circle cx="27" cy="7" r="6" fill="#da5a22" />
+    <circle cx="27" cy="7" r="6" fill="#df6516" />
   </svg>
   <span class={`font-display text-[1.02rem] font-semibold tracking-[-0.03em] sm:text-[1.18rem] ${word}`}>
     Immigration Services <span class={suffix}>NL</span>

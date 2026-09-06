@@ -1,5 +1,6 @@
 ---
 import { asset } from '../lib/assets';
+import { intrinsicSize } from '../lib/imageSize';
 
 /**
  * One generated photo plus its 640w variant. Every image in public/images ships
@@ -7,9 +8,13 @@ import { asset } from '../lib/assets';
  * is derived from the source path rather than repeated at every call site, and
  * both variants get the same cache-busting version.
  *
- * width/height carry the intrinsic ratio of the generator output. Where a
- * caller crops with object-cover plus a height class that class wins, which is
- * the point: the attributes only need to be right for the uncropped case.
+ * width/height are read from the file itself at build time. They used to be
+ * hard-coded at 1264x848, which was true until the hero became a 4:5 portrait
+ * and the bands became 21:9 — a wrong ratio here is a layout shift on a phone,
+ * because the width/height attributes win over any CSS aspect-ratio.
+ * Where a caller crops with object-cover plus a height class, that class wins,
+ * which is the point: the attributes only have to be right for the uncropped
+ * case.
  */
 interface Props {
   src: string;
@@ -29,6 +34,7 @@ const {
 } = Astro.props;
 const wide = asset(src);
 const narrow = asset(src.replace(/\.jpg$/, '-640.jpg'));
+const { width, height } = intrinsicSize(src);
 ---
 
 <img
@@ -36,8 +42,8 @@ const narrow = asset(src.replace(/\.jpg$/, '-640.jpg'));
   srcset={`${narrow} 640w, ${wide} 1264w`}
   sizes={sizes}
   alt={alt}
-  width="1264"
-  height="848"
+  width={width}
+  height={height}
   loading={loading}
   decoding="async"
   fetchpriority={fetchpriority}

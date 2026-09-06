@@ -7,6 +7,14 @@ import type { LanderContent } from '../types';
  * dus over immigratie, niet over het examen. Het basisexamen inburgering
  * buitenland komt alleen voor als voorwaarde en als onderdeel van het complete
  * traject; het is nooit het onderwerp. Twee commerciële keuzes, één lead.
+ *
+ * Tweede ronde, na de feedback van de klant van 31-08. Wat er is veranderd:
+ * de pagina opent op een gezicht in plaats van op een kleurvlak, er staat op
+ * elk scherm een mens, er is een interactieve situatiecheck bijgekomen, een
+ * vergelijking die de vraag "waarom jullie" concreet beantwoordt, en op elk
+ * blok een weg terug naar het formulier. Elke claim hieronder is er een die
+ * de klant zelf heeft aangeleverd; er staan geen verzonnen cijfers of
+ * ervaringen op de pagina.
  */
 export const nl: LanderContent = {
   lang: 'nl',
@@ -14,32 +22,32 @@ export const nl: LanderContent = {
     title: 'Partnerhereniging Nederland: hulp bij de MVV/TEV-aanvraag',
     description:
       'Wilt u uw partner uit het buitenland naar Nederland halen? Wij bereiden uw MVV/TEV-partneraanvraag professioneel voor, inclusief documentencheck en begeleiding. Vanaf €799 excl. btw.',
-    imageAlt: 'Stel omhelst elkaar lachend in de aankomsthal van een Nederlandse luchthaven',
+    imageAlt: 'Stel lacht samen op een brug over een Amsterdamse gracht',
   },
   nav: {
     links: [
       { label: 'Uw situatie', href: '#situatie' },
+      { label: 'Doe de check', href: '#check' },
       { label: 'Begeleiding', href: '#begeleiding' },
-      { label: 'Het traject', href: '#traject' },
       { label: 'Ervaringen', href: '#ervaringen' },
       { label: 'Vragen', href: '#vragen' },
     ],
     cta: { label: 'Start mijn aanvraag', href: '#contact' },
     langSwitch: 'English',
+    tagline: 'Specialist in partnerhereniging en Nederlandse immigratieprocedures sinds 2009',
   },
   hero: {
-    eyebrow: 'Partnerhereniging in Nederland',
+    eyebrow: 'Partnerhereniging · specialist sinds 2009',
     route: { from: 'Uw partner in het buitenland', to: 'Samen in Nederland' },
     h1: 'Wilt u uw partner <span class="hl">naar Nederland</span> halen?',
     intro: [
-      'Woont uw partner nog in het buitenland en wilt u samen in Nederland verder? Afhankelijk van uw situatie gelden er eisen aan uw inkomen, aan uw relatie, aan de documenten die u aanlevert, aan het basisexamen inburgering buitenland en aan de MVV/TEV-procedure.',
-      'Wij bereiden uw partneraanvraag professioneel voor en verzorgen waar nodig ook de A1-examenvoorbereiding, zodat het hele traject bij één partij ligt.',
+      'Woont uw partner nog in het buitenland en wilt u samen in Nederland verder? Wij bereiden uw MVV/TEV-partneraanvraag professioneel voor, van documentencheck tot indiening, en verzorgen waar nodig ook de A1-examenvoorbereiding. Eén aanspreekpunt, tot uw partner bij u thuis is.',
     ],
     benefits: [
       'Persoonlijke begeleiding',
       'Documentenchecklist op maat',
-      'Professionele voorbereiding van uw aanvraag',
-      'Compleet traject inclusief A1-voorbereiding mogelijk',
+      'Professionele dossieropbouw',
+      'Compleet traject met A1-voorbereiding',
     ],
     offer: {
       name: 'MVV/TEV-partneraanvraag',
@@ -47,10 +55,16 @@ export const nl: LanderContent = {
       note: 'Dit tarief betreft onze dienstverlening. Leges van de overheid en kosten van derden zijn niet inbegrepen, tenzij uitdrukkelijk anders overeengekomen.',
     },
     cta: { label: 'Start mijn partneraanvraag', href: '#aanvraag', situation: 'Hero' },
+    whatsappCta: 'WhatsApp direct',
     note: 'Wij nemen persoonlijk contact met u op, meestal binnen één werkdag.',
+    proof: {
+      quote: 'Dankzij Immigration Services NL konden wij eindelijk samen zijn. Ze zagen ons niet als dossier, maar als gezin.',
+      name: 'Emily',
+      context: 'Canada naar Nederland',
+    },
     photo: {
       src: '/images/ph-hero.jpg',
-      alt: 'Stel omhelst elkaar lachend in de aankomsthal van een Nederlandse luchthaven',
+      alt: 'Stel lacht samen op een brug over een Amsterdamse gracht, met grachtenpanden en fietsen op de achtergrond',
     },
   },
   stats: [
@@ -77,11 +91,63 @@ export const nl: LanderContent = {
     ],
     cta: { label: 'Bespreek mijn situatie', href: '#contact', situation: 'Uw situatie' },
     photo: {
-      src: '/images/ph-situatie.jpg',
-      alt: 'Stel zit samen op de grond in de woonkamer en sorteert de papieren voor de aanvraag',
+      src: '/images/ph-afstand.jpg',
+      alt: "Vrouw videobelt 's avonds vanuit haar Nederlandse woonkamer met haar partner in het buitenland",
     },
     photoNote:
-      'Twijfelt u over de inkomenseis of over uw bewijsstukken? Laat uw gegevens achter, dan lopen wij uw situatie met u door.',
+      'De afstand is het echte probleem, niet het formulier. Hoe eerder wij weten wat er in uw situatie geldt, hoe korter die afstand duurt.',
+  },
+  checker: {
+    eyebrow: 'Doe de check',
+    heading: 'Welke route geldt in uw situatie?',
+    intro:
+      'Drie vragen, en u ziet welke van onze twee trajecten bij u past. Dit is een eerste wegwijzer en geen beoordeling van uw aanvraag; die maken wij pas nadat wij uw documenten hebben gezien.',
+    questions: [
+      {
+        id: 'partner',
+        label: 'Waar woont uw partner nu?',
+        options: ['In het buitenland', 'Al in Nederland'],
+      },
+      {
+        id: 'relatie',
+        label: 'Wat is uw relatievorm?',
+        options: ['Getrouwd', 'Geregistreerd partnerschap', 'Ongehuwd samenwonend', 'Wij willen nog trouwen'],
+      },
+      {
+        id: 'examen',
+        label: 'Basisexamen inburgering buitenland al behaald?',
+        options: ['Ja, behaald', 'Nee, nog niet', 'Vrijgesteld', 'Weet ik niet'],
+      },
+    ],
+    resultKey: 'examen',
+    resultDefault: {
+      title: 'Beantwoord de drie vragen hiernaast',
+      body: 'Dan ziet u meteen welk traject bij uw situatie hoort en wat dat bij ons kost. Uw antwoorden gaan mee naar het formulier, zodat ons eerste gesprek meteen ergens over gaat.',
+    },
+    results: {
+      'Ja, behaald': {
+        title: 'De MVV/TEV-partneraanvraag past bij u',
+        body: 'Het examen staat u niet meer in de weg. Wij beoordelen uw route, stellen de documentenchecklist op, controleren uw bewijsstukken en bereiden de aanvraag voor. Dat is onze dienst van €799 excl. btw.',
+      },
+      Vrijgesteld: {
+        title: 'De MVV/TEV-partneraanvraag past bij u',
+        body: 'Is uw partner vrijgesteld van de examenplicht, dan gaat u rechtstreeks naar de aanvraag. Wij toetsen de vrijstelling voordat wij beginnen en bouwen daarna het dossier op. €799 excl. btw.',
+      },
+      'Nee, nog niet': {
+        title: 'Het complete partnertraject past bij u',
+        body: 'Geldt de examenplicht voor uw partner, dan moet het examen zijn behaald voordat de MVV kan worden afgegeven. In het complete traject van €1.199 excl. btw verzorgen wij de A1-voorbereiding en de aanvraag samen, met één aanspreekpunt.',
+      },
+      'Weet ik niet': {
+        title: 'Dit zoeken wij eerst voor u uit',
+        body: 'Of de examenplicht geldt, hangt af van de nationaliteit van uw partner, het verblijfsdoel en mogelijke vrijstellingen. Wij stellen dat vast voordat er iets wordt ingediend. Pas daarna weet u welk traject u nodig heeft.',
+      },
+    },
+    note: 'Wat dit betekent',
+    cta: { label: 'Bespreek deze uitkomst', href: '#contact', situation: 'Situatiecheck' },
+    photo: {
+      src: '/images/ph-station.jpg',
+      alt: 'Stel met een koffer op een Nederlands treinperron',
+    },
   },
   packages: {
     eyebrow: 'Begeleiding',
@@ -107,7 +173,7 @@ export const nl: LanderContent = {
         cta: { label: 'Start mijn aanvraag', href: '#contact', situation: 'MVV/TEV-partneraanvraag €799' },
       },
       {
-        badge: 'Compleet traject',
+        badge: 'Meest gekozen · compleet traject',
         featured: true,
         title: 'Compleet partnertraject',
         price: '€1.199 excl. btw',
@@ -127,11 +193,53 @@ export const nl: LanderContent = {
     ],
     note: 'Deze tarieven betreffen onze dienstverlening. Leges van de overheid en kosten van derden, zoals legalisatie, vertalingen en het examen zelf, zijn niet inbegrepen tenzij uitdrukkelijk anders overeengekomen. De bevoegde instantie beslist over de aanvraag.',
   },
+  compare: {
+    eyebrow: 'Waarom wij',
+    heading: 'Zelf uitzoeken, of het door ons laten voorbereiden',
+    intro:
+      'U mag de aanvraag zelf indienen. De vraag is alleen wat het u kost als er iets ontbreekt. Dit is het verschil, per onderdeel.',
+    selfLabel: 'Zelf regelen',
+    usLabel: 'Met ons',
+    rows: [
+      {
+        topic: 'De route bepalen',
+        self: 'U zoekt zelf uit of de TEV-procedure geldt, of uw partner MVV-plichtig is en of het basisexamen van toepassing is.',
+        us: 'Wij stellen vooraf vast welke route en welke eisen in uw situatie gelden, voordat er iets wordt ingediend.',
+      },
+      {
+        topic: 'De documenten',
+        self: 'U verzamelt de bewijsstukken en merkt vaak pas na indienen dat er iets ontbreekt, verkeerd vertaald of niet gelegaliseerd is.',
+        us: 'U krijgt een documentenchecklist op maat en wij controleren elk stuk voordat het in het dossier gaat.',
+      },
+      {
+        topic: 'De inkomenseis',
+        self: 'De bedragen worden twee keer per jaar aangepast en wat als duurzaam inkomen telt, verschilt per contractvorm.',
+        us: 'Wij toetsen uw inkomen aan de eis die geldt op het moment van indienen en zeggen het u eerlijk als het nog niet haalbaar is.',
+      },
+      {
+        topic: 'De onderbouwing',
+        self: 'Bent u niet getrouwd, dan moet u zelf aannemelijk maken dat uw relatie duurzaam en exclusief is.',
+        us: 'Wij bouwen die onderbouwing op zoals een beoordelaar hem leest, met de bewijsstukken die er in de praktijk toe doen.',
+      },
+      {
+        topic: 'Als er iets verandert',
+        self: 'U zoekt zelf uit wat een aanvullende vraag of een wijziging in uw situatie betekent voor de lopende aanvraag.',
+        us: 'U belt één aanspreekpunt dat uw dossier kent en die dezelfde dag weet waar u staat.',
+      },
+      {
+        topic: 'Wat het kost',
+        self: 'Niets vooraf. Een afwijzing betekent wel een nieuwe aanvraag, opnieuw leges en opnieuw wachten.',
+        us: 'Een vast tarief vanaf €799 excl. btw voor onze dienstverlening, vooraf met u afgesproken.',
+      },
+    ],
+    note: 'Wij kunnen de uitkomst van een procedure nooit garanderen. De bevoegde instantie beslist over de aanvraag. Wat wij wel doen, is zorgen dat uw dossier compleet en onderbouwd wordt ingediend.',
+    cta: { label: 'Laat ons uw dossier voorbereiden', href: '#contact', situation: 'Zelf of met ons' },
+  },
   journey: {
     eyebrow: 'Het traject',
-    heading: 'Van examenvoorbereiding tot de partneraanvraag',
+    heading: 'Van examenvoorbereiding tot aankomst in Nederland',
     intro:
-      'Wij behandelen het examen en de aanvraag niet als twee losse zaken. Dit is de volgorde die wij aanhouden voor cliënten die beide nodig hebben.',
+      'Wij behandelen het examen en de aanvraag niet als twee losse zaken. Dit is de volgorde die wij aanhouden voor cliënten die beide nodig hebben, tot en met de eerste weken in Nederland.',
     items: [
       {
         title: 'A1-voorbereiding indien nodig',
@@ -149,37 +257,101 @@ export const nl: LanderContent = {
         title: 'De procedure',
         body: 'Begeleiding tijdens de overeengekomen procedure, tot aan de beslissing.',
       },
+      {
+        title: 'Aankomst in Nederland',
+        body: 'De MVV ophalen bij de ambassade, de verblijfspas bij de IND, inschrijven bij de gemeente. Ook daarbij kunnen wij u begeleiden.',
+      },
+    ],
+    photos: [
+      { src: '/images/ph-keukentafel.jpg', alt: 'Stel bereidt samen aan de keukentafel het examen voor op een laptop' },
+      { src: '/images/ph-examen.jpg', alt: 'Man legt met een koptelefoon op het examen af achter een computer' },
+      { src: '/images/ph-dossier.jpg', alt: 'Twee paar handen sorteren de documenten voor de aanvraag in een map' },
+      { src: '/images/ph-gemeente.jpg', alt: 'Stel loopt lachend de trap af bij een Nederlands gemeentehuis' },
+      { src: '/images/ph-aankomst.jpg', alt: 'Omhelzing in de aankomsthal van een Nederlandse luchthaven' },
     ],
     outcome: 'Eén doorlopend traject, één dossierstrategie, één aanspreekpunt.',
     cta: { label: 'Ik wil het complete traject', href: '#contact', situation: 'Het traject' },
   },
+  relationship: {
+    eyebrow: 'Relatievorm',
+    heading: 'Getrouwd, geregistreerd of samenwonend?',
+    intro:
+      'Alle drie de vormen komen in aanmerking voor partnerhereniging. Wat verschilt, is wat u moet aantonen. Kies uw situatie.',
+    tabs: [
+      {
+        label: 'Getrouwd',
+        title: 'U bent getrouwd',
+        body: 'Een in het buitenland gesloten huwelijk moet in Nederland erkend kunnen worden. Daarvoor moet de huwelijksakte in de meeste gevallen gelegaliseerd of van een apostille voorzien zijn en vertaald worden door een beëdigd vertaler.',
+        points: [
+          'Gelegaliseerde of geapostilleerde huwelijksakte',
+          'Beëdigde vertaling waar dat vereist is',
+          'Bewijs dat u beiden ongehuwd was op de huwelijksdatum',
+          'De gebruikelijke eisen aan inkomen en verblijf van de referent',
+        ],
+      },
+      {
+        label: 'Geregistreerd partnerschap',
+        title: 'U heeft een geregistreerd partnerschap',
+        body: 'Een geregistreerd partnerschap wordt voor deze procedure in beginsel gelijkgesteld aan een huwelijk, mits het naar Nederlands recht als zodanig kan worden erkend. Niet elke buitenlandse samenlevingsvorm valt daaronder.',
+        points: [
+          'Bewijs van registratie, gelegaliseerd waar dat vereist is',
+          'Toets of de registratie in Nederland erkend kan worden',
+          'Beëdigde vertaling waar dat vereist is',
+          'De gebruikelijke eisen aan inkomen en verblijf van de referent',
+        ],
+      },
+      {
+        label: 'Ongehuwd samenwonend',
+        title: 'U woont ongehuwd samen',
+        body: 'Ook zonder huwelijk kunt u een aanvraag doen. U moet dan aantonen dat sprake is van een duurzame en exclusieve relatie. Dat is het onderdeel waar in de praktijk het meest te winnen valt, omdat u het zelf moet onderbouwen.',
+        points: [
+          'Een relatieverklaring van u beiden',
+          'Bewijs van contact en van bezoeken over een langere periode',
+          'Bewijs dat u beiden ongehuwd bent',
+          'Onderbouwing die laat zien dat de relatie duurzaam en exclusief is',
+        ],
+      },
+    ],
+    note: 'Twijfelt u of trouwen in uw situatie de snelste route is? Dat hangt af van uw land, uw documenten en uw planning. Leg het ons voor voordat u iets vastlegt.',
+    cta: { label: 'Vraag het ons', href: '#contact', situation: 'Relatievorm' },
+    photo: {
+      src: '/images/ph-park.jpg',
+      alt: 'Stel zit samen op een bank in een Nederlands stadspark in de herfst',
+    },
+  },
   help: {
-    eyebrow: 'Waarom wij',
-    heading: 'Waarom cliënten hun partneraanvraag bij ons neerleggen',
+    eyebrow: 'Werkwijze',
+    heading: 'Hoe wij uw dossier aanpakken',
     intro:
       'Wij zijn sinds 2009 gespecialiseerd in Nederlandse immigratieprocedures en begeleiden cliënten uit de hele wereld. U krijgt antwoord in gewone taal, van iemand die uw dossier kent.',
     items: [
       {
-        title: 'Gespecialiseerde immigratiebegeleiding',
-        body: 'Partnerhereniging, MVV en TEV zijn ons dagelijks werk, geen bijzaak.',
+        title: 'Eerst toetsen, dan pas indienen',
+        body: 'Wij stellen vast welke route geldt en of u aan de eisen voldoet voordat er een aanvraag de deur uitgaat.',
       },
       {
-        title: 'Eén vast aanspreekpunt',
-        body: 'Dezelfde persoon van uw eerste vraag tot de beslissing op de aanvraag.',
+        title: 'Uw bewijsstukken stuk voor stuk gecontroleerd',
+        body: 'Legalisatie, vertaling, geldigheidsduur en inhoud, voordat een document in het dossier belandt.',
       },
       {
-        title: 'Duidelijke communicatie',
-        body: 'U weet wat er nodig is, wat het kost en wat u wanneer kunt verwachten.',
+        title: 'Een dossier dat leest zoals het beoordeeld wordt',
+        body: 'Wij bouwen de onderbouwing op in de volgorde waarin er naar gekeken wordt, niet in de volgorde waarin u het aanlevert.',
       },
       {
-        title: 'Professionele dossieropbouw',
-        body: 'Wij controleren uw bewijsstukken en bouwen het dossier op zoals het beoordeeld wordt.',
+        title: 'Bereikbaar zolang de procedure loopt',
+        body: 'Verandert er iets in uw werk, uw adres of uw relatie, dan weet u dezelfde dag wat dat betekent.',
       },
     ],
-    cta: { label: 'Bespreek uw situatie', href: '#contact', situation: 'Waarom wij' },
+    cta: { label: 'Bespreek uw situatie', href: '#contact', situation: 'Werkwijze' },
     photo: {
       src: '/images/ph-advies.jpg',
       alt: 'Adviseur bespreekt aan tafel de aanvraag met een stel',
+    },
+    contact: {
+      heading: 'Wie u aan de lijn krijgt',
+      body: 'Geen callcenter en geen wisselende adviseurs. U spreekt met Johanna, oprichter van Immigration Services NL, of met een collega die uw dossier kent. Bellen, mailen of appen: u kiest.',
+      name: 'Johanna',
+      role: 'Oprichter, Immigration Services NL',
     },
   },
   reviews: {
@@ -188,9 +360,19 @@ export const nl: LanderContent = {
     intro: 'Wij plaatsen alleen ervaringen die wij daadwerkelijk hebben ontvangen.',
     items: [
       {
+        quote: 'Dankzij Immigration Services NL konden wij eindelijk samen zijn. Ze zagen ons niet als dossier, maar als gezin.',
+        name: 'Emily',
+        context: 'Canada naar Nederland',
+      },
+      {
         quote: 'Dankzij E & I was onze gezinshereniging een stressvrij proces. Alles werd perfect geregeld.',
         name: 'Anna',
         context: 'Rusland naar Nederland',
+      },
+      {
+        quote: 'Ze hielpen me met elke stap en gaven nuttige adviezen waardoor ik mij meteen welkom voelde in Nederland.',
+        name: 'Liam',
+        context: 'Mexico naar Nederland',
       },
       {
         quote: 'Johanna stond de eerste dagen 24/7 voor ons klaar. Echt een unieke service!',
@@ -198,17 +380,59 @@ export const nl: LanderContent = {
         context: 'Nigeria naar Nederland',
       },
     ],
+    panel: {
+      heading: 'Liever met een cliënt zelf spreken?',
+      body: 'Wij verzinnen geen ervaringen en plaatsen geen slaagpercentages. Wilt u weten hoe het traject in de praktijk gaat, dan brengen wij u graag in contact met een cliënt die uw route al heeft afgelegd.',
+      cta: { label: 'Vraag naar een referentie', href: '#contact', situation: 'Referentie gevraagd' },
+    },
     countriesLabel: 'Cliënten uit onder meer',
     countries: ['India', 'Nigeria', 'Ghana', 'Suriname', 'Colombia', 'de Filipijnen', 'Turkije', 'de Verenigde Staten'],
+    countriesNote: 'Waaronder stellen die u kent uit All You Need Is Love.',
+    cta: { label: 'Start mijn partneraanvraag', href: '#contact', situation: 'Ervaringen' },
+  },
+  gallery: {
+    eyebrow: 'Samen in Nederland',
+    heading: 'Dit is waar de procedure over gaat',
+    intro:
+      'Niet over formulieren, maar over boodschappen doen op zaterdag, een sleutel die past en een tafel met te veel mensen eraan.',
+    photos: [
+      { src: '/images/ph-fietsen.jpg', alt: 'Stel fietst naast elkaar door een Nederlandse straat met bakstenen huizen' },
+      { src: '/images/ph-markt.jpg', alt: 'Stel koopt tulpen op een Nederlandse markt op zaterdagochtend' },
+      { src: '/images/ph-sleutel.jpg', alt: 'Stel staat met de sleutels in de deuropening van hun Nederlandse woning' },
+      { src: '/images/ph-tuin.jpg', alt: 'Stel eet met Nederlandse familie en vrienden aan een lange tafel in de tuin' },
+      { src: '/images/ph-strand.jpg', alt: 'Stel wandelt in de herfst over een leeg Nederlands strand' },
+      { src: '/images/ph-aankomst.jpg', alt: 'Omhelzing in de aankomsthal van een Nederlandse luchthaven' },
+    ],
+    cta: { label: 'Begin aan uw aanvraag', href: '#contact', situation: 'Samen in Nederland' },
   },
   band: {
     heading: 'Samen wonen in Nederland',
     body: 'Achter elke aanvraag zit een stel dat samen verder wil. Daarom krijgt u bij ons één aanspreekpunt dat uw dossier kent en dat u kunt bellen als er iets verandert.',
     cta: { label: 'Start mijn partneraanvraag', href: '#contact', situation: 'Fotoband' },
     photo: {
-      src: '/images/ph-tuin.jpg',
-      alt: 'Stel eet met Nederlandse familie en vrienden aan een lange tafel in de tuin',
+      src: '/images/ph-band.jpg',
+      alt: 'Stel staat in de schemering aan een Amsterdamse gracht met verlichte grachtenpanden',
     },
+  },
+  steps: {
+    eyebrow: 'Zo begint het',
+    heading: 'In drie stappen aan tafel',
+    intro: 'Geen vragenlijst vooraf. U laat uw gegevens achter, de rest bespreken wij persoonlijk.',
+    items: [
+      {
+        title: 'Laat uw gegevens achter',
+        body: 'Naam, e-mail en een nummer waarop wij u kunnen bereiken. Meer hoeft nu niet.',
+      },
+      {
+        title: 'Wij bellen u persoonlijk',
+        body: 'Wij lopen uw situatie door en zeggen welke route en welk tarief daarbij horen.',
+      },
+      {
+        title: 'Wij starten uw traject',
+        body: 'Gaat u akkoord, dan beginnen wij met de documentencheck en de opbouw van uw dossier.',
+      },
+    ],
+    cta: { label: 'Zet de eerste stap', href: '#contact', situation: 'Zo begint het' },
   },
   aside: {
     heading: 'Wilt u uw partner eerst laten overkomen voor een bezoek?',
@@ -238,6 +462,10 @@ export const nl: LanderContent = {
         a: 'Ja. Naast gehuwden en geregistreerd partners kunnen ook ongehuwde partners een aanvraag doen. U moet dan aantonen dat sprake is van een duurzame en exclusieve relatie. Dat vraagt om onderbouwing met bewijsstukken, en juist daar valt in de praktijk het meest te winnen.',
       },
       {
+        q: 'Hoe lang duurt de procedure?',
+        a: 'De beslistermijn wordt door de bevoegde instantie bepaald en kan worden verlengd, bijvoorbeeld als er aanvullende vragen komen. Wat u zelf in de hand heeft, is de tijd vóór het indienen: legalisatie en vertaling van documenten in het buitenland kosten vaak meer weken dan mensen verwachten. Daar beginnen wij daarom als eerste mee.',
+      },
+      {
         q: 'Wat zit er in de MVV/TEV-partneraanvraag van €799?',
         a: 'De beoordeling van uw traject, een persoonlijke documentenchecklist, controle van uw bewijsstukken, de voorbereiding van de aanvraag en de opbouw van het dossier, plus begeleiding tijdens de overeengekomen procedure met één vast aanspreekpunt. Deze dienst is bedoeld voor cliënten die geen A1-voorbereiding van ons nodig hebben.',
       },
@@ -252,12 +480,15 @@ export const nl: LanderContent = {
     heading: 'Klaar om uw partneraanvraag te starten?',
     body: 'Of u het examen al achter de rug heeft of het complete A1- en MVV/TEV-traject nodig heeft: laat uw gegevens achter, dan nemen wij contact met u op over de juiste vervolgstap.',
     assurances: [
-      'Persoonlijk antwoord binnen één werkdag',
-      'Vrijblijvend, u zit nergens aan vast',
-      'Nederlands of Engels',
+      'U spreekt iemand die uw soort dossier dagelijks behandelt',
+      'Wij bespreken eerst uw situatie, daarna pas een voorstel',
+      'Nederlands of Engels, wat u prettig vindt',
     ],
     directContact: 'Liever direct contact?',
-    photo: { src: '/images/ph-thuis.jpg', alt: 'Stel staat met de sleutels in de deuropening van hun Nederlandse woning' },
+    photo: {
+      src: '/images/ph-avond.jpg',
+      alt: 'Stel loopt in de avond samen door een Nederlandse straat met verlichte huizen',
+    },
     cta: { label: 'Neem contact met mij op', href: '#contact', situation: 'Afsluitende CTA' },
   },
   form: {
@@ -270,7 +501,8 @@ export const nl: LanderContent = {
     phone: 'Telefoon of WhatsApp',
     phoneHint: 'Inclusief landnummer, bijvoorbeeld +31 6 12345678',
     message: 'Waarmee kunnen wij u helpen?',
-    messagePlaceholder: 'Bijvoorbeeld: mijn partner woont in de Filipijnen, wij zijn getrouwd en willen de aanvraag starten.',
+    messagePlaceholder:
+      'Bijvoorbeeld: mijn partner woont in de Filipijnen, wij zijn getrouwd en willen de aanvraag starten.',
     optional: 'optioneel',
     consent: 'Ik ga akkoord met het',
     consentLink: 'privacybeleid',
@@ -283,6 +515,13 @@ export const nl: LanderContent = {
     label: 'Stel uw vraag via WhatsApp',
     aria: 'Contact opnemen via WhatsApp',
     text: 'Hallo, ik heb een vraag over partnerhereniging en de MVV/TEV-aanvraag.',
+  },
+  exitIntent: {
+    heading: 'Nog geen tijd om alles door te lezen?',
+    body: 'Laat uw naam en nummer achter, dan bellen wij u en lopen wij uw situatie in tien minuten door. U zit nergens aan vast.',
+    cta: { label: 'Bel mij terug', href: '#contact', situation: 'Exit intent' },
+    dismiss: 'Nee, ik lees eerst verder',
+    ariaClose: 'Sluiten',
   },
   stickyCta: 'Start mijn aanvraag',
   disclaimer:
