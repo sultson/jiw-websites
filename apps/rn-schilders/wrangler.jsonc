@@ -45,6 +45,9 @@
     }
   ],
   "vars": {
+    // Set to "1" and redeploy to answer every route with a 503 maintenance
+    // page instead of the site.
+    "OFFLINE": "0",
     "SITE_ID": "rn-schilders",
     "LEAD_RECIPIENT": "offerte@rnschilders.nl",
     "LEAD_SENDER": "offerte@notify.rnschilders.nl"

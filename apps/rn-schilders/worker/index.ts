@@ -2,6 +2,10 @@ import { createFormWorker, type CloudflareFormsEnv } from '@jiw/cloudflare-forms
 
 export type Env = CloudflareFormsEnv & {
   ASSETS: Fetcher;
+  // Set to '1' in wrangler.jsonc to take the whole site offline. Every route,
+  // including /api/*, then answers with the maintenance page below. Remove the
+  // var (or set it to anything else) and redeploy to bring the site back.
+  OFFLINE?: string;
 };
 
 const canonicalHost = 'rnschilders.nl';
@@ -34,6 +38,66 @@ const removedPathRedirects: Record<string, string> = {
   '/sloopwerk-woerden': '/sloopwerk',
   '/vloeren-woerden': '/vloeren',
 };
+
+// Served on every host and path while OFFLINE is set. Deliberately
+// self-contained: no assets, no fonts, no scripts, so it renders even when
+// dist/ is stale. The 503 plus Retry-After tells crawlers this is temporary and
+// keeps the pages indexed, so no X-Robots-Tag here.
+const maintenancePage = `<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RN Schilders &amp; Renovatie</title>
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem 1.5rem;
+    background: #0D1E3D;
+    color: #F6F4EF;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.6;
+  }
+  main { max-width: 32rem; text-align: center; }
+  h1 {
+    margin: 0;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  hr {
+    width: 3rem;
+    margin: 1.75rem auto;
+    border: 0;
+    border-top: 2px solid #FF6A00;
+  }
+  p { margin: 0; color: #D9D2C7; }
+</style>
+</head>
+<body>
+  <main>
+    <h1>RN Schilders &amp; Renovatie</h1>
+    <hr>
+    <p>Deze website is tijdelijk offline.</p>
+  </main>
+</body>
+</html>
+`;
+
+function maintenanceResponse(request: Request): Response {
+  return new Response(request.method === 'HEAD' ? null : maintenancePage, {
+    status: 503,
+    headers: {
+      'Content-Type': 'text/html; charset=utf-8',
+      'Cache-Control': 'no-store',
+      'Retry-After': '3600',
+    },
+  });
+}
 
 const formWorker = createFormWorker({
   formPath: '/api/forms/offerte',
@@ -80,6 +144,8 @@ const formWorker = createFormWorker({
 
 export default {
   async fetch(request, env, ctx) {
+    if (env.OFFLINE === '1') return maintenanceResponse(request);
+
     const url = new URL(request.url);
 
     let shouldRedirect = false;
