@@ -25,16 +25,21 @@
     // omheen, die hebben er niets te halen.
     "run_worker_first": ["/*", "!/assets/*", "!/img/*", "!/favicon.svg"]
   },
-  // Drie hosts, één site. installatieveilig.nl is de canonieke host; de
-  // www-variant en het opleveradres sturen hun bezoekers daarheen met één 301
-  // in worker/index.ts.
+  // Vier hosts, één site. installatieveilig.nl is de canonieke host; de
+  // www-variant en de twee opleveradressen sturen hun bezoekers daarheen met
+  // één 301 in worker/index.ts.
+  //
+  // installatieveilig.jouwidealewebsite.nl hing aan een tweede Worker met een
+  // bijna gelijke versie van deze site, die zichzelf liet indexeren en dus om
+  // dezelfde zoekopdrachten concurreerde. Het adres hoort bij deze site.
   //
   // custom_domain en geen gewone route: bij het koppelen zet Cloudflare zelf
   // het DNS-record klaar.
   "routes": [
     { "pattern": "installatieveilig.nl", "custom_domain": true },
     { "pattern": "www.installatieveilig.nl", "custom_domain": true },
-    { "pattern": "drukkeinstallatie.jouwidealewebsite.nl", "custom_domain": true }
+    { "pattern": "drukkeinstallatie.jouwidealewebsite.nl", "custom_domain": true },
+    { "pattern": "installatieveilig.jouwidealewebsite.nl", "custom_domain": true }
   ],
   "r2_buckets": [
     {
@@ -53,9 +58,10 @@
   // tegen te controleren.
   "vars": {
     "SITE_ID": "installatie-veilig",
-    // Voorlopig komen de aanvragen bij het bureau binnen; dit wordt Jaspers
-    // eigen adres zodra dat er is.
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // Ook het antwoordadres van de bevestiging die de aanvrager terugkrijgt, en
+    // het adres dat op de site en onderin die mail staat. Alle drie hetzelfde,
+    // dus als deze regel verandert moet CONTACT.email in worker/site.ts mee.
+    "LEAD_RECIPIENT": "info@installatieveilig.nl",
     "LEAD_SENDER": "offerte@notify.installatieveilig.nl"
   }
 }
