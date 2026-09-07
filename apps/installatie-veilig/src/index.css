@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Ontleend aan het logo: bijna-zwart met het felgroene aardteken. */
+  --color-ink: #0c0e0d;
+  --color-ink-soft: #161a18;
+  --color-ink-muted: #646b6c;
+  --color-accent: #45d62f;      /* logogroen, voor donkere vlakken en vullingen */
+  --color-accent-dark: #1e8f12; /* leesbaar groen op wit, voor tekst en iconen */
+  --color-safe: #1e8f12;
+  --color-warm: #ffb020;        /* waarschuwing in de verbruiksmeter */
+  --color-hot: #ff5449;         /* over de grens in de verbruiksmeter */
+  --color-mist: #f5f6f5;
+  --color-line: #e5e7e6;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-white text-ink antialiased;
+  }
+  h1, h2 {
+    @apply font-display tracking-tight;
+  }
+  h3, h4 {
+    @apply font-sans tracking-tight;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+}
+
+/* Technische gegevens: prijzen, vermogens, ampères, telefoonnummer. */
+@utility data {
+  @apply font-mono tabular-nums tracking-tight;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Binnenkomen bij het scrollen                                       */
+/* ------------------------------------------------------------------ */
+
+/* De inhoud is nooit onzichtbaar: alleen de verschuiving is animatie. Een
+   blok dat op opacity 0 begint en pas opdoemt als een IntersectionObserver
+   afgaat, staat op een middenklasse Android als een leeg gat in beeld terwijl
+   de bezoeker er al langs scrollt. En wat de kaarten hier doen doen ze pas
+   nadat JavaScript aan is gekomen, dus het staat ook allemaal onder .js: zonder
+   script (een crawler, een mislukte download) staat de pagina er gewoon, recht
+   en compleet. */
+.js .reveal {
+  transition: transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.js .reveal-op     { transform: translateY(24px); }
+.js .reveal-links  { transform: translateX(-28px); }
+.js .reveal-rechts { transform: translateX(28px); }
+.js .reveal-schaal { transform: scale(0.955); }
+.js .reveal.is-in  { transform: none; }
+
+/* ------------------------------------------------------------------ */
+/*  Doorlopende strook                                                 */
+/* ------------------------------------------------------------------ */
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--duur, 38s) linear infinite;
+}
+.marquee-om { animation-direction: reverse; }
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Stroom door de printbanen en het schema                            */
+/* ------------------------------------------------------------------ */
+
+.trace-pulse {
+  stroke-dasharray: 60 1400;
+  animation: trace-run 9s linear infinite;
+  opacity: 0.3;
+}
+.trace-pulse-2 {
+  stroke-dasharray: 40 1400;
+  animation: trace-run 13s linear infinite 1.5s;
+  opacity: 0.22;
+}
+
+@keyframes trace-run {
+  from { stroke-dashoffset: 1460; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Lopende stippellijn: de stroom die door een draad gaat. */
+.stroom {
+  stroke-dasharray: 7 11;
+  animation: stroom 0.9s linear infinite;
+}
+.stroom-traag { animation-duration: 2.1s; }
+.stroom-uit   { animation-play-state: paused; opacity: 0.25; }
+
+@keyframes stroom {
+  to { stroke-dashoffset: -18; }
+}
+
+/* Zacht kloppend knooppunt. */
+.puls {
+  animation: puls 2.8s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes puls {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50%      { opacity: 0.6;  transform: scale(1.14); }
+}
+
+/* Het wisselende slot van de hero-kop. */
+.woord-in {
+  display: inline-block;
+  animation: woord-op 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+@keyframes woord-op {
+  from { opacity: 0; transform: translateY(0.45em); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Trage verticale zweef, voor losse elementen in de hero. */
+.zweef { animation: zweef 8s ease-in-out infinite; }
+@keyframes zweef {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* Korte flits over het aardteken, als een vonk. */
+.vonk { animation: vonk 6.5s ease-in-out infinite; }
+@keyframes vonk {
+  0%, 92%, 100% { opacity: 0.45; }
+  94%           { opacity: 1; }
+  96%           { opacity: 0.5; }
+  98%           { opacity: 0.9; }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Gloed achter de cursor op de donkere vlakken                       */
+/* ------------------------------------------------------------------ */
+
+.spot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    26rem 26rem at var(--mx, 50%) var(--my, -10%),
+    rgb(69 214 47 / 0.09),
+    transparent 68%
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Uitklappen zonder sprong                                           */
+/* ------------------------------------------------------------------ */
+
+.acc {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.38s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.acc-open { grid-template-rows: 1fr; }
+.acc > div { overflow: hidden; }
+
+/* ------------------------------------------------------------------ */
+/*  Beweging is versiering: wie er last van heeft, krijgt hem niet.    */
+/* ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .trace-pulse, .trace-pulse-2 { animation: none; opacity: 0; }
+  .marquee, .stroom, .puls, .zweef, .vonk, .woord-in { animation: none; }
+  .js .reveal { transform: none; transition: none; }
+  .spot::before { display: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Kaartmarkers                                                       */
+/* ------------------------------------------------------------------ */
+
+.pin {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  transform: translateX(-5px);
+}
+
+.pin-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 0.18);
+  flex: none;
+}
+
+.pin-label {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgb(255 255 255 / 0.75);
+  text-shadow: 0 1px 4px rgb(0 0 0 / 0.9);
+}
+
+.pin-thuis .pin-dot {
+  width: 11px;
+  height: 11px;
+  background: #45d62f;
+  box-shadow: 0 0 0 4px rgb(69 214 47 / 0.25);
+}
+
+.pin-thuis .pin-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.mapboxgl-ctrl-attrib {
+  font-size: 10px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Bereikschuif in de laadtijdrekenaar                                */
+/* ------------------------------------------------------------------ */
+
+input[type='range'].schuif {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.14);
+  outline: none;
+}
+input[type='range'].schuif::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #45d62f;
+  border: 3px solid #0c0e0d;
+  box-shadow: 0 0 0 3px rgb(69 214 47 / 0.3);
+  cursor: pointer;
+}
+input[type='range'].schuif::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #45d62f;
+  border: 3px solid #0c0e0d;
+  cursor: pointer;
+}

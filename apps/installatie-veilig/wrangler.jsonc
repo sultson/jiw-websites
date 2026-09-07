@@ -1,0 +1,61 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  // De Worker die er al stond voor het opleveradres blijft dezelfde, zodat het
+  // koppelen van installatieveilig.nl geen tweede Worker naast de eerste zet.
+  "name": "drukkeinstallatie",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // De canonical noemt de homepage zonder schuine streep erachter (op / na);
+    // Cloudflare hoort dezelfde vorm te serveren.
+    "html_handling": "drop-trailing-slash",
+    // Eén echte pagina, dus voor een adres dat niet bestaat valt er niets terug
+    // te vallen. Een SPA-terugval zou 200 antwoorden op elk verzonnen adres, en
+    // zo'n zachte 404 kost indexruimte.
+    "not_found_handling": "404-page",
+    // De Worker moet paginaverzoeken zien, niet alleen de API: anders krijgt de
+    // HTML zijn Cache-Control niet mee en draait de omleiding naar de canonieke
+    // host nooit. De bestanden met een hash in hun naam en de foto's gaan er
+    // omheen, die hebben er niets te halen.
+    "run_worker_first": ["/*", "!/assets/*", "!/img/*", "!/favicon.svg"]
+  },
+  // Drie hosts, één site. installatieveilig.nl is de canonieke host; de
+  // www-variant en het opleveradres sturen hun bezoekers daarheen met één 301
+  // in worker/index.ts.
+  //
+  // custom_domain en geen gewone route: bij het koppelen zet Cloudflare zelf
+  // het DNS-record klaar.
+  "routes": [
+    { "pattern": "installatieveilig.nl", "custom_domain": true },
+    { "pattern": "www.installatieveilig.nl", "custom_domain": true },
+    { "pattern": "drukkeinstallatie.jouwidealewebsite.nl", "custom_domain": true }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["offerte@notify.installatieveilig.nl"]
+    }
+  ],
+  // Geen TURNSTILE_SECRET_KEY: dit formulier draait met `turnstile: false` en
+  // leunt op het verborgen veld in worker/index.ts, dus er is geen widget om
+  // tegen te controleren.
+  "vars": {
+    "SITE_ID": "installatie-veilig",
+    // Voorlopig komen de aanvragen bij het bureau binnen; dit wordt Jaspers
+    // eigen adres zodra dat er is.
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_SENDER": "offerte@notify.installatieveilig.nl"
+  }
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Eén pagina, dus één regel. De secties (#groepenkasten, #laadpalen,
+     #werkwijze) horen hier niet in: een anker is voor een zoekmachine geen
+     eigen adres. Komt er ooit een echte tweede pagina bij, dan komt hij hier
+     erbij. Werk <lastmod> bij als de inhoud van de pagina verandert; een datum
+     die bij elke deploy meeschuift terwijl er niets veranderde, leert een
+     crawler juist om hem te negeren. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://installatieveilig.nl/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

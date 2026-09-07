@@ -1,0 +1,33 @@
+{
+  "name": "@jiw/installatie-veilig",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3066 --host=0.0.0.0",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
+    "preview": "vite preview --port=4366",
+    "clean": "rm -rf dist dist-ssr dist-worker",
+    "lint": "tsc --noEmit && tsc --noEmit -p tsconfig.worker.json",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run --outdir=dist-worker"
+  },
+  "dependencies": {
+    "@jiw/cloudflare-forms": "workspace:*",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "lucide-react": "^0.546.0",
+    "mapbox-gl": "^3.27.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.14",
+    "vite": "^6.2.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "~5.8.2"
+  }
+}

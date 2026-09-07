@@ -30,7 +30,8 @@
     "dev:fleurig": "pnpm --filter @jiw/fleurig dev",
     "dev:3-diaspora": "pnpm --filter @jiw/3-diaspora dev",
     "dev:mts-badkamers": "pnpm --filter @jiw/mts-badkamers dev",
-    "dev:expat-relocation-landers": "pnpm --filter @jiw/expat-relocation-landers dev"
+    "dev:expat-relocation-landers": "pnpm --filter @jiw/expat-relocation-landers dev",
+    "dev:installatie-veilig": "pnpm --filter @jiw/installatie-veilig dev"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
