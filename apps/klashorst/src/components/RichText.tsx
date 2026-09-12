@@ -1,5 +1,6 @@
+import { useMemo } from 'react';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
-import type { Img, RichBlock } from '../content';
+import { ui, type Img, type RichBlock } from '../content';
 
 /**
  * An article as it was written in the Studio.
@@ -10,9 +11,19 @@ import type { Img, RichBlock } from '../content';
  * has no way of creating.
  */
 
-type ImageValue = { img: Img; alt?: string; bijschrift?: string };
+type ImageValue = { _key?: string; img: Img; alt?: string; bijschrift?: string };
 
-const components: PortableTextComponents = {
+/**
+ * How a photograph in an article is named, so the page around it can put the
+ * one that was clicked in front of the viewer. Sanity gives every block a key;
+ * an article written before that, or pasted in, falls back to the address of
+ * the photograph itself.
+ */
+export function fotoSleutel(block: { _key?: string; img: Img }): string {
+  return block._key ?? block.img.full;
+}
+
+const components = (onZoom?: (sleutel: string) => void): PortableTextComponents => ({
   block: {
     normal: ({ children }) => <p className="mt-5 first:mt-0">{children}</p>,
     h2: ({ children }) => <h2 className="display mt-12 text-2xl md:text-3xl">{children}</h2>,
@@ -57,37 +68,63 @@ const components: PortableTextComponents = {
 
   types: {
     image: ({ value }) => {
-      const { img, alt, bijschrift } = value as ImageValue;
+      const waarde = value as ImageValue;
+      const { img, alt, bijschrift } = waarde;
       if (!img) return null;
+      const foto = (
+        <img
+          src={img.grid}
+          srcSet={`${img.gridSet}, ${img.full} 2200w`}
+          sizes="(min-width: 768px) 760px, 100vw"
+          alt={alt ?? ''}
+          width={Math.round(1200 * img.ratio)}
+          height={1200}
+          loading="lazy"
+          decoding="async"
+          // Same reasoning as the photograph at the top: an upright painting
+          // should not push the rest of the piece off the screen.
+          className="max-h-[80svh] w-auto max-w-full bg-wall"
+        />
+      );
       return (
         <figure className="my-10">
-          <img
-            src={img.grid}
-            srcSet={`${img.gridSet}, ${img.full} 2200w`}
-            sizes="(min-width: 768px) 760px, 100vw"
-            alt={alt ?? ''}
-            width={Math.round(1200 * img.ratio)}
-            height={1200}
-            loading="lazy"
-            decoding="async"
-            // Same reasoning as the photograph at the top: an upright painting
-            // should not push the rest of the piece off the screen.
-            className="max-h-[80svh] w-auto max-w-full bg-wall"
-          />
+          {/* A photograph in an article is worth looking at properly, so it
+              opens in the same viewer the collection uses. Only where the page
+              around it has somewhere to open it. */}
+          {onZoom ? (
+            <button
+              type="button"
+              onClick={() => onZoom(fotoSleutel(waarde))}
+              aria-label={`${ui.werk.vergroot}${alt ? `: ${alt}` : bijschrift ? `: ${bijschrift}` : ''}`}
+              className="block cursor-zoom-in transition-opacity duration-300 hover:opacity-85"
+            >
+              {foto}
+            </button>
+          ) : (
+            foto
+          )}
           {bijschrift && <figcaption className="mt-3 text-xs text-muted">{bijschrift}</figcaption>}
         </figure>
       );
     },
   },
-};
+});
 
-export default function RichText({ value }: { value: RichBlock[] }) {
+export default function RichText({
+  value,
+  /** Opens a photograph from the article in the viewer, when the page has one. */
+  onZoom,
+}: {
+  value: RichBlock[];
+  onZoom?: (sleutel: string) => void;
+}) {
+  const onderdelen = useMemo(() => components(onZoom), [onZoom]);
   if (!value.length) return null;
   return (
     <div className="text-[1.02rem] leading-[1.8] text-bone">
       {/* The blocks are Portable Text as Sanity stores it; the images inside
           them have had their asset reference resolved into URLs already. */}
-      <PortableText value={value as never} components={components} />
+      <PortableText value={value as never} components={onderdelen} />
     </div>
   );
 }
