@@ -98,6 +98,13 @@ export default {
       shouldRedirect = true;
     }
 
+    // Bing still reports this retired page; its content now lives on the homepage.
+    if (url.pathname === '/over-ons') {
+      url.pathname = '/';
+      url.hash = 'about';
+      shouldRedirect = true;
+    }
+
     const moved = legacyPath(url.pathname);
     if (moved) {
       url.pathname = moved;
