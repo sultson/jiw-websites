@@ -7,7 +7,7 @@ import {Check} from 'lucide-react';
 
 export const WHATSAPP = '31618195027';
 export const PHONE = '+31618195027';
-export const PHONE_DISPLAY = '+31 6 18195027';
+export const PHONE_DISPLAY = '+31\u00a06\u00a018\u00a019\u00a050\u00a027';
 /* Placeholder until Jasper picks a mailbox on installatieveilig.nl. */
 export const EMAIL = 'info@installatieveilig.nl';
 
