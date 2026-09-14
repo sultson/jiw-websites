@@ -1,0 +1,18 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "winterswijkvakantiehuis-startpakket-presentatie",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "compatibility_date": "2026-09-08",
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    {
+      "pattern": "winterswijkvakantiehuis-startpakket-presentatie.doelio.nl",
+      "custom_domain": true
+    }
+  ]
+}
