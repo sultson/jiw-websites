@@ -7,6 +7,10 @@ import {
 } from 'lucide-react';
 import {CONTACT_EMAIL, SITE_NAME, SITE_URL} from './site';
 import imageSizes from './image-manifest.json';
+import {seoCopy} from './seo-copy';
+import {stayGuide} from './stay-guide';
+import AnalyticsConsent from './AnalyticsConsent';
+import {readConsent, trackPage, trackContactLink, trackEvent} from './analytics';
 
 type Lang = 'nl' | 'en' | 'de';
 /** Order of the language switcher, Dutch first. */
@@ -168,13 +172,11 @@ const t = {
       curacaoCta: 'Bekijk Curaçao',
       manage: 'Interesse om uw huis te laten beheren? Neem contact met ons op.',
     },
-    /* The owner had this confirmed at a viewing on 31-07: hers is the only wheelchair
-       accessible holiday home in Winterswijk. Own band on the landing page, because it
-       is both a unique selling point and the kind of thing guests give up searching for. */
+    /* Describe the actual downstairs adaptations; suitability depends on the guest. */
     access: {
-      kicker: 'Uniek in Winterswijk',
-      title: 'De enige rolstoeltoegankelijke vakantiewoning van Winterswijk',
-      text: 'Onze geschakelde 8-persoonswoning op de Kattenberg is volledig rolstoeltoegankelijk. Bij een bezichtiging bleek het de enige vakantiewoning in Winterswijk te zijn waar dat zo is. Kom gerust met een rolstoel: neem even contact op, dan lopen we samen door wat u nodig heeft en zorgen we dat alles klaarstaat als u aankomt.',
+      kicker: "Aangepast verblijf",
+      title: "Samen op vakantie in Winterswijk",
+      text: "Onze 8-persoons boswoning op de Kattenberg heeft een aangepaste slaapkamer en badkamer op de begane grond, met douchestoel en steunbeugels. De overige slaapkamers en de sauna liggen boven. Bespreek uw wensen met ons om te bepalen of de woning bij uw gezelschap past.",
       points: [
         'Slaapkamer én badkamer op de begane grond',
         'Drempelloze inloopdouche met opklapbare douchestoel',
@@ -241,10 +243,10 @@ const t = {
     /* The client asked to make it prominent that the flamingos are only visible for a short
        window. The colony breeds April–July, so at the end of July this is genuinely the tail end. */
     flamingo: {
-      badge: 'Nu te zien, nog heel even',
-      title: 'De flamingo’s zijn er nu nog',
-      text: 'Echt waar: op zo’n 15 km, in het Zwillbrocker Venn, broedt de noordelijkste flamingokolonie ter wereld. Het broedseizoen loopt van april tot juli, dus dit is de laatste kans van dit jaar om ze met hun jongen te zien. Vraag ons naar de beste kijkplek en het beste tijdstip.',
-      cta: 'Vraag naar de kijkplek',
+      badge: "Natuur in de omgeving",
+      title: "Flamingo’s in het Zwillbrocker Venn",
+      text: "Op ongeveer 15 km ligt het Zwillbrocker Venn, bekend om zijn flamingokolonie. De aanwezigheid verschilt per seizoen. Bekijk voor vertrek de actuele informatie van het natuurgebied of vraag ons om tips.",
+      cta: "Vraag om natuurtips",
     },
     about: {
       title: 'Over ons',
@@ -432,9 +434,9 @@ const t = {
       manage: 'Would you like us to manage your home? Get in touch with us.',
     },
     access: {
-      kicker: 'Unique in Winterswijk',
-      title: 'The only wheelchair accessible holiday home in Winterswijk',
-      text: 'Our linked 8-person home on the Kattenberg is fully wheelchair accessible. At a viewing it turned out to be the only holiday home in Winterswijk where that is the case. Do come with a wheelchair: get in touch and we will go through exactly what you need, so everything is ready when you arrive.',
+      kicker: "Adapted accommodation",
+      title: "A holiday together in Winterswijk",
+      text: "Our 8-person woodland home on the Kattenberg has an adapted bedroom and bathroom downstairs, with a shower chair and grab rails. The other bedrooms and sauna are upstairs. Discuss your requirements with us to check whether the home suits your group.",
       points: [
         'Bedroom and bathroom on the ground floor',
         'Step-free walk-in shower with a fold-down shower chair',
@@ -497,10 +499,10 @@ const t = {
       nearbySub: 'What is within easy reach of the homes. Distances are measured from the Kattenberg; from the Jonkersweg the Hilgelo lake is right around the corner.',
     },
     flamingo: {
-      badge: 'Visible now, but not for long',
-      title: 'The flamingos are still here',
-      text: 'Genuinely: some 15 km away, at the Zwillbrocker Venn, breeds the northernmost flamingo colony in the world. The breeding season runs from April to July, so this is the last chance this year to see them with their young. Ask us for the best viewing spot and time of day.',
-      cta: 'Ask about the viewing spot',
+      badge: "Nature nearby",
+      title: "Flamingos at the Zwillbrocker Venn",
+      text: "Around 15 km away, the Zwillbrocker Venn is known for its flamingo colony. Sightings depend on the season. Check the reserve’s current information before visiting, or ask us for tips.",
+      cta: "Ask for nature tips",
     },
     about: {
       title: 'About us',
@@ -677,9 +679,9 @@ const t = {
       manage: 'Möchten Sie Ihr Haus verwalten lassen? Nehmen Sie Kontakt mit uns auf.',
     },
     access: {
-      kicker: 'Einzigartig in Winterswijk',
-      title: 'Das einzige rollstuhlgerechte Ferienhaus in Winterswijk',
-      text: 'Unser geschakeltes 8-Personen-Haus auf dem Kattenberg ist vollständig rollstuhlgerecht. Bei einer Besichtigung stellte sich heraus, dass es das einzige Ferienhaus in Winterswijk ist, bei dem das so ist. Kommen Sie ruhig mit einem Rollstuhl: melden Sie sich kurz, dann gehen wir gemeinsam durch, was Sie brauchen, damit bei Ihrer Ankunft alles bereitsteht.',
+      kicker: "Angepasste Unterkunft",
+      title: "Gemeinsam Urlaub in Winterswijk",
+      text: "Unser Waldhaus auf dem Kattenberg für acht Personen hat ein angepasstes Schlafzimmer und Bad im Erdgeschoss, mit Duschstuhl und Haltegriffen. Die weiteren Schlafzimmer und die Sauna liegen oben. Besprechen Sie Ihre Anforderungen mit uns, damit wir gemeinsam prüfen können, ob das Haus für Ihre Gruppe passt.",
       points: [
         'Schlafzimmer und Badezimmer im Erdgeschoss',
         'Schwellenlose Dusche mit klappbarem Duschstuhl',
@@ -742,10 +744,10 @@ const t = {
       nearbySub: 'Was von den Häusern aus in Reichweite liegt. Die Entfernungen sind vom Kattenberg aus gemessen; von der Jonkersweg liegt der Badesee Hilgelo gleich um die Ecke.',
     },
     flamingo: {
-      badge: 'Jetzt zu sehen, nur noch kurz',
-      title: 'Die Flamingos sind noch da',
-      text: 'Tatsächlich: rund 15 km entfernt, im Zwillbrocker Venn, brütet die nördlichste Flamingokolonie der Welt. Die Brutzeit läuft von April bis Juli, dies ist also die letzte Chance in diesem Jahr, sie mit ihren Jungen zu sehen. Fragen Sie uns nach dem besten Beobachtungsplatz und der besten Tageszeit.',
-      cta: 'Nach dem Beobachtungsplatz fragen',
+      badge: "Natur in der Umgebung",
+      title: "Flamingos im Zwillbrocker Venn",
+      text: "Etwa 15 km entfernt liegt das Zwillbrocker Venn, bekannt für seine Flamingokolonie. Die Tiere sind saisonal zu sehen. Prüfen Sie vor dem Besuch die aktuellen Hinweise des Schutzgebiets oder fragen Sie uns nach Tipps.",
+      cta: "Nach Naturtipps fragen",
     },
     about: {
       title: 'Über uns',
@@ -1089,19 +1091,19 @@ const homes: Home[] = [
     },
     amenities: ['wheelchair', 'wifi', 'sauna', 'bath', 'shower', 'terrace', 'garden', 'washer', 'babycot', 'forest', 'nature', 'parking'],
     tagline: {
-      nl: 'Rolstoeltoegankelijk, de enige in Winterswijk',
-      en: 'Wheelchair accessible, the only one in Winterswijk',
-      de: 'Rollstuhlgerecht, das einzige in Winterswijk',
+      nl: 'Aangepaste slaapkamer en badkamer beneden',
+      en: 'Adapted bedroom and bathroom downstairs',
+      de: 'Angepasstes Schlafzimmer und Bad im Erdgeschoss',
     },
     blurb: {
-      nl: 'De ruimste geschakelde woning op de Kattenberg, voor acht personen en met een eigen sauna. Volledig rolstoeltoegankelijk: slaapkamer én badkamer op de begane grond, douchestoel en steunbeugels.',
-      en: 'The most spacious linked home on the Kattenberg, sleeping eight and with a private sauna. Fully wheelchair accessible: bedroom and bathroom on the ground floor, shower chair and grab rails.',
-      de: 'Das geräumigste Reihenhaus auf dem Kattenberg, für acht Personen und mit eigener Sauna. Vollständig rollstuhlgerecht: Schlafzimmer und Bad im Erdgeschoss, Duschstuhl und Haltegriffe.',
+      nl: 'De ruimste geschakelde woning op de Kattenberg, voor acht personen en met een eigen sauna. Aangepaste slaapkamer en badkamer beneden, met douchestoel en steunbeugels. De sauna is boven.',
+      en: 'The most spacious linked home on the Kattenberg, sleeping eight and with a private sauna. Adapted bedroom and bathroom downstairs, with shower chair and grab rails. The sauna is upstairs.',
+      de: 'Das geräumigste Reihenhaus auf dem Kattenberg, für acht Personen und mit eigener Sauna. Angepasstes Schlafzimmer und Bad im Erdgeschoss, mit Duschstuhl und Haltegriffen. Die Sauna ist oben.',
     },
     long: {
-      nl: 'De grote variant van onze boswoningen op de Kattenberg, met plaats voor acht personen, en de enige vakantiewoning in Winterswijk die volledig rolstoeltoegankelijk is. Op de begane grond ligt een slaapkamer met luxe boxsprings en een eigen badkamer: de douche is voorzien van een opklapbare douchestoel en drempelloos, het toilet heeft steunbeugels en de wastafel is onderrijdbaar. Ook de woonkamer, de keuken en de tuindeuren zijn drempelloos bereikbaar. De woonkamer zelf is licht en ruim, met een grote hoekbank en een eettafel voor acht, en de keuken is compleet uitgerust met een vijfpits gasfornuis, oven en vaatwasser. Via de schuifpui loopt u de zonnige, volledig omheinde tuin in, met tuinmeubilair en parasol. Boven liggen nog drie slaapkamers met boxsprings en een tweede badkamer met ligbad, douche, toilet en een eigen sauna. Er is een kinderbedje aanwezig en van de wasmachine in het receptiegebouw maakt u gratis gebruik. Wilt u met een rolstoel komen? Neem even contact op, dan lopen we samen door wat u nodig heeft en zorgen we dat alles klaarstaat.',
-      en: 'The larger version of our woodland homes on the Kattenberg, sleeping eight, and the only holiday home in Winterswijk that is fully wheelchair accessible. On the ground floor there is a bedroom with luxury box-spring beds and its own bathroom: the shower is step-free with a fold-down shower chair, the toilet has grab rails and the basin can be used from a seated position. The living room, kitchen and garden doors are all step-free as well. The living room itself is light and roomy, with a large corner sofa and a dining table for eight, and the kitchen is fully equipped with a five-burner gas hob, oven and dishwasher. Through the sliding door you step into the sunny, fully fenced garden with furniture and a parasol. Upstairs are three more bedrooms with box-spring beds and a second bathroom with a bathtub, shower, toilet and a private sauna. A cot is available and the washing machine in the reception building is free to use. Coming with a wheelchair? Get in touch and we will go through exactly what you need so everything is ready for you.',
-      de: 'Die große Variante unserer Waldhäuser auf dem Kattenberg, für acht Personen, und das einzige Ferienhaus in Winterswijk, das vollständig rollstuhlgerecht ist. Im Erdgeschoss liegt ein Schlafzimmer mit luxuriösen Boxspringbetten und eigenem Bad: die Dusche ist schwellenlos und mit einem klappbaren Duschstuhl ausgestattet, das WC hat Haltegriffe und das Waschbecken ist unterfahrbar. Auch Wohnzimmer, Küche und Gartentüren sind schwellenlos erreichbar. Das Wohnzimmer selbst ist hell und geräumig, mit großem Ecksofa und einem Esstisch für acht, und die Küche ist komplett ausgestattet mit Fünf-Flammen-Gasherd, Backofen und Geschirrspüler. Durch die Schiebetür treten Sie in den sonnigen, vollständig eingezäunten Garten mit Gartenmöbeln und Sonnenschirm. Oben liegen drei weitere Schlafzimmer mit Boxspringbetten sowie ein zweites Bad mit Badewanne, Dusche, WC und eigener Sauna. Ein Kinderbett ist vorhanden und die Waschmaschine im Rezeptionsgebäude nutzen Sie kostenlos. Sie kommen mit einem Rollstuhl? Melden Sie sich kurz, dann gehen wir gemeinsam durch, was Sie brauchen, und sorgen dafür, dass alles bereitsteht.',
+      nl: 'De grote variant van onze boswoningen op de Kattenberg, met plaats voor acht personen, met een aangepaste slaapkamer en badkamer op de begane grond. Op de begane grond ligt een slaapkamer met luxe boxsprings en een eigen badkamer: de douche is voorzien van een opklapbare douchestoel en drempelloos, het toilet heeft steunbeugels en de wastafel is onderrijdbaar. Ook de woonkamer, de keuken en de tuindeuren zijn drempelloos bereikbaar. De woonkamer zelf is licht en ruim, met een grote hoekbank en een eettafel voor acht, en de keuken is compleet uitgerust met een vijfpits gasfornuis, oven en vaatwasser. Via de schuifpui loopt u de zonnige, volledig omheinde tuin in, met tuinmeubilair en parasol. Boven liggen nog drie slaapkamers met boxsprings en een tweede badkamer met ligbad, douche, toilet en een eigen sauna. Er is een kinderbedje aanwezig en van de wasmachine in het receptiegebouw maakt u gratis gebruik. Wilt u met een rolstoel komen? Neem even contact op, dan lopen we samen door wat u nodig heeft en zorgen we dat alles klaarstaat.',
+      en: 'The larger version of our woodland homes on the Kattenberg, sleeping eight, with an adapted bedroom and bathroom on the ground floor. On the ground floor there is a bedroom with luxury box-spring beds and its own bathroom: the shower is step-free with a fold-down shower chair, the toilet has grab rails and the basin can be used from a seated position. The living room, kitchen and garden doors are all step-free as well. The living room itself is light and roomy, with a large corner sofa and a dining table for eight, and the kitchen is fully equipped with a five-burner gas hob, oven and dishwasher. Through the sliding door you step into the sunny, fully fenced garden with furniture and a parasol. Upstairs are three more bedrooms with box-spring beds and a second bathroom with a bathtub, shower, toilet and a private sauna. A cot is available and the washing machine in the reception building is free to use. Coming with a wheelchair? Get in touch and we will go through exactly what you need so everything is ready for you.',
+      de: 'Die große Variante unserer Waldhäuser auf dem Kattenberg, für acht Personen, mit einem angepassten Schlafzimmer und Bad im Erdgeschoss. Im Erdgeschoss liegt ein Schlafzimmer mit luxuriösen Boxspringbetten und eigenem Bad: die Dusche ist schwellenlos und mit einem klappbaren Duschstuhl ausgestattet, das WC hat Haltegriffe und das Waschbecken ist unterfahrbar. Auch Wohnzimmer, Küche und Gartentüren sind schwellenlos erreichbar. Das Wohnzimmer selbst ist hell und geräumig, mit großem Ecksofa und einem Esstisch für acht, und die Küche ist komplett ausgestattet mit Fünf-Flammen-Gasherd, Backofen und Geschirrspüler. Durch die Schiebetür treten Sie in den sonnigen, vollständig eingezäunten Garten mit Gartenmöbeln und Sonnenschirm. Oben liegen drei weitere Schlafzimmer mit Boxspringbetten sowie ein zweites Bad mit Badewanne, Dusche, WC und eigener Sauna. Ein Kinderbett ist vorhanden und die Waschmaschine im Rezeptionsgebäude nutzen Sie kostenlos. Sie kommen mit einem Rollstuhl? Melden Sie sich kurz, dann gehen wir gemeinsam durch, was Sie brauchen, und sorgen dafür, dass alles bereitsteht.',
     },
   },
   {
@@ -1196,12 +1198,11 @@ const naturePhotos: {src: string; title: Record<Lang, string>; text: Record<Lang
   },
   {
     src: '/img/nature-flamingos.webp',
-    now: true,
     title: {nl: 'Flamingo’s', en: 'Flamingos', de: 'Flamingos'},
     text: {
-      nl: 'De noordelijkste flamingokolonie ter wereld, op 15 km in het Zwillbrocker Venn. Het broedseizoen loopt van april tot juli, dus wie ze dit jaar nog wil zien moet er snel bij zijn.',
-      en: 'The northernmost flamingo colony in the world, 15 km away at the Zwillbrocker Venn. The breeding season runs from April to July, so if you want to see them this year you will have to be quick.',
-      de: 'Die nördlichste Flamingokolonie der Welt, 15 km entfernt im Zwillbrocker Venn. Die Brutzeit läuft von April bis Juli. Wer sie dieses Jahr noch sehen will, muss schnell sein.',
+      nl: "Op ongeveer 15 km ligt het Zwillbrocker Venn, bekend om zijn flamingokolonie. De aanwezigheid verschilt per seizoen. Bekijk voor vertrek de actuele informatie van het natuurgebied of vraag ons om tips.",
+      en: "Around 15 km away, the Zwillbrocker Venn is known for its flamingo colony. Sightings depend on the season. Check the reserve’s current information before visiting, or ask us for tips.",
+      de: "Etwa 15 km entfernt liegt das Zwillbrocker Venn, bekannt für seine Flamingokolonie. Die Tiere sind saisonal zu sehen. Prüfen Sie vor dem Besuch die aktuellen Hinweise des Schutzgebiets oder fragen Sie uns nach Tipps.",
     },
   },
   {
@@ -1303,15 +1304,6 @@ const events: {title: Record<Lang, string>; when: Record<Lang, string>; text: Re
       nl: 'De plaatselijke brouwerij, op fietsafstand. Kijkje achter de tap en daarna proeven.',
       en: 'The local brewery, within cycling distance. A look behind the taps and a tasting after.',
       de: 'Die örtliche Brauerei, in Radentfernung. Ein Blick hinter den Zapfhahn und danach probieren.',
-    },
-  },
-  {
-    title: {nl: 'Zomerspeurtocht Geheimtaal', en: 'Summer treasure hunt: Secret Language', de: 'Sommer-Suchspiel: Geheimsprache'},
-    when: {nl: 't/m 30 augustus', en: 'until 30 August', de: 'bis 30. August'},
-    text: {
-      nl: 'Speurtocht door het dorp voor kinderen. Gratis en zo het huis uit te doen.',
-      en: 'A treasure hunt through the village for children. Free, and easy to do straight from the house.',
-      de: 'Eine Schnitzeljagd durchs Dorf für Kinder. Kostenlos und direkt vom Haus aus machbar.',
     },
   },
   {
@@ -1668,17 +1660,31 @@ function clampDescription(text: string, limit = 165): string {
 
 /** Structured data for one home, so a listing page is more than prose to a bot. */
 function homeJsonLd(home: Home, lang: Lang, canonical: string) {
+  if (home.id === 'kattenberg6') {
+    return {
+      '@context': 'https://schema.org', '@type': 'CollectionPage',
+      '@id': `${canonical}#collection`, name: pageHeading(home.id, lang),
+      description: home.long[lang], url: canonical, inLanguage: lang,
+      about: {'@type': 'Accommodation', name: home.name,
+        description: home.petsNote?.long[lang],
+        occupancy: {'@type': 'QuantitativeValue', maxValue: 6}},
+    };
+  }
   return {
     '@context': 'https://schema.org',
     '@type': 'VacationRental',
+    '@id': `${SITE_URL}/#home-${home.id}`,
     name: home.name,
     description: home.blurb[lang],
     url: canonical,
     inLanguage: lang,
     image: home.imgs.slice(0, 6).map(abs),
     petsAllowed: home.pets,
-    ...(home.guests ? {occupancy: {'@type': 'QuantitativeValue', maxValue: home.guests, unitText: 'guests'}} : {}),
-    ...(home.bedrooms ? {numberOfBedrooms: home.bedrooms} : {}),
+    containsPlace: {
+      '@type': 'Accommodation',
+      ...(home.guests ? {occupancy: {'@type': 'QuantitativeValue', maxValue: home.guests, unitText: 'guests'}} : {}),
+      ...(home.bedrooms ? {numberOfBedrooms: home.bedrooms} : {}),
+    },
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Winterswijk',
@@ -1705,7 +1711,7 @@ function businessJsonLd(lang: Lang, canonical: string) {
     image: abs('/img/hero-park.webp'),
     telephone: PHONE,
     email: EMAIL,
-    petsAllowed: true,
+    '@id': `${SITE_URL}/#business`,
     availableLanguage: LANGS,
     address: {
       '@type': 'PostalAddress',
@@ -1715,7 +1721,7 @@ function businessJsonLd(lang: Lang, canonical: string) {
       addressRegion: 'Gelderland',
       addressCountry: 'NL',
     },
-    amenityFeature: ['sauna', 'hottub', 'wifi', 'pets'].map((a) => ({
+    amenityFeature: ['sauna', 'wifi'].map((a) => ({
       '@type': 'LocationFeatureSpecification',
       name: amenityDef[a].label[lang],
       value: true,
@@ -1739,7 +1745,7 @@ function breadcrumbJsonLd(lang: Lang, leaf: {name: string; url: string}) {
 }
 
 /** Head tags for a prerendered route, in that route's own language. */
-export function routeMetaFor(path: string): RouteMeta {
+function originalRouteMetaFor(path: string): RouteMeta {
   const route = parseRoute(path);
   const {lang} = route;
   const L = t[lang];
@@ -1815,6 +1821,18 @@ export function routeMetaFor(path: string): RouteMeta {
   };
 }
 
+/** Use the same editorial fields for server rendering and navigation. */
+export function routeMetaFor(path: string): RouteMeta {
+  const route = parseRoute(path);
+  const meta = originalRouteMetaFor(path);
+  const copy = seoCopy[route.homeId ?? route.kind]?.[route.lang];
+  return copy ? {...meta, title: copy.title, description: copy.description} : meta;
+}
+
+function pageHeading(page: string, lang: Lang): string {
+  return seoCopy[page][lang].h1;
+}
+
 type ContactForm = {name: string; email: string; dates: string; guests: string; pets: string; kids: string; wheelchair: string; message: string};
 const emptyForm: ContactForm = {name: '', email: '', dates: '', guests: '', pets: '', kids: '', wheelchair: '', message: ''};
 
@@ -1850,8 +1868,46 @@ export default function App({initialPath}: {initialPath?: string}) {
   const firstRender = useRef(true);
 
   useEffect(() => {
-    document.documentElement.lang = lang;
-  }, [lang]);
+    const meta = routeMetaFor(path);
+    document.documentElement.lang = meta.htmlLang;
+    document.title = meta.title;
+    const update = (selector: string, value: string, attribute = 'content') => {
+      document.head.querySelector(selector)?.setAttribute(attribute, value);
+    };
+    update('meta[name="description"]', meta.description);
+    update('link[rel="canonical"]', meta.canonical, 'href');
+    update('meta[property="og:title"]', meta.title);
+    update('meta[property="og:description"]', meta.description);
+    update('meta[property="og:url"]', meta.canonical);
+    update('meta[property="og:image"]', meta.ogImage);
+    update('meta[property="og:locale"]', meta.ogLocale);
+    update('meta[name="robots"]', route.kind === 'notFound' ? 'noindex, follow' : 'index, follow');
+    document.head.querySelectorAll('link[hreflang], script[type="application/ld+json"]').forEach((node) => node.remove());
+    for (const alternate of meta.alternates) {
+      const link = document.createElement('link');
+      link.rel = 'alternate'; link.hreflang = alternate.hreflang; link.href = alternate.href;
+      document.head.append(link);
+    }
+    for (const json of meta.jsonLd) {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json'; script.textContent = json;
+      document.head.append(script);
+    }
+  }, [path, route.kind]);
+
+  useEffect(() => {
+    readConsent();
+    trackPage(pathFor(route, lang), {
+      site_language: lang, page_type: route.kind,
+      destination: route.kind === 'curacao' ? 'curacao' : 'winterswijk',
+      home_id: route.homeId ?? 'none',
+    });
+  }, [path, lang]);
+
+  useEffect(() => {
+    document.addEventListener('click', trackContactLink);
+    return () => document.removeEventListener('click', trackContactLink);
+  }, []);
 
   /* Client-side navigation across the prerendered routes. One delegated handler
      turns same-origin "/..." links into history.pushState; modifier clicks,
@@ -1938,6 +1994,7 @@ export default function App({initialPath}: {initialPath?: string}) {
         <Landing lang={lang} L={L} />
       )}
       <Footer route={route} lang={lang} L={L} />
+      <AnalyticsConsent lang={lang} />
     </div>
   );
 }
@@ -2006,6 +2063,28 @@ function Header({route, lang, L, onDetail}: {route: Route; lang: Lang; L: any; o
 }
 
 /* ------------------------------------------------------------------ */
+function StayGuide({lang}: {lang: Lang}) {
+  const copy = stayGuide[lang];
+  return <section className="max-w-6xl mx-auto px-5 py-14 border-t border-brand-sand" aria-labelledby="stay-guide-title">
+    <h2 id="stay-guide-title" className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{copy.title}</h2>
+    <p className="mt-3 max-w-3xl text-stone-600">{copy.intro}</p>
+    <div className="mt-6 overflow-x-auto">
+      <table className="w-full text-left text-sm border-collapse">
+        <thead><tr>{copy.columns.map((label) => <th key={label} scope="col" className="py-3 pr-4 border-b border-brand-sand">{label}</th>)}</tr></thead>
+        <tbody>{homes.map((home) => <tr key={home.id}>
+          <th scope="row" className="py-4 pr-4 border-b border-brand-sand font-medium"><a className="underline text-brand-green" href={pathFor({kind: 'home', homeId: home.id}, lang)}>{home.name}</a></th>
+          <td className="py-4 pr-4 border-b border-brand-sand">{home.guests}</td>
+          <td className="py-4 border-b border-brand-sand">{home.id === 'kattenberg6' ? copy.some : home.pets ? copy.yes : copy.no}</td>
+        </tr>)}</tbody>
+      </table>
+    </div>
+    <a href={pathFor({kind: 'horses'}, lang)} className="mt-5 inline-block underline text-brand-green">{copy.horse}</a>
+    <h2 className="mt-10 font-serif text-2xl text-brand-green-dark">{copy.directTitle}</h2>
+    <p className="mt-3 max-w-3xl text-stone-600 leading-relaxed">{copy.direct}</p>
+    <a href="#contact" className="mt-4 inline-block underline font-medium text-brand-green">{copy.cta}</a>
+  </section>;
+}
+
 function Landing({lang, L}: {lang: Lang; L: any}) {
   const [form, setForm] = useState<ContactForm>(emptyForm);
   const waLink = useMemo(() => waMessage(lang, form, L), [form, lang, L]);
@@ -2029,7 +2108,7 @@ function Landing({lang, L}: {lang: Lang; L: any}) {
             <span className="inline-flex items-center gap-2 text-sm font-medium mb-4 text-brand-cream/90">
               <MapPin size={16} className="text-brand-sun" /> {L.hero.kicker}
             </span>
-            <h1 className="font-serif text-4xl sm:text-6xl max-w-2xl leading-[1.05]">{L.hero.title}</h1>
+            <h1 className="font-serif text-4xl sm:text-6xl max-w-2xl leading-[1.05]">{pageHeading('landing', lang)}</h1>
             <p className="mt-5 max-w-xl text-base sm:text-lg text-brand-cream/90 font-light">{L.hero.sub}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#homes" className="inline-flex items-center gap-2 bg-brand-sun hover:bg-brand-sun/90 text-white px-6 py-3 rounded-full font-medium transition-colors">
@@ -2128,8 +2207,8 @@ function Landing({lang, L}: {lang: Lang; L: any}) {
         <p className="mt-4 text-sm text-stone-500">{L.homes.manage} <a href="#contact" className="text-brand-green font-medium hover:underline">{L.nav.contact}</a></p>
       </section>
 
-      {/* The only wheelchair accessible holiday home in Winterswijk — the client asked for
-          this to be prominent, so it gets a full-width band of its own rather than a bullet. */}
+      {/* Dedicated information about the adapted eight-person home. */}
+      <StayGuide lang={lang} />
       <AccessBand lang={lang} L={L} />
 
       {/* CALENDARS OFF — the live huurkalender.nl overview of every home at once.
@@ -2664,7 +2743,7 @@ function HomeDetail({home, lang, L}: {home: Home; lang: Lang; L: any}) {
 
       {/* Title */}
       <div className="max-w-6xl mx-auto px-5 mt-4">
-        <h1 className="font-serif text-3xl sm:text-5xl text-brand-green-dark">{home.name}</h1>
+        <h1 className="font-serif text-3xl sm:text-5xl text-brand-green-dark">{pageHeading(home.id, lang)}</h1>
         <p className="mt-2 text-brand-sun font-medium">{home.tagline[lang]}</p>
         <div className="mt-3 flex flex-wrap gap-4 text-sm text-stone-600">
           <span className="inline-flex items-center gap-1.5"><MapPin size={15} className="text-brand-green" /> {home.location ?? 'Winterswijk, Achterhoek'}</span>
@@ -2859,7 +2938,7 @@ function TodoPage({lang, L}: {lang: Lang; L: any}) {
           <span className="mt-6 flex items-center gap-2 text-sm font-medium text-brand-sun">
             <MapPin size={16} /> {L.todo.kicker}
           </span>
-          <h1 className="mt-2 font-serif text-3xl sm:text-5xl max-w-3xl leading-tight">{L.todo.title}</h1>
+          <h1 className="mt-2 font-serif text-3xl sm:text-5xl max-w-3xl leading-tight">{pageHeading('todo', lang)}</h1>
           <p className="mt-4 max-w-2xl text-brand-cream/85 font-light">{L.todo.intro}</p>
         </div>
       </div>
@@ -2988,7 +3067,7 @@ function HorsesPage({lang, L}: {lang: Lang; L: any}) {
           <span className="mt-6 flex items-center gap-2 text-sm font-medium text-brand-sun">
             <Sparkles size={16} /> {L.horses.kicker}
           </span>
-          <h1 className="mt-2 font-serif text-3xl sm:text-5xl max-w-3xl leading-tight">{L.horses.title}</h1>
+          <h1 className="mt-2 font-serif text-3xl sm:text-5xl max-w-3xl leading-tight">{pageHeading('horses', lang)}</h1>
           <p className="mt-4 max-w-2xl text-brand-cream/85 font-light">{L.horses.intro}</p>
         </div>
       </div>
@@ -3112,7 +3191,7 @@ function CuracaoPage({lang, L}: {lang: Lang; L: any}) {
               <span className="flex items-center gap-2 text-sm font-medium text-brand-sun">
                 <Palmtree size={16} /> {L.curacao.kicker}
               </span>
-              <h1 className="mt-2 font-serif text-3xl sm:text-5xl max-w-2xl leading-tight">{L.curacao.title}</h1>
+              <h1 className="mt-2 font-serif text-3xl sm:text-5xl max-w-2xl leading-tight">{pageHeading('curacao', lang)}</h1>
               <p className="mt-4 max-w-2xl text-brand-cream/85 font-light">{L.curacao.intro}</p>
             </div>
             {/* The Aemilius logo on its own cream plaque. We tried cutting it out to a
@@ -3329,6 +3408,7 @@ function ContactSection({lang, L, form, setForm}: {lang: Lang; L: any; form: Con
       const response = await fetch(FORM_ENDPOINT, {method: 'POST', body: data});
       const result = (await response.json().catch(() => ({}))) as {ok?: boolean; message?: string};
       if (!response.ok || !result.ok) throw new Error(result.message || L.contact.errorText);
+      trackEvent('generate_lead', 'form');
       setForm(emptyForm);
       setState('success');
     } catch (err) {
@@ -3364,8 +3444,7 @@ function ContactSection({lang, L, form, setForm}: {lang: Lang; L: any; form: Con
             {/* The owners asked to know up front whether guests bring pets (and which) and children. */}
             <Field name="pets" label={L.contact.pets} value={form.pets} ph={L.contact.placeholder.pets} onChange={(v) => setForm({...form, pets: v})} />
             <Field name="kids" label={L.contact.kids} value={form.kids} ph={L.contact.placeholder.kids} onChange={(v) => setForm({...form, kids: v})} />
-            {/* The 8-persoons is the only wheelchair accessible home in Winterswijk, so the
-                owners want to know up front whether a guest needs it. */}
+            {/* Ask about access requirements so the owner can assess suitability. */}
             <Field name="wheelchair" label={L.contact.wheelchair} value={form.wheelchair} ph={L.contact.placeholder.wheelchair} onChange={(v) => setForm({...form, wheelchair: v})} />
           </div>
           <div>
@@ -3490,9 +3569,7 @@ function NotFoundPage({lang, L}: {lang: Lang; L: any}) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Time-limited nature highlight. The client wanted it obvious that the flamingo
-    colony is only there for a short window, so it gets its own banner rather than
-    being one card among nine.                                                   */
+/* Seasonal nature advice without claiming current sightings. */
 function FlamingoAlert({lang, L, waLink}: {lang: Lang; L: any; waLink: string}) {
   return (
     <div className="mt-14 grid md:grid-cols-[1fr_1.15fr] gap-0 rounded-3xl overflow-hidden border border-brand-sand bg-white">
