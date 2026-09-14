@@ -3,6 +3,7 @@ import {
   ArrowLeft, ArrowRight, Camera, Check, CircuitBoard, Loader2, MapPin,
   MessageCircle, Plug, Send, Trash2, X,
 } from 'lucide-react';
+import {trackEvent} from './analytics';
 import {PHONE_DISPLAY, useKnopInBeeld, wa} from './ui';
 
 /* ------------------------------------------------------------------ */
@@ -234,6 +235,7 @@ export default function Aanvraag({compact = false}: {compact?: boolean}) {
         throw new Error(antwoord?.message ?? 'De aanvraag kon niet worden verstuurd.');
       }
       setStap(3);
+      trackEvent('generate_lead', 'form');
     } catch (err) {
       setFout(
         err instanceof Error && err.message

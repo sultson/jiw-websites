@@ -5,6 +5,8 @@ import {
   ArrowRight, Ruler, Zap,
 } from 'lucide-react';
 import Aanvraag from './Aanvraag';
+import AnalyticsConsent from './AnalyticsConsent';
+import {readConsent, trackPage, trackContactLink} from './analytics';
 import KaartLazy from './KaartLazy';
 import {
   Bullet, Kicker, Logo, Mark, PHONE, PHONE_DISPLAY, EMAIL, PLAATSEN, Section, Traces,
@@ -1170,8 +1172,10 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-6 text-xs text-white/40">
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-white/10 pt-6 text-xs text-white/40">
           <p>© {new Date().getFullYear()} InstallatieVeilig, Jasper Mijvis</p>
+          <p>KvK: 87402270</p>
+          <AnalyticsConsent />
         </div>
       </div>
     </footer>
@@ -1207,6 +1211,12 @@ function MobielCta() {
 /* ------------------------------------------------------------------ */
 
 export default function App() {
+  useEffect(() => {
+    readConsent();
+    trackPage();
+    document.addEventListener('click', trackContactLink);
+    return () => document.removeEventListener('click', trackContactLink);
+  }, []);
   return (
     <>
       <Header />
