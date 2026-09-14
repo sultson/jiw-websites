@@ -1,0 +1,8 @@
+{
+  "name": "@jiw/ijcardstcg-growth-audit",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "ship": "wrangler deploy"
+  }
+}

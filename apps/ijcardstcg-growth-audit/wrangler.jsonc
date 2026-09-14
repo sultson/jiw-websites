@@ -1,0 +1,8 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "ijcardstcg-growth-audit",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "compatibility_date": "2026-05-15",
+  "assets": { "directory": "./public" },
+  "routes": [{ "pattern": "ijcardstcg-growth-audit.doelio.nl", "custom_domain": true }]
+}
