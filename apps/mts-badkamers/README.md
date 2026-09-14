@@ -30,7 +30,8 @@ client niets nagerenderd.
 Vanuit de root van de monorepo:
 
 ```bash
-pnpm --filter @jiw/mts-badkamers build         # media (alleen wat ontbreekt) + de vier talen
+pnpm --filter @jiw/mts-badkamers build         # media + prerender van de vier talen + HTML/SEO-audit
+pnpm --filter @jiw/mts-badkamers prerender     # HTML opnieuw genereren en controleren (media moet al bestaan)
 pnpm --filter @jiw/mts-badkamers dev           # bouwt en serveert site/ op :3066
 pnpm --filter @jiw/mts-badkamers audit:seo     # sitemap, canonicals, hreflang, titels
 pnpm --filter @jiw/mts-badkamers audit:js-off  # alle 88 pagina's met JavaScript uit
@@ -42,6 +43,13 @@ pnpm --filter @jiw/mts-badkamers ship          # build + audit + wrangler deploy
 op tijd is; alleen `pnpm media` (met `--force`) rekent alles opnieuw uit. De
 losse stappen (`node work/media.mjs`, `node build.mjs`) werken nog gewoon vanuit
 deze map.
+
+De expliciete `prerender`-stap schrijft voor elke route de volledige pagina naar
+`site/`: zichtbare inhoud, metadata, canonical, hreflang en JSON-LD. Dit levert
+hetzelfde resultaat voor crawlers en LLM's als de React-prerender van RN Schilders,
+maar gebruikt de bestaande statische templates. JavaScript is niet nodig om de
+inhoud te lezen. De HTML/SEO-audit draait bij elke build en blokkeert ook een
+deploy als pagina's of inhoud ontbreken.
 
 `build.mjs` leest `MAPBOX_TOKEN` uit de `.env` op de root van de monorepo, of uit
 de omgeving als die er staat. De generatiescripts in `work/gen/` willen
@@ -63,7 +71,7 @@ De controlescripts in `work/` draaien op Playwright. De browsers komen niet met
 | `work/media.mjs` | mediapijplijn: watermerk-crops + webp/jpg-derivaten in `site/m/` |
 | `work/posters.mjs` | posterbeeld op 1,000 s uit elke video naar `site/poster/` |
 | `work/video-meta.mjs` | duur en afmetingen per video met ffprobe naar `_video.json` (input voor de VideoObject) |
-| `work/audit-seo.mjs` | draait mee in `ship`: sitemap, canonicals, hreflang, titels, lastmod, videositemap, en of de HTML compleet is |
+| `work/audit-seo.mjs` | draait mee in elke `prerender` en `build`: sitemap, canonicals, hreflang, titels, lastmod, videositemap, en of de HTML compleet is |
 | `work/js-off.mjs` | dezelfde vraag met een echte browser en JavaScript uit |
 | `_media.json` | afmetingen per bestand ná de crop (input voor `build.mjs`) |
 | `_video.json` | duur en afmetingen per video; gemaakt door `work/video-meta.mjs`, gelezen door `build.mjs` |

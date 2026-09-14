@@ -5,14 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm build && npx --yes http-server site -p 3066 -c-1 --silent",
-    "build": "node work/media.mjs && node build.mjs",
+    "build": "node work/media.mjs && pnpm prerender",
+    "prerender": "node build.mjs && pnpm audit:seo",
     "preview": "npx --yes http-server site -p 4766 -c-1 --silent",
     "lint": "tsc --noEmit -p tsconfig.worker.json",
     "clean": "rm -rf site/m site/en site/tr site/ru site/werk site/badkamerrenovatie site/toiletrenovatie site/tegelwerk site/loodgieter-en-cv site/index.html site/404.html site/sitemap.xml site/sitemap-video.xml site/robots.txt site/favicon.svg site/_headers site/styles.*.css site/app.*.js dist-worker",
     "media": "node work/media.mjs --force",
     "posters": "node work/posters.mjs",
-    "ship": "pnpm build && pnpm audit:seo && wrangler deploy",
-    "ship:dry-run": "pnpm build && pnpm audit:seo && wrangler deploy --dry-run --outdir=dist-worker",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run --outdir=dist-worker",
     "audit:seo": "node work/audit-seo.mjs",
     "audit:js-off": "node work/js-off.mjs",
     "video-meta": "node work/video-meta.mjs"
