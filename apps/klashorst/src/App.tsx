@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import CookieConsent from './components/CookieConsent';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import PreviewBar from './components/PreviewBar';
@@ -105,6 +106,7 @@ export default function App() {
       <Nav path={path} newsletterOpDezePagina={newsletter} />
       {page}
       <Footer path={path} newsletterOpDezePagina={newsletter} />
+      <CookieConsent path={path} />
       {isPreview && <PreviewBar />}
     </>
   );

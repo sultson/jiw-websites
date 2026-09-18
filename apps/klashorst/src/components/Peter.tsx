@@ -1,8 +1,15 @@
-import { content } from '../content';
+import { useState } from 'react';
+import Lightbox, { type LightboxFoto } from './Lightbox';
+import { content, ui } from '../content';
 import Paragraphs from './Paragraphs';
 
 export default function Peter() {
   const t = content.teksten.peter;
+  const [index, setIndex] = useState<number | null>(null);
+  const fotos: LightboxFoto[] = [
+    ...(t.portret ? [{ key: 'portret', src: t.portret.full, alt: t.titel, onderschrift: t.portretCredit }] : []),
+    ...(t.tweedeFoto ? [{ key: 'tweede', src: t.tweedeFoto.full, alt: t.titel, onderschrift: t.tweedeFotoCredit }] : []),
+  ];
   const alineas = t.alineas.filter((alinea) => alinea.trim());
 
   // Nothing written and no photograph: the museum removed this section, so the
@@ -22,6 +29,7 @@ export default function Peter() {
             {/* The portrait: black and white, the way the museum uses it. */}
             {t.portret && (
               <figure className="mt-10 w-full max-w-[30rem]">
+                <button type="button" className="block w-full cursor-zoom-in" aria-label={`${ui.werk.vergroot}: ${t.titel}`} onClick={() => setIndex(0)}>
                 <img
                   src={t.portret.grid}
                   srcSet={`${t.portret.gridSet}, ${t.portret.full} 2200w`}
@@ -33,6 +41,7 @@ export default function Peter() {
                   decoding="async"
                   className="h-auto w-full grayscale"
                 />
+                </button>
                 {t.portretCredit && (
                   <figcaption className="mt-2 text-xs text-muted">{t.portretCredit}</figcaption>
                 )}
@@ -55,6 +64,7 @@ export default function Peter() {
                 being made, and the paint is the whole point of it. */}
             {t.tweedeFoto && (
               <figure className={alineas.length ? 'mt-10' : ''}>
+                <button type="button" className="block w-full cursor-zoom-in" aria-label={`${ui.werk.vergroot}: ${t.tweedeFotoCredit || t.titel}`} onClick={() => setIndex(t.portret ? 1 : 0)}>
                 <img
                   src={t.tweedeFoto.grid}
                   srcSet={`${t.tweedeFoto.gridSet}, ${t.tweedeFoto.full} 2200w`}
@@ -66,6 +76,7 @@ export default function Peter() {
                   decoding="async"
                   className="h-auto w-full"
                 />
+                </button>
                 {t.tweedeFotoCredit && (
                   <figcaption className="mt-2 text-xs text-muted">{t.tweedeFotoCredit}</figcaption>
                 )}
@@ -74,6 +85,7 @@ export default function Peter() {
           </div>
         </div>
       </div>
+      <Lightbox fotos={fotos} index={index} onIndex={setIndex} />
     </section>
   );
 }

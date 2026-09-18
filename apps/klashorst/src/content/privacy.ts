@@ -34,7 +34,7 @@ const MAIL = 'klashorstmuseum@gmail.com';
 
 const nl: Privacy = {
   titel: PRIVACY_TITLE.nl,
-  bijgewerkt: 'Laatst bijgewerkt: 2 september 2026',
+  bijgewerkt: 'Laatst bijgewerkt: 14 september 2026',
   intro:
     'Het Peter Klashorst Museum hecht waarde aan uw privacy. In deze verklaring leggen wij uit welke persoonsgegevens wij verzamelen via onze website, waarom wij dat doen en welke rechten u heeft.',
   secties: [
@@ -64,7 +64,7 @@ const nl: Privacy = {
         {
           soort: 'tekst',
           tekst:
-            '**Websitebezoek en statistieken** Wij gebruiken Google Analytics om inzicht te krijgen in het gebruik van onze website. Wij hebben Google Analytics privacyvriendelijk ingesteld volgens de handleiding van de Autoriteit Persoonsgegevens: er is een verwerkersovereenkomst met Google gesloten, IP-adressen worden geanonimiseerd, gegevensdeling met Google is uitgeschakeld en er worden geen gegevens gedeeld met andere Google-diensten. Grondslag: gerechtvaardigd belang (verbetering van de website).',
+            '**Websitebezoek en statistieken** Alleen met uw toestemming laden wij Google Analytics voor bezoekersaantallen en bekeken pagina’s. De grondslag is uw toestemming. Advertentiepersonalisatie en Google Signals staan in onze websitecode uit. Wij sturen geen formulierinhoud naar Google Analytics. U kunt uw toestemming op elk moment intrekken via Cookievoorkeuren onderaan de website.',
         },
         {
           soort: 'tekst',
@@ -103,7 +103,7 @@ const nl: Privacy = {
         {
           soort: 'tekst',
           tekst:
-            'Onze website gebruikt functionele cookies die nodig zijn om de website goed te laten werken, en analytische cookies van Google Analytics. Deze zijn privacyvriendelijk ingesteld, waardoor hiervoor geen toestemming vereist is. Wij plaatsen geen tracking- of advertentiecookies.',
+            'Wij onthouden uw cookiekeuze 6 maanden in de lokale opslag van uw browser. Alleen na toestemming laden wij Google Analytics en mag Google analytische cookies plaatsen (_ga en _ga_*), met een ingestelde looptijd van maximaal 6 maanden die bij bezoek kan worden vernieuwd. Bij weigering laden wij Google Analytics niet. Via Cookievoorkeuren kunt u uw keuze wijzigen; bij intrekken verwijderen wij deze analytische cookies. Wij plaatsen geen advertentiecookies.',
         },
       ],
     },
@@ -158,7 +158,7 @@ const nl: Privacy = {
 
 const en: Privacy = {
   titel: PRIVACY_TITLE.en,
-  bijgewerkt: 'Last updated: 2 September 2026',
+  bijgewerkt: 'Last updated: 14 September 2026',
   intro:
     'The Peter Klashorst Museum values your privacy. This statement explains which personal data we collect through our website, why we do so, and what rights you have.',
   secties: [
@@ -188,7 +188,7 @@ const en: Privacy = {
         {
           soort: 'tekst',
           tekst:
-            '**Website visits and statistics** We use Google Analytics to understand how our website is used. We have configured Google Analytics in the privacy-friendly way set out by the Dutch Data Protection Authority: a processing agreement with Google is in place, IP addresses are anonymised, data sharing with Google is switched off, and no data is shared with other Google services. Legal basis: legitimate interest (improving the website).',
+            '**Website visits and statistics** We load Google Analytics for visitor counts and page views only with your consent. The legal basis is your consent. Advertising personalisation and Google Signals are disabled in our website code. We do not send form contents to Google Analytics. You can withdraw consent at any time through Cookie preferences in the website footer.',
         },
         {
           soort: 'tekst',
@@ -227,7 +227,7 @@ const en: Privacy = {
         {
           soort: 'tekst',
           tekst:
-            'Our website uses functional cookies that are needed to make the website work properly, and analytical cookies from Google Analytics. These are configured in a privacy-friendly way, which is why no consent is required for them. We place no tracking or advertising cookies.',
+            'We remember your cookie choice for 6 months in your browser’s local storage. Only after consent do we load Google Analytics and allow Google to place analytics cookies (_ga and _ga_*), with a configured lifetime of up to 6 months that may renew on visits. If you decline, we do not load Google Analytics. You can change your choice through Cookie preferences; withdrawing consent removes these analytics cookies. We do not place advertising cookies.',
         },
       ],
     },

@@ -1,17 +1,8 @@
-import { useCallback, useEffect, useRef, useState, type TouchEvent } from 'react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { ui } from '../content';
+import { useCallback, useEffect, useRef, useState, type PointerEvent } from 'react';
+import { createPortal } from 'react-dom';
+import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
+import { ui, lang } from '../content';
 import Paragraphs from './Paragraphs';
-
-/**
- * A photograph, enlarged.
- *
- * The one way this site has of looking at an image properly: the page behind it
- * goes still, the work fills the screen, and the arrow keys, the chevrons or a
- * finger move to the next one. Used by the collection and by an article on the
- * blog, so that clicking a photograph does the same thing wherever a visitor
- * happens to be.
- */
 
 export type LightboxFoto = {
   /** How the page that opened this viewer names the photograph. */
@@ -27,186 +18,128 @@ export type LightboxFoto = {
   toelichting?: string;
 };
 
-export default function Lightbox({
-  fotos,
-  index,
-  onIndex,
-}: {
+export default function Lightbox({ fotos, index, onIndex }: {
   fotos: LightboxFoto[];
-  /** Which photograph is open, or null for none. */
   index: number | null;
   onIndex: (index: number | null) => void;
 }) {
-  /** How far the finger has carried the enlarged photograph, while it carries it. */
-  const [shift, setShift] = useState(0);
-  const swipe = useRef<{ x: number; y: number; dx: number; sideways: boolean | null } | null>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const stage = useRef<HTMLDivElement>(null);
+  const photo = useRef<HTMLImageElement>(null);
+  const pointers = useRef(new Map<number, { x: number; y: number }>());
+  const swipe = useRef<number | null>(null);
+  const [view, setView] = useState({ scale: 1, x: 0, y: 0 });
+  const current = index === null ? null : fotos[index];
+  const open = !!current;
+  const labels = lang === 'nl'
+    ? { in: 'Inzoomen', out: 'Uitzoomen', reset: 'Passend in beeld', hint: 'Zoom met + en −, het muiswiel of twee vingers. Sleep om de foto te bekijken.' }
+    : { in: 'Zoom in', out: 'Zoom out', reset: 'Fit to screen', hint: 'Zoom with + and −, the mouse wheel or two fingers. Drag to explore the photo.' };
+  const reset = () => setView({ scale: 1, x: 0, y: 0 });
+  const step = useCallback((delta: number) => {
+    if (index !== null && fotos.length > 1) onIndex((index + delta + fotos.length) % fotos.length);
+  }, [index, fotos.length, onIndex]);
 
-  const aantal = fotos.length;
-  const open = index !== null;
-  const sluiten = useCallback(() => onIndex(null), [onIndex]);
+  // Clamp panning to the enlarged image so it cannot be lost off screen.
+  const bounded = useCallback((scale: number, x: number, y: number) => {
+    scale = Math.min(4, Math.max(1, scale));
+    const maxX = Math.max(0, ((photo.current?.clientWidth ?? 0) * scale - (stage.current?.clientWidth ?? 0)) / 2);
+    const maxY = Math.max(0, ((photo.current?.clientHeight ?? 0) * scale - (stage.current?.clientHeight ?? 0)) / 2);
+    return { scale, x: Math.max(-maxX, Math.min(maxX, x)), y: Math.max(-maxY, Math.min(maxY, y)) };
+  }, []);
+  const zoom = useCallback((factor: number) => setView(v => bounded(v.scale * factor, v.x, v.y)), [bounded]);
 
-  const step = useCallback(
-    (delta: number) => {
-      if (index === null || aantal < 2) return;
-      onIndex((index + delta + aantal) % aantal);
-    },
-    [index, aantal, onIndex],
-  );
-
-  /**
-   * While a photograph is open the page behind it does not scroll, and closing
-   * it hands the keyboard back to the image that was clicked rather than to the
-   * top of the document.
-   */
+  useEffect(() => { reset(); pointers.current.clear(); swipe.current = null; }, [index]);
   useEffect(() => {
     if (!open) return;
-    const vorige = document.activeElement;
+    const previous = document.activeElement;
+    const overflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    dialog.current?.showModal();
     return () => {
-      document.body.style.overflow = '';
-      if (vorige instanceof HTMLElement && vorige.isConnected) vorige.focus();
+      dialog.current?.close();
+      document.body.style.overflow = overflow;
+      if (previous instanceof HTMLElement && previous.isConnected) previous.focus();
     };
   }, [open]);
-
   useEffect(() => {
     if (!open) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') sluiten();
-      if (event.key === 'ArrowRight') step(1);
-      if (event.key === 'ArrowLeft') step(-1);
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [open, step, sluiten]);
+    const element = stage.current;
+    const wheel = (event: WheelEvent) => { event.preventDefault(); zoom(Math.exp(-event.deltaY * 0.002)); };
+    const resize = () => reset();
+    element?.addEventListener('wheel', wheel, { passive: false });
+    window.addEventListener('resize', resize);
+    return () => { element?.removeEventListener('wheel', wheel); window.removeEventListener('resize', resize); };
+  }, [open, zoom]);
 
-  /**
-   * Swiping between photographs, because on a phone the chevrons are a small
-   * target and a photograph is something you expect to be able to push aside.
-   * The image follows the finger so the gesture answers, and a swipe that does
-   * not carry far enough simply slides back.
-   */
-  const touchStart = (event: TouchEvent) => {
-    // A finger that lands on a chevron is pressing it, not swiping.
-    if ((event.target as HTMLElement).closest('button')) return;
-    const touch = event.touches[0];
-    swipe.current = { x: touch.clientX, y: touch.clientY, dx: 0, sideways: null };
-  };
-
-  const touchMove = (event: TouchEvent) => {
-    const start = swipe.current;
-    if (!start || event.touches.length > 1) return;
-    const touch = event.touches[0];
-    const dx = touch.clientX - start.x;
-    const dy = touch.clientY - start.y;
-    // Decided once, on the first few pixels: the gesture is either sideways
-    // between photographs or it belongs to the page, and it never changes its
-    // mind.
-    if (start.sideways === null) {
-      if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
-      start.sideways = Math.abs(dx) > Math.abs(dy);
+  function pointerDown(event: PointerEvent<HTMLDivElement>) {
+    if ((event.target as HTMLElement).closest('button') || event.button !== 0) return;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    pointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    swipe.current = pointers.current.size === 1 && view.scale === 1 ? event.clientX : null;
+  }
+  function pointerMove(event: PointerEvent<HTMLDivElement>) {
+    const old = pointers.current.get(event.pointerId);
+    if (!old) return;
+    const next = { x: event.clientX, y: event.clientY };
+    const other = [...pointers.current.entries()].find(([id]) => id !== event.pointerId)?.[1];
+    pointers.current.set(event.pointerId, next);
+    if (other) {
+      const before = Math.hypot(old.x - other.x, old.y - other.y);
+      const after = Math.hypot(next.x - other.x, next.y - other.y);
+      if (before > 0) setView(v => bounded(v.scale * after / before, v.x + (next.x - old.x) / 2, v.y + (next.y - old.y) / 2));
+    } else if (view.scale > 1) {
+      setView(v => bounded(v.scale, v.x + next.x - old.x, v.y + next.y - old.y));
     }
-    if (!start.sideways) return;
-    start.dx = dx;
-    setShift(aantal > 1 ? dx : 0);
-  };
-
-  const touchEnd = () => {
-    const start = swipe.current;
+  }
+  function pointerUp(event: PointerEvent<HTMLDivElement>) {
+    if (event.type !== 'pointercancel' && swipe.current !== null && view.scale === 1) {
+      const dx = event.clientX - swipe.current;
+      if (Math.abs(dx) > 60) step(dx < 0 ? 1 : -1);
+    }
+    pointers.current.delete(event.pointerId);
     swipe.current = null;
-    setShift(0);
-    if (!start?.sideways) return;
-    // Far enough to be meant, measured against the screen so the gesture asks
-    // the same of a phone as of a tablet.
-    const enough = Math.min(90, Math.max(40, window.innerWidth * 0.12));
-    if (Math.abs(start.dx) >= enough) step(start.dx < 0 ? 1 : -1);
-  };
+  }
 
-  const current = index === null ? null : fotos[index];
   if (!current) return null;
-
-  return (
-    <div
-      className="fixed inset-0 z-[70] flex flex-col bg-ink"
-      role="dialog"
-      aria-modal="true"
-      aria-label={current.titel || current.onderschrift || current.alt || ui.werk.vergroot}
-    >
-      <div className="flex items-center justify-between gap-5 border-b border-hair px-5 py-3 md:px-8">
-        <div>
+  return createPortal(
+    <dialog ref={dialog} className="photo-dialog" aria-label={current.titel || current.onderschrift || current.alt || ui.werk.vergroot}
+      onCancel={() => onIndex(null)}
+      onKeyDown={event => {
+        if (event.key === 'ArrowRight') { event.preventDefault(); step(1); }
+        if (event.key === 'ArrowLeft') { event.preventDefault(); step(-1); }
+        if (event.key === '+' || event.key === '=') { event.preventDefault(); zoom(1.5); }
+        if (event.key === '-') { event.preventDefault(); zoom(1 / 1.5); }
+        if (event.key === '0') reset();
+      }}>
+      <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 border-b border-hair px-4 py-3 md:px-8">
+        <div className="min-w-0 flex-1">
           {current.titel && <h3 className="display text-lg md:text-xl">{current.titel}</h3>}
-          {/* Without a title this line is what names the photograph, so it is
-              read at full strength rather than as a caption under one. */}
-          {current.onderschrift && (
-            <p
-              className={
-                current.titel ? 'text-xs text-muted md:text-sm' : 'text-sm text-bone md:text-base'
-              }
-            >
-              {current.onderschrift}
-            </p>
-          )}
+          {current.onderschrift && <p className="text-xs text-muted md:text-sm">{current.onderschrift}</p>}
         </div>
-        <button type="button" onClick={sluiten} aria-label={ui.lightbox.sluiten} className="p-2">
-          <X size={26} />
-        </button>
-      </div>
-
-      <div
-        className="relative flex flex-1 items-center justify-center overflow-hidden p-4 md:p-8"
-        style={{ touchAction: 'pan-y' }}
-        // The dark around the photograph closes it, which is what a visitor
-        // tries before they look for the cross.
-        onClick={(event) => {
-          if (event.target === event.currentTarget) sluiten();
-        }}
-        onTouchStart={touchStart}
-        onTouchMove={touchMove}
-        onTouchEnd={touchEnd}
-        onTouchCancel={touchEnd}
-      >
-        <img
-          src={current.src}
-          alt={current.alt}
-          draggable={false}
-          className="max-h-full max-w-full select-none object-contain"
-          style={{
-            transform: shift ? `translateX(${shift}px)` : undefined,
-            transition: shift ? 'none' : 'transform 220ms ease-out',
-          }}
-        />
-        {/* A single photograph has nowhere to go: it is opened and closed, and
-            the chevrons would be two buttons that do nothing. */}
-        {aantal > 1 && (
-          <>
-            <button
-              type="button"
-              onClick={() => step(-1)}
-              aria-label={ui.lightbox.vorige}
-              className="absolute left-2 p-3 text-bone/60 hover:text-bone md:left-6"
-            >
-              <ChevronLeft size={34} />
-            </button>
-            <button
-              type="button"
-              onClick={() => step(1)}
-              aria-label={ui.lightbox.volgende}
-              className="absolute right-2 p-3 text-bone/60 hover:text-bone md:right-6"
-            >
-              <ChevronRight size={34} />
-            </button>
-          </>
-        )}
-      </div>
-
-      {current.toelichting && (
-        <div className="mx-auto flex max-w-2xl flex-col items-center px-5 pb-6">
-          <Paragraphs
-            value={current.toelichting}
-            className="text-center text-sm leading-relaxed text-bone"
-            gap="mt-3"
-          />
+        <div className="flex items-center gap-1">
+          <button type="button" onClick={() => zoom(1 / 1.5)} disabled={view.scale <= 1} aria-label={labels.out} className="p-2 disabled:opacity-30"><ZoomOut size={22} /></button>
+          <span className="w-12 text-center text-xs" aria-live="polite">{Math.round(view.scale * 100)}%</span>
+          <button type="button" onClick={() => zoom(1.5)} disabled={view.scale >= 4} aria-label={labels.in} className="p-2 disabled:opacity-30"><ZoomIn size={22} /></button>
+          <button type="button" onClick={reset} aria-label={labels.reset} className="p-2"><RotateCcw size={20} /></button>
+          <button type="button" autoFocus onClick={() => onIndex(null)} aria-label={ui.lightbox.sluiten} className="p-2"><X size={26} /></button>
         </div>
-      )}
-    </div>
+      </div>
+      <div ref={stage} className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden"
+        style={{ touchAction: 'none', cursor: view.scale > 1 ? 'grab' : 'zoom-in' }}
+        onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerUp} onPointerCancel={pointerUp}
+        onDoubleClick={() => view.scale > 1 ? reset() : zoom(2)}>
+        <img ref={photo} src={current.src} alt={current.alt} draggable={false}
+          className="block max-h-full max-w-full select-none object-contain"
+          style={{ transform: `translate(${view.x}px, ${view.y}px) scale(${view.scale})` }} />
+        {fotos.length > 1 && <>
+          <button type="button" onClick={() => step(-1)} aria-label={ui.lightbox.vorige} className="absolute left-2 rounded bg-ink/80 p-3 md:left-6"><ChevronLeft size={30} /></button>
+          <button type="button" onClick={() => step(1)} aria-label={ui.lightbox.volgende} className="absolute right-2 rounded bg-ink/80 p-3 md:right-6"><ChevronRight size={30} /></button>
+        </>}
+      </div>
+      <div className="max-h-[20vh] shrink-0 overflow-auto px-5 py-3 text-center">
+        <p className="text-xs text-muted">{labels.hint}</p>
+        {current.toelichting && <Paragraphs value={current.toelichting} className="mx-auto mt-2 max-w-2xl text-sm text-bone" gap="mt-3" />}
+      </div>
+    </dialog>, document.body,
   );
 }

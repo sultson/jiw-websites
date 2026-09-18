@@ -1,3 +1,4 @@
+import { COOKIE_SETTINGS_EVENT } from './CookieConsent';
 import { content, lang } from '../content';
 import Paragraphs from './Paragraphs';
 import Wordmark from './Wordmark';
@@ -55,6 +56,9 @@ export default function Footer({
           <div>
             <Paragraphs value={t.demo} className="text-xs text-muted" gap="mt-2" />
           </div>
+          <button type="button" onClick={() => window.dispatchEvent(new Event(COOKIE_SETTINGS_EVENT))} className="text-xs text-muted underline underline-offset-4 hover:text-bone">
+            {lang === 'nl' ? 'Cookievoorkeuren' : 'Cookie preferences'}
+          </button>
           <a
             href={to('/privacy')}
             className="text-xs text-muted underline decoration-hair underline-offset-4 transition-colors hover:text-bone"
