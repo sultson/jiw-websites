@@ -12,7 +12,7 @@ Object.assign(globalThis, {
     reload: () => reloads++,
   }},
   document: {
-    title: 'InstallatieVeilig',
+    title: 'Installatie Veilig',
     referrer: 'https://example.com/private?email=guest@example.com',
     cookie: '_ga=sample; _ga_TEST=sample',
     createElement: () => ({remove() {}}),

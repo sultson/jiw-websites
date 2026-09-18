@@ -4,7 +4,7 @@ import {CONTACT, SITE_URL} from './site';
 /**
  * De bevestiging die de aanvrager terugkrijgt.
  *
- * Twee dingen sturen alles hier: hij moet eruitzien alsof InstallatieVeilig hem
+ * Twee dingen sturen alles hier: hij moet eruitzien alsof Installatie Veilig hem
  * stuurde, en hij moet ongehinderd door Outlook en Gmail komen.
  *
  * Voor dat tweede: geen scripts, geen webfonts, geen achtergrondafbeeldingen,
@@ -45,7 +45,7 @@ const COPY: ConfirmationEmailCopy = {
   contactPrompt: `Wilt u er iets aan toevoegen? Beantwoord deze mail, bel of app naar ${CONTACT.telefoonWeergave}, of mail`,
   ctaLabel: 'Terug naar de website',
   footerText:
-    'InstallatieVeilig, Jasper Mijvis. Groepenkasten en laadpalen in en rond Breda, ' +
+    'Installatie Veilig, Jasper Mijvis. Groepenkasten en laadpalen in en rond Breda, ' +
     'aangelegd en doorgemeten volgens NEN 1010. U ontvangt deze mail omdat u een aanvraag deed op installatieveilig.nl.',
 };
 
@@ -63,7 +63,7 @@ export const installatieVeiligConfirmationEmail: LocalizedConfirmationEmailConfi
   translations: {nl: COPY},
   brand: {
     logoUrl: `${SITE_URL}${LOGO_PAD}`,
-    logoAlt: 'InstallatieVeilig Elektrotechniek',
+    logoAlt: 'Installatie Veilig Elektrotechniek',
     logoWidth: LOGO_BREEDTE,
     websiteUrl: `${SITE_URL}/`,
     contactEmail: CONTACT.email,

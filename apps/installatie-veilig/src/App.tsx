@@ -194,7 +194,7 @@ function Header() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" aria-label="InstallatieVeilig">
+        <a href="#top" aria-label="Installatie Veilig">
           <Logo variant="light" />
         </a>
 
@@ -1081,6 +1081,10 @@ function Contact() {
             </p>
 
             <div className="mt-8 space-y-3">
+              <p className="text-sm leading-relaxed text-white/75">
+                <span className="font-semibold text-white">Openingstijden</span><br />
+                Maandag t/m zondag: 08:00–23:00 uur
+              </p>
               <a
                 href={wa('Hallo Jasper, ik heb een vraag over')}
                 target="_blank" rel="noreferrer"
@@ -1168,12 +1172,14 @@ function Footer() {
               <li><a href={`tel:${PHONE}`} className="data transition hover:text-accent">{PHONE_DISPLAY}</a></li>
               <li><a href={wa('Hallo Jasper,')} target="_blank" rel="noreferrer" className="transition hover:text-accent">WhatsApp</a></li>
               <li><a href={`mailto:${EMAIL}`} className="transition hover:text-accent">{EMAIL}</a></li>
+              <li>Maandag t/m zondag: 08:00–23:00 uur</li>
+              <li><a href="https://share.google/8wpP6DasBeHTP38mJ" target="_blank" rel="noreferrer" className="transition hover:text-accent">Bekijk ons op Google</a></li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-white/10 pt-6 text-xs text-white/40">
-          <p>© {new Date().getFullYear()} InstallatieVeilig, Jasper Mijvis</p>
+          <p>© {new Date().getFullYear()} Installatie Veilig, Jasper Mijvis</p>
           <p>KvK: 87402270</p>
           <AnalyticsConsent />
         </div>

@@ -212,7 +212,7 @@ export function Logo({variant = 'dark', className = ''}: {variant?: 'dark' | 'li
   return (
     <img
       src={variant === 'light' ? '/img/logo-light.png' : '/img/logo-dark.png'}
-      alt="InstallatieVeilig Elektrotechniek"
+      alt="Installatie Veilig Elektrotechniek"
       width={579}
       height={114}
       className={`h-8 w-auto sm:h-9 ${className}`}

@@ -18,10 +18,10 @@ export type Env = CloudflareFormsEnv & {
  */
 const formulier = createFormWorker({
   formPath: '/api/forms/aanvraag',
-  siteName: 'InstallatieVeilig',
+  siteName: 'Installatie Veilig',
   ownerName: 'Jasper',
-  senderName: 'InstallatieVeilig',
-  subjectPrefix: 'Nieuwe aanvraag InstallatieVeilig',
+  senderName: 'Installatie Veilig',
+  subjectPrefix: 'Nieuwe aanvraag Installatie Veilig',
   confirmationFollowUpSentence:
     'Jasper laat u binnen een werkdag weten wat het kost en wanneer het kan.',
   turnstile: false,
@@ -75,6 +75,18 @@ const formulier = createFormWorker({
 /*  Eén adres voor de site                                             */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Adressen van de vorige site op dit domein. Google kende ze nog en meldde ze
+ * in Search Console als 404. Die inhoud staat nu op de ene pagina, dus elk oud
+ * adres gaat met één 301 naar de plek waar hij nu staat. Sleutels in kleine
+ * letters en zonder schuine streep aan het eind: de oude site schreef
+ * `/Diensten/`.
+ */
+const OUDE_PADEN: Record<string, string> = {
+  '/home': '/',
+  '/diensten': '/#diensten',
+};
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -94,11 +106,19 @@ export default {
      * En alleen leesverzoeken: een 301 gooit de body van een POST weg. Het
      * formulier valt hierboven al af, maar zo blijft de volgorde ook kloppen
      * als er ooit een tweede POST bij komt.
+     *
+     * Een oud pad op een andere host (`www.…/Diensten/`) krijgt beide in één
+     * sprong, geen 301 naar de host en dan nog een naar het pad.
      */
     const leesverzoek = request.method === 'GET' || request.method === 'HEAD';
-    if (leesverzoek && url.protocol === 'https:' && ANDERE_HOSTS.includes(url.hostname)) {
-      url.hostname = CANONIEKE_HOST;
-      return Response.redirect(url.toString(), 301);
+    if (leesverzoek) {
+      const oudPad = OUDE_PADEN[url.pathname.toLowerCase().replace(/\/+$/, '')];
+      const andereHost = url.protocol === 'https:' && ANDERE_HOSTS.includes(url.hostname);
+      if (oudPad || andereHost) {
+        const doel = oudPad ? new URL(oudPad, url) : url;
+        if (andereHost) doel.hostname = CANONIEKE_HOST;
+        return Response.redirect(doel.toString(), 301);
+      }
     }
 
     /**
@@ -112,16 +132,24 @@ export default {
      * dat is precies wat we willen. no-store betekent "bewaar niets", en dat
      * zet ook de bfcache uit, het geheugen waarmee de browser een pagina
      * terugtovert als iemand op de terugknop drukt.
+     *
+     * public/404.html is voor Cloudflare ook gewoon een bestand, dus `/404`
+     * antwoordde 200 met "Deze pagina bestaat niet": voor Google een zachte
+     * 404. Wie die pagina rechtstreeks opvraagt krijgt hem daarom met de
+     * status die erbij hoort, en `/404.html` zonder eerst een 307 naar `/404`.
      */
-    const antwoord = await env.ASSETS.fetch(request);
+    const foutpagina = /^\/404(\.html)?\/?$/i.test(url.pathname);
+    const antwoord = await env.ASSETS.fetch(
+      foutpagina ? new Request(new URL('/404', url), request) : request,
+    );
     const type = antwoord.headers.get('content-type') ?? '';
     if (!type.includes('text/html')) return antwoord;
 
     const headers = new Headers(antwoord.headers);
     headers.set('Cache-Control', 'no-cache');
     return new Response(antwoord.body, {
-      status: antwoord.status,
-      statusText: antwoord.statusText,
+      status: foutpagina ? 404 : antwoord.status,
+      statusText: foutpagina ? 'Not Found' : antwoord.statusText,
       headers,
     });
   },
