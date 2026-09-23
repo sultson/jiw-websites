@@ -31,7 +31,7 @@ export default function StickyBookCta({ t, onBook, hidden }: Props) {
     <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden px-4 safe-bottom pt-3 pointer-events-none">
       <button
         onClick={onBook}
-        className="pointer-events-auto w-full bg-gold text-cream rounded-full py-3.5 font-medium flex items-center justify-center gap-2 shadow-[0_10px_30px_-8px_rgba(184,113,53,0.5)]"
+        className="pointer-events-auto w-full bg-gold text-button-ink rounded-full py-3.5 font-medium flex items-center justify-center gap-2 shadow-[0_10px_30px_-8px_rgba(53,37,31,0.25)]"
       >
         <Calendar size={18} />
         {t('nav.book')}

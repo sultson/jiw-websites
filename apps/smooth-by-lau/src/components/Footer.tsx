@@ -8,10 +8,10 @@ export default function Footer({ t }: Props) {
       <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16 md:py-20">
         <div className="grid md:grid-cols-3 gap-10">
           <div>
-            <span className="font-serif text-2xl text-cream">
-              Smooth by <span className="text-gold-soft">Lau</span>
-            </span>
-            <p className="mt-4 text-sm text-cream/60 leading-relaxed max-w-xs">{t('footer.tagline')}</p>
+            <a href="#top" className="inline-block" aria-label="Smooth By Lau">
+              <img src="/brand/logo-reversed.svg" alt="Smooth By Lau — Sugaring, Brows & Lashes" width="874" height="606" className="w-56 h-auto" loading="lazy" />
+            </a>
+            <p className="mt-4 text-sm text-cream/75 leading-relaxed max-w-xs">{t('footer.tagline')}</p>
           </div>
 
           <div className="space-y-2 text-sm">
@@ -44,7 +44,7 @@ export default function Footer({ t }: Props) {
             >
               <Facebook size={14} className="text-gold-soft" /> Smooth By Lau
             </a>
-            <div className="pt-2 space-y-1 text-cream/40 text-xs">
+            <div className="pt-2 space-y-1 text-cream/75 text-xs">
               <a href="#behandelingen" className="block hover:text-cream/70">{t('nav.services')}</a>
               <a href="#suiker"        className="block hover:text-cream/70">{t('nav.suiker')}</a>
               <a href="#fotos"         className="block hover:text-cream/70">{t('nav.gallery')}</a>
@@ -53,12 +53,12 @@ export default function Footer({ t }: Props) {
           </div>
         </div>
 
-        <div className="mt-14 pt-6 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-cream/40">
+        <div className="mt-14 pt-6 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-cream/75">
           <p>{t('footer.rights')}</p>
           <p>Waspik · Noord-Brabant</p>
         </div>
 
-        <div className="mt-6 pt-6 border-t border-cream/10 flex justify-center items-center gap-2 text-xs text-cream/40">
+        <div className="mt-6 pt-6 border-t border-cream/10 flex justify-center items-center gap-2 text-xs text-cream/75">
           <a
             href="https://jouwidealewebsite.nl"
             target="_blank"

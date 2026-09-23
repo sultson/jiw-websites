@@ -24,6 +24,11 @@ export default function App() {
 
   return (
     <div className="min-h-[100dvh] flex flex-col bg-cream">
+      <div className="brand-splash" aria-hidden="true">
+        <div className="brand-splash-frame">
+          <img src="/brand/logo-reversed.svg" alt="" width="874" height="606" className="brand-splash-logo" />
+        </div>
+      </div>
       <Nav lang={lang} setLang={setLang} t={t} onBook={openBooking} />
 
       <main className="flex-1">

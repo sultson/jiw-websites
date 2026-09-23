@@ -32,7 +32,7 @@ export default function Visit({ lang, t }: Props) {
                   href="https://www.google.com/maps/dir/?api=1&destination=Berkendreef+11B,+5165+AT+Waspik"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 mt-2 text-sm text-gold hover:underline"
+                  className="inline-flex items-center gap-1 mt-2 text-sm text-gold-ink hover:underline"
                 >
                   {t('visit.directions')} <ExternalLink size={12} />
                 </a>
@@ -53,7 +53,7 @@ export default function Visit({ lang, t }: Props) {
                   href="https://wa.me/31638502903"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gold hover:underline"
+                  className="text-sm text-gold-ink hover:underline"
                 >
                   WhatsApp
                 </a>

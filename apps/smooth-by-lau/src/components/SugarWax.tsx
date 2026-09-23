@@ -8,7 +8,7 @@ export default function SugarWax({ t, onBook }: Props) {
   const benefits = [1, 2, 3, 4, 5] as const;
 
   return (
-    <section id="suiker" className="py-20 md:py-28 bg-[#3A2418] text-cream overflow-hidden">
+    <section id="suiker" className="py-20 md:py-28 bg-espresso text-cream overflow-hidden">
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
 

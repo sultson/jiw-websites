@@ -24,7 +24,7 @@ export default function Promise({ t }: Props) {
               />
             </div>
             <div className="hidden md:block absolute -bottom-8 -right-8 max-w-[16rem] rounded-2xl bg-white border border-espresso/5 shadow-[0_20px_60px_-30px_rgba(44,26,16,0.3)] p-5">
-              <p className="font-serif italic text-espresso text-sm leading-snug">
+              <p className="font-sans text-espresso text-base leading-relaxed">
                 {t('promise.quote')}
               </p>
               <p className="mt-2 text-[11px] uppercase tracking-[0.18em] text-espresso/50">

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import type { Lang } from '../translations';
 import LangToggle from './LangToggle';
+import BrandMark from './BrandMark';
 
 type Props = {
   lang: Lang;
@@ -40,13 +41,12 @@ export default function Nav({ lang, setLang, t, onBook }: Props) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
-          <a href="#top" aria-label="Smooth By Lau" className="flex items-center min-w-0">
-            <span className="font-serif text-xl md:text-2xl tracking-wide text-espresso">
-              Smooth by <span className="text-gold">Lau</span>
-            </span>
+          <a href="#top" aria-label="Smooth By Lau" className="flex items-center gap-2.5 md:gap-3 min-w-0 shrink-0">
+            <BrandMark />
+            <img src="/brand/wordmark.svg" alt="" width="870" height="83" className="w-28 min-[360px]:w-32 sm:w-40 xl:w-44 h-auto" />
           </a>
 
-          <div className="hidden lg:flex items-center gap-7">
+          <div className="hidden xl:flex items-center gap-4 xl:gap-7">
             {links.map(l => (
               <a key={l.href} href={l.href} className="text-sm text-espresso/75 hover:text-espresso">
                 {t(l.key)}
@@ -61,8 +61,10 @@ export default function Nav({ lang, setLang, t, onBook }: Props) {
             </button>
             <button
               onClick={() => setOpen(v => !v)}
-              className="lg:hidden p-2 -mr-2 text-espresso"
+              className="xl:hidden p-2 -mr-2 text-espresso"
               aria-label="Menu"
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
             >
               {open ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -71,7 +73,7 @@ export default function Nav({ lang, setLang, t, onBook }: Props) {
       </div>
 
       {open && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-cream border-b border-espresso/10 shadow-xl">
+        <div id="mobile-navigation" className="xl:hidden absolute top-full left-0 w-full bg-cream border-b border-espresso/10 shadow-xl">
           <div className="px-6 py-6 space-y-1">
             {links.map(l => (
               <a

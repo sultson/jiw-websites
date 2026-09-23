@@ -111,7 +111,6 @@ export const translations: Record<Lang, Dict> = {
 
     'reviews.kicker':  'Klanten vertellen',
     'reviews.title':   'Recensies',
-    'reviews.sub':     'Echte recensies van Google.',
     'reviews.all':     'Bekijk alle op Google',
 
     'visit.kicker':    'Bezoek mij',
@@ -255,7 +254,6 @@ export const translations: Record<Lang, Dict> = {
 
     'reviews.kicker':  'What clients say',
     'reviews.title':   'Reviews',
-    'reviews.sub':     'Real reviews from Google.',
     'reviews.all':     'View all on Google',
 
     'visit.kicker':    'Visit me',

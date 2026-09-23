@@ -13,7 +13,7 @@ export default function Reviews({ lang, t }: Props) {
     if (!el) return;
     const card = el.querySelector<HTMLElement>('[data-review-card]');
     const amount = card ? card.offsetWidth + 16 : 320;
-    el.scrollBy({ left: amount * dir, behavior: 'smooth' });
+    el.scrollBy({ left: amount * dir, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   };
 
   function text(r: { nl: string; en: string }) {
@@ -27,7 +27,7 @@ export default function Reviews({ lang, t }: Props) {
           <div>
             <span className="kicker">{t('reviews.kicker')}</span>
             <h2 className="mt-3 font-serif text-4xl md:text-5xl">{t('reviews.title')}</h2>
-            <p className="mt-3 text-sm text-espresso/60 max-w-md">{t('reviews.sub')}</p>
+
           </div>
           <div className="hidden md:flex gap-2">
             <button onClick={() => scrollBy(-1)} className="btn-outline !px-3" aria-label="Vorige">
@@ -47,20 +47,26 @@ export default function Reviews({ lang, t }: Props) {
             <article
               key={r.id}
               data-review-card
-              className="card shrink-0 w-[85%] sm:w-[360px] p-6 md:p-7 snap-start flex flex-col"
+              className="shrink-0 w-[88%] sm:w-[360px] p-6 snap-start flex flex-col rounded-2xl bg-white border border-espresso/10 shadow-sm"
             >
-              <div className="flex gap-0.5 text-gold mb-3">
+              <div className="flex items-center gap-3 mb-5">
+                <span aria-hidden="true" className="w-10 h-10 shrink-0 rounded-full bg-blush flex items-center justify-center text-espresso font-medium">
+                  {r.name.charAt(0)}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="font-medium text-sm text-espresso">{r.name}</p>
+                  <p className="mt-0.5 text-xs text-espresso/65">Google review</p>
+                </div>
+                <img src="/brand/google-g.png" alt="Google" width="24" height="24" loading="lazy" />
+              </div>
+              <div className="self-start inline-flex gap-1 rounded-full bg-espresso px-3 py-2 text-white mb-4" role="img" aria-label={`${r.rating} / 5`}>
                 {Array.from({ length: r.rating }).map((_, i) => (
-                  <Star key={i} size={14} fill="currentColor" />
+                  <Star key={i} size={13} fill="currentColor" strokeWidth={0} aria-hidden="true" />
                 ))}
               </div>
-              <p className="font-serif italic text-lg md:text-xl leading-snug text-espresso flex-1">
-                "{text(r)}"
+              <p className="font-sans text-[15px] leading-7 text-espresso/85 flex-1">
+                {text(r)}
               </p>
-              <div className="mt-5 pt-5 border-t border-espresso/5 flex items-center justify-between text-xs">
-                <span className="font-medium text-espresso">{r.name}</span>
-                <span className="text-espresso/50 tracking-wider uppercase">{r.source}</span>
-              </div>
             </article>
           ))}
         </div>

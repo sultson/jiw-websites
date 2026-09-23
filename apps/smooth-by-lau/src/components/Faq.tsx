@@ -25,7 +25,7 @@ export default function Faq({ t, onBook }: Props) {
                   className="w-full flex items-center justify-between gap-6 py-5 text-left"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-serif text-lg md:text-xl text-espresso">{t(`faq.q${i}`)}</span>
+                  <span className="font-sans font-medium text-base md:text-lg leading-relaxed text-espresso">{t(`faq.q${i}`)}</span>
                   <Plus
                     size={20}
                     className={`shrink-0 text-espresso/60 transition-transform ${isOpen ? 'rotate-45' : ''}`}
