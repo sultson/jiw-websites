@@ -40,7 +40,7 @@ import {
 /** Een document uit de dataset; concepten en gepubliceerde versies door elkaar. */
 type Doc = Concept & { _id: string; _updatedAt?: string };
 
-const QUERY = `*[_type == "activiteit"]{
+const QUERY = `*[_type == "activiteit" && archief != true]{
   _id, soort, titel, categorie, omschrijving, datum, totDatum, heleDag,
   begintijd, eindtijd, herhaling, herhaalTot, overslaan, aanmelden, bijdrage, locatie
 }`;

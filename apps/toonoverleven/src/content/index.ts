@@ -33,13 +33,14 @@ export type { Verhaal, VerhaalRubriek } from './verhalen';
  * niet, dan rendert de tekst waarmee de site gebouwd is.
  */
 
-type RawImage = { asset?: { _ref?: string } | null } | null;
+type RawImage = ({ asset?: { _ref?: string } | null } & import('./image').ImageFraming) | null;
 
 export type RawPayload = {
   projectId?: string;
   dataset?: string;
   preview?: boolean;
   data?: {
+    pages?: Record<string, any>[] | null;
     teksten?: Record<string, any> | null;
     agenda?: Record<string, any>[] | null;
     nieuws?: Record<string, any>[] | null;
@@ -89,7 +90,7 @@ function bouwContent(payload: RawPayload | null): Content {
 
   const beeld = (ruw: RawImage): Img | null => {
     const ref = ruw?.asset?._ref;
-    return typeof ref === 'string' ? imgVanRef(ref, projectId, dataset) : null;
+    return typeof ref === 'string' ? imgVanRef(ref, projectId, dataset, ruw ?? undefined) : null;
   };
 
   /* ---------------------------------------------------------------- */
@@ -105,6 +106,12 @@ function bouwContent(payload: RawPayload | null): Content {
       const herhaling = HERHALINGEN.includes(doc.herhaling) ? doc.herhaling : 'eenmalig';
       return {
         id: String(doc._id),
+        slug: misschien(doc.slug?.current ?? doc.slug),
+        activiteitType: misschien(doc.activiteitType),
+        categorieen: Array.isArray(doc.categorieen) ? doc.categorieen.filter((c: any) => CATEGORIEEN.includes(c)) : undefined,
+        volgeboekt: doc.volgeboekt === true,
+        aanmeldEmail: misschien(doc.aanmeldEmail),
+        aanmeldUrl: misschien(doc.aanmeldUrl),
         soort,
         titel: tekst(doc.titel, 'Zonder titel'),
         categorie,
@@ -337,6 +344,7 @@ function bouwContent(payload: RawPayload | null): Content {
         elders: locatie('elders', terugval.praktisch.locatie.elders),
       },
       contact: {
+        email: praktischeRegel("contact")("email", terugval.praktisch.contact.email), telefoon: praktischeRegel("contact")("telefoon", terugval.praktisch.contact.telefoon),
         wieReageert: bereikbaar('wieReageert', terugval.praktisch.contact.wieReageert),
         watGebeurtEr: bereikbaar('watGebeurtEr', terugval.praktisch.contact.watGebeurtEr),
         reactietijd: bereikbaar('reactietijd', terugval.praktisch.contact.reactietijd),
@@ -349,7 +357,7 @@ function bouwContent(payload: RawPayload | null): Content {
   // waar het bestuur alles uit gehaald heeft, is leeg; de pagina zegt dat dan
   // en verzint geen voorbeeldagenda. De gebundelde inhoud is er alleen voor
   // de storing, hierboven.
-  return { teksten, agenda, nieuws, sponsoren, verhalen };
+  return { teksten, agenda, nieuws, sponsoren, verhalen, pages: (data.pages ?? []).map(p => ({ ...p, path: p.path, images: p.images?.map((i: any) => ({ ...i, img: beeld(i.image) })) })) };
 }
 
 /**

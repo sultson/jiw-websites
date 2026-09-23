@@ -1,4 +1,5 @@
-import { ICOONPADEN } from './index';
+import iconen from './iconen.json';
+const ICOONPADEN: Record<string,string> = iconen;
 
 /**
  * De onderwerpiconen uit de mock-up, één lijnsysteem, letterlijk overgenomen.

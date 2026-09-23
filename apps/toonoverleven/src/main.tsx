@@ -23,3 +23,6 @@ if (wortel.firstChild) {
 } else {
   createRoot(wortel).render(pagina);
 }
+
+import './next/approved.css';
+import './next/site.css';

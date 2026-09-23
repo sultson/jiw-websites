@@ -31,14 +31,24 @@ export function assetVanRef(
   };
 }
 
-export function imgVanRef(ref: string, projectId: string, dataset: string): Img | null {
+export type ImageFraming = { crop?: { left?: number; top?: number; right?: number; bottom?: number }; hotspot?: { x?: number; y?: number } };
+export function imgVanRef(ref: string, projectId: string, dataset: string, framing?: ImageFraming): Img | null {
   const asset = assetVanRef(ref, projectId, dataset);
   if (!asset) return null;
 
-  const bij = (w: number) => `${asset.basis}?w=${w}&q=78&fit=max&auto=format`;
+  const crop = framing?.crop;
+  const left = Math.round((crop?.left ?? 0) * asset.breedte);
+  const top = Math.round((crop?.top ?? 0) * asset.hoogte);
+  const width = Math.max(1, asset.breedte - left - Math.round((crop?.right ?? 0) * asset.breedte));
+  const height = Math.max(1, asset.hoogte - top - Math.round((crop?.bottom ?? 0) * asset.hoogte));
+  const rect = crop ? `&rect=${left},${top},${width},${height}` : '';
+  const x = Math.max(0, Math.min(1, ((framing?.hotspot?.x ?? .5) * asset.breedte - left) / width));
+  const y = Math.max(0, Math.min(1, ((framing?.hotspot?.y ?? .5) * asset.hoogte - top) / height));
+  const bij = (w: number) => `${asset.basis}?w=${w}&q=78&fit=max&auto=format${rect}`;
 
   return {
-    ratio: asset.breedte / asset.hoogte,
+    ratio: width / height,
+    position: `${x * 100}% ${y * 100}%`,
     mini: bij(240),
     klein: bij(560),
     breed: bij(1100),
@@ -47,5 +57,5 @@ export function imgVanRef(ref: string, projectId: string, dataset: string): Img 
 }
 
 /** Het adres van een foto, of hij nu uit het beheer komt of uit public/img. */
-export const bron = (foto: Img | string, maat: keyof Omit<Img, 'ratio'> = 'breed'): string =>
+export const bron = (foto: Img | string, maat: 'mini' | 'klein' | 'breed' | 'vol' = 'breed'): string =>
   typeof foto === 'string' ? foto : foto[maat];

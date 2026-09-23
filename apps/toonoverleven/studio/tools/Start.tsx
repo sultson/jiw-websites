@@ -17,31 +17,31 @@ const kaarten = [
     pad: '/beheer/structure/agenda',
     titel: 'Agenda',
     uitleg:
-      'De maand met alles erop, zoals hij op de site komt te staan. Klik iets aan om het te wijzigen, of klik een lege dag om er iets op te zetten. Een wekelijkse inloop vult u één keer in met "elke week" en staat dan vanzelf op elke donderdag; valt een keer uit, dan zet u die keer uit in de lijst onderaan het formulier. Wat u aankruist bij thema en doelgroep bepaalt op welke pagina\'s het ook nog staat.',
+      'De maand met alles erop, zoals hij op de site komt te staan. Klik iets aan om het te wijzigen, of klik een lege dag om er iets op te zetten. Een wekelijkse inloop vult u één keer in met "elke week" en staat dan vanzelf op elke donderdag; valt een keer uit, dan zet u die keer uit in de lijst onderaan het formulier. Kies de vaste activiteit om het moment ook op de juiste bezoekroutes te tonen.',
   },
   {
     pad: '/beheer/structure/nieuws',
     titel: 'Nieuws & Blog',
     uitleg:
-      'De berichten op de voorpagina en onder Ervaringen. Elk bericht krijgt een eigen pagina, dus u kunt het hele verhaal kwijt en de link delen op Facebook en Instagram.',
+      'De berichten op de nieuwspagina. Elk bericht krijgt een eigen pagina, dus u kunt het hele verhaal kwijt en de link delen op Facebook en Instagram.',
   },
   {
-    pad: '/beheer/structure/verhaal',
-    titel: 'Verhalen van bezoekers',
+    pad: '/beheer/structure/sitePage',
+    titel: 'Pagina’s en vaste onderdelen',
     uitleg:
-      'De verhalen onder Ervaringen. Een verhaal komt pas op de site als de verteller toestemming heeft gegeven en u het op gepubliceerd zet, en gaat er met één klik weer af.',
+      'Alle goedgekeurde pagina’s, met hun teksten, links en beelden. Het warme welkom, de eerste stap, het sonnet en de voettekst zijn gedeelde onderdelen: één wijziging werkt overal door.',
   },
   {
     pad: '/beheer/structure/siteTeksten',
     titel: 'Teksten op de site',
     uitleg:
-      'De praktische gegevens (openingstijden, kosten, adres, wie er reageert), het bestuur en de raad van advies, de rollen voor vrijwilligers en de regel boven het formulier. Bij elk veld staat op welke pagina het uitkomt.',
+      'De inlooptijden, het adres, het bestuur en de raad van advies. Andere teksten bewerkt u bij Pagina’s en vaste onderdelen.',
   },
   {
     pad: '/beheer/structure/sponsor',
     titel: 'Sponsoren',
     uitleg:
-      'De logo\'s onderaan elke pagina en op de pagina Onze sponsors. Naam, logo en eventueel een website.',
+      'De logo\'s prominent op de voorpagina en op de pagina Onze sponsors. Naam, logo en eventueel een website.',
   },
 ];
 

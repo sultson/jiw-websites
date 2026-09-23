@@ -6,7 +6,7 @@
  * login` staat er een in ~/.config/sanity/config.json, of je maakt er een op
  * sanity.io/manage. Geef hem mee als SANITY_AUTH_TOKEN.
  */
-import { createReadStream, existsSync } from 'node:fs';
+import { createReadStream, existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createClient } from '@sanity/client';
@@ -47,8 +47,11 @@ export async function upload(bestand: string): Promise<string | null> {
     console.warn(`  overgeslagen, bestaat niet: ${bestand}`);
     return null;
   }
+  const registry = JSON.parse(readFileSync(path.join(publicDir, '../src/next/image-sources.json'), 'utf8'));
+  const provenance = registry[bestand];
   const asset = await client.assets.upload('image', createReadStream(absoluut), {
-    filename: path.basename(absoluut),
+    filename: provenance?.original ?? path.basename(absoluut),
+    ...(provenance ? {title: provenance.label, description: provenance.description} : {}),
   });
   geupload.set(bestand, asset._id);
   console.log(`  ${bestand} -> ${asset._id}`);

@@ -69,6 +69,7 @@ const onderdelen: PortableTextComponents = {
         <figure className="mt-8">
           <img
             src={bron(value.img, 'breed')}
+            style={typeof value.img === 'object' ? {objectPosition:value.img.position} : undefined}
             alt={value.alt ?? ''}
             className="w-full rounded-[1.25rem] object-cover"
             loading="lazy"

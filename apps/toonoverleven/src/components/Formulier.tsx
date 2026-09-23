@@ -1,6 +1,6 @@
 import { useId, useState } from 'react';
 import { Check, Loader2 } from 'lucide-react';
-import { MAIL, TEL, TEL_LINK } from '../ui';
+import { interfaceDefaults, type InterfaceCopy } from '../next/interface';
 
 /**
  * Zo laagdrempelig mogelijk gehouden. Wie hier komt heeft vaak net slecht
@@ -30,11 +30,18 @@ export default function Formulier({
   /** Waar het bericht over gaat, al ingevuld. Voor de pagina over vrijwilligerswerk. */
   onderwerp,
   compact = false,
+  registration,
+  copy = interfaceDefaults,
+  contact = { email: 'info@toonoverleven.nl', telefoon: '036 845 02 65' },
 }: {
   onderwerp?: string;
   compact?: boolean;
+  registration?: { title: string; date: string; id: string };
+  copy?: InterfaceCopy;
+  contact?: { email: string; telefoon: string };
 }) {
   const sleutel = useId();
+  const TEL = contact.telefoon, MAIL = contact.email, TEL_LINK = 'tel:' + TEL.replace(/[^+0-9]/g, '');
   // Een onderwerp dat de pagina meegeeft en niet in de lijst staat, komt er
   // vooraan bij: anders zou de keuze op het scherm iets anders zeggen dan wat
   // er verstuurd wordt.
@@ -43,7 +50,7 @@ export default function Formulier({
       ? [{ waarde: onderwerp, label: onderwerp }, ...ONDERWERPEN]
       : ONDERWERPEN;
 
-  const [gekozen, setGekozen] = useState(onderwerp ?? ONDERWERPEN[0].waarde);
+  const [gekozen, setGekozen] = useState(onderwerp ?? (compact ? 'Een kennismaking aanvragen' : ONDERWERPEN[0].waarde));
   const [bezig, setBezig] = useState(false);
   const [klaar, setKlaar] = useState(false);
   const [fout, setFout] = useState<string | null>(null);
@@ -54,18 +61,19 @@ export default function Formulier({
     setFout(null);
 
     const data = new FormData(e.currentTarget);
-    data.set('onderwerp', gekozen);
+    data.set('onderwerp', registration ? 'Aanmelden: ' + registration.title : gekozen);
+    if (registration) { data.set('moment', registration.date); data.set('activiteitId', registration.id); }
     // Er staat geen Turnstile-widget op deze site; de Worker draait met de
     // ontwikkelsleutel en accepteert daarom deze waarde.
     data.set('cf-turnstile-response', 'dev');
 
     try {
-      const antwoord = await fetch(ENDPOINT, { method: 'POST', body: data });
+      const antwoord = await fetch(registration ? '/api/forms/activity' : ENDPOINT, { method: 'POST', body: data });
       if (!antwoord.ok) throw new Error(String(antwoord.status));
       setKlaar(true);
     } catch {
       setFout(
-        'Het versturen lukte niet. Probeer het zo nog eens, of bel ons gerust, dan regelen we het meteen.',
+        copy.formError,
       );
     } finally {
       setBezig(false);
@@ -81,10 +89,9 @@ export default function Formulier({
         <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-blos">
           <Check className="h-7 w-7 text-wijn" aria-hidden="true" />
         </div>
-        <h3 className="text-[1.35rem]">Dank je wel, je bericht is verstuurd</h3>
+        <h3 className="text-[1.35rem]">{registration ? copy.signupSuccessTitle : copy.successTitle}</h3>
         <p className="mx-auto mt-3 max-w-[46ch] leading-relaxed text-inkt-zacht">
-          Een van onze vrijwilligers neemt contact met je op. Heb je liever nu meteen iemand aan de
-          lijn, bel dan gerust naar{' '}
+          {registration ? copy.signupSuccessText : copy.successText}{' '}
           <a href={TEL_LINK} className="font-bold text-wijn no-underline hover:underline">
             {TEL}
           </a>
@@ -104,7 +111,7 @@ export default function Formulier({
           : 'rounded-[1.25rem] border border-lijn bg-white p-6 shadow-[var(--shadow-kaart)] md:p-8'
       }
     >
-      <fieldset className="border-0 p-0">
+      {!compact && <fieldset className="border-0 p-0">
         <legend className="text-[0.9rem] font-bold text-inkt-zacht">Waar gaat het over?</legend>
         <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
           {keuzes.map((keuze, i) => {
@@ -132,17 +139,17 @@ export default function Formulier({
             );
           })}
         </div>
-      </fieldset>
+      </fieldset>}
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <Veld id={`${sleutel}-naam`} naam="firstName" label="Je naam" verplicht autoComplete="given-name" />
-        <Veld id={`${sleutel}-mail`} naam="email" label="Je e-mailadres" type="email" verplicht autoComplete="email" />
-        <div className="sm:col-span-2">
+        <Veld id={`${sleutel}-naam`} naam="firstName" label={copy.nameLabel} verplicht autoComplete="given-name" />
+        <Veld id={`${sleutel}-mail`} naam="email" label={copy.emailLabel} type="email" verplicht autoComplete="email" />
+        {!compact && <div className="sm:col-span-2">
           <Veld id={`${sleutel}-tel`} naam="telefoon" label="Je telefoonnummer" type="tel" autoComplete="tel" />
-        </div>
+        </div>}
       </div>
 
-      <div className="mt-4">
+      {!compact && <div className="mt-4">
         <label htmlFor={`${sleutel}-bericht`} className="block text-[0.9rem] font-bold text-inkt-zacht">
           Wil je iets kwijt? <span className="font-normal text-grijs">(mag ook leeg)</span>
         </label>
@@ -155,6 +162,8 @@ export default function Formulier({
         />
       </div>
 
+      }
+      <p className="small mt-4">{copy.formPrivacy}</p>
       {/* Voor de bots. Wie dit invult krijgt netjes antwoord en verder gebeurt
           er niets, en een mens ziet het veld nooit. */}
       <input
@@ -180,7 +189,7 @@ export default function Formulier({
         disabled={bezig}
         className="mt-6 inline-flex min-h-[3.1rem] items-center justify-between gap-3 rounded-full border border-wijn bg-wijn px-[1.4rem] py-3 text-[0.95rem] font-extrabold leading-tight text-white transition hover:-translate-y-0.5 hover:border-wijn-diep hover:bg-wijn-diep disabled:opacity-60 disabled:hover:translate-y-0 max-sm:w-full"
       >
-        <span>Versturen</span>
+        <span>{registration ? copy.signupSubmit : compact ? copy.contactSubmit : 'Versturen'}</span>
         {bezig ? (
           <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
         ) : (
@@ -189,7 +198,7 @@ export default function Formulier({
       </button>
 
       <p className="mt-5 text-[0.88rem] leading-relaxed text-grijs">
-        Liever bellen of mailen? Dat kan ook:{' '}
+        {copy.alternativeContact}{' '}
         <a href={TEL_LINK} className="font-bold text-wijn no-underline hover:underline">
           {TEL}
         </a>{' '}

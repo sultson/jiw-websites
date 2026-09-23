@@ -51,7 +51,7 @@
     // noindex en verbiedt robots.txt alles, zodat het concept nooit concurreert
     // met de site waarvoor het een voorstel is.
     "SITE_INDEXABLE": "false",
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_RECIPIENT": "info@toonoverleven.nl",
     "LEAD_SENDER": "contact@notify.jouwidealewebsite.nl",
     "TURNSTILE_SECRET_KEY": "dev",
     // Leeg zou betekenen dat de site zijn eigen tekst rendert, en dat is een

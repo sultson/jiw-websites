@@ -35,6 +35,14 @@ export const activiteit = defineType({
     { name: 'tijd', title: 'Hoe laat', options: { columns: 2 } },
   ],
   fields: [
+    defineField({name:'archief',title:'Archiveren',type:'boolean',description:'Een gearchiveerd moment verschijnt niet in de agenda op de site.',initialValue:false}),
+    defineField({name:'slug',title:'Adres van dit moment',type:'slug',options:{source:'titel'},description:'Een uniek adres voor dit agendamoment.'}),
+    defineField({name:'activiteitType',title:'Vaste activiteit',type:'string',description:'Koppelt dit moment aan de bijbehorende activiteit op de bezoekroutes.',options:{list:[{title:'Inloopochtend',value:'inloopochtend'},{title:'Inloopavond',value:'inloopavond'},{title:'Inloop met activiteit',value:'inloop-met-activiteit'},{title:'Wandelen',value:'wandelen'},{title:'Zenmeditatie',value:'zenmeditatie'},{title:'Mandala stippen',value:'mandala-stippen'},{title:'Encaustic art',value:'encaustic-art'},{title:'Junk journaling',value:'junk-journaling'},{title:'Voetreflexmassage',value:'voetreflexmassage'},{title:'Sponsordiner',value:'sponsordiner'}]}}),
+    defineField({name:'categorieen',title:'Extra categorieën',type:'array',of:[{type:'string'}],options:{list:['Inloop','Creatief','Bewegen','Wellness','Overig']}}),
+    defineField({name:'volgeboekt',title:'Volgeboekt',type:'boolean',initialValue:false}),
+    defineField({name:'aanmeldEmail',title:'E-mailadres voor aanmelding',type:'string',description:'Optioneel: opent een e-mail in plaats van het formulier op de site. Laat beide aanmeldvelden leeg voor het eigen aanmeldformulier.'}),
+    defineField({name:'aanmeldUrl',title:'Externe aanmeldpagina',type:'url',description:'Heeft voorrang op het e-mailadres. Zonder externe bestemming gebruikt de site het eigen aanmeldformulier.',validation:r=>r.uri({scheme:['https']})}),
+
     defineField({
       name: 'soort',
       title: 'Wat zet u in de agenda?',
@@ -61,7 +69,7 @@ export const activiteit = defineType({
       type: 'string',
       initialValue: 'Inloop',
       description:
-        'Bepaalt de kleur van de stip in de kalender, en welk sfeerbeeld de kaart krijgt zolang er geen eigen foto is. Het label op de kaart en de filters op de agendapagina komen van de thema\'s hieronder.',
+        'Bepaalt het sfeerbeeld zonder eigen foto. Categorieën bepalen de labels en knoppen in de agenda: Inloop heet daar Ontmoeten, Wellness heet Ontspannen.',
       hidden: isMededeling,
       options: {
         list: [
@@ -80,7 +88,7 @@ export const activiteit = defineType({
       of: [{ type: 'string' }],
       initialValue: ['iedereen'],
       description:
-        'De site heeft aparte pagina\'s voor jongeren, voor 35 tot 50 en voor naasten. Wat u hier aankruist, komt daar vanzelf op te staan. Kruist u niets aan, dan is het voor iedereen.',
+        'Bepaalt het doelgroepfilter in de agenda. Specifiek voor jongeren of 35 tot 50 verschijnt ook op Jong & kanker; specifiek voor naasten ook op Voor naasten. Kies Iedereen voor algemeen aanbod.',
       hidden: isMededeling,
       options: {
         layout: 'grid',
@@ -99,7 +107,7 @@ export const activiteit = defineType({
       type: 'array',
       of: [{ type: 'string' }],
       description:
-        'Waar gaat dit over? Elk thema heeft een eigen pagina, en wat u aankruist verschijnt daar tussen de andere momenten. Meerdere thema\'s mag: een wandeling kan ontmoeten én bewegen zijn.',
+        'Bepaalt onder welke themafilters deze activiteit in de agenda verschijnt. Meerdere thema\'s zijn mogelijk.',
       hidden: isMededeling,
       options: {
         layout: 'grid',
@@ -121,7 +129,7 @@ export const activiteit = defineType({
           .custom((waarde) =>
             Array.isArray(waarde) && waarde.length
               ? true
-              : 'Zonder thema komt dit alleen in de agenda te staan en niet op een themapagina.',
+              : 'Zonder thema is dit zichtbaar bij Alle thema’s, maar niet bij een specifiek themafilter.',
           )
           .warning(),
     }),

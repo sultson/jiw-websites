@@ -4,6 +4,8 @@ import { contentVan, type RawPayload } from '../src/content';
 import { tekenPagina } from '../src/entry-server';
 import { vindPagina } from '../src/inhoud';
 import { metFeiten } from '../src/inhoud/feiten';
+import { expandeer } from '../src/agenda/model';
+import { findEvent, momentLabel } from '../src/next/events';
 import { berichtJsonLd, metaVoorPagina, robotsTxt, sitemapXml, type PaginaMeta } from './seo';
 import {
   NIET_GEVONDEN,
@@ -50,6 +52,19 @@ const contactWorker = createFormWorker({
   subjectPrefix: 'Bericht via de site',
   confirmationFollowUpSentence:
     'Een van onze vrijwilligers neemt contact met je op. Wil je liever meteen iemand spreken, bel dan 036-8450265.',
+  leadEmail: {
+    heading: 'Nieuw contactverzoek voor Toon over Leven',
+    messageHeading: 'Bericht',
+    nameLabels: { firstName: 'Naam', lastName: 'Achternaam', email: 'E-mailadres' },
+    includeAttachments: false,
+  },
+  confirmationCopy: {
+    subject: 'Je bericht aan {siteName}',
+    openingSentence: 'Bedankt voor je bericht. We hebben je contactverzoek ontvangen.',
+    detailsHeading: 'Je gegevens',
+    messageHeading: 'Je bericht',
+    includeSubmission: false,
+  },
   subjectFields: ['onderwerp'],
   messageField: 'bericht',
   emailFields: [
@@ -61,6 +76,17 @@ const contactWorker = createFormWorker({
   requireLastName: false,
   requireEmail: true,
   honeypotField: 'company',
+});
+
+const registrationWorker = createFormWorker({
+  formPath: '/api/forms/activity', locale: 'nl', siteName: 'Toon over Leven',
+  ownerName: 'het inloophuis', senderName: 'Toon over Leven', subjectPrefix: 'Aanmelding via de site',
+  subjectFields: ['onderwerp', 'moment'], messageField: 'bericht',
+  emailFields: [{name:'onderwerp',label:'Activiteit'}, {name:'moment',label:'Datum en tijd'}, {name:'activiteitId',label:'Agendamoment'}],
+  leadEmail: {heading:'Nieuwe aanmelding voor een activiteit', messageHeading:'Bericht', includeAttachments:false},
+  confirmationCopy: {subject:'Je aanmelding bij {siteName}', openingSentence:'We hebben je aanmelding ontvangen. Je plek is definitief zodra wij je deelname hebben bevestigd.', detailsHeading:'Je aanmelding', messageHeading:'Bericht'},
+  confirmationFollowUpSentence: 'Een van onze vrijwilligers neemt contact met je op om je deelname te bevestigen.',
+  requireFirstName:true, requireLastName:false, requireEmail:true, honeypotField:'company',
 });
 
 /**
@@ -77,11 +103,12 @@ const contactWorker = createFormWorker({
  * het gewoon liggen.
  */
 const query = (vandaag: string) => `{
+  "pages": *[_type == "sitePage"],
   "teksten": *[_type == "siteTeksten"][0],
-  "agenda": *[_type == "activiteit" && (
+  "agenda": *[_type == "activiteit" && archief != true && (
     (defined(herhaling) && herhaling != "eenmalig") || coalesce(totDatum, datum) >= "${vandaag}"
   )] | order(datum asc){
-    _id, soort, titel, categorie, omschrijving, afbeelding, datum, totDatum, heleDag,
+    _id, slug, activiteitType, categorieen, volgeboekt, aanmeldEmail, aanmeldUrl, soort, titel, categorie, omschrijving, afbeelding, datum, totDatum, heleDag,
     begintijd, eindtijd, herhaling, herhaalTot, overslaan, aanmelden, bijdrage, locatie,
     doelgroepen, themas
   },
@@ -239,6 +266,21 @@ function paginaMeta(
   projectId: string,
   dataset: string,
 ): { meta: PaginaMeta | null; ontbreekt: boolean } {
+  const current = PAGINAS[pad];
+  if (current) {
+    const custom = Array.isArray(data?.pages) ? data.pages.find((p: Doc) => p.path === pad) : undefined;
+    const title = custom?.title || current.titel;
+    const description = kort(custom?.description || current.omschrijving);
+    return {meta: {titel: paginaTitel(title), omschrijving: description, pad, beeld: null, type: 'website', jsonLd: JSON.stringify({'@context':'https://schema.org','@type':'WebPage',name:title,description,url:absoluutUrl(pad)}).replace(/</g,'\\u003c')}, ontbreekt:false};
+  }
+  if (/^\/(activiteit|aanmelden)\//.test(pad)) {
+    const sources = contentVan({projectId,dataset,data}).agenda;
+    const now = new Date(new Date().toLocaleString('en-US', {timeZone:'Europe/Amsterdam'}));
+    const events = expandeer(sources, now, new Date(now.getFullYear()+1, now.getMonth(), now.getDate()));
+    const event = findEvent(events, pad);
+    const signup = pad.startsWith('/aanmelden/');
+    return event ? {meta:{titel:paginaTitel((signup ? 'Aanmelden: ' : '') + event.titel),omschrijving:kort(event.omschrijving),pad,beeld: typeof event.img === 'string' ? event.img : event.img?.breed ?? null,type:'website',jsonLd:null},ontbreekt:false} : {meta:null,ontbreekt:true};
+  }
   const vast = metaVoorPagina(pad);
   if (vast) {
     // De omschrijving in een zoekresultaat hoort te zeggen wat er op de pagina
@@ -374,6 +416,9 @@ function sitemap(data: Doc | null): string {
       gewijzigd: typeof bericht.datum === 'string' ? bericht.datum : undefined,
     });
   }
+  for (const event of contentVan({data}).agenda) {
+    if (event.soort === 'activiteit') regels.push({pad:'/activiteit/'+encodeURIComponent(event.slug||event.id),gewijzigd:event.datum});
+  }
   return sitemapXml(regels);
 }
 
@@ -409,6 +454,25 @@ export default {
 
     // Eén formulier, met naam. Een vangnet voor alles onder /api zou stilletjes
     // berichten aannemen op elk adres dat iemand raadt.
+    if (url.pathname === '/api/forms/activity') {
+      if (request.method !== 'POST') return registrationWorker.fetch!(request, env, ctx);
+      // Recheck the actual CMS moment before accepting a place request; never trust a stale page.
+      let fields: FormData;
+      try { fields = await request.formData(); } catch { return Response.json({ok:false},{status:400}); }
+      const loaded = await laadInhoud(env, {vers:true, voorbeeld:false}, ctx);
+      if (!loaded.data) return Response.json({ok:false},{status:503});
+      const content = contentVan({projectId:env.SANITY_PROJECT_ID || '',dataset:env.SANITY_DATASET || 'production',data:loaded.data as never});
+      const now = new Date(new Date().toLocaleString('en-US', {timeZone:'Europe/Amsterdam'}));
+      const events = expandeer(content.agenda,now,new Date(now.getFullYear()+1,now.getMonth(),now.getDate()));
+      const event = events.find(a=>a.id===fields.get('activiteitId'));
+      if (!event || !event.aanmelden || event.volgeboekt || event.aanmeldEmail || event.aanmeldUrl)
+        return Response.json({ok:false},{status:409});
+      fields.set('onderwerp', 'Aanmelden: ' + event.titel);
+      fields.set('moment', momentLabel(event));
+      const headers = new Headers(request.headers);headers.delete('content-type');headers.delete('content-length');
+      const normalized = new Request(request,{headers,body:fields});
+      return registrationWorker.fetch!(normalized as typeof request, env, ctx);
+    }
     if (url.pathname === '/api/forms/contact') {
       return contactWorker.fetch!(request, env, ctx);
     }

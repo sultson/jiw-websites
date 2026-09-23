@@ -2,6 +2,7 @@ import type { Verhaal } from './verhalen';
 
 /** Een foto uit het beheer, in de maten die de site nodig heeft. */
 export type Img = {
+  position?: string;
   ratio: number;
   /** Zo klein als een logo in de voet staat: een paar centimeter breed. */
   mini: string;
@@ -40,6 +41,12 @@ export type Thema =
  * regel; de losse donderdagen worden er in agenda/model.ts uit gerekend.
  */
 export type AgendaBron = {
+  slug?: string;
+  activiteitType?: string;
+  categorieen?: Categorie[];
+  volgeboekt?: boolean;
+  aanmeldEmail?: string;
+  aanmeldUrl?: string;
   id: string;
   soort: 'activiteit' | 'mededeling';
   titel: string;
@@ -70,6 +77,12 @@ export type AgendaBron = {
 
 /** Eén keer dat iets plaatsvindt: waar de agenda en de kalender mee werken. */
 export type Activiteit = {
+  slug?: string;
+  activiteitType?: string;
+  categorieen?: Categorie[];
+  volgeboekt?: boolean;
+  aanmeldEmail?: string;
+  aanmeldUrl?: string;
   /** Uniek per keer, dus bron plus datum. */
   id: string;
   bronId: string;
@@ -163,12 +176,13 @@ export type Praktisch = {
   openingstijden: { ochtend: string; avond: string; afwijkingen: string };
   kosten: { inloop: string; activiteiten: string; drempel: string };
   locatie: { adres: string; route: string; parkeren: string; ingang: string; elders: string };
-  contact: { wieReageert: string; watGebeurtEr: string; reactietijd: string };
+  contact: { email: string; telefoon: string; wieReageert: string; watGebeurtEr: string; reactietijd: string };
   /** De alinea voor huisartsen en ziekenhuizen op /voor-verwijzers. */
   verwijzers: string;
 };
 
 export type Content = {
+  pages?: import('../next/model').PageContent[];
   teksten: Teksten;
   agenda: AgendaBron[];
   nieuws: Bericht[];

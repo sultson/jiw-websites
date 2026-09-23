@@ -1,3 +1,4 @@
+import confirmedEvents from '../next/events.json';
 import { blokkenVanTekst, samenvatten } from './rich';
 import type { AgendaBron, Bericht, Content, Sponsor, Teksten } from './types';
 import sponsorenJson from '../sponsoren.json';
@@ -73,8 +74,7 @@ const teksten: Teksten = {
     advies: [
       { naam: 'Bram Harmsma', rol: 'burgemeester van Zeewolde' },
       { naam: 'Helma Lodders', rol: 'oud-wethouder en oud-Tweede Kamerlid' },
-      { naam: 'Henk Krol', rol: 'journalist en voormalig Kamerlid' },
-      { naam: 'Melianthe Nicolai', rol: 'uroloog en medisch seksuoloog, Antoni van Leeuwenhoek' },
+      { naam: 'Mike Kastrop', rol: '' },
     ],
   },
   contact: {
@@ -108,6 +108,7 @@ const teksten: Teksten = {
         'Een activiteit kan ergens anders plaatsvinden. Bij ieder moment in de agenda staat de locatie van die dag.',
     },
     contact: {
+      email: "info@toonoverleven.nl", telefoon: "036 845 02 65",
       wieReageert: 'Aan de telefoon en achter de mail zitten de vrijwilligers van het huis.',
       watGebeurtEr:
         'Je hoeft niet uit te leggen wat er speelt en je hoeft geen naam van een ziekte te noemen. Een bericht met alleen je naam en de vraag of je een keer mag komen kijken is genoeg.',
@@ -133,157 +134,7 @@ const teksten: Teksten = {
  * Een agendapunt zonder foto krijgt op de site het sfeerbeeld van zijn
  * categorie (agenda/model.ts); een mededeling heeft geen foto.
  */
-const agenda: AgendaBron[] = [
-  {
-    id: 'inloopochtend',
-    soort: 'activiteit',
-    doelgroepen: ['iedereen'],
-    themas: ['ontmoeten'],
-    titel: 'Inloopochtend',
-    categorie: 'Inloop',
-    omschrijving:
-      'De deur staat open voor wie even wil praten, een kopje koffie wil of gewoon ergens wil zijn. Aanmelden hoeft niet, je loopt zo naar binnen. Op de laatste donderdag van de maand geven we de inloop een creatief tintje: pak aan wat er op tafel ligt en stip, teken of schilder mee.',
-    img: '/img/huis-binnen.jpg',
-    datum: '2026-09-03',
-    heleDag: false,
-    begintijd: '10:00',
-    eindtijd: '12:00',
-    herhaling: 'wekelijks',
-    overslaan: [],
-    aanmelden: false,
-    bijdrage: 'Gratis',
-  },
-  {
-    id: 'inloopavond',
-    soort: 'activiteit',
-    doelgroepen: ['iedereen'],
-    themas: ['ontmoeten'],
-    titel: 'Inloopavond',
-    categorie: 'Inloop',
-    omschrijving:
-      'Overdag komt het er niet altijd van, dus elke derde donderdag van de maand is de deur ’s avonds open. Dezelfde koffie, dezelfde tafel, alleen dan met de lamp aan.',
-    // Van de avond bestaat geen foto; een huis in de schemering met de lamp aan
-    // zegt precies wat de omschrijving zegt.
-    img: '/img/sfeer-huis-avondlicht.webp',
-    datum: '2026-09-17',
-    heleDag: false,
-    begintijd: '19:30',
-    eindtijd: '21:30',
-    herhaling: 'maandelijks',
-    overslaan: [],
-    aanmelden: false,
-    bijdrage: 'Gratis',
-  },
-  {
-    id: 'wandelgroep',
-    soort: 'activiteit',
-    doelgroepen: ['iedereen'],
-    themas: ['bewegen-en-ontspannen', 'ontmoeten'],
-    titel: 'Wandelgroep',
-    categorie: 'Bewegen',
-    omschrijving:
-      'Ongeveer drie kilometer door het groene Zeewolde, in een tempo waar iedereen bij kan blijven. We beginnen met koffie om 10:00 en vertrekken om 10:30. Het gaat niet om de afstand maar om de gesprekken onderweg. Honden zijn welkom.',
-    img: '/img/wandelen.jpg',
-    datum: '2026-09-04',
-    heleDag: false,
-    begintijd: '10:00',
-    eindtijd: '12:00',
-    herhaling: 'maandelijks',
-    overslaan: [],
-    aanmelden: false,
-    bijdrage: 'Gratis',
-  },
-  {
-    id: 'zenmeditatie',
-    soort: 'activiteit',
-    doelgroepen: ['iedereen'],
-    themas: ['bewegen-en-ontspannen', 'herstel-en-energie'],
-    titel: 'Zenmeditatie op stoel',
-    categorie: 'Wellness',
-    omschrijving:
-      'Er bestaan veel manieren om te mediteren. Wij zitten op een stoel, dus je hoeft niet op de grond en niet in kleermakerszit. Aan deze activiteit zijn geen kosten verbonden, een donatie is welkom.',
-    // mediteren.jpg uit hun eigen post is een tekstposter, geen foto.
-    img: '/img/sfeer-meditatie.jpg',
-    datum: '2026-09-07',
-    heleDag: false,
-    begintijd: '10:00',
-    eindtijd: '11:30',
-    herhaling: 'maandelijks',
-    overslaan: [],
-    aanmelden: true,
-    bijdrage: 'Gratis, een donatie is welkom',
-  },
-  {
-    id: 'mandalagroep',
-    soort: 'activiteit',
-    doelgroepen: ['iedereen'],
-    themas: ['informatie-en-inspiratie', 'ontmoeten'],
-    titel: 'Mandala stippen',
-    categorie: 'Creatief',
-    omschrijving:
-      'We beginnen met een eenvoudig ontwerp om het stippen te leren en de effecten te zien van kleur op kleur. Ook de techniek van walking dots komt aan de orde. We werken op canvas, op stenen en op gegoten materiaal. Hooguit vijf deelnemers, dus wees er snel bij.',
-    img: '/img/mandala.jpg',
-    datum: '2026-09-21',
-    heleDag: false,
-    begintijd: '13:30',
-    eindtijd: '16:00',
-    herhaling: 'maandelijks',
-    overslaan: [],
-    aanmelden: true,
-    bijdrage: 'Gratis, een donatie is welkom',
-  },
-  {
-    id: 'encaustic-augustus',
-    soort: 'activiteit',
-    doelgroepen: ['iedereen'],
-    themas: ['informatie-en-inspiratie', 'ontmoeten'],
-    titel: 'Encaustic art',
-    categorie: 'Creatief',
-    omschrijving:
-      'Hoe voelt het om je gedachten en gevoelens over te laten vloeien in warme gekleurde was, en wat voor plaatje levert dat op? Met een strijkijzer en bijenwas maak je een tekening waarvan je de uitkomst van tevoren niet weet.',
-    img: '/img/encaustic.jpg',
-    datum: '2026-08-12',
-    heleDag: false,
-    begintijd: '10:30',
-    eindtijd: '12:30',
-    herhaling: 'eenmalig',
-    overslaan: [],
-    aanmelden: true,
-  },
-  {
-    id: 'mixedmedia-augustus',
-    soort: 'activiteit',
-    doelgroepen: ['iedereen'],
-    themas: ['informatie-en-inspiratie', 'ontmoeten'],
-    titel: 'Mixed media',
-    categorie: 'Creatief',
-    omschrijving:
-      'Je combineert verschillende materialen en technieken: verf, papier, stempels en meer. Geschikt voor beginners en gevorderden. In een ontspannen sfeer maak je iets unieks en laat je je verrassen door je eigen creativiteit.',
-    img: '/img/mixed-media.jpg',
-    datum: '2026-08-26',
-    heleDag: false,
-    begintijd: '10:30',
-    eindtijd: '13:00',
-    herhaling: 'eenmalig',
-    overslaan: [],
-    aanmelden: true,
-  },
-  {
-    id: 'zomersluiting',
-    soort: 'mededeling',
-    titel: 'Het huis is dicht wegens de zomervakantie',
-    categorie: 'Overig',
-    omschrijving:
-      'Vanaf donderdag 3 september staat de deur weer open voor een kop koffie en een goed gesprek, en starten alle activiteiten weer. Bellen of mailen kan ondertussen gewoon.',
-    img: null,
-    datum: '2026-07-18',
-    totDatum: '2026-08-30',
-    heleDag: true,
-    herhaling: 'eenmalig',
-    overslaan: [],
-    aanmelden: false,
-  },
-];
+const agenda = confirmedEvents as AgendaBron[];
 
 /**
  * De berichten die er nu zijn.

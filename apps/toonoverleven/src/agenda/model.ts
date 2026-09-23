@@ -192,6 +192,8 @@ function maak(bron: AgendaBron, start: Date, eind: Date): Activiteit {
   return {
     id: `${bron.id}-${datumSleutel(start)}`,
     bronId: bron.id,
+    slug: bron.slug, activiteitType: bron.activiteitType, categorieen: bron.categorieen,
+    volgeboekt: bron.volgeboekt, aanmeldEmail: bron.aanmeldEmail, aanmeldUrl: bron.aanmeldUrl,
     soort: bron.soort,
     titel: bron.titel,
     categorie: bron.categorie,

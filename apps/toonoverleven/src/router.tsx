@@ -114,6 +114,7 @@ export function useInterneLinks() {
  * de bezoeker waar hij was, en dat is precies waarom je op terug drukt.
  */
 export function useScrollBijNavigatie(pad: string) {
+  const adres = useSyncExternalStore(abonneer, () => window.location.href, () => '');
   const eerste = useRef(true);
 
   useEffect(() => {
@@ -123,7 +124,7 @@ export function useScrollBijNavigatie(pad: string) {
     }
     if (aankomst !== 'klik') return;
 
-    const doel = window.location.hash ? document.querySelector(window.location.hash) : null;
+    const doel = window.location.hash ? document.getElementById(decodeURIComponent(window.location.hash.slice(1))) : null;
     if (doel) {
       doel.scrollIntoView();
     } else {
@@ -132,5 +133,5 @@ export function useScrollBijNavigatie(pad: string) {
       // animatie.
       window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
     }
-  }, [pad]);
+  }, [pad, adres]);
 }

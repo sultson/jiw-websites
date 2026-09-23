@@ -20,7 +20,7 @@ import { Box, Button, Card, Flex, Text } from '@sanity/ui';
 const SITE = 'https://toonoverleven.jouwidealewebsite.nl';
 const PREVIEW_KEY = 'iOn8UC59pa0hFXXd-pb8VWkN';
 
-type Displayed = { slug?: { current?: string }; rubriek?: string };
+type Displayed = { _id?: string; path?: string; slug?: { current?: string }; rubriek?: string };
 
 /** De vier pagina's onder Ervaringen waar een verhaal op terecht kan komen. */
 const RUBRIEKPAD: Record<string, string> = {
@@ -38,16 +38,18 @@ const RUBRIEKPAD: Record<string, string> = {
  */
 function paginaVoor(naam: string | undefined, getoond: Displayed | undefined): string {
   switch (naam) {
+    case 'sitePage':
+      return getoond?.path?.startsWith('/') ? getoond.path : getoond?.path === '@poem' ? '/ik-heb-kanker' : getoond?.path === '@interface' ? '/contact' : '/';
     case 'nieuws':
       return getoond?.slug?.current ? `/nieuws/${getoond.slug.current}` : '/nieuws';
     case 'activiteit':
-      return '/activiteiten/agenda';
+      return getoond?.slug?.current || getoond?._id ? `/activiteit/${getoond?.slug?.current || getoond?._id?.replace(/^drafts\./, '')}` : '/activiteiten';
     case 'verhaal':
       return RUBRIEKPAD[getoond?.rubriek ?? ''] ?? RUBRIEKPAD.bezoekers;
     case 'sponsor':
       return '/over-ons/onze-sponsors';
     case 'siteTeksten':
-      return '/praktisch/openingstijden';
+      return '/praktisch';
     default:
       return '/';
   }

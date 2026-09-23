@@ -1,0 +1,389 @@
+[
+  {
+    "id": "voetreflexmassage-najaar-2026",
+    "slug": "voetreflexmassage-najaar-2026",
+    "activiteitType": "voetreflexmassage",
+    "soort": "activiteit",
+    "titel": "VOL! Voetreflexmassage",
+    "categorie": "Wellness",
+    "categorieen": [
+      "Wellness"
+    ],
+    "omschrijving": "Deze sessie is volgeboekt.\n\nWat is voetreflextherapie? Voetreflextherapie is een natuurlijke en integratieve behandelwijze die het lichaam helpt om weer in balans te komen. Door het uitoefenen van gerichte druk op specifieke zones van de voeten, worden processen in het lichaam gestimuleerd. Deze zones vormen als het ware een “plattegrond” van je lichaam: elke plek op de voet staat in verbinding met organen en lichaamsdelen. De behandeling wordt afgestemd op de persoon en de klachten die de persoon ondervindt.\n\nWat kun je verwachten? Tijdens een behandeling worden reflexzones op de voeten gemasseerd. Dit kan helpen om spanningen en blokkades los te laten, de doorbloeding te verbeteren en de energiestroom in je lichaam te bevorderen. Veel mensen ervaren dit als ontspannend én verlichtend bij uiteenlopende klachten.\n\nZelf ervaren? Ben je nieuwsgierig geworden en wil je zelf ontdekken wat voetreflextherapie voor jou kan betekenen? Dat kan!\n\nNeem zelf wel een grote badhanddoek of twee kleine douchelakens mee! Meld je aan bij de coördinator van Toon Over Leven, Karin Kasper. coordinator@toonoverleven.nl\n\nWees er snel bij; er is enkel plaats voor 3 personen. Vol is vol. (In het voorjaar van 2027 komt ze weer)",
+    "img": "/img/approved/activiteit-mindfulness-v2.jpg.webp",
+    "datum": "2026-09-22",
+    "heleDag": false,
+    "begintijd": "09:30",
+    "eindtijd": "12:30",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": true,
+    "volgeboekt": true,
+    "locatie": "Mazerhard 37, 3891 BR Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "coordinator@toonoverleven.nl"
+  },
+  {
+    "id": "nieuw-inloop-met-activiteit",
+    "slug": "nieuw-inloop-met-activiteit",
+    "activiteitType": "inloop-met-activiteit",
+    "soort": "activiteit",
+    "titel": "Nieuw: Inloop met activiteit",
+    "categorie": "Creatief",
+    "categorieen": [
+      "Creatief",
+      "Inloop"
+    ],
+    "omschrijving": "**Een beetje andere inloopochtend dan gewoonlijk**\n\nOp deze laatste donderdag van de maand geven we de reguliere inloop een creatief tintje! Er zijn materialen aanwezig om een klein projectje te maken, denk aan een steentje of canvasje stippen, op nummer schilderen en meer!  \nOpgeven is niet nodig!\n\nWil je alleen genieten van een kopje koffie of thee met een praatje, dan kan dat natuurlijk ook! De koffie staat klaar en een luisterd oor kan je vinden. De deur staat altijd open op donderdagochtend.",
+    "img": "/img/approved/activiteit-creatief-v2.jpg.webp",
+    "datum": "2026-09-24",
+    "heleDag": false,
+    "begintijd": "10:00",
+    "eindtijd": "12:00",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": false,
+    "volgeboekt": false,
+    "locatie": "Mazerhard 37, 3891 BR Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "info@toonoverleven.nl"
+  },
+  {
+    "id": "wandel-mee-september",
+    "slug": "wandel-mee-september",
+    "activiteitType": "wandelen",
+    "soort": "activiteit",
+    "titel": "Wandel mee!",
+    "categorie": "Bewegen",
+    "categorieen": [
+      "Bewegen"
+    ],
+    "omschrijving": "**Zin in een frisse neus, een ontspannen wandeling én fijne gesprekken? Ga gezellig met ons mee op pad! Samen ontdekken we het mooie Zeewolde tijdens een toegankelijke wandeling van ongeveer 3 kilometer.**\n\nWe beginnen de ochtend rustig met een kopje koffie in het inloophuis van Toon Over Leven. Een perfect moment om elkaar te ontmoeten en alvast kennis te maken. Daarna trekken we eropuit, samen met Sylvia en Karin, die gezellig meelopen.\n\nOf je nu een ervaren wandelaar bent of juist niet zo vaak loopt: iedereen is van harte welkom! Het gaat vooral om samen zijn, genieten van de buitenlucht en op een ontspannen manier in beweging komen. Want wandelen is niet alleen goed voor je lichaam, maar ook voor je humeur.\n\nLoop je met ons mee?\n\n**Inloop met koffie om 10.00 uur**,\n\n**Vertrek om 10.30 uur**\n\nAanmelden of meer informatie? Stuur gerust een e-mail naar: [info@toonoverleven.nl](mailto:info@toonoverleven.nl)\n\nWe kijken ernaar uit om samen met jou op pad te gaan!",
+    "img": "/img/approved/activiteit-wandelen-v2.jpg.webp",
+    "datum": "2026-09-25",
+    "heleDag": false,
+    "begintijd": "10:00",
+    "eindtijd": "12:00",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": true,
+    "volgeboekt": false,
+    "locatie": "Mazerhard 37, 3891 BR Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "info@toonoverleven.nl"
+  },
+  {
+    "id": "inloopochtend-1-oktober",
+    "slug": "inloopochtend-1-oktober",
+    "activiteitType": "inloopochtend",
+    "soort": "activiteit",
+    "titel": "Inloopochtend",
+    "categorie": "Inloop",
+    "categorieen": [
+      "Inloop"
+    ],
+    "omschrijving": "Tijd voor een gesprek, een glimlach of gewoon een kopje koffie?\n\nSoms doet het goed om even stil te staan. Om je verhaal te delen, of te merken dat je niet de enige bent. Tijdens ons inloopuurtje is er ruimte voor een ontmoeting, erkenning en een warm welkom. Of je nu met vragen zit, iets meegemaakt hebt of simpelweg er even uit wilt zijn, je bent van harte welkom.\n\nNiets moet en alles mag\n\nDe koffie staat klaar en een luisterend oor kan je vinden. De deur staat altijd open op donderdagochtend",
+    "img": "/img/approved/ipso-groep.webp",
+    "datum": "2026-10-01",
+    "heleDag": false,
+    "begintijd": "10:00",
+    "eindtijd": "12:00",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": false,
+    "volgeboekt": false,
+    "locatie": "Mazerhard 37, 3891 BR Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "info@toonoverleven.nl"
+  },
+  {
+    "id": "inloop-met-activiteit-oktober",
+    "slug": "inloop-met-activiteit-oktober",
+    "activiteitType": "inloop-met-activiteit",
+    "soort": "activiteit",
+    "titel": "Inloop met activiteit",
+    "categorie": "Creatief",
+    "categorieen": [
+      "Creatief",
+      "Inloop"
+    ],
+    "omschrijving": "**Een beetje andere inloopochtend dan gewoonlijk**\n\nOp deze laatste donderdag van de maand geven we de reguliere inloop een creatief tintje! Er zijn materialen aanwezig om een klein projectje te maken, denk aan een steentje of canvasje stippen, op nummer schilderen en meer!  \nOpgeven is niet nodig!\n\nWil je alleen genieten van een kopje koffie of thee met een praatje, dan kan dat natuurlijk ook! De koffie staat klaar en een luisterd oor kan je vinden. De deur staat altijd open op donderdagochtend.",
+    "img": "/img/approved/activiteit-creatief-v2.jpg.webp",
+    "datum": "2026-10-29",
+    "heleDag": false,
+    "begintijd": "10:00",
+    "eindtijd": "12:00",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": false,
+    "volgeboekt": false,
+    "locatie": "Mazerhard 37, 3891 BR Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "info@toonoverleven.nl"
+  },
+  {
+    "id": "sponsordiner-bij-classic-mike-zeewolde",
+    "slug": "sponsordiner-bij-classic-mike-zeewolde",
+    "activiteitType": "sponsordiner",
+    "soort": "activiteit",
+    "titel": "Sponsordiner bij Classic Mike, Zeewolde",
+    "categorie": "Overig",
+    "categorieen": [
+      "Overig"
+    ],
+    "omschrijving": "We nodigen u uit om op 6 november aanstaande aanwezig te zijn tijdens het unieke Sponsorevent dat wij organiseren in samenwerking met Classic Mike in Zeewolde.\n\nU kunt rekenen op een feestelijke avond tussen prachtige klassieke auto’s, met een smakelijk driegangendiner op Italiaanse leest geschoeid, lekkere drankjes, rustige live muziek en een vleugje temperament door de populaire zanggroep De Italianen. En natuurlijk goede gesprekken met andere gasten. Als afsluiting staat een barista klaar voor een heerlijk kopje koffie.\n\n## **Dit kunt u verwachten**\n\nBij aankomst wordt u naar een parkeerplaats begeleid. Vanaf 17.30 uur rollen we de oranje loper voor u uit bij Classic Mike. Na een feestelijk welkomstdrankje tussen de klassieke auto’s begeleiden onze speciale gastvrouwen u naar uw plaats aan één van de sfeervol gedekte lange tafels.\n\nDaar geniet u van een smakelijk Italiaans driegangendiner. Muziek, bijzondere momenten en een vleugje entertainment zorgen voor een ontspannen en gezellige avond. We vertellen natuurlijk niet alles vooraf, want een verrassing hoort er tenslotte bij. Natuurlijk zal er ook wat aandacht zijn voor het werk van Stichting Toon Over Leven. Hieronder alvast wat informatie.\n\n## **Programma**\n\n|  |  |\n| --- | --- |\n| Datum | Vrijdag 6 november 2026 |\n| Waar | Classic Mike, Tweespan 21, Zeewolde |\n| Inloop en feestelijk onthaal | Tussen 17.30 en 18.30 uur wordt u ontvangen op de oranje loper en krijgt u de gelegenheid om onder het genot van een welkomstdrankje te netwerken tussen de klassiekers met live achtergrondmuziek. |\n| Plaatsnemen | Om 18:30 uur wordt u begeleid naar uw zitplaats door de dames van Breed Vermaak, waarna de avond zal worden geopend |\n| Start culinaire avond | Om ongeveer 18:45 uur begint het officiële programma bestaande uit het driegangendiner, een muzikaal intermezzo van ‘De Italianen’ en een gastspreker. |\n| Einde van de avond | Na de afsluiting met een heerlijk kopje koffie is uiterlijk 22:00 uur de zaal weer leeg |\n\nBezoekers met een rolstoel zijn van harte welkom. Houdt u er wel rekening mee dat er helaas geen rolstoeltoilet aanwezig is.\n\n## **Meedoen**\n\n**Als bedrijf**\n\nWilt u met uw bedrijf of enkele collega’s deelnemen aan het diner, meldt u dan via deze pagina aan voor het evenement via de knop “Meld je aan!”  Bij het inschrijven komt u ook op de pagina “De Bedrijfspagina”. Om technische redenen kunnen we deze pagina helaas niet verwijderen of wijzigen, maar is daardoor wel verplicht. Vul hier uw bedrijfsgegevens in, maar een actie aanmaken is niet verplicht. Zet dan het bedrag op “0”.\n\n**Als persoon**\n\nWilt u als persoon deelnemen aan het diner, meldt u dan via deze pagina aan voor het evenement via de knop “Meld je aan!”\n",
+    "img": "/img/approved/hero.webp",
+    "datum": "2026-11-06",
+    "heleDag": false,
+    "begintijd": "17:30",
+    "eindtijd": "22:00",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": true,
+    "volgeboekt": false,
+    "locatie": "Classic Mike, Tweespan 21, Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "info@toonoverleven.nl",
+    "aanmeldUrl": "https://acties.tegenkanker.nl/project/sponsordiner"
+  },
+  {
+    "id": "inloop-met-activiteit-november",
+    "slug": "inloop-met-activiteit-november",
+    "activiteitType": "inloop-met-activiteit",
+    "soort": "activiteit",
+    "titel": "Inloop met activiteit",
+    "categorie": "Creatief",
+    "categorieen": [
+      "Creatief",
+      "Inloop"
+    ],
+    "omschrijving": "**Een beetje andere inloopochtend dan gewoonlijk**\n\nOp deze laatste donderdag van de maand geven we de reguliere inloop een creatief tintje! Er zijn materialen aanwezig om een klein projectje te maken, denk aan een steentje of canvasje stippen, op nummer schilderen en meer!  \nOpgeven is niet nodig!\n\nWil je alleen genieten van een kopje koffie of thee met een praatje, dan kan dat natuurlijk ook! De koffie staat klaar en een luisterd oor kan je vinden. De deur staat altijd open op donderdagochtend.",
+    "img": "/img/approved/activiteit-creatief-v2.jpg.webp",
+    "datum": "2026-11-26",
+    "heleDag": false,
+    "begintijd": "10:00",
+    "eindtijd": "12:00",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": false,
+    "volgeboekt": false,
+    "locatie": "Mazerhard 37, 3891 BR Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "info@toonoverleven.nl"
+  },
+  {
+    "id": "inloop-met-activiteit-januari",
+    "slug": "inloop-met-activiteit-januari",
+    "activiteitType": "inloop-met-activiteit",
+    "soort": "activiteit",
+    "titel": "Inloop met activiteit",
+    "categorie": "Creatief",
+    "categorieen": [
+      "Creatief",
+      "Inloop"
+    ],
+    "omschrijving": "**Een beetje andere inloopochtend dan gewoonlijk**\n\nOp deze laatste donderdag van de maand geven we de reguliere inloop een creatief tintje! Er zijn materialen aanwezig om een klein projectje te maken, denk aan een steentje of canvasje stippen, op nummer schilderen en meer!  \nOpgeven is niet nodig!\n\nWil je alleen genieten van een kopje koffie of thee met een praatje, dan kan dat natuurlijk ook! De koffie staat klaar en een luisterd oor kan je vinden. De deur staat altijd open op donderdagochtend.",
+    "img": "/img/approved/activiteit-creatief-v2.jpg.webp",
+    "datum": "2027-01-28",
+    "heleDag": false,
+    "begintijd": "10:00",
+    "eindtijd": "12:00",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": false,
+    "volgeboekt": false,
+    "locatie": "Mazerhard 37, 3891 BR Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "info@toonoverleven.nl"
+  },
+  {
+    "id": "inloop-met-activiteit-februari",
+    "slug": "inloop-met-activiteit-februari",
+    "activiteitType": "inloop-met-activiteit",
+    "soort": "activiteit",
+    "titel": "Inloop met activiteit",
+    "categorie": "Creatief",
+    "categorieen": [
+      "Creatief",
+      "Inloop"
+    ],
+    "omschrijving": "**Een beetje andere inloopochtend dan gewoonlijk**\n\nOp deze laatste donderdag van de maand geven we de reguliere inloop een creatief tintje! Er zijn materialen aanwezig om een klein projectje te maken, denk aan een steentje of canvasje stippen, op nummer schilderen en meer!  \nOpgeven is niet nodig!\n\nWil je alleen genieten van een kopje koffie of thee met een praatje, dan kan dat natuurlijk ook! De koffie staat klaar en een luisterd oor kan je vinden. De deur staat altijd open op donderdagochtend.",
+    "img": "/img/approved/activiteit-creatief-v2.jpg.webp",
+    "datum": "2027-02-25",
+    "heleDag": false,
+    "begintijd": "10:00",
+    "eindtijd": "12:00",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": false,
+    "volgeboekt": false,
+    "locatie": "Mazerhard 37, 3891 BR Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "info@toonoverleven.nl"
+  },
+  {
+    "id": "inloop-met-activiteit-maart",
+    "slug": "inloop-met-activiteit-maart",
+    "activiteitType": "inloop-met-activiteit",
+    "soort": "activiteit",
+    "titel": "Inloop met activiteit",
+    "categorie": "Creatief",
+    "categorieen": [
+      "Creatief",
+      "Inloop"
+    ],
+    "omschrijving": "**Een beetje andere inloopochtend dan gewoonlijk**\n\nOp deze laatste donderdag van de maand geven we de reguliere inloop een creatief tintje! Er zijn materialen aanwezig om een klein projectje te maken, denk aan een steentje of canvasje stippen, op nummer schilderen en meer!  \nOpgeven is niet nodig!\n\nWil je alleen genieten van een kopje koffie of thee met een praatje, dan kan dat natuurlijk ook! De koffie staat klaar en een luisterd oor kan je vinden. De deur staat altijd open op donderdagochtend.",
+    "img": "/img/approved/activiteit-creatief-v2.jpg.webp",
+    "datum": "2027-03-25",
+    "heleDag": false,
+    "begintijd": "10:00",
+    "eindtijd": "12:00",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": false,
+    "volgeboekt": false,
+    "locatie": "Mazerhard 37, 3891 BR Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "info@toonoverleven.nl"
+  },
+  {
+    "id": "inloop-met-activiteit-april",
+    "slug": "inloop-met-activiteit-april",
+    "activiteitType": "inloop-met-activiteit",
+    "soort": "activiteit",
+    "titel": "Inloop met activiteit",
+    "categorie": "Creatief",
+    "categorieen": [
+      "Creatief",
+      "Inloop"
+    ],
+    "omschrijving": "**Een beetje andere inloopochtend dan gewoonlijk**\n\nOp deze laatste donderdag van de maand geven we de reguliere inloop een creatief tintje! Er zijn materialen aanwezig om een klein projectje te maken, denk aan een steentje of canvasje stippen, op nummer schilderen en meer!  \nOpgeven is niet nodig!\n\nWil je alleen genieten van een kopje koffie of thee met een praatje, dan kan dat natuurlijk ook! De koffie staat klaar en een luisterd oor kan je vinden. De deur staat altijd open op donderdagochtend.",
+    "img": "/img/approved/activiteit-creatief-v2.jpg.webp",
+    "datum": "2027-04-29",
+    "heleDag": false,
+    "begintijd": "10:00",
+    "eindtijd": "12:00",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": false,
+    "volgeboekt": false,
+    "locatie": "Mazerhard 37, 3891 BR Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "info@toonoverleven.nl"
+  },
+  {
+    "id": "inloop-met-activiteit-mei",
+    "slug": "inloop-met-activiteit-mei",
+    "activiteitType": "inloop-met-activiteit",
+    "soort": "activiteit",
+    "titel": "Inloop met activiteit",
+    "categorie": "Creatief",
+    "categorieen": [
+      "Creatief",
+      "Inloop"
+    ],
+    "omschrijving": "**Een beetje andere inloopochtend dan gewoonlijk**\n\nOp deze laatste donderdag van de maand geven we de reguliere inloop een creatief tintje! Er zijn materialen aanwezig om een klein projectje te maken, denk aan een steentje of canvasje stippen, op nummer schilderen en meer!  \nOpgeven is niet nodig!\n\nWil je alleen genieten van een kopje koffie of thee met een praatje, dan kan dat natuurlijk ook! De koffie staat klaar en een luisterd oor kan je vinden. De deur staat altijd open op donderdagochtend.",
+    "img": "/img/approved/activiteit-creatief-v2.jpg.webp",
+    "datum": "2027-05-27",
+    "heleDag": false,
+    "begintijd": "10:00",
+    "eindtijd": "12:00",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": false,
+    "volgeboekt": false,
+    "locatie": "Mazerhard 37, 3891 BR Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "info@toonoverleven.nl"
+  },
+  {
+    "id": "inloop-met-activiteit-juni",
+    "slug": "inloop-met-activiteit-juni",
+    "activiteitType": "inloop-met-activiteit",
+    "soort": "activiteit",
+    "titel": "Inloop met activiteit",
+    "categorie": "Creatief",
+    "categorieen": [
+      "Creatief",
+      "Inloop"
+    ],
+    "omschrijving": "**Een beetje andere inloopochtend dan gewoonlijk**\n\nOp deze laatste donderdag van de maand geven we de reguliere inloop een creatief tintje! Er zijn materialen aanwezig om een klein projectje te maken, denk aan een steentje of canvasje stippen, op nummer schilderen en meer!  \nOpgeven is niet nodig!\n\nWil je alleen genieten van een kopje koffie of thee met een praatje, dan kan dat natuurlijk ook! De koffie staat klaar en een luisterd oor kan je vinden. De deur staat altijd open op donderdagochtend.",
+    "img": "/img/approved/activiteit-creatief-v2.jpg.webp",
+    "datum": "2027-06-24",
+    "heleDag": false,
+    "begintijd": "10:00",
+    "eindtijd": "12:00",
+    "herhaling": "eenmalig",
+    "overslaan": [],
+    "aanmelden": false,
+    "volgeboekt": false,
+    "locatie": "Mazerhard 37, 3891 BR Zeewolde",
+    "doelgroepen": [
+      "iedereen"
+    ],
+    "themas": [
+      "ontmoeten"
+    ],
+    "aanmeldEmail": "info@toonoverleven.nl"
+  }
+]
