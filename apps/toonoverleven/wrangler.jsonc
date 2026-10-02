@@ -31,7 +31,13 @@
     {
       "pattern": "toonoverleven.jouwidealewebsite.nl",
       "custom_domain": true
-    }
+    },
+    // toonoverleven.nl blijft in het DNS van een externe partij. Het domein
+    // komt binnen als Cloudflare for SaaS custom hostname op onze zone (CNAME
+    // naar cname.jouwidealewebsite.nl), en deze routes sturen het naar deze
+    // Worker.
+    { "pattern": "toonoverleven.nl/*", "zone_name": "jouwidealewebsite.nl" },
+    { "pattern": "www.toonoverleven.nl/*", "zone_name": "jouwidealewebsite.nl" }
   ],
   "r2_buckets": [
     {
