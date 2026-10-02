@@ -1,0 +1,38 @@
+---
+import 'video.js/dist/video-js.css';
+import type { Lang } from '../data/content';
+const { lang }=Astro.props as {lang:Lang};
+const nl=lang==='nl';
+---
+<section class="brandfilm" aria-label={nl?'Rescue Watercraft in actie':'Rescue Watercraft in action'}>
+  <div class="container">
+    <div class="film-player">
+      <video id="brandfilm-player" controls playsinline preload="none" poster="/images/brandfilm-poster.webp" aria-label={nl?'Rescue Watercraft brandfilm':'Rescue Watercraft brand film'} data-language={lang} width="1920" height="1080">
+        <source src="/api/brandfilm" type="video/mp4"/>
+        <a href="/api/brandfilm">{nl?'Bekijk de brandfilm':'Watch the brand film'}</a>
+      </video>
+    </div>
+  </div>
+</section>
+<script>
+  const video=document.querySelector<HTMLVideoElement>('#brandfilm-player');
+  if(video){
+    // Keep native controls available until the enhanced player is ready.
+    const enhance=async()=>{
+      try{
+        const {default:videojs}=await import('video.js');
+        const {default:dutch}=await import('video.js/dist/lang/nl.json');
+        videojs.addLanguage('nl',dutch);
+        video.classList.add('video-js','vjs-big-play-centered');
+        videojs(video,{controls:true,autoplay:false,preload:'none',fluid:true,aspectRatio:'16:9',responsive:true,language:video.dataset.language,playbackRates:[0.75,1,1.25,1.5],controlBar:{volumePanel:{inline:false}},userActions:{hotkeys:true}});
+      }catch{video.controls=true;}
+    };
+    if('IntersectionObserver' in window){
+      const observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){observer.disconnect();void enhance();}},{rootMargin:'300px'});
+      observer.observe(video);
+    }else{void enhance();}
+  }
+</script>
+<style>
+.brandfilm{padding:clamp(28px,4vw,48px) 0;background:#0a0b07;color:#fff}.film-player{aspect-ratio:16/9;background:#000;border:1px solid #34352c}.film-player>video{display:block;width:100%;height:100%;object-fit:contain}.film-player :global(.video-js){width:100%;font-family:var(--text);color:#fff}.film-player :global(.vjs-poster img){object-fit:cover}.film-player :global(.vjs-big-play-button){width:72px;height:72px;line-height:68px;border:2px solid var(--green);border-radius:50%;background:#0a0b07cc;margin-left:-36px;margin-top:-36px;color:var(--green)}.film-player :global(.vjs-control-bar){background:#0a0b07eb}.film-player :global(.vjs-play-progress),.film-player :global(.vjs-volume-level){background:var(--green)}.film-player :global(button:focus-visible){outline:2px solid var(--green);outline-offset:-2px}@media(max-width:800px){.film-player :global(.vjs-control){min-width:32px}.film-player :global(.vjs-control-bar){font-size:12px}}
+</style>

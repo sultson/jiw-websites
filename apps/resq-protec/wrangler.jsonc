@@ -15,7 +15,7 @@
     { "pattern": "resqprotec.jouwidealewebsite.nl", "custom_domain": true },
     { "pattern": "rescuewatercraft.jouwidealewebsite.nl", "custom_domain": true }
   ],
-  "r2_buckets": [{ "binding": "FORM_UPLOADS", "bucket_name": "jiw-form-uploads-prod" }],
+  "r2_buckets": [{ "binding": "WEBSITE_ASSETS", "bucket_name": "jiw-large-website-assets" }, { "binding": "FORM_UPLOADS", "bucket_name": "jiw-form-uploads-prod" }],
   "send_email": [{ "name": "LEAD_EMAIL", "allowed_sender_addresses": ["website@notify.rescuewatercraft.nl"] }],
   "vars": {
     "SITE_ID": "resq-protec",

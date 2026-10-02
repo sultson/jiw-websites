@@ -1,5 +1,5 @@
 import { createFormWorker, type CloudflareFormsEnv } from '@jiw/cloudflare-forms';
-type Env=CloudflareFormsEnv&{ASSETS:Fetcher;APIFY_TOKEN?:string};
+type Env=CloudflareFormsEnv&{ASSETS:Fetcher;WEBSITE_ASSETS:R2Bucket;APIFY_TOKEN?:string};
 
 const common={siteName:'Rescue Watercraft',ownerName:'Rescue Watercraft',senderName:'Rescue Watercraft',confirmationFollowUpSentence:'Een specialist van Rescue Watercraft neemt binnen 24 tot 48 uur contact met u op.',messageField:'message',subjectFields:['subject','organisation'],requiredFields:[{name:'phone',label:'telefoonnummer',message:'Vul uw telefoonnummer in.'},{name:'subject',label:'onderwerp',message:'Maak een keuze of vul een onderwerp in.'},{name:'privacyConsent',label:'privacytoestemming',message:'Ga akkoord met de verwerking van uw gegevens.'}],emailFields:[{name:'phone',label:'Telefoon'},{name:'organisation',label:'Organisatie'},{name:'subject',label:'Onderwerp'},{name:'language',label:'Taal'},{name:'pageUrl',label:'Pagina'},{name:'privacyConsent',label:'Toestemming'}]};
 const commonEn={...common,locale:'en' as const,confirmationFollowUpSentence:'A Rescue Watercraft specialist will contact you within 24 to 48 hours.',requiredFields:[{name:'phone',label:'phone number',message:'Enter your phone number.'},{name:'subject',label:'subject',message:'Select an option or enter a subject.'},{name:'privacyConsent',label:'privacy consent',message:'Agree to the processing of your data.'}],emailFields:[{name:'phone',label:'Phone'},{name:'organisation',label:'Organisation'},{name:'subject',label:'Subject'},{name:'language',label:'Language'},{name:'pageUrl',label:'Page'},{name:'privacyConsent',label:'Consent'}]};
@@ -63,4 +63,31 @@ async function socialFeed(request:Request,env:Env,ctx:ExecutionContext):Promise<
   try{return feedResponse(await refreshFeed(cache,key,channel,feedUrl,env),'miss');}catch(error){console.error('social_feed_initial_fetch_failed',{channel,error:error instanceof Error?error.message:String(error)});return Response.json({items:[],error:'Feed temporarily unavailable'},{status:502});}
 }
 
-export default{async fetch(request,env,ctx){const url=new URL(request.url);if(url.pathname==='/api/social-feed'&&request.method==='GET')return socialFeed(request,env,ctx);const worker=workers[url.pathname];if(worker)return worker.fetch!(request,env,ctx);return env.ASSETS.fetch(request);}} satisfies ExportedHandler<Env>;
+// Expose only this film; byte ranges let browsers seek without downloading it all.
+async function brandFilm(request:Request,env:Env):Promise<Response>{
+  if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405,headers:{Allow:'GET, HEAD'}});
+  const key='resque-watercraft-brandfilm.mp4';
+  const meta=await env.WEBSITE_ASSETS.head(key);
+  if(!meta)return new Response('Film unavailable',{status:404});
+  const headers=new Headers({'Content-Type':'video/mp4','Accept-Ranges':'bytes','Cache-Control':'public, max-age=3600','ETag':meta.httpEtag,'Last-Modified':meta.uploaded.toUTCString(),'Content-Length':String(meta.size),'X-Content-Type-Options':'nosniff'});
+  if(request.headers.get('If-None-Match')===meta.httpEtag)return new Response(null,{status:304,headers});
+  if(request.method==='HEAD')return new Response(null,{headers});
+  let range:{offset:number;length:number}|undefined;
+  const rangeHeader=request.headers.get('Range');
+  const ifRange=request.headers.get('If-Range');
+  if(rangeHeader&&(!ifRange||ifRange===meta.httpEtag||ifRange===meta.uploaded.toUTCString())){
+    const match=/^bytes=(\d*)-(\d*)$/.exec(rangeHeader);
+    if(!match||(!match[1]&&!match[2]))return new Response(null,{status:416,headers:{'Content-Range':`bytes */${meta.size}`}});
+    const start=match[1]?Number(match[1]):Math.max(0,meta.size-Number(match[2]));
+    const end=match[1]&&match[2]?Math.min(Number(match[2]),meta.size-1):meta.size-1;
+    if(!Number.isSafeInteger(start)||!Number.isSafeInteger(end)||start>=meta.size||end<start)return new Response(null,{status:416,headers:{'Content-Range':`bytes */${meta.size}`}});
+    range={offset:start,length:end-start+1};
+    headers.set('Content-Range',`bytes ${start}-${end}/${meta.size}`);
+    headers.set('Content-Length',String(range.length));
+  }
+  const object=await env.WEBSITE_ASSETS.get(key,range?{range}:undefined);
+  if(!object)return new Response('Film unavailable',{status:404});
+  return new Response(object.body,{status:range?206:200,headers});
+}
+
+export default{async fetch(request,env,ctx){const url=new URL(request.url);if(url.pathname==='/api/brandfilm')return brandFilm(request,env);if(url.pathname==='/api/social-feed'&&request.method==='GET')return socialFeed(request,env,ctx);const worker=workers[url.pathname];if(worker)return worker.fetch!(request,env,ctx);return env.ASSETS.fetch(request);}} satisfies ExportedHandler<Env>;
