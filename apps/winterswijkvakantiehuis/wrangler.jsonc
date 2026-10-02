@@ -41,5 +41,34 @@
     "SITE_ID": "winterswijkvakantiehuis",
     "LEAD_RECIPIENT": "achterhoekbooking@gmail.com",
     "LEAD_SENDER": "booking@notify.winterswijkvakantiehuis.nl"
+  },
+  // Staging copy for client review: `pnpm ship:preview` deploys only this Worker.
+  // Bindings and vars are not inherited by an env, so they are repeated here.
+  // Test enquiries go to our own inbox, never to the client's booking address.
+  "env": {
+    "preview": {
+      "name": "winterswijkvakantiehuis-preview",
+      "routes": [
+        { "pattern": "winterswijkvakantiehuis-preview.jouwconcept.app", "custom_domain": true }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "FORM_UPLOADS",
+          "bucket_name": "jiw-form-uploads-prod"
+        }
+      ],
+      "send_email": [
+        {
+          "name": "LEAD_EMAIL",
+          "allowed_sender_addresses": ["booking@notify.winterswijkvakantiehuis.nl"]
+        }
+      ],
+      "vars": {
+        "SITE_ID": "winterswijkvakantiehuis-preview",
+        "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+        "LEAD_SENDER": "booking@notify.winterswijkvakantiehuis.nl",
+        "NOINDEX": "1"
+      }
+    }
   }
 }

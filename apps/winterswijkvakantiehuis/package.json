@@ -8,6 +8,7 @@
     "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "ship": "pnpm build && wrangler deploy",
     "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "ship:preview": "pnpm build && wrangler deploy --env preview",
     "preview": "vite preview",
     "clean": "rm -rf dist dist-ssr",
     "optimize-images": "tsx scripts/optimize-images.ts",

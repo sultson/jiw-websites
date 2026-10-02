@@ -3,6 +3,8 @@ import { winterswijkConfirmationEmail } from './confirmation-email';
 
 export type Env = CloudflareFormsEnv & {
   ASSETS: Fetcher;
+  /** Set on the staging Worker only: keeps the review copy out of every index. */
+  NOINDEX?: string;
 };
 
 /* The contact form used to open WhatsApp with a prefilled message. It now posts
@@ -118,15 +120,22 @@ export default {
       return formWorker.fetch!(request, env, ctx);
     }
 
+    if (env.NOINDEX && url.pathname === '/robots.txt') {
+      return new Response('User-agent: *\nDisallow: /\n', {
+        headers: {'Content-Type': 'text/plain; charset=utf-8', 'X-Robots-Tag': 'noindex, nofollow'},
+      });
+    }
+
     // Every route is prerendered to static HTML at build time (real <head> and
     // <body>), so assets go out as they are. HTML revalidates on every request;
     // hashed assets keep the long-lived cache headers from public/_headers.
     const response = await env.ASSETS.fetch(request);
     const contentType = response.headers.get('content-type') ?? '';
-    if (!contentType.includes('text/html')) return response;
+    if (!contentType.includes('text/html') && !env.NOINDEX) return response;
 
     const headers = new Headers(response.headers);
-    headers.set('Cache-Control', 'no-store');
+    if (env.NOINDEX) headers.set('X-Robots-Tag', 'noindex, nofollow');
+    if (contentType.includes('text/html')) headers.set('Cache-Control', 'no-store');
     return new Response(response.body, {
       status: response.status,
       statusText: response.statusText,
