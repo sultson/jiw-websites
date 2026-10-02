@@ -1,6 +1,7 @@
 import { useLang } from './hooks/useLang';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
+import Booking from './components/Booking';
 import UspStrip from './components/UspStrip';
 import NewClientOffer from './components/NewClientOffer';
 import About from './components/About';
@@ -43,6 +44,7 @@ export default function App() {
         <Gallery t={t} />
         <Reviews lang={lang} t={t} />
         <Terms t={t} />
+        <Booking />
         <Visit lang={lang} t={t} />
         <Faq t={t} />
       </main>

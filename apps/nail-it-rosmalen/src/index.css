@@ -100,3 +100,22 @@
 /* hide scrollbar for horizontal scrollers */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Match the provider's 520px panel so transparent iframe space cannot
+   intercept scrolling beside the visible widget. */
+.booking-widget {
+  width: 100%;
+  max-width: 520px;
+  min-width: 0;
+  margin-inline: auto;
+}
+.booking-widget #_oa_widget_root {
+  width: 100%;
+  min-width: 0;
+}
+.booking-widget iframe {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  margin-inline: 0 !important;
+}

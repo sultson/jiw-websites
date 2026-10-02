@@ -1,4 +1,4 @@
-import { Phone, MessageCircle } from 'lucide-react';
+import { CalendarDays, MessageCircle } from 'lucide-react';
 import { isOpenNow } from '../data/hours';
 
 type Props = { t: (k: string) => string };
@@ -47,9 +47,9 @@ export default function Hero({ t }: Props) {
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
-            <a href="tel:+31639211983" className="btn-gold">
-              <Phone size={16} />
-              {t('hero.ctaCall')}
+            <a href="/#afspraak" className="btn-gold">
+              <CalendarDays size={16} />
+              {t('booking.cta')}
             </a>
             <a
               href="https://wa.me/31639211983"

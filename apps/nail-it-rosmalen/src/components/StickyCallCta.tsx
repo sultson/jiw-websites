@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Phone } from 'lucide-react';
+import { CalendarDays } from 'lucide-react';
 
 type Props = { t: (k: string) => string };
 
 export default function StickyCallCta({ t }: Props) {
   const [show, setShow] = useState(false);
   const [footerVisible, setFooterVisible] = useState(false);
+  const [bookingVisible, setBookingVisible] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 400);
@@ -25,16 +26,27 @@ export default function StickyCallCta({ t }: Props) {
     return () => io.disconnect();
   }, []);
 
-  if (!show || footerVisible) return null;
+  useEffect(() => {
+    const booking = document.getElementById('afspraak');
+    if (!booking) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setBookingVisible(entry.isIntersecting),
+      { threshold: 0 },
+    );
+    observer.observe(booking);
+    return () => observer.disconnect();
+  }, []);
+
+  if (!show || footerVisible || bookingVisible) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden px-4 safe-bottom pt-3 pointer-events-none">
       <a
-        href="tel:+31639211983"
+        href="/#afspraak"
         className="pointer-events-auto w-full bg-espresso text-cream rounded-full py-3.5 font-medium flex items-center justify-center gap-2 shadow-[0_10px_30px_-8px_rgba(42,33,28,0.5)]"
       >
-        <Phone size={18} />
-        {t('hero.ctaCall')}
+        <CalendarDays size={18} />
+        {t('booking.cta')}
       </a>
     </div>
   );

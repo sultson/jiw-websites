@@ -28,7 +28,7 @@ export default function NewClientOffer({ t }: Props) {
           </div>
 
           <a
-            href="tel:+31639211983"
+            href="/#afspraak"
             className="relative mt-7 inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-cream px-6 py-3 text-sm font-medium tracking-wide text-espresso hover:bg-blush md:mt-0"
           >
             {t('offer.cta')}

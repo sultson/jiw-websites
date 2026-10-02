@@ -1,4 +1,4 @@
-import { Phone, MapPin, Instagram, Facebook } from 'lucide-react';
+import { CalendarDays, Phone, MapPin, Instagram, Facebook } from 'lucide-react';
 
 type Props = { t: (k: string) => string };
 
@@ -24,6 +24,9 @@ export default function Footer({ t }: Props) {
 
           <div className="space-y-2 text-sm">
             <p className="text-[11px] uppercase tracking-[0.22em] text-gold mb-3">{t('visit.kicker')}</p>
+            <a href="/#afspraak" className="flex items-center gap-2 hover:text-cream">
+              <CalendarDays size={14} /> {t('booking.cta')}
+            </a>
             <a href="tel:+31639211983" className="flex items-center gap-2 hover:text-cream">
               <Phone size={14} /> 06 39211983
             </a>

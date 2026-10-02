@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, CalendarDays } from 'lucide-react';
 import type { Lang } from '../translations';
 import { activeVacationNotice } from '../data/vacations';
 import LangToggle from './LangToggle';
@@ -62,13 +62,12 @@ export default function Nav({ lang, setLang, t }: Props) {
             <div className="flex items-center gap-2 md:gap-3">
               <LangToggle lang={lang} setLang={setLang} compact />
               <a
-                href="tel:+31639211983"
+                href="/#afspraak"
                 className="btn-primary hidden sm:inline-flex"
-                aria-label={t('nav.call')}
+                aria-label={t('booking.cta')}
               >
-                <Phone size={16} />
-                <span className="hidden md:inline">06 39211983</span>
-                <span className="md:hidden">{t('nav.callShort')}</span>
+                <CalendarDays size={16} />
+                <span>{t('booking.cta')}</span>
               </a>
               <button
                 onClick={() => setOpen(v => !v)}
@@ -95,11 +94,11 @@ export default function Nav({ lang, setLang, t }: Props) {
                 </a>
               ))}
               <a
-                href="tel:+31639211983"
+                href="/#afspraak"
                 onClick={() => setOpen(false)}
                 className="btn-primary w-full mt-4"
               >
-                <Phone size={16} /> 06 39211983
+                <CalendarDays size={16} /> {t('booking.cta')}
               </a>
             </div>
           </div>

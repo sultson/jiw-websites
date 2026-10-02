@@ -4,6 +4,7 @@ type Dict = Record<string, string>;
 
 export const translations: Record<Lang, Dict> = {
   nl: {
+    'booking.cta': 'Afspraak maken',
     'nav.services': 'Prijslijst',
     'nav.about': 'Over Lisa',
     'nav.gallery': "Werk",
@@ -109,7 +110,7 @@ export const translations: Record<Lang, Dict> = {
     'faq.title': 'Goed om te weten',
 
     'faq.q1': 'Hoe maak ik een afspraak?',
-    'faq.a1': 'Bel 06 39211983 tijdens openingstijden. Liever niet via een bericht — bellen is echt het snelst. Kom op tijd: bij meer dan 10 minuten te laat kan de behandeling helaas niet meer doorgaan.',
+    'faq.a1': 'Online afspraken maken kan vanaf januari 2027. Vaste klanten kunnen alvast januari, februari en maart inplannen via de sectie Online afspraak maken. Voor een bezoek tot en met december belt u 06 39211983. Kom op tijd: bij meer dan 10 minuten te laat kan de behandeling helaas niet meer doorgaan.',
     'faq.q2': 'Is er een aanbieding voor nieuwe klanten?',
     'faq.a2': 'Ja. Maak na uw eerste behandeling meteen een vervolgafspraak. Bij uw tweede bezoek ontvangt u € 10 korting op iedere behandeling.',
     'faq.q3': 'Werken jullie met een spaarsysteem?',
@@ -128,6 +129,7 @@ export const translations: Record<Lang, Dict> = {
     'lang.en': 'EN',
   },
   en: {
+    'booking.cta': 'Book an appointment',
     'nav.services': 'Price list',
     'nav.about': 'About Lisa',
     'nav.gallery': 'Work',
@@ -233,7 +235,7 @@ export const translations: Record<Lang, Dict> = {
     'faq.title': 'Good to know',
 
     'faq.q1': 'How do I book an appointment?',
-    'faq.a1': "Call 06 39211983 during business hours. A call is truly the fastest way — please don't rely on messages. Please arrive on time: if you're more than 10 minutes late, the appointment unfortunately can't go ahead.",
+    'faq.a1': "Online booking is available from January 2027. Existing clients can already book January, February and March in the online booking section. For a visit through December, call 06 39211983. Please arrive on time: if you're more than 10 minutes late, the appointment unfortunately can't go ahead.",
     'faq.q2': 'Is there an offer for new clients?',
     'faq.a2': 'Yes. Book your follow-up appointment straight after your first treatment. You will receive € 10 off any treatment on your second visit.',
     'faq.q3': 'Is there a loyalty scheme?',
