@@ -121,11 +121,11 @@ const KLEUREN = {
   onButton: '#142d4e',
 };
 
-/* Geen contactEmail. Het bedrijf heeft nog geen eigen mailbox; de leads komen op
-   hallo@jouwidealewebsite.nl binnen en dat adres hoort niet in een mail van Yanis aan
-   zijn eigen klant te staan. De bevestiging draagt wel een reply-to naar datzelfde
-   adres, dus "beantwoord deze mail" klopt gewoon. Krijgt hij een eigen adres, dan
-   komt het hier en in LEAD_RECIPIENT tegelijk. */
+/* Geen contactEmail. De leads gaan nu naar het privé-gmail van de eigenaar, en dat
+   is geen adres om in een mail van het bedrijf aan zijn eigen klant af te drukken.
+   De bevestiging draagt wel een reply-to naar LEAD_RECIPIENT, dus "beantwoord deze
+   mail" komt bij hem uit. Krijgt hij een adres op het eigen domein, dan komt dat
+   hier en in LEAD_RECIPIENT tegelijk. */
 export const yanisConfirmationEmail: LocalizedConfirmationEmailConfig = {
   defaultLocale: 'nl',
   translations: VERTALINGEN,

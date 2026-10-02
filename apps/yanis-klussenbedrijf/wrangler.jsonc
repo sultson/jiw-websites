@@ -44,8 +44,9 @@
   ],
   "vars": {
     "SITE_ID": "yanis-klussenbedrijf",
-    // Gaat voorlopig naar ons, niet naar de klant: eerst zien wat eruit komt.
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // De eigenaar zelf. Dit adres is ook de reply-to op de bevestiging die de
+    // aanvrager terugkrijgt, dus "beantwoord deze mail" komt bij hem uit.
+    "LEAD_RECIPIENT": "yankomarinov2003@gmail.com",
     "LEAD_SENDER": "offers@notify.yanisklussenbedrijf.nl"
   }
 }
