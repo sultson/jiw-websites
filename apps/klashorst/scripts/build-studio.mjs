@@ -37,7 +37,14 @@ const studio = path.join(app, 'studio');
 const studioDist = path.join(studio, 'dist');
 const siteDist = path.join(app, 'dist');
 
-execFileSync('pnpm', ['-C', studio, 'build', '-y'], { stdio: 'inherit' });
+/* On Windows pnpm is pnpm.cmd, which Node refuses to execFile directly — it
+   only runs through a shell. So ask for one there, and quote the path since a
+   shell splits on spaces. macOS and Linux keep the plain, quoting-free call. */
+const viaShell = process.platform === 'win32';
+execFileSync('pnpm', ['-C', viaShell ? `"${studio}"` : studio, 'build', '-y'], {
+  stdio: 'inherit',
+  shell: viaShell,
+});
 
 if (!existsSync(path.join(studioDist, 'index.html'))) {
   throw new Error('Studio build produced no index.html');

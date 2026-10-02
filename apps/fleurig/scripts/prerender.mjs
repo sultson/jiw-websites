@@ -17,13 +17,13 @@
  */
 import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs';
 import path from 'node:path';
-import {fileURLToPath} from 'node:url';
+import {fileURLToPath, pathToFileURL} from 'node:url';
 import {PAGINAS} from '../site.config.mjs';
 
 const APP = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(APP, 'dist');
 
-const {render} = await import(path.join(APP, 'dist-ssr/entry-server.js'));
+const {render} = await import(pathToFileURL(path.join(APP, 'dist-ssr/entry-server.js')).href);
 
 const LEEG = '<div id="root"></div>';
 

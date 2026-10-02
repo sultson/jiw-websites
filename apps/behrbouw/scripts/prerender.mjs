@@ -1,13 +1,13 @@
 // Build-time prerender: bake the rendered App into dist/index.html so crawlers
 // and first paint get complete HTML without executing JavaScript.
 import { readFileSync, writeFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = join(root, 'dist');
 
-const { render } = await import(join(root, 'dist-ssr/entry-server.js'));
+const { render } = await import(pathToFileURL(join(root, 'dist-ssr/entry-server.js')).href);
 
 const template = readFileSync(join(distDir, 'index.html'), 'utf-8');
 if (!template.includes('<div id="root"></div>')) {

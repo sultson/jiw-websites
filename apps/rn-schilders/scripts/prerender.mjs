@@ -2,13 +2,13 @@
 // file per route (real <head> AND <body>) so non-JS crawlers — search engines
 // and AI bots alike — see the full page without executing JavaScript.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = join(root, 'dist');
 
-const { render, allRoutePaths, routeMetaFor } = await import(join(root, 'dist-ssr/entry-server.js'));
+const { render, allRoutePaths, routeMetaFor } = await import(pathToFileURL(join(root, 'dist-ssr/entry-server.js')).href);
 
 const template = readFileSync(join(distDir, 'index.html'), 'utf-8');
 

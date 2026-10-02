@@ -5,13 +5,13 @@
 // per language at its own URL, and each of those announces the other two with
 // hreflang. The route list comes from allRoutePaths in src/App.tsx.
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = join(root, 'dist');
 
-const { render, allRoutePaths, routeMetaFor, SITE_URL, EMAIL_LOGO_PATH } = await import(join(root, 'dist-ssr/entry-server.js'));
+const { render, allRoutePaths, routeMetaFor, SITE_URL, EMAIL_LOGO_PATH } = await import(pathToFileURL(join(root, 'dist-ssr/entry-server.js')).href);
 
 const template = readFileSync(join(distDir, 'index.html'), 'utf-8');
 

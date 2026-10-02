@@ -39,7 +39,15 @@ const studio = path.join(app, 'studio');
 const studioDist = path.join(studio, 'dist');
 const siteDist = path.join(app, 'dist');
 
-execFileSync('pnpm', ['-C', studio, 'build', '-y'], { stdio: 'inherit' });
+/* Op Windows heet pnpm eigenlijk pnpm.cmd, en dat wil Node niet rechtstreeks
+   starten — dat lukt alleen via een shell. Daar vragen we er dus een, met het
+   pad tussen aanhalingstekens omdat een shell op spaties splitst. Op macOS en
+   Linux blijft de gewone aanroep staan. */
+const viaShell = process.platform === 'win32';
+execFileSync('pnpm', ['-C', viaShell ? `"${studio}"` : studio, 'build', '-y'], {
+  stdio: 'inherit',
+  shell: viaShell,
+});
 
 if (!existsSync(path.join(studioDist, 'index.html'))) {
   throw new Error('De Studio-build heeft geen index.html opgeleverd');
