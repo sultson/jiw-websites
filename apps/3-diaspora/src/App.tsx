@@ -501,7 +501,6 @@ function MissieVisie() {
       <Doek kleur="#6f9fc6" dekking={0.12} />
       <div className="wrap relative">
         <Merkkop merk="adinkrahene" kicker={t(T.missie.kicker)} kleur="#6f9fc6" />
-        <p className="mt-5 max-w-2xl lees text-zand/65">{t(T.missie.lead)}</p>
 
         <div className="mt-14 space-y-16">
           <blockquote className="max-w-4xl">
@@ -531,7 +530,6 @@ function TwaalfTaken() {
         <div className="max-w-2xl">
           <p className="kicker text-klei">{t(T.taken.kicker)}</p>
           <h2 className="mt-4 text-[2rem] leading-[1.08] sm:text-[3rem]">{t(T.taken.titel)}</h2>
-          <p className="mt-4 lees text-inkt/70">{t(T.taken.lead)}</p>
         </div>
 
         <ol className="mt-12 grid gap-x-14 gap-y-8 sm:grid-cols-2">

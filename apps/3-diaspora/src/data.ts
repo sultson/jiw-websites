@@ -72,6 +72,13 @@ export type Stichting = {
  */
 export const ZEGEL_KLEUR = '#bda050';
 
+// Shared temporarily by all three foundations; supplied bank statement, 29-09-2026.
+export const BANKREKENING = {
+  iban: 'NL43 INGB 0118 1631 91',
+  bank: 'ING',
+  houder: 'Stichting The Netherlands Diaspora Of Africa Foundation',
+};
+
 export const STICHTINGEN: Stichting[] = [
   {
     id: 'bonaire',
@@ -660,9 +667,9 @@ export const GALERIJ: Beeld[] = [
     herkomst: 'eigen',
     titel: {nl: 'De hand erop, Bonaire', en: 'Hands on it, Bonaire', pap: 'Man riba dje, Boneiru'},
     tekst: {
-      nl: 'De ondertekening bij de notaris op Bonaire, met voorzitter Dévid W. Eusenia rechts. Dezelfde wand met ingelijste documenten staat op de foto van de stukken op tafel, dus dit is dezelfde dag. Wie de vrouw naast hem is, geven zij ons nog door.',
-      en: 'The signing at the notary on Bonaire, with chair Dévid W. Eusenia on the right. The same wall of framed documents appears in the photograph of the papers on the table, so this is the same day. Who the woman beside him is, they will still let us know.',
-      pap: 'E firmamentu serka e notario na Boneiru, ku presidente Dévid W. Eusenia na man drechi. E mesun muraya ku dokumento den lijst ta sali den e potrèt di e dokumentonan riba mesa, pues esaki ta e mesun dia. Ken e señora banda di dje ta, nan lo pasa nos ainda.',
+      nl: 'De ondertekening bij de notaris op Bonaire, met voorzitter Dévid W. Eusenia rechts. Dezelfde wand met ingelijste documenten staat op de foto van de stukken op tafel, dus dit is dezelfde dag.',
+      en: 'The signing at the notary on Bonaire, with chair Dévid W. Eusenia on the right. The same wall of framed documents appears in the photograph of the papers on the table, so this is the same day.',
+      pap: 'E firmamentu serka e notario na Boneiru, ku presidente Dévid W. Eusenia na man drechi. E mesun muraya ku dokumento den lijst ta sali den e potrèt di e dokumentonan riba mesa, pues esaki ta e mesun dia.',
     },
     alt: {
       nl: 'Een vrouw en Dévid W. Eusenia geven elkaar een hand aan de tafel bij de notaris op Bonaire',
@@ -696,9 +703,9 @@ export const GALERIJ: Beeld[] = [
     herkomst: 'eigen',
     titel: {nl: 'Het tekenen op Curaçao', en: 'Signing on Curaçao', pap: 'Firmando na Kòrsou'},
     tekst: {
-      nl: 'Links Dévid W. Eusenia, die de stukken van de Curaçaose stichting tekent. Wie er rechts naast hem zit geven zij ons nog door.',
-      en: 'On the left Dévid W. Eusenia, signing the papers of the Curaçao foundation. Who is sitting beside him on the right, they will still let us know.',
-      pap: 'Na man robes Dévid W. Eusenia, ku ta firma e dokumentonan di e fundashon di Kòrsou. Ken ta sintá na su man drechi, nan lo pasa nos ainda.',
+      nl: 'Links Dévid W. Eusenia, die de stukken van de Curaçaose stichting tekent.',
+      en: 'On the left Dévid W. Eusenia, signing the papers of the Curaçao foundation.',
+      pap: 'Na man robes Dévid W. Eusenia, ku ta firma e dokumentonan di e fundashon di Kòrsou.',
     },
     alt: {
       nl: 'Dévid W. Eusenia en een tweede man aan een tafel met de stukken voor zich, achter hen een wand van glasbouwstenen',

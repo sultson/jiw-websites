@@ -229,16 +229,6 @@ const T = {
     alles: {en: 'All', nl: 'Alles', pap: 'Tur'},
     door: {en: 'By', nl: 'Door', pap: 'Dor di'},
     totEnMet: {en: 'to', nl: 'tot en met', pap: 'te ku'},
-    eigenKop: {
-      en: 'Your own events are not in here yet',
-      nl: 'Jullie eigen activiteiten staan er nog niet bij',
-      pap: 'Boso mes aktividatnan ainda no ta aden',
-    },
-    eigenTekst: {
-      en: 'The days above are real, yearly days of remembrance and celebration. The gatherings, lectures and neighbourhood events the foundations organise themselves still have to be added. As soon as we know how you want to keep them up to date we will switch that on, so a volunteer can add an event without anyone having to touch the website.',
-      nl: 'De dagen hierboven zijn echte, jaarlijks terugkerende herdenkings- en vierdagen. De bijeenkomsten, lezingen en buurtactiviteiten die de stichtingen zelf organiseren moeten er nog in. Zodra we weten hoe jullie die willen bijhouden zetten we die koppeling aan, zodat een vrijwilliger een activiteit kan toevoegen zonder dat er iemand aan de website hoeft te komen.',
-      pap: 'E dianan ariba ta dianan real di konmemorashon i selebrashon ku ta bolbe tur aña. E reunionnan, charlanan i aktividatnan di bario ku e fundashonnan mes ta organisá mester wòrdu agregá ainda. Ora nos sa kon boso ke mantené nan al dia, nos ta sende e konekshon ei, asina un boluntario por agregá un aktividat sin ku ningun hende mester mishi ku e wèpsait.',
-    },
   },
 
   /* -------------------------------------------------------------- steun ons */
@@ -271,9 +261,9 @@ const T = {
       pap: 'Un wela ku su nietu muhé ta wak huntu portrètnan bieu di famia i un karta skirbí na man',
     },
     bijschrift: {
-      en: 'Concept image. As soon as the foundations supply their own photographs, their own work goes here.',
-      nl: 'Conceptbeeld. Zodra de stichtingen eigen foto’s aanleveren komt daar hun eigen werk te staan.',
-      pap: 'Imágen di konsepto. Ora e fundashonnan entregá nan mes portrètnan, nan mes trabou ta bini akinan.',
+      en: 'Illustration: sharing family history.',
+      nl: 'Illustratie: familiegeschiedenis doorgeven.',
+      pap: 'Ilustrashon: pasa historia di famia.',
     },
     paginaTitel: {
       en: 'Research takes time,',
@@ -310,16 +300,18 @@ const T = {
     kopKicker: {en: 'Donate', nl: 'Doneren', pap: 'Doná'},
     kopTitel: {en: 'Once,', nl: 'Eenmalig', pap: 'Un biaha,'},
     kopCursief: {en: 'or every month', nl: 'of elke maand', pap: 'of tur luna'},
+    bankTitel: {en: 'Donate by bank transfer', nl: 'Doneer via bankoverschrijving', pap: 'Doná via transferensia bankario'},
+    rekeninghouder: {en: 'Account holder', nl: 'Rekeninghouder', pap: 'Titular di kuenta'},
+    overschrijving: {
+      en: 'Transfer an amount of your choice. In the payment reference, state which foundation you would like to support: Bonaire, Curaçao or the Netherlands. For regular support, set up a standing order with your bank.',
+      nl: 'Maak een bedrag naar keuze over. Vermeld in de omschrijving welke stichting u wilt steunen: Bonaire, Curaçao of Nederland. Voor regelmatige steun kunt u bij uw bank een periodieke overschrijving instellen.',
+      pap: 'Transferí un suma di bo eskoho. Den e deskripshon, menshoná kua fundashon bo ke sostené: Boneiru, Kòrsou of Hulanda. Pa sostené regularmente, bo por regla un transferensia periódiko na bo banko.',
+    },
     kiesBedrag: {en: 'Choose an amount', nl: 'Kies een bedrag', pap: 'Skohe un suma'},
     anderBedrag: {en: 'Other amount', nl: 'Ander bedrag', pap: 'Otro suma'},
     uwBedrag: {en: 'Your amount in euros', nl: 'Uw bedrag in euro', pap: 'Bo suma na euro'},
     voorbeeld: {en: 'For example 75', nl: 'Bijvoorbeeld 75', pap: 'Por ehèmpel 75'},
     doneerKnop: {en: 'Donate', nl: 'Doneer', pap: 'Doná'},
-    koppelingUit: {
-      en: 'The payment link is not switched on yet. As soon as we know which provider you want to receive through, iDEAL via Mollie or otherwise, this button is half an hour of work.',
-      nl: 'De betaalkoppeling staat nog niet aan. Zodra bekend is via welke partij jullie willen ontvangen, iDEAL via Mollie of anders, is dit knopje in een half uur werkend.',
-      pap: 'E konekshon di pago ainda no ta sendí. Ora nos sa via ki partido boso ke risibí, iDEAL via Mollie of otro, e boton aki ta mei ora di trabou.',
-    },
     vriendKop: {en: 'Become a friend', nl: 'Word vriend', pap: 'Bira amigu'},
     vriendTekst: {
       en: 'A fixed amount every month or every year. That makes it possible to plan ahead instead of project by project.',
@@ -337,11 +329,6 @@ const T = {
       en: 'There is work that costs no money too: archive research, translating, photography, helping build a day of remembrance.',
       nl: 'Er is ook werk dat geen geld kost: archiefonderzoek, vertalen, fotograferen, een herdenking mee opbouwen.',
       pap: 'Tin trabou tambe ku no ta kosta plaka: investigashon den archivo, tradusí, saka portrèt, yuda konstruí un konmemorashon.',
-    },
-    anbiNote: {
-      en: 'As soon as the Dutch foundation has its ANBI status in place, a gift to that foundation is deductible from Dutch income tax. For donors in the Netherlands that is one more reason to give, so we will state it clearly here once it is final.',
-      nl: 'Zodra de Nederlandse stichting haar ANBI-status rond heeft, is een gift aan die stichting aftrekbaar voor de inkomstenbelasting. Dat is voor donateurs in Nederland een reden te meer, dus dat vermelden we hier duidelijk zodra het definitief is.',
-      pap: 'Ora e fundashon hulandes haña su estatus ANBI kla, un donashon na e fundashon ei ta dedusibel di e belasting riba entrada na Hulanda. Pa donantenan na Hulanda esei ta un motibu mas, p’esei nos ta menshoná esei kla akinan ora e ta definitivo.',
     },
   },
 
@@ -483,9 +470,9 @@ const T = {
       pap: 'E tareanan for di e statutonan',
     },
     takenGat: {
-      en: 'Points {a} to {b} have not reached us yet. As soon as the board sends them they will stand here, in the same numbering.',
-      nl: 'Punt {a} tot en met {b} hebben wij nog niet ontvangen. Zodra het bestuur ze aanlevert staan ze hier, in dezelfde nummering.',
-      pap: 'Punto {a} te ku {b} ainda no a yega serka nos. Ora e direktiva mand’é nan, nan ta pará akinan, den e mesun numerashon.',
+      en: 'The available statutory objectives are shown with their original numbering.',
+      nl: 'De beschikbare statutaire doelstellingen staan hier met hun oorspronkelijke nummering.',
+      pap: 'E metanan statutario disponibel ta mustrá ku nan numerashon original.',
     },
     takenAfgekapt: {
       en: 'The sentence of point {a} breaks off there in the text we received. The underlying points are complete; the closing words are not, so we have left them open rather than filling them in ourselves.',
@@ -549,11 +536,6 @@ const T = {
       nl: 'Bestuur en beloningsbeleid',
       pap: 'Direktiva i maneho di remunerashon',
     },
-    bestuurTekst: {
-      en: 'The composition of the board and the names of its members will be published here as soon as the foundation has passed them on. The remuneration policy belongs here too: at most foundations like this one, board members receive no payment and only expenses incurred can be claimed. We will only fill that in once the foundation has confirmed it itself.',
-      nl: 'De samenstelling van het bestuur en de namen van de bestuurders worden hier gepubliceerd zodra de stichting die heeft doorgegeven. Ook het beloningsbeleid hoort hier te staan: bij de meeste stichtingen als deze ontvangen bestuurders geen beloning en kunnen alleen gemaakte onkosten worden gedeclareerd. Wij vullen dat pas in wanneer de stichting het zelf heeft bevestigd.',
-      pap: 'E komposishon di e direktiva i e nòmbernan di su miembronan lo wòrdu publiká akinan ora e fundashon a pasa nan. E maneho di remunerashon tambe ta pertenesé akinan: na mayoria fundashon manera esaki, miembronan di direktiva no ta risibí pago i ta solamente gastunan hasí por wòrdu deklará. Nos lo yena esei numa ora e fundashon mes a konfirm’é.',
-    },
     stukkenKop: {
       en: 'Documents to download',
       nl: 'Stukken om te downloaden',
@@ -577,11 +559,6 @@ const T = {
       en: 'The balance sheet, the statement of income and expenditure, and the notes to them.',
       nl: 'De balans, de staat van baten en lasten en een toelichting daarop.',
       pap: 'E balansa, e estado di entrada i gastu, i e notanan riba nan.',
-    },
-    eigenBestand: {
-      en: 'We put these three documents on this website as files, not as a link to somewhere else. An ANBI has to publish them itself, and a link to a site that could go offline tomorrow is not enough for that.',
-      nl: 'Deze drie stukken zetten wij als bestand op deze website zelf, niet als link naar een andere plek. Een ANBI moet ze zelf publiceren, en een verwijzing naar een site die morgen offline kan gaan is daarvoor niet genoeg.',
-      pap: 'E tres dokumentonan aki nos ta pone komo archivo riba e wèpsait aki mes, no komo un enlace pa un otro lugá. Un ANBI mester publiká nan mes, i un referensia pa un sitio ku mañan por bai afó no ta sufisiente pa esei.',
     },
   },
 

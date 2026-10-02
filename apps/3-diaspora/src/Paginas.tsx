@@ -2,6 +2,7 @@ import {useMemo, useState} from 'react';
 import {
   AGENDA,
   ANBI_VELDEN,
+  BANKREKENING,
   BESTUUR_BONAIRE,
   OPRICHTING_NL,
   SOORT_KLEUR,
@@ -319,6 +320,9 @@ export function StichtingPagina({s}: {s: Stichting}) {
                   staan. `false` is dus iets anders dan `null`. */}
               {s.crib !== false && <Regel k={t(T.stichting.crib)} v={s.crib} />}
             </dl>
+            <div className="mt-6 border-t border-lijn pt-5">
+              <Bankgegevens />
+            </div>
             {s.socials.length > 0 && (
               <>
                 <h3 className="mt-6 text-[0.95rem] font-semibold">{t(T.stichting.volg)}</h3>
@@ -410,7 +414,6 @@ function EigenMissieBlok({s}: {s: Stichting}) {
           <p className="kicker" style={{color: s.accent}}>
             {t(T.missie.kicker)}
           </p>
-          <p className="mt-4 lees text-inkt/70">{t(T.stichting.eigenLead)}</p>
         </div>
 
         <div className="mt-12 space-y-14">
@@ -504,7 +507,7 @@ function EigenTakenBlok({s}: {s: Stichting}) {
 }
 
 function Regel({k, v, link}: {k: string; v: string | null; link?: string}) {
-  const t = useT();
+  if (!v) return null;
   return (
     <div className="flex flex-wrap justify-between gap-x-4 gap-y-1 border-b border-lijn pb-3 last:border-0">
       <dt className="text-grijs">{k}</dt>
@@ -518,7 +521,7 @@ function Regel({k, v, link}: {k: string; v: string | null; link?: string}) {
             v
           )
         ) : (
-          <span className="text-grijs/70 italic">{t(T.stichting.nogAanTeLeveren)}</span>
+          null
         )}
       </dd>
     </div>
@@ -647,11 +650,6 @@ export function BestuurBlok() {
 
 export function AnbiBlok({s}: {s: Stichting}) {
   const t = useT();
-  const stukken: {kop: Tekst; tekst: Tekst}[] = [
-    {kop: T.anbi.beleidsplan, tekst: T.anbi.beleidsplanTekst},
-    {kop: T.anbi.verslag, tekst: T.anbi.verslagTekst},
-    {kop: T.anbi.financieel, tekst: T.anbi.financieelTekst},
-  ];
   return (
     <section id="anbi" className="relative overflow-hidden bg-nacht-diep py-16 text-zand sm:py-24">
       <Doek vorm={s.logoDoek} kleur={s.accentZacht} dekking={0.09} />
@@ -671,13 +669,13 @@ export function AnbiBlok({s}: {s: Stichting}) {
           <div className="border-t-2 bg-white/[0.04] p-6 sm:p-7" style={{borderColor: s.accent}}>
             <h3 className="text-xl text-zand">{t(T.anbi.naamKop)}</h3>
             <dl className="mt-4 space-y-3 text-[0.95rem]">
-              {ANBI_VELDEN.map((v) => (
+              {ANBI_VELDEN.filter((v) => v.waarde).map((v) => (
                 <div
                   key={v.kop.nl}
                   className="flex flex-wrap justify-between gap-x-4 gap-y-1 border-b border-white/10 pb-3 last:border-0">
                   <dt className="text-zand/55">{t(v.kop)}</dt>
                   <dd className="max-w-[60%] text-right font-medium text-zand">
-                    {v.waarde ?? <span className="italic text-zand/45">{t(T.anbi.nogAanTeLeveren)}</span>}
+                    {v.waarde}
                   </dd>
                 </div>
               ))}
@@ -690,27 +688,9 @@ export function AnbiBlok({s}: {s: Stichting}) {
               <p className="mt-3 leading-relaxed text-zand/75">{t(T.anbi.doelTekst)}</p>
             </div>
 
-            <div className="border-t-2 bg-white/[0.04] p-6 sm:p-7" style={{borderColor: s.accent}}>
-              <h3 className="text-xl text-zand">{t(T.anbi.bestuurKop)}</h3>
-              <p className="mt-3 leading-relaxed text-zand/75">{t(T.anbi.bestuurTekst)}</p>
-            </div>
           </div>
         </div>
 
-        <h3 className="mt-14 text-xl text-zand">{t(T.anbi.stukkenKop)}</h3>
-        <div className="mt-4 grid gap-4 sm:grid-cols-3">
-          {stukken.map((d) => (
-            <div key={d.kop.nl} className="border border-dashed border-white/20 bg-white/[0.03] p-5">
-              <FileText size={20} aria-hidden style={{color: s.accentZacht}} />
-              <h4 className="mt-3 text-[1.05rem] text-zand">{t(d.kop)}</h4>
-              <p className="mt-1.5 text-[0.88rem] leading-relaxed text-zand/60">{t(d.tekst)}</p>
-              <p className="mt-3 text-[0.78rem] font-semibold uppercase tracking-wider text-zand/40">
-                {t(T.anbi.nogNiet)}
-              </p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-5 max-w-3xl text-[0.9rem] leading-relaxed text-zand/55">{t(T.anbi.eigenBestand)}</p>
       </div>
     </section>
   );
@@ -761,10 +741,6 @@ export function AgendaPagina() {
           ))}
         </div>
 
-        <div className="mt-12 border-l-4 border-goud bg-goud/10 p-6 sm:p-8">
-          <h3 className="text-[1.5rem]">{t(T.agenda.eigenKop)}</h3>
-          <p className="mt-3 max-w-3xl lees text-grijs">{t(T.agenda.eigenTekst)}</p>
-        </div>
       </section>
     </>
   );
@@ -772,11 +748,22 @@ export function AgendaPagina() {
 
 /* --------------------------------------------------------------- steun ons */
 
+function Bankgegevens() {
+  const t = useT();
+  return (
+    <div>
+      <h3 className="text-lg font-semibold">{t(T.steun.bankTitel)}</h3>
+      <dl className="mt-4 space-y-3 text-[0.95rem]">
+        <div><dt className="text-grijs">IBAN</dt><dd className="mt-1 break-words font-semibold select-all">{BANKREKENING.iban}</dd></div>
+        <div><dt className="text-grijs">{t(T.steun.rekeninghouder)}</dt><dd className="mt-1">{BANKREKENING.houder}</dd></div>
+        <div><dt className="text-grijs">Bank</dt><dd>{BANKREKENING.bank}</dd></div>
+      </dl>
+    </div>
+  );
+}
+
 export function SteunPagina() {
   const t = useT();
-  const [bedrag, setBedrag] = useState<number | 'anders'>(25);
-  const [eigen, setEigen] = useState('');
-  const bedragen = [10, 25, 50, 100];
 
   const kaarten = [
     {icoon: Users, kop: T.steun.vriendKop, tekst: T.steun.vriendTekst},
@@ -829,49 +816,8 @@ export function SteunPagina() {
           <div>
             <Kop kicker={t(T.steun.kopKicker)} titel={t(T.steun.kopTitel)} cursief={t(T.steun.kopCursief)} />
             <div className="mt-8 border-t-4 border-goud bg-zand-diep p-6 sm:p-8">
-              <p className="kicker text-grijs">{t(T.steun.kiesBedrag)}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {bedragen.map((b) => (
-                  <button
-                    key={b}
-                    onClick={() => setBedrag(b)}
-                    aria-pressed={bedrag === b}
-                    className={`rounded-xl border px-5 py-3 font-display text-lg transition ${
-                      bedrag === b ? 'border-goud bg-goud/20 text-goud-diep' : 'border-lijn bg-white hover:border-goud/60'
-                    }`}>
-                    {'€'} {b}
-                  </button>
-                ))}
-                <button
-                  onClick={() => setBedrag('anders')}
-                  aria-pressed={bedrag === 'anders'}
-                  className={`rounded-xl border px-5 py-3 text-sm font-semibold transition ${
-                    bedrag === 'anders' ? 'border-goud bg-goud/20 text-goud-diep' : 'border-lijn bg-white hover:border-goud/60'
-                  }`}>
-                  {t(T.steun.anderBedrag)}
-                </button>
-              </div>
-              {bedrag === 'anders' && (
-                <label className="mt-4 block">
-                  <span className="text-sm font-medium text-grijs">{t(T.steun.uwBedrag)}</span>
-                  <input
-                    type="number"
-                    min={1}
-                    inputMode="decimal"
-                    value={eigen}
-                    onChange={(e) => setEigen(e.target.value)}
-                    className="mt-1.5 w-full rounded-xl border border-lijn bg-white px-4 py-3 outline-none focus:border-goud"
-                    placeholder={t(T.steun.voorbeeld)}
-                  />
-                </label>
-              )}
-              <button
-                type="button"
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-goud px-6 py-4 font-semibold text-nacht transition hover:bg-goud-licht">
-                <Heart size={17} aria-hidden />
-                {t(T.steun.doneerKnop)} {bedrag === 'anders' ? (eigen ? `€ ${eigen}` : '') : `€ ${bedrag}`}
-              </button>
-              <p className="mt-3 text-[0.82rem] leading-relaxed text-grijs">{t(T.steun.koppelingUit)}</p>
+              <Bankgegevens />
+              <p className="mt-5 text-sm leading-relaxed text-grijs">{t(T.steun.overschrijving)}</p>
             </div>
           </div>
 
@@ -883,10 +829,6 @@ export function SteunPagina() {
                 <p className="mt-2 lees text-grijs">{t(k.tekst)}</p>
               </div>
             ))}
-            <div className="relative overflow-hidden bg-nacht p-7 text-zand">
-              <Doek dekking={0.1} />
-              <p className="relative leading-relaxed text-zand/80">{t(T.steun.anbiNote)}</p>
-            </div>
           </div>
         </div>
       </section>
