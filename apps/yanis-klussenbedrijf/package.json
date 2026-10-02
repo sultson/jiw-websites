@@ -10,7 +10,8 @@
     "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit -p tsconfig.worker.json",
-    "kijk": "node scripts/kijk.mjs"
+    "kijk": "node scripts/kijk.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "@jiw/cloudflare-forms": "workspace:*"

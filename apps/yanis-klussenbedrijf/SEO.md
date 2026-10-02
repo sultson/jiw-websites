@@ -13,7 +13,7 @@ veranderingen ergens tegen afgezet kunnen worden. Bijwerken bij elke meting, nie
 | Geïndexeerde pagina's | **0** — het domein heeft tot vandaag nooit een A-record gehad, er is niets te indexeren geweest |
 | Backlinks | geen |
 | Google Search Console | **nog niet aangemeld** (zie hieronder) |
-| Bing Webmaster Tools | nog niet aangemeld |
+| Bing Webmaster Tools | nog niet aangemeld, maar de 14 adressen zijn via IndexNow gemeld (202 Accepted, 02-10-2026) |
 | Google Bedrijfsprofiel | nog niet gecontroleerd |
 
 Het domein is dus nieuw voor zoekmachines. Niet "we moeten posities terugwinnen", maar "we
@@ -50,6 +50,11 @@ Alles hieronder is gemeten op het live adres, niet aangenomen.
   Assets vanaf de rand; de worker draait alleen op `/api/*`. Beeld is webp met vaste
   `width`/`height`, kopbeeld `fetchpriority="high"` en vooraf geladen.
 - **Geen JS-gated inhoud.** Niets staat op `opacity:0` te wachten op een observer.
+- **IndexNow staat aan.** `pnpm --filter @jiw/yanis-klussenbedrijf indexnow` meldt de adressen
+  uit `dist/sitemap.xml` aan bij Bing, Yandex, Seznam en Naver. De sleutel is het `.txt`-bestand
+  in `src/`; die is openbaar bedoeld. Google doet niet mee aan IndexNow — daar blijft Search
+  Console de enige weg, en dat is de reden dat punt 1 hieronder het belangrijkste punt is.
+  Draai dit na elke inhoudelijke wijziging.
 
 Gemeten: 3214 controles in een echte browser (`scripts/kijk.mjs`), beide talen, desktop en
 telefoon, tegen het live adres. Zonder fout.
