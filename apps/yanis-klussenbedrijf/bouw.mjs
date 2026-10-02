@@ -202,6 +202,15 @@ await mkdir(DIST, { recursive: true })
 // alles uit src/ gaat ongewijzigd mee: beeld, merk, styles.css, app.js, favicon
 await cp(SRC, DIST, { recursive: true })
 
+// Het logo in de bevestigingsmail wordt door het mailprogramma van de ontvanger bij ons
+// opgehaald (worker/confirmation-email.ts wijst naar dit adres). Staat het bestand er niet,
+// dan valt dat niet op bij het bouwen en niet bij het uitrollen, maar wel in elke mail die
+// daarna de deur uitgaat, als een leeg vak bovenaan. Dus liever hier omvallen.
+const EMAIL_LOGO = 'merk/yanis-logo-email.png'
+await stat(path.join(DIST, EMAIL_LOGO)).catch(() => {
+  throw new Error(`${EMAIL_LOGO} ontbreekt in de build; de bevestigingsmail wijst daarnaar`)
+})
+
 for (const taal of TALEN) {
   const uitmap = path.join(DIST, taal.uit)
   await mkdir(uitmap, { recursive: true })

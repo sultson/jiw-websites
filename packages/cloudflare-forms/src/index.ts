@@ -166,7 +166,14 @@ export type ConfirmationEmailBrand = {
   /** The name as type, for a brand with no logo image. Defaults to the site name. */
   wordmark?: string;
   websiteUrl: string;
-  contactEmail: string;
+  /**
+   * Optional. Printed under `contactPrompt` as a mailto link. Leave it out for a
+   * site that has no mailbox of its own yet: the confirmation already carries a
+   * reply-to, so `contactPrompt` can say "reply to this mail, or call us" and
+   * mean it — and the alternative is printing the address of whoever receives
+   * the leads today, which on a client's mail is someone else's brand.
+   */
+  contactEmail?: string;
   /**
    * Rendered width of the logo in pixels. Defaults to 360, which suits a wide
    * wordmark; a compact square mark wants something much smaller. Supply the
@@ -782,7 +789,7 @@ function renderLocalizedConfirmationTextEmail(
     `${copy.referenceLabel}: ${manifest.submissionId}`,
     '',
     copy.contactPrompt,
-    emailConfig.brand.contactEmail,
+    ...(emailConfig.brand.contactEmail ? [emailConfig.brand.contactEmail] : []),
     `${copy.ctaLabel}: ${emailConfig.brand.websiteUrl}`,
     '',
     copy.footerText,
@@ -862,7 +869,7 @@ function renderLocalizedConfirmationHtmlEmail(
             </tr>
             <tr>
               <td align="center" style="padding: 22px 36px 34px; background-color: ${c.surface};">
-                <p style="margin: 0 0 15px; color: ${c.inkSoft}; font-size: 14px; line-height: 22px;">${escapeHtml(copy.contactPrompt)} <a href="mailto:${escapeHtml(brand.contactEmail)}" style="color: ${c.ink}; font-weight: bold;">${escapeHtml(brand.contactEmail)}</a></p>
+                <p style="margin: 0 0 15px; color: ${c.inkSoft}; font-size: 14px; line-height: 22px;">${escapeHtml(copy.contactPrompt)}${brand.contactEmail ? ` <a href="mailto:${escapeHtml(brand.contactEmail)}" style="color: ${c.ink}; font-weight: bold;">${escapeHtml(brand.contactEmail)}</a>` : ''}</p>
                 <a href="${escapeHtml(brand.websiteUrl)}" style="display: inline-block; padding: 13px 22px; background-color: ${c.button}; color: ${c.onButton}; font-size: 14px; font-weight: bold; line-height: 18px; text-decoration: none;">${escapeHtml(copy.ctaLabel)}</a>
               </td>
             </tr>

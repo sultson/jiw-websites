@@ -97,6 +97,14 @@ Two rules the renderers now follow on their own:
 
 `tests/confirmation-copy.test.mjs` pins the overrides and the defaults.
 
+For the branded renderer (`confirmationEmail`), `brand.contactEmail` is optional.
+Leave it out for a site whose leads still arrive in our own inbox: the
+confirmation already carries a reply-to, so `contactPrompt` can say "reply to this
+mail, or call us" and be true, where printing the address would put
+`jouwidealewebsite.nl` in the client's own mail to their customer. With an address
+set, nothing changes — it stays a mailto link under the prompt.
+`tests/confirmation-branding.test.mjs` pins both.
+
 ## Adding another site
 
 1. Add `@jiw/cloudflare-forms` as a workspace dependency for the app.

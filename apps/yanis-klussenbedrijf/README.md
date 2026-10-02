@@ -220,6 +220,32 @@ stuurt de aanvrager een bevestiging.
 - De pagina leest de aanvraag niet meer terug na het versturen; dat deed de oude versie omdat er
   nog geen mailbox was en je hem zelf moest doorsturen
 
+### De bevestiging aan de aanvrager
+
+Sinds 02-10-2026 in zijn eigen merk (`worker/confirmation-email.ts`): het logo bovenaan, navy
+en oranje, en eigen woorden in nl en en. Daarvoor ging hij eruit in de standaardkleuren van het
+pakket — marineblauw met goud, van een andere klant. Dat is de eerste mail die iemand van dit
+bedrijf krijgt, vaak binnen een minuut, dus die hoort van hem te zijn.
+
+- Het logo is `src/merk/yanis-logo-email.png`: 480 breed voor een weergave van 240, uit
+  `yanis-logo.svg` platgeslagen op koel wit. **Geen SVG** (Outlook op Windows toont die niet) en
+  de achtergrond zit in het bestand gebakken, zodat de donkere modus van een mailprogramma het
+  navy niet op navy zet. `bouw.mjs` valt om als het bestand niet in de build zit — het
+  mailprogramma van de ontvanger haalt het hier op, en een ontbrekend bestand valt pas op in
+  mails die al verstuurd zijn
+- Geen webfonts: Barlow Condensed en Manrope bestaan niet in een mailprogramma, dus de mail is
+  Arial en doet niet alsof
+- Dezelfde kleurregel als op de site: de knop is een oranje vlak met navy letters (4,83:1),
+  want wit op oranje haalt 2,87:1. Oranje draagt verder alleen de streep bovenaan, het
+  opschrift op het navy vlak en het randje langs de omschrijving
+- **Geen e-mailadres in de mail.** Het bedrijf heeft nog geen eigen mailbox; de leads komen op
+  `hallo@jouwidealewebsite.nl` binnen en dat adres hoort niet in een mail van Yanis aan zijn
+  eigen klant. De bevestiging draagt wel een reply-to naar dat adres, dus "beantwoord deze mail"
+  klopt. Krijgt hij een eigen adres, dan komt het in `brand.contactEmail` én in
+  `LEAD_RECIPIENT` tegelijk
+- `confirmationFollowUpSentence` is weg uit `worker/index.ts`: die zin staat nu in
+  `followUpMessage`, en het pakket negeert hem zodra `confirmationEmail` gezet is
+
 ## De WhatsApp-knop
 
 Stond in een zelfbedacht groen (`#1f9d55`) en het woord lag dichtgevouwen achter het

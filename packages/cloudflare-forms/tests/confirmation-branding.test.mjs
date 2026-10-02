@@ -38,6 +38,10 @@ function confirmationConfig(brand = {}) {
 }
 
 async function confirmationHtml(brand) {
+  return (await confirmationMessage(brand)).html;
+}
+
+async function confirmationMessage(brand) {
   const emails = [];
   const worker = createFormWorker({
     formPath: '/api/forms/test',
@@ -71,7 +75,7 @@ async function confirmationHtml(brand) {
     console.log = originalLog;
   }
   assert.equal(response.status, 200, await response.text());
-  return emails.at(-1).html;
+  return emails.at(-1);
 }
 
 test('a brand without colors keeps the original navy-and-gold palette', async () => {
@@ -122,6 +126,25 @@ test('a partial palette falls back to the defaults for the rest', async () => {
 
   assert.match(html, /border-top: 4px solid #d98b4a/);
   assert.match(html, /background-color: #00143a/); // still the default ink
+});
+
+// A site whose leads still land in our own inbox has no address of its own to
+// print, and printing ours puts another agency's domain in the client's mail. The
+// confirmation already carries a reply-to, so the address may simply be left out.
+test('a brand with a contact address keeps the mailto link', async () => {
+  const { html, text } = await confirmationMessage();
+
+  assert.match(html, /mailto:hello@example.com/);
+  assert.match(text, /^hello@example\.com$/m);
+});
+
+test('a brand without a contact address drops the link and keeps the prompt', async () => {
+  const { html, text } = await confirmationMessage({ contactEmail: undefined });
+
+  assert.doesNotMatch(html, /mailto:/);
+  assert.match(html, /Questions\? Reach us at/);
+  assert.match(text, /Questions\? Reach us at/);
+  assert.doesNotMatch(text, /undefined/);
 });
 
 test('logoWidth drives both the attribute and the max-width', async () => {

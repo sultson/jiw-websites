@@ -1,4 +1,5 @@
 import { createFormWorker, type CloudflareFormsEnv, type LeadFormConfig } from '@jiw/cloudflare-forms';
+import { yanisConfirmationEmail, yanisConfirmationEmailEn } from './confirmation-email';
 
 export type Env = CloudflareFormsEnv & {
   ASSETS: Fetcher;
@@ -29,8 +30,10 @@ const nl = createFormWorker({
   locale: 'nl',
   subjectPrefix: 'Nieuwe offerteaanvraag Yanis Klussenbedrijf',
   subjectFields: ['pand'],
-  confirmationFollowUpSentence:
-    'Wij nemen snel contact met u op om uw aanvraag door te nemen en een opname op locatie in te plannen.',
+  // De bevestiging aan de aanvrager draait sinds 02-10-2026 op de eigen opmaak in
+  // worker/confirmation-email.ts: logo, merkkleuren en eigen woorden. Die vervangt
+  // confirmationFollowUpSentence, want die zin staat daar nu zelf in.
+  confirmationEmail: yanisConfirmationEmail,
   requiredFields: [
     { name: 'telefoon', label: 'telefoonnummer', message: 'Vul uw telefoonnummer in, dan kunnen wij u bereiken.' },
   ],
@@ -48,8 +51,7 @@ const en = createFormWorker({
   locale: 'en',
   subjectPrefix: 'New request Yanis Klussenbedrijf',
   subjectFields: ['pand'],
-  confirmationFollowUpSentence:
-    'We will be in touch shortly to go through your request and book in a survey on site.',
+  confirmationEmail: yanisConfirmationEmailEn,
   requiredFields: [
     { name: 'telefoon', label: 'phone number', message: 'Please add your phone number, so we can reach you.' },
   ],
