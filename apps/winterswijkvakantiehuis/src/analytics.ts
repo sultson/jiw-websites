@@ -1,6 +1,7 @@
 import {SITE_URL} from './site';
 
 export const MEASUREMENT_ID = 'G-J9G5MV9W28';
+export const CLARITY_ID = 'y1csgirlva';
 const CONSENT_KEY = 'ww-analytics-consent-v1';
 type Consent = 'granted' | 'denied';
 type Context = {site_language: string; page_type: string; destination: string; home_id: string};
@@ -8,6 +9,7 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
+    clarity?: ((...args: unknown[]) => void) & {q?: unknown[][]};
   }
 }
 let context: Context = {site_language: 'nl', page_type: 'landing', destination: 'winterswijk', home_id: 'none'};
@@ -25,7 +27,11 @@ export function readConsent(): Consent | null {
   return consent;
 }
 
-function allowed() { return consent === 'granted' && typeof window !== 'undefined'; }
+/* The staging copy on *.jouwconcept.app reports page_location as the live URL,
+   so it must never send anything or client reviews would count as real visits. */
+function isStaging() { return location.hostname.endsWith('.jouwconcept.app'); }
+
+function allowed() { return consent === 'granted' && typeof window !== 'undefined' && !isStaging(); }
 
 /** Only controlled campaign labels survive; never forward arbitrary query values. */
 function pageLocation() {
@@ -65,6 +71,14 @@ function start() {
   script.id = 'ww-analytics'; script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
   document.head.append(script);
+
+  window.clarity = window.clarity || function (...args: unknown[]) {
+    (window.clarity!.q = window.clarity!.q || []).push(args);
+  };
+  const clarityScript = document.createElement('script');
+  clarityScript.id = 'ww-clarity'; clarityScript.async = true;
+  clarityScript.src = `https://www.clarity.ms/tag/${CLARITY_ID}`;
+  document.head.append(clarityScript);
 }
 
 export function trackPage(path: string, details: Context) {
@@ -98,6 +112,7 @@ export function setConsent(value: Consent) {
   (window as unknown as Record<string, unknown>)[`ga-disable-${MEASUREMENT_ID}`] = true;
   window.dataLayer = [];
   document.getElementById('ww-analytics')?.remove();
+  document.getElementById('ww-clarity')?.remove();
   // Expire GA cookies on both host-only and parent domains.
   for (const cookie of document.cookie.split(';')) {
     const name = cookie.trim().split('=')[0];

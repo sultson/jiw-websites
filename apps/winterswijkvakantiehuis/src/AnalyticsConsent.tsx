@@ -4,23 +4,23 @@ import {readConsent, setConsent} from './analytics';
 const copy = {
   nl: {
     title: 'Help ons de website verbeteren',
-    text: 'Met analytische cookies van Google Analytics zien we welke pagina’s helpen bij het vinden van een vakantiehuis. Mogen we die gebruiken? We gebruiken ze niet voor advertenties.',
+    text: 'Met Google Analytics en Microsoft Clarity zien we welke pagina’s helpen bij het vinden van een vakantiehuis en hoe bezoekers de website gebruiken. Mogen we die gebruiken? We gebruiken ze niet voor advertenties.',
     accept: 'Toestaan', reject: 'Weigeren', settings: 'Privacy & cookies',
-    details: 'We meten bezoek en contactkliks, zonder formulierinhoud mee te sturen. De website werkt ook als u weigert. Uw keuze wordt in deze browser bewaard. U kunt toestemming hier altijd intrekken. Statistieken starten pas na toestemming; eerdere bezoeken worden niet alsnog gemeten. Voor vragen over uw gegevens kunt u mailen naar achterhoekbooking@gmail.com.',
+    details: 'Google Analytics meet bezoeken en contactkliks zonder formulierinhoud mee te sturen. Microsoft Clarity registreert interacties zoals klikken en scrollen om de website te verbeteren. De website werkt ook als u weigert. Uw keuze wordt in deze browser bewaard. U kunt toestemming hier altijd intrekken. Meting start pas na toestemming; eerdere bezoeken worden niet alsnog gemeten. Voor vragen over uw gegevens kunt u mailen naar achterhoekbooking@gmail.com.',
     close: 'Sluiten',
   },
   de: {
     title: 'Helfen Sie uns, die Website zu verbessern',
-    text: 'Mit Analyse-Cookies von Google Analytics sehen wir, welche Seiten bei der Suche nach einem Ferienhaus helfen. Dürfen wir diese verwenden? Wir nutzen sie nicht für Werbung.',
+    text: 'Mit Google Analytics und Microsoft Clarity sehen wir, welche Seiten bei der Suche nach einem Ferienhaus helfen und wie Besucher die Website nutzen. Dürfen wir diese verwenden? Wir nutzen sie nicht für Werbung.',
     accept: 'Erlauben', reject: 'Ablehnen', settings: 'Datenschutz & Cookies',
-    details: 'Wir messen Besuche und Kontaktklicks, ohne Formularinhalte zu übertragen. Die Website funktioniert auch bei Ablehnung. Ihre Auswahl wird in diesem Browser gespeichert. Sie können Ihre Zustimmung hier jederzeit widerrufen. Die Statistik beginnt erst nach Zustimmung; frühere Besuche werden nicht nachträglich gemessen. Fragen zu Ihren Daten: achterhoekbooking@gmail.com.',
+    details: 'Google Analytics misst Besuche und Kontaktklicks, ohne Formularinhalte zu übertragen. Microsoft Clarity erfasst Interaktionen wie Klicks und Scrollen, damit wir die Website verbessern können. Die Website funktioniert auch bei Ablehnung. Ihre Auswahl wird in diesem Browser gespeichert. Sie können Ihre Zustimmung hier jederzeit widerrufen. Die Messung beginnt erst nach Zustimmung; frühere Besuche werden nicht nachträglich gemessen. Fragen zu Ihren Daten: achterhoekbooking@gmail.com.',
     close: 'Schließen',
   },
   en: {
     title: 'Help us improve the website',
-    text: 'Google Analytics cookies help us understand which pages are useful when finding a holiday home. May we use them? We do not use them for advertising.',
+    text: 'Google Analytics and Microsoft Clarity help us understand which pages are useful when finding a holiday home and how visitors use the website. May we use them? We do not use them for advertising.',
     accept: 'Allow', reject: 'Decline', settings: 'Privacy & cookies',
-    details: 'We measure visits and contact clicks without sending form contents. The website works if you decline. Your choice is saved in this browser. You can withdraw consent here at any time. Statistics begin only after permission; earlier visits are not measured retroactively. Questions about your data: achterhoekbooking@gmail.com.',
+    details: 'Google Analytics measures visits and contact clicks without sending form contents. Microsoft Clarity records interactions such as clicks and scrolling to help improve the website. The website works if you decline. Your choice is saved in this browser. You can withdraw consent here at any time. Measurement starts only after permission; earlier visits are not measured retroactively. Questions about your data: achterhoekbooking@gmail.com.',
     close: 'Close',
   },
 };

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {readConsent, setConsent, trackPage, trackEvent, MEASUREMENT_ID} from '../src/analytics';
+import {readConsent, setConsent, trackPage, trackEvent, MEASUREMENT_ID, CLARITY_ID} from '../src/analytics';
 
 const storage = new Map<string, string>();
 const scripts: any[] = [];
@@ -31,7 +31,8 @@ setConsent('denied');
 trackPage('/de', {...details, site_language: 'de'});
 assert.equal(scripts.length, 0, 'Refusal keeps analytics unloaded');
 setConsent('granted');
-assert.equal(scripts.length, 1);
+assert.equal(scripts.length, 2);
+assert.equal(scripts.find(script => script.id === 'ww-clarity')?.src, `https://www.clarity.ms/tag/${CLARITY_ID}`);
 assert.equal(events().filter(x => x[0] === 'event' && x[1] === 'page_view').length, 1);
 trackPage('/de', {...details, site_language: 'de'});
 assert.equal(events().filter(x => x[0] === 'event' && x[1] === 'page_view').length, 1, 'Repeated render does not duplicate page views');
