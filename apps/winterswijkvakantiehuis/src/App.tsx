@@ -1,14 +1,15 @@
 import {useEffect, useMemo, useRef, useState, type FormEvent} from 'react';
 import {
-  Bike, Calendar, Trees, MapPin, Phone, MessageCircle, Mail, Menu, X, Users, BedDouble,
+  Bike, Calendar, Trees, MapPin, Phone, Mail, Menu, X, Users, BedDouble,
   PawPrint, Wifi, Sun, Camera, ChevronRight, ChevronLeft, Star, Send, Globe,
   Flame, Waves, Bath, Car, TreePine, Sparkles, Check, Accessibility, Play, WashingMachine, Baby,
-  Palmtree, Umbrella, ShieldCheck,
+  Palmtree, Umbrella, ShieldCheck, Route, Fence, Ban,
 } from 'lucide-react';
 import {CONTACT_EMAIL, SITE_NAME, SITE_URL} from './site';
 import imageSizes from './image-manifest.json';
 import {seoCopy} from './seo-copy';
 import {stayGuide} from './stay-guide';
+import {topicCopy, TOPIC_SLUGS, type TopicId} from './topic-copy';
 import AnalyticsConsent from './AnalyticsConsent';
 import {readConsent, trackPage, trackContactLink, trackEvent} from './analytics';
 
@@ -141,7 +142,7 @@ const t = {
     hero: {
       kicker: 'Vakantiehuizen in de Achterhoek',
       title: 'Even helemaal weg, kom tot rust in de natuur',
-      sub: 'Karaktervolle vakantiehuizen in en rond Winterswijk. Direct contact met de beheerder.',
+      sub: 'Negen karaktervolle vakantiehuizen in Winterswijk, particulier verhuurd. U boekt rechtstreeks bij ons, zonder tussenpersoon.',
       ctaHomes: 'Bekijk de huizen',
       ctaAvail: 'Check beschikbaarheid',
     },
@@ -250,7 +251,7 @@ const t = {
     },
     about: {
       title: 'Over ons',
-      text: 'Winterswijk Vakantiehuis is gespecialiseerd in sfeervolle vakantiewoningen in de natuur van Winterswijk. Wij verhuren geen anonieme accommodaties: als beheerders kennen we de streek en elke fietsroute, en weten we precies wat er tijdens uw verblijf in de omgeving te doen is. Wij geloven in een persoonlijke benadering en zorgen ervoor dat uw verblijf onvergetelijk wordt.',
+      text: 'Winterswijk Vakantiehuis is een particuliere verhuurder in de Achterhoek. Wij beheren negen vakantiehuizen in Winterswijk: eigen huizen en huizen die eigenaren aan ons toevertrouwen. U boekt rechtstreeks bij ons, zonder tussenpersoon of boekingssite, en heeft voor, tijdens en na uw verblijf contact met dezelfde mensen. We wonen hier zelf, kennen de fietsroutes en weten wat er tijdens uw verblijf in de buurt te doen is.',
       point1: 'Persoonlijk beheerd, geen groot verhuurkantoor',
       point2: 'Alleen eigen of in beheer genomen huizen',
       point3: 'Persoonlijke tips over routes, natuur en evenementen',
@@ -320,7 +321,7 @@ const t = {
     todo: {
       kicker: 'Te doen in de buurt',
       title: 'Winterswijk zit vol met dingen om te doen',
-      intro: 'Winterswijk is het kloppende hart van het Nationaal Landschap Achterhoek: coulisselandschap, beken, een echte steengroeve en een gezellig dorpscentrum. Hieronder vindt u wat er in dit seizoen te doen is, waar u fietsen huurt en wat er nu in de natuur te zien valt. Vraag ons gerust om tips, we wonen hier zelf.',
+      intro: 'Wat te doen in Winterswijk? Wandelen en fietsen door het coulisselandschap, zwemmen en zonnen bij het Hilgelo of in het Strandbad, Villa Mondriaan in het centrum, de oehoes in de steengroeve en de boekenmarkten van Bredevoort. Winterswijk is het kloppende hart van het Nationaal Landschap Achterhoek: coulisselandschap, beken, een echte steengroeve en een gezellig dorpscentrum. Hieronder vindt u wat er in dit seizoen te doen is, waar u fietsen huurt en wat er nu in de natuur te zien valt. Vraag ons gerust om tips, we wonen hier zelf.',
       backHome: 'Terug naar de huizen',
       ctaTitle: 'Zelf even overleggen?',
       ctaText: 'Wij weten wat er tijdens uw verblijf speelt, welke route bij uw gezelschap past en waar u het beste een fiets huurt. Stuur een bericht of bel ons gewoon.',
@@ -385,7 +386,8 @@ const t = {
       ctaTitle: 'Interesse in Curaçao?',
       ctaText: 'Laat ons weten wanneer u wilt komen en met hoeveel personen, dan vertellen we u alles over de verblijven en de beschikbaarheid. Dezelfde persoonlijke aanpak als in Winterswijk.',
     },
-    footer: {tagline: 'Vakantiehuizen in Winterswijk & de Achterhoek', rights: 'Alle rechten voorbehouden.'},
+    footer: {tagline: 'Vakantiehuizen in Winterswijk & de Achterhoek', rights: 'Alle rechten voorbehouden.', links: 'Vakantie in Winterswijk', accessible: 'Rolstoeltoegankelijk vakantiehuis'},
+    topic: {faqTitle: 'Veelgestelde vragen', groupsTeaser: 'Met een groep? Boek meerdere huizen naast elkaar, tot 40 personen.'},
   },
   en: {
     nav: {homes: 'Homes', horses: 'Horses', curacao: 'Curaçao', area: 'The area', availability: 'Availability', about: 'About', contact: 'Contact'},
@@ -407,7 +409,7 @@ const t = {
     hero: {
       kicker: 'Vacation homes in the Achterhoek',
       title: 'Get away from it all, find peace in nature',
-      sub: 'Characterful holiday homes in and around Winterswijk. Direct contact with your host.',
+      sub: 'Nine characterful holiday homes in Winterswijk, let privately. You book directly with us, with no agency in between.',
       ctaHomes: 'View the homes',
       ctaAvail: 'Check availability',
     },
@@ -506,7 +508,7 @@ const t = {
     },
     about: {
       title: 'About us',
-      text: 'Winterswijk Vakantiehuis specialises in characterful holiday homes set in the nature around Winterswijk. We don’t rent out anonymous accommodation: as managers we know the region and every cycle route, and we know exactly what is on around here during your stay. We believe in a personal approach and in making your stay unforgettable.',
+      text: 'Winterswijk Vakantiehuis is a private holiday-home host in the Achterhoek. We manage nine holiday homes in Winterswijk: our own and homes their owners entrust to us. You book directly with us, with no agency or booking site in between, and you deal with the same people before, during and after your stay. We live here ourselves, know the cycle routes and know what is on nearby while you are here.',
       point1: 'Personally managed, not a large rental agency',
       point2: 'Only our own or entrusted homes',
       point3: 'Personal tips on routes, wildlife and events',
@@ -571,7 +573,7 @@ const t = {
     todo: {
       kicker: 'Things to do nearby',
       title: 'Winterswijk is packed with things to do',
-      intro: 'Winterswijk is the beating heart of the Achterhoek National Landscape: hedgerow countryside, streams, a real quarry and a cosy village centre. Below you will find what is on this season, where to rent bikes and what can be spotted in nature right now. Do ask us for tips, we live here ourselves.',
+      intro: 'What is there to do in Winterswijk? Walking and cycling through the hedgerow countryside, swimming and sunbathing at Hilgelo lake or the Strandbad, Villa Mondriaan in the centre, the eagle owls in the quarry and the book markets of Bredevoort. Winterswijk is the beating heart of the Achterhoek National Landscape: hedgerow countryside, streams, a real quarry and a cosy village centre. Below you will find what is on this season, where to rent bikes and what can be spotted in nature right now. Do ask us for tips, we live here ourselves.',
       backHome: 'Back to the homes',
       ctaTitle: 'Rather talk it through?',
       ctaText: 'We know what is on during your stay, which route suits your group and where best to rent a bike. Send a message or simply give us a call.',
@@ -630,7 +632,8 @@ const t = {
       ctaTitle: 'Interested in Curaçao?',
       ctaText: 'Tell us when you would like to come and with how many, and we will talk you through the stays and what is available. The same personal approach as in Winterswijk.',
     },
-    footer: {tagline: 'Vacation homes in Winterswijk & the Achterhoek', rights: 'All rights reserved.'},
+    footer: {tagline: 'Vacation homes in Winterswijk & the Achterhoek', rights: 'All rights reserved.', links: 'Holidays in Winterswijk', accessible: 'Wheelchair-accessible holiday home'},
+    topic: {faqTitle: 'Frequently asked questions', groupsTeaser: 'Travelling as a group? Book several homes side by side, for up to 40 guests.'},
   },
   de: {
     nav: {homes: 'Häuser', horses: 'Pferde', curacao: 'Curaçao', area: 'Umgebung', availability: 'Verfügbarkeit', about: 'Über uns', contact: 'Kontakt'},
@@ -652,7 +655,7 @@ const t = {
     hero: {
       kicker: 'Ferienhäuser im Achterhoek',
       title: 'Einfach mal raus, zur Ruhe kommen in der Natur',
-      sub: 'Charaktervolle Ferienhäuser in und um Winterswijk. Direkter Kontakt zum Gastgeber.',
+      sub: 'Neun charaktervolle Ferienhäuser in Winterswijk, gleich hinter der Grenze. Privat vermietet: Sie buchen direkt bei uns, ohne Vermittler.',
       ctaHomes: 'Häuser ansehen',
       ctaAvail: 'Verfügbarkeit prüfen',
     },
@@ -751,7 +754,7 @@ const t = {
     },
     about: {
       title: 'Über uns',
-      text: 'Winterswijk Vakantiehuis ist spezialisiert auf stimmungsvolle Ferienhäuser in der Natur rund um Winterswijk. Wir vermieten keine anonymen Unterkünfte: als Verwalter kennen wir die Region und jede Radroute und wissen genau, was während Ihres Aufenthalts in der Umgebung los ist. Wir glauben an einen persönlichen Ansatz und daran, Ihren Aufenthalt unvergesslich zu machen.',
+      text: 'Winterswijk Vakantiehuis ist ein privater Vermieter im Achterhoek, gleich hinter der Grenze bei Bocholt und Vreden. Wir verwalten neun Ferienhäuser in Winterswijk: eigene Häuser und Häuser, die Eigentümer uns anvertrauen. Sie buchen direkt bei uns, ohne Vermittler oder Buchungsportal, und haben vor, während und nach Ihrem Aufenthalt dieselben Ansprechpartner. Wir wohnen selbst hier, kennen die Radrouten und wissen, was während Ihres Aufenthalts in der Umgebung los ist.',
       point1: 'Persönlich betreut, keine große Vermietungsagentur',
       point2: 'Nur eigene oder anvertraute Häuser',
       point3: 'Persönliche Tipps zu Routen, Natur und Veranstaltungen',
@@ -816,7 +819,7 @@ const t = {
     todo: {
       kicker: 'In der Umgebung',
       title: 'Winterswijk hat unendlich viel zu bieten',
-      intro: 'Winterswijk ist das Herz der Nationallandschaft Achterhoek: Heckenlandschaft, Bäche, ein echter Steinbruch und ein gemütlicher Ortskern. Unten finden Sie, was in dieser Saison läuft, wo Sie Fahrräder mieten und was gerade in der Natur zu sehen ist. Fragen Sie uns gern nach Tipps, wir wohnen selbst hier.',
+      intro: 'Was kann man in Winterswijk unternehmen? Wandern und Radfahren durch die Heckenlandschaft, Baden am Hilgelo oder im Strandbad, die Villa Mondriaan im Zentrum, die Uhus im Steinbruch und die Büchermärkte in Bredevoort. Winterswijk ist das Herz der Nationallandschaft Achterhoek: Heckenlandschaft, Bäche, ein echter Steinbruch und ein gemütlicher Ortskern. Unten finden Sie, was in dieser Saison läuft, wo Sie Fahrräder mieten und was gerade in der Natur zu sehen ist. Fragen Sie uns gern nach Tipps, wir wohnen selbst hier.',
       backHome: 'Zurück zu den Häusern',
       ctaTitle: 'Lieber persönlich besprechen?',
       ctaText: 'Wir wissen, was während Ihres Aufenthalts los ist, welche Route zu Ihrer Gruppe passt und wo Sie am besten ein Fahrrad mieten. Schreiben Sie uns oder rufen Sie einfach an.',
@@ -875,7 +878,8 @@ const t = {
       ctaTitle: 'Interesse an Curaçao?',
       ctaText: 'Sagen Sie uns, wann Sie kommen möchten und mit wie vielen Personen, dann erzählen wir Ihnen alles über die Unterkünfte und die Verfügbarkeit. Dieselbe persönliche Betreuung wie in Winterswijk.',
     },
-    footer: {tagline: 'Ferienhäuser in Winterswijk & im Achterhoek', rights: 'Alle Rechte vorbehalten.'},
+    footer: {tagline: 'Ferienhäuser in Winterswijk & im Achterhoek', rights: 'Alle Rechte vorbehalten.', links: 'Urlaub in Winterswijk', accessible: 'Rollstuhlgerechtes Ferienhaus'},
+    topic: {faqTitle: 'Häufige Fragen', groupsTeaser: 'Als Gruppe unterwegs? Buchen Sie mehrere Häuser nebeneinander, bis 40 Personen.'},
   },
 };
 
@@ -1108,7 +1112,7 @@ const homes: Home[] = [
   },
   {
     id: 'finschalet', name: 'Fins chalet Kattenberg',
-    location: 'Kattenbergweg 6, 7101 BN Winterswijk',
+    location: 'Kattenbergweg 6, 7101 BM Winterswijk',
     imgs: [
       '/img/chalet-1.webp', '/img/chalet-2.webp', '/img/chalet-3.webp', '/img/chalet-4.webp',
       '/img/chalet-5.webp', '/img/chalet-6.webp', '/img/chalet-7.webp', '/img/chalet-8.webp',
@@ -1570,13 +1574,16 @@ const curacaoRooms: {stay: 'fenya' | 'yeva'; src: string; cap: Record<Lang, stri
    "Ferienhaus Winterswijk mit Sauna") — has to live at its own address to be
    indexable at all. English is the default and sits at the root; the other two are
    prefixed. The slug is translated too, since it is part of what gets matched. */
-type PageKind = 'landing' | 'todo' | 'horses' | 'curacao' | 'home' | 'notFound';
-type SluggedKind = 'todo' | 'horses' | 'curacao' | 'home';
+type PageKind = 'landing' | 'todo' | 'horses' | 'curacao' | TopicId | 'home' | 'notFound';
+type SluggedKind = 'todo' | 'horses' | 'curacao' | TopicId | 'home';
+const TOPIC_KINDS: TopicId[] = ['groups', 'dogs'];
+const isTopic = (kind: PageKind): kind is TopicId => (TOPIC_KINDS as PageKind[]).includes(kind);
 
 const PAGE_SLUGS: Record<SluggedKind, Record<Lang, string>> = {
   todo: {en: 'things-to-do', nl: 'te-doen', de: 'umgebung'},
   horses: {en: 'horses', nl: 'paarden', de: 'pferde'},
   curacao: {en: 'curacao', nl: 'curacao', de: 'curacao'},
+  ...TOPIC_SLUGS,
   /** Path segment in front of a home id: /huis/x, /en/homes/x, /de/haus/x. */
   home: {en: 'homes', nl: 'huis', de: 'haus'},
 };
@@ -1609,7 +1616,7 @@ function parseRoute(path: string): Route {
     return home ? {lang, kind: 'home', homeId: home.id} : {lang, kind: 'notFound'};
   }
   if (second) return {lang, kind: 'notFound'};
-  for (const kind of ['todo', 'horses', 'curacao'] as const) {
+  for (const kind of ['todo', 'horses', 'curacao', ...TOPIC_KINDS] as const) {
     if (first === PAGE_SLUGS[kind][lang]) return {lang, kind};
   }
   return {lang, kind: 'notFound'};
@@ -1620,15 +1627,15 @@ function parseRoute(path: string): Route {
 function pathFor(route: {kind: PageKind; homeId?: string}, lang: Lang): string {
   const prefix = langPrefix(lang);
   if (route.kind === 'home' && route.homeId) return `${prefix}/${PAGE_SLUGS.home[lang]}/${route.homeId}`;
-  if (route.kind === 'todo' || route.kind === 'horses' || route.kind === 'curacao') {
+  if (route.kind === 'todo' || route.kind === 'horses' || route.kind === 'curacao' || isTopic(route.kind)) {
     return `${prefix}/${PAGE_SLUGS[route.kind][lang]}`;
   }
   return prefix || '/';
 }
 
-const PRERENDERED_KINDS: PageKind[] = ['landing', 'todo', 'horses', 'curacao'];
+const PRERENDERED_KINDS: PageKind[] = ['landing', 'todo', 'horses', 'curacao', ...TOPIC_KINDS];
 
-/** Every route the build prerenders — 3 languages x 10 pages. Read by
+/** Every route the build prerenders — 3 languages x 12 pages. Read by
     scripts/prerender.mjs. */
 export const allRoutePaths = LANGS.flatMap((lang) => [
   ...PRERENDERED_KINDS.map((kind) => pathFor({kind}, lang)),
@@ -1670,10 +1677,22 @@ function homeJsonLd(home: Home, lang: Lang, canonical: string) {
         occupancy: {'@type': 'QuantitativeValue', maxValue: 6}},
     };
   }
+  // Jonkersweg coordinates resolve to the individual house-number addresses.
+  // Kattenberg shares one published site address, so its map point is the site address,
+  // not a claim to pinpoint an individual unit within the holiday complex.
+  const homeGeo: Record<string, {latitude: number; longitude: number}> = {
+    jonkersweg55: {latitude: 51.995184, longitude: 6.704956},
+    jonkersweg57: {latitude: 51.995335, longitude: 6.705091},
+    jonkersweg65: {latitude: 51.994966, longitude: 6.705925},
+    kattenberg8: {latitude: 51.986932, longitude: 6.678607},
+    finschalet: {latitude: 51.986932, longitude: 6.678607},
+  };
+  const geo = homeGeo[home.id];
   return {
     '@context': 'https://schema.org',
     '@type': 'VacationRental',
     '@id': `${SITE_URL}/#home-${home.id}`,
+    identifier: home.id,
     name: home.name,
     description: home.blurb[lang],
     url: canonical,
@@ -1682,11 +1701,16 @@ function homeJsonLd(home: Home, lang: Lang, canonical: string) {
     petsAllowed: home.pets,
     containsPlace: {
       '@type': 'Accommodation',
-      ...(home.guests ? {occupancy: {'@type': 'QuantitativeValue', maxValue: home.guests, unitText: 'guests'}} : {}),
+      ...(home.guests ? {occupancy: {'@type': 'QuantitativeValue', value: home.guests}} : {}),
       ...(home.bedrooms ? {numberOfBedrooms: home.bedrooms} : {}),
     },
+    ...(geo ? {geo: {'@type': 'GeoCoordinates', ...geo}} : {}),
     address: {
       '@type': 'PostalAddress',
+      ...(geo ? {
+        streetAddress: home.area === 'lake' ? `Jonkersweg ${home.id.replace('jonkersweg', '')}` : 'Kattenbergweg 6',
+        postalCode: home.area === 'lake' ? '7104 AB' : '7101 BM',
+      } : {}),
       addressLocality: 'Winterswijk',
       addressRegion: 'Gelderland',
       addressCountry: 'NL',
@@ -1801,6 +1825,22 @@ function originalRouteMetaFor(path: string): RouteMeta {
       description: L.meta.horsesDescription,
       ogImage: abs('/img/paarden-koets.webp'),
       jsonLd: [JSON.stringify(breadcrumbJsonLd(lang, {name: L.nav.horses, url: canonical}))],
+    };
+  }
+  if (isTopic(route.kind)) {
+    const copy = topicCopy[route.kind][lang];
+    return {
+      ...base,
+      title: seoCopy[route.kind][lang].title,
+      description: seoCopy[route.kind][lang].description,
+      ogImage: abs(route.kind === 'groups' ? '/img/stay-groups.webp' : '/img/stay-dogs.webp'),
+      jsonLd: [
+        JSON.stringify(breadcrumbJsonLd(lang, {name: copy.label, url: canonical})),
+        JSON.stringify({
+          '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: lang,
+          mainEntity: copy.faq.map((f) => ({'@type': 'Question', name: f.q, acceptedAnswer: {'@type': 'Answer', text: f.a}})),
+        }),
+      ],
     };
   }
   if (route.kind === 'curacao') {
@@ -1988,6 +2028,8 @@ export default function App({initialPath}: {initialPath?: string}) {
         <HorsesPage lang={lang} L={L} />
       ) : route.kind === 'curacao' ? (
         <CuracaoPage lang={lang} L={L} />
+      ) : isTopic(route.kind) ? (
+        <TopicPage topic={route.kind} lang={lang} L={L} />
       ) : route.kind === 'notFound' ? (
         <NotFoundPage lang={lang} L={L} />
       ) : (
@@ -2065,23 +2107,89 @@ function Header({route, lang, L, onDetail}: {route: Route; lang: Lang; L: any; o
 /* ------------------------------------------------------------------ */
 function StayGuide({lang}: {lang: Lang}) {
   const copy = stayGuide[lang];
-  return <section className="max-w-6xl mx-auto px-5 py-14 border-t border-brand-sand" aria-labelledby="stay-guide-title">
-    <h2 id="stay-guide-title" className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{copy.title}</h2>
-    <p className="mt-3 max-w-3xl text-stone-600">{copy.intro}</p>
-    <div className="mt-6 overflow-x-auto">
-      <table className="w-full text-left text-sm border-collapse">
-        <thead><tr>{copy.columns.map((label) => <th key={label} scope="col" className="py-3 pr-4 border-b border-brand-sand">{label}</th>)}</tr></thead>
-        <tbody>{homes.map((home) => <tr key={home.id}>
-          <th scope="row" className="py-4 pr-4 border-b border-brand-sand font-medium"><a className="underline text-brand-green" href={pathFor({kind: 'home', homeId: home.id}, lang)}>{home.name}</a></th>
-          <td className="py-4 pr-4 border-b border-brand-sand">{home.guests}</td>
-          <td className="py-4 border-b border-brand-sand">{home.id === 'kattenberg6' ? copy.some : home.pets ? copy.yes : copy.no}</td>
-        </tr>)}</tbody>
-      </table>
+  const dog = (home: Home) => home.id === 'kattenberg6'
+    ? {label: copy.dogSome, tone: 'bg-brand-sun/15 text-[#9a5a25]'}
+    : home.pets
+      ? {label: copy.dogYes, tone: 'bg-brand-green/10 text-brand-green-dark'}
+      : {label: copy.dogNo, tone: 'bg-stone-100 text-stone-500'};
+  /* The three ways people search beyond "a holiday home": each gets a real
+     entry point with its own page, not a text link under the table. */
+  const entries = [
+    {href: pathFor({kind: 'groups'}, lang), img: '/img/stay-groups.webp', icon: Users, position: 'object-center', ...copy.entries.groups},
+    {href: pathFor({kind: 'dogs'}, lang), img: '/img/stay-dogs.webp', icon: PawPrint, position: 'object-[75%_center]', ...copy.entries.dogs},
+    {href: pathFor({kind: 'horses'}, lang), img: '/img/paarden-koets.webp', icon: Sparkles, position: 'object-[12%_center]', ...copy.entries.horses},
+  ];
+
+  return <section className="bg-brand-cream border-y border-brand-sand" aria-labelledby="stay-guide-title">
+    <div className="max-w-6xl mx-auto px-5 py-20">
+      <span className="inline-flex items-center gap-2 text-sm font-medium text-brand-sun"><Sparkles size={16} /> {copy.kicker}</span>
+      <h2 id="stay-guide-title" className="mt-2 font-serif text-3xl sm:text-4xl text-brand-green-dark">{copy.title}</h2>
+      <p className="mt-3 max-w-2xl text-stone-600">{copy.intro}</p>
+
+      <ul className="mt-8 grid gap-3">
+        {homes.map((home) => {
+          const d = dog(home);
+          return <li key={home.id}>
+            <a href={pathFor({kind: 'home', homeId: home.id}, lang)} className="group flex items-center gap-4 bg-white rounded-2xl border border-brand-sand p-3 pr-4 hover:border-brand-green/40 hover:shadow-sm transition">
+              <Photo src={home.imgs[0]} alt="" hidden sizes="96px" className="w-20 h-16 sm:w-24 sm:h-[4.5rem] rounded-xl object-cover shrink-0" />
+              <div className="min-w-0 flex-1 sm:grid sm:grid-cols-[1.4fr_0.7fr_1.6fr] sm:items-center sm:gap-4">
+                <div className="min-w-0">
+                  <p className="font-serif text-lg text-brand-green-dark leading-snug">{home.name}</p>
+                  <p className="mt-0.5 inline-flex items-center gap-1.5 text-xs text-stone-500">
+                    {home.area === 'lake' ? <Waves size={13} className="text-brand-green" /> : <TreePine size={13} className="text-brand-green" />}
+                    {home.area === 'lake' ? copy.lake : copy.forest}
+                  </p>
+                </div>
+                <p className="mt-1.5 sm:mt-0 inline-flex items-center gap-1.5 text-sm text-stone-700">
+                  <Users size={15} className="text-brand-green" /> {home.guests} {copy.guests}
+                </p>
+                <div className="mt-1.5 sm:mt-0 flex flex-wrap gap-1.5">
+                  <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${d.tone}`}>
+                    <PawPrint size={13} /> {d.label}
+                  </span>
+                  {home.accessible && <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium bg-brand-green-dark text-brand-cream">
+                    <Accessibility size={13} /> {copy.accessible}
+                  </span>}
+                </div>
+              </div>
+              <ChevronRight size={18} className="text-brand-green shrink-0 transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </li>;
+        })}
+      </ul>
+
+      <div className="mt-12 grid sm:grid-cols-3 gap-5">
+        {entries.map(({href, img, icon: Icon, title, fact, position}) => (
+          <a key={href} href={href} className="group relative block rounded-3xl overflow-hidden aspect-[4/3] sm:aspect-[4/5] lg:aspect-[4/3]">
+            <Photo src={img} alt="" hidden sizes="(min-width: 640px) 33vw, 100vw" className={`absolute inset-0 w-full h-full object-cover ${position}`} />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/85 via-brand-dark/25 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+              <span className="inline-flex w-9 h-9 items-center justify-center rounded-full bg-brand-sun"><Icon size={18} /></span>
+              <p className="mt-3 font-serif text-2xl leading-tight">{title}</p>
+              <p className="mt-1 text-sm text-white/85 flex items-center justify-between gap-2">{fact} <ChevronRight size={17} className="shrink-0 transition-transform group-hover:translate-x-0.5" /></p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div className="mt-12 bg-white rounded-3xl border border-brand-sand p-6 sm:p-9">
+        <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{copy.directTitle}</h2>
+        <ol className="mt-6 grid md:grid-cols-3 gap-6">
+          {copy.steps.map((step, i) => (
+            <li key={step.title} className="flex gap-4">
+              <span className="w-9 h-9 shrink-0 rounded-full bg-brand-green/10 text-brand-green-dark font-serif text-lg flex items-center justify-center">{i + 1}</span>
+              <div>
+                <p className="font-medium text-brand-green-dark">{step.title}</p>
+                <p className="mt-1 text-sm text-stone-600 leading-relaxed">{step.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <a href="#contact" className="mt-7 inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white px-6 py-3 rounded-full font-medium transition-colors">
+          <Send size={17} /> {copy.cta}
+        </a>
+      </div>
     </div>
-    <a href={pathFor({kind: 'horses'}, lang)} className="mt-5 inline-block underline text-brand-green">{copy.horse}</a>
-    <h2 className="mt-10 font-serif text-2xl text-brand-green-dark">{copy.directTitle}</h2>
-    <p className="mt-3 max-w-3xl text-stone-600 leading-relaxed">{copy.direct}</p>
-    <a href="#contact" className="mt-4 inline-block underline font-medium text-brand-green">{copy.cta}</a>
   </section>;
 }
 
@@ -2128,9 +2236,9 @@ function Landing({lang, L}: {lang: Lang; L: any}) {
             <div className="mt-4 hidden md:flex flex-wrap gap-3">
               <a
                 href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white px-6 py-3 rounded-full font-medium transition-colors"
+                className="inline-flex items-center gap-2 bg-[#20B85A] hover:bg-[#1B9E4D] text-white font-semibold shadow-[0_6px_18px_-6px_rgba(32,184,90,0.35)] px-6 py-3 rounded-full transition-colors"
               >
-                <MessageCircle size={18} /> {L.contact.wa}
+                <WhatsAppIcon size={18} /> {L.contact.wa}
               </a>
               <a
                 href={`tel:${PHONE}`}
@@ -2378,9 +2486,9 @@ function AccessBand({lang, L}: {lang: Lang; L: any}) {
             </a>
             <a
               href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white hover:bg-brand-cream text-brand-green-dark px-6 py-3 rounded-full font-medium transition-colors"
+              className="inline-flex items-center gap-2 bg-[#20B85A] hover:bg-[#1B9E4D] text-white font-semibold shadow-[0_6px_18px_-6px_rgba(32,184,90,0.35)] px-6 py-3 rounded-full transition-colors"
             >
-              <MessageCircle size={18} /> {L.access.contact}
+              <WhatsAppIcon size={18} /> {L.access.contact}
             </a>
           </div>
         </div>
@@ -2706,6 +2814,17 @@ function HomeAvailability({home, lang, L}: {home: Home; lang: Lang; L: any}) {
 }
 
 /* ------------------------------------------------------------------ */
+/*  The official WhatsApp glyph. Guests trust a button that looks exactly like
+    WhatsApp, so the CTAs pair this with a slightly darker brand green #20B85A.      */
+function WhatsAppIcon({size = 18, className}: {size?: number; className?: string}) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Always-reachable WhatsApp + call pair. Side by side across the bottom on
     mobile, stacked bottom-right on desktop, so booking is never more than one
     tap away on any page.                                                     */
@@ -2714,9 +2833,9 @@ function FloatingContact({L, waLink}: {L: any; waLink: string}) {
     <div className="fixed z-40 bottom-4 inset-x-4 md:inset-x-auto md:right-6 md:bottom-6 flex gap-3 md:flex-col md:items-end">
       <a
         href={waLink} target="_blank" rel="noopener noreferrer"
-        className="flex-1 md:flex-none inline-flex items-center justify-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white px-5 py-3 rounded-full font-medium shadow-lg transition-colors"
+        className="flex-1 md:flex-none inline-flex items-center justify-center gap-2 bg-[#20B85A] hover:bg-[#1B9E4D] text-white font-semibold shadow-[0_6px_18px_-6px_rgba(32,184,90,0.35)] px-5 py-3 rounded-full shadow-lg transition-colors"
       >
-        <MessageCircle size={18} /> {L.contact.wa}
+        <WhatsAppIcon size={18} /> {L.contact.wa}
       </a>
       <a
         href={`tel:${PHONE}`}
@@ -2788,9 +2907,9 @@ function HomeDetail({home, lang, L}: {home: Home; lang: Lang; L: any}) {
               </ul>
               <a
                 href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-2 bg-brand-sun hover:bg-brand-sun/90 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors"
+                className="mt-5 inline-flex items-center gap-2 bg-[#20B85A] hover:bg-[#1B9E4D] text-white font-semibold shadow-[0_6px_18px_-6px_rgba(32,184,90,0.35)] px-5 py-2.5 rounded-full text-sm transition-colors"
               >
-                <MessageCircle size={16} /> {L.access.contact}
+                <WhatsAppIcon size={16} /> {L.access.contact}
               </a>
             </div>
           )}
@@ -2822,6 +2941,17 @@ function HomeDetail({home, lang, L}: {home: Home; lang: Lang; L: any}) {
             <p className="mt-2 text-stone-700 text-sm">{L.detail.nearbyText}</p>
           </div>
 
+          <a href={pathFor({kind: 'groups'}, lang)} className="mt-4 flex items-center justify-between gap-3 bg-white border border-brand-sand rounded-3xl p-5 text-sm text-stone-700 hover:border-brand-green transition-colors">
+            <span className="inline-flex items-center gap-2"><Users size={17} className="text-brand-green shrink-0" /> {L.topic.groupsTeaser}</span>
+            <ChevronRight size={16} className="text-brand-green shrink-0" />
+          </a>
+          {home.pets && (
+            <a href={pathFor({kind: 'dogs'}, lang)} className="mt-3 flex items-center justify-between gap-3 bg-white border border-brand-sand rounded-3xl p-5 text-sm text-stone-700 hover:border-brand-green transition-colors">
+              <span className="inline-flex items-center gap-2"><PawPrint size={17} className="text-brand-green shrink-0" /> {topicCopy.dogs[lang].label}</span>
+              <ChevronRight size={16} className="text-brand-green shrink-0" />
+            </a>
+          )}
+
           {/* Only the Den Möllenhof homes: the stables are on that same park. */}
           {home.area === 'lake' && (
             <a href={pathFor({kind: 'horses'}, lang)} className="mt-4 block bg-brand-green-dark text-brand-cream rounded-3xl p-6 hover:bg-brand-green transition-colors">
@@ -2840,8 +2970,8 @@ function HomeDetail({home, lang, L}: {home: Home; lang: Lang; L: any}) {
                 which is only true with the calendar section switched on, so every
                 home falls back to the "ask us for the dates" copy for now. */}
             <p className="mt-2 text-sm text-stone-600">{L.hk.askText}</p>
-            <a href={waLink} target="_blank" rel="noopener noreferrer" className="mt-4 w-full inline-flex items-center justify-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white px-5 py-3 rounded-full font-medium transition-colors">
-              <Send size={17} /> {L.detail.bookWa}
+            <a href={waLink} target="_blank" rel="noopener noreferrer" className="mt-4 w-full inline-flex items-center justify-center gap-2 bg-[#20B85A] hover:bg-[#1B9E4D] text-white font-semibold shadow-[0_6px_18px_-6px_rgba(32,184,90,0.35)] px-5 py-3 rounded-full transition-colors">
+              <WhatsAppIcon size={17} /> {L.detail.bookWa}
             </a>
             {/* CALENDARS OFF — "to the calendar" jumped to #house-availability (or
                 out to huurkalender.nl for a home without an id). Both are back the
@@ -2860,7 +2990,7 @@ function HomeDetail({home, lang, L}: {home: Home; lang: Lang; L: any}) {
             <p className="mt-3 text-xs text-stone-500 text-center">{L.detail.note}</p>
             <div className="mt-5 pt-4 border-t border-brand-sand flex flex-col gap-2 text-sm">
               <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-stone-700 hover:text-brand-green">
-                <MessageCircle size={16} className="text-brand-sun" /> {L.contact.wa} {PHONE_DISPLAY}
+                <WhatsAppIcon size={16} className="text-[#25D366]" /> {L.contact.wa} {PHONE_DISPLAY}
               </a>
               <a href={`tel:${PHONE}`} className="flex items-center gap-2 text-stone-700 hover:text-brand-green">
                 <Phone size={16} className="text-brand-sun" /> {L.contact.call} {PHONE_DISPLAY}
@@ -2888,8 +3018,8 @@ function HomeDetail({home, lang, L}: {home: Home; lang: Lang; L: any}) {
             <div className="rounded-3xl border-2 border-dashed border-brand-green/25 bg-white p-10 text-center">
               <Calendar size={34} className="mx-auto text-brand-green/45" />
               <h3 className="mt-3 font-serif text-lg text-brand-green-dark">{L.hk.askTitle}</h3>
-              <a href={waLink} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors">
-                <Send size={16} /> {L.detail.bookWa}
+              <a href={waLink} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 bg-[#20B85A] hover:bg-[#1B9E4D] text-white font-semibold shadow-[0_6px_18px_-6px_rgba(32,184,90,0.35)] px-5 py-2.5 rounded-full text-sm transition-colors">
+                <WhatsAppIcon size={16} /> {L.detail.bookWa}
               </a>
             </div>
           )}
@@ -3034,8 +3164,8 @@ function TodoPage({lang, L}: {lang: Lang; L: any}) {
           <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{L.todo.ctaTitle}</h2>
           <p className="mt-3 text-stone-700 max-w-xl mx-auto">{L.todo.ctaText}</p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white px-6 py-3 rounded-full font-medium transition-colors">
-              <MessageCircle size={18} /> {L.contact.wa} {PHONE_DISPLAY}
+            <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#20B85A] hover:bg-[#1B9E4D] text-white font-semibold shadow-[0_6px_18px_-6px_rgba(32,184,90,0.35)] px-6 py-3 rounded-full transition-colors">
+              <WhatsAppIcon size={18} /> {L.contact.wa} {PHONE_DISPLAY}
             </a>
             <a href={`tel:${PHONE}`} className="inline-flex items-center gap-2 bg-brand-sun hover:bg-brand-sun/90 text-white px-6 py-3 rounded-full font-medium transition-colors">
               <Phone size={18} /> {L.contact.call}
@@ -3046,6 +3176,183 @@ function TodoPage({lang, L}: {lang: Lang; L: any}) {
 
       <FloatingContact L={L} waLink={waLink} />
     </main>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Group stays and stays with a dog: one page each, built from topic-copy.ts.
+    The house cards under each section are the real homes, so the page never
+    drifts from the listings; the enquiry form sits on the page itself rather
+    than one click away on the homepage.                                      */
+/* Generated from the client's own photos (the park lane, the Hilgelo shore) via
+   Runware google:4@3 with those photos as references: the place is theirs, the
+   people and the dog are mood, not a claim about a particular stay. */
+const TOPIC_HERO: Record<TopicId, {src: string; position: string; alt: Record<Lang, string>}> = {
+  groups: {src: '/img/stay-groups.webp', position: 'object-[55%_center] md:object-center', alt: {
+    nl: 'Familie wandelt met fietsen over de laan van recreatiepark Den Möllenhof', en: 'A family walking with bikes along the lane of the Den Möllenhof holiday park', de: 'Familie mit Fahrrädern auf dem Weg im Ferienpark Den Möllenhof'}},
+  dogs: {src: '/img/stay-dogs.webp', position: 'object-[72%_center] md:object-center', alt: {
+    nl: 'Hond aan de oever van het Hilgelo bij zonsondergang', en: 'A dog on the shore of Hilgelo lake at sunset', de: 'Hund am Ufer des Hilgelo bei Sonnenuntergang'}},
+};
+
+function TopicPage({topic, lang, L}: {topic: TopicId; lang: Lang; L: any}) {
+  const copy = topicCopy[topic][lang];
+  const [form, setForm] = useState<ContactForm>(emptyForm);
+  const waLink = useMemo(() => waMessage(lang, form, L), [form, lang, L]);
+
+  return (
+    <main className="pt-16">
+      {/* From md up: full-bleed photo, copy in the lower-left scrim over the part
+          of the frame the subject does not occupy (both images keep their subject
+          centre or right). On a phone the photo is shown whole, and the heading
+          sits on the green band below it rather than on top of the dog. */}
+      <section className="relative bg-brand-green-dark text-white">
+        <div className="relative aspect-[4/3] md:aspect-auto md:h-[62vh] md:min-h-[460px] md:max-h-[720px] w-full overflow-hidden">
+          <Photo src={TOPIC_HERO[topic].src} alt={TOPIC_HERO[topic].alt[lang]} eager sizes="100vw"
+            className={`absolute inset-0 w-full h-full object-cover ${TOPIC_HERO[topic].position}`} />
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-brand-dark/20 to-brand-dark/10" />
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-brand-dark/70 via-brand-dark/20 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-brand-dark/45 to-transparent" />
+          <div className="relative z-10 max-w-6xl mx-auto px-5 pt-5">
+            <a href={pathFor({kind: 'landing'}, lang)} className="inline-flex items-center gap-1.5 text-sm text-white/85 hover:text-white transition-colors">
+              <ChevronLeft size={16} /> {L.detail.back}
+            </a>
+          </div>
+        </div>
+        <div className="md:absolute md:inset-0 md:pointer-events-none">
+          <div className="md:pointer-events-auto relative max-w-6xl mx-auto px-5 h-full flex flex-col md:justify-end pt-7 pb-9 md:pb-12">
+            <span className="flex items-center gap-2 text-sm font-medium text-brand-sun">
+              {topic === 'groups' ? <Users size={16} /> : <PawPrint size={16} />} {copy.kicker}
+            </span>
+            <h1 className="mt-2 font-serif text-3xl sm:text-5xl max-w-xl lg:max-w-2xl leading-tight">{pageHeading(topic, lang)}</h1>
+            <a href="#contact" className="mt-6 self-start inline-flex items-center gap-2 bg-brand-sun hover:bg-brand-sun/90 text-white px-6 py-3 rounded-full font-medium transition-colors">
+              {copy.cta.button} <ChevronRight size={18} />
+            </a>
+          </div>
+        </div>
+      </section>
+      <div className="max-w-6xl mx-auto px-5 pt-12">
+        {copy.intro.map((p) => <p key={p} className="mt-4 first:mt-0 max-w-3xl text-lg text-stone-700 leading-relaxed">{p}</p>)}
+      </div>
+
+      {copy.sections.map((section) => (
+        <section key={section.title} className="max-w-6xl mx-auto px-5 pt-16">
+          <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{section.title}</h2>
+          {section.text.map((p) => <p key={p} className="mt-3 max-w-3xl text-stone-700 leading-relaxed">{p}</p>)}
+          {section.homeIds && (
+            <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {section.homeIds.map((id) => homes.find((h) => h.id === id)).filter((h): h is Home => !!h)
+                .map((h) => <HomeCard key={h.id} home={h} lang={lang} L={L} />)}
+            </div>
+          )}
+        </section>
+      ))}
+
+      {copy.walks && (
+        <section className="max-w-6xl mx-auto px-5 pt-16">
+          <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{copy.walks.title}</h2>
+          <p className="mt-3 max-w-3xl text-stone-700 leading-relaxed">{copy.walks.intro}</p>
+          <div className="mt-8 grid lg:grid-cols-[1.1fr_1fr] gap-6 items-start">
+            <HilgeloDogMap labels={copy.walks.map} />
+            <ul className="grid gap-4">
+              {copy.walks.items.map((w) => {
+                const Icon = w.kind === 'route' ? Route : w.kind === 'field' ? Fence : Ban;
+                const tone = w.kind === 'nodogs' ? 'bg-red-50 text-red-700' : 'bg-brand-green/10 text-brand-green';
+                return (
+                  <li key={w.name} className="bg-white rounded-2xl border border-brand-sand p-5 flex gap-4">
+                    <span className={`shrink-0 w-10 h-10 rounded-full grid place-items-center ${tone}`}><Icon size={19} /></span>
+                    <div>
+                      <p className="font-medium text-brand-green-dark">{w.name}</p>
+                      <p className="text-sm text-stone-500">{w.where}</p>
+                      <p className="mt-2 text-sm text-stone-700 leading-relaxed">{w.text}</p>
+                      {w.link && (
+                        <a href={w.link.href} target="_blank" rel="noopener" className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-brand-green hover:underline">
+                          {w.link.label} <ChevronRight size={15} />
+                        </a>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {copy.combos && (
+        <section className="max-w-6xl mx-auto px-5 pt-16">
+          <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{copy.combos.title}</h2>
+          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {copy.combos.items.map((c) => (
+              <div key={c.size} className="bg-white rounded-2xl border border-brand-sand p-5">
+                <p className="font-serif text-xl text-brand-green">{c.size}</p>
+                <p className="mt-1.5 text-sm text-stone-600">{c.text}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 max-w-3xl text-sm text-stone-500">{copy.combos.note}</p>
+        </section>
+      )}
+
+      <section className="max-w-6xl mx-auto px-5 py-16">
+        <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{L.topic.faqTitle}</h2>
+        <div className="mt-6 divide-y divide-brand-sand border-y border-brand-sand">
+          {copy.faq.map((f) => (
+            <details key={f.q} className="group py-4">
+              <summary className="cursor-pointer list-none flex items-center justify-between gap-4 font-medium text-brand-green-dark">
+                {f.q} <ChevronRight size={18} className="shrink-0 transition-transform group-open:rotate-90" />
+              </summary>
+              <p className="mt-2 max-w-3xl text-stone-700 leading-relaxed">{f.a}</p>
+            </details>
+          ))}
+        </div>
+        <div className="mt-12 bg-brand-sand/50 rounded-3xl p-6 sm:p-8">
+          <h2 className="font-serif text-2xl text-brand-green-dark">{copy.cta.title}</h2>
+          <p className="mt-2 max-w-2xl text-stone-700">{copy.cta.text}</p>
+        </div>
+      </section>
+
+      <ContactSection lang={lang} L={L} form={form} setForm={setForm} />
+      <FloatingContact L={L} waLink={waLink} />
+    </main>
+  );
+}
+
+/* Schematic of the Hilgelo dog route, traced from the Leisurelands map
+   (leisurelands.nl, "Hondenwandelroute Hilgelo" 2023): the route follows the
+   outer edge all year, the east beach is closed to dogs 1 May – 1 October, and
+   Jonkersweg meets the area on the west side. Shapes are simplified on purpose. */
+function HilgeloDogMap({labels}: {labels: {lake: string; route: string; beach: string; home: string; caption: string}}) {
+  return (
+    <figure className="bg-white rounded-2xl border border-brand-sand p-4 sm:p-5">
+      <svg viewBox="0 0 320 220" className="w-full h-auto" role="img" aria-label={`${labels.lake}: ${labels.route}. ${labels.beach}.`}>
+        <defs>
+          <pattern id="hilgelo-beach" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="6" height="6" fill="#d98b4a" fillOpacity="0.18" />
+            <line x1="0" y1="0" x2="0" y2="6" stroke="#d98b4a" strokeOpacity="0.55" strokeWidth="2" />
+          </pattern>
+        </defs>
+        <path d="M18 62 L40 14 L120 6 L176 10 L214 24 L290 40 L302 176 L270 208 L208 202 L150 182 L108 152 L40 150 Z" fill="#e7efe3" />
+        <path d="M60 72 C72 44 122 44 150 54 C176 62 200 58 216 70 C232 96 246 130 270 150 C254 166 228 160 204 140 C184 126 160 130 140 140 C110 152 84 140 70 120 C55 104 52 86 60 72 Z" fill="#cfe2e8" />
+        <path d="M206 60 C232 54 264 70 276 96 C288 126 292 152 284 168 C268 164 248 150 236 128 C226 108 214 90 206 60 Z" fill="url(#hilgelo-beach)" stroke="#d98b4a" strokeWidth="1.2" strokeDasharray="3 3" />
+        <path d="M27 64 L46 22 L120 14 L172 18 L208 31 L282 47 L293 172 L266 199 L210 194 L152 174 L112 144 L46 142 Z" fill="none" stroke="#2f6b4f" strokeWidth="2.4" strokeDasharray="6 5" strokeLinejoin="round" />
+        <text x="128" y="100" textAnchor="middle" className="font-serif" fontSize="15" fill="#3d6470">{labels.lake}</text>
+        <line x1="0" y1="72" x2="24" y2="68" stroke="#b9ae98" strokeWidth="3" strokeLinecap="round" />
+        <g transform="translate(24 68)">
+          <circle r="9" fill="#1f4a37" />
+          <path d="M-4 1 L0 -3.5 L4 1 L4 4.5 L-4 4.5 Z" fill="#f7f4ec" />
+        </g>
+        <text x="6" y="94" fontSize="10" fill="#1f4a37" fontWeight="600" stroke="#ffffff" strokeWidth="3" paintOrder="stroke" strokeLinejoin="round">{labels.home}</text>
+        <g transform="translate(300 18)" fill="#78716c">
+          <path d="M0 -10 L4 2 L0 0 L-4 2 Z" />
+          <text y="13" textAnchor="middle" fontSize="8">N</text>
+        </g>
+      </svg>
+      <figcaption className="mt-3 grid gap-1.5 text-sm text-stone-700">
+        <span className="flex items-center gap-2"><svg width="26" height="8" aria-hidden="true"><line x1="1" y1="4" x2="25" y2="4" stroke="#2f6b4f" strokeWidth="2.4" strokeDasharray="6 5" /></svg>{labels.route}</span>
+        <span className="flex items-center gap-2"><svg width="26" height="12" aria-hidden="true"><rect x="1" y="1" width="24" height="10" rx="3" fill="url(#hilgelo-beach)" stroke="#d98b4a" strokeDasharray="3 3" /></svg>{labels.beach}</span>
+        <span className="text-xs text-stone-500">{labels.caption}</span>
+      </figcaption>
+    </figure>
   );
 }
 
@@ -3148,8 +3455,8 @@ function HorsesPage({lang, L}: {lang: Lang; L: any}) {
           <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{L.horses.ctaTitle}</h2>
           <p className="mt-3 text-stone-700 max-w-xl mx-auto">{L.horses.ctaText}</p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white px-6 py-3 rounded-full font-medium transition-colors">
-              <MessageCircle size={18} /> {L.contact.wa} {PHONE_DISPLAY}
+            <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#20B85A] hover:bg-[#1B9E4D] text-white font-semibold shadow-[0_6px_18px_-6px_rgba(32,184,90,0.35)] px-6 py-3 rounded-full transition-colors">
+              <WhatsAppIcon size={18} /> {L.contact.wa} {PHONE_DISPLAY}
             </a>
             <a href={`tel:${PHONE}`} className="inline-flex items-center gap-2 bg-brand-sun hover:bg-brand-sun/90 text-white px-6 py-3 rounded-full font-medium transition-colors">
               <Phone size={18} /> {L.contact.call}
@@ -3343,8 +3650,8 @@ function CuracaoPage({lang, L}: {lang: Lang; L: any}) {
           <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{L.curacao.ctaTitle}</h2>
           <p className="mt-3 text-stone-700 max-w-xl mx-auto">{L.curacao.ctaText}</p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white px-6 py-3 rounded-full font-medium transition-colors">
-              <MessageCircle size={18} /> {L.contact.wa} {PHONE_DISPLAY}
+            <a href={waLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#20B85A] hover:bg-[#1B9E4D] text-white font-semibold shadow-[0_6px_18px_-6px_rgba(32,184,90,0.35)] px-6 py-3 rounded-full transition-colors">
+              <WhatsAppIcon size={18} /> {L.contact.wa} {PHONE_DISPLAY}
             </a>
             <a href={`tel:${PHONE}`} className="inline-flex items-center gap-2 bg-brand-sun hover:bg-brand-sun/90 text-white px-6 py-3 rounded-full font-medium transition-colors">
               <Phone size={18} /> {L.contact.call}
@@ -3481,7 +3788,7 @@ function ContactSection({lang, L, form, setForm}: {lang: Lang; L: any; form: Con
         <div className="flex flex-col gap-4">
           <div className="bg-brand-green text-brand-cream rounded-3xl p-7 flex-1 flex flex-col justify-center gap-4">
             <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-white">
-              <MessageCircle size={20} className="text-brand-sun" />
+              <WhatsAppIcon size={20} className="text-[#25D366]" />
               <span>{L.contact.wa} <span className="font-medium">{PHONE_DISPLAY}</span></span>
             </a>
             <a href={`tel:${PHONE}`} className="flex items-center gap-3 hover:text-white">
@@ -3519,6 +3826,20 @@ function Footer({route, lang, L}: {route: Route; lang: Lang; L: any}) {
           </div>
           <p className="mt-2 text-sm">{L.footer.tagline}</p>
         </div>
+        {/* Plain links to every topic page, on every page: the new landing pages
+            get internal links from the whole site, not just from the homepage. */}
+        <nav aria-label={L.footer.links} className="text-sm">
+          <p className="text-brand-cream font-medium">{L.footer.links}</p>
+          <ul className="mt-2 grid gap-1.5">
+            {[
+              {href: pathFor({kind: 'groups'}, lang), label: topicCopy.groups[lang].label},
+              {href: pathFor({kind: 'dogs'}, lang), label: topicCopy.dogs[lang].label},
+              {href: pathFor({kind: 'home', homeId: 'kattenberg8'}, lang), label: L.footer.accessible},
+              {href: pathFor({kind: 'horses'}, lang), label: L.nav.horses},
+              {href: pathFor({kind: 'todo'}, lang), label: L.nav.area},
+            ].map((l) => <li key={l.href}><a href={l.href} className="hover:text-brand-cream transition-colors">{l.label}</a></li>)}
+          </ul>
+        </nav>
         <div className="text-sm md:text-right">
           {/* A second, crawlable set of language links — the header pair sits in a
               sticky bar that some crawlers treat as boilerplate. */}
@@ -3582,9 +3903,9 @@ function FlamingoAlert({lang, L, waLink}: {lang: Lang; L: any; waLink: string}) 
         <p className="mt-3 text-stone-600">{L.flamingo.text}</p>
         <a
           href={waLink} target="_blank" rel="noopener noreferrer"
-          className="mt-5 self-start inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors"
+          className="mt-5 self-start inline-flex items-center gap-2 bg-[#20B85A] hover:bg-[#1B9E4D] text-white font-semibold shadow-[0_6px_18px_-6px_rgba(32,184,90,0.35)] px-5 py-2.5 rounded-full text-sm transition-colors"
         >
-          <MessageCircle size={16} /> {L.flamingo.cta}
+          <WhatsAppIcon size={16} /> {L.flamingo.cta}
         </a>
       </div>
     </div>

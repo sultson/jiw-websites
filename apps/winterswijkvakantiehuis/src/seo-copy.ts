@@ -2,17 +2,17 @@
 export const seoCopy: Record<string, Record<string, {title: string; description: string; h1: string}>> = {
   "landing": {
     "nl": {
-      "title": "Vakantiehuizen Winterswijk met sauna | Direct contact",
-      "description": "Ontdek negen vakantiehuizen in Winterswijk, elk met een eigen sauna. Vijf woningen zijn hondvriendelijk. Bekijk het aanbod en vraag beschikbaarheid aan.",
+      "title": "Vakantiehuis Winterswijk met sauna | Particulier verhuurd",
+      "description": "Negen vakantiehuizen in Winterswijk (Achterhoek), elk met eigen sauna. Particulier verhuurd, zonder tussenpersoon. Met hond, paard of als groep tot 40.",
       "h1": "Vakantiehuizen in Winterswijk met eigen sauna"
     },
     "de": {
-      "title": "Ferienhäuser Winterswijk mit Sauna | Direkt anfragen",
-      "description": "Entdecken Sie neun Ferienhäuser in Winterswijk mit eigener Sauna. Fünf Häuser sind hundefreundlich. Wählen Sie Ihr Haus und fragen Sie direkt an.",
+      "title": "Ferienhaus Winterswijk mit Sauna | Privat vom Vermieter",
+      "description": "Neun Ferienhäuser in Winterswijk (Achterhoek), nah an der Grenze, alle mit eigener Sauna. Privat vermietet, ohne Vermittler. Mit Hund, Pferd oder als Gruppe.",
       "h1": "Ferienhäuser in Winterswijk mit eigener Sauna"
     },
     "en": {
-      "title": "Winterswijk holiday homes with sauna | Enquire direct",
+      "title": "Winterswijk holiday homes with sauna | Book direct",
       "description": "Explore nine holiday homes in Winterswijk, each with a private sauna. Five welcome dogs. Choose your home and enquire directly about availability.",
       "h1": "Holiday homes in Winterswijk with a private sauna"
     }
@@ -138,19 +138,53 @@ export const seoCopy: Record<string, Record<string, {title: string; description:
   },
   "todo": {
     "nl": {
-      "title": "Wandelen, fietsen en uitstapjes in Winterswijk",
+      "title": "Wat te doen in Winterswijk? Wandelen, fietsen en het Hilgelo",
       "description": "Ontdek Winterswijk vanuit uw vakantiehuis: wandelen, fietsen, het Hilgelo en uitstapjes in de Achterhoek. Bekijk onze tips en kies een passend verblijf.",
-      "h1": "Wandelen, fietsen en eropuit in Winterswijk"
+      "h1": "Wat te doen in Winterswijk: wandelen, fietsen en eropuit"
     },
     "de": {
-      "title": "Wandern, Radfahren und Ausflüge in Winterswijk",
+      "title": "Winterswijk: Ausflüge, Wandern, Radfahren und der Hilgelo",
       "description": "Entdecken Sie Winterswijk vom Ferienhaus aus: Wanderungen, Radtouren, der Hilgelo und Ausflüge im Achterhoek. Unsere Tipps helfen bei Ihrer Urlaubsplanung.",
       "h1": "Wandern, Radfahren und Ausflüge rund um Winterswijk"
     },
     "en": {
-      "title": "Walking, cycling and things to do in Winterswijk",
+      "title": "Things to do in Winterswijk: walking, cycling, Hilgelo lake",
       "description": "Explore Winterswijk from your holiday home: walking, cycling, Hilgelo lake and days out in the Achterhoek. Browse local tips and find a place to stay.",
       "h1": "Walking, cycling and days out in Winterswijk"
+    }
+  },
+  "groups": {
+    "nl": {
+      "title": "Groepsaccommodatie Winterswijk tot 40 personen | Met sauna",
+      "description": "Met familie of vrienden naar Winterswijk: boek meerdere vakantiehuizen naast elkaar. Tot 18 personen bij het Hilgelo, tot 40 in het bos. Elk huis met sauna.",
+      "h1": "Groepsaccommodatie in Winterswijk voor 12 tot 40 personen"
+    },
+    "de": {
+      "title": "Gruppenunterkunft Winterswijk bis 40 Personen | Mit Sauna",
+      "description": "Mit Familie oder Freunden nach Winterswijk: mehrere Ferienhäuser nebeneinander buchen. Bis 18 Personen am Hilgelo, bis 40 im Wald. Jedes Haus mit Sauna.",
+      "h1": "Gruppenunterkunft in Winterswijk für 12 bis 40 Personen"
+    },
+    "en": {
+      "title": "Group accommodation Winterswijk for up to 40 | With sauna",
+      "description": "Book several holiday homes side by side in Winterswijk: up to 18 guests by Hilgelo lake, up to 40 in the woods. Every home has a private sauna.",
+      "h1": "Group accommodation in Winterswijk for 12 to 40 guests"
+    }
+  },
+  "dogs": {
+    "nl": {
+      "title": "Vakantiehuis met hond in Winterswijk | Met eigen sauna",
+      "description": "In vijf van onze negen vakantiehuizen in Winterswijk is uw hond welkom, elk met eigen sauna. Bij het Hilgelo of in het bos, met wandelpaden vlakbij.",
+      "h1": "Vakantiehuis met hond in Winterswijk, met eigen sauna"
+    },
+    "de": {
+      "title": "Ferienhaus mit Hund in Winterswijk | Mit eigener Sauna",
+      "description": "In fünf unserer neun Ferienhäuser in Winterswijk ist Ihr Hund willkommen, jedes mit eigener Sauna. Am Hilgelo oder im Wald, gleich hinter der Grenze.",
+      "h1": "Ferienhaus mit Hund und Sauna in Winterswijk"
+    },
+    "en": {
+      "title": "Dog-friendly holiday homes in Winterswijk | Private sauna",
+      "description": "Your dog is welcome in five of our nine holiday homes in Winterswijk, each with a private sauna. By Hilgelo lake or in the woods, with walks nearby.",
+      "h1": "Dog-friendly holiday homes in Winterswijk with a sauna"
     }
   },
   "curacao": {
