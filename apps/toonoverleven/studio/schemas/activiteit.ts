@@ -152,6 +152,16 @@ export const activiteit = defineType({
       hidden: isMededeling,
     }),
 
+    defineField({name:'reeksFotos', title:'Extra foto’s voor afwisseling in de reeks',type:'array',of:[{type:'image',options:{hotspot:true}}],
+      description:'Optioneel. De hoofdfoto en deze foto’s wisselen per datum af, in deze volgorde. Elke datum houdt hetzelfde beeld zolang u de reeks en de fotovolgorde niet wijzigt. Met alleen de hoofdfoto gebruiken alle datums dat beeld.',
+      hidden:({parent})=>parent?.soort==='mededeling'||!parent?.herhaling||parent.herhaling==='eenmalig',validation:r=>r.max(6)}),
+    defineField({
+      name: 'vervangtReeks', title: 'Vervangt op deze datum de gewone inloop', type: 'reference', to: [{type:'activiteit'}],
+      options: {filter: 'archief != true && soort == "activiteit" && herhaling in ["wekelijks", "tweewekelijks", "maandelijks"]'},
+      description: 'Kies de vaste reeks als dit een bijzondere invulling van dezelfde ochtend is. De site toont dan alleen dit moment. Laat leeg als beide activiteiten naast elkaar plaatsvinden. Archiveert u dit bijzondere moment, dan verschijnt de gewone inloop weer.',
+      hidden: ({parent}) => parent?.soort === 'mededeling' || (parent?.herhaling && parent.herhaling !== 'eenmalig'),
+    }),
+
     defineField({
       name: 'datum',
       title: 'Datum',
@@ -249,7 +259,7 @@ export const activiteit = defineType({
       // De lijst rekent de datums uit en zet ze als schakelaars neer; wat
       // uitgezet wordt komt hier als datum in te staan.
       components: { input: Keren },
-      description: 'Gaat een keer niet door? Zet hem uit, dan staat hij afgelast op de site.',
+      description: 'Gaat een keer niet door? Zet hem uit, dan verdwijnt die datum uit de agenda.',
       hidden: ({ parent }) =>
         parent?.soort === 'mededeling' || !parent?.herhaling || parent?.herhaling === 'eenmalig',
     }),

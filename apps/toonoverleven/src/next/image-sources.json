@@ -108,5 +108,20 @@
     "original": "hero-na-behandeling-v2.jpg",
     "label": "Aangeleverd beeld · hero-na-behandeling-v2.jpg",
     "description": "Vier bezoekroutes, 21 september 2026. IPSO-beelden tonen geen bezoekers of medewerkers van Toon over Leven zelf; gegenereerde sfeerbeelden tonen fictieve mensen en locaties."
+  },
+  "/img/approved/inloop-koffie-2026.webp": {
+    "original": "inloop-koffie-2026.webp",
+    "label": "inloop-koffie-2026",
+    "description": "AI-gegenereerd sfeerbeeld, september 2026. Fictieve setting; geen foto van het eigen huis of een specifieke workshop. Beheer en vervang via de foto van het agendamoment."
+  },
+  "/img/approved/inloop-creatief-collage-2026.webp": {
+    "original": "inloop-creatief-collage-2026.webp",
+    "label": "inloop-creatief-collage-2026",
+    "description": "AI-gegenereerd sfeerbeeld, september 2026. Fictieve setting; geen foto van het eigen huis of een specifieke workshop. Beheer en vervang via de foto van het agendamoment."
+  },
+  "/img/approved/inloop-creatief-tafel-2026.webp": {
+    "original": "inloop-creatief-tafel-2026.webp",
+    "label": "inloop-creatief-tafel-2026",
+    "description": "AI-gegenereerd sfeerbeeld, september 2026. Fictieve setting; geen foto van het eigen huis of een specifieke workshop. Beheer en vervang via de foto van het agendamoment."
   }
 }

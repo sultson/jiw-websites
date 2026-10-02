@@ -11,6 +11,9 @@ export const sitePage = defineType({
     { name: "seo", title: "Vindbaarheid" },
   ],
   fields: [
+    defineField({ name: 'privacyFile', title: 'Privacyverklaring (PDF)', type: 'file', group: 'text', options: {accept:'application/pdf'},
+      hidden: ({document}) => document?.path !== '/privacy',
+      description: 'Download op Contact en Privacy. Vervang de PDF ook als u de verklaring hieronder wijzigt; de tekst hieronder verschijnt automatisch op beide pagina’s.' }),
     defineField({
       name: "path",
       title: "Adres of gedeeld onderdeel",

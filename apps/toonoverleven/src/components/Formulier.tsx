@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { Check, Loader2 } from 'lucide-react';
 import { interfaceDefaults, type InterfaceCopy } from '../next/interface';
 
@@ -51,6 +51,15 @@ export default function Formulier({
       : ONDERWERPEN;
 
   const [gekozen, setGekozen] = useState(onderwerp ?? (compact ? 'Een kennismaking aanvragen' : ONDERWERPEN[0].waarde));
+  const [activiteit, setActiviteit] = useState<string | null>(null);
+  useEffect(() => {
+    if (!compact || registration) return;
+    const title = new URLSearchParams(window.location.search).get('activiteit')?.trim();
+    if (title && title.length <= 100) {
+      setActiviteit(title);
+      setGekozen('Aanmelden: ' + title);
+    }
+  }, [compact, registration]);
   const [bezig, setBezig] = useState(false);
   const [klaar, setKlaar] = useState(false);
   const [fout, setFout] = useState<string | null>(null);
@@ -107,7 +116,7 @@ export default function Formulier({
       aria-busy={bezig}
       className={
         compact
-          ? ''
+          ? 'contact-form'
           : 'rounded-[1.25rem] border border-lijn bg-white p-6 shadow-[var(--shadow-kaart)] md:p-8'
       }
     >
@@ -141,9 +150,10 @@ export default function Formulier({
         </div>
       </fieldset>}
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <Veld id={`${sleutel}-naam`} naam="firstName" label={copy.nameLabel} verplicht autoComplete="given-name" />
-        <Veld id={`${sleutel}-mail`} naam="email" label={copy.emailLabel} type="email" verplicht autoComplete="email" />
+      {activiteit && <p className="form-activity">Je vraag gaat over: <strong>{activiteit}</strong></p>}
+      <div className={compact ? 'contact-fields' : 'mt-6 grid gap-4 sm:grid-cols-2'}>
+        <Veld id={`${sleutel}-naam`} naam="firstName" label={copy.nameLabel} placeholder={compact ? 'Je naam' : undefined} verplicht autoComplete="given-name" />
+        <Veld id={`${sleutel}-mail`} naam="email" label={copy.emailLabel} placeholder={compact ? 'naam@domein.nl' : undefined} type="email" verplicht autoComplete="email" />
         {!compact && <div className="sm:col-span-2">
           <Veld id={`${sleutel}-tel`} naam="telefoon" label="Je telefoonnummer" type="tel" autoComplete="tel" />
         </div>}
@@ -164,6 +174,7 @@ export default function Formulier({
 
       }
       <p className="small mt-4">{copy.formPrivacy}</p>
+      {compact && <p className="form-privacy">{copy.privacyIntro} <a href="/privacy">{copy.privacyLink}</a>.</p>}
       {/* Voor de bots. Wie dit invult krijgt netjes antwoord en verder gebeurt
           er niets, en een mens ziet het veld nooit. */}
       <input
@@ -189,7 +200,7 @@ export default function Formulier({
         disabled={bezig}
         className="mt-6 inline-flex min-h-[3.1rem] items-center justify-between gap-3 rounded-full border border-wijn bg-wijn px-[1.4rem] py-3 text-[0.95rem] font-extrabold leading-tight text-white transition hover:-translate-y-0.5 hover:border-wijn-diep hover:bg-wijn-diep disabled:opacity-60 disabled:hover:translate-y-0 max-sm:w-full"
       >
-        <span>{registration ? copy.signupSubmit : compact ? copy.contactSubmit : 'Versturen'}</span>
+        <span>{registration ? copy.signupSubmit : activiteit ? 'Vraag over activiteit versturen' : compact ? copy.contactSubmit : 'Versturen'}</span>
         {bezig ? (
           <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
         ) : (
@@ -216,6 +227,7 @@ function Veld({
   id,
   naam,
   label,
+  placeholder,
   type = 'text',
   verplicht = false,
   autoComplete,
@@ -223,6 +235,7 @@ function Veld({
   id: string;
   naam: string;
   label: string;
+  placeholder?: string;
   type?: string;
   verplicht?: boolean;
   autoComplete?: string;
@@ -238,6 +251,7 @@ function Veld({
         type={type}
         required={verplicht}
         autoComplete={autoComplete}
+        placeholder={placeholder}
         className={`${VELD} min-h-[3.4rem]`}
       />
     </div>

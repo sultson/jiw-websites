@@ -1,0 +1,78 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "path": "/",
+      "title": "Home · Toon over Leven",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "path": "/contact",
+      "title": "Contact · Toon over Leven",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "path": "/activiteiten",
+      "title": "Activiteiten en agenda · Toon over Leven",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "path": "/over-ons/onze-sponsors",
+      "title": "Onze sponsors · Toon over Leven",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "path": "/activiteit/inloopochtend-donderdag/2026-10-08",
+      "title": "Inloopochtend · Toon over Leven",
+      "status": 200
+    },
+    {
+      "width": 1440,
+      "path": "/activiteit/inloop-met-activiteit-oktober",
+      "title": "Inloop met activiteit · Toon over Leven",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "path": "/",
+      "title": "Home · Toon over Leven",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "path": "/contact",
+      "title": "Contact · Toon over Leven",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "path": "/activiteiten",
+      "title": "Activiteiten en agenda · Toon over Leven",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "path": "/over-ons/onze-sponsors",
+      "title": "Onze sponsors · Toon over Leven",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "path": "/activiteit/inloopochtend-donderdag/2026-10-08",
+      "title": "Inloopochtend · Toon over Leven",
+      "status": 200
+    },
+    {
+      "width": 390,
+      "path": "/activiteit/inloop-met-activiteit-oktober",
+      "title": "Inloop met activiteit · Toon over Leven",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "submissions": 0
+}

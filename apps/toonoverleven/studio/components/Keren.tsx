@@ -15,7 +15,7 @@ import { keren, korteDatum, langeDatum, ritme, sleutel, type Concept } from '../
  * datums verschijnen terwijl je het formulier invult.
  */
 
-const HOEVEEL = 12;
+const HOEVEEL = 60;
 /** Zoveel keren staan er meteen; de rest komt achter een knop vandaan. */
 const METEEN = 6;
 
@@ -97,7 +97,7 @@ export default function Keren(props: ArrayOfPrimitivesInputProps) {
                   </Text>
                   {gaatNiet && (
                     <Text size={0} muted>
-                      Staat als afgelast op de site
+                      Verschijnt niet in de agenda op de site
                     </Text>
                   )}
                 </Stack>

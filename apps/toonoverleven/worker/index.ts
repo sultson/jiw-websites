@@ -109,7 +109,7 @@ const query = (vandaag: string) => `{
     (defined(herhaling) && herhaling != "eenmalig") || coalesce(totDatum, datum) >= "${vandaag}"
   )] | order(datum asc){
     _id, slug, activiteitType, categorieen, volgeboekt, aanmeldEmail, aanmeldUrl, soort, titel, categorie, omschrijving, afbeelding, datum, totDatum, heleDag,
-    begintijd, eindtijd, herhaling, herhaalTot, overslaan, aanmelden, bijdrage, locatie,
+    begintijd, eindtijd, herhaling, herhaalTot, overslaan, vervangtReeks, reeksFotos, aanmelden, bijdrage, locatie,
     doelgroepen, themas
   },
   "nieuws": *[_type == "nieuws"] | order(coalesce(vastgezet, false) desc, datum desc){

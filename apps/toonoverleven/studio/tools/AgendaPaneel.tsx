@@ -38,11 +38,11 @@ import {
  */
 
 /** Een document uit de dataset; concepten en gepubliceerde versies door elkaar. */
-type Doc = Concept & { _id: string; _updatedAt?: string };
+type Doc = Concept & { _id: string; _updatedAt?: string; archief?: boolean };
 
-const QUERY = `*[_type == "activiteit" && archief != true]{
-  _id, soort, titel, categorie, omschrijving, datum, totDatum, heleDag,
-  begintijd, eindtijd, herhaling, herhaalTot, overslaan, aanmelden, bijdrage, locatie
+const QUERY = `*[_type == "activiteit"]{
+  _id, archief, soort, titel, categorie, omschrijving, datum, totDatum, heleDag,
+  begintijd, eindtijd, herhaling, herhaalTot, overslaan, vervangtReeks, aanmelden, bijdrage, locatie
 }`;
 
 const kaal = (id: string) => id.replace(/^drafts\./, '');
@@ -93,7 +93,7 @@ export default function AgendaPaneel() {
     };
   }, [client]);
 
-  const regels = useMemo(() => (docs ? samen(docs) : []), [docs]);
+  const regels = useMemo(() => (docs ? samen(docs).filter(r => !r.doc.archief) : []), [docs]);
 
   /**
    * Wat er deze maand gebeurt, met dezelfde som als de site.

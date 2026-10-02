@@ -25,7 +25,7 @@ export const sponsor = defineType({
       title: 'Logo',
       type: 'image',
       description:
-        'Bij voorkeur met een doorzichtige of witte achtergrond. Het logo wordt op een wit vlak gezet, op de pagina Onze sponsors en klein onderaan elke pagina.',
+        'Bij voorkeur met een doorzichtige of witte achtergrond. Het logo wordt op een wit vlak gezet, op de pagina Onze sponsors. De eerste zes staan ook op de homepage.',
       validation: (rule) => rule.required().error('Een sponsor wordt met zijn logo getoond.'),
     }),
     defineField({
@@ -39,7 +39,7 @@ export const sponsor = defineType({
       name: 'volgorde',
       title: 'Volgorde',
       type: 'number',
-      description: 'Laag getal staat vooraan. Leeg laten mag; dan staat het achteraan.',
+      description: 'Laag getal staat vooraan. De eerste zes sponsors verschijnen op de homepage; alle sponsors staan op Onze sponsors. Leeg laten mag; dan staat het achteraan.',
     }),
   ],
   orderings: [

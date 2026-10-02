@@ -127,6 +127,8 @@ function bouwContent(payload: RawPayload | null): Content {
         eindtijd: soort === 'mededeling' ? undefined : misschien(doc.eindtijd),
         herhaling: soort === 'mededeling' ? 'eenmalig' : herhaling,
         herhaalTot: misschien(doc.herhaalTot),
+        vervangtReeks: misschien(doc.vervangtReeks?._ref),
+        reeksFotos: Array.isArray(doc.reeksFotos) ? doc.reeksFotos.map(beeld).filter((im: Img | null): im is Img => im !== null) : [],
         overslaan: Array.isArray(doc.overslaan)
           ? doc.overslaan.filter((d: unknown): d is string => typeof d === 'string')
           : [],

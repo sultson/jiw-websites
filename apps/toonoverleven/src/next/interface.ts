@@ -3,7 +3,7 @@ export const interfaceDefaults = {
   contactTitle: 'Een kennismaking aanvragen',
   contactIntro: 'Laat je naam en e-mailadres achter. We nemen contact met je op om samen een moment af te spreken.',
   contactSubmit: 'Kennismaking aanvragen',
-  nameLabel: 'Je naam', emailLabel: 'Je e-mailadres',
+  nameLabel: 'Naam', emailLabel: 'E-mailadres',
   formPrivacy: 'Je hoeft hier geen medische informatie of persoonlijk verhaal te delen.',
   privacyIntro: 'Lees hoe we met je gegevens omgaan in onze', privacyLink: 'privacyverklaring',
   successTitle: 'Dank je wel, je bericht is verstuurd',

@@ -112,7 +112,7 @@ function nDeWeekdag(jaar: number, maand: number, weekdag: number, n: number): Da
   const schuif = (weekdag - eerste.getDay() + 7) % 7;
   const dag = 1 + schuif + (n - 1) * 7;
   const datum = new Date(jaar, maand, dag);
-  return datum.getMonth() === maand ? datum : null;
+  return datum.getMonth() === eerste.getMonth() ? datum : null;
 }
 
 /** Hoe lang een reeks zonder einddatum vooruit blijft lopen. */
@@ -130,6 +130,8 @@ export function expandeer(bronnen: AgendaBron[], vanaf: Date, tot: Date): Activi
   const eindVenster = middernacht(tot);
   const uit: Activiteit[] = [];
 
+  // A special morning replaces only the linked series on that date.
+  const vervangen = new Set(bronnen.filter(b => b.vervangtReeks && b.soort === 'activiteit' && b.herhaling === 'eenmalig').map(b => `${b.vervangtReeks}:${b.datum}`));
   for (const bron of bronnen) {
     const overslaan = new Set(bron.overslaan);
 
@@ -155,7 +157,7 @@ export function expandeer(bronnen: AgendaBron[], vanaf: Date, tot: Date): Activi
       const weekdag = eerste.getDay();
       const welke = hoeveelste(eerste);
       // Vanaf de eerste keer, maand voor maand, tot de reeks ophoudt.
-      for (let m = 0; m < JAAR_VOORUIT * 2 + 1; m += 1) {
+      for (let m = Math.max(0, (start.getFullYear() - eerste.getFullYear()) * 12 + start.getMonth() - eerste.getMonth()); m <= (laatste.getFullYear() - eerste.getFullYear()) * 12 + laatste.getMonth() - eerste.getMonth(); m += 1) {
         const kandidaat = nDeWeekdag(
           eerste.getFullYear(),
           eerste.getMonth() + m,
@@ -173,7 +175,7 @@ export function expandeer(bronnen: AgendaBron[], vanaf: Date, tot: Date): Activi
 
     for (const datum of datums) {
       if (datum > eindVenster) continue;
-      if (overslaan.has(datumSleutel(datum))) continue;
+      if (overslaan.has(datumSleutel(datum)) || vervangen.has(`${bron.id.replace(/^drafts\./, '')}:${datumSleutel(datum)}`)) continue;
       const van = leesDatum(datumSleutel(datum), bron.heleDag ? '00:00' : bron.begintijd);
       const eind = bron.heleDag
         ? new Date(datum.getFullYear(), datum.getMonth(), datum.getDate(), 23, 59)
@@ -189,6 +191,14 @@ export function expandeer(bronnen: AgendaBron[], vanaf: Date, tot: Date): Activi
 }
 
 function maak(bron: AgendaBron, start: Date, eind: Date): Activiteit {
+  const fotos = [bron.img, ...(bron.reeksFotos ?? [])].filter(Boolean);
+  const eerste = leesDatum(bron.datum);
+  // Calendar-day arithmetic keeps the chosen image stable across DST and view windows.
+  const dagen = Math.round((Date.UTC(start.getFullYear(), start.getMonth(), start.getDate()) - Date.UTC(eerste.getFullYear(), eerste.getMonth(), eerste.getDate())) / 86400000);
+  const index = bron.herhaling === 'maandelijks'
+    ? (start.getFullYear() - eerste.getFullYear()) * 12 + start.getMonth() - eerste.getMonth()
+    : Math.floor(dagen / (bron.herhaling === 'tweewekelijks' ? 14 : 7));
+  const foto = bron.herhaling !== 'eenmalig' && fotos.length ? fotos[Math.max(0, index) % fotos.length] : bron.img;
   return {
     id: `${bron.id}-${datumSleutel(start)}`,
     bronId: bron.id,
@@ -198,7 +208,7 @@ function maak(bron: AgendaBron, start: Date, eind: Date): Activiteit {
     titel: bron.titel,
     categorie: bron.categorie,
     omschrijving: bron.omschrijving,
-    img: bron.img,
+    img: foto ?? null,
     herhaling: bron.herhaling,
     start,
     eind,

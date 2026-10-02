@@ -192,3 +192,51 @@
 
 .approved-site .hero-art:empty { display: none; }
 .approved-site .hero:has(> .hero-art:empty) { grid-template-columns: 1fr; }
+
+/* The supplied reference CSS belongs below Tailwind utilities in the cascade.
+   Keep the reference font family and weights; spacing utilities can now do their work. */
+.approved-site .site-nav .navgroup { position: relative; display: block; }
+.approved-site .nav-trigger {
+  display: inline-flex; align-items: center; justify-content: space-between;
+  gap: 9px; min-height: 46px; padding: 10px 12px;
+  border: 0; border-radius: 9px; background: transparent;
+  color: var(--ink); font-size: 14px; font-weight: 600;
+}
+.approved-site .nav-trigger:hover, .approved-site .nav-trigger[aria-expanded="true"] { background: var(--sage); color: var(--wine); }
+.approved-site .nav-trigger svg { color: var(--wine); flex: none; }
+.approved-site .navsub { top: calc(100% + 4px); left: 0; right: auto; width: min(290px, 90vw); }
+.approved-site .navsub a { min-height: 44px; display: flex; align-items: center; font-weight: 600; }
+.approved-site .mobile-toggle { align-items: center; gap: 8px; }
+.approved-site .social-links a::before { content: none; }
+.approved-site .social-links a svg { color: var(--wine); flex: none; }
+.approved-site .social-links a svg:last-child { width: 16px; }
+.approved-site .inline-arrow { display: inline-block; vertical-align: -3px; flex: none; }
+
+.approved-site .form-card { padding: clamp(28px, 4vw, 48px); }
+.approved-site .form-card h2 { margin-bottom: 24px; }
+.approved-site .form-card > p:first-of-type { margin-bottom: 30px; }
+.approved-site .contact-fields { display: grid; gap: 21px; }
+.approved-site .form-activity { margin: 0 0 23px; padding: 12px 15px; border-radius: 10px; background: #fff; font-size: 15px; }
+.approved-site .contact-fields label { display: block; margin-bottom: 9px; font-size: 16px; font-weight: 600; }
+.approved-site .contact-fields input { display: block; width: 100%; min-height: 56px; margin: 0; border-radius: 12px; background: #fff; }
+.approved-site .form-card .small { margin: 27px 0 0; }
+.approved-site .form-privacy { margin: 20px 0 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.approved-site .form-privacy a { text-decoration: underline; text-underline-offset: 3px; }
+.approved-site .contact-form > button[type="submit"] { margin-top: 27px; font-weight: 600; }
+.approved-site .contact-form > p:last-child { margin: 28px 0 0; line-height: 1.65; }
+.approved-site .agenda-info { margin-top: 42px; padding: 25px 28px; }
+.approved-site .agenda-info .copy-section > *:last-child { margin-bottom: 0; }
+.approved-site .video-caption { display: grid; gap: 3px; padding: 14px 16px; }
+.approved-site .video-caption strong { font-size: 14px; }
+.approved-site .video-caption span { font-size: 12px; line-height: 1.4; }
+.approved-site .video-play { padding: 0; }
+
+@media (max-width: 760px) {
+  .approved-site .site-nav.is-open { top: 80px; max-height: calc(100dvh - 80px); overflow-y: auto; }
+  .approved-site .site-nav .navgroup { display: block; }
+  .approved-site .nav-trigger { width: 100%; font-size: 16px; }
+  .approved-site .site-nav .navsub { position: static; width: 100%; margin: 0 0 12px; padding: 4px 12px; border: 0; box-shadow: none; }
+  .approved-site .mobile-toggle { display: inline-flex; }
+  .approved-site .form-card { padding: 28px 23px; }
+  .approved-site .agenda-info { margin-top: 32px; padding: 22px; }
+}

@@ -22,6 +22,7 @@ export type Page = {
   links: { _key: string; label: string; href: string }[];
 };
 export type PageContent = {
+  privacyFile?: {asset?: {_ref?: string}};
   path: string;
   title?: string;
   description?: string;

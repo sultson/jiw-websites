@@ -12391,6 +12391,26 @@
                     "linkKey": "link-4"
                   }
                 ]
+              },
+              {
+                "tag": "p",
+                "attrs": {},
+                "children": [
+                  {
+                    "tag": "a",
+                    "attrs": {
+                      "href": "#privacyverklaring",
+                      "class": "textlink"
+                    },
+                    "children": [
+                      {
+                        "text": "Lees onze privacyverklaring",
+                        "key": "privacy-jump"
+                      }
+                    ],
+                    "linkKey": "privacy-jump"
+                  }
+                ]
               }
             ]
           },
@@ -12402,6 +12422,13 @@
             "children": []
           }
         ]
+      },
+      {
+        "tag": "site-slot",
+        "attrs": {
+          "name": "privacyStatement"
+        },
+        "children": []
       },
       {
         "tag": "site-slot",
@@ -12471,6 +12498,11 @@
         "_key": "text-2001",
         "label": "Contactgegevens",
         "text": "."
+      },
+      {
+        "_key": "privacy-jump",
+        "label": "Privacyverklaring",
+        "text": "Lees onze privacyverklaring"
       }
     ],
     "images": [],
@@ -12489,6 +12521,11 @@
         "_key": "link-4",
         "label": "Wat kan ik verwachten?→",
         "href": "/eerste-bezoek"
+      },
+      {
+        "_key": "privacy-jump",
+        "label": "Privacyverklaring op deze pagina",
+        "href": "#privacyverklaring"
       }
     ],
     "description": "Bel, loop binnen of vraag een kennismaking aan. Je hoeft niet precies te weten wat je nodig hebt.",
@@ -22684,6 +22721,13 @@
                 "key": "text-4"
               }
             ]
+          },
+          {
+            "tag": "site-slot",
+            "attrs": {
+              "name": "privacyDownload"
+            },
+            "children": []
           },
           "\n      ",
           {

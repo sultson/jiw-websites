@@ -5,6 +5,7 @@ import {
   type ReactNode,
   type CSSProperties,
 } from "react";
+import { ArrowUpRight, ChevronDown, ChevronUp, Facebook, Instagram, Menu, Play, X } from "lucide-react";
 import {
   template,
   safeLink,
@@ -30,6 +31,18 @@ const url = eventPath;
 const categoryLabel = (c: string) => ({Inloop: "Ontmoeten", Wellness: "Ontspannen"}[c] || c);
 function Header() {
   const [open, setOpen] = useState(false);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
+  useEffect(() => {
+    const close = (event: PointerEvent) => {
+      if (!(event.target as Element).closest('.site-nav')) setOpenGroup(null);
+    };
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setOpenGroup(null); setOpen(false); }
+    };
+    document.addEventListener('pointerdown', close);
+    document.addEventListener('keydown', escape);
+    return () => { document.removeEventListener('pointerdown', close); document.removeEventListener('keydown', escape); };
+  }, []);
   return (
     <>
       <a className="skip" href="#inhoud">
@@ -48,7 +61,7 @@ function Header() {
           className={"site-nav " + (open ? "is-open" : "")}
           aria-label="Hoofdnavigatie"
           onClick={(e) => {
-            if ((e.target as Element).closest("a")) setOpen(false);
+            if ((e.target as Element).closest("a")) { setOpen(false); setOpenGroup(null); }
           }}
         >
           {[
@@ -91,17 +104,19 @@ function Header() {
             ],
           ].map(([label, href, children]) => (
             <div className="navgroup" key={String(label)}>
-              <a href={String(href)}>{String(label)}</a>
-              <details>
-                <summary aria-label={"Submenu " + label}>⌄</summary>
-                <div className="navsub">
+              <button type="button" className="nav-trigger" aria-expanded={openGroup === label} aria-controls={'nav-' + String(label).replace(/\s+/g, '-')} onClick={() => setOpenGroup(openGroup === label ? null : String(label))}>
+                <span>{String(label)}</span>{openGroup === label ? <ChevronUp size={18} aria-hidden="true" /> : <ChevronDown size={18} aria-hidden="true" />}
+              </button>
+              {openGroup === label && (
+                <div className="navsub" id={'nav-' + String(label).replace(/\s+/g, '-')}>
+                  <a href={String(href)}>Overzicht {String(label).toLowerCase()}</a>
                   {(children as string[][]).map(([label, href]) => (
                     <a key={href} href={href}>
                       {label}
                     </a>
                   ))}
                 </div>
-              </details>
+              )}
             </div>
           ))}
         </nav>
@@ -114,7 +129,7 @@ function Header() {
           aria-label={open ? "Menu sluiten" : "Menu openen"}
           onClick={() => setOpen(!open)}
         >
-          {open ? "× Sluiten" : "☰ Menu"}
+          {open ? <><X size={18} aria-hidden="true" /> Sluiten</> : <><Menu size={18} aria-hidden="true" /> Menu</>}
         </button>
       </header>
     </>
@@ -143,9 +158,11 @@ function Tree({
   edit?: PageContent;
   activityHref?: string;
 }): ReactNode {
-  if (typeof node === "string") return node;
-  if ("text" in node)
-    return edit?.texts?.find((t) => t._key === node.key)?.text ?? node.text;
+  if (typeof node === "string") return node === '↗' ? <ArrowUpRight className="inline-arrow" size={18} aria-hidden="true" /> : node;
+  if ("text" in node) {
+    const value = edit?.texts?.find((t) => t._key === node.key)?.text ?? node.text;
+    return value.endsWith('↗') ? <>{value.slice(0, -1).trimEnd()} <ArrowUpRight className="inline-arrow" size={18} aria-hidden="true" /></> : value;
+  }
   const { tag, attrs, children } = node;
   if (tag === "site-slot")
     return (
@@ -204,6 +221,7 @@ function Tree({
     const kind = attrs["data-contact"];
     props.href = kind === 'email' ? 'mailto:' + contact.email : kind === 'phone' ? 'tel:' + contact.telefoon.replace(/[^+0-9]/g, '') : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(ctx.content.teksten.praktisch.locatie.adres);
   }
+  const social = tag === 'a' && String(props.href).includes('instagram.com/') ? 'instagram' : tag === 'a' && String(props.href).includes('facebook.com/') ? 'facebook' : null;
   if (tag === "img") {
     const im = edit?.images?.find((i) => i._key === node.imageKey);
     if (im && !im.img) return null;
@@ -216,6 +234,7 @@ function Tree({
   return createElement(
     tag,
     props,
+    social === 'instagram' ? <Instagram size={20} aria-hidden="true" /> : social === 'facebook' ? <Facebook size={20} aria-hidden="true" /> : null,
     children.map((child, i) => (
       <Tree key={i} node={child} ctx={ctx} edit={edit} activityHref={href} />
     )),
@@ -250,6 +269,19 @@ function Slot({
           }
         </>
       );
+    }
+    case "privacyStatement": {
+      const page = template('/privacy');
+      const privacyEdit = ctx.content.pages?.find(p => p.path === '/privacy');
+      const body = page?.tree.find(n => typeof n === 'object' && 'tag' in n && n.tag === 'section');
+      if (!body || typeof body !== 'object' || !('children' in body)) return null;
+      return <section className="wrap section reading-content" id="privacyverklaring">{body.children.map((n, i) => <Tree key={i} node={typeof n === 'object' && 'tag' in n && n.tag === 'h1' ? {...n, tag:'h2'} : n} ctx={ctx} edit={privacyEdit} />)}</section>;
+    }
+    case "privacyDownload": {
+      const privacyEdit = ctx.content.pages?.find(p => p.path === '/privacy');
+      const ref = privacyEdit?.privacyFile?.asset?._ref;
+      const match = /^file-([a-zA-Z0-9]+)-(pdf)$/.exec(ref ?? '');
+      return match ? <p><a className="textlink" href={`https://cdn.sanity.io/files/z4gex0g7/production/${match[1]}.${match[2]}?dl=privacyverklaring-toon-over-leven.pdf`}>Download de privacyverklaring (PDF) ↓</a></p> : null;
     }
     case "welcome":
       return <Template path="@visit" ctx={ctx} />;
@@ -303,9 +335,6 @@ function Slot({
         <section className="form-card" id="kennismaken">
 <h2>{copy.contactTitle}</h2><p>{copy.contactIntro}</p>
           <Formulier compact copy={copy} contact={ctx.content.teksten.praktisch.contact} />
-          <p className="privacy">
-            {copy.privacyIntro} <a href="/privacy">{copy.privacyLink}</a>.
-          </p>
         </section>
       );
     case "video": {
@@ -329,7 +358,7 @@ function Slot({
                 Bekijk alle sponsors →
               </a>
             </div>
-            <Sponsors ctx={ctx} />
+            <Sponsors ctx={ctx} limit={6} />
             <a className="textlink" href="/over-ons/steun-ons">
               Ook bijdragen? →
             </a>
@@ -377,14 +406,14 @@ function Slot({
       return null;
   }
 }
-function Sponsors({ ctx }: { ctx: Context }) {
+function Sponsors({ ctx, limit }: { ctx: Context; limit?: number }) {
   return (
     <div className="sponsor-grid">
-      {ctx.content.sponsoren.map((s) => {
+      {ctx.content.sponsoren.slice(0, limit).map((s) => {
         const contents = (
           <>
             <img src={s.beeld} alt={s.naam} loading="lazy" />
-            <span>{s.naam}</span>
+            {!limit && <span>{s.naam}</span>}
           </>
         );
         return s.web ? (
@@ -425,20 +454,17 @@ function Video({
         <span className="eyebrow">In beeld · IPSO</span>
         <h2>{title}</h2>
         <p>{text}</p>
-        <p className="small">
-          {copy.videoPrivacy}
-        </p>
         <a
           className="textlink"
           href={"https://www.youtube.com/watch?v=" + id}
           target="_blank"
           rel="noopener noreferrer"
         >
-          {copy.videoExternal} ↗
+          {copy.videoExternal} <ArrowUpRight size={18} aria-hidden="true" />
         </a>
         {accepted && (
           <button className="textlink" onClick={() => setAccepted(false)}>
-            {copy.videoRevoke}
+            <X size={18} aria-hidden="true" /> {copy.videoRevoke}
           </button>
         )}
       </div>
@@ -457,12 +483,12 @@ function Video({
             referrerPolicy="strict-origin-when-cross-origin"
           />
         ) : (
-          <button className="video-cover" onClick={() => setAccepted(true)}>
+          <button className="video-cover" onClick={() => setAccepted(true)} aria-label={copy.videoAllow + '. ' + copy.videoPrivacy}>
             <img src={image(["tp4HSjWdbG8", "ukZD8t8OkDQ", "-mYRlxVqYzc"].includes(id) ? "video-" + id : "ipso-groep")} alt="" loading="lazy" />
             <span className="video-play" aria-hidden="true">
-              ▶
+              <Play size={26} fill="currentColor" />
             </span>
-            <span className="video-caption">{copy.videoAllow}</span>
+            <span className="video-caption"><strong>{copy.videoAllow}</strong><span>{copy.videoPrivacy}</span></span>
           </button>
         )}
       </div>
@@ -601,8 +627,8 @@ function SignupAction({ ctx, event }: { ctx: Context; event: Activiteit }) {
   const copy = interfaceCopy(ctx.content);
   if (event.volgeboekt) return <p className="notice">{copy.full}</p>;
   if (!event.aanmelden) return <p className="notice">{copy.noSignup}</p>;
-  const external = event.aanmeldUrl || (event.aanmeldEmail ? `mailto:${event.aanmeldEmail}?subject=${encodeURIComponent('Aanmelden: ' + event.titel + ' — ' + moment(event))}` : undefined);
-  return <a className="btn" href={safeLink(external || eventPath(event, 'aanmelden'))}>{external ? copy.externalSignup : copy.signupLink} →</a>;
+  const href = event.aanmeldEmail ? '/contact?activiteit=' + encodeURIComponent(event.titel) + '#kennismaken' : event.aanmeldUrl ? safeLink(event.aanmeldUrl) : eventPath(event, 'aanmelden');
+  return <a className="btn" href={href}>{event.aanmeldEmail || event.aanmeldUrl ? copy.externalSignup : copy.signupLink} →</a>;
 }
 function ActivityPractical({ ctx, event, type }: { ctx: Context; event?: Activiteit; type?: string }) {
   const a = event || upcoming(ctx, type)[0];
@@ -635,7 +661,7 @@ function RegistrationPage({ ctx }: { ctx: Context }) {
   const [selected, setSelected] = useState(events[0]?.id || '');
   const event = events.find(a => a.id === selected);
   const title = event?.titel || activityTypes[type]?.title || 'Activiteit';
-  return <><Breadcrumb title={'Aanmelden: ' + title} /><PageHero title={'Meedoen aan ' + title} eyebrow="Samen iets doen" img={event ? eventImage(event) : activityTypes[type] ? image(activityTypes[type].image) : undefined} /><div className="wrap contact-layout"><div>{event ? <><h2>{title}</h2><p>{moment(event)}</p><p>{event.locatie || ctx.content.teksten.praktisch.locatie.adres}</p><a className="textlink" href={eventPath(event)}>Terug naar de activiteit →</a></> : <p>{copy.noDate}</p>}</div><section className="form-card"><h2>{copy.signupTitle}</h2>{events.length > 1 && <label>{copy.dateLabel}<select value={selected} onChange={e => setSelected(e.target.value)}>{events.map(a => <option key={a.id} value={a.id}>{moment(a)}</option>)}</select></label>}{event && event.aanmelden && !event.volgeboekt && !event.aanmeldEmail && !event.aanmeldUrl ? <><p>{copy.signupIntro}</p><Formulier key={event.id} compact registration={{ title: event.titel, date: moment(event), id: event.id }} copy={copy} contact={ctx.content.teksten.praktisch.contact} /><p className="privacy">{copy.privacyIntro} <a href="/privacy">{copy.privacyLink}</a>.</p></> : event ? <SignupAction ctx={ctx} event={event} /> : <a className="btn" href="/contact">{copy.contactLink} →</a>}</section></div><Template path="@visit" ctx={ctx} /></>;
+  return <><Breadcrumb title={'Aanmelden: ' + title} /><PageHero title={'Meedoen aan ' + title} eyebrow="Samen iets doen" img={event ? eventImage(event) : activityTypes[type] ? image(activityTypes[type].image) : undefined} /><div className="wrap contact-layout"><div>{event ? <><h2>{title}</h2><p>{moment(event)}</p><p>{event.locatie || ctx.content.teksten.praktisch.locatie.adres}</p><a className="textlink" href={eventPath(event)}>Terug naar de activiteit →</a></> : <p>{copy.noDate}</p>}</div><section className="form-card"><h2>{copy.signupTitle}</h2>{events.length > 1 && <label>{copy.dateLabel}<select value={selected} onChange={e => setSelected(e.target.value)}>{events.map(a => <option key={a.id} value={a.id}>{moment(a)}</option>)}</select></label>}{event && event.aanmelden && !event.volgeboekt && !event.aanmeldEmail && !event.aanmeldUrl ? <><p>{copy.signupIntro}</p><Formulier key={event.id} compact registration={{ title: event.titel, date: moment(event), id: event.id }} copy={copy} contact={ctx.content.teksten.praktisch.contact} /></> : event ? <SignupAction ctx={ctx} event={event} /> : <a className="btn" href="/contact">{copy.contactLink} →</a>}</section></div><Template path="@visit" ctx={ctx} /></>;
 }
 
 export default function Site({ ctx }: { ctx: Context }) {

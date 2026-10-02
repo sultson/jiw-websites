@@ -27,6 +27,7 @@ export type Concept = {
   herhaling?: string;
   herhaalTot?: string;
   overslaan?: string[];
+  vervangtReeks?: {_ref?: string};
   aanmelden?: boolean;
   bijdrage?: string;
   locatie?: string;
@@ -53,6 +54,7 @@ export function alsBron(doc: Concept): AgendaBron | null {
     eindtijd: doc.eindtijd,
     herhaling: (doc.herhaling as AgendaBron['herhaling']) || 'eenmalig',
     herhaalTot: doc.herhaalTot,
+    vervangtReeks: doc.vervangtReeks?._ref,
     // Bewust leeg: de lijst met keren laat juist zien wát er is uitgezet, dus
     // die keren moeten er ín zitten en niet uit gefilterd zijn.
     overslaan: [],

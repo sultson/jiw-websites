@@ -63,6 +63,8 @@ export type AgendaBron = {
   herhaling: Herhaling;
   herhaalTot?: string;
   overslaan: string[];
+  vervangtReeks?: string;
+  reeksFotos?: Img[];
   aanmelden: boolean;
   bijdrage?: string;
   locatie?: string;
