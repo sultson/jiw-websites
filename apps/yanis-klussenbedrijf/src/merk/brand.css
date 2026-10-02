@@ -1,0 +1,9 @@
+:root {
+  --yanis-navy: #142d4e;
+  --yanis-orange: #f27435;
+  --yanis-cool-white: #f4f6f8;
+  --yanis-white: #ffffff;
+  --yanis-font-heading: 'Barlow Condensed', sans-serif;
+  --yanis-font-body: 'Manrope', sans-serif;
+}
+/* Supporting typography only: use supplied SVG artwork for the logo. */

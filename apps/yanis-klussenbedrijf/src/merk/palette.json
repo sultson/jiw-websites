@@ -1,0 +1,10 @@
+{
+  "brand": "Yanis Klussenbedrijf",
+  "direction": "02A Daadkracht",
+  "colors": [
+    {"name":"Navy", "hex":"#142D4E", "rgb":[20,45,78], "cmykApprox":[74,42,0,69]},
+    {"name":"Oranje", "hex":"#F27435", "rgb":[242,116,53], "cmykApprox":[0,52,78,5]},
+    {"name":"Koel wit", "hex":"#F4F6F8", "rgb":[244,246,248], "cmykApprox":[2,1,0,3]}
+  ],
+  "note": "CMYK values are mathematical approximations, not ICC profile conversions."
+}

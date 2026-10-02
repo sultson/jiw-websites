@@ -66,3 +66,7 @@ apps/mts-badkamers/site/loodgieter-en-cv/
 # webklare versies staan in site/video/ en de posters in site/poster/. Zie de
 # README van de app voor hoe je ze uit deze bronnen opnieuw maakt.
 apps/mts-badkamers/assets/media/*.mp4
+
+# De schermafdrukken die scripts/kijk.mjs van elke pagina maakt. Meetresultaat, geen
+# bron: elke run schrijft ze opnieuw, en veertien PNG's per run horen niet in de repo.
+apps/yanis-klussenbedrijf/shots/

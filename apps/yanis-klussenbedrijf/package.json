@@ -1,0 +1,22 @@
+{
+  "name": "@jiw/yanis-klussenbedrijf",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node bouw.mjs",
+    "dev": "node bouw.mjs && wrangler dev --port=3067",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "clean": "rm -rf dist",
+    "lint": "tsc --noEmit -p tsconfig.worker.json",
+    "kijk": "node scripts/kijk.mjs"
+  },
+  "dependencies": {
+    "@jiw/cloudflare-forms": "workspace:*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "typescript": "~5.8.2"
+  }
+}

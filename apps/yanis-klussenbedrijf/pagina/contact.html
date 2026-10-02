@@ -1,0 +1,128 @@
+<!--
+titel: Offerte aanvragen — Yanis Klussenbedrijf
+beschrijving: Vertel wat er moet gebeuren aan uw woning, appartement, winkel of bedrijfsruimte. Bellen, appen of het formulier invullen; wij plannen een opname in.
+beeld: img/w-oplevering.webp
+menu: Contact
+orde: 7
+klasse: p-contact
+-->
+
+<section class="hero hero--kort">
+  <img class="hero__beeld" src="/img/w-oplevering.webp" alt="Een schoon opgeleverde hal met een nieuwe vloer" width="1200" height="896" fetchpriority="high" />
+  <div class="wrap hero__in">
+    <span class="kruimel">Contact</span>
+    <h1>Vertel wat er moet gebeuren</h1>
+    <p>
+      Hoe meer u kwijt kunt over het pand en de ruimtes, hoe gerichter wij de opname kunnen
+      inplannen. Bellen of appen mag ook gewoon.
+    </p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap formblok">
+    <form class="form" id="form" novalidate>
+      <!-- de veldnamen firstName/lastName/email zijn die van @jiw/cloudflare-forms zelf;
+           de labels eromheen zijn Nederlands, de namen mogen dat niet zijn -->
+      <div class="form__rij">
+        <label class="veld">
+          <span>Voornaam</span>
+          <input type="text" name="firstName" autocomplete="given-name" required />
+        </label>
+        <label class="veld">
+          <span>Achternaam <small>(mag leeg)</small></span>
+          <input type="text" name="lastName" autocomplete="family-name" />
+        </label>
+      </div>
+      <div class="form__rij">
+        <label class="veld">
+          <span>Telefoonnummer</span>
+          <input type="tel" name="telefoon" autocomplete="tel" required />
+        </label>
+        <label class="veld">
+          <span>E-mailadres</span>
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+      </div>
+      <div class="form__rij" style="margin-bottom: 16px">
+        <label class="veld">
+          <span>Adres van het pand</span>
+          <input type="text" name="adres" autocomplete="street-address" />
+        </label>
+        <label class="veld">
+          <span>Wat voor pand is het?</span>
+          <select name="pand">
+            <option value="">Maak een keuze</option>
+            <option>Woning</option>
+            <option>Appartement</option>
+            <option>Winkel</option>
+            <option>Kantoor of bedrijfsruimte</option>
+            <option>Iets anders</option>
+          </select>
+        </label>
+      </div>
+
+      <fieldset>
+        <legend>Waar gaat het over?</legend>
+        <div class="keuzes">
+          <label><input type="checkbox" name="werk" value="Complete renovatie" /><em>Complete renovatie</em></label>
+          <label><input type="checkbox" name="werk" value="Badkamer" /><em>Badkamer</em></label>
+          <label><input type="checkbox" name="werk" value="Toilet" /><em>Toilet</em></label>
+          <label><input type="checkbox" name="werk" value="Keuken" /><em>Keuken</em></label>
+          <label><input type="checkbox" name="werk" value="Elektra" /><em>Elektra</em></label>
+          <label><input type="checkbox" name="werk" value="Loodgieterswerk" /><em>Loodgieterswerk</em></label>
+          <label><input type="checkbox" name="werk" value="Tegelwerk" /><em>Tegelwerk</em></label>
+          <label><input type="checkbox" name="werk" value="Schilderwerk" /><em>Schilderwerk</em></label>
+          <label><input type="checkbox" name="werk" value="Vloer" /><em>Vloer</em></label>
+          <label><input type="checkbox" name="werk" value="Weet ik nog niet" /><em>Weet ik nog niet</em></label>
+        </div>
+      </fieldset>
+
+      <label class="veld" style="margin-bottom: 18px">
+        <span>Vertel kort wat er moet gebeuren</span>
+        <textarea name="bericht" placeholder="Bijvoorbeeld: badkamer en toilet van een appartement op twee hoog, alles eruit en nieuw. Wanneer het klaar moet zijn hoor ik graag."></textarea>
+      </label>
+
+      <!-- Lokveld. Staat buiten beeld, buiten de tabvolgorde en buiten de voorleesboom,
+           dus een bezoeker komt er niet bij. Een bot die alles invult wel: dan neemt de
+           worker de aanvraag stil aan en doet er niets mee. Geen Turnstile, dus geen
+           extra verzoek naar buiten voor iemand die gewoon een offerte wil. -->
+      <div class="lok" aria-hidden="true">
+        <label>
+          Bedrijfsnaam
+          <input type="text" name="bedrijf" tabindex="-1" autocomplete="off" />
+        </label>
+      </div>
+
+      <button class="btn btn--vol form__knop" id="formKnop" type="submit">Aanvraag versturen</button>
+      <p class="form__fout" id="formFout" hidden></p>
+    </form>
+
+    <aside class="zijkaart">
+      <h3>Liever direct contact</h3>
+      <p>Bellen gaat het snelst. Appen kan ook, dan kunt u meteen foto's meesturen.</p>
+      <a class="zijkaart__rij" data-bel href="#">
+        <span aria-hidden="true">&#9742;</span>
+        <span><em data-tel-tekst style="font-style: normal"></em><small>Bellen</small></span>
+      </a>
+      <a class="zijkaart__wa" data-wa href="#">
+        {{waMerk}}
+        <span>WhatsApp<small>Stuur foto's van de ruimte mee</small></span>
+      </a>
+
+      <h3 style="margin-top: 26px">Werkgebied</h3>
+      <p>
+        Amsterdam en heel Noord-Holland. Twijfelt u of uw pand er nog bij hoort? Bel even, dan zeggen
+        wij het meteen.
+      </p>
+
+      <h3 style="margin-top: 26px">Wat helpt bij uw aanvraag</h3>
+      <ul class="lijstje">
+        <li>Om hoeveel ruimtes het gaat</li>
+        <li>Of het pand leeg is of bewoond</li>
+        <li>Wanneer het klaar moet zijn</li>
+        <li>Foto's of een plattegrond, als u die heeft</li>
+      </ul>
+    </aside>
+  </div>
+</section>

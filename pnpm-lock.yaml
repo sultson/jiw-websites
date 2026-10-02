@@ -3271,6 +3271,8 @@ importers:
         specifier: ~5.8.2
         version: 5.8.3
 
+  apps/winterswijkvakantiehuis-startpakket-presentatie: {}
+
   apps/ws-nails-and-beauty:
     dependencies:
       '@tailwindcss/vite':
@@ -3356,6 +3358,19 @@ importers:
       tsx:
         specifier: ^4.21.0
         version: 4.21.0
+      typescript:
+        specifier: ~5.8.2
+        version: 5.8.3
+
+  apps/yanis-klussenbedrijf:
+    dependencies:
+      '@jiw/cloudflare-forms':
+        specifier: workspace:*
+        version: link:../../packages/cloudflare-forms
+    devDependencies:
+      '@cloudflare/workers-types':
+        specifier: ^4.20260424.1
+        version: 4.20260424.1
       typescript:
         specifier: ~5.8.2
         version: 5.8.3

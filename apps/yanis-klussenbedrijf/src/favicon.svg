@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#142D4E" />
+  <!-- de Y uit het merkteken zelf, niet nagetekend: hetzelfde pad als in yanis-logo.svg -->
+  <g transform="translate(9.47 7) scale(0.0918) translate(-6 -9)">
+    <path d="M6 9H59L77 65L95 9H148L107 127V205H47V127Z" fill="#FFFFFF" />
+  </g>
+  <rect x="21.5" y="21.5" width="6" height="6" fill="#F27435" />
+</svg>

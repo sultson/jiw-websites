@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="{{taal}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f6f8" />
+    <title>{{titel}}</title>
+    <meta name="description" content="{{beschrijving}}" />
+    <link rel="canonical" href="{{site}}{{pad}}" />
+    {{alternatieven}}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="{{locale}}" />
+    <meta property="og:site_name" content="Yanis Klussenbedrijf" />
+    <meta property="og:title" content="{{titel}}" />
+    <meta property="og:description" content="{{beschrijving}}" />
+    <meta property="og:image" content="{{site}}/{{beeld}}" />
+    <meta property="og:url" content="{{site}}{{pad}}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Manrope:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" as="image" href="/{{beeld}}" fetchpriority="high" />
+    <link rel="stylesheet" href="/styles.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        "@id": "{{site}}/#yanis",
+        "name": "Yanis Klussenbedrijf",
+        "url": "{{site}}/",
+        "telephone": "+31611416736",
+        "description": "{{ldBeschrijving}}",
+        "knowsLanguage": ["nl-NL", "en"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "{{adresStraat}}",
+          "postalCode": "{{adresPostcode}}",
+          "addressLocality": "{{adresPlaats}}",
+          "addressRegion": "{{ldRegio}}",
+          "addressCountry": "NL"
+        },
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "KvK",
+          "value": "{{kvk}}"
+        },
+        "areaServed": [{{ldGebied}}],
+        "makesOffer": [{{ldDiensten}}]
+      }
+    </script>
+  </head>
+
+  <body class="{{klasse}}">
+    <a class="skip" href="#main">{{naarInhoud}}</a>
+    <div class="prog" id="prog" aria-hidden="true"><i></i></div>
+
+    <header class="nav" id="nav">
+      <div class="wrap nav__in">
+        <!-- het aangeleverde vectorlogo zelf; de naam staat al in het aria-label van de link,
+             dus het plaatje krijgt een lege alt en gaat niet dubbel voorgelezen worden -->
+        <a class="brand" href="{{thuis}}" aria-label="Yanis Klussenbedrijf — {{naarStart}}">
+          <img src="/merk/yanis-logo.svg" alt="" width="750" height="358" fetchpriority="high" />
+        </a>
+
+        <!-- de balk draagt het menu zonder Home: het logo links ís de link naar de
+             startpagina, en zeven punten passen niet naast het nummer en de knop.
+             Het uitklapmenu hieronder houdt alle zeven. -->
+        <nav class="nav__links" aria-label="{{hoofdmenu}}">
+          {{menuBalk}}
+        </nav>
+
+        <div class="nav__right">
+          <a
+            class="taal"
+            href="{{anderePad}}"
+            hreflang="{{andereTaal}}"
+            lang="{{andereTaal}}"
+            title="{{andereTitel}}"
+            >{{andereLabel}}</a
+          >
+          <a class="nav__tel" data-bel href="#"><em></em></a>
+          <a class="btn btn--vol nav__cta" href="{{contactPad}}">{{offerte}}</a>
+          <button class="burger" id="burger" aria-label="{{menuwoord}}" aria-expanded="false" aria-controls="drawer">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="drawer" id="drawer" hidden>
+      <nav class="drawer__in" aria-label="{{menuwoord}}">
+        {{menu}}
+        <a href="{{anderePad}}" hreflang="{{andereTaal}}" lang="{{andereTaal}}">{{andereTitel}}</a>
+        <a class="drawer__cta" href="{{contactPad}}">{{offerte}}</a>
+      </nav>
+    </div>
+
+    <main id="main">
+      {{inhoud}}
+    </main>
+
+    <footer class="voet">
+      <div class="wrap voet__in">
+        <div class="voet__merk">
+          <!-- op de navy voet de omgekeerde uitvoering: witte letters, oranje vierkant -->
+          <img class="voet__logo" src="/merk/yanis-logo-wit.svg" alt="Yanis Klussenbedrijf" width="750" height="358" />
+          <p>{{voetRegel}}</p>
+          <p class="voet__gebied"><b>{{gebiedKop}}</b> {{gebiedKort}}</p>
+          <div class="voet__knoppen" id="voetKnoppen"></div>
+        </div>
+        <nav class="voet__kol" aria-label="{{werkKop}}">
+          <h4>{{werkKop}}</h4>
+          {{werkLinks}}
+        </nav>
+        <nav class="voet__kol" aria-label="{{siteKop}}">
+          <h4>{{siteKop}}</h4>
+          {{siteLinks}}
+        </nav>
+        <div class="voet__kol voet__kol--contact">
+          <h4>Contact</h4>
+          <div id="voetContact"></div>
+          <!-- vestigingsadres en KvK horen zichtbaar op de site: Google leest het hier,
+               en een bezoeker die wil weten met wie hij zaken doet ook -->
+          <p class="voet__adres">
+            <b>{{adresKop}}</b>
+            <span>{{adresStraat}}</span>
+            <span>{{adresPostcode}} {{adresPlaats}}</span>
+          </p>
+          <p class="voet__kvk">{{kvkKop}} {{kvk}}</p>
+        </div>
+      </div>
+      <div class="wrap voet__onder">
+        <span>&copy; <span id="jaar">2026</span> Yanis Klussenbedrijf</span>
+        <span class="voet__door">{{doorRegel}}</span>
+      </div>
+    </footer>
+
+    <div class="mobalk" id="mobalk">
+      <a class="mobalk__wa" data-wa href="#">{{waMerk}} {{waKnop}}</a>
+      <a class="mobalk__cta" href="{{contactPad}}" id="mobalkCta">{{offerte}}</a>
+    </div>
+
+    <!-- op de telefoon staat WhatsApp al in de vaste balk hierboven; op desktop stond hij
+         alleen in de tekst. Deze knop staat daar rechtsonder en blijft staan. Hij stond
+         dichtgevouwen tot je erop kwam; nu staat het woord er altijd, in het groen van
+         WhatsApp zelf met hun eigen merkteken. -->
+    <a class="wazweef" data-wa href="#" title="{{waTitel}}" aria-label="{{waTitel}}">
+      <span class="wazweef__teken" aria-hidden="true">{{waMerk}}</span>
+      <span class="wazweef__tekst"><b>{{waKnop}}</b><i>{{waOnder}}</i></span>
+    </a>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

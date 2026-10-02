@@ -1,0 +1,1433 @@
+/* Yanis Klussenbedrijf. Kleuren en letters komen uit de merkhandleiding (richting
+   02A Daadkracht): navy #142D4E, oranje #F27435, koel wit #F4F6F8. Zie src/merk/.
+
+   Navy draagt de tekst en de donkere vlakken, oranje is het accent. Oranje haalt op koel
+   wit maar 2,9:1 en kan dus geen kleine tekst en geen focusrand dragen; navy erop haalt
+   5,4:1 en is wél te lezen. Daarom: oranje vlak met navy letters voor de knoppen, oranje
+   voor strepen, vinkjes en cijfers, navy voor alles wat tekst is. De tinten hieronder zijn
+   afgeleiden voor hover en achtergrond, de drie merkkleuren zelf staan onaangeroerd. */
+
+:root {
+  --paper: #f4f6f8;
+  --wit: #ffffff;
+  --ink: #142d4e;
+  --ink-zacht: #55657c;
+  --lijn: #dbe2ea;
+  --zand: #e7edf3;
+  --navy: #142d4e;
+  --navy-op: #0c1c31;
+  --navy-licht: #e2e9f1;
+  --oranje: #f27435;
+  --oranje-op: #d95f1d;
+  --oranje-licht: #fdeade;
+  /* het merkoranje verdiept tot 4,75:1 op koel wit, alleen voor kleine tekst die oranje
+     moet zijn (opschriften, nummers, pijlen). Vlakken en strepen houden #f27435 zelf. */
+  --oranje-diep: #b84c10;
+  /* WhatsApp's eigen kleuren, alleen voor de WhatsApp-knoppen: hun groen #25d366 en hun
+     donkere teal #075e54 als letterkleur daarop. Wit op dat groen haalt maar 2:1 en is
+     dus niet te lezen; dit haalt 3,9:1 en blijft binnen hun eigen palet. */
+  --wa: #25d366;
+  --wa-op: #1ebe5b;
+  --wa-ink: #075e54;
+  --radius: 14px;
+  --wrap: 1180px;
+  /* koppen Barlow Condensed Bold 700, lopende tekst Manrope 400, nadruk Manrope 600 —
+     precies de drie sneden die de merkhandleiding noemt, verder geen */
+  --kop: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --tekst: 'Manrope', system-ui, sans-serif;
+  --schaduw: 0 1px 2px rgba(20, 45, 78, 0.06), 0 8px 24px rgba(20, 45, 78, 0.08);
+  --schaduw-op: 0 2px 6px rgba(20, 45, 78, 0.1), 0 18px 44px rgba(20, 45, 78, 0.14);
+  /* wat er naast de kop van de startpagina op het scherm staat: de kopbalk, en op een
+     telefoon ook de vaste balk onderin. De kop vult precies wat er overblijft.
+     De kopbalk is 88 en niet 72: het logo mag pas onder de 180px breed zonder onderregel
+     gebruikt worden, en die versie bestaat niet — dus staat het volledige merk erin.
+     --balk staat los van --naast-hero omdat --naast-hero onder 640px de vaste balk
+     erbij telt; de kopbalk zelf blijft daar even hoog. */
+  --balk: 88px;
+  --naast-hero: var(--balk);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 104px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--tekst);
+  font-size: 17px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  /* Zonder deze regel wint het height-attribuut (height="896") van aspect-ratio, want
+     aspect-ratio doet alleen iets als de hoogte auto is. Elk beeld in een split of een
+     dienst stond daardoor 896 px hoog in plaats van 4:3. */
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--kop);
+  line-height: 1.08;
+  /* Barlow Condensed staat al smal; de negatieve spatiëring van de vorige letter maakte
+     het hier dicht. Nul, en de trappen een slag groter omdat condensed kleiner leest. */
+  letter-spacing: 0;
+  margin: 0 0 0.5em;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 6.4vw, 4.6rem);
+}
+h2 {
+  font-size: clamp(1.95rem, 4.1vw, 3rem);
+}
+h3 {
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+.wrap {
+  width: min(100% - 40px, var(--wrap));
+  margin-inline: auto;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: #fff;
+  padding: 12px 18px;
+  z-index: 200;
+}
+.skip:focus {
+  left: 12px;
+  top: 12px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--navy);
+  outline-offset: 3px;
+}
+/* op de navy voet en de donkere secties valt een navy rand weg; daar doet oranje het (4,8:1) */
+.voet :focus-visible,
+.sec--ink :focus-visible {
+  outline-color: var(--oranje);
+}
+
+/* ── leesbalk ───────────────────────────────────────────── */
+.prog {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 120;
+  pointer-events: none;
+}
+.prog i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--oranje);
+  transition: width 0.1s linear;
+}
+
+/* ── kopbalk ────────────────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--paper);
+  border-bottom: 1px solid var(--lijn);
+  transition: box-shadow 0.25s ease;
+}
+.nav--diep {
+  box-shadow: 0 6px 24px rgba(20, 45, 78, 0.1);
+}
+.nav__in {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: var(--balk);
+}
+
+/* Het merk is het aangeleverde vectorlogo, niet nagetekend. De merkhandleiding vraagt de
+   volledige combinatie vanaf circa 180px breed en minstens één oranje vierkant vrij
+   rondom; die marge zit als 40 eenheden in het bestand zelf, dus het logo staat zonder
+   extra padding goed. 182px breed geeft 87px hoog inclusief die marge — daar is --balk
+   op gezet. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex: 0 0 auto;
+}
+.brand img {
+  width: 182px;
+  height: auto;
+  display: block;
+}
+
+.nav__links {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+}
+.nav__links a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 9px 9px;
+  border-radius: 9px;
+  color: var(--ink);
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.nav__links a:hover {
+  background: var(--zand);
+}
+.nav__links a[aria-current='page'] {
+  color: var(--navy);
+  background: var(--navy-licht);
+  box-shadow: inset 0 -2px 0 var(--oranje);
+}
+
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+.nav__cta {
+  padding: 12px 18px;
+}
+.nav__tel {
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+.nav__tel em {
+  font-style: normal;
+}
+.nav__tel:hover {
+  color: var(--oranje-diep);
+}
+
+/* taalknop: laat de ándere taal zien, dus op /en staat er NL */
+.taal {
+  text-decoration: none;
+  font-family: var(--kop);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--lijn);
+  border-radius: 8px;
+  background: var(--wit);
+  color: var(--ink-zacht);
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.taal:hover {
+  color: var(--oranje-diep);
+  border-color: var(--oranje);
+}
+
+.burger {
+  display: none;
+  width: 44px;
+  height: 40px;
+  border: 1px solid var(--lijn);
+  border-radius: 10px;
+  background: var(--wit);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0;
+}
+.burger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--ink);
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+.burger[aria-expanded='true'] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger[aria-expanded='true'] span:nth-child(2) {
+  opacity: 0;
+}
+.burger[aria-expanded='true'] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.drawer {
+  position: fixed;
+  inset: var(--balk) 0 auto 0;
+  z-index: 99;
+  background: var(--paper);
+  border-bottom: 1px solid var(--lijn);
+  box-shadow: var(--schaduw-op);
+}
+.drawer__in {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px 22px;
+  gap: 2px;
+}
+.drawer__in a {
+  text-decoration: none;
+  padding: 13px 4px;
+  border-bottom: 1px solid var(--lijn);
+  font-weight: 500;
+}
+.drawer__cta {
+  margin-top: 14px;
+  background: var(--oranje);
+  color: var(--navy) !important;
+  text-align: center;
+  border-radius: 10px;
+  border: 0 !important;
+  font-weight: 700;
+}
+
+/* ── knoppen ────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: 11px;
+  font-weight: 600;
+  font-size: 0.97rem;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.16s ease, background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: var(--gx, 50%);
+  width: 140px;
+  height: 220%;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.35), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.btn:hover::after {
+  opacity: 1;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+/* de hoofdknop is het oranje vlak met navy letters: 4,8:1, terwijl wit erop maar 2,9:1
+   haalt. Zo draagt het merkoranje de actie zonder dat de tekst wegvalt. */
+.btn--vol {
+  background: var(--oranje);
+  color: var(--navy);
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(242, 116, 53, 0.3);
+}
+.btn--vol:hover {
+  background: var(--oranje-op);
+}
+/* de lichtval in .btn::after is wit en verdwijnt op oranje; daar moet hij donker zijn */
+.btn--vol::after {
+  background: radial-gradient(closest-side, rgba(20, 45, 78, 0.22), transparent);
+}
+.btn--rand {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.btn--rand:hover {
+  background: var(--ink);
+  color: #fff;
+}
+.btn--licht {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+.btn--licht:hover {
+  background: #fff;
+  color: var(--ink);
+}
+.btn--klein {
+  padding: 10px 16px;
+  font-size: 0.9rem;
+}
+
+/* ── kop van een pagina ─────────────────────────────────── */
+.hero {
+  position: relative;
+  /* schermvullend: alles wat er naast staat eraf, svh zodat de adresbalk van een telefoon
+     hem niet te hoog maakt. */
+  min-height: calc(100svh - var(--naast-hero));
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--ink);
+}
+.hero__beeld {
+  position: absolute;
+  inset: -8% 0 -8% 0;
+  width: 100%;
+  height: 116%;
+  object-fit: cover;
+  will-change: transform;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 24, 29, 0.62) 0%, rgba(20, 24, 29, 0.3) 42%, rgba(20, 24, 29, 0.86) 100%);
+}
+.hero__in {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 120px 0 56px;
+  max-width: 760px;
+}
+/* De schermvullende kop staat in het midden (Armando, 28-09-2026). Het onderwerp van het
+   kopbeeld staat op de as — deuropening, raam — dus de tekst hoort daar ook. De korte
+   titelbanden (hero--kort) blijven links: die lijnen uit met de tekst eronder. */
+.hero:not(.hero--kort) {
+  align-items: center;
+}
+.hero:not(.hero--kort) .hero__in {
+  max-width: min(100%, 860px);
+  margin-inline: auto;
+  text-align: center;
+  padding: 96px 0 88px;
+}
+.hero:not(.hero--kort) .hero__in p {
+  margin-inline: auto;
+}
+.hero:not(.hero--kort) .hero__knoppen {
+  justify-content: center;
+}
+/* Middenin staat de tekst niet meer in het donkere onderste deel van het verloop, dus dat
+   verloop moet in het midden ook dekken. Anders staat wit op een lichte wand. */
+.hero:not(.hero--kort)::after {
+  background: linear-gradient(180deg, rgba(20, 24, 29, 0.66) 0%, rgba(20, 24, 29, 0.58) 45%, rgba(20, 24, 29, 0.82) 100%);
+}
+.hero__in h1 {
+  color: #fff;
+  text-wrap: balance;
+}
+.hero__in p {
+  font-size: clamp(1.02rem, 1.7vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 58ch;
+}
+.hero__knoppen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+.hero--kort {
+  min-height: min(52vh, 440px);
+}
+.hero--kort .hero__in {
+  padding: 96px 0 44px;
+}
+
+.woord {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: opkomen 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+@keyframes opkomen {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.kruimel {
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.76);
+  margin-bottom: 14px;
+  display: block;
+}
+
+/* ── lopende band ───────────────────────────────────────── */
+.band {
+  background: var(--ink);
+  color: #fff;
+  overflow: hidden;
+  border-block: 1px solid rgba(255, 255, 255, 0.1);
+}
+.band__spoor {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: schuif 34s linear infinite;
+}
+.band:hover .band__spoor {
+  animation-play-state: paused;
+}
+.band__spoor span {
+  display: inline-flex;
+  align-items: center;
+  gap: 34px;
+  padding: 13px 17px;
+  font-family: var(--kop);
+  font-size: 0.86rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.band__spoor span::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--oranje);
+  border-radius: 50%;
+}
+@keyframes schuif {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── secties ────────────────────────────────────────────── */
+.sec {
+  padding: clamp(56px, 7vw, 94px) 0;
+}
+.sec--zand {
+  background: var(--zand);
+}
+.sec--ink {
+  background: var(--ink);
+  color: #fff;
+}
+.sec--ink h2,
+.sec--ink h3 {
+  color: #fff;
+}
+.sec--ink p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.seckop {
+  max-width: 640px;
+  margin-bottom: 34px;
+}
+.seckop--midden {
+  margin-inline: auto;
+  text-align: center;
+}
+.seckop span {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--oranje-diep);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.sec--ink .seckop span {
+  color: var(--oranje);
+}
+.seckop p {
+  color: var(--ink-zacht);
+  margin-bottom: 0;
+}
+.sec--ink .seckop p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ── kaarten ────────────────────────────────────────────── */
+.raster {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+}
+.raster--3 {
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+}
+
+.kaart {
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--schaduw);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+a.kaart:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--schaduw-op);
+  border-color: var(--oranje);
+}
+.kaart__beeld {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--zand);
+}
+.kaart__beeld img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+a.kaart:hover .kaart__beeld img {
+  transform: scale(1.06);
+}
+.kaart__in {
+  padding: 20px 22px 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.kaart__in h3 {
+  margin-bottom: 6px;
+}
+.kaart__in p {
+  color: var(--ink-zacht);
+  font-size: 0.96rem;
+  margin-bottom: 0;
+}
+.kaart__pijl {
+  margin-top: auto;
+  padding-top: 14px;
+  color: var(--oranje-diep);
+  font-weight: 600;
+  font-size: 0.93rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.kaart__pijl::after {
+  content: '\2192';
+  transition: transform 0.22s ease;
+}
+a.kaart:hover .kaart__pijl::after {
+  transform: translateX(5px);
+}
+
+/* vakken zonder beeld */
+.vakken {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.vak {
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  padding: 22px;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+a.vak:hover {
+  transform: translateY(-3px);
+  border-color: var(--oranje);
+  box-shadow: var(--schaduw);
+}
+.vak h3 {
+  font-size: 1.06rem;
+  margin-bottom: 4px;
+}
+.vak p {
+  color: var(--ink-zacht);
+  font-size: 0.93rem;
+  margin: 0;
+}
+.vak__nr {
+  font-family: var(--kop);
+  font-size: 0.82rem;
+  color: var(--oranje-diep);
+  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* ── troeven ────────────────────────────────────────────── */
+.troeven {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.troef {
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-left: 3px solid var(--oranje);
+  border-radius: 12px;
+  padding: 22px 22px 20px;
+}
+.troef h3 {
+  font-size: 1.05rem;
+}
+.troef p {
+  margin: 0;
+  color: var(--ink-zacht);
+  font-size: 0.95rem;
+}
+
+/* ── split ──────────────────────────────────────────────── */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 5vw, 60px);
+  align-items: center;
+}
+.split--om .split__beeld {
+  order: 2;
+}
+.split__beeld {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--schaduw-op);
+  background: var(--zand);
+}
+.split__beeld img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.split__tekst h2 {
+  margin-bottom: 14px;
+}
+.split__tekst p {
+  color: var(--ink-zacht);
+}
+.sec--ink .split__tekst p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.lijstje {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 22px;
+  display: grid;
+  gap: 9px;
+}
+.lijstje li {
+  padding-left: 28px;
+  position: relative;
+  color: var(--ink-zacht);
+}
+.sec--ink .lijstje li {
+  color: rgba(255, 255, 255, 0.82);
+}
+.lijstje li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 13px;
+  height: 7px;
+  border-left: 2.4px solid var(--oranje);
+  border-bottom: 2.4px solid var(--oranje);
+  transform: rotate(-45deg);
+}
+.sec--ink .lijstje li::before {
+  border-color: var(--oranje);
+}
+
+/* ── dienstblokken ──────────────────────────────────────── */
+.dienst {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(26px, 5vw, 56px);
+  align-items: center;
+  padding: clamp(34px, 5vw, 56px) 0;
+  border-top: 1px solid var(--lijn);
+  scroll-margin-top: 96px;
+}
+.dienst:first-of-type {
+  border-top: 0;
+}
+.dienst:nth-child(even) .dienst__beeld {
+  order: 2;
+}
+.dienst__beeld {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--zand);
+  box-shadow: var(--schaduw);
+}
+.dienst__beeld img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.dienst__tekst h2 {
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+}
+.dienst__tekst p {
+  color: var(--ink-zacht);
+}
+
+/* ── stappen ────────────────────────────────────────────── */
+.stappen {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  counter-reset: stap;
+}
+.stap {
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  position: relative;
+}
+.sec--ink .stap {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+.stap__nr {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--oranje);
+  color: var(--navy);
+  display: grid;
+  place-items: center;
+  font-family: var(--kop);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.stap h3 {
+  font-size: 1.05rem;
+}
+.stap p {
+  margin: 0;
+  color: var(--ink-zacht);
+  font-size: 0.95rem;
+}
+.sec--ink .stap p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ── vragen ─────────────────────────────────────────────── */
+.vragen {
+  max-width: 820px;
+  scroll-margin-top: 96px;
+}
+.vraag {
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.vraag summary {
+  cursor: pointer;
+  padding: 17px 52px 17px 20px;
+  font-weight: 600;
+  font-family: var(--kop);
+  position: relative;
+  list-style: none;
+}
+.vraag summary::-webkit-details-marker {
+  display: none;
+}
+.vraag summary::after {
+  content: '+';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: var(--oranje-diep);
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+.vraag[open] summary::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+.vraag__in {
+  padding: 0 20px 18px;
+  color: var(--ink-zacht);
+}
+.vraag__in p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── oproep ─────────────────────────────────────────────── */
+.oproep {
+  background: var(--navy);
+  color: #fff;
+  border-radius: 18px;
+  padding: clamp(32px, 5vw, 54px);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.oproep h2 {
+  color: #fff;
+  margin-bottom: 8px;
+}
+.oproep p {
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0;
+}
+.oproep__knoppen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* ── formulier ──────────────────────────────────────────── */
+.formblok {
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  gap: clamp(26px, 4vw, 48px);
+  align-items: start;
+}
+.form {
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: var(--radius);
+  padding: clamp(22px, 3vw, 32px);
+  box-shadow: var(--schaduw);
+}
+.form__rij {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 16px;
+}
+.veld {
+  display: block;
+}
+.veld span {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.veld input,
+.veld textarea,
+.veld select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--lijn);
+  border-radius: 10px;
+  font: inherit;
+  font-size: 0.97rem;
+  background: var(--paper);
+  color: var(--ink);
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.veld input:focus,
+.veld textarea:focus,
+.veld select:focus {
+  border-color: var(--navy);
+  background: #fff;
+  outline: none;
+}
+.veld textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 16px;
+}
+fieldset legend {
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 8px;
+}
+.keuzes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.keuzes label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1.5px solid var(--lijn);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.92rem;
+  cursor: pointer;
+  background: var(--paper);
+  transition: border-color 0.16s ease, background 0.16s ease;
+}
+.keuzes label:hover {
+  border-color: var(--oranje);
+}
+.keuzes input {
+  accent-color: var(--oranje);
+}
+.keuzes input:checked + em {
+  font-style: normal;
+  font-weight: 600;
+}
+.keuzes label:has(input:checked) {
+  border-color: var(--oranje);
+  background: var(--oranje-licht);
+}
+.form__knop {
+  width: 100%;
+  margin-top: 4px;
+}
+/* Het lokveld voor bots. Niet display:none en niet hidden: een deel van de bots slaat
+   precies die twee over. Dit haalt hem uit beeld en laat hem bestaan. */
+.lok {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.form__fout {
+  margin-top: 12px;
+  font-size: 0.93rem;
+  color: #b3261e;
+}
+.form__fout[hidden] {
+  display: none;
+}
+.klaar {
+  text-align: center;
+  padding: 26px 8px;
+}
+.klaar__vink {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--oranje-licht);
+  color: var(--oranje-diep);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+  font-size: 1.9rem;
+  animation: pop 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+@keyframes pop {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+}
+.klaar pre {
+  text-align: left;
+  white-space: pre-wrap;
+  background: var(--paper);
+  border: 1px solid var(--lijn);
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 0.85rem;
+  max-height: 260px;
+  overflow: auto;
+  margin-top: 16px;
+}
+
+.zijkaart {
+  background: var(--zand);
+  border-radius: var(--radius);
+  padding: 26px;
+}
+.zijkaart h3 {
+  font-size: 1.1rem;
+}
+.zijkaart p {
+  color: var(--ink-zacht);
+  font-size: 0.95rem;
+}
+.zijkaart__rij {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-top: 1px solid var(--lijn);
+  text-decoration: none;
+  font-weight: 600;
+}
+.zijkaart__rij small {
+  display: block;
+  font-weight: 400;
+  font-size: 0.82rem;
+  color: var(--ink-zacht);
+}
+/* WhatsApp is hier geen regel maar een knop: het is de tweede manier om hem te bereiken */
+.zijkaart__wa {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--wa);
+  color: var(--wa-ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+.zijkaart__wa small {
+  display: block;
+  font-weight: 500;
+  font-size: 0.82rem;
+  opacity: 0.8;
+}
+.zijkaart__wa:hover {
+  background: var(--wa-op);
+}
+
+/* ── voet ───────────────────────────────────────────────── */
+.voet {
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.78);
+  padding: 54px 0 22px;
+  margin-top: 0;
+}
+.voet__logo {
+  width: 210px;
+  height: auto;
+}
+.voet__in {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 32px;
+}
+.voet__merk p {
+  margin-top: 14px;
+  font-size: 0.94rem;
+  max-width: 34ch;
+}
+.voet__merk .voet__gebied {
+  margin-top: 10px;
+  margin-bottom: 16px;
+}
+.voet__gebied b {
+  color: #fff;
+  font-weight: 600;
+}
+.voet__knoppen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.voet__kol h4 {
+  color: #fff;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.voet__kol a,
+.voet__kol__rij {
+  display: block;
+  text-decoration: none;
+  font-size: 0.94rem;
+  padding: 4px 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+.voet__kol a:hover {
+  color: #fff;
+}
+/* adres en KvK in de voet: zelfde maat als de links ernaast, maar geen link */
+.voet__adres {
+  margin-top: 16px;
+  font-size: 0.94rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+.voet__adres b {
+  display: block;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.voet__adres span {
+  display: block;
+}
+.voet__kvk {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.62);
+}
+.voet__onder {
+  margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ── vaste balk op telefoon ─────────────────────────────── */
+.mobalk {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 110;
+  gap: 10px;
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(246, 244, 240, 0.96);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--lijn);
+}
+.mobalk a {
+  flex: 1;
+  text-align: center;
+  padding: 13px 8px;
+  border-radius: 11px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.mobalk__wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--wa);
+  color: var(--wa-ink);
+}
+.mobalk__cta {
+  background: var(--oranje);
+  color: var(--navy);
+}
+.wamerk {
+  flex: none;
+}
+
+/* ── vaste WhatsApp-knop rechtsonder, op desktop ────────── */
+/* Het woord stond dichtgevouwen achter het merkteken en rolde pas open als je erop kwam.
+   Daardoor was het op desktop een groen rondje zonder tekst. Nu staat het er altijd:
+   WhatsApp's eigen groen, hun merkteken in een wit rondje, en twee regels tekst. */
+.wazweef {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 105;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 20px 9px 10px;
+  border-radius: 34px;
+  background: var(--wa);
+  color: var(--wa-ink);
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(7, 94, 84, 0.18), 0 14px 34px rgba(7, 94, 84, 0.26);
+  transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+}
+.wazweef:hover,
+.wazweef:focus-visible {
+  background: var(--wa-op);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(7, 94, 84, 0.2), 0 18px 42px rgba(7, 94, 84, 0.32);
+}
+.wazweef__teken {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--wa);
+  flex: none;
+}
+.wazweef__teken svg {
+  width: 23px;
+  height: 23px;
+}
+.wazweef__tekst {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.wazweef__tekst b {
+  font-family: var(--kop);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.wazweef__tekst i {
+  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  margin-top: 2px;
+}
+/* drie keer een rustige ring eromheen zodra de pagina staat, daarna houdt hij op */
+.wazweef::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid var(--wa);
+  animation: waring 2.4s ease-out 1.4s 3;
+  pointer-events: none;
+}
+@keyframes waring {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.22);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wazweef {
+    transition: none;
+  }
+  .wazweef::after {
+    animation: none;
+  }
+}
+
+/* ── opkomen bij scrollen ───────────────────────────────── */
+.op {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.op.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── de balk past niet meer: menu in de knop ─────────────
+   De pagina is maximaal 1180 breed. Het menu naast het logo, het nummer en de knop heeft
+   daar zo'n 1130 van nodig, dus onder 1220 scherm gaat het menu in de uitklapknop. Stond
+   dit op 980, dan liep de balk buiten de pagina en schoof de hele site zijwaarts mee. */
+@media (max-width: 1219px) {
+  .nav__links,
+  .nav__cta {
+    display: none;
+  }
+  /* het menu duwde de rechterkant naar de rand; dat valt op smal scherm weg */
+  .nav__right {
+    margin-left: auto;
+  }
+  .burger {
+    display: flex;
+  }
+}
+
+/* ── smal ───────────────────────────────────────────────── */
+@media (max-width: 980px) {
+  .split,
+  .dienst,
+  .formblok,
+  .oproep {
+    grid-template-columns: 1fr;
+  }
+  .split--om .split__beeld,
+  .dienst:nth-child(even) .dienst__beeld {
+    order: 0;
+  }
+  .oproep__knoppen {
+    justify-content: flex-start;
+  }
+  .voet__in {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+  .mobalk {
+    display: flex;
+  }
+  /* op de telefoon staat WhatsApp al in de vaste balk; twee knoppen is er een te veel */
+  .wazweef {
+    display: none;
+  }
+  body {
+    padding-bottom: 74px;
+  }
+  /* op de telefoon staat de vaste balk met WhatsApp en Offerte er ook nog onder */
+  :root {
+    --naast-hero: calc(var(--balk) + 74px);
+  }
+  .nav__tel {
+    display: none;
+  }
+  .hero__in {
+    padding: 92px 0 46px;
+  }
+  /* op de telefoon is er minder hoogte: de kop staat nog steeds in het midden, maar met
+     minder lucht erboven en eronder, anders duwt hij de knoppen van het scherm af */
+  .hero:not(.hero--kort) .hero__in {
+    padding: 64px 0 56px;
+  }
+  .form__rij {
+    grid-template-columns: 1fr;
+  }
+  .voet__in {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .op {
+    opacity: 1;
+    transform: none;
+  }
+  .woord {
+    opacity: 1;
+    transform: none;
+  }
+}

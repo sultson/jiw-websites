@@ -1,0 +1,51 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "yanis-klussenbedrijf",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Eén adres per pagina: /contact, niet /contact/. De canonical, de hreflang en de
+    // sitemap gebruiken diezelfde vorm, dus geen enkel geïndexeerd adres hoeft te
+    // omleiden. Een onbekend pad krijgt 404.html met een echte 404 erbij, geen
+    // startpagina met status 200 — dat laatste leest Google als een soft 404.
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "404-page",
+    // Alleen het formulier gaat door de worker. De pagina's komen van de rand zelf,
+    // dus zonder worker-aanroep ertussen.
+    "run_worker_first": ["/api/*"]
+  },
+  "routes": [
+    {
+      "pattern": "yanisklussenbedrijf.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.yanisklussenbedrijf.nl",
+      "custom_domain": true
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["offers@notify.yanisklussenbedrijf.nl"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "yanis-klussenbedrijf",
+    // Gaat voorlopig naar ons, niet naar de klant: eerst zien wat eruit komt.
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_SENDER": "offers@notify.yanisklussenbedrijf.nl"
+  }
+}

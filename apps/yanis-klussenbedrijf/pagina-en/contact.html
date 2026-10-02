@@ -1,0 +1,125 @@
+<!--
+titel: Request a quote — Yanis Klussenbedrijf
+beschrijving: Tell us what needs doing to your house, apartment, shop or commercial space. Call, message or fill in the form, and we will book in a survey.
+beeld: img/w-oplevering.webp
+menu: Contact
+orde: 7
+klasse: p-contact
+-->
+
+<section class="hero hero--kort">
+  <img class="hero__beeld" src="/img/w-oplevering.webp" alt="A hallway handed over clean, with a new floor" width="1200" height="896" fetchpriority="high" />
+  <div class="wrap hero__in">
+    <span class="kruimel">Contact</span>
+    <h1>Tell us what needs doing</h1>
+    <p>
+      The more you can say about the building and the rooms, the better we can plan the survey. Calling
+      or messaging is just as welcome.
+    </p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap formblok">
+    <form class="form" id="form" novalidate>
+      <!-- de veldnamen firstName/lastName/email zijn die van @jiw/cloudflare-forms zelf -->
+      <div class="form__rij">
+        <label class="veld">
+          <span>First name</span>
+          <input type="text" name="firstName" autocomplete="given-name" required />
+        </label>
+        <label class="veld">
+          <span>Surname <small>(may stay empty)</small></span>
+          <input type="text" name="lastName" autocomplete="family-name" />
+        </label>
+      </div>
+      <div class="form__rij">
+        <label class="veld">
+          <span>Phone number</span>
+          <input type="tel" name="telefoon" autocomplete="tel" required />
+        </label>
+        <label class="veld">
+          <span>Email address</span>
+          <input type="email" name="email" autocomplete="email" required />
+        </label>
+      </div>
+
+      <div class="form__rij" style="margin-bottom: 16px">
+        <label class="veld">
+          <span>Address of the building</span>
+          <input type="text" name="adres" autocomplete="street-address" />
+        </label>
+        <label class="veld">
+          <span>What kind of building is it?</span>
+          <select name="pand">
+            <option value="">Make a choice</option>
+            <option>House</option>
+            <option>Apartment</option>
+            <option>Shop</option>
+            <option>Office or commercial space</option>
+            <option>Something else</option>
+          </select>
+        </label>
+      </div>
+
+      <fieldset>
+        <legend>What is it about?</legend>
+        <div class="keuzes">
+          <label><input type="checkbox" name="werk" value="Full renovation" /><em>Full renovation</em></label>
+          <label><input type="checkbox" name="werk" value="Bathroom" /><em>Bathroom</em></label>
+          <label><input type="checkbox" name="werk" value="Toilet" /><em>Toilet</em></label>
+          <label><input type="checkbox" name="werk" value="Kitchen" /><em>Kitchen</em></label>
+          <label><input type="checkbox" name="werk" value="Electrical work" /><em>Electrical work</em></label>
+          <label><input type="checkbox" name="werk" value="Plumbing" /><em>Plumbing</em></label>
+          <label><input type="checkbox" name="werk" value="Tiling" /><em>Tiling</em></label>
+          <label><input type="checkbox" name="werk" value="Painting" /><em>Painting</em></label>
+          <label><input type="checkbox" name="werk" value="Floor" /><em>Floor</em></label>
+          <label><input type="checkbox" name="werk" value="Not sure yet" /><em>Not sure yet</em></label>
+        </div>
+      </fieldset>
+
+      <label class="veld" style="margin-bottom: 18px">
+        <span>Briefly, what needs doing?</span>
+        <textarea name="bericht" placeholder="For example: bathroom and toilet of an apartment on the second floor, everything out and new. Happy to hear when it has to be ready."></textarea>
+      </label>
+
+      <!-- lokveld, zie de Nederlandse contactpagina -->
+      <div class="lok" aria-hidden="true">
+        <label>
+          Company name
+          <input type="text" name="bedrijf" tabindex="-1" autocomplete="off" />
+        </label>
+      </div>
+
+      <button class="btn btn--vol form__knop" id="formKnop" type="submit">Send the request</button>
+      <p class="form__fout" id="formFout" hidden></p>
+    </form>
+
+    <aside class="zijkaart">
+      <h3>Rather get in touch directly</h3>
+      <p>Calling is quickest. A message works too, and then you can send photos straight away.</p>
+      <a class="zijkaart__rij" data-bel href="#">
+        <span aria-hidden="true">&#9742;</span>
+        <span><em data-tel-tekst style="font-style: normal"></em><small>Call us</small></span>
+      </a>
+      <a class="zijkaart__wa" data-wa href="#">
+        {{waMerk}}
+        <span>WhatsApp<small>Send photos of the space along</small></span>
+      </a>
+
+      <h3 style="margin-top: 26px">Area we cover</h3>
+      <p>
+        Amsterdam and across North Holland. Not sure whether your building still falls inside it?
+        Give us a call and we will tell you straight away.
+      </p>
+
+      <h3 style="margin-top: 26px">What helps with your request</h3>
+      <ul class="lijstje">
+        <li>How many rooms it involves</li>
+        <li>Whether the building is empty or lived in</li>
+        <li>When it has to be ready</li>
+        <li>Photos or a floor plan, if you have them</li>
+      </ul>
+    </aside>
+  </div>
+</section>

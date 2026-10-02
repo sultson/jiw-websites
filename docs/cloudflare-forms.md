@@ -13,7 +13,10 @@ Reusable pattern for client-site lead forms in this monorepo.
 
 - One shared R2 bucket: `jiw-form-uploads-prod`.
 - Per-site R2 prefix: `<site-id>/YYYY/MM/<submission-id>/`.
-- R2 lifecycle rule per site prefix. RN Schilders uses 90 days on `rn-schilders/`.
+- R2 lifecycle rule per site prefix. RN Schilders uses 90 days on `rn-schilders/`. The
+  lifecycle API `PUT` replaces the whole rule set, so read the existing rules first and send
+  them back along with the new one — posting only the new rule silently drops every other
+  site's expiry.
 - One Turnstile widget per site.
 - One targeted `send_email` binding per site Worker.
 
@@ -102,5 +105,11 @@ Two rules the renderers now follow on their own:
 4. Add `wrangler.jsonc` with Static Assets, R2, `send_email`, and site vars.
 5. Create a Turnstile widget and commit only the public `VITE_TURNSTILE_SITE_KEY`.
 6. Upload `TURNSTILE_SECRET_KEY` with `wrangler secret put`.
+   Steps 5 and 6 are only for sites that want Turnstile. Most recent sites set
+   `turnstile: false` with a `honeypotField` instead — no extra Cloudflare resource, no secret,
+   and no third-party request for a visitor who just wants a quote.
+   A caveat with repeated field names: `parseFields` walks the FormData once per key, so ten
+   checkboxes all named `werk` arrive as one value and nine are lost. Join them client-side
+   into a single field before posting.
 7. Add or update the R2 lifecycle rule for the app prefix.
 8. Verify the sender domain in Cloudflare Email Service before live cutover.
