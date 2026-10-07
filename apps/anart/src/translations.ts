@@ -117,6 +117,8 @@ export const translations: Record<Lang, Dict> = {
     'terms.a6':       'Meld vóór de behandeling allergieën, huidaandoeningen, medische aandoeningen, medicijnen of recent ondergane behandelingen. Wij mogen een behandeling weigeren of aanpassen wanneer die niet veilig of niet passend is.',
     'terms.h7':       'Klachten en leeftijd',
     'terms.a7':       'Ben je niet tevreden over het resultaat of merk je een probleem op, neem dan binnen 7 dagen na de behandeling contact op, waar mogelijk met duidelijke foto’s. Onze beautybehandelingen zijn beschikbaar vanaf 15 jaar. Voor tattoos geldt dit leeftijdsbeleid niet.',
+    'terms.h8':       'Buiten openingstijden',
+    'terms.a8':       'Een afspraak na sluitingstijd is in overleg mogelijk: na 18:00 van maandag tot en met vrijdag en na 16:00 op zaterdag. Daarvoor rekenen we een toeslag van 4 euro bovenop de prijs van de behandeling. We bespreken dat bij het maken van de afspraak.',
     'terms.full':     'Lees de volledige algemene voorwaarden',
 
     'booking.close':  'Sluiten',
@@ -241,6 +243,8 @@ export const translations: Record<Lang, Dict> = {
     'terms.a6':       'Before the treatment, tell us about allergies, skin conditions, medical conditions, medication or recent procedures. We may refuse or adjust a treatment if it would not be safe or appropriate.',
     'terms.h7':       'Complaints and age',
     'terms.a7':       'If you are not satisfied with the result or notice a problem, contact us within 7 days of the treatment, with clear photographs where possible. Our beauty treatments are available from the age of 15. This age policy does not apply to tattoos.',
+    'terms.h8':       'Outside opening hours',
+    'terms.a8':       'An appointment after closing time is possible on request: after 18:00 from Monday to Friday and after 16:00 on Saturday. For this we charge a surcharge of 4 euros on top of the price of the treatment. We discuss this when you book.',
     'terms.full':     'Read the full terms & conditions',
 
     'booking.close':  'Close',
@@ -365,6 +369,8 @@ export const translations: Record<Lang, Dict> = {
     'terms.a6':       'Przed zabiegiem poinformuj nas o alergiach, chorobach skóry, schorzeniach, przyjmowanych lekach lub niedawno wykonanych zabiegach. Możemy odmówić wykonania zabiegu lub go zmodyfikować, jeśli nie byłby bezpieczny lub odpowiedni.',
     'terms.h7':       'Reklamacje i wiek',
     'terms.a7':       'Jeśli nie jesteś zadowolona z efektu lub zauważysz problem, skontaktuj się z nami w ciągu 7 dni od zabiegu, w miarę możliwości z wyraźnymi zdjęciami. Nasze zabiegi kosmetyczne dostępne są od 15 roku życia. Ta zasada nie dotyczy tatuaży.',
+    'terms.h8':       'Poza godzinami otwarcia',
+    'terms.a8':       'Wizyta po godzinach zamknięcia jest możliwa po uzgodnieniu: po 18:00 od poniedziałku do piątku i po 16:00 w sobotę. Pobieramy za nią dopłatę w wysokości 4 euro do ceny zabiegu. Informujemy o tym przy rezerwacji.',
     'terms.full':     'Przeczytaj pełny regulamin',
 
     'booking.close':  'Zamknij',

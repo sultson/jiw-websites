@@ -3,7 +3,7 @@ import { Minus, Plus, ArrowRight } from 'lucide-react';
 
 type Props = { t: (k: string) => string };
 
-const items = [1, 2, 3, 4, 5, 6, 7] as const;
+const items = [1, 2, 3, 4, 5, 6, 7, 8] as const;
 
 export default function Terms({ t }: Props) {
   const [open, setOpen] = useState<number | null>(1);

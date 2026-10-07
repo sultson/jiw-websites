@@ -31,12 +31,12 @@ export const legal: Record<Lang, LegalDoc> = {
   nl: {
     docTitle: 'Algemene voorwaarden — AnArt Studio Kaatsheuvel',
     metaDescription:
-      'De algemene voorwaarden van AnArt Studio in Kaatsheuvel: aankomst, annuleren en verplaatsen, te laat komen, prijzen, gezondheid, klachten en leeftijd.',
+      'De algemene voorwaarden van AnArt Studio in Kaatsheuvel: aankomst, annuleren en verplaatsen, te laat komen, prijzen, gezondheid, klachten, leeftijd en afspraken buiten openingstijden.',
     back: 'Terug naar home',
     kicker: 'Juridisch',
     title: 'Algemene voorwaarden',
     subtitle: 'AnArt Studio, Kaatsheuvel',
-    version: 'Versie: augustus 2026',
+    version: 'Versie: oktober 2026',
     intro:
       'Om ieder bezoek prettig en ontspannen te laten verlopen, vragen wij onze klanten onderstaande voorwaarden te volgen.',
     articleLabel: 'Artikel',
@@ -131,6 +131,15 @@ export const legal: Record<Lang, LegalDoc> = {
           { kind: 'p', num: '9.2', text: 'Dit leeftijdsbeleid geldt alleen voor beautybehandelingen en heeft geen betrekking op tattoos.' },
         ],
       },
+      {
+        n: '10',
+        title: 'Afspraken buiten openingstijden',
+        blocks: [
+          { kind: 'p', num: '10.1', text: 'Een afspraak buiten onze openingstijden is in overleg mogelijk, afhankelijk van onze beschikbaarheid.' },
+          { kind: 'p', num: '10.2', text: 'Voor een afspraak die na sluitingstijd begint — na 18:00 van maandag tot en met vrijdag en na 16:00 op zaterdag — rekenen wij een toeslag van 4 euro bovenop de prijs van de behandeling.' },
+          { kind: 'p', num: '10.3', text: 'Deze toeslag bespreken wij met je bij het maken van de afspraak.' },
+        ],
+      },
     ],
     closing:
       'Bedankt dat je onze voorwaarden respecteert, en daarmee de tijd van ons team en van andere klanten.',
@@ -142,12 +151,12 @@ export const legal: Record<Lang, LegalDoc> = {
   en: {
     docTitle: 'Terms & conditions — AnArt Studio Kaatsheuvel',
     metaDescription:
-      'The client policy of AnArt Studio in Kaatsheuvel: arrival, cancellations and rescheduling, late arrivals, prices, health, complaints and age policy.',
+      'The client policy of AnArt Studio in Kaatsheuvel: arrival, cancellations and rescheduling, late arrivals, prices, health, complaints, age policy and appointments outside opening hours.',
     back: 'Back to home',
     kicker: 'Legal',
     title: 'Terms & conditions',
     subtitle: 'AnArt Studio, Kaatsheuvel',
-    version: 'Version: August 2026',
+    version: 'Version: October 2026',
     intro:
       'To ensure a smooth and comfortable experience for everyone, we kindly ask our clients to follow the policies below.',
     articleLabel: 'Article',
@@ -242,6 +251,15 @@ export const legal: Record<Lang, LegalDoc> = {
           { kind: 'p', num: '9.2', text: 'This age policy applies only to beauty treatments and services and does not refer to tattoo services.' },
         ],
       },
+      {
+        n: '10',
+        title: 'Appointments outside opening hours',
+        blocks: [
+          { kind: 'p', num: '10.1', text: 'An appointment outside our opening hours is possible on request, subject to our availability.' },
+          { kind: 'p', num: '10.2', text: 'For an appointment starting after closing time — after 18:00 from Monday to Friday and after 16:00 on Saturday — we charge a surcharge of 4 euros on top of the price of the treatment.' },
+          { kind: 'p', num: '10.3', text: 'This surcharge will be discussed with you when the appointment is booked.' },
+        ],
+      },
     ],
     closing:
       'Thank you for respecting our policies and the time of our team and other clients.',
@@ -253,12 +271,12 @@ export const legal: Record<Lang, LegalDoc> = {
   pl: {
     docTitle: 'Regulamin — AnArt Studio Kaatsheuvel',
     metaDescription:
-      'Regulamin salonu AnArt Studio w Kaatsheuvel: przyjście na wizytę, odwoływanie i zmiana terminu, spóźnienia, ceny, zdrowie, reklamacje i wiek.',
+      'Regulamin salonu AnArt Studio w Kaatsheuvel: przyjście na wizytę, odwoływanie i zmiana terminu, spóźnienia, ceny, zdrowie, reklamacje, wiek i wizyty poza godzinami otwarcia.',
     back: 'Powrót na stronę główną',
     kicker: 'Informacje prawne',
     title: 'Regulamin salonu',
     subtitle: 'AnArt Studio, Kaatsheuvel',
-    version: 'Wersja: sierpień 2026',
+    version: 'Wersja: październik 2026',
     intro:
       'Aby każda wizyta przebiegała spokojnie i komfortowo, prosimy naszych klientów o przestrzeganie poniższego regulaminu.',
     articleLabel: 'Punkt',
@@ -351,6 +369,15 @@ export const legal: Record<Lang, LegalDoc> = {
         blocks: [
           { kind: 'p', num: '9.1', text: 'Nasze zabiegi kosmetyczne dostępne są dla klientów od 15 roku życia.' },
           { kind: 'p', num: '9.2', text: 'Ta zasada dotyczy wyłącznie zabiegów kosmetycznych i nie obejmuje usług tatuażu.' },
+        ],
+      },
+      {
+        n: '10',
+        title: 'Wizyty poza godzinami otwarcia',
+        blocks: [
+          { kind: 'p', num: '10.1', text: 'Wizyta poza godzinami otwarcia jest możliwa po uzgodnieniu, w zależności od naszej dostępności.' },
+          { kind: 'p', num: '10.2', text: 'Za wizytę rozpoczynającą się po godzinach zamknięcia — po 18:00 od poniedziałku do piątku i po 16:00 w sobotę — pobieramy dopłatę w wysokości 4 euro do ceny zabiegu.' },
+          { kind: 'p', num: '10.3', text: 'O tej dopłacie informujemy przy rezerwacji wizyty.' },
         ],
       },
     ],
