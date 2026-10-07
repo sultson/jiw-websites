@@ -1719,3 +1719,73 @@ main > section {
     font-size: 0.76rem;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Layout zolang PMU uit staat (zie pmuAan in App.tsx).
+   De grids hieronder zijn gemaakt voor het volledige aanbod. Met minder kaarten
+   blijven er cellen leeg en valt de pagina uit elkaar. Deze blok zet ze weer in
+   balans. Zodra pmuAan op true staat, verdwijnt de .pmu-uit class en doet dit
+   niets meer - niets hier aanpassen zonder dat ook te checken.
+   --------------------------------------------------------------------------- */
+
+/* Eén certificaat in plaats van twee: anders staat de halve kolom leeg. */
+.pmu-uit .training-images {
+  grid-template-columns: minmax(0, 1fr);
+  width: min(100%, 19rem);
+  margin-inline: auto;
+}
+
+@media (min-width: 700px) {
+  /* Drie prijscategorieën in een tweekolomsgrid liet rechtsonder een gat vallen.
+     Multicol balanceert zelf: Lashes en Extra's stapelen naast het grote browblok. */
+  .pmu-uit .price-board {
+    display: block;
+    columns: 2;
+    column-gap: 1rem;
+  }
+
+  .pmu-uit .price-category {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+
+  .pmu-uit .price-category:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Zeven galerijfoto's in plaats van acht: de hoge accenten horen nu allemaal
+     in de eerste rij, anders zakt er een rij half leeg weg. */
+  .pmu-uit .gallery-grid img:nth-child(3) {
+    height: 22rem;
+  }
+
+  .pmu-uit .gallery-grid img:nth-child(7) {
+    height: 18rem;
+  }
+
+  /* Tien hybrid-resultaten: vijf kolommen geeft twee volle rijen, auto-fit liet
+     er twee open vallen. */
+  .pmu-uit .results-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 699px) {
+  /* Zeven foto's in twee kolommen laat er onderaan één alleen staan. */
+  .pmu-uit .gallery-grid img:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Twee behandelingen in vier kolommen liet de rechterhelft leeg. */
+  .pmu-uit .signature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(100%, 50rem);
+  }
+
+  /* Drie reviews in vier kolommen liet een kaartplek leeg. */
+  .pmu-uit .reviews-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

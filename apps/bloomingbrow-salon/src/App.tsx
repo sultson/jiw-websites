@@ -37,6 +37,13 @@ const whatsappUrl = 'https://wa.me/31651720796';
 const email = 'bloomingbrowsalon@gmail.com';
 const termsUrl = 'https://drive.google.com/file/d/1tSKFI6zEMIHyykQRMQ2Thdp4CoVJVoF6/view?usp=sharing';
 
+// Alles rond PMU (powderbrows en ombre lipblush) staat uit zolang de vergunning er niet is.
+// De content blijft hieronder staan: zet pmuAan weer op true en de hele site is terug zoals
+// hij was - behandelkaarten, prijzen, resultaten, certificaat, FAQ en teksten.
+// Let op: ook de titel/description in index.html en de aanbod-items in de schema.org blok
+// daar zijn aangepast, en in Salonized moeten de PMU-diensten los uitgezet worden.
+const pmuAan = false;
+
 type Copy = {
   nav: string[];
   book: string;
@@ -291,6 +298,54 @@ const copy: Record<Lang, Copy> = {
   },
 };
 
+// Teksten die alleen gelden zolang PMU uit staat (zie pmuAan).
+const copyZonderPmu: Record<Lang, Partial<Copy>> = {
+  nl: {
+    heroCaption: 'Browstyling en lashes in Schagen',
+    proof: [
+      { value: '5,0', label: 'Google rating' },
+      { value: 'Allround', label: 'Browstylist' },
+      { value: '1-op-1', label: 'Persoonlijk' },
+      { value: '6 dagen', label: 'Per week open' },
+    ],
+    aboutKicker: 'Meet your brow artist',
+    aboutTags: ['Allround browstylist', 'Browmapping', 'Schagen'],
+    signatureTitle: 'Browstyling met één doel: jouw look in balans.',
+    signatureSub:
+      'Voor een strakke shape, frisse kleur en meer definitie. Kies wat bij jou past.',
+    resultsSub:
+      'Een greep uit recente hybrid tint en browstyling resultaten: geen filters, geen retouche, alleen mooi werk.',
+    trainingSub:
+      'Je gezicht is geen oefenmateriaal. Bloem volgde haar opleiding bij een gecertificeerde academie en houdt haar werkwijze, kleurkennis en hygiëne actueel.',
+    trainingItems: [
+      { title: 'Allround browstylist', sub: 'Browmapping, shape, hybrid tint, browlamination' },
+    ],
+    footer: 'Bloomingbrow salon · Browstyling en lashes in Schagen.',
+  },
+  en: {
+    heroCaption: 'Brow styling and lashes in Schagen',
+    proof: [
+      { value: '5.0', label: 'Google rating' },
+      { value: 'All-round', label: 'Brow stylist' },
+      { value: '1-on-1', label: 'Personal' },
+      { value: '6 days', label: 'Open weekly' },
+    ],
+    aboutKicker: 'Meet your brow artist',
+    aboutTags: ['All-round brow stylist', 'Brow mapping', 'Schagen'],
+    signatureTitle: 'Brow styling with one goal: your look in balance.',
+    signatureSub:
+      'For a clean shape, fresh colour and more definition. Pick what suits you.',
+    resultsSub:
+      'A look at recent hybrid tint and brow styling results: no filters, no retouching, just clean work.',
+    trainingSub:
+      'Your face is not practice material. Bloem trained at a certified academy and keeps her technique, colour knowledge and hygiene current.',
+    trainingItems: [
+      { title: 'All-round brow stylist', sub: 'Brow mapping, shape, hybrid tint, brow lamination' },
+    ],
+    footer: 'Bloomingbrow salon · Brow styling and lashes in Schagen.',
+  },
+};
+
 const signatureTreatments = {
   nl: [
     {
@@ -300,6 +355,7 @@ const signatureTreatments = {
       duration: '240 min',
       image: '/powderbrows-new-3.webp',
       badge: 'PMU',
+      pmu: true,
     },
     {
       title: 'Ombre lipblush',
@@ -308,6 +364,7 @@ const signatureTreatments = {
       duration: '240 min',
       image: '/lipblush-1.webp',
       badge: 'PMU lips',
+      pmu: true,
     },
     {
       title: 'Hybrid brows',
@@ -316,6 +373,7 @@ const signatureTreatments = {
       duration: '60 min',
       image: '/hybrid-tint-new-1.webp',
       badge: 'Brow styling',
+      pmu: false,
     },
     {
       title: 'Harsen & verven',
@@ -324,6 +382,7 @@ const signatureTreatments = {
       duration: '45 min',
       image: '/harsen-verven-result.webp',
       badge: 'Shape & tint',
+      pmu: false,
     },
   ],
   en: [
@@ -334,6 +393,7 @@ const signatureTreatments = {
       duration: '240 min',
       image: '/powderbrows-new-3.webp',
       badge: 'PMU',
+      pmu: true,
     },
     {
       title: 'Ombre lipblush',
@@ -342,6 +402,7 @@ const signatureTreatments = {
       duration: '240 min',
       image: '/lipblush-1.webp',
       badge: 'PMU lips',
+      pmu: true,
     },
     {
       title: 'Hybrid brows',
@@ -350,6 +411,7 @@ const signatureTreatments = {
       duration: '60 min',
       image: '/hybrid-tint-new-1.webp',
       badge: 'Brow styling',
+      pmu: false,
     },
     {
       title: 'Shape & tint',
@@ -358,6 +420,7 @@ const signatureTreatments = {
       duration: '45 min',
       image: '/harsen-verven-result.webp',
       badge: 'Shape & tint',
+      pmu: false,
     },
   ],
 };
@@ -366,6 +429,7 @@ const serviceCategories = {
   nl: [
     {
       title: 'Brow behandelingen',
+      pmu: false,
       icon: Scissors,
       services: [
         ['Only shape', '30', '€17,50'],
@@ -379,6 +443,7 @@ const serviceCategories = {
     },
     {
       title: 'Permanente make-up',
+      pmu: true,
       icon: WandSparkles,
       services: [
         ['Powderbrows new set', '240', '€275,00'],
@@ -393,6 +458,7 @@ const serviceCategories = {
     },
     {
       title: 'Ombre lipblush',
+      pmu: true,
       icon: Palette,
       services: [
         ['Ombre lips new set', '240', '€300,00'],
@@ -401,6 +467,7 @@ const serviceCategories = {
     },
     {
       title: 'Lashes',
+      pmu: false,
       icon: Sparkles,
       services: [
         ['Wimpers verven', '20', '€15,00'],
@@ -408,6 +475,7 @@ const serviceCategories = {
     },
     {
       title: 'Extra behandelingen',
+      pmu: false,
       icon: Check,
       services: [
         ['Kin harsen', '5', '€5,00'],
@@ -418,6 +486,7 @@ const serviceCategories = {
   en: [
     {
       title: 'Brow treatments',
+      pmu: false,
       icon: Scissors,
       services: [
         ['Only shape', '30', '€17.50'],
@@ -431,6 +500,7 @@ const serviceCategories = {
     },
     {
       title: 'Permanent make-up',
+      pmu: true,
       icon: WandSparkles,
       services: [
         ['Powder brows new set', '240', '€275.00'],
@@ -445,6 +515,7 @@ const serviceCategories = {
     },
     {
       title: 'Ombre lipblush',
+      pmu: true,
       icon: Palette,
       services: [
         ['Ombre lips new set', '240', '€300.00'],
@@ -453,6 +524,7 @@ const serviceCategories = {
     },
     {
       title: 'Lashes',
+      pmu: false,
       icon: Sparkles,
       services: [
         ['Lash tint', '20', '€15.00'],
@@ -460,6 +532,7 @@ const serviceCategories = {
     },
     {
       title: 'Extras',
+      pmu: false,
       icon: Check,
       services: [
         ['Chin waxing', '5', '€5.00'],
@@ -479,6 +552,20 @@ const processSteps = {
     ['Book your moment', 'Choose a time online. For PMU, always check first if you already have old permanent make-up.'],
     ['Map it together', 'Bloem looks at shape, colour and your wishes. The treatment starts once the mapping feels right.'],
     ['Leave with aftercare', 'You get clear guidance so the result can heal beautifully and stay polished longer.'],
+  ],
+};
+
+// Stap 1 zonder de PMU-verwijzing (zie pmuAan).
+const processStepsZonderPmu = {
+  nl: [
+    ['Boek je moment', 'Kies online een tijd die past. Twijfel je over welke behandeling bij je past? App me dan eerst even.'],
+    processSteps.nl[1],
+    processSteps.nl[2],
+  ],
+  en: [
+    ['Book your moment', 'Choose a time online. Not sure which treatment suits you? Send me a message first.'],
+    processSteps.en[1],
+    processSteps.en[2],
   ],
 };
 
@@ -527,21 +614,25 @@ const reviews = [
     name: 'Maaike De Groot',
     text:
       'Ik ben bij Bloem langs geweest voor powder brows en ik ben onwijs blij met mijn nieuwe wenkbrauwen. Bloem is super vriendelijk en stelt je echt op je gemak.',
+    pmu: true,
   },
   {
     name: 'Demi de Vos',
     text:
       'Bloem werkt super netjes en precies. Tijdens de afspraak werd ik goed verzorgd met drinken, snacks en gezelligheid. Het eindresultaat is ook echt prachtig.',
+    pmu: false,
   },
   {
     name: 'Floor Bellis',
     text:
       'Bloem luistert goed naar je wensen en neemt echt de tijd om de juiste vorm van je wenkbrauwen te tekenen voordat ze begint.',
+    pmu: false,
   },
   {
     name: 'Myrthe',
     text:
       'Bloem legt alles goed uit en denkt goed mee over je wensen. Je voelt je gelijk op je gemak bij Bloem, super fijn.',
+    pmu: false,
   },
 ];
 
@@ -583,6 +674,24 @@ const faqs = {
       q: 'Where is the salon located?',
       a: 'Bloomingbrow salon is located at Tanjagroenplein 6 in Schagen, behind Picobello. Parking is available right at the door.',
     },
+  ],
+};
+
+// FAQ zonder de PMU-vragen (zie pmuAan).
+const faqsZonderPmu = {
+  nl: [
+    {
+      q: 'Welke behandeling past bij mij?',
+      a: 'Wil je vooral een nette vorm, kies dan shape of shape & verven. Wil je meer huidafdruk en definitie, dan is hybrid tint mooi. Wil je je brows langer omhoog en voller laten staan, dan is browlamination de meest complete keuze. Twijfel je? Stuur een appje, dan denk ik mee.',
+    },
+    faqs.nl[2],
+  ],
+  en: [
+    {
+      q: 'Which treatment should I choose?',
+      a: 'For a clean shape, choose shape or shape & tint. For more skin stain and definition, hybrid tint is a good option. To keep your brows lifted and looking fuller for longer, brow lamination is the most complete choice. Not sure? Send a message and I\'ll think along.',
+    },
+    faqs.en[2],
   ],
 };
 
@@ -662,11 +771,16 @@ export default function App() {
   const [navSolid, setNavSolid] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
-  const [resultsTab, setResultsTab] = useState<'powder' | 'hybrid' | 'lipblush'>('powder');
-  const c = copy[lang];
-  const signature = signatureTreatments[lang];
-  const categories = serviceCategories[lang];
-  const steps = processSteps[lang];
+  const [resultsTab, setResultsTab] = useState<'powder' | 'hybrid' | 'lipblush'>(
+    pmuAan ? 'powder' : 'hybrid',
+  );
+  const c = pmuAan ? copy[lang] : { ...copy[lang], ...copyZonderPmu[lang] };
+  const signature = signatureTreatments[lang].filter(item => pmuAan || !item.pmu);
+  const categories = serviceCategories[lang].filter(category => pmuAan || !category.pmu);
+  const steps = pmuAan ? processSteps[lang] : processStepsZonderPmu[lang];
+  const faqList = pmuAan ? faqs[lang] : faqsZonderPmu[lang];
+  const galleryItems = gallery.filter(([src]) => pmuAan || !src.includes('pmu'));
+  const reviewList = reviews.filter(review => pmuAan || !review.pmu);
 
   const navItems = useMemo(
     () => [
@@ -696,15 +810,18 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const resultTabs = [
-    ['powder', c.powderTab, powderResults],
-    ['hybrid', c.hybridTab, hybridResults],
-    ['lipblush', c.lipblushTab, lipblushResults],
-  ] as const;
-  const activeResults = resultTabs.find(([key]) => key === resultsTab)?.[2] ?? powderResults;
+  const resultTabs = (
+    [
+      ['powder', c.powderTab, powderResults],
+      ['hybrid', c.hybridTab, hybridResults],
+      ['lipblush', c.lipblushTab, lipblushResults],
+    ] as const
+  ).filter(([key]) => pmuAan || key === 'hybrid');
+  const activeResults =
+    resultTabs.find(([key]) => key === resultsTab)?.[2] ?? resultTabs[0][2];
 
   return (
-    <div className="site-shell">
+    <div className={pmuAan ? 'site-shell' : 'site-shell pmu-uit'}>
       <header className={`site-nav${navSolid || menuOpen ? ' is-solid' : ''}`}>
         <a href="#top" className="brand" aria-label="Bloomingbrow salon">
           <span>Blooming<span>brow</span></span>
@@ -862,6 +979,7 @@ export default function App() {
             ))}
           </div>
 
+          {pmuAan && (
           <article className="ombre-panel">
             <div className="ombre-media">
               <img src="/lipblush-2.webp" alt="Ombre lips resultaat bij Bloomingbrow salon" loading="lazy" />
@@ -885,6 +1003,7 @@ export default function App() {
               </button>
             </div>
           </article>
+          )}
         </section>
 
         <section id="resultaten" className="results-section">
@@ -893,6 +1012,7 @@ export default function App() {
             <h2>{c.resultsTitle}</h2>
             <p>{c.resultsSub}</p>
           </div>
+          {resultTabs.length > 1 && (
           <div className="results-tabs" role="tablist">
             {resultTabs.map(([key, label]) => (
               <button
@@ -907,6 +1027,7 @@ export default function App() {
               </button>
             ))}
           </div>
+          )}
           <div className="results-grid">
             {activeResults.map(src => (
               <figure key={src} className="result-card">
@@ -978,7 +1099,9 @@ export default function App() {
             </div>
             <div className="training-images">
               <img src="/certificate-allround.webp" alt="Certificate Allround Browstylist - Bloem Boekel" loading="lazy" />
-              <img src="/certificate-powderbrows.webp" alt="Certificate Powder Brows Basic Course - Bloem Boekel" loading="lazy" />
+              {pmuAan && (
+                <img src="/certificate-powderbrows.webp" alt="Certificate Powder Brows Basic Course - Bloem Boekel" loading="lazy" />
+              )}
             </div>
           </div>
         </section>
@@ -1006,7 +1129,7 @@ export default function App() {
             <p>{c.gallerySub}</p>
           </div>
           <div className="gallery-grid">
-            {gallery.map(([src, alt]) => (
+            {galleryItems.map(([src, alt]) => (
               <img key={src} src={src} alt={alt} loading="lazy" />
             ))}
           </div>
@@ -1019,7 +1142,7 @@ export default function App() {
             <p>{c.reviewsSub}</p>
           </div>
           <div className="reviews-grid">
-            {reviews.map(review => (
+            {reviewList.map(review => (
               <article className="review-card" key={review.name}>
                 <Stars />
                 <p>"{review.text}"</p>
@@ -1116,7 +1239,7 @@ export default function App() {
             <h2>{c.faqTitle}</h2>
           </div>
           <div className="faq-list">
-            {faqs[lang].map((faq, index) => {
+            {faqList.map((faq, index) => {
               const isOpen = openFaq === index;
               return (
                 <article className="faq-item" key={faq.q}>
