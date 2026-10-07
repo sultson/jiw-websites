@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kerstbomen, kransen en verlichting in Ouddorp | Bloei!</title>
+    <meta name="description" content="Vanaf begin november staat Bloei! in Ouddorp in het teken van kerst: kerstbomen, kransen, verlichting en accessoires. Kransen ook op bestelling." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#f1f6e8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/img/icon-96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- De twee letters staan onder een vaste naam in /fonts (zie
+         scripts/fonts.mjs), zodat ze hier bij naam genoemd kunnen worden. Zonder
+         deze twee regels ontdekt de browser ze pas nadat hij het stijlblad heeft
+         gelezen, en staat de tekst tot dat moment in een vervangende letter. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-wght.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-latin-wght.woff2" crossorigin />
+
+    <link rel="preload" as="image" href="/img/seizoen-najaar.webp" type="image/webp" fetchpriority="high" />
+    <link rel="canonical" href="%SITE_URL%/kerst/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bloei!" />
+    <meta property="og:title" content="Kerstbomen, kransen en verlichting in Ouddorp | Bloei!" />
+    <meta property="og:description" content="Vanaf begin november gaat de hal om: kerstbomen, kransen, verlichting en een tafel vol accessoires." />
+    <meta property="og:url" content="%SITE_URL%/kerst/" />
+    <meta property="og:image" content="%SITE_URL%/img/og-kerst.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="De buitentafels van Bloei! in het najaar, vol chrysanten in geel, rood en oranje" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": "%SITE_URL%/kerst/#dienst",
+      "name": "Kerst bij Bloei!",
+      "serviceType": "Kerstbomen, kerstkransen, kerstverlichting en kerstdecoratie",
+      "description": "Kerstbomen in verschillende maten, kerstkransen kaal of opgemaakt, kerstverlichting voor binnen en buiten, en kerstaccessoires. Kransen en kerststukjes ook op bestelling in eigen kleuren.",
+      "url": "%SITE_URL%/kerst/",
+      "isPartOf": { "@id": "%SITE_URL%/#website" },
+      "areaServed": [
+        { "@type": "City", "name": "Ouddorp" },
+        { "@type": "AdministrativeArea", "name": "Goeree-Overflakkee" }
+      ],
+      "provider": { "@id": "%SITE_URL%/#winkel" }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Bloei!", "item": "%SITE_URL%/" },
+        { "@type": "ListItem", "position": 2, "name": "Kerst", "item": "%SITE_URL%/kerst/" }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/pages/kerst.entry.tsx"></script>
+  </body>
+</html>

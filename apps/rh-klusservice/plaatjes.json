@@ -1,0 +1,2188 @@
+{
+ "/foto/barrel-sauna-gazon-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/barrel-sauna-gazon-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/barrel-sauna-gazon-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/barrel-sauna-gazon-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/barrel-sauna-gazon-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/barrel-sauna-gazon-1050.webp"
+ },
+ "/foto/barrel-sauna-gazon.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/barrel-sauna-gazon-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/barrel-sauna-gazon-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/barrel-sauna-gazon-1050.webp"
+ },
+ "/foto/barrel-sauna-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/barrel-sauna-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/barrel-sauna-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/barrel-sauna-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/barrel-sauna-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/barrel-sauna-1050.webp"
+ },
+ "/foto/barrel-sauna-vlonder-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/barrel-sauna-vlonder-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/barrel-sauna-vlonder-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/barrel-sauna-vlonder-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/barrel-sauna-vlonder-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/barrel-sauna-vlonder-1050.webp"
+ },
+ "/foto/barrel-sauna-vlonder.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/barrel-sauna-vlonder-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/barrel-sauna-vlonder-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/barrel-sauna-vlonder-1050.webp"
+ },
+ "/foto/barrel-sauna.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/barrel-sauna-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/barrel-sauna-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/barrel-sauna-1050.webp"
+ },
+ "/foto/binnendeur-gang-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-gang-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/binnendeur-gang-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/binnendeur-gang-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/binnendeur-gang-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-gang-1050.webp"
+ },
+ "/foto/binnendeur-gang.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-gang-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/binnendeur-gang-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-gang-1050.webp"
+ },
+ "/foto/binnendeur-glas-groen-klein.jpg": {
+  "breed": 520,
+  "hoog": 924,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-glas-groen-klein-286.avif",
+    "ext": "avif",
+    "breed": 286,
+    "hoog": 508
+   },
+   {
+    "pad": "/foto/binnendeur-glas-groen-klein-286.webp",
+    "ext": "webp",
+    "breed": 286,
+    "hoog": 508
+   },
+   {
+    "pad": "/foto/binnendeur-glas-groen-klein-520.avif",
+    "ext": "avif",
+    "breed": 520,
+    "hoog": 924
+   },
+   {
+    "pad": "/foto/binnendeur-glas-groen-klein-520.webp",
+    "ext": "webp",
+    "breed": 520,
+    "hoog": 924
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-glas-groen-520.webp"
+ },
+ "/foto/binnendeur-glas-groen.jpg": {
+  "breed": 520,
+  "hoog": 924,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-glas-groen-520.avif",
+    "ext": "avif",
+    "breed": 520,
+    "hoog": 924
+   },
+   {
+    "pad": "/foto/binnendeur-glas-groen-520.webp",
+    "ext": "webp",
+    "breed": 520,
+    "hoog": 924
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-glas-groen-520.webp"
+ },
+ "/foto/binnendeur-kachel-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-kachel-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/binnendeur-kachel-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/binnendeur-kachel-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/binnendeur-kachel-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-kachel-1050.webp"
+ },
+ "/foto/binnendeur-kachel.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-kachel-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/binnendeur-kachel-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-kachel-1050.webp"
+ },
+ "/foto/binnendeur-lamp-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-lamp-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/binnendeur-lamp-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/binnendeur-lamp-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/binnendeur-lamp-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-lamp-1050.webp"
+ },
+ "/foto/binnendeur-lamp.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-lamp-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/binnendeur-lamp-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-lamp-1050.webp"
+ },
+ "/foto/binnendeur-overloop-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-overloop-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/binnendeur-overloop-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/binnendeur-overloop-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/binnendeur-overloop-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-overloop-1050.webp"
+ },
+ "/foto/binnendeur-overloop.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-overloop-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/binnendeur-overloop-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-overloop-1050.webp"
+ },
+ "/foto/binnendeur-paneel-groen-klein.jpg": {
+  "breed": 520,
+  "hoog": 924,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-paneel-groen-klein-286.avif",
+    "ext": "avif",
+    "breed": 286,
+    "hoog": 508
+   },
+   {
+    "pad": "/foto/binnendeur-paneel-groen-klein-286.webp",
+    "ext": "webp",
+    "breed": 286,
+    "hoog": 508
+   },
+   {
+    "pad": "/foto/binnendeur-paneel-groen-klein-520.avif",
+    "ext": "avif",
+    "breed": 520,
+    "hoog": 924
+   },
+   {
+    "pad": "/foto/binnendeur-paneel-groen-klein-520.webp",
+    "ext": "webp",
+    "breed": 520,
+    "hoog": 924
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-paneel-groen-520.webp"
+ },
+ "/foto/binnendeur-paneel-groen.jpg": {
+  "breed": 520,
+  "hoog": 924,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-paneel-groen-520.avif",
+    "ext": "avif",
+    "breed": 520,
+    "hoog": 924
+   },
+   {
+    "pad": "/foto/binnendeur-paneel-groen-520.webp",
+    "ext": "webp",
+    "breed": 520,
+    "hoog": 924
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-paneel-groen-520.webp"
+ },
+ "/foto/binnendeur-wit-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-wit-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/binnendeur-wit-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/binnendeur-wit-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/binnendeur-wit-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-wit-1050.webp"
+ },
+ "/foto/binnendeur-wit.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/binnendeur-wit-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/binnendeur-wit-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/binnendeur-wit-1050.webp"
+ },
+ "/foto/buitendeur-gevel-klein.jpg": {
+  "breed": 484,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/buitendeur-gevel-klein-266.avif",
+    "ext": "avif",
+    "breed": 266,
+    "hoog": 418
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-klein-266.webp",
+    "ext": "webp",
+    "breed": 266,
+    "hoog": 418
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-klein-484.avif",
+    "ext": "avif",
+    "breed": 484,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-klein-484.webp",
+    "ext": "webp",
+    "breed": 484,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/buitendeur-gevel-880.webp"
+ },
+ "/foto/buitendeur-gevel.jpg": {
+  "breed": 892,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/buitendeur-gevel-440.avif",
+    "ext": "avif",
+    "breed": 440,
+    "hoog": 691
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-440.webp",
+    "ext": "webp",
+    "breed": 440,
+    "hoog": 691
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-640.avif",
+    "ext": "avif",
+    "breed": 640,
+    "hoog": 1004
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-640.webp",
+    "ext": "webp",
+    "breed": 640,
+    "hoog": 1004
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-880.avif",
+    "ext": "avif",
+    "breed": 880,
+    "hoog": 1381
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-880.webp",
+    "ext": "webp",
+    "breed": 880,
+    "hoog": 1381
+   }
+  ],
+  "mobiel": [
+   {
+    "pad": "/foto/buitendeur-gevel-mob-440.avif",
+    "ext": "avif",
+    "breed": 440,
+    "hoog": 293
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-mob-440.webp",
+    "ext": "webp",
+    "breed": 440,
+    "hoog": 293
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-mob-640.avif",
+    "ext": "avif",
+    "breed": 640,
+    "hoog": 427
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-mob-640.webp",
+    "ext": "webp",
+    "breed": 640,
+    "hoog": 427
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-mob-740.avif",
+    "ext": "avif",
+    "breed": 740,
+    "hoog": 493
+   },
+   {
+    "pad": "/foto/buitendeur-gevel-mob-740.webp",
+    "ext": "webp",
+    "breed": 740,
+    "hoog": 493
+   }
+  ],
+  "mobielTot": 980,
+  "groot": "/foto/buitendeur-gevel-880.webp"
+ },
+ "/foto/dak-dakkapel-boven-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/dak-dakkapel-boven-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dak-dakkapel-boven-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dak-dakkapel-boven-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/dak-dakkapel-boven-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dak-dakkapel-boven-1050.webp"
+ },
+ "/foto/dak-dakkapel-boven.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/dak-dakkapel-boven-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/dak-dakkapel-boven-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dak-dakkapel-boven-1050.webp"
+ },
+ "/foto/dakkapel-buiten-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/dakkapel-buiten-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakkapel-buiten-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakkapel-buiten-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/dakkapel-buiten-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakkapel-buiten-1050.webp"
+ },
+ "/foto/dakkapel-buiten.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/dakkapel-buiten-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/dakkapel-buiten-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakkapel-buiten-1050.webp"
+ },
+ "/foto/dakkapel-pannendak.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/dakkapel-pannendak-440.avif",
+    "ext": "avif",
+    "breed": 440,
+    "hoog": 587
+   },
+   {
+    "pad": "/foto/dakkapel-pannendak-440.webp",
+    "ext": "webp",
+    "breed": 440,
+    "hoog": 587
+   },
+   {
+    "pad": "/foto/dakkapel-pannendak-640.avif",
+    "ext": "avif",
+    "breed": 640,
+    "hoog": 853
+   },
+   {
+    "pad": "/foto/dakkapel-pannendak-640.webp",
+    "ext": "webp",
+    "breed": 640,
+    "hoog": 853
+   },
+   {
+    "pad": "/foto/dakkapel-pannendak-880.avif",
+    "ext": "avif",
+    "breed": 880,
+    "hoog": 1173
+   },
+   {
+    "pad": "/foto/dakkapel-pannendak-880.webp",
+    "ext": "webp",
+    "breed": 880,
+    "hoog": 1173
+   },
+   {
+    "pad": "/foto/dakkapel-pannendak-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/dakkapel-pannendak-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [
+   {
+    "pad": "/foto/dakkapel-pannendak-mob-440.avif",
+    "ext": "avif",
+    "breed": 440,
+    "hoog": 293
+   },
+   {
+    "pad": "/foto/dakkapel-pannendak-mob-440.webp",
+    "ext": "webp",
+    "breed": 440,
+    "hoog": 293
+   },
+   {
+    "pad": "/foto/dakkapel-pannendak-mob-640.avif",
+    "ext": "avif",
+    "breed": 640,
+    "hoog": 427
+   },
+   {
+    "pad": "/foto/dakkapel-pannendak-mob-640.webp",
+    "ext": "webp",
+    "breed": 640,
+    "hoog": 427
+   },
+   {
+    "pad": "/foto/dakkapel-pannendak-mob-740.avif",
+    "ext": "avif",
+    "breed": 740,
+    "hoog": 493
+   },
+   {
+    "pad": "/foto/dakkapel-pannendak-mob-740.webp",
+    "ext": "webp",
+    "breed": 740,
+    "hoog": 493
+   }
+  ],
+  "mobielTot": 860,
+  "groot": "/foto/dakkapel-pannendak-1050.webp"
+ },
+ "/foto/dakkapel-steiger-voor-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/dakkapel-steiger-voor-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakkapel-steiger-voor-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakkapel-steiger-voor-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/dakkapel-steiger-voor-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakkapel-steiger-voor-1050.webp"
+ },
+ "/foto/dakkapel-steiger-voor.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/dakkapel-steiger-voor-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/dakkapel-steiger-voor-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakkapel-steiger-voor-1050.webp"
+ },
+ "/foto/dakraam-badkamer-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-badkamer-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-badkamer-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-badkamer-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/dakraam-badkamer-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-badkamer-1050.webp"
+ },
+ "/foto/dakraam-badkamer.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-badkamer-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/dakraam-badkamer-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-badkamer-1050.webp"
+ },
+ "/foto/dakraam-dubbel-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-dubbel-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-dubbel-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-dubbel-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/dakraam-dubbel-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-dubbel-1050.webp"
+ },
+ "/foto/dakraam-dubbel.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-dubbel-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/dakraam-dubbel-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-dubbel-1050.webp"
+ },
+ "/foto/dakraam-nis-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-nis-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-nis-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-nis-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/dakraam-nis-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-nis-1050.webp"
+ },
+ "/foto/dakraam-nis.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-nis-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/dakraam-nis-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-nis-1050.webp"
+ },
+ "/foto/dakraam-pannendak-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-pannendak-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-pannendak-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-pannendak-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/dakraam-pannendak-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-pannendak-1050.webp"
+ },
+ "/foto/dakraam-pannendak.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-pannendak-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/dakraam-pannendak-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-pannendak-1050.webp"
+ },
+ "/foto/dakraam-zolder-vloer-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-zolder-vloer-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-zolder-vloer-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-zolder-vloer-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/dakraam-zolder-vloer-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-zolder-vloer-1050.webp"
+ },
+ "/foto/dakraam-zolder-vloer.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-zolder-vloer-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/dakraam-zolder-vloer-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-zolder-vloer-1050.webp"
+ },
+ "/foto/deuren-gang-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/deuren-gang-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/deuren-gang-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/deuren-gang-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/deuren-gang-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/deuren-gang-1050.webp"
+ },
+ "/foto/deuren-gang.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/deuren-gang-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/deuren-gang-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/deuren-gang-1050.webp"
+ },
+ "/foto/deuren-overloop-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/deuren-overloop-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/deuren-overloop-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/deuren-overloop-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/deuren-overloop-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/deuren-overloop-1050.webp"
+ },
+ "/foto/deuren-overloop.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/deuren-overloop-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/deuren-overloop-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/deuren-overloop-1050.webp"
+ },
+ "/foto/keuken-aanbouw-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/keuken-aanbouw-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/keuken-aanbouw-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/keuken-aanbouw-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/keuken-aanbouw-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/keuken-aanbouw-1050.webp"
+ },
+ "/foto/keuken-aanbouw.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/keuken-aanbouw-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/keuken-aanbouw-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/keuken-aanbouw-1050.webp"
+ },
+ "/foto/keuken-eiland-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/keuken-eiland-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/keuken-eiland-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/keuken-eiland-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/keuken-eiland-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/keuken-eiland-1050.webp"
+ },
+ "/foto/keuken-eiland.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/keuken-eiland-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/keuken-eiland-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/keuken-eiland-1050.webp"
+ },
+ "/foto/keuken-hout-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/keuken-hout-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/keuken-hout-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/keuken-hout-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/keuken-hout-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/keuken-hout-1050.webp"
+ },
+ "/foto/keuken-hout.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/keuken-hout-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/keuken-hout-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/keuken-hout-1050.webp"
+ },
+ "/foto/keuken-lang-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/keuken-lang-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/keuken-lang-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/keuken-lang-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/keuken-lang-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/keuken-lang-1050.webp"
+ },
+ "/foto/keuken-lang.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/keuken-lang-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/keuken-lang-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/keuken-lang-1050.webp"
+ },
+ "/foto/keuken-wit-zwart-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/keuken-wit-zwart-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/keuken-wit-zwart-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/keuken-wit-zwart-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/keuken-wit-zwart-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/keuken-wit-zwart-1050.webp"
+ },
+ "/foto/keuken-wit-zwart.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/keuken-wit-zwart-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/keuken-wit-zwart-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/keuken-wit-zwart-1050.webp"
+ },
+ "/foto/overkapping-tuin-klein.jpg": {
+  "breed": 760,
+  "hoog": 570,
+  "varianten": [
+   {
+    "pad": "/foto/overkapping-tuin-klein-418.avif",
+    "ext": "avif",
+    "breed": 418,
+    "hoog": 314
+   },
+   {
+    "pad": "/foto/overkapping-tuin-klein-418.webp",
+    "ext": "webp",
+    "breed": 418,
+    "hoog": 314
+   },
+   {
+    "pad": "/foto/overkapping-tuin-klein-760.avif",
+    "ext": "avif",
+    "breed": 760,
+    "hoog": 570
+   },
+   {
+    "pad": "/foto/overkapping-tuin-klein-760.webp",
+    "ext": "webp",
+    "breed": 760,
+    "hoog": 570
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/overkapping-tuin-1024.webp"
+ },
+ "/foto/overkapping-tuin.jpg": {
+  "breed": 1024,
+  "hoog": 768,
+  "varianten": [
+   {
+    "pad": "/foto/overkapping-tuin-1024.avif",
+    "ext": "avif",
+    "breed": 1024,
+    "hoog": 768
+   },
+   {
+    "pad": "/foto/overkapping-tuin-1024.webp",
+    "ext": "webp",
+    "breed": 1024,
+    "hoog": 768
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/overkapping-tuin-1024.webp"
+ },
+ "/foto/plafond-dakraam-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/plafond-dakraam-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/plafond-dakraam-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/plafond-dakraam-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/plafond-dakraam-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/plafond-dakraam-1050.webp"
+ },
+ "/foto/plafond-dakraam.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/plafond-dakraam-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/plafond-dakraam-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/plafond-dakraam-1050.webp"
+ },
+ "/foto/sauna-badkamer-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/sauna-badkamer-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/sauna-badkamer-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/sauna-badkamer-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/sauna-badkamer-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/sauna-badkamer-1050.webp"
+ },
+ "/foto/sauna-badkamer.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/sauna-badkamer-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/sauna-badkamer-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/sauna-badkamer-1050.webp"
+ },
+ "/foto/saunacabine-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/saunacabine-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/saunacabine-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/saunacabine-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/saunacabine-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/saunacabine-1050.webp"
+ },
+ "/foto/saunacabine.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/saunacabine-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/saunacabine-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/saunacabine-1050.webp"
+ },
+ "/foto/tuinhuis-hottub-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/tuinhuis-hottub-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/tuinhuis-hottub-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/tuinhuis-hottub-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/tuinhuis-hottub-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/tuinhuis-hottub-1050.webp"
+ },
+ "/foto/tuinhuis-hottub.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/tuinhuis-hottub-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/tuinhuis-hottub-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/tuinhuis-hottub-1050.webp"
+ },
+ "/foto/tuinhuis-veranda-klein.jpg": {
+  "breed": 760,
+  "hoog": 570,
+  "varianten": [
+   {
+    "pad": "/foto/tuinhuis-veranda-klein-418.avif",
+    "ext": "avif",
+    "breed": 418,
+    "hoog": 314
+   },
+   {
+    "pad": "/foto/tuinhuis-veranda-klein-418.webp",
+    "ext": "webp",
+    "breed": 418,
+    "hoog": 314
+   },
+   {
+    "pad": "/foto/tuinhuis-veranda-klein-760.avif",
+    "ext": "avif",
+    "breed": 760,
+    "hoog": 570
+   },
+   {
+    "pad": "/foto/tuinhuis-veranda-klein-760.webp",
+    "ext": "webp",
+    "breed": 760,
+    "hoog": 570
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/tuinhuis-veranda-1024.webp"
+ },
+ "/foto/tuinhuis-veranda.jpg": {
+  "breed": 1024,
+  "hoog": 768,
+  "varianten": [
+   {
+    "pad": "/foto/tuinhuis-veranda-1024.avif",
+    "ext": "avif",
+    "breed": 1024,
+    "hoog": 768
+   },
+   {
+    "pad": "/foto/tuinhuis-veranda-1024.webp",
+    "ext": "webp",
+    "breed": 1024,
+    "hoog": 768
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/tuinhuis-veranda-1024.webp"
+ },
+ "/foto/verbouwing-casco-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/verbouwing-casco-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/verbouwing-casco-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/verbouwing-casco-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/verbouwing-casco-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/verbouwing-casco-1050.webp"
+ },
+ "/foto/verbouwing-casco.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/verbouwing-casco-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/verbouwing-casco-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/verbouwing-casco-1050.webp"
+ },
+ "/foto/zolder-balken-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/zolder-balken-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/zolder-balken-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/zolder-balken-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/zolder-balken-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/zolder-balken-1050.webp"
+ },
+ "/foto/zolder-balken.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/zolder-balken-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/zolder-balken-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/zolder-balken-1050.webp"
+ },
+ "/foto/zolder-casco-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/zolder-casco-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/zolder-casco-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/zolder-casco-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/zolder-casco-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/zolder-casco-1050.webp"
+ },
+ "/foto/zolder-casco.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/zolder-casco-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/zolder-casco-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/zolder-casco-1050.webp"
+ },
+ "/foto/zolder-kamer-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/zolder-kamer-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/zolder-kamer-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/zolder-kamer-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/zolder-kamer-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/zolder-kamer-1050.webp"
+ },
+ "/foto/zolder-kamer.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/zolder-kamer-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/zolder-kamer-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/zolder-kamer-1050.webp"
+ },
+ "/foto/zolder-vide-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/zolder-vide-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/zolder-vide-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/zolder-vide-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/zolder-vide-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/zolder-vide-1050.webp"
+ },
+ "/foto/zolder-vide.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/zolder-vide-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/zolder-vide-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/zolder-vide-1050.webp"
+ },
+ "/logo/werkspot.png": {
+  "breed": 359,
+  "hoog": 64,
+  "varianten": [
+   {
+    "pad": "/logo/werkspot-187.avif",
+    "ext": "avif",
+    "breed": 187,
+    "hoog": 33
+   },
+   {
+    "pad": "/logo/werkspot-187.webp",
+    "ext": "webp",
+    "breed": 187,
+    "hoog": 33
+   },
+   {
+    "pad": "/logo/werkspot-359.avif",
+    "ext": "avif",
+    "breed": 359,
+    "hoog": 64
+   },
+   {
+    "pad": "/logo/werkspot-359.webp",
+    "ext": "webp",
+    "breed": 359,
+    "hoog": 64
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/logo/werkspot-359.webp"
+ }
+}

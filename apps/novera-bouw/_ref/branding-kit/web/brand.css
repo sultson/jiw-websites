@@ -1,0 +1,11 @@
+@font-face {font-family:"Plus Jakarta Sans";src:url("../fonts/PlusJakartaSans-Variable.ttf") format("truetype");font-weight:200 800;font-style:normal;font-display:swap;}
+@font-face {font-family:Inter;src:url("../fonts/Inter-Variable.ttf") format("truetype");font-weight:100 900;font-style:normal;font-display:swap;}
+:root {
+  --novera-navy: #182339;
+  --novera-copper: #C47A43;
+  --novera-chalk: #F7F3EC;
+  --novera-warm-gray: #B6B0A7;
+  --novera-slate: #56616D;
+  --font-heading: "Plus Jakarta Sans",sans-serif;
+  --font-body: Inter,sans-serif;
+}

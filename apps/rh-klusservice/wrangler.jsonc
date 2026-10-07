@@ -1,0 +1,60 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "rh-klusservice",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Eén adres per pagina, mét slash: /projecten/. Dat is de vorm die de canonical
+    // en de sitemap al gebruiken, dus /projecten komt met een 301 op de goede uit
+    // in plaats van met status 200 naast het adres te blijven staan.
+    "html_handling": "force-trailing-slash",
+    // Een onbekend pad krijgt dist/404.html mét status 404, niet de startpagina
+    // met status 200 — dat laatste leest Google als een soft 404.
+    "not_found_handling": "404-page",
+    // Alleen het formulier gaat door de worker. De pagina's komen rechtstreeks van
+    // de rand, zonder worker-aanroep ertussen.
+    "run_worker_first": ["/api/*"]
+  },
+  "routes": [
+    {
+      "pattern": "rhklusservice.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.rhklusservice.nl",
+      "custom_domain": true
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["offerte@notify.rhklusservice.nl"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "rh-klusservice",
+    // Leads gaan sinds 07-10-2026 (Alfred) rechtstreeks naar Robbin zelf, niet
+    // meer naar hallo@jouwidealewebsite.nl. Dit is ook het adres dat op de site
+    // staat en waar de reply-to van de bevestiging naartoe wijst, dus wie op die
+    // mail antwoordt komt bij hem uit. Geen testaanvragen meer naar dit adres.
+    "LEAD_RECIPIENT": "rhklusservice@outlook.com",
+    // offerte@ en niet offers@ (Alfred, 07-10-2026). Het e-mailadres zelf is niet
+    // ingericht: de DKIM, SPF en DMARC staan op het hele domein
+    // notify.rhklusservice.nl, dus elk adres daarachter kan versturen. Er komt
+    // niets aan op dit adres; de bevestiging zet de aanvrager terug naar
+    // LEAD_RECIPIENT met een reply-to.
+    "LEAD_SENDER": "offerte@notify.rhklusservice.nl"
+  }
+}

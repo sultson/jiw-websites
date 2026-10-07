@@ -1,0 +1,80 @@
+{
+  "colors": [
+    {
+      "name": "navy",
+      "hex": "#182339",
+      "rgb": [
+        24,
+        35,
+        57
+      ],
+      "cmyk_approx": [
+        58,
+        39,
+        0,
+        78
+      ]
+    },
+    {
+      "name": "copper",
+      "hex": "#C47A43",
+      "rgb": [
+        196,
+        122,
+        67
+      ],
+      "cmyk_approx": [
+        0,
+        38,
+        66,
+        23
+      ]
+    },
+    {
+      "name": "chalk",
+      "hex": "#F7F3EC",
+      "rgb": [
+        247,
+        243,
+        236
+      ],
+      "cmyk_approx": [
+        0,
+        2,
+        4,
+        3
+      ]
+    },
+    {
+      "name": "warm-gray",
+      "hex": "#B6B0A7",
+      "rgb": [
+        182,
+        176,
+        167
+      ],
+      "cmyk_approx": [
+        0,
+        3,
+        8,
+        29
+      ]
+    },
+    {
+      "name": "slate",
+      "hex": "#56616D",
+      "rgb": [
+        86,
+        97,
+        109
+      ],
+      "cmyk_approx": [
+        21,
+        11,
+        0,
+        57
+      ]
+    }
+  ],
+  "cmyk_note": "Approximate mathematical conversion, not an ICC-managed print specification."
+}

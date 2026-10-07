@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plantenabonnement voor restaurants en bedrijven | Bloei! Ouddorp</title>
+    <meta name="description" content="Abonnement op opgemaakte plantenbakken en vazen met bloemen voor restaurants, kantoren en winkels op Goeree-Overflakkee. Wij zetten ze neer en komen ze verversen." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#f1f6e8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/img/icon-96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- De twee letters staan onder een vaste naam in /fonts (zie
+         scripts/fonts.mjs), zodat ze hier bij naam genoemd kunnen worden. Zonder
+         deze twee regels ontdekt de browser ze pas nadat hij het stijlblad heeft
+         gelezen, en staat de tekst tot dat moment in een vervangende letter. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-wght.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-latin-wght.woff2" crossorigin />
+
+    <link rel="preload" as="image" href="/img/zakelijk.webp" type="image/webp" fetchpriority="high" />
+    <link rel="canonical" href="%SITE_URL%/abonnement/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bloei!" />
+    <meta property="og:title" content="Plantenabonnement voor restaurants en bedrijven | Bloei! Ouddorp" />
+    <meta property="og:description" content="Groen in de zaak, zonder omkijken. Wij maken de bakken op, zetten ze neer en komen ze verversen." />
+    <meta property="og:url" content="%SITE_URL%/abonnement/" />
+    <meta property="og:image" content="%SITE_URL%/img/og-zakelijk.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Opgemaakte plantenbakken in keramiek op de toonbank van Bloei!" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": "%SITE_URL%/abonnement/#dienst",
+      "name": "Plantenabonnement voor bedrijven",
+      "serviceType": "Plantenbakken en bloemen voor bedrijven, met onderhoud",
+      "description": "Opgemaakte plantenbakken of vazen met bloemen voor restaurants, kantoren, praktijken en winkels. Inclusief opmaken, plaatsen en periodiek verversen op een afgesproken ritme.",
+      "url": "%SITE_URL%/abonnement/",
+      "isPartOf": { "@id": "%SITE_URL%/#website" },
+      "areaServed": [
+        { "@type": "City", "name": "Ouddorp" },
+        { "@type": "AdministrativeArea", "name": "Goeree-Overflakkee" }
+      ],
+      "provider": { "@id": "%SITE_URL%/#winkel" }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Bloei!", "item": "%SITE_URL%/" },
+        { "@type": "ListItem", "position": 2, "name": "Abonnement", "item": "%SITE_URL%/abonnement/" }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/pages/abonnement.entry.tsx"></script>
+  </body>
+</html>

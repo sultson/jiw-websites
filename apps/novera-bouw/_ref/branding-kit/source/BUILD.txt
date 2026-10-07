@@ -1,0 +1,1 @@
+Optional rebuild: install Python requirements.txt, run build_kit.py; install sharp through npm and run export_png.cjs. Originals and licensed variable fonts are included. Rebuilding overwrites generated kit files. The delivered files need no dependencies to use.

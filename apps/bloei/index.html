@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bloemen, planten en tuin in Ouddorp | Bloei!</title>
+    <meta name="description" content="Bloei! aan het Hogepad in Ouddorp: bloemen en kamerplanten, tuinplanten en potten, potgrond en meststoffen. Binnen en buiten, het hele jaar door." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#f1f6e8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/img/icon-96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- De twee letters staan onder een vaste naam in /fonts (zie
+         scripts/fonts.mjs), zodat ze hier bij naam genoemd kunnen worden. Zonder
+         deze twee regels ontdekt de browser ze pas nadat hij het stijlblad heeft
+         gelezen, en staat de tekst tot dat moment in een vervangende letter. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-wght.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-latin-wght.woff2" crossorigin />
+
+    <link rel="preload" as="image" href="/img/hero-bloemen-staand.webp" type="image/webp" media="(max-width: 1023px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/img/hero-bloemen.webp" type="image/webp" media="(min-width: 1024px)" fetchpriority="high" />
+    <link rel="canonical" href="%SITE_URL%/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bloei!" />
+    <meta property="og:title" content="Bloemen, planten en tuin in Ouddorp | Bloei!" />
+    <meta property="og:description" content="Snijbloemen en kamerplanten, tuinplanten en potten, potgrond en meststoffen. Binnen en buiten, het hele jaar door." />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:image" content="%SITE_URL%/img/og-home.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="De gevel van Bloei! in Ouddorp met het groene naambord en de planten ervoor" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- LET OP: de openingstijden, het telefoonnummer en het e-mailadres
+         hieronder zijn nog niet door de winkel bevestigd. Zie NOTITIES.md en
+         WINKEL in site.config.mjs. Dit blok is het eerste dat moet kloppen,
+         want Google toont deze tijden rechtstreeks in het zoekresultaat. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "GardenStore",
+      "@id": "%SITE_URL%/#winkel",
+      "name": "Bloei!",
+      "description": "Winkel voor bloemen, planten, tuin en wonen aan het Hogepad in Ouddorp. Binnen een overdekte hal met kamerplanten, potten en schalen, buiten een terrein met perkgoed, vaste planten, potgrond en meststoffen. In november en december een kerstafdeling met bomen, kransen en verlichting.",
+      "url": "%SITE_URL%/",
+      "image": [
+        "%SITE_URL%/img/hero-pui.webp",
+        "%SITE_URL%/img/winkelpui.webp",
+        "%SITE_URL%/img/over-winkel.webp"
+      ],
+      "logo": "%SITE_URL%/img/icon-512.png",
+      "hasMap": "https://www.google.com/maps/dir/?api=1&destination=Hogepad+9%2C+3253+BH+Ouddorp",
+      "telephone": "+31686194517",
+      "priceRange": "€€",
+      "currenciesAccepted": "EUR",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Hogepad 9",
+        "postalCode": "3253 BH",
+        "addressLocality": "Ouddorp",
+        "addressRegion": "Zuid-Holland",
+        "addressCountry": "NL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.81876,
+        "longitude": 3.93414
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Sunday"],
+          "opens": "00:00",
+          "closes": "00:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=100082968740640"
+      ],
+      "areaServed": [
+        { "@type": "City", "name": "Ouddorp" },
+        { "@type": "City", "name": "Goedereede" },
+        { "@type": "City", "name": "Stellendam" },
+        { "@type": "City", "name": "Melissant" },
+        { "@type": "City", "name": "Dirksland" },
+        { "@type": "City", "name": "Herkingen" },
+        { "@type": "City", "name": "Sommelsdijk" },
+        { "@type": "City", "name": "Middelharnis" },
+        { "@type": "City", "name": "Nieuwe-Tonge" },
+        { "@type": "City", "name": "Oude-Tonge" },
+        { "@type": "AdministrativeArea", "name": "Goeree-Overflakkee" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Assortiment",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Snijbloemen en boeketten op bestelling" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Kamerplanten" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Tuinplanten, perkgoed en heesters" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Binnen- en buitenpotten, schalen en vazen" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Potgrond, tuinaarde en hydrokorrels" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Meststoffen, houtsnippers en graszaad" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Kerstbomen, kerstkransen en kerstverlichting" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Cadeaubon en cadeaupakketten" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Opgemaakte plantenbakken en vazen voor restaurants en bedrijven" } }
+        ]
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "%SITE_URL%/#website",
+      "name": "Bloei!",
+      "alternateName": "Bloei! Ouddorp",
+      "url": "%SITE_URL%/",
+      "inLanguage": "nl-NL",
+      "publisher": { "@id": "%SITE_URL%/#winkel" }
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

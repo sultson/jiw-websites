@@ -1,0 +1,261 @@
+[
+  {
+    "slug": "dakraam-zolder-vloer",
+    "cat": "dakramen",
+    "alt": "Twee dakramen geplaatst in een afgewerkte zolderkamer",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "dakraam-dubbel",
+    "cat": "dakramen",
+    "alt": "Dubbel dakraam met afgewerkte dagkanten",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "dakkapel-buiten",
+    "cat": "dakramen",
+    "alt": "Dakkapel aan de voorzijde van een woning",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "dakraam-pannendak",
+    "cat": "dakramen",
+    "alt": "Dakraam in een bestaand pannendak",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "zolder-balken",
+    "cat": "verbouwing",
+    "alt": "Zolder afgewerkt met zichtbare balken en nieuwe vloer",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "dak-dakkapel-boven",
+    "cat": "dakramen",
+    "alt": "Nieuw dak met dakkapel, gezien vanaf de steiger",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "dakraam-badkamer",
+    "cat": "dakramen",
+    "alt": "Dakraam met verduisteringsscherm",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "dakraam-nis",
+    "cat": "dakramen",
+    "alt": "Dakraam in een afgewerkte nis met schappen",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "binnendeur-glas-groen",
+    "cat": "deuren",
+    "alt": "Afgehangen binnendeur met glas in een afgewerkte hal",
+    "w": 520,
+    "h": 925
+  },
+  {
+    "slug": "binnendeur-paneel-groen",
+    "cat": "deuren",
+    "alt": "Paneeldeur met kozijn naast de trapopgang",
+    "w": 520,
+    "h": 925
+  },
+  {
+    "slug": "binnendeur-wit",
+    "cat": "deuren",
+    "alt": "Nieuwe binnendeur afgehangen en afgewerkt",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "binnendeur-gang",
+    "cat": "deuren",
+    "alt": "Binnendeur met nieuw kozijn in de gang",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "deuren-gang",
+    "cat": "deuren",
+    "alt": "Meerdere binnendeuren in een nieuwe gang",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "binnendeur-lamp",
+    "cat": "deuren",
+    "alt": "Binnendeur tussen hal en woonkamer",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "buitendeur-gevel",
+    "cat": "deuren",
+    "alt": "Nieuwe buitendeur met kozijn in een gemetselde gevel",
+    "w": 892,
+    "h": 1400
+  },
+  {
+    "slug": "binnendeur-kachel",
+    "cat": "deuren",
+    "alt": "Nieuwe binnendeur onder de open trap, naast de kachel",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "deuren-overloop",
+    "cat": "deuren",
+    "alt": "Drie paneeldeuren met kozijn op een afgewerkte overloop",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "binnendeur-overloop",
+    "cat": "deuren",
+    "alt": "Paneeldeur afgehangen op de overloop",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "keuken-hout",
+    "cat": "keukens",
+    "alt": "Keuken met houten blad geplaatst",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "keuken-wit-zwart",
+    "cat": "keukens",
+    "alt": "Keukenopstelling met zwart werkblad",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "keuken-aanbouw",
+    "cat": "keukens",
+    "alt": "Keuken geplaatst tijdens een verbouwing",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "keuken-eiland",
+    "cat": "keukens",
+    "alt": "Keuken met bovenkasten en werkblad",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "keuken-lang",
+    "cat": "keukens",
+    "alt": "Lange keukenopstelling in een nieuwe ruimte",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "overkapping-tuin",
+    "cat": "buiten",
+    "alt": "Houten overkapping met berging in de tuin",
+    "w": 1024,
+    "h": 768
+  },
+  {
+    "slug": "saunacabine",
+    "cat": "buiten",
+    "alt": "Saunacabine geplaatst op een vlonder",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "barrel-sauna",
+    "cat": "buiten",
+    "alt": "Barrelsauna opgebouwd in de tuin",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "tuinhuis-hottub",
+    "cat": "buiten",
+    "alt": "Tuinhuis met terras en hottub",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "barrel-sauna-gazon",
+    "cat": "buiten",
+    "alt": "Barrelsauna op een gemetselde ondergrond",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "barrel-sauna-vlonder",
+    "cat": "buiten",
+    "alt": "Barrelsauna op een nieuw aangelegde vlonder",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "tuinhuis-veranda",
+    "cat": "buiten",
+    "alt": "Tuinhuis met overdekte veranda in de achtertuin",
+    "w": 1024,
+    "h": 768
+  },
+  {
+    "slug": "sauna-badkamer",
+    "cat": "buiten",
+    "alt": "Inbouwsauna van cederhout naast de inloopdouche",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "verbouwing-casco",
+    "cat": "verbouwing",
+    "alt": "Casco ruimte tijdens een verbouwing",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "zolder-casco",
+    "cat": "verbouwing",
+    "alt": "Zolder opengelegd voor een verbouwing",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "zolder-vide",
+    "cat": "verbouwing",
+    "alt": "Vide met nieuwe trapopening en balustrade",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "plafond-dakraam",
+    "cat": "verbouwing",
+    "alt": "Nieuw plafond rondom een dakraam",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "zolder-kamer",
+    "cat": "dakramen",
+    "alt": "Zolderkamer afgewerkt met nieuw dakraam",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "slug": "dakkapel-steiger-voor",
+    "cat": "dakramen",
+    "alt": "Dakkapel en dakramen geplaatst vanaf de rolsteiger",
+    "w": 1050,
+    "h": 1400
+  }
+]

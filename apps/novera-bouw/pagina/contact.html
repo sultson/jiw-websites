@@ -1,0 +1,128 @@
+<!--
+titel: Offerte aanvragen — Novera Bouw
+beschrijving: Vertel wat u wilt laten doen. Wij bellen terug, komen opnemen en zetten daarna pas een prijs op papier.
+menu: Contact
+orde: 8
+beeld: img/w-badkamer.webp
+-->
+
+<section class="sec" id="contact" style="padding-top: calc(var(--kop-h) + 50px)">
+  <div class="wrap contact__in">
+    <div class="contact__txt reveal">
+      <p class="eyebrow">Offerte</p>
+      <h1 class="kop--sec">Vertel wat u wilt laten doen</h1>
+      <p style="color: var(--grijs); font-size: 1.04rem">
+        Één regel is genoeg om te beginnen. Wij bellen terug en plannen een moment om te komen kijken.
+        Aan een aanvraag zit niets vast.
+      </p>
+      <div class="contact__kaarten" id="contactKaarten">
+        <div class="ckaart">
+          <span class="ckaart__ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z" /><circle cx="12" cy="10" r="2.4" />
+            </svg>
+          </span>
+          <span>
+            <b>Novera Bouw</b>
+            <i>Albertine Agneslaan 350, 3136 NJ Vlaardingen</i>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- De veldnamen firstName, lastName en email zijn die van @jiw/cloudflare-forms
+         zelf; die kunnen geen Nederlands zijn, de labels eromheen wel. De achternaam
+         is optioneel: het pakket laat een lege ingebouwde regel uit de mail. Telefoon
+         en e-mail zijn allebei verplicht — e-mail omdat de aanvrager anders geen
+         bevestiging kan krijgen, telefoon omdat Ekrem terugbelt. -->
+    <form class="form reveal" id="form" novalidate>
+      <div class="form__rij form__rij--2">
+        <label class="veld">
+          <span class="veld__l">Voornaam <b aria-hidden="true">*</b></span>
+          <input name="firstName" type="text" autocomplete="given-name" required placeholder="Uw voornaam" />
+        </label>
+        <label class="veld">
+          <span class="veld__l">Achternaam</span>
+          <input name="lastName" type="text" autocomplete="family-name" placeholder="Uw achternaam" />
+        </label>
+      </div>
+      <div class="form__rij form__rij--2">
+        <label class="veld">
+          <span class="veld__l">Telefoon <b aria-hidden="true">*</b></span>
+          <input name="telefoon" type="tel" autocomplete="tel" inputmode="tel" required placeholder="06 ..." />
+        </label>
+        <label class="veld">
+          <span class="veld__l">E-mail <b aria-hidden="true">*</b></span>
+          <input name="email" type="email" autocomplete="email" required placeholder="naam@voorbeeld.nl" />
+        </label>
+      </div>
+      <div class="form__rij form__rij--2">
+        <label class="veld">
+          <span class="veld__l">Postcode</span>
+          <input name="postcode" type="text" autocomplete="postal-code" placeholder="1234 AB" />
+        </label>
+        <label class="veld">
+          <span class="veld__l">Plaats</span>
+          <input name="plaats" type="text" autocomplete="address-level2" placeholder="Uw plaats" />
+        </label>
+      </div>
+
+      <fieldset class="veld veld--set">
+        <legend class="veld__l">Waar gaat het om</legend>
+        <div class="chips" id="chipsWerk">
+          <label class="chip"><input type="checkbox" name="werk" value="Badkamerrenovatie" /><span>Badkamer</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Toiletrenovatie" /><span>Toilet</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Tegelwerk" /><span>Tegelwerk</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Stucwerk" /><span>Stucwerk</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Schilderwerk" /><span>Schilderwerk</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Laminaat of PVC" /><span>Laminaat of PVC</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Traprenovatie" /><span>Traprenovatie</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Vloerverwarming" /><span>Vloerverwarming</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Cv-ketel" /><span>Cv-ketel</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Iets anders" /><span>Iets anders</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="veld veld--set" id="matVeld" hidden>
+        <legend class="veld__l">Uw lijst</legend>
+        <div class="chips chips--mat" id="chipsMat"></div>
+      </fieldset>
+
+      <fieldset class="veld veld--set">
+        <legend class="veld__l">Materiaal via Novera Bouw?</legend>
+        <div class="chips chips--radio">
+          <label class="chip"><input type="radio" name="materiaal" value="Graag, via jullie inkoop" /><span>Graag</span></label>
+          <label class="chip"><input type="radio" name="materiaal" value="Heb ik zelf al" /><span>Heb ik zelf</span></label>
+          <label class="chip"><input type="radio" name="materiaal" value="Weet ik nog niet" checked /><span>Weet ik nog niet</span></label>
+        </div>
+      </fieldset>
+
+      <label class="veld">
+        <span class="veld__l">Toelichting</span>
+        <textarea name="toelichting" rows="4" placeholder="Bijvoorbeeld: badkamer van 2 bij 2,5 meter, alles eruit, inloopdouche erin."></textarea>
+      </label>
+
+      <!-- Het lokveld voor bots. Staat buiten beeld in plaats van op display:none of
+           hidden, want een deel van de bots slaat precies die twee over. Vult iets dit
+           in, dan neemt de worker de aanvraag stil aan en doet er niets mee. -->
+      <div class="lok" aria-hidden="true">
+        <label>
+          Bedrijfsnaam
+          <input type="text" name="bedrijf" tabindex="-1" autocomplete="off" />
+        </label>
+      </div>
+
+      <p class="form__fout" id="formFout" role="alert" hidden></p>
+      <button class="btn btn--accent btn--vol" id="formKnop" type="submit">Aanvraag versturen</button>
+      <p class="form__klein">Wij gebruiken uw gegevens alleen om op deze aanvraag te reageren.</p>
+
+      <div class="dank" id="dank" hidden>
+        <span class="dank__vink" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+        </span>
+        <h3>Aanvraag binnengekomen</h3>
+        <p id="dankTekst">Wij nemen persoonlijk contact met u op.</p>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+{
+  "name": "@jiw/rh-klusservice",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node maak-reviews.mjs && node maak-plaatspaginas.mjs && node maak-slotpagina.mjs && node maak-404.mjs && node maak-lettertypen.mjs && node maak-mailmerk.mjs && node maak-plaatjes.mjs && node maak-snel.mjs && node maak-bundel.mjs && node maak-sitemap.mjs",
+    "dev": "pnpm build && wrangler dev --port=3069",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "lint": "tsc --noEmit -p tsconfig.worker.json",
+    "indexnow": "node scripts/indexnow.mjs"
+  },
+  "dependencies": {
+    "@jiw/cloudflare-forms": "workspace:*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "esbuild": "^0.25.12",
+    "lightningcss": "^1.33.0",
+    "sharp": "^0.34.5",
+    "typescript": "~5.8.2"
+  }
+}

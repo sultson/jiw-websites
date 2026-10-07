@@ -1,0 +1,23 @@
+{
+  "name": "@jiw/novera-bouw",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node bouw.mjs",
+    "dev": "node bouw.mjs && wrangler dev --port=3068",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "clean": "rm -rf dist",
+    "lint": "tsc --noEmit -p tsconfig.worker.json",
+    "kijk": "node _ref/kijk.mjs",
+    "indexnow": "node _ref/indexnow.mjs"
+  },
+  "dependencies": {
+    "@jiw/cloudflare-forms": "workspace:*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "typescript": "~5.8.2"
+  }
+}

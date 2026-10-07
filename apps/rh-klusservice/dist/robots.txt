@@ -1,0 +1,7 @@
+# RH Klusservice
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /bedankt/
+
+Sitemap: https://rhklusservice.nl/sitemap.xml

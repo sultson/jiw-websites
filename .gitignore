@@ -70,3 +70,20 @@ apps/mts-badkamers/assets/media/*.mp4
 # De schermafdrukken die scripts/kijk.mjs van elke pagina maakt. Meetresultaat, geen
 # bron: elke run schrijft ze opnieuw, en veertien PNG's per run horen niet in de repo.
 apps/yanis-klussenbedrijf/shots/
+
+# bloei: de 23 telefoonfoto's die de winkel aanleverde (12 MB). Bron voor
+# raw/maak-beelden.mjs; wat de site serveert staat gegenereerd in public/img.
+apps/bloei/raw
+# Schermafdrukken om naar te kijken, geen bron: elke run schrijft ze opnieuw.
+apps/bloei/shots/
+
+# novera-bouw: 37 paginaschermafdrukken van kijk.mjs, 96 MB. Zelfde verhaal als
+# hierboven: meetresultaat, elke run schrijft ze opnieuw. De rest van _ref is
+# wel bron (eigen/ en werkspot/ foto's, hero/, branding-kit/) en gaat dus mee.
+apps/novera-bouw/_ref/shots/
+
+# rh-klusservice is de uitzondering op de dist-regel bovenaan: dist/ IS de bron.
+# index.html en projecten/index.html zijn handwerk, en dist/foto/ bevat de
+# originele foto's waar maak-plaatjes.mjs zijn varianten uit maakt - die staan
+# nergens anders. Zonder deze regel mist een verse kloon de hele site.
+!apps/rh-klusservice/dist/

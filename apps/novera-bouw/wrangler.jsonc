@@ -1,0 +1,54 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "novera-bouw",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Eén adres per pagina: /badkamer, niet /badkamer/. De canonical, de hreflang en de
+    // sitemap gebruiken diezelfde vorm, dus geen enkel geïndexeerd adres hoeft om te
+    // leiden. Een onbekend pad krijgt 404.html mét status 404, geen startpagina met
+    // status 200 — dat laatste leest Google als een soft 404.
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "404-page",
+    // Het formulier gaat door de worker, en de twee oude airco-adressen ook: die zijn
+    // op 30-09-2026 van de site gehaald en moeten blijven omleiden. De pagina's zelf
+    // komen van de rand, dus zonder worker-aanroep ertussen.
+    "run_worker_first": ["/api/*", "/airco", "/en/air-conditioning"]
+  },
+  "routes": [
+    {
+      "pattern": "noverabouw.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.noverabouw.nl",
+      "custom_domain": true
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["offers@notify.noverabouw.nl"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "novera-bouw",
+    // Ekrem zelf, op het eigen domein. Dit adres is ook de reply-to op de bevestiging
+    // die de aanvrager terugkrijgt, dus "beantwoord deze mail" komt bij hem uit, en het
+    // staat als contactadres in die bevestiging (zie worker/confirmation-email.ts).
+    "LEAD_RECIPIENT": "info@noverabouw.nl",
+    "LEAD_SENDER": "offers@notify.noverabouw.nl"
+  }
+}

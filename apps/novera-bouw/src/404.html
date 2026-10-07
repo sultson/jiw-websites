@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- Handwerk, geen bouwsel: deze pagina heeft geen tegenhanger in de andere taal en
+     hoort niet in de sitemap. Hij staat er zodat een verkeerd adres een echte 404
+     geeft met iets bruikbaars erin, in plaats van de startpagina met status 200 —
+     dat laatste leest Google als een soft 404. wrangler.jsonc wijst hiernaar met
+     not_found_handling, en bouw.mjs valt om als het bestand ontbreekt. -->
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f7f3ec" />
+    <meta name="robots" content="noindex, follow" />
+    <title>Deze pagina bestaat niet &mdash; Novera Bouw</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body>
+    <header class="nav">
+      <div class="wrap nav__in">
+        <a class="brand" href="/" aria-label="Novera Bouw &mdash; naar de startpagina">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 -2 180 162">
+              <path
+                fill="currentColor"
+                d="M 84,2 Q 90,-2 96,2 L 177,63 Q 180,65 180,69 L 180,74 Q 180,78 176,78 L 168,78 Q 164,78 164,82 L 164,154 Q 164,160 158,160 L 119,160 Q 116,160 116,157 L 116,98 Q 116,95 113,95 L 67,95 Q 64,95 64,98 L 64,157 Q 64,160 61,160 L 22,160 Q 16,160 16,154 L 16,82 Q 16,78 12,78 L 4,78 Q 0,78 0,74 L 0,69 Q 0,65 3,63 Z"
+              />
+            </svg>
+          </span>
+          <span class="brand__txt"><b>NOVERA</b><i>Bouw</i></span>
+        </a>
+        <div class="nav__right">
+          <a class="btn btn--accent nav__cta" href="/contact">Offerte aanvragen</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="sec">
+        <div class="wrap">
+          <p class="eyebrow">404</p>
+          <h1>Deze pagina bestaat niet</h1>
+          <p style="max-width: 58ch; color: var(--grijs)">
+            Het adres klopt niet meer, of er zit een tikfout in. Hieronder staat waar u wel terecht
+            kunt.
+            <span lang="en">This page does not exist. The English site starts here:</span>
+            <a href="/en" hreflang="en" lang="en">noverabouw.nl/en</a>.
+          </p>
+          <div class="voet__knoppen" style="margin-top: 22px">
+            <a class="btn btn--accent" href="/">Naar de startpagina</a>
+            <a class="btn btn--lijn" href="/badkamer">Badkamerrenovatie</a>
+            <a class="btn btn--lijn" href="/contact">Offerte aanvragen</a>
+          </div>
+          <nav aria-label="Deze site" style="margin-top: 30px">
+            <ul style="line-height: 2">
+              <li><a href="/werkzaamheden">Alle werkzaamheden</a></li>
+              <li><a href="/badkamer">Badkamerrenovatie</a></li>
+              <li><a href="/aanbod">Aanbod</a></li>
+              <li><a href="/materialen">Materialen</a></li>
+              <li><a href="/werkwijze">Werkwijze</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

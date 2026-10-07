@@ -1,0 +1,4 @@
+fonttools
+reportlab
+svglib
+pypdf

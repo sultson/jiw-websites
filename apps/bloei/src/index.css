@@ -1,0 +1,251 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  De letters                                                         */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Zelf in huis, niet bij Google vandaan. Hier stond een @import naar
+ * fonts.googleapis.com, en dat is de traagste manier die er is: de browser leest
+ * eerst dit stijlblad, ziet daar een tweede stijlblad, haalt dat op bij een
+ * andere server, en ziet pas daarin welke letterbestanden er nodig zijn. Drie
+ * stappen achter elkaar voordat er een letter staat.
+ *
+ * Twee variabele bestanden, één per familie, met de hele reeks gewichten erin:
+ * zo is 400, 600 en 700 samen één download in plaats van drie.
+ * Zie scripts/fonts.mjs; de preload staat in de HTML van elke pagina.
+ *
+ * swap: liever meteen leesbare tekst in een vervangende letter dan een pagina
+ * die drie tellen leeg blijft. Op een trage verbinding is dat het verschil
+ * tussen lezen en wachten.
+ */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("/fonts/inter-latin-wght.woff2") format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("/fonts/fraunces-latin-wght.woff2") format("woff2-variations");
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  /* Geen aparte logoletter: het woordmerk is hun eigen bord
+     (public/img/logobalk.webp), uit de foto van de gevel gesneden. */
+
+  /* ----------------------------------------------------------------
+     Alle kleuren komen uit het bord dat aan de gevel hangt.
+
+     Fleurig! stond op bijna zwart (#0d2a21) met framboos erop. Die opzet
+     blijft, maar de winkel wilde geen zwart meer: het bord van Bloei! is
+     olijfgroen met crèmekleurige letters en twee tinten blad, en dáár
+     hoort de site naartoe.
+
+     Gemeten op de foto van de gevel:
+       bord            #425331
+       letters         #e7e1c7
+       blad licht      #86a85e
+       blad donker     #162810
+     ---------------------------------------------------------------- */
+
+  /* De diepe tint. Hij draagt de tekst en de twee vlakken die nog een anker
+     nodig hebben (de voet en het formulier). Dit is het groen van het bord,
+     een slag dieper getrokken zodat crème erop ruim boven de leesnorm blijft. */
+  --color-ink: #27351b;
+  --color-ink-soft: #3b4c2b;    /* het bord zelf */
+  --color-ink-line: #51643d;
+
+  /* Blad. Het lichte op de donkere vlakken, het donkere op de lichte. */
+  --color-accent: #a8cc7a;
+  --color-accent-dark: #4b7227;
+
+  /* De warme kant. Het bord heeft hem niet, de winkel wel: de tafels buiten
+     staan vol roze en framboos. Fleurig! had deze kleur en de winkel was er
+     tevreden over, dus hij blijft, alleen op de hoofdknoppen. */
+  --color-roze: #c22a5f;
+  --color-bloesem: #ffb1c8;
+  --color-roze-zacht: #fbeaf0;
+
+  /* Waar de hele pagina op staat: de lichte tint groen die ze vroegen. Geen
+     grijs met een vleugje groen maar een echte tint, zodat hij naast het
+     bord staat en er niet onder uit valt. `--color-crème` is de kleur van
+     de letters op het bord en ligt er een slag warmer naast. */
+  --color-cream: #f1f6e8;
+  --color-creme-diep: #e7eedb;
+  --color-line: #dbe4c9;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-cream text-ink antialiased;
+  }
+  /* Fraunces alleen op de grote koppen; daaronder Inter, dat leest rustiger. */
+  h1, h2 {
+    @apply font-display tracking-tight;
+  }
+  h3, h4 {
+    @apply font-sans tracking-tight;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  De hoofdknop                                                       */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Elke knop op de site heeft een gewone afgeronde hoek. Alleen de roze
+ * hoofdknop krijgt iets extra's: twee blaadjes die er achter vandaan komen,
+ * een boven rechts en een onder links. Ze staan half achter de knop, dus je
+ * ziet alleen wat er uitgroeit. Bij aanwijzen komen ze een paar pixels verder
+ * naar buiten, alsof ze opengaan.
+ *
+ * Bij Fleurig! was dit het madeliefje uit hun logo. Op het bord van Bloei!
+ * staat geen bloem maar blad: één blad door de O en twee takjes langs de
+ * letters. Dus blad, in dezelfde twee tinten als op het bord.
+ *
+ * De vorm zelf blijft rustig; de blaadjes doen het karakter. Zo is de
+ * hoofdknop ook op afstand te herkennen zonder dat elke knop op de pagina
+ * een eigen silhouet krijgt.
+ */
+.knop-bloem {
+  position: relative;
+  border-radius: 0.75rem;
+}
+
+.knop-bloem::before,
+.knop-bloem::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+/* Het blad uit de O van het bord, boven de rechterhoek. Lichtgroen met een
+   nerf erin, zoals op de gevel. */
+.knop-bloem::after {
+  top: -13px;
+  right: 15px;
+  height: 26px;
+  width: 26px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M50 8 C 22 10, 8 30, 10 56 C 38 54, 54 34, 50 8 Z' fill='%23a8cc7a'/><path d='M50 8 C 36 22, 22 38, 10 56' stroke='%234b7227' stroke-width='2.4' fill='none' stroke-linecap='round'/></svg>");
+  transform: rotate(-10deg);
+}
+
+/* Een tweede blaadje onder de linkerhoek, kleiner en een tint donkerder:
+   anders worden het twee dezelfde en kijkt het oog er doorheen. */
+.knop-bloem::before {
+  bottom: -13px;
+  left: 20px;
+  height: 20px;
+  width: 20px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M50 8 C 22 10, 8 30, 10 56 C 38 54, 54 34, 50 8 Z' fill='%236f9a42'/></svg>");
+  transform: rotate(150deg);
+}
+
+.knop-bloem:hover::after,
+.knop-bloem:focus-visible::after {
+  transform: translateY(-3px) rotate(10deg);
+}
+
+.knop-bloem:hover::before,
+.knop-bloem:focus-visible::before {
+  transform: translateY(4px) rotate(34deg);
+}
+
+/**
+ * In de vaste balk onderaan op mobiel is er geen ruimte onder de knop, daar
+ * zit de rand van het scherm. Daar dus alleen het madeliefje bovenop.
+ */
+.knop-bloem-smal::before {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .knop-bloem::before, .knop-bloem::after { transition: none; }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Botanisch motief achter de donkere secties                         */
+/* ------------------------------------------------------------------ */
+
+/* Eén steel die zichzelf traag natekent. De rest van het motief staat stil;
+   dit is het enige dat beweegt op de pagina. */
+.groei {
+  stroke-dasharray: 1400;
+  animation: groei-loop 22s ease-in-out infinite;
+  opacity: 0.5;
+}
+
+@keyframes groei-loop {
+  0%   { stroke-dashoffset: 1400; }
+  55%  { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+/* Beweging is versiering: wie er last van heeft, krijgt hem niet. */
+@media (prefers-reduced-motion: reduce) {
+  .groei { animation: none; opacity: 0; }
+  html { scroll-behavior: auto; }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Kaartmarker                                                        */
+/* ------------------------------------------------------------------ */
+
+.pin {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  transform: translateX(-5px);
+}
+
+.pin-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 0.18);
+  flex: none;
+}
+
+.pin-label {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgb(255 255 255 / 0.72);
+  text-shadow: 0 1px 4px rgb(0 0 0 / 0.9);
+}
+
+.pin-winkel .pin-dot {
+  width: 12px;
+  height: 12px;
+  background: #a8cc7a;
+  box-shadow: 0 0 0 4px rgb(168 204 122 / 0.3);
+}
+
+.pin-winkel .pin-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.mapboxgl-ctrl-attrib {
+  font-size: 10px;
+}

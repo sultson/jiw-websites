@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="{{lang}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f7f3ec" />
+    <title>{{titel}}</title>
+    <meta name="description" content="{{beschrijving}}" />
+    <link rel="canonical" href="{{site}}{{pad}}" />
+    {{alternatief}}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="{{locale}}" />
+    <meta property="og:site_name" content="Novera Bouw" />
+    <meta property="og:title" content="{{titel}}" />
+    <meta property="og:description" content="{{beschrijving}}" />
+    <meta property="og:image" content="{{site}}/{{beeld}}" />
+    <meta property="og:url" content="{{site}}{{pad}}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" as="image" href="/{{voorlaad}}" fetchpriority="high" />
+    <link rel="stylesheet" href="/styles.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        "@id": "{{site}}/#novera",
+        "name": "Novera Bouw",
+        "url": "{{site}}/",
+        "logo": "{{site}}/img/merk/novera-logo.png",
+        "telephone": "+31648569040",
+        "description": "{{schemaomschrijving}}",
+        "knowsLanguage": ["nl-NL", "en"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Albertine Agneslaan 350",
+          "postalCode": "3136 NJ",
+          "addressLocality": "Vlaardingen",
+          "addressCountry": "NL"
+        },
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "KvK",
+          "value": "83882057"
+        },
+        "areaServed": { "@type": "City", "name": "Vlaardingen" },
+        "makesOffer": [
+{{schemaaanbod}}
+        ]
+      }
+    </script>
+  </head>
+
+  <body class="{{klasse}}">
+    <a class="skip" href="#main">{{naarinhoud}}</a>
+    <div class="prog" id="prog" aria-hidden="true"><i></i></div>
+
+    <header class="nav" id="nav">
+      <a class="lint" href="{{actiepad}}">
+        <span class="lint__merk">{{actiemerk}}</span>
+        <span class="lint__lang">{{actielang}}</span>
+        <span class="lint__kort">{{actiekort}}</span>
+        <span class="lint__pijl" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h13M13 6l6 6-6 6" /></svg>
+        </span>
+      </a>
+      <div class="wrap nav__in">
+        <a class="brand" href="{{home}}" aria-label="{{merklabel}}">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 -2 180 162">
+              <path
+                fill="currentColor"
+                d="M 84,2 Q 90,-2 96,2 L 177,63 Q 180,65 180,69 L 180,74 Q 180,78 176,78 L 168,78 Q 164,78 164,82 L 164,154 Q 164,160 158,160 L 119,160 Q 116,160 116,157 L 116,98 Q 116,95 113,95 L 67,95 Q 64,95 64,98 L 64,157 Q 64,160 61,160 L 22,160 Q 16,160 16,154 L 16,82 Q 16,78 12,78 L 4,78 Q 0,78 0,74 L 0,69 Q 0,65 3,63 Z"
+              />
+            </svg>
+          </span>
+          <span class="brand__txt"><b>NOVERA</b><i>Bouw</i></span>
+        </a>
+
+        <nav class="nav__links" aria-label="{{hoofdmenu}}">
+          {{menu}}
+        </nav>
+
+        <div class="nav__right">
+          <a class="taal" href="{{anderetaalpad}}" hreflang="{{anderetaalcode}}" aria-label="{{anderetaallabel}}"
+            >{{anderetaalkort}}</a
+          >
+          <a class="nav__tel" data-bel href="#"><span aria-hidden="true">&#9742;</span> <em></em></a>
+          <a class="btn btn--accent nav__cta" href="{{contactpad}}">{{offerte}}</a>
+          <button class="burger" id="burger" aria-label="{{menulabel}}" aria-expanded="false" aria-controls="drawer">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="drawer" id="drawer" hidden>
+      <nav class="drawer__in" aria-label="{{menulabel}}">
+        {{menu}}
+        <a class="drawer__taal" href="{{anderetaalpad}}" hreflang="{{anderetaalcode}}">{{anderetaal}}</a>
+        <a class="drawer__cta" href="{{contactpad}}">{{offerte}}</a>
+      </nav>
+    </div>
+
+    <main id="main">
+      {{inhoud}}
+    </main>
+
+    <footer class="voet">
+      <div class="wrap voet__in">
+        <div class="voet__merk">
+          <span class="brand voet__brand">
+            <span class="brand__mark" aria-hidden="true">
+              <svg viewBox="0 -2 180 162">
+                <path
+                  fill="currentColor"
+                  d="M 84,2 Q 90,-2 96,2 L 177,63 Q 180,65 180,69 L 180,74 Q 180,78 176,78 L 168,78 Q 164,78 164,82 L 164,154 Q 164,160 158,160 L 119,160 Q 116,160 116,157 L 116,98 Q 116,95 113,95 L 67,95 Q 64,95 64,98 L 64,157 Q 64,160 61,160 L 22,160 Q 16,160 16,154 L 16,82 Q 16,78 12,78 L 4,78 Q 0,78 0,74 L 0,69 Q 0,65 3,63 Z"
+                />
+              </svg>
+            </span>
+            <span class="brand__txt"><b>NOVERA</b><i>Bouw</i></span>
+          </span>
+          <p>{{voetkort}}</p>
+          <div class="voet__knoppen" id="voetKnoppen"></div>
+        </div>
+        <nav class="voet__kol" aria-label="{{voetwerk}}">
+          <h4>{{voetwerk}}</h4>
+          {{voetwerklinks}}
+        </nav>
+        <nav class="voet__kol" aria-label="{{voetsite}}">
+          <h4>{{voetsite}}</h4>
+          {{voetsitelinks}}
+        </nav>
+        <div class="voet__kol voet__kol--contact">
+          <h4>{{voetcontact}}</h4>
+          <div id="voetContact"></div>
+          <address>
+            Albertine Agneslaan 350<br />
+            3136 NJ Vlaardingen
+          </address>
+          <span class="voet__kvk">KvK 83882057</span>
+        </div>
+      </div>
+      <div class="wrap voet__onder">
+        <span>&copy; <span id="jaar">2026</span> Novera Bouw</span>
+        <span class="voet__door">{{door}}</span>
+      </div>
+    </footer>
+
+    <div class="balk" id="balk" hidden>
+      <div class="balk__in">
+        <span class="balk__txt" id="balkTxt"></span>
+        <a class="btn btn--accent btn--klein" href="{{contactpad}}">{{prijsknop}}</a>
+        <button class="balk__leeg" id="balkLeeg" type="button" aria-label="{{lijstleeg}}">&times;</button>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

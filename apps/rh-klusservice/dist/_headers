@@ -1,0 +1,29 @@
+/*
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+
+# Hier stond tot 07-10-2026 `X-Robots-Tag: noindex` over de hele site, zolang dit
+# nog een concept was. Die staat er niet meer: de site mag geindexeerd worden.
+# Zet hem terug als er weer aan een concept gewerkt wordt op dit adres.
+
+# Alles kwam standaard met `max-age=0, must-revalidate` de deur uit, dus ook de
+# lettertypen en de foto's. Een tweede bezoek vroeg daarmee elk bestand opnieuw op.
+#
+# De lettertypen staan op een jaar en op immutable: dat zijn drie bestanden die
+# onder dezelfde naam nooit meer veranderen.
+/lettertype/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Foto's en logo's op dertig dagen en niet op een jaar: deze namen zijn niet
+# gestempeld met hun inhoud, dus een foto die onder dezelfde naam vervangen wordt
+# zou anders een jaar blijven hangen. Vervang je er een in plaats, zet dan ?v=
+# achter de verwijzing (zie de conventie in de CLAUDE.md van de monorepo).
+/foto/*
+  Cache-Control: public, max-age=2592000
+
+/logo/*
+  Cache-Control: public, max-age=2592000
+
+# stijl.css, site.js en de pagina's zelf blijven op must-revalidate staan. Daar
+# wordt nog aan gewerkt, en een bezoeker met een dag oude CSS is erger dan een
+# verzoek dat met 304 terugkomt.

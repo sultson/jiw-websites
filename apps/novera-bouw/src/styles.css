@@ -1,0 +1,2779 @@
+/* ══════════════════════════════════════════════════════════════
+   Novera Bouw
+   Palet uit merkconcept 1 "Zeker vakwerk":
+     Deep Navy  #182339  vertrouwen  - tekst, donkere vlakken, voet
+     Copper     #C47A43  vakmanschap - knoppen en accenten
+     Chalk      #F7F3EC  rust        - de grond van de site
+     Warm Gray  #B6B0A7              - de rustige tint
+     Slate      #56616D  soliditeit  - bijschriften en meta
+   Buiten deze vijf staat er geen kleur op de site. Het merkteken
+   heeft ze alle drie in zich (navy, warm gray, copper).
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  --room: #f7f3ec; /* Chalk     */
+  --room-2: #efe9dd;
+  --wit: #fffdfa;
+  --inkt: #182339; /* Deep Navy */
+  --inkt-2: #10192b;
+  --aarde: #182339; /* lopende tekst staat in navy, net als op het blad */
+  --salie: #b6b0a7; /* Warm Gray */
+  --salie-zacht: #e3dfd7;
+  --accent: #c47a43; /* Copper    */
+  --accent-diep: #a9622f;
+  --accent-zacht: #f3e2d1;
+  --grijs: #56616d; /* Slate     */
+  --grijs-licht: #7d8794;
+  --lijn: #ddd6c8;
+  --lijn-2: #eae4d8;
+
+  /* Typografie uit het merkhandboek: Plus Jakarta Sans voor koppen en het
+     woordmerk, Inter voor de lopende tekst. Het woordmerk in de balk is
+     dus dezelfde letter als de uitgesneden NOVERA in de logobestanden. */
+  --display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --kop: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --tekst: 'Inter', system-ui, sans-serif;
+  --merk: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* de vaste kop = het actielint, een gaatje, en daaronder de zwevende pil met
+     het logo en het menu. Alles wat onder die kop moet beginnen rekent met
+     --kop-h (= lint + gat + pil), zodat er maar een getal te wijzigen is. */
+  --lint-h: 40px;
+  --nav-gat: 10px;
+  --balk-h: 78px;
+  --kop-h: 128px;
+
+  --wrap: 1240px;
+  --r: 14px;
+  --r-s: 10px;
+  --schaduw: 0 1px 2px rgba(24, 35, 57, 0.05), 0 8px 24px -12px rgba(24, 35, 57, 0.18);
+  --schaduw-op: 0 2px 6px rgba(24, 35, 57, 0.07), 0 26px 50px -22px rgba(24, 35, 57, 0.38);
+  --soepel: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--kop-h) + 14px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--room);
+  color: var(--aarde);
+  font-family: var(--tekst);
+  font-size: 17px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body.is-vast {
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--kop);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* De grote koppen staan in Plus Jakarta Sans Bold, zoals "Goed gebouwd.
+   Fijn wonen." op het blad. Het merkhandboek zegt: koppen 700, logo 800.
+   Op de hele site is 800 dus voorbehouden aan het woordmerk NOVERA; dat
+   blijft daarmee het zwaarste wat er op een pagina staat. */
+h1,
+h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.032em;
+  line-height: 1.02;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+}
+h2 {
+  font-size: clamp(2rem, 3.7vw, 3.1rem);
+}
+/* Vijf vaste pagina's per taal (/werkzaamheden, /aanbod, /materialen, /werkwijze,
+   /contact) hadden geen h1: hun inleidende kop stond er als h2, en een pagina zonder
+   h1 mist voor een zoekmachine het ene veld dat zegt waar hij over gaat. Die kop is
+   nu een h1 en houdt met deze klasse zijn oude formaat, zodat er niets verschoof. */
+h1.kop--sec {
+  font-size: clamp(2rem, 3.7vw, 3.1rem);
+}
+h3 {
+  font-size: 1.16rem;
+}
+
+p {
+  margin: 0 0 1em;
+  text-wrap: pretty;
+}
+
+.wrap {
+  width: min(100% - 40px, var(--wrap));
+  margin-inline: auto;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  background: var(--inkt);
+  color: #fff;
+  padding: 12px 18px;
+}
+.skip:focus {
+  left: 12px;
+  top: 12px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── leesbalk ───────────────────────────────────────────── */
+.prog {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 120;
+  pointer-events: none;
+}
+.prog i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent-diep));
+}
+
+/* ── knoppen ────────────────────────────────────────────── */
+.btn {
+  --bg: var(--accent);
+  --fg: #fff;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 26px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--kop);
+  font-weight: 700;
+  font-size: 0.97rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.25s var(--soepel), box-shadow 0.25s var(--soepel), background 0.25s;
+  box-shadow: 0 10px 22px -12px rgba(169, 98, 47, 0.9);
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120px 60px at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.28), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -14px rgba(169, 98, 47, 0.95);
+}
+.btn:hover::after {
+  opacity: 1;
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--accent:hover {
+  background: var(--accent-diep);
+}
+.btn--inkt {
+  --bg: var(--inkt);
+  box-shadow: 0 10px 22px -14px rgba(24, 35, 57, 0.9);
+}
+.btn--inkt:hover {
+  background: var(--inkt-2);
+}
+.btn--lijn {
+  --bg: transparent;
+  --fg: var(--inkt);
+  border: 1.5px solid rgba(24, 35, 57, 0.22);
+  box-shadow: none;
+}
+.btn--lijn:hover {
+  background: rgba(24, 35, 57, 0.05);
+  border-color: rgba(24, 35, 57, 0.4);
+}
+.btn--glas {
+  --bg: rgba(255, 255, 255, 0.12);
+  --fg: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  box-shadow: none;
+}
+.btn--glas:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+.btn--groot {
+  padding: 18px 34px;
+  font-size: 1.04rem;
+}
+.btn--klein {
+  padding: 11px 18px;
+  font-size: 0.88rem;
+}
+.btn--vol {
+  width: 100%;
+}
+
+/* ── nav ────────────────────────────────────────────────────
+   De kop zelf is een leeg, doorzichtig laagje over de pagina. Wat je ziet zijn
+   twee losse dingen: het actielint helemaal bovenaan, en daaronder een zwevende
+   pil met het logo en het menu. Daardoor loopt de herofoto door achter de kop
+   heen in plaats van onder een dichte band te beginnen.
+   Omdat .nav nu niets meer is, mag hij ook geen kliks opvangen: anders ligt er
+   een onzichtbaar vlak over de bovenkant van de hero. Het lint en de pil zetten
+   pointer-events dus zelf weer aan. */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  pointer-events: none;
+}
+/* ── actielint ──────────────────────────────────────────────
+   Bovenin, boven de balk, op elke pagina. Navy zodat het los staat
+   van de lichte balk eronder, met het woord Actie in koper. Vaste
+   hoogte: --kop-h rekent ermee, dus hier geen tekst die mag afbreken.
+   Onder 760px staat de korte zin er, anders past het niet op een regel. */
+.lint {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: var(--lint-h);
+  padding: 0 16px;
+  background: var(--inkt);
+  color: var(--room);
+  font-family: var(--kop);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.lint__merk {
+  flex: none;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--room);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.lint__lang,
+.lint__kort {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lint__kort {
+  display: none;
+}
+.lint__pijl {
+  flex: none;
+  display: flex;
+  width: 15px;
+  color: var(--accent);
+  transition: transform 0.3s var(--soepel);
+}
+.lint__pijl svg {
+  width: 100%;
+}
+.lint:hover .lint__pijl {
+  transform: translateX(4px);
+}
+
+/* De zwevende pil. Hij is opzettelijk 20px breder dan .wrap aan elke kant en
+   heeft precies die 20px als binnenruimte: het logo, het menu en de knoppen
+   houden dus exact dezelfde 1240 als de rest van de pagina. Was de pil net zo
+   breed als de wrap geweest, dan vrat zijn binnenruimte 40px van het menu op en
+   botsten de acht menu-items tegen de offerteknop (kijk.mjs meet dat).
+   De band blijft bijna dicht: het donkere logo moet leesbaar blijven, ook als er
+   een lichte herofoto achter langs schuift. */
+.nav__in {
+  pointer-events: auto;
+  width: min(100% - 28px, calc(var(--wrap) + 40px));
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  height: var(--balk-h);
+  margin-top: var(--nav-gat);
+  padding-inline: 20px;
+  border: 1px solid var(--lijn);
+  border-radius: 999px;
+  background: rgba(247, 243, 236, 0.94);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1px 2px rgba(24, 35, 57, 0.04), 0 14px 34px -26px rgba(24, 35, 57, 0.5);
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+.nav.is-vast .nav__in {
+  border-color: var(--lijn-2);
+  box-shadow: 0 2px 6px rgba(24, 35, 57, 0.06), 0 20px 44px -26px rgba(24, 35, 57, 0.6);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  flex: none;
+}
+/* Het merkteken is het huisje uit het merkhandboek, pad voor pad
+   overgenomen uit novera-symbol-primary.svg (_ref/branding-kit). Het
+   staat in currentColor, zodat de voet de reverse kan pakken: wit huisje
+   op navy, zoals op het blad onder LOGO REVERSED. */
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 36px;
+  color: var(--accent);
+}
+.brand__mark svg {
+  width: 40px;
+  height: 36px;
+  overflow: visible;
+}
+.brand__txt {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  font-family: var(--merk);
+}
+.brand__txt b {
+  font-size: 1.13rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+/* In het logo staat BOUW tussen twee streepjes, over de breedte van
+   NOVERA. Die streepjes horen bij het woordmerk, dus ze staan hier en
+   niet als los plaatje. BOUW staat in Slate en lichter dan NOVERA,
+   precies zoals in de logobestanden van het merkhandboek. */
+.brand__txt i {
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  color: var(--grijs);
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.brand__txt i::before,
+.brand__txt i::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.8;
+}
+/* letter-spacing zet ook achter de W nog ruimte; die haal ik er weer af,
+   anders staat het rechterstreepje verder weg dan het linker. */
+.brand__txt i::after {
+  margin-left: -0.42em;
+}
+
+.nav__links {
+  display: flex;
+  gap: 0;
+  margin-left: auto;
+}
+.nav__links a {
+  position: relative;
+  white-space: nowrap;
+  padding: 9px 5px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+}
+.nav__links a::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 4px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--soepel);
+}
+.nav__links a:hover::after,
+.nav__links a[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+/* De balk is vol: logo, acht menu-items, de taalknop, het nummer en de knop
+   staan samen op de 1240 van .wrap. In het Nederlands is dat krap (de labels
+   zijn langer dan de Engelse), dus de menu-items staan bewust op 5px padding
+   zonder gap ertussen. Wordt een label langer of komt er een item bij, dan
+   valt kijk.mjs om op 'de balk steekt buiten de wrap' — dan moet er iets weg,
+   niet iets krapper. De knop mag nooit over twee regels breken. */
+.nav__cta {
+  white-space: nowrap;
+}
+.nav__tel {
+  display: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nav__tel em {
+  font-style: normal;
+}
+.nav__tel:hover {
+  color: var(--accent-diep);
+}
+.nav__tel[hidden] {
+  display: none !important;
+}
+
+/* ── taalknop ───────────────────────────────────────────────
+   Klein met opzet: de balk zat al vol met acht menu-items. In de
+   balk staat alleen EN of NL, in de lade het hele woord. */
+.taal {
+  display: none;
+  align-items: center;
+  font-family: var(--kop);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-decoration: none;
+  color: var(--inkt);
+  border: 1px solid var(--lijn);
+  border-radius: 999px;
+  padding: 8px 9px;
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s;
+}
+.taal:hover {
+  border-color: var(--accent);
+  color: var(--accent-diep);
+}
+.drawer__taal {
+  color: var(--grijs);
+}
+
+.nav__merk {
+  display: none;
+}
+
+.burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--lijn);
+  border-radius: 10px;
+  background: var(--wit);
+  cursor: pointer;
+  padding: 0;
+}
+.burger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin: 3.5px auto;
+  background: var(--inkt);
+  transition: transform 0.3s var(--soepel), opacity 0.2s;
+}
+.burger[aria-expanded='true'] span:nth-child(1) {
+  transform: translateY(5.5px) rotate(45deg);
+}
+.burger[aria-expanded='true'] span:nth-child(2) {
+  opacity: 0;
+}
+.burger[aria-expanded='true'] span:nth-child(3) {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+.drawer {
+  position: fixed;
+  inset: var(--kop-h) 0 0 0;
+  z-index: 99;
+  background: var(--room);
+  padding: 22px;
+  animation: lade 0.32s var(--soepel);
+}
+@keyframes lade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+.drawer__in {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.drawer__in a {
+  padding: 16px 6px;
+  border-bottom: 1px solid var(--lijn);
+  font-family: var(--kop);
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-decoration: none;
+}
+.drawer__cta {
+  margin-top: 18px;
+  border: 0 !important;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 999px;
+  text-align: center;
+}
+
+/* ── secties ────────────────────────────────────────────── */
+.sec {
+  position: relative;
+  padding: clamp(64px, 8vw, 116px) 0;
+}
+.sec--kort {
+  padding: clamp(44px, 5vw, 68px) 0;
+}
+.sec--wit {
+  background: var(--wit);
+}
+.sec--inkt {
+  background: var(--inkt);
+  color: #fff;
+}
+.sec--inkt h2,
+.sec--inkt h3 {
+  color: #fff;
+}
+.sec--room2 {
+  background: var(--room-2);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 16px;
+  font-family: var(--kop);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-diep);
+}
+.eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 2px;
+  background: var(--accent);
+}
+.sec--inkt .eyebrow {
+  color: var(--accent);
+}
+
+.kop {
+  max-width: 660px;
+  margin: 0 auto clamp(38px, 5vw, 60px);
+  text-align: center;
+}
+.kop .eyebrow {
+  justify-content: center;
+}
+.kop--links {
+  margin-inline: 0;
+  text-align: left;
+}
+.kop--links .eyebrow {
+  justify-content: flex-start;
+}
+.kop__p {
+  margin: 18px 0 0;
+  color: var(--grijs);
+  font-size: 1.06rem;
+}
+.sec--inkt .kop__p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* ── hero ───────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: min(92vh, 860px);
+  display: flex;
+  align-items: flex-end;
+  padding: 150px 0 clamp(54px, 7vw, 92px);
+  overflow: hidden;
+  background: var(--inkt);
+}
+/* kortere kop voor een dienstpagina: de kop hoeft niet het hele scherm te vullen */
+.hero--kort {
+  min-height: min(66vh, 600px);
+  padding-top: calc(var(--kop-h) + 54px);
+}
+.hero--kort h1 {
+  font-size: clamp(2.2rem, 4.6vw, 3.5rem);
+}
+.hero__beeld {
+  position: absolute;
+  inset: -8% 0 -8% 0;
+  z-index: 0;
+}
+.hero__beeld img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+.hero__beeld::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(24, 35, 57, 0.92) 8%, rgba(24, 35, 57, 0.66) 44%, rgba(24, 35, 57, 0.18) 78%);
+}
+
+/* ── wisselende kop ────────────────────────────────────────
+   Vijf foto's die vanzelf doorlopen, zonder javascript. Elke dia draait dezelfde
+   animatie van 40s af, alleen met een eigen vertraging van --i x 8s. Dat is de hele
+   truc: css telt zelf door en er valt dus niets om als een script niet laadt.
+
+   De vertraging is 1,2s negatief, zodat dia 0 al op volle sterkte staat op het moment
+   dat de pagina verschijnt. Zou hij op 0 beginnen, dan kijk je de eerste seconde tegen
+   een donker vlak aan.
+
+   De tijdlijn per dia (40s = 100%): op 3% is hij binnen, op 23% begint hij te vervagen,
+   op 26% is hij weg. De volgende begint op 20% aan zijn eigen 3% insluipen en staat dus
+   op 23% al vol onder de vorige. Zo zit er nooit een gat tussen twee foto's. */
+.hero__dias {
+  inset: 0;
+}
+.hero__dia {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  /* cqh hieronder is de hoogte van dit vak; daarmee rekent de browser zelf uit
+     hoeveel foto er onder de onderrand hangt, op elk schermformaat. */
+  container-type: size;
+  animation: diaWissel 40s linear infinite;
+  animation-delay: calc(var(--i) * 8s - 1.2s);
+}
+.hero__dia img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* will-change staat bewust niet hier maar bij de twee animaties: vijf foto's op
+     een eigen laag zetten kost op een telefoon geheugen, en daar bewegen ze niet. */
+  will-change: auto;
+}
+
+/* Staande foto: op volle breedte zetten en hem van boven naar beneden door het beeld
+   laten zakken. (100cqh - 100%) is precies wat er onder de onderrand hangt, dus een
+   negatief getal; 0,08 tot 0,88 laat bijna de hele foto langskomen zonder dat de
+   bovenrand of de onderrand ooit in beeld schiet. Is de foto juist korter dan het vak
+   (smal scherm), dan vangt de mediaquery hieronder dat af: dan staat hij stil. */
+/* Waar de kanteling begint en eindigt, als deel van wat er onder de onderrand hangt.
+   0 = bovenrand van de foto in beeld, 1 = onderrand. Staat hier op de dia en niet op
+   de img, zodat de style= op de dia in de html het kan overschrijven: het onderwerp
+   zit niet in elke foto op dezelfde hoogte. In de ene staan de spiegels halverwege,
+   in de andere is de bovenste kwart alleen tegelwand en moet je dus lager beginnen. */
+.hero__dia--kantel {
+  --van: 0.12;
+  --tot: 0.8;
+}
+.hero__dia--kantel img {
+  height: auto;
+  min-height: 100%;
+}
+.hero__dia--zoom img {
+  animation: diaZoom 40s linear infinite;
+  animation-delay: calc(var(--i) * 8s - 1.2s);
+  will-change: transform;
+}
+
+@media (min-width: 760px) {
+  .hero__dia--kantel img {
+    animation: diaKantel 40s linear infinite;
+    animation-delay: calc(var(--i) * 8s - 1.2s);
+    will-change: transform;
+  }
+}
+
+/* ── en op een telefoon ────────────────────────────────────
+   Hier werkt de kanteling hierboven niet: een staande foto is in een smalle kop
+   juist breder dan het vak en hangt dus niet onder de onderrand, zodat er niets
+   te kantelen valt. Dat is waarom er op mobiel bijna niets bewoog.
+   In plaats daarvan krijgt elke foto dezelfde trage in-zoom die ook naar beneden
+   loopt, los van of hij staand of liggend is. De foto staat uitgesneden op het
+   hele vak en begint op 1,18x; op dat formaat hangt er aan elke kant ruim genoeg
+   buiten het vak om 3,6% te schuiven zonder dat een rand ooit in beeld komt. */
+@media (max-width: 759px) {
+  .hero__dia--kantel img {
+    height: 100%;
+    min-height: 0;
+  }
+  .hero__dia--kantel img,
+  .hero__dia--zoom img {
+    animation: diaMobiel 40s linear infinite;
+    animation-delay: calc(var(--i) * 8s - 1.2s);
+  }
+}
+@keyframes diaMobiel {
+  0% {
+    transform: scale(1.18) translateY(-3.6%);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  26% {
+    transform: scale(1.1) translateY(3.6%);
+  }
+  100% {
+    transform: scale(1.1) translateY(3.6%);
+  }
+}
+
+@keyframes diaWissel {
+  0% {
+    opacity: 0;
+  }
+  3% {
+    opacity: 1;
+  }
+  23% {
+    opacity: 1;
+  }
+  26% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* De kanteling begint en eindigt traag (de bezier), zodat het leest als een camera die
+   rustig naar beneden draait en niet als een schuivend plaatje. Van 12% tot 80% van wat
+   er onder de rand hangt: ver genoeg om bijna de hele foto langs te laten komen, en nooit
+   zo ver dat de bovenrand of de onderrand van de foto in beeld schiet. */
+@keyframes diaKantel {
+  0% {
+    transform: translateY(calc((100cqh - 100%) * var(--van)));
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  26% {
+    transform: translateY(calc((100cqh - 100%) * var(--tot)));
+  }
+  100% {
+    transform: translateY(calc((100cqh - 100%) * var(--tot)));
+  }
+}
+@keyframes diaZoom {
+  0% {
+    transform: scale(1.02);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  26% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* Vijf streepjes rechtsonder: welke foto staat er, en hoe lang nog. Puur om te laten
+   zien dat het doorloopt — niet aanklikbaar, dus het is aria-hidden. */
+.hero__tel {
+  position: absolute;
+  right: max(24px, calc((100vw - var(--wrap, 1240px)) / 2));
+  bottom: clamp(22px, 3vw, 34px);
+  z-index: 1;
+  display: none;
+  gap: 8px;
+}
+/* Op een telefoon staat de kop vol met tekst en twee knoppen; de streepjes zouden
+   daar bovenop komen. Vanaf 760px is er ruimte, en pas daar beweegt het ook. */
+@media (min-width: 760px) {
+  .hero__tel {
+    display: flex;
+  }
+}
+.hero__tel span {
+  position: relative;
+  width: 34px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+.hero__tel span::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: #fff;
+  animation: diaTel 40s linear infinite;
+  animation-delay: calc(var(--i) * 8s - 1.2s);
+}
+@keyframes diaTel {
+  0% {
+    transform: scaleX(0);
+  }
+  23% {
+    transform: scaleX(1);
+  }
+  26% {
+    transform: scaleX(1);
+  }
+  27% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+/* Beweging uitgezet op het toestel: alleen de eerste foto, stil. */
+@media (prefers-reduced-motion: reduce) {
+  .hero__dia,
+  .hero__dia img,
+  .hero__tel span::after {
+    animation: none;
+  }
+  .hero__dia {
+    opacity: 0;
+  }
+  .hero__dia:first-child {
+    opacity: 1;
+  }
+  .hero__tel span:first-child::after {
+    transform: scaleX(1);
+  }
+}
+.hero__in {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  max-width: 800px;
+}
+.hero__in .eyebrow {
+  color: #fff;
+}
+.hero__in .eyebrow::before {
+  background: var(--accent);
+}
+.hero h1 {
+  color: #fff;
+  margin-bottom: 22px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero__p {
+  font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 560px;
+  margin-bottom: 30px;
+}
+.hero__knop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hero__merk {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  gap: 0;
+}
+
+/* woord-voor-woord binnenkomen */
+.kinetiek span {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.kinetiek span > i {
+  display: inline-block;
+  font-style: inherit;
+  transform: translateY(105%);
+  animation: opkomen 0.85s var(--soepel) forwards;
+  animation-delay: var(--d, 0s);
+}
+@keyframes opkomen {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ── lopende band ───────────────────────────────────────── */
+.band {
+  background: var(--accent);
+  color: #fff;
+  overflow: hidden;
+  padding: 13px 0;
+  border-block: 1px solid rgba(255, 255, 255, 0.25);
+}
+.band__spoor {
+  display: flex;
+  width: max-content;
+  animation: lopen 46s linear infinite;
+}
+.band__spoor span {
+  display: inline-flex;
+  align-items: center;
+  gap: 34px;
+  padding-right: 34px;
+  font-family: var(--kop);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.band__spoor span::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+}
+.band:hover .band__spoor {
+  animation-play-state: paused;
+}
+@keyframes lopen {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── troeven ────────────────────────────────────────────── */
+.troeven {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.troef {
+  position: relative;
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: var(--r);
+  padding: 30px 26px 28px;
+  overflow: hidden;
+  transition: transform 0.35s var(--soepel), box-shadow 0.35s var(--soepel), border-color 0.35s;
+}
+.troef::before {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--soepel);
+}
+.troef:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--schaduw-op);
+  border-color: transparent;
+}
+.troef:hover::before {
+  transform: scaleX(1);
+}
+.troef__ic {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  background: var(--salie-zacht);
+  color: var(--inkt);
+}
+.troef__ic svg {
+  width: 24px;
+  height: 24px;
+}
+.troef h3 {
+  margin-bottom: 8px;
+}
+.troef p {
+  margin: 0;
+  color: var(--grijs);
+  font-size: 0.97rem;
+}
+
+/* ── split (beeld + tekst) ──────────────────────────────── */
+.split {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(32px, 5vw, 76px);
+  align-items: center;
+}
+.split--om .split__beeld {
+  order: 2;
+}
+.split__beeld {
+  position: relative;
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: var(--schaduw-op);
+}
+/* Stond op scale(1.06) en liep naar 1 zodra de observer het blok zag. Zonder die
+   observer bleef het beeld ingezoomd en afgesneden staan, dus de eindstand is nu
+   de enige stand. */
+.split__beeld img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+.split__tag {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--kop);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border-radius: 999px;
+}
+.split__txt p {
+  color: var(--grijs);
+  font-size: 1.04rem;
+}
+.sec--inkt .split__txt p {
+  color: rgba(255, 255, 255, 0.74);
+}
+.split__txt .btn {
+  margin-top: 8px;
+}
+
+.lijst {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.lijst li {
+  position: relative;
+  padding-left: 34px;
+  color: var(--grijs);
+  font-size: 1rem;
+}
+.lijst li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: var(--accent-zacht) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a05a3f' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12.5 9.5 18 20 6.5'/%3E%3C/svg%3E") center / 12px no-repeat;
+}
+.sec--inkt .lijst li {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ── uitgelicht blok (cv op de startpagina) ─────────────── */
+.sec--inkt .split__txt p {
+  color: rgba(255, 255, 255, 0.82);
+}
+.uitgelicht .split__txt h2 {
+  font-size: clamp(2.1rem, 4vw, 3.3rem);
+  margin-bottom: 18px;
+}
+.uitgelicht .split__txt > p {
+  font-size: clamp(1.02rem, 1.4vw, 1.14rem);
+}
+.uitgelicht .split__beeld img {
+  aspect-ratio: 5 / 4;
+}
+.uitgelicht__knop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+/* het nummer wordt door app.js in de <em> gezet; geen cursief in een knop */
+.btn em {
+  font-style: normal;
+}
+
+/* ── actieblok op de home ───────────────────────────────────
+   Koperzacht vlak tussen de donkere kop en de witte band eronder,
+   zodat de actie opvalt zonder een derde donker blok te worden. */
+.aktie {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(24px, 4vw, 54px);
+  align-items: center;
+  padding: clamp(26px, 3.4vw, 44px);
+  border: 1px solid var(--accent);
+  border-left: 5px solid var(--accent);
+  border-radius: var(--r);
+  background: var(--accent-zacht);
+}
+.aktie__txt h2 {
+  margin: 4px 0 12px;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+}
+.aktie__txt p {
+  margin: 0;
+  max-width: 54ch;
+}
+.aktie__knop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+.aktie__lijst {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+.aktie__lijst li {
+  padding: 13px 16px;
+  border-radius: var(--r-s);
+  background: var(--wit);
+  font-size: 0.95rem;
+  color: var(--grijs);
+}
+.aktie__lijst b {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: var(--kop);
+  font-weight: 700;
+  color: var(--inkt);
+}
+/* het percentage is waar het blok om draait: eigen vlakje, niet weggestopt in de regel */
+.aktie__pct {
+  flex: none;
+  font-style: normal;
+  font-family: var(--kop);
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: var(--wit);
+  background: var(--accent);
+  border-radius: 999px;
+  padding: 6px 11px;
+}
+
+/* ── werkkaarten ────────────────────────────────────────── */
+.werk__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+/* negen vakken: 3 naast elkaar, dan drie volle rijen in plaats van 4 + 4 + 1 */
+.werk__grid--negen {
+  grid-template-columns: repeat(3, 1fr);
+}
+.wkaart {
+  position: relative;
+  display: block;
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: var(--r);
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.35s var(--soepel), box-shadow 0.35s var(--soepel), border-color 0.3s;
+}
+.wkaart:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--schaduw-op);
+  border-color: transparent;
+}
+.wkaart__beeld {
+  display: block;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--lijn-2);
+}
+.wkaart__beeld img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.85s var(--soepel);
+}
+.wkaart:hover .wkaart__beeld img {
+  transform: scale(1.07);
+}
+.wkaart__body {
+  padding: 19px 20px 22px;
+}
+.wkaart__body h3 {
+  margin-bottom: 6px;
+}
+.wkaart__body p {
+  margin: 0;
+  color: var(--grijs);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+.wkaart__pijl {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--wit);
+  color: var(--inkt);
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.3s, transform 0.3s var(--soepel), background 0.3s, color 0.3s;
+}
+.wkaart:hover .wkaart__pijl {
+  opacity: 1;
+  transform: translateY(0);
+  background: var(--accent);
+  color: #fff;
+}
+.wkaart__pijl svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* ── werkzaamheden, lange rijen ─────────────────────────── */
+.rij {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 4vw, 60px);
+  align-items: center;
+  padding: clamp(34px, 4vw, 52px) 0;
+  border-top: 1px solid var(--lijn);
+  scroll-margin-top: 100px;
+}
+.rij:first-of-type {
+  border-top: 0;
+}
+.rij:nth-child(even) .rij__beeld {
+  order: 2;
+}
+.rij__beeld {
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: var(--schaduw);
+}
+.rij__beeld img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.9s var(--soepel);
+}
+.rij:hover .rij__beeld img {
+  transform: scale(1.04);
+}
+.rij__n {
+  font-family: var(--kop);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent-diep);
+}
+.rij__txt h2 {
+  font-size: clamp(1.6rem, 2.6vw, 2.15rem);
+  margin: 10px 0 12px;
+}
+.rij__txt p {
+  color: var(--grijs);
+}
+
+/* ── materiaalkaarten ───────────────────────────────────── */
+.mat__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.mkaart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: 1px solid var(--lijn);
+  border-radius: var(--r);
+  background: var(--wit);
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s var(--soepel), box-shadow 0.3s var(--soepel), border-color 0.25s;
+}
+.mkaart:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--schaduw-op);
+}
+.mkaart__beeld {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--lijn-2);
+}
+.mkaart__beeld img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--soepel);
+}
+.mkaart:hover .mkaart__beeld img {
+  transform: scale(1.08);
+}
+.mkaart__body {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 16px 18px;
+  gap: 3px;
+}
+.mkaart__body b {
+  font-family: var(--kop);
+  font-size: 1.02rem;
+}
+.mkaart__body i {
+  font-style: normal;
+  font-size: 0.86rem;
+  color: var(--grijs-licht);
+  line-height: 1.45;
+}
+.mkaart__plus {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 4px 14px -6px rgba(24, 35, 57, 0.5);
+  transition: background 0.25s, transform 0.35s var(--soepel);
+}
+.mkaart__plus::before,
+.mkaart__plus::after {
+  content: '';
+  position: absolute;
+  inset: 50% 11px auto 11px;
+  height: 2px;
+  background: var(--inkt);
+  transform: translateY(-50%);
+  transition: transform 0.35s var(--soepel), background 0.25s;
+}
+.mkaart__plus::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+.mkaart.is-aan {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent) inset, var(--schaduw);
+}
+.mkaart.is-aan .mkaart__plus {
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+.mkaart.is-aan .mkaart__plus::before,
+.mkaart.is-aan .mkaart__plus::after {
+  background: #fff;
+}
+.mkaart__vink {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--kop);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.25s, transform 0.3s var(--soepel);
+}
+.mkaart.is-aan .mkaart__vink {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ── aanbod: filter en artikelkaarten ───────────────────── */
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 0 0 30px;
+}
+.filter__k {
+  border: 1px solid var(--lijn);
+  background: var(--wit);
+  color: var(--inkt);
+  font: 600 0.93rem/1 var(--tekst);
+  padding: 11px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.25s var(--soepel);
+}
+.filter__k:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.filter__k.is-aan {
+  background: var(--inkt);
+  border-color: var(--inkt);
+  color: #fff;
+}
+
+.filter__tel {
+  align-self: center;
+  margin-left: 6px;
+  color: var(--grijs-licht);
+  font-size: 0.88rem;
+}
+
+.pgrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.pkaart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: 1px solid var(--lijn);
+  border-radius: var(--r);
+  background: var(--wit);
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s var(--soepel), box-shadow 0.3s var(--soepel), border-color 0.25s;
+}
+.pkaart[hidden] {
+  display: none;
+}
+.pkaart:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--schaduw-op);
+}
+.pkaart__beeld {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--lijn-2);
+}
+.pkaart__beeld img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--soepel);
+}
+.pkaart:hover .pkaart__beeld img {
+  transform: scale(1.06);
+}
+.pkaart__vink {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--kop);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.25s, transform 0.3s var(--soepel);
+}
+.pkaart.is-aan {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent) inset, var(--schaduw);
+}
+.pkaart.is-aan .pkaart__vink {
+  opacity: 1;
+  transform: translateY(0);
+}
+.pkaart__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 15px 16px 16px;
+  gap: 4px;
+}
+.pkaart__body b {
+  font-family: var(--kop);
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.pkaart__body i {
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--grijs-licht);
+  line-height: 1.45;
+}
+.pkaart__voet {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 13px;
+}
+.pkaart__voet em {
+  font-style: normal;
+  font-size: 0.82rem;
+  color: var(--grijs);
+}
+.pkaart__voet em.prijs--vast {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.pkaart__voet em.prijs--vast b {
+  font-family: var(--kop);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--inkt);
+}
+.pkaart__voet em.prijs--vast span {
+  font-size: 0.76rem;
+  color: var(--grijs-licht);
+}
+
+.prijsregel {
+  margin: 26px 0 0;
+  text-align: center;
+  color: var(--grijs);
+  font-size: 0.9rem;
+}
+
+/* ── badkamerpakketten ──────────────────────────────────── */
+.pakketten {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  align-items: stretch;
+}
+.pakket {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 24px 24px;
+  border: 1px solid var(--lijn);
+  border-radius: var(--r);
+  background: var(--wit);
+  box-shadow: var(--schaduw);
+  transition: transform 0.3s var(--soepel), box-shadow 0.3s var(--soepel);
+}
+.pakket:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--schaduw-op);
+}
+.pakket--top {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent) inset, var(--schaduw-op);
+}
+.pakket__vlag {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--kop);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+.pakket h3 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  line-height: 1.2;
+  margin: 0;
+}
+.pakket__wie {
+  margin: 7px 0 0;
+  color: var(--grijs);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.ppr {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 18px 0 0;
+  padding: 14px 0 0;
+  border-top: 1px solid var(--lijn-2);
+  font-style: normal;
+  font-size: 0.95rem;
+  color: var(--grijs);
+}
+.ppr--vast i {
+  font-style: normal;
+  font-family: var(--kop);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grijs-licht);
+}
+.ppr--vast b {
+  font-family: var(--kop);
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+  font-weight: 700;
+  color: var(--inkt);
+  line-height: 1.15;
+}
+/* Hangt aan het bedrag, niet aan de lijst eronder: wat de prijs dekt is de
+   eerste vraag bij een pakketprijs, dus hij staat bij het getal. app.js zet
+   hem erin uit PAKKETPRIJS, dus hij kan niet per pagina gaan afwijken. */
+.pakket__dekt {
+  margin: 10px 0 0;
+  align-self: start;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--accent-zacht);
+  font-family: var(--kop);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-diep);
+}
+.pakket__duur {
+  margin: 12px 0 0;
+  font-family: var(--kop);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--accent-diep);
+}
+.pakket h4 {
+  margin: 20px 0 8px;
+  font-family: var(--kop);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--grijs-licht);
+}
+.pakket ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.pakket li {
+  position: relative;
+  padding-left: 25px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.pakket li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  width: 13px;
+  height: 7px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+.pakket__niet li {
+  color: var(--grijs);
+}
+.pakket__niet li::before {
+  top: 0.62em;
+  width: 11px;
+  height: 0;
+  border-left: 0;
+  border-bottom: 2px solid var(--lijn);
+  transform: none;
+}
+/* de kaarten zijn even hoog; margin-top:auto duwt de knop naar de onderrand.
+   De ruimte erboven komt van de laatste lijst, want auto laat zelf niets over. */
+.pakket ul:last-of-type {
+  margin-bottom: 22px;
+}
+.pakket .btn {
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
+}
+.pakketregel {
+  margin: 26px 0 0;
+  text-align: center;
+  color: var(--grijs);
+  font-size: 0.9rem;
+}
+/* Onder de pakketten op de startpagina: de nuance plus de doorklik naar contact.
+   Op /badkamer staat diezelfde nuance als een heel blok; hier past een regel. */
+.pakketslot {
+  margin: 26px auto 0;
+  max-width: 62ch;
+  text-align: center;
+  color: var(--grijs);
+}
+.pakketslot a {
+  color: var(--accent-diep);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pkaart__knop {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-zacht);
+  color: var(--accent-diep);
+  font-family: var(--kop);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 7px 13px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+.pkaart:hover .pkaart__knop {
+  background: var(--accent);
+  color: #fff;
+}
+.pkaart.is-aan .pkaart__knop {
+  background: var(--inkt);
+  color: #fff;
+}
+.pkaart.is-aan .pkaart__knop::after {
+  content: '\2713';
+}
+
+.mat__hint {
+  margin: 26px 0 0;
+  text-align: center;
+  color: var(--grijs);
+  font-size: 0.97rem;
+}
+.mat__hint.is-vol {
+  color: var(--accent-diep);
+  font-weight: 600;
+}
+
+/* ── stappen ────────────────────────────────────────────── */
+.stappen {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  counter-reset: s;
+}
+.stap {
+  position: relative;
+  padding-top: 30px;
+}
+.stap::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: -22px;
+  top: 0;
+  height: 2px;
+  background: var(--lijn);
+}
+/* Het koperen streepje boven een stap groeide van 0 naar 40px zodra de observer de
+   stap zag. Die observer is weg, dus het streepje staat er gewoon. */
+.stap::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2px;
+  width: 40px;
+  background: var(--accent);
+}
+.stap:last-child::before {
+  right: 0;
+}
+.stap__n {
+  display: block;
+  font-family: var(--kop);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.stap h3 {
+  margin-bottom: 7px;
+}
+.stap p {
+  margin: 0;
+  color: var(--grijs);
+  font-size: 0.96rem;
+}
+.sec--inkt .stap::before {
+  background: rgba(255, 255, 255, 0.18);
+}
+.sec--inkt .stap p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* ── cijfers ────────────────────────────────────────────── */
+.cijfers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+.cijfer b {
+  display: block;
+  font-family: var(--kop);
+  font-size: clamp(2.6rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.cijfer i {
+  font-style: normal;
+  font-size: 0.95rem;
+  color: var(--grijs);
+}
+.sec--inkt .cijfer i {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── vragen ─────────────────────────────────────────────── */
+.vragen__in {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(28px, 5vw, 70px);
+  align-items: start;
+}
+.vraag {
+  border-bottom: 1px solid var(--lijn);
+}
+.vraag summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--kop);
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: color 0.2s;
+}
+.vraag summary::-webkit-details-marker {
+  display: none;
+}
+.vraag summary::after {
+  content: '';
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--lijn);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d1f3d' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center / 15px no-repeat;
+  transition: transform 0.35s var(--soepel), background-color 0.25s, border-color 0.25s;
+}
+.vraag summary:hover {
+  color: var(--accent-diep);
+}
+.vraag[open] summary::after {
+  transform: rotate(180deg);
+  border-color: var(--accent);
+}
+.vraag__a {
+  overflow: hidden;
+  animation: vouw 0.4s var(--soepel);
+}
+.vraag__a p {
+  margin: 0 0 20px;
+  max-width: 62ch;
+  color: var(--grijs);
+}
+@keyframes vouw {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+/* ── formulier ──────────────────────────────────────────── */
+.contact__in {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(30px, 5vw, 70px);
+  align-items: start;
+}
+.form {
+  background: var(--wit);
+  border: 1px solid var(--lijn);
+  border-radius: var(--r);
+  padding: clamp(22px, 3vw, 34px);
+  box-shadow: var(--schaduw);
+  display: grid;
+  gap: 16px;
+}
+.form__rij--2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.veld {
+  display: block;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.veld__l {
+  display: block;
+  margin-bottom: 7px;
+  font-family: var(--kop);
+  font-size: 0.83rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--grijs);
+}
+.veld__l b {
+  color: var(--accent-diep);
+}
+.veld input,
+.veld textarea {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1.5px solid var(--lijn);
+  border-radius: var(--r-s);
+  background: var(--room);
+  font: inherit;
+  font-size: 1rem;
+  color: var(--inkt);
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.veld input::placeholder,
+.veld textarea::placeholder {
+  color: #c6bfae;
+}
+.veld input:focus,
+.veld textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--wit);
+  box-shadow: 0 0 0 4px rgba(196, 122, 67, 0.16);
+}
+.veld input.is-fout {
+  border-color: #d9463d;
+}
+.veld textarea {
+  resize: vertical;
+  min-height: 108px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.chip {
+  position: relative;
+}
+.chip span {
+  display: inline-block;
+  padding: 9px 15px;
+  border: 1.5px solid var(--lijn);
+  border-radius: 999px;
+  background: var(--room);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.22s var(--soepel);
+}
+.chip span:hover {
+  border-color: var(--accent);
+}
+.chip input:checked + span {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+.chip input:focus-visible + span {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.form__fout {
+  margin: 0;
+  padding: 12px 15px;
+  border-radius: var(--r-s);
+  background: #fdeceb;
+  color: #a5241d;
+  font-size: 0.94rem;
+}
+.form__klein {
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--grijs-licht);
+}
+
+.dank {
+  text-align: center;
+  padding: 10px 0 4px;
+}
+.dank__vink {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: #e7f6e5;
+  color: #2f9c2a;
+  animation: pop 0.5s var(--soepel);
+}
+.dank__vink svg {
+  width: 30px;
+  height: 30px;
+}
+@keyframes pop {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}
+.dank__blok {
+  text-align: left;
+  white-space: pre-wrap;
+  background: var(--room);
+  border: 1px solid var(--lijn);
+  border-radius: var(--r-s);
+  padding: 16px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85rem;
+  margin: 16px 0;
+  max-height: 260px;
+  overflow: auto;
+}
+
+.contact__kaarten {
+  display: grid;
+  gap: 12px;
+  margin-top: 26px;
+}
+.ckaart {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px 18px;
+  border: 1px solid var(--lijn);
+  border-radius: var(--r);
+  background: var(--wit);
+  text-decoration: none;
+  transition: transform 0.25s var(--soepel), box-shadow 0.25s, border-color 0.25s;
+}
+.ckaart:hover {
+  transform: translateX(4px);
+  border-color: var(--accent);
+  box-shadow: var(--schaduw);
+}
+.ckaart__ic {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: var(--salie-zacht);
+  color: var(--inkt);
+}
+.ckaart__ic svg {
+  width: 21px;
+  height: 21px;
+}
+.ckaart b {
+  display: block;
+  font-family: var(--kop);
+  font-size: 1rem;
+}
+.ckaart i {
+  font-style: normal;
+  font-size: 0.88rem;
+  color: var(--grijs);
+}
+
+/* ── slot-cta ───────────────────────────────────────────── */
+.slot {
+  position: relative;
+  background: var(--inkt);
+  color: #fff;
+  overflow: hidden;
+}
+.slot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 120% at 88% 10%, rgba(196, 122, 67, 0.34), transparent 60%);
+}
+.slot__in {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+.slot h2 {
+  color: #fff;
+  max-width: 17ch;
+}
+.slot p {
+  color: rgba(255, 255, 255, 0.74);
+  max-width: 46ch;
+  margin: 14px 0 0;
+}
+.slot__knop {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ── voet ───────────────────────────────────────────────── */
+.voet {
+  background: var(--inkt);
+  color: rgba(255, 255, 255, 0.74);
+  padding: clamp(46px, 6vw, 72px) 0 26px;
+  font-size: 0.94rem;
+}
+.voet__in {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
+  gap: 34px;
+}
+.voet__brand {
+  margin-bottom: 14px;
+}
+.voet__merk .brand__txt {
+  color: #fff;
+}
+/* BOUW staat op licht in Slate; op de donkere voet kan dat niet, daar
+   pakt het de reverse uit het merkhandboek: wit, iets ingehouden. */
+.voet__merk .brand__txt i {
+  color: rgba(255, 255, 255, 0.72);
+}
+/* de reverse van blad 02: op een donkere grond staat het huisje wit */
+.voet__merk .brand__mark {
+  color: var(--room);
+}
+.voet__kol h4,
+.voet__kol a,
+.voet address {
+  font-family: var(--kop);
+}
+.voet__merk p {
+  max-width: 34ch;
+}
+.voet__knoppen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.voet__kol h4 {
+  color: #fff;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.voet__kol a {
+  display: block;
+  padding: 5px 0;
+  text-decoration: none;
+  transition: color 0.2s, transform 0.2s;
+}
+.voet__kol a:hover {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+.voet__kol address {
+  font-style: normal;
+  margin: 12px 0 8px;
+}
+.voet__kvk {
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+.voet__onder {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 46px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.86rem;
+  opacity: 0.66;
+}
+
+/* ── wensenbalk ─────────────────────────────────────────── */
+.balk {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 95;
+  padding: 0 14px calc(14px + env(safe-area-inset-bottom));
+  pointer-events: none;
+  animation: omhoog 0.4s var(--soepel);
+}
+@keyframes omhoog {
+  from {
+    transform: translateY(120%);
+  }
+}
+.balk__in {
+  pointer-events: auto;
+  width: min(100%, 640px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 12px 12px 20px;
+  border-radius: 999px;
+  background: var(--inkt);
+  color: #fff;
+  box-shadow: 0 18px 40px -18px rgba(24, 35, 57, 0.85);
+}
+.balk__txt {
+  flex: 1;
+  font-size: 0.93rem;
+  line-height: 1.3;
+}
+.balk__txt b {
+  color: var(--accent);
+}
+.balk__leeg {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.balk__leeg:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+/* ── galerij met eigen foto's ───────────────────────────── */
+/* kolommen en niet een raster: de foto's staan staand en liggend door elkaar
+   en in een raster met vaste verhouding wordt daar te veel van weggesneden */
+.gal {
+  columns: 4;
+  column-gap: 14px;
+}
+.gal__k {
+  display: block;
+  width: 100%;
+  margin: 0 0 14px;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: var(--r);
+  overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+}
+.gal__k img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.8s var(--soepel);
+}
+.gal__k::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(24, 35, 57, 0) 45%, rgba(24, 35, 57, 0.55));
+  opacity: 0;
+  transition: opacity 0.35s var(--soepel);
+}
+.gal__k::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  right: 12px;
+  bottom: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--accent)
+    url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 7v10M7 12h10'/%3E%3C/svg%3E")
+    center / 18px no-repeat;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.3s var(--soepel), transform 0.3s var(--soepel);
+}
+.gal__k:hover img {
+  transform: scale(1.05);
+}
+.gal__k:hover::after,
+.gal__k:hover::before,
+.gal__k:focus-visible::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── de foto groot ──────────────────────────────────────── */
+.lens {
+  position: fixed;
+  inset: 0;
+  z-index: 160;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 52px);
+  background: rgba(13, 20, 34, 0.95);
+  backdrop-filter: blur(6px);
+  animation: lensOp 0.28s var(--soepel);
+}
+.lens[hidden] {
+  display: none;
+}
+@keyframes lensOp {
+  from {
+    opacity: 0;
+  }
+}
+.lens__in {
+  margin: 0;
+  max-width: min(1100px, 92vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.lens__in img {
+  max-width: 100%;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  animation: lensIn 0.35s var(--soepel) both;
+}
+@keyframes lensIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+.lens__in figcaption {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.9rem;
+  text-align: center;
+  max-width: 62ch;
+}
+.lens__x,
+.lens__nav {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s var(--soepel);
+}
+.lens__x svg,
+.lens__nav svg {
+  width: 20px;
+  height: 20px;
+}
+.lens__x:hover,
+.lens__nav:hover {
+  background: var(--accent);
+  transform: scale(1.08);
+}
+.lens__x {
+  top: 16px;
+  right: 16px;
+}
+.lens__nav {
+  top: 50%;
+  margin-top: -23px;
+}
+.lens__nav--vorig {
+  left: 14px;
+}
+.lens__nav--volgend {
+  right: 14px;
+}
+.lens__tel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  margin: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+}
+
+/* ── vaste knoppen op mobiel ────────────────────────────── */
+.dok {
+  display: none;
+}
+
+/* Het lokveld voor bots. Niet display:none en niet hidden: een deel van de bots slaat
+   precies die twee over. Dit haalt hem uit beeld en laat hem bestaan. */
+.lok {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ── reveal ───────────────────────────────────────────────
+   Hier stond .reveal op opacity 0 met een translate eronder, en een
+   IntersectionObserver in app.js zette dat per blok om zodra je eraan toe was.
+   Daarmee stond de halve pagina pas op het scherm nadat JS had gelopen: op een
+   middenklas-Android ziet de bezoeker lege gaten die te laat inschuiven, en
+   iemand zonder JS ziet ze helemaal niet. Bij de overzetting naar jiw-websites
+   is dat eruit (zie CLAUDE.md, "Never gate content visibility on JS").
+   De klasse blijft bestaan en doet niets, zodat de pagina's zelf niet om hoefden. */
+.reveal {
+  opacity: 1;
+}
+
+/* ── responsief ─────────────────────────────────────────── */
+@media (min-width: 720px) {
+  .nav__tel {
+    display: inline-flex;
+    gap: 6px;
+  }
+  .taal {
+    display: inline-flex;
+  }
+  .contact__kaarten {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .lint {
+    gap: 8px;
+    font-size: 0.8rem;
+  }
+  .lint__lang {
+    display: none;
+  }
+  .lint__kort {
+    display: inline;
+  }
+}
+
+@media (max-width: 900px) {
+  .aktie {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1080px) {
+  .werk__grid,
+  .mat__grid,
+  .pgrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .gal {
+    columns: 3;
+  }
+  .voet__in {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* De balk telt acht menu-items. Naast het logo, het telefoonnummer en de knop
+   is dat precies de 1240 van .wrap, en er blijft 22px over. Sinds de pil zweeft
+   heeft hij 20px binnenruimte aan elke kant en 14px lucht tot de schermrand, dus
+   die volle 1240 is er pas vanaf 1240 + 40 + 28 = 1308 breed. Daaronder gaat het
+   menu in de burger. De knop blijft wel staan tot 900; die valt in het blok
+   hieronder weg voor de dok. */
+@media (max-width: 1307px) {
+  .nav__links {
+    display: none;
+  }
+  /* nav__links droeg de margin-left:auto die de rechterkant naar de rand duwt.
+     Zodra die verdwijnt moet nav__right het overnemen, anders plakt de burger
+     tegen het logo aan. */
+  .nav__right {
+    margin-left: auto;
+  }
+  .burger {
+    display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav__cta {
+    display: none;
+  }
+  .pakketten {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .troeven,
+  .stappen,
+  .cijfers {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stap::before,
+  .stap::after {
+    display: none;
+  }
+  .stap {
+    padding-top: 0;
+  }
+  .split,
+  .rij,
+  .vragen__in,
+  .contact__in {
+    grid-template-columns: 1fr;
+  }
+  .split--om .split__beeld,
+  .rij:nth-child(even) .rij__beeld {
+    order: 0;
+  }
+  /* Geen vol scherm meer vullen met tekst: de kop houdt hier een vaste hoogte en
+     de foto's krijgen de ruimte. De tekst staat eronder, tegen de onderkant. */
+  .hero {
+    min-height: 78vh;
+    min-height: min(82svh, 760px);
+    padding-top: calc(var(--kop-h) + 50px);
+  }
+
+  /* WhatsApp en offerte blijven onderin staan en bewegen mee naar beneden.
+     Hij begint onder het scherm en komt pas omhoog als je echt aan het scrollen
+     bent, en hij duikt weer weg zodra er een offerteknop of het formulier zelf
+     in beeld staat — anders ligt hij over precies de knop waar hij naartoe
+     wijst. Dat aan- en uitzetten doet app.js met de klasse is-op.
+     visibility hoort erbij: zonder dat blijft een weggeschoven balk onder het
+     scherm aanklikbaar en pakt een schermlezer hem nog op. */
+  .dok {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 96;
+    display: flex;
+    gap: 10px;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(247, 243, 236, 0.94);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--lijn);
+    box-shadow: 0 -12px 30px -24px rgba(24, 35, 57, 0.9);
+    visibility: hidden;
+    transform: translateY(calc(100% + 16px));
+    transition: transform 0.34s var(--soepel), visibility 0.34s;
+  }
+  .dok.is-op {
+    visibility: visible;
+    transform: none;
+  }
+  .dok .btn {
+    flex: 1;
+    justify-content: center;
+    padding-inline: 10px;
+    gap: 8px;
+  }
+  .dok .btn svg {
+    width: 18px;
+    height: 18px;
+    flex: none;
+  }
+  body.heeft-dok {
+    padding-bottom: 78px;
+  }
+  /* De wensenbalk staat boven de knoppenbalk, maar alleen zolang die er ook
+     werkelijk staat — anders zweeft hij 68px boven de onderrand met niets eronder.
+     app.js zet dok-op op de body, dezelfde schakelaar als is-op op de dok zelf. */
+  body.heeft-dok .balk {
+    transition: bottom 0.34s var(--soepel);
+  }
+  body.heeft-dok.dok-op .balk {
+    bottom: calc(68px + env(safe-area-inset-bottom));
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+  .gal {
+    columns: 2;
+    column-gap: 10px;
+  }
+  .gal__k {
+    margin-bottom: 10px;
+  }
+  .lens__nav {
+    width: 40px;
+    height: 40px;
+  }
+  .lens__nav--vorig {
+    left: 6px;
+  }
+  .lens__nav--volgend {
+    right: 6px;
+  }
+  .werk__grid,
+  .mat__grid,
+  .pgrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pkaart__voet {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+  }
+  .filter__k {
+    padding: 9px 14px;
+    font-size: 0.86rem;
+  }
+  .troeven,
+  .cijfers {
+    grid-template-columns: 1fr;
+  }
+  .cijfers {
+    gap: 26px;
+  }
+  .form__rij--2 {
+    grid-template-columns: 1fr;
+  }
+  .voet__in {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .mkaart__body i {
+    font-size: 0.8rem;
+  }
+  .balk__in {
+    padding-left: 16px;
+  }
+  .balk__txt {
+    font-size: 0.86rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

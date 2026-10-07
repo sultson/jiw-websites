@@ -1,0 +1,70 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "bloei-concept",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // De canonicals en de sitemap noemen elke pagina met een schuine streep aan
+    // het eind (/assortiment/). Cloudflare moet dezelfde vorm serveren, anders
+    // wijst elke canonical naar een adres dat eerst nog een omleiding is.
+    "html_handling": "force-trailing-slash",
+    // Elke pagina is als eigen bestand gebakken, dus er valt voor een
+    // SPA-terugval niets te doen behalve 200 antwoorden op een adres dat niet
+    // bestaat. Dat is een zachte 404, en die kost indexruimte.
+    "not_found_handling": "404-page",
+    // De Worker moet paginaverzoeken zien, niet alleen de API: anders krijgt de
+    // HTML zijn Cache-Control niet mee en draait een eventuele omleiding naar de
+    // canonieke host nooit. De bestanden met een hash in hun naam gaan er wel
+    // omheen, die hebben er niets te halen.
+    "run_worker_first": ["/*", "!/assets/*", "!/img/*", "!/favicon.svg", "!/logo-email.png"]
+  },
+  // Eén host, want dit is nog een concept. Komt er een eigen domein, dan komen
+  // hier de kale en de www-variant bij als custom_domain, gaat SITE_URL in
+  // site.config.mjs daarheen, en zet ANDERE_HOSTS in worker/index.ts dit adres
+  // door met één 301. Wie de www-variant vergeet zet de helft van de bezoekers
+  // op een foutpagina.
+  //
+  // custom_domain en geen gewone route: bij het koppelen zet Cloudflare zelf het
+  // DNS-record klaar, wat een gewone route niet doet.
+  //
+  // jouwconcept.app en niet jouwidealewebsite.nl: die zone zit op de grens van
+  // 100 custom domains.
+  "routes": [
+    { "pattern": "bloei-concept.jouwconcept.app", "custom_domain": true }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  // Verstuurd vanaf het gedeelde afzenderdomein notify.jouwidealewebsite.nl, dat
+  // in Cloudflare Email Service geverifieerd is en door de andere sites in deze
+  // monorepo gebruikt wordt. Krijgt Bloei! een eigen domein, dan hoort daar een
+  // eigen afzenderdomein bij (notify.<domein>), aan te melden in Cloudflare
+  // Email Service; dat is een aparte stap die het API-token in .env niet mag
+  // zetten.
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["aanvraag@notify.jouwidealewebsite.nl"]
+    }
+  ],
+  // Geen TURNSTILE_SECRET_KEY: dit formulier draait met `turnstile: false` en
+  // leunt op het verborgen veld in worker/index.ts, dus er is geen widget om
+  // tegen te controleren.
+  // LET OP: de ontvanger is bewust ons eigen adres en niet dat van de klant.
+  // Dit is een concept, het e-mailadres van Bloei! is niet bevestigd, en een
+  // testaanvraag hoort niet in de inbox van een klant te belanden.
+  "vars": {
+    "SITE_ID": "bloei",
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_SENDER": "aanvraag@notify.jouwidealewebsite.nl"
+  }
+}

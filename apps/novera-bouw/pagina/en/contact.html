@@ -1,0 +1,123 @@
+<!--
+titel: Request a quote — Novera Bouw
+beschrijving: Tell us what you would like done. We call you back, come and measure up, and only then put a price on paper. You can reach us in English.
+menu: Contact
+orde: 8
+beeld: img/w-badkamer.webp
+-->
+
+<section class="sec" id="contact" style="padding-top: calc(var(--kop-h) + 50px)">
+  <div class="wrap contact__in">
+    <div class="contact__txt reveal">
+      <p class="eyebrow">Quote</p>
+      <h1 class="kop--sec">Tell us what you would like done</h1>
+      <p style="color: var(--grijs); font-size: 1.04rem">
+        One line is enough to start. We call you back and arrange a time to come and look. A request
+        commits you to nothing. Dutch or English, whichever suits you.
+      </p>
+      <div class="contact__kaarten" id="contactKaarten">
+        <div class="ckaart">
+          <span class="ckaart__ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z" /><circle cx="12" cy="10" r="2.4" />
+            </svg>
+          </span>
+          <span>
+            <b>Novera Bouw</b>
+            <i>Albertine Agneslaan 350, 3136 NJ Vlaardingen</i>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- De veldnamen firstName, lastName en email komen uit @jiw/cloudflare-forms en
+         staan daarom in het Engels, ook op de Nederlandse pagina. -->
+    <form class="form reveal" id="form" novalidate>
+      <div class="form__rij form__rij--2">
+        <label class="veld">
+          <span class="veld__l">First name <b aria-hidden="true">*</b></span>
+          <input name="firstName" type="text" autocomplete="given-name" required placeholder="Your first name" />
+        </label>
+        <label class="veld">
+          <span class="veld__l">Last name</span>
+          <input name="lastName" type="text" autocomplete="family-name" placeholder="Your last name" />
+        </label>
+      </div>
+      <div class="form__rij form__rij--2">
+        <label class="veld">
+          <span class="veld__l">Phone <b aria-hidden="true">*</b></span>
+          <input name="telefoon" type="tel" autocomplete="tel" inputmode="tel" required placeholder="06 ..." />
+        </label>
+        <label class="veld">
+          <span class="veld__l">Email <b aria-hidden="true">*</b></span>
+          <input name="email" type="email" autocomplete="email" required placeholder="name@example.com" />
+        </label>
+      </div>
+      <div class="form__rij form__rij--2">
+        <label class="veld">
+          <span class="veld__l">Postcode</span>
+          <input name="postcode" type="text" autocomplete="postal-code" placeholder="1234 AB" />
+        </label>
+        <label class="veld">
+          <span class="veld__l">Town</span>
+          <input name="plaats" type="text" autocomplete="address-level2" placeholder="Your town" />
+        </label>
+      </div>
+
+      <fieldset class="veld veld--set">
+        <legend class="veld__l">What is it about</legend>
+        <div class="chips" id="chipsWerk">
+          <label class="chip"><input type="checkbox" name="werk" value="Bathroom renovation" /><span>Bathroom</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Toilet renovation" /><span>Toilet</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Tiling" /><span>Tiling</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Plastering" /><span>Plastering</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Painting" /><span>Painting</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Laminate or vinyl" /><span>Laminate or vinyl</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Staircase renovation" /><span>Staircase</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Underfloor heating" /><span>Underfloor heating</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Boiler" /><span>Boiler</span></label>
+          <label class="chip"><input type="checkbox" name="werk" value="Something else" /><span>Something else</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="veld veld--set" id="matVeld" hidden>
+        <legend class="veld__l">Your list</legend>
+        <div class="chips chips--mat" id="chipsMat"></div>
+      </fieldset>
+
+      <fieldset class="veld veld--set">
+        <legend class="veld__l">Material through Novera Bouw?</legend>
+        <div class="chips chips--radio">
+          <label class="chip"><input type="radio" name="materiaal" value="Yes please, through your buying" /><span>Yes please</span></label>
+          <label class="chip"><input type="radio" name="materiaal" value="I have it already" /><span>I have it already</span></label>
+          <label class="chip"><input type="radio" name="materiaal" value="Not sure yet" checked /><span>Not sure yet</span></label>
+        </div>
+      </fieldset>
+
+      <label class="veld">
+        <span class="veld__l">Notes</span>
+        <textarea name="toelichting" rows="4" placeholder="For example: bathroom of 2 by 2.5 metres, everything out, walk-in shower in."></textarea>
+      </label>
+
+      <!-- Het lokveld voor bots; zie de Nederlandse contactpagina. -->
+      <div class="lok" aria-hidden="true">
+        <label>
+          Company name
+          <input type="text" name="bedrijf" tabindex="-1" autocomplete="off" />
+        </label>
+      </div>
+
+      <p class="form__fout" id="formFout" role="alert" hidden></p>
+      <button class="btn btn--accent btn--vol" id="formKnop" type="submit">Send request</button>
+      <p class="form__klein">We only use your details to respond to this request.</p>
+
+      <div class="dank" id="dank" hidden>
+        <span class="dank__vink" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6.5" /></svg>
+        </span>
+        <h3>Request received</h3>
+        <p id="dankTekst">We will get in touch with you personally.</p>
+      </div>
+    </form>
+  </div>
+</section>

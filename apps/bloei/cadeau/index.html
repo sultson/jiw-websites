@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadeaubon en cadeaupakketten | Bloei! Ouddorp</title>
+    <meta name="description" content="Een cadeaubon waarmee de ontvanger zelf uitzoekt, of een cadeaupakketje dat wij samenstellen. Ook meerdere tegelijk. Bloei! in Ouddorp." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#f1f6e8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/img/icon-96.png" type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- De twee letters staan onder een vaste naam in /fonts (zie
+         scripts/fonts.mjs), zodat ze hier bij naam genoemd kunnen worden. Zonder
+         deze twee regels ontdekt de browser ze pas nadat hij het stijlblad heeft
+         gelezen, en staat de tekst tot dat moment in een vervangende letter. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-wght.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-latin-wght.woff2" crossorigin />
+
+    <link rel="preload" as="image" href="/img/kaart-cadeau.webp" type="image/webp" fetchpriority="high" />
+    <link rel="canonical" href="%SITE_URL%/cadeau/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bloei!" />
+    <meta property="og:title" content="Cadeaubon en cadeaupakketten | Bloei! Ouddorp" />
+    <meta property="og:description" content="Een cadeaubon waarmee de ontvanger zelf uitzoekt, of een pakketje dat wij samenstellen." />
+    <meta property="og:url" content="%SITE_URL%/cadeau/" />
+    <meta property="og:image" content="%SITE_URL%/img/og-cadeau.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mandjes met heide, kalanchoë en kaarsjes op de houten tafel in de winkel" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": "%SITE_URL%/cadeau/#dienst",
+      "name": "Cadeaubon en cadeaupakketten",
+      "serviceType": "Cadeaubonnen en samengestelde cadeaupakketten",
+      "description": "Een cadeaubon voor een zelf te bepalen bedrag, te besteden aan alles in de winkel, en cadeaupakketjes die de winkel samenstelt op basis van het bedrag en de ontvanger. Ook in grotere aantallen.",
+      "url": "%SITE_URL%/cadeau/",
+      "isPartOf": { "@id": "%SITE_URL%/#website" },
+      "areaServed": [
+        { "@type": "City", "name": "Ouddorp" },
+        { "@type": "AdministrativeArea", "name": "Goeree-Overflakkee" }
+      ],
+      "provider": { "@id": "%SITE_URL%/#winkel" }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Bloei!", "item": "%SITE_URL%/" },
+        { "@type": "ListItem", "position": 2, "name": "Cadeau", "item": "%SITE_URL%/cadeau/" }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/pages/cadeau.entry.tsx"></script>
+  </body>
+</html>
