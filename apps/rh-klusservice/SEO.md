@@ -63,8 +63,10 @@ Alles hieronder is gemeten op het live adres, niet aangenomen.
   servicegebiedbedrijf, een straatadres erin zou om een kaartvermelding vragen. Projecten heeft
   er `CollectionPage` + `BreadcrumbList` bij, de slotpagina `Service` met `OfferCatalog` en
   `FAQPage`.
-- **Deelplaatje.** `og:image` 1200x630 op alle twaalf pagina's, plus
-  `twitter:card=summary_large_image`.
+- **Deelplaatje.** `og:image` 1200x630 op alle elf pagina's, plus
+  `twitter:card=summary_large_image`. Sinds 08-10-2026 het witte woordmerk op zwart
+  (`og-rh-klusservice-logo.jpg`, keuze van Robbin). Het `image` in het schema blijft de foto
+  van de overkapping.
 - **Snel en licht.** De homepagina gaat over de lijn in **10,6 KB gzip**. 328 KB aan
   HTML/CSS/JS in totaal, 8,1 MB foto's (lazy, met vaste afmetingen in het HTML tegen
   verschuiven). Uitgeleverd als Workers Static Assets vanaf de rand; de Worker draait alleen

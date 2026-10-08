@@ -608,10 +608,17 @@ Nog niet bevestigd — eerst voorleggen:
 ## Naar live: wat klaar is en wat nog moet (07-10-2026)
 
 Gedaan op 07-10-2026, na de vragen van Alfred over SEO:
-- **og-plaatje.** `dist/foto/og-rh-klusservice.jpg`, 1200x630, uitsnede van `overkapping-tuin.jpg`
-  (de enige liggende foto met blauwe lucht). Staat met `og:image`, `og:url`, `og:site_name`,
-  `og:locale` en `twitter:card` op alle elf pagina's. Daarvoor kwam er bij het delen in WhatsApp
-  helemaal geen plaatje mee.
+- **og-plaatje.** 1200x630, met `og:image`, `og:url`, `og:site_name`, `og:locale` en
+  `twitter:card` op alle elf pagina's. Daarvoor kwam er bij het delen in WhatsApp helemaal geen
+  plaatje mee. Eerst was dat een uitsnede van `overkapping-tuin.jpg`; sinds 08-10-2026 is het
+  **`dist/foto/og-rh-klusservice-logo.jpg`**, het witte woordmerk op zwart, 1020 van de 1200
+  breed. Robbin koos die variant via Armando uit vier proeven (foto zonder logo, logo klein,
+  logo groot, foto met logo in de hoek), die elk een eigen tijdelijk adres hadden omdat WhatsApp
+  een kaartje per URL onthoudt. Die drie proefadressen zijn weg; een redirect rule op de zone
+  stuurt `/deel-logo*` en `/deel-foto-logo*` met 301 naar de homepagina, want ze zijn nog
+  gedeeld in WhatsApp. Gebouwd door `maak-deelplaatje.mjs` (was `maak-deelproef.mjs`).
+  De foto-uitsnede blijft bestaan als `FOTO_BEELD` en staat in het schema: Google wil in
+  `image` zien wat hij maakt, geen bedrijfsnaam in witte letters.
 - **Schema.** De homepagina had geen `url`, `logo`, `image` en geen openingstijden, projecten had
   helemaal geen schema. De gedeelde velden staan nu één keer in `BEDRIJF` in `onderdelen.mjs` en
   worden door beide generatoren gebruikt; de homepagina en projecten hebben dezelfde JSON met de

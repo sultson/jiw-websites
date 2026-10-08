@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "node maak-reviews.mjs && node maak-plaatspaginas.mjs && node maak-slotpagina.mjs && node maak-404.mjs && node maak-lettertypen.mjs && node maak-mailmerk.mjs && node maak-plaatjes.mjs && node maak-snel.mjs && node maak-bundel.mjs && node maak-sitemap.mjs",
+    "build": "node maak-reviews.mjs && node maak-plaatspaginas.mjs && node maak-slotpagina.mjs && node maak-404.mjs && node maak-lettertypen.mjs && node maak-mailmerk.mjs && node maak-plaatjes.mjs && node maak-snel.mjs && node maak-bundel.mjs && node maak-deelplaatje.mjs && node maak-sitemap.mjs",
     "dev": "pnpm build && wrangler dev --port=3069",
     "ship": "pnpm build && wrangler deploy",
     "ship:dry-run": "pnpm build && wrangler deploy --dry-run",

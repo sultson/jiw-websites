@@ -18,9 +18,16 @@ export const SITE = 'https://rhklusservice.nl';
    meer hoeft te zijn zoals de `_next` van formsubmit dat wel moest. */
 export const FORM_PAD = '/api/forms/offerte';
 
-/* Deelplaatje voor WhatsApp, LinkedIn en Google. 1200x630, uitsnede van de
-   overkapping aan het water: de enige liggende foto met blauwe lucht erin. */
-export const OG_BEELD = `${SITE}/foto/og-rh-klusservice.jpg`;
+/* Deelplaatje voor WhatsApp, LinkedIn en Signal. 1200x630, het witte woordmerk
+   op zwart. Robbin koos deze variant op 08-10-2026 (via Armando) uit vier
+   proeven; zie maak-deelplaatje.mjs. */
+export const OG_BEELD = `${SITE}/foto/og-rh-klusservice-logo.jpg`;
+export const OG_BEELD_ALT = 'Logo van RH Klusservice';
+
+/* Het beeld in het LocalBusiness-schema blijft een foto: de overkapping aan het
+   water, de enige liggende foto met blauwe lucht erin. Google wil in `image`
+   zien wat hij maakt, niet zijn naam in witte letters. */
+export const FOTO_BEELD = `${SITE}/foto/og-rh-klusservice.jpg`;
 
 export function ogTags({ titel, omschrijving, pad }) {
   const vlucht = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
@@ -33,7 +40,7 @@ export function ogTags({ titel, omschrijving, pad }) {
 <meta property="og:image" content="${OG_BEELD}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Houten overkapping met vlonder, gebouwd door RH Klusservice">
+<meta property="og:image:alt" content="${OG_BEELD_ALT}">
 <meta name="twitter:card" content="summary_large_image">`;
 }
 
@@ -54,7 +61,7 @@ export const BEDRIJF = {
   name: 'RH Klusservice',
   telephone: TEL,
   email: MAIL,
-  image: OG_BEELD,
+  image: FOTO_BEELD,
   logo: `${SITE}/logo/rh-klusservice.svg`,
   address: { '@type': 'PostalAddress', addressLocality: 'Valkenswaard', addressCountry: 'NL' },
   vatID: 'NL004973060B79',
