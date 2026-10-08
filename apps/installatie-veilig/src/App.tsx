@@ -17,6 +17,10 @@ import {
   useZachteWaarde,
 } from './anim';
 import {Laadtijd, Tijdlijn, VoorNa} from './interactief';
+import {
+  DIENST_PAD, PLAATS_PAGINAS, kmVanafBreda, plaatsPad,
+  type Dienst as DienstSoort, type Pagina, type Plaats,
+} from './paginas';
 
 /* ------------------------------------------------------------------ */
 /*  Content                                                            */
@@ -133,24 +137,29 @@ const REVIEWS = [
   },
 ];
 
-const FAQ = [
+const FAQ: {v: string; a: string; dienst?: DienstSoort}[] = [
   {
+    dienst: 'groepenkast',
     v: 'Hoe weet ik of ik 1-fase of 3-fase heb?',
     a: 'Kijk in uw meterkast naar de hoofdschakelaar boven de groepen. Ziet u één brede zwarte schakelaar, dan heeft u 1-fase. Ziet u er drie naast elkaar, of één blok waar drie hendels aan elkaar gekoppeld zitten, dan heeft u 3-fase. Twijfelt u? Zet er een foto bij in het formulier, dan zeg ik het u binnen een paar minuten.',
   },
   {
+    dienst: 'groepenkast',
     v: 'Moet mijn groepenkast vervangen worden?',
     a: 'Dat is verstandig als u nog draaizekeringen of keramische stoppen heeft, als er geen of maar één aardlekschakelaar zit, als de groepenkast vol zit en u wilt uitbreiden, of als de aardlek er regelmatig uit vliegt. Ook bij een verbouwing, een nieuwe keuken, een warmtepomp of een laadpaal is het meestal het moment.',
   },
   {
+    dienst: 'groepenkast',
     v: 'Hoe lang zit ik zonder stroom?',
     a: 'Bij het vervangen van een groepenkast staat de stroom een aantal uren uit. We spreken vooraf af wanneer, zodat u er rekening mee kunt houden.',
   },
   {
+    dienst: 'laadpaal',
     v: 'Kan ik een laadpaal krijgen met 1-fase?',
     a: 'Ja. Op 1-fase laadt u tot ongeveer 7,4 kW: een lege accu is er in een nacht weer doorheen. Wilt u sneller, of staan er twee auto\'s op de oprit, dan is verzwaren het overwegen waard. Die aanvraag doe ik voor u bij de netbeheerder.',
   },
   {
+    dienst: 'laadpaal',
     v: 'Werkt de laadpaal samen met mijn zonnepanelen?',
     a: 'Ja. Alle laadpalen die ik plaats laden op uw eigen opwek, zodat er zoveel mogelijk van uw eigen stroom de auto in gaat. Bij de oplevering stel ik dat meteen goed voor u in.',
   },
@@ -164,15 +173,19 @@ const FAQ = [
 /*  Header met voortgangsbalk                                          */
 /* ------------------------------------------------------------------ */
 
-const NAV = [
-  {href: '#groepenkasten', label: 'Groepenkasten'},
-  {href: '#laadpalen', label: 'Laadpalen'},
+/* Op de homepage springen de links naar de secties; op de andere pagina's gaan
+   Groepenkasten en Laadpalen naar hun eigen pagina en Over Jasper terug naar
+   de homepage. Werkwijze en Contact staan op elke pagina. */
+const navVoor = (home: boolean) => [
+  {href: home ? '#groepenkasten' : DIENST_PAD.groepenkast, label: 'Groepenkasten'},
+  {href: home ? '#laadpalen' : DIENST_PAD.laadpaal, label: 'Laadpalen'},
   {href: '#werkwijze', label: 'Werkwijze'},
-  {href: '#over', label: 'Over Jasper'},
+  {href: home ? '#over' : '/#over', label: 'Over Jasper'},
   {href: '#contact', label: 'Contact'},
 ];
 
-function Header() {
+function Header({home}: {home: boolean}) {
+  const NAV = navVoor(home);
   const [open, setOpen] = useState(false);
   const [gescrold, setGescrold] = useState(false);
   const voortgang = useScrollVoortgang();
@@ -194,7 +207,7 @@ function Header() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" aria-label="Installatie Veilig">
+        <a href={home ? '#top' : '/'} aria-label="Installatie Veilig">
           <Logo variant="light" />
         </a>
 
@@ -266,7 +279,12 @@ function Header() {
 
 const WISSELWOORDEN = ['veilig geregeld', 'vakkundig gelegd', 'netjes weggewerkt', 'gekeurd opgeleverd'];
 
-function Hero() {
+/**
+ * De bovenkant van elke pagina: kop, introductie en het formulier ernaast.
+ * Zonder `kop` is het de homepage met het wisselwoord; de dienst- en
+ * plaatspagina's geven hun eigen kop en introductie mee.
+ */
+function Hero({kop, intro, klus = 'groepenkast'}: {kop?: string; intro?: string; klus?: DienstSoort}) {
   const [woord, i] = useWisselwoord(WISSELWOORDEN);
   const spot = useSpot<HTMLDivElement>();
 
@@ -281,33 +299,44 @@ function Hero() {
           losse volgorde-klassen; op desktop staat het rechts naast de tekst. */}
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col gap-10 px-5 py-12 sm:px-8 sm:py-16 lg:grid lg:grid-cols-[1fr_26rem] lg:grid-rows-[auto_1fr] lg:gap-x-14 lg:gap-y-8 lg:py-20">
         <div className="order-1 lg:order-none lg:col-start-1 lg:row-start-1 lg:self-start">
-          <div className="mb-5 flex flex-wrap items-center gap-2.5">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-xs font-semibold tracking-wide text-white">
-              <MapPin className="h-3.5 w-3.5 text-accent" /> Regio Breda
-            </p>
-          </div>
+          {kop ? (
+            <>
+              <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-xs font-semibold tracking-wide text-white">
+                <MapPin className="h-3.5 w-3.5 text-accent" /> Installatie Veilig
+              </p>
+              <h1 className="text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-[3.3rem]">{kop}</h1>
+              <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/70">{intro}</p>
+            </>
+          ) : (
+            <>
+              {/* Wat het bedrijf is en waar, staat in de kop zelf: daar kijkt
+                  een zoekmachine het eerst. */}
+              <h1 className="text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-[3.3rem]">
+                <span className="mb-5 flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-1.5 text-xs font-semibold leading-normal tracking-wide text-white">
+                  <MapPin className="h-3.5 w-3.5 text-accent" /> Elektricien in regio Breda
+                </span>
+                Elektra in huis,{' '}
+                {/* Het slot van de kop wisselt: vier keer hetzelfde vak werk. */}
+                <span key={i} className="woord-in text-accent">{woord}</span>
+              </h1>
 
-          <h1 className="text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-[3.3rem]">
-            Elektra in huis,{' '}
-            {/* Het slot van de kop wisselt: vier keer hetzelfde vak werk. */}
-            <span key={i} className="woord-in text-accent">{woord}</span>
-          </h1>
-
-          <p className="mt-6 hidden max-w-lg text-lg leading-relaxed text-white/70 sm:block">
-            Een nieuwe groepenkast of een laadpaal aan de gevel. U weet vooraf wat het kost,
-            ik doe het werk zelf en meestal is dat binnen één dag gerealiseerd.
-          </p>
+              <p className="mt-6 hidden max-w-lg text-lg leading-relaxed text-white/70 sm:block">
+                Een nieuwe groepenkast of een laadpaal aan de gevel. U weet vooraf wat het kost,
+                ik doe het werk zelf en meestal is dat binnen één dag gerealiseerd.
+              </p>
+            </>
+          )}
         </div>
 
         <div id="aanvraag" className="order-2 lg:order-none lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start">
-          <Aanvraag />
+          <Aanvraag beginKlus={klus} />
         </div>
 
         <div className="order-3 lg:order-none lg:col-start-1 lg:row-start-2 lg:self-start">
           <div className="grid gap-3 sm:grid-cols-2">
             {[
-              {href: '#groepenkasten', icon: CircuitBoard, titel: 'Groepenkasten', onder: 'ABB · Hager · Eaton'},
-              {href: '#laadpalen', icon: Plug, titel: 'Laadpalen', onder: 'Zaptec · Enphase · Alfen'},
+              {href: kop ? DIENST_PAD.groepenkast : '#groepenkasten', icon: CircuitBoard, titel: 'Groepenkasten', onder: 'ABB · Hager · Eaton'},
+              {href: kop ? DIENST_PAD.laadpaal : '#laadpalen', icon: Plug, titel: 'Laadpalen', onder: 'Zaptec · Enphase · Alfen'},
             ].map((d) => (
               <a
                 key={d.titel}
@@ -450,7 +479,7 @@ function DienstKaart({c, delay}: {c: Dienst; delay: number}) {
 function Diensten() {
   const cards: Dienst[] = [
     {
-      href: '#groepenkasten',
+      href: DIENST_PAD.groepenkast,
       img: '/img/meterkast.jpg',
       alt: 'Nieuwe groepenkast naast de meter, op de vaste plek in de meterkast',
       icon: CircuitBoard,
@@ -459,7 +488,7 @@ function Diensten() {
       merken: 'ABB · Hager · Eaton',
     },
     {
-      href: '#laadpalen',
+      href: DIENST_PAD.laadpaal,
       img: '/img/laadpaal-detail.jpg',
       alt: 'Strakke witte laadpaal aan een gevel',
       icon: Plug,
@@ -987,7 +1016,9 @@ function Reviews() {
 /*  Werkgebied                                                         */
 /* ------------------------------------------------------------------ */
 
-function Werkgebied() {
+const PAD_VAN_PLAATS = new Map(PLAATS_PAGINAS.map((p) => [p.naam, plaatsPad(p)]));
+
+function Werkgebied({huidig}: {huidig?: string}) {
   return (
     <Section tone="ink">
       <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-14">
@@ -995,16 +1026,22 @@ function Werkgebied() {
           <Kicker light>Werkgebied</Kicker>
           <h2 className="text-3xl font-bold sm:text-4xl">Regio Breda</h2>
           <div className="mt-7 flex flex-wrap gap-2">
-            {PLAATSEN.map(([naam, , , thuis]) => (
-              <span
-                key={naam}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition hover:-translate-y-0.5 hover:border-accent/60 ${
-                  thuis ? 'border-accent/50 bg-accent/10 text-white' : 'border-white/15 bg-white/[0.05] text-white/75'
-                }`}
-              >
-                {naam}
-              </span>
-            ))}
+            {PLAATSEN.map(([naam]) => {
+              const pad = PAD_VAN_PLAATS.get(naam) ?? '/';
+              const hier = naam === (huidig ?? 'Breda');
+              return (
+                <a
+                  key={naam}
+                  href={pad}
+                  aria-current={hier ? 'page' : undefined}
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition hover:border-accent/60 ${
+                    hier ? 'border-accent/50 bg-accent/10 text-white' : 'border-white/15 bg-white/[0.05] text-white/75 hover:text-white'
+                  }`}
+                >
+                  {naam}
+                </a>
+              );
+            })}
           </div>
           <p className="mt-5 text-sm text-white/45">
             Woont u er net buiten? Vraag het gerust.
@@ -1023,8 +1060,14 @@ function Werkgebied() {
 /*  FAQ                                                                */
 /* ------------------------------------------------------------------ */
 
-function Faq() {
+function Faq({dienst, zonder = []}: {dienst?: DienstSoort; zonder?: string[]}) {
   const [open, setOpen] = useState<number | null>(0);
+  /* Op een dienstpagina alleen de vragen over die dienst, plus de vragen die
+     voor allebei gelden. `zonder` haalt een vraag weg die elders op de pagina
+     al beantwoord wordt. */
+  const vragen = FAQ.filter(
+    (f) => (!dienst || !f.dienst || f.dienst === dienst) && !zonder.includes(f.v),
+  );
   return (
     <Section tone="mist">
       <Reveal>
@@ -1034,7 +1077,7 @@ function Faq() {
         </div>
       </Reveal>
       <div className="mx-auto max-w-3xl divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">
-        {FAQ.map((f, i) => (
+        {vragen.map((f, i) => (
           <div key={f.v}>
             <button
               onClick={() => setOpen(open === i ? null : i)}
@@ -1065,7 +1108,7 @@ function Faq() {
 /*  Contact                                                            */
 /* ------------------------------------------------------------------ */
 
-function Contact() {
+function Contact({klus = 'groepenkast'}: {klus?: DienstSoort}) {
   const spot = useSpot<HTMLElement>();
   return (
     <section id="contact" ref={spot} className="spot relative overflow-hidden bg-ink text-white">
@@ -1132,7 +1175,7 @@ function Contact() {
           </Reveal>
 
           <Reveal vorm="rechts">
-            <Aanvraag />
+            <Aanvraag beginKlus={klus} />
           </Reveal>
         </div>
       </div>
@@ -1150,7 +1193,7 @@ function Footer() {
       <Traces variant={2} className="text-white/[0.04]" />
       <div className="relative z-10 mx-auto max-w-6xl px-5 py-14 sm:px-8">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="lg:col-span-2">
+          <div>
             <Logo variant="light" className="h-9 sm:h-10" />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/55">
               Groepenkasten en laadpalen in en rond Breda.
@@ -1159,10 +1202,19 @@ function Footer() {
           <div>
             <p className="font-semibold">Diensten</p>
             <ul className="mt-3 space-y-2 text-sm text-white/55">
-              <li><a href="#groepenkasten" className="transition hover:text-accent">Groepenkasten</a></li>
-              <li><a href="#prijzen" className="transition hover:text-accent">Prijzen</a></li>
-              <li><a href="#laadpalen" className="transition hover:text-accent">Laadpalen</a></li>
+              <li><a href={DIENST_PAD.groepenkast} className="transition hover:text-accent">Groepenkast vervangen</a></li>
+              <li><a href={`${DIENST_PAD.groepenkast}#prijzen`} className="transition hover:text-accent">Prijzen groepenkasten</a></li>
+              <li><a href={DIENST_PAD.laadpaal} className="transition hover:text-accent">Laadpaal installeren</a></li>
               <li><a href="#werkwijze" className="transition hover:text-accent">Werkwijze</a></li>
+            </ul>
+          </div>
+          <div>
+            <p className="font-semibold">Werkgebied</p>
+            <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-white/55">
+              <li><a href="/" className="transition hover:text-accent">Breda</a></li>
+              {PLAATS_PAGINAS.map((p) => (
+                <li key={p.slug}><a href={plaatsPad(p)} className="transition hover:text-accent">{p.naam}</a></li>
+              ))}
             </ul>
           </div>
           <div>
@@ -1216,29 +1268,215 @@ function MobielCta() {
 
 /* ------------------------------------------------------------------ */
 
-export default function App() {
-  useEffect(() => {
-    readConsent();
-    trackPage();
-    document.addEventListener('click', trackContactLink);
-    return () => document.removeEventListener('click', trackContactLink);
-  }, []);
+/* ------------------------------------------------------------------ */
+/*  Dienstpagina's                                                     */
+/* ------------------------------------------------------------------ */
+
+const VERVANGEN_VRAAG = 'Moet mijn groepenkast vervangen worden?';
+
+const TEKENEN = [
+  'U heeft nog draaizekeringen of keramische stoppen',
+  'Er zit geen aardlekschakelaar in, of maar één voor het hele huis',
+  'De kast zit vol en er moet een groep bij',
+  'De aardlek springt er regelmatig uit',
+  'U verbouwt, of er komt een inductieplaat, warmtepomp of laadpaal',
+];
+
+function WanneerVervangen() {
+  return (
+    <Section>
+      <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-14">
+        <div>
+          <Kicker>Groepenkast vervangen</Kicker>
+          <h2 className="text-3xl font-bold sm:text-4xl">Wanneer is het tijd?</h2>
+          <p className="mt-4 text-lg leading-relaxed text-ink-muted">
+            Herkent u een van deze punten, dan is een nieuwe groepenkast verstandig.
+          </p>
+          <ul className="mt-7 space-y-3 text-lg">
+            {TEKENEN.map((t) => <Bullet key={t}>{t}</Bullet>)}
+          </ul>
+        </div>
+        <div className="overflow-hidden rounded-2xl">
+          <img
+            src="/img/meterkast.jpg"
+            alt="Nieuwe groepenkast naast de meter, op de vaste plek in de meterkast"
+            loading="lazy"
+            className="aspect-[4/3] w-full object-cover"
+          />
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function LaadpaalEnMeterkast() {
+  return (
+    <Section>
+      <div className="max-w-3xl">
+        <Kicker>Uw meterkast</Kicker>
+        <h2 className="text-3xl font-bold sm:text-4xl">Is uw groepenkast er klaar voor?</h2>
+        <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink-muted">
+          <p>
+            De laadpaal krijgt een eigen groep in uw groepenkast. Zit die vol, of heeft hij nog
+            draaizekeringen? Dan reken ik de{' '}
+            <a href={DIENST_PAD.groepenkast} className="font-semibold text-ink underline underline-offset-4 hover:text-accent-dark">
+              nieuwe groepenkast
+            </a>{' '}
+            en de laadpaal samen uit, in één bedrag.
+          </p>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Plaatspagina's                                                     */
+/* ------------------------------------------------------------------ */
+
+function DienstenInPlaats({plaats}: {plaats: Plaats}) {
+  const kaarten = [
+    {
+      href: DIENST_PAD.groepenkast,
+      img: '/img/meterkast.jpg',
+      alt: 'Nieuwe groepenkast naast de meter, op de vaste plek in de meterkast',
+      icon: CircuitBoard,
+      titel: 'Groepenkast vervangen',
+      tekst: '1-fase of 3-fase, van ABB, Hager of Eaton. De oude kast gaat eruit, elke groep wordt doorgemeten en gelabeld.',
+      prijs: `vanaf € ${GROEPEN_1F[0].prijs}`,
+    },
+    {
+      href: DIENST_PAD.laadpaal,
+      img: '/img/laadpaal-detail.jpg',
+      alt: 'Strakke witte laadpaal aan een gevel',
+      icon: Plug,
+      titel: 'Laadpaal installeren',
+      tekst: 'Zaptec, Enphase of Alfen aan de gevel, met een eigen groep en load balancing.',
+      prijs: `vanaf € ${LAADPALEN[0].prijs.toLocaleString('nl-NL')}`,
+    },
+  ];
+
+  return (
+    <Section id="diensten">
+      <div className="mb-10 max-w-2xl">
+        <h2 className="text-3xl font-bold sm:text-4xl">Wat ik in {plaats.naam} voor u doe</h2>
+      </div>
+      <div className="grid gap-6 md:grid-cols-2">
+        {kaarten.map((k) => (
+          <a
+            key={k.titel}
+            href={k.href}
+            className="group block overflow-hidden rounded-2xl border border-line bg-white transition hover:shadow-2xl"
+          >
+            <img src={k.img} alt={k.alt} loading="lazy" className="h-56 w-full object-cover" />
+            <div className="p-7">
+              <div className="flex items-center gap-2.5">
+                <k.icon className="h-5 w-5 text-accent-dark" />
+                <h3 className="text-2xl font-semibold">{k.titel}</h3>
+              </div>
+              <p className="mt-3 leading-relaxed text-ink-muted">{k.tekst}</p>
+              <p className="data mt-5 text-lg font-bold">
+                {k.prijs},- <span className="text-sm font-normal text-ink-muted">inclusief montage en btw</span>
+              </p>
+              <p className="mt-5 flex items-center gap-1.5 font-semibold text-ink">
+                Bekijk de opties en prijzen
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+
+function Inhoud({pagina}: {pagina: Pagina}) {
+  if (pagina.soort === 'dienst' && pagina.dienst === 'groepenkast') {
+    return (
+      <>
+        <Hero
+          kop={pagina.kop}
+          intro={`Een nieuwe groepenkast, 1-fase of 3-fase, voor een vaste prijs vanaf € ${GROEPEN_1F[0].prijs} inclusief montage en btw, in Breda en de dorpen eromheen.`}
+        />
+        <TrustStrip />
+        <WanneerVervangen />
+        <Groepenkasten />
+        <Werkwijze />
+        <Faq dienst="groepenkast" zonder={[VERVANGEN_VRAAG]} />
+        <Werkgebied />
+        <Contact />
+      </>
+    );
+  }
+
+  if (pagina.soort === 'dienst') {
+    return (
+      <>
+        <Hero
+          kop={pagina.kop}
+          klus="laadpaal"
+          intro={`Een laadpaal van Zaptec, Enphase of Alfen aan uw gevel, compleet geïnstalleerd vanaf € ${LAADPALEN[0].prijs.toLocaleString('nl-NL')} inclusief btw, in Breda en de dorpen eromheen.`}
+        />
+        <TrustStrip />
+        <Laadpalen />
+        <LaadpaalEnMeterkast />
+        <Werkwijze />
+        <Faq dienst="laadpaal" />
+        <Werkgebied />
+        <Contact klus="laadpaal" />
+      </>
+    );
+  }
+
+  if (pagina.soort === 'plaats') {
+    const {plaats} = pagina;
+    return (
+      <>
+        <Hero
+          kop={`Elektricien in ${plaats.naam}`}
+          intro={`${plaats.zin} Vanaf het centrum van Breda is dat hemelsbreed ${kmVanafBreda(plaats)} km.`}
+        />
+        <TrustStrip />
+        <DienstenInPlaats plaats={plaats} />
+        <Werkwijze />
+        <Werkgebied huidig={plaats.naam} />
+        <Contact />
+      </>
+    );
+  }
+
   return (
     <>
-      <Header />
+      <Hero />
+      <MerkenStrook />
+      <TrustStrip />
+      <Diensten />
+      <Groepenkasten />
+      <Laadpalen />
+      <Werkwijze />
+      <Over />
+      <Reviews />
+      <Werkgebied />
+      <Faq />
+      <Contact />
+    </>
+  );
+}
+
+export default function App({pagina}: {pagina: Pagina}) {
+  useEffect(() => {
+    readConsent();
+    trackPage(pagina.pad, {site_language: 'nl', page_type: pagina.soort === 'home' ? 'landing' : pagina.soort});
+    document.addEventListener('click', trackContactLink);
+    return () => document.removeEventListener('click', trackContactLink);
+  }, [pagina]);
+  return (
+    <>
+      <Header home={pagina.soort === 'home'} />
       <main>
-        <Hero />
-        <MerkenStrook />
-        <TrustStrip />
-        <Diensten />
-        <Groepenkasten />
-        <Laadpalen />
-        <Werkwijze />
-        <Over />
-        <Reviews />
-        <Werkgebied />
-        <Faq />
-        <Contact />
+        <Inhoud pagina={pagina} />
       </main>
       <Footer />
       <MobielCta />

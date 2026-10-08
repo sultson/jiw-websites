@@ -1,6 +1,9 @@
 import {StrictMode} from 'react';
 import {renderToString} from 'react-dom/server';
 import App from './App';
+import {PAGINAS, zoekPagina} from './paginas';
+
+export {PAGINAS};
 
 /**
  * De pagina zoals hij bij het bouwen wordt uitgetekend.
@@ -12,10 +15,10 @@ import App from './App';
  * maar een zoekmachine of taalmodel dat geen JavaScript uitvoert leest een
  * lege pagina.
  */
-export function render(): string {
+export function render(pad: string): string {
   return renderToString(
     <StrictMode>
-      <App />
+      <App pagina={zoekPagina(pad)} />
     </StrictMode>,
   );
 }

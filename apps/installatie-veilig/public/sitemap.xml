@@ -1,15 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Eén pagina, dus één regel. De secties (#groepenkasten, #laadpalen,
-     #werkwijze) horen hier niet in: een anker is voor een zoekmachine geen
-     eigen adres. Komt er ooit een echte tweede pagina bij, dan komt hij hier
-     erbij. Werk <lastmod> bij als de inhoud van de pagina verandert; een datum
-     die bij elke deploy meeschuift terwijl er niets veranderde, leert een
-     crawler juist om hem te negeren. -->
+<!-- Elke pagina uit src/paginas.ts, niet meer en niet minder: scripts/prerender.mjs
+     laat de build omvallen als deze lijst en die van de site uit elkaar lopen.
+     Ankers (#prijzen, #werkwijze) horen hier niet in: een anker is voor een
+     zoekmachine geen eigen adres. Werk <lastmod> bij als de inhoud van een
+     pagina verandert; een datum die bij elke deploy meeschuift terwijl er niets
+     veranderde, leert een crawler juist om hem te negeren. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://installatieveilig.nl/</loc>
-    <lastmod>2026-09-07</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-10-07</lastmod>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/groepenkast-vervangen-breda</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/laadpaal-installeren-breda</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/elektricien-prinsenbeek</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/elektricien-princenhage</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/elektricien-teteringen</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/elektricien-bavel</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/elektricien-ulvenhout</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/elektricien-dorst</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/elektricien-oosterhout</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/elektricien-made</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/elektricien-etten-leur</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/elektricien-rijsbergen</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://installatieveilig.nl/elektricien-zundert</loc>
+    <lastmod>2026-10-07</lastmod>
+    <priority>0.6</priority>
   </url>
 </urlset>

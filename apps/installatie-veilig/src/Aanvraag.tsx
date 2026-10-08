@@ -111,11 +111,17 @@ const MAX_FOTOS = 6;
 
 type Foto = {file: File; url: string};
 
-export default function Aanvraag({compact = false}: {compact?: boolean}) {
+export default function Aanvraag({
+  compact = false, beginKlus = 'groepenkast',
+}: {
+  compact?: boolean;
+  /** Op de laadpaalpagina staat de laadpaal al aangevinkt. */
+  beginKlus?: KlusId;
+}) {
   const [stap, setStap] = useState<1 | 2 | 3>(1);
 
-  const [klus, setKlus] = useState<KlusId>('groepenkast');
-  const [sub, setSub] = useState<string>(SUBKEUZE.groepenkast[0]);
+  const [klus, setKlus] = useState<KlusId>(beginKlus);
+  const [sub, setSub] = useState<string>(SUBKEUZE[beginKlus][0]);
   const [postcode, setPostcode] = useState('');
   const [nummer, setNummer] = useState('');
   const [toevoeging, setToevoeging] = useState('');

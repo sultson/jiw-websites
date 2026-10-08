@@ -1,12 +1,15 @@
 import {StrictMode} from 'react';
 import {createRoot, hydrateRoot} from 'react-dom/client';
 import App from './App';
+import {zoekPagina} from './paginas';
 import './index.css';
 
 const container = document.getElementById('root')!;
+/* Dezelfde pagina die scripts/prerender.mjs voor dit pad heeft gebakken, anders
+   past de HTML niet op wat React wil overnemen. */
 const boom = (
   <StrictMode>
-    <App />
+    <App pagina={zoekPagina(window.location.pathname)} />
   </StrictMode>
 );
 
