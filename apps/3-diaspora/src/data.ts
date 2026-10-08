@@ -467,9 +467,9 @@ export const STICHTINGEN: Stichting[] = [
         pap: 'Un gran parti di e komunidat boneriano i kòrsouwenan ta biba na Hulanda. Pa nan e historia di e islanan no ta leu, pero sí ta mas difísil pa keda al dia kuné. E fundashon hulandes ta hasi e investigashon i e material di siñansa di e islanan alkansabel akinan, i ta organisá enkuentro rònt di e dianan di konmemorashon ku ta konta.',
       },
       {
-        nl: 'Daarnaast is deze stichting het adres voor samenwerking met Nederlandse partners: gemeenten, fondsen, onderwijsinstellingen en particuliere donateurs. Omdat zij de ANBI-status voert, publiceert zij hieronder alles wat de Belastingdienst voorschrijft.',
-        en: 'This foundation is also the address for working with Dutch partners: municipalities, funds, schools and private donors. Because it holds ANBI status, it publishes everything the Dutch tax authority requires below.',
-        pap: 'Ademas, e fundashon aki ta e adres pa koperashon ku partnernan hulandes: munisipionan, fondonan, instansianan di enseñansa i donantenan privá. Komo ku e ta karga e estatus ANBI, e ta publiká abou tur loke e Servisio di Belasting ta eksigí.',
+        nl: 'Daarnaast is deze stichting het adres voor samenwerking met Nederlandse partners: gemeenten, fondsen, onderwijsinstellingen en particuliere donateurs. Hieronder publiceert zij alles wat de Belastingdienst van een ANBI vraagt.',
+        en: 'This foundation is also the address for working with Dutch partners: municipalities, funds, schools and private donors. Below, it publishes everything the Dutch tax authority asks of an ANBI.',
+        pap: 'Ademas, e fundashon aki ta e adres pa koperashon ku partnernan hulandes: munisipionan, fondonan, instansianan di enseñansa i donantenan privá. Abou e ta publiká tur loke e Servisio di Belasting ta pidi di un ANBI.',
       },
     ],
     focus: [
@@ -500,9 +500,9 @@ export const STICHTINGEN: Stichting[] = [
       {
         kop: {nl: 'Verantwoording', en: 'Accountability', pap: 'Rendishon di kuenta'},
         uitleg: {
-          nl: 'Als ANBI publiceert de stichting haar beleidsplan, bestuur, beloningsbeleid en jaarlijkse verantwoording.',
-          en: 'As an ANBI the foundation publishes its policy plan, board, remuneration policy and annual accounts.',
-          pap: 'Komo ANBI e fundashon ta publiká su plan di maneho, su direktiva, su maneho di remunerashon i su rendishon anual.',
+          nl: 'De stichting publiceert haar beleidsplan, bestuur, beloningsbeleid en jaarlijkse verantwoording, zoals een ANBI dat doet.',
+          en: 'The foundation publishes its policy plan, board, remuneration policy and annual accounts, as an ANBI does.',
+          pap: 'E fundashon ta publiká su plan di maneho, su direktiva, su maneho di remunerashon i su rendishon anual, manera un ANBI ta hasi.',
         },
       },
     ],
@@ -511,11 +511,11 @@ export const STICHTINGEN: Stichting[] = [
        28-08-2026 het gedeelde adres op het eigen domein. Een CRIB-nummer staat
        hier bewust op false: dat bestaat in Nederland niet. */
     email: 'info@3diaspora.org',
-    adres: 'Kortenaerstraat 28, Helmond',
-    opgericht: null,
+    adres: 'Kortenaerstraat 28, 5703 CC Helmond',
+    opgericht: '2026-08-04',
     kvk: '42130908',
     crib: false,
-    rsin: null,
+    rsin: '869862200',
     socials: [],
     logo: '/img/logo-nederland.png',
     logoVorm: '/img/logo-nederland-vorm.png',
@@ -1099,22 +1099,157 @@ export const SOCIALS_ALGEMEEN = [
   {soort: 'linkedin' as const, url: 'https://www.linkedin.com/in/cura%C3%A7ao-diaspora-of-africa-fundation-8393a7373/', label: 'LinkedIn'},
 ];
 
-/** De ANBI-publicatieplicht, punt voor punt. `waarde: null` betekent: nog aan te leveren. */
-export const ANBI_VELDEN: {kop: Tekst; waarde: string | null}[] = [
+/**
+ * De ANBI-pagina van de Nederlandse stichting.
+ *
+ * Aangeleverd door Dévid W. Eusenia op 08-10-2026, in twee stukken: "ANBI-pagina
+ * 3diaspora.org, tekst voor de website 2.0" en het beleidsplan 2026–2028
+ * (vastgesteld 05-10-2026, staat als PDF in public/docs). Het Nederlands is zijn
+ * tekst; het Engels en het Papiamentu zijn onze vertaling.
+ *
+ * Waar die twee stukken elkaar tegenspraken volgt deze pagina het beleidsplan,
+ * omdat dat het vastgestelde stuk is en er hier naar gelinkt wordt: de periode
+ * 2026–2028 (de tekst zei 2026–2027), 4 workshops en 6 activiteiten (de tekst
+ * zei 3 en 4), en de achternaam Boezem-Silié van de penningmeester.
+ */
+export const BELEIDSPLAN_PDF = '/docs/Beleidsplan-2026-2028-Stichting-The-Netherlands-Diaspora-Of-Africa-Foundation.pdf';
+
+export const ANBI_GEGEVENS: {kop: Tekst; waarde: string | Tekst; link?: string}[] = [
+  {kop: {nl: 'Naam', en: 'Name', pap: 'Nòmber'}, waarde: 'Stichting The Netherlands Diaspora Of Africa Foundation'},
+  {kop: {nl: 'Ook bekend als', en: 'Also known as', pap: 'Tambe konosí komo'}, waarde: '3 Diaspora'},
+  {kop: {nl: 'RSIN / fiscaal nummer', en: 'RSIN / tax number', pap: 'RSIN / number fiskal'}, waarde: '869862200'},
+  {kop: {nl: 'KvK-nummer', en: 'Chamber of Commerce number', pap: 'Number di Kámara di Komersio'}, waarde: '42130908'},
   {
-    kop: {nl: 'Statutaire naam', en: 'Legal name', pap: 'Nòmber statutario'},
-    waarde: 'Stichting The Netherlands Diaspora Of Africa Foundation',
+    kop: {nl: 'Statutaire zetel', en: 'Registered seat', pap: 'Sede statutario'},
+    waarde: {nl: 'Gemeente Helmond', en: 'Municipality of Helmond', pap: 'Munisipio di Helmond'},
   },
+  {kop: {nl: 'Postadres', en: 'Postal address', pap: 'Adres postal'}, waarde: 'Kortenaerstraat 28, 5703 CC Helmond'},
+  {kop: {nl: 'E-mail', en: 'Email', pap: 'E-mail'}, waarde: 'info@3diaspora.org', link: 'mailto:info@3diaspora.org'},
+  {kop: {nl: 'Telefoon', en: 'Telephone', pap: 'Telefòn'}, waarde: '06 53 32 09 65', link: 'tel:+31653320965'},
+  {kop: {nl: 'Website', en: 'Website', pap: 'Sitio web'}, waarde: 'www.3diaspora.org', link: 'https://3diaspora.org'},
   {
-    kop: {nl: 'Handelsnaam', en: 'Trading name', pap: 'Nòmber komersial'},
-    waarde: 'Netherlands Diaspora Of Africa Foundation',
+    kop: {nl: 'Opgericht', en: 'Founded', pap: 'Fundá'},
+    waarde: {nl: '4 augustus 2026', en: '4 August 2026', pap: '4 di ougùstùs 2026'},
   },
-  {kop: {nl: 'RSIN / fiscaal nummer', en: 'RSIN / tax number', pap: 'RSIN / number fiskal'}, waarde: null},
-  {
-    kop: {nl: 'KvK-nummer', en: 'Chamber of Commerce number', pap: 'Number di Kámara di Komersio'},
-    waarde: '42130908',
-  },
-  {kop: {nl: 'Postadres', en: 'Postal address', pap: 'Adres postal'}, waarde: 'Kortenaerstraat 28, Helmond'},
-  {kop: {nl: 'E-mailadres', en: 'Email address', pap: 'Adres di e-mail'}, waarde: 'info@3diaspora.org'},
-  {kop: {nl: 'Telefoonnummer', en: 'Telephone number', pap: 'Number di telefòn'}, waarde: null},
 ];
+
+export const ANBI = {
+  doel: {
+    nl: 'De stichting heeft volgens artikel 2 van de statuten als doel: het bevorderen van kennis en begrip over de positie van tot slaaf gemaakten in Nederland en de (voormalige) Nederlandse Antillen en het geven van een stem aan hun afstammelingen.',
+    en: 'Under article 2 of its articles of association, the foundation’s objective is to promote knowledge and understanding of the position of enslaved people in the Netherlands and the (former) Netherlands Antilles, and to give a voice to their descendants.',
+    pap: 'Segun artíkulo 2 di su statutonan, e meta di e fundashon ta: promové konosementu i komprenshon tokante e posishon di hendenan ku a wòrdu hasí katibu na Hulanda i na e (anterior) Antias Hulandes, i duna nan desendientenan un stem.',
+  } as Tekst,
+  doelInleiding: {
+    nl: 'De stichting doet dit onder meer door:',
+    en: 'Among other things, the foundation does this through:',
+    pap: 'E fundashon ta hasi esaki, entre otro, dor di:',
+  } as Tekst,
+  doelPunten: [
+    {
+      nl: 'historisch en wetenschappelijk (archief)onderzoek naar het slavernijverleden en naar de eerste bewoners van de voormalige Nederlandse Antillen;',
+      en: 'historical and scientific (archival) research into the history of slavery and into the first inhabitants of the former Netherlands Antilles;',
+      pap: 'investigashon históriko i sientífiko (den archivo) riba e pasado di sklavitut i riba e promé habitantenan di e anterior Antias Hulandes;',
+    },
+    {
+      nl: 'het vertegenwoordigen, informeren en bijstaan van afstammelingen van tot slaaf gemaakten, nationaal en internationaal;',
+      en: 'representing, informing and supporting descendants of enslaved people, nationally and internationally;',
+      pap: 'representá, informá i yuda desendientenan di hendenan ku a wòrdu hasí katibu, nashonal i internashonalmente;',
+    },
+    {
+      nl: 'het vastleggen van onderzoeksresultaten in een leerplan en het delen daarvan met scholen en wijken;',
+      en: 'recording research results in a curriculum and sharing it with schools and neighbourhoods;',
+      pap: 'registrá e resultadonan di investigashon den un plan di siñansa i kompartié ku skol i bario;',
+    },
+    {
+      nl: 'duurzame samenwerking met de gemeenschap en met stichtingen met hetzelfde doel;',
+      en: 'lasting cooperation with the community and with foundations that share the same objective;',
+      pap: 'koperashon duradero ku e komunidat i ku fundashonnan ku tin e mesun meta;',
+    },
+    {
+      nl: 'het behoud en herstel van erfgoed, zoals landhuizen.',
+      en: 'preserving and restoring heritage, such as the historic plantation houses.',
+      pap: 'konservashon i restourashon di patrimonio, manera e landhuisnan.',
+    },
+  ] as Tekst[],
+  geenWinst: {
+    nl: 'De stichting heeft geen winstoogmerk en beoogt het algemeen belang.',
+    en: 'The foundation is not-for-profit and serves the public interest.',
+    pap: 'E fundashon no tin fin di lucro i ta buska e interes general.',
+  } as Tekst,
+  doelen: [
+    {
+      kop: {nl: 'Heritage & Research Center', en: 'Heritage & Research Center', pap: 'Heritage & Research Center'},
+      uitleg: {
+        nl: 'Een erfgoed- en onderzoekscentrum over slavernijgeschiedenis, educatie en gemeenschapsdialoog.',
+        en: 'A heritage and research centre on the history of slavery, education and community dialogue.',
+        pap: 'Un sentro di patrimonio i investigashon tokante historia di sklavitut, edukashon i diálogo den komunidat.',
+      },
+    },
+    {
+      kop: {nl: 'Training en educatie', en: 'Training and education', pap: 'Training i edukashon'},
+      uitleg: {
+        nl: 'Minimaal 3 trainingsmodules en 4 workshops vóór eind 2027.',
+        en: 'At least 3 training modules and 4 workshops before the end of 2027.',
+        pap: 'Por lo ménos 3 módulo di training i 4 workshop promé ku fin di 2027.',
+      },
+    },
+    {
+      kop: {nl: 'Gemeenschapsactiviteiten', en: 'Community activities', pap: 'Aktividat den komunidat'},
+      uitleg: {
+        nl: 'Minimaal 6 activiteiten in 2027.',
+        en: 'At least 6 activities in 2027.',
+        pap: 'Por lo ménos 6 aktividat na 2027.',
+      },
+    },
+    {
+      kop: {nl: 'Duurzame organisatie', en: 'Sustainable organisation', pap: 'Organisashon duradero'},
+      uitleg: {
+        nl: 'Transparante administratie, goed bestuur en vaste partnerschappen.',
+        en: 'Transparent accounts, good governance and lasting partnerships.',
+        pap: 'Atministrashon transparente, bon gobernashon i partnership fiho.',
+      },
+    },
+  ] as {kop: Tekst; uitleg: Tekst}[],
+  pilot: {
+    nl: 'Daarnaast verkent de stichting een pilot voor begeleide huisvesting van studenten uit Bonaire.',
+    en: 'The foundation is also exploring a pilot for supervised housing for students from Bonaire.',
+    pap: 'Ademas, e fundashon ta eksplorá un proyekto piloto pa vivienda guiá pa studiantenan for di Boneiru.',
+  } as Tekst,
+  middelen: {
+    nl: 'Inkomsten komen uit subsidies, fondsen, gemeentelijke bijdragen en donaties. Vermogen houdt de stichting niet meer aan dan nodig is voor haar werk; alle middelen gaan naar de doelstelling. Het bestuur beheert het vermogen; de stichting wordt vertegenwoordigd door twee bestuurders samen. Bij opheffing gaat een batig saldo naar een ANBI met een soortgelijk doel.',
+    en: 'Income comes from grants, funds, municipal contributions and donations. The foundation holds no more assets than its work requires; all resources go to its objective. The board manages the assets; the foundation is represented by two board members acting together. If the foundation is dissolved, any surplus goes to an ANBI with a similar objective.',
+    pap: 'Entrada ta bini for di subsidio, fondo, kontribushon di munisipio i donashon. E fundashon no ta tene mas kapital ku loke su trabou mester; tur rekurso ta bai na su meta. E direktiva ta maneha e kapital; dos miembro di direktiva huntu ta representá e fundashon. Si e fundashon wòrdu disolví, un saldo positivo ta bai na un ANBI ku un meta similar.',
+  } as Tekst,
+  bestuur: [
+    {naam: 'Dévid Willy Eusenia', functie: {nl: 'Voorzitter', en: 'Chair', pap: 'Presidente'}},
+    {naam: 'Jeannette Georgia Silié', functie: {nl: 'Secretaris', en: 'Secretary', pap: 'Sekretaria'}},
+    {naam: 'Solange Maria Aniceta Boezem-Silié', functie: {nl: 'Penningmeester', en: 'Treasurer', pap: 'Tesorera'}},
+  ] as {naam: string; functie: Tekst}[],
+  stemmen: {
+    nl: 'Ieder bestuurslid heeft één stem; besluiten worden met meerderheid genomen.',
+    en: 'Each board member has one vote; decisions are taken by majority.',
+    pap: 'Kada miembro di direktiva tin un voto; desishonnan ta wòrdu tumá ku mayoria.',
+  } as Tekst,
+  beloning: {
+    nl: 'Bestuurders ontvangen geen beloning voor hun werk en geen vacatiegeld. Zij krijgen alleen werkelijk gemaakte en aantoonbare onkosten vergoed, zoals reiskosten.',
+    en: 'Board members receive no remuneration for their work and no attendance fees. Only expenses they have actually and demonstrably incurred, such as travel costs, are reimbursed.',
+    pap: 'Miembronan di direktiva no ta risibí remunerashon pa nan trabou ni plaka di asistensia. Nan ta risibí solamente reembolso di gastunan real i komprobabel, manera gastu di biahe.',
+  } as Tekst,
+  verslag: [
+    {
+      nl: 'De stichting is opgericht op 4 augustus 2026. In de eerste maanden heeft het bestuur de organisatie opgezet: inschrijving bij de KvK, een zakelijke bankrekening, deze website en het beleidsplan 2026–2028. Samen met Bonaire Diaspora Of Africa Foundation en Curaçao Diaspora Of Africa Foundation werkt de stichting aan projecten rond erfgoed, stamboomonderzoek en educatie over het slavernijverleden.',
+      en: 'The foundation was established on 4 August 2026. In the first months the board set up the organisation: registration with the Chamber of Commerce, a business bank account, this website and the policy plan 2026–2028. Together with Bonaire Diaspora Of Africa Foundation and Curaçao Diaspora Of Africa Foundation, the foundation works on projects around heritage, family history research and education about the history of slavery.',
+      pap: 'E fundashon a wòrdu fundá dia 4 di ougùstùs 2026. Den e promé lunanan e direktiva a pone e organisashon na pia: inskripshon na Kámara di Komersio, un kuenta di banko komersial, e sitio aki i e plan di maneho 2026–2028. Huntu ku Bonaire Diaspora Of Africa Foundation i Curaçao Diaspora Of Africa Foundation, e fundashon ta traha riba proyektonan rònt di patrimonio, investigashon di genealogía i edukashon tokante e pasado di sklavitut.',
+    },
+    {
+      nl: 'Een volledig activiteitenverslag volgt na afloop van het eerste boekjaar.',
+      en: 'A full activity report will follow after the end of the first financial year.',
+      pap: 'Un informe kompleto di aktividat ta sigui despues di fin di e promé aña finansiero.',
+    },
+  ] as Tekst[],
+  financieel: {
+    nl: 'Het eerste boekjaar loopt van 4 augustus 2026 tot en met 31 december 2027. De balans en de staat van baten en lasten worden hier gepubliceerd binnen zes maanden na afloop van het boekjaar, uiterlijk 30 juni 2028.',
+    en: 'The first financial year runs from 4 August 2026 to 31 December 2027. The balance sheet and the statement of income and expenditure will be published here within six months of the end of the financial year, by 30 June 2028 at the latest.',
+    pap: 'E promé aña finansiero ta kore for di 4 di ougùstùs 2026 te ku 31 di desèmber 2027. E balansa i e estado di entrada i gastu lo wòrdu publiká akinan den seis luna despues di fin di e aña finansiero, lo mas tardá dia 30 di yüni 2028.',
+  } as Tekst,
+};

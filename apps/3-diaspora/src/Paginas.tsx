@@ -1,8 +1,10 @@
 import {useMemo, useState} from 'react';
 import {
   AGENDA,
-  ANBI_VELDEN,
+  ANBI,
+  ANBI_GEGEVENS,
   BANKREKENING,
+  BELEIDSPLAN_PDF,
   BESTUUR_BONAIRE,
   OPRICHTING_NL,
   SOORT_KLEUR,
@@ -19,6 +21,7 @@ import {
   ArrowRight,
   Building2,
   CalendarDays,
+  Download,
   Check,
   FileText,
   Heart,
@@ -650,6 +653,9 @@ export function BestuurBlok() {
 
 export function AnbiBlok({s}: {s: Stichting}) {
   const t = useT();
+  const kaart = 'border-t-2 bg-white/[0.04] p-6 sm:p-7';
+  const kop = 'text-xl text-zand';
+  const tekst = 'mt-3 leading-relaxed text-zand/75';
   return (
     <section id="anbi" className="relative overflow-hidden bg-nacht-diep py-16 text-zand sm:py-24">
       <Doek vorm={s.logoDoek} kleur={s.accentZacht} dekking={0.09} />
@@ -666,31 +672,122 @@ export function AnbiBlok({s}: {s: Stichting}) {
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          <div className="border-t-2 bg-white/[0.04] p-6 sm:p-7" style={{borderColor: s.accent}}>
-            <h3 className="text-xl text-zand">{t(T.anbi.naamKop)}</h3>
+          <div className={kaart} style={{borderColor: s.accent}}>
+            <h3 className={kop}>{t(T.anbi.gegevensKop)}</h3>
             <dl className="mt-4 space-y-3 text-[0.95rem]">
-              {ANBI_VELDEN.filter((v) => v.waarde).map((v) => (
-                <div
-                  key={v.kop.nl}
-                  className="flex flex-wrap justify-between gap-x-4 gap-y-1 border-b border-white/10 pb-3 last:border-0">
-                  <dt className="text-zand/55">{t(v.kop)}</dt>
-                  <dd className="max-w-[60%] text-right font-medium text-zand">
-                    {v.waarde}
-                  </dd>
-                </div>
-              ))}
+              {ANBI_GEGEVENS.map((v) => {
+                const waarde = typeof v.waarde === 'string' ? v.waarde : t(v.waarde);
+                return (
+                  <div
+                    key={v.kop.nl}
+                    className="flex flex-wrap justify-between gap-x-4 gap-y-1 border-b border-white/10 pb-3 last:border-0">
+                    <dt className="text-zand/55">{t(v.kop)}</dt>
+                    <dd className="text-right font-medium text-zand sm:max-w-[60%]">
+                      {v.link ? (
+                        <a href={v.link} className="underline decoration-white/30 underline-offset-4 hover:text-goud-licht">
+                          {waarde}
+                        </a>
+                      ) : (
+                        waarde
+                      )}
+                    </dd>
+                  </div>
+                );
+              })}
             </dl>
           </div>
 
-          <div className="space-y-6">
-            <div className="border-t-2 bg-white/[0.04] p-6 sm:p-7" style={{borderColor: s.accent}}>
-              <h3 className="text-xl text-zand">{t(T.anbi.doelKop)}</h3>
-              <p className="mt-3 leading-relaxed text-zand/75">{t(T.anbi.doelTekst)}</p>
-            </div>
-
+          <div className={kaart} style={{borderColor: s.accent}}>
+            <h3 className={kop}>{t(T.anbi.doelKop)}</h3>
+            <p className={tekst}>{t(ANBI.doel)}</p>
+            <p className={tekst}>{t(ANBI.doelInleiding)}</p>
+            <ul className="mt-3 space-y-2 leading-relaxed text-zand/75">
+              {ANBI.doelPunten.map((p) => (
+                <li key={p.nl} className="flex gap-3">
+                  <span aria-hidden className="mt-[0.7em] size-1.5 shrink-0 rounded-full" style={{background: s.accentZacht}} />
+                  <span>{t(p)}</span>
+                </li>
+              ))}
+            </ul>
+            <p className={tekst}>{t(ANBI.geenWinst)}</p>
           </div>
         </div>
 
+        <div className={`mt-8 ${kaart}`} style={{borderColor: s.accent}}>
+          <h3 className={kop}>{t(T.anbi.beleidKop)}</h3>
+          <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr]">
+            <div>
+              <p className={tekst}>{t(T.anbi.beleidIntro)}</p>
+              <ol className="mt-4 space-y-4">
+                {ANBI.doelen.map((d, i) => (
+                  <li key={d.kop.nl} className="flex gap-4">
+                    <span className="font-display text-[1.4rem] leading-none" style={{color: s.accentZacht}}>
+                      {i + 1}
+                    </span>
+                    <span className="leading-relaxed text-zand/75">
+                      <strong className="font-semibold text-zand">{t(d.kop)}:</strong> {t(d.uitleg)}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+              <p className={`mt-5 ${tekst}`}>{t(ANBI.pilot)}</p>
+            </div>
+            <div>
+              <p className={tekst}>{t(ANBI.middelen)}</p>
+              <a
+                href={BELEIDSPLAN_PDF}
+                target="_blank"
+                rel="noopener"
+                className="mt-6 flex items-center gap-4 border border-white/15 p-4 transition hover:border-goud-licht">
+                <FileText size={28} aria-hidden className="shrink-0" style={{color: s.accentZacht}} />
+                <span className="flex-1">
+                  <span className="block font-medium text-zand">{t(T.anbi.pdfKop)}</span>
+                  <span className="block text-[0.85rem] text-zand/55">{t(T.anbi.pdfTekst)}</span>
+                </span>
+                <Download size={20} aria-hidden className="shrink-0 text-zand/70" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 grid gap-8 lg:grid-cols-3">
+          <div className={kaart} style={{borderColor: s.accent}}>
+            <h3 className={kop}>{t(T.anbi.bestuurKop)}</h3>
+            <table className="mt-4 w-full text-left text-[0.95rem]">
+              <thead>
+                <tr className="text-zand/55">
+                  <th className="pb-2 font-normal">{t(T.anbi.naam)}</th>
+                  <th className="pb-2 text-right font-normal">{t(T.anbi.functie)}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ANBI.bestuur.map((b) => (
+                  <tr key={b.naam} className="border-t border-white/10">
+                    <td className="py-2.5 pr-3 font-medium text-zand">{b.naam}</td>
+                    <td className="py-2.5 text-right text-zand/75">{t(b.functie)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className={tekst}>{t(ANBI.stemmen)}</p>
+            <h3 className={`mt-7 ${kop}`}>{t(T.anbi.beloningKop)}</h3>
+            <p className={tekst}>{t(ANBI.beloning)}</p>
+          </div>
+
+          <div className={kaart} style={{borderColor: s.accent}}>
+            <h3 className={kop}>{t(T.anbi.verslagKop)}</h3>
+            {ANBI.verslag.map((p) => (
+              <p key={p.nl} className={tekst}>
+                {t(p)}
+              </p>
+            ))}
+          </div>
+
+          <div className={kaart} style={{borderColor: s.accent}}>
+            <h3 className={kop}>{t(T.anbi.financieelKop)}</h3>
+            <p className={tekst}>{t(ANBI.financieel)}</p>
+          </div>
+        </div>
       </div>
     </section>
   );
