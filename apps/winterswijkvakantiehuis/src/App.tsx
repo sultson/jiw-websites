@@ -25,7 +25,6 @@ const PHONE = '+31655124460';
 const PHONE_DISPLAY = '+31 6 55124460';
 /* From the owner's own site (winterswijkvakantiehuis.nl) — replaces the earlier guessed info@ address. */
 const EMAIL = CONTACT_EMAIL;
-const HUURKALENDER = 'https://www.huurkalender.nl/';
 /* The film on the owners' own denmollenhof.nl/nl/paarden page. */
 const HORSES_VIDEO = 'KI75VK53uQU';
 
@@ -214,6 +213,7 @@ const t = {
       prev: 'Eerder', next: 'Later',
       fromToday: 'Vanaf deze maand',
       openTab: 'Kalender openen op huurkalender.nl',
+      to: 'tot', unit: 'Woning', unitPick: 'Kies een woning', dogs: 'hond welkom',
       askTitle: 'Beschikbaarheid opvragen',
       askText: 'Vraag de beschikbaarheid voor uw datums even bij ons op, u krijgt meestal dezelfde dag antwoord.',
     },
@@ -473,6 +473,7 @@ const t = {
       prev: 'Earlier', next: 'Later',
       fromToday: 'From this month',
       openTab: 'Open the calendar on huurkalender.nl',
+      to: 'to', unit: 'Home', unitPick: 'Choose a home', dogs: 'dogs welcome',
       askTitle: 'Ask about availability',
       askText: 'Just ask us about availability for your dates and you will usually hear back the same day.',
     },
@@ -719,6 +720,7 @@ const t = {
       prev: 'Früher', next: 'Später',
       fromToday: 'Ab diesem Monat',
       openTab: 'Kalender auf huurkalender.nl öffnen',
+      to: 'bis', unit: 'Haus', unitPick: 'Haus wählen', dogs: 'Hund willkommen',
       askTitle: 'Verfügbarkeit anfragen',
       askText: 'Fragen Sie die Verfügbarkeit für Ihre Termine einfach kurz bei uns an, meist antworten wir noch am selben Tag.',
     },
@@ -928,12 +930,15 @@ type Home = {
       geschakelde 8-persoons has it, and per the owner it is the only wheelchair
       accessible holiday home in Winterswijk — so it gets its own band on the landing page. */
   accessible?: boolean;
-  /** huurkalender.nl calendar id for this home (account 21492). Only the three
-      Den Möllenhof park homes are set up so far — their service names there are
-      "DenMöllenhof 55 / 57 / 65", i.e. the same house numbers as the Jonkersweg
-      addresses. The account also carries a "DenMöllenhof 63" (21479) that has no
-      page on this site. Homes without an id fall back to booking by WhatsApp. */
+  /** huurkalender.nl calendar id for this home (account 21492). The Den Möllenhof
+      homes are "DenMöllenhof 55 / 57 / 65" there, i.e. the Jonkersweg house numbers;
+      the Kattenberg ones were added in Oct 2026 as "Kattenberg 4a 8 persoons" (the XL)
+      and "Kattenberg Chalet". The account also carries a "DenMöllenhof 63" (21479)
+      that has no page on this site. Homes without an id fall back to WhatsApp. */
   calId?: number;
+  /** For a page that stands for several identical units: one calendar per unit, with
+      a switch above the calendar. calId is then the unit shown first. */
+  calUnits?: {label: string; calId: number; pets: boolean}[];
   amenities: string[];
   tagline: Record<Lang, string>;
   blurb: Record<Lang, string>;
@@ -1046,7 +1051,14 @@ const homes: Home[] = [
       '/img/kattenberg6-9.webp', '/img/kattenberg6-10.webp', '/img/kattenberg6-11.webp', '/img/kattenberg6-12.webp',
       '/img/kattenberg6-13.webp',
     ],
-    area: 'forest', guests: 6, bedrooms: 3, pets: true,
+    area: 'forest', guests: 6, bedrooms: 3, pets: true, calId: 23457,
+    /* Unit names as the owner keeps them in huurkalender; 4c and 4d are "geen huisdier". */
+    calUnits: [
+      {label: '4b', calId: 23457, pets: true},
+      {label: '4c', calId: 23458, pets: false},
+      {label: '4d', calId: 23459, pets: false},
+      {label: '4e', calId: 23460, pets: true},
+    ],
     petsNote: {
       short: {nl: '2 van de 4', en: '2 of the 4', de: '2 von 4'},
       long: {
@@ -1085,7 +1097,7 @@ const homes: Home[] = [
       '/img/kattenberg8-9.webp', '/img/kattenberg8-10.webp', '/img/kattenberg8-11.webp', '/img/kattenberg8-12.webp',
       '/img/kattenberg8-13.webp', '/img/kattenberg8-14.webp',
     ],
-    area: 'forest', guests: 8, bedrooms: 4, pets: false, accessible: true,
+    area: 'forest', guests: 8, bedrooms: 4, pets: false, accessible: true, calId: 23461,
     petsNote: {
       long: {
         nl: 'In deze woning zijn helaas geen huisdieren toegestaan. Komt u met een hond? Kijk dan bij onze huizen aan de Jonkersweg of bij de Boswoning Kattenberg.',
@@ -1119,7 +1131,7 @@ const homes: Home[] = [
       '/img/chalet-9.webp', '/img/chalet-10.webp', '/img/chalet-11.webp', '/img/chalet-12.webp',
       '/img/chalet-13.webp', '/img/chalet-14.webp', '/img/chalet-15.webp', '/img/chalet-16.webp',
     ],
-    area: 'forest', guests: 8, bedrooms: 4, pets: false,
+    area: 'forest', guests: 8, bedrooms: 4, pets: false, calId: 23463,
     petsNote: {
       long: {
         nl: 'In dit chalet zijn helaas geen huisdieren toegestaan. Komt u met een hond? Kijk dan bij onze huizen aan de Jonkersweg of bij de Boswoning Kattenberg.',
@@ -2746,6 +2758,8 @@ function AvailabilityOverview({lang, L}: {lang: Lang; L: any}) {
 function HomeAvailability({home, lang, L}: {home: Home; lang: Lang; L: any}) {
   const [ref, width] = useElementWidth<HTMLDivElement>();
   const [offset, setOffset] = useState(0);
+  const [calId, setCalId] = useState(home.calId!);
+  const unit = home.calUnits?.find((u) => u.calId === calId);
 
   const narrow = width > 0 && width < HK_COL * 2;
   const cols = narrow ? 1 : Math.max(1, Math.min(3, Math.floor(width / HK_COL)));
@@ -2756,7 +2770,7 @@ function HomeAvailability({home, lang, L}: {home: Home; lang: Lang; L: any}) {
   const from = monthFromNow(offset);
   const to = monthFromNow(offset + months - 1);
   const label = (d: Date) => d.toLocaleDateString(HK_LOCALE[lang], {month: 'long', year: 'numeric'});
-  const src = `${HK_BASE}/vacancy/calendar-${home.calId}.html?type=iframe`
+  const src = `${HK_BASE}/vacancy/calendar-${calId}.html?type=iframe`
     + `&lang=${HK_LANG[lang]}&m=${months}&start=${hkDay(from)}`;
 
   return (
@@ -2770,7 +2784,7 @@ function HomeAvailability({home, lang, L}: {home: Home; lang: Lang; L: any}) {
             </span>
             {L.hk.live}
           </span>
-          <p className="mt-1 text-xs text-stone-500 first-letter:uppercase">{label(from)} tot {label(to)}</p>
+          <p className="mt-1 text-xs text-stone-500 first-letter:uppercase">{label(from)} {L.hk.to} {label(to)}</p>
         </div>
         <div className="flex items-center gap-2">
           <button
@@ -2790,10 +2804,27 @@ function HomeAvailability({home, lang, L}: {home: Home; lang: Lang; L: any}) {
         </div>
       </div>
 
+      {home.calUnits && (
+        <div role="group" aria-label={L.hk.unitPick} className="flex flex-wrap gap-2 px-5 sm:px-7 pt-4">
+          {home.calUnits.map((u) => (
+            <button
+              key={u.calId} type="button" onClick={() => setCalId(u.calId)} aria-pressed={u.calId === calId}
+              className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-sm transition-colors ${u.calId === calId
+                ? 'bg-brand-green-dark border-brand-green-dark text-brand-cream'
+                : 'border-brand-sand text-brand-green-dark hover:bg-brand-sand'}`}
+            >
+              {L.hk.unit} {u.label}
+              {u.pets && <PawPrint size={13} aria-label={L.hk.dogs} />}
+            </button>
+          ))}
+        </div>
+      )}
+
       {width > 0 && (
         <div className="pt-4">
           <HuurkalenderFrame
-            src={src} title={`${L.detail.availTitle}: ${home.name}`} calId={home.calId!}
+            key={calId}
+            src={src} title={`${L.detail.availTitle}: ${home.name}${unit ? ` ${unit.label}` : ''}`} calId={calId}
             bottomChrome={HK_BOTTOM_HOME} frameWidth={frameWidth}
             containerWidth={width} cropTop={cropTop} fallbackHeight={hkGridHeight(from, months, cols)} L={L}
           />
@@ -2803,7 +2834,7 @@ function HomeAvailability({home, lang, L}: {home: Home; lang: Lang; L: any}) {
       <div className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-7 py-4 border-t border-brand-sand">
         <HkLegend L={L} />
         <a
-          href={`${HK_BASE}/vacancy/calendar-${home.calId}.html`} target="_blank" rel="noopener noreferrer"
+          href={`${HK_BASE}/vacancy/calendar-${calId}.html`} target="_blank" rel="noopener noreferrer"
           className="text-xs text-stone-500 hover:text-brand-green underline underline-offset-2"
         >
           {L.hk.openTab}
@@ -2966,27 +2997,15 @@ function HomeDetail({home, lang, L}: {home: Home; lang: Lang; L: any}) {
         <aside className="md:sticky md:top-24 self-start">
           <div className="bg-white border border-brand-sand rounded-3xl p-6 shadow-sm">
             <h3 className="font-serif text-xl text-brand-green-dark">{L.detail.availTitle}</h3>
-            {/* CALENDARS OFF — availText reads "below is this home's live calendar",
-                which is only true with the calendar section switched on, so every
-                home falls back to the "ask us for the dates" copy for now. */}
-            <p className="mt-2 text-sm text-stone-600">{L.hk.askText}</p>
+            <p className="mt-2 text-sm text-stone-600">{home.calId ? L.detail.availText : L.hk.askText}</p>
             <a href={waLink} target="_blank" rel="noopener noreferrer" className="mt-4 w-full inline-flex items-center justify-center gap-2 bg-[#20B85A] hover:bg-[#1B9E4D] text-white font-semibold shadow-[0_6px_18px_-6px_rgba(32,184,90,0.35)] px-5 py-3 rounded-full transition-colors">
               <WhatsAppIcon size={17} /> {L.detail.bookWa}
             </a>
-            {/* CALENDARS OFF — "to the calendar" jumped to #house-availability (or
-                out to huurkalender.nl for a home without an id). Both are back the
-                moment the calendar section below is uncommented.
-            {home.calId ? (
+            {home.calId && (
               <a href="#house-availability" className="mt-3 w-full inline-flex items-center justify-center gap-2 bg-brand-cream hover:bg-brand-sand text-brand-green-dark px-5 py-3 rounded-full font-medium transition-colors border border-brand-sand">
                 <Calendar size={17} /> {L.detail.calendar}
               </a>
-            ) : (
-              <a href={HUURKALENDER} target="_blank" rel="noopener noreferrer" className="mt-3 w-full inline-flex items-center justify-center gap-2 bg-brand-cream hover:bg-brand-sand text-brand-green-dark px-5 py-3 rounded-full font-medium transition-colors border border-brand-sand">
-                <Calendar size={17} /> {L.detail.calendar}
-              </a>
             )}
-            */}
-            {/* Was gated on home.calId; with the calendars off it holds for every home. */}
             <p className="mt-3 text-xs text-stone-500 text-center">{L.detail.note}</p>
             <div className="mt-5 pt-4 border-t border-brand-sand flex flex-col gap-2 text-sm">
               <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-stone-700 hover:text-brand-green">
@@ -3003,11 +3022,9 @@ function HomeDetail({home, lang, L}: {home: Home; lang: Lang; L: any}) {
         </aside>
       </div>
 
-      {/* CALENDARS OFF — this home's live calendar, hidden for now at the client's
-          request. Full width rather than in the sidebar: their month blocks are a
-          fixed ~330px, so a narrow column would have shown one month at a time with
-          a lot of dead space next to it. Uncomment together with the sidebar button
-          above; HomeAvailability is still in this file.
+      {/* This home's live calendar. Full width rather than in the sidebar: their month
+          blocks are a fixed ~330px, so a narrow column would show one month at a time
+          with a lot of dead space next to it. */}
       <section id="house-availability" className="max-w-6xl mx-auto px-5 mt-14 scroll-mt-24">
         <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{L.detail.availTitle}</h2>
         <p className="mt-2 text-stone-600 max-w-2xl">{home.calId ? L.detail.availText : L.hk.askText}</p>
@@ -3025,7 +3042,6 @@ function HomeDetail({home, lang, L}: {home: Home; lang: Lang; L: any}) {
           )}
         </div>
       </section>
-      */}
 
       {/* Other homes */}
       <section className="max-w-6xl mx-auto px-5 mt-16 mb-4">
