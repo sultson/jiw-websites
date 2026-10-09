@@ -24,13 +24,36 @@
     // keeping this site static.
     "run_worker_first": ["/api/*"]
   },
+  // Four hostnames, but only one of them ever serves a page.
+  //
+  // jasmflowers.com is canonical — it is what data.mjs `domain` says and therefore what
+  // every canonical, hreflang and sitemap entry points at. www.jasmflowers.com is
+  // attached as well, but a dynamic redirect rule on the zone 301s it onto the apex with
+  // the path and query intact, so it never reaches this worker.
+  //
+  // The two jouwidealewebsite.nl addresses stay attached on purpose. A redirect rule on
+  // that zone 301s them to jasmflowers.com (Dynamic Redirects run before Workers, so the
+  // worker is not invoked). Keeping them bound rather than swapping in a discard-prefix
+  // AAAA means that if the rule is ever deleted the old addresses fall back to serving
+  // the site instead of erroring — duplicate content is a worse day than an outage is a
+  // worse day. Cost: 2 of the 100 Workers custom domains on jouwidealewebsite.nl, a zone
+  // that is at its cap. Detach them if a slot is ever needed, but add the AAAA first.
+  //
+  // Both old addresses have been shared publicly and are in Google, so they must keep
+  // answering. House rule for a graduated site, see the root CLAUDE.md.
   "routes": [
+    {
+      "pattern": "jasmflowers.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.jasmflowers.com",
+      "custom_domain": true
+    },
     {
       "pattern": "jasmflowers.jouwidealewebsite.nl",
       "custom_domain": true
     },
-    // Kept alive: this address was shared before the site had its own name, so it
-    // still gets traffic. The canonical on every page points at jasmflowers.
     {
       "pattern": "flower.jouwidealewebsite.nl",
       "custom_domain": true

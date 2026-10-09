@@ -9,7 +9,8 @@
     "ship": "pnpm build && wrangler deploy",
     "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
     "lint": "tsc --noEmit -p tsconfig.worker.json",
-    "smoke": "node tools/smoke.mjs"
+    "smoke": "node tools/smoke.mjs",
+    "seo": "node tools/seo.mjs"
   },
   "dependencies": {
     "@jiw/cloudflare-forms": "workspace:*"

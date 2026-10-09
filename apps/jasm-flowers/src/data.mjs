@@ -18,7 +18,12 @@ export const company = {
   address: 'Airport North Road, P.O. Box 5212-100, Nairobi, Kenya',
   addressStreet: 'Airport North Road',
   addressPoBox: '5212-100',
-  domain: 'jasmflowers.jouwidealewebsite.nl',
+  // The client's own name, live since 09-10-2026. Everything absolute on the site reads
+  // off this one line: canonical, hreflang, x-default, og:url, the schema.org @ids, the
+  // sitemap and the robots.txt sitemap line. The apex is canonical, www 301s onto it
+  // (redirect rule on the zone), and the two old jouwidealewebsite.nl addresses 301 here
+  // as well, so there is exactly one address serving a 200 per page.
+  domain: 'jasmflowers.com',
 };
 
 // The four words the client wants the business measured against. Updated Sep 2026:

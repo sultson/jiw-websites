@@ -281,11 +281,12 @@ const CRUMB = { '/catalogue/': 'Catalogue', '/shipping/': 'Shipping',
  * SPA, and every internal link is a plain same-origin href. Clarity stitches those into
  * one session with its own first-party cookies (`_clck` long-lived, `_clsk` per session),
  * which survive a full page load on the same host. What WOULD break it is a second host
- * (the site also answers on flower.jouwidealewebsite.nl, so a session that crosses the
- * two counts twice - nothing links across, so it cannot happen mid-visit) or a page
- * missing the tag, which is why this sits in the shared layout and not on five pages by
- * hand. The /nl/ and /de/ copies are the same origin, so switching language keeps the
- * session too.
+ * serving pages, or a page missing the tag - which is why this sits in the shared layout
+ * and not on five pages by hand. Since 09-10-2026 there is no second host: www and the
+ * two old jouwidealewebsite.nl addresses all 301 onto jasmflowers.com at the edge, before
+ * any document is served, so a visitor cannot pick up a cookie on one host and continue
+ * on another. The /nl/ and /de/ copies are the same origin, so switching language keeps
+ * the session too.
  *
  * Deliberately NOT on the print sheets: those are built by our own headless browser on
  * every single build (tools/gen-pdf.mjs), and they would show up in the client's

@@ -1,8 +1,8 @@
 # JASM Flowers
 
 B2B site for a Kenyan flower exporter selling to professional buyers in Europe, the
-Middle East, Africa and Asia. English, Dutch and German. Live on
-`jasmflowers.jouwidealewebsite.nl`.
+Middle East, Africa and Asia. English, Dutch and German. Live on the client's own name,
+`jasmflowers.com`, since 09-10-2026.
 
 Graduated into the monorepo on 09-10-2026 from `~/dev/claudius/playground/flower`
 (the directory was called `flower`, which is why nothing ever grepped for "jasm").
@@ -39,12 +39,55 @@ pnpm --filter @jiw/jasm-flowers dev      # build, then wrangler dev on :3070
 pnpm --filter @jiw/jasm-flowers ship     # build, then wrangler deploy
 pnpm --filter @jiw/jasm-flowers lint     # tsc over worker/
 node tools/smoke.mjs <url>               # 1484 checks; no url = local dist/
+node tools/seo.mjs <origin>              # 539 indexing checks, live only
 node --experimental-strip-types tools/preview-mail.mjs   # render the emails to look at
 ```
 
 `build` runs three steps and all three matter. The build wipes `dist/`, which takes the
 catalogue PDFs with it — deploying after a build that skipped `gen-pdf.mjs` leaves all
 three download links serving a 404. `gen-pdf.mjs` needs Playwright's Chromium.
+
+## Domains
+
+Live on the client's own name since 09-10-2026. Four hostnames are attached to the
+Worker; exactly one of them ever returns a page.
+
+| Hostname | Answers |
+| --- | --- |
+| `jasmflowers.com` | the site, 200 — canonical |
+| `www.jasmflowers.com` | 301 to the apex, path and query kept |
+| `jasmflowers.jouwidealewebsite.nl` | 301 to the apex |
+| `flower.jouwidealewebsite.nl` | 301 to the apex |
+
+The apex is canonical because that is what `company.domain` in `src/data.mjs` says, and
+that single line is where every absolute URL on the site comes from: canonical, hreflang,
+`x-default`, `og:url`, the schema.org `@id`s, the sitemap and the `Sitemap:` line in
+`robots.txt`. Changing hostname again is that one line plus `SITE_URL` and the three
+`footerText` strings in `worker/confirmation.ts`.
+
+Watch out when you change it: two of the PDF footer lines in `src/lang/*.tsv` contain the
+domain as *visible text*, and translation is keyed on the whole English string, so moving
+the domain orphans those two keys and the build reports two untranslated strings. Fix the
+left-hand column in both TSVs.
+
+None of the three redirects lives in the Worker. They are 301s from
+`http_request_dynamic_redirect` rulesets on the two zones, a phase Cloudflare evaluates
+*before* Workers, so a redirected request never costs an invocation:
+
+- `jasmflowers.com` zone, ruleset `e2e4c583dc094ae8b3ff25fdc2189b0d` — the `www` rule.
+- `jouwidealewebsite.nl` zone, ruleset `f7d87eb6b65746658a7e67d0c998fda1` (the zone's
+  shared entrypoint — **append** to it, a `PUT` of your own rule set wipes the other
+  sites' rules) — the two old addresses, excluding `/api/`.
+
+That `/api/` carve-out is deliberate. A 301 turns a `POST` into a `GET`, so a buyer who
+had the old page open when the switch happened would have lost eleven filled-in fields
+silently. Enquiries still post fine on the old hostnames; only documents redirect.
+
+The old addresses stay bound as `custom_domain` routes rather than being swapped for a
+discard-prefix `AAAA`. Both have been shared publicly and are in Google, so they have to
+keep answering, and leaving them bound means that if someone deletes the redirect rule the
+failure mode is duplicate content rather than a dead address. The cost is 2 of the 100
+Workers custom domains on `jouwidealewebsite.nl`, a zone already at its cap.
 
 ## The enquiry form
 
@@ -123,8 +166,9 @@ Session continuity across a click needed no work: this is 30 prerendered documen
 an SPA, and every internal link is a plain same-origin `href`, so Clarity's own
 first-party cookies stitch the pageviews into one session. The two things that would
 break it are a page without the tag — hence one shared layout rather than five
-hand-edited files — and a second hostname, and `flower.jouwidealewebsite.nl` is only
-reached by an old bookmark, never from a link.
+hand-edited files — and a second hostname serving pages, which since the move to
+`jasmflowers.com` no longer happens: `www` and both old `jouwidealewebsite.nl` addresses
+301 at the edge before a document is served.
 
 The three print sheets deliberately have no tag: `gen-pdf.mjs` renders them in headless
 Chromium on every build, which would file three robot sessions per deploy. `smoke.mjs`
@@ -191,6 +235,22 @@ Real client photographs carry the site's claims, so they are graded with `sharp`
 rule matters most is the tinted gypsophila shot: the subject is a few hundred
 individually tinted florets, and a model asked to "recover detail" redistributes the
 colours, which would make our proof of what they can tint a guess.
+
+## Search Console
+
+Not set up, and it cannot be done from here: adding `jasmflowers.com` as a property needs
+a verification token out of the Search Console UI, which needs a Google login. Once
+someone has the token, a DNS-method TXT record on the apex is a one-line add to the zone
+and then the sitemap can be submitted at `https://jasmflowers.com/sitemap.xml`.
+
+Until that happens nothing is wrong — Google will find the site from `robots.txt` and
+crawl it. Search Console only changes whether we can *see* what it found. `tools/seo.mjs`
+checks the same things Search Console reports on, against the deployed site, so a clean
+run there is the best read available without the property.
+
+Worth expecting in the report for a few weeks after the move: the old
+`jasmflowers.jouwidealewebsite.nl` URLs showing as "Page with redirect". That is the
+correct state for a moved site, not an error.
 
 ## Still owed by the client
 
