@@ -1,6 +1,6 @@
 import {
   company, qualityFocus, varieties, signature, mainFocus, homeRail, steps, reasons, faqs, markets,
-  regions, heroMarkets, MONTHS, values,
+  regions, heroMarkets, MONTHS, values, keyLines,
 } from './data.mjs';
 import { esc, ico, mark, flags, waLink } from './ui.mjs';
 
@@ -662,6 +662,167 @@ export function contact(img) {
     </div>
   </div>
 </section>` };
+}
+
+// ============================================================ KEY LINE
+/**
+ * One page per key line at /wholesale/<slug>/ - Solidago, the two eucalyptus lines and
+ * Limonium. Linked only from the footer strip (see ui.mjs) and from each other.
+ *
+ * The catalogue card for the same line is one of seventeen on a page about the whole
+ * list, which is why it cannot win a search for one variety. This page answers that
+ * search: what the line is, how it is graded, which months it runs, who buys it and
+ * what it costs to get a price. Everything on it is already true elsewhere on the site -
+ * the altitude range, the cold chain figures, the pack spec, the availability row and
+ * the ordering terms are the same numbers, pulled from the same data.
+ *
+ * The second photo is a grading or cold-room shot rather than a second picture of the
+ * flower: the top of the page already shows the flower full bleed, and the claim this
+ * section makes is about the spec, not the bloom.
+ */
+const LINE_FIG = {
+  solidago: ['bunch-real', 'A graded bunch of solidago, cut and bunched to spec on a partner farm'],
+  'eucalyptus-baby-blue': ['qc', 'A full-length eucalyptus stem held up and checked against the grading spec'],
+  'eucalyptus-silver-dollar': ['qc', 'A full-length eucalyptus stem held up and checked against the grading spec'],
+  limonium: ['coldchain', 'JASM export cartons stacked on a pallet in the cold room'],
+};
+
+export function keyLine(v, img) {
+  const L = v.line;
+  const [figKey, figAlt] = LINE_FIG[v.slug];
+  // Three of the six "why buyers" points, the ones a single-line enquiry turns on.
+  // Same strings as the home page, so they are already written in all three languages.
+  const tiles = [reasons[0], reasons[1], reasons[4]];
+  const tileIcons = [ico.leaf, ico.ruler, ico.box];
+  const others = keyLines.filter(o => o.slug !== v.slug);
+
+  return {
+    title: `${v.name} wholesale from Kenya | ${company.name}`,
+    desc: `${v.name} grown in Kenya for professional flower buyers. ${v.lengths[0]} to ` +
+      `${v.lengths.at(-1)}, ${v.packBunch} a bunch, ${v.packBox}. Cut to order, graded to your ` +
+      `specification, FOB Nairobi.`,
+    path: L.path, variety: v, body: `
+<section class="phead">
+  <div class="phead-bg">${img(v.img, `${v.name} grown in Kenya for ${company.name}`, 1600,
+    { eager: true, plain: true })}</div>
+  ${mark('phead-mark')}
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/catalogue/">Catalogue</a><span>/</span><span>${esc(v.name)}</span></nav>
+    <h1 class="d1">${esc(v.name)} wholesale<br>from Kenya</h1>
+    <p class="lead">${L.lead}</p>
+    <div class="vals"><span>${esc(v.group)}</span><span>${v.lengths[0]}&ndash;${v.lengths.at(-1)}</span>
+      <span>${esc(v.vaseLife)}</span></div>
+  </div>
+</section>
+
+<section class="sec sec-paper">
+  <div class="wrap cols2" style="align-items:start">
+    <div>
+      <p class="kicker">${esc(v.latin)}</p>
+      <h2 class="d2">The standard pack</h2>
+      <p class="lead" style="margin-top:20px">${L.what1}</p>
+      <p class="muted">${L.what2}</p>
+      <div class="swatches" style="margin:22px 0 18px">${
+        v.colours.map(c => `<span class="swatch">${esc(c)}</span>`).join('')}</div>
+      <dl class="spec" style="margin-bottom:24px">
+        <div><dt>Lengths</dt><dd>${v.lengths.join(' &middot; ')}</dd></div>
+        <div><dt>Bunch</dt><dd>${esc(v.packBunch)}</dd></div>
+        <div><dt>Per box</dt><dd>${esc(v.packBox)}</dd></div>
+        <div><dt>Vase life</dt><dd>${esc(v.vaseLife)}</dd></div>
+      </dl>
+      <div class="hero-btns">
+        <a class="btn btn-p" href="/contact/">Request a quote ${ico.arrow}</a>
+        <a class="btn btn-o" href="/catalogue/#${v.slug}">See it in the catalogue</a>
+      </div>
+      <p class="tiny" style="margin-top:20px;max-width:58ch">Every figure above is the house
+        standard. Stem length, bunch weight, stem count and cut stage can be set to your own
+        programme and written into the order, and that is what the packhouse checks against.</p>
+    </div>
+    <div class="figure" style="aspect-ratio:4/5">${img(figKey, figAlt, 760, { ratio: '4/5' })}</div>
+  </div>
+</section>
+
+<section class="sec sec-sand">
+  <div class="wrap cols2">
+    <div class="figure">${img('highlands', 'Cut-flower rows on a highland slope above a valley holding morning mist, with a mountain ridge behind', 900, { ratio: '4/3' })}</div>
+    <div>
+      <h2 class="d2">Grown at altitude</h2>
+      <p class="lead" style="margin-top:20px">${L.grown1}</p>
+      <p class="muted">${L.grown2}</p>
+      <div class="badges" style="margin-top:26px">
+        <span class="badge">${ico.mtn}<b>1,800&ndash;2,400 m</b></span>
+        <span class="badge">${ico.snow}<b>2&ndash;4 &deg;C</b> cold chain</span>
+        <span class="badge">${ico.clock}<b>Flown</b> out of Nairobi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-pale">
+  <div class="wrap">
+    <div class="sec-head">      <h2 class="d2">Availability, month by month</h2>
+      <p class="lead">${L.season}</p></div>
+    <div class="a-key">
+      <span><i class="a-2"></i> Peak volume</span>
+      <span><i class="a-1"></i> Available</span>
+      <span><i class="a-0"></i> Limited, ask first</span>
+    </div>
+    <div class="avail-scroll"><table class="avail">
+      <thead><tr><th scope="col">Variety</th>${MONTHS.map(m => `<th scope="col">${m}</th>`).join('')}</tr></thead>
+      <tbody><tr><th scope="row">${esc(v.name)}</th>${v.avail.map((a, i) =>
+        `<td><div class="a-cell ${a ? 'a-' + a : ''}"><span class="sr-only">${MONTHS[i]}: ${
+          a === 2 ? 'peak' : a ? 'available' : 'limited'}</span></div></td>`).join('')}</tr></tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="sec sec-paper">
+  <div class="wrap">
+    <div class="sec-head">      <h2 class="d2">Ordering and grading</h2></div>
+    <div class="grid3 bare">${tiles.map((r, i) => `<div class="reason">${tileIcons[i]}
+      <h3>${esc(r.t)}</h3><p>${esc(r.d)}</p></div>`).join('')}</div>
+    <div class="grid3" style="background:var(--line-soft);margin-top:clamp(30px,4vw,48px)">
+      <div class="reason">${ico.check}<h3>Minimum order</h3><p>${esc(faqs[0].a)}</p></div>
+      <div class="reason">${ico.clock}<h3>Order deadline</h3><p>${esc(faqs[1].a)}</p></div>
+      <div class="reason">${ico.ruler}<h3>Incoterms</h3>
+        <p>FOB Nairobi. The terms go on every order confirmation, in writing.</p></div>
+    </div>
+    <p style="margin-top:32px"><a class="link" href="/shipping/">All shipping detail ${ico.arrow}</a></p>
+  </div>
+</section>
+
+<section class="sec sec-dark on-dark">
+  <div class="wrap cols2" style="align-items:start">
+    <div>
+      <h2 class="d2">Who buys it</h2>
+      <p class="lead" style="margin-top:20px">${L.buyers}</p>
+      <div class="mk" style="margin-top:26px">${
+        [...regions.filter(r => r !== 'Worldwide' && !markets.includes(r)), ...markets]
+          .map(m => `<span>${esc(m)}</span>`).join('')}</div>
+    </div>
+    <div>
+      <p class="kicker">Also known as</p>
+      <div class="mk">${L.also.map(a => `<span translate="no">${esc(a)}</span>`).join('')}</div>
+      <p class="muted" style="margin-top:26px">Buying more than one line? Fillers, foliage and
+        roses pack on the same airway bill, so one bouquet costs one freight minimum.</p>
+      <a class="link" href="/catalogue/" style="margin-top:18px">See the catalogue ${ico.arrow}</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-sand">
+  <div class="wrap">
+    <div class="sec-head">      <h2 class="d2">Our other key lines</h2></div>
+    <div class="sig">${others.map(o => `<a class="vcard" href="${o.line.path}">
+      <div class="vcard-img">${img(o.img, o.name, 420, { ratio: '3/4' })}
+        <span class="vcard-tag">${esc(o.group)}</span></div>
+      <div class="vcard-body"><h3>${esc(o.name)}</h3><p class="l">${esc(o.latin)}</p>
+        <p class="s">${o.lengths[0]} to ${o.lengths.at(-1)} &middot; ${esc(o.vaseLife)}</p></div>
+    </a>`).join('')}</div>
+  </div>
+</section>
+
+${quoteBand()}` };
 }
 
 // ============================================================ 404

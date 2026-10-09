@@ -1,6 +1,6 @@
 // Shared markup helpers.
 import fs from 'node:fs';
-import { company, values } from './data.mjs';
+import { company, values, keyLines } from './data.mjs';
 import { LANGS, localise } from './i18n.mjs';
 
 export const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
@@ -163,6 +163,16 @@ export function footer() {
       <li><a href="${waLink('Hello JASM Flowers, I would like a quote.')}" rel="noopener">WhatsApp</a></li>
       <li><span style="color:rgba(255,255,255,.74);font-size:14.5px">${esc(company.address)}</span></li>
     </ul></div>
+  </div>
+  <!-- The only route into the four key-line pages from the rest of the site. They are
+       deliberately not in the nav: they exist to answer a search for one variety, and
+       four product pages sitting next to four site sections would read as a second,
+       competing navigation. A row rather than a fifth footer column, because five
+       columns at this width squeezes every label into two lines. -->
+  <div class="ftr-lines">
+    <h4>Key lines</h4>
+    <ul>${keyLines.map(v =>
+      `<li><a href="${v.line.path}">${esc(v.name)}</a></li>`).join('')}</ul>
   </div>
   <div class="ftr-bot">
     <span>&copy; ${new Date().getFullYear()} ${esc(company.legal)}. All rights reserved.</span>

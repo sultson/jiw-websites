@@ -73,7 +73,10 @@ export const varieties = [
     slug: 'solidago', name: 'Solidago', latin: 'Solidago canadensis',
     common: 'Goldenrod', tier: 'signature', focus: 'main', group: 'Filler',
     img: 'solidago',
-    colours: ['Golden yellow', 'Tinted'],
+    // "Tinted" came off this line on 9 Oct 2026. The client's own answer to "do you supply
+    // dyed or tinted flowers?" is "yes, on gypsophila and roses" - naming solidago as
+    // available tinted contradicted it one page away.
+    colours: ['Golden yellow'],
     lengths: ['50 cm', '60 cm', '70 cm', '80 cm'],
     packBunch: '20 stems', packBox: '300 stems / full box',
     vaseLife: '10-14 days',
@@ -406,11 +409,134 @@ export const markets = [
 ];
 
 /**
+ * `areaServed` for the Organization in schema.org, typed per entry.
+ *
+ * It used to be `markets.map(m => ({'@type':'Country', name: m}))`, which filed
+ * Scandinavia and the Middle East as countries. They are not, and neither are Europe,
+ * Africa or Asia - a parser that trusts the type ends up with five invented countries.
+ *
+ * `Worldwide` is dropped rather than retyped: it is a figure of speech, not a place, and
+ * there is nothing for a consumer to resolve it to. `Middle East` appears in both lists,
+ * hence the dedupe.
+ */
+const NOT_A_COUNTRY = new Set(['Europe', 'Africa', 'Asia', 'Middle East', 'Scandinavia']);
+export const areaServed = [...new Set([...regions, ...markets])]
+  .filter(n => n !== 'Worldwide')
+  .map(name => ({ name, type: NOT_A_COUNTRY.has(name) ? 'Place' : 'Country' }));
+
+/**
  * The hero market chip cycles through these. Europe leads because that is where the named
  * country volume is; the other regions follow, then the individual European markets, each
  * with the flag key it draws (see `flags` in ui.mjs). Names are the same strings as
  * `regions` and `markets`, so they reuse the existing translations.
  */
+/**
+ * One landing page per key line, at /wholesale/<slug>/, in all three languages.
+ *
+ * Why these four and not all seventeen: a search like "solidago wholesale kenya" has
+ * real intent behind it and nobody is answering it properly - the one competitor who
+ * ranks for it does so with a page that says almost nothing. The catalogue entry cannot
+ * win that search, because it is one card among seventeen on a page about everything.
+ *
+ * These pages are linked ONLY from the footer strip. They are not in the nav and nothing
+ * in the body copy of the other five pages points at them, so the site a buyer walks
+ * through is unchanged - this is reach for people arriving from a search engine on a
+ * specific line. The four pages do link to each other, because they are one cluster and
+ * a buyer who wants Baby Blue usually wants to know about Silver Dollar too.
+ *
+ * Everything here is drawn from what the site already says: the altitude range, the
+ * cold chain figures, the pack specs and the availability table. Nothing is invented to
+ * fill a page out.
+ */
+const LINE_COPY = {
+  solidago: {
+    lead: 'Solidago is our largest programme. Our growing partners plant it for us through the ' +
+      'year in the Kenyan highlands, so the volume is there when Europe needs it most.',
+    what1: 'Dense feathery plumes on a strong straight stem, cut at the stage that travels and ' +
+      'opens in the vase rather than the stage that fills a box fastest. Graded so every bunch ' +
+      'in the box carries the same plume weight.',
+    what2: 'One colour, golden yellow. Lengths run from 50 to 80 cm, and the length you order is ' +
+      'what gets measured before the bunch is tied.',
+    grown1: 'Grown between Naivasha at around 1,900 metres and the slopes of Mount Kenya. Bright ' +
+      'days and nights that drop close to ten degrees slow the plant down, and that is what ' +
+      'gives a tighter plume and a thicker neck.',
+    grown2: 'Cut in the cool of the morning into clean water with a hydration treatment, and into ' +
+      'the cold room at 2 to 4 degrees within the hour. Most of a solidago&rsquo;s vase life is ' +
+      'won or lost in that first hour.',
+    season: 'Available every month of the year. October to February is peak, which is when ' +
+      'European supply is at its thinnest and standing volume is easiest to hold at the best grade.',
+    buyers: 'The workhorse filler for supermarket bouquet programmes and florist work. Buyers take ' +
+      'it on a standing weekly weight alongside the eucalyptus and the limonium, so one bouquet ' +
+      'costs one freight minimum.',
+    also: ['Goldenrod', 'Golden rod', 'Solidago canadensis'],
+  },
+  'eucalyptus-baby-blue': {
+    lead: 'Eucalyptus Baby Blue is one of the two foliage lines we lead with: small round ' +
+      'powder-blue leaves on a fine stem, with the scent the leaf is bought for.',
+    what1: 'Cut at the stage that holds its bloom, the pale waxy film on a young leaf, rather ' +
+      'than the stage that fills a box fastest. Sold by stem count, ten to a bunch, not by weight.',
+    what2: 'Lengths from 50 to 80 cm. The colour runs powder blue to blue green depending on the ' +
+      'block and the time of year; tell us which end of that you want and we grade for it.',
+    grown1: 'Grown on the Mount Kenya side, between 2,100 and 2,400 metres. Altitude is what keeps ' +
+      'the colour in the leaf and stops it blacking off in transit, which is the most common ' +
+      'complaint about imported eucalyptus.',
+    grown2: 'Pre-cooled within an hour of cutting and held at 2 to 4 degrees through the export ' +
+      'process. Foliage is where bouquet margin sits, and it is also the first thing to look ' +
+      'tired if the cold chain breaks.',
+    season: 'Available every month of the year, with no real peak or trough. That makes it the ' +
+      'easiest line on our list to put on a standing weekly programme.',
+    buyers: 'Bouquet producers and florists. One stem of Baby Blue carries texture that three ' +
+      'fillers cannot, which is why it keeps its place in a recipe even when the flower in the ' +
+      'middle changes.',
+    also: ['Eucalyptus cinerea', 'Baby Blue eucalyptus', 'Argyle apple'],
+  },
+  'eucalyptus-silver-dollar': {
+    lead: 'Eucalyptus Silver Dollar is the structural half of our foliage programme: the large ' +
+      'rounded coin leaf, on a straighter and heavier stem than Baby Blue.',
+    what1: 'Used where a bouquet needs volume and structure rather than texture. One stem does the ' +
+      'work of three fillers, and it holds its shape in the vase for weeks after the flowers ' +
+      'have gone over.',
+    what2: 'Ten stems a bunch, 50 to 80 cm, silver green to grey green. Sold by stem count rather ' +
+      'than by weight, so what you order is what you can count in the box.',
+    grown1: 'The same Mount Kenya blocks as Baby Blue, 2,100 to 2,400 metres. The cool nights at ' +
+      'that altitude are what build the heavier stem; a lower farm grows the same variety faster ' +
+      'and softer.',
+    grown2: 'Checked on stem straightness and leaf condition before bunching, then pre-cooled ' +
+      'within the hour and held at 2 to 4 degrees until it flies.',
+    season: 'Available every month of the year. Like Baby Blue it has no real season, which is why ' +
+      'the two of them anchor most standing foliage programmes.',
+    buyers: 'Wholesalers and bouquet lines that need a foliage they can specify once and keep ' +
+      'buying. Also strong in event and wedding work, where the leaf is on show rather than ' +
+      'filling a gap.',
+    also: ['Eucalyptus polyanthemos', 'Silver Dollar eucalyptus', 'Red box'],
+  },
+  limonium: {
+    lead: 'Limonium runs alongside the solidago and the eucalyptus as a core programme line: airy ' +
+      'sprays of small papery flowers on a branched stem, graded so every bunch carries the same ' +
+      'spray weight.',
+    what1: 'Twenty-five stems a bunch, 50 to 70 cm, 300 stems in a full box. It fills volume ' +
+      'without adding weight, which matters when the freight is priced by the kilo.',
+    what2: 'Lavender, deep purple, yellow and white. Mixed or straight colour, and a mix is graded ' +
+      'rather than whatever came off the block that morning.',
+    grown1: 'Lakeside blocks around Naivasha on volcanic soil at about 1,900 metres, the same ' +
+      'ground as the solidago. That is the reason filler volume holds here all year.',
+    grown2: 'Cut, graded and pre-cooled on the same timeline as everything else we ship: into the ' +
+      'cold room at 2 to 4 degrees within the hour, and held there until it flies.',
+    season: 'Available every month of the year, with no closed season.',
+    buyers: 'Bouquet programmes and florists who need to make a bouquet look twice the size for ' +
+      'very little weight. It also dries well, so it carries into dried and preserved work.',
+    also: ['Sea lavender', 'Misty', 'Limonium perezii', 'Limonium latifolium'],
+  },
+};
+
+/** The lines that get their own page, in the order the footer strip lists them. */
+export const keyLines = Object.keys(LINE_COPY).map(slug => {
+  const v = varieties.find(x => x.slug === slug);
+  if (!v) throw new Error(`key line has no variety: ${slug}`);
+  v.line = { ...LINE_COPY[slug], path: `/wholesale/${slug}/` };
+  return v;
+});
+
 export const heroMarkets = [
   ['Europe', 'eu'], ['Africa', 'globe'], ['Middle East', 'globe'], ['Asia', 'globe'],
   ['Netherlands', 'nl'], ['Germany', 'de'], ['United Kingdom', 'gb'],

@@ -50,12 +50,14 @@
   ],
   "vars": {
     "SITE_ID": "jasm-flowers",
-    // Leads land in our own inbox for now, not at JASM. The client has two office
-    // lines and two mailboxes on jasmflowers.co.ke, but nobody has confirmed which
-    // of them should receive web enquiries, so pointing this at a guess would drop
-    // real buyer enquiries into an unwatched mailbox. Test submissions are fine
-    // against this address.
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // Buyer enquiries go to JASM's own sales mailbox as of 09-10-2026. This address is
+    // also the reply-to on the confirmation the buyer receives, so a buyer who answers
+    // that mail reaches the client directly rather than us.
+    //
+    // NOTE for anyone testing: a submission against this config mails a real client
+    // mailbox. Point LEAD_RECIPIENT back at hallo@jouwidealewebsite.nl locally (or in a
+    // throwaway deploy) before exercising the form end to end.
+    "LEAD_RECIPIENT": "sales@jasmflowers.co.ke",
     // The sending *domain* notify.jasmflowers.com is verified in Cloudflare Email
     // Service (DKIM, SPF and a p=reject DMARC are on the zone). The local part is
     // free, so changing no-reply@ to something else is this line plus
