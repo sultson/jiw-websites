@@ -11,6 +11,7 @@
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit -p tsconfig.worker.json",
     "kijk": "node _ref/kijk.mjs",
+    "kijk:snel": "node _ref/kijk.mjs --snel",
     "indexnow": "node _ref/indexnow.mjs"
   },
   "dependencies": {

@@ -1,24 +1,43 @@
-// De foto's die Ekrem zelf op 27-09-2026 in de groep stuurde (via Armando).
+// De foto's die Ekrem zelf in de groep stuurde (via Armando).
+// ek-01 t/m ek-11 op 27-09-2026 (badkamers en toiletten), ek-12 t/m ek-14 op
+// 09-10-2026 (een trap wit in de lak, met balustrade en leuning), ek-15 t/m ek-21
+// diezelfde dag (stucwerk, schilderwerk en vloeren in een woning die hij leeg
+// opknapte, plus een ingebouwde tv-wand van gipsplaat).
 // Originelen: _ref/eigen/ek-NN.jpg. Dit is de ENIGE lijst met volgorde en alt-tekst;
-// eigen.mjs maakt er de bestanden mee en schrijft het galerijblok in werkzaamheden.html.
+// eigen.mjs maakt er de bestanden mee en schrijft het galerijblok in werkzaamheden.html
+// én het Engelse blok in en/services.html (alt-teksten uit _ref/en-alt.json).
 //
-// De galerij staat in kolommen en niet in rijen, dus boven in beeld komen
-// nummer 1, 4, 7 en 10. Daar staan met opzet de sterkste, opgeleverde foto's.
+// De galerij staat in kolommen en niet in rijen, dus de lijst loopt van boven naar
+// beneden door kolom 1, dan kolom 2. Bovenaan staat met opzet een sterke, opgeleverde
+// foto, en soortgelijke beelden staan uit elkaar: de drie trapfoto's lijken naast
+// elkaar één foto, en dat geldt net zo voor de vier lege kamers met een nieuwe vloer.
+//
+// Staat er een bron in deze lijst die nog niet in _ref/en-alt.json staat, dan valt
+// eigen.mjs om. Dat is de bedoeling: anders zou er een Nederlandse alt op de Engelse
+// pagina belanden.
 export const GALERIJ = [
   { bron: 'ek-01', alt: 'Opgeleverd toilet in betonlook tegels met een verlichte nis, hangtoilet en een ronde zwarte spiegel' },
+  { bron: 'ek-12', alt: 'Trap met kwartslag wit in de lak, met een witte balustrade en een houten leuning langs de wand' },
+  { bron: 'ek-20', alt: 'Ingebouwde tv-wand van gipsplaat met open nissen, strak afgewerkt, de spots zijn al bedraad' },
+  { bron: 'ek-02', alt: 'Opgeleverde badkamer onder een schuin dak met terrazzovloer, inloopdouche en een houten lamellenwand' },
+  { bron: 'ek-15', alt: 'Kamer met vers gestucte wanden en een glad plafond, met een nieuwe houtlook vloer' },
+
   { bron: 'ek-08', alt: 'Doucheruimte met een wand in terracotta visgraattegels naast grootformaat wandtegels' },
   { bron: 'ek-10', alt: 'Grootformaat vloertegels worden gelegd, twee zuignappen liggen er nog op' },
+  { bron: 'ek-13', alt: 'Dezelfde trap van onderaf: elke trede, de wangen en de spijlen wit in de lak' },
 
-  { bron: 'ek-02', alt: 'Opgeleverde badkamer onder een schuin dak met terrazzovloer, inloopdouche en een houten lamellenwand' },
   { bron: 'ek-04', alt: 'Douchewand van grootformaat marmerlook platen met roodbruine adering' },
+  { bron: 'ek-19', alt: 'Glad afgewerkt plafond in een kamer waar gewoond wordt, de inboedel en de vloer liggen onder folie' },
+  { bron: 'ek-06', alt: 'Badkamer met terrazzovloer, een wand in houten lamellen en zicht op de overloop' },
+  { bron: 'ek-21', alt: 'Slaapkamer met gladde witte wanden en een nieuwe houtlook vloer tot onder de radiator' },
   { bron: 'ek-09', alt: 'Toilet betegeld in houtlook visgraat, de nivelleerclips zitten er nog in' },
 
   { bron: 'ek-03', alt: 'Badkamer in onyxlook platen met een wand in houten lamellen, de vloertegels liggen al' },
+  { bron: 'ek-17', alt: 'Woonkamer met pas geschilderde wanden en plafond, de vloer ligt er al in en het trapje staat nog in de hoek' },
+  { bron: 'ek-14', alt: 'Witte trap vanuit de hal, met de balustrade en het hekwerk langs het trapgat in dezelfde lak' },
+  { bron: 'ek-07', alt: 'Badkamer met zwarte wandtegels, een houten meubel en twee marmeren waskommen' },
   { bron: 'ek-05', alt: 'Badkamer met marmerlook wandplaten en een ingebouwd bad, de rand nog afgeplakt' },
   { bron: 'ek-11', alt: 'Badkamer bijna klaar, het meubel en de wasmachine staan nog in folie' },
-
-  { bron: 'ek-06', alt: 'Badkamer met terrazzovloer, een wand in houten lamellen en zicht op de overloop' },
-  { bron: 'ek-07', alt: 'Badkamer met zwarte wandtegels, een houten meubel en twee marmeren waskommen' },
 ]
 
 // ── kaartbeeld: 4:3 uit een staande foto. y = waar de uitsnede begint,
@@ -38,7 +57,29 @@ export const KAART = [
   { naam: 'eigen-afwerking', bron: 'ek-03', y: 0.36, alt: 'Badkamer in onyxlook platen met een wand in houten lamellen' },
   { naam: 'eigen-bad', bron: 'ek-05', y: 0.42, alt: 'Ingebouwd bad tegen een wand van marmerlook platen, de rand nog afgeplakt' },
   { naam: 'eigen-tegels', bron: 'ek-10', y: 0.45, alt: 'Grootformaat vloertegels worden gelegd, twee zuignappen liggen er nog op' },
+  // De trap van 09-10-2026. Let op: dit is een trap wit in de lak, GEEN overzettreden.
+  // Daarom staan ze op /schilderwerk bij het houtwerk en op /traprenovatie alleen bij
+  // opmeten en bij de leuning en de wangen — nooit naast de uitleg over overzetten.
+  { naam: 'eigen-trap-af', bron: 'ek-12', y: 0.35, alt: 'Trap met kwartslag wit in de lak, met een witte balustrade en een houten leuning langs de wand' },
+  { naam: 'eigen-trap-op', bron: 'ek-13', y: 0.45, alt: 'Trap met kwartslag van onderaf gezien, elke trede en elke spijl wit in de lak' },
+  { naam: 'eigen-trap-hal', bron: 'ek-14', y: 0.35, alt: 'Witte trap vanuit de hal, met het hekwerk langs het trapgat en de wangen in dezelfde lak' },
+  // Stucwerk, schilderwerk en vloeren van 09-10-2026. Eén woning die hij leeg opknapte,
+  // plus de tv-wand. Dit is het eerste eigen beeld bij deze drie diensten: daarvoor
+  // droeg elk van die pagina's een beeld van ons met het label "Ons werk" erbij.
+  { naam: 'eigen-stucwerk', bron: 'ek-15', y: 0.38, alt: 'Kamer met vers gestucte wanden en een glad plafond, met een nieuwe houtlook vloer' },
+  { naam: 'eigen-stuc-plafond', bron: 'ek-19', y: 0.25, alt: 'Glad afgewerkt plafond in een kamer waar gewoond wordt, de inboedel en de vloer liggen onder folie' },
+  { naam: 'eigen-tvwand', bron: 'ek-20', y: 0.4, alt: 'Ingebouwde tv-wand van gipsplaat met open nissen, strak afgewerkt, de spots zijn al bedraad' },
+  { naam: 'eigen-verf-kamer', bron: 'ek-17', y: 0.42, alt: 'Woonkamer met pas geschilderde wanden en plafond, de vloer ligt er al in' },
+  // Rechterdeel van de foto. In het glas van de balkondeur links staat Ekrem zelf met
+  // zijn telefoon; die kant snijden wij eraf. Daarom staat ek-18 ook NIET in de galerij,
+  // want daar gaat elke foto als geheel op de pagina.
+  { naam: 'eigen-laminaat', bron: 'ek-18', breed: 0.68, x: 1, y: 0.42, alt: 'Kamer met balkondeuren, witte wanden en een nieuwe vloer die tot aan het kozijn doorloopt' },
+  { naam: 'eigen-vloer-kamer', bron: 'ek-21', y: 0.4, alt: 'Slaapkamer met gladde witte wanden en een nieuwe houtlook vloer tot onder de radiator' },
 ]
+
+// ek-16 (hal met de binnendeuren wit in de lak) staat met opzet nergens. De fotograaf
+// staat gespiegeld in het glas van de tussendeur, midden in beeld, en elke 4:3-uitsnede
+// die hem mist houdt te weinig foto over om nog scherp te zijn.
 
 // ── hero: GEEN eigen foto ──
 // De kop van de startpagina is een brede band (16:9). Uit een staande telefoonfoto blijft
