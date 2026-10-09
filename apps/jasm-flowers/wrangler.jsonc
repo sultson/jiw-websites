@@ -1,0 +1,66 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "jasm-flowers",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // One address per page, with the slash: /about/. That is the form the canonical
+    // tag, the hreflang links and the sitemap all already use, so /about arrives on
+    // the right one with a redirect instead of sitting next to it with a 200.
+    // Cloudflare answers that redirect with a 307, not a 301 — nothing links to the
+    // slashless form, so no link equity passes through it.
+    "html_handling": "force-trailing-slash",
+    // An unknown path gets dist/404.html *with* status 404, not the home page with a
+    // 200 — Google reads that second one as a soft 404.
+    "not_found_handling": "404-page",
+    // Only the enquiry form goes through the worker. All 18 pages come straight off
+    // the edge with no worker invocation in between, which is the whole point of
+    // keeping this site static.
+    "run_worker_first": ["/api/*"]
+  },
+  "routes": [
+    {
+      "pattern": "jasmflowers.jouwidealewebsite.nl",
+      "custom_domain": true
+    },
+    // Kept alive: this address was shared before the site had its own name, so it
+    // still gets traffic. The canonical on every page points at jasmflowers.
+    {
+      "pattern": "flower.jouwidealewebsite.nl",
+      "custom_domain": true
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["no-reply@notify.jasmflowers.com"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "jasm-flowers",
+    // Leads land in our own inbox for now, not at JASM. The client has two office
+    // lines and two mailboxes on jasmflowers.co.ke, but nobody has confirmed which
+    // of them should receive web enquiries, so pointing this at a guess would drop
+    // real buyer enquiries into an unwatched mailbox. Test submissions are fine
+    // against this address.
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // The sending *domain* notify.jasmflowers.com is verified in Cloudflare Email
+    // Service (DKIM, SPF and a p=reject DMARC are on the zone). The local part is
+    // free, so changing no-reply@ to something else is this line plus
+    // allowed_sender_addresses above, with no DNS work. Nothing arrives at this
+    // address: the confirmation carries a reply-to pointing at LEAD_RECIPIENT.
+    "LEAD_SENDER": "no-reply@notify.jasmflowers.com"
+  }
+}

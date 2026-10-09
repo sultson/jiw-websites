@@ -1,0 +1,14 @@
+import { chromium } from 'playwright';
+const B='https://jasmflowers.jouwidealewebsite.nl';
+const b=await chromium.launch();
+const p=await b.newPage({viewport:{width:1380,height:900}});
+await p.goto(B+'/about/',{waitUntil:'networkidle'}); await p.waitForTimeout(500);
+await p.screenshot({path:'shots/v-about-top.png'});
+await p.goto(B+'/catalogue/',{waitUntil:'networkidle'});
+await p.evaluate(()=>document.querySelector('.a-key').scrollIntoView({block:'start'}));
+await p.waitForTimeout(400); await p.evaluate(()=>window.scrollBy(0,500)); await p.waitForTimeout(400);
+await p.screenshot({path:'shots/v-avail.png'});
+await p.goto(B+'/shipping/',{waitUntil:'networkidle'});
+await p.evaluate(()=>document.querySelector('.proc').scrollIntoView({block:'start'}));
+await p.waitForTimeout(500); await p.screenshot({path:'shots/v-chain.png'});
+await b.close(); console.log('ok');

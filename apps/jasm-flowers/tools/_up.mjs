@@ -1,0 +1,10 @@
+import fs from 'fs';
+const KEY='n31amyHUqDm25NnCNUu52tcUjjZStVyC', URL='https://api.runware.ai/v1';
+const MODEL='openai:gpt-image@2.5-sunburst';
+const [,,file,w,h,mode,...rest]=process.argv;
+const prompt=rest.join(' ')||'upscale';
+const b64=fs.readFileSync(file).toString('base64');
+const t={taskType:'imageInference',taskUUID:crypto.randomUUID(),model:MODEL,positivePrompt:prompt,width:+w,height:+h,numberResults:1,outputFormat:'PNG'};
+if(mode==='ref') t.referenceImages=[b64]; else t.seedImage=b64;
+const r=await fetch(URL,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+KEY},body:JSON.stringify([t])});
+console.log(JSON.stringify(await r.json()).slice(0,700));

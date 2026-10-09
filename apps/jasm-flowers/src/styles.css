@@ -1,0 +1,816 @@
+@font-face{font-family:'Instrument Serif';src:url('/f/instrumentserif-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Instrument Serif';src:url('/f/instrumentserif-400-italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Satoshi';src:url('/f/satoshi-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Satoshi';src:url('/f/satoshi-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Satoshi';src:url('/f/satoshi-700.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:'Satoshi';src:url('/f/satoshi-900.woff2') format('woff2');font-weight:900;font-display:swap}
+
+/* ---------- palette ----------
+   Was eleven hues across five section backgrounds (paper, sand, sage-pale, deep green,
+   ink) with gold used as a FILL on buttons, step numbers, icons, italics, availability
+   cells and note boxes. That is what read as circus.
+
+   It is three surfaces now - paper, bone, ink - and one accent that is never a fill.
+   Gold survives only as a hairline and a small dot; anything that used to be a gold
+   button is now ink. The green is gone as a separate colour: --green and --green-deep
+   both resolve to the same near-black ink-green, so the old class names keep working
+   without producing a fourth and fifth background. */
+:root{
+  --ink:#15211B; --ink-soft:#4A554E;
+  --green:#15211B; --green-deep:#15211B; --green-mid:#2E3A33;
+  --sage:#8A9189; --sage-light:#C6CCC4; --sage-pale:#F7F5F1;
+  --paper:#F7F5F1; --sand:#EDE9E1; --sand-deep:#DFDACF;
+  --gold:#8A7550; --gold-bright:#A08A5E; --gold-pale:#EDE9E1;
+  --line:rgba(21,33,27,.13); --line-soft:rgba(21,33,27,.07);
+  --display:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --sans:'Satoshi',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --wrap:1240px; --gut:clamp(20px,5vw,48px);
+  /* Was a flat 3px on everything, which is where "boxy" came from. Now a scale:
+     pills for controls, a generous radius for cards, and an arch for photography. */
+  --r:14px; --r-sm:10px; --r-lg:22px; --pill:999px;
+  /* Height of the sticky site header, and of the availability key that pins under it.
+     Anything that pins to the top of the page offsets by these rather than guessing. */
+  --hdr:76px; --akey:46px;
+  /* The availability scale, light to dark. Three steps the eye can actually separate. */
+  --av-0:#E2DED4; --av-1:#93A491; --av-2:#15211B;
+  --arch:clamp(120px,20vw,220px);
+  --sh:0 1px 2px rgba(21,33,27,.03),0 10px 30px -14px rgba(21,33,27,.16);
+  --sh-lg:0 2px 4px rgba(21,33,27,.04),0 34px 64px -28px rgba(21,33,27,.24);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:clamp(15.5px,.4vw + 14.6px,17px);line-height:1.65;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden}
+img,svg,video{max-width:100%;display:block}
+img{height:auto}
+a{color:inherit}
+button{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-weight:400;letter-spacing:-.015em;line-height:1.08}
+p{margin:0 0 1em}
+p:last-child{margin-bottom:0}
+::selection{background:var(--sand-deep);color:var(--ink)}
+:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px;border-radius:6px}
+
+.wrap{width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
+.wrap-wide{max-width:1520px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:12px 18px;z-index:200}
+.skip:focus{left:8px;top:8px}
+
+/* ---------- type ---------- */
+.d1{font-family:var(--display);font-size:clamp(42px,7.4vw,88px);line-height:1.02;letter-spacing:-.022em}
+.d2{font-family:var(--display);font-size:clamp(32px,4.6vw,58px);line-height:1.06;letter-spacing:-.018em}
+.d3{font-family:var(--display);font-size:clamp(25px,2.6vw,36px);line-height:1.12;letter-spacing:-.014em}
+/* The italic used to be gold, which turned every heading into two colours. A serif
+   italic is already the contrast; it does not need a second one. */
+.d1 em,.d2 em,.d3 em{font-style:italic;color:inherit}
+/* What is left of the kicker carries real data only (a day and a time on the shipping
+   steps, the 404 code). The rule stripe is gone: it decorated nothing. */
+.kicker{font-size:11.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--sage);margin:0 0 16px}
+.kicker-c{text-align:center}
+.lead{font-size:clamp(17px,1.15vw + 14px,20.5px);line-height:1.6;color:var(--ink-soft)}
+.muted{color:var(--ink-soft)}
+.tiny{font-size:13px;line-height:1.55;color:var(--ink-soft)}
+.on-dark{color:#fff}
+.on-dark .muted,.on-dark .lead{color:rgba(255,255,255,.76)}
+.on-dark .kicker{color:var(--sage-light)}
+.on-dark .tiny{color:rgba(255,255,255,.66)}
+
+/* ---------- buttons ---------- */
+/* Pills. A 3px-radius rectangle is the single biggest reason the page read as stuck. */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 28px;
+  border-radius:var(--pill);font-weight:700;font-size:14.5px;letter-spacing:.012em;text-decoration:none;
+  border:1.5px solid transparent;cursor:pointer;transition:.22s cubic-bezier(.2,.7,.3,1);
+  white-space:nowrap;line-height:1.2}
+.btn svg{width:16px;height:16px;flex:none}
+.btn-p{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn-p:hover{background:#243129;border-color:#243129;transform:translateY(-1px);box-shadow:var(--sh)}
+/* btn-g was a gold fill. On dark it is now paper-on-ink, which is the strongest
+   contrast available without adding a colour. */
+.btn-g{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.btn-g:hover{background:#fff;border-color:#fff;transform:translateY(-1px);box-shadow:var(--sh)}
+.sec-paper .btn-g,.sec-sand .btn-g,.sec-pale .btn-g{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.sec-paper .btn-g:hover,.sec-sand .btn-g:hover,.sec-pale .btn-g:hover{background:#243129;border-color:#243129}
+.btn-o{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-o:hover{border-color:var(--ink);background:rgba(21,33,27,.04)}
+.on-dark .btn-o,.btn-o-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.34)}
+.on-dark .btn-o:hover,.btn-o-light:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.btn-sm{padding:11px 20px;font-size:13px}
+.btn[disabled]{opacity:.45;pointer-events:none}
+/* nowrap like .btn: a link that ends in an arrow must never break mid-phrase.
+   Without it "All 15 lines ->" stacked into three words next to the arrow on a phone. */
+.link{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:14px;text-decoration:none;
+  white-space:nowrap;color:var(--ink);border-bottom:1.5px solid var(--line);padding-bottom:2px;transition:.2s}
+/* The arrow SVG carries no width/height attribute, so as a flex child with no rule it
+   resolved to 0x0 and every link arrow on the site was invisible. .btn already sized
+   its icons; .link never did. */
+.link svg{width:16px;height:16px;flex:none}
+.link:hover{border-color:var(--ink);gap:11px}
+.on-dark .link{color:#fff;border-color:rgba(255,255,255,.32)}
+.on-dark .link:hover{border-color:#fff}
+
+/* ---------- header ---------- */
+.hdr{position:sticky;top:0;z-index:100;background:rgba(247,245,241,.93);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);transition:.3s}
+.hdr-in{display:flex;align-items:center;gap:20px;height:76px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);flex:none;margin-right:auto}
+.brand svg{width:34px;height:34px;color:var(--ink);flex:none}
+/* The client's lockup replaces the drawn mark + set wordmark. It is sized on height
+   and left to find its own width: the artwork already contains the spacing between
+   the script and FLOWERS, so any gap or tracking added here would double it. */
+.brand-logo{height:56px;width:auto;flex:none}
+.ftr .brand-logo{height:64px}
+@media(max-width:960px){.brand-logo{height:44px}}
+@media(max-width:420px){.brand-logo{height:38px}.ftr .brand-logo{height:54px}}
+/* Was stacked, with FLOWERS set at 9.6px under JASM - which is the size where tracked
+   caps start smearing, and I had already pushed it up once to keep it legible. Setting
+   the two words on one baseline with a hairline between them removes the constraint:
+   FLOWERS gets 10.6px and the lockup reads as a signature instead of a stamp. */
+.brand-tx{display:flex;align-items:baseline;gap:12px;line-height:1}
+.brand-n{font-family:var(--display);font-size:27px;letter-spacing:.035em}
+.brand-s{font-size:10.6px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--sage);position:relative;padding-left:13px}
+.brand-s::before{content:"";position:absolute;left:0;top:-.9em;height:2.1em;width:1px;background:var(--line)}
+.ftr .brand-s::before{background:rgba(255,255,255,.22)}
+@media(max-width:420px){.brand svg{width:30px;height:30px}.brand-n{font-size:23px}
+  .brand-s{font-size:9.4px;letter-spacing:.18em;gap:9px;padding-left:10px}.brand-tx{gap:9px}}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{text-decoration:none;font-size:14.5px;font-weight:500;color:var(--ink-soft);transition:.18s;
+  position:relative;padding:4px 0}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current="page"]{color:var(--ink);font-weight:700}
+.nav a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:var(--gold-bright)}
+.hdr-cta{display:flex;align-items:center;gap:10px;flex:none}
+.burger{display:none;width:44px;height:44px;align-items:center;justify-content:center;background:none;
+  border:1px solid var(--line);border-radius:var(--pill);cursor:pointer}
+.burger span{display:block;width:18px;height:1.5px;background:var(--ink);position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:1.5px;
+  background:var(--ink);transition:.22s}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+.mnav{display:none;border-top:1px solid var(--line-soft);background:var(--paper)}
+.mnav.open{display:block}
+/* Scoped to the plain nav links only. As `.mnav a` this also caught the CTA, and
+   `padding:15px 0` beat `.btn`'s own `15px 28px` on specificity - so the pill rendered
+   as a full-width block with its label jammed against the left edge. */
+.mnav>.wrap>a:not(.btn){display:block;padding:15px 0;border-bottom:1px solid var(--line-soft);
+  text-decoration:none;font-size:17px;font-weight:500}
+.mnav .btn{width:100%;margin:18px 0 22px}
+
+/* ---------- language switcher ----------
+   Codes, not flags: a flag claims a country, and Dutch is not the Netherlands only. */
+.lang{display:flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line);
+  border-radius:var(--pill);background:rgba(255,255,255,.5)}
+.lang a{text-decoration:none;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);
+  padding:6px 10px;border-radius:var(--pill);line-height:1;transition:.16s}
+.lang a:hover{color:var(--ink);background:rgba(18,35,28,.06)}
+.lang a[aria-current]{background:var(--ink);color:var(--paper)}
+@media(max-width:960px){
+  .nav,.hdr-cta .btn-o{display:none}
+  .burger{display:flex}
+  .hdr-in{height:68px}
+  :root{--hdr:68px}
+  /* The switcher stays in the top bar instead of hiding inside the drawer: changing
+     language was a two-tap job behind a menu nobody opens for that. `order` rather
+     than a markup move, so it sits immediately left of the burger at every width
+     while desktop keeps its own order. */
+  .hdr-cta{gap:8px}
+  .hdr-cta .lang{display:flex;order:2;padding:2px}
+  .burger{order:3}
+  .lang a{padding:7px 8px;font-size:11.5px}
+}
+@media(max-width:620px){.hdr-cta .btn-p{display:none}}
+@media(max-width:380px){.hdr-cta{gap:6px}.lang a{padding:7px 6.5px;font-size:11px}}
+
+/* ---------- hero ----------
+   The reference sites (Mandari, Azalea, Mijo) all lead with photography, not with a
+   coloured panel. So the hero is a photograph the height of the screen and the copy
+   is anchored to the bottom of it: the picture is the page, the words sit on top. */
+.hero{position:relative;background:var(--ink);color:#fff;overflow:hidden;isolation:isolate;
+  display:flex;flex-direction:column;min-height:min(900px,94svh)}
+.hero-bg{position:absolute;inset:0;z-index:-2}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 54%}
+/* Two washes, not one flat scrim. A diagonal that only bites on the left where the
+   words are, plus a soft foot so the fact strip has something to sit on. Left used to
+   be 93% opaque, which painted the field out entirely. */
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(101deg,rgba(11,24,18,.88) 0%,rgba(11,24,18,.74) 36%,rgba(11,24,18,.36) 58%,rgba(11,24,18,.06) 78%,rgba(11,24,18,.16) 100%),
+             linear-gradient(to top,rgba(11,24,18,.62) 0%,rgba(11,24,18,.18) 22%,rgba(11,24,18,0) 42%)}
+/* padding-block only: the `padding` shorthand here would wipe out the inline padding
+   .wrap sets, which pushes the hero copy flush against the screen edge on mobile. */
+.hero-in{margin-top:auto;padding-block:clamp(80px,12vh,150px) 0;max-width:900px}
+/* Held under .d1: at 88px the italic second line needs 840px of run and broke into
+   four ragged lines over the photograph. */
+.hero h1{margin:0 0 22px;font-size:clamp(40px,5.6vw,78px);text-shadow:0 2px 30px rgba(8,18,13,.5)}
+.hero .kicker,.hero .lead{text-shadow:0 1px 16px rgba(8,18,13,.65)}
+.hero .lead{max-width:530px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin:32px 0 0}
+
+/* ---------- market chip ----------
+   All eleven chips sit in one grid cell, so the box is as wide as the longest name
+   from the first paint and rotating never shifts the line. justify-self keeps each
+   chip its own width inside that box rather than stretching to fill it. */
+.mkt-row{display:flex;align-items:center;gap:14px;margin:22px 0 0;flex-wrap:wrap}
+.mkt-k{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);flex:none}
+.mkt{display:inline-grid}
+.mkt>span{grid-area:1/1;justify-self:start;display:inline-flex;align-items:center;gap:9px;
+  padding:8px 16px;border-radius:var(--pill);border:1px solid rgba(255,255,255,.3);
+  background:rgba(13,24,18,.44);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  font-size:13.5px;font-weight:700;color:#fff;white-space:nowrap;
+  opacity:0;transition:opacity .5s ease}
+.mkt>span.on{opacity:1}
+.mkt svg{width:21px;height:14px;border-radius:2.5px;flex:none;
+  box-shadow:0 0 0 1px rgba(255,255,255,.28)}
+/* The globe stands in for a region. It is a line icon, not a field, so it gets
+   neither the flag ratio nor the hairline plate. */
+.mkt svg.fl-g{width:16px;height:16px;border-radius:0;box-shadow:none;opacity:.85}
+
+/* Clears the bottom of the viewport. The hero is a flex column with the copy pushed
+   down by margin-top:auto, so without this the fact strip sat flush on the fold with
+   nothing under it. */
+.hero-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  margin:clamp(34px,4.5vh,58px) 0 clamp(26px,3.6vh,46px);
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.16);
+  border-radius:var(--r);overflow:hidden}
+.hero-strip>div{background:rgba(15,26,20,.42);backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);padding:22px 20px}
+.hero-strip b{display:block;font-family:var(--display);font-size:clamp(24px,2.4vw,33px);line-height:1;
+  color:#fff;margin-bottom:7px}
+.hero-strip span{font-size:12px;font-weight:500;letter-spacing:.04em;color:rgba(255,255,255,.72);line-height:1.35;display:block}
+/* On a phone this was a stack: copy on solid green, photo in a band underneath, so two
+   thirds of the first screen carried no picture at all. It is one full-screen photograph
+   now. The wash is vertical and leaves the top half of the frame alone, which is where
+   the rows and the hills are; only the foot goes dark, under the words. */
+@media(max-width:760px){
+  .hero{min-height:calc(100svh - 68px)}
+  /* The wash used to thin out to .06 around a fifth of the way down and only go
+     properly dark below two thirds, which is where the lead sat - pale grey type
+     over a bright yellow-and-purple field. It now holds a floor from 40% down, so
+     everything from the headline to the buttons has a dark plate under it. */
+  .hero::after{background:linear-gradient(to bottom,rgba(11,24,18,.4) 0%,rgba(11,24,18,.12) 18%,
+    rgba(11,24,18,.55) 42%,rgba(11,24,18,.84) 62%,rgba(11,24,18,.94) 82%,rgba(11,24,18,.96) 100%)}
+  /* 56% put the hills in the clear half and buried the rows behind the copy.
+     76% drops the window onto the field, which is the thing worth showing. */
+  .hero-bg img{object-position:62% 76%}
+  .hero-in{padding-block:32px 0;max-width:none}
+  .hero h1{font-size:clamp(34px,9vw,42px);margin-bottom:14px}
+  .hero .lead{max-width:none;font-size:16px;color:rgba(255,255,255,.88)}
+  .hero-btns{margin-top:22px;gap:10px}
+  .hero-btns .btn{flex:1 1 46%;padding:13px 16px}
+  .mkt-row{gap:10px;margin-top:18px}
+  .mkt-k{font-size:10px;letter-spacing:.14em}
+  .mkt>span{padding:7px 13px;font-size:12.5px}
+  .hero-strip{grid-template-columns:repeat(2,1fr);margin:22px 0 clamp(20px,3vh,32px);
+    background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.18)}
+  .hero-strip>div{background:rgba(11,24,18,.5);padding:13px 14px}
+  .hero-strip b{font-size:20px;margin-bottom:4px}
+  .hero-strip span{font-size:11px}
+}
+
+/* ---------- sections ---------- */
+.sec{padding:clamp(64px,9vw,124px) 0}
+.sec-sm{padding:clamp(48px,6vw,80px) 0}
+/* A section that follows straight on from the page header. It used to zero its top
+   padding and pull up a pixel so the contact cards locked into the .phead; on a
+   phone that reads as a missing margin, with the card corners touching the header.
+   Half the normal gap keeps them visibly attached without the collision. */
+.sec-tight{padding-top:clamp(28px,3.4vw,44px)}
+.sec-paper{background:var(--paper)}
+.sec-sand{background:var(--sand)}
+/* Bone, not paper. With the palette down to three surfaces the home page ran three
+   white sections back to back; alternating paper and bone gives it rhythm again
+   without reintroducing a fourth colour. */
+.sec-pale{background:var(--sand)}
+.sec-dark{background:var(--green-deep);color:#fff}
+.sec-ink{background:var(--ink);color:#fff}
+.sec-head{max-width:660px;margin-bottom:clamp(38px,5vw,62px)}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head.center .kicker{justify-content:center}
+.sec-head p{margin-top:18px}
+.sec-head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;
+  margin-bottom:clamp(34px,4vw,52px)}
+.sec-head-row .sec-head{margin-bottom:0}
+
+/* ---------- editorial: full-bleed photography ----------
+   Photography carries the page instead of sitting inside bordered cards. Everything
+   here runs to the edge of the screen; body has overflow-x:hidden so 100vw is safe. */
+/* Arched tops. A row of three hard rectangles is the most template-looking thing on a
+   page; the arch is the one gesture that reads florist rather than dashboard. */
+.trip{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,20px);background:transparent;
+  padding-inline:var(--gut);max-width:1520px;margin-inline:auto}
+.trip figure{position:relative;margin:0;overflow:hidden;aspect-ratio:4/5;background:var(--ink);
+  border-radius:var(--arch) var(--arch) var(--r) var(--r)}
+.trip img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.3,1)}
+.trip figure:hover img{transform:scale(1.05)}
+.trip figcaption{position:absolute;left:0;right:0;bottom:0;padding:clamp(22px,3vw,34px);color:#fff;
+  background:linear-gradient(to top,rgba(9,20,15,.86) 0%,rgba(9,20,15,.42) 52%,rgba(9,20,15,0) 100%)}
+.trip figcaption b{display:block;font-family:var(--display);font-size:clamp(21px,2vw,30px);
+  line-height:1.1;margin-bottom:6px}
+.trip figcaption span{font-size:12.5px;color:rgba(255,255,255,.76);line-height:1.45;display:block}
+/* The one figure in the strip that holds the client's clip rather than a still. The video
+   fills the arch exactly like an image. Its caption keeps the bottom edge its neighbours
+   use - the top is a 220px curve and would cut the words - so the controls stay off until
+   the clip starts, and the caption gets out of their way at the same moment. */
+.trip video{width:100%;height:100%;object-fit:cover;background:var(--ink)}
+.trip figure.v figcaption{pointer-events:none;transition:opacity .25s ease}
+.trip figure.v.playing figcaption{opacity:0}
+.vplay{position:absolute;inset:0;margin:0;width:100%;height:100%;padding:0;border:0;
+  background:transparent;cursor:pointer;display:grid;place-items:center}
+/* `display:grid` on the class above beats the browser's own [hidden]{display:none}, so
+   setting .hidden in JS did nothing: the disc stayed over the playing clip and, being
+   inset:0, sat on top of the native controls as well. */
+.vplay[hidden]{display:none}
+.vplay svg{width:34px;height:34px;color:var(--ink);translate:2px 0}
+/* A disc, not a bare glyph: the frame underneath is a bright packhouse and a thin outline
+   disappears into it. Sized past the 44px tap target at every width. */
+.vplay::before{content:"";position:absolute;width:74px;height:74px;border-radius:50%;
+  background:rgba(247,245,241,.93);box-shadow:0 6px 28px rgba(9,20,15,.34);transition:.22s}
+.vplay:hover::before{transform:scale(1.07);background:#fff}
+.vplay:focus-visible{outline:none}
+.vplay:focus-visible::before{box-shadow:0 0 0 3px var(--ink),0 6px 28px rgba(9,20,15,.34)}
+@media(max-width:760px){
+  .trip{grid-template-columns:1fr 1fr;gap:10px}
+  .trip figure{aspect-ratio:3/4;border-radius:clamp(70px,22vw,120px) clamp(70px,22vw,120px) var(--r) var(--r)}
+  .trip figure:last-child{grid-column:1/-1;aspect-ratio:16/10;border-radius:var(--r)}
+  .trip figcaption b{font-size:19px}
+}
+
+/* Half the screen is copy, half is an uncropped photograph running to the edge.
+   No .wrap, no rounded box, no border: the picture touches the browser. */
+.split{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+.split-copy{display:flex;align-items:center;padding:clamp(56px,8vw,120px) var(--gut)}
+.split-copy>div{width:100%;max-width:calc(var(--wrap) / 2 - var(--gut));margin-left:auto;
+  padding-right:clamp(20px,3.5vw,64px)}
+.split-img{position:relative;min-height:clamp(360px,46vw,660px);background:var(--ink);overflow:hidden;
+  border-radius:var(--r-lg) 0 0 var(--r-lg)}
+.split.rev .split-img{border-radius:0 var(--r-lg) var(--r-lg) 0}
+/* The picture is the absolutely positioned box; the img inside just fills it. Making
+   BOTH absolute measured 0 wide in WebKit, which the smoke test caught. */
+.split-img picture{display:block;position:absolute;inset:0}
+.split-img img{width:100%;height:100%;object-fit:cover;display:block}
+.split-tag{position:absolute;left:0;bottom:0;padding:20px 24px;color:#fff;font-size:12px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;text-shadow:0 1px 14px rgba(8,18,13,.8)}
+.split.rev .split-copy{order:2}
+.split.rev .split-copy>div{margin-left:0;margin-right:auto;padding-right:0;
+  padding-left:clamp(20px,3.5vw,64px)}
+@media(max-width:880px){
+  .split,.split.rev{grid-template-columns:1fr}
+  .split-copy,.split.rev .split-copy{order:2;padding:clamp(40px,7vw,64px) var(--gut)}
+  .split-copy>div,.split.rev .split-copy>div{max-width:none;margin:0;padding:0}
+  .split-img,.split.rev .split-img{order:1;min-height:clamp(300px,72vw,440px);
+    border-radius:0 0 var(--r-lg) var(--r-lg)}
+}
+
+/* ---------- signature cards ---------- */
+.sig{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px)}
+@media(max-width:900px){.sig{grid-template-columns:1fr;gap:20px}}
+/* No white box, no border, no shadow: the picture is the card. Chrome around a photo
+   makes a catalogue read as a template; the reference sites all set the image straight
+   on the page and hang the type underneath it. */
+.sig-card{position:relative;display:flex;flex-direction:column}
+.sig-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--sand);
+  border-radius:var(--arch) var(--arch) var(--r) var(--r)}
+.sig-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.2,.7,.3,1)}
+.sig-card:hover .sig-img img{transform:scale(1.05)}
+/* Was a square tab jammed into the corner of the frame. Inside an arch that is a
+   collision, so the number is a floating disc clear of the curve. */
+.sig-no{position:absolute;top:14px;left:14px;font-family:var(--display);font-size:13.5px;color:#fff;
+  background:rgba(15,26,20,.55);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  width:36px;height:36px;border-radius:50%;display:grid;place-items:center;letter-spacing:.02em}
+/* Replaces the 01/02/03 counter: a rank implied nothing, and the client needs the two
+   lead products to be visibly a tier above the third. Solid ink = core product,
+   outline = core programme. */
+/* Sits at the BOTTOM, not the top: the top of this frame is an arch of up to 220px and
+   overflow:hidden clips anything the curve cuts across - which is what ate the right-hand
+   side of "Core programme" on a phone. The bottom corners are only var(--r), so a pill
+   inset 14px there is always fully inside the frame. Same anchor as .vcard-tag. */
+.sig-tag{position:absolute;bottom:14px;left:14px;font-size:10px;font-weight:700;letter-spacing:.11em;
+  text-transform:uppercase;padding:7px 13px;border-radius:var(--pill);color:#fff;
+  background:rgba(15,26,20,.5);border:1px solid rgba(255,255,255,.4);
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.sig-tag-main{background:var(--ink);border-color:var(--ink)}
+.sig-body{padding:24px 0 0;display:flex;flex-direction:column;flex:1}
+.sig-body h3{margin-bottom:5px}
+.sig-latin{font-family:var(--display);font-style:italic;font-size:15px;color:var(--sage);margin-bottom:16px}
+.sig-body p{font-size:15px;color:var(--ink-soft);margin-bottom:20px}
+.sig-meta{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);
+  display:grid;grid-template-columns:1fr 1fr;gap:14px 12px}
+.sig-meta div{min-width:0}
+.sig-meta dt{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--sage);margin-bottom:4px}
+.sig-meta dd{margin:0;font-size:13.5px;font-weight:500}
+
+/* ---------- rail ---------- */
+.rail-wrap{position:relative}
+.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding-bottom:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.rail>*{scroll-snap-align:start;flex:0 0 clamp(190px,24vw,268px)}
+.rail-nav{display:flex;gap:8px;margin-top:22px}
+.rail-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:transparent;
+  display:grid;place-items:center;cursor:pointer;transition:.2s;color:var(--ink)}
+.rail-btn:hover:not([disabled]){background:var(--ink);color:#fff;border-color:var(--ink)}
+.rail-btn[disabled]{opacity:.3;cursor:default}
+.on-dark .rail-btn{border-color:rgba(255,255,255,.28);color:#fff}
+.on-dark .rail-btn:hover:not([disabled]){background:#fff;color:var(--ink)}
+
+/* ---------- variety card ---------- */
+.vcard{display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.vcard-img{aspect-ratio:3/4;overflow:hidden;background:var(--sand);position:relative;
+  border-radius:clamp(80px,11vw,140px) clamp(80px,11vw,140px) var(--r-sm) var(--r-sm)}
+.vcard-img img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.3,1)}
+.vcard:hover .vcard-img img{transform:scale(1.05)}
+.vcard-tag{position:absolute;bottom:12px;left:12px;font-size:10px;font-weight:700;letter-spacing:.11em;
+  text-transform:uppercase;background:rgba(15,26,20,.55);backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);color:#fff;padding:6px 12px;border-radius:var(--pill)}
+.vcard-body{padding:16px 0 0;flex:1;display:flex;flex-direction:column}
+.vcard-body h3{font-family:var(--sans);font-size:16.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:3px}
+.vcard-body .l{font-family:var(--display);font-style:italic;font-size:13.5px;color:var(--sage);margin-bottom:12px}
+.vcard-body .s{font-size:12.5px;color:var(--ink-soft);margin-top:auto;line-height:1.5}
+
+/* ---------- reasons ---------- */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft);
+  border:1px solid var(--line-soft);border-radius:var(--r);overflow:hidden}
+.grid3>div{background:var(--paper);padding:clamp(26px,3vw,38px)}
+.sec-sand .grid3>div{background:var(--sand)}
+.sec-dark .grid3,.sec-ink .grid3{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.14)}
+.sec-dark .grid3>div{background:var(--ink)}
+.sec-ink .grid3>div{background:var(--ink)}
+@media(max-width:900px){.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.grid3{grid-template-columns:1fr}.grid3>.fill{display:none}}
+/* Boxes-in-a-box read as a template next to full-bleed photography. A hairline over
+   each item does the same grouping job without drawing six rectangles. */
+.grid3.bare{background:transparent;border:0;gap:clamp(26px,3vw,44px) clamp(26px,3vw,48px)}
+.grid3.bare>div{background:transparent!important;padding:22px 0 0;border-top:1px solid var(--line)}
+.sec-dark .grid3.bare>div,.sec-ink .grid3.bare>div{border-color:rgba(255,255,255,.2)}
+.reason svg{width:24px;height:24px;color:var(--ink);margin-bottom:16px;opacity:.85}
+.sec-dark .reason svg,.sec-ink .reason svg{color:#fff;opacity:.75}
+.reason h3{font-family:var(--sans);font-size:16.5px;font-weight:700;letter-spacing:-.008em;margin-bottom:9px}
+.reason p{font-size:14.5px;color:var(--ink-soft);margin:0}
+.sec-dark .reason p,.sec-ink .reason p{color:rgba(255,255,255,.72)}
+
+/* ---------- process ---------- */
+.proc{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,5vw,80px);align-items:start}
+@media(max-width:900px){.proc{grid-template-columns:1fr}}
+.proc-img{position:sticky;top:104px;border-radius:var(--arch) var(--arch) var(--r) var(--r);
+  overflow:hidden;aspect-ratio:4/5;background:var(--ink)}
+.proc-img img{width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.proc-img{position:static;aspect-ratio:16/10}}
+.step{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:26px 0;border-bottom:1px solid var(--line-soft)}
+.sec-dark .step{border-color:rgba(255,255,255,.14)}
+.step:first-child{padding-top:0}
+.step:last-child{border-bottom:0;padding-bottom:0}
+.step-n{font-family:var(--display);font-size:22px;color:var(--sage);line-height:1;padding-top:3px;
+  width:34px;flex:none}
+/* Plan -> Grow -> Harvest & Grade -> Pack & Export -> Deliver, as one glanceable line
+   above the detail. Arrows are drawn in CSS so the words stay real text for translation. */
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 6px;margin:26px 0 0;padding:0}
+.flow span{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-soft);border:1px solid var(--line);border-radius:var(--pill);padding:7px 13px}
+.flow span+span::before{content:"";display:inline-block;width:13px;height:1px;background:var(--line);
+  margin:0 12px 0 -13px;vertical-align:middle}
+.on-dark .flow span{color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.26)}
+
+/* ---------- brand values ---------- */
+.vals{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;position:relative}
+.vals span{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;
+  border:1px solid rgba(255,255,255,.32);border-radius:var(--pill);padding:8px 16px}
+.step h3{font-family:var(--sans);font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px}
+.step p{font-size:14.5px;color:var(--ink-soft);margin:0}
+.sec-dark .step p{color:rgba(255,255,255,.72)}
+
+/* ---------- availability ---------- */
+.avail{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+.avail th,.avail td{padding:0;text-align:center}
+.avail thead th{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--sage);padding-bottom:10px;background:var(--sand);
+  position:sticky;top:calc(var(--hdr) + var(--akey));z-index:2}
+.avail thead th:first-child,.avail tbody th{text-align:left}
+.avail tbody th{font-weight:700;font-size:13.5px;padding:5px 14px 5px 0;white-space:nowrap}
+.avail tbody tr:hover th,.avail tbody tr:hover td .a-cell{filter:brightness(.96)}
+/* Was pale green for in-season and gold for peak: two hues to say one thing. It is a
+   density scale now, so the peak months read as the darkest cells and nothing else.
+   The pale end was then too pale to see: "limited" sat at #DFDACF on a #F7F5F1 page and
+   "available" at #BDC3BB, which is a step the eye does not reliably make. Three clearly
+   separated steps now, and the lightest one carries a hairline so an empty-looking cell
+   is still visibly a cell. */
+.a-cell{height:22px;margin:2px 1.5px;border-radius:4px;background:var(--av-0);
+  box-shadow:inset 0 0 0 1px rgba(21,33,27,.16)}
+.a-1{background:var(--av-1);box-shadow:none}
+.a-2{background:var(--av-2);box-shadow:none}
+/* The key pins under the site header so it is still on screen at the bottom of a
+   17-line chart; the month row pins directly below it. Fixed height, one line, because
+   the month row offsets against it and a wrapping key would push itself out of place. */
+.a-key{position:sticky;top:var(--hdr);z-index:3;height:var(--akey);
+  display:flex;align-items:center;gap:20px;margin-bottom:6px;font-size:12.5px;
+  color:var(--ink-soft);background:var(--sand);white-space:nowrap;overflow-x:auto;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+.a-key::-webkit-scrollbar{display:none}
+.a-key span{display:flex;align-items:center;gap:8px;flex:none}
+.a-key i{width:15px;height:15px;border-radius:4px;display:block;flex:none}
+.a-key i.a-0{background:var(--av-0);box-shadow:inset 0 0 0 1px rgba(21,33,27,.16)}
+@media(max-width:760px){
+  /* Same split as the spec table: on a phone the chart has to scroll sideways, so the box
+     is its own scrollport and the month row pins to the top of the box instead of to the
+     page. The key stays pinned to the page above it either way. */
+  .avail-scroll{overflow:auto;-webkit-overflow-scrolling:touch;contain:paint;
+    max-height:64vh;max-height:64svh;
+    margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut)}
+  .avail{min-width:620px}
+  .avail thead th{top:0}
+  .a-key{gap:14px;font-size:12px}
+}
+
+/* ---------- catalogue ---------- */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;align-items:center}
+.chip{padding:9px 17px;border-radius:100px;border:1px solid var(--line);background:transparent;
+  font-size:13.5px;font-weight:500;cursor:pointer;transition:.2s;white-space:nowrap}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700}
+.chip .c{opacity:.5;margin-left:6px;font-size:12px}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));
+  gap:clamp(16px,2vw,26px)}
+/* No white box and no border. The photograph is the card; a hairline foot does the
+   grouping. A bordered box inside a bordered grid is what made this read boxy. */
+.cat-item{background:transparent;border:0;display:flex;flex-direction:column;transition:.26s}
+.cat-item.hide{display:none}
+.cat-img{aspect-ratio:4/5;overflow:hidden;background:var(--sand);position:relative;
+  border-radius:clamp(90px,13vw,150px) clamp(90px,13vw,150px) var(--r) var(--r)}
+.cat-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.cat-item:hover .cat-img img{transform:scale(1.05)}
+.cat-body{padding:20px 2px 0;flex:1;display:flex;flex-direction:column}
+.cat-body h3{font-family:var(--sans);font-size:17.5px;font-weight:700;letter-spacing:-.012em;margin-bottom:3px}
+.cat-latin{font-family:var(--display);font-style:italic;font-size:14px;color:var(--sage);margin-bottom:14px}
+.cat-body>p{font-size:14px;color:var(--ink-soft);margin-bottom:16px}
+.spec{margin:0 0 16px;display:grid;gap:9px}
+.spec div{display:grid;grid-template-columns:88px 1fr;gap:12px;font-size:12.8px;align-items:baseline}
+.spec dt{color:var(--sage);font-weight:500}
+.spec dd{margin:0;font-weight:500}
+.swatches{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.swatch{font-size:11px;font-weight:500;background:transparent;color:var(--ink-soft);
+  border:1px solid var(--line);padding:4px 11px;border-radius:var(--pill)}
+/* A second photograph inside a catalogue card, on the one line that needs one: the
+   gypsophila swatches have said "Dyed to order" since the first build and the main
+   picture is white, so there was nothing to look at. Deliberately small and captioned -
+   a detail shot under the swatch it explains, not a second product. */
+.cat-x{display:grid;grid-template-columns:116px 1fr;gap:14px;align-items:center;
+  margin:0 0 16px;padding-top:16px;border-top:1px solid var(--line-soft)}
+.cat-x picture{display:block;overflow:hidden;background:var(--sand);
+  border-radius:var(--r-lg) var(--r-lg) var(--r-sm) var(--r-sm)}
+.cat-x img{display:block;width:100%;height:100%;object-fit:cover}
+.cat-x figcaption{font-size:12.8px;font-weight:500;color:var(--ink-soft)}
+.cat-foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--line-soft);display:flex;
+  align-items:center;gap:10px;justify-content:space-between}
+.mini-avail{display:flex;gap:1.5px;flex:1}
+.mini-avail i{flex:1;height:12px;border-radius:2px;background:var(--av-0);box-shadow:none}
+.mini-avail i.a-1{background:var(--av-1)}
+.mini-avail i.a-2{background:var(--av-2)}
+
+/* ---------- quote basket ---------- */
+.add{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:var(--pill);
+  border:1.5px solid var(--line);background:transparent;font-size:13px;font-weight:700;cursor:pointer;
+  transition:.2s;white-space:nowrap}
+.add:hover{border-color:var(--ink);color:var(--ink)}
+.add svg{width:14px;height:14px}
+.add[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.add[aria-pressed="true"] .add-p{display:none}
+.add .add-d{display:none}
+.add[aria-pressed="true"] .add-d{display:inline}
+.basket{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--ink);color:#fff;
+  transform:translateY(110%);transition:transform .34s cubic-bezier(.2,.8,.3,1);
+  box-shadow:0 -12px 40px rgba(0,0,0,.24)}
+.basket.show{transform:translateY(0)}
+.basket-in{display:flex;align-items:center;gap:18px;padding:15px 0;flex-wrap:wrap}
+.basket-c{font-family:var(--display);font-size:26px;line-height:1;flex:none}
+.basket-t{flex:1;min-width:150px;font-size:13.5px;color:rgba(255,255,255,.76);line-height:1.45}
+.basket-t b{color:#fff;font-weight:500}
+.basket-a{display:flex;gap:9px;flex:none}
+@media(max-width:640px){
+  .basket-in{padding:13px 0}
+  .basket-t{flex:1 1 100%;order:3}
+  .basket-a{flex:1}.basket-a .btn{flex:1}
+}
+
+/* ---------- sticky cta bar ---------- */
+.stick{position:fixed;left:0;right:0;bottom:0;z-index:80;background:rgba(21,33,27,.96);
+  backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.12);
+  transform:translateY(110%);transition:transform .3s ease;padding:11px 0}
+.stick.show{transform:translateY(0)}
+.stick-in{display:flex;align-items:center;gap:16px}
+.stick-t{flex:1;min-width:0;color:#fff;font-size:13.5px;line-height:1.35}
+.stick-t b{display:block;font-weight:700}
+.stick-t span{color:rgba(255,255,255,.65);font-size:12.5px}
+.stick .btn{flex:none}
+@media(max-width:700px){.stick-t{display:none}.stick .btn{flex:1}}
+
+/* ---------- markets ---------- */
+.mk{display:flex;flex-wrap:wrap;gap:9px}
+.mk span{border:1px solid rgba(255,255,255,.22);padding:9px 17px;border-radius:100px;font-size:13.5px;
+  font-weight:500;color:rgba(255,255,255,.86)}
+
+/* ---------- specs table ----------
+   The header row pins while the body scrolls past it: a spec table this long is unreadable
+   once "per bunch" and "per full box" have left the screen.
+
+   Two mechanisms, because one does not cover both widths. Above 760px the table fits, so
+   the wrapper carries no overflow at all and the header pins to the viewport under the site
+   header. Below it the wrapper has to scroll sideways, and any sideways-scrolling box is a
+   scroll container on both axes - a sticky row inside one of those resolves against the box,
+   not the page, so with no vertical scroll it never moves. (overflow-y:clip does not buy a
+   way out: paired with overflow-x:auto it is used as `hidden`, which is still a scrollport.)
+   So on a phone the box gets a height and scrolls vertically itself, and the header pins to
+   the top of the box. contain:paint stays: without it the wide table expands the mobile
+   layout viewport and silently zooms the whole page out. */
+.tbl-wrap{border:1px solid var(--line-soft);border-radius:var(--r);background:#fff}
+.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:14px;min-width:620px}
+.tbl th,.tbl td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line-soft);vertical-align:top}
+.tbl thead th{font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--sage);background:var(--sand);white-space:nowrap;
+  position:sticky;top:var(--hdr);z-index:2}
+@media(max-width:760px){
+  .tbl-wrap{overflow:auto;-webkit-overflow-scrolling:touch;contain:paint;
+    max-height:70vh;max-height:70svh}
+  .tbl thead th{top:0}
+}
+.tbl tbody tr:last-child td{border-bottom:0}
+.tbl tbody tr:hover td{background:rgba(199,211,198,.14)}
+.tbl td:first-child{font-weight:700}
+.tbl .l{font-family:var(--display);font-style:italic;color:var(--sage);font-weight:400;display:block;font-size:13px}
+
+/* ---------- faq ---------- */
+.faq{border-top:1px solid var(--line)}
+.sec-dark .faq,.sec-ink .faq{border-color:rgba(255,255,255,.16)}
+.faq details{border-bottom:1px solid var(--line)}
+.sec-dark .faq details,.sec-ink .faq details{border-color:rgba(255,255,255,.16)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 44px 22px 0;position:relative;
+  font-size:16.5px;font-weight:700;letter-spacing:-.008em;transition:.2s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--ink-soft)}
+.sec-dark .faq summary:hover{color:#fff}
+.faq summary::after{content:"";position:absolute;right:6px;top:29px;width:11px;height:11px;
+  border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;
+  transform:rotate(45deg);transition:.25s;opacity:.5}
+.faq details[open] summary::after{transform:rotate(-135deg);top:33px;opacity:1}
+.faq .a{padding:0 60px 24px 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+.sec-dark .faq .a,.sec-ink .faq .a{color:rgba(255,255,255,.74)}
+
+/* ---------- forms ---------- */
+.form{display:grid;gap:18px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:640px){.row2{grid-template-columns:1fr}}
+.field label{display:block;font-size:12.5px;font-weight:700;letter-spacing:.03em;margin-bottom:7px}
+.field .req{color:var(--gold)}
+.field input,.field select,.field textarea{width:100%;padding:14px 17px;border:1.5px solid var(--line);
+  border-radius:var(--r-sm);background:#fff;font:inherit;font-size:15px;color:var(--ink);transition:.2s}
+.field textarea{resize:vertical;min-height:120px;line-height:1.6}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink);
+  box-shadow:0 0 0 3px rgba(21,33,27,.09)}
+.field .hint{font-size:12px;color:var(--sage);margin-top:6px}
+.picks{display:flex;flex-wrap:wrap;gap:7px}
+.pick{padding:8px 14px;border-radius:100px;border:1.5px solid var(--line);background:#fff;
+  font-size:13px;font-weight:500;cursor:pointer;transition:.18s}
+.pick:hover{border-color:var(--sage)}
+.pick[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700}
+.form-note{font-size:12.5px;color:var(--ink-soft);line-height:1.6}
+
+/* The honeypot. Off-canvas rather than display:none or hidden, because the better
+   bots skip anything a browser would not paint, and a real buyer never reaches it:
+   it is out of the tab order and hidden from the accessibility tree. */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* Empty until the form has something to say, so it takes no space in the layout
+   until then. It is a live region, so a screen reader announces the result without
+   the focus having to move. */
+.form-status{font-size:14px;line-height:1.6;font-weight:500}
+.form-status:empty{display:none}
+.form-status{padding:13px 16px;border-radius:var(--r-sm);border:1.5px solid var(--line)}
+.form-status[data-state="busy"]{color:var(--ink-soft);background:var(--sand)}
+.form-status[data-state="ok"]{color:var(--ink);background:var(--sand);border-color:var(--gold)}
+/* The error red is the one the field borders already use on a failed check. */
+.form-status[data-state="err"]{color:#8E3127;background:#FBF2F0;border-color:#B4453C}
+/* The form qualifies a B2B enquiry, which is a lot of fields. Three named groups stop
+   it reading as one undifferentiated column of boxes. */
+.fset{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);
+  margin:14px 0 -4px;padding-top:14px;border-top:1px solid var(--line)}
+.form>.fset:first-child{margin-top:0;padding-top:0;border-top:0}
+
+/* ---------- contact cards ---------- */
+/* Four cards since the client gave two office lines: 4 across, then 2x2, then stacked.
+   Never an orphan card on its own row. */
+.ccards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.14);border-radius:var(--r);overflow:hidden}
+@media(max-width:1080px){.ccards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.ccards{grid-template-columns:1fr}}
+.ccard{background:var(--ink);padding:clamp(24px,3vw,34px);text-decoration:none;color:#fff;
+  transition:.25s;display:flex;flex-direction:column}
+.ccard:hover{background:#26332C}
+.ccard svg{width:24px;height:24px;color:#fff;opacity:.8;margin-bottom:16px}
+.ccard b{font-size:16px;font-weight:700;margin-bottom:6px}
+.ccard span{font-size:14px;color:rgba(255,255,255,.72);line-height:1.5;word-break:break-word}
+
+/* ---------- footer ---------- */
+.ftr{background:var(--ink);color:#fff;padding:clamp(56px,7vw,88px) 0 32px}
+.ftr-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:clamp(28px,4vw,52px);
+  padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.14)}
+@media(max-width:900px){.ftr-top{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.ftr-top{grid-template-columns:1fr;gap:32px}}
+.ftr .brand{color:#fff;margin-bottom:18px}
+.ftr .brand svg{color:var(--sage-light)}
+.ftr .brand-s{color:var(--sage)}
+.ftr h4{font-size:11px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--sage);margin-bottom:16px}
+.ftr ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.ftr a{color:rgba(255,255,255,.74);text-decoration:none;font-size:14.5px;transition:.18s}
+.ftr a:hover{color:#fff}
+.ftr-bot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-top:26px;
+  font-size:12.5px;color:rgba(255,255,255,.5)}
+.ftr-bot a{font-size:12.5px}
+.ftr-mark{position:absolute;right:-40px;bottom:-40px;width:280px;color:rgba(255,255,255,.035);
+  pointer-events:none}
+.ftr-in{position:relative;overflow:hidden}
+
+/* ---------- page header ---------- */
+/* Every inner page used to open on a flat green panel. They open on a photograph now,
+   same as the home page, so the site reads as one picture-led thing rather than a
+   photographed home page bolted onto four coloured slabs. */
+.phead{background:var(--ink);color:#fff;padding:clamp(64px,9vw,124px) 0 clamp(56px,7vw,92px);
+  position:relative;overflow:hidden;isolation:isolate}
+.phead-bg{position:absolute;inset:0;z-index:-2}
+.phead-bg img{width:100%;height:100%;object-fit:cover;object-position:center 52%}
+/* The only page head whose source is a portrait photograph rather than a landscape one.
+   At the shared 52% a wide band through a tall frame lands on the grader's chin, so this
+   page takes its band higher and gets her face, her hands and the roses instead. */
+.phead-bg-hi img{object-position:center 33%}
+/* Two layers, not one. A single scrim heavy enough to carry white type over the
+   brightest photograph (the About wall) also drowns the whole frame, which is
+   what the client was looking at. So the lower layer is light and only takes the
+   glare off the photograph, while the upper one is a wash that does its work
+   solely where the copy sits. Re-measure with tools/_bright.mjs after touching
+   either layer -- it reports worst-case local contrast, not just the average,
+   because the average stays comfortable while one bright patch eats a letter.
+
+   The default is near-even, because for most of the width range the copy spans
+   the whole band and there is no quiet corner to fade a wash out into. */
+.phead-bg::after{content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(to top,rgba(11,24,18,.58) 0%,rgba(11,24,18,.5) 60%,rgba(11,24,18,.42) 100%),
+    linear-gradient(to bottom,rgba(11,24,18,.22) 0%,rgba(11,24,18,.16) 100%)}
+/* Only once the viewport is wider than the copy column does the photograph get
+   a right-hand side of its own worth keeping bright, and only then is it safe to
+   let the wash fall away across the frame. h1 is capped at 800px, so at 1240 it
+   still ends around 68% of the width and the wash has to hold that far: below
+   this breakpoint it ended at 83% (1024) and 95% (820), hanging the end of the
+   headline out over bare photograph at 1.4:1. */
+@media(min-width:1240px){.phead-bg::after{background:
+    linear-gradient(97deg,rgba(11,24,18,.5) 0%,rgba(11,24,18,.46) 46%,rgba(11,24,18,.28) 66%,rgba(11,24,18,0) 82%),
+    linear-gradient(97deg,rgba(11,24,18,.28) 0%,rgba(11,24,18,.21) 38%,rgba(11,24,18,.1) 64%,rgba(11,24,18,.03) 100%)}}
+.phead h1,.phead .lead,.phead .kicker{text-shadow:0 1px 20px rgba(8,18,13,.55)}
+.phead-mark{position:absolute;right:-60px;top:-40px;width:340px;color:rgba(255,255,255,.05);pointer-events:none}
+.phead h1{max-width:800px;margin-bottom:20px;position:relative}
+.phead .lead{max-width:600px;position:relative}
+/* .phead is a dark section but never carried .on-dark, so .lead kept its ink-soft
+   colour (#4A554E) on near-black and was unreadable. Mirror the on-dark rules on
+   .phead itself rather than trusting every page to remember the class. */
+.phead .lead,.phead .muted{color:rgba(255,255,255,.82)}
+.phead .tiny{color:rgba(255,255,255,.68)}
+.phead .kicker{color:var(--sage-light)}
+.phead-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;position:relative}
+@media(max-width:520px){.phead-btns .btn{flex:1 1 100%}}
+.crumb{display:flex;gap:9px;font-size:12.5px;color:rgba(255,255,255,.58);margin-bottom:22px;position:relative}
+.crumb a{text-decoration:none;color:inherit;transition:.2s}
+.crumb a:hover{color:#fff}
+
+/* ---------- misc ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,74px);align-items:center}
+@media(max-width:880px){.cols2{grid-template-columns:1fr}}
+.figure{border-radius:var(--r-lg);overflow:hidden;background:var(--sand)}
+.figure img{width:100%;height:100%;object-fit:cover}
+.note{background:var(--sand);border-left:2px solid var(--ink);padding:16px 22px;
+  border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:14px;line-height:1.6}
+.badges{display:flex;flex-wrap:wrap;gap:10px}
+.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:var(--pill);
+  padding:11px 18px;font-size:13.5px;font-weight:500;background:#fff}
+.badge b{font-weight:700}
+.badge svg{width:15px;height:15px;color:var(--gold-bright);flex:none}
+.sec-dark .badge{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18);color:#fff}
+.tocheck{border-bottom:1.5px dotted var(--gold);cursor:help}
+/* placeholder the client still has to supply */
+.tbc{border-bottom:1.5px dotted var(--gold);cursor:help;
+  background:linear-gradient(transparent 62%,rgba(180,150,96,.26) 0)}
+.on-dark .tbc,.ftr .tbc{background:linear-gradient(transparent 62%,rgba(214,157,44,.34) 0)}
+.head-acts{display:flex;align-items:center;gap:16px;flex:none}
+/* Children must not shrink: space-between was squeezing the link to 76px and it
+   broke into three stacked words. They wrap to a second row instead if they ever
+   do not fit (a longer translation of "All 15 lines", say). */
+.head-acts>*{flex:none}
+@media(max-width:700px){.head-acts{width:100%;flex-wrap:wrap;gap:14px 22px}}

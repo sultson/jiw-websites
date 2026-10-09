@@ -1,0 +1,23 @@
+{
+  "name": "@jiw/jasm-flowers",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs && node tools/gen-mail-logo.mjs && node tools/gen-pdf.mjs",
+    "dev": "pnpm build && wrangler dev --port=3070",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "lint": "tsc --noEmit -p tsconfig.worker.json",
+    "smoke": "node tools/smoke.mjs"
+  },
+  "dependencies": {
+    "@jiw/cloudflare-forms": "workspace:*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "playwright": "^1.62.1",
+    "sharp": "^0.35.4",
+    "typescript": "~5.8.2"
+  }
+}
