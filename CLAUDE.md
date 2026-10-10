@@ -27,6 +27,21 @@ apps/         client sites (almost all a Vite + React 19 + TS 5.8 + Tailwind v4 
                           keep them at zero. `pnpm build` must also run gen-mail-logo + gen-pdf:
                           the build wipes dist/ and takes the three catalogue PDFs with it.
                           dev port 3070. See its README.
+  dagmar-voss/            same exception, graduated 10-10-2026 from
+                          claudius/playground/dagmarvoss. build.mjs writes 8 complete pages
+                          into dist/, 394-1536 words of text each, one progressive-enhancement
+                          script per page and no hydration. `pnpm build` also runs
+                          tools/prerender.mjs, which FAILS the build on a page that is no
+                          longer whole in the HTML (word floor, one non-empty h1, no
+                          <script src>, JSON-LD that parses, canonical = this page, no dead
+                          internal link, sitemap covering exactly the 8 pages) — a gate you can
+                          skip is not a gate. tools/zonder-js.mjs is the browser counter-proof:
+                          JS off next to JS on, identical word counts. Needs MAPBOX_TOKEN from
+                          the root .env for the static map on /contact/. Still on
+                          dagmarvoss-concept.jouwidealewebsite.nl — the client's own site is
+                          live on dagmarvoss.nl with her Purelymail records on that zone, so
+                          the cutover is hers to make, not a build step. dev port 3071.
+                          See its README.
   my-kim-nails/        dev port 3000 — frontend-only
   nail-it-rosmalen/    dev port 3002 — frontend-only
   sgv-nails/           placeholder (INFO.md only, not yet scaffolded)
