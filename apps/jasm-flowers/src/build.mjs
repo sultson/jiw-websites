@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import sharp from 'sharp';
-import { company, varieties, faqs, markets } from './data.mjs';
+import { company, varieties, faqs, areaServed, keyLines } from './data.mjs';
 import { header, footer, basket, stickyCta, esc, mark, setLogo } from './ui.mjs';
 import * as P from './pages.mjs';
 import { sheet, SHEET_CSS } from './sheet.mjs';
@@ -177,16 +177,29 @@ fs.writeFileSync(path.join(DIST, 'favicon.svg'),
 const misses = {};
 function jsonLd(page, lang) {
   const tr = s => t(s, lang, misses);
+  // Quiet lookup: translates if the dictionary already has the string, falls back to
+  // English without filing a miss. For machine-readable values that are mostly figures
+  // ("60 cm, 70 cm", "10-14 days") - worth localising when we already can, not worth
+  // putting on the translation backlog.
+  const trq = s => t(s, lang);
   const org = {
     '@type': 'Organization', '@id': `${ORIGIN}/#org`, name: company.name,
     url: ORIGIN, email: company.email, telephone: company.phone,
-    description: tr('Grower and exporter of Kenyan summer flowers, foliage and roses to Europe.'),
+    // The same sentence the About page opens with and the footer repeats. It used to say
+    // "Grower and exporter of Kenyan summer flowers, foliage and roses to Europe", which
+    // contradicted the site twice over: JASM is not a grower (About says so in as many
+    // words) and Europe is not the only market it serves.
+    description: tr('A Kenyan flower export business connecting selected Kenyan growers with ' +
+      'professional flower buyers in Europe, Africa, the Middle East, Asia and other ' +
+      'international markets.'),
     address: {
       '@type': 'PostalAddress', streetAddress: company.addressStreet,
       postOfficeBoxNumber: company.addressPoBox,
       addressLocality: 'Nairobi', addressCountry: 'KE',
     },
-    areaServed: markets.map(m => ({ '@type': 'Country', name: m })),
+    // Typed per entry. This list was all '@type': 'Country', which filed Scandinavia and
+    // the Middle East as countries.
+    areaServed: areaServed.map(a => ({ '@type': a.type, name: tr(a.name) })),
     logo: `${ORIGIN}/favicon.svg`,
   };
   const graph = [org, {
@@ -212,15 +225,44 @@ function jsonLd(page, lang) {
       })),
     });
   }
-  if (page.path !== '/' && !page.noindex) {
+  /* A key-line page describes one product, so it says so. No `offers`: the price is
+     quoted per shipment against a specification, and inventing a number to satisfy a
+     validator would publish a price JASM has not agreed to. The specification that IS
+     fixed - lengths, bunch, box, vase life - goes in as additionalProperty. */
+  if (page.variety) {
+    const v = page.variety;
     graph.push({
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: tr('Home'), item: ORIGIN + localise('/', lang) },
-        { '@type': 'ListItem', position: 2, name: tr(CRUMB[page.path] || page.title.split('|')[0].trim()),
-          item: ORIGIN + localise(page.path, lang) },
-      ],
+      '@type': 'Product', '@id': `${ORIGIN}${localise(page.path, lang)}#product`,
+      name: v.name, alternateName: trq(v.common), category: tr(v.group),
+      description: tr(v.blurb), image: `${ORIGIN}/i/${manifest.get(v.img).jpg}`,
+      brand: { '@id': `${ORIGIN}/#org` },
+      additionalProperty: [
+        ['Stem lengths', v.lengths.join(', ')],
+        ['Per bunch', v.packBunch],
+        ['Per full box', v.packBox],
+        ['Vase life', v.vaseLife],
+        ['Colours', v.colours.join(', ')],
+        ['Country of origin', 'Kenya'],
+      ].map(([n, value]) => ({ '@type': 'PropertyValue', name: tr(n), value: trq(value) })),
     });
+  }
+  if (page.path !== '/' && !page.noindex) {
+    const trail = [
+      { '@type': 'ListItem', position: 1, name: tr('Home'), item: ORIGIN + localise('/', lang) },
+    ];
+    // Key-line pages hang off the catalogue, which is where a buyer would otherwise
+    // have found the line - so the trail says Home / Catalogue / Solidago.
+    if (page.variety) {
+      trail.push({ '@type': 'ListItem', position: 2, name: tr('Catalogue'),
+        item: ORIGIN + localise('/catalogue/', lang) });
+    }
+    // A variety name is a proper noun, so it goes through the quiet lookup: Solidago is
+    // Solidago in all three languages and has no business in the missing-strings report.
+    trail.push({ '@type': 'ListItem', position: trail.length + 1,
+      name: page.variety ? trq(page.variety.name)
+        : tr(CRUMB[page.path] || page.title.split('|')[0].trim()),
+      item: ORIGIN + localise(page.path, lang) });
+    graph.push({ '@type': 'BreadcrumbList', itemListElement: trail });
   }
   return JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
 }
@@ -228,6 +270,37 @@ function jsonLd(page, lang) {
 /* ---------------- layout ---------------- */
 const CRUMB = { '/catalogue/': 'Catalogue', '/shipping/': 'Shipping',
   '/about/': 'About', '/contact/': 'Contact' };
+
+/**
+ * Microsoft Clarity. Inline and in <head>, which is where it has to be: the snippet only
+ * appends an async <script>, so it costs nothing to parse, but it has to have run before
+ * the visitor can leave or that pageview is lost.
+ *
+ * Session continuity across a click was the thing to get right here, and the answer is
+ * that there is nothing to do - this site is 18 separate prerendered documents, not an
+ * SPA, and every internal link is a plain same-origin href. Clarity stitches those into
+ * one session with its own first-party cookies (`_clck` long-lived, `_clsk` per session),
+ * which survive a full page load on the same host. What WOULD break it is a second host
+ * serving pages, or a page missing the tag - which is why this sits in the shared layout
+ * and not on five pages by hand. Since 09-10-2026 there is no second host: www and the
+ * two old jouwidealewebsite.nl addresses all 301 onto jasmflowers.com at the edge, before
+ * any document is served, so a visitor cannot pick up a cookie on one host and continue
+ * on another. The /nl/ and /de/ copies are the same origin, so switching language keeps
+ * the session too.
+ *
+ * Deliberately NOT on the print sheets: those are built by our own headless browser on
+ * every single build (tools/gen-pdf.mjs), and they would show up in the client's
+ * dashboard as three robot sessions per deploy. They render through sheet.mjs, which
+ * does not use this layout.
+ *
+ * The translation pass leaves <script> bodies alone (SKIP in i18n.mjs), so this is
+ * byte-identical in all three languages.
+ */
+const CLARITY_ID = 'yv1yjaux5r';
+const CLARITY = `<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){` +
+  `(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;` +
+  `t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];` +
+  `y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","${CLARITY_ID}")</script>`;
 
 function layout(page, lang) {
   const canonical = ORIGIN + localise(page.path === '/404.html' ? '/404.html' : page.path, lang);
@@ -242,6 +315,7 @@ function layout(page, lang) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+${CLARITY}
 <title>${esc(page.title)}</title>
 <meta name="description" content="${esc(page.desc)}">
 ${page.noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${canonical}">`}
@@ -283,8 +357,13 @@ prepareVideo('packhouse');
 P.setImg(makeImg);
 P.setVideo(makeVideo);
 
+// One page per key line, reachable only from the footer strip: these exist to answer a
+// narrow search ("solidago wholesale kenya") that no competitor covers properly, and
+// adding them to the nav would put four product pages next to four site sections.
+const linePages = keyLines.map(v => P.keyLine(v, makeImg));
+
 const pages = [P.home(makeImg), P.catalogue(makeImg), P.shipping(makeImg), P.about(makeImg),
-  P.contact(makeImg), P.notFound()];
+  P.contact(makeImg), ...linePages, P.notFound()];
 
 const sheetEn = sheet(makeImg).replace('/SHEETCSS', `/${sheetCssName}`);
 

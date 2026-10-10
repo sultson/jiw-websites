@@ -729,6 +729,17 @@ p:last-child{margin-bottom:0}
 .ftr ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
 .ftr a{color:rgba(255,255,255,.74);text-decoration:none;font-size:14.5px;transition:.18s}
 .ftr a:hover{color:#fff}
+/* The key-line row: one line on a wide screen, wrapping to as many as it needs below.
+   `.ftr ul` is a grid, so it is overridden to flex here rather than fought with. */
+.ftr-lines{display:flex;align-items:baseline;gap:14px 24px;flex-wrap:wrap;padding:26px 0 0;
+  border-bottom:1px solid rgba(255,255,255,.14);padding-bottom:26px}
+.ftr-lines h4{margin-bottom:0;flex:none}
+.ftr-lines ul{display:flex;flex-wrap:wrap;gap:10px 22px}
+.ftr-lines li{display:flex;align-items:center}
+/* A hairline between the names instead of a bullet or a slash glyph, which at this
+   size reads as punctuation in the link text. */
+.ftr-lines li+li::before{content:"";width:1px;height:12px;margin-right:22px;
+  background:rgba(255,255,255,.2);flex:none}
 .ftr-bot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-top:26px;
   font-size:12.5px;color:rgba(255,255,255,.5)}
 .ftr-bot a{font-size:12.5px}
@@ -783,7 +794,9 @@ p:last-child{margin-bottom:0}
 .phead .kicker{color:var(--sage-light)}
 .phead-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;position:relative}
 @media(max-width:520px){.phead-btns .btn{flex:1 1 100%}}
-.crumb{display:flex;gap:9px;font-size:12.5px;color:rgba(255,255,255,.58);margin-bottom:22px;position:relative}
+/* Wraps: the key-line pages carry a third level (Home / Catalogue / Eucalyptus Silver
+   Dollar), which is longer than anything the five main pages put here. */
+.crumb{display:flex;flex-wrap:wrap;gap:9px;font-size:12.5px;color:rgba(255,255,255,.58);margin-bottom:22px;position:relative}
 .crumb a{text-decoration:none;color:inherit;transition:.2s}
 .crumb a:hover{color:#fff}
 

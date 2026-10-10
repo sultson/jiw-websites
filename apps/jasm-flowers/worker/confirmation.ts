@@ -32,7 +32,7 @@ import type { ConfirmationEmailCopy, LocalizedConfirmationEmailConfig } from '@j
  * survives the client's own note about not publishing what cannot be guaranteed.
  */
 
-const SITE_URL = 'https://jasmflowers.jouwidealewebsite.nl';
+const SITE_URL = 'https://jasmflowers.com';
 const PHONE = '+254 710 693 400';
 
 /** 480 wide for a rendered 240, so it stays sharp on a retina screen. */
@@ -69,7 +69,7 @@ const EN: ConfirmationEmailCopy = {
   },
   contactPrompt: `Anything to add to your enquiry? Reply to this email, or call us on ${PHONE}.`,
   ctaLabel: 'Back to the website',
-  footerText: `JASM Flowers Ltd, Airport North Road, P.O. Box 5212-100, Nairobi, Kenya. You received this email because you sent an enquiry on jasmflowers.jouwidealewebsite.nl.`,
+  footerText: `JASM Flowers Ltd, Airport North Road, P.O. Box 5212-100, Nairobi, Kenya. You received this email because you sent an enquiry on jasmflowers.com.`,
 };
 
 const NL: ConfirmationEmailCopy = {
@@ -98,7 +98,7 @@ const NL: ConfirmationEmailCopy = {
   },
   contactPrompt: `Wilt u iets aan uw aanvraag toevoegen? Antwoord op deze mail, of bel ons op ${PHONE}.`,
   ctaLabel: 'Terug naar de website',
-  footerText: `JASM Flowers Ltd, Airport North Road, P.O. Box 5212-100, Nairobi, Kenia. U ontvangt deze mail omdat u een aanvraag heeft verstuurd op jasmflowers.jouwidealewebsite.nl.`,
+  footerText: `JASM Flowers Ltd, Airport North Road, P.O. Box 5212-100, Nairobi, Kenia. U ontvangt deze mail omdat u een aanvraag heeft verstuurd op jasmflowers.com.`,
 };
 
 const DE: ConfirmationEmailCopy = {
@@ -127,7 +127,7 @@ const DE: ConfirmationEmailCopy = {
   },
   contactPrompt: `Möchten Sie Ihrer Anfrage etwas hinzufügen? Antworten Sie auf diese E-Mail, oder rufen Sie uns an unter ${PHONE}.`,
   ctaLabel: 'Zurück zur Website',
-  footerText: `JASM Flowers Ltd, Airport North Road, P.O. Box 5212-100, Nairobi, Kenia. Sie erhalten diese E-Mail, weil Sie auf jasmflowers.jouwidealewebsite.nl eine Anfrage gesendet haben.`,
+  footerText: `JASM Flowers Ltd, Airport North Road, P.O. Box 5212-100, Nairobi, Kenia. Sie erhalten diese E-Mail, weil Sie auf jasmflowers.com eine Anfrage gesendet haben.`,
 };
 
 /**

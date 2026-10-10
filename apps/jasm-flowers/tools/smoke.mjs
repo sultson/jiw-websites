@@ -4,7 +4,7 @@ import { chromium, webkit } from 'playwright';
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
-import { varieties, company } from '../src/data.mjs';
+import { varieties, company, keyLines } from '../src/data.mjs';
 import { LANGS } from '../src/i18n.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Za-z]:)/, '$1'), '..');
@@ -34,7 +34,27 @@ if (!EXTERNAL) {
   base = `http://127.0.0.1:${server.address().port}`;
 }
 
-const PAGES = ['/', '/catalogue/', '/shipping/', '/about/', '/contact/'];
+const LINES = keyLines.map(v => v.line.path);
+// The deep per-page sweep takes one key-line page, not all four: they are one template
+// with different copy, so a fourfold sweep costs minutes and finds the same thing once.
+// The other three get the lighter pass further down, and all four go through the i18n loop.
+const PAGES = ['/', '/catalogue/', '/shipping/', '/about/', '/contact/', LINES[0]];
+const LANG_PAGES = ['/', '/catalogue/', '/shipping/', '/about/', '/contact/', ...LINES];
+const CLARITY_ID = 'yv1yjaux5r';
+
+/**
+ * Clarity is stubbed in every browser context here, not allowed through.
+ *
+ * Two reasons. A run against the live site would otherwise file four robot sessions in
+ * the client's dashboard every time anyone types `pnpm smoke`, and an aborted script
+ * request logs a console error, which would trip the "no console errors" check on every
+ * page. The stub keeps both clean; that the real tag loads and stitches a session across
+ * a navigation was verified against the deployed site by hand.
+ */
+const stubClarity = ctx => ctx.route('**clarity.ms/**', r =>
+  r.fulfill({ status: 200, contentType: 'application/javascript',
+    body: 'window.clarity=window.clarity||function(){};' }));
+
 const VIEWS = [
   { name: 'mobile', width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 },
   { name: 'desktop', width: 1440, height: 900 },
@@ -48,6 +68,7 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
   for (const view of VIEWS) {
     const ctx = await browser.newContext({ viewport: { width: view.width, height: view.height },
       isMobile: view.isMobile, hasTouch: view.hasTouch, deviceScaleFactor: view.deviceScaleFactor });
+    await stubClarity(ctx);
     const page = await ctx.newPage();
     const tag = `${engineName}/${view.name}`;
 
@@ -371,6 +392,80 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
     const cellH = await page.locator('.avail .a-cell').first().boundingBox();
     ok(cellH && cellH.height > 10, `${tag} availability cells have height`);
 
+    /* ---- key-line pages ----
+       The footer strip is the only route into these from the rest of the site, so that
+       is checked both ways: the strip is on every page, and nothing in the <main> of the
+       five core pages points at one. Get that second half wrong and the pages quietly
+       become part of the navigation, which is exactly what was not wanted. */
+    for (const p of LINES) {
+      const res = await page.goto(base + p, { waitUntil: 'networkidle' });
+      ok(res && res.ok(), `${tag} ${p} loads`);
+      ok(await page.locator('h1').count() === 1, `${tag} ${p} exactly one h1`);
+      const of2 = await page.evaluate(() =>
+        document.documentElement.scrollWidth - document.documentElement.clientWidth);
+      ok(of2 <= 1, `${tag} ${p} no horizontal overflow (${of2}px)`);
+      // The breadcrumb gained a third level here, which is longer than anything the five
+      // core pages put in that row.
+      const cr = await page.evaluate(() => {
+        const c = document.querySelector('.crumb');
+        return { n: c.querySelectorAll(':scope > *').length, h: c.getBoundingClientRect().height,
+          w: c.scrollWidth - c.clientWidth };
+      });
+      ok(cr.n === 5, `${tag} ${p} breadcrumb has three levels (${cr.n} nodes)`);
+      ok(cr.w <= 1, `${tag} ${p} breadcrumb does not overflow sideways (${cr.w}px)`);
+      // Product schema, with the spec in it rather than an invented price.
+      const prod = await page.evaluate(() => {
+        const g = JSON.parse(document.querySelector('script[type="application/ld+json"]').textContent);
+        const p = g['@graph'].find(n => n['@type'] === 'Product');
+        const b = g['@graph'].find(n => n['@type'] === 'BreadcrumbList');
+        return p && { name: p.name, props: p.additionalProperty.length, img: p.image,
+          offers: 'offers' in p, crumbs: b ? b.itemListElement.length : 0 };
+      });
+      ok(prod && prod.props === 6, `${tag} ${p} Product schema carries the spec (${prod && prod.props})`);
+      ok(prod && !prod.offers, `${tag} ${p} Product schema publishes no invented price`);
+      ok(prod && prod.crumbs === 3, `${tag} ${p} breadcrumb schema is three deep`);
+      // Availability: one row, twelve cells, and the key pinned above it.
+      const cells = await page.locator('.avail tbody tr td').count();
+      ok(cells === 12, `${tag} ${p} availability row has twelve months (${cells})`);
+      ok(await page.locator('.avail tbody tr').count() === 1,
+        `${tag} ${p} availability shows this line only`);
+      // Every picture on the page decoded.
+      await page.evaluate(async () => {
+        for (const i of document.images) i.loading = 'eager';
+        await Promise.all([...document.images].filter(i => !i.complete)
+          .map(i => new Promise(r => { i.onload = i.onerror = r; setTimeout(r, 4000); })));
+      });
+      const bimg = await page.evaluate(() =>
+        [...document.images].filter(i => !i.naturalWidth).map(i => i.currentSrc || i.src));
+      ok(bimg.length === 0, `${tag} ${p} no broken images (${bimg.slice(0, 2)})`);
+      // The three sibling cards link to the other three lines, not back to this one.
+      const sibs = await page.evaluate(() => [...document.querySelectorAll('.sig a.vcard')]
+        .map(a => a.getAttribute('href')));
+      ok(sibs.length === LINES.length - 1 && !sibs.includes(p),
+        `${tag} ${p} links the other ${LINES.length - 1} key lines (${sibs.length})`);
+    }
+
+    // The footer strip: on every page, in order, pointing at the real pages.
+    for (const p of ['/', '/catalogue/', LINES[1]]) {
+      await page.goto(base + p, { waitUntil: 'domcontentloaded' });
+      const strip = await page.evaluate(() =>
+        [...document.querySelectorAll('.ftr-lines a')].map(a => a.getAttribute('href')));
+      ok(JSON.stringify(strip) === JSON.stringify(LINES),
+        `${tag} ${p} footer key-line strip lists all four (${strip.join(',')})`);
+      const box = await page.locator('.ftr-lines').boundingBox();
+      ok(box && box.width > 0 && box.height < 160,
+        `${tag} ${p} footer strip stays one tidy row (${box && Math.round(box.height)}px)`);
+    }
+
+    // Nothing in the body of the core pages points at a key-line page.
+    for (const p of ['/', '/catalogue/', '/shipping/', '/about/', '/contact/']) {
+      await page.goto(base + p, { waitUntil: 'domcontentloaded' });
+      const leaks = await page.evaluate(() =>
+        [...document.querySelectorAll('main a[href], header a[href]')]
+          .map(a => a.getAttribute('href')).filter(h => h && h.includes('/wholesale/')));
+      ok(leaks.length === 0, `${tag} ${p} key lines stay footer-only (${leaks.slice(0, 3)})`);
+    }
+
     // ---- 404 ----
     const r404 = await page.goto(base + '/nope/', { waitUntil: 'domcontentloaded' });
     ok(r404.status() === 404, `${tag} unknown path returns 404`);
@@ -389,7 +484,9 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
    English copy left standing on a translated page. */
 {
   const browser = await chromium.launch();
-  const page = await browser.newPage();
+  const ctx = await browser.newContext();
+  await stubClarity(ctx);
+  const page = await ctx.newPage();
   // One sentence per language that has to be on the home page, and must not be on the others.
   // Was the old hero strap, which the client cut. The positioning line replaces it:
   // it is the one sentence guaranteed to be on the home page in every language.
@@ -399,7 +496,7 @@ for (const [engineName, engine] of [['chromium', chromium], ['webkit', webkit]])
 
   for (const { code } of LANGS) {
     const dir = code === 'en' ? '' : '/' + code;
-    for (const p of PAGES) {
+    for (const p of LANG_PAGES) {
       const res = await page.goto(base + dir + p, { waitUntil: 'domcontentloaded' });
       ok(res && res.ok(), `i18n ${code}${p} loads`);
       ok(await page.getAttribute('html', 'lang') === code, `i18n ${code}${p} html lang is ${code}`);
@@ -465,8 +562,11 @@ ok(html.includes(company.email), 'contact email present on home');
 ok(fs.existsSync(path.join(DIST, 'sitemap.xml')), 'sitemap exists');
 ok(fs.existsSync(path.join(DIST, 'robots.txt')), 'robots exists');
 const sm = fs.readFileSync(path.join(DIST, 'sitemap.xml'), 'utf8');
-ok((sm.match(/<loc>/g) || []).length === 5 * LANGS.length,
-  'sitemap lists 5 indexable pages per language');
+const indexable = 5 + LINES.length;
+ok((sm.match(/<loc>/g) || []).length === indexable * LANGS.length,
+  `sitemap lists ${indexable} indexable pages per language`);
+for (const p of LINES) ok(sm.includes(`<loc>https://${company.domain}${p}</loc>`),
+  `sitemap lists ${p}`);
 ok(fs.readFileSync(path.join(DIST, 'catalogue', 'index.html'), 'utf8')
   .includes('Solidago'), 'catalogue mentions Solidago');
 // Client, 9 Oct 2026: they tint gypsophila and roses, not solidago. The question is the
@@ -479,6 +579,76 @@ for (const { code } of LANGS) {
   ok(m.length >= 2, `${code} shipping: tinting answer present twice, copy + JSON-LD (${m.length})`);
   ok(m.every(s => !/solidago/i.test(s)), `${code} shipping: tinting answer does not name solidago`);
 }
+/* ---- Microsoft Clarity ----
+   On every page of the site in every language, inside <head> so the pageview is logged
+   before a visitor can click away, and deliberately NOT on the three print sheets, which
+   our own headless browser renders on every build to make the PDFs. */
+{
+  const htmls = [];
+  const walk = d => {
+    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+      const f = path.join(d, e.name);
+      if (e.isDirectory()) walk(f);
+      else if (e.name.endsWith('.html')) htmls.push(f);
+    }
+  };
+  walk(DIST);
+  const sheets = htmls.filter(f => f.includes('catalogue-sheet'));
+  const site = htmls.filter(f => !f.includes('catalogue-sheet'));
+  // 5 core pages + 4 key lines + the 404, times three languages.
+  ok(site.length === (5 + LINES.length + 1) * LANGS.length,
+    `clarity: ${(5 + LINES.length + 1) * LANGS.length} site pages to check (found ${site.length})`);
+  ok(sheets.length === LANGS.length, `clarity: ${LANGS.length} print sheets found`);
+  for (const f of site) {
+    const h = fs.readFileSync(f, 'utf8');
+    const rel = path.relative(DIST, f).replace(/\\/g, '/');
+    const at = h.indexOf(CLARITY_ID);
+    ok(at > -1, `clarity tagged: ${rel}`);
+    ok(at > -1 && at < h.indexOf('</head>'), `clarity sits in <head>: ${rel}`);
+    ok(h.includes('clarity.ms/tag/'), `clarity loader intact: ${rel}`);
+    // The translation pass walks text nodes and a fixed list of attributes; a <script>
+    // body is on its skip list. If that ever changes this is where it shows up.
+    ok(h.includes('y.parentNode.insertBefore(t,y)'), `clarity snippet unmangled: ${rel}`);
+  }
+  for (const f of sheets) {
+    ok(!fs.readFileSync(f, 'utf8').includes(CLARITY_ID),
+      `clarity kept off the print sheet: ${path.relative(DIST, f).replace(/\\/g, '/')}`);
+  }
+}
+
+/* ---- key-line pages, on disk ----
+   Prerendered means the copy is in the HTML with no JavaScript involved, which is the
+   whole reason these pages can rank. Checked as bytes, not in a browser. */
+for (const v of keyLines) {
+  for (const { code } of LANGS) {
+    const f = path.join(DIST, code === 'en' ? '' : code,
+      v.line.path.replace(/^\/|\/$/g, ''), 'index.html');
+    ok(fs.existsSync(f), `${code} ${v.line.path} built`);
+    if (!fs.existsSync(f)) continue;
+    const h = fs.readFileSync(f, 'utf8');
+    const text = h.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ')
+      .replace(/&[a-z]+;/g, ' ').replace(/\s+/g, ' ').trim();
+    ok(text.length > 2200, `${code} ${v.line.path} is a real page, not a stub (${text.length} chars)`);
+    ok(h.includes(v.name), `${code} ${v.line.path} names the line`);
+    ok(h.includes(v.latin), `${code} ${v.line.path} carries the latin name`);
+    ok(h.includes('"@type":"Product"'), `${code} ${v.line.path} has Product schema`);
+    ok(/<link rel="canonical"/.test(h), `${code} ${v.line.path} has a canonical`);
+    ok((h.match(/rel="alternate" hreflang/g) || []).length === LANGS.length + 1,
+      `${code} ${v.line.path} has hreflang for every language + x-default`);
+    // The four names in the footer strip, on this page too.
+    for (const o of keyLines) ok(h.includes(`${code === 'en' ? '' : '/' + code}${o.line.path}"`),
+      `${code} ${v.line.path} footer links ${o.slug}`);
+  }
+}
+// Solidago stopped being offered tinted on 9 Oct 2026, so the swatch under its card had
+// to go with it - the FAQ one page away says tinting is gypsophila and roses.
+for (const { code } of LANGS) {
+  const h = fs.readFileSync(path.join(DIST, code === 'en' ? '' : code, 'catalogue', 'index.html'), 'utf8');
+  const card = h.slice(h.indexOf('id="solidago"'), h.indexOf('id="eucalyptus-baby-blue"'));
+  ok(!/swatch[^>]*>\s*(Tinted|Getint|Getönt)/i.test(card),
+    `${code} catalogue: solidago no longer offered tinted`);
+}
+
 // every variety has an image on disk, second photos included
 for (const v of varieties) {
   for (const key of [v.img, v.img2].filter(Boolean)) {

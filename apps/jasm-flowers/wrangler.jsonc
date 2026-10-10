@@ -24,13 +24,36 @@
     // keeping this site static.
     "run_worker_first": ["/api/*"]
   },
+  // Four hostnames, but only one of them ever serves a page.
+  //
+  // jasmflowers.com is canonical — it is what data.mjs `domain` says and therefore what
+  // every canonical, hreflang and sitemap entry points at. www.jasmflowers.com is
+  // attached as well, but a dynamic redirect rule on the zone 301s it onto the apex with
+  // the path and query intact, so it never reaches this worker.
+  //
+  // The two jouwidealewebsite.nl addresses stay attached on purpose. A redirect rule on
+  // that zone 301s them to jasmflowers.com (Dynamic Redirects run before Workers, so the
+  // worker is not invoked). Keeping them bound rather than swapping in a discard-prefix
+  // AAAA means that if the rule is ever deleted the old addresses fall back to serving
+  // the site instead of erroring — duplicate content is a worse day than an outage is a
+  // worse day. Cost: 2 of the 100 Workers custom domains on jouwidealewebsite.nl, a zone
+  // that is at its cap. Detach them if a slot is ever needed, but add the AAAA first.
+  //
+  // Both old addresses have been shared publicly and are in Google, so they must keep
+  // answering. House rule for a graduated site, see the root CLAUDE.md.
   "routes": [
+    {
+      "pattern": "jasmflowers.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.jasmflowers.com",
+      "custom_domain": true
+    },
     {
       "pattern": "jasmflowers.jouwidealewebsite.nl",
       "custom_domain": true
     },
-    // Kept alive: this address was shared before the site had its own name, so it
-    // still gets traffic. The canonical on every page points at jasmflowers.
     {
       "pattern": "flower.jouwidealewebsite.nl",
       "custom_domain": true
@@ -50,12 +73,14 @@
   ],
   "vars": {
     "SITE_ID": "jasm-flowers",
-    // Leads land in our own inbox for now, not at JASM. The client has two office
-    // lines and two mailboxes on jasmflowers.co.ke, but nobody has confirmed which
-    // of them should receive web enquiries, so pointing this at a guess would drop
-    // real buyer enquiries into an unwatched mailbox. Test submissions are fine
-    // against this address.
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // Buyer enquiries go to JASM's own sales mailbox as of 09-10-2026. This address is
+    // also the reply-to on the confirmation the buyer receives, so a buyer who answers
+    // that mail reaches the client directly rather than us.
+    //
+    // NOTE for anyone testing: a submission against this config mails a real client
+    // mailbox. Point LEAD_RECIPIENT back at hallo@jouwidealewebsite.nl locally (or in a
+    // throwaway deploy) before exercising the form end to end.
+    "LEAD_RECIPIENT": "sales@jasmflowers.co.ke",
     // The sending *domain* notify.jasmflowers.com is verified in Cloudflare Email
     // Service (DKIM, SPF and a p=reject DMARC are on the zone). The local part is
     // free, so changing no-reply@ to something else is this line plus
