@@ -9,6 +9,7 @@
 import { mkdir, writeFile, cp, rm, readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const SRC = join(ROOT, "src");
@@ -32,16 +33,17 @@ const MAPBOX_TOKEN = await (async () => {
 })();
 
 /* Het adres waar de site op staat. Elke canonical, hreflang, og:url, elk
-   sitemap-item en elke @id in de structured data komt hieruit, dus de
-   overstap naar het echte domein is deze ene regel plus de routes in
-   wrangler.jsonc - zie de README.
+   sitemap-item en elke @id in de structured data komt hieruit.
 
-   Nog niet dagmarvoss.nl: daar staat op dit moment de eigen site van de klant
-   nog live. Dat omzetten is een knip die de klant meemaakt, geen bouwstap. */
+   Sinds 10-10-2026 het echte domein. Het conceptadres blijft antwoorden - die
+   link is met de klant gedeeld - maar het levert de site uit met een
+   `X-Robots-Tag: noindex` uit worker.mjs, zodat er niet twee indexeerbare
+   kopieen van dezelfde acht paginas staan. Het kale adres is de enige die in
+   Google hoort. */
 const SITE = {
   name: "Dagmar Voss",
   tagline: "Van KOPP naar kracht",
-  origin: process.env.SITE_ORIGIN?.trim() || "https://dagmarvoss-concept.jouwidealewebsite.nl",
+  origin: process.env.SITE_ORIGIN?.trim() || "https://dagmarvoss.nl",
   phone: "06-15532711",
   phoneIntl: "+31615532711",
   email: "info@dagmarvoss.nl",
@@ -1192,19 +1194,44 @@ Allow: /
 Sitemap: ${SITE.origin}/sitemap.xml
 `;
 
-const today = new Date().toISOString().slice(0, 10);
+/* Elke pagina een keer renderen: de html gaat zowel naar dist/ als door de
+   hash hieronder, en layout() twee keer aanroepen per pagina zou die twee uit
+   elkaar kunnen laten lopen. */
+const RENDERED = PAGES.map((p) => ({ page: p, html: layout(p) }));
+
+/* lastmod moet de dag zijn waarop de pagina veranderde, niet de dag waarop we
+   bouwden. Dat stond hier fout: elke build zette `today` op alle acht, dus de
+   sitemap riep elke keer "alle acht zijn vernieuwd" terwijl er een komma in
+   een andere pagina was gewijzigd. Een crawler die dat een paar keer narekent
+   gaat lastmod van deze site negeren, en dan is het signaal weg op het moment
+   dat er echt iets verandert.
+
+   Dus: hash de html, hou per pagina bij welke hash bij welke datum hoorde in
+   sitemap-datums.json (staat in git), en verzet de datum alleen als de hash
+   wijzigt. De Mapbox-sleutel gaat er eerst uit - die rouleert en zegt niets
+   over de inhoud van /contact/. */
+const DATUM_BESTAND = join(ROOT, "sitemap-datums.json");
+const vorigeDatums = JSON.parse(await readFile(DATUM_BESTAND, "utf8").catch(() => "{}"));
+const vandaag = new Date().toISOString().slice(0, 10);
+const datums = {};
+for (const { page, html } of RENDERED) {
+  const hash = createHash("sha256")
+    .update(html.split(MAPBOX_TOKEN).join("<token>"))
+    .digest("hex")
+    .slice(0, 16);
+  const vorig = vorigeDatums[page.slug];
+  datums[page.slug] = vorig && vorig.hash === hash ? vorig : { hash, datum: vandaag };
+}
+
+/* changefreq en priority staan er niet meer in. Google gebruikt ze niet - dat
+   zegt het zelf - en priority was hier bovendien verzonnen: /coaching/ en
+   /contact/ stonden beide op 0.8 omdat ze niet de startpagina zijn, niet omdat
+   iemand ze had afgewogen. Een veld dat niet gelezen wordt en niet waar is
+   hoort niet in een bestand dat bewijst hoe de site in elkaar zit. */
 const SITEMAP = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${PAGES.map(
-  (p) =>
-    "  <url><loc>" +
-    SITE.origin +
-    p.slug +
-    "</loc><lastmod>" +
-    today +
-    "</lastmod><changefreq>monthly</changefreq><priority>" +
-    (p.slug === "/" ? "1.0" : "0.8") +
-    "</priority></url>"
+  (p) => "  <url><loc>" + SITE.origin + p.slug + "</loc><lastmod>" + datums[p.slug].datum + "</lastmod></url>"
 ).join("\n")}
 </urlset>
 `;
@@ -1235,10 +1262,10 @@ const HEADERS = `/*
 await rm(DIST, { recursive: true, force: true });
 await mkdir(DIST, { recursive: true });
 
-for (const p of PAGES) {
-  const dir = p.slug === "/" ? DIST : join(DIST, p.slug);
+for (const { page, html } of RENDERED) {
+  const dir = page.slug === "/" ? DIST : join(DIST, page.slug);
   await mkdir(dir, { recursive: true });
-  await writeFile(join(dir, "index.html"), layout(p), "utf8");
+  await writeFile(join(dir, "index.html"), html, "utf8");
 }
 
 /* src/assets/img/origineel/ blijft achter: dat zijn Dagmars eigen foto's zoals
@@ -1256,4 +1283,14 @@ await writeFile(join(DIST, "sitemap.xml"), SITEMAP, "utf8");
 await writeFile(join(DIST, "404.html"), NOT_FOUND, "utf8");
 await writeFile(join(DIST, "_headers"), HEADERS, "utf8");
 
-console.log("Built " + PAGES.length + " pages to dist/ (" + SITE.origin + ")");
+/* Naast dist/, want dit is bron en niet uitvoer: de volgende build moet weten
+   welke hash bij welke datum hoorde, anders is lastmod weer de bouwdatum. */
+await writeFile(join(DATUM_BESTAND), JSON.stringify(datums, null, 2) + "\n", "utf8");
+
+/* Tellen op "hash is gewijzigd", niet op "datum is vandaag": op de dag dat een
+   pagina verzet werd zijn die twee niet te onderscheiden, en dan meldt elke
+   herbouw diezelfde dag opnieuw dat alles vernieuwd is. */
+const verzet = PAGES.filter((p) => vorigeDatums[p.slug]?.hash !== datums[p.slug].hash).length;
+console.log(
+  "Built " + PAGES.length + " pages to dist/ (" + SITE.origin + ") - lastmod verzet op " + verzet + " pagina('s)"
+);

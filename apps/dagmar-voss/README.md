@@ -94,31 +94,125 @@ pad uit `claudius/node_modules`; nu is het een devDependency van deze app.
 
 `shots/` staat in `.gitignore`: meetresultaat, elke run schrijft het opnieuw.
 
-## Het adres
+## De sitemap
 
-Staat op `dagmarvoss-concept.jouwidealewebsite.nl`, de worker heet
-`dagmar-voss`. Dat adres is met de klant gedeeld en moet dus blijven
-antwoorden; het hing tot 10-10-2026 aan de worker `dagmarvoss-concept` in
+`lastmod` is de dag waarop de pagina veranderde, niet de dag waarop we bouwden.
+Dat stond fout tot 10-10-2026: elke build zette de bouwdatum op alle acht, dus
+de sitemap riep elke keer "alle acht zijn vernieuwd" terwijl er een komma in
+één pagina was gewijzigd. Een crawler die dat een paar keer naloopt gaat
+lastmod van deze site negeren, en dan is het signaal weg op het moment dat er
+écht iets verandert.
+
+`build.mjs` hasht daarom de html van elke pagina en houdt in
+**`sitemap-datums.json`** (staat in git, naast `dist/` want het is bron en geen
+uitvoer) bij welke hash bij welke datum hoorde. De datum verzet alleen als de
+hash wijzigt. De Mapbox-sleutel gaat vóór het hashen uit de html — die rouleert
+en zegt niets over de inhoud van `/contact/`. De build meldt op hoeveel
+pagina's lastmod verzet is; bij een herbouw zonder wijziging is dat 0.
+
+Nagemeten in beide richtingen: alle acht datums teruggezet naar 2026-09-01 en
+opnieuw gebouwd houdt ze op 2026-09-01 (0 verzet), en één hash vervalsen verzet
+precies die ene pagina.
+
+`changefreq` en `priority` staan er niet meer in. Google gebruikt ze niet — dat
+zegt het zelf — en `priority` was hier bovendien verzonnen: `/coaching/` en
+`/contact/` stonden beide op 0.8 omdat ze niet de startpagina zijn, niet omdat
+iemand ze had afgewogen.
+
+## De drie adressen
+
+De worker heet `dagmar-voss` en draait op drie hosts. `worker.mjs` doet de
+hostlogica, `wrangler.jsonc` de routes:
+
+| host | wat het doet |
+|---|---|
+| `dagmarvoss.nl` | de site |
+| `www.dagmarvoss.nl` | 301 naar de apex, pad en zoekreeks mee |
+| `dagmarvoss-concept.jouwidealewebsite.nl` | de site, maar met `X-Robots-Tag: noindex` |
+
+Waarom www een 301 krijgt in plaats van dezelfde site: twee hosts met een 200
+op dezelfde inhoud is voor een zoekmachine twee sites. De canonical is een
+advies, een 301 is een feit. `http` gaat hier ook naar `https` — Always Use
+HTTPS staat niet vanzelf aan op een nieuwe zone en het wrangler-token mag
+zone-instellingen alleen lezen (zie de root CLAUDE.md, cdlf liep daar op
+10-10-2026 tegenaan met een gewone 200 op http).
+
+Het conceptadres is met de klant gedeeld en blijft dus antwoorden, maar
+`noindex` — anders staan er twee indexeerbare kopieën van dezelfde acht
+pagina's en is die van ons de kopie zonder autoriteit. Een 301 zou netter zijn
+en staat klaar als `CONCEPT_OMLEIDEN` in `worker.mjs`; die kan pas aan als de
+nameservers om zijn (zie hieronder), want tot dan maakt een 301 onze site
+onbereikbaar, ook voor wie hem komt nakijken.
+
+**Dit werkt alleen met `run_worker_first: true`.** Workers assets levert een
+bestand dat in `dist/` staat zelf uit en draait de worker dan niet — die is
+standaard alleen de terugval voor wat er niet ligt. Zonder die vlag gaat de
+omleiding van www nooit af en geven www en het conceptadres allebei een gewone
+200 met de hele site erop: precies de twee kopieën die dit moet voorkomen.
+Let op bij het testen: **`wrangler dev` emuleert `run_worker_first` niet** (4.85
+gemeten) — lokaal levert assets alles uit, de worker komt er niet aan te pas en
+`--local-protocol=https` verandert daar niets aan. Meet het dus na op de live
+site, met `curl`:
+
+```bash
+curl -s -o /dev/null -w "%{http_code} [%header{x-robots-tag}]\n" \
+  https://dagmarvoss-concept.jouwidealewebsite.nl/        # 200 [noindex, nofollow]
+```
+
+Die ene meting bewijst dat de worker vóór assets draait.
+
+## De knip naar dagmarvoss.nl is nog niet gemaakt
+
+`dagmarvoss.nl` en `www.dagmarvoss.nl` hangen als custom domain aan deze worker
+(10-10-2026) en de build schrijft alle canonicals, og:url's, sitemap-items en
+`@id`'s al naar het kale adres. **Toch serveren ze nog niet van ons**, en dat
+heeft één oorzaak:
+
+> De nameservers van `dagmarvoss.nl` staan bij Antagonist
+> (`webhostingserver.g1-dns.one` / `.com`). De zone staat in ons Cloudflare op
+> **`pending`** — Cloudflare is niet gezaghebbend, dus onze routes worden niet
+> gevraagd. Op de apex staat nu haar eigen site (Carrd) en www 301't daar al
+> naar de apex.
+
+Zolang dat zo is, is het conceptadres het enige dat onze site uitlevert, en
+staan de canonicals naar een adres dat nog van haar is. Dat is bewust: het
+houdt onze kopie uit de index en zet het doel alvast goed.
+
+**Wat er moet gebeuren, en door wie:** bij de registrar (Antagonist, haar
+account) de nameservers omzetten naar `dean.ns.cloudflare.com` en
+`lindsey.ns.cloudflare.com`. Dat is geen bouwstap maar een knip die zij
+meemaakt: op dat moment is onze zone gezaghebbend, verdwijnt haar Carrd-site
+van het adres en komt deze site ervoor.
+
+Haar mail breekt daar niet op, want de zone is al ingericht. Nagemeten tegen de
+Antagonist-nameservers, alle tien records staan gelijk in onze zone:
+
+- `MX 10 mailserver.purelymail.com`
+- `TXT v=spf1 include:_spf.purelymail.com ~all`
+- `TXT purelymail_ownership_proof=df51879466…` (woordelijk gelijk)
+- `_dmarc` → `dmarcroot.purelymail.com`
+- `purelymail1/2/3._domainkey` → `key1/2/3.dkimroot.purelymail.com`
+- `autoconfig` → `autoconfig.purelymail.com`, `_autodiscover._tcp` SRV → `autodiscover.purelymail.com`
+- `TXT google-site-verification=tqS515PfAVsbm26rMQTXy-4QgWyiH8N_2JcgwNgDdcY`
+  (die laatste betekent dat het domein al in een Search Console-account
+  geverifieerd is — niet in het onze)
+
+**Van die records afblijven.** Een MX of DKIM die onderweg sneuvelt valt niet
+op aan de site maar aan post die niet aankomt, en dat merkt ze dagen later.
+
+Eén verschil dat wél opvalt na de knip: `mail`, `ftp` en `smtp` wijzen bij
+Antagonist naar `2a03:3c00:a002:175::1000` (hun webhosting) en staan niet in
+onze zone, dus die namen gaan niet meer resolven. Haar site staat op Carrd en
+haar mail op Purelymail, dus er hangt niets van af — maar gebruikt ze
+`ftp.dagmarvoss.nl` of een mailclient die `smtp.dagmarvoss.nl` heeft staan, dan
+is dat het ding om eerst te vragen.
+
+Na de knip: `pnpm --filter @jiw/dagmar-voss ship` (de build staat al op het
+goede adres), `CONCEPT_OMLEIDEN` in `worker.mjs` op `true` voor de 301 van het
+conceptadres, en in Search Console het kale adres als property toevoegen.
+
+Het conceptadres hing tot 10-10-2026 aan de worker `dagmarvoss-concept` in
 `claudius/playground` en is met de API-route uit de root CLAUDE.md overgezet
 (die zone zit op precies 100 custom domains, dus eerst de oude vermelding
 weghalen, dan de nieuwe erin — een `override_existing_origin` alleen wordt daar
 met 100122 geweigerd).
-
-**`dagmarvoss.nl` is nog van de klant zelf.** Daar staat op dit moment haar
-eigen site live, met haar mail (Purelymail) op dezelfde zone. Omzetten is dus
-geen bouwstap maar een knip die zij meemaakt. Als het zover is:
-
-1. `SITE.origin` in `build.mjs` op `https://dagmarvoss.nl` (of
-   `SITE_ORIGIN=... pnpm build`) — daar hangen alle canonicals, og:url's,
-   sitemap-items en `@id`'s aan, dus dat is de hele tekstkant.
-2. `dagmarvoss.nl` en `www.dagmarvoss.nl` als `custom_domain` in
-   `wrangler.jsonc`, en op die zone een 301-regel van `www` naar de apex. Een
-   canonical alleen laat twee hosts met een 200 naast elkaar staan.
-3. Het concept-adres eraan laten hangen zolang de link rondgaat, of er een 301
-   naar de apex op zetten.
-4. De MX-, DKIM-, SPF- en DMARC-records van Purelymail op die zone niet
-   aanraken — anders valt haar mail om terwijl de site goed gaat.
-
-Zolang die knip niet gemaakt is, staat onze kopie indexeerbaar naast haar eigen
-site op hetzelfde merk. Wil je dat liever niet, dan is dat één regel
-`X-Robots-Tag: noindex` in de `_headers` die `build.mjs` schrijft.

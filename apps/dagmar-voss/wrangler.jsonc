@@ -6,8 +6,17 @@
   "observability": {
     "enabled": true
   },
+  // worker.mjs doet de hosts: www -> apex, http -> https, en noindex op het
+  // conceptadres. De acht paginas zelf komen uit dist/ via de assets-binding.
+  "main": "worker.mjs",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
+    // Zonder dit draait de worker NIET voor een pad dat in dist/ ligt - assets
+    // wint dan en levert het bestand zelf uit. De omleiding van www zou dus
+    // nooit afgaan en www.dagmarvoss.nl gaf een gewone 200 met de hele site
+    // erop. Zie de kop van worker.mjs en de root CLAUDE.md.
+    "run_worker_first": true,
     // Een adres per pagina, met de slash: /coaching/. Dat is de vorm die de
     // canonical, de sitemap en elke interne link al gebruiken, dus /coaching
     // komt met een omleiding op de juiste terecht in plaats van er met een 200
@@ -19,21 +28,26 @@
     // startpagina met een 200 - die tweede leest Google als een soft 404.
     "not_found_handling": "404-page"
   },
-  // Geen worker: alle acht paginas liggen compleet in dist/ en komen van de
-  // edge af. Er is geen formulier-endpoint en geen hydratatie, dus er is ook
-  // niets om een worker voor te laten draaien.
+  // Het kale adres is de site; www leidt ernaartoe. Beide zijn als custom
+  // domain aan deze worker gehangen op 10-10-2026.
   //
-  // Dit adres is van het concept en is met de klant gedeeld, dus het moet
-  // blijven antwoorden. Het stond tot de verhuizing op de worker
-  // `dagmarvoss-concept` in claudius/playground; die is daarna leeggehaald.
-  //
-  // De overstap naar dagmarvoss.nl is nog niet gemaakt: daar staat de eigen
-  // site van de klant nog live. Zodra dat besloten is: SITE.origin in
-  // build.mjs omzetten (of SITE_ORIGIN meegeven), hier `dagmarvoss.nl` en
-  // `www.dagmarvoss.nl` als custom_domain bijzetten, en op die zone een
-  // 301-regel van www naar de apex - een canonical alleen laat twee hosts met
-  // een 200 naast elkaar staan. Zie de root CLAUDE.md.
+  // LET OP - de knip is nog niet gemaakt: de nameservers van dagmarvoss.nl
+  // staan bij Antagonist (webhostingserver.g1-dns.one/.com) en de zone staat
+  // in Cloudflare dus op `pending`. Deze twee routes bestaan, maar ze gaan pas
+  // antwoorden als de nameservers naar dean/lindsey.ns.cloudflare.com wijzen.
+  // Tot dan levert dagmarvoss.nl Dagmars eigen Carrd-site uit. Zie de README.
   "routes": [
+    {
+      "pattern": "dagmarvoss.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.dagmarvoss.nl",
+      "custom_domain": true
+    },
+    // Het conceptadres is met de klant gedeeld, dus het moet blijven
+    // antwoorden. Het levert de site uit met noindex (worker.mjs), zodat er
+    // niet twee indexeerbare kopieen naast elkaar staan.
     {
       "pattern": "dagmarvoss-concept.jouwidealewebsite.nl",
       "custom_domain": true
