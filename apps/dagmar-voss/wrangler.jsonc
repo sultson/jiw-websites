@@ -1,0 +1,42 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "dagmar-voss",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    // Een adres per pagina, met de slash: /coaching/. Dat is de vorm die de
+    // canonical, de sitemap en elke interne link al gebruiken, dus /coaching
+    // komt met een omleiding op de juiste terecht in plaats van er met een 200
+    // naast te gaan staan. Cloudflare antwoordt met een 307 en niet met een
+    // 301 - niemand linkt naar de vorm zonder slash, dus daar gaat geen kracht
+    // door verloren.
+    "html_handling": "force-trailing-slash",
+    // Een onbekend pad krijgt dist/404.html *met* status 404, niet de
+    // startpagina met een 200 - die tweede leest Google als een soft 404.
+    "not_found_handling": "404-page"
+  },
+  // Geen worker: alle acht paginas liggen compleet in dist/ en komen van de
+  // edge af. Er is geen formulier-endpoint en geen hydratatie, dus er is ook
+  // niets om een worker voor te laten draaien.
+  //
+  // Dit adres is van het concept en is met de klant gedeeld, dus het moet
+  // blijven antwoorden. Het stond tot de verhuizing op de worker
+  // `dagmarvoss-concept` in claudius/playground; die is daarna leeggehaald.
+  //
+  // De overstap naar dagmarvoss.nl is nog niet gemaakt: daar staat de eigen
+  // site van de klant nog live. Zodra dat besloten is: SITE.origin in
+  // build.mjs omzetten (of SITE_ORIGIN meegeven), hier `dagmarvoss.nl` en
+  // `www.dagmarvoss.nl` als custom_domain bijzetten, en op die zone een
+  // 301-regel van www naar de apex - een canonical alleen laat twee hosts met
+  // een 200 naast elkaar staan. Zie de root CLAUDE.md.
+  "routes": [
+    {
+      "pattern": "dagmarvoss-concept.jouwidealewebsite.nl",
+      "custom_domain": true
+    }
+  ]
+}

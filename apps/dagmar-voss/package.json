@@ -1,0 +1,23 @@
+{
+  "name": "@jiw/dagmar-voss",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs && node tools/prerender.mjs",
+    "dev": "pnpm build && wrangler dev --port=3071",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "prerender": "node tools/prerender.mjs",
+    "zonder-js": "node tools/zonder-js.mjs",
+    "contrast": "node tools/check.mjs",
+    "draad": "node tools/audit.mjs",
+    "perf": "node tools/perf.mjs",
+    "verifieer": "node tools/verifieer.mjs",
+    "shots": "node tools/shot.mjs",
+    "live": "node tools/live.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

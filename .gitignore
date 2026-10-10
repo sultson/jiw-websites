@@ -87,6 +87,10 @@ apps/novera-bouw/_ref/shots/
 # opnieuw uit de echte renderer.
 apps/jasm-flowers/dist-preview/
 
+# dagmar-voss: schermafdrukken van verifieer.mjs / shot.mjs. Meetresultaat, geen
+# bron. branding-kit/ is wel bron (de merkgids van de klant) en gaat dus mee.
+apps/dagmar-voss/shots/
+
 # rh-klusservice is de uitzondering op de dist-regel bovenaan: dist/ IS de bron.
 # index.html en projecten/index.html zijn handwerk, en dist/foto/ bevat de
 # originele foto's waar maak-plaatjes.mjs zijn varianten uit maakt - die staan
