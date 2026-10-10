@@ -1,9 +1,9 @@
 import {useEffect, useRef, useState} from 'react';
 import {
-  ArrowLeft, ArrowRight, Check, Flower2, Info, Leaf, Loader2, Mail, MessageCircle, Package,
+  ArrowLeft, ArrowRight, Check, Flower2, Info, Leaf, Loader2, Mail, Package,
   Phone, Store, TreePine, Truck,
 } from 'lucide-react';
-import {STRAAT, TEL, TEL_DISPLAY, WHATSAPP, useKnopInBeeld} from './ui';
+import {STRAAT, TEL, TEL_DISPLAY, WA_GROEN, WHATSAPP, WhatsAppMerk, useKnopInBeeld} from './ui';
 
 /* ------------------------------------------------------------------ */
 /*  Waar een aanvraag naartoe gaat                                     */
@@ -739,8 +739,7 @@ export default function AanvraagFormulier() {
 
           <p className="mt-4 flex items-start gap-2.5 rounded-xl border border-accent/25 bg-accent/[0.07] px-4 py-3 text-sm leading-relaxed text-white/75">
             <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-            Uw aanvraag komt bij ons binnen en u krijgt meteen een bevestiging per mail, met alles wat u
-            hier heeft ingevuld.
+            U krijgt meteen een bevestiging per mail, met alles wat u heeft ingevuld.
           </p>
 
           {/* Dit formulier is een aanvraag, geen bestelling: er wordt hier niet
@@ -748,8 +747,7 @@ export default function AanvraagFormulier() {
               bezoeker op versturen drukt en niet pas achteraf. */}
           <p className="mt-2.5 flex items-start gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm leading-relaxed text-white/60">
             <Info className="mt-0.5 h-4 w-4 shrink-0 text-white/40" />
-            Dit is een aanvraag en nog geen bestelling. U hoort van ons wat mogelijk is en wat het kost.
-            Pas als u dat heeft afgesproken en betaald, staat uw bestelling vast.
+            Nog geen bestelling: die staat pas vast als u het met ons heeft afgesproken en betaald.
           </p>
 
           {/* Ging het mis, dan is de aanvraag niet weg: hij staat hier nog en
@@ -769,9 +767,10 @@ export default function AanvraagFormulier() {
                   href={`${WHATSAPP}?text=${encodeURIComponent(tekstVanNu())}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-ink transition hover:bg-white/90"
+                  className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold text-white transition hover:brightness-110"
+                  style={{backgroundColor: WA_GROEN}}
                 >
-                  <MessageCircle className="h-4 w-4" /> Via WhatsApp
+                  <WhatsAppMerk className="h-4 w-4" /> Via WhatsApp
                 </a>
               </div>
             </div>

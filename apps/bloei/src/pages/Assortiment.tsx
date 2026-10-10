@@ -79,7 +79,7 @@ const AFDELINGEN = [
       'Siergrassen, heide en buxusbollen',
       'Hangpotten en terraspotten',
       'Bomen in pot: olijf, palm en sierheester',
-      'Graszaad voor doorzaaien, schaduw en nieuw gazon',
+      'Zaden: gras, bloemen, groenten, kruiden en bollen',
     ],
   },
 ];
@@ -96,30 +96,49 @@ const GROND = [
 ];
 
 /**
- * Graszaad krijgt een eigen blok en niet één regel in de lijst hierboven.
- * Iemand met een kale plek in het gazon zoekt gericht, en wil voor hij in de
- * auto stapt weten of het soort dat hij nodig heeft er ligt.
+ * Zaden krijgen een eigen blok en niet één regel in de lijst hierboven. Iemand
+ * die zaad komt halen zoekt gericht, en wil voor hij in de auto stapt weten of
+ * het soort dat hij nodig heeft er ligt.
  *
- * NB: welke soorten en merken er werkelijk liggen is nog niet bevestigd — dit
- * zijn de vier gangbare toepassingen. Staat ook in NOTITIES.md.
+ * Breed getrokken op 08-10-2026: de winkel heeft naar eigen zeggen veel zaden,
+ * niet alleen gras. Welke soorten en merken er werkelijk liggen is nog niet
+ * bevestigd — dit zijn de gangbare groepen. Staat ook in NOTITIES.md.
  */
 const ZADEN = [
   {
-    titel: 'Doorzaaien',
-    tekst: 'Om kale plekken in een bestaand gazon bij te werken. Groeit snel aan tussen het gras dat er al staat.',
+    titel: 'Gras',
+    tekst: 'Doorzaaien, nieuw gazon, schaduw en speelgazon. Elk gazon vraagt iets anders.',
   },
   {
-    titel: 'Nieuw gazon',
-    tekst: 'Om een gazon vanaf niets in te zaaien, na het aanleggen van een tuin of het weghalen van bestrating.',
+    titel: 'Bloemen',
+    tekst: 'Eenjarige zomerbloeiers en bloemenmengsels voor de border of een strook langs het pad.',
   },
   {
-    titel: 'Schaduw',
-    tekst: 'Voor onder bomen en langs de schutting, waar maar een paar uur per dag zon komt.',
+    titel: 'Groenten',
+    tekst: 'Voor de tuin, de bak op het balkon of de volkstuin. Wat er gezaaid kan worden verschuift met het seizoen.',
   },
   {
-    titel: 'Speelgazon',
-    tekst: 'Tegen spelen en lopen. Steviger gras dat zich sneller herstelt, voor een tuin met kinderen of een hond.',
+    titel: 'Kruiden',
+    tekst: 'Basilicum, peterselie, bieslook en de rest, voor op de keukenvensterbank of buiten in een pot.',
   },
+  {
+    titel: 'Bollen en knollen',
+    tekst: 'Najaar de voorjaarsbollen, voorjaar de zomerbloeiers. Per zak of los te scheppen.',
+  },
+  {
+    titel: 'Bijen en vlinders',
+    tekst: 'Mengsels die bloeien voor insecten, voor wie een hoek van de tuin wil laten staan.',
+  },
+];
+
+/* Gras blijft de meest gerichte vraag van allemaal: wie een kale plek heeft
+   wil weten of juist zijn soort er ligt. Daarom hieronder apart uitgeschreven
+   in plaats van alleen de regel in de tegel. */
+const GRASZAAD = [
+  ['Doorzaaien', 'Kale plekken in een bestaand gazon bijwerken'],
+  ['Nieuw gazon', 'Vanaf niets inzaaien, na aanleg of het weghalen van bestrating'],
+  ['Schaduw', 'Onder bomen en langs de schutting, een paar uur zon per dag'],
+  ['Speelgazon', 'Steviger gras dat zich herstelt, voor kinderen of een hond'],
 ];
 
 export default function Assortiment() {
@@ -226,24 +245,24 @@ export default function Assortiment() {
 
       {/* ------------------------------------------------------------------ */}
 
-      {/* Zaden staan apart van grond en mest: dit is een gerichte aankoop. Vier
-          tegels in plaats van vier regels, zodat iemand in één blik ziet of
-          zijn soort erbij staat. */}
+      {/* Zaden staan apart van grond en mest: dit is een gerichte aankoop.
+          Tegels in plaats van regels, zodat iemand in één blik ziet of zijn
+          soort erbij staat. Gras daaronder nog een niveau verder uitgesplitst. */}
       <Section id="zaden" tone="wit">
         <div className="max-w-3xl">
           <Kicker>Buiten, bij de grond</Kicker>
           <h2 className="flex items-center gap-3 text-3xl font-semibold sm:text-4xl">
             <Wheat className="h-7 w-7 shrink-0 text-accent-dark" strokeWidth={1.75} />
-            Graszaad
+            Zaden
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink/70">
-            Niet elk gazon vraagt hetzelfde zaad. Een kale plek onder een boom heeft iets anders nodig
-            dan een pas aangelegde tuin of een grasveld waar kinderen op spelen. Vertel waar het om
-            gaat, dan zoeken we het juiste soort erbij.
+            Hier staat een flinke wand zaden: gras, bloemen, groenten en kruiden, plus bollen voor het
+            seizoen. Wat er precies ligt verschuift met het jaar, want zaaien is een kwestie van de
+            juiste maand. Vertel wat u wilt zaaien en waar, dan zoeken we het juiste zakje erbij.
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {ZADEN.map((z) => (
             <div
               key={z.titel}
@@ -256,9 +275,27 @@ export default function Assortiment() {
           ))}
         </div>
 
+        {/* Gras apart, want dit is de vraag waar iemand het meest gericht voor
+            komt: niet "heeft u graszaad" maar "heeft u iets voor de schaduw". */}
+        <div className="mt-10 rounded-2xl border border-line bg-cream p-6 sm:p-8">
+          <h3 className="text-xl font-semibold">Graszaad per soort gazon</h3>
+          <p className="mt-2 max-w-3xl leading-relaxed text-ink/60">
+            Een kale plek onder een boom heeft iets anders nodig dan een pas aangelegde tuin of een
+            grasveld waar kinderen op spelen.
+          </p>
+          <dl className="mt-6 grid gap-x-10 gap-y-4 sm:grid-cols-2">
+            {GRASZAAD.map(([kop, onder]) => (
+              <div key={kop} className="border-b border-line pb-4">
+                <dt className="font-semibold">{kop}</dt>
+                <dd className="mt-1 text-sm leading-relaxed text-ink/60">{onder}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
         <p className="mt-8 max-w-3xl rounded-2xl border border-accent-dark/20 bg-accent-dark/[0.06] p-5 leading-relaxed text-ink/75">
-          Zoekt u een bepaald merk of een mengsel dat hier niet staat? Laat het ons weten, we kunnen
-          veel bestellen.
+          Zoekt u een bepaald merk, een mengsel of een soort die hier niet staat? Laat het ons weten,
+          we kunnen veel bestellen.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">

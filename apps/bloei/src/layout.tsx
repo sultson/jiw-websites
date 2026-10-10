@@ -1,13 +1,13 @@
 import {useEffect, useState} from 'react';
 import {
-  ArrowLeft, Camera, Menu, MessageCircle, Navigation, Phone, X,
+  ArrowLeft, Facebook, Menu, Navigation, Phone, X,
 } from 'lucide-react';
 import Aanvraag from './Aanvraag';
 import KaartLazy from './KaartLazy';
 import {usePad} from './pad';
 import {
   Bullet, FACEBOOK, Kicker, Merk, PLAATS, ROUTE, STREEKKERNEN, Section, STRAAT, TEL,
-  TEL_DISPLAY, WHATSAPP, useFormKnopInBeeld, KNOP_HOOFD,
+  TEL_DISPLAY, WA_DONKER, WA_GROEN, WHATSAPP, WhatsAppMerk, useFormKnopInBeeld, KNOP_HOOFD,
 } from './ui';
 
 /* ------------------------------------------------------------------ */
@@ -26,16 +26,23 @@ import {
 /* ------------------------------------------------------------------ */
 
 /**
- * De winkel vroeg om licht groen in plaats van zwart. Bij Fleurig! was deze
- * balk bijna zwart (#0d2a21) en dat is precies waar ze vanaf wilden, dus staat
- * hij hier op room: lichtgroen met donkergroene letters, en een lijn eronder in
- * plaats van een schaduw.
+ * Een zwevende kaart in plaats van een balk van rand tot rand.
  *
- * Hier stond eerst blad plus de naam als tekst, omdat hun naambord zijn eigen
- * groene vlak meebrengt en op een licht vlak als een losse postzegel ligt. De
- * winkel wil het echte bord bovenaan, dus dat staat er nu: hetzelfde plaatje
- * als in de voet, op de hoogte van de balk. Het groene vlak is daarmee een
- * bewuste keuze van de winkel en geen ongelukje.
+ * Hij stond hier eerst als een strook op room met een lijn eronder, met het
+ * naambord erin geknipt uit de foto van de gevel. Dat bord bracht zijn eigen
+ * groene vlak mee en lag daarmee als een postzegel op een lichte strook. Nu is
+ * het logo vrijstaand (zie Merk) en staat de balk zelf op het groen van hun
+ * bord: dan is het groen om het logo heen de kaart, en niet een rechthoekje
+ * eromheen.
+ *
+ * Dat hij zweeft doet nog iets: de kopfoto loopt eronder door tot de bovenrand
+ * van het scherm, dus de foto begint niet pas onder een balk maar vult het hele
+ * beeld. Daar is die foto goed genoeg voor.
+ *
+ * De hoogte komt uit het logo en niet andersom. Het blad steekt boven de letters
+ * uit en de vuurtoren staat eronder, dus het logo is veel hoger dan het stuk
+ * bord dat hier eerst zat; een balk op de oude hoogte snijdt de punt van het
+ * blad eraf. Vandaar een kaart die ruimer is dan gebruikelijk.
  */
 const MENU: [string, string][] = [
   ['Assortiment', '/assortiment/'],
@@ -71,70 +78,72 @@ export function Nav() {
       >
         Naar de inhoud
       </a>
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-cream/95 text-ink backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-5 px-5 py-3 sm:px-8">
-        <a href={thuis ? '#top' : '/'} aria-label="Bloei! Ouddorp, naar boven" className="text-ink">
-          <Merk maat="h-[38px] sm:h-[44px]" plaatje />
-        </a>
-
-        {/* Zes items passen op 1024 px niet naast het logo en het nummer: dan
-            breekt "Over ons" over twee regels en wordt de balk hoger. Vanaf
-            1280 px is er ruimte; daaronder doet het uitklapmenu hetzelfde werk
-            en staat het nummer er nog steeds naast. */}
-        <nav className="hidden items-center gap-6 xl:flex">
-          {MENU.map(([label, href]) => (
-            <a
-              key={href}
-              href={naar(href)}
-              className="whitespace-nowrap text-sm font-medium text-ink/70 transition hover:text-accent-dark"
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2.5">
-          {/* Het nummer stond bij Fleurig! als volle knop in de balk, even zwaar
-              als de knop in de hero. Twee hoofdknoppen tegelijk in beeld laat de
-              bezoeker kiezen in plaats van volgen, dus hier alleen een rand. Hij
-              staat buiten het menu, zodat bellen ook op een tablet één klik
-              blijft. */}
-          <a
-            href={`tel:${TEL}`}
-            className="hidden items-center gap-2 whitespace-nowrap rounded-full border border-line px-4 py-2 text-sm font-semibold text-ink/80 transition hover:border-accent-dark hover:text-accent-dark sm:flex"
-          >
-            <Phone className="h-4 w-4 text-accent-dark" /> {TEL_DISPLAY}
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.5rem] bg-ink-soft/92 text-white shadow-[0_18px_50px_-24px_rgb(20_32_12_/_0.85)] ring-1 ring-white/10 backdrop-blur-xl sm:rounded-[1.85rem]">
+        <div className="flex items-center justify-between gap-5 px-4 py-2.5 sm:px-5 sm:py-3">
+          <a href={thuis ? '#top' : '/'} aria-label="Bloei! Ouddorp, naar boven">
+            <Merk maat="h-[44px] sm:h-[52px] xl:h-[58px]" plaatje />
           </a>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? 'Menu sluiten' : 'Menu openen'}
-            aria-expanded={open}
-            aria-controls="hoofdmenu"
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line text-accent-dark xl:hidden"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </div>
-
-      {open && (
-        <div id="hoofdmenu" className="border-t border-line bg-cream xl:hidden">
-          <div className="mx-auto max-w-6xl px-5 py-3">
+          {/* Zes items passen op 1024 px niet naast het logo en het nummer: dan
+              breekt "Over ons" over twee regels en wordt de kaart hoger. Vanaf
+              1280 px is er ruimte; daaronder doet het uitklapmenu hetzelfde werk
+              en staat het nummer er nog steeds naast. */}
+          <nav className="hidden items-center gap-6 xl:flex">
             {MENU.map(([label, href]) => (
               <a
                 key={href}
                 href={naar(href)}
-                onClick={() => setOpen(false)}
-                className="block border-b border-line py-3 text-sm font-medium text-ink/75 last:border-0"
+                className="whitespace-nowrap text-sm font-medium text-white/75 transition hover:text-accent"
               >
                 {label}
               </a>
             ))}
+          </nav>
+
+          <div className="flex items-center gap-2.5">
+            {/* Het nummer stond bij Fleurig! als volle knop in de balk, even zwaar
+                als de knop in de hero. Twee hoofdknoppen tegelijk in beeld laat de
+                bezoeker kiezen in plaats van volgen, dus hier alleen een rand. Hij
+                staat buiten het menu, zodat bellen ook op een tablet één klik
+                blijft. */}
+            <a
+              href={`tel:${TEL}`}
+              className="hidden items-center gap-2 whitespace-nowrap rounded-full border border-white/25 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-accent hover:bg-white/10 sm:flex"
+            >
+              <Phone className="h-4 w-4 text-accent" /> {TEL_DISPLAY}
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? 'Menu sluiten' : 'Menu openen'}
+              aria-expanded={open}
+              aria-controls="hoofdmenu"
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/25 text-accent transition hover:bg-white/10 xl:hidden"
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
-      )}
+
+        {open && (
+          <div id="hoofdmenu" className="border-t border-white/10 xl:hidden">
+            <div className="px-5 py-2">
+              {MENU.map(([label, href]) => (
+                <a
+                  key={href}
+                  href={naar(href)}
+                  onClick={() => setOpen(false)}
+                  className="block border-b border-white/10 py-3 text-sm font-medium text-white/80 last:border-0"
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </header>
     </>
   );
@@ -163,7 +172,7 @@ export function PaginaKop({
   children?: React.ReactNode;
 }) {
   return (
-    <Section tone="diep" ranken={1} className="pt-24 sm:pt-28">
+    <Section tone="diep" ranken={1} className="pt-32 sm:pt-40">
       <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
         <div>
           <a
@@ -203,22 +212,22 @@ export function PaginaKop({
  */
 export function VraagAan() {
   return (
-    <Section id="vraag-aan" tone="ink" ranken={2}>
+    <Section id="vraag-aan" tone="ink" ranken={2} className="pb-6 sm:pb-10">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-14">
         <div>
           <Kicker light>Aanvraag</Kicker>
           <h2 className="text-3xl font-semibold sm:text-4xl">Vertel wat u zoekt</h2>
           <p className="mt-4 leading-relaxed text-white/70">
-            Zoekt u iets wat op dit moment niet in de winkel staat, of wilt u een boeket, een
-            plantenbak of een cadeaupakket laten klaarmaken? In een paar korte stappen vertelt u wat u
-            nodig heeft en wanneer.
+            Een boeket, plantenbak of cadeaupakket op maat? Of staat het niet in de winkel? Vertel
+            in een paar stappen wat u zoekt.
           </p>
 
+          {/* Kort houden is hier het punt: drie regels van vier woorden lees je
+              in één blik, vier volle regels sla je over. */}
           <ul className="mt-7 space-y-3 text-sm text-white/80">
-            <Bullet light>U hoort van ons wat mogelijk is en wat het kost</Bullet>
-            <Bullet light>Een aanvraag, nog geen bestelling: u zit nergens aan vast</Bullet>
-            <Bullet light>Staat het er niet? Laat het ons weten, we kunnen veel regelen</Bullet>
-            <Bullet light>Liever persoonlijk? Loop binnen of bel ons</Bullet>
+            <Bullet light>U hoort wat kan en wat het kost</Bullet>
+            <Bullet light>Nog geen bestelling, u zit nergens aan vast</Bullet>
+            <Bullet light>Liever persoonlijk? Loop binnen of bel</Bullet>
           </ul>
 
           <div className="mt-8 space-y-3 border-t border-white/10 pt-7 text-sm">
@@ -226,7 +235,7 @@ export function VraagAan() {
               <Phone className="h-4 w-4 text-accent" /> {TEL_DISPLAY}
             </a>
             <a href={WHATSAPP} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-white/85 transition hover:text-accent">
-              <MessageCircle className="h-4 w-4 text-accent" /> WhatsApp
+              <WhatsAppMerk className="h-4 w-4" style={{color: WA_GROEN}} /> WhatsApp
             </a>
           </div>
         </div>
@@ -259,7 +268,7 @@ const ROOSTER: [string, string][] = [
  * Wit in plaats van room: "Vertel wat u zoekt" staat er vlak boven op het
  * donkere groen, en daaronder hoort een vlak dat daar duidelijk van verschilt.
  */
-export function Bezoek({streek = false}: {streek?: boolean} = {}) {
+export function Bezoek({streek = false, kraag = false}: {streek?: boolean; kraag?: boolean} = {}) {
   const [vandaag, setVandaag] = useState<string | null>(null);
 
   useEffect(() => {
@@ -268,14 +277,14 @@ export function Bezoek({streek = false}: {streek?: boolean} = {}) {
   }, []);
 
   return (
-    <Section id="bezoek" tone="wit">
+    <Section id="bezoek" tone="wit" kraag={kraag}>
       <div className="grid gap-10 lg:grid-cols-[1fr_1.25fr] lg:gap-14">
         <div>
           <Kicker>Waar u ons vindt</Kicker>
           <h2 className="text-3xl font-semibold sm:text-4xl">{STRAAT}, Ouddorp</h2>
           <p className="mt-4 leading-relaxed text-ink/65">
-            U ziet ons vanaf de weg staan: het groene bord op de gevel, de karren met planten ervoor en
-            het buitenterrein erachter. Parkeren kan voor de deur.
+            Het groene bord op de gevel, de karren met planten ervoor, het buitenterrein erachter.
+            Parkeren kan voor de deur.
           </p>
 
           {streek && (
@@ -309,7 +318,7 @@ export function Bezoek({streek = false}: {streek?: boolean} = {}) {
               <Phone className="h-4 w-4 shrink-0 text-accent-dark" /> {TEL_DISPLAY}
             </a>
             <a href={WHATSAPP} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-ink/80 transition hover:text-accent-dark">
-              <MessageCircle className="h-4 w-4 shrink-0 text-accent-dark" /> WhatsApp
+              <WhatsAppMerk className="h-4 w-4 shrink-0" style={{color: WA_DONKER}} /> WhatsApp
             </a>
           </div>
         </div>
@@ -351,19 +360,21 @@ export function Footer() {
     <footer className="bg-ink text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2 lg:col-span-1">
-          {/* Hier staat het hele bord wel als plaatje: het donkere vlak eronder
-              is precies waar dat groene bord voor gemaakt is. */}
-          <Merk maat="h-[54px]" plaatje />
+          {/* Het vrijstaande logo op het donkere vlak: crème letters op het
+              groen van hun bord, precies waar die letters voor gemaakt zijn. */}
+          <Merk maat="h-[72px]" plaatje />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/55">
             Bloemen, planten, tuin en wonen aan het Hogepad in Ouddorp. Binnen en buiten, het hele jaar
             door.
           </p>
           <div className="mt-5 flex gap-3">
             <a href={FACEBOOK} target="_blank" rel="noreferrer" aria-label="Facebook" className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white/70 transition hover:border-accent hover:text-accent">
-              <Camera className="h-4 w-4" />
+              <Facebook className="h-4 w-4" />
             </a>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white/70 transition hover:border-accent hover:text-accent">
-              <MessageCircle className="h-4 w-4" />
+            {/* Het eigen groen van WhatsApp, zodat deze er niet als derde
+                naamloze cirkel bij staat. */}
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid h-10 w-10 place-items-center rounded-full text-white transition hover:brightness-110" style={{backgroundColor: WA_GROEN}}>
+              <WhatsAppMerk className="h-[18px] w-[18px]" />
             </a>
           </div>
         </div>
@@ -443,9 +454,10 @@ export function MobielBalk() {
           target="_blank"
           rel="noreferrer"
           aria-label="Stuur een appje"
-          className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-white/25 text-accent"
+          className="grid h-12 w-12 shrink-0 place-items-center rounded-full"
+          style={{backgroundColor: WA_GROEN, color: '#fff'}}
         >
-          <MessageCircle className="h-5 w-5" />
+          <WhatsAppMerk className="h-[22px] w-[22px]" />
         </a>
       </div>
     </div>
@@ -468,7 +480,7 @@ export function Pagina({children}: {children: React.ReactNode}) {
       <main id="inhoud" className="pb-20 md:pb-0">
         {children}
         <VraagAan />
-        <Bezoek />
+        <Bezoek kraag />
       </main>
       <Footer />
       <MobielBalk />

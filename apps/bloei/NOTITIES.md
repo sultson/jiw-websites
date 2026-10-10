@@ -45,21 +45,30 @@ budgetveld in het formulier is één vrij invulveld geworden.
 
 ## Het logo
 
-Het aangeleverde logobestand is 358 × 252 px en daarmee te klein voor een balk op
-een scherm met hoge pixeldichtheid. Het woordmerk op de site komt daarom uit de
-foto van de gevel gesneden (`raw/maak-beelden.mjs`, functie `naambord`), wat ruim
-het dubbele geeft.
+Het logo staat vrijstaand op de site. Op 09-10 leverde Alfred het aan op fel
+magenta, juist zodat die achtergrond eruit te sleutelen is; `raw/maak-logo.mjs`
+doet dat en schrijft `public/img/logo-bloei.webp` (900 × 564, met alfakanaal) plus
+een controleplaatje op hun eigen groen. Opnieuw maken: `node raw/maak-logo.mjs`.
 
-Twee dingen om te vragen:
+Dat verving twee eerdere oplossingen. Het losse bestand dat er eerst lag was
+358 × 252 px en daarmee te klein voor een balk op een scherm met hoge
+pixeldichtheid; daarna stond er een stuk uit de foto van de gevel geknipt, en dat
+bracht het groene bord als rechthoek mee. Die uitsnede is weg (de functie
+`naambord` is uit `raw/maak-beelden.mjs` gehaald, `logobalk.webp` verwijderd).
 
-1. **Een vectorversie** (svg, ai of eps). Dit is nu urgenter dan het was: op
-   verzoek van Armando staat het hele bord nu ook in de balk bovenaan, op 38 px
-   (44 px vanaf `sm`). Het bord brengt daar zijn eigen groene vlak mee op een
-   lichtgroene balk. Met een vector kan het woordmerk als masker, los van dat
-   vlak, en staat het overal scherp.
-2. **De letters zelf.** In het bord lopen de O en de E in elkaar over, waardoor er
-   eerder `BLŒI!` dan `BLOEI!` staat. Op een gevel van tien meter afstand valt dat
-   weg, op een scherm van 40 pixels hoog niet. Dat is iets om te melden voordat
+Let op bij hoogtes: dit logo is 1,6 : 1, tegen 3 : 1 voor de oude uitsnede — het
+blad steekt boven de letters uit en de vuurtoren staat eronder. Een balk die op de
+oude verhouding gemaakt is snijdt de punt van het blad eraf. Vandaar dat de balk
+bovenaan nu een hogere, zwevende kaart is.
+
+Nog te vragen:
+
+1. **Een vectorversie** (svg, ai of eps). Minder urgent dan het was — 900 px is
+   genoeg voor elke plek waar het nu staat — maar voor drukwerk en voor een groot
+   beeldmerk nog steeds het vragen waard.
+2. **De letters zelf.** In het logo loopt het blad over de O en de E heen, waardoor
+   er eerder `BLŒI!` dan `BLOEI!` staat. Op een gevel van tien meter afstand valt
+   dat weg, op een scherm van 50 pixels hoog niet. Dat is iets om te melden voordat
    het op briefpapier en op een bestelbus staat.
 
 ## De foto's
@@ -94,11 +103,17 @@ De lijst die Armando doorgaf, punt voor punt:
   potgrond tuinaarde hydro korrels mest, houtsnippers* → `/assortiment/`, vier
   afdelingen plus een apart blok "Grond en mest".
 - *gras zaden* → eerst één regel in datzelfde blok, op verzoek (07-10) opgewaardeerd
-  naar een eigen blok `/assortiment/#zaden` met vier tegels: doorzaaien, nieuw
-  gazon, schaduw, speelgazon. **Nog te bevestigen:** welke soorten en merken er
-  werkelijk liggen. Dit zijn de vier gangbare toepassingen, niet hun voorraad.
-  Verkopen ze ook bloem- of groentezaad, dan hoort dat hier ook in; dat is niet
-  gevraagd en staat er dus niet op.
+  naar een eigen blok `/assortiment/#zaden`. Op 08-10 ("ze hebben in het algemeen
+  veel zaden") breed getrokken: zes tegels (gras, bloemen, groenten, kruiden,
+  bollen en knollen, bijen- en vlindermengsels) met daaronder graszaad
+  uitgesplitst naar doorzaaien, nieuw gazon, schaduw en speelgazon. Ook een
+  eigen vraag "Hebben jullie zaden?" bij Veelgesteld.
+  **Nog te bevestigen:** welke soorten en merken er werkelijk liggen. Dit zijn de
+  gangbare groepen, niet hun voorraad. Kloppen bollen/knollen en de
+  bijenmengsels niet, dan moeten die tegels eruit — die heb ik erbij gezet omdat
+  een zadenwand die compleet is er anders half uitziet, niet omdat ze genoemd
+  zijn. De tekst zegt nergens "wij hebben X op voorraad", alles staat in de vorm
+  "zeg wat u wilt zaaien, dan zoeken we het erbij".
 - *november/december > focus op kerst, groot op de website* → `/kerst/` plus een
   blok hoog op de homepage, boven de seizoenen en boven het abonnement.
 - *bloemen assortiment is aan het groeien ... kan je niet vinden wat je zoekt laat
@@ -128,6 +143,41 @@ lichtgroene vlak op rij en heeft de enige plek waar de bezoeker iets moet dóén
 niets dat hem van de rest scheidt. Ze staan in het groen van hun eigen bord
 (`#27351b`), niet in zwart. Wil de klant het overal licht, dan is dat
 `tone="ink"` → `tone="wit"` op twee plekken.
+
+Sinds 09-10 is de balk bovenaan de derde donkere plek: die stond op licht groen,
+maar het logo staat er nu vrijstaand in en crème letters horen op donker. Hij
+staat op `#3b4c2b`, het bord zelf.
+
+## Revisieronde 9 oktober
+
+Punten van Alfred, met wat er gebeurd is:
+
+- *frosted glass op de kaarten in de hero* → de twee panelen staan op 78 %
+  dekking met `backdrop-blur` plus `brightness` en `saturate` (constante `GLAS`
+  in `App.tsx`). Die laatste twee doen het werk dat de oude 95 % deed: ze maken
+  van wat er doorheen schijnt een lichte, kleurloze toon, zodat de foto zichtbaar
+  blijft als vorm maar niet als contrast. Alleen op die twee panelen en op de
+  balk bovenaan — `backdrop-filter` op tientallen kaarten tegelijk maakt het
+  scrollen op een middenklasse-telefoon stroperig.
+- *balk bovenaan als kaart, zachtere overgang naar de volgende sectie* → de balk
+  is een zwevende kaart met afgeronde hoeken; de kopfoto loopt er nu onderdoor tot
+  de bovenrand van het scherm. De overgang is een `kraag` op `Section`: het vlak
+  eronder schuift met afgeronde bovenhoeken over het vlak erboven. Staat op drie
+  naden waar donker of foto overgaat in licht (onder de hero, onder het kerstblok,
+  onder het formulier).
+- *"Kom gerust even rondkijken": kaarten veel te smal op desktop* → vijf kaarten
+  op één rij gaven 200 px per kaart. Nu een raster van zes kolommen: boven drie
+  kaarten van 2 kolommen (~350 px), onder twee van 3 (~535 px), met een liggender
+  uitsnede op die twee zodat de onderste rij niet zwaarder weegt dan de bovenste.
+- *kerst moet er ook als kerst uitzien* → `tone="kerst"` plus `kerst` op `Section`:
+  een dieper groen (`#1b2d15`), een lichtsnoer langs de bovenrand (`.kerstsnoer`
+  in `index.css`, een tegel van 300 px die zichzelf herhaalt), warm lamplicht dat
+  daaronder het vlak in zakt, en vurentakken in plaats van het gewone blad
+  (`Kerstgroen` in `ui.tsx`). Staat op het kerstblok op de homepage en op de
+  onderste sectie van `/kerst/`. **Nog steeds geen kerstfoto's** — dit is kleur en
+  vorm, het belooft nergens iets.
+- *Facebook-logo is een camera* → was `Camera` uit lucide; staat nu op `Facebook`,
+  op alle vier de plekken (voet, kerstblok, "Over ons", `/kerst/`).
 
 ## Techniek
 

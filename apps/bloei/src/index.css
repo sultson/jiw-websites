@@ -38,8 +38,9 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Fraunces", ui-serif, Georgia, serif;
-  /* Geen aparte logoletter: het woordmerk is hun eigen bord
-     (public/img/logobalk.webp), uit de foto van de gevel gesneden. */
+  /* Geen aparte logoletter: het woordmerk is hun eigen logo
+     (public/img/logo-bloei.webp), vrijgemaakt van de magenta achtergrond
+     waarop ze het aanleverden. Zie raw/maak-logo.mjs. */
 
   /* ----------------------------------------------------------------
      Alle kleuren komen uit het bord dat aan de gevel hangt.
@@ -74,6 +75,20 @@
   --color-bloesem: #ffb1c8;
   --color-roze-zacht: #fbeaf0;
 
+  /* November en december. De winkel haalt daar een groot deel van het jaar uit,
+     dus die twee maanden horen er ook uit te zien als kerst en niet als een
+     groene sectie met het woord kerst erin.
+
+     Er is nog geen enkele kerstfoto van deze winkel, en een gekochte sfeerfoto
+     van een andere kerstafdeling zet een verwachting die ze moeten waarmaken.
+     Dus komt het van kleur en vorm: een dieper groen dan de rest van de site,
+     warm lamplicht erop en vurentakken in plaats van het gewone blad.
+
+     `kerstlicht` is de kleur van een gloeilampje, `kerstbes` die van hulst. */
+  --color-kerstgroen: #1b2d15;
+  --color-kerstlicht: #f6c87a;
+  --color-kerstbes: #b3243f;
+
   /* Waar de hele pagina op staat: de lichte tint groen die ze vroegen. Geen
      grijs met een vleugje groen maar een echte tint, zodat hij naast het
      bord staat en er niet onder uit valt. `--color-crème` is de kleur van
@@ -96,7 +111,10 @@
   }
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    /* De balk bovenaan is een zwevende kaart met het hele logo erin en daarmee
+       hoger dan de strook die hier eerst stond. Staat dit getal te laag, dan
+       springt #bezoek naar een kop die half achter die kaart verdwijnt. */
+    scroll-padding-top: 7.5rem;
   }
 }
 
@@ -180,6 +198,89 @@
   .knop-bloem::before, .knop-bloem::after { transition: none; }
 }
 
+/**
+ * Eenmalig bij het openen van de pagina: de twee blaadjes komen achter de
+ * hoofdknop vandaan in plaats van er al te staan. Alleen op de eerste knop in
+ * de hero; verderop op de pagina staan ze gewoon stil.
+ *
+ * Ze beginnen klein en een stuk naar binnen geschoven, dus achter de knop
+ * (z-index -1), en groeien naar hun eigen rustpositie. Daarom staat er in de
+ * laatste stap precies hetzelfde als in de regels hierboven: zodra de animatie
+ * klaar is valt het blad terug op zijn basisvorm, en pakt hover het daar weer
+ * op. Met forwards zou de animatie die hover blokkeren.
+ *
+ * Geen fill-mode forwards, maar backwards: de vertraging aan het begin moet de
+ * blaadjes verborgen houden, niet eerst een tel volledig laten staan.
+ */
+.knop-bloem-groei::after {
+  animation: blad-groeit-boven 900ms cubic-bezier(0.18, 0.78, 0.26, 1) 260ms backwards;
+}
+
+.knop-bloem-groei::before {
+  animation: blad-groeit-onder 900ms cubic-bezier(0.18, 0.78, 0.26, 1) 440ms backwards;
+}
+
+@keyframes blad-groeit-boven {
+  from { transform: translate(6px, 14px) rotate(-62deg) scale(0.15); opacity: 0; }
+  45%  { opacity: 1; }
+  to   { transform: translate(0, 0) rotate(-10deg) scale(1); opacity: 1; }
+}
+
+@keyframes blad-groeit-onder {
+  from { transform: translate(-5px, -13px) rotate(96deg) scale(0.15); opacity: 0; }
+  45%  { opacity: 1; }
+  to   { transform: translate(0, 0) rotate(150deg) scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .knop-bloem-groei::before, .knop-bloem-groei::after { animation: none; }
+}
+
+/* ------------------------------------------------------------------ */
+/*  De kopfoto loopt trager mee dan de pagina                          */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Parallax, maar zonder scroll-listener in JavaScript. Dit is een
+ * scroll-driven animation: de browser koppelt de animatie aan de scrollpositie
+ * en rekent dat af op de compositor, buiten de hoofddraad om. Een listener die
+ * bij elke scrollstap een transform zet doet hetzelfde werk wél op de
+ * hoofddraad, en dat is op een middenklasse-telefoon precies het verschil
+ * tussen meelopen en achteraan hobbelen.
+ *
+ * Alleen de foto beweegt, nooit de tekst: dat blijft gewone HTML die bij de
+ * eerste weergave volledig staat waar hij hoort.
+ *
+ * De foto zakt mee naar beneden terwijl de pagina omhoog gaat, dus hij loopt
+ * netto langzamer dan de rest. Daardoor komt zijn bovenrand los van de
+ * sectierand, en daarom staat hij 12 procent boven en onder buiten het vlak:
+ * zo is er aan beide kanten rek en blijft de sectie altijd gevuld. De sectie
+ * zelf heeft overflow-hidden, dus van die overmaat is niets te zien.
+ *
+ * Browsers die scroll() niet kennen (Firefox op dit moment) krijgen de foto
+ * stil, op precies de plek waar hij nu ook staat. Geen fallback met een
+ * listener erachter: een stilstaande kopfoto is geen gemis.
+ */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-parallax {
+      top: -12%;
+      bottom: -12%;
+      animation: hero-parallax linear both;
+      animation-timeline: scroll(root block);
+      /* Loopt af tegen de tijd dat de hero uit beeld is; daarna blijft de
+         laatste stand staan (both). */
+      animation-range: 0 85vh;
+      will-change: transform;
+    }
+  }
+}
+
+@keyframes hero-parallax {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(0, 7.5%, 0); }
+}
+
 /* ------------------------------------------------------------------ */
 /*  Botanisch motief achter de donkere secties                         */
 /* ------------------------------------------------------------------ */
@@ -202,6 +303,29 @@
 @media (prefers-reduced-motion: reduce) {
   .groei { animation: none; opacity: 0; }
   html { scroll-behavior: auto; }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Lichtsnoer langs de bovenrand van de kerstsecties                  */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Eén doorhangend stuk snoer met vier lampjes, 300 px breed, dat zichzelf naast
+ * elkaar herhaalt. Daarom een achtergrondplaatje en niet een svg in de pagina:
+ * een svg die over de hele breedte gerekt wordt maakt van de lampjes ovalen en
+ * van de doorhang een andere curve per schermbreedte. Een tegel houdt op elk
+ * scherm dezelfde vorm en legt er alleen meer naast.
+ *
+ * De lampjes wisselen van kleur binnen de tegel — amber, crème, amber, hulstrood
+ * — want vier dezelfde bolletjes op rij leest als een stippellijn en niet als
+ * verlichting. Ze staan stil: dit is een winkelsite en geen etalage, en knipperen
+ * is precies het soort beweging waar deze sites buiten blijven.
+ */
+.kerstsnoer {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 76'><path d='M0 5 Q150 69 300 5' fill='none' stroke='%23e7e1c7' stroke-opacity='0.22' stroke-width='1.6'/><g stroke='%23e7e1c7' stroke-opacity='0.22' stroke-width='1.4'><path d='M60 33v7'/><path d='M120 45v7'/><path d='M180 45v7'/><path d='M240 33v7'/></g><g fill='%23f6c87a'><circle cx='60' cy='40' r='11' opacity='0.16'/><circle cx='240' cy='40' r='11' opacity='0.16'/></g><circle cx='120' cy='52' r='11' fill='%23e7e1c7' opacity='0.14'/><circle cx='180' cy='52' r='11' fill='%23b3243f' opacity='0.18'/><circle cx='60' cy='40' r='4.2' fill='%23f6c87a'/><circle cx='120' cy='52' r='4.2' fill='%23e7e1c7'/><circle cx='180' cy='52' r='4.2' fill='%23b3243f'/><circle cx='240' cy='40' r='4.2' fill='%23f6c87a'/></svg>");
+  background-repeat: repeat-x;
+  background-position: top center;
+  background-size: 300px 76px;
 }
 
 /* ------------------------------------------------------------------ */

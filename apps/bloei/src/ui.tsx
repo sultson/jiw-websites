@@ -250,29 +250,111 @@ export function Ranken({className = '', variant = 0}: {className?: string; varia
 }
 
 /* ------------------------------------------------------------------ */
+/*  Vurentakken                                                        */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Hetzelfde idee als Ranken, maar dan voor november en december: geen blad aan
+ * een steel maar naalden aan een tak, zoals aan een kerstboom.
+ *
+ * De naalden worden gerekend en niet uitgeschreven. Een vurentak heeft er
+ * tientallen, en die met de hand in een pad zetten levert een bestand op dat
+ * niemand meer durft aan te raken; zo is het één lus met drie getallen eraan.
+ * Ze worden korter naar de punt toe, want dat is wat een tak doet.
+ */
+function Tak({lengte}: {lengte: number}) {
+  const naalden = [];
+  /* Om de 7 eenheden een paar naalden. Dat getal doet het werk: bij een grotere
+     stap worden het losse sprieten en lijkt het eerder een visgraat of een web
+     dan een tak, en dat is precies waar de eerste versie hiervan op uitkwam. */
+  const stap = 7;
+  for (let x = stap; x < lengte; x += stap) {
+    const t = x / lengte;
+    /* Bij de stam lang, naar de punt toe korter — en nooit langer dan 24, ook
+       niet op een lange tak: naalden hebben een eigen maat en schalen niet mee
+       met de tak waar ze aan zitten. */
+    const n = (1 - t * 0.62) * 24;
+    naalden.push(
+      <g key={x}>
+        <path d={`M${x} 0 l${n * 0.5} ${-n}`} />
+        <path d={`M${x} 0 l${n * 0.5} ${n}`} />
+      </g>,
+    );
+  }
+  return (
+    <g>
+      <path d={`M0 0 L${lengte} 0`} />
+      {naalden}
+    </g>
+  );
+}
+
+/**
+ * Takken die vanuit de randen het vlak in groeien. Staan net als Ranken op zeer
+ * lage dekking: textuur die je bij een tweede blik ziet, nooit versiering die
+ * met de tekst concurreert.
+ */
+export function Kerstgroen({className = ''}: {className?: string}) {
+  const takken: [number, number, number, number][] = [
+    /* x, y, hoek, lengte — langs de randen, nooit door het midden waar de
+       tekst staat. */
+    [-12, 72, 20, 150],
+    [-12, 196, -6, 118],
+    [-12, 430, -22, 138],
+    [732, 104, 160, 142],
+    [732, 268, 186, 112],
+    [732, 452, 204, 156],
+    [214, -12, 68, 104],
+    [470, -12, 104, 96],
+    [296, 552, -78, 112],
+    [566, 552, -112, 126],
+  ];
+  return (
+    <svg
+      viewBox="0 0 720 540"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
+      className={`pointer-events-none absolute inset-0 h-full w-full ${className}`}
+    >
+      <g fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round">
+        {takken.map(([x, y, hoek, lengte], i) => (
+          <g key={i} transform={`translate(${x} ${y}) rotate(${hoek})`}>
+            <Tak lengte={lengte} />
+          </g>
+        ))}
+      </g>
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Layout                                                             */
 /* ------------------------------------------------------------------ */
 
 /**
- * Vier vlakken, en de pagina wisselt ze af zodat er grenzen zichtbaar blijven
+ * Vijf vlakken, en de pagina wisselt ze af zodat er grenzen zichtbaar blijven
  * zonder dat er ergens zwart aan te pas komt:
  *
  *   cream  het lichte groen waar de site op staat
  *   diep   een slag donkerder, voor de kop van een onderwerppagina
  *   wit    waar iets echt moet opvallen tussen twee groene vlakken
- *   ink    het groen van hun bord; alleen het formulier en de voet
+ *   ink    het groen van hun bord; het formulier en de voet
+ *   kerst  dieper dan ink, met warm licht erop; alleen november en december
  */
-type Tone = 'cream' | 'diep' | 'wit' | 'ink';
+type Tone = 'cream' | 'diep' | 'wit' | 'ink' | 'kerst';
 
 const VLAK: Record<Tone, string> = {
   cream: 'bg-cream',
   diep: 'bg-creme-diep',
   wit: 'bg-white',
   ink: 'bg-ink text-white',
+  kerst: 'bg-kerstgroen text-white',
 };
 
+const DONKER: Tone[] = ['ink', 'kerst'];
+
 export function Section({
-  id, children, className = '', tone = 'cream', ranken, slank = false,
+  id, children, className = '', tone = 'cream', ranken, slank = false, kerst = false, kraag = false,
 }: {
   id?: string;
   children: React.ReactNode;
@@ -281,15 +363,41 @@ export function Section({
   ranken?: 0 | 1 | 2;
   /** Smalle band in plaats van een volle sectie. */
   slank?: boolean;
+  /** Vurentakken en het lichtsnoer langs de bovenrand. */
+  kerst?: boolean;
+  /**
+   * Afgeronde bovenhoeken die over de sectie erboven heen vallen. Alleen onder
+   * de hero: daar loopt een foto van rand tot rand door, en een kaarsrechte
+   * naad eronder knipt die foto af. Met de kraag schuift het vlak eronder er
+   * als een afgerond blad overheen.
+   */
+  kraag?: boolean;
 }) {
   const pad = slank ? 'py-10' : 'py-16 sm:py-24';
-  /* Op het donkere vlak moet het motief lichter zijn dan de ondergrond, op de
+  /* Op de donkere vlakken moet het motief lichter zijn dan de ondergrond, op de
      lichte vlakken juist donkerder. Eén tint die het allebei doet bestaat niet. */
-  const rankKleur = tone === 'ink' ? 'text-white/[0.07]' : 'text-ink/[0.06]';
+  const donker = DONKER.includes(tone);
+  const rankKleur = donker ? 'text-white/[0.07]' : 'text-ink/[0.06]';
+  const kraagClass = kraag
+    ? 'z-10 -mt-7 rounded-t-[2rem] sm:-mt-10 sm:rounded-t-[2.75rem] lg:-mt-12 lg:rounded-t-[3.5rem]'
+    : '';
   return (
-    <section id={id} className={`relative overflow-hidden ${VLAK[tone]} ${className}`}>
+    <section id={id} className={`relative overflow-hidden ${VLAK[tone]} ${kraagClass} ${className}`}>
       {ranken !== undefined && <Ranken variant={ranken} className={rankKleur} />}
-      <div className={`relative mx-auto max-w-6xl px-5 sm:px-8 ${pad}`}>{children}</div>
+      {kerst && (
+        <>
+          <Kerstgroen className="text-white/[0.06]" />
+          {/* Warm lamplicht dat vanaf de bovenrand het vlak in zakt. Zonder dit
+              is het alleen een donkerder groen vlak; mét dit lijkt er licht te
+              branden en dat is het verschil tussen groen en kerst. */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(70%_100%_at_50%_0%,rgb(246_200_122_/_0.16),transparent_72%)]"
+          />
+          <div aria-hidden="true" className="kerstsnoer pointer-events-none absolute inset-x-0 top-0 h-[76px]" />
+        </>
+      )}
+      <div className={`relative mx-auto max-w-6xl px-5 sm:px-8 ${pad} ${kerst ? 'pt-24 sm:pt-28' : ''}`}>{children}</div>
     </section>
   );
 }
@@ -324,6 +432,29 @@ export function Bullet({children, light = false}: {children: React.ReactNode; li
 /* ------------------------------------------------------------------ */
 
 /**
+ * Het echte WhatsApp-teken: de hoorn in de tekstballon. Hier stond eerder de
+ * gewone tekstballon uit de iconenset, en die leest als "chat" en niet als
+ * WhatsApp — net zoals het Facebook-vlak eerst een fototoestel was. Een
+ * merkteken moet je in één oogopslag herkennen, anders weet niemand waar de
+ * knop heen gaat.
+ *
+ * Pad uit simple-icons, dus letterlijk hun eigen vorm. `currentColor`, zodat
+ * hij meeloopt met de plek waar hij staat; alleen de knop in de mobiele balk
+ * staat in het groen van WhatsApp zelf (#25D366).
+ */
+/** Het groen van WhatsApp zelf. Het donkere is voor op wit: #25D366 haalt daar geen contrast. */
+export const WA_GROEN = '#25D366';
+export const WA_DONKER = '#128C7E';
+
+export function WhatsAppMerk({className = '', style}: {className?: string; style?: React.CSSProperties}) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className} style={style}>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.347-.347.52-.52.174-.173.232-.297.347-.495.115-.198.057-.372-.03-.521-.087-.148-.669-1.611-.916-2.206-.244-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  );
+}
+
+/**
  * Het blad uit hun eigen bord: het enkele blad dat dwars door de O van BLOEI
  * steekt. Als vector, dus scherp op elk formaat, en meteen de vorm waar de
  * knoppen op de site naar verwijzen.
@@ -347,44 +478,46 @@ export function Blad({className = ''}: {className?: string}) {
 }
 
 /**
- * Hun eigen naambord, uit de foto van de gevel gesneden (zie
- * raw/maak-beelden.mjs): crèmekleurige letters op olijfgroen, met de twee
- * takjes en de vuurtoren van Ouddorp eronder. Dat is letterlijk hun tekening
- * en geen nagezette letter.
+ * Hun eigen logo: crèmekleurige letters, het blad door de O, de twee takjes en
+ * de vuurtoren van Ouddorp eronder. Dat is letterlijk hun tekening en geen
+ * nagezette letter.
  *
  * Twee verschijningen:
- * - `plaatje` (de balk bovenaan en de voet): het hele bord zoals het aan de
- *   gevel hangt. Het bord brengt zijn eigen groene vlak mee. In de voet ligt er
- *   een donker vlak onder, bovenaan een licht; de winkel vroeg om het echte
- *   bord in de balk en dat weegt zwaarder dan dat het daar als een losse
- *   postzegel ligt.
+ * - `plaatje` (de balk bovenaan en de voet): het hele logo, vrijstaand. Dit
+ *   stond hier eerder als een stuk uit de foto van de gevel geknipt, en dat
+ *   bracht het groene bord als vlak mee — een postzegel op de pagina, met de
+ *   gevel er in de hoeken nog bij. De winkel leverde daarna het logo aan op fel
+ *   magenta, juist zodat die achtergrond eruit kan; raw/maak-logo.mjs doet dat
+ *   en schrijft logo-bloei.webp met een doorzichtige achtergrond. Het logo
+ *   staat nu dus op het vlak zelf en niet op zijn eigen rechthoek.
  * - zonder `plaatje`: blad plus de naam als tekst, meekleurend met de plek waar
  *   hij staat. Voor de plekken midden in een lichte pagina.
  *
- * Het aangeleverde logobestand zelf is 358 px breed en daarmee te klein voor
- * een balk op een scherm met hoge pixeldichtheid; het bord op de gevel geeft
- * ruim het dubbele. Een vectorversie is nog steeds het vragen waard.
+ * Let op bij de hoogte: dit logo is hoger dan breed vergeleken met het stuk
+ * bord dat hier eerst stond (verhouding 1,6:1 tegen 3:1), want het blad steekt
+ * boven de letters uit en de vuurtoren staat eronder. Een balk die op de oude
+ * verhouding is gemaakt snijdt de punt van het blad eraf.
  */
 export function Merk({
   className = '', maat = 'h-[26px]', plaats = false, plaatje = false,
 }: {
   className?: string;
-  /** Hoogte van het woordmerk; de breedte volgt uit de verhouding van hun bord. */
+  /** Hoogte van het woordmerk; de breedte volgt uit de verhouding van het logo. */
   maat?: string;
   /** Zet "Ouddorp" ernaast; alleen waar de ruimte het toelaat. */
   plaats?: boolean;
-  /** Het hele bord als plaatje, in plaats van blad plus naam als tekst. */
+  /** Het hele logo als plaatje, in plaats van blad plus naam als tekst. */
   plaatje?: boolean;
 }) {
   if (plaatje) {
     return (
       <span className={`inline-flex items-center gap-3 ${className}`}>
         <img
-          src="/img/logobalk.webp?v=20261007"
-          width={1080}
-          height={357}
+          src="/img/logo-bloei.webp?v=20261009"
+          width={900}
+          height={564}
           alt="Bloei!"
-          className={`block w-auto rounded-[4px] ${maat}`}
+          className={`block w-auto ${maat}`}
         />
         {plaats && (
           <span className="hidden text-[11px] font-semibold uppercase leading-none tracking-[0.16em] text-current/45 2xl:block">

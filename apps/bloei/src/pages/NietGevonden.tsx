@@ -24,7 +24,7 @@ export default function NietGevonden() {
     <>
       <Nav />
       <main id="inhoud" className="pb-20 md:pb-0">
-        <Section tone="ink" ranken={0} className="border-b border-white/10 pt-16 sm:pt-20">
+        <Section tone="ink" ranken={0} className="border-b border-white/10 pt-32 sm:pt-40">
           <div className="mx-auto max-w-2xl text-center">
             <Kicker light>Pagina niet gevonden</Kicker>
             <h1 className="text-3xl font-semibold sm:text-4xl">Deze bloem staat hier niet</h1>

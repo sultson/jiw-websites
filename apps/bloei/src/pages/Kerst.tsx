@@ -1,4 +1,4 @@
-import {ArrowRight, Camera, Gift, Lightbulb, Phone, Sparkles, TreePine} from 'lucide-react';
+import {ArrowRight, Facebook, Gift, Lightbulb, Phone, Sparkles, TreePine} from 'lucide-react';
 import {Pagina, PaginaKop} from '../layout';
 import {
   Bullet, FACEBOOK, KNOP_HOOFD, KNOP_TWEEDE_LICHT, Kicker, Section, TEL, TEL_DISPLAY,
@@ -64,7 +64,7 @@ export default function Kerst() {
             <Phone className="h-4 w-4" /> {TEL_DISPLAY}
           </a>
           <a href={FACEBOOK} target="_blank" rel="noreferrer" className={KNOP_TWEEDE_LICHT}>
-            <Camera className="h-4 w-4 text-accent-dark" /> Volg het op Facebook
+            <Facebook className="h-4 w-4 text-accent-dark" /> Volg het op Facebook
           </a>
         </div>
       </PaginaKop>
@@ -98,10 +98,14 @@ export default function Kerst() {
 
       {/* ------------------------------------------------------------------ */}
 
-      <Section tone="ink" ranken={2}>
+      {/* Zelfde decor als het kerstblok op de homepage: dieper groen, een
+          lichtsnoer langs de bovenrand en vurentakken erachter. Anders is de
+          pagina die helemaal over kerst gaat de enige plek op de site waar het
+          niet naar kerst ruikt. */}
+      <Section tone="kerst" kerst>
         <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div>
-            <Kicker light>Wanneer</Kicker>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-kerstlicht">Wanneer</p>
             <h2 className="text-3xl font-semibold sm:text-4xl">Vanaf begin november</h2>
             <p className="mt-5 text-lg leading-relaxed text-white/75">
               De eerste kransen en de verlichting komen het eerst binnen, de bomen volgen zodra ze
@@ -119,15 +123,15 @@ export default function Kerst() {
               </a>
               <a
                 href={`tel:${TEL}`}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 px-6 py-3.5 font-semibold text-white transition hover:border-white hover:bg-white/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 px-6 py-3.5 font-semibold text-white transition hover:border-kerstlicht hover:bg-white/10"
               >
-                <Phone className="h-4 w-4 text-accent" /> {TEL_DISPLAY}
+                <Phone className="h-4 w-4 text-kerstlicht" /> {TEL_DISPLAY}
               </a>
             </div>
           </div>
 
           <div className="rounded-2xl border border-white/15 bg-white/[0.05] p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">In het kort</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-kerstlicht">In het kort</p>
             <dl className="mt-6 space-y-5 text-sm">
               <div>
                 <dt className="font-semibold text-white">Vanaf</dt>

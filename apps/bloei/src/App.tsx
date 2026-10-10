@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {
-  ArrowRight, Camera, ChevronDown, Clock, Flower2, Gift, Home, Leaf, MapPin, Navigation,
+  ArrowRight, ChevronDown, Clock, Facebook, Flower2, Gift, Home, Leaf, MapPin, Navigation,
   Phone, Shovel, Sparkles, TreePine,
 } from 'lucide-react';
 import {Bezoek, Footer, MobielBalk, Nav, VraagAan} from './layout';
@@ -16,19 +16,38 @@ import {
 /**
  * Bij Fleurig! was dit paneel donkergroen op de foto. De winkel wilde van het
  * zwart af, dus staat het hier andersom: een licht paneel met donkergroene
- * letters erop. De vervaging doet het echte werk. Ze haalt het patroon eronder
- * weg, zodat de ondergrond een vlakke toon wordt in plaats van honderd losse
- * blaadjes.
+ * letters erop.
+ *
+ * Matglas, en dat is een maat nemen tussen twee dingen die tegen elkaar in
+ * werken. Het paneel stond op 95 procent dekking omdat de tekst slecht leesbaar
+ * was; dat loste het op, maar daarmee is het ook gewoon een licht vlak op een
+ * foto en doet die foto er niet meer toe. Nu staat het op 78 procent, zodat je
+ * de bloemen erachter ziet staan, en doen drie filters het werk dat die
+ * 95 procent deed:
+ *
+ *   blur         haalt het patroon weg, zodat de ondergrond een vlakke toon
+ *                wordt in plaats van honderd losse blaadjes
+ *   brightness   tilt die toon op naar licht, zodat donkere plekken in de foto
+ *                geen donkere wolk achter een letter worden
+ *   saturate     haalt de kleur eruit, zodat er geen rode bloem door een
+ *                donkergroene letter heen schijnt
+ *
+ * Wat eronder zit blijft dus zichtbaar als vorm, maar niet meer als contrast.
  *
  * Geen randje om de letters. Dat kwam mee uit Fleurig!, waar lichte tekst op
  * een donker paneel stond: daar licht een donkere rand de letter op. Hier is
  * de tekst zelf donkergroen, en dan zet datzelfde randje een wolk van dezelfde
- * kleur om elke letter heen — de letter wordt dikker en de vorm vaag. Daarom
- * staat het paneel ook op 95 in plaats van 85 procent: de foto erachter mag
- * niet meer door de tekst heen prikken.
+ * kleur om elke letter heen.
+ *
+ * De matglaslaag zit alleen op deze twee panelen en op de balk bovenaan, nooit
+ * op de kaarten verderop: backdrop-filter op tientallen elementen tegelijk
+ * maakt het scrollen op een middenklasse-telefoon stroperig.
  */
+const GLAS =
+  'backdrop-blur-2xl backdrop-brightness-[1.18] backdrop-saturate-[0.55]';
+
 const PANEEL =
-  'rounded-3xl bg-cream/95 px-6 py-7 backdrop-blur-2xl ring-1 ring-white/50 ' +
+  `rounded-3xl bg-cream/78 px-6 py-7 ${GLAS} ring-1 ring-white/60 ` +
   'shadow-[0_30px_70px_-40px_rgb(39_53_27_/_0.6)] sm:px-8 sm:py-9';
 
 /**
@@ -70,7 +89,7 @@ function useHeroFoto() {
 function StatusKaart() {
   const status = useWinkelStatus();
   return (
-    <div className="rounded-2xl border border-line bg-white p-5 text-ink shadow-[0_24px_60px_-30px_rgb(39_53_27_/_0.5)]">
+    <div className={`rounded-2xl bg-white/78 p-5 text-ink ${GLAS} ring-1 ring-white/60 shadow-[0_24px_60px_-30px_rgb(39_53_27_/_0.5)]`}>
       <div className="flex items-center gap-2.5">
         <span className={`relative flex h-2.5 w-2.5 ${status.open ? 'text-accent-dark' : 'text-ink/30'}`}>
           <span className={`absolute inline-flex h-full w-full rounded-full ${status.open ? 'animate-ping bg-accent-dark/60' : ''}`} />
@@ -114,7 +133,10 @@ function Hero() {
 
   return (
     <section id="top" className="relative isolate overflow-hidden bg-cream text-ink">
-      <picture className="absolute inset-0 -z-20 block">
+      {/* hero-parallax: de foto loopt trager mee dan de pagina. Zie index.css —
+          het gaat via een scroll-driven animation, dus zonder scroll-listener,
+          en alleen de foto beweegt. */}
+      <picture className="hero-parallax absolute inset-0 -z-20 block">
         <source media="(min-width: 1024px)" srcSet={`/img/${foto.naam}.webp`} />
         <img
           src={`/img/${foto.naam}-staand.webp`}
@@ -124,14 +146,19 @@ function Hero() {
         />
       </picture>
 
+      {/* De balk bovenaan zweeft nu boven de foto in plaats van ernaast te
+          staan, dus moet de inhoud eronder vandaan beginnen; en onderaan ligt
+          de kraag van de volgende sectie er een stuk overheen (zie Section).
+          Vandaar dat er aan allebei de kanten meer lucht zit dan je van een
+          hero zou verwachten. */}
       <div
         className={
-          'mx-auto grid max-w-6xl items-center gap-10 px-5 pb-14 pt-28 sm:px-8 sm:pb-20 sm:pt-32 ' +
-          'lg:grid-cols-[1.05fr_0.85fr] lg:gap-14 lg:pb-24 lg:pt-36'
+          'mx-auto grid max-w-6xl items-center gap-10 px-5 pb-20 pt-32 sm:px-8 sm:pb-28 sm:pt-40 ' +
+          'lg:grid-cols-[1.05fr_0.85fr] lg:gap-14 lg:pb-32 lg:pt-44'
         }
       >
         <div className={PANEEL}>
-          <Kicker>Bloemen, planten, tuin en wonen &middot; Ouddorp</Kicker>
+          <Kicker>Bloemen, planten, tuin en wonen</Kicker>
 
           <h1 className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-[3.4rem]">
             Alles voor binnen<br />
@@ -147,7 +174,15 @@ function Hero() {
               alleen een tekstlink: het is een sprong op dezelfde pagina, geen
               stap die om aandacht hoort te vragen. */}
           <div className="mt-7 flex flex-wrap items-center gap-3">
-            <a ref={knopRef} href={ROUTE} target="_blank" rel="noreferrer" className={KNOP_HOOFD}>
+            {/* knop-bloem-groei: alleen hier, op de eerste knop van de pagina,
+                komen de blaadjes bij het openen achter de knop vandaan. */}
+            <a
+              ref={knopRef}
+              href={ROUTE}
+              target="_blank"
+              rel="noreferrer"
+              className={`${KNOP_HOOFD} knop-bloem-groei`}
+            >
               <Navigation className="h-4 w-4" /> Route naar de winkel
             </a>
             <a href={`tel:${TEL}`} className={`${KNOP_TWEEDE_LICHT} border-ink/20 bg-white/70`}>
@@ -196,7 +231,7 @@ const WINKELKAARTEN = [
     img: '/img/kaart-tuin.webp',
     icon: Shovel,
     titel: 'Tuin',
-    tekst: 'Perkgoed en vaste planten, potgrond en tuinaarde, meststoffen, houtsnippers en graszaad voor elk soort gazon.',
+    tekst: 'Perkgoed en vaste planten, potgrond en tuinaarde, meststoffen en houtsnippers, en een wand zaden: gras, bloemen, groenten en kruiden.',
     href: '/assortiment/#tuin',
   },
   {
@@ -215,9 +250,23 @@ const WINKELKAARTEN = [
   },
 ];
 
+/**
+ * Vijf kaarten naast elkaar op één rij was te smal: op het breedste punt van de
+ * pagina bleef er 200 pixels per kaart over, en daar past een foto in waarop
+ * niets meer te zien is plus een tekst van drie woorden per regel.
+ *
+ * Nu een raster van zes kolommen met twee rijen erin: boven drie kaarten van
+ * twee kolommen (ongeveer 350 pixels), onder twee van drie (ongeveer 535). Het
+ * raster loopt dus vol en er blijft geen gat achter in de hoek, wat er bij drie
+ * kolommen met vijf kaarten wél staat.
+ *
+ * De twee brede kaarten onderaan krijgen een liggender uitsnede. Zonder dat
+ * worden ze anderhalf keer zo hoog als de rij erboven, puur omdat ze breder
+ * zijn, en dan lijkt de onderste rij belangrijker dan hij is.
+ */
 function InDeWinkel() {
   return (
-    <Section id="winkel" tone="cream" ranken={0}>
+    <Section id="winkel" tone="cream" ranken={0} kraag>
       <div className="max-w-2xl">
         <Kicker>In de winkel</Kicker>
         <h2 className="text-3xl font-semibold sm:text-4xl">Kom gerust even rondkijken</h2>
@@ -228,23 +277,36 @@ function InDeWinkel() {
         </p>
       </div>
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-        {WINKELKAARTEN.map((k) => (
-          <article key={k.titel} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white">
-            <img src={k.img} alt={k.titel} loading="lazy" width={800} height={1000} className="aspect-[4/5] w-full object-cover" />
-            <div className="flex flex-1 flex-col p-5">
-              <k.icon className="h-5 w-5 text-accent-dark" />
-              <h3 className="mt-3 text-lg font-semibold">{k.titel}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink/65">{k.tekst}</p>
-              <a
-                href={k.href}
-                className="mt-4 inline-flex items-center gap-1.5 self-start pt-1 text-sm font-semibold text-accent-dark underline decoration-accent-dark/25 underline-offset-4 transition hover:decoration-accent-dark"
-              >
-                Meer informatie <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-          </article>
-        ))}
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
+        {WINKELKAARTEN.map((k, i) => {
+          const breed = i >= 3;
+          return (
+            <article
+              key={k.titel}
+              className={`flex flex-col overflow-hidden rounded-2xl border border-line bg-white ${breed ? 'lg:col-span-3' : 'lg:col-span-2'}`}
+            >
+              <img
+                src={k.img}
+                alt={k.titel}
+                loading="lazy"
+                width={800}
+                height={1000}
+                className={`w-full object-cover ${breed ? 'aspect-[4/3] lg:aspect-[16/9]' : 'aspect-[4/5] lg:aspect-[4/3]'}`}
+              />
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <k.icon className="h-5 w-5 text-accent-dark" />
+                <h3 className="mt-3 text-lg font-semibold">{k.titel}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink/65">{k.tekst}</p>
+                <a
+                  href={k.href}
+                  className="mt-4 inline-flex items-center gap-1.5 self-start pt-1 text-sm font-semibold text-accent-dark underline decoration-accent-dark/25 underline-offset-4 transition hover:decoration-accent-dark"
+                >
+                  Meer informatie <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </Section>
   );
@@ -258,19 +320,37 @@ function InDeWinkel() {
  * November en december zijn het seizoen waar de winkel het van moet hebben, dus
  * staat kerst hoog op de pagina en niet onderaan bij "door het jaar heen".
  *
- * Geen foto: er is nog geen enkele kerstfoto van deze winkel. Een gekochte
- * sfeerfoto van een andere kerstafdeling zou hier precies de verwachting zetten
- * die de winkel daarna moet waarmaken. Daarom een vlak in hun eigen groen met
- * de opsomming erop, tot ze zelf beeld hebben.
+ * Er is nog geen enkele kerstfoto van deze winkel, en een gekochte sfeerfoto van
+ * een andere kerstafdeling zet hier precies de verwachting die ze daarna moeten
+ * waarmaken. Dit blok stond daarom als dezelfde groene sectie als de rest, met
+ * het woord kerst erin — en dan zíe je nergens dat er iets anders aan de hand
+ * is in die twee maanden.
+ *
+ * Dus komt het van kleur en vorm in plaats van beeld: een dieper groen dan de
+ * rest van de site, een lichtsnoer langs de bovenrand, warm lamplicht dat
+ * daaronder het vlak in zakt, en vurentakken in plaats van het gewone blad (zie
+ * Section kerst en Kerstgroen). De woorden in de opsomming krijgen elk een
+ * lampje in dezelfde drie kleuren als in het snoer.
+ *
+ * Niets ervan belooft iets. Zodra ze eigen kerstfoto's hebben kunnen die er zo
+ * in, en dan mag dit decor zachter.
  */
 const KERST = ['Kerstbomen', 'Kerstkransen', 'Verlichting', 'Kerstaccessoires', 'Kerststukjes'];
 
+/* Amber, crème, hulstrood — de volgorde van de lampjes in het snoer. */
+const LAMPJES = ['bg-kerstlicht', 'bg-[#e7e1c7]', 'bg-kerstbes'];
+
 function Kerstblok() {
   return (
-    <Section id="kerst" tone="ink" ranken={1}>
+    /* Extra lucht onderaan: de sectie hieronder legt er met zijn kraag een
+       afgeronde rand overheen, en zonder die ruimte komt die rand tegen de
+       knop aan te liggen. */
+    <Section id="kerst" tone="kerst" kerst className="pb-6 sm:pb-10">
       <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         <div>
-          <Kicker light>November en december</Kicker>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-kerstlicht">
+            November en december
+          </p>
           <h2 className="text-3xl font-semibold sm:text-4xl">
             Vanaf november staat de winkel in het teken van kerst
           </h2>
@@ -281,8 +361,12 @@ function Kerstblok() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-2.5">
-            {KERST.map((k) => (
-              <span key={k} className="rounded-full border border-white/20 bg-white/[0.06] px-4 py-2 text-sm font-medium text-white/85">
+            {KERST.map((k, i) => (
+              <span
+                key={k}
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/[0.06] px-4 py-2 text-sm font-medium text-white/85"
+              >
+                <span className={`h-2 w-2 shrink-0 rounded-full ${LAMPJES[i % LAMPJES.length]}`} />
                 {k}
               </span>
             ))}
@@ -295,19 +379,24 @@ function Kerstblok() {
           </div>
         </div>
 
+        {/* De boom staat in een cirkel met een warme gloed eromheen: zonder dat
+            is het een lijntekening van een boom op een groen vlak, en mét dat
+            lijkt er een lamp achter te staan. */}
         <div className="rounded-2xl border border-white/15 bg-white/[0.05] p-8">
-          <TreePine className="h-10 w-10 text-accent" strokeWidth={1.5} />
+          <span className="grid h-16 w-16 place-items-center rounded-full bg-kerstlicht/10 shadow-[0_0_40px_-6px_rgb(246_200_122_/_0.45)] ring-1 ring-kerstlicht/25">
+            <TreePine className="h-8 w-8 text-kerstlicht" strokeWidth={1.5} />
+          </span>
           <p className="mt-5 text-lg font-semibold">Vanaf begin november</p>
           <p className="mt-2 leading-relaxed text-white/65">
             De kerstafdeling bouwen we elk jaar opnieuw op. Wilt u weten wanneer de bomen binnen zijn?
             Bel ons of kijk op Facebook.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href={`tel:${TEL}`} className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-2.5 text-sm font-semibold text-white/90 transition hover:border-white hover:bg-white/10">
-              <Phone className="h-4 w-4 text-accent" /> {TEL_DISPLAY}
+            <a href={`tel:${TEL}`} className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-2.5 text-sm font-semibold text-white/90 transition hover:border-kerstlicht hover:bg-white/10">
+              <Phone className="h-4 w-4 text-kerstlicht" /> {TEL_DISPLAY}
             </a>
-            <a href={FACEBOOK} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-2.5 text-sm font-semibold text-white/90 transition hover:border-white hover:bg-white/10">
-              <Camera className="h-4 w-4 text-accent" /> Facebook
+            <a href={FACEBOOK} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-2.5 text-sm font-semibold text-white/90 transition hover:border-kerstlicht hover:bg-white/10">
+              <Facebook className="h-4 w-4 text-kerstlicht" /> Facebook
             </a>
           </div>
         </div>
@@ -324,7 +413,7 @@ const SEIZOEN = [
   {
     img: '/img/seizoen-voorjaar.webp',
     titel: 'Voorjaar',
-    tekst: 'Violen en primula\'s op de tafels buiten, hortensia\'s in knop, en graszaad en tuinaarde voor wie het gazon weer wil bijwerken.',
+    tekst: 'Violen en primula\'s op de tafels buiten, hortensia\'s in knop, en het zaaiseizoen: gras, groenten en zomerbloeiers, met de tuinaarde ernaast.',
   },
   {
     img: '/img/seizoen-zomer.webp',
@@ -353,7 +442,7 @@ const STROOK: [string, string][] = [
 
 function Seizoen() {
   return (
-    <Section id="seizoen" tone="cream">
+    <Section id="seizoen" tone="cream" kraag>
       <div className="max-w-2xl">
         <Kicker>Door het jaar heen</Kicker>
         <h2 className="text-3xl font-semibold sm:text-4xl">Wat er staat, verandert mee</h2>
@@ -472,7 +561,7 @@ function Abonnementblok() {
 
 function Over() {
   return (
-    <Section id="over" tone="cream" ranken={2}>
+    <Section id="over" tone="cream" ranken={2} kraag>
       <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
         <div>
           {/* De echte maten staan erbij: zonder die twee getallen stond de tekst
@@ -512,7 +601,7 @@ function Over() {
 
           <div className="mt-7 flex flex-wrap gap-3">
             <a href={FACEBOOK} target="_blank" rel="noreferrer" className={KNOP_TWEEDE_LICHT}>
-              <Camera className="h-4 w-4 text-accent-dark" /> Volg ons op Facebook
+              <Facebook className="h-4 w-4 text-accent-dark" /> Volg ons op Facebook
             </a>
           </div>
         </div>
@@ -540,7 +629,11 @@ const VRAGEN: [string, string][] = [
   ],
   [
     'Wat verkopen jullie voor de tuin?',
-    'Potgrond, tuinaarde en hydrokorrels, meststoffen en houtsnippers. Graszaad in verschillende soorten: om door te zaaien, voor een nieuw gazon, voor schaduw en voor een gazon waar gespeeld wordt. Daarnaast perkgoed en vaste planten, heesters, siergrassen en bomen in pot, en binnen- en buitenpotten in alle maten.',
+    'Potgrond, tuinaarde en hydrokorrels, meststoffen en houtsnippers. Een flinke wand zaden. Daarnaast perkgoed en vaste planten, heesters, siergrassen en bomen in pot, en binnen- en buitenpotten in alle maten.',
+  ],
+  [
+    'Hebben jullie zaden?',
+    'Veel, en in de breedte: gras, bloemen, groenten en kruiden, plus bollen en knollen voor het seizoen. Graszaad in verschillende soorten, om door te zaaien, voor een nieuw gazon, voor schaduw en voor een gazon waar gespeeld wordt. Wat er ligt verschuift met het jaar, want zaaien is een kwestie van de juiste maand. Zegt u wat u wilt zaaien en waar, dan zoeken we het juiste zakje erbij. Staat een merk of mengsel er niet, dan kunnen we veel bestellen.',
   ],
   [
     'Hebben jullie een cadeaubon?',
