@@ -10,10 +10,6 @@
     450,
     640
   ],
-  "/img/area-hilgelo.webp": [
-    600,
-    450
-  ],
   "/img/area-landscape.webp": [
     1264,
     848,
@@ -85,6 +81,18 @@
   "/img/chalet-16.webp": [
     400,
     600
+  ],
+  "/img/chalet-17.webp": [
+    1600,
+    1458,
+    640,
+    1024
+  ],
+  "/img/chalet-18.webp": [
+    1200,
+    1600,
+    640,
+    1024
   ],
   "/img/chalet-2.webp": [
     400,
@@ -241,6 +249,29 @@
     973,
     640,
     1024
+  ],
+  "/img/hilgelo-bord.webp": [
+    1600,
+    791,
+    640,
+    1024
+  ],
+  "/img/hilgelo-meer.webp": [
+    1600,
+    985,
+    640,
+    1024
+  ],
+  "/img/hilgelo-oever.webp": [
+    1600,
+    1200,
+    640,
+    1024
+  ],
+  "/img/hilgelo-zonsondergang.webp": [
+    924,
+    1240,
+    640
   ],
   "/img/jonkersweg-1.webp": [
     1200,
@@ -543,6 +574,12 @@
     640,
     1024
   ],
+  "/img/nature-mist.webp": [
+    1596,
+    846,
+    640,
+    1024
+  ],
   "/img/nature-owl-flight.webp": [
     1400,
     932,
@@ -557,6 +594,12 @@
   "/img/nature-owl-pair.webp": [
     1100,
     1124,
+    640,
+    1024
+  ],
+  "/img/nature-paddenstoelen.webp": [
+    1600,
+    1200,
     640,
     1024
   ],

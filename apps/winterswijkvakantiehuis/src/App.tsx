@@ -10,6 +10,7 @@ import imageSizes from './image-manifest.json';
 import {seoCopy} from './seo-copy';
 import {stayGuide} from './stay-guide';
 import {topicCopy, TOPIC_SLUGS, type TopicId} from './topic-copy';
+import {reviews, GOOGLE_PROFILE_URL, homeReviewIds, TOPIC_REVIEWS, type ReviewId} from './reviews';
 import AnalyticsConsent from './AnalyticsConsent';
 import {readConsent, trackPage, trackContactLink, trackEvent} from './analytics';
 
@@ -387,6 +388,7 @@ const t = {
       ctaText: 'Laat ons weten wanneer u wilt komen en met hoeveel personen, dan vertellen we u alles over de verblijven en de beschikbaarheid. Dezelfde persoonlijke aanpak als in Winterswijk.',
     },
     footer: {tagline: 'Vakantiehuizen in Winterswijk & de Achterhoek', rights: 'Alle rechten voorbehouden.', links: 'Vakantie in Winterswijk', accessible: 'Rolstoeltoegankelijk vakantiehuis'},
+    reviews: {title: 'Wat gasten zeggen', google: 'Google-review', message: 'Bericht aan de eigenaar', all: 'Alle reviews op Google', translated: ''},
     topic: {faqTitle: 'Veelgestelde vragen', groupsTeaser: 'Met een groep? Boek meerdere huizen naast elkaar, tot 40 personen.'},
   },
   en: {
@@ -634,6 +636,7 @@ const t = {
       ctaText: 'Tell us when you would like to come and with how many, and we will talk you through the stays and what is available. The same personal approach as in Winterswijk.',
     },
     footer: {tagline: 'Vacation homes in Winterswijk & the Achterhoek', rights: 'All rights reserved.', links: 'Holidays in Winterswijk', accessible: 'Wheelchair-accessible holiday home'},
+    reviews: {title: 'What guests say', google: 'Google review', message: 'Message to the owner', all: 'All reviews on Google', translated: 'Translated from Dutch.'},
     topic: {faqTitle: 'Frequently asked questions', groupsTeaser: 'Travelling as a group? Book several homes side by side, for up to 40 guests.'},
   },
   de: {
@@ -881,6 +884,7 @@ const t = {
       ctaText: 'Sagen Sie uns, wann Sie kommen möchten und mit wie vielen Personen, dann erzählen wir Ihnen alles über die Unterkünfte und die Verfügbarkeit. Dieselbe persönliche Betreuung wie in Winterswijk.',
     },
     footer: {tagline: 'Ferienhäuser in Winterswijk & im Achterhoek', rights: 'Alle Rechte vorbehalten.', links: 'Urlaub in Winterswijk', accessible: 'Rollstuhlgerechtes Ferienhaus'},
+    reviews: {title: 'Was Gäste sagen', google: 'Google-Bewertung', message: 'Nachricht an die Vermieter', all: 'Alle Bewertungen auf Google', translated: 'Aus dem Niederländischen übersetzt.'},
     topic: {faqTitle: 'Häufige Fragen', groupsTeaser: 'Als Gruppe unterwegs? Buchen Sie mehrere Häuser nebeneinander, bis 40 Personen.'},
   },
 };
@@ -1127,7 +1131,7 @@ const homes: Home[] = [
     location: 'Kattenbergweg 6, 7101 BM Winterswijk',
     imgs: [
       '/img/chalet-1.webp', '/img/chalet-2.webp', '/img/chalet-3.webp', '/img/chalet-4.webp',
-      '/img/chalet-5.webp', '/img/chalet-6.webp', '/img/chalet-7.webp', '/img/chalet-8.webp',
+      '/img/chalet-17.webp', '/img/chalet-18.webp', '/img/chalet-5.webp', '/img/chalet-6.webp', '/img/chalet-7.webp', '/img/chalet-8.webp',
       '/img/chalet-9.webp', '/img/chalet-10.webp', '/img/chalet-11.webp', '/img/chalet-12.webp',
       '/img/chalet-13.webp', '/img/chalet-14.webp', '/img/chalet-15.webp', '/img/chalet-16.webp',
     ],
@@ -1164,6 +1168,37 @@ const iconMap: Record<string, any> = {bike: Bike, trees: Trees, calendar: Calend
 /*  Nature gallery — the owner's own photos from in and around the park */
 /* ------------------------------------------------------------------ */
 const naturePhotos: {src: string; title: Record<Lang, string>; text: Record<Lang, string>; credit?: string; now?: boolean}[] = [
+  /* Autumn first, flagged "now": the owner's own photos from October 2026. Move
+     them down and drop `now` when the season turns, like the events below. */
+  {
+    src: '/img/nature-paddenstoelen.webp',
+    now: true,
+    title: {nl: 'Paddenstoelen', en: 'Mushrooms', de: 'Pilze'},
+    text: {
+      nl: 'In oktober staan de bossen rond Winterswijk vol paddenstoelen, op oude stronken en tussen het blad. Kijken mag, plukken liever niet: veel soorten zijn giftig.',
+      en: 'In October the woods around Winterswijk are full of mushrooms, on old stumps and among the leaves. Look all you like, but leave them be: many species are poisonous.',
+      de: 'Im Oktober stehen die Wälder rund um Winterswijk voller Pilze, auf alten Baumstümpfen und zwischen dem Laub. Schauen ja, sammeln lieber nicht: viele Arten sind giftig.',
+    },
+  },
+  {
+    src: '/img/nature-mist.webp',
+    now: true,
+    title: {nl: 'Mist over de weilanden', en: 'Mist over the meadows', de: 'Nebel über den Wiesen'},
+    text: {
+      nl: 'Vroeg op pad? Op heldere herfstochtenden hangt de mist laag over de weilanden en komt de zon er als een oranje bol doorheen.',
+      en: 'Up early? On clear autumn mornings the mist hangs low over the meadows and the sun rises through it like an orange ball.',
+      de: 'Früh unterwegs? An klaren Herbstmorgen liegt der Nebel tief über den Wiesen, und die Sonne steigt als orange Kugel hindurch.',
+    },
+  },
+  {
+    src: '/img/area-park-autumn.webp',
+    title: {nl: 'Het park in de herfst', en: 'The park in autumn', de: 'Der Park im Herbst'},
+    text: {
+      nl: 'Berken, rode topgevels en een laan vol bladeren. Elk seizoen ziet het park er weer anders uit.',
+      en: 'Birches, red gables and a lane full of leaves. Every season gives the park a different face.',
+      de: 'Birken, rote Giebel und eine Allee voller Blätter. Jede Saison zeigt den Park von einer anderen Seite.',
+    },
+  },
   {
     src: '/img/nature-owl-flight.webp',
     credit: 'Jacob Doornheim',
@@ -1237,15 +1272,6 @@ const naturePhotos: {src: string; title: Record<Lang, string>; text: Record<Lang
       nl: 'U hoeft er niet ver voor te lopen. Het meeste komt gewoon naar het terras toe.',
       en: 'You do not have to walk far for it. Most of it simply comes to the terrace.',
       de: 'Sie müssen dafür nicht weit laufen. Das meiste kommt einfach zur Terrasse.',
-    },
-  },
-  {
-    src: '/img/area-park-autumn.webp',
-    title: {nl: 'Het park in de herfst', en: 'The park in autumn', de: 'Der Park im Herbst'},
-    text: {
-      nl: 'Berken, rode topgevels en een laan vol bladeren. Elk seizoen ziet het park er weer anders uit.',
-      en: 'Birches, red gables and a lane full of leaves. Every season gives the park a different face.',
-      de: 'Birken, rote Giebel und eine Allee voller Blätter. Jede Saison zeigt den Park von einer anderen Seite.',
     },
   },
 ];
@@ -1386,9 +1412,11 @@ const bikeRentals: {name: string; what: Record<Lang, string>; contact: string; u
     photos come from the facilities page of dekattenberg.nl, whose owners have us
     manage their homes. Distances are measured from the Kattenberg, so they are
     labelled as such rather than presented as true for every home.               */
-const nearbyPlaces: {img?: string; dist: Record<Lang, string>; title: Record<Lang, string>; text: Record<Lang, string>}[] = [
+const nearbyPlaces: {img?: string; link?: {page: TopicId; label: Record<Lang, string>}; dist: Record<Lang, string>; title: Record<Lang, string>; text: Record<Lang, string>}[] = [
   {
-    img: '/img/area-hilgelo.webp',
+    /* The owner's own photo now, rather than the one from dekattenberg.nl. */
+    img: '/img/hilgelo-bord.webp',
+    link: {page: 'hilgelo', label: {nl: 'Alles over het Hilgelo', en: 'More about Hilgelo lake', de: 'Mehr über den Hilgelo'}},
     dist: {nl: 'Om de hoek', en: 'Around the corner', de: 'Um die Ecke'},
     title: {nl: 'Het Hilgelo', en: 'Hilgelo lake', de: 'Badesee Hilgelo'},
     text: {
@@ -1588,7 +1616,7 @@ const curacaoRooms: {stay: 'fenya' | 'yeva'; src: string; cap: Record<Lang, stri
    prefixed. The slug is translated too, since it is part of what gets matched. */
 type PageKind = 'landing' | 'todo' | 'horses' | 'curacao' | TopicId | 'home' | 'notFound';
 type SluggedKind = 'todo' | 'horses' | 'curacao' | TopicId | 'home';
-const TOPIC_KINDS: TopicId[] = ['groups', 'dogs'];
+const TOPIC_KINDS: TopicId[] = ['groups', 'dogs', 'hilgelo'];
 const isTopic = (kind: PageKind): kind is TopicId => (TOPIC_KINDS as PageKind[]).includes(kind);
 
 const PAGE_SLUGS: Record<SluggedKind, Record<Lang, string>> = {
@@ -1647,7 +1675,7 @@ function pathFor(route: {kind: PageKind; homeId?: string}, lang: Lang): string {
 
 const PRERENDERED_KINDS: PageKind[] = ['landing', 'todo', 'horses', 'curacao', ...TOPIC_KINDS];
 
-/** Every route the build prerenders — 3 languages x 12 pages. Read by
+/** Every route the build prerenders — 3 languages x 13 pages. Read by
     scripts/prerender.mjs. */
 export const allRoutePaths = LANGS.flatMap((lang) => [
   ...PRERENDERED_KINDS.map((kind) => pathFor({kind}, lang)),
@@ -1763,6 +1791,8 @@ function businessJsonLd(lang: Lang, canonical: string) {
       value: true,
     })),
     areaServed: {'@type': 'Place', name: 'Winterswijk, Achterhoek'},
+    /* Ties the site to its Google Business Profile as one entity. */
+    sameAs: [GOOGLE_PROFILE_URL],
   };
 }
 
@@ -1845,7 +1875,7 @@ function originalRouteMetaFor(path: string): RouteMeta {
       ...base,
       title: seoCopy[route.kind][lang].title,
       description: seoCopy[route.kind][lang].description,
-      ogImage: abs(route.kind === 'groups' ? '/img/stay-groups.webp' : '/img/stay-dogs.webp'),
+      ogImage: abs(TOPIC_HERO[route.kind].src),
       jsonLd: [
         JSON.stringify(breadcrumbJsonLd(lang, {name: copy.label, url: canonical})),
         JSON.stringify({
@@ -2326,6 +2356,11 @@ function Landing({lang, L}: {lang: Lang; L: any}) {
         </a>
         <p className="mt-4 text-sm text-stone-500">{L.homes.manage} <a href="#contact" className="text-brand-green font-medium hover:underline">{L.nav.contact}</a></p>
       </section>
+
+      {/* Guest quotes, after the homes rather than near the top: reassurance for a
+          visitor who is comparing, each one linking to the house it is about. No
+          rating or count until the Google profile has enough reviews to carry it. */}
+      <GuestQuotes ids={Object.keys(reviews) as ReviewId[]} showHome lang={lang} L={L} className="pb-20" />
 
       {/* Dedicated information about the adapted eight-person home. */}
       <StayGuide lang={lang} />
@@ -3043,6 +3078,10 @@ function HomeDetail({home, lang, L}: {home: Home; lang: Lang; L: any}) {
         </div>
       </section>
 
+      {homeReviewIds(home.id).length > 0 && (
+        <GuestQuotes ids={homeReviewIds(home.id)} lang={lang} L={L} className="mt-16" />
+      )}
+
       {/* Other homes */}
       <section className="max-w-6xl mx-auto px-5 mt-16 mb-4">
         <h2 className="font-serif text-2xl text-brand-green-dark">{L.homes.title}</h2>
@@ -3135,6 +3174,11 @@ function TodoPage({lang, L}: {lang: Lang; L: any}) {
                   <span className="text-xs font-medium text-brand-sun uppercase tracking-wide">{n.dist[lang]}</span>
                   <h4 className="mt-1.5 font-serif text-lg text-brand-green-dark leading-snug">{n.title[lang]}</h4>
                   <p className="mt-1.5 text-sm text-stone-600">{n.text[lang]}</p>
+                  {n.link && (
+                    <a href={pathFor({kind: n.link.page}, lang)} className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-brand-green hover:underline">
+                      {n.link.label[lang]} <ChevronRight size={15} />
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
@@ -3208,7 +3252,11 @@ const TOPIC_HERO: Record<TopicId, {src: string; position: string; alt: Record<La
     nl: 'Familie wandelt met fietsen over de laan van recreatiepark Den Möllenhof', en: 'A family walking with bikes along the lane of the Den Möllenhof holiday park', de: 'Familie mit Fahrrädern auf dem Weg im Ferienpark Den Möllenhof'}},
   dogs: {src: '/img/stay-dogs.webp', position: 'object-[72%_center] md:object-center', alt: {
     nl: 'Hond aan de oever van het Hilgelo bij zonsondergang', en: 'A dog on the shore of Hilgelo lake at sunset', de: 'Hund am Ufer des Hilgelo bei Sonnenuntergang'}},
+  hilgelo: {src: '/img/hilgelo-oever.webp', position: 'object-center', alt: {
+    nl: 'Het Hilgelo in Winterswijk, gezien vanaf de oever tussen het riet en de berken', en: 'Hilgelo lake in Winterswijk, seen from the shore between reeds and birches', de: 'Der Hilgelo in Winterswijk, vom Ufer zwischen Schilf und Birken gesehen'}},
 };
+
+const TOPIC_ICON: Record<TopicId, typeof Users> = {groups: Users, dogs: PawPrint, hilgelo: Waves};
 
 function TopicPage({topic, lang, L}: {topic: TopicId; lang: Lang; L: any}) {
   const copy = topicCopy[topic][lang];
@@ -3237,7 +3285,7 @@ function TopicPage({topic, lang, L}: {topic: TopicId; lang: Lang; L: any}) {
         <div className="md:absolute md:inset-0 md:pointer-events-none">
           <div className="md:pointer-events-auto relative max-w-6xl mx-auto px-5 h-full flex flex-col md:justify-end pt-7 pb-9 md:pb-12">
             <span className="flex items-center gap-2 text-sm font-medium text-brand-sun">
-              {topic === 'groups' ? <Users size={16} /> : <PawPrint size={16} />} {copy.kicker}
+              {(() => { const Icon = TOPIC_ICON[topic]; return <Icon size={16} />; })()} {copy.kicker}
             </span>
             <h1 className="mt-2 font-serif text-3xl sm:text-5xl max-w-xl lg:max-w-2xl leading-tight">{pageHeading(topic, lang)}</h1>
             <a href="#contact" className="mt-6 self-start inline-flex items-center gap-2 bg-brand-sun hover:bg-brand-sun/90 text-white px-6 py-3 rounded-full font-medium transition-colors">
@@ -3248,6 +3296,13 @@ function TopicPage({topic, lang, L}: {topic: TopicId; lang: Lang; L: any}) {
       </section>
       <div className="max-w-6xl mx-auto px-5 pt-12">
         {copy.intro.map((p) => <p key={p} className="mt-4 first:mt-0 max-w-3xl text-lg text-stone-700 leading-relaxed">{p}</p>)}
+        {copy.photos && (
+          <div className="mt-10 grid sm:grid-cols-3 gap-4">
+            {copy.photos.map((ph) => (
+              <Framed key={ph.src} src={ph.src} alt={ph.alt} sizes="(min-width: 640px) 33vw, 100vw" className="aspect-[4/3] rounded-2xl" />
+            ))}
+          </div>
+        )}
       </div>
 
       {copy.sections.map((section) => (
@@ -3308,6 +3363,8 @@ function TopicPage({topic, lang, L}: {topic: TopicId; lang: Lang; L: any}) {
           <p className="mt-4 max-w-3xl text-sm text-stone-500">{copy.combos.note}</p>
         </section>
       )}
+
+      {TOPIC_REVIEWS[topic] && <GuestQuotes ids={TOPIC_REVIEWS[topic]!} showHome lang={lang} L={L} className="pt-16" />}
 
       <section className="max-w-6xl mx-auto px-5 py-16">
         <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{L.topic.faqTitle}</h2>
@@ -3850,6 +3907,7 @@ function Footer({route, lang, L}: {route: Route; lang: Lang; L: any}) {
             {[
               {href: pathFor({kind: 'groups'}, lang), label: topicCopy.groups[lang].label},
               {href: pathFor({kind: 'dogs'}, lang), label: topicCopy.dogs[lang].label},
+              {href: pathFor({kind: 'hilgelo'}, lang), label: topicCopy.hilgelo[lang].label},
               {href: pathFor({kind: 'home', homeId: 'kattenberg8'}, lang), label: L.footer.accessible},
               {href: pathFor({kind: 'horses'}, lang), label: L.nav.horses},
               {href: pathFor({kind: 'todo'}, lang), label: L.nav.area},
@@ -3945,6 +4003,49 @@ function NatureCard({p, lang, L, hover = false}: {p: (typeof naturePhotos)[numbe
         {p.credit && <p className="mt-2 text-[11px] text-stone-400">{L.area.photoBy} {p.credit}</p>}
       </figcaption>
     </figure>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Guest quotes: plain text in the site's own cards, no carousel or widget —
+    reassurance where a visitor is deciding, not a banner. See reviews.ts.     */
+function GuestQuotes({ids, showHome = false, lang, L, className = ''}: {ids: ReviewId[]; showHome?: boolean; lang: Lang; L: any; className?: string}) {
+  const monthFmt = new Intl.DateTimeFormat(lang, {month: 'long', year: 'numeric', timeZone: 'UTC'});
+  return (
+    <section className={`max-w-6xl mx-auto px-5 ${className}`}>
+      <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{L.reviews.title}</h2>
+      <div className={`mt-6 grid gap-5 ${ids.length > 1 ? 'md:grid-cols-2' : ''} ${ids.length > 2 ? 'lg:grid-cols-3' : ''}`}>
+        {ids.map((id) => {
+          const r = reviews[id];
+          const home = showHome ? homes.find((h) => h.id === r.homeId) : undefined;
+          return (
+            <figure key={id} className="bg-white rounded-2xl border border-brand-sand p-6 flex flex-col max-w-2xl">
+              {r.source === 'google' && (
+                <div className="flex gap-0.5 text-brand-sun" aria-label="5/5">
+                  {[0, 1, 2, 3, 4].map((i) => <Star key={i} size={14} fill="currentColor" strokeWidth={0} />)}
+                </div>
+              )}
+              <blockquote className={`${r.source === 'google' ? 'mt-3' : ''} text-stone-700 leading-relaxed flex-1`}>“{r.text[lang]}”</blockquote>
+              <figcaption className="mt-4 text-sm text-stone-500">
+                <span className="font-medium text-brand-green-dark">{r.name}</span>
+                {home && <> · <a href={pathFor({kind: 'home', homeId: home.id}, lang)} className="hover:underline">{home.name}</a></>}
+                {r.month && <> · {monthFmt.format(new Date(`${r.month}-01T00:00:00Z`))}</>}
+                {' · '}
+                {r.source === 'google'
+                  ? <a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener" className="hover:underline">{L.reviews.google}</a>
+                  : L.reviews.message}
+              </figcaption>
+            </figure>
+          );
+        })}
+      </div>
+      <p className="mt-4 text-sm text-stone-500">
+        {L.reviews.translated && <>{L.reviews.translated} </>}
+        <a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener" className="inline-flex items-center gap-1 font-medium text-brand-green hover:underline">
+          {L.reviews.all} <ChevronRight size={15} />
+        </a>
+      </p>
+    </section>
   );
 }
 

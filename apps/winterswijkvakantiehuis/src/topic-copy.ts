@@ -3,15 +3,23 @@
    are already confirmed on the house pages (capacity, dog rule per home, sauna,
    the adapted XL) — no prices, fees or rules the owner has not given us.
    Search Console showed "groepsaccommodatie meddo" at position ~6 with no page
-   using the word at all, which is what prompted the group page. */
+   using the word at all, which is what prompted the group page.
+   The Hilgelo page is the third: "hilgelo" is searched ~2,900x a month in NL and
+   ~2,400x in DE (DataForSEO, Oct 2026, peaking in June), more than the site's
+   own "vakantiehuis winterswijk". Those searchers want the lake, not a house, so
+   the page is about the lake first and the three Jonkersweg homes second. Same
+   rule as the others: only facts the site already states, plus the owner's own
+   photos of the lake. */
 type Lang = 'nl' | 'en' | 'de';
-export type TopicId = 'groups' | 'dogs';
+export type TopicId = 'groups' | 'dogs' | 'hilgelo';
 
 export type TopicCopy = {
   kicker: string;
   /** Breadcrumb and footer label. */
   label: string;
   intro: string[];
+  /** A row of photos under the intro, shown whole rather than cropped. */
+  photos?: {src: string; alt: string}[];
   sections: {title: string; text: string[]; homeIds?: string[]}[];
   /** Worked examples of which homes make up which group size. */
   combos?: {title: string; note: string; items: {size: string; text: string}[]};
@@ -29,6 +37,7 @@ export type TopicCopy = {
 export const TOPIC_SLUGS: Record<TopicId, Record<Lang, string>> = {
   groups: {nl: 'groepsaccommodatie-winterswijk', de: 'gruppenunterkunft-winterswijk', en: 'group-accommodation-winterswijk'},
   dogs: {nl: 'vakantiehuis-met-hond-winterswijk', de: 'ferienhaus-mit-hund-winterswijk', en: 'dog-friendly-holiday-homes-winterswijk'},
+  hilgelo: {nl: 'hilgelo-winterswijk', de: 'hilgelo-winterswijk', en: 'hilgelo-lake-winterswijk'},
 };
 
 export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
@@ -335,6 +344,176 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       cta: {
         title: 'Enquire about a stay with your dog',
         text: 'Tell us your dates, the number of guests and about your dog. We will find a home where you are all welcome.',
+        button: 'Enquire now',
+      },
+    },
+  },
+  hilgelo: {
+    nl: {
+      kicker: 'Het meer van Winterswijk',
+      label: 'Het Hilgelo',
+      intro: [
+        'Het Hilgelo is de recreatieplas van Winterswijk: zo’n 36 hectare water met een zandstrand, ruime lig- en speelweiden en een route rondom het meer. In de zomer zwemt en zonnet u hier, buiten het seizoen heeft u de oevers vaak bijna voor uzelf.',
+        'Drie van onze vakantiehuizen staan aan de Jonkersweg in Winterswijk Meddo, op recreatiepark Den Möllenhof. De Jonkersweg komt uit aan de westkant van het meer, dus vanuit uw huis loopt u zo naar het water.',
+      ],
+      photos: [
+        {src: '/img/hilgelo-bord.webp', alt: 'Het Hilgelo-bord met een houten uil aan de rand van het bos'},
+        {src: '/img/hilgelo-zonsondergang.webp', alt: 'Zonsondergang boven het Hilgelo in Winterswijk'},
+        {src: '/img/hilgelo-meer.webp', alt: 'Uitzicht over het Hilgelo tussen de bomen door'},
+      ],
+      sections: [
+        {
+          title: 'Zwemmen, zonnen en het water op',
+          text: [
+            'Aan de oostkant ligt het strand, met daarachter lig- en speelweiden. Waterfietsen, kano’s, ligstoelen en parasols huurt u ter plekke, en voor surfers is er een surfkluis.',
+            'Liever een buitenbad? Het Strandbad in Winterswijk is een authentiek buitenbad uit de jaren dertig, in 2010 volledig gerestaureerd, met een zandstrand en een diep bassin met duiktoren.',
+          ],
+        },
+        {
+          title: 'Wandelen rond het meer, het hele jaar',
+          text: [
+            'De route rond het Hilgelo is het hele jaar open, ook voor uw hond. Langs de waterkant staan bankjes, en in het voor- en najaar heeft u ze vaak helemaal voor uzelf. Alleen op het strand zijn honden van 1 mei tot 1 oktober niet toegestaan.',
+          ],
+        },
+        {
+          title: 'Vakantiehuizen bij het Hilgelo',
+          text: [
+            'Jonkersweg 55, 57 en 65 zijn elk voor zes personen, met een eigen sauna, en in alle drie is uw hond welkom. 55 en 57 staan naast elkaar en 65 een paar huizen verderop, dus samen is er plek voor 18 personen. Op het park zijn ook stallen en weides voor uw paard.',
+          ],
+          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg65'],
+        },
+      ],
+      walks: {
+        title: 'Van de Jonkersweg naar het water',
+        intro: 'Waar de Jonkersweg uitkomt, waar de route rond het meer loopt en waar het strand ligt.',
+        map: {lake: 'Hilgelo', route: 'Route rond het meer, het hele jaar', beach: 'Strand: geen honden van 1 mei tot 1 oktober', home: 'Jonkersweg', caption: 'Schematisch, naar de kaart van Leisurelands.'},
+        items: [
+          {kind: 'route', name: 'Route rond het Hilgelo', where: 'Vanaf de Jonkersweg', text: 'De Jonkersweg komt uit aan de westkant van het Hilgelo, waar de route rond het meer langs loopt. Die is het hele jaar open, ook voor honden.', link: {href: 'https://www.leisurelands.nl/nl/locaties/3778568479/hondenroute-hilgelo-startpunt', label: 'Kaart van de route'}},
+          {kind: 'nodogs', name: 'Strand: geen honden in de zomer', where: 'Oostkant van het meer', text: 'Van 1 mei tot 1 oktober zijn honden op het strand niet toegestaan. Op de route rond het meer mag uw hond wel mee.'},
+        ],
+      },
+      faq: [
+        {q: 'Hoe groot is het Hilgelo?', a: 'Zo’n 36 hectare water, met een zandstrand en ruime lig- en speelweiden.'},
+        {q: 'Hoe ver is het Hilgelo van het vakantiehuis?', a: 'Vanaf onze drie huizen aan de Jonkersweg ligt het om de hoek: de Jonkersweg komt uit aan de westkant van het meer. Vanaf de huizen op de Kattenberg, in het bos, gaat u er met de fiets of de auto naartoe.'},
+        {q: 'Hoe lang duurt een rondje om het Hilgelo?', a: 'Volgens een van onze gasten kost een rondje wandelen om het water ongeveer 75 minuten.'},
+        {q: 'Wat kan ik bij het Hilgelo huren?', a: 'Waterfietsen, kano’s, ligstoelen en parasols huurt u ter plekke. Er is ook een surfkluis.'},
+        {q: 'Mag mijn hond mee naar het Hilgelo?', a: 'Ja, op de route rond het meer, het hele jaar. Alleen op het strand aan de oostkant zijn honden van 1 mei tot 1 oktober niet toegestaan.'},
+      ],
+      cta: {
+        title: 'Vraag een vakantiehuis bij het Hilgelo aan',
+        text: 'Geef uw periode en het aantal personen door. We laten weten welk huis aan de Jonkersweg vrij is.',
+        button: 'Verblijf aanvragen',
+      },
+    },
+    de: {
+      kicker: 'Der Badesee von Winterswijk',
+      label: 'Der Hilgelo',
+      intro: [
+        'Der Hilgelo ist der Badesee von Winterswijk: rund 36 Hektar Wasser mit Sandstrand, weiten Liege- und Spielwiesen und einem Weg rund um den See. Im Sommer wird hier gebadet und gesonnt, außerhalb der Saison haben Sie das Ufer oft fast für sich allein.',
+        'Drei unserer Ferienhäuser stehen am Jonkersweg in Winterswijk Meddo, im Ferienpark Den Möllenhof. Der Jonkersweg mündet an der Westseite des Sees, Sie sind also vom Haus aus gleich am Wasser. Winterswijk liegt direkt hinter der Grenze bei Bocholt und Vreden.',
+      ],
+      photos: [
+        {src: '/img/hilgelo-bord.webp', alt: 'Das Hilgelo-Schild mit einer Holzeule am Waldrand'},
+        {src: '/img/hilgelo-zonsondergang.webp', alt: 'Sonnenuntergang über dem Hilgelo in Winterswijk'},
+        {src: '/img/hilgelo-meer.webp', alt: 'Blick zwischen den Bäumen hindurch über den Hilgelo'},
+      ],
+      sections: [
+        {
+          title: 'Baden, sonnen und aufs Wasser',
+          text: [
+            'An der Ostseite liegt der Strand, dahinter Liege- und Spielwiesen. Tretboote, Kanus, Liegestühle und Sonnenschirme mieten Sie vor Ort, und für Surfer gibt es ein Surfdepot.',
+            'Lieber ins Freibad? Das Strandbad in Winterswijk ist ein authentisches Freibad aus den dreißiger Jahren, 2010 vollständig restauriert, mit Sandstrand und einem tiefen Becken mit Sprungturm.',
+          ],
+        },
+        {
+          title: 'Rund um den See, das ganze Jahr',
+          text: [
+            'Der Weg rund um den Hilgelo ist das ganze Jahr offen, auch für Ihren Hund. Am Wasser stehen Bänke, und im Frühjahr und Herbst haben Sie sie oft ganz für sich allein. Nur am Strand sind Hunde vom 1. Mai bis 1. Oktober nicht erlaubt.',
+          ],
+        },
+        {
+          title: 'Ferienhäuser am Hilgelo',
+          text: [
+            'Jonkersweg 55, 57 und 65 sind jeweils für sechs Personen, mit eigener Sauna, und in allen drei ist Ihr Hund willkommen. 55 und 57 stehen nebeneinander, 65 ein paar Häuser weiter, zusammen also Platz für 18 Personen. Im Park gibt es auch Ställe und Weiden für Ihr Pferd.',
+          ],
+          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg65'],
+        },
+      ],
+      walks: {
+        title: 'Vom Jonkersweg ans Wasser',
+        intro: 'Wo der Jonkersweg mündet, wo der Weg um den See verläuft und wo der Strand liegt.',
+        map: {lake: 'Hilgelo', route: 'Weg um den See, ganzjährig', beach: 'Strand: keine Hunde vom 1. Mai bis 1. Oktober', home: 'Jonkersweg', caption: 'Schematisch, nach der Karte von Leisurelands.'},
+        items: [
+          {kind: 'route', name: 'Rundweg um den Hilgelo', where: 'Ab dem Jonkersweg', text: 'Der Jonkersweg mündet an der Westseite des Hilgelo, wo der Weg um den See vorbeiführt. Er ist das ganze Jahr offen, auch für Hunde.', link: {href: 'https://www.leisurelands.nl/nl/locaties/3778568479/hondenroute-hilgelo-startpunt', label: 'Karte des Weges'}},
+          {kind: 'nodogs', name: 'Strand: im Sommer keine Hunde', where: 'Ostseite des Sees', text: 'Vom 1. Mai bis 1. Oktober sind Hunde am Strand nicht erlaubt. Auf dem Weg um den See darf Ihr Hund mit.'},
+        ],
+      },
+      faq: [
+        {q: 'Wie groß ist der Hilgelo?', a: 'Rund 36 Hektar Wasser, mit Sandstrand und weiten Liege- und Spielwiesen.'},
+        {q: 'Wie weit ist der Hilgelo vom Ferienhaus entfernt?', a: 'Von unseren drei Häusern am Jonkersweg liegt er um die Ecke: der Jonkersweg mündet an der Westseite des Sees. Von den Häusern auf dem Kattenberg, im Wald, fahren Sie mit dem Rad oder dem Auto hin.'},
+        {q: 'Wie lange dauert eine Runde um den Hilgelo?', a: 'Laut einem unserer Gäste dauert eine Runde zu Fuß um den See etwa 75 Minuten.'},
+        {q: 'Was kann man am Hilgelo mieten?', a: 'Tretboote, Kanus, Liegestühle und Sonnenschirme mieten Sie vor Ort. Es gibt auch ein Surfdepot.'},
+        {q: 'Darf mein Hund mit an den Hilgelo?', a: 'Ja, auf dem Weg um den See, das ganze Jahr. Nur am Strand an der Ostseite sind Hunde vom 1. Mai bis 1. Oktober nicht erlaubt.'},
+      ],
+      cta: {
+        title: 'Ferienhaus am Hilgelo anfragen',
+        text: 'Nennen Sie uns Zeitraum und Personenzahl. Wir sagen Ihnen, welches Haus am Jonkersweg frei ist.',
+        button: 'Aufenthalt anfragen',
+      },
+    },
+    en: {
+      kicker: 'Winterswijk’s lake',
+      label: 'Hilgelo lake',
+      intro: [
+        'The Hilgelo is Winterswijk’s recreational lake: some 36 hectares of water with a sandy beach, generous lawns to play and sunbathe on, and a route all the way round. In summer people come to swim and sunbathe; out of season you often have the shore almost to yourself.',
+        'Three of our holiday homes stand on Jonkersweg in Winterswijk Meddo, on the Den Möllenhof holiday park. Jonkersweg comes out on the west side of the lake, so from your door you are at the water in no time.',
+      ],
+      photos: [
+        {src: '/img/hilgelo-bord.webp', alt: 'The Hilgelo sign with a wooden owl at the edge of the woods'},
+        {src: '/img/hilgelo-zonsondergang.webp', alt: 'Sunset over Hilgelo lake in Winterswijk'},
+        {src: '/img/hilgelo-meer.webp', alt: 'A view across Hilgelo lake through the trees'},
+      ],
+      sections: [
+        {
+          title: 'Swimming, sunbathing and out on the water',
+          text: [
+            'The beach is on the east side, with lawns behind it. Pedalos, canoes, deckchairs and parasols are for hire on site, and there is a surf locker for windsurfers.',
+            'Prefer an open-air pool? The Strandbad in Winterswijk is an authentic 1930s open-air pool, fully restored in 2010, with a sandy beach and a deep basin with a diving tower.',
+          ],
+        },
+        {
+          title: 'Walking round the lake, all year',
+          text: [
+            'The route around the Hilgelo is open all year, dogs included. There are benches along the water, and in spring and autumn you often have them entirely to yourself. Only the beach is closed to dogs, from 1 May to 1 October.',
+          ],
+        },
+        {
+          title: 'Holiday homes by the Hilgelo',
+          text: [
+            'Jonkersweg 55, 57 and 65 each sleep six, each has a private sauna, and dogs are welcome in all three. 55 and 57 stand side by side and 65 a few doors along, so together they sleep 18. The park also has stables and paddocks for your horse.',
+          ],
+          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg65'],
+        },
+      ],
+      walks: {
+        title: 'From Jonkersweg to the water',
+        intro: 'Where Jonkersweg comes out, where the lakeside route runs and where the beach is.',
+        map: {lake: 'Hilgelo', route: 'Route round the lake, all year', beach: 'Beach: no dogs from 1 May to 1 October', home: 'Jonkersweg', caption: 'Schematic, based on the Leisurelands map.'},
+        items: [
+          {kind: 'route', name: 'Route around the Hilgelo', where: 'From Jonkersweg', text: 'Jonkersweg comes out on the west side of the Hilgelo, where the route round the lake passes. It is open all year, dogs included.', link: {href: 'https://www.leisurelands.nl/nl/locaties/3778568479/hondenroute-hilgelo-startpunt', label: 'Map of the route'}},
+          {kind: 'nodogs', name: 'Beach: no dogs in summer', where: 'East side of the lake', text: 'Dogs are not allowed on the beach from 1 May to 1 October. On the route round the lake your dog is welcome.'},
+        ],
+      },
+      faq: [
+        {q: 'How big is Hilgelo lake?', a: 'Some 36 hectares of water, with a sandy beach and generous lawns to play and sunbathe on.'},
+        {q: 'How far is the Hilgelo from the holiday home?', a: 'From our three homes on Jonkersweg it is around the corner: Jonkersweg comes out on the west side of the lake. From the homes on the Kattenberg, in the woods, you get there by bike or car.'},
+        {q: 'How long is a walk round the Hilgelo?', a: 'According to one of our guests, a walk all the way round the lake takes about 75 minutes.'},
+        {q: 'What can I hire at the Hilgelo?', a: 'Pedalos, canoes, deckchairs and parasols are for hire on site. There is also a surf locker.'},
+        {q: 'Can my dog come to the Hilgelo?', a: 'Yes, on the route round the lake, all year. Only the beach on the east side is closed to dogs from 1 May to 1 October.'},
+      ],
+      cta: {
+        title: 'Enquire about a home by the Hilgelo',
+        text: 'Tell us your dates and the number of guests. We will let you know which home on Jonkersweg is free.',
         button: 'Enquire now',
       },
     },

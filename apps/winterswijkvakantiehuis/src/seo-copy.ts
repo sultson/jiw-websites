@@ -187,6 +187,23 @@ export const seoCopy: Record<string, Record<string, {title: string; description:
       "h1": "Dog-friendly holiday homes in Winterswijk with a sauna"
     }
   },
+  "hilgelo": {
+    "nl": {
+      "title": "Het Hilgelo in Winterswijk | Vakantiehuis om de hoek",
+      "description": "Het Hilgelo in Winterswijk: 36 hectare water met strand, een route rond het meer en waterfietsen. Onze vakantiehuizen aan de Jonkersweg liggen om de hoek.",
+      "h1": "Het Hilgelo in Winterswijk, om de hoek van uw vakantiehuis"
+    },
+    "de": {
+      "title": "Hilgelo Winterswijk: Badesee am Ferienhaus",
+      "description": "Der Hilgelo in Winterswijk: 36 Hektar Badesee mit Strand, Rundweg und Tretbooten. Unsere Ferienhäuser am Jonkersweg liegen um die Ecke, jedes mit Sauna.",
+      "h1": "Der Hilgelo in Winterswijk, um die Ecke von Ihrem Ferienhaus"
+    },
+    "en": {
+      "title": "Hilgelo lake, Winterswijk | Holiday homes nearby",
+      "description": "Hilgelo lake in Winterswijk: 36 hectares of water with a beach, a lakeside route and pedalos. Our holiday homes on Jonkersweg are just around the corner.",
+      "h1": "Hilgelo lake in Winterswijk, around the corner from your holiday home"
+    }
+  },
   "curacao": {
     "nl": {
       "title": "Aemilius Curaçao: verblijf in Barber",
