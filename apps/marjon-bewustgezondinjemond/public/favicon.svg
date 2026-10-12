@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#dce2df"/>
+  <!-- Hart van haar bloem des levens: op faviconformaat is de volledige bloem
+       een grijze vlek, dus alleen de eerste ring, met dezelfde stand en rand. -->
+  <g fill="none" stroke="#316d78" stroke-width="3">
+    <circle cx="50" cy="50" r="22.5"/>
+    <circle cx="50" cy="27.5" r="22.5"/>
+    <circle cx="50" cy="72.5" r="22.5"/>
+    <circle cx="69.49" cy="38.75" r="22.5"/>
+    <circle cx="69.49" cy="61.25" r="22.5"/>
+    <circle cx="30.51" cy="38.75" r="22.5"/>
+    <circle cx="30.51" cy="61.25" r="22.5"/>
+    <circle cx="50" cy="50" r="45" stroke-width="3.4"/>
+  </g>
+</svg>

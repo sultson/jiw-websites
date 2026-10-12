@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
+    // allowJs blijft uit. Met allowJs aan gaat TypeScript op zoek naar
+    // @cloudflare/workers-types op een manier die in een pnpm-workspace niets
+    // vindt, en dan kent de Worker zijn eigen omgeving niet meer. De
+    // configuratie in site.config.mjs krijgt zijn types van site.config.d.mts
+    // ernaast; src/privacytekst.js van privacytekst.d.ts.
+    "allowJs": false,
+    "types": ["vite/client"],
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "noEmit": true
+  },
+  // De Worker staat er niet bij: die draait niet in een browser en heeft zijn
+  // eigen omgeving (tsconfig.worker.json). Zonder deze grens loopt worker/ mee
+  // in de browsercontrole, en dan kent hij R2 en de mailkoppeling niet.
+  "include": ["src", "vite.config.ts", "site.config.d.mts"]
+}

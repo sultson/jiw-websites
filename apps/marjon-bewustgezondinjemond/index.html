@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2b4249" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <!-- De lettertypes staan op onze eigen server (zie de @font-face-regels in
+         index.css). Er gaat dus geen verzoek meer naar fonts.googleapis.com, en
+         daarmee geen ip-adres van een bezoeker naar Google. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/quicksand-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/cormorant-garamond-latin.woff2" crossorigin />
+    <link rel="preload" as="image" href="/img/bloem.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/img/hero-glimlach.webp" fetchpriority="high" />
+
+    <!-- Alles wat per pagina verschilt (title, description, canonical, og:,
+         twitter:, robots, schema.org) staat tussen deze twee markeringen en
+         wordt gezet door vite.config.ts. scripts/prerender.mjs vervangt het
+         blok per pagina, zodat /aanpak/voeding zijn eigen titel en zijn eigen
+         canonical draagt in de HTML zelf en niet pas nadat er javascript heeft
+         gedraaid. Niet met de hand vullen: wat hier komt te staan wordt bij
+         elke build overschreven. De bron is site.config.mjs. -->
+    <!--kop:start--><!--kop:end-->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

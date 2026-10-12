@@ -1,0 +1,82 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "marjon-bewustgezondinjemond",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Zonder schuine streep aan het eind: /aanpak/voeding en niet
+    // /aanpak/voeding/. Dat is de vorm waarin de adressen al bij Google staan
+    // en waarin ze in de sitemap en in elke canonical staan. Cloudflare moet
+    // dezelfde vorm serveren, anders is elke canonical eerst een omleiding.
+    "html_handling": "drop-trailing-slash",
+    // Elke pagina is als eigen bestand gebakken, dus er valt voor een
+    // SPA-terugval niets te doen behalve 200 antwoorden op een adres dat niet
+    // bestaat. Dat is een zachte 404 en die kost indexruimte. Hier stond
+    // "single-page-application"; nu krijgt een onbekend adres dist/404.html met
+    // een echte 404 erbij.
+    "not_found_handling": "404-page",
+    // De Worker moet paginaverzoeken zien, niet alleen de API: anders krijgt de
+    // HTML zijn Cache-Control niet mee en draait de omleiding naar de canonieke
+    // host nooit. De bestanden met een hash in hun naam gaan er wel omheen, die
+    // hebben er niets te halen.
+    "run_worker_first": ["/*", "!/assets/*", "!/img/*", "!/fonts/*", "!/favicon.svg", "!/logo-email.png"]
+  },
+  // Drie hosts, één site. bewustgezondinjemond.nl is de canonieke host (zie
+  // SITE_URL in site.config.mjs); de andere twee sturen hun bezoekers daarheen
+  // met één 301 in worker/index.ts.
+  //
+  // Allebei de varianten van het eigen domein, niet alleen de kale: wie de
+  // www-variant vergeet zet de helft van de bezoekers op een foutpagina.
+  //
+  // custom_domain en geen gewone route: bij het koppelen zet Cloudflare zelf
+  // het DNS-record klaar. Dat is hier nodig, want de zone bewustgezondinjemond.nl
+  // stond wel in het account maar had geen enkel record voor de site zelf -
+  // alleen de mailrecords onder notify.
+  //
+  // marjon.jouwidealewebsite.nl is het adres waarop de site is opgeleverd en
+  // waarop hij een paar weken geindexeerd heeft gestaan. Blijft gekoppeld en
+  // stuurt door; niet weghalen.
+  "routes": [
+    { "pattern": "bewustgezondinjemond.nl", "custom_domain": true },
+    { "pattern": "www.bewustgezondinjemond.nl", "custom_domain": true },
+    { "pattern": "marjon.jouwidealewebsite.nl", "custom_domain": true }
+  ],
+  // Het formulier stuurt geen bestanden mee (attachmentMaxFiles: 0), maar
+  // @jiw/cloudflare-forms verwacht de binding. Dezelfde gedeelde bucket als de
+  // andere sites; er komt onder de prefix marjon-bewustgezondinjemond/ niets in
+  // te staan zolang het formulier geen uploads kent.
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  // Verstuurd vanaf haar eigen afzenderdomein notify.bewustgezondinjemond.nl,
+  // dat in Cloudflare Email Service is aangemeld: DKIM, SPF en een DMARC op
+  // p=reject staan in de zone. Alleen het domein is aangemeld, de naam ervoor
+  // is vrij - no-reply@ veranderen in iets anders is een regel hier plus
+  // LEAD_SENDER, geen DNS-werk.
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["no-reply@notify.bewustgezondinjemond.nl"]
+    }
+  ],
+  // Geen TURNSTILE_SECRET_KEY: dit formulier draait met `turnstile: false` en
+  // leunt op het verborgen veld in worker/index.ts, dus er is geen widget om
+  // tegen te controleren.
+  "vars": {
+    "SITE_ID": "marjon-bewustgezondinjemond",
+    // Haar berichten komen voorlopig bij ons binnen en niet bij haar. Zodra
+    // Marjon zelf de leads wil ontvangen is dit de regel die verandert - en
+    // vanaf dat moment mag er geen testbericht meer tegen de live configuratie.
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_SENDER": "no-reply@notify.bewustgezondinjemond.nl"
+  }
+}

@@ -1,0 +1,260 @@
+@import 'tailwindcss';
+
+/* De lettertypes komen van onze eigen server en niet meer van fonts.googleapis.com.
+   Dat was de enige plek waar deze site nog iets aan een derde partij vroeg, en zo'n
+   verzoek stuurt het ip-adres van de bezoeker naar Google. Zonder dat verzoek is er
+   niets waar een bezoeker toestemming voor hoeft te geven.
+
+   Het zijn variabele bestanden (een bestand voor het hele gewichtsbereik) in de
+   subsets latin en latin-ext, opgehaald van Google Fonts zelf. De twee die boven de
+   vouw nodig zijn worden in index.html vooruit geladen. */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url('/fonts/cormorant-garamond-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/quicksand-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/quicksand-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Sacramento';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/sacramento-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Sacramento';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/sacramento-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@theme {
+  --color-zand: #dce2df;
+  --color-zand-diep: #c9d3ce;
+  --color-room: #f6f4ef;
+  --color-olijf: #7c8460;
+  --color-olijf-diep: #5f6749;
+  --color-petrol: #497b89;
+  /* de teal uit haar eigen logo, opgemeten uit het bestand: groener dan petrol */
+  --color-bloem: #316d78; /* kleur uit haar aangeleverde logobestand */
+  --color-petrol-diep: #33606d;
+  --color-inkt: #2b4249;
+  --color-mosterd: #d9b441;
+  --color-terra: #c4691c;
+
+  --font-sans: 'Quicksand', ui-sans-serif, system-ui, sans-serif;
+  --font-titel: 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Sacramento', cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-inkt);
+  background: var(--color-room);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Zonder deze regel tekent de browser geselecteerde tekst in zijn eigen felblauw,
+   en dat valt hard uit haar palet. Nu een zachte zandtint uit de huisstijl. */
+::selection {
+  background: var(--color-zand-diep);
+  color: var(--color-inkt);
+}
+
+/* De koppen staan sinds 12-10-2026 in Quicksand en niet meer in Cormorant
+   Garamond (via Armando): Marjon wil overal het lettertype van de kop "Mijn
+   aanpak", en dat is de .kicker hieronder -- die erft de schreefloze van de
+   body. Gewicht en spatiering zijn van die kicker overgenomen, zodat een kop en
+   het regeltje erboven echt uit hetzelfde lettertype komen.
+
+   Quicksand heeft een veel grotere x-hoogte dan Cormorant, dus bij hetzelfde
+   font-size leest een kop nu zwaarder en breder. Daarom is de lijnhoogte wat
+   krapper: een schreefloze kop heeft minder lucht tussen de regels nodig. */
+.titel {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.22;
+}
+
+/* De merknaam zelf blijft Cormorant Garamond. Dat is geen kop maar het woordmerk
+   naast haar bloem: in de balk bovenaan, in de footer, in het hart van de rozet
+   en in de kop van de hero. Armando's opdracht was expliciet dat de hero qua
+   lettertype hetzelfde moet blijven, en het woordmerk hoort bij die hero. */
+.merknaam {
+  font-family: var(--font-titel);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+}
+
+.script {
+  font-family: var(--font-script);
+  line-height: 1.05;
+}
+
+/* Twee keer zo groot als eerst (0.7rem).
+
+   Geen hoofdletters meer (10-10-2026, via Armando): Marjon wil nergens op de
+   site een kop die helemaal in kapitalen staat. De ruime spatiering hoorde bij
+   die hoofdletters -- op kleine letters valt 0.14em uit elkaar, dus die loopt
+   mee terug naar 0.05em. */
+.kicker {
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+}
+
+/* De grote bloem des levens draait heel traag rond. Via de losse rotate-property
+   en niet via transform, want die watermerken staan al met translate op hun
+   plek en dat zou elkaar overschrijven. */
+@keyframes bloem-draai {
+  to { rotate: 360deg; }
+}
+
+.bloem-draait {
+  animation: bloem-draai 240s linear infinite;
+}
+
+/* De ikigai: vijf overlappende cirkels. Het vlak van de aangewezen cirkel wordt
+   voller en de rand sterker, zodat duidelijk is welke pijler je aanklikt. */
+.ikigai-deel {
+  cursor: pointer;
+}
+
+.ikigai-deel .vlak,
+.ikigai-deel .rand {
+  transition: opacity 0.3s ease;
+}
+
+.ikigai-deel .rand {
+  opacity: 0.4;
+}
+
+.ikigai-deel:hover .vlak,
+.ikigai-deel:focus-visible .vlak {
+  opacity: 0.22;
+}
+
+.ikigai-deel:hover .rand,
+.ikigai-deel:focus-visible .rand {
+  opacity: 1;
+}
+
+.ikigai-deel:focus-visible {
+  outline: none;
+}
+
+/* De band met reviews die langsschuift. De rij staat twee keer achter elkaar in
+   de code, dus een halve slag is precies een hele lus. Die halve slag is niet
+   exact 50%: er zitten 2n-1 tussenruimtes tussen 2n kaarten, dus er moet een
+   halve tussenruimte bij, anders springt hij zichtbaar bij het opnieuw beginnen. */
+@keyframes reviews-schuif {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 0.625rem)); }
+}
+
+.reviews-venster {
+  overflow: hidden;
+}
+
+.reviews-schuif {
+  animation: reviews-schuif 70s linear infinite;
+}
+
+/* stilzetten zodra iemand wil lezen wat er staat */
+.reviews-venster:hover .reviews-schuif,
+.reviews-venster:focus-within .reviews-schuif {
+  animation-play-state: paused;
+}
+
+/* De melding onderaan komt rustig opzetten in plaats van te knallen. */
+@keyframes melding-op {
+  from { opacity: 0; transform: translateY(0.75rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.melding-komt {
+  animation: melding-op 0.45s ease-out both;
+}
+
+/* De uitvergrote meridianenkaart. Een <dialog> is standaard een smal doosje in
+   het midden; dit maakt er een laag overheen van. De browser tekent hem zelf in
+   de bovenste laag, dus er is geen z-index nodig. */
+.vergroot-venster {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--color-inkt);
+  color: var(--color-room);
+}
+
+.vergroot-venster[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.vergroot-venster::backdrop {
+  background: var(--color-inkt);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .bloem-draait { animation: none; }
+  .melding-komt { animation: none; }
+  .reviews-schuif { animation: none; }
+  .reviews-venster { overflow-x: auto; }
+  .ikigai-deel .vlak,
+  .ikigai-deel .rand { transition: none; }
+}
