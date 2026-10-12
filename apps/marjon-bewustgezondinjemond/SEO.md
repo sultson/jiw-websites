@@ -75,10 +75,12 @@ halverwege afgekapt. De vijf pijlerpagina's heetten alleen "Voeding" of
    adres maanden langer.
 2. **Bing Webmaster Tools.** Zelfde twee stappen. Kost tien minuten en bedient
    ook ChatGPT, dat op Bing leunt.
-3. **Google Analytics.** Het meet-ID (`G-...`) ontbreekt nog; `NUMMERS.ga4` in
-   `src/cookies.ts` is leeg. Zolang dat zo is meet niemand iets en weten we over
-   drie maanden niet of dit geholpen heeft. De Meta Pixel staat er wel in. Beide
-   laden alleen na 'alles toestaan' in de cookiemelding.
+3. **Google Analytics.** Staat erin sinds 12-10-2026: `G-6X34NK42Z3` in
+   `NUMMERS.ga4` (`src/cookies.ts`), naast de Meta Pixel. Beide laden alleen na
+   'alles toestaan' in de cookiemelding, dus de cijfers zijn per definitie lager
+   dan het echte bezoek - wie weigert of niets kiest wordt niet geteld. Nog wel
+   te doen: GA4 en Search Console aan elkaar koppelen (Beheer > Productkoppelingen),
+   dan staan de zoekwoorden in hetzelfde rapport.
 4. **De teksten gaan nog over een praktijk.** Marjon doet sinds 10-10-2026 alleen
    online coaching, maar de site praat over patiënten, over behandelen en over
    een praktijk - in de lopende tekst, in de alt-teksten bij de foto's en in de

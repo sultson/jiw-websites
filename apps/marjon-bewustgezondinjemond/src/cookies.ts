@@ -9,14 +9,14 @@
    laadGa() en laadPixel(). Er staat nergens anders in de site een <script> van
    Google of Meta, dus er is geen weg waarlangs ze alsnog binnenkomen.
 
-   Het Pixel-ID staat erin; het GA4-meet-ID is nog niet aangeleverd. Zolang dat
-   leeg is laadt er na 'alles toestaan' alleen Meta en geen Google. Vul hem in
-   en het gaat meteen leven. */
+   Beide nummers staan erin sinds 12-10-2026, dus na 'alles toestaan' laden ze
+   ook echt. Haal je er een weg, dan wordt dat script niet geladen en blijft de
+   rest werken. */
 
 export const NUMMERS = {
   /* GA4-meet-ID, van de vorm G-XXXXXXXXXX (Google Analytics > Beheer >
-     Gegevensstromen > Webstream) */
-  ga4: '',
+     Gegevensstromen > Webstream). Aangeleverd 12-10-2026. */
+  ga4: 'G-6X34NK42Z3',
   /* Meta Pixel-ID, een getal van 15 of 16 cijfers (Meta Events Manager).
      Gegevensset 'bewust gezond in je mond', aangeleverd 12-10-2026. */
   pixel: '1618348649871675',

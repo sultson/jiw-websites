@@ -52,15 +52,16 @@ niet nog een keer overgeschreven.
 ## Het formulier
 
 Het contactformulier post naar `/api/forms/contact` op `@jiw/cloudflare-forms`
-(`worker/index.ts`). Het mailt naar `hallo@jouwidealewebsite.nl` vanaf
+(`worker/index.ts`). Het mailt naar `info@marjonooteman.nl` vanaf
 `no-reply@notify.bewustgezondinjemond.nl`, en stuurt de afzender een bevestiging in
 haar eigen opmaak (`worker/confirmation-email.ts`).
 
 - Geen Turnstile. Het verborgen veld `bedrijf` doet het werk; een widget van
   Cloudflare op elke pagina zou langs de cookiemelding heen laden.
 - Eén naamveld, dus `requireLastName: false`: de naam komt als `firstName` binnen.
-- `LEAD_RECIPIENT` staat op ons eigen adres. **Gaat dat ooit naar haar eigen
-  mailbox, stuur dan nooit meer een testbericht tegen de live configuratie.**
+- `LEAD_RECIPIENT` staat sinds 12-10-2026 op haar eigen mailbox
+  (`info@marjonooteman.nl`). **Stuur geen testbericht meer tegen de live
+  configuratie**; zet het eerst terug naar `hallo@jouwidealewebsite.nl`.
 
 Het logo in die mail is `public/logo-email.png`, getekend door
 `scripts/mail-logo.mjs` (een echte browser, met haar eigen Quicksand). Opnieuw
@@ -78,8 +79,6 @@ Zie `SEO.md` voor de stand bij livegang en wat er nog open staat.
 
 ## Wat nog niet van ons is
 
-- Het meet-ID van Google Analytics (`NUMMERS.ga4` in `src/cookies.ts`) is leeg. De
-  Meta Pixel staat erin. Beide laden alleen na 'alles toestaan' in de cookiemelding.
 - De teksten gaan nog over een behandelpraktijk en over patiënten, terwijl Marjon
   sinds 10-10-2026 alleen online coaching doet. Dat is een eigen copyronde en raakt
   de hele site; bij de verhuizing is er niets aan veranderd.

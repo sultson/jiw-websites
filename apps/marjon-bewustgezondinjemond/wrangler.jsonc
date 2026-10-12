@@ -73,10 +73,11 @@
   // tegen te controleren.
   "vars": {
     "SITE_ID": "marjon-bewustgezondinjemond",
-    // Haar berichten komen voorlopig bij ons binnen en niet bij haar. Zodra
-    // Marjon zelf de leads wil ontvangen is dit de regel die verandert - en
-    // vanaf dat moment mag er geen testbericht meer tegen de live configuratie.
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // Sinds 12-10-2026 komen haar berichten bij haar zelf binnen. Dit is dus
+    // een echte klantmailbox: NOOIT meer een testbericht tegen deze
+    // configuratie. Testen betekent eerst terugzetten naar
+    // hallo@jouwidealewebsite.nl.
+    "LEAD_RECIPIENT": "info@marjonooteman.nl",
     "LEAD_SENDER": "no-reply@notify.bewustgezondinjemond.nl"
   }
 }
