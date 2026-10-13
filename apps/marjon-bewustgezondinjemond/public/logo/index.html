@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Deze pagina hoort niet in de zoekresultaten tussen haar echte pagina's.
+         Staat ook als X-Robots-Tag in public/_headers, voor de bestanden zelf. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Logo Bewust Gezond in je Mond</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      @font-face {
+        font-family: 'Cormorant Garamond';
+        font-style: normal;
+        font-weight: 300 700;
+        font-display: swap;
+        src: url('/fonts/cormorant-garamond-latin.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Quicksand';
+        font-style: normal;
+        font-weight: 300 700;
+        font-display: swap;
+        src: url('/fonts/quicksand-latin.woff2') format('woff2');
+      }
+
+      :root {
+        --room: #f6f4ef;
+        --inkt: #2b4249;
+        --bloem: #316d78;
+        --petrol-diep: #33606d;
+        --zand: #dce2df;
+        --olijf: #7c8460;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 3rem 1.25rem 4rem;
+        background: var(--room);
+        color: var(--inkt);
+        font-family: 'Quicksand', system-ui, sans-serif;
+        font-size: 1rem;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      main {
+        max-width: 42rem;
+        margin: 0 auto;
+      }
+
+      .merk {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .merk img {
+        width: 3.25rem;
+        height: 3.25rem;
+      }
+
+      .merknaam {
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-weight: 300;
+        font-size: 1.35rem;
+        letter-spacing: 0.06em;
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(1.9rem, 6vw, 2.6rem);
+        line-height: 1.15;
+        margin: 0 0 0.75rem;
+      }
+
+      h2 {
+        font-family: 'Quicksand', system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 1.05rem;
+        letter-spacing: 0.01em;
+        margin: 2.75rem 0 0.75rem;
+      }
+
+      p {
+        margin: 0 0 1rem;
+      }
+
+      .knop {
+        display: inline-block;
+        margin: 1.5rem 0 0.5rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        background: var(--bloem);
+        color: var(--room);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .knop:hover,
+      .knop:focus-visible {
+        background: var(--petrol-diep);
+      }
+
+      .onder-knop {
+        font-size: 0.85rem;
+        color: #5d7279;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      li {
+        padding: 0.6rem 0;
+        border-bottom: 1px solid var(--zand);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.75rem;
+        align-items: baseline;
+      }
+
+      li a {
+        color: var(--bloem);
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(49, 109, 120, 0.35);
+      }
+
+      li a:hover,
+      li a:focus-visible {
+        border-bottom-color: var(--bloem);
+      }
+
+      li span {
+        font-size: 0.9rem;
+        color: #5d7279;
+      }
+
+      .kleuren {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .kleur {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.9rem;
+      }
+
+      .staal {
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%;
+        border: 1px solid rgba(43, 66, 73, 0.15);
+      }
+
+      footer {
+        margin-top: 3.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--zand);
+        font-size: 0.85rem;
+        color: #5d7279;
+      }
+
+      footer a {
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="merk">
+        <img src="/logo/bloem.svg" alt="" />
+        <div class="merknaam">Bewust Gezond<br />in je Mond</div>
+      </div>
+
+      <h1>Je logo om te downloaden</h1>
+      <p>
+        Het logo als vector, dus het blijft scherp op alles van een visitekaartje tot een gevelbord.
+        Alles in een keer, of los wat je nodig hebt.
+      </p>
+
+      <a class="knop" href="/logo/logo-bewust-gezond-in-je-mond.zip" download
+        >Download alles ({{ZIPGROOTTE}})</a
+      >
+      <p class="onder-knop">Zip met alle bestanden en een briefje erbij over welk bestand waarvoor is.</p>
+
+      <h2>Voor de drukker</h2>
+      <ul>
+        <li><a href="/logo/bloem.pdf" download>bloem.pdf</a> <span>het merkteken, 120 mm breed</span></li>
+        <li>
+          <a href="/logo/logo-liggend.pdf" download>logo-liggend.pdf</a>
+          <span>merkteken met de naam ernaast</span>
+        </li>
+      </ul>
+      <p class="onder-knop" style="margin-top: 0.75rem">
+        Vraagt iemand om een logo voor drukwerk, stuur dan een pdf of een svg en nooit een png.
+      </p>
+
+      <h2>Voor een ontwerper of een website</h2>
+      <ul>
+        <li><a href="/logo/bloem.svg" download>bloem.svg</a> <span>het bronbestand</span></li>
+        <li><a href="/logo/logo-liggend.svg" download>logo-liggend.svg</a> <span>liggend</span></li>
+        <li>
+          <a href="/logo/bloem-eenkleur.svg" download>bloem-eenkleur.svg</a>
+          <span>in een kleur, voor een stempel, borduur of eenkleurdruk</span>
+        </li>
+        <li>
+          <a href="/logo/logo-liggend-eenkleur.svg" download>logo-liggend-eenkleur.svg</a>
+          <span>idem, liggend</span>
+        </li>
+      </ul>
+
+      <h2>Voor social media en documenten</h2>
+      <ul>
+        <li><a href="/logo/png/bloem-512.png" download>bloem-512.png</a> <span>doorzichtige achtergrond</span></li>
+        <li><a href="/logo/png/bloem-1024.png" download>bloem-1024.png</a> <span>doorzichtig, groter</span></li>
+        <li><a href="/logo/png/bloem-2048.png" download>bloem-2048.png</a> <span>doorzichtig, grootst</span></li>
+        <li>
+          <a href="/logo/png/logo-liggend-1024.png" download>logo-liggend-1024.png</a>
+          <span>liggend, doorzichtig</span>
+        </li>
+        <li>
+          <a href="/logo/png/logo-liggend-2048.png" download>logo-liggend-2048.png</a>
+          <span>liggend, doorzichtig, groter</span>
+        </li>
+        <li>
+          <a href="/logo/png/logo-liggend-1024-room.png" download>logo-liggend-1024-room.png</a>
+          <span>op de roomkleur, voor oudere versies van Outlook</span>
+        </li>
+      </ul>
+
+      <h2>De kleuren</h2>
+      <div class="kleuren">
+        <div class="kleur">
+          <span class="staal" style="background: #316d78"></span> petrol #316d78
+          <span style="color: #5d7279">het merkteken</span>
+        </div>
+        <div class="kleur">
+          <span class="staal" style="background: #2b4249"></span> inkt #2b4249
+          <span style="color: #5d7279">de naam</span>
+        </div>
+        <div class="kleur">
+          <span class="staal" style="background: #f6f4ef"></span> room #f6f4ef
+          <span style="color: #5d7279">achtergrond</span>
+        </div>
+      </div>
+
+      <h2>Het lettertype</h2>
+      <p>
+        De naam staat in het logo als tekening en niet als tekst. Wie het bestand opent heeft het
+        lettertype dus niet nodig, en het ziet er op elke computer hetzelfde uit.
+      </p>
+
+      <footer>
+        Deze pagina staat niet in Google en is niet aan de website gelinkt, dus alleen wie het adres
+        heeft komt er. Gemaakt door <a href="https://jouwidealewebsite.nl">Jouw Ideale Website</a>.
+        <a href="/">Terug naar de website</a>.
+      </footer>
+    </main>
+  </body>
+</html>

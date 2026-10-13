@@ -66,6 +66,23 @@ Let op: de header van de bevestigingsmail (`public/logo-email.png`, gemaakt door
 site en van deze bestanden. Een van de twee moet wijken; dat is een keuze voor
 Marjon, geen bug om stilletjes recht te trekken.
 
+## De downloadpagina
+
+`scripts/merk-publiceren.mjs` (draait mee in `pnpm build`) zet deze bestanden
+plus een zip op de site onder `/logo`, met de pagina uit `public/logo/index.html`
+ervoor. Dat is het adres dat Marjon krijgt:
+
+    https://bewustgezondinjemond.nl/logo
+
+Op noindex via `public/_headers`, en nergens op de site naar gelinkt. Haar eigen
+domein en geen deelmap die verloopt, zodat ze de link over een jaar nog naar een
+drukker kan sturen.
+
+De zip wordt elke build opnieuw gemaakt uit de bestanden hier, dus wie `pnpm
+merk` draait hoeft daarna niets bij te werken. De tekst in de zip
+(`LEES-MIJ.txt`) staat in dat script en is een andere dan dit bestand: hier
+staat waarom het logo is zoals het is, daar staat alleen welk bestand waarvoor.
+
 ## Wat hier niet staat
 
 Een staand logo (merkteken boven de naam) en een versie in wit voor op een donkere

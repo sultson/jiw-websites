@@ -19,6 +19,22 @@
 /favicon.svg
   Cache-Control: public, max-age=604800
 
+# De downloadpagina met haar logobestanden (scripts/merk-publiceren.mjs). Die
+# hoort niet in de zoekresultaten tussen haar echte pagina's: hij is voor haar
+# en voor een drukker, niet voor iemand die naar een mondhygiënist zoekt.
+# X-Robots-Tag en niet een Disallow in robots.txt - bij een Disallow mag Google
+# de pagina niet ophalen en ziet hij de noindex dus nooit, en dan kan het adres
+# alsnog kaal in de resultaten staan.
+# Twee regels: /logo/* dekt de bestanden, maar niet het adres /logo zelf - daar
+# staat geen schuine streep achter (html_handling in wrangler.jsonc haalt die
+# weg), dus dat is een eigen pad.
+/logo
+  X-Robots-Tag: noindex, nofollow
+
+/logo/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: public, max-age=3600
+
 # Een dag: lang genoeg om niet bij elk bezoek opgehaald te worden, kort genoeg
 # dat een nieuwe pagina binnen een dag in de sitemap staat.
 /robots.txt
