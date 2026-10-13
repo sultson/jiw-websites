@@ -13,6 +13,8 @@
     "ship:dry-run": "pnpm build && pnpm audit:seo && wrangler deploy --dry-run --outdir=dist-worker",
     "audit:seo": "node scripts/audit-seo.mjs",
     "mail-logo": "node scripts/mail-logo.mjs",
+    "merk": "node scripts/merk-vector.mjs",
+    "merk-meet": "node scripts/merk-meet.mjs",
     "verklaring": "node scripts/verklaring-pdf.mjs",
     "kijk-verklaring": "node scripts/kijk-verklaring.mjs"
   },

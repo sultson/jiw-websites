@@ -67,6 +67,20 @@ Het logo in die mail is `public/logo-email.png`, getekend door
 `scripts/mail-logo.mjs` (een echte browser, met haar eigen Quicksand). Opnieuw
 draaien alleen als het merk verandert; het bestand staat in git.
 
+## Merk
+
+`merk/` is het logo als vector: SVG, PDF voor de drukker en PNG's in een paar
+maten. `pnpm merk` tekent ze opnieuw, `pnpm merk-meet` rekent na of het nog
+hetzelfde merk is als `public/img/bloem.png`. Zie `merk/LEES-MIJ.md`.
+
+De bloem is de Flower of Life en dus uit te rekenen in plaats van over te
+trekken. Het aangeleverde bestand is een scan: de ring daarin is 1,3% ovaal en
+de lijndikte loopt van 4,3 tot 7,0 px. Dat is in de vector rechtgezet.
+
+Let op: de naam staat in `merk/` in Cormorant Garamond (zoals `.merknaam` op de
+site) en in `public/logo-email.png` in Quicksand. Die twee spreken elkaar tegen;
+welke wint is een vraag voor Marjon.
+
 ## SEO
 
 `scripts/seo.mjs` schrijft `sitemap.xml` en `robots.txt` na de build - niet in
