@@ -507,11 +507,17 @@ export const STICHTINGEN: Stichting[] = [
       },
     ],
     /* Aangeleverd op 18-08-2026: het KVK-blad van de Nederlandse stichting
-       (Helmond, Kortenaerstraat 28, KVK 42130908). Het e-mailadres is per
-       28-08-2026 het gedeelde adres op het eigen domein. Een CRIB-nummer staat
-       hier bewust op false: dat bestaat in Nederland niet. */
+       (Helmond, KVK 42130908). Het e-mailadres is per 28-08-2026 het gedeelde
+       adres op het eigen domein. Een CRIB-nummer staat hier bewust op false:
+       dat bestaat in Nederland niet.
+
+       Straat en postcode staan hier op verzoek van de klant niet meer (14-10-2026):
+       dit is een woonadres, en een openbare pagina is iets anders dan het
+       handelsregister. `null` haalt de adresregel uit het gegevensblok; de
+       plaats staat er een regel hoger al (plaats: Helmond, Nederland), dus
+       'Helmond' invullen zou alleen diezelfde plaats verdubbelen. */
     email: 'info@3diaspora.org',
-    adres: 'Kortenaerstraat 28, 5703 CC Helmond',
+    adres: null,
     opgericht: '2026-08-04',
     kvk: '42130908',
     crib: false,
@@ -1123,7 +1129,11 @@ export const ANBI_GEGEVENS: {kop: Tekst; waarde: string | Tekst; link?: string}[
     kop: {nl: 'Statutaire zetel', en: 'Registered seat', pap: 'Sede statutario'},
     waarde: {nl: 'Gemeente Helmond', en: 'Municipality of Helmond', pap: 'Munisipio di Helmond'},
   },
-  {kop: {nl: 'Postadres', en: 'Postal address', pap: 'Adres postal'}, waarde: 'Kortenaerstraat 28, 5703 CC Helmond'},
+  /* Hier stond tot 14-10-2026 een regel Postadres met straat en postcode. Die is
+     er op verzoek van de klant af. Geen 'Postadres: Helmond' in de plaats: de
+     regel erboven zegt al Gemeente Helmond, en twee labels boven dezelfde plaats
+     is geen gegeven maar een verdubbeling. Het volledige adres staat in het
+     handelsregister, en daar verwijst het KvK-nummer hierboven naar. */
   {kop: {nl: 'E-mail', en: 'Email', pap: 'E-mail'}, waarde: 'info@3diaspora.org', link: 'mailto:info@3diaspora.org'},
   {kop: {nl: 'Telefoon', en: 'Telephone', pap: 'Telefòn'}, waarde: '06 53 32 09 65', link: 'tel:+31653320965'},
   {kop: {nl: 'Website', en: 'Website', pap: 'Sitio web'}, waarde: 'www.3diaspora.org', link: 'https://3diaspora.org'},

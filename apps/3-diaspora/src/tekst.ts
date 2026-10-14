@@ -590,11 +590,6 @@ const T = {
       nl: 'De Bonairiaanse stichting is bereikbaar op',
       pap: 'E fundashon di Boneiru ta alkansabel na',
     },
-    concept: {
-      en: 'Concept version for 3 Diaspora. The texts and details come from bonairediaspora.org and from the brief.',
-      nl: 'Conceptversie voor 3 Diaspora. De teksten en gegevens komen van bonairediaspora.org en uit de opdracht.',
-      pap: 'Vershon di konsepto pa 3 Diaspora. E tekstonan i datonan ta bini for di bonairediaspora.org i for di e enkargo.',
-    },
   },
 
   /* ------------------------------------------------------------ paginatitels */

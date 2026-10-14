@@ -293,8 +293,6 @@ function Footer() {
             </p>
           </div>
         </div>
-
-        <p className="mt-12 border-t border-white/10 pt-6 text-[0.82rem]">{t(T.footer.concept)}</p>
       </div>
     </footer>
   );
