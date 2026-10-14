@@ -115,9 +115,11 @@ export default function Bedankt() {
                     {a.keuze && <span className="text-ink/55"> · {a.keuze}</span>}
                   </Regel>
                   <Regel term="Levering">
-                    {a.levering === 'bezorgen'
-                      ? 'Bezorgen, in overleg'
-                      : 'Ophalen in de winkel, Hogepad 9'}
+                    {a.soort === 'abonnement'
+                      ? 'Wij komen langs'
+                      : a.levering === 'bezorgen'
+                        ? 'Bezorgen, in overleg'
+                        : 'Ophalen in de winkel, Hogepad 9'}
                   </Regel>
                   {a.datum && <Regel term="Wanneer">{datumInWoorden(a.datum)}</Regel>}
                   {a.budget && <Regel term="Budget">{a.budget}</Regel>}

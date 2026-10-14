@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {
   ArrowRight, ChevronDown, Clock, Facebook, Flower2, Gift, Home, Leaf, MapPin, Navigation,
-  Phone, Shovel, Sparkles, TreePine,
+  Phone, Repeat, Shovel, Sparkles, TreePine,
 } from 'lucide-react';
 import {Bezoek, Footer, MobielBalk, Nav, VraagAan} from './layout';
 import {
@@ -102,7 +102,7 @@ function StatusKaart() {
       <dl className="mt-4 space-y-2 border-t border-line pt-4 text-sm">
         <div className="flex gap-3">
           <dt className="shrink-0 text-ink/45"><Clock className="h-4 w-4" /></dt>
-          <dd>Maandag tot en met zaterdag, 9:00 tot 18:00</dd>
+          <dd>Maandag tot en met zaterdag, 9:00 tot 17:30</dd>
         </div>
         <div className="flex gap-3">
           <dt className="shrink-0 text-ink/45"><MapPin className="h-4 w-4" /></dt>
@@ -111,7 +111,7 @@ function StatusKaart() {
       </dl>
 
       <p className="mt-4 border-t border-line pt-4 text-sm text-ink/55">
-        Zoekt u iets bepaalds?{' '}
+        Zoekt u iets specifieks?{' '}
         <a
           href={WHATSAPP}
           target="_blank"
@@ -164,9 +164,12 @@ function Hero() {
             Alles voor binnen<br />
             <span className="text-accent-dark">en buiten</span>
           </h1>
+          {/* Stond hier als opsomming van het assortiment; dat staat drie
+              secties lager al in tegels. Nu een uitnodiging, want dat is wat
+              deze winkel van een bezoeker vraagt: even binnenlopen. */}
           <p className="mt-5 max-w-md text-lg leading-relaxed text-ink">
-            Snijbloemen en kamerplanten, tuinplanten en potten, potgrond en meststoffen. Het hele jaar
-            door, van voorjaarsviolen tot de kerstboom.
+            Loop gerust binnen en kijk rond. Binnen de bloemen, de planten en de potten, buiten het
+            hele terrein. Het hele jaar door, van voorjaarsviolen tot de kerstboom.
           </p>
 
           {/* Eén hoofdknop. De winkel leeft van mensen die binnenlopen, dus dat
@@ -208,38 +211,45 @@ function Hero() {
 /* ------------------------------------------------------------------ */
 
 /**
- * Vijf onderdelen, vier daarvan met een eigen pagina erachter. "Wonen" heeft er
- * geen: wat daarover te zeggen valt staat op de assortimentspagina, en een knop
- * naar een pagina die alleen zichzelf herhaalt is een teleurstelling.
+ * Zes onderdelen, elk met een eigen pagina of ankerpunt erachter. Abonnement
+ * stond er niet bij en kwam er op 14-10-2026 als eigen tegel bij: het is een
+ * dienst die je niet tegenkomt door rond te lopen, dus moet hij hier staan.
  */
 const WINKELKAARTEN = [
   {
     img: '/img/kaart-bloemen.webp',
     icon: Flower2,
     titel: 'Bloemen',
-    tekst: 'Snijbloemen, orchideeën en bloeiende kamerplanten. Het assortiment groeit; boeketten maken we op bestelling.',
+    tekst: 'De winkel staat vol met verse bloemen. Neem een boeket mee dat al klaar staat of laat er een samenstellen.',
     href: '/assortiment/#bloemen',
   },
   {
     img: '/img/kaart-planten.webp',
     icon: Leaf,
     titel: 'Planten',
-    tekst: 'Kamerplanten van klein tot manshoog, vetplanten, palmen en olijfbomen.',
+    tekst: 'Kamerplanten in alle maten, van orchidee tot palmboom.',
     href: '/assortiment/#planten',
   },
   {
     img: '/img/kaart-tuin.webp',
     icon: Shovel,
     titel: 'Tuin',
-    tekst: 'Perkgoed en vaste planten, potgrond en tuinaarde, meststoffen en houtsnippers, en een wand zaden: gras, bloemen, groenten en kruiden.',
+    tekst: 'Perkgoed, vaste planten en meststoffen. Daarnaast boomschors, openhaardhout, hydrokorrels, buitenpotten en verschillende zaden en bloembollen.',
     href: '/assortiment/#tuin',
   },
   {
     img: '/img/kaart-wonen.webp',
     icon: Home,
     titel: 'Wonen',
-    tekst: 'Binnen- en buitenpotten, schalen en vazen, in keramiek en in kleur.',
+    tekst: 'Binnen- en buitenpotten, schalen, vazen en allerlei woonaccessoires.',
     href: '/assortiment/#wonen',
+  },
+  {
+    img: '/img/zakelijk.webp',
+    icon: Repeat,
+    titel: 'Abonnement',
+    tekst: 'Opgemaakte plantenbakken of vazen met bloemen, bij u thuis of in de zaak. Wij zetten ze neer en komen ze verversen.',
+    href: '/abonnement/',
   },
   {
     img: '/img/kaart-cadeau.webp',
@@ -255,14 +265,10 @@ const WINKELKAARTEN = [
  * pagina bleef er 200 pixels per kaart over, en daar past een foto in waarop
  * niets meer te zien is plus een tekst van drie woorden per regel.
  *
- * Nu een raster van zes kolommen met twee rijen erin: boven drie kaarten van
- * twee kolommen (ongeveer 350 pixels), onder twee van drie (ongeveer 535). Het
- * raster loopt dus vol en er blijft geen gat achter in de hoek, wat er bij drie
- * kolommen met vijf kaarten wél staat.
- *
- * De twee brede kaarten onderaan krijgen een liggender uitsnede. Zonder dat
- * worden ze anderhalf keer zo hoog als de rij erboven, puur omdat ze breder
- * zijn, en dan lijkt de onderste rij belangrijker dan hij is.
+ * Daarna stonden ze in een raster van zes kolommen, boven drie kaarten van twee
+ * kolommen en onder twee van drie, om het gat in de hoek te vullen. Met de
+ * abonnementstegel erbij zijn het er zes en kan dat gewoon weer twee rijen van
+ * drie zijn, allemaal even breed.
  */
 function InDeWinkel() {
   return (
@@ -271,19 +277,18 @@ function InDeWinkel() {
         <Kicker>In de winkel</Kicker>
         <h2 className="text-3xl font-semibold sm:text-4xl">Kom gerust even rondkijken</h2>
         <p className="mt-4 text-lg leading-relaxed text-ink/70">
-          Binnen staat de overdekte hal met kamerplanten, potten en schalen. Buiten liggen de tafels met
-          perkgoed, vaste planten en heesters, en staan de zakken grond en mest. Weet u niet wat u zoekt,
-          dan denken we graag met u mee.
+          Binnen zijn de kamerplanten, binnenpotten, opgemaakte stukjes en woonaccessoires te vinden.
+          Buiten staan de tafels met perkgoed, grondsoorten, meststoffen, vaste planten en
+          seizoensplanten.
         </p>
       </div>
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-        {WINKELKAARTEN.map((k, i) => {
-          const breed = i >= 3;
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {WINKELKAARTEN.map((k) => {
           return (
             <article
               key={k.titel}
-              className={`flex flex-col overflow-hidden rounded-2xl border border-line bg-white ${breed ? 'lg:col-span-3' : 'lg:col-span-2'}`}
+              className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white"
             >
               <img
                 src={k.img}
@@ -291,7 +296,7 @@ function InDeWinkel() {
                 loading="lazy"
                 width={800}
                 height={1000}
-                className={`w-full object-cover ${breed ? 'aspect-[4/3] lg:aspect-[16/9]' : 'aspect-[4/5] lg:aspect-[4/3]'}`}
+                className="aspect-[4/5] w-full object-cover lg:aspect-[4/3]"
               />
               <div className="flex flex-1 flex-col p-5 sm:p-6">
                 <k.icon className="h-5 w-5 text-accent-dark" />
@@ -345,7 +350,7 @@ function Kerstblok() {
     /* Extra lucht onderaan: de sectie hieronder legt er met zijn kraag een
        afgeronde rand overheen, en zonder die ruimte komt die rand tegen de
        knop aan te liggen. */
-    <Section id="kerst" tone="kerst" kerst className="pb-6 sm:pb-10">
+    <Section id="kerst" tone="kerst" kerst kraag className="pb-6 sm:pb-10">
       <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         <div>
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-kerstlicht">
@@ -355,7 +360,7 @@ function Kerstblok() {
             Vanaf november staat de winkel in het teken van kerst
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-white/75">
-            De hal gaat om: kerstbomen voor de deur, kransen en verlichting binnen, en een tafel vol
+            De winkel gaat om: kerstbomen voor de deur, kransen en verlichting binnen, en een tafel vol
             accessoires. Wie vroeg is heeft de ruimste keuze, en wie laat is vindt er nog altijd een
             boom.
           </p>
@@ -442,7 +447,7 @@ const STROOK: [string, string][] = [
 
 function Seizoen() {
   return (
-    <Section id="seizoen" tone="cream" kraag>
+    <Section id="seizoen" tone="cream">
       <div className="max-w-2xl">
         <Kicker>Door het jaar heen</Kicker>
         <h2 className="text-3xl font-semibold sm:text-4xl">Wat er staat, verandert mee</h2>
@@ -478,9 +483,14 @@ function Seizoen() {
 
 /**
  * Het abonnement van Bloei! is iets anders dan dat van Fleurig!: daar ging het
- * om een boeket voor thuis, hier om opgemaakte plantenbakken en vazen die bij
- * restaurants en bedrijven op tafel en in de zaak staan en die de winkel komt
- * verversen. Het heet toch abonnement: de winkel wil die naam houden.
+ * om een boeket voor thuis, hier om opgemaakte plantenbakken en vazen die de
+ * winkel neerzet en komt verversen. Het heet toch abonnement: de winkel wil die
+ * naam houden.
+ *
+ * Stond hier eerst als "voor restaurants en bedrijven". Dat sloot particulieren
+ * uit terwijl dezelfde afspraak thuis net zo goed werkt (14-10-2026), dus staat
+ * het er nu voor allebei — en begint het bij thuis, want dat is de groep die
+ * zichzelf hier anders niet in herkent.
  *
  * Geen prijzen en geen frequenties: die zijn niet bekend. Wat hier staat is de
  * vorm, niet de voorwaarden.
@@ -489,7 +499,7 @@ const ABONNEMENT = [
   {
     icon: Leaf,
     kop: 'Opgemaakte plantenbakken',
-    tekst: 'Voor op tafel, bij de ingang of op het terras. Wij maken ze op en komen ze verversen.',
+    tekst: 'Voor op tafel, in de vensterbank, bij de ingang of op het terras. Wij maken ze op en komen ze verversen.',
   },
   {
     icon: Flower2,
@@ -498,8 +508,8 @@ const ABONNEMENT = [
   },
   {
     icon: Sparkles,
-    kop: 'Passend bij de zaak',
-    tekst: 'We kijken eerst bij u binnen: wat past bij de ruimte, het licht en de kleuren die er al zijn.',
+    kop: 'Passend bij de ruimte',
+    tekst: 'We kijken eerst bij u: wat past bij de ruimte, het licht en de kleuren die er al zijn.',
   },
   {
     icon: Clock,
@@ -522,11 +532,12 @@ function Abonnementblok() {
         />
 
         <div>
-          <Kicker>Abonnement voor restaurants en bedrijven</Kicker>
+          <Kicker>Abonnement voor thuis en voor de zaak</Kicker>
           <h2 className="text-3xl font-semibold sm:text-4xl">Groen op tafel, zonder dat u er omkijken naar heeft</h2>
           <p className="mt-4 text-lg leading-relaxed text-ink/70">
-            Opgemaakte plantenbakken of vazen met bloemen, bij u in de zaak. Wij maken ze op, zetten ze
-            neer en komen ze verversen, zodat er nooit iets staat dat over zijn hoogtepunt heen is.
+            Opgemaakte plantenbakken of vazen met bloemen, bij u thuis of in de zaak. Wij maken ze op,
+            zetten ze neer en komen ze verversen, zodat er nooit iets staat dat over zijn hoogtepunt
+            heen is.
           </p>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
@@ -569,14 +580,14 @@ function Over() {
               daarna weg. */}
           <img
             src="/img/over-winkel.webp"
-            alt="De overdekte hal van Bloei! met de houten wanden, de stellingen met potten en de grote kamerplanten"
+            alt="De winkel van Bloei! met de houten wanden, de stellingen met potten en de grote kamerplanten"
             loading="lazy"
             decoding="async"
             width={1200}
             height={900}
             className="h-auto w-full rounded-2xl object-cover"
           />
-          <p className="mt-2.5 text-xs text-ink/45">Binnen in de hal aan het Hogepad</p>
+          <p className="mt-2.5 text-xs text-ink/45">Binnen in de winkel aan het Hogepad</p>
         </div>
 
         <div>
@@ -584,9 +595,9 @@ function Over() {
           <h2 className="text-3xl font-semibold sm:text-4xl">Wij zijn Bloei!</h2>
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink/70">
             <p>
-              Bloei! is onze winkel voor bloemen, planten, tuin en wonen in Ouddorp. Binnen de overdekte
-              hal met kamerplanten, potten en schalen, buiten het terrein met perkgoed, vaste planten en
-              alles wat er in de grond moet.
+              Bloei! is onze winkel voor bloemen, planten, tuin en wonen in Ouddorp. Binnen de
+              kamerplanten, de potten en de opgemaakte stukjes, buiten het terrein met perkgoed, vaste
+              planten en alles wat er in de grond moet.
             </p>
             <p>
               Het bloemenassortiment is nog aan het groeien. Dat betekent niet dat het er niet is: kunt u
@@ -629,23 +640,23 @@ const VRAGEN: [string, string][] = [
   ],
   [
     'Wat verkopen jullie voor de tuin?',
-    'Potgrond, tuinaarde en hydrokorrels, meststoffen en houtsnippers. Een flinke wand zaden. Daarnaast perkgoed en vaste planten, heesters, siergrassen en bomen in pot, en binnen- en buitenpotten in alle maten.',
+    'Perkgoed, vaste planten en seizoensplanten, siergrassen, heide en buxusbollen, en olijf- en palmbomen in pot. Daarnaast de grondsoorten en meststoffen, boomschors, houtsnippers, openhaardhout en hydrokorrels, buitenpotten in alle maten, en zaden en bloembollen.',
   ],
   [
     'Hebben jullie zaden?',
-    'Veel, en in de breedte: gras, bloemen, groenten en kruiden, plus bollen en knollen voor het seizoen. Graszaad in verschillende soorten, om door te zaaien, voor een nieuw gazon, voor schaduw en voor een gazon waar gespeeld wordt. Wat er ligt verschuift met het jaar, want zaaien is een kwestie van de juiste maand. Zegt u wat u wilt zaaien en waar, dan zoeken we het juiste zakje erbij. Staat een merk of mengsel er niet, dan kunnen we veel bestellen.',
+    'Die hebben we: gras, groente en kruiden, en bloembollen voor het seizoen. Wat er ligt verschuift met het jaar, want zaaien is een kwestie van de juiste maand. Zegt u wat u wilt zaaien en waar, dan zoeken we het juiste zakje erbij. Staat een merk of mengsel er niet, dan kunnen we veel bestellen.',
   ],
   [
     'Hebben jullie een cadeaubon?',
     'Die hebben we. Handig als u iets moois wilt geven maar de ontvanger liever zelf laat kiezen. Daarnaast stellen we cadeaupakketjes samen: u zegt wat het mag kosten, wij maken het klaar.',
   ],
   [
-    'Doen jullie ook iets voor bedrijven?',
-    'Ja. We maken plantenbakken en vazen op voor restaurants en bedrijven, zetten ze neer en komen ze verversen. U spreekt zelf af hoe vaak dat is.',
+    'Kan ik een abonnement nemen?',
+    'Dat kan, thuis net zo goed als in de zaak. We maken plantenbakken of vazen met bloemen op, zetten ze neer en komen ze verversen. U spreekt zelf af hoe vaak dat is, en een keer overslaan of stoppen kan altijd.',
   ],
   [
     'Wanneer begint het kerstseizoen?',
-    'Vanaf begin november. Dan komen de kerstbomen, de kransen, de verlichting en de accessoires binnen en gaat de hal om. Wie vroeg is heeft de ruimste keuze.',
+    'Vanaf begin november. Dan komen de kerstbomen, de kransen, de verlichting en de accessoires binnen en gaat de winkel om. Wie vroeg is heeft de ruimste keuze.',
   ],
 ];
 
@@ -691,8 +702,11 @@ export default function App() {
       <Nav />
       <main id="inhoud" className="pb-20 md:pb-0">
         <Hero />
-        <InDeWinkel />
+        {/* Kerst staat sinds 14-10-2026 direct onder de hero. In november en
+            december moet dat het eerste zijn dat iemand ziet; het stond een
+            sectie lager, en dan scrollt de helft er langs. */}
         <Kerstblok />
+        <InDeWinkel />
         <Seizoen />
         <Abonnementblok />
         <VraagAan />

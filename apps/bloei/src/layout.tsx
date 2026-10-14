@@ -250,17 +250,14 @@ export function VraagAan() {
 /*  Bezoek                                                             */
 /* ------------------------------------------------------------------ */
 
-/**
- * NOG TE BEVESTIGEN — deze tijden zijn een aanname, zie site.config.mjs.
- * Ze staan nergens openbaar en de eigenaren hebben ze niet doorgegeven.
- */
+/* 9:00 tot 17:30, doorgegeven op 14-10-2026. Zie OPEN_TOT in ui.tsx. */
 const ROOSTER: [string, string][] = [
-  ['Maandag', '9:00 - 18:00'],
-  ['Dinsdag', '9:00 - 18:00'],
-  ['Woensdag', '9:00 - 18:00'],
-  ['Donderdag', '9:00 - 18:00'],
-  ['Vrijdag', '9:00 - 18:00'],
-  ['Zaterdag', '9:00 - 17:00'],
+  ['Maandag', '9:00 - 17:30'],
+  ['Dinsdag', '9:00 - 17:30'],
+  ['Woensdag', '9:00 - 17:30'],
+  ['Donderdag', '9:00 - 17:30'],
+  ['Vrijdag', '9:00 - 17:30'],
+  ['Zaterdag', '9:00 - 17:30'],
   ['Zondag', 'Gesloten'],
 ];
 
@@ -395,7 +392,7 @@ export function Footer() {
             <li>{STRAAT}</li>
             <li>{PLAATS}</li>
             <li className="pt-2">Maandag t/m zaterdag</li>
-            <li>9:00 - 18:00, zaterdag tot 17:00</li>
+            <li>9:00 - 17:30</li>
           </ul>
         </div>
 

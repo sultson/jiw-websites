@@ -1,4 +1,4 @@
-import {ArrowRight, Flower2, Home, Leaf, Phone, Shovel, Sprout, Wheat} from 'lucide-react';
+import {ArrowRight, Flower2, Home, Leaf, Phone, Shovel, Sprout} from 'lucide-react';
 import {Pagina, PaginaKop} from '../layout';
 import {Bullet, KNOP_HOOFD, KNOP_TWEEDE_LICHT, Kicker, Section, TEL, TEL_DISPLAY} from '../ui';
 
@@ -21,7 +21,7 @@ const AFDELINGEN = [
     img: '/img/kaart-bloemen.webp',
     alt: 'Orchideeën, anthurium en bromelia op de houten tafel in de winkel',
     tekst:
-      'Orchideeën, anthurium, bromelia en bloeiende kamerplanten staan binnen op de lange tafel bij het raam. Daarnaast snijbloemen, en bonsai en ficus voor wie iets wil dat lang meegaat.',
+      'De winkel staat vol met verse bloemen die we dagelijks aanvullen. Neem een boeket mee dat al klaar staat of laat er een samenstellen naar eigen keuze. Uiteraard denken wij graag met u mee.',
     punten: [
       'Orchideeën, anthurium, bromelia en cyclaam',
       'Snijbloemen, wisselend met het seizoen',
@@ -39,14 +39,12 @@ const AFDELINGEN = [
     kicker: 'Binnen',
     titel: 'Planten',
     img: '/img/kaart-planten.webp',
-    alt: 'De stellingen in de hal met vetplanten, potten en grote kamerplanten erboven',
-    tekst:
-      'Van een vetplant van tien centimeter tot een kentiapalm die tot aan het plafond komt. In de hal staan de stellingen met kleine planten en de grote exemplaren ernaast, zodat u meteen ziet hoe hoog ze worden.',
+    alt: 'De stellingen in de winkel met vetplanten, potten en grote kamerplanten erboven',
+    tekst: 'Van vetplant tot palmboom, in alle soorten en maten.',
     punten: [
-      'Kamerplanten van klein tot manshoog',
-      'Vetplanten, cactussen en varens',
-      'Palmen, olijfbomen en dracaena',
-      'Hydrokorrels voor wie op water wil kweken',
+      'Kamerplanten van klein tot groot',
+      'Vetplanten, hangplanten en cactussen',
+      'Varens, palmen en dracaena',
     ],
   },
   {
@@ -57,12 +55,12 @@ const AFDELINGEN = [
     img: '/img/kaart-wonen.webp',
     alt: 'Stellingen vol keramieken potten in oud roze, crème, groen en zwart',
     tekst:
-      'Twee volle stellingen met potten, van een kleine binnenpot tot een hoge buitenvaas. In keramiek en in kleur: oud roze, crème, mosgroen, zand en mat zwart, en gewassen beton voor buiten.',
+      'Potten in alle soorten en maten, van kunststof en keramiek tot rotan. Daarnaast luxe woonaccessoires, van klassiek tot landelijk.',
     punten: [
-      'Binnenpotten en buitenpotten, alle maten',
+      'Binnen- en buitenpotten in alle maten',
       'Schalen, vazen en manden',
-      'In keramiek, beton en terracotta',
-      'Woondecoratie en kaarten',
+      'Keramiek, kunststof, rotan en terracotta',
+      'Luxe woondecoratie, van landelijk tot klassiek',
     ],
   },
   {
@@ -70,76 +68,45 @@ const AFDELINGEN = [
     icon: Shovel,
     kicker: 'Buiten',
     titel: 'Tuin',
-    img: '/img/kaart-tuin.webp',
-    alt: 'De lange tafels buiten met violen in paars, geel, wit en oranje',
+    /* De violenfoto die hier stond is er op 14-10-2026 uit gehaald. Nu de foto
+       van het terrein zelf: de stellingen met planten, de hangpotten eronder en
+       de zakken grond op de achtergrond — dat is waar deze lijst over gaat. */
+    img: '/img/grond.webp',
+    liggend: true,
+    alt: 'Het buitenterrein met de stellingen vol planten, hangpotten eronder en de zakken grond erachter',
     tekst:
-      'Het buitenterrein ligt achter de winkel, onder de schaduwdoeken. Daar liggen de tafels met perkgoed en vaste planten, staan de heesters en de bomen in pot, en liggen de zakken grond en mest op pallet.',
+      'Het buitenterrein ligt achter de winkel, onder de schaduwdoeken. Op het buitenterrein is onder andere dit te vinden:',
     punten: [
-      'Perkgoed, vaste planten en heesters',
+      'Perkgoed en vaste planten',
       'Siergrassen, heide en buxusbollen',
-      'Hangpotten en terraspotten',
-      'Bomen in pot: olijf, palm en sierheester',
-      'Zaden: gras, bloemen, groenten, kruiden en bollen',
+      'Buitenpotten',
+      'Olijfbomen, palmbomen',
+      'Zaden: gras, groente en kruiden',
+      'Bollen: bloembollen',
     ],
   },
 ];
 
-/* Wat er niet op een plant lijkt maar wel elke tuin in gaat. Een eigen blok,
-   want dit is waar mensen gericht voor komen: wie potgrond nodig heeft, komt
-   voor potgrond en wil weten of het er is. */
+/**
+ * Wat er niet op een plant lijkt maar wel elke tuin in gaat.
+ *
+ * Dit stond als eigen sectie "Grond en mest" met een eigen kop en een
+ * belknop ernaast. Die kop is er op 14-10-2026 uit; de lijst zelf staat nu
+ * onder de tuin, want daar hoort hij ook.
+ */
 const GROND = [
   ['Potgrond', 'Voor binnen- en buitenpotten, in zakken van verschillende maten'],
   ['Tuinaarde', 'Om een border bij te vullen of een nieuw perk aan te leggen'],
-  ['Hydrokorrels', 'Voor op water kweken en voor onderin de pot'],
+  ['Hydrokorrels', 'Als drainage voor de plant, onderin de pot'],
   ['Meststoffen', 'Voor gazon, planten en groenten'],
-  ['Houtsnippers', 'Voor paden en borders, houdt onkruid weg en vocht vast'],
+  ['Boomschors en houtsnippers', 'Voor paden en borders, houdt onkruid weg en vocht vast'],
+  ['Openhaardhout', 'Voor de haard en de vuurkorf'],
 ];
 
-/**
- * Zaden krijgen een eigen blok en niet één regel in de lijst hierboven. Iemand
- * die zaad komt halen zoekt gericht, en wil voor hij in de auto stapt weten of
- * het soort dat hij nodig heeft er ligt.
- *
- * Breed getrokken op 08-10-2026: de winkel heeft naar eigen zeggen veel zaden,
- * niet alleen gras. Welke soorten en merken er werkelijk liggen is nog niet
- * bevestigd — dit zijn de gangbare groepen. Staat ook in NOTITIES.md.
- */
-const ZADEN = [
-  {
-    titel: 'Gras',
-    tekst: 'Doorzaaien, nieuw gazon, schaduw en speelgazon. Elk gazon vraagt iets anders.',
-  },
-  {
-    titel: 'Bloemen',
-    tekst: 'Eenjarige zomerbloeiers en bloemenmengsels voor de border of een strook langs het pad.',
-  },
-  {
-    titel: 'Groenten',
-    tekst: 'Voor de tuin, de bak op het balkon of de volkstuin. Wat er gezaaid kan worden verschuift met het seizoen.',
-  },
-  {
-    titel: 'Kruiden',
-    tekst: 'Basilicum, peterselie, bieslook en de rest, voor op de keukenvensterbank of buiten in een pot.',
-  },
-  {
-    titel: 'Bollen en knollen',
-    tekst: 'Najaar de voorjaarsbollen, voorjaar de zomerbloeiers. Per zak of los te scheppen.',
-  },
-  {
-    titel: 'Bijen en vlinders',
-    tekst: 'Mengsels die bloeien voor insecten, voor wie een hoek van de tuin wil laten staan.',
-  },
-];
-
-/* Gras blijft de meest gerichte vraag van allemaal: wie een kale plek heeft
-   wil weten of juist zijn soort er ligt. Daarom hieronder apart uitgeschreven
-   in plaats van alleen de regel in de tegel. */
-const GRASZAAD = [
-  ['Doorzaaien', 'Kale plekken in een bestaand gazon bijwerken'],
-  ['Nieuw gazon', 'Vanaf niets inzaaien, na aanleg of het weghalen van bestrating'],
-  ['Schaduw', 'Onder bomen en langs de schutting, een paar uur zon per dag'],
-  ['Speelgazon', 'Steviger gras dat zich herstelt, voor kinderen of een hond'],
-];
+/* Zaden stonden hier als eigen sectie met zes tegels en een uitsplitsing per
+   soort gazon eronder. Dat is er op 14-10-2026 uit: het was een blok over een
+   wand in de winkel, en het liep vooruit op voorraad die niemand bevestigd
+   heeft. Zaden staan nu als twee regels in de lijst bij Tuin. */
 
 export default function Assortiment() {
   return (
@@ -147,9 +114,9 @@ export default function Assortiment() {
       <PaginaKop
         kicker="Assortiment"
         titel="Bloemen, planten, tuin en wonen"
-        intro="Binnen de overdekte hal, buiten het terrein. Van een orchidee voor op tafel tot een kruiwagen tuinaarde voor de border, en alles ertussenin."
+        intro="Binnen de winkel, buiten het terrein. Van een orchidee voor op tafel tot een kruiwagen tuinaarde voor de border, en alles ertussenin."
         img="/img/over-winkel.webp"
-        alt="De overdekte hal met houten wanden, stellingen met potten en grote kamerplanten"
+        alt="De winkel met houten wanden, stellingen met potten en grote kamerplanten"
       >
         <div className="mt-8 flex flex-wrap gap-3">
           <a href="#vraag-aan" className={KNOP_HOOFD}>
@@ -173,7 +140,9 @@ export default function Assortiment() {
                 loading="lazy"
                 width={800}
                 height={1000}
-                className="aspect-[4/5] w-full rounded-2xl object-cover"
+                /* De foto van het buitenterrein is liggend geschoten; in een
+                   staande uitsnede blijft er een strook tegelvloer over. */
+                className={`w-full rounded-2xl object-cover ${a.liggend ? 'aspect-[4/3]' : 'aspect-[4/5]'}`}
               />
             </figure>
 
@@ -198,112 +167,42 @@ export default function Assortiment() {
               )}
             </div>
           </div>
+
+          {/* Grond en mest stond hieronder als eigen sectie met een eigen kop.
+              Het hoort bij de tuin en staat er nu onder, als lijst in dezelfde
+              sectie: dezelfde regels, een kop minder. */}
+          {a.id === 'tuin' && (
+            <div className="mt-14">
+              <h3 className="flex items-center gap-2.5 text-xl font-semibold">
+                <Sprout className="h-5 w-5 shrink-0 text-accent-dark" strokeWidth={1.75} />
+                Grondsoorten en meststoffen
+              </h3>
+              <p className="mt-2 max-w-2xl leading-relaxed text-ink/60">
+                Het ligt buiten op pallet, dus u kunt er met de auto naast.
+              </p>
+              <dl className="mt-6 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+                {GROND.map(([kop, onder]) => (
+                  <div key={kop} className="border-b border-line pb-4">
+                    <dt className="font-semibold">{kop}</dt>
+                    <dd className="mt-1 text-sm leading-relaxed text-ink/60">{onder}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <p className="mt-8 max-w-3xl rounded-2xl border border-accent-dark/20 bg-accent-dark/[0.06] p-5 leading-relaxed text-ink/75">
+                Zoekt u een bepaald merk, een soort of een maat die hier niet staat? Laat het ons
+                weten, we kunnen veel bestellen.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={`tel:${TEL}`} className={KNOP_TWEEDE_LICHT}>
+                  <Phone className="h-4 w-4 text-accent-dark" /> Even vragen of het er is
+                </a>
+              </div>
+            </div>
+          )}
         </Section>
       ))}
-
-      {/* ------------------------------------------------------------------ */}
-
-      <Section id="grond" tone="cream" ranken={0}>
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
-          <div>
-            <Kicker>Buiten, op pallet</Kicker>
-            <h2 className="flex items-center gap-3 text-3xl font-semibold sm:text-4xl">
-              <Sprout className="h-7 w-7 shrink-0 text-accent-dark" strokeWidth={1.75} />
-              Grond en mest
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-ink/70">
-              Wat er niet uitziet als een plant maar wel elke tuin in gaat. Het ligt buiten op pallet, dus
-              u kunt er met de auto naast.
-            </p>
-            <div className="mt-7">
-              <a href={`tel:${TEL}`} className={KNOP_TWEEDE_LICHT}>
-                <Phone className="h-4 w-4 text-accent-dark" /> Even vragen of het er is
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <img
-              src="/img/grond.webp"
-              alt="Zakken tuinaarde en potgrond op pallet naast de tafels met planten"
-              loading="lazy"
-              width={1200}
-              height={750}
-              className="aspect-[16/10] w-full rounded-2xl object-cover"
-            />
-            <dl className="mt-6 grid gap-x-10 gap-y-4 sm:grid-cols-2">
-              {GROND.map(([kop, onder]) => (
-                <div key={kop} className="border-b border-line pb-4">
-                  <dt className="font-semibold">{kop}</dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-ink/60">{onder}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
-      </Section>
-
-      {/* ------------------------------------------------------------------ */}
-
-      {/* Zaden staan apart van grond en mest: dit is een gerichte aankoop.
-          Tegels in plaats van regels, zodat iemand in één blik ziet of zijn
-          soort erbij staat. Gras daaronder nog een niveau verder uitgesplitst. */}
-      <Section id="zaden" tone="wit">
-        <div className="max-w-3xl">
-          <Kicker>Buiten, bij de grond</Kicker>
-          <h2 className="flex items-center gap-3 text-3xl font-semibold sm:text-4xl">
-            <Wheat className="h-7 w-7 shrink-0 text-accent-dark" strokeWidth={1.75} />
-            Zaden
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-ink/70">
-            Hier staat een flinke wand zaden: gras, bloemen, groenten en kruiden, plus bollen voor het
-            seizoen. Wat er precies ligt verschuift met het jaar, want zaaien is een kwestie van de
-            juiste maand. Vertel wat u wilt zaaien en waar, dan zoeken we het juiste zakje erbij.
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {ZADEN.map((z) => (
-            <div
-              key={z.titel}
-              className="rounded-2xl border border-line bg-cream p-6"
-            >
-              <Sprout className="h-6 w-6 text-accent-dark" strokeWidth={1.75} />
-              <h3 className="mt-4 text-xl font-semibold">{z.titel}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink/60">{z.tekst}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Gras apart, want dit is de vraag waar iemand het meest gericht voor
-            komt: niet "heeft u graszaad" maar "heeft u iets voor de schaduw". */}
-        <div className="mt-10 rounded-2xl border border-line bg-cream p-6 sm:p-8">
-          <h3 className="text-xl font-semibold">Graszaad per soort gazon</h3>
-          <p className="mt-2 max-w-3xl leading-relaxed text-ink/60">
-            Een kale plek onder een boom heeft iets anders nodig dan een pas aangelegde tuin of een
-            grasveld waar kinderen op spelen.
-          </p>
-          <dl className="mt-6 grid gap-x-10 gap-y-4 sm:grid-cols-2">
-            {GRASZAAD.map(([kop, onder]) => (
-              <div key={kop} className="border-b border-line pb-4">
-                <dt className="font-semibold">{kop}</dt>
-                <dd className="mt-1 text-sm leading-relaxed text-ink/60">{onder}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        <p className="mt-8 max-w-3xl rounded-2xl border border-accent-dark/20 bg-accent-dark/[0.06] p-5 leading-relaxed text-ink/75">
-          Zoekt u een bepaald merk, een mengsel of een soort die hier niet staat? Laat het ons weten,
-          we kunnen veel bestellen.
-        </p>
-
-        <div className="mt-8 flex flex-wrap gap-3">
-          <a href={`tel:${TEL}`} className={KNOP_TWEEDE_LICHT}>
-            <Phone className="h-4 w-4 text-accent-dark" /> Even vragen wat u nodig heeft
-          </a>
-        </div>
-      </Section>
     </Pagina>
   );
 }

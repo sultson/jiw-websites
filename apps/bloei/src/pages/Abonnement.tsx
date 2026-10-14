@@ -1,4 +1,4 @@
-import {ArrowRight, Building2, Flower2, Leaf, Phone, Repeat, Utensils} from 'lucide-react';
+import {ArrowRight, Building2, Flower2, Home, Leaf, Phone, Repeat, Utensils} from 'lucide-react';
 import {Pagina, PaginaKop} from '../layout';
 import {Bullet, KNOP_HOOFD, KNOP_TWEEDE_LICHT, Kicker, Section, TEL, TEL_DISPLAY} from '../ui';
 
@@ -6,12 +6,15 @@ import {Bullet, KNOP_HOOFD, KNOP_TWEEDE_LICHT, Kicker, Section, TEL, TEL_DISPLAY
 
 /**
  * Het abonnement. Dit is iets anders dan dat van Fleurig!, waar een boeket thuis
- * werd bezorgd: hier gaat het om plantenbakken en vazen die bij een restaurant
- * of een bedrijf blijven staan en die de winkel komt verversen. Deze pagina
- * heette daarom eerst "Zakelijk", maar de winkel wil dat het abonnement blijft
- * heten, dus heet het weer zo — ook in het adres (/abonnement/), want een
- * menu-item dat Abonnement heet en naar /zakelijk/ wijst is een halve
- * hernoeming.
+ * werd bezorgd: hier gaat het om plantenbakken en vazen die blijven staan en die
+ * de winkel komt verversen. Deze pagina heette daarom eerst "Zakelijk", maar de
+ * winkel wil dat het abonnement blijft heten, dus heet het weer zo — ook in het
+ * adres (/abonnement/), want een menu-item dat Abonnement heet en naar
+ * /zakelijk/ wijst is een halve hernoeming.
+ *
+ * Stond tot 14-10-2026 helemaal op restaurants en bedrijven. Een particulier
+ * die dit las zag een dienst waar hij zelf buiten viel, terwijl dezelfde
+ * afspraak thuis net zo goed werkt. Nu staat thuis overal vooraan.
  *
  * NOG TE BEVESTIGEN: er staan met opzet geen prijzen en geen vaste frequenties
  * op deze pagina. Die zijn niet doorgegeven. Wat hier staat is de vorm van de
@@ -24,8 +27,8 @@ const VORMEN = [
     tekst:
       'Een lage bak voor op tafel, een hoge pot bij de ingang, of een rij op het terras. Wij maken ze op met planten die bij de ruimte passen en die het binnen volhouden.',
     punten: [
-      'Voor op tafel, bij de entree of op het terras',
-      'Keramiek, beton of mand, in de kleur van de zaak',
+      'Voor op tafel, in de vensterbank, bij de entree of op het terras',
+      'Keramiek, beton of mand, in de kleur van de ruimte',
       'Wij vervangen wat niet meer mooi staat',
     ],
   },
@@ -50,6 +53,7 @@ const AANPAK: [string, string][] = [
 ];
 
 const VOOR = [
+  {icon: Home, kop: 'Thuis', onder: 'Op de eettafel, in de vensterbank en bij de voordeur'},
   {icon: Utensils, kop: 'Restaurants en cafés', onder: 'Op tafel, op de bar en bij de ingang'},
   {icon: Building2, kop: 'Kantoren en praktijken', onder: 'In de ontvangst, de wachtkamer en de vergaderruimte'},
   {icon: Repeat, kop: 'Winkels en salons', onder: 'In de etalage en bij de toonbank'},
@@ -59,9 +63,9 @@ export default function Abonnement() {
   return (
     <Pagina>
       <PaginaKop
-        kicker="Abonnement voor restaurants en bedrijven"
-        titel="Groen in de zaak, zonder omkijken"
-        intro="Een abonnement op opgemaakte plantenbakken of vazen met bloemen, bij u op tafel. Wij maken ze op, zetten ze neer en komen ze verversen, zodat er nooit iets staat dat over zijn hoogtepunt heen is."
+        kicker="Abonnement voor thuis en voor de zaak"
+        titel="Groen op tafel, zonder omkijken"
+        intro="Een abonnement op opgemaakte plantenbakken of vazen met bloemen, bij u thuis of in de zaak. Wij maken ze op, zetten ze neer en komen ze verversen, zodat er nooit iets staat dat over zijn hoogtepunt heen is."
         img="/img/zakelijk.webp"
         alt="Opgemaakte plantenbakken in keramiek op de toonbank van de winkel"
       >
@@ -111,7 +115,7 @@ export default function Abonnement() {
             <Kicker>Hoe het gaat</Kicker>
             <h2 className="text-3xl font-semibold sm:text-4xl">Vier stappen</h2>
             <p className="mt-4 leading-relaxed text-ink/65">
-              Van een eerste rondje door uw zaak tot een bak die er staat en bijgehouden wordt.
+              Van een eerste rondje door de ruimte tot een bak die er staat en bijgehouden wordt.
             </p>
           </div>
 
@@ -139,7 +143,7 @@ export default function Abonnement() {
           <h2 className="text-3xl font-semibold sm:text-4xl">Waar het meestal staat</h2>
         </div>
 
-        <div className="mt-9 grid gap-6 md:grid-cols-3">
+        <div className="mt-9 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {VOOR.map((v) => (
             <div key={v.kop} className="rounded-2xl border border-line bg-white p-6">
               <v.icon className="h-6 w-6 text-accent-dark" strokeWidth={1.75} />

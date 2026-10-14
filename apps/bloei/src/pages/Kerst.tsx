@@ -55,7 +55,7 @@ export default function Kerst() {
       <PaginaKop
         kicker="November en december"
         titel="Kerst bij Bloei!"
-        intro="Vanaf begin november gaat de hal om. Kerstbomen voor de deur, kransen en verlichting binnen, en een tafel vol accessoires. Wie vroeg is heeft de ruimste keuze."
+        intro="Vanaf begin november gaat de winkel om. Kerstbomen voor de deur, kransen en verlichting binnen, en een tafel vol accessoires. Wie vroeg is heeft de ruimste keuze."
         img="/img/seizoen-najaar.webp"
         alt="De buitentafels in het najaar, vol chrysanten in geel, rood, oranje en wit"
       >

@@ -39,18 +39,15 @@ export const ROUTE =
 export const FACEBOOK = 'https://www.facebook.com/profile.php?id=100082968740640';
 
 /**
- * NOG TE BEVESTIGEN — zie site.config.mjs.
+ * Maandag tot en met zaterdag, 9:00 tot 17:30. Zondag dicht.
  *
- * Deze tijden zijn een aanname. Ze staan nergens openbaar en de eigenaren
- * hebben ze niet doorgegeven. Een winkelpagina zonder rooster is niet te
- * beoordelen, dus staat er een rooster dat bij een tuincentrum past; het moet
- * langs de klant voordat deze site live gaat.
- *
- * Maandag tot en met zaterdag, 9:00 tot 18:00, zaterdag tot 17:00. Zondag = 0.
+ * Doorgegeven door Armando op 14-10-2026 ("openingstijden van 9 tot 17:30").
+ * Daarvoor stond hier een aanname met zaterdag een uur eerder dicht; dat
+ * onderscheid is er niet. NOG TE BEVESTIGEN blijft of zaterdag inderdaad
+ * hetzelfde loopt als de rest van de week.
  */
 export const OPEN_VAN = 9 * 60;
-export const OPEN_TOT = 18 * 60;
-export const ZATERDAG_TOT = 17 * 60;
+export const OPEN_TOT = 17 * 60 + 30;
 export const OPEN_DAGEN = [1, 2, 3, 4, 5, 6];
 
 export const DAGEN = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
@@ -79,12 +76,10 @@ function bepaalStatus(nu: Date): Status {
   const dag = kort.indexOf(String(delen.weekday).slice(0, 2).toLowerCase());
   const minuut = Number(delen.hour) * 60 + Number(delen.minute);
 
-  /* Zaterdag gaat de deur een uur eerder dicht dan de rest van de week. */
-  const sluit = (d: number) => (d === 6 ? ZATERDAG_TOT : OPEN_TOT);
   const klok = (m: number) => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
 
-  if (OPEN_DAGEN.includes(dag) && minuut >= OPEN_VAN && minuut < sluit(dag)) {
-    return {open: true, kop: 'Nu open', onder: `Vandaag tot ${klok(sluit(dag))}, loop gerust binnen`};
+  if (OPEN_DAGEN.includes(dag) && minuut >= OPEN_VAN && minuut < OPEN_TOT) {
+    return {open: true, kop: 'Nu open', onder: `Vandaag tot ${klok(OPEN_TOT)}, loop gerust binnen`};
   }
   if (OPEN_DAGEN.includes(dag) && minuut < OPEN_VAN) {
     return {open: false, kop: `Vandaag open vanaf ${klok(OPEN_VAN)}`, onder: 'Straks staan de karren weer buiten'};
@@ -118,7 +113,7 @@ function bepaalStatus(nu: Date): Status {
 const ROOSTER_STATUS: Status = {
   open: false,
   kop: 'Openingstijden',
-  onder: 'Maandag tot en met zaterdag, 9:00 tot 18:00',
+  onder: 'Maandag tot en met zaterdag, 9:00 tot 17:30',
 };
 
 /**

@@ -10,14 +10,14 @@ groen in plaats van zwart, naar het logo toe.
 ## Dit moet langs de klant voordat er iets live gaat
 
 Alles hieronder staat wél op de site, want een winkelpagina zonder adres, nummer
-en openingstijden is niet te beoordelen. Niets ervan is door de eigenaren zelf
-doorgegeven.
+en openingstijden is niet te beoordelen. Op de openingstijden na is niets ervan
+door de eigenaren zelf doorgegeven.
 
 | Wat | Wat er nu staat | Waar het vandaan komt |
 | --- | --- | --- |
 | Adres | Hogepad 9, 3253 BH Ouddorp | Openbare vermelding van **Vershal Ouddorp** |
 | Telefoon | 06 86 19 45 17 | Idem |
-| Openingstijden | ma t/m vr 9:00-18:00, za 9:00-17:00, zo dicht | **Aanname.** Nergens te vinden |
+| Openingstijden | ma t/m za 9:00-17:30, zo dicht | Doorgegeven door Armando, 14-10-2026 |
 | Coördinaten kaart | 51.81876, 3.93414 | Afgeleid van het adres hierboven |
 
 **Er staat geen e-mailadres op de site.** Hier stond `info@bloei-ouddorp.nl`, en dat
@@ -102,18 +102,12 @@ De lijst die Armando doorgaf, punt voor punt:
 - *bloemen/planten/tuin en woon ass / binnen en buiten potten, mest stoffen;
   potgrond tuinaarde hydro korrels mest, houtsnippers* → `/assortiment/`, vier
   afdelingen plus een apart blok "Grond en mest".
-- *gras zaden* → eerst één regel in datzelfde blok, op verzoek (07-10) opgewaardeerd
-  naar een eigen blok `/assortiment/#zaden`. Op 08-10 ("ze hebben in het algemeen
-  veel zaden") breed getrokken: zes tegels (gras, bloemen, groenten, kruiden,
-  bollen en knollen, bijen- en vlindermengsels) met daaronder graszaad
-  uitgesplitst naar doorzaaien, nieuw gazon, schaduw en speelgazon. Ook een
-  eigen vraag "Hebben jullie zaden?" bij Veelgesteld.
-  **Nog te bevestigen:** welke soorten en merken er werkelijk liggen. Dit zijn de
-  gangbare groepen, niet hun voorraad. Kloppen bollen/knollen en de
-  bijenmengsels niet, dan moeten die tegels eruit — die heb ik erbij gezet omdat
-  een zadenwand die compleet is er anders half uitziet, niet omdat ze genoemd
-  zijn. De tekst zegt nergens "wij hebben X op voorraad", alles staat in de vorm
-  "zeg wat u wilt zaaien, dan zoeken we het erbij".
+- *gras zaden* → eerst één regel, op verzoek (07-10) een eigen blok, op 08-10
+  breed getrokken naar zes tegels met graszaad uitgesplitst eronder. Op 14-10 is
+  dat hele blok er weer uit ("zaden kan helemaal weg (kopje)"). Zaden staan nu
+  als twee regels in de lijst bij Tuin (gras/groente/kruiden en bloembollen) en
+  als korte vraag bij Veelgesteld. Daarmee is ook de uitsplitsing verdwenen die
+  niemand bevestigd had.
 - *november/december > focus op kerst, groot op de website* → `/kerst/` plus een
   blok hoog op de homepage, boven de seizoenen en boven het abonnement.
 - *bloemen assortiment is aan het groeien ... kan je niet vinden wat je zoekt laat
@@ -178,6 +172,47 @@ Punten van Alfred, met wat er gebeurd is:
   vorm, het belooft nergens iets.
 - *Facebook-logo is een camera* → was `Camera` uit lucide; staat nu op `Facebook`,
   op alle vier de plekken (voet, kerstblok, "Over ons", `/kerst/`).
+
+## Revisieronde 14 oktober
+
+Negentien aangestreepte schermafdrukken van Armando. Wat er gebeurd is:
+
+- **Openingstijden** 9:00 - 17:30, overal: de statuskaart, het rooster bij
+  "Waar u ons vindt", de voet, het schema.org-blok en de bevestigingsmail. Het
+  onderscheid zaterdag-een-uur-eerder was een aanname van mij en is weg.
+  **Nog te bevestigen:** of zaterdag inderdaad hetzelfde loopt als de rest.
+- **"Hal" bestaat niet meer.** Elf plekken, overal "winkel" geworden: homepage,
+  kerstblok, "Over ons", de veelgestelde vragen, `/assortiment/`, `/kerst/` en
+  de og-teksten in de HTML.
+- **Hero.** De opsomming van het assortiment is een uitnodiging geworden ("Loop
+  gerust binnen en kijk rond"). **Nog te bevestigen:** het punt was *"tekst kan
+  eigenlijk wel weg; of iets uitnodigenders"* bij een afdruk van het hele
+  heropaneel — ik heb aangenomen dat het om die alinea ging en niet om de
+  tekstlink "Bekijk wat er staat" eronder.
+- **Kerst staat nu direct onder de hero**, met de kraag erop. Stond een sectie
+  lager.
+- *Zoekt u iets bepaalds* → *specifieks*.
+- **Nieuwe teksten** voor "In de winkel" (binnen/buiten), de tegels Bloemen,
+  Planten, Tuin en Wonen op de homepage, en voor de blokken Bloemen, Planten,
+  Wonen en Tuin op `/assortiment/`. Letterlijk aangeleverd; alleen
+  "woonassecoires" is als "woonaccessoires" gespeld.
+- **Nieuw in het assortiment:** boomschors, openhaardhout en bloembollen. Die
+  stonden er nog niet op.
+- **"Grond en mest" is geen eigen sectie meer.** De kop, de intro en de belknop
+  zijn weg; de lijst zelf staat nu onder Tuin als "Grondsoorten en meststoffen".
+  Hydrokorrels zijn nu drainage onderin de pot in plaats van kweken op water.
+- **De violenfoto bij Tuin is eruit** (blauw doorgekruist) en vervangen door de
+  foto van het buitenterrein zelf. **Nog te bevestigen:** bij die afdruk stond
+  "en ipv daarvan"; welke foto daar bedoeld werd is mijn gok.
+- **Abonnement is nu ook voor particulieren.** Stond helemaal op restaurants en
+  bedrijven; thuis staat nu overal vooraan, op de homepage, op `/abonnement/`
+  (met "Thuis" als eerste tegel onder "Voor wie") en in de vraag bij Veelgesteld.
+- **Eigen tegel voor het abonnement** bij "Kom gerust even rondkijken", met een
+  link naar `/abonnement/`. Zes tegels nu, twee rijen van drie.
+- **Abonnement als vijfde keuze in het aanvraagformulier.** Wie op "Vraag een
+  voorstel aan" klikte, kwam eerst in een formulier waarin zijn eigen vraag
+  ontbrak. Stap 2 toont bij die keuze geen ophalen-of-bezorgen maar "Wij komen
+  bij u langs".
 
 ## Techniek
 

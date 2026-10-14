@@ -45,7 +45,7 @@ const COPY: ConfirmationEmailCopy = {
   },
   contactPrompt: `Wilt u er iets aan toevoegen? Beantwoord deze mail, of bel ons op ${WINKEL.telefoonWeergave}.`,
   ctaLabel: 'Terug naar de winkel',
-  footerText: `Bloei!, ${WINKEL.straat}, ${WINKEL.postcode} ${WINKEL.plaats}. Maandag tot en met zaterdag van 9:00 tot 18:00, zaterdag tot 17:00. U ontvangt deze mail omdat u een aanvraag deed op onze website.`,
+  footerText: `Bloei!, ${WINKEL.straat}, ${WINKEL.postcode} ${WINKEL.plaats}. Maandag tot en met zaterdag van 9:00 tot 17:30. U ontvangt deze mail omdat u een aanvraag deed op onze website.`,
 };
 
 /**

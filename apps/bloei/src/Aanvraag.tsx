@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from 'react';
 import {
   ArrowLeft, ArrowRight, Check, Flower2, Info, Leaf, Loader2, Mail, Package,
-  Phone, Store, TreePine, Truck,
+  Phone, Repeat, Store, TreePine, Truck,
 } from 'lucide-react';
 import {STRAAT, TEL, TEL_DISPLAY, WA_GROEN, WHATSAPP, WhatsAppMerk, useKnopInBeeld} from './ui';
 
@@ -39,6 +39,11 @@ const SOORTEN = [
   {id: 'plant', img: '/img/kaart-planten.webp', icon: Leaf, titel: 'Plant of bak', onder: 'Binnen of buiten'},
   {id: 'cadeau', img: '/img/kaart-cadeau.webp', icon: Package, titel: 'Cadeau', onder: 'Bon of pakketje'},
   {id: 'kerst', img: '/img/seizoen-najaar.webp', icon: TreePine, titel: 'Kerst', onder: 'Krans of stuk'},
+  /* Het abonnement stond hier niet bij, terwijl het wel een eigen pagina en een
+     eigen knop "Vraag een voorstel aan" heeft die hiernaartoe wijst. Wie daarop
+     klikte kwam dus bij een formulier waarin zijn eigen vraag ontbrak
+     (toegevoegd 14-10-2026). */
+  {id: 'abonnement', img: '/img/zakelijk.webp', icon: Repeat, titel: 'Abonnement', onder: 'Thuis of in de zaak'},
 ] as const;
 
 type SoortId = (typeof SOORTEN)[number]['id'];
@@ -52,6 +57,7 @@ const AFBREEK: Record<SoortId, string> = {
   plant: 'Plant of bak',
   cadeau: 'Cadeau',
   kerst: 'Kerst',
+  abonnement: 'Abonne­ment',
 };
 
 const SUBVRAAG: Record<SoortId, string> = {
@@ -59,6 +65,7 @@ const SUBVRAAG: Record<SoortId, string> = {
   plant: 'Waar komt het te staan?',
   cadeau: 'Wat wilt u geven?',
   kerst: 'Waar denkt u aan?',
+  abonnement: 'Waar komt het te staan?',
 };
 
 const SUBKEUZE: Record<SoortId, string[]> = {
@@ -90,6 +97,13 @@ const SUBKEUZE: Record<SoortId, string[]> = {
     'Kerstboom',
     'Weet ik nog niet, ik hoor graag wat er mogelijk is',
   ],
+  abonnement: [
+    'Bij mij thuis',
+    'In een restaurant of café',
+    'Op kantoor of in een praktijk',
+    'In een winkel of salon',
+    'Weet ik nog niet, ik hoor graag wat er mogelijk is',
+  ],
 };
 
 const DATUMVRAAG: Record<SoortId, string> = {
@@ -97,6 +111,7 @@ const DATUMVRAAG: Record<SoortId, string> = {
   plant: 'Wanneer wilt u langskomen?',
   cadeau: 'Wanneer moet het klaarstaan?',
   kerst: 'Wanneer wilt u het hebben?',
+  abonnement: 'Wanneer zou het moeten ingaan?',
 };
 
 /**
@@ -112,6 +127,7 @@ const BUDGETVRAAG: Record<SoortId, string> = {
   plant: 'Wat heeft u ongeveer in gedachten?',
   cadeau: 'Wat mag het cadeau kosten?',
   kerst: 'Wat heeft u ongeveer in gedachten?',
+  abonnement: 'Wat mag het per keer ongeveer kosten?',
 };
 
 const TOELICHTING: Record<SoortId, string> = {
@@ -119,6 +135,7 @@ const TOELICHTING: Record<SoortId, string> = {
   plant: 'Bijvoorbeeld hoeveel licht er is, hoe groot het mag worden, en of u er zelf veel of weinig naar wilt omkijken',
   cadeau: 'Bijvoorbeeld voor wie het is, of diegene groene vingers heeft, en om hoeveel pakketjes het gaat',
   kerst: 'Bijvoorbeeld in welke kleuren, hoe groot, en of het aan de deur hangt of op tafel staat',
+  abonnement: 'Bijvoorbeeld om hoeveel bakken of vazen het gaat, hoe vaak u ons wilt zien, en hoeveel licht er is',
 };
 
 type LeveringId = 'ophalen' | 'bezorgen';
@@ -181,9 +198,11 @@ export function alsBericht(a: Aanvraag) {
     'Aanvraag via de website',
     '',
     `Wat: ${a.soortTitel}${a.keuze ? ` (${a.keuze})` : ''}`,
-    `Ophalen of bezorgen: ${
-      a.levering === 'bezorgen' ? 'Bezorgen, in overleg' : 'Ophalen in de winkel'
-    }`,
+    a.soort === 'abonnement'
+      ? 'Levering: wij komen langs'
+      : `Ophalen of bezorgen: ${
+        a.levering === 'bezorgen' ? 'Bezorgen, in overleg' : 'Ophalen in de winkel'
+      }`,
   ];
 
   if (a.datum) regels.push(`Wanneer: ${datumInWoorden(a.datum)}`);
@@ -221,7 +240,9 @@ async function verstuurNaarWinkel(a: Aanvraag) {
 
   data.set('soort', a.soortTitel);
   data.set('gelegenheid', a.keuze);
-  data.set('levering', a.levering === 'bezorgen' ? 'Bezorgen, in overleg' : 'Ophalen in de winkel');
+  data.set('levering', a.soort === 'abonnement'
+    ? 'Abonnement, wij komen langs'
+    : a.levering === 'bezorgen' ? 'Bezorgen, in overleg' : 'Ophalen in de winkel');
   /* Los van de zin hierboven: de Worker kijkt hiernaar om te bepalen of het
      bezorgadres verplicht is, en die vergelijking moet op één woord staan. */
   data.set('leveringId', a.levering);
@@ -289,6 +310,10 @@ export default function AanvraagFormulier() {
     setSub(SUBKEUZE[id][0]);
     /* Een bedrag dat bij de vorige keuze hoorde moet niet blijven staan. */
     setBudget('');
+    /* Bij een abonnement komen wij langs; ophalen is daar geen keuze. Stap 2
+       toont dan geen twee knoppen maar alleen wat er gaat gebeuren. */
+    if (id === 'abonnement') setLevering('bezorgen');
+    else if (levering === 'bezorgen' && soort === 'abonnement') setLevering('');
   };
 
   const bouwAanvraag = (): Aanvraag => ({
@@ -428,15 +453,18 @@ export default function AanvraagFormulier() {
               smalle kolom, dus vier naast elkaar duwt elk vak naar ~110px en
               dan breken Abonnement, Rouwboeket en Bruidsboeket alle drie af. */}
           <div className="mt-4 grid grid-cols-2 gap-2.5">
-            {SOORTEN.map((s) => {
+            {SOORTEN.map((s, i) => {
               const actief = soort === s.id;
+              /* Oneven aantal: de laatste vult de rij, anders blijft er een
+                 leeg vak naast staan. */
+              const vult = SOORTEN.length % 2 === 1 && i === SOORTEN.length - 1;
               return (
                 <button
                   key={s.id}
                   type="button"
                   onClick={() => kiesSoort(s.id)}
                   aria-pressed={actief}
-                  className={`group overflow-hidden rounded-xl border text-left transition ${
+                  className={`group overflow-hidden rounded-xl border text-left transition ${vult ? 'col-span-2' : ''} ${
                     actief
                       ? 'border-accent bg-accent/[0.12] ring-1 ring-accent/60'
                       : 'border-white/15 bg-white/[0.04] hover:border-accent/40 hover:bg-accent/[0.05]'
@@ -491,12 +519,31 @@ export default function AanvraagFormulier() {
             </p>
           )}
 
+          {soort === 'abonnement' && (
+            <p className="mt-4 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm leading-relaxed text-white/65">
+              Een abonnement kan thuis net zo goed als in de zaak. We komen eerst langs om te kijken
+              hoeveel licht er is en wat er al staat, en daarna krijgt u een voorstel.
+            </p>
+          )}
+
           {volgende()}
         </>
       )}
 
       {/* ---- 2. Ophalen of bezorgen ---- */}
-      {stap === 2 && (
+      {stap === 2 && soort === 'abonnement' && (
+        <>
+          <h3 className="text-xl font-semibold text-white">Wij komen bij u langs</h3>
+          <p className="mt-4 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm leading-relaxed text-white/65">
+            Bij een abonnement maken wij de bakken of vazen op in de winkel en zetten we ze bij u
+            neer. Het adres vragen we zo bij uw gegevens.
+          </p>
+          {volgende()}
+          {terug()}
+        </>
+      )}
+
+      {stap === 2 && soort !== 'abonnement' && (
         <>
           <h3 className="text-xl font-semibold text-white">Ophalen of bezorgen?</h3>
 
@@ -710,9 +757,11 @@ export default function AanvraagFormulier() {
               <span className="text-white/50"> · {sub}</span>
             </Regel>
             <Regel naar={2} setStap={setStap} term="Levering">
-              {levering === 'bezorgen'
-                ? 'Bezorgen, in overleg'
-                : 'Ophalen in de winkel'}
+              {soort === 'abonnement'
+                ? 'Wij komen langs'
+                : levering === 'bezorgen'
+                  ? 'Bezorgen, in overleg'
+                  : 'Ophalen in de winkel'}
             </Regel>
             <Regel naar={3} setStap={setStap} term="Wanneer">
               {datum ? datumInWoorden(datum) : <span className="text-white/45">In overleg</span>}
