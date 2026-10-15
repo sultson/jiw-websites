@@ -490,8 +490,16 @@ function Hero() {
             {/* De foto uit haar instagrampost, op haar eigen verzoek: zij lachend
                 in het bos. Dezelfde foto die ook op het deelkaartje staat, maar
                 nu uit een grotere bron gesneden. */}
+            {/* Drie maten, 15-10-2026. Onder lg vult de foto het hele vlak, dus
+                daar is de gevraagde maat de schermbreedte; vanaf lg is het de
+                halve kolom met een plafond van 560 punten. De browser telt daar
+                zelf de beeldpuntdichtheid bij op, dus een telefoon van 430 punten
+                op 3x pakt de 1350 of de 1800 in plaats van de 900 uit te rekken.
+                Dat uitrekken was wat Marjon als pixels zag. */}
             <img
-              src="/img/hero-glimlach.webp"
+              src="/img/hero-glimlach.webp?v=20261015"
+              srcSet="/img/hero-glimlach.webp?v=20261015 900w, /img/hero-glimlach-1350.webp?v=20261015 1350w, /img/hero-glimlach-1800.webp?v=20261015 1800w"
+              sizes="(min-width: 1024px) min(45vw, 560px), 100vw"
               width={900}
               height={1125}
               fetchPriority="high"

@@ -105,9 +105,22 @@ const paginas = ALLE.map((p) => {
   assert.ok(!html.includes(oudeHost), `${p.pad}: verwijst nog naar ${oudeHost}`);
 
   /* Elke verwijzing naar beeld of lettertype moet een bestand zijn. Een
-     hernoemde foto valt hier om, niet pas op de site. */
+     hernoemde foto valt hier om, niet pas op de site. De ?v=... is de
+     cache-breker uit de huisafspraak en hoort niet bij de bestandsnaam op
+     schijf, dus die gaat er eerst af. */
   for (const [, url] of html.matchAll(/(?:src|href|content)="(\/(?:img|fonts)\/[^"]+)"/g)) {
-    assert.ok(existsSync(path.join(DIST, url)), `${p.pad}: ${url} bestaat niet in dist`);
+    assert.ok(existsSync(path.join(DIST, url.split('?')[0])), `${p.pad}: ${url} bestaat niet in dist`);
+  }
+
+  /* Hetzelfde voor de srcset: daar staan meerdere adressen in één attribuut,
+     elk met een breedte erachter. Zonder deze lus glipt een hernoemde of
+     vergeten maat ongezien door de poort. */
+  for (const [, lijst] of html.matchAll(/(?:srcset|imagesrcset)="([^"]+)"/g)) {
+    for (const deel of lijst.split(',')) {
+      const url = deel.trim().split(/\s+/)[0];
+      if (!url.startsWith('/img/') && !url.startsWith('/fonts/')) continue;
+      assert.ok(existsSync(path.join(DIST, url.split('?')[0])), `${p.pad}: ${url} uit srcset bestaat niet in dist`);
+    }
   }
 
   const canoniek = precies(html, /<link rel="canonical" href="([^"]*)"/g, 'canonical', p.pad);
