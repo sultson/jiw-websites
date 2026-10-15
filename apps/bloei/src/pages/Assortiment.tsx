@@ -75,7 +75,7 @@ const AFDELINGEN = [
     liggend: true,
     alt: 'Het buitenterrein met de stellingen vol planten, hangpotten eronder en de zakken grond erachter',
     tekst:
-      'Het buitenterrein ligt achter de winkel, onder de schaduwdoeken. Op het buitenterrein is onder andere dit te vinden:',
+      'Op het buitenterrein is onder andere dit te vinden:',
     punten: [
       'Perkgoed en vaste planten',
       'Siergrassen, heide en buxusbollen',
