@@ -1,6 +1,6 @@
-import {ArrowRight, Building2, Flower2, Home, Leaf, Phone, Repeat, Utensils} from 'lucide-react';
+import {ArrowRight, Flower2, Leaf, Phone} from 'lucide-react';
 import {Pagina, PaginaKop} from '../layout';
-import {Bullet, KNOP_HOOFD, KNOP_TWEEDE_LICHT, Kicker, Section, TEL, TEL_DISPLAY} from '../ui';
+import {Bullet, KNOP_HOOFD, KNOP_TWEEDE_LICHT, Section, TEL, TEL_DISPLAY} from '../ui';
 
 /* ------------------------------------------------------------------ */
 
@@ -45,26 +45,18 @@ const VORMEN = [
   },
 ];
 
-const AANPAK: [string, string][] = [
-  ['We komen langs', 'Eerst kijken wat er is: hoeveel licht, welke kleuren staan er al, en waar zou het moeten staan.'],
-  ['U krijgt een voorstel', 'Wat voor bakken of vazen, welke beplanting, hoe vaak we langskomen en wat het kost.'],
-  ['We zetten het neer', 'Wij maken het op in de winkel en zetten het bij u neer. U hoeft niets te doen.'],
-  ['We komen verversen', 'Op het ritme dat u koos. Overslaan of stoppen kan altijd, u zit nergens aan vast.'],
-];
-
-const VOOR = [
-  {icon: Home, kop: 'Thuis', onder: 'Op de eettafel, in de vensterbank en bij de voordeur'},
-  {icon: Utensils, kop: 'Restaurants en cafés', onder: 'Op tafel, op de bar en bij de ingang'},
-  {icon: Building2, kop: 'Kantoren en praktijken', onder: 'In de ontvangst, de wachtkamer en de vergaderruimte'},
-  {icon: Repeat, kop: 'Winkels en salons', onder: 'In de etalage en bij de toonbank'},
-];
+/* Hier stonden tot 15-10-2026 twee secties: "Vier stappen" (langskomen,
+   voorstel, neerzetten, verversen) en "Waar het meestal staat" (thuis,
+   restaurants, kantoren, winkels). Allebei op verzoek van de winkel eruit. Wat
+   er in die vier stappen stond staat in het kort ook in de intro hierboven, en
+   het formulier vraagt op stap 1 al waar het komt te staan. */
 
 export default function Abonnement() {
   return (
     <Pagina>
       <PaginaKop
         kicker="Abonnement voor thuis en voor de zaak"
-        titel="Groen op tafel, zonder omkijken"
+        titel="Verse bloemen op tafel, zonder omkijken"
         intro="Een abonnement op opgemaakte plantenbakken of vazen met bloemen, bij u thuis of in de zaak. Wij maken ze op, zetten ze neer en komen ze verversen, zodat er nooit iets staat dat over zijn hoogtepunt heen is."
         img="/img/zakelijk.webp"
         alt="Opgemaakte plantenbakken in keramiek op de toonbank van de winkel"
@@ -83,12 +75,7 @@ export default function Abonnement() {
 
       <Section tone="cream" ranken={0}>
         <div className="max-w-2xl">
-          <Kicker>Twee vormen abonnement</Kicker>
           <h2 className="text-3xl font-semibold sm:text-4xl">Bakken of vazen</h2>
-          <p className="mt-4 text-lg leading-relaxed text-ink/70">
-            Het verschil zit in hoe lang het meegaat en hoe vaak we langskomen. Groen staat weken, bloemen
-            staan korter maar vallen meer op. Het kan ook allebei.
-          </p>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -104,62 +91,6 @@ export default function Abonnement() {
               </ul>
             </article>
           ))}
-        </div>
-      </Section>
-
-      {/* ------------------------------------------------------------------ */}
-
-      <Section tone="wit">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
-          <div>
-            <Kicker>Hoe het gaat</Kicker>
-            <h2 className="text-3xl font-semibold sm:text-4xl">Vier stappen</h2>
-            <p className="mt-4 leading-relaxed text-ink/65">
-              Van een eerste rondje door de ruimte tot een bak die er staat en bijgehouden wordt.
-            </p>
-          </div>
-
-          <ol className="space-y-7">
-            {AANPAK.map(([kop, tekst], i) => (
-              <li key={kop} className="flex gap-5">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-accent-dark/10 font-semibold text-accent-dark">
-                  {i + 1}
-                </span>
-                <div>
-                  <p className="text-lg font-semibold leading-snug">{kop}</p>
-                  <p className="mt-1.5 leading-relaxed text-ink/65">{tekst}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </Section>
-
-      {/* ------------------------------------------------------------------ */}
-
-      <Section tone="cream">
-        <div className="max-w-2xl">
-          <Kicker>Voor wie</Kicker>
-          <h2 className="text-3xl font-semibold sm:text-4xl">Waar het meestal staat</h2>
-        </div>
-
-        <div className="mt-9 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {VOOR.map((v) => (
-            <div key={v.kop} className="rounded-2xl border border-line bg-white p-6">
-              <v.icon className="h-6 w-6 text-accent-dark" strokeWidth={1.75} />
-              <p className="mt-4 font-semibold">{v.kop}</p>
-              <p className="mt-1.5 text-sm leading-relaxed text-ink/60">{v.onder}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 flex flex-wrap items-center gap-3">
-          <a href="#vraag-aan" className={KNOP_HOOFD}>
-            Vraag een voorstel aan <ArrowRight className="h-4 w-4" />
-          </a>
-          <a href={`tel:${TEL}`} className={KNOP_TWEEDE_LICHT}>
-            <Phone className="h-4 w-4 text-accent-dark" /> {TEL_DISPLAY}
-          </a>
         </div>
       </Section>
     </Pagina>

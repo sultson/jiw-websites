@@ -3,7 +3,7 @@ import {
   ArrowRight, ChevronDown, Clock, Facebook, Flower2, Gift, Home, Leaf, MapPin, Navigation,
   Phone, Repeat, Shovel, Sparkles, TreePine,
 } from 'lucide-react';
-import {Bezoek, Footer, MobielBalk, Nav, VraagAan} from './layout';
+import {Bezoek, Footer, MobielBalk, Nav, VraagAan, ZwevendeKnoppen} from './layout';
 import {
   FACEBOOK, KNOP_DERDE, KNOP_HOOFD, KNOP_TWEEDE_LICHT, Kicker, PLAATS, ROUTE, Section, STRAAT,
   TEL, TEL_DISPLAY, WHATSAPP, useKnopInBeeld, useWinkelStatus,
@@ -149,21 +149,21 @@ function Hero() {
       {/* De naad met de sectie eronder.
 
           De foto stond tot de laatste beeldpunt op volle sterkte, en daar pal
-          onder begint het diepste groen van de site. Dat is in één regel van
+          onder begon het diepste groen van de site. Dat is in één regel van
           het lichtste naar het donkerste vlak van de pagina, en dan leest het
           als een balk die er overheen ligt in plaats van als een pagina die
           doorloopt. De afgeronde kraag maakte het erger: in de twee hoeken
           stonden de bloemen op volle kleur tegen bijna zwart.
 
-          Hier loopt de onderkant van de foto naar precies de kleur van het
-          vlak eronder. Dat vlak komt daarmee uit de foto vandaan. Het verloop
-          ligt boven de foto en onder de panelen, dus het dempt de foto en niet
-          de tekst, en het beweegt niet mee met de parallax: het hangt aan de
-          onderrand van de sectie, waar de naad ook zit.
+          Dat vlak is op 15-10-2026 crème geworden (zie Kerstblok), waarmee de
+          grootste sprong weg is. Het verloop blijft staan: de foto loopt nog
+          steeds van rand tot rand door en moet nog steeds ergens ophouden.
+          Het ligt boven de foto en onder de panelen, dus het dempt de foto en
+          niet de tekst, en het beweegt niet mee met de parallax: het hangt aan
+          de onderrand van de sectie, waar de naad ook zit.
 
-          De kleur is die van de sectie hieronder (Kerstblok, tone kerst — op
-          een breed scherm een slag lichter). Komt daar ooit een ander vlak,
-          dan moet deze kleur mee. */}
+          De kleur is die van de sectie hieronder (Kerstblok, tone kerstroom).
+          Komt daar ooit een ander vlak, dan moet deze kleur mee. */}
       <div
         aria-hidden="true"
         className={
@@ -173,8 +173,7 @@ function Hero() {
              daarboven; was het verloop daar nog niet rond, dan bleef er precies
              op die lijn een randje foto zichtbaar. */
           'pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-52 bg-gradient-to-b ' +
-          'from-transparent via-kerstgroen/50 via-50% to-kerstgroen to-80% ' +
-          'sm:h-60 lg:h-72 lg:via-kerstgroen-ruim/50 lg:to-kerstgroen-ruim'
+          'from-transparent via-kerstroom/50 via-50% to-kerstroom to-80% sm:h-60 lg:h-72'
         }
       />
 
@@ -201,7 +200,7 @@ function Hero() {
               deze winkel van een bezoeker vraagt: even binnenlopen. */}
           <p className="mt-5 max-w-md text-lg leading-relaxed text-ink">
             Loop gerust binnen en kijk rond. Binnen de bloemen, de planten en de potten, buiten het
-            perkgoed, de vaste planten, de buitenpotten en de zakken grond. Het hele jaar door, van
+            perkgoed, de vaste planten, de buitenpotten en meststoffen. Het hele jaar door, van
             voorjaarsviolen tot de kerstboom.
           </p>
 
@@ -364,44 +363,50 @@ function InDeWinkel() {
  * het woord kerst erin — en dan zíe je nergens dat er iets anders aan de hand
  * is in die twee maanden.
  *
- * Dus komt het van kleur en vorm in plaats van beeld: een dieper groen dan de
- * rest van de site, een lichtsnoer langs de bovenrand, warm lamplicht dat
- * daaronder het vlak in zakt, en vurentakken in plaats van het gewone blad (zie
- * Section kerst en Kerstgroen). De woorden in de opsomming krijgen elk een
- * lampje in dezelfde drie kleuren als in het snoer.
+ * Dus komt het van kleur en vorm in plaats van beeld: een lichtsnoer langs de
+ * bovenrand, een rij vurenbomen langs de onderrand en vurentakken in plaats van
+ * het gewone blad (zie Section kerst en Kerstgroen). De woorden in de opsomming
+ * krijgen elk een lampje in dezelfde drie kleuren als in het snoer.
+ *
+ * Dat decor stond eerst op een dieper groen dan de rest van de site, met warm
+ * lamplicht erop. Dat was het donkerste vlak van de hele pagina, pal onder de
+ * kopfoto, en las daarmee als een balk die er overheen lag. Sinds 15-10-2026
+ * staat het op crème: dezelfde drie lagen, maar met de bomen en de lampjes op
+ * volle kleur in plaats van een gloed die op licht toch verdwijnt. Er zijn ook
+ * meer bomen bij gekomen — een vlak dat kerst heet moet er ook naar uitzien.
  *
  * Niets ervan belooft iets. Zodra ze eigen kerstfoto's hebben kunnen die er zo
  * in, en dan mag dit decor zachter.
  */
 const KERST = ['Kerstbomen', 'Kerstkransen', 'Verlichting', 'Kerstaccessoires', 'Kerststukjes'];
 
-/* Amber, crème, hulstrood — de volgorde van de lampjes in het snoer. */
-const LAMPJES = ['bg-kerstlicht', 'bg-[#e7e1c7]', 'bg-kerstbes'];
+/* Amber, groen, hulstrood — de volgorde van de lampjes in het snoer. */
+const LAMPJES = ['bg-kerstamber', 'bg-kerstdiep', 'bg-kerstbes'];
 
 function Kerstblok() {
   return (
     /* Extra lucht onderaan: de sectie hieronder legt er met zijn kraag een
        afgeronde rand overheen, en zonder die ruimte komt die rand tegen de
-       knop aan te liggen. */
-    <Section id="kerst" tone="kerst" kerst kraag className="pb-6 sm:pb-10">
+       bomenrij aan te liggen. */
+    <Section id="kerst" tone="kerstroom" kerst kraag className="pb-6 sm:pb-10">
       <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-kerstlicht">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-kerstbes">
             November en december
           </p>
           <h2 className="text-3xl font-semibold sm:text-4xl">
             Vanaf november staat de winkel in het teken van kerst
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-white/75">
+          <p className="mt-5 text-lg leading-relaxed text-ink/70">
             Kerstbomen voor de deur, kransen en verlichting binnen, en een tafel vol accessoires. Wie
-            vroeg is heeft de ruimste keuze, en wie laat is vindt er nog altijd een boom.
+            vroeg is heeft de ruimste keuze.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-2.5">
             {KERST.map((k, i) => (
               <span
                 key={k}
-                className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/[0.06] px-4 py-2 text-sm font-medium text-white/85"
+                className="inline-flex items-center gap-2.5 rounded-full border border-kerstdiep/20 bg-white/60 px-4 py-2 text-sm font-medium text-ink/80"
               >
                 <span className={`h-2 w-2 shrink-0 rounded-full ${LAMPJES[i % LAMPJES.length]}`} />
                 {k}
@@ -416,24 +421,25 @@ function Kerstblok() {
           </div>
         </div>
 
-        {/* De boom staat in een cirkel met een warme gloed eromheen: zonder dat
-            is het een lijntekening van een boom op een groen vlak, en mét dat
-            lijkt er een lamp achter te staan. */}
-        <div className="rounded-2xl border border-white/15 bg-white/[0.05] p-8">
-          <span className="grid h-16 w-16 place-items-center rounded-full bg-kerstlicht/10 shadow-[0_0_40px_-6px_rgb(246_200_122_/_0.45)] ring-1 ring-kerstlicht/25">
-            <TreePine className="h-8 w-8 text-kerstlicht" strokeWidth={1.5} />
+        {/* De boom staat in een cirkel met een warme ring eromheen. Op het
+            donkere vlak was dat een gloed die eruit leek te komen; op crème
+            doet een gloed niets en is het de ring die hem los zet van de
+            kaart. */}
+        <div className="rounded-2xl border border-kerstdiep/15 bg-white/70 p-8">
+          <span className="grid h-16 w-16 place-items-center rounded-full bg-kerstamber/15 ring-1 ring-kerstamber/40">
+            <TreePine className="h-8 w-8 text-kerstdiep" strokeWidth={1.5} />
           </span>
           <p className="mt-5 text-lg font-semibold">Vanaf begin november</p>
-          <p className="mt-2 leading-relaxed text-white/65">
+          <p className="mt-2 leading-relaxed text-ink/65">
             De kerstafdeling bouwen we elk jaar opnieuw op. Wilt u weten wanneer de bomen binnen zijn?
             Bel ons of kijk op Facebook.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href={`tel:${TEL}`} className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-2.5 text-sm font-semibold text-white/90 transition hover:border-kerstlicht hover:bg-white/10">
-              <Phone className="h-4 w-4 text-kerstlicht" /> {TEL_DISPLAY}
+            <a href={`tel:${TEL}`} className="inline-flex items-center gap-2 rounded-xl border border-kerstdiep/25 px-5 py-2.5 text-sm font-semibold text-ink/80 transition hover:border-kerstdiep hover:bg-white">
+              <Phone className="h-4 w-4 text-kerstbes" /> {TEL_DISPLAY}
             </a>
-            <a href={FACEBOOK} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-2.5 text-sm font-semibold text-white/90 transition hover:border-kerstlicht hover:bg-white/10">
-              <Facebook className="h-4 w-4 text-kerstlicht" /> Facebook
+            <a href={FACEBOOK} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-kerstdiep/25 px-5 py-2.5 text-sm font-semibold text-ink/80 transition hover:border-kerstdiep hover:bg-white">
+              <Facebook className="h-4 w-4 text-kerstbes" /> Facebook
             </a>
           </div>
         </div>
@@ -565,7 +571,11 @@ function Abonnementblok() {
 
         <div>
           <Kicker>Abonnement voor thuis en voor de zaak</Kicker>
-          <h2 className="text-3xl font-semibold sm:text-4xl">Groen op tafel, zonder dat u er omkijken naar heeft</h2>
+          {/* Zelfde kop als op /abonnement/, waar de winkel hem op 15-10-2026
+              liet veranderen van "Groen op tafel". Twee verschillende koppen
+              boven hetzelfde aanbod laat de bezoeker denken dat het twee
+              dingen zijn. */}
+          <h2 className="text-3xl font-semibold sm:text-4xl">Verse bloemen op tafel, zonder omkijken</h2>
           <p className="mt-4 text-lg leading-relaxed text-ink/70">
             Opgemaakte plantenbakken of vazen met bloemen, bij u thuis of in de zaak. Wij maken ze op,
             zetten ze neer en komen ze verversen, zodat er nooit iets staat dat over zijn hoogtepunt
@@ -619,7 +629,6 @@ function Over() {
             height={900}
             className="h-auto w-full rounded-2xl object-cover"
           />
-          <p className="mt-2.5 text-xs text-ink/45">Binnen in de winkel aan het Hogepad</p>
         </div>
 
         <div>
@@ -628,17 +637,18 @@ function Over() {
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink/70">
             <p>
               Bloei! is onze winkel voor bloemen, planten, tuin en wonen in Ouddorp. Binnen de
-              kamerplanten, de potten en de opgemaakte stukjes, buiten het terrein met perkgoed, vaste
-              planten en alles wat er in de grond moet.
+              kamerplanten, de potten, de opgemaakte stukjes en de woonaccessoires. Buiten vindt u het
+              terrein met perkgoed, vaste planten, verschillende soorten meststoffen en alles wat er in
+              de grond moet.
             </p>
             <p>
-              Het bloemenassortiment is nog aan het groeien. Dat betekent niet dat het er niet is: kunt u
-              niet vinden wat u zoekt, laat het ons weten. We kunnen veel regelen, en boeketten maken we
-              op bestelling.
+              Het bloemenassortiment is nog aan het groeien. Staat er niet bij wat u zoekt, of heeft u
+              speciale wensen, laat het ons weten. Boeketten, in elke prijsklasse van klassiek tot
+              plukboeket, alles is mogelijk en bestelbaar.
             </p>
             <p>
               Loop gerust binnen om te kijken. Weet u niet precies wat u nodig heeft voor uw tuin of uw
-              kamer, dan denken we graag met u mee.
+              woning, dan denken we graag met u mee.
             </p>
           </div>
 
@@ -657,26 +667,25 @@ function Over() {
 /*  Vragen                                                             */
 /* ------------------------------------------------------------------ */
 
+/* "Kan ik zomaar binnenlopen?" en "Wanneer begint het kerstseizoen?" stonden
+   hier tot 15-10-2026 ook; die zijn er op verzoek van de winkel uit. Het
+   kerstseizoen staat verder op de pagina nog twee keer. */
 const VRAGEN: [string, string][] = [
   [
-    'Kan ik zomaar binnenlopen?',
-    'Ja. Maandag tot en met zaterdag staat de winkel open, zonder afspraak. Voor een boeket of een cadeaupakket op bestelling is even bellen of een aanvraag doen handiger.',
-  ],
-  [
     'Ik kan niet vinden wat ik zoek. Kunnen jullie het bestellen?',
-    'Waarschijnlijk wel. Ons bloemenassortiment is aan het groeien, dus het kan zijn dat iets er vandaag nog niet staat. Vertel ons wat u zoekt, dan kijken we wat we kunnen regelen.',
+    'Waarschijnlijk wel. Laat ons weten wat u zoekt, dan denken we met u mee en kijken we wat de mogelijkheden zijn.',
   ],
   [
     'Maken jullie boeketten op bestelling?',
-    'Dat doen we. U zegt voor wie het is, in welke kleuren u denkt en wat het ongeveer mag kosten, dan maken wij er iets van. Bel ons of vul het formulier in.',
+    'Dat doen we. U zegt voor wie het is, wat u in gedachten heeft, welke kleuren of bloemen er in mogen en wat het ongeveer mag kosten, dan maken wij het voor u. Bel ons of vul het formulier in.',
   ],
   [
     'Wat verkopen jullie voor de tuin?',
-    'Perkgoed, vaste planten en seizoensplanten, siergrassen, heide en buxusbollen, en olijf- en palmbomen in pot. Daarnaast de grondsoorten en meststoffen, boomschors, houtsnippers, openhaardhout en hydrokorrels, buitenpotten in alle maten, en zaden en bloembollen.',
+    'Perkgoed, vaste planten, seizoensplanten, siergrassen, heide, buxusbollen, olijf- en palmbomen in pot. Daarnaast de grondsoorten, meststoffen, boomschors, houtsnippers, openhaardhout, hydrokorrels, buitenpotten in alle maten, zaden en bloembollen.',
   ],
   [
     'Hebben jullie zaden?',
-    'Die hebben we: gras, groente en kruiden, en bloembollen voor het seizoen. Wat er ligt verschuift met het jaar, want zaaien is een kwestie van de juiste maand. Zegt u wat u wilt zaaien en waar, dan zoeken we het juiste zakje erbij. Staat een merk of mengsel er niet, dan kunnen we veel bestellen.',
+    'Ja, wij hebben verschillende soorten zaden voor groenten, bloemen en kruiden. Ook hebben we in het seizoen bloembollen.',
   ],
   [
     'Hebben jullie een cadeaubon?',
@@ -685,10 +694,6 @@ const VRAGEN: [string, string][] = [
   [
     'Kan ik een abonnement nemen?',
     'Dat kan, thuis net zo goed als in de zaak. We maken plantenbakken of vazen met bloemen op, zetten ze neer en komen ze verversen. U spreekt zelf af hoe vaak dat is, en een keer overslaan of stoppen kan altijd.',
-  ],
-  [
-    'Wanneer begint het kerstseizoen?',
-    'Vanaf begin november. Dan komen de kerstbomen, de kransen, de verlichting en de accessoires binnen en gaat de winkel om. Wie vroeg is heeft de ruimste keuze.',
   ],
 ];
 
@@ -748,6 +753,7 @@ export default function App() {
       </main>
       <Footer />
       <MobielBalk />
+      <ZwevendeKnoppen />
     </>
   );
 }

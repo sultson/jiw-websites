@@ -214,6 +214,64 @@ Negentien aangestreepte schermafdrukken van Armando. Wat er gebeurd is:
   ontbrak. Stap 2 toont bij die keuze geen ophalen-of-bezorgen maar "Wij komen
   bij u langs".
 
+## Revisieronde 15 oktober
+
+Zesentwintig aangestreepte schermafdrukken van Armando — deels pagina's, deels
+pagina's uit een eigen document met "> moet worden >" erin. Wat er gebeurd is:
+
+- **Het kerstvlak is crème.** Stond op `#1b2d15`, het donkerste vlak van de hele
+  pagina, pal onder de kopfoto; dat las als een balk die er overheen lag. Nu
+  `tone="kerstroom"` (`#f7f3e4`, de letterkleur van hun bord een slag
+  opgelicht). Kerst komt er van vorm in plaats van diepte: hetzelfde lichtsnoer
+  bovenaan maar met de lampjes op volle kleur (`.kerstsnoer-licht`), de
+  vurentakken in het groen van de bomen, en een rij vurenbomen met ballen langs
+  de onderrand (`.kerstbomenrij`, een tegel van 360 px die zichzelf herhaalt).
+  `tone="kerst"` staat nog in `ui.tsx`, ongebruikt, zodat de donkere versie
+  terug kan.
+- **`/kerst/` heeft zijn introzin en de sectie "Vanaf begin november" verloren.**
+  Daarmee stond er op de pagina die over kerst gaat niets meer dat er ook naar
+  uitzag; het kerstdecor zit nu op de sectie met de drie kaarten. De regel over
+  iets op bestelling in eigen kleuren, die in die weggehaalde sectie stond,
+  staat als vierde vak in dat raster — anders bleef er een gat rechtsonder en
+  verdween de stap naar het formulier van de pagina.
+- **Kerstkaarten:** Accessoires eruit ("voor nu weglaten"). De drie die blijven
+  noemen nu soorten in plaats van omschrijvingen: Nordmann, Nobilis, Picea en
+  besneeuwde kunststof bomen; Nordmann- en Nobiliskransen; verlichting in
+  verschillende lengtes. "Nobellis" is als **Nobilis** gespeld.
+- **`/abonnement/`:** kop is *Verse bloemen op tafel, zonder omkijken* (was
+  *Groen op tafel*). Ook op de homepage, want twee koppen boven hetzelfde
+  aanbod leest als twee dingen. Kicker "Twee vormen abonnement" en de intro
+  eronder weg, net als de secties "Vier stappen" en "Waar het meestal staat".
+- **`/cadeau/`:** sectie "Drie stappen" weg. Nieuwe teksten voor de intro, de
+  cadeaubon en het cadeaupakketje, letterlijk aangeleverd. Daarin staan voor het
+  eerst producten van buiten het eigen assortiment: **Schulp** (sap), wijn,
+  noten, kaas en **Hoeksche** chips. "Welkom bij de buren" → "Welkom heten van
+  nieuwe buren".
+- **Homepage:** hero zegt *meststoffen* in plaats van *de zakken grond*. Nieuwe
+  teksten voor alle drie de alinea's van "Over ons" (woonaccessoires,
+  meststoffen, "van klassiek tot plukboeket", *woning* in plaats van *kamer*).
+  De bijschriften "Binnen in de winkel aan het Hogepad" en "Zo staan we erbij
+  aan het Hogepad" zijn weg, en bij "Waar u ons vindt" blijft alleen *Parkeren
+  kan voor de deur* staan.
+- **Veelgesteld:** "Kan ik zomaar binnenlopen?" en "Wanneer begint het
+  kerstseizoen?" eruit. Nieuwe antwoorden op bestellen, boeketten op bestelling,
+  de tuin en de zaden.
+- **Zwevende knoppen rechtsonder**, naar het voorbeeld van
+  winterswijkvakantiehuis.nl: WhatsApp in zijn eigen groen, Bellen in oranje
+  (`BEL_ORANJE`, een tint dieper dan het voorbeeld — wit op licht oranje haalt
+  de leesnorm niet). Alleen vanaf `md`: daaronder doet `MobielBalk` hetzelfde.
+- **"Nog geen bestelling"** in stap 7 van het formulier staat nu in amber met
+  een rand eromheen, in plaats van in dezelfde grijstint als de rest. Amber en
+  niet rood: er is niets misgegaan, er moet alleen iets opvallen.
+
+**Cadeau en Kerst zijn uit het aanvraagformulier.** Dat laat een gat dat het
+tegenovergestelde is van wat er op 14-10 gerepareerd werd: `/cadeau/` heeft nog
+een knop "Een pakketje laten maken" en `/kerst/` een knop "Iets laten maken",
+en die komen allebei uit bij een formulier waarin hun eigen onderwerp niet meer
+als keuze staat. De bezoeker kan het alleen nog bij de wensen kwijt.
+**Voorgelegd aan Armando op 15-10-2026; terugzetten is het omkeren van één
+commit.**
+
 ## Techniek
 
 Kopie van `apps/fleurig`, dus hetzelfde recept: Vite + React 19 + Tailwind v4,

@@ -103,6 +103,21 @@
   --color-kerstlicht: #f6c87a;
   --color-kerstbes: #b3243f;
 
+  /* De crèmevariant (15-10-2026). Het donkergroene kerstvlak pal onder de
+     kopfoto was het donkerste vlak van de hele pagina en las als een balk die
+     er overheen lag; daar is eerst een verloop onder gezet en daarna is het
+     vlak zelf licht geworden. Dit is de kleur van de letters op hun bord, een
+     slag opgelicht: warmer dan `cream`, zodat het kerstvlak zich van de rest
+     onderscheidt zonder dat er een donkere band in de pagina staat.
+
+     Kerst komt hier nu van vorm in plaats van van diepte: het lichtsnoer, de
+     rij vurenbomen langs de onderrand en de ballen eraan (zie Kerstdecor). De
+     lampjes en de ballen staan op volle kleur, want op crème heeft amber en
+     hulstrood het contrast dat ze op donkergroen niet nodig hadden. */
+  --color-kerstroom: #f7f3e4;
+  --color-kerstdiep: #2c4420;   /* het groen van de bomen en de takken */
+  --color-kerstamber: #d79a2c;  /* lampje, een slag dieper dan kerstlicht */
+
   /* Waar de hele pagina op staat: de lichte tint groen die ze vroegen. Geen
      grijs met een vleugje groen maar een echte tint, zodat hij naast het
      bord staat en er niet onder uit valt. `--color-crème` is de kleur van
@@ -337,6 +352,41 @@
  */
 .kerstsnoer {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 76'><path d='M0 5 Q150 69 300 5' fill='none' stroke='%23e7e1c7' stroke-opacity='0.22' stroke-width='1.6'/><g stroke='%23e7e1c7' stroke-opacity='0.22' stroke-width='1.4'><path d='M60 33v7'/><path d='M120 45v7'/><path d='M180 45v7'/><path d='M240 33v7'/></g><g fill='%23f6c87a'><circle cx='60' cy='40' r='11' opacity='0.16'/><circle cx='240' cy='40' r='11' opacity='0.16'/></g><circle cx='120' cy='52' r='11' fill='%23e7e1c7' opacity='0.14'/><circle cx='180' cy='52' r='11' fill='%23b3243f' opacity='0.18'/><circle cx='60' cy='40' r='4.2' fill='%23f6c87a'/><circle cx='120' cy='52' r='4.2' fill='%23e7e1c7'/><circle cx='180' cy='52' r='4.2' fill='%23b3243f'/><circle cx='240' cy='40' r='4.2' fill='%23f6c87a'/></svg>");
+  background-repeat: repeat-x;
+  background-position: top center;
+  background-size: 300px 76px;
+}
+
+/**
+ * De rij vurenbomen langs de onderrand van het crème kerstvlak.
+ *
+ * Een tegel van 360 bij 120 met vijf bomen van verschillende hoogte, die zich
+ * naast elkaar herhaalt — net als het snoer, en om dezelfde reden: één svg over
+ * de volle breedte gerekt maakt van elke boom een andere boom per
+ * schermbreedte. Vijf in plaats van drie, en met ballen erin, want het vlak
+ * moet er in november uitzien als kerst en niet als een lichtgroene sectie met
+ * het woord kerst erin.
+ *
+ * Laag in dekking: dit is textuur onder de tekst door, geen illustratie.
+ */
+.kerstbomenrij {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 120'><g fill='%232c4420' opacity='0.16'><rect x='37' y='104' width='6' height='12'/><path d='M10 104 L40 64.4 L70 104 Z'/><path d='M16.6 77.6 L40 38 L63.4 77.6 Z'/><path d='M24.4 53 L40 16 L55.6 53 Z'/><rect x='107' y='104' width='6' height='10'/><path d='M88 104 L110 76.1 L132 104 Z'/><path d='M92.8 85.4 L110 57.5 L127.2 85.4 Z'/><path d='M98.6 68 L110 42 L121.4 68 Z'/><rect x='172' y='104' width='7' height='12'/><path d='M141 104 L175 57.2 L209 104 Z'/><path d='M148.5 72.8 L175 26 L201.5 72.8 Z'/><path d='M157.3 43.7 L175 0 L192.7 43.7 Z'/><rect x='247' y='104' width='6' height='10'/><path d='M225 104 L250 72.5 L275 104 Z'/><path d='M230.5 83 L250 51.5 L269.5 83 Z'/><path d='M237 63.4 L250 34 L263 63.4 Z'/><rect x='312' y='104' width='6' height='12'/><path d='M284 104 L315 62.6 L346 104 Z'/><path d='M290.8 76.4 L315 35 L339.2 76.4 Z'/><path d='M298.9 50.6 L315 12 L331.1 50.6 Z'/></g><g opacity='0.5'><circle cx='34' cy='80' r='2.6' fill='%23b3243f'/><circle cx='48' cy='62' r='2.6' fill='%23d79a2c'/><circle cx='168' cy='62' r='3' fill='%23d79a2c'/><circle cx='184' cy='80' r='3' fill='%23b3243f'/><circle cx='175' cy='40' r='2.4' fill='%23b3243f'/><circle cx='308' cy='74' r='2.6' fill='%23d79a2c'/><circle cx='322' cy='88' r='2.6' fill='%23b3243f'/></g></svg>");
+  background-repeat: repeat-x;
+  background-position: bottom center;
+  background-size: 360px 120px;
+}
+
+/**
+ * Hetzelfde snoer, maar voor op crème.
+ *
+ * De donkere versie hierboven tekent het koord en de gloed in crème op 0,22
+ * dekking: dat werkt op bijna zwart en verdwijnt op licht. Hier is het koord
+ * het groen van de takken en staan de lampjes op volle kleur, met een zachte
+ * gloed eromheen in plaats van een lichte halo. Zelfde tegel, zelfde maat, dus
+ * de twee zijn uitwisselbaar zonder dat er iets aan de sectie verandert.
+ */
+.kerstsnoer-licht {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 76'><path d='M0 5 Q150 69 300 5' fill='none' stroke='%232c4420' stroke-opacity='0.35' stroke-width='1.6'/><g stroke='%232c4420' stroke-opacity='0.35' stroke-width='1.4'><path d='M60 33v7'/><path d='M120 45v7'/><path d='M180 45v7'/><path d='M240 33v7'/></g><g><circle cx='60' cy='40' r='10' fill='%23d79a2c' opacity='0.2'/><circle cx='240' cy='40' r='10' fill='%23d79a2c' opacity='0.2'/><circle cx='120' cy='52' r='10' fill='%232c4420' opacity='0.12'/><circle cx='180' cy='52' r='10' fill='%23b3243f' opacity='0.18'/></g><circle cx='60' cy='40' r='4.2' fill='%23d79a2c'/><circle cx='120' cy='52' r='4.2' fill='%232c4420'/><circle cx='180' cy='52' r='4.2' fill='%23b3243f'/><circle cx='240' cy='40' r='4.2' fill='%23d79a2c'/></svg>");
   background-repeat: repeat-x;
   background-position: top center;
   background-size: 300px 76px;

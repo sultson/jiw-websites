@@ -16,8 +16,7 @@ const MANIEREN = [
   {
     icon: Ticket,
     titel: 'Cadeaubon',
-    tekst:
-      'Voor wie liever zelf uitzoekt. De bon ligt in de winkel klaar en u bepaalt zelf het bedrag. De ontvanger komt langs en kiest er iets van uit: een plant, een pot, bloemen, of zakken tuinaarde.',
+    tekst: 'Een cadeaubon waarmee de ontvanger zelf iets leuks uit kan zoeken.',
     punten: [
       'U bepaalt zelf het bedrag',
       'Te besteden aan alles in de winkel',
@@ -27,12 +26,16 @@ const MANIEREN = [
   {
     icon: Package,
     titel: 'Cadeaupakketje',
+    /* Letterlijk wat de winkel doorgaf op 15-10-2026. Schulp is het
+       sappenmerk; Hoeksche is de chips van de Hoeksche Waard. Dit is het enige
+       stuk van de site waar producten van buiten het eigen assortiment staan,
+       dus hier niets bij verzinnen. */
     tekst:
-      'Wij stellen het samen. Een plant in een bijpassende pot, een schaaltje met vetplanten, of een mandje met heide en kaarsjes erin. U zegt wat het ongeveer mag kosten en voor wie het is.',
+      'Pak een cadeaupakketje dat er al staat, of geef door wat u erin wilt hebben, dan maken wij het naar uw wens. Het kan bestaan uit een fles Schulp of een fles wijn, keuze uit verschillende noten, kaassoorten, en of Hoeksche chips.',
     punten: [
       'U zegt het bedrag en voor wie het is',
       'Wij zoeken uit en maken het op',
-      'Op bestelling, ook groter aantal',
+      'Ook op bestelling, ook grotere aantallen',
     ],
   },
 ];
@@ -41,18 +44,18 @@ const GELEGENHEDEN = [
   'Verjaardag',
   'Nieuwe woning',
   'Bedankje',
-  'Welkom bij de buren',
+  'Welkom heten van nieuwe buren',
   'Beterschap',
   'Jubileum',
   'Afscheid van een collega',
   'Kerstpakket voor het personeel',
 ];
 
-const STAPPEN: [string, string][] = [
-  ['Zeg wat het mag kosten', 'Dat is het enige dat we echt nodig hebben om te beginnen.'],
-  ['Vertel voor wie het is', 'Iemand met groene vingers of juist niet, veel licht in huis of weinig, een tuin of een balkon.'],
-  ['Wij maken het klaar', 'U hoort van ons wanneer het klaarstaat. Ophalen kan tijdens openingstijden.'],
-];
+/* De sectie "Drie stappen" stond hier tot 15-10-2026 tussen de twee manieren
+   en "Waar het meestal voor is". Die is er op verzoek van de winkel uit: wat
+   erin stond (zeg het bedrag, vertel voor wie) staat al als vinkjes op de
+   kaart van het cadeaupakketje, en het formulier vraagt het daarna nog een
+   keer. */
 
 export default function Cadeau() {
   return (
@@ -60,7 +63,7 @@ export default function Cadeau() {
       <PaginaKop
         kicker="Cadeau"
         titel="Iets geven uit de winkel"
-        intro="Een cadeaubon waarmee de ontvanger zelf uitzoekt, of een pakketje dat wij samenstellen. Voor één keer of voor een hele afdeling."
+        intro="Een cadeaubon waarmee de ontvanger zelf iets leuks kan uitzoeken, of een cadeaupakket dat wij zelf samenstellen."
         img="/img/kaart-cadeau.webp"
         alt="Mandjes met heide, kalanchoë en kaarsjes op de houten tafel in de winkel"
       >
@@ -95,39 +98,6 @@ export default function Cadeau() {
               </ul>
             </article>
           ))}
-        </div>
-      </Section>
-
-      {/* ------------------------------------------------------------------ */}
-
-      <Section tone="wit">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
-          <div>
-            <Kicker>Hoe het gaat</Kicker>
-            <h2 className="text-3xl font-semibold sm:text-4xl">Drie stappen</h2>
-            <p className="mt-4 leading-relaxed text-ink/65">
-              Een pakketje laten maken kost u één telefoontje of één formulier.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a href="#vraag-aan" className={KNOP_HOOFD}>
-                Beginnen <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
-
-          <ol className="space-y-7">
-            {STAPPEN.map(([kop, tekst], i) => (
-              <li key={kop} className="flex gap-5">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-accent-dark/10 font-semibold text-accent-dark">
-                  {i + 1}
-                </span>
-                <div>
-                  <p className="text-lg font-semibold leading-snug">{kop}</p>
-                  <p className="mt-1.5 leading-relaxed text-ink/65">{tekst}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
         </div>
       </Section>
 

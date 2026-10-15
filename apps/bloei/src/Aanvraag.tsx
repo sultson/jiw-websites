@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from 'react';
 import {
-  ArrowLeft, ArrowRight, Check, Flower2, Info, Leaf, Loader2, Mail, Package,
-  Phone, Repeat, Store, TreePine, Truck,
+  ArrowLeft, ArrowRight, Check, Flower2, Info, Leaf, Loader2, Mail,
+  Phone, Repeat, Store, Truck,
 } from 'lucide-react';
 import {STRAAT, TEL, TEL_DISPLAY, WA_GROEN, WHATSAPP, WhatsAppMerk, useKnopInBeeld} from './ui';
 
@@ -34,37 +34,37 @@ export const OPSLAG_SLEUTEL = 'bloei:aanvraag';
 /*  Inhoud                                                             */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Drie keuzes. Cadeau en Kerst stonden hier tot 15-10-2026 ook; die zijn er op
+ * verzoek van de winkel uit.
+ *
+ * LET OP — /cadeau/ en /kerst/ hebben allebei nog een knop die hiernaartoe
+ * wijst ("Een pakketje laten maken", "Iets laten maken"). Die komen nu uit bij
+ * een formulier waarin hun eigen onderwerp niet meer als keuze staat; de
+ * bezoeker kan het alleen nog bij de wensen kwijt. Dat is precies het gat dat
+ * het abonnement hier op 14-10-2026 liet dichten. Besproken met Armando.
+ */
 const SOORTEN = [
   {id: 'boeket', img: '/img/kaart-bloemen.webp', icon: Flower2, titel: 'Boeket', onder: 'Op bestelling'},
   {id: 'plant', img: '/img/kaart-planten.webp', icon: Leaf, titel: 'Plant of bak', onder: 'Binnen of buiten'},
-  {id: 'cadeau', img: '/img/kaart-cadeau.webp', icon: Package, titel: 'Cadeau', onder: 'Bon of pakketje'},
-  {id: 'kerst', img: '/img/seizoen-najaar.webp', icon: TreePine, titel: 'Kerst', onder: 'Krans of stuk'},
-  /* Het abonnement stond hier niet bij, terwijl het wel een eigen pagina en een
-     eigen knop "Vraag een voorstel aan" heeft die hiernaartoe wijst. Wie daarop
-     klikte kwam dus bij een formulier waarin zijn eigen vraag ontbrak
-     (toegevoegd 14-10-2026). */
   {id: 'abonnement', img: '/img/zakelijk.webp', icon: Repeat, titel: 'Abonnement', onder: 'Thuis of in de zaak'},
 ] as const;
 
 type SoortId = (typeof SOORTEN)[number]['id'];
 
 /* Op een telefoon is elk keuzevak nog geen 100px breed, dus een woord als
-   Cadeaupakket past niet op een regel. Met een zacht koppelteken breekt het
+   Abonnement past niet op een regel. Met een zacht koppelteken breekt het
    netjes af in plaats van midden in een lettergreep. Alleen voor het tonen:
    de titel die meegaat in de aanvraag blijft schoon. */
 const AFBREEK: Record<SoortId, string> = {
   boeket: 'Boeket',
   plant: 'Plant of bak',
-  cadeau: 'Cadeau',
-  kerst: 'Kerst',
   abonnement: 'Abonne­ment',
 };
 
 const SUBVRAAG: Record<SoortId, string> = {
   boeket: 'Voor welke gelegenheid?',
   plant: 'Waar komt het te staan?',
-  cadeau: 'Wat wilt u geven?',
-  kerst: 'Waar denkt u aan?',
   abonnement: 'Waar komt het te staan?',
 };
 
@@ -85,18 +85,6 @@ const SUBKEUZE: Record<SoortId, string[]> = {
     'In de zaak: restaurant, kantoor of winkel',
     'Weet ik nog niet, ik hoor graag wat er mogelijk is',
   ],
-  cadeau: [
-    'Cadeaubon',
-    'Een cadeaupakketje',
-    'Meerdere pakketjes tegelijk',
-    'Weet ik nog niet, graag advies',
-  ],
-  kerst: [
-    'Kerstkrans voor aan de deur',
-    'Kerststukje voor op tafel',
-    'Kerstboom',
-    'Weet ik nog niet, ik hoor graag wat er mogelijk is',
-  ],
   abonnement: [
     'Bij mij thuis',
     'In een restaurant of café',
@@ -109,8 +97,6 @@ const SUBKEUZE: Record<SoortId, string[]> = {
 const DATUMVRAAG: Record<SoortId, string> = {
   boeket: 'Wanneer wilt u het ophalen?',
   plant: 'Wanneer wilt u langskomen?',
-  cadeau: 'Wanneer moet het klaarstaan?',
-  kerst: 'Wanneer wilt u het hebben?',
   abonnement: 'Wanneer zou het moeten ingaan?',
 };
 
@@ -125,16 +111,12 @@ const DATUMVRAAG: Record<SoortId, string> = {
 const BUDGETVRAAG: Record<SoortId, string> = {
   boeket: 'Wat wilt u ongeveer besteden?',
   plant: 'Wat heeft u ongeveer in gedachten?',
-  cadeau: 'Wat mag het cadeau kosten?',
-  kerst: 'Wat heeft u ongeveer in gedachten?',
   abonnement: 'Wat mag het per keer ongeveer kosten?',
 };
 
 const TOELICHTING: Record<SoortId, string> = {
   boeket: 'Bijvoorbeeld welke bloemen of kleuren de ontvanger mooi vindt, en wat u juist liever niet heeft',
   plant: 'Bijvoorbeeld hoeveel licht er is, hoe groot het mag worden, en of u er zelf veel of weinig naar wilt omkijken',
-  cadeau: 'Bijvoorbeeld voor wie het is, of diegene groene vingers heeft, en om hoeveel pakketjes het gaat',
-  kerst: 'Bijvoorbeeld in welke kleuren, hoe groot, en of het aan de deur hangt of op tafel staat',
   abonnement: 'Bijvoorbeeld om hoeveel bakken of vazen het gaat, hoe vaak u ons wilt zien, en hoeveel licht er is',
 };
 
@@ -504,14 +486,6 @@ export default function AanvraagFormulier() {
             </select>
           </label>
 
-          {soort === 'kerst' && (
-            <p className="mt-4 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm leading-relaxed text-white/65">
-              De kerstafdeling staat er vanaf begin november. Wilt u iets in uw eigen kleuren, geef het
-              dan op tijd door, of bel ons even op{' '}
-              <a href={`tel:${TEL}`} className="font-semibold text-accent hover:underline">{TEL_DISPLAY}</a>.
-            </p>
-          )}
-
           {soort === 'boeket' && (
             <p className="mt-4 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm leading-relaxed text-white/65">
               Ons bloemenassortiment is nog aan het groeien. Staat er iets niet, dan kunnen we veel
@@ -793,9 +767,16 @@ export default function AanvraagFormulier() {
 
           {/* Dit formulier is een aanvraag, geen bestelling: er wordt hier niet
               betaald en er ligt dus ook niets vast. Dat hoort te staan waar de
-              bezoeker op versturen drukt en niet pas achteraf. */}
-          <p className="mt-2.5 flex items-start gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm leading-relaxed text-white/60">
-            <Info className="mt-0.5 h-4 w-4 shrink-0 text-white/40" />
+              bezoeker op versturen drukt en niet pas achteraf.
+
+              Stond hier in dezelfde grijstint als de rest van het formulier en
+              was daarmee de zoveelste regel kleine letter; de winkel vroeg er
+              op 15-10-2026 om dit te laten opvallen. Nu amber: dat leest als
+              let op, waar rood als er ging iets mis leest — en er is niets
+              misgegaan. Dezelfde amber als het lampje in het kerstsnoer, dus
+              er komt geen nieuwe kleur bij op de site. */}
+          <p className="mt-2.5 flex items-start gap-2.5 rounded-xl border border-kerstlicht/45 bg-kerstlicht/[0.14] px-4 py-3 text-sm font-medium leading-relaxed text-kerstlicht">
+            <Info className="mt-0.5 h-4 w-4 shrink-0" />
             Nog geen bestelling: die staat pas vast als u het met ons heeft afgesproken en betaald.
           </p>
 

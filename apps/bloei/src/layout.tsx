@@ -6,7 +6,7 @@ import Aanvraag from './Aanvraag';
 import KaartLazy from './KaartLazy';
 import {usePad} from './pad';
 import {
-  Bullet, FACEBOOK, Kicker, Merk, PLAATS, ROUTE, STREEKKERNEN, Section, STRAAT, TEL,
+  BEL_ORANJE, Bullet, FACEBOOK, Kicker, Merk, PLAATS, ROUTE, STREEKKERNEN, Section, STRAAT, TEL,
   TEL_DISPLAY, WA_DONKER, WA_GROEN, WHATSAPP, WhatsAppMerk, useFormKnopInBeeld, KNOP_HOOFD,
 } from './ui';
 
@@ -163,7 +163,9 @@ export function PaginaKop({
 }: {
   kicker: string;
   titel: string;
-  intro: string;
+  /* Optioneel: op /kerst/ liet de winkel de introzin weghalen (15-10-2026).
+     De kop staat daar dan direct boven de twee knoppen. */
+  intro?: string;
   img: string;
   alt: string;
   /* Een uitgesneden stuk (alfa) kan niet object-cover: dan snijdt het kader er
@@ -183,7 +185,7 @@ export function PaginaKop({
           </a>
           <Kicker>{kicker}</Kicker>
           <h1 className="text-4xl font-semibold leading-[1.1] sm:text-5xl">{titel}</h1>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink/70">{intro}</p>
+          {intro && <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink/70">{intro}</p>}
           {children}
         </div>
 
@@ -280,7 +282,6 @@ export function Bezoek({streek = false, kraag = false}: {streek?: boolean; kraag
           <Kicker>Waar u ons vindt</Kicker>
           <h2 className="text-3xl font-semibold sm:text-4xl">{STRAAT}, Ouddorp</h2>
           <p className="mt-4 leading-relaxed text-ink/65">
-            Het groene bord op de gevel, de karren met planten ervoor, het buitenterrein erachter.
             Parkeren kan voor de deur.
           </p>
 
@@ -321,17 +322,14 @@ export function Bezoek({streek = false, kraag = false}: {streek?: boolean; kraag
         </div>
 
         <div>
-          <figure className="mb-4">
-            <img
-              src="/img/winkelpui.webp"
-              alt="De gevel van Bloei! aan het Hogepad, met het groene naambord en de planten ervoor"
-              loading="lazy"
-              width={1200}
-              height={750}
-              className="aspect-[16/10] w-full rounded-2xl object-cover"
-            />
-            <figcaption className="mt-2 text-xs text-ink/50">Zo staan we erbij aan het Hogepad</figcaption>
-          </figure>
+          <img
+            src="/img/winkelpui.webp"
+            alt="De gevel van Bloei! aan het Hogepad, met het groene naambord en de planten ervoor"
+            loading="lazy"
+            width={1200}
+            height={750}
+            className="mb-4 aspect-[16/10] w-full rounded-2xl object-cover"
+          />
           {/* De kaart heeft zelf een 'Openen in Maps'-link, dus een knop
               eronder zou dezelfde stap nog een keer aanbieden. */}
           <KaartLazy />
@@ -462,6 +460,44 @@ export function MobielBalk() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Zwevende knoppen op desktop                                        */
+/* ------------------------------------------------------------------ */
+
+/**
+ * WhatsApp en bellen, altijd rechtsonder in beeld — gevraagd op 15-10-2026,
+ * naar het voorbeeld van winterswijkvakantiehuis.nl.
+ *
+ * Alleen vanaf md. Daaronder staat MobielBalk al vast onderaan het scherm met
+ * dezelfde twee acties erin; die twee naast elkaar zijn vier knoppen op een
+ * telefoonscherm die naar twee dingen wijzen.
+ *
+ * Ze staan in de merkkleuren en niet in het roze van de hoofdknoppen: deze
+ * twee staan op elke pagina in beeld, dus als ze het gewicht van een hoofdknop
+ * krijgen is er op geen enkele pagina nog een duidelijkste knop.
+ */
+export function ZwevendeKnoppen() {
+  const knop =
+    'inline-flex items-center gap-2.5 rounded-full px-5 py-3 text-sm font-bold text-white ' +
+    'shadow-[0_12px_30px_-10px_rgb(20_32_12_/_0.6)] transition hover:brightness-110';
+  return (
+    <div className="fixed bottom-6 right-6 z-40 hidden flex-col items-end gap-2.5 md:flex">
+      <a
+        href={WHATSAPP}
+        target="_blank"
+        rel="noreferrer"
+        className={knop}
+        style={{backgroundColor: WA_GROEN}}
+      >
+        <WhatsAppMerk className="h-5 w-5" /> WhatsApp
+      </a>
+      <a href={`tel:${TEL}`} className={knop} style={{backgroundColor: BEL_ORANJE}}>
+        <Phone className="h-5 w-5" /> Bellen
+      </a>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Onderwerppagina                                                    */
 /* ------------------------------------------------------------------ */
 
@@ -481,6 +517,7 @@ export function Pagina({children}: {children: React.ReactNode}) {
       </main>
       <Footer />
       <MobielBalk />
+      <ZwevendeKnoppen />
     </>
   );
 }

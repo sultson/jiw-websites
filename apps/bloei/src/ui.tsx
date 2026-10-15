@@ -330,13 +330,19 @@ export function Kerstgroen({className = ''}: {className?: string}) {
  * Vijf vlakken, en de pagina wisselt ze af zodat er grenzen zichtbaar blijven
  * zonder dat er ergens zwart aan te pas komt:
  *
- *   cream  het lichte groen waar de site op staat
- *   diep   een slag donkerder, voor de kop van een onderwerppagina
- *   wit    waar iets echt moet opvallen tussen twee groene vlakken
- *   ink    het groen van hun bord; het formulier en de voet
- *   kerst  dieper dan ink, met warm licht erop; alleen november en december
+ *   cream     het lichte groen waar de site op staat
+ *   diep      een slag donkerder, voor de kop van een onderwerppagina
+ *   wit       waar iets echt moet opvallen tussen twee groene vlakken
+ *   ink       het groen van hun bord; het formulier en de voet
+ *   kerst     dieper dan ink, met warm licht erop; alleen november en december
+ *   kerstroom dezelfde kerstsectie, maar licht — zie hieronder
+ *
+ * `kerst` staat nergens meer in gebruik en blijft alleen staan omdat de winkel
+ * er zo weer naar terug kan. Het kerstvlak stond pal onder de kopfoto en was
+ * het donkerste vlak van de pagina; dat las als een balk die er overheen lag in
+ * plaats van als een pagina die doorloopt. Nu is het crème (15-10-2026).
  */
-type Tone = 'cream' | 'diep' | 'wit' | 'ink' | 'kerst';
+type Tone = 'cream' | 'diep' | 'wit' | 'ink' | 'kerst' | 'kerstroom';
 
 const VLAK: Record<Tone, string> = {
   cream: 'bg-cream',
@@ -344,6 +350,7 @@ const VLAK: Record<Tone, string> = {
   wit: 'bg-white',
   ink: 'bg-ink text-white',
   kerst: 'bg-kerstgroen text-white lg:bg-kerstgroen-ruim',
+  kerstroom: 'bg-kerstroom',
 };
 
 const DONKER: Tone[] = ['ink', 'kerst'];
@@ -379,7 +386,7 @@ export function Section({
   return (
     <section id={id} className={`relative overflow-hidden ${VLAK[tone]} ${kraagClass} ${className}`}>
       {ranken !== undefined && <Ranken variant={ranken} className={rankKleur} />}
-      {kerst && (
+      {kerst && (donker ? (
         <>
           <Kerstgroen className="text-white/[0.06]" />
           {/* Warm lamplicht dat vanaf de bovenrand het vlak in zakt. Zonder dit
@@ -391,8 +398,28 @@ export function Section({
           />
           <div aria-hidden="true" className="kerstsnoer pointer-events-none absolute inset-x-0 top-0 h-[76px]" />
         </>
-      )}
-      <div className={`relative mx-auto max-w-6xl px-5 sm:px-8 ${pad} ${kerst ? 'pt-24 sm:pt-28' : ''}`}>{children}</div>
+      ) : (
+        /* Dezelfde drie lagen, maar omgekeerd. Op crème kan het warme licht
+           niet van een gloed komen — die verdwijnt in de ondergrond — dus komt
+           kerst hier van vorm: het snoer bovenaan met de lampjes op volle
+           kleur, de vurentakken in het groen van de bomen, en een rij bomen
+           langs de onderrand waar de sectie anders leeg afloopt. */
+        <>
+          <Kerstgroen className="text-kerstdiep/[0.10]" />
+          <div aria-hidden="true" className="kerstsnoer-licht pointer-events-none absolute inset-x-0 top-0 h-[76px]" />
+          <div aria-hidden="true" className="kerstbomenrij pointer-events-none absolute inset-x-0 bottom-0 h-[120px]" />
+        </>
+      ))}
+      <div
+        className={
+          `relative mx-auto max-w-6xl px-5 sm:px-8 ${pad} ` +
+          /* Onder het snoer vandaan beginnen, en bij de lichte variant ook
+             boven de bomenrij blijven. */
+          (kerst ? (donker ? 'pt-24 sm:pt-28' : 'pt-24 pb-28 sm:pt-28 sm:pb-32') : '')
+        }
+      >
+        {children}
+      </div>
     </section>
   );
 }
@@ -440,6 +467,15 @@ export function Bullet({children, light = false}: {children: React.ReactNode; li
 /** Het groen van WhatsApp zelf. Het donkere is voor op wit: #25D366 haalt daar geen contrast. */
 export const WA_GROEN = '#25D366';
 export const WA_DONKER = '#128C7E';
+
+/**
+ * Het oranje van de belknop, zoals op winterswijkvakantiehuis.nl dat de winkel
+ * als voorbeeld gaf. Bewust niet het roze van de hoofdknoppen: die twee
+ * zwevende knoppen staan op elke pagina in beeld en moeten juist naast de
+ * rangorde van de pagina staan en er niet in meedoen. Een tint dieper dan het
+ * voorbeeld, want wit op licht oranje haalt de leesnorm niet.
+ */
+export const BEL_ORANJE = '#c9741f';
 
 export function WhatsAppMerk({className = '', style}: {className?: string; style?: React.CSSProperties}) {
   return (
