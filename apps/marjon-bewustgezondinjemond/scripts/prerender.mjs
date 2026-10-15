@@ -100,7 +100,7 @@ for (const pagina of TE_BAKKEN) {
 /* De ?v=... eraf voor het zoeken. Dat achtervoegsel is de cache-breker uit de
    huisafspraak (zie CLAUDE.md): hetzelfde bestand, een nieuw adres, zodat de
    browser en de rand van Cloudflare een vervangen plaatje meteen opnieuw halen.
-   Op schijf heet het bestand nog gewoon hero-glimlach.webp. */
+   Op schijf heet het bestand nog gewoon hero-staand.webp. */
 const ontbreekt = [...gebruikt].filter((f) => !existsSync(path.join(DIST, f.split('?')[0])));
 if (ontbreekt.length) {
   throw new Error(`prerender: ${ontbreekt.length} bestand(en) ontbreken in dist:\n  ${ontbreekt.join('\n  ')}`);

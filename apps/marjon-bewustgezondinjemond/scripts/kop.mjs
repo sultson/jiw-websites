@@ -12,10 +12,11 @@
 import {HAAR_NAAM, PRAKTIJK, SITE_NAAM, SITE_URL} from '../site.config.mjs';
 
 /** Wat er in de og:image staat. Een eigen afbeelding per pagina is er niet.
- *  De ?v= hoort bij de scherpere versie van 15-10-2026: WhatsApp, LinkedIn en
- *  Facebook bewaren een deelkaartje lang, en zonder nieuw adres blijven zij de
- *  oude zachte 900x1125 tonen. */
-const DEEL_BEELD = `${SITE_URL}/img/hero-glimlach.jpg?v=20261015d`;
+ *  Dit is de portretuitsnede van de hero (scripts/hero.mjs). Een eigen
+ *  bestandsnaam en niet de oude met een ?v=: WhatsApp, LinkedIn en Facebook
+ *  bewaren een deelkaartje lang, en een nieuw adres is de enige manier om ze
+ *  het opnieuw te laten ophalen. */
+const DEEL_BEELD = `${SITE_URL}/img/hero-deelkaart.jpg`;
 const DEEL_BEELD_ALT = 'Marjon Ooteman, integraal mondhygiënist';
 
 function teken(tekst) {

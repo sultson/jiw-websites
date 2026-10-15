@@ -12,15 +12,27 @@
     <link rel="preload" as="font" type="font/woff2" href="/fonts/quicksand-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/cormorant-garamond-latin.woff2" crossorigin />
     <link rel="preload" as="image" href="/img/bloem.png" fetchpriority="high" />
-    <!-- imagesrcset/imagesizes MOETEN gelijk zijn aan die op de <img> in App.tsx,
-         anders kiest de preload een andere maat dan de pagina en haalt de browser
-         de foto twee keer op. -->
+    <!-- media/imagesrcset/imagesizes MOETEN gelijk zijn aan die op de <picture>
+         in App.tsx, anders kiest de preload een andere maat of een andere
+         uitsnede dan de pagina en haalt de browser de foto twee keer op.
+         Twee regels, want de hero is art-directed: staand (9:16, hele figuur)
+         onder lg, portret (4:5, bovenlijf) daarboven. -->
     <link
       rel="preload"
       as="image"
-      href="/img/hero-glimlach.webp?v=20261015d"
-      imagesrcset="/img/hero-glimlach.webp?v=20261015d 900w, /img/hero-glimlach-1350.webp?v=20261015d 1350w, /img/hero-glimlach-1800.webp?v=20261015d 1800w"
-      imagesizes="(min-width: 1024px) min(45vw, 560px), 100vw"
+      media="(min-width: 1024px)"
+      href="/img/hero-portret.webp"
+      imagesrcset="/img/hero-portret.webp 560w, /img/hero-portret-840.webp 840w, /img/hero-portret-1120.webp 1120w"
+      imagesizes="min(45vw, 560px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      media="(max-width: 1023.98px)"
+      href="/img/hero-staand.webp"
+      imagesrcset="/img/hero-staand.webp 720w, /img/hero-staand-1020.webp 1020w, /img/hero-staand-1320.webp 1320w"
+      imagesizes="100vw"
       fetchpriority="high"
     />
 

@@ -487,25 +487,39 @@ function Hero() {
               het ernaast te zweven. Onder lg is de foto het hele vlak, dus daar
               geen radius en ook geen schaduw. */}
           <div className="relative h-full overflow-hidden rounded-none lg:h-auto lg:rounded-2xl lg:shadow-xl lg:shadow-inkt/10">
-            {/* De foto uit haar instagrampost, op haar eigen verzoek: zij lachend
-                in het bos. Dezelfde foto die ook op het deelkaartje staat, maar
-                nu uit een grotere bron gesneden. */}
-            {/* Drie maten, 15-10-2026. Onder lg vult de foto het hele vlak, dus
-                daar is de gevraagde maat de schermbreedte; vanaf lg is het de
-                halve kolom met een plafond van 560 punten. De browser telt daar
-                zelf de beeldpuntdichtheid bij op, dus een telefoon van 430 punten
-                op 3x pakt de 1350 of de 1800 in plaats van de 900 uit te rekken.
-                Dat uitrekken was wat Marjon als pixels zag. */}
-            <img
-              src="/img/hero-glimlach.webp?v=20261015d"
-              srcSet="/img/hero-glimlach.webp?v=20261015d 900w, /img/hero-glimlach-1350.webp?v=20261015d 1350w, /img/hero-glimlach-1800.webp?v=20261015d 1800w"
-              sizes="(min-width: 1024px) min(45vw, 560px), 100vw"
-              width={900}
-              height={1125}
-              fetchPriority="high"
-              alt="Marjon Ooteman lachend in het bos, zittend tussen de herfstbladeren"
-              className="block h-full w-full object-cover lg:aspect-[4/5] lg:h-auto"
-            />
+            {/* Sinds 15-10-2026 het bestand van de fotograaf (1067x1600), niet
+                langer een afgeleide van instagram. Zie scripts/hero.mjs. */}
+            {/* Twee uitsnedes van dezelfde opname, want de foto staat hier op
+                twee manieren. Onder lg vult hij de hele sectie met de tekst
+                eroverheen: daar werkt de hele figuur, 9:16. Vanaf lg is hij de
+                rechterkolom naast de tekst: daar haar bovenlijf, 4:5. Eén
+                bestand met object-position kan dat niet, want in het 4:5-vak is
+                83 procent van de bronhoogte zichtbaar - er valt daar niets weg
+                te snijden. Vandaar echt twee bestanden.
+
+                De maten zijn zo gekozen dat de browser altijd VERKLEINT. Een
+                telefoon van 430 punten op driedubbele dichtheid vraagt 1290
+                beeldpunten en krijgt de 1320; het bureaublad vraagt er hooguit
+                1120 en krijgt die. Uitrekken is wat Marjon als pixels zag. */}
+            <picture>
+              <source
+                media="(min-width: 1024px)"
+                srcSet="/img/hero-portret.webp 560w, /img/hero-portret-840.webp 840w, /img/hero-portret-1120.webp 1120w"
+                sizes="min(45vw, 560px)"
+                width={560}
+                height={700}
+              />
+              <img
+                src="/img/hero-staand.webp"
+                srcSet="/img/hero-staand.webp 720w, /img/hero-staand-1020.webp 1020w, /img/hero-staand-1320.webp 1320w"
+                sizes="100vw"
+                width={720}
+                height={1280}
+                fetchPriority="high"
+                alt="Marjon Ooteman lachend in het bos, zittend op een hek bij het water"
+                className="block h-full w-full object-cover lg:aspect-[4/5] lg:h-auto"
+              />
+            </picture>
             {/* Zonder deze laag is de witte tekst op de lichte plekken van de foto
                 niet te lezen. Naar onderen toe donkerder, want daar staan de kop en
                 de knoppen. Alleen onder lg: op desktop staat de tekst naast de foto. */}
