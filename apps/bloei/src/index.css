@@ -84,8 +84,22 @@
      Dus komt het van kleur en vorm: een dieper groen dan de rest van de site,
      warm lamplicht erop en vurentakken in plaats van het gewone blad.
 
-     `kerstlicht` is de kleur van een gloeilampje, `kerstbes` die van hulst. */
+     `kerstlicht` is de kleur van een gloeilampje, `kerstbes` die van hulst.
+
+     Twee tinten groen, want hetzelfde vlak doet op twee schermen iets anders.
+     Op een telefoon is het een strook van een paar honderd pixels breed en
+     leest het diepe groen als lamplicht in een donkere winkel. Op een breed
+     scherm is het een band van rand tot rand, pal onder een kopfoto vol geel en
+     oranje en pal boven het lichte groen van de rest — en dan is het geen sfeer
+     meer maar een zwarte balk. `kerstgroen-ruim` is dezelfde kleur een slag
+     opgetild en geldt alleen vanaf lg; de telefoon houdt wat er staat.
+
+     Daarmee ligt kerst op een breed scherm ietsje lichter dan `ink` in plaats
+     van dieper. Dat valt niet op: hij is er duidelijk groener en warmer dan
+     ink, en het lichtsnoer, de takken en de gloed doen het onderscheid — niet
+     het getal. */
   --color-kerstgroen: #1b2d15;
+  --color-kerstgroen-ruim: #27401c;
   --color-kerstlicht: #f6c87a;
   --color-kerstbes: #b3243f;
 

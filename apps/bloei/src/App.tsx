@@ -169,7 +169,8 @@ function Hero() {
               deze winkel van een bezoeker vraagt: even binnenlopen. */}
           <p className="mt-5 max-w-md text-lg leading-relaxed text-ink">
             Loop gerust binnen en kijk rond. Binnen de bloemen, de planten en de potten, buiten het
-            hele terrein. Het hele jaar door, van voorjaarsviolen tot de kerstboom.
+            perkgoed, de vaste planten, de buitenpotten en de zakken grond. Het hele jaar door, van
+            voorjaarsviolen tot de kerstboom.
           </p>
 
           {/* Eén hoofdknop. De winkel leeft van mensen die binnenlopen, dus dat
@@ -360,9 +361,8 @@ function Kerstblok() {
             Vanaf november staat de winkel in het teken van kerst
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-white/75">
-            De winkel gaat om: kerstbomen voor de deur, kransen en verlichting binnen, en een tafel vol
-            accessoires. Wie vroeg is heeft de ruimste keuze, en wie laat is vindt er nog altijd een
-            boom.
+            Kerstbomen voor de deur, kransen en verlichting binnen, en een tafel vol accessoires. Wie
+            vroeg is heeft de ruimste keuze, en wie laat is vindt er nog altijd een boom.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-2.5">

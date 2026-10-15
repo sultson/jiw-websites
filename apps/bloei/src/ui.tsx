@@ -343,7 +343,7 @@ const VLAK: Record<Tone, string> = {
   diep: 'bg-creme-diep',
   wit: 'bg-white',
   ink: 'bg-ink text-white',
-  kerst: 'bg-kerstgroen text-white',
+  kerst: 'bg-kerstgroen text-white lg:bg-kerstgroen-ruim',
 };
 
 const DONKER: Tone[] = ['ink', 'kerst'];
