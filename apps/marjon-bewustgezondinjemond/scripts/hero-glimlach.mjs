@@ -1,8 +1,18 @@
-/* De herofoto die Marjon bedoelt: de lachende foto uit haar instagrampost
-   (img_index=6). Die stond al op de site, maar alleen als deelkaartje, en de
-   bron daarvan was een halve tegel uit een carrousel-collage (~480x740).
-   Armando's screenshot van de post zelf is groter: 732x1182 echte beeldpunten.
-   Die gaat door de opschaler en wordt daarna VERKLEIND naar leveringsmaat.
+/* De herofoto die Marjon bedoelt: de lachende foto uit de fotosessie-post op
+   haar instagram (shortcode DWlQE1yjfSp, eerste tegel van de carrousel).
+
+   BRON, 15-10-2026. Tot vandaag was de bron Armando's schermafdruk van die post:
+   732x1182 beeldpunten, met alle vervorming die een schermafdruk meebrengt. De
+   tegel is nu rechtstreeks bij instagram opgehaald (apify/instagram-scraper) en
+   is daar 1440x1440 met een witte rand; het beeld zelf meet 999x1381 echte
+   beeldpunten. Dat is 1,9x zoveel beeldpunten als de schermafdruk, en het is de
+   webp die instagram zelf uitlevert in plaats van een foto van een scherm.
+
+   Daardoor hoeft de opschaler nog maar EEN keer te draaien in plaats van twee.
+   Die tweede slag was wat de huid glad en plastic-achtig maakte.
+
+   Dit blijft een afgeleide: instagram levert zelf maximaal 1440 breed uit, dus
+   het bestand van de fotograaf is nog altijd beter. Zie raw/ig-sessie/.
 
    gebruik: node scripts/hero-glimlach.mjs   */
 
@@ -55,71 +65,54 @@ async function scherpte(buf) {
   return som2 / n - (som / n) ** 2;
 }
 
-const CRM = 'C:/Users/nieuw/dev/jiw-crm/uploads';
-
-/* de foto uit de screenshot snijden: links langs de bladerknop van de
-   carrousel, rechts en onder langs de rand van het beeld zelf */
-const uitsnede = await sharp(`${CRM}/p96jz7vu91ey7ipx52knts54.jpg`)
-  .extract({left: 98, top: 242, width: 730, height: 1182})
-  .png()
-  .toBuffer();
-
-const groot = await opschalen(uitsnede, 2, 'glimlach');
-const m = await sharp(groot).metadata();
-console.log('opgeschaald', m.width + 'x' + m.height);
+/* De witte rand van de instagram-tegel eraf. trim() zoekt zelf de randen van
+   het beeld op, zodat er geen handmatige maten in dit bestand staan die stuk
+   gaan als de tegel ooit opnieuw wordt opgehaald. */
+const tegel = await sharp('raw/ig-sessie/f01.webp').trim({threshold: 12}).png().toBuffer();
+const mt = await sharp(tegel).metadata();
+console.log('instagram-tegel zonder rand', mt.width + 'x' + mt.height);
+if (mt.width < 900) throw new Error('tegel onverwacht klein, trim heeft te veel weggesneden');
 
 /* 4:5, van de bovenkant af zodat er ruimte boven haar hoofd blijft voor de bloem */
-const hoogte45 = Math.round(m.width * 1.25);
-const uitsnede45 = await sharp(groot)
-  .extract({left: 0, top: 0, width: m.width, height: Math.min(hoogte45, m.height)})
+const hoogte45 = Math.round(mt.width * 1.25);
+const uitsnede45 = await sharp(tegel)
+  .extract({left: 0, top: 0, width: mt.width, height: Math.min(hoogte45, mt.height)})
   .png()
   .toBuffer();
+const mu = await sharp(uitsnede45).metadata();
+console.log('uitsnede 4:5', mu.width + 'x' + mu.height);
 
-/* Tweede slag door de opschaler, 15-10-2026. Reden: sinds 12-10 vult deze foto
-   op een telefoon het hele scherm in plaats van een halve kolom. Een telefoon van
-   430 punten breed met driedubbele beeldpuntdichtheid vraagt ~1290 echte punten;
-   er stond er 900. Het verschil vulde de browser zelf op met uitrekken, en dat
-   zag Marjon als pixels. Niet oplosbaar met een scherpteregel: er moeten echt
-   meer punten in het bestand. Dus de 4:5-uitsnede nog een keer x2 en daarna
-   VERKLEINEN naar leveringsmaat - verkleinen behoudt detail, uitrekken verzint het. */
-const extra = await opschalen(uitsnede45, 2, 'glimlach-45');
-const me = await sharp(extra).metadata();
-console.log('tweede slag', me.width + 'x' + me.height);
+/* Een enkele slag door de opschaler. 999 -> 1998 breed dekt de grootste
+   leveringsmaat (1800) ruim, dus alles wordt daarna VERKLEIND en niets
+   uitgerekt. Verkleinen behoudt detail, uitrekken verzint het. */
+const groot = await opschalen(uitsnede45, 2, 'glimlach-ig');
+const mg = await sharp(groot).metadata();
+console.log('opgeschaald', mg.width + 'x' + mg.height);
 
-const basis = sharp(extra);
+const basis = sharp(groot);
+
+/* Lichte onscherptemasker na de lanczos-verkleining. Bij een enkele opschaalslag
+   mag dit zachter dan bij de dubbele van 15-10 's ochtends: er zit nu echte
+   tekening in de huid die niet teruggehaald hoeft te worden. */
+const VERSCHERP = {sigma: 0.7, m1: 0.5, m2: 1.3};
 
 /* Drie maten in de srcset van App.tsx: 900 voor een oud toestel, 1350 voor een
    gewone telefoon, 1800 voor een telefoon met hoge dichtheid en voor het
    bureaublad op dubbele dichtheid. */
-/* Verscherpen na het verkleinen, 15-10-2026. De opschaler is twee keer over
-   deze foto gegaan en laat daardoor een gladde, plastic-achtige huid achter:
-   wel genoeg beeldpunten, maar weinig tekening erin. Een lichte onscherptemasker
-   na de lanczos-verkleining haalt de randen terug zonder halo's. Vergeleken met
-   een enkelvoudige opschaling (1408 breed) en die bleef zachter, dus de dubbele
-   slag blijft, mét deze regel erachter. */
-const VERSCHERP = {sigma: 0.8, m1: 0.6, m2: 1.6};
-
 for (const breedte of [900, 1350, 1800]) {
   const hoogte = Math.round(breedte * 1.25);
   const buf = await basis
     .clone()
     .resize(breedte, hoogte, {fit: 'cover', kernel: 'lanczos3'})
     .sharpen(VERSCHERP)
-    .webp({quality: 86, effort: 6})
+    .webp({quality: 88, effort: 6})
     .toBuffer();
   const naam = breedte === 900 ? 'hero-glimlach.webp' : `hero-glimlach-${breedte}.webp`;
   writeFileSync(`${UP}/${naam}`, buf);
   console.log(`${naam} ${breedte}x${hoogte} ${(buf.length / 1024).toFixed(0)}kB scherpte ${(await scherpte(buf)).toFixed(0)}`);
 }
 
-/* De jpg is het deelkaartje (og:image in kop.mjs), niet de hero zelf. Die mag
-   nu ook groter: WhatsApp en LinkedIn schalen hem toch naar hun eigen maat, en
-   een scherpe bron geeft een scherp kaartje. */
-const jpg = await basis.clone().resize(1200, 1500, {fit: 'cover', kernel: 'lanczos3'}).sharpen(VERSCHERP).jpeg({quality: 86}).toBuffer();
+/* De jpg is het deelkaartje (og:image in kop.mjs), niet de hero zelf. */
+const jpg = await basis.clone().resize(1200, 1500, {fit: 'cover', kernel: 'lanczos3'}).sharpen(VERSCHERP).jpeg({quality: 88}).toBuffer();
 writeFileSync(`${UP}/hero-glimlach.jpg`, jpg);
 console.log(`hero-glimlach.jpg 1200x1500 ${(jpg.length / 1024).toFixed(0)}kB`);
-
-/* De vergelijking met marjon-glimlach.webp stond hier, maar dat bestand is er
-   niet meer - alleen de jpg. Die regel liet het script met een foutmelding
-   eindigen nadat alles al geschreven was. */
-console.log(`oud marjon-glimlach.jpg scherpte ${(await scherpte(readFileSync(UP + '/marjon-glimlach.jpg'))).toFixed(0)}`);

@@ -497,8 +497,8 @@ function Hero() {
                 op 3x pakt de 1350 of de 1800 in plaats van de 900 uit te rekken.
                 Dat uitrekken was wat Marjon als pixels zag. */}
             <img
-              src="/img/hero-glimlach.webp?v=20261015b"
-              srcSet="/img/hero-glimlach.webp?v=20261015b 900w, /img/hero-glimlach-1350.webp?v=20261015b 1350w, /img/hero-glimlach-1800.webp?v=20261015b 1800w"
+              src="/img/hero-glimlach.webp?v=20261015c"
+              srcSet="/img/hero-glimlach.webp?v=20261015c 900w, /img/hero-glimlach-1350.webp?v=20261015c 1350w, /img/hero-glimlach-1800.webp?v=20261015c 1800w"
               sizes="(min-width: 1024px) min(45vw, 560px), 100vw"
               width={900}
               height={1125}
