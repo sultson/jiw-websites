@@ -1,18 +1,25 @@
-/* De herofoto die Marjon bedoelt: de lachende foto uit de fotosessie-post op
-   haar instagram (shortcode DWlQE1yjfSp, eerste tegel van de carrousel).
+/* De herofoto die Marjon bedoelt: zij zittend tussen de herfstbladeren bij de
+   berken. Die zit in de fotosessie-post op haar instagram (shortcode
+   DWlQE1yjfSp), maar NIET als eigen tegel - hij is de LINKERHELFT van tegel 6,
+   een collage van twee foto's. Dat maakt hem klein, en daar is niets aan te doen
+   zolang we het bestand van de fotograaf niet hebben.
 
-   BRON, 15-10-2026. Tot vandaag was de bron Armando's schermafdruk van die post:
-   732x1182 beeldpunten, met alle vervorming die een schermafdruk meebrengt. De
-   tegel is nu rechtstreeks bij instagram opgehaald (apify/instagram-scraper) en
-   is daar 1440x1440 met een witte rand; het beeld zelf meet 999x1381 echte
-   beeldpunten. Dat is 1,9x zoveel beeldpunten als de schermafdruk, en het is de
-   webp die instagram zelf uitlevert in plaats van een foto van een scherm.
+   LET OP bij een volgende ronde: tegel 1 is een ANDERE foto (zij lachend bij het
+   water, met het zwart-witte vest). Die stond hier op 15-10-2026 een uur lang
+   per ongeluk als hero. Dit is de verkeerde om te pakken, hoe verleidelijk ook -
+   hij is wel een eigen tegel en dus veel groter.
 
-   Daardoor hoeft de opschaler nog maar EEN keer te draaien in plaats van twee.
-   Die tweede slag was wat de huid glad en plastic-achtig maakte.
+   BRON. Tot 15-10-2026 was dit Armando's schermafdruk van die collage
+   (730x1182). De tegel komt nu rechtstreeks bij instagram vandaan
+   (apify/instagram-scraper); de linkerhelft meet daar 654x1038. Minder
+   beeldpunten dan de schermafdruk, maar wel scherper, want een schermafdruk is
+   een opgerekte weergave van ditzelfde bestand: laplace-variantie 46 tegen 27.
 
-   Dit blijft een afgeleide: instagram levert zelf maximaal 1440 breed uit, dus
-   het bestand van de fotograaf is nog altijd beter. Zie raw/ig-sessie/.
+   Eén slag door de opschaler, 3x naar 1962 breed, zodat alle leveringsmaten
+   VERKLEIND worden en niets wordt uitgerekt.
+
+   Dit blijft een afgeleide. Het bestand van de fotograaf is beter en scheelt
+   hier meer dan bij welke andere foto op de site ook. Zie raw/ig-sessie/.
 
    gebruik: node scripts/hero-glimlach.mjs   */
 
@@ -65,13 +72,15 @@ async function scherpte(buf) {
   return som2 / n - (som / n) ** 2;
 }
 
-/* De witte rand van de instagram-tegel eraf. trim() zoekt zelf de randen van
-   het beeld op, zodat er geen handmatige maten in dit bestand staan die stuk
-   gaan als de tegel ooit opnieuw wordt opgehaald. */
-const tegel = await sharp('raw/ig-sessie/f01.webp').trim({threshold: 12}).png().toBuffer();
+/* De linkerfoto uit de collage snijden. Deze maten zijn met de hand opgemeten in
+   de tegel van 1440x1440 en lopen net binnen de rand van het kiekje, zodat er
+   geen streepje van de buurfoto of van de wazige achtergrond meekomt. */
+const tegel = await sharp('raw/ig-sessie/f06.webp')
+  .extract({left: 42, top: 197, width: 654, height: 1038})
+  .png()
+  .toBuffer();
 const mt = await sharp(tegel).metadata();
-console.log('instagram-tegel zonder rand', mt.width + 'x' + mt.height);
-if (mt.width < 900) throw new Error('tegel onverwacht klein, trim heeft te veel weggesneden');
+console.log('linkerhelft van tegel 6', mt.width + 'x' + mt.height);
 
 /* 4:5, van de bovenkant af zodat er ruimte boven haar hoofd blijft voor de bloem */
 const hoogte45 = Math.round(mt.width * 1.25);
@@ -82,10 +91,11 @@ const uitsnede45 = await sharp(tegel)
 const mu = await sharp(uitsnede45).metadata();
 console.log('uitsnede 4:5', mu.width + 'x' + mu.height);
 
-/* Een enkele slag door de opschaler. 999 -> 1998 breed dekt de grootste
-   leveringsmaat (1800) ruim, dus alles wordt daarna VERKLEIND en niets
-   uitgerekt. Verkleinen behoudt detail, uitrekken verzint het. */
-const groot = await opschalen(uitsnede45, 2, 'glimlach-ig');
+/* Een enkele slag door de opschaler, 3x: 654 -> 1962 breed. Dat dekt de grootste
+   leveringsmaat (1800), dus alles wordt daarna VERKLEIND en niets uitgerekt.
+   Verkleinen behoudt detail, uitrekken verzint het. 2x zou op 1308 uitkomen en
+   dan zou de 1800 alsnog opgerekt worden. */
+const groot = await opschalen(uitsnede45, 3, 'glimlach-collage');
 const mg = await sharp(groot).metadata();
 console.log('opgeschaald', mg.width + 'x' + mg.height);
 

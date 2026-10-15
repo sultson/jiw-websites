@@ -15,7 +15,7 @@ import {HAAR_NAAM, PRAKTIJK, SITE_NAAM, SITE_URL} from '../site.config.mjs';
  *  De ?v= hoort bij de scherpere versie van 15-10-2026: WhatsApp, LinkedIn en
  *  Facebook bewaren een deelkaartje lang, en zonder nieuw adres blijven zij de
  *  oude zachte 900x1125 tonen. */
-const DEEL_BEELD = `${SITE_URL}/img/hero-glimlach.jpg?v=20261015c`;
+const DEEL_BEELD = `${SITE_URL}/img/hero-glimlach.jpg?v=20261015d`;
 const DEEL_BEELD_ALT = 'Marjon Ooteman, integraal mondhygiënist';
 
 function teken(tekst) {
