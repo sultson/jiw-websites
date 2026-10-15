@@ -43,8 +43,8 @@ export const FACEBOOK = 'https://www.facebook.com/profile.php?id=100082968740640
  *
  * Doorgegeven door Armando op 14-10-2026 ("openingstijden van 9 tot 17:30").
  * Daarvoor stond hier een aanname met zaterdag een uur eerder dicht; dat
- * onderscheid is er niet. NOG TE BEVESTIGEN blijft of zaterdag inderdaad
- * hetzelfde loopt als de rest van de week.
+ * onderscheid is er niet. Zaterdag tot 17:30 apart bevestigd door Armando op
+ * 15-10-2026.
  */
 export const OPEN_VAN = 9 * 60;
 export const OPEN_TOT = 17 * 60 + 30;

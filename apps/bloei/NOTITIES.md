@@ -17,7 +17,7 @@ door de eigenaren zelf doorgegeven.
 | --- | --- | --- |
 | Adres | Hogepad 9, 3253 BH Ouddorp | Openbare vermelding van **Vershal Ouddorp** |
 | Telefoon | 06 86 19 45 17 | Idem |
-| Openingstijden | ma t/m za 9:00-17:30, zo dicht | Doorgegeven door Armando, 14-10-2026 |
+| Openingstijden | ma t/m za 9:00-17:30, zo dicht | Doorgegeven door Armando, 14-10-2026; zaterdag apart bevestigd 15-10-2026 |
 | Coördinaten kaart | 51.81876, 3.93414 | Afgeleid van het adres hierboven |
 
 **Er staat geen e-mailadres op de site.** Hier stond `info@bloei-ouddorp.nl`, en dat
@@ -180,7 +180,7 @@ Negentien aangestreepte schermafdrukken van Armando. Wat er gebeurd is:
 - **Openingstijden** 9:00 - 17:30, overal: de statuskaart, het rooster bij
   "Waar u ons vindt", de voet, het schema.org-blok en de bevestigingsmail. Het
   onderscheid zaterdag-een-uur-eerder was een aanname van mij en is weg.
-  **Nog te bevestigen:** of zaterdag inderdaad hetzelfde loopt als de rest.
+  Zaterdag loopt inderdaad tot 17:30 — bevestigd door Armando op 15-10-2026.
 - **"Hal" bestaat niet meer.** Elf plekken, overal "winkel" geworden: homepage,
   kerstblok, "Over ons", de veelgestelde vragen, `/assortiment/`, `/kerst/` en
   de og-teksten in de HTML.
