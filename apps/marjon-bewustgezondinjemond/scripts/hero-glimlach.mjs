@@ -91,12 +91,21 @@ const basis = sharp(extra);
 /* Drie maten in de srcset van App.tsx: 900 voor een oud toestel, 1350 voor een
    gewone telefoon, 1800 voor een telefoon met hoge dichtheid en voor het
    bureaublad op dubbele dichtheid. */
+/* Verscherpen na het verkleinen, 15-10-2026. De opschaler is twee keer over
+   deze foto gegaan en laat daardoor een gladde, plastic-achtige huid achter:
+   wel genoeg beeldpunten, maar weinig tekening erin. Een lichte onscherptemasker
+   na de lanczos-verkleining haalt de randen terug zonder halo's. Vergeleken met
+   een enkelvoudige opschaling (1408 breed) en die bleef zachter, dus de dubbele
+   slag blijft, mét deze regel erachter. */
+const VERSCHERP = {sigma: 0.8, m1: 0.6, m2: 1.6};
+
 for (const breedte of [900, 1350, 1800]) {
   const hoogte = Math.round(breedte * 1.25);
   const buf = await basis
     .clone()
     .resize(breedte, hoogte, {fit: 'cover', kernel: 'lanczos3'})
-    .webp({quality: 82, effort: 6})
+    .sharpen(VERSCHERP)
+    .webp({quality: 86, effort: 6})
     .toBuffer();
   const naam = breedte === 900 ? 'hero-glimlach.webp' : `hero-glimlach-${breedte}.webp`;
   writeFileSync(`${UP}/${naam}`, buf);
@@ -106,7 +115,7 @@ for (const breedte of [900, 1350, 1800]) {
 /* De jpg is het deelkaartje (og:image in kop.mjs), niet de hero zelf. Die mag
    nu ook groter: WhatsApp en LinkedIn schalen hem toch naar hun eigen maat, en
    een scherpe bron geeft een scherp kaartje. */
-const jpg = await basis.clone().resize(1200, 1500, {fit: 'cover', kernel: 'lanczos3'}).jpeg({quality: 84}).toBuffer();
+const jpg = await basis.clone().resize(1200, 1500, {fit: 'cover', kernel: 'lanczos3'}).sharpen(VERSCHERP).jpeg({quality: 86}).toBuffer();
 writeFileSync(`${UP}/hero-glimlach.jpg`, jpg);
 console.log(`hero-glimlach.jpg 1200x1500 ${(jpg.length / 1024).toFixed(0)}kB`);
 
