@@ -146,6 +146,38 @@ function Hero() {
         />
       </picture>
 
+      {/* De naad met de sectie eronder.
+
+          De foto stond tot de laatste beeldpunt op volle sterkte, en daar pal
+          onder begint het diepste groen van de site. Dat is in één regel van
+          het lichtste naar het donkerste vlak van de pagina, en dan leest het
+          als een balk die er overheen ligt in plaats van als een pagina die
+          doorloopt. De afgeronde kraag maakte het erger: in de twee hoeken
+          stonden de bloemen op volle kleur tegen bijna zwart.
+
+          Hier loopt de onderkant van de foto naar precies de kleur van het
+          vlak eronder. Dat vlak komt daarmee uit de foto vandaan. Het verloop
+          ligt boven de foto en onder de panelen, dus het dempt de foto en niet
+          de tekst, en het beweegt niet mee met de parallax: het hangt aan de
+          onderrand van de sectie, waar de naad ook zit.
+
+          De kleur is die van de sectie hieronder (Kerstblok, tone kerst — op
+          een breed scherm een slag lichter). Komt daar ooit een ander vlak,
+          dan moet deze kleur mee. */}
+      <div
+        aria-hidden="true"
+        className={
+          /* Het verloop is op 80 procent al op kleur en blijft dat tot onderaan.
+             De kraag van de sectie eronder ligt namelijk tot 48 beeldpunten
+             over de hero heen, dus de echte naad zit niet op de onderrand maar
+             daarboven; was het verloop daar nog niet rond, dan bleef er precies
+             op die lijn een randje foto zichtbaar. */
+          'pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-52 bg-gradient-to-b ' +
+          'from-transparent via-kerstgroen/50 via-50% to-kerstgroen to-80% ' +
+          'sm:h-60 lg:h-72 lg:via-kerstgroen-ruim/50 lg:to-kerstgroen-ruim'
+        }
+      />
+
       {/* De balk bovenaan zweeft nu boven de foto in plaats van ernaast te
           staan, dus moet de inhoud eronder vandaan beginnen; en onderaan ligt
           de kraag van de volgende sectie er een stuk overheen (zie Section).
