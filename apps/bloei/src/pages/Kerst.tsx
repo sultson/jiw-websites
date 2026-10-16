@@ -1,7 +1,7 @@
 import {ArrowRight, Facebook, Lightbulb, Phone, Sparkles, TreePine} from 'lucide-react';
 import {Pagina, PaginaKop} from '../layout';
 import {
-  Bullet, FACEBOOK, KNOP_HOOFD, KNOP_TWEEDE_LICHT, Kicker, Section, TEL, TEL_DISPLAY,
+  Bullet, FACEBOOK, KNOP_HOOFD, KNOP_TWEEDE_LICHT, Section, TEL, TEL_DISPLAY,
 } from '../ui';
 
 /* ------------------------------------------------------------------ */
@@ -77,31 +77,37 @@ export default function Kerst() {
           uit, net als de introzin bovenaan.
 
           Daarmee bleef er op de pagina die helemaal over kerst gaat geen
-          enkele plek over die er ook naar kerst uitzag: alles stond op room.
-          Het kerstdecor zit nu op deze sectie — het lichtsnoer langs de
-          bovenrand, de rij vurenbomen eronder en de takken erachter, in de
-          crèmevariant die ook op de homepage staat. Dat is vorm en kleur, dus
-          er verdwijnt geen tekst mee en er komt niets bij dat beloofd wordt. */}
+          enkele plek over die er ook naar kerst uitzag. Het kerstdecor zit nu
+          op deze sectie — het lichtsnoer langs de bovenrand, de rij vurenbomen
+          eronder en de takken erachter, in dezelfde variant als op de
+          homepage. Dat is vorm en kleur, dus er verdwijnt geen tekst mee en er
+          komt niets bij dat beloofd wordt.
+
+          Die variant was op 15-10 crème en is op 16-10 weer het diepe groen,
+          op verzoek van de winkel. De kaarten gingen mee: wit op room, en nu
+          weer doorschijnend op donker, zodat het decor er niet onder verdwijnt. */}
       {/* Geen `ranken` erbij: die krullen en de vurentakken staan dan allebei
           over hetzelfde vlak en dat wordt een web. Kerst krijgt de takken. */}
-      <Section tone="kerstroom" kerst>
+      <Section tone="kerst" kerst>
         <div className="max-w-2xl">
-          <Kicker>Wat er komt te staan</Kicker>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-kerstlicht">
+            Wat er komt te staan
+          </p>
           <h2 className="text-3xl font-semibold sm:text-4xl">De kerstafdeling</h2>
-          <p className="mt-4 text-lg leading-relaxed text-ink/70">
+          <p className="mt-4 text-lg leading-relaxed text-white/75">
             De kerstafdeling bouwen we elk jaar opnieuw op. Dit is wat er dan staat.
           </p>
         </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {ONDERDELEN.map((o) => (
-            <article key={o.titel} className="flex flex-col rounded-2xl border border-kerstdiep/15 bg-white/80 p-7">
-              <o.icon className="h-8 w-8 text-accent-dark" strokeWidth={1.5} />
+            <article key={o.titel} className="flex flex-col rounded-2xl border border-white/15 bg-white/[0.05] p-7">
+              <o.icon className="h-8 w-8 text-kerstlicht" strokeWidth={1.5} />
               <h3 className="mt-5 text-xl font-semibold">{o.titel}</h3>
-              <p className="mt-3 leading-relaxed text-ink/65">{o.tekst}</p>
-              <ul className="mt-5 space-y-2.5 text-sm">
+              <p className="mt-3 leading-relaxed text-white/70">{o.tekst}</p>
+              <ul className="mt-5 space-y-2.5 text-sm text-white/85">
                 {o.punten.map((p) => (
-                  <Bullet key={p}>{p}</Bullet>
+                  <Bullet key={p} light>{p}</Bullet>
                 ))}
               </ul>
             </article>
@@ -110,9 +116,9 @@ export default function Kerst() {
           {/* Drie kaarten in een raster van twee laat rechtsonder een gat
               staan. Daar staat nu de stap die de weggehaalde sectie ook bood:
               iets laten maken, of even bellen. */}
-          <div className="flex flex-col justify-center rounded-2xl border border-dashed border-kerstdiep/25 p-7">
+          <div className="flex flex-col justify-center rounded-2xl border border-dashed border-white/25 p-7">
             <p className="text-lg font-semibold">Iets in uw eigen kleuren?</p>
-            <p className="mt-2 leading-relaxed text-ink/65">
+            <p className="mt-2 leading-relaxed text-white/70">
               Een krans of een stuk maken we op bestelling. Geef het op tijd door, dan heeft u er
               zeker een.
             </p>
@@ -120,8 +126,11 @@ export default function Kerst() {
               <a href="#vraag-aan" className={KNOP_HOOFD}>
                 Iets laten maken <ArrowRight className="h-4 w-4" />
               </a>
-              <a href={`tel:${TEL}`} className={KNOP_TWEEDE_LICHT}>
-                <Phone className="h-4 w-4 text-accent-dark" /> {TEL_DISPLAY}
+              <a
+                href={`tel:${TEL}`}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 px-5 py-3 text-sm font-semibold text-white/90 transition hover:border-kerstlicht hover:bg-white/10"
+              >
+                <Phone className="h-4 w-4 text-kerstlicht" /> {TEL_DISPLAY}
               </a>
             </div>
           </div>

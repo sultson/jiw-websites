@@ -337,10 +337,14 @@ export function Kerstgroen({className = ''}: {className?: string}) {
  *   kerst     dieper dan ink, met warm licht erop; alleen november en december
  *   kerstroom dezelfde kerstsectie, maar licht — zie hieronder
  *
- * `kerst` staat nergens meer in gebruik en blijft alleen staan omdat de winkel
- * er zo weer naar terug kan. Het kerstvlak stond pal onder de kopfoto en was
- * het donkerste vlak van de pagina; dat las als een balk die er overheen lag in
- * plaats van als een pagina die doorloopt. Nu is het crème (15-10-2026).
+ * Omgekeerd van 15-10: toen is het kerstvlak crème geworden omdat het pal onder
+ * de kopfoto het donkerste vlak van de pagina was, op 16-10 is het op verzoek
+ * van de winkel weer groen. `kerstroom` staat nergens meer in gebruik en blijft
+ * alleen staan omdat het één woord is om terug te zetten — met de lichte versie
+ * van het decor hieronder erbij.
+ *
+ * Wat er van de crèmeronde blijft: de rij vurenbomen langs de onderrand. Die
+ * kwam er toen bij en staat er nu in een witte versie ook op het groen.
  */
 type Tone = 'cream' | 'diep' | 'wit' | 'ink' | 'kerst' | 'kerstroom';
 
@@ -391,19 +395,31 @@ export function Section({
           <Kerstgroen className="text-white/[0.06]" />
           {/* Warm lamplicht dat vanaf de bovenrand het vlak in zakt. Zonder dit
               is het alleen een donkerder groen vlak; mét dit lijkt er licht te
-              branden en dat is het verschil tussen groen en kerst. */}
+              branden en dat is het verschil tussen groen en kerst.
+
+              Het masker erover is wat het op 16-10 aan de naad heeft gered. De
+              gloed stond op volle sterkte op de bovenrand zelf, en daar loopt
+              de kopfoto net naar precies deze groentint toe. Gemeten over die
+              lijn sprong het in één beeldpunt van #27401c naar #48552b: het
+              verloop in de hero deed zijn werk en de gloed zette er alsnog een
+              streep. Nu komt het licht pas op gang onder het snoer, dus het
+              lijkt van de lampjes te komen en niet van de rand. */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(70%_100%_at_50%_0%,rgb(246_200_122_/_0.16),transparent_72%)]"
+            className={
+              'pointer-events-none absolute inset-x-0 top-0 h-72 ' +
+              'bg-[radial-gradient(70%_100%_at_50%_0%,rgb(246_200_122_/_0.16),transparent_72%)] ' +
+              '[mask-image:linear-gradient(to_bottom,transparent_0,black_32%)]'
+            }
           />
           <div aria-hidden="true" className="kerstsnoer pointer-events-none absolute inset-x-0 top-0 h-[76px]" />
+          <div aria-hidden="true" className="kerstbomenrij-donker pointer-events-none absolute inset-x-0 bottom-0 h-[120px]" />
         </>
       ) : (
-        /* Dezelfde drie lagen, maar omgekeerd. Op crème kan het warme licht
-           niet van een gloed komen — die verdwijnt in de ondergrond — dus komt
-           kerst hier van vorm: het snoer bovenaan met de lampjes op volle
-           kleur, de vurentakken in het groen van de bomen, en een rij bomen
-           langs de onderrand waar de sectie anders leeg afloopt. */
+        /* Dezelfde lagen, maar omgekeerd. Op crème kan het warme licht niet van
+           een gloed komen — die verdwijnt in de ondergrond — dus komt kerst daar
+           van vorm: het snoer met de lampjes op volle kleur, de vurentakken in
+           het groen van de bomen en dezelfde bomenrij in donkergroen. */
         <>
           <Kerstgroen className="text-kerstdiep/[0.10]" />
           <div aria-hidden="true" className="kerstsnoer-licht pointer-events-none absolute inset-x-0 top-0 h-[76px]" />
@@ -413,9 +429,8 @@ export function Section({
       <div
         className={
           `relative mx-auto max-w-6xl px-5 sm:px-8 ${pad} ` +
-          /* Onder het snoer vandaan beginnen, en bij de lichte variant ook
-             boven de bomenrij blijven. */
-          (kerst ? (donker ? 'pt-24 sm:pt-28' : 'pt-24 pb-28 sm:pt-28 sm:pb-32') : '')
+          /* Onder het snoer vandaan beginnen en boven de bomenrij blijven. */
+          (kerst ? 'pt-24 pb-28 sm:pt-28 sm:pb-32' : '')
         }
       >
         {children}

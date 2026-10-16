@@ -227,7 +227,7 @@ pagina's uit een eigen document met "> moet worden >" erin. Wat er gebeurd is:
   vurentakken in het groen van de bomen, en een rij vurenbomen met ballen langs
   de onderrand (`.kerstbomenrij`, een tegel van 360 px die zichzelf herhaalt).
   `tone="kerst"` staat nog in `ui.tsx`, ongebruikt, zodat de donkere versie
-  terug kan.
+  terug kan. **Teruggedraaid op 16-10 — zie hieronder.**
 - **`/kerst/` heeft zijn introzin en de sectie "Vanaf begin november" verloren.**
   Daarmee stond er op de pagina die over kerst gaat niets meer dat er ook naar
   uitzag; het kerstdecor zit nu op de sectie met de drie kaarten. De regel over
@@ -271,6 +271,29 @@ en die komen allebei uit bij een formulier waarin hun eigen onderwerp niet meer
 als keuze staat. De bezoeker kan het alleen nog bij de wensen kwijt.
 **Voorgelegd aan Armando op 15-10-2026; terugzetten is het omkeren van één
 commit.**
+
+## Kerst weer groen — 16 oktober
+
+"Doe toch terug in groen." Het kerstvlak staat weer op `tone="kerst"`
+(`#1b2d15`, op een breed scherm `#27401c`), op de homepage en op `/kerst/`, met
+de gloed, de witte takken en de doorschijnende kaarten die daarbij horen. De
+crèmevariant blijft compleet in de code staan — `tone="kerstroom"`, de lichte
+tak van `Section`, `.kerstsnoer-licht` en de drie kleuren in `index.css` — want
+dit is nu twee keer omgezet en de derde keer is één woord werk.
+
+Wat er van de crèmeronde blijft: **de rij vurenbomen** langs de onderrand, nu
+wit op het groen (`.kerstbomenrij-donker`). Die kwam er toen bij en zonder die
+rij loopt de sectie onderaan leeg af.
+
+**De naad met de hero is opnieuw dichtgelegd, en anders dan op 15-10.** Het
+verloop onder de kopfoto loopt weer naar het kerstgroen toe, maar daarmee was
+het niet opgelost: de warme gloed stond op volle sterkte op de bovenrand van de
+sectie zelf. Gemeten over die lijn sprong het in één beeldpunt van `#27401c`
+naar `#48552b` — het verloop deed zijn werk en de gloed zette er alsnog een
+streep. De gloed heeft nu een masker (`mask-image`, doorzichtig tot 32% van zijn
+hoogte), dus het licht komt pas onder het snoer op gang en lijkt van de lampjes
+te komen in plaats van van de rand. Nagemeten op de live pagina: `#27401c` aan
+beide kanten van de naad.
 
 ## Techniek
 

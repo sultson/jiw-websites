@@ -155,15 +155,17 @@ function Hero() {
           doorloopt. De afgeronde kraag maakte het erger: in de twee hoeken
           stonden de bloemen op volle kleur tegen bijna zwart.
 
-          Dat vlak is op 15-10-2026 crème geworden (zie Kerstblok), waarmee de
-          grootste sprong weg is. Het verloop blijft staan: de foto loopt nog
-          steeds van rand tot rand door en moet nog steeds ergens ophouden.
-          Het ligt boven de foto en onder de panelen, dus het dempt de foto en
-          niet de tekst, en het beweegt niet mee met de parallax: het hangt aan
-          de onderrand van de sectie, waar de naad ook zit.
+          Hier loopt de onderkant van de foto naar precies de kleur van het
+          vlak eronder. Dat vlak komt daarmee uit de foto vandaan. Het verloop
+          ligt boven de foto en onder de panelen, dus het dempt de foto en niet
+          de tekst, en het beweegt niet mee met de parallax: het hangt aan de
+          onderrand van de sectie, waar de naad ook zit.
 
-          De kleur is die van de sectie hieronder (Kerstblok, tone kerstroom).
-          Komt daar ooit een ander vlak, dan moet deze kleur mee. */}
+          Dat vlak is op 15-10-2026 crème geweest en op 16-10 weer groen (zie
+          Kerstblok), dus dit verloop is twee keer mee omgezet. De kleur is die
+          van de sectie hieronder (Kerstblok, tone kerst — op een breed scherm
+          een slag lichter). Komt daar ooit een ander vlak, dan moet deze kleur
+          mee. */}
       <div
         aria-hidden="true"
         className={
@@ -173,7 +175,8 @@ function Hero() {
              daarboven; was het verloop daar nog niet rond, dan bleef er precies
              op die lijn een randje foto zichtbaar. */
           'pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-52 bg-gradient-to-b ' +
-          'from-transparent via-kerstroom/50 via-50% to-kerstroom to-80% sm:h-60 lg:h-72'
+          'from-transparent via-kerstgroen/50 via-50% to-kerstgroen to-80% ' +
+          'sm:h-60 lg:h-72 lg:via-kerstgroen-ruim/50 lg:to-kerstgroen-ruim'
         }
       />
 
@@ -363,41 +366,43 @@ function InDeWinkel() {
  * het woord kerst erin — en dan zíe je nergens dat er iets anders aan de hand
  * is in die twee maanden.
  *
- * Dus komt het van kleur en vorm in plaats van beeld: een lichtsnoer langs de
- * bovenrand, een rij vurenbomen langs de onderrand en vurentakken in plaats van
- * het gewone blad (zie Section kerst en Kerstgroen). De woorden in de opsomming
- * krijgen elk een lampje in dezelfde drie kleuren als in het snoer.
+ * Dus komt het van kleur en vorm in plaats van beeld: een dieper groen dan de
+ * rest van de site, een lichtsnoer langs de bovenrand, warm lamplicht dat
+ * daaronder het vlak in zakt, een rij vurenbomen langs de onderrand en
+ * vurentakken in plaats van het gewone blad (zie Section kerst en Kerstgroen).
+ * De woorden in de opsomming krijgen elk een lampje in dezelfde drie kleuren
+ * als in het snoer.
  *
- * Dat decor stond eerst op een dieper groen dan de rest van de site, met warm
- * lamplicht erop. Dat was het donkerste vlak van de hele pagina, pal onder de
- * kopfoto, en las daarmee als een balk die er overheen lag. Sinds 15-10-2026
- * staat het op crème: dezelfde drie lagen, maar met de bomen en de lampjes op
- * volle kleur in plaats van een gloed die op licht toch verdwijnt. Er zijn ook
- * meer bomen bij gekomen — een vlak dat kerst heet moet er ook naar uitzien.
+ * Dat vlak is op 15-10-2026 crème geweest, omdat het als donkerste vlak van de
+ * pagina pal onder de kopfoto las als een balk die er overheen lag. Op 16-10 is
+ * het op verzoek van de winkel weer groen. Wat van die ronde blijft staan is de
+ * bomenrij onderaan, nu wit op het groen: een vlak dat kerst heet moet er ook
+ * naar uitzien. De naad met de hero blijft het verloop dat er op 15-10 onder is
+ * gezet (zie Hero), dus de sprong van toen komt niet terug.
  *
  * Niets ervan belooft iets. Zodra ze eigen kerstfoto's hebben kunnen die er zo
  * in, en dan mag dit decor zachter.
  */
 const KERST = ['Kerstbomen', 'Kerstkransen', 'Verlichting', 'Kerstaccessoires', 'Kerststukjes'];
 
-/* Amber, groen, hulstrood — de volgorde van de lampjes in het snoer. */
-const LAMPJES = ['bg-kerstamber', 'bg-kerstdiep', 'bg-kerstbes'];
+/* Amber, crème, hulstrood — de volgorde van de lampjes in het snoer. */
+const LAMPJES = ['bg-kerstlicht', 'bg-[#e7e1c7]', 'bg-kerstbes'];
 
 function Kerstblok() {
   return (
     /* Extra lucht onderaan: de sectie hieronder legt er met zijn kraag een
        afgeronde rand overheen, en zonder die ruimte komt die rand tegen de
        bomenrij aan te liggen. */
-    <Section id="kerst" tone="kerstroom" kerst kraag className="pb-6 sm:pb-10">
+    <Section id="kerst" tone="kerst" kerst kraag className="pb-6 sm:pb-10">
       <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-kerstbes">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-kerstlicht">
             November en december
           </p>
           <h2 className="text-3xl font-semibold sm:text-4xl">
             Vanaf november staat de winkel in het teken van kerst
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-ink/70">
+          <p className="mt-5 text-lg leading-relaxed text-white/75">
             Kerstbomen voor de deur, kransen en verlichting binnen, en een tafel vol accessoires. Wie
             vroeg is heeft de ruimste keuze.
           </p>
@@ -406,7 +411,7 @@ function Kerstblok() {
             {KERST.map((k, i) => (
               <span
                 key={k}
-                className="inline-flex items-center gap-2.5 rounded-full border border-kerstdiep/20 bg-white/60 px-4 py-2 text-sm font-medium text-ink/80"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/[0.06] px-4 py-2 text-sm font-medium text-white/85"
               >
                 <span className={`h-2 w-2 shrink-0 rounded-full ${LAMPJES[i % LAMPJES.length]}`} />
                 {k}
@@ -421,25 +426,24 @@ function Kerstblok() {
           </div>
         </div>
 
-        {/* De boom staat in een cirkel met een warme ring eromheen. Op het
-            donkere vlak was dat een gloed die eruit leek te komen; op crème
-            doet een gloed niets en is het de ring die hem los zet van de
-            kaart. */}
-        <div className="rounded-2xl border border-kerstdiep/15 bg-white/70 p-8">
-          <span className="grid h-16 w-16 place-items-center rounded-full bg-kerstamber/15 ring-1 ring-kerstamber/40">
-            <TreePine className="h-8 w-8 text-kerstdiep" strokeWidth={1.5} />
+        {/* De boom staat in een cirkel met een warme gloed eromheen: zonder dat
+            is het een lijntekening van een boom op een groen vlak, en mét dat
+            lijkt er een lamp achter te staan. */}
+        <div className="rounded-2xl border border-white/15 bg-white/[0.05] p-8">
+          <span className="grid h-16 w-16 place-items-center rounded-full bg-kerstlicht/10 shadow-[0_0_40px_-6px_rgb(246_200_122_/_0.45)] ring-1 ring-kerstlicht/25">
+            <TreePine className="h-8 w-8 text-kerstlicht" strokeWidth={1.5} />
           </span>
           <p className="mt-5 text-lg font-semibold">Vanaf begin november</p>
-          <p className="mt-2 leading-relaxed text-ink/65">
+          <p className="mt-2 leading-relaxed text-white/65">
             De kerstafdeling bouwen we elk jaar opnieuw op. Wilt u weten wanneer de bomen binnen zijn?
             Bel ons of kijk op Facebook.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href={`tel:${TEL}`} className="inline-flex items-center gap-2 rounded-xl border border-kerstdiep/25 px-5 py-2.5 text-sm font-semibold text-ink/80 transition hover:border-kerstdiep hover:bg-white">
-              <Phone className="h-4 w-4 text-kerstbes" /> {TEL_DISPLAY}
+            <a href={`tel:${TEL}`} className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-2.5 text-sm font-semibold text-white/90 transition hover:border-kerstlicht hover:bg-white/10">
+              <Phone className="h-4 w-4 text-kerstlicht" /> {TEL_DISPLAY}
             </a>
-            <a href={FACEBOOK} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-kerstdiep/25 px-5 py-2.5 text-sm font-semibold text-ink/80 transition hover:border-kerstdiep hover:bg-white">
-              <Facebook className="h-4 w-4 text-kerstbes" /> Facebook
+            <a href={FACEBOOK} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-2.5 text-sm font-semibold text-white/90 transition hover:border-kerstlicht hover:bg-white/10">
+              <Facebook className="h-4 w-4 text-kerstlicht" /> Facebook
             </a>
           </div>
         </div>

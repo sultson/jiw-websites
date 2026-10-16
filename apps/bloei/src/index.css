@@ -103,17 +103,14 @@
   --color-kerstlicht: #f6c87a;
   --color-kerstbes: #b3243f;
 
-  /* De crèmevariant (15-10-2026). Het donkergroene kerstvlak pal onder de
-     kopfoto was het donkerste vlak van de hele pagina en las als een balk die
-     er overheen lag; daar is eerst een verloop onder gezet en daarna is het
-     vlak zelf licht geworden. Dit is de kleur van de letters op hun bord, een
-     slag opgelicht: warmer dan `cream`, zodat het kerstvlak zich van de rest
-     onderscheidt zonder dat er een donkere band in de pagina staat.
+  /* De crèmevariant (15-10-2026), op 16-10-2026 weer uitgezet: de winkel wilde
+     het groen terug. Blijft staan omdat het in één regel om te zetten is — zie
+     `Tone` in ui.tsx — en omdat `kerstdiep` en `kerstamber` ook de kleuren van
+     de lichte versies van het snoer en de bomenrij zijn.
 
-     Kerst komt hier nu van vorm in plaats van van diepte: het lichtsnoer, de
-     rij vurenbomen langs de onderrand en de ballen eraan (zie Kerstdecor). De
-     lampjes en de ballen staan op volle kleur, want op crème heeft amber en
-     hulstrood het contrast dat ze op donkergroen niet nodig hadden. */
+     `kerstroom` is de kleur van de letters op hun bord, een slag opgelicht:
+     warmer dan `cream`, zodat het kerstvlak zich van de rest onderscheidt
+     zonder dat er een donkere band in de pagina staat. */
   --color-kerstroom: #f7f3e4;
   --color-kerstdiep: #2c4420;   /* het groen van de bomen en de takken */
   --color-kerstamber: #d79a2c;  /* lampje, een slag dieper dan kerstlicht */
@@ -358,7 +355,7 @@
 }
 
 /**
- * De rij vurenbomen langs de onderrand van het crème kerstvlak.
+ * De rij vurenbomen langs de onderrand van het kerstvlak.
  *
  * Een tegel van 360 bij 120 met vijf bomen van verschillende hoogte, die zich
  * naast elkaar herhaalt — net als het snoer, en om dezelfde reden: één svg over
@@ -371,6 +368,22 @@
  */
 .kerstbomenrij {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 120'><g fill='%232c4420' opacity='0.16'><rect x='37' y='104' width='6' height='12'/><path d='M10 104 L40 64.4 L70 104 Z'/><path d='M16.6 77.6 L40 38 L63.4 77.6 Z'/><path d='M24.4 53 L40 16 L55.6 53 Z'/><rect x='107' y='104' width='6' height='10'/><path d='M88 104 L110 76.1 L132 104 Z'/><path d='M92.8 85.4 L110 57.5 L127.2 85.4 Z'/><path d='M98.6 68 L110 42 L121.4 68 Z'/><rect x='172' y='104' width='7' height='12'/><path d='M141 104 L175 57.2 L209 104 Z'/><path d='M148.5 72.8 L175 26 L201.5 72.8 Z'/><path d='M157.3 43.7 L175 0 L192.7 43.7 Z'/><rect x='247' y='104' width='6' height='10'/><path d='M225 104 L250 72.5 L275 104 Z'/><path d='M230.5 83 L250 51.5 L269.5 83 Z'/><path d='M237 63.4 L250 34 L263 63.4 Z'/><rect x='312' y='104' width='6' height='12'/><path d='M284 104 L315 62.6 L346 104 Z'/><path d='M290.8 76.4 L315 35 L339.2 76.4 Z'/><path d='M298.9 50.6 L315 12 L331.1 50.6 Z'/></g><g opacity='0.5'><circle cx='34' cy='80' r='2.6' fill='%23b3243f'/><circle cx='48' cy='62' r='2.6' fill='%23d79a2c'/><circle cx='168' cy='62' r='3' fill='%23d79a2c'/><circle cx='184' cy='80' r='3' fill='%23b3243f'/><circle cx='175' cy='40' r='2.4' fill='%23b3243f'/><circle cx='308' cy='74' r='2.6' fill='%23d79a2c'/><circle cx='322' cy='88' r='2.6' fill='%23b3243f'/></g></svg>");
+  background-repeat: repeat-x;
+  background-position: bottom center;
+  background-size: 360px 120px;
+}
+
+/**
+ * Dezelfde bomenrij, maar voor op het donkergroene vlak (16-10-2026).
+ *
+ * De rij hierboven kwam er bij toen het kerstvlak crème was; het vlak is daarna
+ * weer groen geworden, maar de bomen mochten blijven — zonder die rij loopt de
+ * sectie onderaan leeg af. Donkergroene bomen op donkergroen is niets, dus hier
+ * zijn ze wit op lage dekking en staan de ballen op volle kleur: op bijna zwart
+ * heeft amber en hulstrood juist meer dekking nodig, niet minder.
+ */
+.kerstbomenrij-donker {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 120'><g fill='%23ffffff' opacity='0.07'><rect x='37' y='104' width='6' height='12'/><path d='M10 104 L40 64.4 L70 104 Z'/><path d='M16.6 77.6 L40 38 L63.4 77.6 Z'/><path d='M24.4 53 L40 16 L55.6 53 Z'/><rect x='107' y='104' width='6' height='10'/><path d='M88 104 L110 76.1 L132 104 Z'/><path d='M92.8 85.4 L110 57.5 L127.2 85.4 Z'/><path d='M98.6 68 L110 42 L121.4 68 Z'/><rect x='172' y='104' width='7' height='12'/><path d='M141 104 L175 57.2 L209 104 Z'/><path d='M148.5 72.8 L175 26 L201.5 72.8 Z'/><path d='M157.3 43.7 L175 0 L192.7 43.7 Z'/><rect x='247' y='104' width='6' height='10'/><path d='M225 104 L250 72.5 L275 104 Z'/><path d='M230.5 83 L250 51.5 L269.5 83 Z'/><path d='M237 63.4 L250 34 L263 63.4 Z'/><rect x='312' y='104' width='6' height='12'/><path d='M284 104 L315 62.6 L346 104 Z'/><path d='M290.8 76.4 L315 35 L339.2 76.4 Z'/><path d='M298.9 50.6 L315 12 L331.1 50.6 Z'/></g><g opacity='0.75'><circle cx='34' cy='80' r='2.6' fill='%23b3243f'/><circle cx='48' cy='62' r='2.6' fill='%23f6c87a'/><circle cx='168' cy='62' r='3' fill='%23f6c87a'/><circle cx='184' cy='80' r='3' fill='%23b3243f'/><circle cx='175' cy='40' r='2.4' fill='%23e7e1c7'/><circle cx='308' cy='74' r='2.6' fill='%23f6c87a'/><circle cx='322' cy='88' r='2.6' fill='%23b3243f'/></g></svg>");
   background-repeat: repeat-x;
   background-position: bottom center;
   background-size: 360px 120px;
