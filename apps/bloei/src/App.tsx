@@ -3,7 +3,7 @@ import {
   ArrowRight, ChevronDown, Clock, Facebook, Flower2, Gift, Home, Leaf, MapPin, Navigation,
   Phone, Repeat, Shovel, Sparkles, TreePine,
 } from 'lucide-react';
-import {Bezoek, Footer, MobielBalk, Nav, VraagAan, ZwevendeKnoppen} from './layout';
+import {Bezoek, Footer, MobielBalk, NaamMelding, Nav, VraagAan, ZwevendeKnoppen} from './layout';
 import {
   FACEBOOK, KNOP_DERDE, KNOP_HOOFD, KNOP_TWEEDE_LICHT, Kicker, PLAATS, ROUTE, Section, STRAAT,
   TEL, TEL_DISPLAY, WHATSAPP, useKnopInBeeld, useWinkelStatus,
@@ -192,6 +192,10 @@ function Hero() {
         }
       >
         <div className={PANEEL}>
+          {/* Boven de kop en niet eronder: iemand die hier via Google op
+              "Vershal Ouddorp" binnenkomt moet eerst weten dat hij goed zit,
+              daarna pas wat er te koop is. */}
+          <NaamMelding className="mb-5 bg-white/55" />
           <Kicker>Bloemen, planten, tuin en wonen</Kicker>
 
           <h1 className="text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-[3.4rem]">
@@ -698,6 +702,11 @@ const VRAGEN: [string, string][] = [
   [
     'Kan ik een abonnement nemen?',
     'Dat kan, thuis net zo goed als in de zaak. We maken plantenbakken of vazen met bloemen op, zetten ze neer en komen ze verversen. U spreekt zelf af hoe vaak dat is, en een keer overslaan of stoppen kan altijd.',
+  ],
+  /* Tijdelijk — weg zodra de naam is overgegaan. Zie NaamMelding in layout.tsx. */
+  [
+    'Heet deze winkel niet Vershal Ouddorp?',
+    'Op dit moment nog wel. Bij Google en op Facebook staan we nog onder die naam; over een paar weken gaat de winkel verder als Bloei! Het adres aan het Hogepad blijft hetzelfde, net als de mensen en het assortiment. Alleen de naam verandert.',
   ],
 ];
 

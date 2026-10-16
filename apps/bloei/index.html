@@ -39,13 +39,20 @@
          winkel zelf bevestigd. De openingstijden wel (9:00 - 17:30, doorgegeven
          op 14-10-2026); of zaterdag hetzelfde loopt staat nog open. Zie
          NOTITIES.md en WINKEL in site.config.mjs. Dit blok moet kloppen, want
-         Google toont deze tijden rechtstreeks in het zoekresultaat. -->
+         Google toont deze tijden rechtstreeks in het zoekresultaat.
+
+         alternateName is tijdelijk: de winkel staat bij Google en op Facebook nog
+         als Vershal Ouddorp en gaat pas over een paar weken over op Bloei!. Zo
+         weet Google dat het om dezelfde zaak gaat en niet om een tweede winkel op
+         hetzelfde adres. Weghalen zodra de naam is overgegaan — net als
+         NaamMelding in src/layout.tsx. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "GardenStore",
       "@id": "%SITE_URL%/#winkel",
       "name": "Bloei!",
+      "alternateName": "Vershal Ouddorp",
       "description": "Winkel voor bloemen, planten, tuin en wonen aan het Hogepad in Ouddorp. Binnen kamerplanten, binnenpotten, opgemaakte stukjes en woonaccessoires, buiten een terrein met perkgoed, vaste planten, grondsoorten en meststoffen. In november en december een kerstafdeling met bomen, kransen en verlichting.",
       "url": "%SITE_URL%/",
       "image": [

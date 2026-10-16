@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {
-  ArrowLeft, Facebook, Menu, Navigation, Phone, X,
+  ArrowLeft, Facebook, Info, Menu, Navigation, Phone, X,
 } from 'lucide-react';
 import Aanvraag from './Aanvraag';
 import KaartLazy from './KaartLazy';
@@ -150,6 +150,77 @@ export function Nav() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  De naam                                                            */
+/* ------------------------------------------------------------------ */
+
+/**
+ * De winkel heet op dit moment nog Vershal Ouddorp en gaat pas over een paar
+ * weken verder als Bloei! (doorgegeven door Armando, 16-10-2026).
+ *
+ * Zolang dat zo is loopt een bezoeker tegen twee namen aan: hij zoekt de winkel
+ * op Google of op Facebook, vindt daar Vershal Ouddorp, en komt uit bij een site
+ * die Bloei! heet. Dan is de eerste vraag niet wat er te koop is maar of dit wel
+ * dezelfde winkel is — en dat is precies de vraag waarop iemand wegklikt.
+ *
+ * Twee verschijningen van dezelfde boodschap:
+ *
+ *   NaamMelding  één regel bovenaan elke pagina, waar de bezoeker binnenkomt
+ *   NaamUitleg   het hele verhaal bij "Waar u ons vindt" — de plek waar hij
+ *                uitzoekt hoe hij er komt, en dus waar het ertoe doet
+ *
+ * Er staat alleen in wat te controleren valt: op Google en op Facebook staat de
+ * winkel onder de oude naam (nagekeken 16-10-2026). Wat er op dit moment op de
+ * gevel staat weten wij niet — de foto op deze site toont het nieuwe bord — dus
+ * daar belooft deze tekst niets over.
+ *
+ * Dit is tijdelijk. Zodra de naam is overgegaan kan het in vier stappen weg:
+ * deze twee componenten plus hun aanroepen in Hero en PaginaKop, het blok in
+ * Bezoek, de vraag onderaan VRAGEN in App.tsx, en alternateName in index.html.
+ */
+const OUDE_NAAM = 'Vershal Ouddorp';
+
+export function NaamMelding({className = ''}: {className?: string}) {
+  return (
+    <p
+      className={
+        'flex items-start gap-2.5 rounded-xl border border-accent-dark/20 bg-accent-dark/[0.06] ' +
+        `px-3.5 py-2.5 text-sm leading-snug text-ink/75 ${className}`
+      }
+    >
+      <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent-dark" />
+      <span>
+        <strong className="font-semibold text-ink">Wij heten nu nog {OUDE_NAAM}.</strong>{' '}
+        Over een paar weken gaan we verder als Bloei!{' '}
+        <a
+          href="#naam"
+          className="font-semibold text-accent-dark underline decoration-accent-dark/30 underline-offset-4 transition hover:decoration-accent-dark"
+        >
+          Wat verandert er?
+        </a>
+      </span>
+    </p>
+  );
+}
+
+function NaamUitleg() {
+  return (
+    /* scroll-mt: de balk bovenaan zweeft over de pagina heen, dus een sprong
+       hierheen zou het kopje er precies onder parkeren. */
+    <div id="naam" className="mt-7 scroll-mt-28 rounded-2xl border border-line bg-cream p-5 sm:p-6">
+      <div className="flex items-center gap-2.5">
+        <Info className="h-5 w-5 shrink-0 text-accent-dark" />
+        <p className="font-semibold">Nu nog {OUDE_NAAM}</p>
+      </div>
+      <p className="mt-3 text-sm leading-relaxed text-ink/70">
+        Zoekt u ons op Google of op Facebook, dan staan we daar nog onder die naam. Over een paar
+        weken gaat de winkel verder als Bloei! Hetzelfde adres aan het Hogepad, dezelfde mensen en
+        hetzelfde assortiment. Alleen de naam verandert.
+      </p>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Kop van een onderwerppagina                                        */
 /* ------------------------------------------------------------------ */
 
@@ -183,6 +254,9 @@ export function PaginaKop({
           >
             <ArrowLeft className="h-4 w-4" /> Terug naar de winkel
           </a>
+          {/* Ook hier, en niet alleen op de homepage: wie uit Google op
+              /kerst/ of /cadeau/ binnenkomt heeft dezelfde vraag. */}
+          <NaamMelding className="mb-6 max-w-xl" />
           <Kicker>{kicker}</Kicker>
           <h1 className="text-4xl font-semibold leading-[1.1] sm:text-5xl">{titel}</h1>
           {intro && <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink/70">{intro}</p>}
@@ -291,6 +365,11 @@ export function Bezoek({streek = false, kraag = false}: {streek?: boolean; kraag
               {STREEKKERNEN.at(-1)}.
             </p>
           )}
+
+          {/* De uitleg over de naam staat hier en niet in een eigen sectie: dit
+              is de plek waar de bezoeker uitzoekt waar hij moet zijn, en dit
+              blok staat onder elke pagina van de site. */}
+          <NaamUitleg />
 
           <dl className="mt-7 divide-y divide-line border-y border-line text-sm">
             {ROOSTER.map(([dag, tijd]) => {

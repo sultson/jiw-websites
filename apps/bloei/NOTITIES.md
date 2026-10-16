@@ -295,6 +295,31 @@ hoogte), dus het licht komt pas onder het snoer op gang en lijkt van de lampjes
 te komen in plaats van van de rand. Nagemeten op de live pagina: `#27401c` aan
 beide kanten van de naad.
 
+## De naam staat nog op Vershal Ouddorp — 16 oktober
+
+Doorgegeven door Armando: de winkel heet op dit moment nog **Vershal Ouddorp** en
+gaat pas over een paar weken over op Bloei!. Dat is precies de periode waarin
+deze site al Bloei! heet, dus een bezoeker die via Google of Facebook binnenkomt
+ziet twee namen en weet niet of hij bij dezelfde winkel is.
+
+Daarom een melding op de site, op vier plekken:
+
+| Waar | Wat |
+| --- | --- |
+| Boven in het heropaneel en boven elke paginakop | `NaamMelding` in `src/layout.tsx`: één regel plus een link naar de uitleg |
+| Bij "Waar u ons vindt" (staat onder elke pagina) | `NaamUitleg`, `id="naam"` — het hele verhaal |
+| Veelgesteld | "Heet deze winkel niet Vershal Ouddorp?", laatste vraag |
+| `index.html` | `"alternateName": "Vershal Ouddorp"` in het `GardenStore`-blok, zodat Google het als dezelfde zaak leest en niet als een tweede winkel op hetzelfde adres |
+
+De tekst noemt alleen wat te controleren valt: bij **Google en op Facebook**
+staat de winkel onder de oude naam (nagekeken 16-10-2026). Over wat er op dit
+moment op de gevel staat belooft hij niets — de foto op deze site toont het
+nieuwe bord, en of dat er al hangt weten wij niet.
+
+**Dit is tijdelijk.** Zodra de naam is overgegaan: de twee componenten plus hun
+aanroepen in `Hero` en `PaginaKop`, het blok in `Bezoek`, de laatste vraag in
+`VRAGEN` (`App.tsx`) en `alternateName` weghalen.
+
 ## Techniek
 
 Kopie van `apps/fleurig`, dus hetzelfde recept: Vite + React 19 + Tailwind v4,
