@@ -3,7 +3,8 @@
    Rules, so this stays trustworthy:
    - Guests' own words. Only punctuation and capitals are tidied; nothing is
      added, and parts left out are left out whole (the third guest's remark
-     about the sockets went to the owner, not here, at the owner's request).
+     about the sockets went to the owner, not here, at the owner's request;
+     the chalet guest's note about a broken wine glass likewise).
    - The Dutch is the original. The en/de text is our translation and the page
      says so.
    - No Review / AggregateRating structured data: Google does not show stars
@@ -16,13 +17,14 @@ type Lang = 'nl' | 'en' | 'de';
 /** The Google Business Profile, by its stable CID. */
 export const GOOGLE_PROFILE_URL = 'https://maps.google.com/?cid=11913674244369039445';
 
-export type ReviewId = 'richard' | 'jansen' | 'marianne';
+export type ReviewId = 'richard' | 'jansen' | 'marianne' | 'chaletnote';
 
 export type Review = {
-  name: string;
-  /** Where the words were written: a public Google review, or a message to the
-      owner that the guest agreed to have quoted. */
-  source: 'google' | 'message';
+  /** Absent when the guest did not sign; the page then says "Guest". */
+  name?: string;
+  /** Where the words were written: a public Google review, a message to the
+      owner that the guest agreed to have quoted, or a note left in the house. */
+  source: 'google' | 'message' | 'note';
   /** Month of the review, YYYY-MM; absent when we do not know it. */
   month?: string;
   /** The house the guest stayed in. */
@@ -63,6 +65,15 @@ export const reviews: Record<ReviewId, Review> = {
       de: 'Herrliches Wetter, schöne Umgebung, aber vor allem ein super gemütliches Haus, mit riesigem Garten und Privatsphäre. Alle haben in den bequemen Betten herrlich geschlafen, und auch die Bettdecken kamen gut an!',
     },
   },
+  chaletnote: {
+    source: 'note',
+    homeId: 'finschalet',
+    text: {
+      nl: 'We hebben het hier in alle opzichten fantastisch gehad!',
+      en: 'We had a fantastic time here in every respect!',
+      de: 'Wir hatten es hier in jeder Hinsicht fantastisch!',
+    },
+  },
 };
 
 /** A home's page shows the quotes of guests who stayed there. */
@@ -71,7 +82,7 @@ export const homeReviewIds = (homeId: string) =>
 
 /** The topic pages each get the quote that speaks to their visitor. */
 export const TOPIC_REVIEWS: Partial<Record<'groups' | 'dogs' | 'hilgelo', ReviewId[]>> = {
-  groups: ['marianne'],
+  groups: ['marianne', 'chaletnote'],
   dogs: ['richard'],
   hilgelo: ['jansen', 'richard'],
 };
