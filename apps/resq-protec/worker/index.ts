@@ -12,20 +12,25 @@ const workers:Record<string,ReturnType<typeof createFormWorker>>={
   '/api/forms/en/contact':createFormWorker({...commonEn,formPath:'/api/forms/en/contact',subjectPrefix:'New contact request Rescue Watercraft'}),
 };
 
-const feedChannels={facebook:'https://www.facebook.com/resqprotec/'} as const;
+const feedChannels={linkedin:'https://www.linkedin.com/company/rescue-watercraft-b-v/'} as const;
 const asUrl=(value:unknown)=>typeof value==='string'&&/^https?:\/\//.test(value)?value:'';
-function findMedia(value:unknown,kind:'image'|'video',key=''):string{
-  if(typeof value==='string'){
-    const url=asUrl(value);if(!url)return '';
-    const imageKey=/(image|photo|picture|thumbnail|preview|display|cover|poster|uri|src)/i.test(key);
-    const videoKey=/(video|playable|dash|stream|mp4)/i.test(key);
-    if(kind==='video'&&(videoKey||/\.mp4(?:\?|$)/i.test(url)))return url;
-    if(kind==='image'&&imageKey&&!videoKey)return url;
-    return '';
-  }
-  if(Array.isArray(value)){for(const entry of value){const found=findMedia(entry,kind,key);if(found)return found;}return '';}
-  if(value&&typeof value==='object'){for(const [childKey,child] of Object.entries(value as Record<string,unknown>)){const found=findMedia(child,kind,childKey);if(found)return found;}}
-  return '';
+type LinkedInPost={
+  type?:string;
+  content?:string|null;
+  linkedinUrl?:string;
+  postedAt?:{date?:string;timestamp?:number};
+  postImages?:{url?:string}[];
+  video?:{url?:string;thumbnailUrl?:string};
+  document?:{coverPages?:{imageUrls?:string[]}[]};
+  resharedPost?:LinkedInPost;
+};
+function mapLinkedInPost(post:LinkedInPost,feedUrl:string){
+  const content=post.resharedPost;
+  const text=post.content?.trim()||content?.content?.trim()||'';
+  const image=asUrl(post.postImages?.[0]?.url)||asUrl(post.video?.thumbnailUrl)||asUrl(post.document?.coverPages?.[0]?.imageUrls?.[0])||asUrl(content?.postImages?.[0]?.url)||asUrl(content?.video?.thumbnailUrl);
+  const video=asUrl(post.video?.url)||asUrl(content?.video?.url);
+  const time=post.postedAt?.date||(Number.isFinite(post.postedAt?.timestamp)?new Date(post.postedAt!.timestamp!).toISOString():'');
+  return {text,url:asUrl(post.linkedinUrl)||feedUrl,time,image,video};
 }
 
 const feedFreshMs=6*60*60*1000;
@@ -33,11 +38,13 @@ const feedRetentionSeconds=7*24*60*60;
 
 async function refreshFeed(cache:Cache,key:Request,channel:keyof typeof feedChannels,feedUrl:string,env:Env):Promise<Response>{
   if(!env.APIFY_TOKEN)throw new Error('APIFY_TOKEN is not configured');
-  const response=await fetch(`https://api.apify.com/v2/acts/apify~facebook-posts-scraper/run-sync-get-dataset-items?token=${encodeURIComponent(env.APIFY_TOKEN)}`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({startUrls:[{url:feedUrl}],resultsLimit:6,viewOption:'CHRONOLOGICAL'})});
+  const response=await fetch('https://api.apify.com/v2/acts/harvestapi~linkedin-company-posts/run-sync-get-dataset-items?timeout=60&maxTotalChargeUsd=0.05',{method:'POST',headers:{'content-type':'application/json',Authorization:`Bearer ${env.APIFY_TOKEN}`},body:JSON.stringify({targetUrls:[feedUrl],maxPosts:6,scrapeReactions:false,scrapeComments:false}),signal:AbortSignal.timeout(65000)});
   if(!response.ok)throw new Error(`Apify feed refresh failed with status ${response.status}`);
-  const raw=await response.json<Record<string,unknown>[]>();const items=raw.slice(0,9).map(post=>({text:String(post.text??post.postText??post.message??post.caption??''),url:String(post.url??post.postUrl??post.facebookUrl??feedUrl),time:String(post.time??post.timestamp??post.date??post.publishedAt??''),image:asUrl(post.image)||asUrl(post.photoUrl)||asUrl(post.thumbnail)||findMedia(post,'image'),video:asUrl(post.videoUrl)||asUrl(post.video)||findMedia(post,'video')})).filter(post=>post.text);
+  const raw=await response.json<LinkedInPost[]>();
+  const items=raw.filter(post=>post.type==='post').map(post=>mapLinkedInPost(post,feedUrl)).filter(post=>post.text||post.image||post.video).sort((a,b)=>(Date.parse(b.time)||0)-(Date.parse(a.time)||0)).slice(0,6);
+  if(!items.length)throw new Error('LinkedIn returned no usable posts');
   const refreshedAt=new Date().toISOString();
-  const result=Response.json({items,channel,updatedAt:refreshedAt,mappingVersion:2},{headers:{'Cache-Control':`public, max-age=${feedRetentionSeconds}`,'X-Feed-Refreshed-At':refreshedAt}});
+  const result=Response.json({items,channel,updatedAt:refreshedAt,mappingVersion:3},{headers:{'Cache-Control':`public, max-age=${feedRetentionSeconds}`,'X-Feed-Refreshed-At':refreshedAt}});
   await cache.put(key,result.clone());return result;
 }
 
@@ -53,11 +60,11 @@ async function refreshStaleFeed(cache:Cache,key:Request,lockKey:Request,channel:
 }
 
 async function socialFeed(request:Request,env:Env,ctx:ExecutionContext):Promise<Response>{
-  const channel=(new URL(request.url).searchParams.get('channel')??'facebook') as keyof typeof feedChannels;const feedUrl=feedChannels[channel];if(!feedUrl)return Response.json({error:'Unknown channel'},{status:404});
-  const cache=(caches as unknown as{default:Cache}).default;const key=new Request(`https://feed-cache.resqprotec.local/v3/${channel}`);const cached=await cache.match(key);
+  const channel=(new URL(request.url).searchParams.get('channel')??'linkedin') as keyof typeof feedChannels;const feedUrl=feedChannels[channel];if(!feedUrl)return Response.json({error:'Unknown channel'},{status:404});
+  const cache=(caches as unknown as{default:Cache}).default;const key=new Request(`https://feed-cache.resqprotec.local/v4/${channel}`);const cached=await cache.match(key);
   if(cached){
     const refreshedAt=Date.parse(cached.headers.get('X-Feed-Refreshed-At')??'');const stale=!Number.isFinite(refreshedAt)||Date.now()-refreshedAt>=feedFreshMs;
-    if(stale){const lockKey=new Request(`https://feed-cache.resqprotec.local/v3/${channel}/refreshing`);ctx.waitUntil(refreshStaleFeed(cache,key,lockKey,channel,feedUrl,env));}
+    if(stale){const lockKey=new Request(`https://feed-cache.resqprotec.local/v4/${channel}/refreshing`);ctx.waitUntil(refreshStaleFeed(cache,key,lockKey,channel,feedUrl,env));}
     return feedResponse(cached,stale?'stale':'fresh');
   }
   try{return feedResponse(await refreshFeed(cache,key,channel,feedUrl,env),'miss');}catch(error){console.error('social_feed_initial_fetch_failed',{channel,error:error instanceof Error?error.message:String(error)});return Response.json({items:[],error:'Feed temporarily unavailable'},{status:502});}
