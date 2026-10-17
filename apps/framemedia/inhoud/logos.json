@@ -1,0 +1,175 @@
+[
+  {
+    "slug": "rtl4",
+    "bestand": "rtl4.svg",
+    "naam": "RTL 4",
+    "hoogte": 17,
+    "groep": "zenders",
+    "pad": "/assets/logos/zenders/rtl4.svg",
+    "verhouding": 6.55
+  },
+  {
+    "slug": "rtl7",
+    "bestand": "rtl7.svg",
+    "naam": "RTL 7",
+    "hoogte": 19,
+    "groep": "zenders",
+    "pad": "/assets/logos/zenders/rtl7.svg",
+    "verhouding": 2.667
+  },
+  {
+    "slug": "rtlz",
+    "bestand": "rtlz.svg",
+    "naam": "RTL Z",
+    "hoogte": 17,
+    "groep": "zenders",
+    "pad": "/assets/logos/zenders/rtlz.svg",
+    "verhouding": 6.65
+  },
+  {
+    "slug": "sbs6",
+    "bestand": "sbs6.svg",
+    "naam": "SBS 6",
+    "hoogte": 34,
+    "groep": "zenders",
+    "pad": "/assets/logos/zenders/sbs6.svg",
+    "verhouding": 0.758
+  },
+  {
+    "slug": "net5",
+    "bestand": "net5.png",
+    "naam": "Net 5",
+    "hoogte": 32,
+    "groep": "zenders",
+    "pad": "/assets/logos/zenders/net5.png",
+    "verhouding": 0.985
+  },
+  {
+    "slug": "veronica",
+    "bestand": "veronica.svg",
+    "naam": "Veronica",
+    "hoogte": 24,
+    "groep": "zenders",
+    "pad": "/assets/logos/zenders/veronica.svg",
+    "verhouding": 2.982
+  },
+  {
+    "slug": "at5",
+    "bestand": "at5.png",
+    "naam": "AT5",
+    "hoogte": 28,
+    "groep": "zenders",
+    "pad": "/assets/logos/zenders/at5.png",
+    "verhouding": 1.417
+  },
+  {
+    "slug": "airbus",
+    "bestand": "airbus.svg",
+    "naam": "Airbus",
+    "hoogte": 17,
+    "groep": "klanten",
+    "pad": "/assets/logos/klanten/airbus.svg",
+    "verhouding": 5.392
+  },
+  {
+    "slug": "febo",
+    "bestand": "febo.png",
+    "naam": "Febo",
+    "hoogte": 22,
+    "keerOm": true,
+    "groep": "klanten",
+    "pad": "/assets/logos/klanten/febo.png",
+    "verhouding": 3.577
+  },
+  {
+    "slug": "etos",
+    "bestand": "etos.svg",
+    "naam": "Etos",
+    "hoogte": 30,
+    "groep": "klanten",
+    "pad": "/assets/logos/klanten/etos.svg",
+    "verhouding": 1.253
+  },
+  {
+    "slug": "bangolufsen",
+    "bestand": "bangolufsen.svg",
+    "naam": "Bang &amp; Olufsen",
+    "hoogte": 26,
+    "groep": "klanten",
+    "pad": "/assets/logos/klanten/bangolufsen.svg",
+    "verhouding": 3.048
+  },
+  {
+    "slug": "grohe",
+    "bestand": "grohe.svg",
+    "naam": "Grohe Nederland",
+    "hoogte": 28,
+    "groep": "klanten",
+    "pad": "/assets/logos/klanten/grohe.svg",
+    "verhouding": 1.658
+  },
+  {
+    "slug": "rai",
+    "bestand": "rai.svg",
+    "naam": "RAI Amsterdam",
+    "hoogte": 30,
+    "groep": "klanten",
+    "pad": "/assets/logos/klanten/rai.svg",
+    "verhouding": 1.657
+  },
+  {
+    "slug": "soliver",
+    "bestand": "soliver.svg",
+    "naam": "S. Oliver",
+    "hoogte": 24,
+    "groep": "klanten",
+    "pad": "/assets/logos/klanten/soliver.svg",
+    "verhouding": 2.759
+  },
+  {
+    "slug": "chinaairlines",
+    "bestand": "chinaairlines.svg",
+    "naam": "China Airlines",
+    "hoogte": 14,
+    "groep": "klanten",
+    "pad": "/assets/logos/klanten/chinaairlines.svg",
+    "verhouding": 8.752
+  },
+  {
+    "slug": "jaarbeurs",
+    "bestand": "jaarbeurs.svg",
+    "naam": "Jaarbeurs",
+    "hoogte": 22,
+    "groep": "klanten",
+    "pad": "/assets/logos/klanten/jaarbeurs.svg",
+    "verhouding": 3.599
+  },
+  {
+    "slug": "electroworld",
+    "bestand": "electroworld.svg",
+    "naam": "Electroworld",
+    "hoogte": 34,
+    "groep": "klanten",
+    "pad": "/assets/logos/klanten/electroworld.svg",
+    "verhouding": 1.207
+  },
+  {
+    "slug": "vivera",
+    "bestand": "vivera.svg",
+    "naam": "Vivera",
+    "hoogte": 34,
+    "groep": "klanten",
+    "pad": "/assets/logos/klanten/vivera.svg",
+    "verhouding": 1.44
+  },
+  {
+    "slug": "culimaat",
+    "bestand": "culimaat.svg",
+    "naam": "Culimaat Keukens",
+    "hoogte": 24,
+    "hertint": "#1b2430",
+    "groep": "klanten",
+    "pad": "/assets/logos/klanten/culimaat.svg",
+    "verhouding": 5
+  }
+]

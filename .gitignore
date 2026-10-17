@@ -96,3 +96,9 @@ apps/dagmar-voss/shots/
 # originele foto's waar maak-plaatjes.mjs zijn varianten uit maakt - die staan
 # nergens anders. Zonder deze regel mist een verse kloon de hele site.
 !apps/rh-klusservice/dist/
+
+# framemedia: 242 MB bronmateriaal van de oude WordPress-site, de aangeleverde
+# clips, de brochure en de tussenbestanden van de beeldscripts. Alles wat de site
+# uitlevert staat gegenereerd in inhoud/assets/ en oud/.
+apps/framemedia/raw
+apps/framemedia/shots

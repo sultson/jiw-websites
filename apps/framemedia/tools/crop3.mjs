@@ -1,0 +1,14 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch();
+const m = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+const p = await m.newPage();
+await p.goto('https://framemedia-concept.jouwconcept.app/', { waitUntil: 'networkidle' });
+await p.waitForTimeout(1600);
+await p.screenshot({ path: 'shots/na-mob-top.png' });
+const d = await b.newPage({ viewport: { width: 1360, height: 900 } });
+await d.goto('https://framemedia-concept.jouwconcept.app/', { waitUntil: 'networkidle' });
+await d.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 600) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 50)); } });
+await d.locator('.cta-band').scrollIntoViewIfNeeded();
+await d.waitForTimeout(600);
+await d.locator('.cta-band').screenshot({ path: 'shots/na-cta.png' });
+await b.close(); console.log('ok');

@@ -1,0 +1,79 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "framemedia",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // De adressen van de site zijn zonder .html (/studio, niet /studio.html) en de
+    // twee landingspagina's eindigen op een slash (/puurgenieten/). Dat is precies
+    // wat elke canonical, elke hreflang en elke sitemap-regel hier al zegt, dus
+    // "auto-trailing-slash" laat /studio een 200 geven en /puurgenieten/ ook,
+    // zonder dat een van de twee vormen naast de andere blijft staan.
+    "html_handling": "auto-trailing-slash",
+    // Een onbekend pad krijgt dist/404.html MET status 404, niet de startpagina
+    // met een 200 - dat tweede leest Google als een soft 404.
+    "not_found_handling": "404-page",
+    // Alleen de formulieren gaan door de worker. Alle 23 pagina's komen
+    // rechtstreeks van de edge zonder worker ertussen; dat is het hele punt van
+    // een statische site.
+    "run_worker_first": ["/api/*"]
+  },
+  // Twee hostnamen, en maar een ervan levert pagina's uit.
+  //
+  // www.framemedia.tv is de canonieke: dat is wat hun WordPress-site al jaren
+  // uitleverde en dus wat er in Google en in links naar buiten staat. Een migratie
+  // is niet het moment om ook nog van hostnaam te wisselen, dus wijzen alle
+  // canonicals, hreflangs en sitemap-regels naar www en niet naar de apex. Dat is
+  // bewust andersom dan de huisregel in de root CLAUDE.md (apex canoniek): die
+  // regel geldt voor een nieuw domein zonder geschiedenis.
+  //
+  // De apex framemedia.tv hangt er wel aan, met een Redirect Rule op de zone die
+  // hem met een 301 naar www stuurt (pad en query intact). Dynamic Redirects lopen
+  // voor Workers, dus de worker wordt daar niet aangeroepen. De apex blijft als
+  // custom domain gebonden en wordt geen losse DNS-regel: wordt die rule ooit
+  // weggehaald, dan levert de apex de site uit in plaats van een foutmelding -
+  // dubbele inhoud is een betere dag dan een storing.
+  "routes": [
+    {
+      "pattern": "www.framemedia.tv",
+      "custom_domain": true
+    },
+    {
+      "pattern": "framemedia.tv",
+      "custom_domain": true
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["no-reply@notify.framemedia.tv"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "framemedia",
+    // Aanvragen komen voorlopig bij ons binnen, niet bij FRAME MEDIA zelf. Dit
+    // adres is ook de reply-to op de bevestiging die de bezoeker krijgt, dus wie
+    // daarop antwoordt komt bij ons uit. Zodra Frans een mailbox aanwijst
+    // (info@framemedia.tv ligt voor de hand) is het deze regel, en dan mag er geen
+    // testinzending meer tegen de live config.
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // Het verzenddomein notify.framemedia.tv is op 17-10-2026 op de zone
+    // framemedia.tv gezet (DKIM, SPF en een p=reject DMARC staan erop). Het deel
+    // voor de @ is vrij, dus no-reply@ veranderen is deze regel plus
+    // allowed_sender_addresses hierboven, zonder DNS-werk. Er komt niets aan op dit
+    // adres: de bevestiging draagt een reply-to naar LEAD_RECIPIENT.
+    "LEAD_SENDER": "no-reply@notify.framemedia.tv"
+  }
+}

@@ -1,0 +1,13 @@
+import { chromium } from 'playwright';
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1360, height: 900 } });
+await page.goto('http://localhost:4174/studio.html', { waitUntil: 'networkidle' });
+await page.waitForTimeout(1800);
+await page.locator('.schetsen').scrollIntoViewIfNeeded(); await page.waitForTimeout(400);
+await page.locator('.schetsen').screenshot({ path: 'shots/crop-schetsen.png' });
+await page.locator('.keten').scrollIntoViewIfNeeded(); await page.waitForTimeout(400);
+await page.locator('.keten').screenshot({ path: 'shots/crop-keten.png' });
+await page.locator('.meters').scrollIntoViewIfNeeded(); await page.waitForTimeout(1600);
+await page.locator('.meters').screenshot({ path: 'shots/crop-meters.png' });
+await browser.close();
+console.log('ok');

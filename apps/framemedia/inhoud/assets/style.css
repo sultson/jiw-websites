@@ -1,0 +1,1475 @@
+/* FRAME MEDIA - conceptsite
+   ---------------------------------------------------------------------------
+   Donkere broadcast-opzet. De kleuren komen uit hun eigen logobestand:
+   #2e3e50 en #324a5e (de bol), #95a4a3 (de banden) en #bf2027 (FRAME).
+   Op een donkere achtergrond is dat rood te zwak (3,2:1), dus voor tekst en
+   randen gebruiken we een opgehelderde variant en blijft #bf2027 alleen daar
+   waar er wit overheen komt - daar haalt hij 6,1:1.
+
+   Het terugkerende vormidee is de kaderhoek: vier hoekjes zoals de markering
+   in een zoeker. Het bedrijf heet Frame; dan is het kader het merk en niet
+   een versiering. Zie .kader.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* De site bestaat sinds 11-10-2026 alleen nog donker, dus dat mag de
+     browser weten: scrollbalken en de uitklap van een <select> komen dan ook
+     donker. Dit stond eerder alleen op de vijf vlakken die in de lichte
+     weergave donker bleven. */
+  color-scheme: dark;
+
+  --inkt: #0d1117;
+  --inkt-2: #11161d;
+  --paneel: #161e28;
+  --paneel-2: #1d2733;
+  --marine: #2e3e50;
+  --marine-licht: #324a5e;
+  --staal: #95a4a3;
+  --rood: #ff4d57;
+  --rood-vast: #bf2027;
+  --rood-diep: #a81a20;
+  --wit: #ffffff;
+  /* --wit is de sterkste tekstkleur en kantelt dus mee in de lichte weergave.
+     Op drie plekken is wit geen tekst maar een echt wit vlak: de logotegel,
+     de lichte knop en de zoekermarkering over bewegend beeld. Die staan in
+     --vlak-wit en kantelen nooit. Zelfde verhaal voor --donker-vast: de tekst
+     op die lichte knop moet donker blijven, in welke weergave dan ook. */
+  --vlak-wit: #ffffff;
+  --donker-vast: #0d1117;
+  --tekst: #c8d2dd;
+  --tekst-zacht: #8b9aab;
+  --lijn: rgba(149, 164, 163, 0.18);
+  --lijn-sterk: rgba(149, 164, 163, 0.34);
+
+  --kop: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --lees: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --wrap: 1180px;
+  --radius: 10px;
+  --radius-klein: 6px;
+  --radius-groot: 18px;
+  --schaduw: 0 24px 60px -20px rgba(0, 0, 0, 0.75);
+
+  /* --- glas ---------------------------------------------------------------
+     Een vlak dat je door kunt kijken moet drie dingen tegelijk doen: wazig
+     maken wat erachter ligt, een randje licht vangen waar het licht vandaan
+     komt, en een schaduw werpen. Alle drie staan hier, zodat elke kaart op de
+     site dezelfde dikte heeft. De achtergrondkleur blijft bewust donker: het
+     contrastscript rekent een rgba-vlak als ondoorzichtig, dus als het glas
+     te licht wordt leest de meting beter dan het oog. --------------------- */
+  --glas: rgba(20, 27, 36, .62);
+  --glas-op: rgba(28, 37, 48, .72);
+  --glas-rand: rgba(255, 255, 255, .085);
+  --glas-rand-op: rgba(255, 255, 255, .17);
+  --glas-waas: blur(18px) saturate(150%);
+  --glans: inset 0 1px 0 rgba(255, 255, 255, .07);
+  --diepte: 0 1px 2px rgba(0, 0, 0, .5), 0 24px 56px -32px rgba(0, 0, 0, .95);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+/* De menubalk blijft staan, dus een anker landt anders onder de balk en dan
+   lijkt de halve kop weggevallen. 74px balk plus lucht. Geldt voor alles met
+   een id, want elk id is een mogelijk anker. */
+[id] { scroll-margin-top: 104px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--inkt);
+  color: var(--tekst);
+  font-family: var(--lees);
+  font-size: 17px;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3, h4 {
+  font-family: var(--kop);
+  color: var(--wit);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  margin: 0 0 .5em;
+  font-variation-settings: 'wdth' 100;
+}
+h1 { font-size: clamp(2.5rem, 6vw, 4.15rem); letter-spacing: -0.03em; }
+h2 { font-size: clamp(1.9rem, 3.8vw, 2.85rem); letter-spacing: -0.025em; }
+h3 { font-size: clamp(1.2rem, 2vw, 1.45rem); letter-spacing: -0.015em; }
+h4 { font-size: 1.02rem; letter-spacing: 0; }
+p { margin: 0 0 1.15em; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--rood); text-decoration-color: rgba(255, 77, 87, .4); text-underline-offset: 3px; }
+a:hover { color: #ff7078; }
+
+::selection { background: var(--rood-vast); color: #fff; }
+
+:focus-visible {
+  outline: 2px solid var(--rood);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
+.smal { max-width: 760px; }
+
+/* Wel voor de schermlezer, niet voor het oog. Clip in plaats van display:none,
+   want dat laatste haalt het ook uit de toegankelijkheidsboom. */
+.visueel-verborgen {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+.skip {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  background: var(--rood-vast); color: #fff; padding: .7rem 1.1rem; font-weight: 600;
+}
+.skip:focus { left: .5rem; top: .5rem; }
+
+/* Dat dit een concept is staat nu alleen nog onderaan in de voettekst, in de
+   contactbevestiging, en in de noindex + robots.txt. Geen lint meer bovenaan. */
+
+/* --- kaderhoeken ---------------------------------------------------------- */
+/* Vier hoekjes zoals de markering in een camerazoeker. Dit is het vormidee
+   van de hele site: het bedrijf heet Frame, dus het kader is het merk. */
+.kader { position: relative; }
+.kader::before, .kader::after {
+  content: ''; position: absolute; width: 16px; height: 16px; pointer-events: none;
+  border-color: var(--rood); border-style: solid; border-width: 0;
+}
+.kader::before { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; }
+.kader::after { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
+
+/* --- menubalk ------------------------------------------------------------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--inkt-2);
+  border-bottom: 1px solid var(--lijn);
+}
+.header-inner {
+  display: flex; align-items: center; gap: 1.15rem;
+  min-height: 74px;
+}
+.brand { display: block; flex-shrink: 0; text-decoration: none; }
+.brand img { height: 40px; width: auto; }
+/* Het hele insigne - alleen waar het groot mag staan. */
+.brand-groot { display: block; text-decoration: none; }
+.brand-groot img { height: 104px; width: auto; }
+
+/* Acht knoppen plus de taalkeuze plus de contactknop (Puur Genieten erbij op
+   10-10-2026, Programma idee op 17-10-2026). Dat past alleen als de ruimte om
+   de woorden heen krapper is dan daarvoor; onder 1180 klapt de balk in. De
+   maten hier zijn nagemeten met meet-balk.mjs op twaalf schermbreedtes - ga je
+   eraan zitten, meet dan opnieuw, want een knop die niet afbreekt bepaalt hoe
+   breed de pagina is. */
+.nav { margin-left: auto; display: flex; align-items: center; gap: .05rem; }
+/* :not(.btn) is hier niet netjes maar noodzakelijk: ".nav > a" weegt (0,1,1)
+   en ".btn-primair" maar (0,1,0), dus zonder die uitzondering wint de
+   menukleur van de knopkleur en staat de knop grijs op rood (3,98:1). */
+.nav > a:not(.btn) {
+  color: var(--tekst);
+  text-decoration: none;
+  font-size: .86rem;
+  font-weight: 500;
+  padding: .55rem .46rem;
+  border-radius: var(--radius);
+  white-space: nowrap;
+  position: relative;
+}
+.nav > a:not(.btn):hover { color: var(--wit); background: rgba(149, 164, 163, .08); }
+.nav > a[aria-current="page"] { color: var(--wit); }
+.nav > a[aria-current="page"]::after {
+  content: ''; position: absolute; left: .46rem; right: .46rem; bottom: .16rem;
+  height: 2px; background: var(--rood);
+}
+.nav .btn { margin-left: .4rem; }
+
+/* Taalkeuze (NL / EN / DE). Staat in de menubalk en niet onderin bij de
+   weergaveknop: de talen horen bij de site zelf, de weergaveknop bij deze
+   conceptversie. Drie korte codes naast elkaar met een scheiding ertussen -
+   een vlaggetje zegt een land en niet een taal. */
+.taalkeuze {
+  display: flex; align-items: center; margin-left: .3rem;
+  border: 1px solid var(--lijn-sterk); border-radius: var(--radius);
+  overflow: hidden;
+}
+.taalkeuze a {
+  color: var(--tekst); text-decoration: none;
+  font-size: .78rem; font-weight: 600; letter-spacing: .04em;
+  padding: .42rem .52rem; line-height: 1;
+}
+.taalkeuze a + a { border-left: 1px solid var(--lijn); }
+.taalkeuze a:hover { color: var(--wit); background: rgba(149, 164, 163, .08); }
+.taalkeuze a[aria-current="true"] { color: var(--wit); background: rgba(149, 164, 163, .14); }
+
+.voet-taal { color: var(--zacht); }
+
+.nav-toggle {
+  display: none; margin-left: auto;
+  background: transparent; border: 1px solid var(--lijn-sterk); border-radius: var(--radius);
+  width: 44px; height: 44px; padding: 0; cursor: pointer; color: var(--wit);
+}
+.nav-toggle svg { width: 22px; height: 22px; margin: auto; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.nav-toggle .x { display: none; }
+.nav-toggle[aria-expanded="true"] .burger { display: none; }
+.nav-toggle[aria-expanded="true"] .x { display: block; }
+
+/* --- knoppen -------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  font-family: var(--lees); font-size: .93rem; font-weight: 600;
+  padding: .78rem 1.35rem; border-radius: var(--radius);
+  text-decoration: none; border: 1px solid transparent; cursor: pointer;
+  transition: background .16s ease, border-color .16s ease, color .16s ease;
+  white-space: nowrap; line-height: 1.2;
+}
+.btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+/* Het WhatsApp-teken. Een gevuld merkteken van iemand anders tussen onze
+   getekende iconen, dus niet hertekend maar als bestand ingeladen en met een
+   mask gekleurd: zo volgt het currentColor en klopt het in beide weergaves.
+   Iets groter dan 17px omdat een gevulde vorm optisch kleiner leest. */
+.ico-wa {
+  width: 18px; height: 18px; flex-shrink: 0; background: currentColor;
+  -webkit-mask: url(/assets/wa.svg) center / contain no-repeat;
+          mask: url(/assets/wa.svg) center / contain no-repeat;
+}
+.btn-primair { background: var(--rood-vast); color: #fff; }
+.btn-primair:hover { background: var(--rood-diep); color: #fff; }
+.btn-rand { border-color: var(--lijn-sterk); color: var(--wit); background: transparent; }
+.btn-rand:hover { border-color: var(--staal); background: rgba(149, 164, 163, .1); color: var(--wit); }
+.btn-licht { background: var(--vlak-wit); color: var(--donker-vast); }
+.btn-licht:hover { background: #e6edf4; color: var(--donker-vast); }
+.btn-groot { padding: .95rem 1.7rem; font-size: 1rem; }
+
+.knoppen { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+/* --- kicker --------------------------------------------------------------- */
+.kicker {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: var(--lees); font-size: .74rem; font-weight: 600;
+  letter-spacing: .17em; text-transform: uppercase;
+  color: var(--staal); margin: 0 0 1.1rem;
+}
+.kicker::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--rood); flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(255, 77, 87, .55);
+  animation: rec 2.6s ease-out infinite;
+}
+@keyframes rec {
+  0% { box-shadow: 0 0 0 0 rgba(255, 77, 87, .5); }
+  70%, 100% { box-shadow: 0 0 0 9px rgba(255, 77, 87, 0); }
+}
+.kicker-wit { color: rgba(255, 255, 255, .72); }
+
+/* --- secties -------------------------------------------------------------- */
+section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
+.sec-paneel { background: var(--paneel); border-block: 1px solid var(--lijn); }
+/* De kleur staat als background-color onder het verloop, en niet alleen in het
+   verloop zelf. Een verloop is een background-image, dus zonder die regel is
+   de gemeten achtergrond doorzichtig en loopt het contrastscript door naar de
+   pagina eronder - op donker viel dat niet op omdat die toevallig ook donker
+   is, in de lichte weergave meldde het 1,06:1 op een band die in het echt
+   gewoon donker is. Zelfde reden als bij .cta-band hieronder. */
+.sec-marine {
+  background-color: var(--marine);
+  background-image: linear-gradient(160deg, var(--marine) 0%, #24303e 100%);
+}
+.sec-kop { max-width: 700px; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.sec-kop p { color: var(--tekst-zacht); font-size: 1.07rem; margin-bottom: 0; }
+.sec-kop.midden { margin-inline: auto; text-align: center; }
+.sec-kop.midden .kicker { justify-content: center; }
+
+/* --- hero ----------------------------------------------------------------- */
+.hero {
+  position: relative; overflow: hidden;
+  padding: clamp(3rem, 6.5vw, 5.5rem) 0 clamp(3rem, 5.5vw, 4.5rem);
+  background:
+    radial-gradient(900px 520px at 78% 8%, rgba(46, 62, 80, .58), transparent 62%),
+    radial-gradient(620px 420px at 8% 92%, rgba(191, 32, 39, .16), transparent 64%),
+    var(--inkt);
+}
+/* Scanlijnen. Heel subtiel - het idee is een beeldbuis, niet een effect. */
+.hero::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, .018) 0 1px, transparent 1px 3px);
+}
+.hero > .wrap { position: relative; z-index: 2; }
+.hero h1 { max-width: 15ch; }
+.hero-lead { font-size: clamp(1.06rem, 1.9vw, 1.22rem); color: var(--tekst); max-width: 56ch; margin-bottom: 2rem; }
+.hero-lead strong { color: var(--wit); font-weight: 600; }
+.hero .knoppen { margin-bottom: 2.4rem; }
+
+.hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+
+/* Het beeldkader rechts in de hero: een 16:9-vlak met zoekermarkeringen,
+   een tijdcode en een opnamelampje. Geen foto, want die hebben we niet -
+   dit is wat een cameraman ziet en het zegt precies wat zij doen. */
+.zoeker {
+  position: relative; aspect-ratio: 16 / 9; border: 1px solid var(--lijn-sterk);
+  background:
+    linear-gradient(135deg, rgba(46, 62, 80, .85), rgba(13, 17, 23, .9)),
+    var(--inkt-2);
+  display: grid; place-items: center; border-radius: var(--radius);
+}
+.zoeker-hoek { position: absolute; width: 26px; height: 26px; border: 2px solid var(--vlak-wit); opacity: .85; }
+.zoeker-hoek.lb { top: 14px; left: 14px; border-right: 0; border-bottom: 0; }
+.zoeker-hoek.rb { top: 14px; right: 14px; border-left: 0; border-bottom: 0; }
+.zoeker-hoek.lo { bottom: 14px; left: 14px; border-right: 0; border-top: 0; }
+.zoeker-hoek.ro { bottom: 14px; right: 14px; border-left: 0; border-top: 0; }
+/* In de zoeker draait nu de showreel: elf seconden uit vijf van hun eigen
+   uitzendingen. Eerder stond hier hun insigne, omdat we geen bewegend beeld
+   hadden; dat hebben we nu wel, en een zoeker hoort een opname te tonen. */
+.zoeker.heeft-reel { display: block; overflow: hidden; background: var(--inkt-2); }
+.zoeker-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+/* Donker verloop langs de boven- en onderrand. Zonder dit valt REC weg tegen
+   een licht beeld - precies wat er eerder misging met de studiofoto. */
+.zoeker-floers {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(5, 8, 12, .72) 0%, transparent 22%, transparent 76%, rgba(5, 8, 12, .78) 100%);
+}
+.zoeker.heeft-reel .zoeker-hoek,
+.zoeker.heeft-reel .zoeker-rec,
+.zoeker.heeft-reel .zoeker-tc { z-index: 3; }
+
+/* Pauzeknop. Bewegend beeld dat vanzelf start hoort stop te kunnen. */
+.zoeker-pauze {
+  position: absolute; right: 12px; bottom: 12px; z-index: 4;
+  width: 34px; height: 34px; padding: 0; cursor: pointer;
+  display: grid; place-items: center; border-radius: 3px;
+  background: rgba(5, 8, 12, .62); border: 1px solid rgba(255, 255, 255, .34);
+  color: #fff; opacity: 0; transition: opacity .18s ease, background .18s ease;
+}
+.zoeker:hover .zoeker-pauze, .zoeker-pauze:focus-visible { opacity: 1; }
+.zoeker-pauze:hover { background: rgba(5, 8, 12, .85); }
+.zoeker-pauze svg { width: 15px; height: 15px; fill: currentColor; stroke: none; }
+.zoeker-pauze .i-speel { display: none; }
+.zoeker.staat-stil .zoeker-pauze { opacity: 1; }
+.zoeker.staat-stil .zoeker-pauze .i-pauze { display: none; }
+.zoeker.staat-stil .zoeker-pauze .i-speel { display: block; }
+/* Staat hij stil, dan knippert het opnamelampje ook niet meer. */
+.zoeker.staat-stil .zoeker-rec { color: var(--tekst-zacht); }
+.zoeker.staat-stil .zoeker-rec i { animation: none; opacity: .3; background: var(--tekst-zacht); }
+
+.zoeker-bij {
+  margin: .85rem 0 0; font-size: .78rem; color: var(--tekst-zacht);
+  letter-spacing: .04em; text-align: center;
+}
+
+.zoeker-merk { width: 52%; max-width: 280px; height: auto; }
+.zoeker-rec {
+  position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-family: var(--kop); font-size: .68rem; font-weight: 700; letter-spacing: .2em;
+  color: var(--rood);
+}
+.zoeker-rec i { width: 8px; height: 8px; border-radius: 50%; background: var(--rood); animation: knipper 1.8s steps(1) infinite; }
+@keyframes knipper { 0%, 55% { opacity: 1; } 56%, 100% { opacity: .18; } }
+.zoeker-tc {
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  font-family: var(--kop); font-size: .68rem; letter-spacing: .18em;
+  color: rgba(255, 255, 255, .5); font-variant-numeric: tabular-nums;
+}
+
+/* --- logotegels ------------------------------------------------------------
+   Elk logo staat op een witte tegel. Dat is geen smaak maar noodzaak: zie
+   shots/logoproef-nieuw.png. Op donker vallen AIRBUS, BANG & OLUFSEN, CHINA
+   AIRLINES en de 4 van RTL 4 bijna weg, want dat zijn donkerblauwe en zwarte
+   logo's. Platslaan naar een witte variant kan niet - bij Jaarbeurs, Vivera
+   en Electroworld is de witte vorm een uitsparing, die wordt dan een klodder.
+   Een witte tegel is bovendien hoe een logo bedoeld is, en het geeft een
+   donkere pagina precies de lichtpunten die hij nodig heeft.
+   ------------------------------------------------------------------------- */
+.logo-tegel {
+  display: inline-grid; place-items: center;
+  background: var(--vlak-wit); border-radius: 5px;
+  padding: .72rem 1.05rem; min-width: 104px; min-height: 60px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.logo-tegel img { width: auto; height: auto; max-height: 34px; max-width: 128px; }
+/* Febo levert alleen een witte PNG aan. Omkeren maakt hem zwart; bij een
+   grijswaarden-PNG blijft de doorzichtigheid intact, dus de vorm blijft heel. */
+.logo-tegel.keer-om img { filter: invert(1); }
+
+/* --- zenderrij ------------------------------------------------------------ */
+.zenders {
+  border-top: 1px solid var(--lijn); padding: 1.9rem 0;
+  background: var(--inkt-2);
+}
+.zenders-rij {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem;
+  justify-content: center;
+}
+.zenders-label {
+  font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--tekst-zacht); font-weight: 600;
+}
+.zender-logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .6rem; }
+.logo-tegel.zender { min-width: 92px; min-height: 54px; padding: .6rem .9rem; }
+.logo-tegel.zender:hover { transform: translateY(-2px); box-shadow: 0 8px 22px -8px rgba(0, 0, 0, .7); }
+
+/* --- schuivende band met opdrachtgevers ------------------------------------
+   De lijst staat er twee keer in. De band schuift precies de breedte van een
+   helft op en springt dan terug; omdat de tweede helft identiek is valt dat
+   terugspringen niet op. De breedte en de duur worden in site.js gemeten, dus
+   de snelheid blijft gelijk of er nu tien of twintig logo's in staan.
+   ------------------------------------------------------------------------- */
+.klantenband { background: var(--inkt); border-bottom: 1px solid var(--lijn); padding: 2.4rem 0 2.6rem; overflow: hidden; }
+.klantenband-kop {
+  font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--tekst-zacht); font-weight: 600; text-align: center; margin: 0 0 1.4rem;
+}
+.marquee { position: relative; overflow: hidden; }
+/* Aan de randen uitvagen, anders knallen de logo's tegen de schermrand aan. */
+.marquee::before, .marquee::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 90px; z-index: 2; pointer-events: none;
+}
+.marquee::before { left: 0; background: linear-gradient(to right, var(--inkt), transparent); }
+.marquee::after { right: 0; background: linear-gradient(to left, var(--inkt), transparent); }
+.marquee-spoor { display: flex; width: max-content; }
+.marquee-helft { display: flex; gap: .7rem; padding-right: .7rem; }
+.marquee.loopt .marquee-spoor {
+  animation: schuif var(--marquee-duur, 40s) linear infinite;
+}
+@keyframes schuif {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(var(--marquee-breedte) * -1)); }
+}
+.marquee:hover .marquee-spoor, .marquee:focus-within .marquee-spoor { animation-play-state: paused; }
+.logo-tegel.klant { min-width: 150px; min-height: 76px; }
+.logo-tegel.klant img { max-height: 38px; max-width: 124px; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee.loopt .marquee-spoor { animation: none; }
+  .marquee { overflow-x: auto; }
+}
+
+/* --- roosters met scheidslijnen -------------------------------------------
+   Vier roosters (cijfers, stappen, specs, namen) tekenden hun lijnen met een
+   gat van 1px over een lijnkleurige ondergrond. Dat werkt zolang elke rij vol
+   is, maar zodra de laatste rij half leeg is - het namenrooster vult zichzelf
+   naar schermbreedte, en drie stappen in twee kolommen laten er een over -
+   blijft er een grijs vlak staan waar geen tegel is. Daarom ligt de lijn nu
+   op de tegel zelf: een ring van 1px die precies in het gat van de buren
+   valt. Waar geen tegel staat wordt ook geen lijn getekend en zie je gewoon
+   de achtergrond van de band. Een ring telt niet mee voor de afmetingen, dus
+   de opmaak blijft hetzelfde.
+   ------------------------------------------------------------------------- */
+.cijfer, .stap, .spec, .namen span, .extra { box-shadow: 0 0 0 1px var(--lijn); }
+
+/* --- cijfers -------------------------------------------------------------- */
+.cijfers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; }
+.cijfer { background: var(--inkt-2); padding: 1.7rem 1.4rem; }
+.cijfer b {
+  display: block; font-family: var(--kop); font-weight: 700;
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem); color: var(--wit); line-height: 1;
+  letter-spacing: -.02em; margin-bottom: .45rem;
+  font-variation-settings: 'wdth' 108;
+}
+.cijfer span { font-size: .87rem; color: var(--tekst-zacht); line-height: 1.45; display: block; }
+
+/* --- routekaarten --------------------------------------------------------- */
+.routes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+.route {
+  position: relative; display: flex; flex-direction: column;
+  background: var(--inkt-2); border: 1px solid var(--lijn);
+  border-radius: var(--radius); padding: 2rem 1.7rem 1.7rem;
+  text-decoration: none; color: inherit;
+  transition: border-color .18s ease, transform .18s ease, background .18s ease;
+}
+.route:hover { border-color: var(--lijn-sterk); transform: translateY(-3px); background: var(--paneel-2); color: inherit; }
+.route:hover::before, .route:hover::after { opacity: 1; }
+.route::before, .route::after { opacity: 0; transition: opacity .18s ease; }
+.route-nr {
+  font-family: var(--kop); font-size: .75rem; font-weight: 700; letter-spacing: .18em;
+  color: var(--rood); margin-bottom: .9rem; display: block;
+}
+.route h3 { margin-bottom: .55rem; }
+.route > p { color: var(--tekst-zacht); font-size: .96rem; margin-bottom: 1.2rem; }
+.route ul { list-style: none; margin: 0 0 1.4rem; padding: 0; display: grid; gap: .5rem; }
+.route ul li { font-size: .89rem; color: var(--tekst); padding-left: 1.35rem; position: relative; line-height: 1.5; }
+.route ul li::before {
+  content: ''; position: absolute; left: 0; top: .52em;
+  width: 7px; height: 7px; border: 1px solid var(--staal); border-radius: 1px;
+}
+.route-meer {
+  margin-top: auto; display: inline-flex; align-items: center; gap: .45rem;
+  font-size: .9rem; font-weight: 600; color: var(--wit);
+}
+.route-meer svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .18s ease; }
+.route:hover .route-meer svg { transform: translateX(4px); }
+.route:hover .route-meer { color: var(--rood); }
+
+/* --- algemene kaart ------------------------------------------------------- */
+.kaarten { display: grid; gap: 1.3rem; }
+.kaarten.k2 { grid-template-columns: repeat(2, 1fr); }
+.kaarten.k3 { grid-template-columns: repeat(3, 1fr); }
+.kaart {
+  background: var(--inkt-2); border: 1px solid var(--lijn);
+  border-radius: var(--radius); padding: 1.7rem;
+}
+.sec-paneel .kaart { background: var(--inkt); }
+.kaart h3 { margin-bottom: .5rem; }
+.kaart p { color: var(--tekst-zacht); font-size: .96rem; }
+.kaart-bij {
+  font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--rood); font-weight: 600; display: block; margin-bottom: .6rem;
+}
+
+/* --- stappen -------------------------------------------------------------- */
+.stappen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; }
+.stap { background: var(--inkt-2); padding: 1.8rem 1.6rem; position: relative; }
+.sec-paneel .stap { background: var(--paneel); }
+.stap-nr {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border: 1px solid var(--rood); color: var(--rood);
+  font-family: var(--kop); font-weight: 700; font-size: .9rem; border-radius: 2px;
+  margin-bottom: 1rem;
+}
+.stap h3 { font-size: 1.12rem; margin-bottom: .4rem; }
+.stap p { font-size: .93rem; color: var(--tekst-zacht); margin: 0; }
+
+/* --- vergelijkingstabel --------------------------------------------------- */
+.vgl-wrap { border: 1px solid var(--lijn); border-radius: var(--radius); overflow: hidden; }
+table.vgl { width: 100%; border-collapse: collapse; font-size: .95rem; }
+table.vgl th, table.vgl td { padding: 1rem 1.2rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--lijn); }
+table.vgl thead th {
+  background: var(--inkt-2); color: var(--wit); font-family: var(--kop); font-weight: 700;
+  font-size: .95rem; letter-spacing: -.01em;
+}
+table.vgl thead th:last-child { color: var(--rood); }
+table.vgl tbody th {
+  font-family: var(--lees); font-weight: 600; color: var(--tekst-zacht);
+  font-size: .8rem; letter-spacing: .09em; text-transform: uppercase; width: 1%; white-space: nowrap;
+  background: var(--inkt-2);
+}
+table.vgl tbody td { color: var(--tekst-zacht); }
+table.vgl tbody td:last-child { color: var(--tekst); background: rgba(191, 32, 39, .05); }
+table.vgl tbody tr:last-child th, table.vgl tbody tr:last-child td { border-bottom: 0; }
+
+/* --- tarieven ------------------------------------------------------------- */
+.tarieven { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.tarief {
+  background: var(--inkt-2); border: 1px solid var(--lijn); border-radius: var(--radius);
+  padding: 1.9rem 1.6rem; text-align: center; position: relative;
+}
+.tarief.uit { border-color: var(--rood); background: var(--paneel-2); }
+.tarief-vlag {
+  position: absolute; top: -1px; left: 50%; transform: translate(-50%, -50%);
+  background: var(--rood-vast); color: #fff; font-size: .68rem; font-weight: 700;
+  letter-spacing: .13em; text-transform: uppercase; padding: .28rem .8rem; border-radius: 2px;
+}
+.tarief-duur {
+  font-family: var(--kop); font-weight: 700; font-size: 1.15rem; color: var(--wit);
+  display: block; margin-bottom: .7rem;
+}
+.tarief-prijs {
+  font-family: var(--kop); font-weight: 700; font-size: clamp(2rem, 4vw, 2.5rem);
+  color: var(--wit); line-height: 1; letter-spacing: -.02em; display: block;
+  font-variation-settings: 'wdth' 105;
+}
+.tarief.uit .tarief-prijs { color: var(--rood); }
+/* 'Op aanvraag' in de maat van een getal van vier cijfers loopt over zijn
+   kaart heen. Een woord staat een maat kleiner en mag afbreken. */
+.tarief-prijs-woord {
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem); letter-spacing: 0;
+  white-space: normal; overflow-wrap: anywhere;
+}
+/* Wat je voor dat bedrag aan uitzending krijgt. Hoort bij de prijs en niet bij
+   de kleine regel eronder, dus in de kleur van de tekst en niet in het zacht
+   grijs, met een lijntje dat hem aan het bedrag vastknoopt. */
+.tarief-zendtijd {
+  display: block; margin-top: .7rem; padding-top: .7rem;
+  border-top: 1px solid var(--lijn);
+  font-family: var(--kop); font-weight: 600; font-size: .92rem;
+  line-height: 1.35; color: var(--tekst);
+}
+.tarief.uit .tarief-zendtijd { color: var(--wit); }
+.tarief-bij { font-size: .84rem; color: var(--tekst-zacht); display: block; margin-top: .6rem; }
+
+.extras { display: grid; gap: 1px; }
+.extra {
+  background: var(--inkt-2); padding: 1.05rem 1.4rem;
+  display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+}
+.extra-naam { font-weight: 500; color: var(--tekst); flex: 1 1 auto; font-size: .96rem; }
+.extra-bij { font-size: .82rem; color: var(--tekst-zacht); flex: 0 0 auto; }
+.extra-prijs { font-family: var(--kop); font-weight: 700; color: var(--wit); font-size: 1.05rem; flex: 0 0 auto; min-width: 5.5rem; text-align: right; }
+
+.prijs-noot {
+  margin-top: 1.4rem; font-size: .88rem; color: var(--tekst-zacht);
+  border-left: 2px solid var(--lijn-sterk); padding-left: 1rem;
+}
+
+/* --- inbegrepen lijst ----------------------------------------------------- */
+.vink { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; grid-template-columns: repeat(2, 1fr); }
+.vink li { position: relative; padding-left: 1.75rem; font-size: .95rem; line-height: 1.5; }
+.vink li::before {
+  content: ''; position: absolute; left: 0; top: .34em; width: 11px; height: 6px;
+  border-left: 2px solid var(--rood); border-bottom: 2px solid var(--rood);
+  transform: rotate(-45deg);
+}
+
+/* --- studio --------------------------------------------------------------- */
+.ruimte { border-top: 1px solid var(--lijn); padding-top: clamp(2.2rem, 4vw, 3.2rem); margin-top: clamp(2.2rem, 4vw, 3.2rem); }
+.ruimte:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+.ruimte-kop { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; margin-bottom: 2rem; }
+.ruimte-type {
+  font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--rood); font-weight: 600; display: block; margin-bottom: .55rem;
+}
+.ruimte-kop h2 { margin-bottom: 0; }
+.ruimte-kop > div:last-child p { color: var(--tekst-zacht); font-size: 1.02rem; }
+
+.specs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-bottom: 2rem; }
+.spec { background: var(--inkt-2); padding: 1.15rem 1.2rem; }
+.sec-paneel .spec { background: var(--paneel); }
+.spec dt { font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--tekst-zacht); margin-bottom: .35rem; }
+.spec dd { margin: 0; font-family: var(--kop); font-weight: 700; color: var(--wit); font-size: 1.08rem; letter-spacing: -.01em; }
+
+/* Hun eigen studiofoto's. De kaderhoek zit op de figure en niet op de img,
+   want een ::before op een vervangen element wordt niet getekend. */
+.foto { margin: 0; }
+.foto img {
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover;
+  border-radius: var(--radius); border: 1px solid var(--lijn-sterk);
+  background: var(--inkt-2);
+}
+/* De studioband op de startpagina: foto links, woord rechts. */
+.studioband { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(1.8rem, 4vw, 3.2rem); align-items: center; }
+.studioband .sec-kop { margin-bottom: 0; }
+.studioband h2 { margin-bottom: .9rem; }
+.studioband p:last-of-type { color: var(--tekst); margin: 0; }
+
+.ruimte-fotos { margin-bottom: clamp(1.8rem, 3.5vw, 2.6rem); }
+.ruimte-fotos.twee { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.ruimte-body { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(1.6rem, 4vw, 3rem); align-items: start; }
+.ruimte-body h4 {
+  font-size: .76rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--tekst-zacht); margin-bottom: 1rem; font-family: var(--lees); font-weight: 600;
+}
+.ruimte-body .vink { grid-template-columns: 1fr; gap: .58rem; }
+.ruimte-body .vink li { font-size: .92rem; }
+.blokken { display: grid; gap: 1.3rem; }
+.blok h4 {
+  font-family: var(--kop); font-size: 1rem; color: var(--wit); letter-spacing: -.01em;
+  text-transform: none; margin-bottom: .3rem; font-weight: 700;
+}
+.blok p { font-size: .94rem; color: var(--tekst-zacht); margin: 0; }
+
+/* --- ankerlijst ----------------------------------------------------------- */
+.ankers { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.ankers a {
+  font-size: .87rem; font-weight: 500; color: var(--tekst); text-decoration: none;
+  border: 1px solid var(--lijn-sterk); border-radius: var(--radius); padding: .5rem 1rem;
+}
+.ankers a:hover { border-color: var(--rood); color: var(--wit); background: rgba(191, 32, 39, .12); }
+
+/* --- namenrooster (referenties / formats) --------------------------------- */
+.namen { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1px; }
+.namen span {
+  background: var(--inkt-2); padding: .85rem 1.1rem; font-size: .9rem; color: var(--tekst-zacht);
+  transition: background .15s ease, color .15s ease;
+}
+.sec-paneel .namen span { background: var(--paneel); }
+.namen span:hover { background: var(--paneel-2); color: var(--wit); }
+
+.pillen { display: flex; flex-wrap: wrap; gap: .55rem; }
+.pillen span {
+  border: 1px solid var(--lijn-sterk); border-radius: 100px; padding: .42rem 1rem;
+  font-size: .88rem; color: var(--tekst);
+}
+
+/* --- vragen --------------------------------------------------------------- */
+.vragen { border: 1px solid var(--lijn); border-radius: var(--radius); overflow: hidden; }
+.vragen details { border-bottom: 1px solid var(--lijn); background: var(--inkt-2); }
+.sec-paneel .vragen details { background: var(--paneel); }
+.vragen details:last-child { border-bottom: 0; }
+.vragen summary {
+  cursor: pointer; padding: 1.15rem 3rem 1.15rem 1.4rem; position: relative;
+  font-family: var(--kop); font-weight: 700; color: var(--wit); font-size: 1.05rem;
+  letter-spacing: -.01em; list-style: none;
+}
+.vragen summary::-webkit-details-marker { display: none; }
+.vragen summary::after {
+  content: ''; position: absolute; right: 1.4rem; top: 1.5rem;
+  width: 9px; height: 9px; border-right: 2px solid var(--rood); border-bottom: 2px solid var(--rood);
+  transform: rotate(45deg); transition: transform .18s ease;
+}
+.vragen details[open] summary::after { transform: rotate(-135deg); top: 1.75rem; }
+.vragen summary:hover { background: var(--paneel-2); }
+.vragen .antwoord { padding: 0 3rem 1.35rem 1.4rem; color: var(--tekst-zacht); font-size: .97rem; }
+
+/* --- videokaarten ---------------------------------------------------------
+   Een kaart is een <button>, want er gebeurt iets op de pagina in plaats van
+   dat je ergens heen gaat. Pas na de klik komt er een youtube-insluiting in
+   de plaats; daarvoor staat er alleen een lokale webp.
+   ------------------------------------------------------------------------- */
+.videos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+/* Een losse video op de landingspagina: een kaart van een kwart breed zou daar
+   een vierkantje in een leeg vlak zijn. Niet de volle breedte, want een
+   insluiting van 1180 bij 664 duwt de rest van de pagina uit beeld. */
+.videos-een { grid-template-columns: 1fr; max-width: 860px; margin-inline: auto; }
+.video-kaart {
+  display: flex; flex-direction: column; text-align: left; gap: .75rem;
+  background: var(--inkt-2); border: 1px solid var(--lijn); border-radius: var(--radius);
+  padding: 0 0 .95rem; cursor: pointer; color: inherit; font-family: inherit;
+  transition: border-color .18s ease, transform .18s ease, background .18s ease;
+  overflow: hidden;
+}
+.sec-paneel .video-kaart { background: var(--inkt); }
+.video-kaart:hover { border-color: var(--lijn-sterk); transform: translateY(-3px); background: var(--paneel-2); }
+.video-kaart::before, .video-kaart::after { opacity: 0; transition: opacity .18s ease; }
+.video-kaart:hover::before, .video-kaart:hover::after { opacity: 1; }
+.video-beeld { position: relative; display: block; background: var(--inkt); }
+.video-beeld img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.video-speel {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  background: linear-gradient(to top, rgba(5, 8, 12, .55), transparent 55%);
+  transition: background .18s ease;
+}
+.video-speel .speel-i {
+  width: 46px; height: 46px; fill: #fff; stroke: none;
+  background: rgba(191, 32, 39, .92); border-radius: 50%; padding: 10px;
+  transition: transform .18s ease, background .18s ease;
+}
+.video-kaart:hover .speel-i { transform: scale(1.09); background: var(--rood-vast); }
+.video-duur {
+  position: absolute; right: 8px; bottom: 8px;
+  background: rgba(5, 8, 12, .82); color: #fff; font-size: .72rem; font-weight: 600;
+  padding: .14rem .4rem; border-radius: 2px; font-variant-numeric: tabular-nums;
+}
+.video-tekst { display: block; padding: 0 1rem; }
+.video-bij {
+  display: block; font-size: .68rem; letter-spacing: .13em; text-transform: uppercase;
+  color: var(--rood); font-weight: 600; margin-bottom: .3rem;
+}
+.video-titel {
+  display: block; font-family: var(--kop); font-weight: 700; color: var(--wit);
+  font-size: 1rem; letter-spacing: -.01em; line-height: 1.25;
+}
+/* De insluiting die na de klik in de plaats van de kaart komt. */
+.video-speler { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: var(--radius); overflow: hidden; }
+.video-speler iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+.eerder-kop {
+  font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--tekst-zacht); font-weight: 600; margin: 2.6rem 0 1rem;
+}
+
+/* --- branches van Puur Genieten -------------------------------------------
+   Dezelfde kaart als hierboven, maar staand: de aangeleverde clips zijn
+   720x1280. Vier op een rij zou vier zuilen van bijna een scherm hoog geven,
+   dus het zijn er hier vier bij een smallere kaart en minder eronder.
+   De speler is een gewone <video> en geen insluiting - dit zijn eigen
+   bestanden.
+
+   De kaart draagt ook .video-kaart, want dat is dezelfde kaart: achtergrond,
+   rand, zweefstand en het glas eronder staan daar al. Alleen .branche-kaart
+   geven liet een kale <button> staan met de grijze knopkleur van de browser,
+   en daar viel de witte titel in weg.
+   ------------------------------------------------------------------------- */
+.branches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+.branche-beeld { position: relative; display: block; background: var(--inkt); }
+.branche-beeld img { width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; display: block; }
+.branche-kaart .video-tekst { padding-bottom: .1rem; }
+/* De regel onder de branchenaam staat alleen op optie 1 van de
+   landingspagina (blok `branchesVol`). Zie LEESMIJ.md. */
+.branche-regel {
+  display: block; color: var(--tekst-zacht); font-size: .88rem; line-height: 1.45;
+  margin-top: .25rem;
+}
+.branche-speler { position: relative; aspect-ratio: 9 / 16; background: #000; border-radius: var(--radius); overflow: hidden; }
+.branche-speler video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+
+/* Het rondje van Puur Genieten naast de sectiekop. Het bronbestand heeft
+   witte hoeken om de cirkel heen; die gaan er hier af. */
+.sec-kop-logo { display: flex; align-items: center; gap: 1.4rem; max-width: 860px; }
+.pg-logo { width: 92px; height: 92px; border-radius: 50%; flex: none; display: block; }
+@media (max-width: 700px) {
+  .sec-kop-logo { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .pg-logo { width: 76px; height: 76px; }
+}
+
+/* --- band met kop en beeld naast elkaar ----------------------------------- */
+.band-kop { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(1.8rem, 4vw, 3.4rem); align-items: center; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.band-kop .sec-kop { margin-bottom: 0; }
+.band-kop .sec-kop p { color: rgba(255, 255, 255, .76); }
+.band-beeld { margin: 0; }
+.band-beeld img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--lijn-sterk); }
+
+/* De gegenereerde plaat in de hero van branded content. */
+.hero-plaat { margin: 0; }
+.hero-plaat img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--lijn-sterk); display: block; }
+.hero-plaat figcaption, .nabew-beeld figcaption {
+  font-size: .74rem; color: var(--tekst-zacht); text-align: center; margin-top: .6rem; letter-spacing: .03em;
+}
+
+/* --- nabewerkingsband ----------------------------------------------------- */
+.nabew { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(1.8rem, 4vw, 3.4rem); align-items: center; }
+.nabew p { color: var(--tekst-zacht); }
+.nabew-beeld { margin: 0; }
+.nabew-beeld video {
+  width: 100%; height: auto; display: block; aspect-ratio: 3 / 2; object-fit: cover;
+  border-radius: var(--radius); border: 1px solid var(--lijn-sterk); background: var(--inkt-2);
+}
+
+/* --- maatschetsen ---------------------------------------------------------
+   Vier ruimtes op schaal naast elkaar, getekend uit hun eigen afmetingen.
+   Alle vier dezelfde viewBox en dezelfde meter-per-eenheid, dus de vlakken
+   zijn onderling te vergelijken - dat is het hele punt van de tekening.
+   ------------------------------------------------------------------------- */
+.schetsen { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
+.schets { margin: 0; background: var(--inkt); border: 1px solid var(--lijn); border-radius: var(--radius); padding: 1rem 1rem .9rem; }
+.sec-paneel .schets { background: var(--inkt); }
+.schets svg { width: 100%; height: auto; display: block; }
+.s-vlak { fill: rgba(50, 74, 94, .42); stroke: var(--staal); stroke-width: 1.2; }
+.s-maat { stroke: var(--lijn-sterk); stroke-width: 1; }
+.s-tik { stroke: var(--staal); stroke-width: 1; }
+.s-tekst { fill: var(--tekst-zacht); font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; }
+.schets figcaption { margin-top: .7rem; display: grid; gap: .15rem; }
+.schets figcaption b { font-family: var(--kop); color: var(--wit); font-size: .98rem; }
+.schets figcaption span { font-size: .8rem; color: var(--tekst-zacht); font-variant-numeric: tabular-nums; }
+.schets-noot { margin-top: 1.3rem; font-size: .85rem; color: var(--tekst-zacht); border-left: 2px solid var(--lijn-sterk); padding-left: 1rem; }
+
+/* --- signaalketen --------------------------------------------------------- */
+.keten { margin: 0 0 clamp(1.8rem, 3.5vw, 2.6rem); }
+.keten svg { width: 100%; height: auto; }
+.k-vak { fill: var(--inkt); stroke: var(--lijn-sterk); stroke-width: 1; }
+.k-vak.beeld { stroke: rgba(255, 77, 87, .5); }
+.k-vak.geluid { stroke: rgba(149, 164, 163, .5); }
+.k-aantal { fill: var(--rood); font-family: var(--kop); font-size: 11px; font-weight: 700; }
+.k-naam { fill: var(--wit); font-family: 'Inter', sans-serif; font-size: 11.5px; font-weight: 600; }
+.k-rij { fill: var(--tekst-zacht); font-family: 'Inter', sans-serif; font-size: 9.5px; font-weight: 600; letter-spacing: .14em; }
+.k-pijl { stroke: var(--lijn-sterk); stroke-width: 1.3; fill: none; }
+.k-punt { fill: var(--lijn-sterk); }
+
+/* --- meters (canvas) ------------------------------------------------------ */
+.meters { display: grid; grid-template-columns: 300px 1fr; gap: 1.1rem; margin: 0; }
+.meter { background: var(--inkt); border: 1px solid var(--lijn); border-radius: var(--radius); padding: 1rem; }
+.meter-kop {
+  display: block; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--tekst-zacht); font-weight: 600; margin-bottom: .7rem;
+}
+.meter canvas { width: 100%; height: 230px; display: block; }
+.meter:first-child canvas { height: 230px; }
+
+/* --- cta-band ------------------------------------------------------------- */
+.cta-band {
+  background: linear-gradient(140deg, var(--marine) 0%, #1c2733 100%);
+  border-block: 1px solid var(--lijn);
+  text-align: center;
+}
+.cta-band h2 { max-width: 20ch; margin-inline: auto; }
+.cta-band p { color: rgba(255, 255, 255, .78); max-width: 58ch; margin-inline: auto; margin-bottom: 2rem; font-size: 1.05rem; }
+.cta-band .knoppen { justify-content: center; }
+
+/* --- formulier ------------------------------------------------------------ */
+.form-kaart {
+  background: var(--inkt-2); border: 1px solid var(--lijn); border-radius: var(--radius);
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+}
+.veld { margin-bottom: 1.1rem; }
+.veld label { display: block; font-size: .86rem; font-weight: 600; color: var(--tekst); margin-bottom: .4rem; }
+.veld input, .veld select, .veld textarea {
+  width: 100%; background: var(--inkt); border: 1px solid var(--lijn-sterk);
+  border-radius: var(--radius); padding: .72rem .9rem; color: var(--wit);
+  font-family: var(--lees); font-size: .96rem;
+}
+.veld textarea { min-height: 128px; resize: vertical; }
+.veld input:focus, .veld select:focus, .veld textarea:focus { border-color: var(--rood); outline: none; }
+.veld input::placeholder, .veld textarea::placeholder { color: #61707f; }
+.veld-rij { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.form-noot { font-size: .84rem; color: var(--tekst-zacht); margin-top: 1rem; }
+/* Alleen door site.js neergezet als het versturen mislukt. Rood op --inkt-2
+   haalt 5,4:1; het controlescript komt hier niet langs omdat het element er
+   pas is na een mislukte poging, dus die maat is met de hand nagerekend. */
+.form-mis { color: var(--rood); }
+.form-dank {
+  display: none; text-align: center; padding: 2.5rem 1rem;
+}
+.form-dank h3 { color: var(--rood); }
+.form-kaart.verstuurd form { display: none; }
+.form-kaart.verstuurd .form-dank { display: block; }
+
+.contact-lijst { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.3rem; }
+.contact-lijst li { display: flex; gap: .95rem; align-items: flex-start; }
+.contact-lijst svg { width: 20px; height: 20px; stroke: var(--rood); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: .22rem; }
+/* Het WhatsApp-teken in de bereikbaarheidslijst: zelfde maat en zelfde rood
+   als de getekende iconen ernaast, maar het is een mask en geen svg. */
+.ico-wa-lijst { width: 20px; height: 20px; margin-top: .22rem; background: var(--rood); }
+.contact-lijst b { display: block; color: var(--wit); font-family: var(--kop); font-size: .95rem; font-weight: 700; margin-bottom: .1rem; }
+.contact-lijst a { color: var(--tekst); text-decoration: none; }
+.contact-lijst a:hover { color: var(--rood); }
+.contact-lijst span { color: var(--tekst-zacht); font-size: .94rem; }
+
+/* --- tekstblok ------------------------------------------------------------ */
+.tekst h3 { margin-top: 2.2rem; }
+.tekst h3:first-child { margin-top: 0; }
+.tekst p { color: var(--tekst-zacht); }
+.tekst p.groot { font-size: 1.12rem; color: var(--tekst); }
+
+.citaat {
+  border-left: 2px solid var(--rood); padding: .3rem 0 .3rem 1.5rem;
+  font-family: var(--kop); font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 700;
+  color: var(--wit); line-height: 1.35; letter-spacing: -.015em; margin: 2rem 0;
+}
+
+/* --- vacature ------------------------------------------------------------- */
+.vac-grid { display: grid; grid-template-columns: 1.3fr .7fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+.vac-zij { position: sticky; top: 100px; }
+
+/* --- voettekst ------------------------------------------------------------ */
+.site-footer {
+  background: var(--inkt-2); border-top: 1px solid var(--lijn);
+  padding: clamp(2.8rem, 5vw, 4rem) 0 2rem;
+}
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 2.2rem; margin-bottom: 2.5rem; }
+.footer-grid > div:first-child p { font-size: .92rem; color: var(--tekst-zacht); margin-top: 1.1rem; max-width: 34ch; }
+.foot-h { font-family: var(--kop); font-weight: 700; color: var(--wit); font-size: .92rem; margin: 0 0 .9rem; }
+.foot-lijst { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.foot-lijst a, .foot-lijst span { color: var(--tekst-zacht); text-decoration: none; font-size: .9rem; }
+.foot-lijst a:hover { color: var(--wit); }
+.foot-onder {
+  border-top: 1px solid var(--lijn); padding-top: 1.4rem;
+  display: flex; flex-wrap: wrap; gap: .6rem 1.5rem; justify-content: space-between;
+  font-size: .82rem; color: var(--tekst-zacht);
+}
+
+/* --- meebewegende balk op de telefoon ------------------------------------- */
+.mobiel-cta { display: none; }
+
+/* --- 404 ------------------------------------------------------------------ */
+.pagina-404 { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 2rem; }
+/* Het cijfer was #324a5e en haalde daarmee 2,05:1. Groot en decoratief, maar
+   het is wel het enige dat zegt wat er mis is - dus opgehelderd tot boven de
+   3:1 die voor grote tekst geldt. */
+.pagina-404 .code {
+  font-family: var(--kop); font-size: clamp(4rem, 14vw, 9rem); font-weight: 700;
+  color: #63819e; line-height: 1; letter-spacing: -.04em; margin-bottom: 1rem;
+  font-variation-settings: 'wdth' 110;
+}
+
+/* ===========================================================================
+   ONTWERPLAAG - korrel, glas, tastbare knoppen, filmhero
+   ---------------------------------------------------------------------------
+   Staat bewust onderaan en niet verspreid door het bestand: dit is een laag
+   over de bestaande opzet heen, niet een herschrijving ervan. Alles hieronder
+   gaat over materiaal (hoe een vlak aanvoelt), niet over indeling.
+   =========================================================================== */
+
+/* --- korrel over de hele site ---------------------------------------------
+   Een gegenereerde korreltegel van 256px, in screen over alles heen op 7%.
+   Screen en niet overlay: de tegel is bijna zwart, dus alleen de lichte
+   spikkels komen door en de pagina wordt er niet donkerder van. Vast
+   gepositioneerd, dus de korrel scrollt niet mee - precies zoals filmkorrel
+   op de lens zit en niet op het onderwerp.
+   ------------------------------------------------------------------------- */
+.korrel {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background-image: url('/assets/gen/korrel.webp');
+  background-size: 256px 256px;
+  opacity: .07; mix-blend-mode: screen;
+}
+@media (prefers-reduced-motion: reduce) { .korrel { opacity: .05; } }
+
+/* --- menubalk van glas ---------------------------------------------------- */
+.site-header {
+  background: rgba(10, 14, 20, .64);
+  backdrop-filter: var(--glas-waas); -webkit-backdrop-filter: var(--glas-waas);
+  border-bottom: 1px solid var(--glas-rand);
+}
+@supports not (backdrop-filter: blur(4px)) {
+  .site-header { background: rgba(10, 14, 20, .96); }
+}
+
+/* --- tastbare knoppen -----------------------------------------------------
+   Een knop hoort een ding te zijn dat je in kunt drukken. Dat zit hier in
+   drie dingen: een lichtrandje bovenin (het licht komt van boven), een
+   schaduw eronder (hij ligt ergens op), en bij :active zakt hij een pixel in
+   terwijl de schaduw verdwijnt. De kleur blijft als background-color staan en
+   het verloop ligt er als background-image overheen - zo blijft de gemeten
+   knopkleur dezelfde en verandert alleen wat je ziet.
+   ------------------------------------------------------------------------- */
+.btn {
+  position: relative; border-radius: var(--radius);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, 0) 48%, rgba(0, 0, 0, .14));
+  box-shadow: var(--glans), 0 1px 2px rgba(0, 0, 0, .45), 0 10px 24px -14px rgba(0, 0, 0, .9);
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease,
+              transform .1s ease, box-shadow .16s ease;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: var(--glans), 0 2px 4px rgba(0, 0, 0, .45), 0 16px 32px -14px rgba(0, 0, 0, .95); }
+.btn:active { transform: translateY(1px); box-shadow: inset 0 2px 5px rgba(0, 0, 0, .45); }
+.btn-primair { box-shadow: var(--glans), 0 1px 2px rgba(0, 0, 0, .45), 0 12px 28px -14px rgba(191, 32, 39, .85); }
+.btn-primair:hover { box-shadow: var(--glans), 0 2px 5px rgba(0, 0, 0, .5), 0 18px 38px -14px rgba(191, 32, 39, .95); }
+/* Het matte vlak van de randknop staat bewust in een inset-schaduw en niet in
+   background-color. Reden: het contrastscript loopt vanaf de knop omhoog tot
+   het een niet-doorzichtige achtergrond vindt, en een background-color van
+   rgba(255,255,255,.045) stopt die zoektocht - dan meet hij wit op wit en
+   meldt 1,00:1 terwijl de knop in het echt gewoon licht op donker is. Met een
+   inset-schaduw blijft de gemeten achtergrond de band eronder en klopt de
+   meting weer met wat je ziet. */
+.btn-rand {
+  background-color: transparent;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-color: var(--glas-rand-op);
+  box-shadow: var(--glans), inset 0 0 0 999px rgba(255, 255, 255, .05),
+              0 1px 2px rgba(0, 0, 0, .45), 0 10px 24px -14px rgba(0, 0, 0, .9);
+}
+.btn-rand:hover {
+  background-color: transparent;
+  box-shadow: var(--glans), inset 0 0 0 999px rgba(255, 255, 255, .11),
+              0 2px 4px rgba(0, 0, 0, .45), 0 16px 32px -14px rgba(0, 0, 0, .95);
+}
+.btn-rand:active { box-shadow: inset 0 0 0 999px rgba(255, 255, 255, .05), inset 0 2px 5px rgba(0, 0, 0, .45); }
+
+/* --- glas op de vlakken ---------------------------------------------------
+   Kaart, route, tarief, vraag, meter, schets en formulier krijgen hetzelfde
+   materiaal: een donker doorzichtig vlak met waas erachter, een haarlijn
+   licht bovenin en diepte eronder.
+   ------------------------------------------------------------------------- */
+.kaart, .route, .tarief, .form-kaart, .meter, .schets,
+.vgl-wrap, .vragen, .video-kaart, .snelform {
+  background-color: var(--glas);
+  backdrop-filter: var(--glas-waas); -webkit-backdrop-filter: var(--glas-waas);
+  border: 1px solid var(--glas-rand);
+  border-radius: var(--radius-groot);
+  box-shadow: var(--glans), var(--diepte);
+}
+.sec-paneel .kaart, .sec-paneel .video-kaart, .sec-paneel .schets { background-color: var(--glas); }
+.route:hover, .video-kaart:hover { background-color: var(--glas-op); border-color: var(--glas-rand-op); }
+.tarief.uit { background-color: rgba(44, 28, 32, .66); border-color: rgba(255, 77, 87, .5); }
+.vragen details, .sec-paneel .vragen details { background: transparent; border-bottom-color: var(--glas-rand); }
+.vragen summary:hover { background: rgba(255, 255, 255, .04); }
+table.vgl thead th, table.vgl tbody th { background: rgba(255, 255, 255, .035); }
+.video-kaart, .vgl-wrap, .vragen { overflow: hidden; }
+
+/* De roosters houden hun ring - zonder die ring valt een halve rij uit elkaar
+   (zie het blok over scheidslijnen hierboven). Het glas komt er alleen
+   bovenop, de ring blijft de eerste schaduw. */
+.cijfer, .stap, .spec, .namen span, .extra {
+  background-color: rgba(18, 25, 33, .6);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 0 0 1px var(--glas-rand), inset 0 1px 0 rgba(255, 255, 255, .045);
+}
+.sec-paneel .stap, .sec-paneel .spec, .sec-paneel .namen span { background-color: rgba(18, 25, 33, .6); }
+.namen span:hover { background-color: rgba(40, 53, 68, .8); }
+
+.ankers a {
+  background: rgba(255, 255, 255, .04); border-color: var(--glas-rand-op);
+  border-radius: 100px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.pillen span { background: rgba(255, 255, 255, .04); border-color: var(--glas-rand-op); }
+.logo-tegel { border-radius: 10px; box-shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 12px 28px -18px rgba(0, 0, 0, .9); }
+.foto img, .band-beeld img, .hero-plaat img, .nabew-beeld video { border-radius: var(--radius-groot); border-color: var(--glas-rand); }
+
+/* --- sfeer achter de banden -----------------------------------------------
+   De twee gegenereerde platen liggen als achtergrond onder de cta-band en
+   onder de hero van de binnenpagina's. Ze zijn bewust bijna zwart: ze dragen
+   de kleur, niet het beeld. --------------------------------------------- */
+.cta-band {
+  position: relative; overflow: hidden;
+  background-color: #141b24;
+  background-image:
+    linear-gradient(140deg, rgba(46, 62, 80, .78) 0%, rgba(13, 17, 23, .86) 100%),
+    image-set(url('/assets/gen/sfeer-cta-1600.webp') 1x);
+  background-size: cover; background-position: center;
+  border-block: 1px solid var(--glas-rand);
+}
+.hero { background-blend-mode: normal; }
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: url('/assets/gen/sfeer-hero-1600.webp');
+  background-size: cover; background-position: 70% 40%;
+  opacity: .5;
+}
+.hero > .wrap { position: relative; z-index: 2; }
+
+/* --- formuliervelden ------------------------------------------------------ */
+.veld input, .veld select, .veld textarea {
+  background: rgba(255, 255, 255, .045);
+  border-color: var(--glas-rand-op);
+  border-radius: var(--radius-klein);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .3);
+  transition: border-color .16s ease, background .16s ease, box-shadow .16s ease;
+}
+.veld input:focus, .veld select:focus, .veld textarea:focus {
+  background: rgba(255, 255, 255, .07);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .3), 0 0 0 3px rgba(255, 77, 87, .22);
+}
+
+/* ===========================================================================
+   DE FILMHERO - beeld van rand tot rand, met het formulier erin
+   ---------------------------------------------------------------------------
+   De showreel stond eerst in een kadertje rechts in de hero. Nu is het hele
+   bovenvlak het beeld en liggen de zoekermarkeringen op de randen van het
+   scherm: je kijkt niet naar een zoeker, je kijkt erdoorheen.
+   Rechts staat het formulier meteen in beeld. Twee velden, meer niet - pas na
+   Verder komt de rest. Een formulier van zeven velden in de hero jaagt weg,
+   twee velden is een vraag die je in vijf seconden beantwoordt.
+   =========================================================================== */
+.hero-film {
+  position: relative; isolation: isolate; overflow: hidden;
+  background: var(--inkt);
+  display: flex; align-items: center;
+  min-height: min(90vh, 880px);
+  padding: clamp(3rem, 6vw, 5rem) 0 clamp(3.5rem, 6vw, 5rem);
+}
+.film-beeld { position: absolute; inset: 0; z-index: 0; }
+.film-beeld video, .film-beeld img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+/* Drie lagen over het beeld. Een donkere wasem van links (daar staat de kop),
+   een verloop van onder (daar loopt de zenderband tegenaan) en een lichte
+   vignettering. Zonder deze drie is wit op bewegend beeld onleesbaar zodra er
+   een licht shot voorbijkomt - en dat gebeurt, het is televisie. */
+.film-floers {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(6, 9, 13, .94) 0%, rgba(6, 9, 13, .82) 38%, rgba(6, 9, 13, .34) 68%, rgba(6, 9, 13, .6) 100%),
+    linear-gradient(to bottom, rgba(6, 9, 13, .8) 0%, transparent 26%, transparent 58%, rgba(6, 9, 13, .92) 100%),
+    radial-gradient(120% 90% at 50% 50%, transparent 40%, rgba(6, 9, 13, .55) 100%);
+}
+.film-scan {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, .02) 0 1px, transparent 1px 3px);
+}
+.hero-film > .wrap { position: relative; z-index: 4; width: min(100% - 2.5rem, var(--wrap)); }
+
+/* De zoekermarkeringen, nu op de randen van het hele vlak. */
+.film-hoek {
+  position: absolute; z-index: 3; width: 34px; height: 34px;
+  border: 2px solid rgba(255, 255, 255, .72); pointer-events: none;
+}
+.film-hoek.lb { top: 22px; left: 22px; border-right: 0; border-bottom: 0; }
+.film-hoek.rb { top: 22px; right: 22px; border-left: 0; border-bottom: 0; }
+.film-hoek.lo { bottom: 22px; left: 22px; border-right: 0; border-top: 0; }
+.film-hoek.ro { bottom: 22px; right: 22px; border-left: 0; border-top: 0; }
+.film-rec, .film-tc {
+  position: absolute; z-index: 3; font-family: var(--kop); font-size: .7rem;
+  letter-spacing: .2em; font-weight: 700;
+}
+.film-rec { top: 26px; right: 74px; color: var(--rood); display: inline-flex; align-items: center; gap: .45rem; }
+.film-rec i { width: 8px; height: 8px; border-radius: 50%; background: var(--rood); animation: knipper 1.8s steps(1) infinite; }
+.film-tc { bottom: 28px; left: 74px; color: rgba(255, 255, 255, .55); font-variant-numeric: tabular-nums; font-weight: 400; }
+.film-pauze {
+  position: absolute; z-index: 5; right: 74px; bottom: 24px;
+  width: 36px; height: 36px; padding: 0; cursor: pointer; display: grid; place-items: center;
+  border-radius: 50%; background: rgba(6, 9, 13, .55); border: 1px solid var(--glas-rand-op);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  color: #fff; opacity: .5; transition: opacity .18s ease, background .18s ease;
+}
+.hero-film:hover .film-pauze, .film-pauze:focus-visible { opacity: 1; }
+.film-pauze svg { width: 14px; height: 14px; fill: currentColor; stroke: none; }
+.film-pauze .i-speel { display: none; }
+.hero-film.staat-stil .film-pauze { opacity: 1; }
+.hero-film.staat-stil .film-pauze .i-pauze { display: none; }
+.hero-film.staat-stil .film-pauze .i-speel { display: block; }
+.hero-film.staat-stil .film-rec { color: var(--tekst-zacht); }
+.hero-film.staat-stil .film-rec i { animation: none; opacity: .3; background: var(--tekst-zacht); }
+
+.film-grid { display: grid; grid-template-columns: 1.06fr .94fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.film-tekst h1 { max-width: 14ch; text-shadow: 0 2px 30px rgba(0, 0, 0, .6); }
+.film-tekst .hero-lead { max-width: 48ch; margin-bottom: 1.9rem; }
+.film-tekst .knoppen { margin-bottom: 0; }
+
+/* --- het snelformulier ---------------------------------------------------- */
+.snelform { padding: clamp(1.5rem, 2.6vw, 2rem); }
+.snelform-kop { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1.3rem; }
+.snelform-kop h2 { font-size: 1.32rem; margin: 0; letter-spacing: -.015em; }
+.snelform-stap {
+  font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--tekst-zacht); font-weight: 600; white-space: nowrap;
+}
+.snelform .veld:last-of-type { margin-bottom: 1.25rem; }
+.snelform .btn { width: 100%; }
+.snelform-noot { font-size: .78rem; color: var(--tekst-zacht); margin: .9rem 0 0; text-align: center; }
+/* Stap twee hangt aan een class op het formulier; zolang die er niet staat is
+   het tweede deel echt uit de pagina (hidden), niet alleen onzichtbaar. Zo
+   komt een schermlezer er ook niet per ongeluk in terecht. */
+.snelform [data-deel="2"] { display: none; }
+.snelform.stap-2 [data-deel="1"] { display: none; }
+.snelform.stap-2 [data-deel="2"] { display: block; }
+.snelform-terug {
+  background: none; border: 0; padding: .5rem 0 0; cursor: pointer;
+  color: var(--tekst-zacht); font-family: var(--lees); font-size: .84rem;
+  display: inline-flex; align-items: center; gap: .4rem; width: auto;
+}
+.snelform-terug:hover { color: var(--wit); }
+.snelform-dank { display: none; text-align: center; padding: 1.5rem .5rem; }
+.snelform-dank h3 { color: var(--rood); font-size: 1.25rem; }
+.snelform-dank p { font-size: .92rem; color: var(--tekst-zacht); margin: 0; }
+.snelform.verstuurd form { display: none; }
+.snelform.verstuurd .snelform-dank { display: block; }
+.veld-fout { border-color: var(--rood) !important; }
+.snelform-melding { font-size: .82rem; color: var(--rood); margin: 0 0 .9rem; }
+
+/* De zenderband loopt tegen de hero aan; hem van glas maken laat het beeld
+   er net doorheen schemeren in plaats van er hard tegenaan te stoppen. */
+.zenders {
+  background: rgba(10, 14, 20, .72);
+  backdrop-filter: var(--glas-waas); -webkit-backdrop-filter: var(--glas-waas);
+  border-top: 0; border-bottom: 1px solid var(--glas-rand);
+}
+
+/* ===========================================================================
+   Smaller schermen
+   =========================================================================== */
+@media (max-width: 1040px) {
+  .routes { grid-template-columns: 1fr; }
+  .stappen { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .ruimte-body { grid-template-columns: 1fr; }
+  .vac-grid { grid-template-columns: 1fr; }
+  .vac-zij { position: static; }
+  .videos { grid-template-columns: repeat(3, 1fr); }
+  .branches { grid-template-columns: repeat(3, 1fr); }
+  .schetsen { grid-template-columns: repeat(2, 1fr); }
+  .meters { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .zoeker { max-width: 520px; }
+  .band-kop { grid-template-columns: 1fr; }
+  .nabew { grid-template-columns: 1fr; }
+  .hero-plaat { max-width: 520px; }
+  .videos { grid-template-columns: repeat(2, 1fr); }
+  .branches { grid-template-columns: repeat(2, 1fr); }
+  .cijfers { grid-template-columns: repeat(2, 1fr); }
+  .specs { grid-template-columns: repeat(2, 1fr); }
+  .ruimte-kop { grid-template-columns: 1fr; gap: 1.2rem; }
+  .ruimte-fotos.twee { grid-template-columns: 1fr; gap: .8rem; }
+  .studioband { grid-template-columns: 1fr; }
+  .kaarten.k3 { grid-template-columns: repeat(2, 1fr); }
+  .tarieven { grid-template-columns: 1fr; }
+}
+
+/* Het menu klapt eerder in dan de rest van de site. Acht knoppen plus de
+   taalkeuze plus de contactknop zijn naast het merk 972 beeldpunten breed
+   (nagemeten), en de kop is nooit breder dan --wrap. Boven 1220 is er 991
+   beeldpunten ruimte en past het; daaronder wordt het een uitklapmenu. Die
+   grens stond tot 17-10-2026 op 1180, met zeven knoppen. De meebewegende
+   contactbalk hoort daar niet bij: die is voor de telefoon en blijft op 880
+   staan, anders schuift hij op een laptop van 1000 breed in beeld. */
+@media (max-width: 1220px) {
+  /* Menu inklappen */
+  .nav-toggle { display: grid; place-items: center; }
+  .nav {
+    position: fixed; inset: 0 0 auto; top: 0; margin: 0;
+    background: var(--inkt-2); flex-direction: column; align-items: stretch;
+    gap: 0; padding: 5.6rem 1.25rem 2rem; height: 100dvh;
+    transform: translateY(-100%); transition: transform .26s ease;
+    overflow-y: auto; z-index: 40;
+  }
+  body.menu-open .nav { transform: translateY(0); }
+  body.menu-open { overflow: hidden; }
+  .nav > a:not(.btn) { padding: 1rem .25rem; font-size: 1.12rem; border-bottom: 1px solid var(--lijn); border-radius: 0; }
+  .nav > a[aria-current="page"]::after { display: none; }
+  .nav > a[aria-current="page"] { color: var(--rood); }
+  .nav .btn { margin: 1.4rem 0 0; justify-content: center; padding: .95rem 1.4rem; }
+  /* In het ingeklapte menu staan de drie talen onder de paginalinks, groter en
+     met evenveel ruimte - op een telefoon moet je ze met een duim kunnen raken. */
+  .taalkeuze { margin: 1.3rem 0 0; align-self: flex-start; }
+  .taalkeuze a { font-size: .95rem; padding: .7rem .95rem; }
+  .site-header { position: sticky; }
+  .nav-toggle { position: relative; z-index: 45; }
+}
+
+@media (max-width: 880px) {
+  /* Meebewegende actiebalk. Op de telefoon zit de contactknop in het
+     ingeklapte menu, dus na de hero staat er anders geen actie meer in beeld. */
+  .mobiel-cta {
+    display: flex; gap: .6rem; position: fixed; left: 0; right: 0; bottom: 0; z-index: 35;
+    padding: .65rem .75rem calc(.65rem + env(safe-area-inset-bottom));
+    background: rgba(13, 17, 23, .95);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--lijn-sterk);
+    transform: translateY(110%); transition: transform .24s ease;
+  }
+  .mobiel-cta.zichtbaar { transform: translateY(0); }
+  body.menu-open .mobiel-cta { transform: translateY(110%); }
+  /* Drie knoppen sinds de WhatsApp-knop erbij kwam (10-10-2026). Op 360 breed
+     past "Plan een gesprek" dan niet meer op een regel, en een knop met
+     nowrap bepaalt de smalste maat van de hele pagina - dus mag hij hier
+     afbreken. */
+  .mobiel-cta .btn { flex: 1; padding: .8rem .4rem; gap: .35rem; font-size: .82rem; white-space: normal; overflow-wrap: break-word; }
+  .mobiel-cta .ico-wa { width: 16px; height: 16px; }
+  /* Ruimte onder de voettekst zodat de balk niets afdekt. Bewust op de
+     voettekst en niet op body: die is donkerder en zou een strook laten zien. */
+  .site-footer { padding-bottom: 6rem; }
+}
+
+@media (max-width: 680px) {
+  body { font-size: 16px; }
+  .stappen { grid-template-columns: 1fr; }
+  .kaarten.k2, .kaarten.k3 { grid-template-columns: 1fr; }
+  .vink { grid-template-columns: 1fr; }
+  .veld-rij { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+  .cijfers { grid-template-columns: 1fr 1fr; }
+  .brand img { height: 30px; }
+  .extra { gap: .3rem 1rem; }
+  .extra-prijs { text-align: left; min-width: 0; }
+  .extra-naam { flex: 1 1 100%; }
+
+  /* De vergelijkingstabel wordt op de telefoon een stapel kaartjes. Een
+     tabel van drie kolommen is daar onleesbaar. */
+  .vgl-wrap { border: 0; }
+  table.vgl thead { display: none; }
+  table.vgl, table.vgl tbody, table.vgl tr, table.vgl th, table.vgl td { display: block; width: auto; }
+  table.vgl tr { border: 1px solid var(--lijn); border-radius: var(--radius); margin-bottom: .9rem; overflow: hidden; }
+  table.vgl tbody th { white-space: normal; border-bottom: 1px solid var(--lijn); }
+  table.vgl tbody td { border-bottom: 1px solid var(--lijn); padding-left: 1.2rem; position: relative; }
+  table.vgl tbody td::before {
+    content: attr(data-kop); display: block; font-size: .7rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--tekst-zacht); margin-bottom: .25rem; font-weight: 600;
+  }
+  table.vgl tbody td:last-child::before { color: var(--rood); }
+  table.vgl tr td:last-child { border-bottom: 0; }
+}
+
+@media (max-width: 680px) {
+  .videos { grid-template-columns: 1fr; }
+  /* Staande kaarten blijven met z'n tweeen naast elkaar: een clip van 9:16
+     over de volle breedte van een telefoon is hoger dan het scherm. */
+  .branches { grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+  .branche-regel { font-size: .8rem; }
+  .schetsen { grid-template-columns: 1fr 1fr; }
+  /* De uitvaag aan de randen van de logoband is op de telefoon breder dan de
+     logo's zelf, dan zie je alleen nog maar verloop. */
+  .marquee::before, .marquee::after { width: 36px; }
+  .logo-tegel.klant { min-width: 124px; min-height: 66px; }
+  .logo-tegel.klant img { max-height: 32px; max-width: 100px; }
+  .meter canvas { height: 190px; }
+}
+
+@media (max-width: 420px) {
+  .cijfers { grid-template-columns: 1fr; }
+  .specs { grid-template-columns: 1fr; }
+  .zenders-rij { gap: .7rem 1rem; }
+  .logo-tegel.zender { min-width: 76px; min-height: 48px; padding: .5rem .7rem; }
+  .logo-tegel.zender img { max-height: 26px; max-width: 84px; }
+  .schetsen { grid-template-columns: 1fr; }
+}
+
+/* --- de filmhero op smallere schermen -------------------------------------
+   Onder 980px staat het formulier onder de tekst in plaats van ernaast, en
+   gaat de wasem van links naar beneden: de kop ligt dan boven het beeld en
+   niet ernaast. De markeringen krimpen mee, anders liggen ze op de telefoon
+   half over de kop heen.
+   ------------------------------------------------------------------------- */
+@media (max-width: 980px) {
+  .film-grid { grid-template-columns: 1fr; gap: 2.2rem; }
+  .hero-film { min-height: 0; padding-bottom: clamp(3rem, 7vw, 4rem); }
+  .film-tekst h1 { max-width: 18ch; }
+  .film-floers {
+    background:
+      linear-gradient(to bottom, rgba(6, 9, 13, .78) 0%, rgba(6, 9, 13, .86) 42%, rgba(6, 9, 13, .95) 100%),
+      radial-gradient(130% 80% at 50% 10%, transparent 0%, rgba(6, 9, 13, .5) 100%);
+  }
+  .film-hoek { width: 24px; height: 24px; }
+  .film-hoek.lb, .film-hoek.rb { top: 14px; }
+  .film-hoek.lo, .film-hoek.ro { bottom: 14px; }
+  .film-hoek.lb, .film-hoek.lo { left: 14px; }
+  .film-hoek.rb, .film-hoek.ro { right: 14px; }
+  .film-rec { top: 16px; right: 56px; }
+  .film-tc { bottom: 18px; left: 52px; font-size: .64rem; }
+  .film-pauze { right: 16px; bottom: 14px; width: 32px; height: 32px; }
+}
+
+@media (max-width: 880px) {
+  /* De meebewegende balk hoort hetzelfde glas te zijn als de menubalk. */
+  .mobiel-cta {
+    background: rgba(10, 14, 20, .72);
+    backdrop-filter: var(--glas-waas); -webkit-backdrop-filter: var(--glas-waas);
+    border-top: 1px solid var(--glas-rand);
+  }
+}
+/* Hoort bij het uitklapmenu en dus bij diens eigen grens, niet bij 880. */
+@media (max-width: 1220px) {
+  .nav {
+    background: rgba(10, 14, 20, .88);
+    backdrop-filter: blur(26px) saturate(150%); -webkit-backdrop-filter: blur(26px) saturate(150%);
+  }
+}
+
+@media (max-width: 680px) {
+  .snelform { padding: 1.3rem 1.15rem; }
+  .snelform-kop { flex-wrap: wrap; gap: .3rem; }
+  /* Op de telefoon staat de tijdcode links en de pauzeknop rechts op dezelfde
+     regel; de REC-aanduiding erboven is dan genoeg. */
+  .film-rec { right: 48px; }
+}
+
+@media (max-width: 560px) {
+  /* Twee knoppen van verschillende tekstlengte onder elkaar staan rafelig.
+     Op de telefoon lopen ze allebei over de volle breedte. */
+  .film-tekst .knoppen { display: grid; grid-template-columns: 1fr; gap: .6rem; }
+  .film-tekst .knoppen .btn { width: 100%; }
+}
+
+/* --- voorwaarden ---------------------------------------------------------- */
+/* Het lidnummer hangt links van de tekst, zoals in het document zelf - een
+   nummer dat in de regel meeloopt is in 66 leden niet terug te vinden. */
+.tekst .lid { padding-left: 3.1rem; text-indent: -3.1rem; font-size: .95rem; margin-bottom: .85em; }
+.tekst .lid b { display: inline-block; width: 2.6rem; text-indent: 0; color: var(--wit); font-weight: 600; }
+.tekst h3[id] { scroll-margin-top: 100px; }
+
+@media (max-width: 720px) {
+  .tekst .lid { padding-left: 2.6rem; text-indent: -2.6rem; }
+  .tekst .lid b { width: 2.2rem; }
+}
+
+/* De voorwaarden staan onderin de voettekst, naast het jaartal. Daar is een
+   rode link een vlek - hij hoort in dezelfde toon als de regel eromheen. */
+.foot-onder a { color: inherit; text-decoration-color: rgba(149, 164, 163, .35); }
+.foot-onder a:hover { color: var(--wit); }
+
+/* ===========================================================================
+   DE MARINEBAND
+   ---------------------------------------------------------------------------
+   Hier stond tot 11-10-2026 de lichte weergave van de hele site: een laag met
+   omgezette variabelen onder [data-thema="licht"], plus de donkere eilanden
+   die daarin donker moesten blijven en het knopje waarmee je ertussen
+   wisselde. De klant heeft definitief voor donker gekozen, dus dat is er
+   allemaal uit en de site heeft nog een uitvoering.
+
+   Wat wel moet blijven: de marineband is zelf lichter dan de pagina eromheen
+   (#2e3e50 tegen #0d1117), dus zachte tekst die op de pagina ruim 5,8:1 haalt
+   zakt op deze band naar 3,80:1. Dat is er altijd geweest en bleef verborgen
+   zolang de band geen eigen achtergrondkleur had: het contrastscript keek er
+   dan dwars door naar de donkere pagina eronder. Nu het de echte ondergrond
+   meet, zijn beide tonen opgehelderd tot ze er boven de 4,5:1 uitkomen
+   (5,0:1 en 5,4:1).
+   =========================================================================== */
+.sec-marine {
+  --tekst-zacht: #a3b1c0;
+  --staal: #abb8b7;
+}
+
+/* Het lokvink in elk formulier. Het staat wel in de html - anders ziet een bot
+   het niet - maar niet in beeld en niet in de tabvolgorde. Weghalen met
+   display:none zou het voor sommige bots juist zichtbaar maken als val, dus
+   het wordt weggeklemd en niet verborgen. */
+.lokvink {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

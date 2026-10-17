@@ -1,0 +1,26 @@
+{
+  "name": "@jiw/framemedia",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/gen-mail-logo.mjs && node bouw.mjs --prod && node tools/vooraf.mjs",
+    "build:concept": "node tools/gen-mail-logo.mjs && node bouw.mjs && node tools/vooraf.mjs --concept",
+    "dev": "pnpm build && wrangler dev --port=3073",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "lint": "tsc --noEmit -p tsconfig.worker.json",
+    "serveer": "node serveer.mjs",
+    "kijk": "node kijk.mjs",
+    "meet": "node meet-360.mjs && node meet-balk.mjs"
+  },
+  "dependencies": {
+    "@jiw/cloudflare-forms": "workspace:*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "playwright": "^1.62.1",
+    "sharp": "^0.35.4",
+    "typescript": "~5.8.2"
+  }
+}
