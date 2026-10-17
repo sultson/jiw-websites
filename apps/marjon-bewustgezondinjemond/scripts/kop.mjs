@@ -16,7 +16,7 @@ import {HAAR_NAAM, PRAKTIJK, SITE_NAAM, SITE_URL} from '../site.config.mjs';
  *  bestandsnaam en niet de oude met een ?v=: WhatsApp, LinkedIn en Facebook
  *  bewaren een deelkaartje lang, en een nieuw adres is de enige manier om ze
  *  het opnieuw te laten ophalen. */
-const DEEL_BEELD = `${SITE_URL}/img/hero-deelkaart.jpg`;
+const DEEL_BEELD = `${SITE_URL}/img/hero-deelkaart.jpg?v=20261017`;
 const DEEL_BEELD_ALT = 'Marjon Ooteman, integraal mondhygiënist';
 
 function teken(tekst) {

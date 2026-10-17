@@ -487,15 +487,17 @@ function Hero() {
               het ernaast te zweven. Onder lg is de foto het hele vlak, dus daar
               geen radius en ook geen schaduw. */}
           <div className="relative h-full overflow-hidden rounded-none lg:h-auto lg:rounded-2xl lg:shadow-xl lg:shadow-inkt/10">
-            {/* Sinds 15-10-2026 het bestand van de fotograaf (1067x1600), niet
-                langer een afgeleide van instagram. Zie scripts/hero.mjs. */}
-            {/* Twee uitsnedes van dezelfde opname, want de foto staat hier op
-                twee manieren. Onder lg vult hij de hele sectie met de tekst
-                eroverheen: daar werkt de hele figuur, 9:16. Vanaf lg is hij de
-                rechterkolom naast de tekst: daar haar bovenlijf, 4:5. Eén
-                bestand met object-position kan dat niet, want in het 4:5-vak is
-                83 procent van de bronhoogte zichtbaar - er valt daar niets weg
-                te snijden. Vandaar echt twee bestanden.
+            {/* Sinds 17-10-2026 de bestanden van de fotograaf, 2400x3600, uit
+                de Drive-map van Armando. Zie scripts/hero.mjs voor de weg
+                ernaartoe. */}
+            {/* Twee verschillende opnames uit dezelfde sessie, want de foto
+                staat hier op twee manieren. Onder lg vult hij de hele sectie
+                met de tekst eroverheen: daar loopt zij een bospad op je af,
+                hele figuur, 9:16, en dat pad sluit aan op de kop erboven.
+                Vanaf lg is hij de rechterkolom naast de tekst: daar de
+                close-up tegen de beukenstam, 4:5. Eén bestand met
+                object-position kan dit niet, en sinds we de hele sessie hebben
+                hoeft dat ook niet meer.
 
                 De maten zijn zo gekozen dat de browser altijd VERKLEINT. Een
                 telefoon van 430 punten op driedubbele dichtheid vraagt 1290
@@ -504,19 +506,19 @@ function Hero() {
             <picture>
               <source
                 media="(min-width: 1024px)"
-                srcSet="/img/hero-portret.webp 560w, /img/hero-portret-840.webp 840w, /img/hero-portret-1120.webp 1120w"
+                srcSet="/img/hero-portret.webp?v=20261017 560w, /img/hero-portret-840.webp?v=20261017 840w, /img/hero-portret-1120.webp?v=20261017 1120w"
                 sizes="min(45vw, 560px)"
                 width={560}
                 height={700}
               />
               <img
-                src="/img/hero-staand.webp"
-                srcSet="/img/hero-staand.webp 720w, /img/hero-staand-1020.webp 1020w, /img/hero-staand-1320.webp 1320w"
+                src="/img/hero-staand.webp?v=20261017"
+                srcSet="/img/hero-staand.webp?v=20261017 720w, /img/hero-staand-1020.webp?v=20261017 1020w, /img/hero-staand-1320.webp?v=20261017 1320w, /img/hero-staand-1536.webp?v=20261017 1536w"
                 sizes="100vw"
                 width={720}
                 height={1280}
                 fetchPriority="high"
-                alt="Marjon Ooteman lachend in het bos, zittend op een hek bij het water"
+                alt="Marjon Ooteman lachend in het bos, in haar petrolblauwe blouse"
                 className="block h-full w-full object-cover lg:aspect-[4/5] lg:h-auto"
               />
             </picture>
