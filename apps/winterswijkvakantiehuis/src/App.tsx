@@ -4071,16 +4071,16 @@ function FreshPhotoStack({lang, className = ''}: {lang: Lang; className?: string
     <div className={className}>
       <button
         type="button" onClick={() => open(0)} aria-label={`${t.open}: ${t.label}`}
-        className="group ml-2 lg:ml-0 flex items-center gap-4 lg:flex-col lg:gap-3 text-left lg:text-center"
+        className="group ml-2 lg:ml-0 flex items-center gap-6 lg:flex-col lg:gap-5 text-left lg:text-center"
       >
-        <span className="relative block w-[92px] h-[100px] lg:w-[188px] lg:h-[204px] shrink-0">
+        <span className="relative block w-[92px] h-[100px] lg:w-[224px] lg:h-[244px] shrink-0">
           {stack.map((p, i) => (
             <span
               key={p.src}
               className="absolute inset-0 bg-white p-1 pb-3 lg:p-2 lg:pb-6 rounded-[14px] lg:rounded-[22px] shadow-[0_10px_28px_-10px_rgba(0,0,0,0.55)] transition-transform duration-300"
               style={{transform: `translate(${fan[i].x * 0.5}px, ${fan[i].y}px) rotate(${fan[i].r}deg)`}}
             >
-              <Photo src={p.src} alt="" hidden sizes="(min-width: 1024px) 200px, 100px" className="w-full h-full object-cover rounded-[10px] lg:rounded-[16px]" />
+              <Photo src={p.src} alt="" hidden sizes="(min-width: 1024px) 240px, 100px" className="w-full h-full object-cover rounded-[10px] lg:rounded-[16px]" />
             </span>
           ))}
         </span>
