@@ -388,7 +388,7 @@ const t = {
       ctaText: 'Laat ons weten wanneer u wilt komen en met hoeveel personen, dan vertellen we u alles over de verblijven en de beschikbaarheid. Dezelfde persoonlijke aanpak als in Winterswijk.',
     },
     footer: {tagline: 'Vakantiehuizen in Winterswijk & de Achterhoek', rights: 'Alle rechten voorbehouden.', links: 'Vakantie in Winterswijk', accessible: 'Rolstoeltoegankelijk vakantiehuis'},
-    reviews: {title: 'Wat gasten zeggen', google: 'Google-review', message: 'Bericht aan de eigenaar', all: 'Alle reviews op Google', translated: ''},
+    reviews: {title: 'Wat gasten zeggen', google: 'Google-review', message: 'Bericht aan de eigenaar', note: 'Briefje achtergelaten in het huis', guest: 'Gast', all: 'Alle reviews op Google', translated: ''},
     topic: {faqTitle: 'Veelgestelde vragen', groupsTeaser: 'Met een groep? Boek meerdere huizen naast elkaar, tot 40 personen.'},
   },
   en: {
@@ -636,7 +636,7 @@ const t = {
       ctaText: 'Tell us when you would like to come and with how many, and we will talk you through the stays and what is available. The same personal approach as in Winterswijk.',
     },
     footer: {tagline: 'Vacation homes in Winterswijk & the Achterhoek', rights: 'All rights reserved.', links: 'Holidays in Winterswijk', accessible: 'Wheelchair-accessible holiday home'},
-    reviews: {title: 'What guests say', google: 'Google review', message: 'Message to the owner', all: 'All reviews on Google', translated: 'Translated from Dutch.'},
+    reviews: {title: 'What guests say', google: 'Google review', message: 'Message to the owner', note: 'Note left in the house', guest: 'Guest', all: 'All reviews on Google', translated: 'Translated from Dutch.'},
     topic: {faqTitle: 'Frequently asked questions', groupsTeaser: 'Travelling as a group? Book several homes side by side, for up to 40 guests.'},
   },
   de: {
@@ -884,7 +884,7 @@ const t = {
       ctaText: 'Sagen Sie uns, wann Sie kommen möchten und mit wie vielen Personen, dann erzählen wir Ihnen alles über die Unterkünfte und die Verfügbarkeit. Dieselbe persönliche Betreuung wie in Winterswijk.',
     },
     footer: {tagline: 'Ferienhäuser in Winterswijk & im Achterhoek', rights: 'Alle Rechte vorbehalten.', links: 'Urlaub in Winterswijk', accessible: 'Rollstuhlgerechtes Ferienhaus'},
-    reviews: {title: 'Was Gäste sagen', google: 'Google-Bewertung', message: 'Nachricht an die Vermieter', all: 'Alle Bewertungen auf Google', translated: 'Aus dem Niederländischen übersetzt.'},
+    reviews: {title: 'Was Gäste sagen', google: 'Google-Bewertung', message: 'Nachricht an die Vermieter', note: 'Im Haus hinterlassene Notiz', guest: 'Gast', all: 'Alle Bewertungen auf Google', translated: 'Aus dem Niederländischen übersetzt.'},
     topic: {faqTitle: 'Häufige Fragen', groupsTeaser: 'Als Gruppe unterwegs? Buchen Sie mehrere Häuser nebeneinander, bis 40 Personen.'},
   },
 };
@@ -1130,10 +1130,13 @@ const homes: Home[] = [
     id: 'finschalet', name: 'Fins chalet Kattenberg',
     location: 'Kattenbergweg 6, 7101 BM Winterswijk',
     imgs: [
-      '/img/chalet-1.webp', '/img/chalet-2.webp', '/img/chalet-3.webp', '/img/chalet-4.webp',
+      /* The two October phone shots sit right behind the professional photo while
+         it is autumn; move them back when the season turns. */
+      '/img/chalet-1.webp', '/img/chalet-herfst-terras.webp', '/img/chalet-herfst-bomen.webp', '/img/chalet-2.webp', '/img/chalet-3.webp', '/img/chalet-4.webp',
       '/img/chalet-17.webp', '/img/chalet-18.webp', '/img/chalet-5.webp', '/img/chalet-6.webp', '/img/chalet-7.webp', '/img/chalet-8.webp',
       '/img/chalet-9.webp', '/img/chalet-10.webp', '/img/chalet-11.webp', '/img/chalet-12.webp',
       '/img/chalet-13.webp', '/img/chalet-14.webp', '/img/chalet-15.webp', '/img/chalet-16.webp',
+      '/img/chalet-herfst-inktzwammen.webp',
     ],
     area: 'forest', guests: 8, bedrooms: 4, pets: false, calId: 23463,
     petsNote: {
@@ -1163,6 +1166,39 @@ const homes: Home[] = [
 ];
 
 const iconMap: Record<string, any> = {bike: Bike, trees: Trees, calendar: Calendar, camera: Camera};
+
+/* ------------------------------------------------------------------ */
+/*  Fresh from the park — the owner's latest phone photos, stacked in the
+    landing hero as proof the place is looked after right now. Replace the set
+    (and the date) when new ones arrive; keep it to the last batch only, so the
+    date never goes stale by more than a season.                       */
+/* ------------------------------------------------------------------ */
+const freshPhotos: {date: string; homeId: string; photos: {src: string; alt: Record<Lang, string>}[]} = {
+  date: '2026-10-14',
+  homeId: 'finschalet',
+  photos: [
+    {src: '/img/chalet-herfst-terras.webp', alt: {
+      nl: 'Het terras van het Fins chalet Kattenberg onder een boom in herfstkleuren',
+      en: 'The terrace of the Finnish chalet Kattenberg under a tree in autumn colours',
+      de: 'Die Terrasse des Finnischen Chalets Kattenberg unter einem Baum in Herbstfarben',
+    }},
+    {src: '/img/chalet-herfst-bomen.webp', alt: {
+      nl: 'Het Fins chalet Kattenberg tussen gele en rode herfstbomen onder een blauwe lucht',
+      en: 'The Finnish chalet Kattenberg between yellow and red autumn trees under a blue sky',
+      de: 'Das Finnische Chalet Kattenberg zwischen gelben und roten Herbstbäumen unter blauem Himmel',
+    }},
+    {src: '/img/chalet-herfst-inktzwammen.webp', alt: {
+      nl: 'Inktzwammen in het gras van de tuin van het Fins chalet',
+      en: 'Shaggy ink cap mushrooms in the grass of the Finnish chalet garden',
+      de: 'Schopftintlinge im Gras des Gartens am Finnischen Chalet',
+    }},
+    {src: '/img/chalet-herfst-inktzwam.webp', alt: {
+      nl: 'Een inktzwam van dichtbij, naast een herfstblad in de tuin van het Fins chalet',
+      en: 'A shaggy ink cap up close beside an autumn leaf in the Finnish chalet garden',
+      de: 'Ein Schopftintling aus der Nähe neben einem Herbstblatt im Garten des Finnischen Chalets',
+    }},
+  ],
+};
 
 /* ------------------------------------------------------------------ */
 /*  Nature gallery — the owner's own photos from in and around the park */
@@ -2273,6 +2309,7 @@ function Landing({lang, L}: {lang: Lang; L: any}) {
               </a>
               */}
             </div>
+            <FreshPhotoStack lang={lang} className="mt-7 lg:mt-0 lg:absolute lg:right-10 lg:top-1/2 lg:-translate-y-1/2" />
             {/* Desktop only: on mobile the floating WhatsApp/call pair already sits over the hero,
                 so repeating the buttons here would duplicate them. */}
             <div className="mt-4 hidden md:flex flex-wrap gap-3">
@@ -4007,6 +4044,83 @@ function NatureCard({p, lang, L, hover = false}: {p: (typeof naturePhotos)[numbe
 }
 
 /* ------------------------------------------------------------------ */
+/*  The fresh-photo stack: a few polaroids fanned on top of each other with the
+    season they were taken in. Sits to the right of the hero copy on desktop and under
+    the "view the homes" button on a phone. A tap opens them full size in a
+    native <dialog>, which brings focus trapping and Esc for free.     */
+const FRESH_TEXT: Record<Lang, {label: string; open: string; close: string; prev: string; next: string; view: string}> = {
+  nl: {label: 'Herfst 2026', open: "Bekijk de nieuwste foto's", close: 'Sluiten', prev: 'Vorige foto', next: 'Volgende foto', view: 'Bekijk het Fins chalet'},
+  en: {label: 'Autumn 2026', open: 'View the latest photos', close: 'Close', prev: 'Previous photo', next: 'Next photo', view: 'View the Finnish chalet'},
+  de: {label: 'Herbst 2026', open: 'Die neuesten Fotos ansehen', close: 'Schließen', prev: 'Vorheriges Foto', next: 'Nächstes Foto', view: 'Zum Finnischen Chalet'},
+};
+
+function FreshPhotoStack({lang, className = ''}: {lang: Lang; className?: string}) {
+  const t = FRESH_TEXT[lang];
+  const dialog = useRef<HTMLDialogElement>(null);
+  const [index, setIndex] = useState(0);
+  const {photos} = freshPhotos;
+  const date = new Intl.DateTimeFormat(lang, {day: 'numeric', month: 'long', timeZone: 'UTC'})
+    .format(new Date(`${freshPhotos.date}T00:00:00Z`));
+  const step = (d: number) => setIndex((i) => (i + d + photos.length) % photos.length);
+  const open = (i: number) => { setIndex(i); dialog.current?.showModal(); };
+  /* Painted back-to-front, so the first photo of the set ends up on top. */
+  const fan = [{r: -9, x: -18, y: 6}, {r: 7, x: 16, y: 2}, {r: -3, x: -4, y: -2}];
+  const stack = photos.slice(0, fan.length).reverse();
+
+  return (
+    <div className={className}>
+      <button
+        type="button" onClick={() => open(0)} aria-label={`${t.open}: ${t.label}`}
+        className="group ml-2 lg:ml-0 flex items-center gap-6 lg:flex-col lg:gap-5 text-left lg:text-center"
+      >
+        <span className="relative block w-[92px] h-[100px] lg:w-[224px] lg:h-[244px] shrink-0">
+          {stack.map((p, i) => (
+            <span
+              key={p.src}
+              className="absolute inset-0 bg-white p-1 pb-3 lg:p-2 lg:pb-6 rounded-[14px] lg:rounded-[22px] shadow-[0_10px_28px_-10px_rgba(0,0,0,0.55)] transition-transform duration-300"
+              style={{transform: `translate(${fan[i].x * 0.5}px, ${fan[i].y}px) rotate(${fan[i].r}deg)`}}
+            >
+              <Photo src={p.src} alt="" hidden sizes="(min-width: 1024px) 240px, 100px" className="w-full h-full object-cover rounded-[10px] lg:rounded-[16px]" />
+            </span>
+          ))}
+        </span>
+        <span className="block font-serif text-lg leading-tight text-white">{t.label}</span>
+      </button>
+
+      <dialog
+        ref={dialog}
+        aria-label={`${t.label}, ${date}`}
+        onClick={(e) => { if (e.target === e.currentTarget) dialog.current?.close(); }}
+        onKeyDown={(e) => { if (e.key === 'ArrowRight') step(1); if (e.key === 'ArrowLeft') step(-1); }}
+        className="m-auto p-0 bg-transparent max-w-[min(92vw,1100px)] w-full backdrop:bg-brand-dark/85 backdrop:backdrop-blur-sm"
+      >
+        <figure className="relative">
+          <Photo
+            src={photos[index].src} alt={photos[index].alt[lang]} sizes="92vw"
+            className="mx-auto max-h-[80vh] w-auto rounded-2xl object-contain shadow-2xl"
+          />
+          <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm text-brand-cream">
+            <span>{photos[index].alt[lang]} · {date} · {index + 1}/{photos.length}</span>
+            <a href={pathFor({kind: 'home', homeId: freshPhotos.homeId}, lang)} className="inline-flex items-center gap-1 font-medium text-white hover:underline">
+              {t.view} <ChevronRight size={15} />
+            </a>
+          </figcaption>
+          <button type="button" autoFocus onClick={() => dialog.current?.close()} aria-label={t.close} className="absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 text-brand-green-dark flex items-center justify-center hover:bg-white">
+            <X size={20} />
+          </button>
+          <button type="button" onClick={() => step(-1)} aria-label={t.prev} className="absolute left-3 top-[40%] w-10 h-10 rounded-full bg-white/90 text-brand-green-dark flex items-center justify-center hover:bg-white">
+            <ChevronLeft size={22} />
+          </button>
+          <button type="button" onClick={() => step(1)} aria-label={t.next} className="absolute right-3 top-[40%] w-10 h-10 rounded-full bg-white/90 text-brand-green-dark flex items-center justify-center hover:bg-white">
+            <ChevronRight size={22} />
+          </button>
+        </figure>
+      </dialog>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Guest quotes: plain text in the site's own cards, no carousel or widget —
     reassurance where a visitor is deciding, not a banner. See reviews.ts.     */
 function GuestQuotes({ids, showHome = false, lang, L, className = ''}: {ids: ReviewId[]; showHome?: boolean; lang: Lang; L: any; className?: string}) {
@@ -4014,7 +4128,7 @@ function GuestQuotes({ids, showHome = false, lang, L, className = ''}: {ids: Rev
   return (
     <section className={`max-w-6xl mx-auto px-5 ${className}`}>
       <h2 className="font-serif text-2xl sm:text-3xl text-brand-green-dark">{L.reviews.title}</h2>
-      <div className={`mt-6 grid gap-5 ${ids.length > 1 ? 'md:grid-cols-2' : ''} ${ids.length > 2 ? 'lg:grid-cols-3' : ''}`}>
+      <div className={`mt-6 grid gap-5 ${ids.length > 1 ? 'md:grid-cols-2' : ''} ${ids.length === 4 ? 'lg:grid-cols-4' : ids.length > 2 ? 'lg:grid-cols-3' : ''}`}>
         {ids.map((id) => {
           const r = reviews[id];
           const home = showHome ? homes.find((h) => h.id === r.homeId) : undefined;
@@ -4027,13 +4141,13 @@ function GuestQuotes({ids, showHome = false, lang, L, className = ''}: {ids: Rev
               )}
               <blockquote className={`${r.source === 'google' ? 'mt-3' : ''} text-stone-700 leading-relaxed flex-1`}>“{r.text[lang]}”</blockquote>
               <figcaption className="mt-4 text-sm text-stone-500">
-                <span className="font-medium text-brand-green-dark">{r.name}</span>
+                <span className="font-medium text-brand-green-dark">{r.name ?? L.reviews.guest}</span>
                 {home && <> · <a href={pathFor({kind: 'home', homeId: home.id}, lang)} className="hover:underline">{home.name}</a></>}
                 {r.month && <> · {monthFmt.format(new Date(`${r.month}-01T00:00:00Z`))}</>}
                 {' · '}
                 {r.source === 'google'
                   ? <a href={GOOGLE_PROFILE_URL} target="_blank" rel="noopener" className="hover:underline">{L.reviews.google}</a>
-                  : L.reviews.message}
+                  : r.source === 'note' ? L.reviews.note : L.reviews.message}
               </figcaption>
             </figure>
           );
