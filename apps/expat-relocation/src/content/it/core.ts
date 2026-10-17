@@ -613,6 +613,12 @@ export const core: CoreContent = {
           ],
         },
         {
+          heading: 'Cookie e statistiche',
+          paragraphs: [
+            'Con il suo consenso utilizziamo Microsoft Clarity, un servizio di analisi di Microsoft, per capire come i visitatori usano questo sito (pagine visitate, clic, scorrimento) e migliorarlo. Clarity installa cookie di prima parte (_clck, _clsk) per un massimo di un anno per riconoscere le visite ripetute; i campi dei moduli sono oscurati e non usiamo questi dati per pubblicità. Senza il suo consenso Clarity non installa cookie. Può modificare la sua scelta in qualsiasi momento cancellando i dati di questo sito nel browser. Microsoft tratta questi dati secondo la propria informativa sulla privacy.',
+          ],
+        },
+        {
           heading: 'Contatti',
           paragraphs: [
             'E & I: Expat, Relocation and Immigration Services The Netherlands, Laan van Zuid Hoorn 70, Rijswijk. KvK 65768922.',

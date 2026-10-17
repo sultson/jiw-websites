@@ -69,6 +69,23 @@ export const BANNER_STRINGS: Record<Lang, { prompt: string; switch: string; dism
   ru: { prompt: 'Хотите просматривать этот сайт на русском языке?', switch: 'Продолжить на русском', dismiss: 'Нет, спасибо' },
 };
 
+/**
+ * Analytics consent notice strings (Microsoft Clarity). Clarity enforces a
+ * consent signal for EEA/UK/CH visitors: without one it runs cookieless and
+ * every page view becomes a separate session. Phrased in the PAGE language.
+ */
+export const CONSENT_STRINGS: Record<Lang, { text: string; accept: string; decline: string; more: string }> = {
+  en: { text: 'We use analytics cookies (Microsoft Clarity) to understand how visitors use this site and improve it.', accept: 'Accept', decline: 'Decline', more: 'Privacy policy' },
+  nl: { text: 'Wij gebruiken analytische cookies (Microsoft Clarity) om te begrijpen hoe bezoekers deze website gebruiken en deze te verbeteren.', accept: 'Accepteren', decline: 'Weigeren', more: 'Privacybeleid' },
+  de: { text: 'Wir verwenden Analyse-Cookies (Microsoft Clarity), um zu verstehen, wie Besucher diese Website nutzen, und sie zu verbessern.', accept: 'Akzeptieren', decline: 'Ablehnen', more: 'Datenschutzerklärung' },
+  fr: { text: 'Nous utilisons des cookies analytiques (Microsoft Clarity) pour comprendre comment les visiteurs utilisent ce site et l’améliorer.', accept: 'Accepter', decline: 'Refuser', more: 'Politique de confidentialité' },
+  es: { text: 'Utilizamos cookies analíticas (Microsoft Clarity) para entender cómo se usa este sitio y mejorarlo.', accept: 'Aceptar', decline: 'Rechazar', more: 'Política de privacidad' },
+  it: { text: 'Utilizziamo cookie analitici (Microsoft Clarity) per capire come i visitatori usano questo sito e migliorarlo.', accept: 'Accetta', decline: 'Rifiuta', more: 'Informativa sulla privacy' },
+  pt: { text: 'Utilizamos cookies analíticos (Microsoft Clarity) para perceber como os visitantes usam este site e melhorá-lo.', accept: 'Aceitar', decline: 'Recusar', more: 'Política de privacidade' },
+  zh: { text: '我们使用分析 Cookie（Microsoft Clarity）来了解访客如何使用本网站并加以改进。', accept: '接受', decline: '拒绝', more: '隐私政策' },
+  ru: { text: 'Мы используем аналитические файлы cookie (Microsoft Clarity), чтобы понимать, как посетители пользуются сайтом, и улучшать его.', accept: 'Принять', decline: 'Отклонить', more: 'Политика конфиденциальности' },
+};
+
 /** Section base paths, shared across all languages (English SEO slugs). */
 export const SECTIONS = {
   immigration: '/immigration',

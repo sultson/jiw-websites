@@ -7,6 +7,7 @@ import { site } from '../data/site';
 import {
   LANGS,
   BANNER_STRINGS,
+  CONSENT_STRINGS,
   DEFAULT_LANG,
   localizePath,
   type Lang,
@@ -30,6 +31,7 @@ interface Props {
 const { title, description, lang, path, image = '/images/og.jpg', noindex = false, jsonLd = [], availableLangs = LANGS } = Astro.props;
 
 const c = getContent(lang);
+const consent = CONSENT_STRINGS[lang];
 const canonical = absoluteUrl(localizePath(path, lang));
 const ogImage = absoluteUrl(image);
 // Meta titles are authored per page. Appending a second full-length brand suffix
@@ -82,6 +84,16 @@ const altUrls = Object.fromEntries(availableLangs.map((l) => [l, absoluteUrl(loc
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
       })(window, document, "clarity", "script", "ytxck0mceg");
+      // Clarity enforces a consent signal for EEA/UK/CH visitors. Without one it
+      // sets no cookies (_clck/_clsk), so every page view is recorded as a new
+      // user + session. Replay a stored choice on every page load; calls are
+      // queued until the tag loads.
+      try {
+        var eiConsent = localStorage.getItem('ei-consent');
+        if (eiConsent === 'granted' || eiConsent === 'denied') {
+          window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: eiConsent });
+        }
+      } catch (e) {}
     </script>
   </head>
   <body>
@@ -113,6 +125,44 @@ const altUrls = Object.fromEntries(availableLangs.map((l) => [l, absoluteUrl(loc
 
     <Footer lang={lang} />
     <WhatsAppFloat lang={lang} />
+
+    <!-- Analytics consent notice: small, bottom-left, shown once until a choice
+         is made. Accept grants Clarity analytics storage (cookies), so sessions
+         are stitched across page views. -->
+    <div
+      id="consent-bar"
+      role="region"
+      aria-label={consent.more}
+      class="fixed inset-x-3 bottom-3 z-50 hidden max-w-md flex-col gap-3 border border-line bg-paper p-4 text-[0.8rem] leading-relaxed text-ink shadow-lift md:inset-x-auto md:left-6 md:bottom-6"
+    >
+      <p>
+        {consent.text}{' '}
+        <a href={localizePath('/privacy-policy', lang)} class="underline decoration-gold underline-offset-4 text-navy">{consent.more}</a>
+      </p>
+      <div class="flex gap-3">
+        <button type="button" data-consent="granted" class="cursor-pointer bg-navy px-4 py-2 font-medium text-white hover:bg-navy-2">{consent.accept}</button>
+        <button type="button" data-consent="denied" class="cursor-pointer border border-line px-4 py-2 text-navy hover:border-navy">{consent.decline}</button>
+      </div>
+    </div>
+    <script is:inline>
+      (function () {
+        var bar = document.getElementById('consent-bar');
+        if (!bar) return;
+        var stored = null;
+        try { stored = localStorage.getItem('ei-consent'); } catch (e) {}
+        if (stored === 'granted' || stored === 'denied') return;
+        bar.classList.remove('hidden');
+        bar.classList.add('flex');
+        bar.addEventListener('click', function (ev) {
+          var btn = ev.target.closest && ev.target.closest('[data-consent]');
+          if (!btn) return;
+          var choice = btn.getAttribute('data-consent');
+          try { localStorage.setItem('ei-consent', choice); } catch (e) {}
+          if (window.clarity) window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: choice });
+          bar.style.display = 'none';
+        });
+      })();
+    </script>
 
     <script is:inline define:vars={{ BANNER_STRINGS }}>
       // Language suggestion banner. Uses the browser language, remembers the

@@ -613,6 +613,12 @@ export const core: CoreContent = {
           ],
         },
         {
+          heading: 'Cookie 与分析',
+          paragraphs: [
+            '在您同意的情况下，我们使用 Microsoft 提供的分析服务 Microsoft Clarity，了解访客如何使用本网站（浏览的页面、点击、滚动），以便改进网站。Clarity 会设置第一方 Cookie（_clck、_clsk），最长保存一年，用于识别重复访问；表单字段会被遮蔽，我们不会将这些数据用于广告。未经您同意，Clarity 不会设置任何 Cookie。您可随时在浏览器中清除本网站数据以更改您的选择。Microsoft 依据其隐私声明处理这些数据。',
+          ],
+        },
+        {
           heading: '联系方式',
           paragraphs: [
             'E & I: Expat, Relocation and Immigration Services The Netherlands, Laan van Zuid Hoorn 70, Rijswijk. KvK 65768922.',
