@@ -63,12 +63,16 @@
   ],
   "vars": {
     "SITE_ID": "framemedia",
-    // Aanvragen komen voorlopig bij ons binnen, niet bij FRAME MEDIA zelf. Dit
-    // adres is ook de reply-to op de bevestiging die de bezoeker krijgt, dus wie
-    // daarop antwoordt komt bij ons uit. Zodra Frans een mailbox aanwijst
-    // (info@framemedia.tv ligt voor de hand) is het deze regel, en dan mag er geen
-    // testinzending meer tegen de live config.
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // Aanvragen gaan sinds 17-10-2026 (Alfred) rechtstreeks naar FRAME MEDIA zelf
+    // en niet meer naar hallo@jouwidealewebsite.nl. Dit adres is ook de reply-to
+    // op de bevestiging die de bezoeker krijgt, dus wie daarop antwoordt komt bij
+    // Frans uit en niet bij ons.
+    //
+    // LET OP voor wie hierna test: een inzending tegen deze config mailt een echte
+    // klantmailbox. Zet LEAD_RECIPIENT eerst terug op hallo@jouwidealewebsite.nl
+    // (lokaal of in een wegwerp-deploy) voordat je het formulier end to end
+    // doorloopt.
+    "LEAD_RECIPIENT": "info@framemedia.tv",
     // Het verzenddomein notify.framemedia.tv is op 17-10-2026 op de zone
     // framemedia.tv gezet (DKIM, SPF en een p=reject DMARC staan erop). Het deel
     // voor de @ is vrij, dus no-reply@ veranderen is deze regel plus

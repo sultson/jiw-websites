@@ -78,10 +78,13 @@ const BRAND: ConfirmationEmailBrand = {
   logoWidth: 240,
   wordmark: 'FRAME MEDIA',
   websiteUrl: SITE_URL,
-  // Bewust geen contactEmail. De aanvragen komen voorlopig binnen op
-  // hallo@jouwidealewebsite.nl, en dat adres in de eigen mail van FRAME MEDIA
-  // zetten is ons merk in de hunne. De mail draagt al een reply-to daarheen, dus
-  // "antwoord op deze mail, of bel ons" is waar zoals het er staat.
+  // Staat er sinds 17-10-2026, toen LEAD_RECIPIENT naar info@framemedia.tv ging.
+  // Hiervoor stond hier bewust niets: het adres van wie de aanvragen ontvangt
+  // kwam toen bij ons uit, en dat in de eigen mail van FRAME MEDIA zetten is ons
+  // merk in de hunne. Nu is het hun eigen adres, en dan hoort het er juist in -
+  // de reply-to wijst naar hetzelfde adres, dus "antwoord op deze mail of mail
+  // ons" komt op beide manieren bij Frans uit.
+  contactEmail: 'info@framemedia.tv',
   colors: COLORS,
 };
 

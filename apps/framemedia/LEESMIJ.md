@@ -96,10 +96,11 @@ regels; de labels die de bezoeker leest zijn gewoon Nederlands gebleven.
 `firstName` heet in beide mails "Contactpersoon", want deze formulieren vragen
 geen voor- en achternaam.
 
-**Aanvragen komen op `hallo@jouwidealewebsite.nl`**, niet bij FRAME MEDIA zelf.
-Dat adres is ook de reply-to op de bevestiging. Zodra Frans een mailbox aanwijst
-is dat `LEAD_RECIPIENT` in `wrangler.jsonc` - en vanaf dat moment mag er geen
-testinzending meer tegen de live config.
+**Aanvragen komen sinds 17-10-2026 op `info@framemedia.tv`**, dus bij FRAME MEDIA
+zelf (`LEAD_RECIPIENT` in `wrangler.jsonc`, op aanwijzing van Alfred). Dat adres
+is ook de reply-to op de bevestiging, dus wie daarop antwoordt komt bij Frans
+uit. Vanaf nu geen testinzending meer tegen de live config: zet `LEAD_RECIPIENT`
+eerst terug op `hallo@jouwidealewebsite.nl`.
 
 Verstuurd wordt er vanaf `no-reply@notify.framemedia.tv` (verzenddomein met
 DKIM, SPF en een `p=reject` DMARC op de zone). Er komt niets aan op dat adres.
