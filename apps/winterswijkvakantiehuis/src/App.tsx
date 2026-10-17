@@ -4045,13 +4045,13 @@ function NatureCard({p, lang, L, hover = false}: {p: (typeof naturePhotos)[numbe
 
 /* ------------------------------------------------------------------ */
 /*  The fresh-photo stack: a few polaroids fanned on top of each other with the
-    date they were taken. Sits to the right of the hero copy on desktop and under
+    season they were taken in. Sits to the right of the hero copy on desktop and under
     the "view the homes" button on a phone. A tap opens them full size in a
     native <dialog>, which brings focus trapping and Esc for free.     */
 const FRESH_TEXT: Record<Lang, {label: string; open: string; close: string; prev: string; next: string; view: string}> = {
-  nl: {label: 'Vers uit de tuin', open: "Bekijk de nieuwste foto's", close: 'Sluiten', prev: 'Vorige foto', next: 'Volgende foto', view: 'Bekijk het Fins chalet'},
-  en: {label: 'Fresh from the garden', open: 'View the latest photos', close: 'Close', prev: 'Previous photo', next: 'Next photo', view: 'View the Finnish chalet'},
-  de: {label: 'Frisch aus dem Garten', open: 'Die neuesten Fotos ansehen', close: 'Schließen', prev: 'Vorheriges Foto', next: 'Nächstes Foto', view: 'Zum Finnischen Chalet'},
+  nl: {label: 'Herfst 2026', open: "Bekijk de nieuwste foto's", close: 'Sluiten', prev: 'Vorige foto', next: 'Volgende foto', view: 'Bekijk het Fins chalet'},
+  en: {label: 'Autumn 2026', open: 'View the latest photos', close: 'Close', prev: 'Previous photo', next: 'Next photo', view: 'View the Finnish chalet'},
+  de: {label: 'Herbst 2026', open: 'Die neuesten Fotos ansehen', close: 'Schließen', prev: 'Vorheriges Foto', next: 'Nächstes Foto', view: 'Zum Finnischen Chalet'},
 };
 
 function FreshPhotoStack({lang, className = ''}: {lang: Lang; className?: string}) {
@@ -4070,7 +4070,7 @@ function FreshPhotoStack({lang, className = ''}: {lang: Lang; className?: string
   return (
     <div className={className}>
       <button
-        type="button" onClick={() => open(0)} aria-label={`${t.open} (${date})`}
+        type="button" onClick={() => open(0)} aria-label={`${t.open}: ${t.label}`}
         className="group ml-2 lg:ml-0 flex items-center gap-4 lg:flex-col lg:gap-3 text-left lg:text-center"
       >
         <span className="relative block w-[92px] h-[100px] lg:w-[188px] lg:h-[204px] shrink-0">
@@ -4083,23 +4083,8 @@ function FreshPhotoStack({lang, className = ''}: {lang: Lang; className?: string
               <Photo src={p.src} alt="" hidden sizes="(min-width: 1024px) 200px, 100px" className="w-full h-full object-cover rounded-[10px] lg:rounded-[16px]" />
             </span>
           ))}
-          <span className="absolute -top-2 -right-2 lg:-top-3 lg:-right-3 z-10 bg-brand-sun text-white text-[10px] lg:text-xs font-semibold px-2 py-0.5 rounded-full shadow">
-            {photos.length}
-          </span>
         </span>
-        <span className="block text-white">
-          <span className="flex items-center gap-1.5 lg:justify-center text-xs font-medium text-brand-cream/90">
-            <span className="relative flex w-2 h-2">
-              <span className="absolute inline-flex w-full h-full rounded-full bg-[#20B85A] opacity-75 animate-ping motion-reduce:animate-none" />
-              <span className="relative inline-flex w-2 h-2 rounded-full bg-[#20B85A]" />
-            </span>
-            {t.label}
-          </span>
-          <span className="mt-0.5 block font-serif text-lg leading-tight">{date}</span>
-          <span className="mt-0.5 inline-flex items-center gap-1 text-xs text-brand-cream/80 group-hover:text-white group-hover:underline">
-            <Camera size={12} /> {t.open}
-          </span>
-        </span>
+        <span className="block font-serif text-lg leading-tight text-white">{t.label}</span>
       </button>
 
       <dialog
