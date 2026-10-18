@@ -34,9 +34,13 @@ const nl=lang==='nl';
     const video=gate.querySelector('video')!;
     const cinema=gate.querySelector<HTMLElement>('.gate-cinema')!;
     const root=document.documentElement;
+    let player:{dispose():void}|undefined;
+    let closed=false;
     const close=()=>{
+      if(closed)return;closed=true;
       try{localStorage.setItem(KEY,'1');}catch{}
-      video.pause();video.removeAttribute('src');video.load();
+      video.pause();
+      if(player)player.dispose();else{video.removeAttribute('src');video.load();}
       gate.remove();root.style.overflow='';document.removeEventListener('keydown',onKey);
     };
     const onKey=(event:KeyboardEvent)=>{if(event.key==='Escape')close();};
@@ -48,6 +52,20 @@ const nl=lang==='nl';
       // play() inside the click keeps the gesture, so the film may start with sound.
       video.play().catch(()=>{video.muted=true;video.play().catch(()=>{});});
       gate.querySelector<HTMLElement>('.gate-close')!.focus();
+      // Then wrap it in the same player as the home page; native controls stay until that loads.
+      void (async()=>{
+        try{
+          const [{default:videojs},{default:dutch}]=await Promise.all([import('video.js'),import('video.js/dist/lang/nl.json'),import('video.js/dist/video-js.css')]);
+          if(!gate.isConnected)return;
+          videojs.addLanguage('nl',dutch);
+          video.classList.add('video-js','vjs-big-play-centered');
+          const vjs=videojs(video,{controls:true,fill:true,language:document.documentElement.lang,playbackRates:[0.75,1,1.25,1.5],controlBar:{volumePanel:{inline:false}},userActions:{hotkeys:true}});
+          player=vjs;
+          // It wrapped a film that was already running: replay the events it missed so the controls match.
+          if(!video.paused){video.dispatchEvent(new Event('play'));video.dispatchEvent(new Event('playing'));}
+          vjs.userActive(true);
+        }catch{}
+      })();
     });
     video.addEventListener('ended',close);
     document.addEventListener('keydown',onKey);
@@ -83,7 +101,11 @@ const nl=lang==='nl';
 .gate-cinema{position:absolute;inset:0;z-index:2;display:grid;place-items:center;background:#000}
 .gate-cinema[hidden]{display:none}
 .gate-cinema video{width:100%;height:100%;object-fit:contain}
-.gate-close{position:absolute;top:clamp(14px,3vw,28px);right:clamp(14px,3vw,28px);display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:0;background:rgba(10,11,7,.72);color:#fff;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.gate-cinema .video-js{position:absolute;inset:0;width:100%;height:100%;font-family:var(--text);color:#fff;background:#000}
+.gate-cinema .video-js .vjs-big-play-button{width:72px;height:72px;line-height:68px;border:2px solid var(--green);border-radius:50%;background:#0a0b07cc;margin-left:-36px;margin-top:-36px;color:var(--green)}
+.gate-cinema .video-js .vjs-control-bar{background:#0a0b07eb;font-size:13px}
+.gate-cinema .video-js .vjs-play-progress,.gate-cinema .video-js .vjs-volume-level{background:var(--green)}
+.gate-close{position:absolute;z-index:3;top:clamp(14px,3vw,28px);right:clamp(14px,3vw,28px);display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:0;background:rgba(10,11,7,.72);color:#fff;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
 .gate-close:hover{color:var(--green)}
 .gate-close:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 @media(max-width:700px){
