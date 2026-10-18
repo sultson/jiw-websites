@@ -35,6 +35,17 @@
   X-Robots-Tag: noindex, nofollow
   Cache-Control: public, max-age=3600
 
+# De fotokeuzepagina (scripts/fotokeuze.mjs), om dezelfde reden uit de
+# zoekresultaten: hij is voor Marjon om een herofoto uit te kiezen, niet voor een
+# bezoeker. Twee regels om dezelfde reden als bij /logo - /fotokeuze zelf is een
+# ander pad dan /fotokeuze/*.
+/fotokeuze
+  X-Robots-Tag: noindex, nofollow
+
+/fotokeuze/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: public, max-age=3600
+
 # Een dag: lang genoeg om niet bij elk bezoek opgehaald te worden, kort genoeg
 # dat een nieuwe pagina binnen een dag in de sitemap staat.
 /robots.txt

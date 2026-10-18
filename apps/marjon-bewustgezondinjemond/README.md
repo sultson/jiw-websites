@@ -81,6 +81,30 @@ Let op: de naam staat in `merk/` in Cormorant Garamond (zoals `.merknaam` op de
 site) en in `public/logo-email.png` in Quicksand. Die twee spreken elkaar tegen;
 welke wint is een vraag voor Marjon.
 
+## Fotokeuze
+
+`/fotokeuze` is een kladblok voor Marjon: alle twintig foto's van de fotosessie,
+met daarboven twee voorbeelden van de hero - de kolomopstelling van een computer
+en het volle scherm van een telefoon - die meteen meeveranderen als ze een foto
+aantikt. `scripts/fotokeuze.mjs` maakt die pagina na `vite build`, net als
+`merk-publiceren.mjs`. Noindex via `public/_headers`, nergens naartoe gelinkt,
+niet in de sitemap.
+
+Haar keuze blijft in `localStorage` staan en gaat verder nergens heen; onderaan
+de pagina kopieert of mailt ze hem naar ons. Geen opslag op de server, dus ook
+geen tweede plek waar de site zijn eigen stand vandaan haalt.
+
+De uitsnedes van de twee foto's die nú op de site staan zijn overgenomen uit
+`scripts/hero.mjs` - verandert die, dan hoort `HAND` en `HUIDIG` in
+`fotokeuze.mjs` mee te veranderen, anders laat de pagina een andere uitsnede zien
+dan de site. De andere achttien laat sharp zelf uitsnijden
+(`strategy.attention`); dat is genoeg om te beoordelen of een foto werkt, maar
+kiest ze er een, dan meten we de uitsnede alsnog met de hand op.
+
+Dit staat met opzet hier en niet in het oude concept in `jiw-concepts/marjon`:
+die Worker is met pensioen en opnieuw uitrollen zet een tweede, verouderde kopie
+van de site online die ook `marjon.jouwidealewebsite.nl` terugpakt.
+
 ## SEO
 
 `scripts/seo.mjs` schrijft `sitemap.xml` en `robots.txt` na de build - niet in
