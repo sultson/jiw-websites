@@ -771,9 +771,11 @@ table.vgl tbody tr:last-child th, table.vgl tbody tr:last-child td { border-bott
 }
 
 /* --- branches van Puur Genieten -------------------------------------------
-   Dezelfde kaart als hierboven, maar staand: de aangeleverde clips zijn
-   720x1280. Vier op een rij zou vier zuilen van bijna een scherm hoog geven,
-   dus het zijn er hier vier bij een smallere kaart en minder eronder.
+   Dezelfde kaart als hierboven, maar in twee beeldverhoudingen. De klant
+   leverde elke clip tweemaal aan: staand 720x1280 (08-10-2026) en liggend
+   1280x720 (18-10-2026). Op de telefoon staat de kaart rechtop, vanaf 901px
+   ligt hij - op verzoek van de klant. De grens staat ook in site.js, want
+   daar wordt gekozen welke clip er na de klik komt.
    De speler is een gewone <video> en geen insluiting - dit zijn eigen
    bestanden.
 
@@ -784,8 +786,31 @@ table.vgl tbody tr:last-child th, table.vgl tbody tr:last-child td { border-bott
    ------------------------------------------------------------------------- */
 .branches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; }
 .branche-beeld { position: relative; display: block; background: var(--inkt); }
+.branche-beeld picture { display: block; }
 .branche-beeld img { width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; display: block; }
 .branche-kaart .video-tekst { padding-bottom: .1rem; }
+
+@media (min-width: 901px) {
+  .branche-kaart .branche-beeld img { aspect-ratio: 16 / 9; }
+
+  /* Een branche waarvan geen liggende versie is aangeleverd (zie
+     maak-branches.mjs). Die clip blijft staan, ook hier: bijsnijden tot 16:9
+     zaagt de ondertitel en het logo eruit. De kaart houdt wel de liggende maat
+     van de andere zeven, met het staande beeld in het midden en een vervaagde
+     uitvergroting van datzelfde beeld in de randen - zo blijft de rij recht
+     zonder dat er een zwarte balk naast staat. */
+  .branche-kaart.staand .branche-beeld {
+    display: flex; justify-content: center; aspect-ratio: 16 / 9; overflow: hidden;
+  }
+  .branche-kaart.staand .branche-beeld::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--vul) center / cover; filter: blur(22px) brightness(.5);
+    transform: scale(1.15);
+  }
+  .branche-kaart.staand .branche-beeld picture { position: relative; height: 100%; }
+  .branche-kaart.staand .branche-beeld img { width: auto; height: 100%; aspect-ratio: 9 / 16; }
+}
+
 /* De regel onder de branchenaam staat alleen op optie 1 van de
    landingspagina (blok `branchesVol`). Zie LEESMIJ.md. */
 .branche-regel {
@@ -793,6 +818,10 @@ table.vgl tbody tr:last-child th, table.vgl tbody tr:last-child td { border-bott
   margin-top: .25rem;
 }
 .branche-speler { position: relative; aspect-ratio: 9 / 16; background: #000; border-radius: var(--radius); overflow: hidden; }
+/* site.js zet .breed als de liggende clip is geladen. Een media query zou
+   hier fout zijn: wie zijn venster na de klik versmalt houdt de clip die al
+   speelt, en die moet in zijn eigen verhouding blijven staan. */
+.branche-speler.breed { aspect-ratio: 16 / 9; }
 .branche-speler video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 
 /* Het rondje van Puur Genieten naast de sectiekop. Het bronbestand heeft

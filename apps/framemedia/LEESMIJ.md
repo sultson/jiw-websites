@@ -19,10 +19,11 @@ Drie talen: Nederlands op de wortel, Engels op `/en/`, Duits op `/de/`. Zie
 | `pnpm --filter @jiw/framemedia ship:dry-run` | Zelfde zonder uploaden |
 | `pnpm --filter @jiw/framemedia lint` | `tsc` over `worker/` |
 | `pnpm --filter @jiw/framemedia build:concept` | Dezelfde bron, maar met noindex en robots dicht |
-| `node serveer.mjs` | Proefserver op http://localhost:4174 |
+| `node serveer.mjs` | Proefserver op http://localhost:4174 (`POORT=4175` als die bezet is) |
 | `node kijk.mjs [url]` | Loopt alles na met Playwright, desktop + telefoon |
 | `node meet-360.mjs` | Alleen de breedte en de actiebalk, op 360 in plaats van 390 |
-| `node maak-branches.mjs` | Zet de aangeleverde branche-clips om naar web (`--posters` = alleen de posterbeelden) |
+| `node maak-branches.mjs` | Zet de aangeleverde branche-clips om naar web (`--posters` = alleen de posterbeelden, `--breed`/`--staand` = een van de twee verhoudingen) |
+| `node tools/meet-branches.mjs [url]` | Controleert per breedte en taal welk posterbeeld en welke clip de branchekaarten pakken |
 | `node maak-logo.mjs` | Maakt de vier logobestanden uit `raw/framemedia-logo.svg` |
 | `node tools/gen-mail-logo.mjs` | Het logo als png voor de bevestigingsmail |
 
@@ -520,28 +521,57 @@ Vier dingen die daarmee zijn gevonden en gerepareerd:
 
 ## De branches van Puur Genieten
 
-Acht verticale clips (720x1280, 14 tot 29 seconden), 08-10-2026 door de klant
-via WeTransfer aangeleverd. Ze staan op de startpagina onder "Dit zijn de
-branches voor het programma Puur Genieten". Daar stond eerst een regel onder
-("Acht branches waarin Puur Genieten draait..."); die is er op 10-10-2026 op
-verzoek van Armando afgehaald - de kaarten zeggen het zelf al.
+Acht clips van 14 tot 29 seconden, door de klant via WeTransfer aangeleverd:
+staand (720x1280) op 08-10-2026, liggend (4K-masters) op 18-10-2026. Ze staan
+op de startpagina en op de landingspagina onder "Dit zijn de branches voor het
+programma Puur Genieten". Daar stond eerst een regel onder ("Acht branches
+waarin Puur Genieten draait..."); die is er op 10-10-2026 op verzoek van
+Armando afgehaald - de kaarten zeggen het zelf al.
 
 - De aangeleverde bestanden staan **buiten de projectmap**, in
-  `playground/.aangeleverd-framemedia/puur-genieten/` (210 MB). Alles wat in de
-  projectmap ligt kan met een verkeerd ingesteld `[assets]` de Worker op.
+  `playground/.aangeleverd-framemedia/` (`puur-genieten/` 210 MB staand,
+  `puur-genieten-horizontaal/` 610 MB liggend). Alles wat in de projectmap ligt
+  kan met een verkeerd ingesteld `[assets]` de Worker op.
 - `maak-branches.mjs` maakt er een mp4 van (h264, crf 28, 1 tot 7 MB per clip)
-  plus een posterbeeld van 480 breed. Geen webm: vp9 kwam er bij deze clips
-  groter uit dan h264.
+  plus een posterbeeld. Staand heet `<slug>.mp4` + `<slug>-poster.webp` (480
+  breed), liggend `<slug>-breed.mp4` + `<slug>-breed-poster.webp` (854 breed).
+  Geen webm: vp9 kwam er bij deze clips groter uit dan h264.
+  `--breed` / `--staand` doet er een van de twee, `--posters` laat de mp4's met
+  rust.
+- **Twee beeldverhoudingen, op verzoek van Armando (18-10-2026): de telefoon
+  houdt de staande kaart, vanaf 901px ligt hij.** Die grens staat op drie
+  plekken en die moeten gelijk blijven: de `media` van de `<source>` in
+  `blokken.mjs`, de `@media (min-width: 901px)` in `style.css`, en de
+  `matchMedia` in `site.js` die kiest welke clip er na de klik komt. Het
+  posterbeeld wisselt dus zonder JavaScript, en een telefoon haalt het brede
+  beeld nooit op.
+- **Tuinen heeft geen liggende versie** - die zat niet in de aanlevering. Die
+  kaart krijgt `.staand` als extra klasse (`blokken.mjs` kijkt of
+  `<slug>-breed.mp4` bestaat, dus dat gaat vanzelf goed zodra het bestand er
+  is) en blijft ook op de desktop rechtop staan, in een liggend kader met een
+  vervaagde uitvergroting van hetzelfde beeld in de randen. Bijsnijden tot 16:9
+  was het alternatief en dat zaagt de ondertitel en het logo eruit.
+  Komt het bestand alsnog: in `BREED` zetten, `node maak-branches.mjs --breed`,
+  klaar.
 - **Het tijdstip van elk posterbeeld staat met de hand in dat script.** Elke
   clip heeft een ondertitel die regel voor regel opbouwt en een logo dat in
   beeld draait, dus een vast tijdstip geeft kaarten met een halve zin erin. Let
   ook op de overgangen: rond 8 seconden heeft Eten en drinken een zwarte naad
-  over het midden en Golfen zwarte balken boven en onder.
+  over het midden en Golfen zwarte balken boven en onder. Een vierde getal in
+  `CLIPS` is de seconde voor het liggende beeld: het staande is uit het midden
+  gesneden, dus bij Massage hangt het ronde logo op 7 s halverwege de bovenrand
+  en is 1,5 s het betere moment.
 - De kaart laadt alleen het posterbeeld. Pas na een klik komt er een `<video>`
   met bediening in de plaats - een mp4 van een paar megabyte haal je niet op
   voor iemand die langs scrolt. Dit zijn eigen bestanden, dus geen YouTube.
+  De speler krijgt `.breed` mee als de liggende clip geladen is; dat is een
+  klasse en geen media query, want wie zijn venster tijdens het kijken
+  versmalt moet de clip houden die al speelt.
 - De kaart draagt `.video-kaart` **en** `.branche-kaart`. De eerste levert de
-  kaart zelf (achtergrond, rand, zweefstand), de tweede maakt hem staand.
+  kaart zelf (achtergrond, rand, zweefstand), de tweede de beeldverhouding.
+- `node tools/meet-branches.mjs [url]` controleert het geheel: per breedte en
+  per taal welk posterbeeld de browser echt koos en welke clip er na een klik
+  in de speler staat. 512 metingen.
 
 ## De landingspagina /puurgenieten/
 

@@ -391,10 +391,12 @@ export const VIDEOS = [
 ];
 
 // --- branches Puur Genieten -------------------------------------------------
-// Acht verticale clips (720x1280), 08-10-2026 door de klant aangeleverd via
-// WeTransfer. De branchenaam komt uit de bestandsnaam; de originelen staan in
-// playground/.aangeleverd-framemedia/puur-genieten/ (buiten de projectmap) en
-// de webversies worden gemaakt met maak-branches.mjs.
+// Acht clips, door de klant aangeleverd via WeTransfer: staand (720x1280) op
+// 08-10-2026 en liggend (4K) op 18-10-2026, Tuinen alleen staand. De
+// branchenaam komt uit de bestandsnaam; de originelen staan in
+// playground/.aangeleverd-framemedia/ (buiten de projectmap) en de webversies
+// worden gemaakt met maak-branches.mjs. Welke van de twee de bezoeker krijgt
+// hangt van zijn schermbreedte af, zie blokken.mjs bij `brancheKaart`.
 // Dit zijn eigen bestanden, geen YouTube - ze spelen in de pagina zelf.
 //
 // Een ding is van ons en niet van hen: de volgorde (alfabetisch). De "2 " voor

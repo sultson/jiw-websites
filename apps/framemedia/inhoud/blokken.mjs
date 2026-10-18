@@ -1,5 +1,6 @@
 // Stukken HTML die uit data.mjs komen. De pagina's in inhoud/ roepen ze aan
 // met een <!--#naam--> op de plek waar het blok moet komen; bouw.mjs vult in.
+import { existsSync } from 'node:fs';
 import * as NL from './data.mjs';
 
 // --- de actieve taal -------------------------------------------------------
@@ -214,24 +215,51 @@ ${D.VIDEOS.slice(0, n).map(v => `        <button class="video-kaart kader" type=
       </div>`;
 
 // De branches van Puur Genieten. Anders dan videoGrid: dit zijn eigen
-// bestanden en geen YouTube, en de clips staan rechtop (720x1280), dus de
-// kaart is staand. De kaart laadt alleen het posterbeeld; pas na een klik
-// komt er een <video> in de plaats, met autoplay omdat de bezoeker er net om
-// vroeg. Een mp4 van vier tot zeven megabyte haal je niet ongevraagd op.
-export const branches = () => `
-      <div class="branches">
-${D.BRANCHES.map(b => `        <button class="video-kaart branche-kaart kader" type="button" data-clip="/assets/video/branches/${b.slug}.mp4"
-                data-poster="/assets/video/branches/${b.slug}-poster.webp" data-titel="${b.naam}">
-          <span class="branche-beeld">
-            <img src="/assets/video/branches/${b.slug}-poster.webp" width="480" height="854" loading="lazy" decoding="async"
-                 alt="${U.beeldBranche(b.naam)}">
+// bestanden en geen YouTube. De kaart laadt alleen het posterbeeld; pas na een
+// klik komt er een <video> in de plaats, met autoplay omdat de bezoeker er net
+// om vroeg. Een mp4 van een paar megabyte haal je niet ongevraagd op.
+//
+// Elke branche bestaat in twee beeldverhoudingen (zie maak-branches.mjs). De
+// telefoon krijgt de staande clip van 720x1280, de desktop de liggende van
+// 1280x720 - op verzoek van de klant, 18-10-2026. Het posterbeeld wisselt met
+// een <picture>, dus zonder JavaScript en zonder dat de telefoon het brede
+// beeld ophaalt; welke clip er na de klik komt kiest site.js met dezelfde
+// grens (901px, zie style.css).
+//
+// Een branche zonder liggende versie krijgt `staand` als extra klasse. Die
+// kaart blijft dan ook op de desktop rechtop staan, in een liggend kader met
+// een vervaagde rand - wat er niet is kun je niet tonen, en een staande clip
+// bijsnijden tot 16:9 zaagt de ondertitel eraf.
+const BREED_BESTAND = (slug) =>
+  existsSync(new URL(`./assets/video/branches/${slug}-breed.mp4`, import.meta.url));
+
+const brancheKaart = (b, metRegel) => {
+  const breed = BREED_BESTAND(b.slug);
+  const poster = `/assets/video/branches/${b.slug}-poster.webp`;
+  const posterBreed = `/assets/video/branches/${b.slug}-breed-poster.webp`;
+  return `        <button class="video-kaart branche-kaart kader${breed ? '' : ' staand'}" type="button" data-clip="/assets/video/branches/${b.slug}.mp4"
+                data-poster="${poster}"${breed ? `
+                data-clip-breed="/assets/video/branches/${b.slug}-breed.mp4" data-poster-breed="${posterBreed}"` : ''}
+                data-titel="${b.naam}">
+          <span class="branche-beeld"${breed ? '' : ` style="--vul: url('${poster}')"`}>
+            <picture>${breed ? `
+              <source media="(min-width: 901px)" srcset="${posterBreed}" width="854" height="480">` : ''}
+              <img src="${poster}" width="480" height="854" loading="lazy" decoding="async"
+                   alt="${U.beeldBranche(b.naam)}">
+            </picture>
             <span class="video-speel">${speel}</span>
             <span class="video-duur">${b.duur}</span>
           </span>
           <span class="video-tekst">
-            <span class="video-titel">${b.naam}</span>
+            <span class="video-titel">${b.naam}</span>${metRegel ? `
+            <span class="branche-regel">${b.tekst}</span>` : ''}
           </span>
-        </button>`).join('\n')}
+        </button>`;
+};
+
+export const branches = () => `
+      <div class="branches">
+${D.BRANCHES.map(b => brancheKaart(b, false)).join('\n')}
       </div>`;
 
 // Dezelfde acht kaarten, maar met de regel van ons onder elke naam. Staat op
@@ -242,19 +270,7 @@ ${D.BRANCHES.map(b => `        <button class="video-kaart branche-kaart kader" t
 // pagina dan kunt zien welke van de twee er staat.
 export const branchesVol = () => `
       <div class="branches">
-${D.BRANCHES.map(b => `        <button class="video-kaart branche-kaart kader" type="button" data-clip="/assets/video/branches/${b.slug}.mp4"
-                data-poster="/assets/video/branches/${b.slug}-poster.webp" data-titel="${b.naam}">
-          <span class="branche-beeld">
-            <img src="/assets/video/branches/${b.slug}-poster.webp" width="480" height="854" loading="lazy" decoding="async"
-                 alt="${U.beeldBranche(b.naam)}">
-            <span class="video-speel">${speel}</span>
-            <span class="video-duur">${b.duur}</span>
-          </span>
-          <span class="video-tekst">
-            <span class="video-titel">${b.naam}</span>
-            <span class="branche-regel">${b.tekst}</span>
-          </span>
-        </button>`).join('\n')}
+${D.BRANCHES.map(b => brancheKaart(b, true)).join('\n')}
       </div>`;
 
 // De keuzelijst voor het aanmeldformulier op de landingspagina. Hun eigen

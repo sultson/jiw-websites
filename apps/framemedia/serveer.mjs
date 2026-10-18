@@ -4,7 +4,9 @@ import { createServer } from 'http';
 import { readFileSync, existsSync, statSync } from 'fs';
 import { extname, join } from 'path';
 
-const POORT = 4174;
+// POORT=4175 node serveer.mjs als er al iets op 4174 luistert - er draait op
+// deze machine nog een oude van de conceptversie.
+const POORT = Number(process.env.POORT) || 4174;
 const TYPES = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml',

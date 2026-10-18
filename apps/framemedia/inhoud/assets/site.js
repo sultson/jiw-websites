@@ -281,11 +281,16 @@ document.querySelectorAll('[data-video]').forEach(kaart => {
 document.querySelectorAll('[data-clip]').forEach(kaart => {
   kaart.addEventListener('click', () => {
     const titel = kaart.dataset.titel || 'Video';
+    // Vanaf 901px ligt de kaart en is er een liggende versie van de clip
+    // (dezelfde grens als in style.css, en als de <source> van het
+    // posterbeeld). Niet elke branche heeft er een; dan blijft het de staande.
+    const breed = kaart.dataset.clipBreed
+      && window.matchMedia('(min-width: 901px)').matches;
     const houder = document.createElement('div');
-    houder.className = 'branche-speler kader';
+    houder.className = `branche-speler kader${breed ? ' breed' : ''}`;
     const v = document.createElement('video');
-    v.src = kaart.dataset.clip;
-    v.poster = kaart.dataset.poster || '';
+    v.src = breed ? kaart.dataset.clipBreed : kaart.dataset.clip;
+    v.poster = (breed ? kaart.dataset.posterBreed : kaart.dataset.poster) || '';
     v.controls = true;
     v.autoplay = true;
     v.playsInline = true;
