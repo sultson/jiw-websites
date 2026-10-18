@@ -72,10 +72,10 @@ const courses: Record<Lang, Course[]> = {
       category: 'Instructeur',
       duration: '2 dagen',
       audience: 'Ervaren RWC-operators van reddingsbrigades, hulpdiensten en overheidsorganisaties.',
-      image: '/images/rwc-instructor.webp',
-      imageAlt: 'Hulpverlener oefent het uit het water halen van een drenkeling met een reddingsslee',
-      imageWidth: 1600,
-      imageHeight: 1067,
+      image: '/images/course-instructor.webp',
+      imageAlt: 'Instructeur begeleidt een deelnemer op een reddingswaterscooter',
+      imageWidth: 1200,
+      imageHeight: 750,
       summary: 'Ontwikkel u als ervaren RWC-operator tot instructeur. In deze tweedaagse praktijkgerichte opleiding leert u collega’s, hulpverleners en medewerkers van overheidsdiensten opleiden tot zelfstandig en veilig inzetbare RWC-operators.',
       sections: [
         {
@@ -124,7 +124,7 @@ const courses: Record<Lang, Course[]> = {
       title: 'Rescue Watercraft Operator',
       category: 'Operator',
       duration: '3 days',
-      audience: 'Rescuers holding a Reddingsbrigade Lifeguard or Fire Service Surface Water Rescuer qualification.',
+      audience: 'Rescuers holding a Lifeguard or Fire Service Surface Water Rescuer qualification.',
       image: '/images/rwc-operator.webp',
       imageAlt: 'Rescue watercraft and rescue sled transporting a casualty with two rescuers',
       imageWidth: 1600,
@@ -142,9 +142,9 @@ const courses: Record<Lang, Course[]> = {
           title: 'Entry requirements',
           items: [
             'At least 18 years old.',
-            'Reddingsbrigade Lifeguard or Fire Service Surface Water Rescuer qualification.',
+            'Lifeguard or Fire Service Surface Water Rescuer qualification.',
             'Valid first-aid qualification.',
-            'Valid Dutch Klein Vaarbewijs 1 boating licence.',
+            'A valid small craft licence (Klein Vaarbewijs I).',
           ],
         },
         {
@@ -175,10 +175,10 @@ const courses: Record<Lang, Course[]> = {
       category: 'Instructor',
       duration: '2 days',
       audience: 'Experienced RWC operators from lifesaving organisations, emergency services and government organisations.',
-      image: '/images/rwc-instructor.webp',
-      imageAlt: 'Rescuer practising casualty recovery from the water using a rescue sled',
-      imageWidth: 1600,
-      imageHeight: 1067,
+      image: '/images/course-instructor.webp',
+      imageAlt: 'Instructor guiding a participant on a rescue watercraft',
+      imageWidth: 1200,
+      imageHeight: 750,
       summary: 'Develop from an experienced RWC operator into an instructor. This practical two-day course teaches you to train colleagues, rescuers and government personnel to become independent, safe RWC operators.',
       sections: [
         {
@@ -194,7 +194,7 @@ const courses: Record<Lang, Course[]> = {
             'A valid RWC operator certificate.',
             'At least one full season of experience operating a rescue watercraft, or demonstrable equivalent experience.',
             'A valid first-aid qualification.',
-            'At least a Dutch Klein Vaarbewijs I boating licence.',
+            'At least a small craft licence (Klein Vaarbewijs I).',
           ],
         },
         {

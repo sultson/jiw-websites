@@ -70,10 +70,10 @@ async function socialFeed(request:Request,env:Env,ctx:ExecutionContext):Promise<
   try{return feedResponse(await refreshFeed(cache,key,channel,feedUrl,env),'miss');}catch(error){console.error('social_feed_initial_fetch_failed',{channel,error:error instanceof Error?error.message:String(error)});return Response.json({items:[],error:'Feed temporarily unavailable'},{status:502});}
 }
 
-// Expose only this film; byte ranges let browsers seek without downloading it all.
-async function brandFilm(request:Request,env:Env):Promise<Response>{
+// Expose only these films; byte ranges let browsers seek without downloading them all.
+const films:Record<string,string>={'/api/brandfilm':'resque-watercraft-brandfilm.mp4','/api/servicecentrum':'rescue-watercraft-reddingsbrigade-service-center.mp4'};
+async function film(request:Request,env:Env,key:string):Promise<Response>{
   if(!['GET','HEAD'].includes(request.method))return new Response(null,{status:405,headers:{Allow:'GET, HEAD'}});
-  const key='resque-watercraft-brandfilm.mp4';
   const meta=await env.WEBSITE_ASSETS.head(key);
   if(!meta)return new Response('Film unavailable',{status:404});
   const headers=new Headers({'Content-Type':'video/mp4','Accept-Ranges':'bytes','Cache-Control':'public, max-age=3600','ETag':meta.httpEtag,'Last-Modified':meta.uploaded.toUTCString(),'Content-Length':String(meta.size),'X-Content-Type-Options':'nosniff'});
@@ -97,4 +97,4 @@ async function brandFilm(request:Request,env:Env):Promise<Response>{
   return new Response(object.body,{status:range?206:200,headers});
 }
 
-export default{async fetch(request,env,ctx){const url=new URL(request.url);if(url.pathname==='/api/brandfilm')return brandFilm(request,env);if(url.pathname==='/api/social-feed'&&request.method==='GET')return socialFeed(request,env,ctx);const worker=workers[url.pathname];if(worker)return worker.fetch!(request,env,ctx);return env.ASSETS.fetch(request);}} satisfies ExportedHandler<Env>;
+export default{async fetch(request,env,ctx){const url=new URL(request.url);const filmKey=films[url.pathname];if(filmKey)return film(request,env,filmKey);if(url.pathname==='/api/social-feed'&&request.method==='GET')return socialFeed(request,env,ctx);const worker=workers[url.pathname];if(worker)return worker.fetch!(request,env,ctx);return env.ASSETS.fetch(request);}} satisfies ExportedHandler<Env>;

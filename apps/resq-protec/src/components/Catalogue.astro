@@ -7,27 +7,14 @@ const categories=[...new Set((isCourses?courses:products).map(x=>x.category))];
 const title=isCourses?c.coursesTitle:c.equipmentTitle; const intro=isCourses?c.coursesIntro:c.equipmentIntro; const path=isCourses?r.courses:r.equipment;
 const itemNames=isCourses?courses.map(x=>x.title):products.map(x=>x.name);
 const t=lang==='nl'?{category:'Categorie',courses:'opleidingen',products:'producten',details:'Details bekijken',hide:'Details sluiten',source:'Bekijk bronpagina',duration:'Duur',audience:'Doelgroep',availability:'Beschikbaarheid',available:'Op aanvraag; wij controleren uitvoering, maat en levertijd.',specs:'Productinformatie'}:{category:'Category',courses:'courses',products:'products',details:'View details',hide:'Close details',source:'View source page',duration:'Duration',audience:'Audience',availability:'Availability',available:'On request; we confirm model, size and lead time.',specs:'Product information'};
-const training=lang==='nl'?{
-  caption:'Instructie op het water',
-  title:'Praktijkgericht trainen.',
-  text:'Deelnemers krijgen uitleg, oefenen manoeuvres en passen die direct toe op het water.',
-  coaching:'Persoonlijke coaching',
-  practice:'Oefenen onder begeleiding',
-}:{
-  caption:'Instruction on the water',
-  title:'Practical training.',
-  text:'Participants receive instruction, practise manoeuvres and apply them directly on the water.',
-  coaching:'Personal coaching',
-  practice:'Supervised practice',
-};
+const training=lang==='nl'?{caption:'Instructie op het water'}:{caption:'Instruction on the water'};
 ---
 <Layout lang={lang} title={`${title} | Rescue Watercraft`} description={intro} canonicalPath={path}>
   <header class:list={['page-hero',isCourses&&'training-hero']}><div class:list={['container',isCourses&&'training-hero-grid']}><div><div class="crumb">Rescue Watercraft / {title}</div><p class="eyebrow">{isCourses?(lang==='nl'?'Vakbekwaamheid':'Professional competence'):(lang==='nl'?'Professioneel materieel':'Professional equipment')}</p><h1>{title}</h1><p class="lead">{intro}</p></div>{isCourses&&<figure class="training-hero-media"><img src="/images/training-instruction.webp" alt={lang==='nl'?'Instructeur geeft uitleg aan deelnemers bij een reddingswaterscooter':'Instructor briefing participants beside a rescue watercraft'} width="1200" height="1600" fetchpriority="high"/><figcaption>{training.caption}</figcaption></figure>}</div></header>
-  {isCourses&&<section class="training-story"><div class="container training-story-grid"><div class="training-story-copy"><h2>{training.title}</h2><p class="lead">{training.text}</p></div><div class="training-story-media"><figure><img src="/images/training-coaching.webp" alt={lang==='nl'?'Instructeur coacht een deelnemer vanaf de reddingswaterscooter':'Instructor coaching a participant from the rescue watercraft'} width="1200" height="1600" loading="lazy"/><figcaption>{training.coaching}</figcaption></figure><figure><img src="/images/training-practice.webp" alt={lang==='nl'?'Deelnemer oefent varen op een reddingswaterscooter onder begeleiding':'Participant practising on a rescue watercraft under supervision'} width="1200" height="1600" loading="lazy"/><figcaption>{training.practice}</figcaption></figure></div></div></section>}
-  <section class="catalogue section"><div class="container"><div class="tools"><label><span>{c.search}</span><input type="search" placeholder={lang==='nl'?'Zoek in het aanbod…':'Search the catalogue…'} data-search /></label><label><span>{t.category}</span><select data-category><option value="">{c.all}</option>{categories.map(x=><option value={x}>{x}</option>)}</select></label><span class="count"><strong data-count>{isCourses?courses.length:products.length}</strong> {isCourses?t.courses:t.products}</span></div>
+  <section class="catalogue section"><div class="container">{!isCourses&&<div class="tools"><label><span>{c.search}</span><input type="search" placeholder={lang==='nl'?'Zoek in het aanbod…':'Search the catalogue…'} data-search /></label><label><span>{t.category}</span><select data-category><option value="">{c.all}</option>{categories.map(x=><option value={x}>{x}</option>)}</select></label><span class="count"><strong data-count>{isCourses?courses.length:products.length}</strong> {isCourses?t.courses:t.products}</span></div>}
     <div class:list={['cards',isCourses?'courses':'products']} data-grid>
       {isCourses?courses.map((course,i)=><article data-item data-category={course.category} data-text={`${course.title} ${course.category} ${course.summary}`.toLowerCase()}>
-        <img class="course-image" src={course.image} alt={course.imageAlt} width={course.imageWidth} height={course.imageHeight} loading="lazy"/>
+        <picture><source type="image/avif" srcset={course.image.replace(/\.webp$/,'.avif')}/><img class="course-image" src={course.image} alt={course.imageAlt} width={course.imageWidth} height={course.imageHeight} loading="lazy"/></picture>
         <div class="card-body">
           <div class="card-top"><span>{String(i+1).padStart(2,'0')}</span><span>{course.category}</span></div>
           <h2>{course.title}</h2><p>{course.summary}</p>
