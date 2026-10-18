@@ -9,10 +9,10 @@
 // Het zijn dezelfde montages: de duur verschilt per clip minder dan een tiende
 // seconde, dus de met de hand gekozen posterseconde geldt voor allebei.
 //
-// TUINEN HEEFT GEEN LIGGENDE VERSIE. Die zat niet in de aanlevering, dus die
-// kaart blijft ook op de desktop staand (daar vangt de opmaak hem op). Komt
-// het bestand later, zet het dan in BREED en draai `node maak-branches.mjs
-// --breed`; verder hoeft er niets aangepast.
+// Alle acht branches hebben nu een liggende versie. Tuinen zat niet in de
+// aanlevering van 's ochtends en kwam los na (18-10-2026, 26,62 s net als de
+// staande); de opvang in style.css voor een kaart zonder liggende clip staat er
+// nog voor als er ooit een negende branche bijkomt.
 //
 // De aangeleverde bestanden staan BUITEN de projectmap, in
 // playground/.aangeleverd-framemedia/ (puur-genieten/ staand 210 MB,
@@ -76,6 +76,7 @@ export const BREED = {
   'massage': 'Massage_PUUR_GENIETEN_4K_beeldvullend.mp4',
   'meubelzaak': 'Meubelzaak_PUUR_GENIETEN_4K_beeldvullend.mp4',
   'reizen': 'Reizen_PUUR_GENIETEN_4K_beeldvullend.mp4',
+  'tuinen': 'Tuinen_PUUR_GENIETEN_4K_beeldvullend.mp4',
 };
 
 const run = (a) => execFileSync(ffmpeg, a, { stdio: ['ignore', 'ignore', 'pipe'] });
@@ -86,8 +87,13 @@ const alleenPosters = process.argv.includes('--posters');
 // --breed doet alleen de liggende versies, --staand alleen de staande.
 const welke = process.argv.includes('--breed') ? 'breed'
   : process.argv.includes('--staand') ? 'staand' : 'beide';
+// --alleen=<slug> doet een branche. Komt er een clip na-geleverd, dan hoeven de
+// andere zeven 4K-masters niet opnieuw door ffmpeg.
+const alleen = (process.argv.find(a => a.startsWith('--alleen=')) || '').slice(9);
+const doe = (slug) => !alleen || slug === alleen;
 
 if (welke !== 'breed') for (const [slug, bestand, posterSec] of CLIPS) {
+  if (!doe(slug)) continue;
   const bron = join(AAN, 'puur-genieten', bestand);
   if (!existsSync(bron)) throw new Error(`ontbreekt: ${bron}`);
   const basis = ['-y', '-i', bron, '-map', '0:v:0', '-map', '0:a:0?'];
@@ -107,6 +113,7 @@ if (welke !== 'breed') for (const [slug, bestand, posterSec] of CLIPS) {
 }
 
 if (welke !== 'staand') for (const [slug, , staandSec, breedSec] of CLIPS) {
+  if (!doe(slug)) continue;
   const posterSec = breedSec ?? staandSec;
   const bestand = BREED[slug];
   if (!bestand) { console.log(`${slug} -> geen liggende versie aangeleverd`); continue; }
