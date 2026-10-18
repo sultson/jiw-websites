@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import App, { allRoutePaths, routeMetaFor } from './App';
 
 export { allRoutePaths, routeMetaFor };
+export { SITE_URL } from './content';
 
 export function render(path: string): string {
   return renderToString(

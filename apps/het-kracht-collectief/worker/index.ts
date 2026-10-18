@@ -26,44 +26,31 @@ const formWorker = createFormWorker({
   ],
 });
 
-const SITE_URL = 'https://het-kracht-collectief.jouwidealewebsite.nl';
-const ROUTES = ['/', '/werknemer', '/werkgever'];
-const ROBOTS_TXT = `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`;
-const SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${ROUTES.map(
-  (path) => `  <url><loc>${SITE_URL}${path === '/' ? '/' : path}</loc></url>`,
-).join('\n')}\n</urlset>\n`;
+// krachtcollectief.nl is the one canonical host. www and the old concept
+// address 301 onto it so Google sees one site, not three copies.
+const CANONICAL_HOST = 'krachtcollectief.nl';
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
-    if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
-      url.pathname = url.pathname.slice(0, -1);
-      return Response.redirect(url.toString(), 301);
-    }
-
-    if (url.pathname === '/robots.txt') {
-      return new Response(ROBOTS_TXT, {
-        headers: {
-          'Content-Type': 'text/plain; charset=utf-8',
-          'Cache-Control': 'public, max-age=3600',
-        },
-      });
-    }
-
-    if (url.pathname === '/sitemap.xml') {
-      return new Response(SITEMAP_XML, {
-        headers: {
-          'Content-Type': 'application/xml; charset=utf-8',
-          'Cache-Control': 'public, max-age=3600',
-        },
-      });
-    }
-
     if (url.pathname.startsWith('/api/')) {
       return formWorker.fetch!(request, env, ctx);
     }
 
+    // Gated on https: `wrangler dev` hands the Worker the custom-domain host over
+    // http, and redirecting there would bounce local dev to production.
+    const isRead = request.method === 'GET' || request.method === 'HEAD';
+    const wrongHost = url.protocol === 'https:' && url.hostname !== CANONICAL_HOST;
+    const trailingSlash = url.pathname.length > 1 && url.pathname.endsWith('/');
+    if (isRead && (wrongHost || trailingSlash)) {
+      if (wrongHost) url.hostname = CANONICAL_HOST;
+      if (trailingSlash) url.pathname = url.pathname.replace(/\/+$/, '');
+      return Response.redirect(url.toString(), 301);
+    }
+
+    // Pages, sitemap.xml and robots.txt are static files from the prerender.
+    // Unknown paths get dist/404.html with a real 404 status.
     return env.ASSETS.fetch(request);
   },
 } satisfies ExportedHandler<Env>;

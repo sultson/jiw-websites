@@ -1,24 +1,14 @@
-import { useCallback, useEffect, useState } from "react";
-import type { Lang } from "../content";
+import { useEffect } from "react";
+import { useRouter } from "../router";
 
-const KEY = "hetkrachtcollectief.lang";
-
+// The language is part of the address (/ is Dutch, /en is English), so the
+// prerendered HTML and the first client render always agree.
 export function useLang() {
-  // Always start at 'nl' so the first client render matches the prerendered
-  // (Dutch) HTML, then adopt any stored preference after hydration.
-  const [lang, setLangState] = useState<Lang>("nl");
+  const { lang } = useRouter();
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(KEY);
-    if (stored === "nl" || stored === "en") setLangState(stored);
-  }, []);
-
-  useEffect(() => {
-    window.localStorage.setItem(KEY, lang);
     document.documentElement.lang = lang;
   }, [lang]);
 
-  const setLang = useCallback((l: Lang) => setLangState(l), []);
-
-  return { lang, setLang };
+  return { lang };
 }

@@ -7,10 +7,12 @@ import {
   type AnchorHTMLAttributes,
   type ReactNode,
 } from "react";
+import type { Lang } from "./content";
+import { localizePath, matchPath, type PageKey } from "./routes";
 
-type RouterValue = { path: string; navigate: (to: string) => void };
+type RouterValue = { path: string; page: PageKey | null; lang: Lang; navigate: (to: string) => void };
 
-const RouterContext = createContext<RouterValue>({ path: "/", navigate: () => {} });
+const RouterContext = createContext<RouterValue>({ path: "/", page: "home", lang: "nl", navigate: () => {} });
 
 export function useRouter() {
   return useContext(RouterContext);
@@ -42,23 +44,26 @@ export function RouterProvider({ initialPath, children }: { initialPath?: string
     }
   }, []);
 
-  return <RouterContext.Provider value={{ path, navigate }}>{children}</RouterContext.Provider>;
+  const { page, lang } = matchPath(path);
+  return <RouterContext.Provider value={{ path, page, lang, navigate }}>{children}</RouterContext.Provider>;
 }
 
-type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & { to: string };
+// `to` is the Dutch path; it is rewritten to the current language unless `raw`.
+type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & { to: string; raw?: boolean };
 
-export function Link({ to, children, onClick, ...rest }: LinkProps) {
-  const { navigate } = useRouter();
+export function Link({ to, raw, children, onClick, ...rest }: LinkProps) {
+  const { navigate, lang } = useRouter();
+  const href = raw ? to : localizePath(to, lang);
   return (
     <a
-      href={to}
+      href={href}
       onClick={(e) => {
         onClick?.(e);
         if (e.defaultPrevented) return;
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
         if (rest.target === "_blank") return;
         e.preventDefault();
-        navigate(to);
+        navigate(href);
       }}
       {...rest}
     >

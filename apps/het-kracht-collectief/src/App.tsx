@@ -1,7 +1,9 @@
 import { useEffect } from "react";
-import { getContent, SITE_URL, type Content, type Lang } from "./content";
+import { getContent, type Content } from "./content";
 import { useLang } from "./hooks/useLang";
 import { RouterProvider, useRouter } from "./router";
+import { ALL_PATHS } from "./routes";
+import { routeMetaFor } from "./seo";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
@@ -13,82 +15,35 @@ import Sectors from "./components/Sectors";
 import ContactCta from "./components/ContactCta";
 import Footer from "./components/Footer";
 import AudiencePage from "./components/AudiencePage";
+import NotFound from "./components/NotFound";
 import { AanvraagProvider } from "./components/AanvraagModal";
 
-const HOME_TITLE: Record<Lang, string> = {
-  nl: "Het Kracht Collectief | Arbeidsbemiddeling voor vakmensen",
-  en: "Het Kracht Collectief | Recruitment for skilled trades",
-};
-const HOME_DESCRIPTION: Record<Lang, string> = {
-  nl: "Het Kracht Collectief brengt werkgevers en werkzoekenden samen. Persoonlijke arbeidsbemiddeling voor vakmensen in bouw, infra, steigerbouw en techniek.",
-  en: "Het Kracht Collectief brings employers and job seekers together. Personal recruitment for skilled trades in construction, infra, scaffolding and technical trades.",
-};
-
-function normalizePathname(pathname: string) {
-  if (pathname.length > 1 && pathname.endsWith("/")) return pathname.slice(0, -1);
-  return pathname;
-}
-
-export type RouteMeta = {
-  path: string;
-  title: string;
-  description: string;
-  canonical: string;
-  jsonLd: string[];
-};
-
-// Server-side (prerender) metadata. Always Dutch — the prerendered HTML ships in
-// the primary language; the client swaps copy after hydration.
-export function routeMetaFor(pathname: string): RouteMeta {
-  const path = normalizePathname(pathname);
-  const nl = getContent("nl");
-
-  let title = HOME_TITLE.nl;
-  let description = HOME_DESCRIPTION.nl;
-  if (path === "/werknemer") {
-    title = nl.pages.werknemer.metaTitle;
-    description = nl.pages.werknemer.metaDescription;
-  } else if (path === "/werkgever") {
-    title = nl.pages.werkgever.metaTitle;
-    description = nl.pages.werkgever.metaDescription;
-  }
-
-  return {
-    path,
-    title,
-    description,
-    canonical: `${SITE_URL}${path === "/" ? "/" : path}`,
-    jsonLd: [],
-  };
-}
-
-export const allRoutePaths: string[] = ["/", "/werknemer", "/werkgever"];
+export { routeMetaFor };
+export const allRoutePaths = ALL_PATHS;
 
 function setMeta(selector: string, attr: "content" | "href", value: string) {
-  if (typeof document === "undefined") return;
   document.head.querySelector<HTMLMetaElement | HTMLLinkElement>(selector)?.setAttribute(attr, value);
 }
 
-function useRouteMetadata(path: string, lang: Lang, c: Content) {
+// Keep the head in step on client-side navigation. The prerendered HTML already
+// carries the right values for the first page, so this only matters afterwards.
+function useRouteMetadata(path: string) {
   useEffect(() => {
-    if (typeof document === "undefined") return;
-    let title = HOME_TITLE[lang];
-    let description = HOME_DESCRIPTION[lang];
-    if (path === "/werknemer") {
-      title = c.pages.werknemer.metaTitle;
-      description = c.pages.werknemer.metaDescription;
-    } else if (path === "/werkgever") {
-      title = c.pages.werkgever.metaTitle;
-      description = c.pages.werkgever.metaDescription;
+    const meta = routeMetaFor(path);
+    document.title = meta.title;
+    setMeta('meta[name="description"]', "content", meta.description);
+    setMeta('meta[property="og:title"]', "content", meta.title);
+    setMeta('meta[property="og:description"]', "content", meta.description);
+    setMeta('meta[property="og:locale"]', "content", meta.ogLocale);
+    setMeta('meta[property="og:locale:alternate"]', "content", meta.ogLocaleAlternate);
+    if (meta.canonical) {
+      setMeta('link[rel="canonical"]', "href", meta.canonical);
+      setMeta('meta[property="og:url"]', "content", meta.canonical);
     }
-    const canonical = `${SITE_URL}${path === "/" ? "/" : path}`;
-    document.title = title;
-    setMeta('meta[name="description"]', "content", description);
-    setMeta('link[rel="canonical"]', "href", canonical);
-    setMeta('meta[property="og:title"]', "content", title);
-    setMeta('meta[property="og:description"]', "content", description);
-    setMeta('meta[property="og:url"]', "content", canonical);
-  }, [path, lang, c]);
+    for (const [hreflang, href] of Object.entries(meta.alternates)) {
+      setMeta(`link[rel="alternate"][hreflang="${hreflang}"]`, "href", href);
+    }
+  }, [path]);
 }
 
 function Home({ c }: { c: Content }) {
@@ -107,11 +62,10 @@ function Home({ c }: { c: Content }) {
 }
 
 function Shell() {
-  const { lang, setLang } = useLang();
-  const { path } = useRouter();
+  const { lang } = useLang();
+  const { path, page } = useRouter();
   const c = getContent(lang);
-  const norm = normalizePathname(path);
-  useRouteMetadata(norm, lang, c);
+  useRouteMetadata(path);
 
   return (
     <AanvraagProvider c={c}>
@@ -122,17 +76,17 @@ function Shell() {
         >
           {c.nav.skip}
         </a>
-        <Nav c={c} lang={lang} setLang={setLang} />
+        <Nav c={c} />
         <main id="main" className="flex-1">
-          {norm === "/werknemer" ? (
-            <AudiencePage c={c} profile="werknemer" />
-          ) : norm === "/werkgever" ? (
-            <AudiencePage c={c} profile="werkgever" />
-          ) : (
+          {page === "werknemer" || page === "werkgever" ? (
+            <AudiencePage c={c} profile={page} />
+          ) : page === "home" ? (
             <Home c={c} />
+          ) : (
+            <NotFound c={c} />
           )}
         </main>
-        <Footer c={c} lang={lang} setLang={setLang} />
+        <Footer c={c} />
       </div>
     </AanvraagProvider>
   );

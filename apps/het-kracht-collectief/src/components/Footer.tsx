@@ -1,10 +1,10 @@
-import type { Content, Lang } from "../content";
+import type { Content } from "../content";
 import { Link } from "../router";
 import LangToggle from "./LangToggle";
 
-type Props = { c: Content; lang: Lang; setLang: (l: Lang) => void };
+type Props = { c: Content };
 
-export default function Footer({ c, lang, setLang }: Props) {
+export default function Footer({ c }: Props) {
   const year = 2026;
 
   return (
@@ -59,7 +59,7 @@ export default function Footer({ c, lang, setLang }: Props) {
               </li>
             </ul>
             <div className="mt-6">
-              <LangToggle lang={lang} setLang={setLang} tone="dark" />
+              <LangToggle tone="dark" />
             </div>
           </nav>
         </div>

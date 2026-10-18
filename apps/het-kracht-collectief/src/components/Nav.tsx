@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
-import type { Content, Lang } from "../content";
+import type { Content } from "../content";
 import { Link, useRouter } from "../router";
+import { localizePath } from "../routes";
 import LangToggle from "./LangToggle";
 import { useAanvraag } from "./AanvraagModal";
 
-type Props = { c: Content; lang: Lang; setLang: (l: Lang) => void };
+type Props = { c: Content };
 
 const PHONE_DISPLAY = "(06) 11 69 40 81";
 
@@ -28,12 +29,12 @@ function Brand({ onClick }: { onClick?: () => void }) {
   );
 }
 
-export default function Nav({ c, lang, setLang }: Props) {
+export default function Nav({ c }: Props) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const { path } = useRouter();
+  const { path, page, lang } = useRouter();
   const { open: openAanvraag } = useAanvraag();
-  const ctaProfile = path.startsWith("/werkgever") ? "werkgever" : "werknemer";
+  const ctaProfile = page === "werkgever" ? "werkgever" : "werknemer";
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const copyTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -87,7 +88,7 @@ export default function Nav({ c, lang, setLang }: Props) {
 
         <nav className="hidden items-center gap-9 lg:flex" aria-label={c.nav.primaryNav}>
           {links.map((l) => {
-            const active = path === l.to;
+            const active = path === localizePath(l.to, lang);
             return (
               <Link
                 key={l.to}
@@ -101,7 +102,7 @@ export default function Nav({ c, lang, setLang }: Props) {
         </nav>
 
         <div className="flex items-center gap-2.5 sm:gap-3">
-          <LangToggle lang={lang} setLang={setLang} />
+          <LangToggle />
           <button
             type="button"
             onClick={copyPhone}
@@ -167,7 +168,7 @@ export default function Nav({ c, lang, setLang }: Props) {
           </nav>
 
           <div className="flex items-center justify-between gap-4 px-5 pb-8 sm:px-8">
-            <LangToggle lang={lang} setLang={setLang} tone="dark" />
+            <LangToggle tone="dark" />
             <button
               type="button"
               onClick={() => {

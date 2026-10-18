@@ -1,7 +1,7 @@
 export type Lang = "nl" | "en";
 export type Profile = "werknemer" | "werkgever";
 
-export const SITE_URL = "https://het-kracht-collectief.jouwidealewebsite.nl";
+export const SITE_URL = "https://krachtcollectief.nl";
 export const FORM_ENDPOINT = "/api/forms/aanvraag";
 
 // ── Dutch (primary) ──────────────────────────────────────────────────────────
@@ -151,6 +151,13 @@ const nl = {
       tooLarge: "{n} bestand(en) groter dan 10 MB overgeslagen.",
       duplicate: "{n} duplicaat overgeslagen.",
     },
+  },
+  notFound: {
+    metaTitle: "Pagina niet gevonden | Het Kracht Collectief",
+    label: "404",
+    title: "Deze pagina bestaat niet",
+    text: "Het adres klopt niet of de pagina is verplaatst.",
+    cta: "Naar de startpagina",
   },
   pages: {
     werknemer: {
@@ -343,6 +350,13 @@ const en: typeof nl = {
       tooLarge: "{n} file(s) larger than 10 MB skipped.",
       duplicate: "{n} duplicate(s) skipped.",
     },
+  },
+  notFound: {
+    metaTitle: "Page not found | Het Kracht Collectief",
+    label: "404",
+    title: "This page does not exist",
+    text: "The address is wrong or the page has moved.",
+    cta: "Go to the home page",
   },
   pages: {
     werknemer: {
