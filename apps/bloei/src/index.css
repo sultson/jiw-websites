@@ -38,42 +38,113 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Fraunces", ui-serif, Georgia, serif;
-  /* Geen aparte logoletter: het woordmerk is hun eigen logo
-     (public/img/logo-bloei.webp), vrijgemaakt van de magenta achtergrond
-     waarop ze het aanleverden. Zie raw/maak-logo.mjs. */
+  /* Geen aparte logoletter: het woordmerk is hun eigen logo, sinds 18-10-2026
+     als vector (public/img/logo-bloei-wit.svg en -kleur.svg). Zie `Merk` in
+     ui.tsx voor welke variant waar hoort. */
 
   /* ----------------------------------------------------------------
-     Alle kleuren komen uit het bord dat aan de gevel hangt.
+     De huisstijl, aangeleverd 18-10-2026. Dit is de bron, niet meer de
+     foto van de gevel.
 
-     Fleurig! stond op bijna zwart (#0d2a21) met framboos erop. Die opzet
-     blijft, maar de winkel wilde geen zwart meer: het bord van Bloei! is
-     olijfgroen met crèmekleurige letters en twee tinten blad, en dáár
-     hoort de site naartoe.
+       Dennengroen   #173F2B
+       Saliegroen    #4F784B
+       Lindegroen    #B1C2A2
+       Ivoor         #F3EEDC
+       Zandbruin     #B99D71
+       plus wit
 
-     Gemeten op de foto van de gevel:
-       bord            #425331
-       letters         #e7e1c7
-       blad licht      #86a85e
-       blad donker     #162810
+     Wat er daarvoor stond was afgelezen van het bord aan de gevel, omdat
+     er toen niets anders was: bord #425331, letters #e7e1c7, blad #86a85e
+     en #162810. Die hele reeks is vervangen. Fleurig! stond op bijna zwart
+     met framboos erop; van die opzet is nu ook de framboos weg.
+
+     Lindegroen is niet zomaar een tint uit de reeks: het is letterlijk de
+     vulkleur van de blaadjes in het logo met witte letters. Daarom draagt
+     hij op de donkere vlakken het accent — dan staat er op de pagina
+     dezelfde groen als in het merk zelf.
      ---------------------------------------------------------------- */
 
-  /* De diepe tint. Hij draagt de tekst en de twee vlakken die nog een anker
-     nodig hebben (de voet en het formulier). Dit is het groen van het bord,
-     een slag dieper getrokken zodat crème erop ruim boven de leesnorm blijft. */
-  --color-ink: #27351b;
-  --color-ink-soft: #3b4c2b;    /* het bord zelf */
-  --color-ink-line: #51643d;
+  /* Dennengroen. De diepste tint, en daarmee de drager: de balk bovenaan,
+     de voet, het formulier en alle lopende tekst. Wit erop haalt 11,8:1. */
+  --color-ink: #173F2B;
 
-  /* Blad. Het lichte op de donkere vlakken, het donkere op de lichte. */
-  --color-accent: #a8cc7a;
-  --color-accent-dark: #4b7227;
+  /* Het vlak dat op `ink` ligt: de panelen in het formulier.
 
-  /* De warme kant. Het bord heeft hem niet, de winkel wel: de tafels buiten
-     staan vol roze en framboos. Fleurig! had deze kleur en de winkel was er
-     tevreden over, dus hij blijft, alleen op de hoofdknoppen. */
-  --color-roze: #c22a5f;
-  --color-bloesem: #ffb1c8;
-  --color-roze-zacht: #fbeaf0;
+     Dit is géén saliegroen, hoewel dat de voor de hand liggende keuze lijkt.
+     Saliegroen op 70% over dennengroen komt uit op rgb(62,103,66), en daar
+     zakt de halfdoorzichtige witte tekst die in die panelen staat naar
+     2,4 à 3,2:1 — gemeten op de gebouwde pagina, niet geschat. Dit is
+     dennengroen een slag opgetild in plaats daarvan, en dat landt op
+     dezelfde helderheid als het paneel dat hier vóór de huisstijl stond.
+     Daarmee klopt de tekst erin weer zonder dat elke dekking apart
+     bijgesteld moet worden. */
+  --color-ink-soft: #214a33;
+  --color-ink-line: #6c8f68;    /* hairlines op de donkere vlakken */
+
+  /* Saliegroen zoals het in de huisstijl staat. Voor vullingen en vlakken,
+     niet voor tekst — zie `accent-dark` hieronder. */
+  --color-salie: #4F784B;
+
+  /* De twee stappen onder de volle tekstkleur.
+
+     Hier stond overal `text-ink/55` tot `/80`: dezelfde kleur, verdund met de
+     achtergrond. Dat leest prettig weg in een ontwerp en het is ook hoe deze
+     site gebouwd is, maar met dennengroen als basis houdt het geen stand.
+     Nagerekend op de drie lichte vlakken van de site: onder 75% dekking zakt
+     verdund dennengroen overal onder 4,5:1, en op `creme-diep` zelfs onder
+     74%. De bruikbare reeks is daarmee 0,75 tot 1,0 — te smal om er drie
+     niveaus in te leggen, dus wat er stond was geen rangorde maar een glijbaan
+     naar onleesbaar.
+
+     Twee gemeten kleuren in plaats daarvan. Ze geven een duidelijker verschil
+     dan de dekkingen deden en ze halen het alle drie:
+
+                       op wit   op cream   op creme-diep
+       ink              11,8       10,4            9,6
+       ink-zacht         7,6        6,9            6,5
+       ink-vaag          5,6        5,1            4,8
+   */
+  --color-ink-zacht: #3f5a48;
+  --color-ink-vaag: #586d60;
+
+  /* Blad. Lindegroen op de donkere vlakken, saliegroen op de lichte.
+
+     `accent-dark` is saliegroen een slag verdiept, en dat is met opzet.
+     Saliegroen zelf haalt op `cream` 4,6:1 en lijkt daarmee te voldoen, maar
+     op de pagina staat deze kleur ook op `creme-diep` en op de randkleur, en
+     daar zakt hij naar 4,3:1 en 4,0:1. Een accentkleur die alleen op de
+     lichtste van drie achtergronden de norm haalt is geen accentkleur maar
+     een valkuil. Verdiept haalt hij overal tussen 5,3:1 en 6,1:1.
+
+     Het verschil met #4F784B is op het oog nauwelijks te zien, en de echte
+     saliegroen staat wél onvermengd op de site: in het logo voor lichte
+     vlakken, in de blaadjes aan de hoofdknop en als `--color-salie`. */
+  --color-accent: #B1C2A2;
+  --color-accent-dark: #42653f;
+
+  /* De warme kant. Zandbruin is de enige kleur in de reeks die niet groen
+     of gebroken wit is, en daarmee de enige die een knop uit de pagina kan
+     tillen. Hij neemt de plek over van de framboos van Fleurig!.
+
+     Let op de tekstkleur die erop hoort: wit op zandbruin haalt 2,6:1 en is
+     niet te lezen. Dennengroen erop haalt 4,6:1. De hoofdknop is dus een
+     zandbruin vlak met dennengroene letters, niet met witte.
+
+     En let op de richting van hover: die gaat hier omhóóg in plaats van een
+     slag dieper, zoals een knop meestal doet. Zandbruin verder indikken
+     brengt de letters mee naar beneden (3,4:1, gezakt onder de norm precies
+     op het moment dat iemand de knop aanwijst); oplichten brengt ze op
+     5,5:1. De knop wordt bij aanwijzen dus lichter. */
+  --color-zand: #B99D71;
+  --color-zand-licht: #c8ae86;  /* alleen bij aanwijzen — lichter, zie hierboven */
+  --color-zand-zacht: #f2ebdd;  /* het vlak eronder, niet de knop zelf */
+
+  /* Ivoor. Spaarzaam, zoals gevraagd: het is geen tweede achtergrondkleur
+     naast `cream` maar een markeerkleur voor een enkel vlak dat warm moet
+     aanvoelen. Staat nu op de kerstkaarten en op de velden in het
+     formulier. Twee lichte tinten door elkaar op één pagina leest als een
+     fout in plaats van als een keuze. */
+  --color-ivoor: #F3EEDC;
 
   /* November en december. De winkel haalt daar een groot deel van het jaar uit,
      dus die twee maanden horen er ook uit te zien als kerst en niet als een
@@ -97,31 +168,43 @@
      Daarmee ligt kerst op een breed scherm ietsje lichter dan `ink` in plaats
      van dieper. Dat valt niet op: hij is er duidelijk groener en warmer dan
      ink, en het lichtsnoer, de takken en de gloed doen het onderscheid — niet
-     het getal. */
-  --color-kerstgroen: #1b2d15;
-  --color-kerstgroen-ruim: #27401c;
-  --color-kerstlicht: #f6c87a;
-  --color-kerstbes: #b3243f;
+     het getal.
+
+     Sinds de huisstijl (18-10-2026) zijn dit twee tinten dennengroen in
+     plaats van twee tinten olijf, en is het lamplicht zandbruin geworden.
+     Het snoer brandt nu in ivoor en zandbruin met één bes ertussen: diep
+     groen, goud en gebroken wit is een rustiger kerst dan groen-en-rood, en
+     het blijft binnen de reeks. */
+  --color-kerstgroen: #102c1e;
+  --color-kerstgroen-ruim: #1b4a32;
+  --color-kerstlicht: #e8cb9c;  /* zandbruin, opgelicht tot lampje */
+  --color-kerstbes: #93333f;    /* de enige rode in de site, alleen in het snoer */
 
   /* De crèmevariant (15-10-2026), op 16-10-2026 weer uitgezet: de winkel wilde
      het groen terug. Blijft staan omdat het in één regel om te zetten is — zie
      `Tone` in ui.tsx — en omdat `kerstdiep` en `kerstamber` ook de kleuren van
      de lichte versies van het snoer en de bomenrij zijn.
 
-     `kerstroom` is de kleur van de letters op hun bord, een slag opgelicht:
-     warmer dan `cream`, zodat het kerstvlak zich van de rest onderscheidt
-     zonder dat er een donkere band in de pagina staat. */
-  --color-kerstroom: #f7f3e4;
-  --color-kerstdiep: #2c4420;   /* het groen van de bomen en de takken */
-  --color-kerstamber: #d79a2c;  /* lampje, een slag dieper dan kerstlicht */
+     `kerstroom` is nu gewoon ivoor: de huisstijl heeft daar een kleur voor,
+     en een eigen bijna-ivoor ernaast zetten is precies het soort tweede
+     lichte tint dat als een fout leest. */
+  --color-kerstroom: #F3EEDC;
+  --color-kerstdiep: #2f5a3c;   /* het groen van de bomen en de takken */
+  --color-kerstamber: #B99D71;  /* lampje op licht: zandbruin zelf */
 
   /* Waar de hele pagina op staat: de lichte tint groen die ze vroegen. Geen
-     grijs met een vleugje groen maar een echte tint, zodat hij naast het
-     bord staat en er niet onder uit valt. `--color-crème` is de kleur van
-     de letters op het bord en ligt er een slag warmer naast. */
-  --color-cream: #f1f6e8;
-  --color-creme-diep: #e7eedb;
-  --color-line: #dbe4c9;
+     grijs met een vleugje groen maar een echte tint.
+
+     Deze drie zijn geen losse keuzes meer maar uitgewassen lindegroen —
+     dezelfde kleurhoek (92°), alleen lichter en minder verzadigd. Daardoor
+     valt de achtergrond onder het logo in plaats van ernaast, en kleurt een
+     rand nooit een slag te geel of te grijs bij het blad.
+
+     Ivoor staat hier bewust niet tussen. Dat is de markeerkleur en geen
+     achtergrond; zie de opmerking daar. */
+  --color-cream: #f2f6ef;       /* hsl(92 30% 95%) — de pagina */
+  --color-creme-diep: #e8efe2;  /* hsl(92 28% 91%) — het vlak dat eruit springt */
+  --color-line: #d6e0cd;        /* hsl(92 24% 84%) — randen op licht */
 }
 
 @layer base {
@@ -180,14 +263,16 @@
   transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
-/* Het blad uit de O van het bord, boven de rechterhoek. Lichtgroen met een
-   nerf erin, zoals op de gevel. */
+/* Het blad uit de O van het logo, boven de rechterhoek. Lindegroen met een
+   saliegroene nerf: precies de twee tinten waarmee het logo zelf zijn blad
+   tekent, zodat dit blaadje als hetzelfde blad leest en niet als versiering
+   die er toevallig naast ligt. */
 .knop-bloem::after {
   top: -13px;
   right: 15px;
   height: 26px;
   width: 26px;
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M50 8 C 22 10, 8 30, 10 56 C 38 54, 54 34, 50 8 Z' fill='%23a8cc7a'/><path d='M50 8 C 36 22, 22 38, 10 56' stroke='%234b7227' stroke-width='2.4' fill='none' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M50 8 C 22 10, 8 30, 10 56 C 38 54, 54 34, 50 8 Z' fill='%23B1C2A2'/><path d='M50 8 C 36 22, 22 38, 10 56' stroke='%234F784B' stroke-width='2.4' fill='none' stroke-linecap='round'/></svg>");
   transform: rotate(-10deg);
 }
 
@@ -198,7 +283,7 @@
   left: 20px;
   height: 20px;
   width: 20px;
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M50 8 C 22 10, 8 30, 10 56 C 38 54, 54 34, 50 8 Z' fill='%236f9a42'/></svg>");
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M50 8 C 22 10, 8 30, 10 56 C 38 54, 54 34, 50 8 Z' fill='%234F784B'/></svg>");
   transform: rotate(150deg);
 }
 

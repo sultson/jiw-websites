@@ -6,7 +6,7 @@ import Aanvraag from './Aanvraag';
 import KaartLazy from './KaartLazy';
 import {usePad} from './pad';
 import {
-  BEL_ORANJE, Bullet, FACEBOOK, Kicker, Merk, PLAATS, ROUTE, STREEKKERNEN, Section, STRAAT, TEL,
+  BEL_ZAND, Bullet, FACEBOOK, Kicker, Merk, PLAATS, ROUTE, STREEKKERNEN, Section, STRAAT, TEL,
   TEL_DISPLAY, WA_DONKER, WA_GROEN, WHATSAPP, WhatsAppMerk, useFormKnopInBeeld, KNOP_HOOFD,
 } from './ui';
 
@@ -31,9 +31,14 @@ import {
  * Hij stond hier eerst als een strook op room met een lijn eronder, met het
  * naambord erin geknipt uit de foto van de gevel. Dat bord bracht zijn eigen
  * groene vlak mee en lag daarmee als een postzegel op een lichte strook. Nu is
- * het logo vrijstaand (zie Merk) en staat de balk zelf op het groen van hun
- * bord: dan is het groen om het logo heen de kaart, en niet een rechthoekje
- * eromheen.
+ * het logo vrijstaand (zie Merk) en staat de balk zelf op dennengroen: dan is
+ * het groen om het logo heen de kaart, en niet een rechthoekje eromheen.
+ *
+ * Dennengroen is hier gevraagd (18-10-2026) en het is ook de kleur waar deze
+ * balk om vraagt: de witte versie van het logo is op dennengroen getekend, dus
+ * op elk ander vlak staat hij op een kleur waar hij niet voor gemaakt is.
+ * Vol dekking in plaats van 92%, want dit is de enige plek op de site waar de
+ * merkkleur exact moet zijn; het matglas eronder blijft op de hero-panelen.
  *
  * Dat hij zweeft doet nog iets: de kopfoto loopt eronder door tot de bovenrand
  * van het scherm, dus de foto begint niet pas onder een balk maar vult het hele
@@ -79,7 +84,7 @@ export function Nav() {
         Naar de inhoud
       </a>
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.5rem] bg-ink-soft/92 text-white shadow-[0_18px_50px_-24px_rgb(20_32_12_/_0.85)] ring-1 ring-white/10 backdrop-blur-xl sm:rounded-[1.85rem]">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.5rem] bg-ink text-white shadow-[0_18px_50px_-24px_rgb(10_26_18_/_0.85)] ring-1 ring-accent/20 sm:rounded-[1.85rem]">
         <div className="flex items-center justify-between gap-5 px-4 py-2.5 sm:px-5 sm:py-3">
           <a href={thuis ? '#top' : '/'} aria-label="Bloei! Ouddorp, naar boven">
             <Merk maat="h-[44px] sm:h-[52px] xl:h-[58px]" plaatje />
@@ -184,7 +189,7 @@ export function NaamMelding({className = ''}: {className?: string}) {
     <p
       className={
         'flex items-start gap-2.5 rounded-xl border border-accent-dark/20 bg-accent-dark/[0.06] ' +
-        `px-3.5 py-2.5 text-sm leading-snug text-ink/75 ${className}`
+        `px-3.5 py-2.5 text-sm leading-snug text-ink-zacht ${className}`
       }
     >
       <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent-dark" />
@@ -211,7 +216,7 @@ function NaamUitleg() {
         <Info className="h-5 w-5 shrink-0 text-accent-dark" />
         <p className="font-semibold">Nu nog {OUDE_NAAM}</p>
       </div>
-      <p className="mt-3 text-sm leading-relaxed text-ink/70">
+      <p className="mt-3 text-sm leading-relaxed text-ink-zacht">
         Zoekt u ons op Google of op Facebook, dan staan we daar nog onder die naam. Over een paar
         weken gaat de winkel verder als Bloei! Hetzelfde adres aan het Hogepad, dezelfde mensen en
         hetzelfde assortiment. Alleen de naam verandert.
@@ -250,7 +255,7 @@ export function PaginaKop({
         <div>
           <a
             href="/"
-            className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-ink/50 transition hover:text-accent-dark"
+            className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-ink-vaag transition hover:text-accent-dark"
           >
             <ArrowLeft className="h-4 w-4" /> Terug naar de winkel
           </a>
@@ -259,7 +264,7 @@ export function PaginaKop({
           <NaamMelding className="mb-6 max-w-xl" />
           <Kicker>{kicker}</Kicker>
           <h1 className="text-4xl font-semibold leading-[1.1] sm:text-5xl">{titel}</h1>
-          {intro && <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink/70">{intro}</p>}
+          {intro && <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-zacht">{intro}</p>}
           {children}
         </div>
 
@@ -355,12 +360,12 @@ export function Bezoek({streek = false, kraag = false}: {streek?: boolean; kraag
         <div>
           <Kicker>Waar u ons vindt</Kicker>
           <h2 className="text-3xl font-semibold sm:text-4xl">{STRAAT}, Ouddorp</h2>
-          <p className="mt-4 leading-relaxed text-ink/65">
+          <p className="mt-4 leading-relaxed text-ink-vaag">
             Parkeren kan voor de deur.
           </p>
 
           {streek && (
-            <p className="mt-4 leading-relaxed text-ink/65">
+            <p className="mt-4 leading-relaxed text-ink-vaag">
               Klanten komen uit heel Goeree-Overflakkee: {STREEKKERNEN.slice(0, -1).join(', ')} en{' '}
               {STREEKKERNEN.at(-1)}.
             </p>
@@ -376,25 +381,25 @@ export function Bezoek({streek = false, kraag = false}: {streek?: boolean; kraag
               const isVandaag = dag === vandaag;
               const dicht = tijd === 'Gesloten';
               return (
-                <div key={dag} className={`flex items-center justify-between py-2.5 ${isVandaag ? 'text-ink' : 'text-ink/70'}`}>
+                <div key={dag} className={`flex items-center justify-between py-2.5 ${isVandaag ? 'text-ink' : 'text-ink-zacht'}`}>
                   <dt className={isVandaag ? 'font-semibold' : ''}>
                     {dag}
                     {isVandaag && <span className="ml-2 rounded-full bg-accent-dark/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent-dark">vandaag</span>}
                   </dt>
-                  <dd className={dicht ? 'text-ink/40' : isVandaag ? 'font-semibold' : ''}>{tijd}</dd>
+                  <dd className={dicht ? 'text-ink-vaag' : isVandaag ? 'font-semibold' : ''}>{tijd}</dd>
                 </div>
               );
             })}
           </dl>
 
           <div className="mt-7 space-y-3 text-sm">
-            <a href={ROUTE} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-ink/80 transition hover:text-accent-dark">
+            <a href={ROUTE} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-ink-zacht transition hover:text-accent-dark">
               <Navigation className="h-4 w-4 shrink-0 text-accent-dark" /> {STRAAT}, {PLAATS}
             </a>
-            <a href={`tel:${TEL}`} className="flex items-center gap-3 text-ink/80 transition hover:text-accent-dark">
+            <a href={`tel:${TEL}`} className="flex items-center gap-3 text-ink-zacht transition hover:text-accent-dark">
               <Phone className="h-4 w-4 shrink-0 text-accent-dark" /> {TEL_DISPLAY}
             </a>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-ink/80 transition hover:text-accent-dark">
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-ink-zacht transition hover:text-accent-dark">
               <WhatsAppMerk className="h-4 w-4 shrink-0" style={{color: WA_DONKER}} /> WhatsApp
             </a>
           </div>
@@ -434,8 +439,8 @@ export function Footer() {
     <footer className="bg-ink text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2 lg:col-span-1">
-          {/* Het vrijstaande logo op het donkere vlak: crème letters op het
-              groen van hun bord, precies waar die letters voor gemaakt zijn. */}
+          {/* De witte versie op dennengroen: precies het vlak waar dit logo
+              voor getekend is. */}
           <Merk maat="h-[72px]" plaatje />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/55">
             Bloemen, planten, tuin en wonen aan het Hogepad in Ouddorp. Binnen en buiten, het hele jaar
@@ -484,7 +489,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-5 py-5 text-xs text-white/35 sm:px-8">
+        <div className="mx-auto max-w-6xl px-5 py-5 text-xs text-white/60 sm:px-8">
           Bloei!, Ouddorp
         </div>
       </div>
@@ -550,26 +555,29 @@ export function MobielBalk() {
  * dezelfde twee acties erin; die twee naast elkaar zijn vier knoppen op een
  * telefoonscherm die naar twee dingen wijzen.
  *
- * Ze staan in de merkkleuren en niet in het roze van de hoofdknoppen: deze
- * twee staan op elke pagina in beeld, dus als ze het gewicht van een hoofdknop
- * krijgen is er op geen enkele pagina nog een duidelijkste knop.
+ * Allebei in een kleur die op elk vlak losstaat, en elk met hun eigen
+ * tekstkleur: wit op het WhatsApp-groen, dennengroen op het zandbruin. Die
+ * twee zweven over de hele pagina mee — over de kopfoto, over het lichte
+ * groen, over het kerstvlak en over de voet — dus er is geen ondergrond
+ * waarop ze mogen wegvallen. Een witte rand eromheen vangt het geval dat er
+ * toevallig een vlak in bijna dezelfde kleur onder staat.
  */
 export function ZwevendeKnoppen() {
   const knop =
-    'inline-flex items-center gap-2.5 rounded-full px-5 py-3 text-sm font-bold text-white ' +
-    'shadow-[0_12px_30px_-10px_rgb(20_32_12_/_0.6)] transition hover:brightness-110';
+    'inline-flex items-center gap-2.5 rounded-full px-5 py-3 text-sm font-bold ring-1 ring-white/35 ' +
+    'shadow-[0_12px_30px_-10px_rgb(10_26_18_/_0.6)] transition hover:brightness-110';
   return (
     <div className="fixed bottom-6 right-6 z-40 hidden flex-col items-end gap-2.5 md:flex">
       <a
         href={WHATSAPP}
         target="_blank"
         rel="noreferrer"
-        className={knop}
+        className={`${knop} text-white`}
         style={{backgroundColor: WA_GROEN}}
       >
         <WhatsAppMerk className="h-5 w-5" /> WhatsApp
       </a>
-      <a href={`tel:${TEL}`} className={knop} style={{backgroundColor: BEL_ORANJE}}>
+      <a href={`tel:${TEL}`} className={`${knop} text-ink`} style={{backgroundColor: BEL_ZAND}}>
         <Phone className="h-5 w-5" /> Bellen
       </a>
     </div>

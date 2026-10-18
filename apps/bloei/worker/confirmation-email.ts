@@ -68,23 +68,36 @@ export const bloeiConfirmationEmail: LocalizedConfirmationEmailConfig = {
     /* Geen contactEmail: de winkel heeft er geen doorgegeven. Het pakket laat
        hem dan gewoon weg uit de bevestigingsmail; een verzonnen adres zou de
        ontvanger laten antwoorden naar een postbus die niet bestaat. */
-    /* De kleuren van de winkel: het diepe groen van de pui, het framboos van de
-       knoppen, room als papier. Het roze van de knop is #c22a5f met witte
-       letters (5,3:1); het lichtere bloesemroze staat alleen op het donkere
-       vlak, waar het wel leesbaar is. */
+    /* De huisstijl (18-10-2026). Hier stond tot dan de reeks van Fleurig!:
+       warme room met framboos erop. Dat is niet meegegaan met de omkleuring
+       van de site omdat je deze kleuren alleen ziet als er echt een aanvraag
+       binnenkomt — de bevestigingsmail was daardoor het laatste stuk van het
+       oude merk dat nog naar buiten ging.
+
+       De contrasten zijn nagerekend, want in een mailprogramma is er geen
+       stylesheet die ze later nog rechttrekt:
+         ink op surface            11,8:1
+         inkSoft op surface         7,6:1
+         muted op surface           5,1:1
+         accent op ink              6,3:1
+         onButton op button         4,6:1
+
+       Let op die laatste. De knop is zandbruin met dennengroene letters, niet
+       met witte: wit op zandbruin haalt 2,6:1. Zet `onButton` niet terug op
+       wit omdat het er in een ontwerp beter uitziet. */
     colors: {
-      pageBackground: '#fbf7f2',
+      pageBackground: '#f2f6ef',
       surface: '#ffffff',
-      surfaceAlt: '#fdfaf6',
-      border: '#ebe2d8',
-      ink: '#0d2a21',
+      surfaceAlt: '#f6f9f3',
+      border: '#d6e0cd',
+      ink: '#173F2B',
       onInk: '#ffffff',
-      inkSoft: '#3c4a44',
-      muted: '#6b7a74',
-      mutedSoft: '#55635d',
-      accent: '#ffb1c8',
-      button: '#c22a5f',
-      onButton: '#ffffff',
+      inkSoft: '#3f5a48',
+      muted: '#5f7467',
+      mutedSoft: '#52685a',
+      accent: '#B1C2A2',
+      button: '#B99D71',
+      onButton: '#173F2B',
     },
   },
 };

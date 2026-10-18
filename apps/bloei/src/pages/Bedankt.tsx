@@ -112,7 +112,7 @@ export default function Bedankt() {
                 <dl className="mt-7 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">
                   <Regel term="Wat">
                     {a.soortTitel}
-                    {a.keuze && <span className="text-ink/55"> · {a.keuze}</span>}
+                    {a.keuze && <span className="text-ink-vaag"> · {a.keuze}</span>}
                   </Regel>
                   <Regel term="Levering">
                     {a.soort === 'abonnement'
@@ -125,10 +125,10 @@ export default function Bedankt() {
                   {a.budget && <Regel term="Budget">{a.budget}</Regel>}
                   <Regel term="Gegevens">
                     {a.naam}
-                    <span className="block text-ink/55">{a.email}</span>
-                    {a.telefoon && <span className="block text-ink/55">{a.telefoon}</span>}
+                    <span className="block text-ink-vaag">{a.email}</span>
+                    {a.telefoon && <span className="block text-ink-vaag">{a.telefoon}</span>}
                     {(a.straat || a.plaats) && (
-                      <span className="block text-ink/55">
+                      <span className="block text-ink-vaag">
                         {[a.straat, [a.postcode, a.plaats].filter(Boolean).join(' ')].filter(Boolean).join(', ')}
                       </span>
                     )}
@@ -136,7 +136,7 @@ export default function Bedankt() {
                   {a.wensen && <Regel term="Wensen">{a.wensen}</Regel>}
                 </dl>
 
-                <p className="mt-6 text-sm leading-relaxed text-ink/55">
+                <p className="mt-6 text-sm leading-relaxed text-ink-vaag">
                   Dit overzicht staat alleen in dit tabblad. Sluit u het, dan is het weg, maar uw bericht aan ons
                   blijft gewoon staan.
                 </p>
@@ -145,7 +145,7 @@ export default function Bedankt() {
               <>
                 <Kicker>Bedankt</Kicker>
                 <h2 className="text-2xl font-semibold sm:text-3xl">Fijn dat u contact opnam</h2>
-                <p className="mt-4 leading-relaxed text-ink/70">
+                <p className="mt-4 leading-relaxed text-ink-zacht">
                   We kijken naar uw aanvraag en laten u weten wat we voor u kunnen maken. Is het haast, bel ons
                   dan gerust even.
                 </p>
@@ -174,7 +174,7 @@ export default function Bedankt() {
 function Regel({term, children}: {term: string; children: React.ReactNode}) {
   return (
     <div className="flex items-start gap-4 px-5 py-4">
-      <dt className="w-24 shrink-0 pt-px text-xs font-semibold uppercase tracking-wider text-ink/45">{term}</dt>
+      <dt className="w-24 shrink-0 pt-px text-xs font-semibold uppercase tracking-wider text-ink-vaag">{term}</dt>
       <dd className="min-w-0 flex-1 font-medium leading-snug">{children}</dd>
     </div>
   );

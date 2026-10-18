@@ -10,8 +10,8 @@ const Kaart = lazy(() => import('./Kaart'));
 
 function Plaatshouder() {
   return (
-    <div className="grid h-[26rem] w-full place-items-center rounded-2xl border border-line bg-ink-soft">
-      <p className="flex items-center gap-2 text-sm text-white/40">
+    <div className="grid h-[26rem] w-full place-items-center rounded-2xl border border-line bg-ink">
+      <p className="flex items-center gap-2 text-sm text-white/55">
         <MapPin className="h-4 w-4" /> Kaart wordt geladen
       </p>
     </div>

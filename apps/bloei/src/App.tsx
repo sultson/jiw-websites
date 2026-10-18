@@ -97,20 +97,20 @@ function StatusKaart() {
         </span>
         <p className="font-semibold">{status.kop}</p>
       </div>
-      <p className="mt-1 text-sm text-ink/60">{status.onder}</p>
+      <p className="mt-1 text-sm text-ink-vaag">{status.onder}</p>
 
       <dl className="mt-4 space-y-2 border-t border-line pt-4 text-sm">
         <div className="flex gap-3">
-          <dt className="shrink-0 text-ink/45"><Clock className="h-4 w-4" /></dt>
+          <dt className="shrink-0 text-ink-vaag"><Clock className="h-4 w-4" /></dt>
           <dd>Maandag tot en met zaterdag, 9:00 tot 17:30</dd>
         </div>
         <div className="flex gap-3">
-          <dt className="shrink-0 text-ink/45"><MapPin className="h-4 w-4" /></dt>
+          <dt className="shrink-0 text-ink-vaag"><MapPin className="h-4 w-4" /></dt>
           <dd>{STRAAT}, {PLAATS}</dd>
         </div>
       </dl>
 
-      <p className="mt-4 border-t border-line pt-4 text-sm text-ink/55">
+      <p className="mt-4 border-t border-line pt-4 text-sm text-ink-vaag">
         Zoekt u iets specifieks?{' '}
         <a
           href={WHATSAPP}
@@ -232,7 +232,7 @@ function Hero() {
             </a>
           </div>
 
-          <a href="#winkel" className={`${KNOP_DERDE} mt-5 text-sm text-ink/70 decoration-ink/25 hover:decoration-ink`}>
+          <a href="#winkel" className={`${KNOP_DERDE} mt-5 text-sm text-ink-zacht decoration-ink/25 hover:decoration-ink`}>
             Bekijk wat er staat <ArrowRight className="h-4 w-4" />
           </a>
         </div>
@@ -315,7 +315,7 @@ function InDeWinkel() {
       <div className="max-w-2xl">
         <Kicker>In de winkel</Kicker>
         <h2 className="text-3xl font-semibold sm:text-4xl">Kom gerust even rondkijken</h2>
-        <p className="mt-4 text-lg leading-relaxed text-ink/70">
+        <p className="mt-4 text-lg leading-relaxed text-ink-zacht">
           Binnen zijn de kamerplanten, binnenpotten, opgemaakte stukjes en woonaccessoires te vinden.
           Buiten staan de tafels met perkgoed, grondsoorten, meststoffen, vaste planten en
           seizoensplanten.
@@ -340,7 +340,7 @@ function InDeWinkel() {
               <div className="flex flex-1 flex-col p-5 sm:p-6">
                 <k.icon className="h-5 w-5 text-accent-dark" />
                 <h3 className="mt-3 text-lg font-semibold">{k.titel}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/65">{k.tekst}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-vaag">{k.tekst}</p>
                 <a
                   href={k.href}
                   className="mt-4 inline-flex items-center gap-1.5 self-start pt-1 text-sm font-semibold text-accent-dark underline decoration-accent-dark/25 underline-offset-4 transition hover:decoration-accent-dark"
@@ -389,8 +389,10 @@ function InDeWinkel() {
  */
 const KERST = ['Kerstbomen', 'Kerstkransen', 'Verlichting', 'Kerstaccessoires', 'Kerststukjes'];
 
-/* Amber, crème, hulstrood — de volgorde van de lampjes in het snoer. */
-const LAMPJES = ['bg-kerstlicht', 'bg-[#e7e1c7]', 'bg-kerstbes'];
+/* Zandbruin, ivoor, bes — de volgorde van de lampjes in het snoer. Het
+   middelste stond hier als los hexgetal (#e7e1c7, de letterkleur van het oude
+   bord); dat is nu gewoon ivoor uit de huisstijl. */
+const LAMPJES = ['bg-kerstlicht', 'bg-ivoor', 'bg-kerstbes'];
 
 function Kerstblok() {
   return (
@@ -505,7 +507,7 @@ function Seizoen() {
             <img src={s.img} alt={s.titel} loading="lazy" width={800} height={1000} className="aspect-[4/5] w-full object-cover" />
             <div className="p-6">
               <h3 className="text-lg font-semibold">{s.titel}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink/65">{s.tekst}</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-vaag">{s.tekst}</p>
             </div>
           </article>
         ))}
@@ -515,7 +517,7 @@ function Seizoen() {
         {STROOK.map(([src, naam]) => (
           <figure key={src}>
             <img src={src} alt={naam} loading="lazy" width={320} height={320} className="aspect-square w-full rounded-xl object-cover" />
-            <figcaption className="mt-1.5 text-center text-[11px] font-medium text-ink/45">{naam}</figcaption>
+            <figcaption className="mt-1.5 text-center text-[11px] font-medium text-ink-vaag">{naam}</figcaption>
           </figure>
         ))}
       </div>
@@ -584,7 +586,7 @@ function Abonnementblok() {
               boven hetzelfde aanbod laat de bezoeker denken dat het twee
               dingen zijn. */}
           <h2 className="text-3xl font-semibold sm:text-4xl">Verse bloemen op tafel, zonder omkijken</h2>
-          <p className="mt-4 text-lg leading-relaxed text-ink/70">
+          <p className="mt-4 text-lg leading-relaxed text-ink-zacht">
             Opgemaakte plantenbakken of vazen met bloemen, bij u thuis of in de zaak. Wij maken ze op,
             zetten ze neer en komen ze verversen, zodat er nooit iets staat dat over zijn hoogtepunt
             heen is.
@@ -596,7 +598,7 @@ function Abonnementblok() {
                 <a.icon className="mt-0.5 h-5 w-5 shrink-0 text-accent-dark" />
                 <div>
                   <p className="font-semibold leading-snug">{a.kop}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-ink/65">{a.tekst}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-vaag">{a.tekst}</p>
                 </div>
               </div>
             ))}
@@ -642,7 +644,7 @@ function Over() {
         <div>
           <Kicker>Over ons</Kicker>
           <h2 className="text-3xl font-semibold sm:text-4xl">Wij zijn Bloei!</h2>
-          <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink/70">
+          <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink-zacht">
             <p>
               Bloei! is onze winkel voor bloemen, planten, tuin en wonen in Ouddorp. Binnen de
               kamerplanten, de potten, de opgemaakte stukjes en de woonaccessoires. Buiten vindt u het
@@ -718,7 +720,7 @@ function Vragen() {
         <div>
           <Kicker>Vragen</Kicker>
           <h2 className="text-3xl font-semibold sm:text-4xl">Veelgesteld</h2>
-          <p className="mt-4 leading-relaxed text-ink/65">
+          <p className="mt-4 leading-relaxed text-ink-vaag">
             Staat uw vraag er niet bij? Bel of app ons gerust.
           </p>
         </div>
@@ -735,7 +737,7 @@ function Vragen() {
                 <span className="font-semibold">{vraag}</span>
                 <ChevronDown className={`h-5 w-5 shrink-0 text-accent-dark transition ${open === i ? 'rotate-180' : ''}`} />
               </button>
-              {open === i && <p className="-mt-1 pb-5 leading-relaxed text-ink/65">{antwoord}</p>}
+              {open === i && <p className="-mt-1 pb-5 leading-relaxed text-ink-vaag">{antwoord}</p>}
             </div>
           ))}
         </div>

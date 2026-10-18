@@ -152,7 +152,7 @@ export default function Assortiment() {
                 <a.icon className="h-7 w-7 shrink-0 text-accent-dark" strokeWidth={1.75} />
                 {a.titel}
               </h2>
-              <p className="mt-5 text-lg leading-relaxed text-ink/70">{a.tekst}</p>
+              <p className="mt-5 text-lg leading-relaxed text-ink-zacht">{a.tekst}</p>
 
               <ul className="mt-7 space-y-3">
                 {a.punten.map((p) => (
@@ -161,7 +161,7 @@ export default function Assortiment() {
               </ul>
 
               {a.noot && (
-                <p className="mt-7 rounded-2xl border border-accent-dark/20 bg-accent-dark/[0.06] p-5 leading-relaxed text-ink/75">
+                <p className="mt-7 rounded-2xl border border-accent-dark/20 bg-accent-dark/[0.06] p-5 leading-relaxed text-ink-zacht">
                   {a.noot}
                 </p>
               )}
@@ -177,19 +177,19 @@ export default function Assortiment() {
                 <Sprout className="h-5 w-5 shrink-0 text-accent-dark" strokeWidth={1.75} />
                 Grondsoorten en meststoffen
               </h3>
-              <p className="mt-2 max-w-2xl leading-relaxed text-ink/60">
+              <p className="mt-2 max-w-2xl leading-relaxed text-ink-vaag">
                 Het ligt buiten op pallet, dus u kunt er met de auto naast.
               </p>
               <dl className="mt-6 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
                 {GROND.map(([kop, onder]) => (
                   <div key={kop} className="border-b border-line pb-4">
                     <dt className="font-semibold">{kop}</dt>
-                    <dd className="mt-1 text-sm leading-relaxed text-ink/60">{onder}</dd>
+                    <dd className="mt-1 text-sm leading-relaxed text-ink-vaag">{onder}</dd>
                   </div>
                 ))}
               </dl>
 
-              <p className="mt-8 max-w-3xl rounded-2xl border border-accent-dark/20 bg-accent-dark/[0.06] p-5 leading-relaxed text-ink/75">
+              <p className="mt-8 max-w-3xl rounded-2xl border border-accent-dark/20 bg-accent-dark/[0.06] p-5 leading-relaxed text-ink-zacht">
                 Zoekt u een bepaald merk, een soort of een maat die hier niet staat? Laat het ons
                 weten, we kunnen veel bestellen.
               </p>

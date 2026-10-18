@@ -1,14 +1,4 @@
-<!-- Hun eigen merkteken: het roze schijfje met het madeliefje, hetzelfde als in
-     de balk bovenaan de site. Op 16 pixels zijn dunne omlijningen niet te
-     lezen, dus daar staan de blaadjes vol wit in plaats van in lijn. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="50" fill="#c22a5f"/>
-  <g fill="#ffffff">
-    <ellipse cx="50" cy="30" rx="12.5" ry="17"/>
-    <ellipse cx="50" cy="30" rx="12.5" ry="17" transform="rotate(72 50 50)"/>
-    <ellipse cx="50" cy="30" rx="12.5" ry="17" transform="rotate(144 50 50)"/>
-    <ellipse cx="50" cy="30" rx="12.5" ry="17" transform="rotate(216 50 50)"/>
-    <ellipse cx="50" cy="30" rx="12.5" ry="17" transform="rotate(288 50 50)"/>
-  </g>
-  <circle cx="50" cy="50" r="9" fill="#c22a5f"/>
-</svg>
+<!-- Het blad uit het logo, op dennengroen. Niet met de hand getekend maar
+     uitgeknipt uit public/img/logo-bloei-wit.svg door scripts/icons.mjs;
+     draai dat script opnieuw als het logo verandert. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="#173F2B"/><svg x="19" y="19" width="62" height="62" viewBox="245 4.38 273 273"><g transform="translate(50 32)" fill="#B1C2A2"><g xmlns="http://www.w3.org/2000/svg" transform="translate(0.000000,343.000000) scale(0.100000,-0.100000)" stroke="none"><path d="M4614 3301 c-33 -36 -81 -73 -135 -103 -82 -46 -140 -67 -499 -183 -96 -32 -218 -78 -270 -103 -345 -167 -592 -439 -706 -779 -53 -158 -65 -249 -71 -525 -3 -165 -2 -258 4 -258 6 0 27 40 47 90 97 234 290 476 494 620 51 36 147 96 215 133 67 38 157 91 200 118 43 27 81 49 85 49 12 0 -113 -122 -186 -181 -40 -32 -132 -99 -205 -148 -215 -145 -328 -251 -450 -423 -59 -83 -150 -246 -143 -257 3 -4 22 -11 42 -14 34 -6 42 -2 96 49 118 108 249 175 473 239 168 48 274 87 344 126 255 144 470 426 591 774 49 143 104 367 119 485 16 129 25 337 15 342 -5 3 -32 -20 -60 -51z" /><path d="M1953 2363 c8 -140 43 -277 104 -401 38 -79 62 -112 128 -178 88 -90 153 -128 309 -183 152 -54 211 -87 284 -159 37 -37 74 -79 84 -92 12 -18 19 -22 27 -14 9 8 7 38 -4 115 -32 212 -102 411 -188 531 -88 123 -171 182 -387 273 -176 74 -245 113 -307 173 -24 23 -47 42 -50 42 -3 0 -3 -48 0 -107z" /></g></g></svg></svg>

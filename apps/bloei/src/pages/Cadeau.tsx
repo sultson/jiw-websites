@@ -90,7 +90,7 @@ export default function Cadeau() {
             <article key={m.titel} className="flex flex-col rounded-2xl border border-line bg-white p-7">
               <m.icon className="h-8 w-8 text-accent-dark" strokeWidth={1.5} />
               <h3 className="mt-5 text-xl font-semibold">{m.titel}</h3>
-              <p className="mt-3 leading-relaxed text-ink/65">{m.tekst}</p>
+              <p className="mt-3 leading-relaxed text-ink-vaag">{m.tekst}</p>
               <ul className="mt-5 space-y-2.5 text-sm">
                 {m.punten.map((p) => (
                   <Bullet key={p}>{p}</Bullet>

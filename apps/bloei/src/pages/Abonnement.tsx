@@ -83,7 +83,7 @@ export default function Abonnement() {
             <article key={v.titel} className="flex flex-col rounded-2xl border border-line bg-white p-7">
               <v.icon className="h-8 w-8 text-accent-dark" strokeWidth={1.5} />
               <h3 className="mt-5 text-xl font-semibold">{v.titel}</h3>
-              <p className="mt-3 leading-relaxed text-ink/65">{v.tekst}</p>
+              <p className="mt-3 leading-relaxed text-ink-vaag">{v.tekst}</p>
               <ul className="mt-5 space-y-2.5 text-sm">
                 {v.punten.map((p) => (
                   <Bullet key={p}>{p}</Bullet>

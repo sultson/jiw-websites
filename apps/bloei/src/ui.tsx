@@ -440,14 +440,15 @@ export function Section({
 }
 
 export function Kicker({
-  children, light = false, bloesem = false,
+  children, light = false,
 }: {
   children: React.ReactNode;
   light?: boolean;
-  /** Roze in plaats van jade: alleen in de hero, waar de foto al groen is. */
-  bloesem?: boolean;
 }) {
-  const kleur = bloesem ? 'text-bloesem' : light ? 'text-accent' : 'text-accent-dark';
+  /* Lindegroen op de donkere vlakken, saliegroen op de lichte. Hier stond een
+     derde stand `bloesem` voor het roze van Fleurig!; die kleur bestaat niet
+     meer en de prop werd nergens meegegeven. */
+  const kleur = light ? 'text-accent' : 'text-accent-dark';
   return (
     <p className={`mb-3 text-xs font-semibold uppercase tracking-[0.18em] ${kleur}`}>
       {children}
@@ -484,13 +485,24 @@ export const WA_GROEN = '#25D366';
 export const WA_DONKER = '#128C7E';
 
 /**
- * Het oranje van de belknop, zoals op winterswijkvakantiehuis.nl dat de winkel
- * als voorbeeld gaf. Bewust niet het roze van de hoofdknoppen: die twee
- * zwevende knoppen staan op elke pagina in beeld en moeten juist naast de
- * rangorde van de pagina staan en er niet in meedoen. Een tint dieper dan het
- * voorbeeld, want wit op licht oranje haalt de leesnorm niet.
+ * De belknop. Stond tot 18-10-2026 in oranje (#c9741f), naar het voorbeeld van
+ * winterswijkvakantiehuis.nl dat de winkel aandroeg. Met de huisstijl erin is
+ * dat oranje de enige kleur op de site die nergens meer uit de reeks komt, en
+ * naast zandbruin wordt het een tweede warme tint die er net naast zit.
+ *
+ * Nu zandbruin met dennengroene letters (4,6:1). Eerst stond hier dennengroen
+ * met wit, en op papier was dat de betere keuze — 11,8:1, en het vecht niet
+ * met de zandbruine hoofdknop om aandacht. In beeld werkte het niet: deze
+ * knop zweeft over de hele pagina mee, en over het kerstvlak en de voet (ook
+ * dennengroen) bleef er een vorm zonder rand over. Een knop die onzichtbaar
+ * wordt zodra je ver genoeg scrollt is geen knop.
+ *
+ * Zandbruin is de enige kleur in de reeks die zowel op de lichte als op de
+ * donkere vlakken losstaat. Samen met het WhatsApp-groen ernaast leest het
+ * als een paar contactknoppen; dat ze de kleur van de hoofdknop delen is
+ * geen probleem, want ze wijzen naar hetzelfde soort actie.
  */
-export const BEL_ORANJE = '#c9741f';
+export const BEL_ZAND = '#B99D71';
 
 export function WhatsAppMerk({className = '', style}: {className?: string; style?: React.CSSProperties}) {
   return (
@@ -528,16 +540,24 @@ export function Blad({className = ''}: {className?: string}) {
  * de vuurtoren van Ouddorp eronder. Dat is letterlijk hun tekening en geen
  * nagezette letter.
  *
- * Twee verschijningen:
- * - `plaatje` (de balk bovenaan en de voet): het hele logo, vrijstaand. Dit
- *   stond hier eerder als een stuk uit de foto van de gevel geknipt, en dat
- *   bracht het groene bord als vlak mee — een postzegel op de pagina, met de
- *   gevel er in de hoeken nog bij. De winkel leverde daarna het logo aan op fel
- *   magenta, juist zodat die achtergrond eruit kan; raw/maak-logo.mjs doet dat
- *   en schrijft logo-bloei.webp met een doorzichtige achtergrond. Het logo
- *   staat nu dus op het vlak zelf en niet op zijn eigen rechthoek.
- * - zonder `plaatje`: blad plus de naam als tekst, meekleurend met de plek waar
- *   hij staat. Voor de plekken midden in een lichte pagina.
+ * Sinds 18-10-2026 is dit een echte vector, aangeleverd bij de huisstijl. De
+ * weg ernaartoe staat hier omdat hij verklaart waarom er drie versies in de
+ * geschiedenis zitten: eerst een stuk uit de foto van de gevel geknipt (bracht
+ * het bord als vlak mee, inclusief gevelhout in de hoeken), daarna een PNG op
+ * fel magenta die wij hebben vrijgemaakt (1080px breed en
+ * daarmee op elke hoogte net zacht). Nu een SVG: scherp op elk scherm, en
+ * klein genoeg om niet als plaatje te hoeven laden.
+ *
+ * Twee bestanden, en welke je pakt hangt af van waar hij staat:
+ * - `logo-bloei-wit.svg` — witte letters, lindegroen blad. Dit is de primaire
+ *   versie. Hoort op dennengroen: de balk bovenaan en de voet.
+ * - `logo-bloei-kleur.svg` — dennengroene letters, saliegroen blad. Alleen voor
+ *   lichte vlakken. Zelfde vectorvorm, alleen de twee vullingen omgezet; de
+ *   huisstijl leverde deze variant als PNG, en een PNG naast een SVG van
+ *   hetzelfde merk gaat vroeg of laat uit elkaar lopen.
+ *
+ * `donker` kiest daartussen. Zonder `plaatje` krijg je blad plus de naam als
+ * tekst, meekleurend met de plek waar hij staat.
  *
  * Let op bij de hoogte: dit logo is hoger dan breed vergeleken met het stuk
  * bord dat hier eerst stond (verhouding 1,6:1 tegen 3:1), want het blad steekt
@@ -545,7 +565,7 @@ export function Blad({className = ''}: {className?: string}) {
  * verhouding is gemaakt snijdt de punt van het blad eraf.
  */
 export function Merk({
-  className = '', maat = 'h-[26px]', plaats = false, plaatje = false,
+  className = '', maat = 'h-[26px]', plaats = false, plaatje = false, donker = true,
 }: {
   className?: string;
   /** Hoogte van het woordmerk; de breedte volgt uit de verhouding van het logo. */
@@ -554,14 +574,16 @@ export function Merk({
   plaats?: boolean;
   /** Het hele logo als plaatje, in plaats van blad plus naam als tekst. */
   plaatje?: boolean;
+  /** Staat hij op een donker vlak? Zo ja de witte versie, anders de gekleurde. */
+  donker?: boolean;
 }) {
   if (plaatje) {
     return (
       <span className={`inline-flex items-center gap-3 ${className}`}>
         <img
-          src="/img/logo-bloei.webp?v=20261009"
-          width={900}
-          height={564}
+          src={donker ? '/img/logo-bloei-wit.svg?v=20261018' : '/img/logo-bloei-kleur.svg?v=20261018'}
+          width={680}
+          height={410}
           alt="Bloei!"
           className={`block w-auto ${maat}`}
         />
@@ -599,9 +621,14 @@ export function Merk({
  * opnieuw bedacht wordt: dat is precies hoe er eerder drie roze knoppen
  * tegelijk in de hero terechtkwamen.
  */
+/**
+ * Zandbruin met dennengroene letters, niet met witte. Wit op zandbruin haalt
+ * 2,6:1 en is op een telefoon in de zon niet te lezen; dennengroen erop haalt
+ * 4,6:1. Dat is geen smaakkeuze maar de reden dat deze knop er zo uitziet.
+ */
 export const KNOP_HOOFD =
-  'knop-bloem inline-flex items-center justify-center gap-2 bg-roze px-6 py-3.5 font-semibold text-white ' +
-  'shadow-[0_10px_30px_-12px_rgb(194_42_95_/_0.9)] transition hover:bg-[#a81f4f]';
+  'knop-bloem inline-flex items-center justify-center gap-2 bg-zand px-6 py-3.5 font-semibold text-ink ' +
+  'shadow-[0_10px_30px_-12px_rgb(85_66_32_/_0.85)] transition hover:bg-zand-licht';
 
 /** Op de donkere vlakken: rand, geen vulling. */
 export const KNOP_TWEEDE_DONKER =

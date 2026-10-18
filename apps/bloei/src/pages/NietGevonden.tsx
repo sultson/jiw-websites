@@ -52,10 +52,10 @@ export default function NietGevonden() {
                 href={w.href}
                 className="flex items-start gap-3.5 rounded-2xl border border-line bg-white px-5 py-5 transition hover:border-accent-dark"
               >
-                <w.icon className="mt-0.5 h-5 w-5 shrink-0 text-roze" />
+                <w.icon className="mt-0.5 h-5 w-5 shrink-0 text-accent-dark" />
                 <span>
                   <span className="block font-semibold leading-snug">{w.titel}</span>
-                  <span className="mt-1 block text-sm leading-snug text-ink/55">{w.onder}</span>
+                  <span className="mt-1 block text-sm leading-snug text-ink-vaag">{w.onder}</span>
                 </span>
               </a>
             ))}

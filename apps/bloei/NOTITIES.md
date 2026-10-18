@@ -45,31 +45,47 @@ budgetveld in het formulier is één vrij invulveld geworden.
 
 ## Het logo
 
-Het logo staat vrijstaand op de site. Op 09-10 leverde Alfred het aan op fel
-magenta, juist zodat die achtergrond eruit te sleutelen is; `raw/maak-logo.mjs`
-doet dat en schrijft `public/img/logo-bloei.webp` (900 × 564, met alfakanaal) plus
-een controleplaatje op hun eigen groen. Opnieuw maken: `node raw/maak-logo.mjs`.
+**Sinds 18-10-2026 een echte vector**, aangeleverd door Alfred bij de huisstijl.
+Daarmee is de vraag om een vectorversie die hier stond afgehandeld.
 
-Dat verving twee eerdere oplossingen. Het losse bestand dat er eerst lag was
-358 × 252 px en daarmee te klein voor een balk op een scherm met hoge
-pixeldichtheid; daarna stond er een stuk uit de foto van de gevel geknipt, en dat
-bracht het groene bord als rechthoek mee. Die uitsnede is weg (de functie
-`naambord` is uit `raw/maak-beelden.mjs` gehaald, `logobalk.webp` verwijderd).
+Eén bronbestand: `public/img/logo-bloei-wit.svg` — witte letters, lindegroen
+blad, 680 × 410. Al het andere wordt daaruit gemaakt door `node scripts/icons.mjs`:
 
-Let op bij hoogtes: dit logo is 1,6 : 1, tegen 3 : 1 voor de oude uitsnede — het
-blad steekt boven de letters uit en de vuurtoren staat eronder. Een balk die op de
-oude verhouding gemaakt is snijdt de punt van het blad eraf. Vandaar dat de balk
-bovenaan nu een hogere, zwevende kaart is.
+| bestand | wat | waar |
+| --- | --- | --- |
+| `img/logo-bloei-wit.svg` | de bron | balk bovenaan, voet (alles op dennengroen) |
+| `img/logo-bloei-kleur.svg` | wit → dennengroen, linde → salie | lichte vlakken |
+| `favicon.svg` | alleen de scheut, op dennengroen | tabblad |
+| `img/icon-*.png`, `apple-touch-icon.png` | idem, als PNG | startknop, zoekresultaat |
+| `logo-email.png` | de gekleurde versie, 480 px, ingebakken op `surfaceAlt` | bevestigingsmail |
 
-Nog te vragen:
+De gekleurde versie kwam er ook als PNG bij, maar die gebruiken we niet: twee
+bestanden van hetzelfde merk naast elkaar lopen vroeg of laat uit de pas. Het
+script leidt hem af en schrijft er een `<desc>` in dat hij gegenereerd is.
 
-1. **Een vectorversie** (svg, ai of eps). Minder urgent dan het was — 900 px is
-   genoeg voor elke plek waar het nu staat — maar voor drukwerk en voor een groot
-   beeldmerk nog steeds het vragen waard.
-2. **De letters zelf.** In het logo loopt het blad over de O en de E heen, waardoor
+Het pictogram is de **scheut** (de twee blaadjes boven de letters), niet de hele
+bladgroep: daar zit ook het losse blad in dat door de O valt, en dat zweeft in
+een vierkant pictogram als een vlek zonder verband onder de scheut. Welke vormen
+bij de scheut horen wordt gemeten en niet geteld — zie de toelichting in
+`scripts/icons.mjs`.
+
+Eerdere oplossingen, alle drie weg: een los bestand van 358 × 252 (te klein),
+een uitsnede uit de foto van de gevel (bracht het bord als rechthoek mee), en
+een PNG op fel magenta die wij vrijmaakten (`logo-bloei.webp`, verwijderd —
+`raw/maak-logo.mjs` staat als achterhaald gemarkeerd maar blijft staan voor de
+truc met de randpixels).
+
+Let op bij hoogtes: dit logo is 1,66 : 1 — het blad steekt boven de letters uit
+en de vuurtoren staat eronder. Een balk die op 3 : 1 gemaakt is snijdt de punt
+van het blad eraf. Vandaar dat de balk bovenaan een hogere, zwevende kaart is.
+
+Nog te melden aan de klant:
+
+1. **De letters zelf.** In het logo loopt het blad over de O en de E heen, waardoor
    er eerder `BLŒI!` dan `BLOEI!` staat. Op een gevel van tien meter afstand valt
    dat weg, op een scherm van 50 pixels hoog niet. Dat is iets om te melden voordat
-   het op briefpapier en op een bestelbus staat.
+   het op briefpapier en op een bestelbus staat. De vector lost dit niet op — het
+   zit in de tekening, niet in de resolutie.
 
 ## De foto's
 
@@ -119,17 +135,47 @@ De lijst die Armando doorgaf, punt voor punt:
 
 ## De kleuren
 
-Alle kleuren komen uit het bord aan de gevel (gemeten, zie `src/index.css`):
-bord `#425331`, letters `#e7e1c7`, blad licht `#86a85e`, blad donker `#162810`.
+**Sinds 18-10-2026 de aangeleverde huisstijl.** Daarvoor waren ze van de foto
+van de gevel afgelezen, omdat er toen niets anders was; die hele reeks is weg.
 
-Fleurig! stond op bijna zwart (`#0d2a21`) met framboos. Die opzet is gebleven,
-maar het zwart is weg:
+| | | rol |
+| --- | --- | --- |
+| Dennengroen | `#173F2B` | `ink` — balk bovenaan (gevraagd), voet, formulier, lopende tekst |
+| Saliegroen | `#4F784B` | `salie` — vullingen; verdiept als `accent-dark` voor tekst |
+| Lindegroen | `#B1C2A2` | `accent` — het accent op donker; dit is de bladkleur uit het logo |
+| Ivoor | `#F3EEDC` | `ivoor` — spaarzaam: kerstkaarten en de lampjes in het snoer |
+| Zandbruin | `#B99D71` | `zand` — de hoofdknop en de zwevende belknop |
 
-- De hele pagina staat op `--color-cream` `#f1f6e8`, een echte lichte tint groen.
-- De balk bovenaan, die bij Fleurig! bijna zwart was, staat nu ook op dat licht
-  groen met donkergroene letters.
-- Het framboosroze blijft, alleen op de hoofdknoppen. Het bord heeft die kleur
-  niet, de tafels buiten wel, en de winkel was er tevreden over.
+Drie dingen die niet letterlijk uit de reeks komen en waarom:
+
+- **De achtergrond.** `cream` `#f2f6ef`, met `creme-diep` en `line` eronder. Dat
+  is uitgewassen lindegroen (dezelfde kleurhoek, 92°), niet ivoor — de klant
+  vroeg om een lichte tint groen, en ivoor is gevraagd als markeerkleur. Twee
+  lichte tinten door elkaar leest als een fout in plaats van als een keuze.
+- **De tekst op de hoofdknop is dennengroen, niet wit.** Wit op zandbruin haalt
+  2,6:1. Dennengroen erop haalt 4,6:1. Om dezelfde reden gaat hover omhóóg in
+  plaats van een slag dieper: indikken zakt naar 3,4:1, oplichten gaat naar 5,5:1.
+- **`accent-dark` is `#42653f`, saliegroen een slag verdiept.** Saliegroen zelf
+  haalt alleen op de lichtste van de drie achtergronden de norm (4,6:1 op
+  `cream`, maar 4,3:1 op `creme-diep` en 4,0:1 op de randkleur). De echte
+  `#4F784B` staat wel onvermengd op de site: in het logo voor lichte vlakken, in
+  de blaadjes aan de hoofdknop en als `--color-salie`.
+
+**Het framboosroze van Fleurig! is weg**, net als het oranje van de belknop. Die
+twee waren na de omkleuring de enige kleuren op de site die nergens meer uit de
+reeks kwamen.
+
+### Contrast
+
+`#25D366` met witte letters (de WhatsApp-knop) haalt 1,98:1 en staat daar
+bewust: dat is het merkteken van WhatsApp zelf, en "de WhatsApp-knop moet eruit
+zien als WhatsApp" was een expliciet verzoek (09-10). Verder staat elke tekst op
+de site op minstens 4,5:1 — nagemeten op de gebouwde pagina's, niet geschat.
+
+Bij die meting bleek ook dat de halfdoorzichtige tekstkleuren (`text-ink/55` tot
+`/80`) niet houdbaar waren: met dennengroen als basis zakt verdunde tekst onder
+75% dekking overal onder de norm. Ze zijn vervangen door twee gemeten stappen,
+`ink-zacht` en `ink-vaag`. Zie de toelichting in `src/index.css`.
 
 **Twee vlakken zijn nog donker, en dat is een keuze om voor te leggen:** het
 aanvraagformulier en de voet. Zonder die twee loopt het formulier mee als vierde

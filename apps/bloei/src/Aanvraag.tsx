@@ -391,7 +391,7 @@ export default function AanvraagFormulier() {
       type="button"
       onClick={() => setStap((s) => Math.min(LAATSTE, s + 1))}
       disabled={!kanDoor}
-      className="knop-bloem mt-5 flex w-full items-center justify-center gap-2 bg-roze px-6 py-4 font-semibold text-white transition hover:bg-[#a81f4f] disabled:cursor-not-allowed disabled:opacity-40"
+      className="knop-bloem mt-5 flex w-full items-center justify-center gap-2 bg-zand px-6 py-4 font-semibold text-ink transition hover:bg-zand-licht disabled:cursor-not-allowed disabled:opacity-40"
     >
       {tekst} <ArrowRight className="h-4 w-4" />
     </button>
@@ -414,7 +414,7 @@ export default function AanvraagFormulier() {
       <div ref={kopRef} className="mb-6 scroll-mt-24">
         <div className="flex items-baseline justify-between">
           <p className="text-sm font-semibold text-white">{STAPPEN[stap - 1]}</p>
-          <p className="text-xs text-white/45">Stap {stap} van {LAATSTE}</p>
+          <p className="text-xs text-white/70">Stap {stap} van {LAATSTE}</p>
         </div>
         <div className="mt-2 flex gap-1" aria-hidden="true">
           {STAPPEN.map((s, i) => (
@@ -471,7 +471,7 @@ export default function AanvraagFormulier() {
                       <span className="block break-words text-[12px] font-bold leading-tight text-white sm:text-[13px]">
                         {AFBREEK[s.id]}
                       </span>
-                      <span className="mt-0.5 hidden text-[11px] leading-tight text-white/45 sm:block">{s.onder}</span>
+                      <span className="mt-0.5 hidden text-[11px] leading-tight text-white/70 sm:block">{s.onder}</span>
                     </span>
                   </span>
                 </button>
@@ -539,7 +539,7 @@ export default function AanvraagFormulier() {
                   <l.icon className={`mt-0.5 h-5 w-5 shrink-0 ${actief ? 'text-accent' : 'text-white/50'}`} />
                   <span className="min-w-0">
                     <span className="block font-bold leading-tight text-white">{l.titel}</span>
-                    <span className="mt-1 block text-[12px] leading-snug text-white/50">{l.onder}</span>
+                    <span className="mt-1 block text-[12px] leading-snug text-white/70">{l.onder}</span>
                   </span>
                   {actief && <Check className="ml-auto mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={3} />}
                 </button>
@@ -808,7 +808,7 @@ export default function AanvraagFormulier() {
 
           <button
             ref={knopRef} type="submit" disabled={bezig}
-            className="knop-bloem mt-5 flex w-full items-center justify-center gap-2 bg-roze px-6 py-4 font-semibold text-white transition hover:bg-[#a81f4f] disabled:opacity-60"
+            className="knop-bloem mt-5 flex w-full items-center justify-center gap-2 bg-zand px-6 py-4 font-semibold text-ink transition hover:bg-zand-licht disabled:opacity-60"
           >
             {bezig
               ? <><Loader2 className="h-4 w-4 animate-spin" /> Even geduld</>
@@ -826,8 +826,8 @@ export default function AanvraagFormulier() {
       {/* Bellen blijft op elke stap binnen bereik: wie haast heeft moet niet
           eerst zeven stappen door om een telefoonnummer te vinden. */}
       {stap < 7 && (
-        <p className="mt-5 border-t border-white/10 pt-4 text-center text-xs text-white/40">
-          <a href={`tel:${TEL}`} className="inline-flex items-center gap-1.5 font-semibold text-white/55 hover:underline">
+        <p className="mt-5 border-t border-white/10 pt-4 text-center text-xs text-white/60">
+          <a href={`tel:${TEL}`} className="inline-flex items-center gap-1.5 font-semibold text-white/80 hover:underline">
             <Phone className="h-3.5 w-3.5" /> Liever even bellen? {TEL_DISPLAY}
           </a>
         </p>
