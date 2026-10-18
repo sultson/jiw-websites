@@ -1,0 +1,99 @@
+---
+import Icon from './Icon.astro';
+import type { Lang } from '../data/content';
+const { lang }=Astro.props as {lang:Lang};
+const nl=lang==='nl';
+---
+<!-- Lives in a <template>: without JS (and for crawlers) the page is never covered. -->
+<template id="intro-gate">
+  <div class="gate" role="dialog" aria-modal="true" aria-label="Rescue Watercraft">
+    <button type="button" class="gate-side gate-film" data-gate-watch>
+      <img src="/images/intro-gate.webp" srcset="/images/intro-gate-900.webp 900w, /images/intro-gate.webp 1600w" sizes="(max-width:700px) 100vw, 60vw" alt="" width="1600" height="700"/>
+      <span class="gate-label"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30"/><path d="M26 20v24l19-12z"/></svg><span><small>1:07</small>{nl?'Actiefilm':'Action film'}</span></span>
+    </button>
+    <button type="button" class="gate-side gate-site" data-gate-close>
+      <img src="/images/hero-1200.webp?v=20260829" srcset="/images/hero-640.webp?v=20260829 640w, /images/hero-1200.webp?v=20260829 1200w" sizes="(max-width:700px) 100vw, 60vw" alt="" width="1200" height="800"/>
+      <span class="gate-label"><span>Website</span><Icon name="arrow" size={44}/></span>
+    </button>
+    <svg class="gate-seam" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line class="seam-wide" x1="58" y1="0" x2="42" y2="100"/><line class="seam-narrow" x1="0" y1="56" x2="100" y2="44"/></svg>
+    <span class="gate-or" aria-hidden="true">{nl?'of':'or'}</span>
+    <img class="gate-logo" src="/images/logo-rw-inverse.svg" alt="" width="5052" height="1351"/>
+    <div class="gate-cinema" hidden>
+      <video controls playsinline preload="none" width="1920" height="1080" aria-label={nl?'Rescue Watercraft actiefilm':'Rescue Watercraft action film'}></video>
+      <button type="button" class="gate-close" data-gate-close>{nl?'Naar de website':'Go to the website'} <Icon name="close" size={18}/></button>
+    </div>
+  </div>
+</template>
+<script>
+  const KEY='rw-intro-seen';
+  const template=document.querySelector<HTMLTemplateElement>('#intro-gate');
+  const seen=()=>{try{return localStorage.getItem(KEY)==='1';}catch{return true;}};
+  const bot=/bot|crawl|spider|slurp|lighthouse|headless|preview/i.test(navigator.userAgent)||navigator.webdriver;
+  if(template&&!seen()&&!bot&&!location.hash){
+    const gate=template.content.firstElementChild!.cloneNode(true) as HTMLElement;
+    const video=gate.querySelector('video')!;
+    const cinema=gate.querySelector<HTMLElement>('.gate-cinema')!;
+    const root=document.documentElement;
+    const close=()=>{
+      try{localStorage.setItem(KEY,'1');}catch{}
+      video.pause();video.removeAttribute('src');video.load();
+      gate.remove();root.style.overflow='';document.removeEventListener('keydown',onKey);
+    };
+    const onKey=(event:KeyboardEvent)=>{if(event.key==='Escape')close();};
+    gate.querySelectorAll('[data-gate-close]').forEach(button=>button.addEventListener('click',close));
+    gate.querySelector('[data-gate-watch]')!.addEventListener('click',()=>{
+      try{localStorage.setItem(KEY,'1');}catch{}
+      gate.classList.add('is-playing');cinema.hidden=false;
+      video.src='/api/brandfilm';
+      // play() inside the click keeps the gesture, so the film may start with sound.
+      video.play().catch(()=>{video.muted=true;video.play().catch(()=>{});});
+      gate.querySelector<HTMLElement>('.gate-close')!.focus();
+    });
+    video.addEventListener('ended',close);
+    document.addEventListener('keydown',onKey);
+    root.style.overflow='hidden';
+    document.body.append(gate);
+    gate.querySelector<HTMLElement>('[data-gate-watch]')!.focus();
+  }
+</script>
+<style is:global>
+.gate{position:fixed;inset:0;z-index:100;background:#0a0b07;color:#fff;overflow:hidden;--a:58%;--b:42%}
+.gate-side{position:absolute;inset:0;padding:0;border:0;background:#0a0b07;color:#fff;cursor:pointer;text-align:left}
+.gate-film{clip-path:polygon(0 0,var(--a) 0,var(--b) 100%,0 100%)}
+.gate-site{clip-path:polygon(var(--a) 0,100% 0,100% 100%,var(--b) 100%)}
+.gate-side img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter .2s}
+.gate-film img{width:62%;object-position:62% 50%}
+.gate-site img{left:auto;right:0;width:62%;object-position:30% 50%}
+.gate-side::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,11,7,.85),rgba(10,11,7,.1) 55%,rgba(10,11,7,.35))}
+.gate:has(.gate-side:hover) .gate-side:not(:hover) img,.gate:has(.gate-side:focus-visible) .gate-side:not(:focus-visible) img{filter:brightness(.4) grayscale(.7)}
+.gate-label{position:absolute;z-index:1;bottom:clamp(36px,7vh,72px);display:flex;align-items:center;gap:20px;font-family:var(--display);font-style:italic;font-weight:900;font-size:clamp(2.6rem,5.6vw,5.4rem);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;text-shadow:0 2px 26px rgba(8,8,8,.5)}
+.gate-label small{display:block;margin-bottom:10px;font-family:var(--text);font-style:normal;font-weight:600;font-size:.75rem;letter-spacing:.22em;color:var(--green);text-shadow:none}
+.gate-film .gate-label{left:clamp(24px,5vw,80px)}
+.gate-site .gate-label{right:clamp(24px,5vw,80px);text-align:right}
+.gate-label>svg{flex:none;width:clamp(56px,6vw,84px);height:auto}
+.gate-label circle{fill:var(--green)}
+.gate-label path{fill:var(--ink)}
+.gate-site .gate-label>svg{color:var(--green)}
+.gate-side:focus-visible{outline:none}
+.gate-side:focus-visible .gate-label>span{box-shadow:inset 0 -4px 0 var(--green)}
+.gate-seam{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.gate-seam line{stroke:var(--green);stroke-width:4;vector-effect:non-scaling-stroke}.gate-seam .seam-narrow{display:none}
+.gate-or{position:absolute;left:50%;top:50%;display:grid;place-items:center;width:64px;height:64px;margin:-32px 0 0 -32px;background:var(--green);color:var(--ink);font-family:var(--display);font-style:italic;font-weight:900;font-size:1.3rem;text-transform:uppercase;transform:rotate(-8deg);pointer-events:none}
+.gate-logo{position:absolute;top:clamp(20px,4vh,40px);left:clamp(24px,5vw,80px);width:clamp(150px,14vw,210px);height:auto;pointer-events:none}
+.gate-cinema{position:absolute;inset:0;z-index:2;display:grid;place-items:center;background:#000}
+.gate-cinema[hidden]{display:none}
+.gate-cinema video{width:100%;height:100%;object-fit:contain}
+.gate-close{position:absolute;top:clamp(14px,3vw,28px);right:clamp(14px,3vw,28px);display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:0;background:rgba(10,11,7,.72);color:#fff;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.gate-close:hover{color:var(--green)}
+.gate-close:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+@media(max-width:700px){
+  .gate-film{clip-path:polygon(0 0,100% 0,100% 44%,0 56%)}
+  .gate-site{clip-path:polygon(0 56%,100% 44%,100% 100%,0 100%)}
+  .gate-film img,.gate-site img{width:100%;height:58%;object-position:50% 50%}
+  .gate-site img{top:auto;bottom:0}
+  .gate-film .gate-label{bottom:auto;top:calc(44% - 120px)}
+  .gate-site .gate-label{bottom:40px}
+  .gate-seam .seam-wide{display:none}.gate-seam .seam-narrow{display:inline}
+  .gate-or{top:50%;left:auto;right:28px;margin:-28px 0 0;width:56px;height:56px}
+}
+</style>

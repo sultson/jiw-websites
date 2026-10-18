@@ -3,36 +3,74 @@ import 'video.js/dist/video-js.css';
 import type { Lang } from '../data/content';
 const { lang }=Astro.props as {lang:Lang};
 const nl=lang==='nl';
+const ring=nl?'ACTIEFILM · RESCUE WATERCRAFT · ':'ACTION FILM · RESCUE WATERCRAFT · ';
 ---
-<section class="brandfilm" aria-label={nl?'Rescue Watercraft in actie':'Rescue Watercraft in action'}>
+<section class="brandfilm" id="film" aria-labelledby="brandfilm-title">
   <div class="container">
+    <div class="film-head">
+      <p class="film-tag"><span>{nl?'Actiefilm':'Action film'}</span><span>1:07</span></p>
+      <h2 id="brandfilm-title">{nl?'Zie ons in actie.':'See us in action.'}</h2>
+      <svg class="film-arrow" viewBox="0 0 120 90" aria-hidden="true"><path d="M6 10c38-6 78 6 92 40 4 10 5 20 4 30"/><path d="m90 70 12 12 10-14"/></svg>
+    </div>
     <div class="film-player">
-      <video id="brandfilm-player" controls playsinline preload="none" poster="/images/brandfilm-poster.webp" aria-label={nl?'Rescue Watercraft brandfilm':'Rescue Watercraft brand film'} data-language={lang} width="1920" height="1080">
+      <video id="brandfilm-player" controls playsinline preload="none" poster="/images/brandfilm-poster.webp?v=20261018" aria-label={nl?'Rescue Watercraft brandfilm':'Rescue Watercraft brand film'} data-language={lang} width="1920" height="1080">
         <source src="/api/brandfilm" type="video/mp4"/>
         <a href="/api/brandfilm">{nl?'Bekijk de brandfilm':'Watch the brand film'}</a>
       </video>
+      <svg class="film-seal" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="film-seal-ring" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><circle cx="60" cy="60" r="58"/><text><textPath href="#film-seal-ring" textLength="272">{ring}</textPath></text><path class="film-seal-play" d="M52 46v28l22-14z"/></svg>
     </div>
   </div>
 </section>
 <script>
   const video=document.querySelector<HTMLVideoElement>('#brandfilm-player');
-  if(video){
+  const frame=document.querySelector<HTMLElement>('.film-player');
+  if(video&&frame){
     // Keep native controls available until the enhanced player is ready.
-    const enhance=async()=>{
+    let enhancing:Promise<void>|undefined;
+    const enhance=()=>enhancing??=(async()=>{
       try{
         const {default:videojs}=await import('video.js');
         const {default:dutch}=await import('video.js/dist/lang/nl.json');
         videojs.addLanguage('nl',dutch);
         video.classList.add('video-js','vjs-big-play-centered');
-        videojs(video,{controls:true,autoplay:false,preload:'none',fluid:true,aspectRatio:'16:9',responsive:true,language:video.dataset.language,playbackRates:[0.75,1,1.25,1.5],controlBar:{volumePanel:{inline:false}},userActions:{hotkeys:true}});
+        const player=videojs(video,{controls:true,autoplay:false,preload:'none',fluid:true,aspectRatio:'16:9',responsive:true,language:video.dataset.language,playbackRates:[0.75,1,1.25,1.5],controlBar:{volumePanel:{inline:false}},userActions:{hotkeys:true}});
+        await new Promise<void>(resolve=>player.ready(()=>resolve()));
       }catch{video.controls=true;}
+    })();
+    // Plays muted while in view, stops once fully scrolled away. A pause the visitor makes sticks until they press play again.
+    const quiet=matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator as Navigator&{connection?:{saveData?:boolean}}).connection?.saveData===true;
+    let ours=false,held=false,started=false,rolling=false,visible=false;
+    // Only a pause after real playback counts as the visitor's; an aborted play() also fires one.
+    video.addEventListener('playing',()=>{rolling=true;held=false;});
+    video.addEventListener('pause',()=>{if(rolling&&!ours&&!video.ended)held=true;ours=false;rolling=false;});
+    const start=async()=>{
+      await enhance();
+      if(held||!video.paused)return;
+      if(!started){video.muted=true;started=true;}
+      video.play().catch(()=>{setTimeout(()=>{if(visible&&video.paused&&!held)video.play().catch(()=>{});},400);});
     };
+    const stop=()=>{if(!video.paused){ours=true;video.pause();}};
     if('IntersectionObserver' in window){
-      const observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){observer.disconnect();void enhance();}},{rootMargin:'300px'});
-      observer.observe(video);
+      new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting))void enhance();},{rootMargin:'300px'}).observe(frame);
+      if(!quiet)new IntersectionObserver(entries=>{for(const entry of entries){visible=entry.intersectionRatio>=.5;if(visible)void start();else if(!entry.isIntersecting)stop();}},{threshold:[0,.5]}).observe(frame);
     }else{void enhance();}
   }
 </script>
 <style>
-.brandfilm{padding:clamp(28px,4vw,48px) 0;background:var(--mist);color:#fff}.film-player{width:min(100%,960px);margin-inline:auto;aspect-ratio:16/9;background:#000;border:1px solid #34352c}.film-player>video{display:block;width:100%;height:100%;object-fit:contain}.film-player :global(.video-js){width:100%;font-family:var(--text);color:#fff}.film-player :global(.vjs-poster img){object-fit:cover}.film-player :global(.vjs-big-play-button){width:72px;height:72px;line-height:68px;border:2px solid var(--green);border-radius:50%;background:#0a0b07cc;margin-left:-36px;margin-top:-36px;color:var(--green)}.film-player :global(.vjs-control-bar){background:#0a0b07eb}.film-player :global(.vjs-play-progress),.film-player :global(.vjs-volume-level){background:var(--green)}.film-player :global(button:focus-visible){outline:2px solid var(--green);outline-offset:-2px}@media(max-width:800px){.film-player :global(.vjs-control){min-width:32px}.film-player :global(.vjs-control-bar){font-size:12px}}
+.brandfilm{padding:clamp(48px,6vw,84px) 0 clamp(72px,8vw,108px);background:var(--mist)}
+.film-head{position:relative;width:min(100%,960px);margin:0 auto clamp(22px,3vw,34px);padding-right:110px}
+.film-tag{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.film-tag span:first-child{padding:5px 9px;background:var(--ink);color:var(--green)}
+.film-tag span:last-child{font-variant-numeric:tabular-nums}
+.film-head h2{font-size:clamp(2.3rem,5vw,4.2rem);font-style:italic;letter-spacing:-.03em}
+.film-arrow{position:absolute;right:8px;bottom:-30px;width:clamp(70px,9vw,104px);height:auto;fill:none;stroke:var(--green-deep);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.film-player{position:relative;width:min(100%,960px);margin-inline:auto;aspect-ratio:16/9;background:#000;border:1px solid #34352c}
+.film-player>video{display:block;width:100%;height:100%;object-fit:contain}
+.film-seal{position:absolute;z-index:2;bottom:-44px;left:-44px;width:112px;height:112px;pointer-events:none;transform:rotate(-14deg)}
+.film-seal circle{fill:var(--green)}
+.film-seal text{fill:var(--ink);font-family:var(--text);font-size:11.5px;font-weight:600;letter-spacing:1.2px}
+.film-seal-play{fill:var(--ink)}
+.film-player :global(.video-js){width:100%;font-family:var(--text);color:#fff}.film-player :global(.vjs-poster img){object-fit:cover}.film-player :global(.vjs-big-play-button){width:72px;height:72px;line-height:68px;border:2px solid var(--green);border-radius:50%;background:#0a0b07cc;margin-left:-36px;margin-top:-36px;color:var(--green)}.film-player :global(.vjs-control-bar){background:#0a0b07eb}.film-player :global(.vjs-play-progress),.film-player :global(.vjs-volume-level){background:var(--green)}.film-player :global(button:focus-visible){outline:2px solid var(--green);outline-offset:-2px}
+@media(max-width:1080px){.film-seal{left:-10px}}
+@media(max-width:800px){.film-player :global(.vjs-control){min-width:32px}.film-player :global(.vjs-control-bar){font-size:12px}.film-head{padding-right:0}.film-seal{bottom:-34px;left:-4px;width:76px;height:76px}.film-arrow{display:none}}
 </style>
