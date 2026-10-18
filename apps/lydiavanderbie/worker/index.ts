@@ -4,7 +4,7 @@ export type Env = CloudflareFormsEnv & {
   ASSETS: Fetcher;
 };
 
-const canonicalHost = 'lydiavanderbie.jouwidealewebsite.nl';
+const canonicalHost = 'lydiavanderbie.nl';
 const siteUrl = `https://${canonicalHost}`;
 
 type PageMeta = {
@@ -50,6 +50,13 @@ const formWorker = createFormWorker({
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    // The old subdomain and www both 301 onto the apex. /api/ is left alone so a
+    // form posted from a page still open on an old host does not lose its body.
+    if (url.hostname !== canonicalHost && !url.pathname.startsWith('/api/')) {
+      url.hostname = canonicalHost;
+      return Response.redirect(url.toString(), 301);
+    }
 
     if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
       url.pathname = url.pathname.slice(0, -1);

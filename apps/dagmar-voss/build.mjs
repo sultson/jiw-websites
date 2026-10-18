@@ -313,7 +313,7 @@ ${page.body}
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; ${new Date().getFullYear()} Dagmar Voss. Alle rechten voorbehouden.</span>
+      <span>&copy; ${new Date().getFullYear()} Dagmar Voss. Alle rechten voorbehouden. Website door <a href="https://jouwidealewebsite.nl/">Jouw Ideale Website</a>.</span>
       <span>Coaching, geen crisishulp. Bij acute nood: bel 112 of 113 (zelfmoordpreventie).</span>
     </div>
   </div>

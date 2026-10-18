@@ -615,6 +615,10 @@ function heroShell(data: Doc | null, lang: Lang, projectId: string, dataset: str
   return renderToStaticMarkup(createElement(HeroShell, { t, werken }));
 }
 
+/** Builder credit, kept in the HTML for crawlers; React clears #root on mount. */
+const CREDIT =
+  '<p style="margin:0;padding:12px 0;text-align:center;font:12px/1.4 system-ui,sans-serif;opacity:.5">Website door <a href="https://jouwidealewebsite.nl/" style="color:inherit">Jouw Ideale Website</a></p>';
+
 /** Every address worth crawling, in both languages, pointing at each other. */
 function sitemap(data: Doc | null): string {
   const paths = ['/', '/blog', '/privacy'];
@@ -750,7 +754,7 @@ export default {
       if (shell) {
         rewriter = rewriter.on('#root', {
           element(root) {
-            root.setInnerContent(shell, { html: true });
+            root.setInnerContent(shell + CREDIT, { html: true });
           },
         });
       }

@@ -65,6 +65,9 @@ export default function Footer({
           >
             {PRIVACY_TITLE[lang]}
           </a>
+          <a href="https://jouwidealewebsite.nl/" className="text-xs text-muted/60 transition-colors hover:text-bone">
+            {lang === 'nl' ? 'Website door' : 'Website by'} Jouw Ideale Website
+          </a>
         </div>
       </div>
     </footer>

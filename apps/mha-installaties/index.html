@@ -102,7 +102,10 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Static credit for crawlers that skip JavaScript; React replaces #root on mount. -->
+      <p style="position:fixed;bottom:12px;left:0;right:0;margin:0;text-align:center;font:12px/1.4 system-ui,sans-serif;opacity:.5">Website door <a href="https://jouwidealewebsite.nl/" style="color:inherit">Jouw Ideale Website</a></p>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

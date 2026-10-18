@@ -659,6 +659,7 @@ section { padding-block: clamp(3rem, 8vw, 5.5rem); position: relative; }
   display: flex; flex-wrap: wrap; gap: .5rem 1.25rem;
   justify-content: space-between; font-size: .84rem; color: var(--inkt-vaag);
 }
+.footer-bottom a:not(.btn) { color: inherit; }
 
 /* ---------- crisis note ---------- */
 .crisis {
