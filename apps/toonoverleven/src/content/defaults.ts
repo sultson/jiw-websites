@@ -68,13 +68,15 @@ const teksten: Teksten = {
     beloning: 'Binnen de stichting ontvangt niemand op enigerlei wijze een beloning of salaris. Kosten die iemand voor zijn functie maakt, kunnen worden gedeclareerd. De enige uitzondering die in de toekomst kan ontstaan is een deels betaalde coördinator, en dan alleen als die van elders wordt gefinancierd.',
     bestuur: [
       { naam: 'Henk de Vries', rol: 'Voorzitter' },
+      { naam: 'Marcel van Kasteel', rol: 'Vice-voorzitter' },
       { naam: 'Claudia van Deijck', rol: 'Secretaris' },
       { naam: 'Ron Wille', rol: 'Penningmeester' },
     ],
     advies: [
       { naam: 'Bram Harmsma', rol: 'burgemeester van Zeewolde' },
       { naam: 'Helma Lodders', rol: 'oud-wethouder en oud-Tweede Kamerlid' },
-      { naam: 'Mike Kastrop', rol: '' },
+      { naam: 'Mike Kastrop', rol: 'ondernemer in Zeewolde, eigenaar van Classic Mike' },
+      { naam: 'Klaske Vriesinga', rol: 'notaris te Zeewolde' },
     ],
   },
   contact: {
@@ -84,7 +86,6 @@ const teksten: Teksten = {
   praktisch: {
     openingstijden: {
       ochtend: 'Elke donderdag van 10:00 tot 12:00 uur.',
-      avond: 'Elke derde donderdag van de maand van 19:30 tot 21:30 uur.',
       afwijkingen:
         'In de zomervakantie en de kerstvakantie is er geen inloop. Wanneer de deur weer opengaat, staat in de agenda.',
     },
@@ -108,7 +109,7 @@ const teksten: Teksten = {
         'Een activiteit kan ergens anders plaatsvinden. Bij ieder moment in de agenda staat de locatie van die dag.',
     },
     contact: {
-      email: "info@toonoverleven.nl", telefoon: "036 845 02 65",
+      email: "info@toonoverleven.nl", telefoon: "036 845 02 65", mobiel: "06 38 52 90 60",
       wieReageert: 'Aan de telefoon en achter de mail zitten de vrijwilligers van het huis.',
       watGebeurtEr:
         'Je hoeft niet uit te leggen wat er speelt en je hoeft geen naam van een ziekte te noemen. Een bericht met alleen je naam en de vraag of je een keer mag komen kijken is genoeg.',

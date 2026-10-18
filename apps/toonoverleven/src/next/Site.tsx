@@ -28,8 +28,38 @@ const upcoming = (ctx: Context, type?: string) =>
     (a) => a.soort === "activiteit" && (!type || a.activiteitType === type),
   );
 const url = eventPath;
+const telLink = (nummer: string) => 'tel:' + nummer.replace(/[^+0-9]/g, '');
+/** Next moments, at most one per kind of activity, so the homepage never shows three inloopochtenden. */
+const varied = (events: Activiteit[], count: number) => {
+  const seen = new Set<string>();
+  return events.filter((a) => {
+    const kind = a.activiteitType || a.titel;
+    if (seen.has(kind)) return false;
+    seen.add(kind);
+    return true;
+  }).slice(0, count);
+};
+/** The chips on the contact form of a visitor route. The value goes into the subject of the mail. */
+const ROUTE_CHOICES: Record<string, { prefix: string; keuzes: { sleutel: string; waarde: string; label: string }[] }> = {
+  jongeren: {
+    prefix: 'Jong & kanker',
+    keuzes: [
+      { sleutel: 'gesprek', waarde: 'Een goed gesprek (1-op-1)', label: 'Een goed gesprek (1-op-1)' },
+      { sleutel: 'chillen', waarde: 'Even langskomen om te chillen', label: 'Even langskomen om te chillen' },
+      { sleutel: 'meedenken', waarde: 'Meedenken over activiteiten', label: 'Meedenken over activiteiten' },
+    ],
+  },
+  naasten: {
+    prefix: 'Voor naasten',
+    keuzes: [
+      { sleutel: 'gesprek', waarde: 'Een gesprek voor mijzelf', label: 'Een gesprek voor mijzelf' },
+      { sleutel: 'ouder-partner', waarde: 'Mijn ouder of partner heeft kanker', label: 'Mijn ouder of partner heeft kanker' },
+      { sleutel: 'verlies', waarde: 'Na verlies', label: 'Na verlies, op mijn eigen moment' },
+    ],
+  },
+};
 const categoryLabel = (c: string) => ({Inloop: "Ontmoeten", Wellness: "Ontspannen"}[c] || c);
-function Header() {
+function Header({ path }: { path: string }) {
   const [open, setOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   useEffect(() => {
@@ -53,8 +83,8 @@ function Header() {
           <img
             src={image("logo")}
             alt="Toon over Leven"
-            width="132"
-            height="71"
+            width="172"
+            height="76"
           />
         </a>
         <nav
@@ -64,7 +94,7 @@ function Header() {
             if ((e.target as Element).closest("a")) { setOpen(false); setOpenGroup(null); }
           }}
         >
-          {[
+          {([
             [
               "Activiteiten",
               "/activiteiten",
@@ -74,6 +104,8 @@ function Header() {
                 ["Praktisch", "/praktisch"],
               ],
             ],
+            ["Jong & kanker", "/jong-en-kanker"],
+            ["Voor naasten", "/voor-naasten"],
             [
               "Kennis",
               "/kennis-en-wegwijzer",
@@ -102,15 +134,16 @@ function Header() {
                 ["Nieuws", "/nieuws"],
               ],
             ],
-          ].map(([label, href, children]) => (
+          ] as [string, string, string[][]?][]).map(([label, href, children]) => !children ? (
+            <a className="nav-trigger nav-link" key={label} href={href} aria-current={path === href ? "page" : undefined}>{label}</a>
+          ) : (
             <div className="navgroup" key={String(label)}>
               <button type="button" className="nav-trigger" aria-expanded={openGroup === label} aria-controls={'nav-' + String(label).replace(/\s+/g, '-')} onClick={() => setOpenGroup(openGroup === label ? null : String(label))}>
                 <span>{String(label)}</span>{openGroup === label ? <ChevronUp size={18} aria-hidden="true" /> : <ChevronDown size={18} aria-hidden="true" />}
               </button>
               {openGroup === label && (
                 <div className="navsub" id={'nav-' + String(label).replace(/\s+/g, '-')}>
-                  <a href={String(href)}>Overzicht {String(label).toLowerCase()}</a>
-                  {(children as string[][]).map(([label, href]) => (
+                  {children.map(([label, href]) => (
                     <a key={href} href={href}>
                       {label}
                     </a>
@@ -219,7 +252,7 @@ function Tree({
   if (tag === "a" && attrs["data-contact"]) {
     const contact = ctx.content.teksten.praktisch.contact;
     const kind = attrs["data-contact"];
-    props.href = kind === 'email' ? 'mailto:' + contact.email : kind === 'phone' ? 'tel:' + contact.telefoon.replace(/[^+0-9]/g, '') : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(ctx.content.teksten.praktisch.locatie.adres);
+    props.href = kind === 'email' ? 'mailto:' + contact.email : kind === 'phone' ? telLink(contact.telefoon) : kind === 'mobile' ? telLink(contact.mobiel) : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(ctx.content.teksten.praktisch.locatie.adres);
   }
   const social = tag === 'a' && String(props.href).includes('instagram.com/') ? 'instagram' : tag === 'a' && String(props.href).includes('facebook.com/') ? 'facebook' : null;
   if (tag === "img") {
@@ -229,7 +262,10 @@ function Tree({
     if (im?.alt !== undefined) props.alt = im.alt;
   }
   const href = tag === "a" ? String(props.href) : activityHref;
-  if (["img", "br", "hr", "input", "source"].includes(tag))
+  // The CMS trims trailing spaces, and the reference CSS hides some of these
+  // breaks on small screens; the space keeps "stap. Kom" from gluing together.
+  if (tag === "br") return <>{" "}<br /></>;
+  if (["img", "hr", "input", "source"].includes(tag))
     return createElement(tag, props);
   return createElement(
     tag,
@@ -270,13 +306,6 @@ function Slot({
         </>
       );
     }
-    case "privacyStatement": {
-      const page = template('/privacy');
-      const privacyEdit = ctx.content.pages?.find(p => p.path === '/privacy');
-      const body = page?.tree.find(n => typeof n === 'object' && 'tag' in n && n.tag === 'section');
-      if (!body || typeof body !== 'object' || !('children' in body)) return null;
-      return <section className="wrap section reading-content" id="privacyverklaring">{body.children.map((n, i) => <Tree key={i} node={typeof n === 'object' && 'tag' in n && n.tag === 'h1' ? {...n, tag:'h2'} : n} ctx={ctx} edit={privacyEdit} />)}</section>;
-    }
     case "privacyDownload": {
       const privacyEdit = ctx.content.pages?.find(p => p.path === '/privacy');
       const ref = privacyEdit?.privacyFile?.asset?._ref;
@@ -293,7 +322,7 @@ function Slot({
       return (
         <aside className="visit-address">
           <span className="eyebrow">Kom je langs?</span>
-          <h3>Vrije inloop</h3>
+          <h3>Inloop zonder afspraak</h3>
           <p className="visit-time">
             {ctx.content.teksten.praktisch.openingstijden.ochtend}
           </p>
@@ -314,7 +343,7 @@ function Slot({
       return events.length ? <section className="wrap section"><h2>{ctx.path === '/voor-naasten' ? 'Activiteiten voor naasten' : 'Ontmoet leeftijdsgenoten'}</h2><ActivityCards events={events} /></section> : null;
     }
     case "upcoming":
-      return <ActivityCards events={upcoming(ctx).slice(0, 3)} />;
+      return <ActivityCards events={varied(upcoming(ctx), 3)} />;
     case "agenda":
       return <Agenda ctx={ctx} />;
     case "activityPractical":
@@ -337,6 +366,16 @@ function Slot({
           <Formulier compact copy={copy} contact={ctx.content.teksten.praktisch.contact} />
         </section>
       );
+    case "routeContact": {
+      const route = ROUTE_CHOICES[attrs.route];
+      return route ? (
+        <section className="form-card">
+          <Formulier compact copy={copy} contact={ctx.content.teksten.praktisch.contact} prefix={route.prefix} keuzes={route.keuzes} />
+        </section>
+      ) : null;
+    }
+    case "newsletter":
+      return <Nieuwsbrief />;
     case "video": {
       const video = edit?.videos?.find(v => v._key === attrs.videoKey);
       return <Video id={video?.video ?? attrs.video} title={video?.title ?? attrs.title} text={video?.text ?? attrs.text} ctx={ctx} />;
@@ -515,7 +554,7 @@ function ActivityCards({ events }: { events: Activiteit[] }) {
                   ? "Volgeboekt"
                   : a.aanmelden
                     ? "Vooraf aanmelden"
-                    : "Vrije inloop"}
+                    : "Inloop zonder afspraak"}
               </span>
               <span aria-hidden="true">↗</span>
             </div>
@@ -627,21 +666,26 @@ function SignupAction({ ctx, event }: { ctx: Context; event: Activiteit }) {
   const copy = interfaceCopy(ctx.content);
   if (event.volgeboekt) return <p className="notice">{copy.full}</p>;
   if (!event.aanmelden) return <p className="notice">{copy.noSignup}</p>;
-  const href = event.aanmeldEmail ? '/contact?activiteit=' + encodeURIComponent(event.titel) + '#kennismaken' : event.aanmeldUrl ? safeLink(event.aanmeldUrl) : eventPath(event, 'aanmelden');
+  const href = event.aanmeldUrl ? safeLink(event.aanmeldUrl) : event.aanmeldEmail ? '/contact?activiteit=' + encodeURIComponent(event.titel) + '#kennismaken' : eventPath(event, 'aanmelden');
   return <a className="btn" href={href}>{event.aanmeldEmail || event.aanmeldUrl ? copy.externalSignup : copy.signupLink} →</a>;
 }
 function ActivityPractical({ ctx, event, type }: { ctx: Context; event?: Activiteit; type?: string }) {
   const a = event || upcoming(ctx, type)[0];
   const [date, time] = a ? moment(a).split(' · ') : [];
   const copy = interfaceCopy(ctx.content);
+  const locatie = a?.locatie || (type && activityTypes[type]?.locatie) || ctx.content.teksten.praktisch.locatie.adres;
+  // Directions to the house only when the activity is at the house.
+  const elders = !/mazerhard/i.test(locatie);
   return <aside className="side-note event-practical" aria-label="Praktische informatie">
     <h2>{date || copy.noDateTitle}</h2>
     {time && <p>{time}</p>}
     {!a && <p>{copy.noDate}</p>}
-    <p className="preserve-lines"><strong>{copy.locationLabel}</strong><br />{a?.locatie || ctx.content.teksten.praktisch.locatie.adres}</p>
+    <p className="preserve-lines"><strong>{copy.locationLabel}</strong><br />{locatie}</p>
     {a?.bijdrage && <p><strong>{copy.contributionLabel}</strong><br />{a.bijdrage}</p>}
     {a ? <SignupAction ctx={ctx} event={a} /> : <a className="btn" href="/contact">{copy.contactLink} →</a>}
-    <p><a className="textlink" href="/praktisch#bereikbaarheid">{copy.directions} →</a></p>
+    <p>{elders
+      ? <a className="textlink" href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(locatie)} target="_blank" rel="noopener noreferrer">{copy.directions} <ArrowUpRight className="inline-arrow" size={18} aria-hidden="true" /></a>
+      : <a className="textlink" href="/praktisch#bereikbaarheid">{copy.directions} →</a>}</p>
     <a className="textlink" href="/activiteiten#agenda">{copy.allActivities} →</a>
   </aside>;
 }
@@ -688,12 +732,39 @@ export default function Site({ ctx }: { ctx: Context }) {
     );
   return (
     <div className="approved-site">
-      <Header />
+      <Header path={ctx.path} />
       <main id="inhoud" tabIndex={-1} key={ctx.path}>
         {body}
       </main>
       {ctx.path === "/" && <Template path="@newsletter" ctx={ctx} />}
       <Template path="@footer" ctx={ctx} />
     </div>
+  );
+}
+/** Signup for the newsletter. The mail goes to the house, which keeps the list for now. */
+function Nieuwsbrief() {
+  const [status, setStatus] = useState<'open' | 'bezig' | 'klaar' | 'fout'>('open');
+  async function verstuur(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus('bezig');
+    const data = new FormData(e.currentTarget);
+    data.set('onderwerp', 'Aanmelding nieuwsbrief');
+    data.set('cf-turnstile-response', 'dev');
+    try {
+      const antwoord = await fetch('/api/forms/nieuwsbrief', { method: 'POST', body: data });
+      setStatus(antwoord.ok ? 'klaar' : 'fout');
+    } catch {
+      setStatus('fout');
+    }
+  }
+  if (status === 'klaar') return <p className="newsletter-done" role="status">Dank je wel, je bent aangemeld voor de nieuwsbrief.</p>;
+  return (
+    <form className="newsletter-form" onSubmit={verstuur} aria-busy={status === 'bezig'}>
+      <label>Naam<input name="firstName" required autoComplete="name" placeholder="Je naam" /></label>
+      <label>E-mailadres<input name="email" type="email" required autoComplete="email" placeholder="naam@domein.nl" /></label>
+      <input type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" className="newsletter-trap" />
+      <button className="btn" type="submit" disabled={status === 'bezig'}>Aanmelden <span aria-hidden="true">→</span></button>
+      {status === 'fout' && <p role="alert">Het aanmelden lukte niet. Probeer het zo nog eens, of mail ons gerust.</p>}
+    </form>
   );
 }

@@ -330,7 +330,6 @@ function bouwContent(payload: RawPayload | null): Content {
     praktisch: {
       openingstijden: {
         ochtend: openingstijden('ochtend', terugval.praktisch.openingstijden.ochtend),
-        avond: openingstijden('avond', terugval.praktisch.openingstijden.avond),
         afwijkingen: openingstijden('afwijkingen', terugval.praktisch.openingstijden.afwijkingen),
       },
       kosten: {
@@ -346,7 +345,7 @@ function bouwContent(payload: RawPayload | null): Content {
         elders: locatie('elders', terugval.praktisch.locatie.elders),
       },
       contact: {
-        email: praktischeRegel("contact")("email", terugval.praktisch.contact.email), telefoon: praktischeRegel("contact")("telefoon", terugval.praktisch.contact.telefoon),
+        email: praktischeRegel("contact")("email", terugval.praktisch.contact.email), telefoon: praktischeRegel("contact")("telefoon", terugval.praktisch.contact.telefoon), mobiel: bereikbaar('mobiel', terugval.praktisch.contact.mobiel),
         wieReageert: bereikbaar('wieReageert', terugval.praktisch.contact.wieReageert),
         watGebeurtEr: bereikbaar('watGebeurtEr', terugval.praktisch.contact.watGebeurtEr),
         reactietijd: bereikbaar('reactietijd', terugval.praktisch.contact.reactietijd),

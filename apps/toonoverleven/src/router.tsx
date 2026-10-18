@@ -108,6 +108,11 @@ export function useInterneLinks() {
   }, []);
 }
 
+/** Het hele adres, ook de zoekvraag: een link naar dezelfde pagina kan alleen die veranderen. */
+export function useAdres(): string {
+  return useSyncExternalStore(abonneer, () => window.location.href, () => '');
+}
+
 /**
  * Waar een nieuwe pagina begint. Een klik komt bovenaan uit, of bij het stuk
  * waar zijn link naar wees. Terug en vooruit laten we met rust: de browser zet

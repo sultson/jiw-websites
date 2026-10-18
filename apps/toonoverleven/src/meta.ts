@@ -58,6 +58,9 @@ export const VERHUISD: Record<string, string> = {
   "/verantwoording": "/over-ons/organisatie-en-verantwoording",
   "/over-ons/index.html": "/over-ons",
   "/voor-jou": "/",
+  // The inloopavond stopped in October 2026.
+  "/activiteiten/inloopavond": "/activiteiten/inloopochtend",
+  "/aanmelden/inloopavond": "/activiteiten/inloopochtend",
 };
 export function slugify(waarde: string): string {
   const slug = waarde

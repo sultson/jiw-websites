@@ -33,7 +33,7 @@ for n in section['children']:
  if text:flow.append(Paragraph(escape(text),styles[{'h1':'TitleToon','h2':'HeadingToon','p':'BodyToon'}[n['tag']]]))
 def footer(canvas,doc):
  canvas.setFont('Helvetica',8);canvas.setFillColor(HexColor('#596b65'))
- canvas.drawString(48,28,'Toon over Leven | Privacy en cookies | 28 september 2026')
+ canvas.drawString(48,28,'Toon over Leven | Privacy en cookies | 18 oktober 2026')
  canvas.drawRightString(547,28,str(doc.page))
 output=root/'public/documents/privacyverklaring-toon-over-leven.pdf'
 SimpleDocTemplate(str(output),rightMargin=48,leftMargin=48,topMargin=36,bottomMargin=46,title='Privacy en cookies – Toon over Leven',author='Toon over Leven').build(flow,onFirstPage=footer,onLaterPages=footer)

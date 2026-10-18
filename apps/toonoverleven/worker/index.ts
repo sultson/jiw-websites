@@ -51,7 +51,7 @@ const contactWorker = createFormWorker({
   senderName: 'Toon over Leven',
   subjectPrefix: 'Bericht via de site',
   confirmationFollowUpSentence:
-    'Een van onze vrijwilligers neemt contact met je op. Wil je liever meteen iemand spreken, bel dan 036-8450265.',
+    'Een van onze vrijwilligers neemt contact met je op. Wil je liever meteen iemand spreken, bel dan 036 845 02 65 of 06 38 52 90 60.',
   leadEmail: {
     heading: 'Nieuw contactverzoek voor Toon over Leven',
     messageHeading: 'Bericht',
@@ -87,6 +87,18 @@ const registrationWorker = createFormWorker({
   confirmationCopy: {subject:'Je aanmelding bij {siteName}', openingSentence:'We hebben je aanmelding ontvangen. Je plek is definitief zodra wij je deelname hebben bevestigd.', detailsHeading:'Je aanmelding', messageHeading:'Bericht'},
   confirmationFollowUpSentence: 'Een van onze vrijwilligers neemt contact met je op om je deelname te bevestigen.',
   requireFirstName:true, requireLastName:false, requireEmail:true, honeypotField:'company',
+});
+
+/** Aanmelden voor de nieuwsbrief. Het huis houdt de lijst zelf bij, dus het is een bericht aan het huis. */
+const newsletterWorker = createFormWorker({
+  formPath: '/api/forms/nieuwsbrief', locale: 'nl', siteName: 'Toon over Leven',
+  ownerName: 'het inloophuis', senderName: 'Toon over Leven', subjectPrefix: 'Nieuwsbrief',
+  subjectFields: ['onderwerp'],
+  emailFields: [{ name: 'onderwerp', label: 'Waar het over gaat' }],
+  leadEmail: { heading: 'Nieuwe aanmelding voor de nieuwsbrief', messageHeading: 'Bericht', includeAttachments: false },
+  confirmationCopy: { subject: 'Je aanmelding voor de nieuwsbrief van {siteName}', openingSentence: 'Dank je wel, je bent aangemeld voor de nieuwsbrief van Toon over Leven.', detailsHeading: 'Je gegevens', messageHeading: 'Bericht', includeSubmission: false },
+  confirmationFollowUpSentence: 'Wil je je afmelden, stuur dan een mail naar info@toonoverleven.nl.',
+  requireFirstName: true, requireLastName: false, requireEmail: true, honeypotField: 'company',
 });
 
 /**
@@ -472,6 +484,9 @@ export default {
       const headers = new Headers(request.headers);headers.delete('content-type');headers.delete('content-length');
       const normalized = new Request(request,{headers,body:fields});
       return registrationWorker.fetch!(normalized as typeof request, env, ctx);
+    }
+    if (url.pathname === '/api/forms/nieuwsbrief') {
+      return newsletterWorker.fetch!(request, env, ctx);
     }
     if (url.pathname === '/api/forms/contact') {
       return contactWorker.fetch!(request, env, ctx);

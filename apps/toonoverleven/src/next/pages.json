@@ -1399,7 +1399,7 @@
       {
         "tag": "section",
         "attrs": {
-          "class": "wrap audience-story has-poem"
+          "class": "wrap audience-story one-story"
         },
         "children": [
           {
@@ -1467,13 +1467,6 @@
                 ]
               }
             ]
-          },
-          {
-            "tag": "site-slot",
-            "attrs": {
-              "name": "poem"
-            },
-            "children": []
           }
         ]
       },
@@ -1610,7 +1603,7 @@
                         "tag": "a",
                         "attrs": {
                           "class": "textlink",
-                          "href": "/contact"
+                          "href": "/contact#kennismaken"
                         },
                         "children": [
                           {
@@ -1721,7 +1714,7 @@
                         "tag": "a",
                         "attrs": {
                           "class": "textlink",
-                          "href": "#route-activiteiten"
+                          "href": "/activiteiten#agenda"
                         },
                         "children": [
                           {
@@ -2538,12 +2531,12 @@
       {
         "_key": "link-3",
         "label": "Even praten→",
-        "href": "/contact"
+        "href": "/contact#kennismaken"
       },
       {
         "_key": "link-4",
         "label": "Ontspanning en ontmoeting→",
-        "href": "#route-activiteiten"
+        "href": "/activiteiten#agenda"
       },
       {
         "_key": "link-5",
@@ -2761,7 +2754,7 @@
       {
         "tag": "section",
         "attrs": {
-          "class": "wrap audience-story one-story"
+          "class": "wrap audience-story has-poem"
         },
         "children": [
           {
@@ -2800,6 +2793,13 @@
                 ]
               }
             ]
+          },
+          {
+            "tag": "site-slot",
+            "attrs": {
+              "name": "poem"
+            },
+            "children": []
           }
         ]
       },
@@ -2936,7 +2936,7 @@
                         "tag": "a",
                         "attrs": {
                           "class": "textlink",
-                          "href": "/contact"
+                          "href": "/contact#kennismaken"
                         },
                         "children": [
                           {
@@ -3047,7 +3047,7 @@
                         "tag": "a",
                         "attrs": {
                           "class": "textlink",
-                          "href": "#route-activiteiten"
+                          "href": "/activiteiten#agenda"
                         },
                         "children": [
                           {
@@ -3854,12 +3854,12 @@
       {
         "_key": "link-3",
         "label": "Praten over wat veranderd is→",
-        "href": "/contact"
+        "href": "/contact#kennismaken"
       },
       {
         "_key": "link-4",
         "label": "Rustig weer iets ondernemen→",
-        "href": "#route-activiteiten"
+        "href": "/activiteiten#agenda"
       },
       {
         "_key": "link-5",
@@ -4003,7 +4003,7 @@
                         "tag": "a",
                         "attrs": {
                           "class": "btn",
-                          "href": "/contact"
+                          "href": "#contact-jongeren"
                         },
                         "children": [
                           {
@@ -4270,7 +4270,7 @@
                         "tag": "a",
                         "attrs": {
                           "class": "textlink",
-                          "href": "/contact"
+                          "href": "/jong-en-kanker?vraag=gesprek#contact-jongeren"
                         },
                         "children": [
                           {
@@ -4381,7 +4381,7 @@
                         "tag": "a",
                         "attrs": {
                           "class": "textlink",
-                          "href": "/eerste-bezoek"
+                          "href": "/jong-en-kanker?vraag=chillen#contact-jongeren"
                         },
                         "children": [
                           {
@@ -4481,7 +4481,7 @@
                         "tag": "a",
                         "attrs": {
                           "class": "textlink",
-                          "href": "/contact"
+                          "href": "/jong-en-kanker?vraag=meedenken#contact-jongeren"
                         },
                         "children": [
                           {
@@ -4506,6 +4506,63 @@
                 ]
               }
             ]
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "attrs": {
+          "class": "wrap contact-layout route-contact",
+          "id": "contact-jongeren"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "contact-copy"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "eyebrow"
+                },
+                "children": [
+                  {
+                    "text": "Even contact",
+                    "key": "route-contact-0"
+                  }
+                ]
+              },
+              {
+                "tag": "h2",
+                "attrs": {},
+                "children": [
+                  {
+                    "text": "Wil je even praten of langskomen?",
+                    "key": "route-contact-1"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {},
+                "children": [
+                  {
+                    "text": "Laat je naam en e-mailadres achter, dan nemen we contact met je op. Je hoeft niets uit te leggen.",
+                    "key": "route-contact-2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "site-slot",
+            "attrs": {
+              "name": "routeContact",
+              "route": "jongeren"
+            },
+            "children": []
           }
         ]
       },
@@ -4672,7 +4729,7 @@
                 "tag": "a",
                 "attrs": {
                   "class": "textlink",
-                  "href": "/contact"
+                  "href": "#contact-jongeren"
                 },
                 "children": [
                   {
@@ -5234,6 +5291,21 @@
         "_key": "text-45",
         "label": "Even naar buiten",
         "text": "Bekijk de wandeling "
+      },
+      {
+        "_key": "route-contact-0",
+        "label": "Contactblok jongeren",
+        "text": "Even contact"
+      },
+      {
+        "_key": "route-contact-1",
+        "label": "Contactblok jongeren",
+        "text": "Wil je even praten of langskomen?"
+      },
+      {
+        "_key": "route-contact-2",
+        "label": "Contactblok jongeren",
+        "text": "Laat je naam en e-mailadres achter, dan nemen we contact met je op. Je hoeft niets uit te leggen."
       }
     ],
     "images": [
@@ -5271,7 +5343,7 @@
       {
         "_key": "link-1",
         "label": "Ik wil even contact→",
-        "href": "/contact"
+        "href": "#contact-jongeren"
       },
       {
         "_key": "link-2",
@@ -5281,17 +5353,17 @@
       {
         "_key": "link-3",
         "label": "Een goed gesprek (1-op-1)→",
-        "href": "/contact"
+        "href": "/jong-en-kanker?vraag=gesprek#contact-jongeren"
       },
       {
         "_key": "link-4",
         "label": "Even chillen→",
-        "href": "/eerste-bezoek"
+        "href": "/jong-en-kanker?vraag=chillen#contact-jongeren"
       },
       {
         "_key": "link-5",
         "label": "Denk met ons mee→",
-        "href": "/contact"
+        "href": "/jong-en-kanker?vraag=meedenken#contact-jongeren"
       },
       {
         "_key": "link-6",
@@ -5306,7 +5378,7 @@
       {
         "_key": "link-8",
         "label": "Vraag wat bij je past→",
-        "href": "/contact"
+        "href": "#contact-jongeren"
       },
       {
         "_key": "link-9",
@@ -5445,7 +5517,7 @@
                         "tag": "a",
                         "attrs": {
                           "class": "btn",
-                          "href": "/contact"
+                          "href": "#contact-naasten"
                         },
                         "children": [
                           {
@@ -5694,7 +5766,7 @@
                         "tag": "a",
                         "attrs": {
                           "class": "textlink",
-                          "href": "/contact"
+                          "href": "/voor-naasten?vraag=gesprek#contact-naasten"
                         },
                         "children": [
                           {
@@ -5805,7 +5877,7 @@
                         "tag": "a",
                         "attrs": {
                           "class": "textlink",
-                          "href": "/contact"
+                          "href": "/voor-naasten?vraag=ouder-partner#contact-naasten"
                         },
                         "children": [
                           {
@@ -5905,7 +5977,7 @@
                         "tag": "a",
                         "attrs": {
                           "class": "textlink",
-                          "href": "/contact"
+                          "href": "/voor-naasten?vraag=verlies#contact-naasten"
                         },
                         "children": [
                           {
@@ -5930,6 +6002,63 @@
                 ]
               }
             ]
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "attrs": {
+          "class": "wrap contact-layout route-contact",
+          "id": "contact-naasten"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "contact-copy"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "eyebrow"
+                },
+                "children": [
+                  {
+                    "text": "Even contact",
+                    "key": "route-contact-0"
+                  }
+                ]
+              },
+              {
+                "tag": "h2",
+                "attrs": {},
+                "children": [
+                  {
+                    "text": "Even je eigen verhaal kwijt?",
+                    "key": "route-contact-1"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {},
+                "children": [
+                  {
+                    "text": "Laat je naam en e-mailadres achter, dan nemen we contact met je op voor een gesprek. Je mag ook zonder degene die ziek is komen.",
+                    "key": "route-contact-2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "site-slot",
+            "attrs": {
+              "name": "routeContact",
+              "route": "naasten"
+            },
+            "children": []
           }
         ]
       },
@@ -6030,7 +6159,7 @@
                 "tag": "a",
                 "attrs": {
                   "class": "textlink",
-                  "href": "/contact"
+                  "href": "#contact-naasten"
                 },
                 "children": [
                   {
@@ -6577,6 +6706,21 @@
         "_key": "text-42",
         "label": "Iets persoonlijks maken",
         "text": "Lees over junk journaling "
+      },
+      {
+        "_key": "route-contact-0",
+        "label": "Contactblok naasten",
+        "text": "Even contact"
+      },
+      {
+        "_key": "route-contact-1",
+        "label": "Contactblok naasten",
+        "text": "Even je eigen verhaal kwijt?"
+      },
+      {
+        "_key": "route-contact-2",
+        "label": "Contactblok naasten",
+        "text": "Laat je naam en e-mailadres achter, dan nemen we contact met je op voor een gesprek. Je mag ook zonder degene die ziek is komen."
       }
     ],
     "images": [
@@ -6614,7 +6758,7 @@
       {
         "_key": "link-1",
         "label": "Ik wil even contact→",
-        "href": "/contact"
+        "href": "#contact-naasten"
       },
       {
         "_key": "link-2",
@@ -6624,17 +6768,17 @@
       {
         "_key": "link-3",
         "label": "Een gesprek voor mijzelf→",
-        "href": "/contact"
+        "href": "/voor-naasten?vraag=gesprek#contact-naasten"
       },
       {
         "_key": "link-4",
         "label": "Mijn ouder of partner heeft kanker→",
-        "href": "/contact"
+        "href": "/voor-naasten?vraag=ouder-partner#contact-naasten"
       },
       {
         "_key": "link-5",
         "label": "Na verlies, op jouw eigen moment→",
-        "href": "/contact"
+        "href": "/voor-naasten?vraag=verlies#contact-naasten"
       },
       {
         "_key": "link-6",
@@ -6644,7 +6788,7 @@
       {
         "_key": "link-7",
         "label": "Vraag wat bij je past→",
-        "href": "/contact"
+        "href": "#contact-naasten"
       },
       {
         "_key": "link-8",
@@ -8068,446 +8212,6 @@
       }
     ],
     "description": "Ontmoeten, ontspannen of creatief bezig zijn. Kies wat je fijn vindt. Bij iedere activiteit staat of je je vooraf moet aanmelden.",
-    "videos": []
-  },
-  {
-    "path": "/activiteiten/inloopavond",
-    "title": "Inloopavond",
-    "tree": [
-      {
-        "tag": "div",
-        "attrs": {
-          "class": "wrap crumb"
-        },
-        "children": [
-          {
-            "tag": "a",
-            "attrs": {
-              "class": "",
-              "href": "/"
-            },
-            "children": [
-              {
-                "text": "Home",
-                "key": "text-0"
-              }
-            ],
-            "linkKey": "link-0"
-          },
-          " ",
-          {
-            "tag": "span",
-            "attrs": {
-              "aria-hidden": "true"
-            },
-            "children": [
-              " / "
-            ]
-          },
-          {
-            "text": " Inloopavond",
-            "key": "text-1"
-          }
-        ]
-      },
-      {
-        "tag": "div",
-        "attrs": {
-          "class": "hero-band page-hero"
-        },
-        "children": [
-          {
-            "tag": "section",
-            "attrs": {
-              "class": "wrap hero"
-            },
-            "children": [
-              {
-                "tag": "div",
-                "attrs": {
-                  "class": "hero-copy"
-                },
-                "children": [
-                  {
-                    "tag": "span",
-                    "attrs": {
-                      "class": "eyebrow"
-                    },
-                    "children": [
-                      {
-                        "text": "Inloopavond",
-                        "key": "text-2"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "h1",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "text": "Even binnenlopen in de avond",
-                        "key": "text-3"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "div",
-                    "attrs": {
-                      "class": "hero-story"
-                    },
-                    "children": [
-                      {
-                        "tag": "p",
-                        "attrs": {},
-                        "children": [
-                          {
-                            "text": "Overdag geen gelegenheid, of juist behoefte om de dag in een veilige omgeving af te sluiten? Op de derde donderdagavond van de maand zetten we de deuren van ons huis in Zeewolde speciaal voor je open.",
-                            "key": "text-4"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "tag": "div",
-                "attrs": {
-                  "class": "hero-art"
-                },
-                "children": [
-                  {
-                    "tag": "img",
-                    "attrs": {
-                      "src": "/img/approved/ipso-groep.webp",
-                      "class": "hero-image",
-                      "alt": "Een gesprek met meerdere mensen aan tafel",
-                      "loading": "eager"
-                    },
-                    "children": [],
-                    "imageKey": "image-0"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "tag": "div",
-        "attrs": {
-          "class": "wrap body-layout"
-        },
-        "children": [
-          {
-            "tag": "div",
-            "attrs": {
-              "class": "content"
-            },
-            "children": [
-              {
-                "tag": "section",
-                "attrs": {
-                  "class": "copy-section",
-                  "id": "wat-kun-je-verwachten"
-                },
-                "children": [
-                  {
-                    "tag": "h2",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "text": "Wat kun je verwachten?",
-                        "key": "text-5"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "p",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "text": "Wanneer je binnenstapt, word je warm ontvangen door onze vrijwilligers. De koffie en thee staan klaar. Tijdens deze inloopavond is er alle ruimte om in een ongedwongen sfeer andere mensen te ontmoeten die ook met kanker te maken hebben (gehad). De sfeer is huiselijk: we zitten vaak gezellig rond de tafel voor een goed gesprek, waarbij ruimte is voor humor, maar natuurlijk ook voor de moeilijke momenten.",
-                        "key": "text-6"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "p",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "text": "Je bepaalt helemaal zelf hoe jouw avond eruitziet. Wil je je verhaal delen? Graag. Luister je liever naar anderen, of kom je gewoon even de deur uit om in stilte een tijdschrift te lezen met een warm drankje? Ook dat is helemaal prima. Niets moet.",
-                        "key": "text-7"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "tag": "section",
-                "attrs": {
-                  "class": "copy-section",
-                  "id": "goed-om-te-weten"
-                },
-                "children": [
-                  {
-                    "tag": "h2",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "text": "Goed om te weten",
-                        "key": "text-8"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "p",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "text": "Aanmelden is niet nodig. Je kunt gewoon binnenlopen.",
-                        "key": "text-9"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "a",
-                    "attrs": {
-                      "class": "textlink",
-                      "href": "/praktisch#bereikbaarheid"
-                    },
-                    "children": [
-                      {
-                        "text": "Bekijk hoe je er komt",
-                        "key": "text-10"
-                      },
-                      {
-                        "tag": "span",
-                        "attrs": {
-                          "class": "arrow",
-                          "aria-hidden": "true"
-                        },
-                        "children": [
-                          "→"
-                        ]
-                      }
-                    ],
-                    "linkKey": "link-1"
-                  }
-                ]
-              },
-              {
-                "tag": "section",
-                "attrs": {
-                  "class": "copy-section",
-                  "id": "is-dit-iets-voor-mij"
-                },
-                "children": [
-                  {
-                    "tag": "h2",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "text": "Is dit iets voor mij?",
-                        "key": "text-11"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "p",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "text": "Je hoeft nergens ervaring mee te hebben om binnen te lopen. Vind je de eerste keer toch best spannend, twijfel je over je energie, of zoek je een specifieke groep? Neem gerust vooraf even contact op. Dan zorgen we ervoor dat we je bij de deur net even extra opvangen.",
-                        "key": "text-12"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "a",
-                    "attrs": {
-                      "class": "textlink",
-                      "href": "/contact"
-                    },
-                    "children": [
-                      {
-                        "text": "Stel je vraag",
-                        "key": "text-13"
-                      },
-                      {
-                        "tag": "span",
-                        "attrs": {
-                          "class": "arrow",
-                          "aria-hidden": "true"
-                        },
-                        "children": [
-                          "→"
-                        ]
-                      }
-                    ],
-                    "linkKey": "link-2"
-                  },
-                  {
-                    "tag": "a",
-                    "attrs": {
-                      "class": "textlink",
-                      "href": "/activiteiten#agenda"
-                    },
-                    "children": [
-                      {
-                        "text": "Terug naar alle activiteiten",
-                        "key": "text-14"
-                      },
-                      {
-                        "tag": "span",
-                        "attrs": {
-                          "class": "arrow",
-                          "aria-hidden": "true"
-                        },
-                        "children": [
-                          "→"
-                        ]
-                      }
-                    ],
-                    "linkKey": "link-3"
-                  }
-                ]
-              },
-              {
-                "tag": "site-slot",
-                "attrs": {
-                  "name": "activityMoments"
-                },
-                "children": []
-              }
-            ]
-          },
-          {
-            "tag": "site-slot",
-            "attrs": {
-              "name": "activityPractical"
-            },
-            "children": []
-          }
-        ]
-      },
-      {
-        "tag": "site-slot",
-        "attrs": {
-          "name": "welcome"
-        },
-        "children": []
-      }
-    ],
-    "texts": [
-      {
-        "_key": "text-0",
-        "label": "Inloopavond",
-        "text": "Home"
-      },
-      {
-        "_key": "text-1",
-        "label": "Inloopavond",
-        "text": " Inloopavond"
-      },
-      {
-        "_key": "text-2",
-        "label": "Inloopavond",
-        "text": "Inloopavond"
-      },
-      {
-        "_key": "text-3",
-        "label": "Even binnenlopen in de avond",
-        "text": "Even binnenlopen in de avond"
-      },
-      {
-        "_key": "text-4",
-        "label": "Even binnenlopen in de avond",
-        "text": "Overdag geen gelegenheid, of juist behoefte om de dag in een veilige omgeving af te sluiten? Op de derde donderdagavond van de maand zetten we de deuren van ons huis in Zeewolde speciaal voor je open."
-      },
-      {
-        "_key": "text-5",
-        "label": "Wat kun je verwachten?",
-        "text": "Wat kun je verwachten?"
-      },
-      {
-        "_key": "text-6",
-        "label": "Wat kun je verwachten?",
-        "text": "Wanneer je binnenstapt, word je warm ontvangen door onze vrijwilligers. De koffie en thee staan klaar. Tijdens deze inloopavond is er alle ruimte om in een ongedwongen sfeer andere mensen te ontmoeten die ook met kanker te maken hebben (gehad). De sfeer is huiselijk: we zitten vaak gezellig rond de tafel voor een goed gesprek, waarbij ruimte is voor humor, maar natuurlijk ook voor de moeilijke momenten."
-      },
-      {
-        "_key": "text-7",
-        "label": "Wat kun je verwachten?",
-        "text": "Je bepaalt helemaal zelf hoe jouw avond eruitziet. Wil je je verhaal delen? Graag. Luister je liever naar anderen, of kom je gewoon even de deur uit om in stilte een tijdschrift te lezen met een warm drankje? Ook dat is helemaal prima. Niets moet."
-      },
-      {
-        "_key": "text-8",
-        "label": "Goed om te weten",
-        "text": "Goed om te weten"
-      },
-      {
-        "_key": "text-9",
-        "label": "Goed om te weten",
-        "text": "Aanmelden is niet nodig. Je kunt gewoon binnenlopen."
-      },
-      {
-        "_key": "text-10",
-        "label": "Goed om te weten",
-        "text": "Bekijk hoe je er komt"
-      },
-      {
-        "_key": "text-11",
-        "label": "Is dit iets voor mij?",
-        "text": "Is dit iets voor mij?"
-      },
-      {
-        "_key": "text-12",
-        "label": "Is dit iets voor mij?",
-        "text": "Je hoeft nergens ervaring mee te hebben om binnen te lopen. Vind je de eerste keer toch best spannend, twijfel je over je energie, of zoek je een specifieke groep? Neem gerust vooraf even contact op. Dan zorgen we ervoor dat we je bij de deur net even extra opvangen."
-      },
-      {
-        "_key": "text-13",
-        "label": "Is dit iets voor mij?",
-        "text": "Stel je vraag"
-      },
-      {
-        "_key": "text-14",
-        "label": "Is dit iets voor mij?",
-        "text": "Terug naar alle activiteiten"
-      }
-    ],
-    "images": [
-      {
-        "_key": "image-0",
-        "label": "Even binnenlopen in de avond",
-        "src": "/img/approved/ipso-groep.webp",
-        "alt": "Een gesprek met meerdere mensen aan tafel"
-      }
-    ],
-    "links": [
-      {
-        "_key": "link-0",
-        "label": "Home",
-        "href": "/"
-      },
-      {
-        "_key": "link-1",
-        "label": "Bekijk hoe je er komt→",
-        "href": "/praktisch#bereikbaarheid"
-      },
-      {
-        "_key": "link-2",
-        "label": "Stel je vraag→",
-        "href": "/contact"
-      },
-      {
-        "_key": "link-3",
-        "label": "Terug naar alle activiteiten→",
-        "href": "/activiteiten#agenda"
-      }
-    ],
-    "description": "Overdag geen gelegenheid, of juist behoefte om de dag in een veilige omgeving af te sluiten? Op de derde donderdagavond van de maand zetten we de deuren van ons huis in Zeewolde sp",
     "videos": []
   },
   {
@@ -10468,7 +10172,7 @@
                     "attrs": {},
                     "children": [
                       {
-                        "text": "Een warme huiskamer zonder witte jassen, waar je even op adem kunt komen. Ook Toon over Leven in Zeewolde deelt die visie: we zijn een veilige haven waar niets moet en waar de deur voor je openstaat.",
+                        "text": "Een warme huiskamer zonder witte jassen, waar je even op adem kunt komen. Ook Toon over Leven in Zeewolde deelt die visie: we zijn een veilige haven waar niets moet en waar de deur voor je openstaat. Logisch, want tot medio 2026 heette onze stichting Toon Hermans Huis Zeewolde.",
                         "key": "text-7"
                       }
                     ]
@@ -10509,16 +10213,6 @@
                       {
                         "text": "Iedere donderdag: 10.00 – 12.00 uur.",
                         "key": "text-10"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "p",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "text": "De derde donderdag van de maand: 19.30 – 21.30 uur.",
-                        "key": "text-11"
                       }
                     ]
                   },
@@ -11104,7 +10798,7 @@
       {
         "_key": "text-7",
         "label": "Toon Hermans en de gedachte achter de huizen",
-        "text": "Een warme huiskamer zonder witte jassen, waar je even op adem kunt komen. Ook Toon over Leven in Zeewolde deelt die visie: we zijn een veilige haven waar niets moet en waar de deur voor je openstaat."
+        "text": "Een warme huiskamer zonder witte jassen, waar je even op adem kunt komen. Ook Toon over Leven in Zeewolde deelt die visie: we zijn een veilige haven waar niets moet en waar de deur voor je openstaat. Logisch, want tot medio 2026 heette onze stichting Toon Hermans Huis Zeewolde."
       },
       {
         "_key": "text-8",
@@ -11120,11 +10814,6 @@
         "_key": "text-10",
         "label": "Wanneer kun je binnenlopen?",
         "text": "Iedere donderdag: 10.00 – 12.00 uur."
-      },
-      {
-        "_key": "text-11",
-        "label": "Wanneer kun je binnenlopen?",
-        "text": "De derde donderdag van de maand: 19.30 – 21.30 uur."
       },
       {
         "_key": "text-12",
@@ -11554,20 +11243,6 @@
                         "tag": "site-slot",
                         "attrs": {
                           "name": "fact",
-                          "field": "openingstijden.avond"
-                        },
-                        "children": []
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "p",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "tag": "site-slot",
-                        "attrs": {
-                          "name": "fact",
                           "field": "openingstijden.afwijkingen"
                         },
                         "children": []
@@ -11716,6 +11391,28 @@
                         "children": [
                           "→"
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "a",
+                    "attrs": {
+                      "class": "textlink",
+                      "href": "tel:+31638529060",
+                      "data-contact": "mobile"
+                    },
+                    "children": [
+                      {
+                        "text": "Of mobiel ",
+                        "key": "text-2002"
+                      },
+                      {
+                        "tag": "site-slot",
+                        "attrs": {
+                          "name": "fact",
+                          "field": "contact.mobiel"
+                        },
+                        "children": []
                       }
                     ]
                   },
@@ -12079,6 +11776,11 @@
         "_key": "text-2000",
         "label": "Contactgegevens",
         "text": "Bel "
+      },
+      {
+        "_key": "text-2002",
+        "label": "Waar vind je ons? · mobiel",
+        "text": "Of mobiel "
       }
     ],
     "images": [],
@@ -12264,6 +11966,24 @@
                     ]
                   },
                   {
+                    "tag": "a",
+                    "attrs": {
+                      "class": "textlink",
+                      "href": "tel:+31638529060",
+                      "data-contact": "mobile"
+                    },
+                    "children": [
+                      {
+                        "tag": "site-slot",
+                        "attrs": {
+                          "name": "fact",
+                          "field": "contact.mobiel"
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
                     "tag": "p",
                     "attrs": {},
                     "children": [
@@ -12399,7 +12119,7 @@
                   {
                     "tag": "a",
                     "attrs": {
-                      "href": "#privacyverklaring",
+                      "href": "/privacy",
                       "class": "textlink"
                     },
                     "children": [
@@ -12422,13 +12142,6 @@
             "children": []
           }
         ]
-      },
-      {
-        "tag": "site-slot",
-        "attrs": {
-          "name": "privacyStatement"
-        },
-        "children": []
       },
       {
         "tag": "site-slot",
@@ -12525,7 +12238,7 @@
       {
         "_key": "privacy-jump",
         "label": "Privacyverklaring op deze pagina",
-        "href": "#privacyverklaring"
+        "href": "/privacy"
       }
     ],
     "description": "Bel, loop binnen of vraag een kennismaking aan. Je hoeft niet precies te weten wat je nodig hebt.",
@@ -16270,18 +15983,18 @@
       {
         "tag": "site-slot",
         "attrs": {
-          "name": "welcome"
+          "name": "video",
+          "video": "-mYRlxVqYzc",
+          "title": "Een plek voor mensen, met ruimte voor het leven.",
+          "text": "Toon over Leven maakt deel uit van het IPSO-netwerk. Deze video geeft een indruk van de centra.",
+          "videoKey": "video-0"
         },
         "children": []
       },
       {
         "tag": "site-slot",
         "attrs": {
-          "name": "video",
-          "video": "-mYRlxVqYzc",
-          "title": "Een plek voor mensen, met ruimte voor het leven.",
-          "text": "Toon over Leven maakt deel uit van het IPSO-netwerk. Deze video geeft een indruk van de centra.",
-          "videoKey": "video-0"
+          "name": "welcome"
         },
         "children": []
       }
@@ -17179,7 +16892,7 @@
                     "attrs": {},
                     "children": [
                       {
-                        "text": "Met een eenmalige gift steun je het werk van Toon over Leven. Je kiest zelf het bedrag. Bij de bank kun je nog de naam Stichting Toon Hermans Huis Zeewolde tegenkomen. Dat is de stichting achter Toon over Leven.",
+                        "text": "Met een eenmalige gift steun je het werk van Toon over Leven. Je kiest zelf het bedrag. Bij de bank kun je nog de naam Stichting Toon Hermans Huis Zeewolde tegenkomen: zo heette de stichting tot medio 2026.",
                         "key": "text-6"
                       }
                     ]
@@ -17632,7 +17345,7 @@
       {
         "_key": "text-6",
         "label": "Eenmalig geven",
-        "text": "Met een eenmalige gift steun je het werk van Toon over Leven. Je kiest zelf het bedrag. Bij de bank kun je nog de naam Stichting Toon Hermans Huis Zeewolde tegenkomen. Dat is de stichting achter Toon over Leven."
+        "text": "Met een eenmalige gift steun je het werk van Toon over Leven. Je kiest zelf het bedrag. Bij de bank kun je nog de naam Stichting Toon Hermans Huis Zeewolde tegenkomen: zo heette de stichting tot medio 2026."
       },
       {
         "_key": "text-7",
@@ -18231,7 +17944,7 @@
                     "attrs": {},
                     "children": [
                       {
-                        "text": "Toon over Leven is de publieksnaam van Stichting Toon Hermans Huis Zeewolde. In formele documenten en bij een donatie kun je die stichtingsnaam tegenkomen.",
+                        "text": "Stichting Toon over Leven is sinds medio 2026 de opvolger van Stichting Toon Hermans Huis Zeewolde. In formele documenten en bij een donatie kun je die stichtingsnaam nog tegenkomen.",
                         "key": "text-6"
                       }
                     ]
@@ -18295,7 +18008,7 @@
                                     "attrs": {},
                                     "children": [
                                       {
-                                        "text": "Stichting Toon Hermans Huis Zeewolde",
+                                        "text": "Stichting Toon over Leven",
                                         "key": "text-10"
                                       }
                                     ]
@@ -18381,6 +18094,15 @@
                                         "attrs": {
                                           "name": "fact",
                                           "field": "contact.telefoon"
+                                        },
+                                        "children": []
+                                      },
+                                      " / ",
+                                      {
+                                        "tag": "site-slot",
+                                        "attrs": {
+                                          "name": "fact",
+                                          "field": "contact.mobiel"
                                         },
                                         "children": []
                                       }
@@ -18542,7 +18264,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2026/02/Beleidsplan-2026-2030-Stichting-Toon-Hermans-Huis-Zeewolde-DEF.pdf",
+                      "href": "/documents/beleidsplan-2026-2030.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18558,7 +18280,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2026/03/2025-ANBI-verslag.pdf",
+                      "href": "/documents/anbi-verslag-2025.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18574,7 +18296,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2025/04/2024-ANBI-verslag-1.pdf",
+                      "href": "/documents/anbi-verslag-2024.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18590,7 +18312,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2024/08/2023-Anbi-verslag.pdf",
+                      "href": "/documents/anbi-verslag-2023.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18606,7 +18328,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2026/05/Sociaal-Jaarverslag-2025-Toon-Hermans-Huis-Zeewolde.pdf",
+                      "href": "/documents/sociaal-jaarverslag-2025.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18632,7 +18354,7 @@
                     "attrs": {},
                     "children": [
                       {
-                        "text": "Vrijwilligersbeleid en afspraken",
+                        "text": "Vrijwilligersbeleid en -afspraken",
                         "key": "text-30"
                       }
                     ]
@@ -18651,87 +18373,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/1.-Vertrouwenscontactpersoon-THHZ.pdf",
-                      "target": "_blank",
-                      "rel": "noopener noreferrer"
-                    },
-                    "children": [
-                      {
-                        "text": "Vertrouwenscontactpersoon (pdf)",
-                        "key": "text-32"
-                      }
-                    ],
-                    "linkKey": "link-6"
-                  },
-                  {
-                    "tag": "a",
-                    "attrs": {
-                      "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/2.-Vrijwilligersreglement-THHZ.pdf",
-                      "target": "_blank",
-                      "rel": "noopener noreferrer"
-                    },
-                    "children": [
-                      {
-                        "text": "Vrijwilligersreglement (pdf)",
-                        "key": "text-33"
-                      }
-                    ],
-                    "linkKey": "link-7"
-                  },
-                  {
-                    "tag": "a",
-                    "attrs": {
-                      "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/3.-Vrijwilligersovereenkomst-THHZ.pdf",
-                      "target": "_blank",
-                      "rel": "noopener noreferrer"
-                    },
-                    "children": [
-                      {
-                        "text": "Vrijwilligersovereenkomst (pdf)",
-                        "key": "text-34"
-                      }
-                    ],
-                    "linkKey": "link-8"
-                  },
-                  {
-                    "tag": "a",
-                    "attrs": {
-                      "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/4.-Klachtenprocedure-THHZ.pdf",
-                      "target": "_blank",
-                      "rel": "noopener noreferrer"
-                    },
-                    "children": [
-                      {
-                        "text": "Klachtenprocedure (pdf)",
-                        "key": "text-35"
-                      }
-                    ],
-                    "linkKey": "link-9"
-                  },
-                  {
-                    "tag": "a",
-                    "attrs": {
-                      "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/5.-Klachtenformulier-THHZ.pdf",
-                      "target": "_blank",
-                      "rel": "noopener noreferrer"
-                    },
-                    "children": [
-                      {
-                        "text": "Klachtenformulier (pdf)",
-                        "key": "text-36"
-                      }
-                    ],
-                    "linkKey": "link-10"
-                  },
-                  {
-                    "tag": "a",
-                    "attrs": {
-                      "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/6.-AVG-spelregels-THHZ.pdf",
+                      "href": "/documents/avg-spelregels.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18747,23 +18389,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/7.-Wet-en-regelgeving-THHZ.pdf",
-                      "target": "_blank",
-                      "rel": "noopener noreferrer"
-                    },
-                    "children": [
-                      {
-                        "text": "Wet- en regelgeving (pdf)",
-                        "key": "text-38"
-                      }
-                    ],
-                    "linkKey": "link-12"
-                  },
-                  {
-                    "tag": "a",
-                    "attrs": {
-                      "class": "download",
-                      "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/8.-Gedragscode-en-houding-vrijwilligers-medewerkers-THHZ.pdf",
+                      "href": "/documents/gedragscode-en-houding.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18774,6 +18400,102 @@
                       }
                     ],
                     "linkKey": "link-13"
+                  },
+                  {
+                    "tag": "a",
+                    "attrs": {
+                      "class": "download",
+                      "href": "/documents/klachtenformulier.pdf",
+                      "target": "_blank",
+                      "rel": "noopener noreferrer"
+                    },
+                    "children": [
+                      {
+                        "text": "Klachtenformulier (pdf)",
+                        "key": "text-36"
+                      }
+                    ],
+                    "linkKey": "link-10"
+                  },
+                  {
+                    "tag": "a",
+                    "attrs": {
+                      "class": "download",
+                      "href": "/documents/klachtenprocedure.pdf",
+                      "target": "_blank",
+                      "rel": "noopener noreferrer"
+                    },
+                    "children": [
+                      {
+                        "text": "Klachtenprocedure (pdf)",
+                        "key": "text-35"
+                      }
+                    ],
+                    "linkKey": "link-9"
+                  },
+                  {
+                    "tag": "a",
+                    "attrs": {
+                      "class": "download",
+                      "href": "/documents/vertrouwenscontactpersoon.pdf",
+                      "target": "_blank",
+                      "rel": "noopener noreferrer"
+                    },
+                    "children": [
+                      {
+                        "text": "Vertrouwenscontactpersoon (pdf)",
+                        "key": "text-32"
+                      }
+                    ],
+                    "linkKey": "link-6"
+                  },
+                  {
+                    "tag": "a",
+                    "attrs": {
+                      "class": "download",
+                      "href": "/documents/vrijwilligersovereenkomst.pdf",
+                      "target": "_blank",
+                      "rel": "noopener noreferrer"
+                    },
+                    "children": [
+                      {
+                        "text": "Vrijwilligersovereenkomst (pdf)",
+                        "key": "text-34"
+                      }
+                    ],
+                    "linkKey": "link-8"
+                  },
+                  {
+                    "tag": "a",
+                    "attrs": {
+                      "class": "download",
+                      "href": "/documents/vrijwilligersreglement.pdf",
+                      "target": "_blank",
+                      "rel": "noopener noreferrer"
+                    },
+                    "children": [
+                      {
+                        "text": "Vrijwilligersreglement (pdf)",
+                        "key": "text-33"
+                      }
+                    ],
+                    "linkKey": "link-7"
+                  },
+                  {
+                    "tag": "a",
+                    "attrs": {
+                      "class": "download",
+                      "href": "/documents/wet-en-regelgeving.pdf",
+                      "target": "_blank",
+                      "rel": "noopener noreferrer"
+                    },
+                    "children": [
+                      {
+                        "text": "Wet- en regelgeving (pdf)",
+                        "key": "text-38"
+                      }
+                    ],
+                    "linkKey": "link-12"
                   }
                 ]
               },
@@ -18914,7 +18636,7 @@
                     },
                     "children": [
                       {
-                        "text": "Vrijwilligersbeleid en afspraken",
+                        "text": "Vrijwilligersbeleid en -afspraken",
                         "key": "text-48"
                       }
                     ],
@@ -19025,7 +18747,7 @@
       {
         "_key": "text-6",
         "label": "Organisatiegegevens",
-        "text": "Toon over Leven is de publieksnaam van Stichting Toon Hermans Huis Zeewolde. In formele documenten en bij een donatie kun je die stichtingsnaam tegenkomen."
+        "text": "Stichting Toon over Leven is sinds medio 2026 de opvolger van Stichting Toon Hermans Huis Zeewolde. In formele documenten en bij een donatie kun je die stichtingsnaam nog tegenkomen."
       },
       {
         "_key": "text-7",
@@ -19045,7 +18767,7 @@
       {
         "_key": "text-10",
         "label": "Organisatiegegevens",
-        "text": "Stichting Toon Hermans Huis Zeewolde"
+        "text": "Stichting Toon over Leven"
       },
       {
         "_key": "text-11",
@@ -19130,7 +18852,7 @@
       {
         "_key": "text-30",
         "label": "Vrijwilligersbeleid en afspraken",
-        "text": "Vrijwilligersbeleid en afspraken"
+        "text": "Vrijwilligersbeleid en -afspraken"
       },
       {
         "_key": "text-31",
@@ -19220,7 +18942,7 @@
       {
         "_key": "text-48",
         "label": "Op deze pagina",
-        "text": "Vrijwilligersbeleid en afspraken"
+        "text": "Vrijwilligersbeleid en -afspraken"
       },
       {
         "_key": "text-49",
@@ -19258,67 +18980,67 @@
       {
         "_key": "link-1",
         "label": "Beleidsplan 2026 – 2030 (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2026/02/Beleidsplan-2026-2030-Stichting-Toon-Hermans-Huis-Zeewolde-DEF.pdf"
+        "href": "/documents/beleidsplan-2026-2030.pdf"
       },
       {
         "_key": "link-2",
         "label": "ANBI-verslag 2025 (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2026/03/2025-ANBI-verslag.pdf"
+        "href": "/documents/anbi-verslag-2025.pdf"
       },
       {
         "_key": "link-3",
         "label": "ANBI-verslag 2024 (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2025/04/2024-ANBI-verslag-1.pdf"
+        "href": "/documents/anbi-verslag-2024.pdf"
       },
       {
         "_key": "link-4",
         "label": "ANBI-verslag 2023 (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2024/08/2023-Anbi-verslag.pdf"
+        "href": "/documents/anbi-verslag-2023.pdf"
       },
       {
         "_key": "link-5",
         "label": "Sociaal jaarverslag 2025 (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2026/05/Sociaal-Jaarverslag-2025-Toon-Hermans-Huis-Zeewolde.pdf"
+        "href": "/documents/sociaal-jaarverslag-2025.pdf"
       },
       {
         "_key": "link-6",
         "label": "Vertrouwenscontactpersoon (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/1.-Vertrouwenscontactpersoon-THHZ.pdf"
+        "href": "/documents/vertrouwenscontactpersoon.pdf"
       },
       {
         "_key": "link-7",
         "label": "Vrijwilligersreglement (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/2.-Vrijwilligersreglement-THHZ.pdf"
+        "href": "/documents/vrijwilligersreglement.pdf"
       },
       {
         "_key": "link-8",
         "label": "Vrijwilligersovereenkomst (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/3.-Vrijwilligersovereenkomst-THHZ.pdf"
+        "href": "/documents/vrijwilligersovereenkomst.pdf"
       },
       {
         "_key": "link-9",
         "label": "Klachtenprocedure (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/4.-Klachtenprocedure-THHZ.pdf"
+        "href": "/documents/klachtenprocedure.pdf"
       },
       {
         "_key": "link-10",
         "label": "Klachtenformulier (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/5.-Klachtenformulier-THHZ.pdf"
+        "href": "/documents/klachtenformulier.pdf"
       },
       {
         "_key": "link-11",
         "label": "AVG-spelregels (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/6.-AVG-spelregels-THHZ.pdf"
+        "href": "/documents/avg-spelregels.pdf"
       },
       {
         "_key": "link-12",
         "label": "Wet- en regelgeving (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/7.-Wet-en-regelgeving-THHZ.pdf"
+        "href": "/documents/wet-en-regelgeving.pdf"
       },
       {
         "_key": "link-13",
         "label": "Gedragscode en houding (pdf)",
-        "href": "https://toonoverleven.nl/wp-content/uploads/2025/06/8.-Gedragscode-en-houding-vrijwilligers-medewerkers-THHZ.pdf"
+        "href": "/documents/gedragscode-en-houding.pdf"
       },
       {
         "_key": "link-14",
@@ -20548,6 +20270,24 @@
                     "tag": "a",
                     "attrs": {
                       "class": "",
+                      "href": "tel:+31638529060",
+                      "data-contact": "mobile"
+                    },
+                    "children": [
+                      {
+                        "tag": "site-slot",
+                        "attrs": {
+                          "name": "fact",
+                          "field": "contact.mobiel"
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "a",
+                    "attrs": {
+                      "class": "",
                       "href": "mailto:info@toonoverleven.nl",
                       "data-contact": "email"
                     },
@@ -21238,8 +20978,8 @@
   },
   {
     "path": "/activiteiten/inloop-met-activiteit",
-    "title": "Inloop met activiteit",
-    "description": "Een creatief tintje aan de inloop. Opgeven is niet nodig; gewoon koffie drinken en een praatje maken kan natuurlijk ook.",
+    "title": "Inloop / Open atelier",
+    "description": "Op de laatste donderdag van de maand geven we de inloop een creatief tintje. Opgeven is niet nodig.",
     "tree": [
       {
         "tag": "div",
@@ -21278,7 +21018,7 @@
             "linkKey": "link-1"
           },
           {
-            "text": " / Inloop met activiteit",
+            "text": " / Inloop / Open atelier",
             "key": "text-3"
           }
         ]
@@ -21318,7 +21058,7 @@
                     "attrs": {},
                     "children": [
                       {
-                        "text": "Inloop met activiteit",
+                        "text": "Inloop / Open atelier",
                         "key": "text-5"
                       }
                     ]
@@ -21330,7 +21070,7 @@
                     },
                     "children": [
                       {
-                        "text": "Een creatief tintje aan de inloop. Opgeven is niet nodig; gewoon koffie drinken en een praatje maken kan natuurlijk ook.",
+                        "text": "Op de laatste donderdag van de maand geven we de inloop een creatief tintje: er liggen materialen klaar voor een klein projectje. Opgeven is niet nodig, en alleen koffie drinken en een praatje maken kan natuurlijk ook.",
                         "key": "text-6"
                       }
                     ]
@@ -21443,38 +21183,38 @@
     "texts": [
       {
         "_key": "text-0",
-        "label": "Inloop met activiteit",
+        "label": "Inloop / Open atelier",
         "text": "Home"
       },
       {
         "_key": "text-1",
-        "label": "Inloop met activiteit",
+        "label": "Inloop / Open atelier",
         "text": " / "
       },
       {
         "_key": "text-2",
-        "label": "Inloop met activiteit",
+        "label": "Inloop / Open atelier",
         "text": "Activiteiten"
       },
       {
         "_key": "text-3",
-        "label": "Inloop met activiteit",
-        "text": " / Inloop met activiteit"
+        "label": "Inloop / Open atelier",
+        "text": " / Inloop / Open atelier"
       },
       {
         "_key": "text-4",
-        "label": "Inloop met activiteit",
+        "label": "Inloop / Open atelier",
         "text": "Activiteiten"
       },
       {
         "_key": "text-5",
-        "label": "Inloop met activiteit",
-        "text": "Inloop met activiteit"
+        "label": "Inloop / Open atelier",
+        "text": "Inloop / Open atelier"
       },
       {
         "_key": "text-6",
-        "label": "Inloop met activiteit",
-        "text": "Een creatief tintje aan de inloop. Opgeven is niet nodig; gewoon koffie drinken en een praatje maken kan natuurlijk ook."
+        "label": "Inloop / Open atelier",
+        "text": "Op de laatste donderdag van de maand geven we de inloop een creatief tintje: er liggen materialen klaar voor een klein projectje. Opgeven is niet nodig, en alleen koffie drinken en een praatje maken kan natuurlijk ook."
       },
       {
         "_key": "text-7",
@@ -22086,6 +21826,289 @@
     "videos": []
   },
   {
+    "path": "/activiteiten/mixed-media",
+    "title": "Mixed media",
+    "description": "Met verschillende technieken en materialen een eigen afbeelding maken, in een klein groepje. Ervaring is niet nodig.",
+    "tree": [
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "wrap crumb"
+        },
+        "children": [
+          {
+            "tag": "a",
+            "attrs": {
+              "href": "/"
+            },
+            "children": [
+              {
+                "text": "Home",
+                "key": "text-0"
+              }
+            ],
+            "linkKey": "link-0"
+          },
+          {
+            "text": " / ",
+            "key": "text-1"
+          },
+          {
+            "tag": "a",
+            "attrs": {
+              "href": "/activiteiten"
+            },
+            "children": [
+              {
+                "text": "Activiteiten",
+                "key": "text-2"
+              }
+            ],
+            "linkKey": "link-1"
+          },
+          {
+            "text": " / Mixed media",
+            "key": "text-3"
+          }
+        ]
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "hero-band page-hero"
+        },
+        "children": [
+          {
+            "tag": "section",
+            "attrs": {
+              "class": "wrap hero"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "hero-copy"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {
+                      "class": "eyebrow"
+                    },
+                    "children": [
+                      {
+                        "text": "Activiteiten",
+                        "key": "text-4"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h1",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Mixed media",
+                        "key": "text-5"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attrs": {
+                      "class": "lead"
+                    },
+                    "children": [
+                      {
+                        "text": "Met verschillende technieken en materialen een eigen afbeelding maken, in een klein groepje. Ervaring is niet nodig.",
+                        "key": "text-6"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "hero-art"
+                },
+                "children": [
+                  {
+                    "tag": "img",
+                    "attrs": {
+                      "class": "hero-image",
+                      "src": "/img/approved/agenda-mixed-media.webp",
+                      "alt": "",
+                      "loading": "eager"
+                    },
+                    "children": [],
+                    "imageKey": "image-0"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "wrap body-layout"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "content"
+            },
+            "children": [
+              {
+                "tag": "section",
+                "attrs": {
+                  "class": "copy-section"
+                },
+                "children": [
+                  {
+                    "tag": "h2",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Is dit iets voor mij?",
+                        "key": "text-7"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Twijfel je of deze activiteit bij je past, of vind je de eerste keer spannend? Neem gerust contact op. We denken graag met je mee.",
+                        "key": "text-8"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "a",
+                    "attrs": {
+                      "class": "textlink",
+                      "href": "/contact"
+                    },
+                    "children": [
+                      {
+                        "text": "Stel je vraag →",
+                        "key": "text-9"
+                      }
+                    ],
+                    "linkKey": "link-2"
+                  }
+                ]
+              },
+              {
+                "tag": "site-slot",
+                "attrs": {
+                  "name": "activityMoments"
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "tag": "site-slot",
+            "attrs": {
+              "name": "activityPractical"
+            },
+            "children": []
+          }
+        ]
+      },
+      {
+        "tag": "site-slot",
+        "attrs": {
+          "name": "welcome"
+        },
+        "children": []
+      }
+    ],
+    "texts": [
+      {
+        "_key": "text-0",
+        "label": "Mixed media",
+        "text": "Home"
+      },
+      {
+        "_key": "text-1",
+        "label": "Mixed media",
+        "text": " / "
+      },
+      {
+        "_key": "text-2",
+        "label": "Mixed media",
+        "text": "Activiteiten"
+      },
+      {
+        "_key": "text-3",
+        "label": "Mixed media",
+        "text": " / Mixed media"
+      },
+      {
+        "_key": "text-4",
+        "label": "Mixed media",
+        "text": "Activiteiten"
+      },
+      {
+        "_key": "text-5",
+        "label": "Mixed media",
+        "text": "Mixed media"
+      },
+      {
+        "_key": "text-6",
+        "label": "Mixed media",
+        "text": "Met verschillende technieken en materialen een eigen afbeelding maken, in een klein groepje. Ervaring is niet nodig."
+      },
+      {
+        "_key": "text-7",
+        "label": "Is dit iets voor mij?",
+        "text": "Is dit iets voor mij?"
+      },
+      {
+        "_key": "text-8",
+        "label": "Is dit iets voor mij?",
+        "text": "Twijfel je of deze activiteit bij je past, of vind je de eerste keer spannend? Neem gerust contact op. We denken graag met je mee."
+      },
+      {
+        "_key": "text-9",
+        "label": "Is dit iets voor mij?",
+        "text": "Stel je vraag →"
+      }
+    ],
+    "images": [
+      {
+        "_key": "image-0",
+        "label": "Mixed media",
+        "src": "/img/approved/agenda-mixed-media.webp",
+        "alt": ""
+      }
+    ],
+    "links": [
+      {
+        "_key": "link-0",
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "_key": "link-1",
+        "label": "Activiteiten",
+        "href": "/activiteiten"
+      },
+      {
+        "_key": "link-2",
+        "label": "Stel je vraag →",
+        "href": "/contact"
+      }
+    ],
+    "videos": []
+  },
+  {
     "path": "/activiteiten/voetreflexmassage",
     "title": "Voetreflexmassage",
     "description": "Vraag naar de volgende gelegenheid voor voetreflexmassage.",
@@ -22462,7 +22485,7 @@
                     },
                     "children": [
                       {
-                        "text": "Een feestelijke avond bij Classic Mike in Zeewolde ten bate van Toon over Leven.",
+                        "text": "Een feestelijke avond bij Classic Mike in Zeewolde ten bate van Toon over Leven. Het diner van 6 november 2026 is uitgesteld; de nieuwe datum volgt, waarschijnlijk in april 2027.",
                         "key": "text-6"
                       }
                     ]
@@ -22479,8 +22502,8 @@
                     "tag": "img",
                     "attrs": {
                       "class": "hero-image",
-                      "src": "/img/approved/hero.webp",
-                      "alt": "",
+                      "src": "/img/approved/sponsordiner-classic-mike.webp",
+                      "alt": "Gasten aan lange tafels tussen de klassieke auto’s bij Classic Mike",
                       "loading": "eager"
                     },
                     "children": [],
@@ -22606,7 +22629,7 @@
       {
         "_key": "text-6",
         "label": "Sponsordiner bij Classic Mike",
-        "text": "Een feestelijke avond bij Classic Mike in Zeewolde ten bate van Toon over Leven."
+        "text": "Een feestelijke avond bij Classic Mike in Zeewolde ten bate van Toon over Leven. Het diner van 6 november 2026 is uitgesteld; de nieuwe datum volgt, waarschijnlijk in april 2027."
       },
       {
         "_key": "text-7",
@@ -22628,8 +22651,8 @@
       {
         "_key": "image-0",
         "label": "Sponsordiner bij Classic Mike",
-        "src": "/img/approved/hero.webp",
-        "alt": ""
+        "src": "/img/approved/sponsordiner-classic-mike.webp",
+        "alt": "Gasten aan lange tafels tussen de klassieke auto’s bij Classic Mike"
       }
     ],
     "links": [
@@ -22735,7 +22758,7 @@
             "attrs": {},
             "children": [
               {
-                "text": "\n        Stichting Toon Hermans Huis Zeewolde (Toon over Leven), ",
+                "text": "\n        Stichting Toon over Leven, ",
                 "key": "text-2000"
               },
               {
@@ -22876,6 +22899,24 @@
                   }
                 ]
               },
+              " of ",
+              {
+                "tag": "a",
+                "attrs": {
+                  "href": "tel:+31638529060",
+                  "data-contact": "mobile"
+                },
+                "children": [
+                  {
+                    "tag": "site-slot",
+                    "attrs": {
+                      "name": "fact",
+                      "field": "contact.mobiel"
+                    },
+                    "children": []
+                  }
+                ]
+              },
               {
                 "text": ". Je kunt ook een klacht\n        indienen bij de Autoriteit Persoonsgegevens.\n      ",
                 "key": "text-17"
@@ -22900,6 +22941,26 @@
               {
                 "text": "Als je je via de website aanmeldt voor een activiteit, verwerken we ook welke activiteit en welk moment je kiest. We gebruiken deze gegevens om je aanmelding af te handelen en je deelname te bevestigen. Dezelfde bewaartermijnen en rechten gelden voor deze gegevens.",
                 "key": "text-3001"
+              }
+            ]
+          },
+          {
+            "tag": "h2",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Nieuwsbrief",
+                "key": "text-3002"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Meld je je aan voor de nieuwsbrief, dan bewaren we je naam en e-mailadres om je af en toe nieuws te sturen. We gebruiken ze nergens anders voor. Je kunt je altijd afmelden met een mail naar info@toonoverleven.nl; dan halen we je gegevens uit de lijst.",
+                "key": "text-3003"
               }
             ]
           }
@@ -22992,7 +23053,7 @@
       {
         "_key": "text-2000",
         "label": "Contactgegevens",
-        "text": "\n        Stichting Toon Hermans Huis Zeewolde (Toon over Leven), "
+        "text": "\n        Stichting Toon over Leven, "
       },
       {
         "_key": "text-2001",
@@ -23008,6 +23069,16 @@
         "_key": "text-3001",
         "label": "Aanmelden voor activiteiten",
         "text": "Als je je via de website aanmeldt voor een activiteit, verwerken we ook welke activiteit en welk moment je kiest. We gebruiken deze gegevens om je aanmelding af te handelen en je deelname te bevestigen. Dezelfde bewaartermijnen en rechten gelden voor deze gegevens."
+      },
+      {
+        "_key": "text-3002",
+        "label": "Nieuwsbrief",
+        "text": "Nieuwsbrief"
+      },
+      {
+        "_key": "text-3003",
+        "label": "Nieuwsbrief",
+        "text": "Meld je je aan voor de nieuwsbrief, dan bewaren we je naam en e-mailadres om je af en toe nieuws te sturen. We gebruiken ze nergens anders voor. Je kunt je altijd afmelden met een mail naar info@toonoverleven.nl; dan halen we je gegevens uit de lijst."
       }
     ],
     "images": [],
@@ -23057,10 +23128,17 @@
             "attrs": {},
             "children": [
               {
-                "text": "Hier kun je je binnenkort aanmelden voor onze eigen nieuwsbrief.",
+                "text": "Ontvang af en toe nieuws over activiteiten en ontwikkelingen bij Toon over Leven.",
                 "key": "text-2"
               }
             ]
+          },
+          {
+            "tag": "site-slot",
+            "attrs": {
+              "name": "newsletter"
+            },
+            "children": []
           }
         ]
       }
@@ -23079,7 +23157,7 @@
       {
         "_key": "text-2",
         "label": "Nieuws van Toon in je mailbox",
-        "text": "Hier kun je je binnenkort aanmelden voor onze eigen nieuwsbrief."
+        "text": "Ontvang af en toe nieuws over activiteiten en ontwikkelingen bij Toon over Leven."
       }
     ],
     "images": [],

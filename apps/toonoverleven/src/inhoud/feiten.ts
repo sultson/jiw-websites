@@ -162,7 +162,6 @@ const HERSCHRIJVINGEN: Record<string, (teksten: Teksten) => Herschrijving> = {
           'Je hoeft je niet aan te melden en je hebt geen verwijzing nodig. Je belt aan en je bent binnen.',
         ],
       },
-      inloopavond: { tekst: [praktisch.openingstijden.avond] },
       'vakanties-en-tijdelijke-afwijkingen': { tekst: [praktisch.openingstijden.afwijkingen] },
     },
   }),
@@ -203,7 +202,6 @@ const HERSCHRIJVINGEN: Record<string, (teksten: Teksten) => Herschrijving> = {
         tekst: [
           opEenRegel(praktisch.locatie.adres),
           praktisch.openingstijden.ochtend,
-          praktisch.openingstijden.avond,
         ],
       },
     },

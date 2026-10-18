@@ -41,7 +41,7 @@ export const safeLink = (href: string) =>
   /^(\/[^/]|\/$|#|https:\/\/|mailto:|tel:)/.test(href) ? href : "#";
 export const activityTypes: Record<
   string,
-  { title: string; category: string; image: string; description: string }
+  { title: string; category: string; image: string; description: string; locatie?: string }
 > = {
   inloopochtend: {
     title: "Inloopochtend",
@@ -50,15 +50,8 @@ export const activityTypes: Record<
     description:
       "Een kop koffie of thee, een gesprek of gewoon even zitten. Tijdens de inloop ben je welkom zonder afspraak.",
   },
-  inloopavond: {
-    title: "Inloopavond",
-    category: "Inloop",
-    image: "ipso-groep",
-    description:
-      "Ook in de avond is er ruimte voor ontmoeting. Vraag naar het volgende bevestigde moment.",
-  },
   "inloop-met-activiteit": {
-    title: "Inloop met activiteit",
+    title: "Inloop / Open atelier",
     category: "Creatief",
     image: "activiteit-creatief-v2.jpg",
     description:
@@ -99,6 +92,13 @@ export const activityTypes: Record<
     description:
       "Maak een persoonlijk boekje met papier, beelden en kleine herinneringen. Vraag naar de volgende bijeenkomst.",
   },
+  "mixed-media": {
+    title: "Mixed media",
+    category: "Creatief",
+    image: "activiteit-creatief-v2.jpg",
+    description:
+      "Met verschillende technieken en materialen een eigen afbeelding maken, in een klein groepje. Ervaring is niet nodig.",
+  },
   voetreflexmassage: {
     title: "Voetreflexmassage",
     category: "Wellness",
@@ -108,7 +108,8 @@ export const activityTypes: Record<
   sponsordiner: {
     title: "Sponsordiner bij Classic Mike",
     category: "Overig",
-    image: "hero",
+    image: "sponsordiner-classic-mike",
+    locatie: "Classic Mike, Tweespan 21, Zeewolde",
     description:
       "Een feestelijke avond bij Classic Mike in Zeewolde ten bate van Toon over Leven.",
   },

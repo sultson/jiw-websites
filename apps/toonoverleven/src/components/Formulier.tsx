@@ -1,6 +1,7 @@
 import { useEffect, useId, useState } from 'react';
 import { Check, Loader2 } from 'lucide-react';
 import { interfaceDefaults, type InterfaceCopy } from '../next/interface';
+import { useAdres } from '../router';
 
 /**
  * Zo laagdrempelig mogelijk gehouden. Wie hier komt heeft vaak net slecht
@@ -32,16 +33,29 @@ export default function Formulier({
   compact = false,
   registration,
   copy = interfaceDefaults,
-  contact = { email: 'info@toonoverleven.nl', telefoon: '036 845 02 65' },
+  contact = { email: 'info@toonoverleven.nl', telefoon: '036 845 02 65', mobiel: '06 38 52 90 60' },
+  prefix,
+  keuzes: routeKeuzes,
 }: {
   onderwerp?: string;
   compact?: boolean;
   registration?: { title: string; date: string; id: string };
   copy?: InterfaceCopy;
-  contact?: { email: string; telefoon: string };
+  contact?: { email: string; telefoon: string; mobiel?: string };
+  /** Op de contactblokken van een bezoekroute: gaat voor het gekozen onderwerp in de onderwerpregel. */
+  prefix?: string;
+  /** De keuzes van zo'n contactblok. `sleutel` is wat een link meegeeft als ?vraag=. */
+  keuzes?: { sleutel: string; waarde: string; label: string }[];
 }) {
   const sleutel = useId();
   const TEL = contact.telefoon, MAIL = contact.email, TEL_LINK = 'tel:' + TEL.replace(/[^+0-9]/g, '');
+  const MOBIEL = contact.mobiel, MOBIEL_LINK = MOBIEL ? 'tel:' + MOBIEL.replace(/[^+0-9]/g, '') : '';
+  const telefoons = (
+    <>
+      <a href={TEL_LINK} className="font-bold text-wijn no-underline hover:underline">{TEL}</a>
+      {MOBIEL && <>{' '}of{' '}<a href={MOBIEL_LINK} className="font-bold text-wijn no-underline hover:underline">{MOBIEL}</a></>}
+    </>
+  );
   // Een onderwerp dat de pagina meegeeft en niet in de lijst staat, komt er
   // vooraan bij: anders zou de keuze op het scherm iets anders zeggen dan wat
   // er verstuurd wordt.
@@ -52,6 +66,16 @@ export default function Formulier({
 
   const [gekozen, setGekozen] = useState(onderwerp ?? (compact ? 'Een kennismaking aanvragen' : ONDERWERPEN[0].waarde));
   const [activiteit, setActiviteit] = useState<string | null>(null);
+  const [routeKeuze, setRouteKeuze] = useState('');
+  // Een kaart op dezelfde pagina kan een keuze voorselecteren met ?vraag=, ook
+  // als het formulier al op het scherm staat.
+  const adres = useAdres();
+  useEffect(() => {
+    if (!routeKeuzes || !adres) return;
+    const vraag = new URL(adres).searchParams.get('vraag');
+    const keuze = routeKeuzes.find((k) => k.sleutel === vraag);
+    if (keuze) setRouteKeuze(keuze.waarde);
+  }, [adres, routeKeuzes]);
   useEffect(() => {
     if (!compact || registration) return;
     const title = new URLSearchParams(window.location.search).get('activiteit')?.trim();
@@ -70,7 +94,7 @@ export default function Formulier({
     setFout(null);
 
     const data = new FormData(e.currentTarget);
-    data.set('onderwerp', registration ? 'Aanmelden: ' + registration.title : gekozen);
+    data.set('onderwerp', registration ? 'Aanmelden: ' + registration.title : routeKeuzes ? `${prefix}: ${routeKeuze}` : gekozen);
     if (registration) { data.set('moment', registration.date); data.set('activiteitId', registration.id); }
     // Er staat geen Turnstile-widget op deze site; de Worker draait met de
     // ontwikkelsleutel en accepteert daarom deze waarde.
@@ -101,10 +125,7 @@ export default function Formulier({
         <h3 className="text-[1.35rem]">{registration ? copy.signupSuccessTitle : copy.successTitle}</h3>
         <p className="mx-auto mt-3 max-w-[46ch] leading-relaxed text-inkt-zacht">
           {registration ? copy.signupSuccessText : copy.successText}{' '}
-          <a href={TEL_LINK} className="font-bold text-wijn no-underline hover:underline">
-            {TEL}
-          </a>
-          .
+          Liever meteen iemand spreken? Bel {telefoons}.
         </p>
       </div>
     );
@@ -150,6 +171,15 @@ export default function Formulier({
         </div>
       </fieldset>}
 
+      {routeKeuzes && <fieldset className="route-choices">
+        <legend>Waar gaat het over?</legend>
+        {routeKeuzes.map((keuze) => (
+          <label key={keuze.sleutel}>
+            <input type="radio" name="keuze" value={keuze.waarde} required checked={routeKeuze === keuze.waarde} onChange={() => setRouteKeuze(keuze.waarde)} />
+            <span>{keuze.label}</span>
+          </label>
+        ))}
+      </fieldset>}
       {activiteit && <p className="form-activity">Je vraag gaat over: <strong>{activiteit}</strong></p>}
       <div className={compact ? 'contact-fields' : 'mt-6 grid gap-4 sm:grid-cols-2'}>
         <Veld id={`${sleutel}-naam`} naam="firstName" label={copy.nameLabel} placeholder={compact ? 'Je naam' : undefined} verplicht autoComplete="given-name" />
@@ -157,6 +187,13 @@ export default function Formulier({
         {!compact && <div className="sm:col-span-2">
           <Veld id={`${sleutel}-tel`} naam="telefoon" label="Je telefoonnummer" type="tel" autoComplete="tel" />
         </div>}
+        {routeKeuzes && <>
+          <Veld id={`${sleutel}-tel`} naam="telefoon" label="Telefoonnummer" placeholder="Als je liever gebeld wordt" type="tel" autoComplete="tel" />
+          <div>
+            <label htmlFor={`${sleutel}-bericht`}>Wil je iets kwijt? <span className="optional">(mag ook leeg)</span></label>
+            <textarea id={`${sleutel}-bericht`} name="bericht" rows={4} />
+          </div>
+        </>}
       </div>
 
       {!compact && <div className="mt-4">
@@ -200,7 +237,7 @@ export default function Formulier({
         disabled={bezig}
         className="mt-6 inline-flex min-h-[3.1rem] items-center justify-between gap-3 rounded-full border border-wijn bg-wijn px-[1.4rem] py-3 text-[0.95rem] font-extrabold leading-tight text-white transition hover:-translate-y-0.5 hover:border-wijn-diep hover:bg-wijn-diep disabled:opacity-60 disabled:hover:translate-y-0 max-sm:w-full"
       >
-        <span>{registration ? copy.signupSubmit : activiteit ? 'Vraag over activiteit versturen' : compact ? copy.contactSubmit : 'Versturen'}</span>
+        <span>{registration ? copy.signupSubmit : activiteit ? 'Vraag over activiteit versturen' : routeKeuzes ? 'Versturen' : compact ? copy.contactSubmit : 'Versturen'}</span>
         {bezig ? (
           <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
         ) : (
@@ -210,9 +247,8 @@ export default function Formulier({
 
       <p className="mt-5 text-[0.88rem] leading-relaxed text-grijs">
         {copy.alternativeContact}{' '}
-        <a href={TEL_LINK} className="font-bold text-wijn no-underline hover:underline">
-          {TEL}
-        </a>{' '}
+        <a href={TEL_LINK} className="font-bold text-wijn no-underline hover:underline">{TEL}</a>,{' '}
+        {MOBIEL && <><a href={MOBIEL_LINK} className="font-bold text-wijn no-underline hover:underline">{MOBIEL}</a>{' '}</>}
         of{' '}
         <a href={`mailto:${MAIL}`} className="font-bold text-wijn no-underline hover:underline">
           {MAIL}

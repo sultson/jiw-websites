@@ -11,14 +11,13 @@ export const siteTeksten = defineType({
       description:
         "Deze gegevens staan zowel op Praktisch als in het terugkerende welkomstblok.",
       fields: [
-        { name: "contact", title: "Contactgegevens (overal op de site)", type: "object", fields: [{name: "email", title:"E-mailadres", type:"string"}, {name:"telefoon", title:"Telefoonnummer", type:"string"}] },
+        { name: "contact", title: "Contactgegevens (overal op de site)", type: "object", fields: [{name: "email", title:"E-mailadres", type:"string"}, {name:"telefoon", title:"Telefoonnummer (vast)", type:"string"}, {name:"mobiel", title:"Mobiel nummer", type:"string"}] },
         {
           name: "openingstijden",
           title: "Inlooptijden",
           type: "object",
           fields: [
             { name: "ochtend", title: "Inloopochtend", type: "string" },
-            { name: "avond", title: "Inloopavond", type: "string" },
             {
               name: "afwijkingen",
               title: "Vakanties en wijzigingen",

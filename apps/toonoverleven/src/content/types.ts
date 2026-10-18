@@ -175,10 +175,10 @@ export type Teksten = {
  * inhoud/feiten.ts worden deze gegevens er als feit overheen gelegd.
  */
 export type Praktisch = {
-  openingstijden: { ochtend: string; avond: string; afwijkingen: string };
+  openingstijden: { ochtend: string; afwijkingen: string };
   kosten: { inloop: string; activiteiten: string; drempel: string };
   locatie: { adres: string; route: string; parkeren: string; ingang: string; elders: string };
-  contact: { email: string; telefoon: string; wieReageert: string; watGebeurtEr: string; reactietijd: string };
+  contact: { email: string; telefoon: string; mobiel: string; wieReageert: string; watGebeurtEr: string; reactietijd: string };
   /** De alinea voor huisartsen en ziekenhuizen op /voor-verwijzers. */
   verwijzers: string;
 };
