@@ -122,19 +122,29 @@
   --color-accent: #B1C2A2;
   --color-accent-dark: #42653f;
 
-  /* De warme kant. Zandbruin is de enige kleur in de reeks die niet groen
-     of gebroken wit is, en daarmee de enige die een knop uit de pagina kan
-     tillen. Hij neemt de plek over van de framboos van Fleurig!.
+  /* De warme kant. Twee kleuren, en ze doen niet hetzelfde.
 
-     Let op de tekstkleur die erop hoort: wit op zandbruin haalt 2,6:1 en is
-     niet te lezen. Dennengroen erop haalt 4,6:1. De hoofdknop is dus een
-     zandbruin vlak met dennengroene letters, niet met witte.
+     De framboos van Fleurig! draagt de hoofdknop. Hij stond met de huisstijl
+     van 18-10-2026 een halve dag op zandbruin en is op verzoek diezelfde dag
+     teruggezet: de winkel was tevreden over deze kleur bij Fleurig! en wil hem
+     houden. Hij komt dus bewust niet uit de aangeleverde reeks — hij is de
+     enige plek waar dat zo is.
 
-     En let op de richting van hover: die gaat hier omhóóg in plaats van een
-     slag dieper, zoals een knop meestal doet. Zandbruin verder indikken
-     brengt de letters mee naar beneden (3,4:1, gezakt onder de norm precies
-     op het moment dat iemand de knop aanwijst); oplichten brengt ze op
-     5,5:1. De knop wordt bij aanwijzen dus lichter. */
+     Witte letters erop halen 5,4:1 en bij hover (`roze-diep`) 7,0:1, dus de
+     hover gaat hier de gewone kant op: een slag dieper. `roze-zacht` is het
+     vlak eronder, niet de knop zelf.
+
+     Zandbruin blijft de warme tint uit de huisstijl, maar nu alleen waar géén
+     hoofdknop staat: de zwevende belknop en de lampjes in het kerstsnoer. Let
+     daar op de tekstkleur — wit op zandbruin haalt 2,6:1 en is niet te lezen,
+     dennengroen erop haalt 4,6:1. En op de richting van hover: zandbruin
+     verder indikken brengt de letters mee naar beneden (3,4:1, gezakt onder de
+     norm precies op het moment dat iemand de knop aanwijst), oplichten brengt
+     ze op 5,5:1. Die knop wordt bij aanwijzen dus lichter. */
+  --color-roze: #c22a5f;
+  --color-roze-diep: #a81f4f;   /* alleen bij aanwijzen */
+  --color-roze-zacht: #fbeaf0;  /* het vlak eronder, niet de knop zelf */
+
   --color-zand: #B99D71;
   --color-zand-licht: #c8ae86;  /* alleen bij aanwijzen — lichter, zie hierboven */
   --color-zand-zacht: #f2ebdd;  /* het vlak eronder, niet de knop zelf */

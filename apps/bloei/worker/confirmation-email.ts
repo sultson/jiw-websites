@@ -80,11 +80,13 @@ export const bloeiConfirmationEmail: LocalizedConfirmationEmailConfig = {
          inkSoft op surface         7,6:1
          muted op surface           5,1:1
          accent op ink              6,3:1
-         onButton op button         4,6:1
+         onButton op button         5,4:1
 
-       Let op die laatste. De knop is zandbruin met dennengroene letters, niet
-       met witte: wit op zandbruin haalt 2,6:1. Zet `onButton` niet terug op
-       wit omdat het er in een ontwerp beter uitziet. */
+       De knop is de enige plek waar de framboos van Fleurig! is blijven staan,
+       op verzoek van de winkel (18-10-2026). Hij stond een halve dag in
+       zandbruin, en die kleur vraagt om dennengroene letters omdat wit erop
+       2,6:1 haalt. Op framboos is wit juist goed (5,4:1). De twee horen bij
+       elkaar: verander er een, dan moet de ander mee. */
     colors: {
       pageBackground: '#f2f6ef',
       surface: '#ffffff',
@@ -96,8 +98,8 @@ export const bloeiConfirmationEmail: LocalizedConfirmationEmailConfig = {
       muted: '#5f7467',
       mutedSoft: '#52685a',
       accent: '#B1C2A2',
-      button: '#B99D71',
-      onButton: '#173F2B',
+      button: '#c22a5f',
+      onButton: '#ffffff',
     },
   },
 };

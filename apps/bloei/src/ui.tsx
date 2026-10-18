@@ -622,13 +622,18 @@ export function Merk({
  * tegelijk in de hero terechtkwamen.
  */
 /**
- * Zandbruin met dennengroene letters, niet met witte. Wit op zandbruin haalt
- * 2,6:1 en is op een telefoon in de zon niet te lezen; dennengroen erop haalt
- * 4,6:1. Dat is geen smaakkeuze maar de reden dat deze knop er zo uitziet.
+ * De framboos, op verzoek teruggezet op 18-10-2026. Hij stond hier een halve
+ * dag in zandbruin, de warme kleur uit de huisstijl; de winkel wil de kleur
+ * terug die Fleurig! ook had.
+ *
+ * Witte letters horen hier wel: wit op #c22a5f haalt 5,4:1, en hover gaat een
+ * slag dieper (7,0:1). Dat is de gewone richting voor een knop — zandbruin
+ * moest juist oplichten omdat wit daar 2,6:1 haalde en de letters dennengroen
+ * waren. Die uitzondering vervalt daarmee.
  */
 export const KNOP_HOOFD =
-  'knop-bloem inline-flex items-center justify-center gap-2 bg-zand px-6 py-3.5 font-semibold text-ink ' +
-  'shadow-[0_10px_30px_-12px_rgb(85_66_32_/_0.85)] transition hover:bg-zand-licht';
+  'knop-bloem inline-flex items-center justify-center gap-2 bg-roze px-6 py-3.5 font-semibold text-white ' +
+  'shadow-[0_10px_30px_-12px_rgb(194_42_95_/_0.9)] transition hover:bg-[#a81f4f]';
 
 /** Op de donkere vlakken: rand, geen vulling. */
 export const KNOP_TWEEDE_DONKER =

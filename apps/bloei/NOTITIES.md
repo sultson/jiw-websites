@@ -144,26 +144,33 @@ van de gevel afgelezen, omdat er toen niets anders was; die hele reeks is weg.
 | Saliegroen | `#4F784B` | `salie` — vullingen; verdiept als `accent-dark` voor tekst |
 | Lindegroen | `#B1C2A2` | `accent` — het accent op donker; dit is de bladkleur uit het logo |
 | Ivoor | `#F3EEDC` | `ivoor` — spaarzaam: kerstkaarten en de lampjes in het snoer |
-| Zandbruin | `#B99D71` | `zand` — de hoofdknop en de zwevende belknop |
+| Zandbruin | `#B99D71` | `zand` — de zwevende belknop en de lampjes in het kerstsnoer |
+| Framboos | `#c22a5f` | `roze` — de hoofdknop; komt niet uit de reeks, zie hieronder |
 
-Drie dingen die niet letterlijk uit de reeks komen en waarom:
+Vier dingen die niet letterlijk uit de reeks komen en waarom:
 
 - **De achtergrond.** `cream` `#f2f6ef`, met `creme-diep` en `line` eronder. Dat
   is uitgewassen lindegroen (dezelfde kleurhoek, 92°), niet ivoor — de klant
   vroeg om een lichte tint groen, en ivoor is gevraagd als markeerkleur. Twee
   lichte tinten door elkaar leest als een fout in plaats van als een keuze.
-- **De tekst op de hoofdknop is dennengroen, niet wit.** Wit op zandbruin haalt
-  2,6:1. Dennengroen erop haalt 4,6:1. Om dezelfde reden gaat hover omhóóg in
-  plaats van een slag dieper: indikken zakt naar 3,4:1, oplichten gaat naar 5,5:1.
+- **De hoofdknop is de framboos van Fleurig!, `#c22a5f` met witte letters.**
+  Teruggezet op verzoek, 18-10-2026, na een halve dag in zandbruin. De winkel
+  was bij Fleurig! tevreden over deze kleur. Wit erop haalt 5,4:1 en hover
+  (`roze-diep` `#a81f4f`) 7,0:1, dus die gaat de gewone kant op: een slag dieper.
+- **De zwevende belknop is wél zandbruin, en die heeft dennengroene letters.**
+  Wit op zandbruin haalt 2,6:1, dennengroen 4,6:1. Om dezelfde reden gaat hover
+  daar omhóóg: indikken zakt naar 3,4:1, oplichten gaat naar 5,5:1. Zet de
+  letters daar niet op wit omdat het er in een ontwerp beter uitziet.
 - **`accent-dark` is `#42653f`, saliegroen een slag verdiept.** Saliegroen zelf
   haalt alleen op de lichtste van de drie achtergronden de norm (4,6:1 op
   `cream`, maar 4,3:1 op `creme-diep` en 4,0:1 op de randkleur). De echte
   `#4F784B` staat wel onvermengd op de site: in het logo voor lichte vlakken, in
   de blaadjes aan de hoofdknop en als `--color-salie`.
 
-**Het framboosroze van Fleurig! is weg**, net als het oranje van de belknop. Die
-twee waren na de omkleuring de enige kleuren op de site die nergens meer uit de
-reeks kwamen.
+**Het oranje van de belknop is weg** (`#c9741f`, naar het voorbeeld van
+winterswijkvakantiehuis.nl). Die knop staat nu in zandbruin. Het framboosroze
+ging er bij de huisstijl ook uit, maar is op verzoek dezelfde dag teruggezet op
+de hoofdknop — dat is nu de enige kleur op de site die niet uit de reeks komt.
 
 ### Contrast
 

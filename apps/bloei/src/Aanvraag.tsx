@@ -391,7 +391,7 @@ export default function AanvraagFormulier() {
       type="button"
       onClick={() => setStap((s) => Math.min(LAATSTE, s + 1))}
       disabled={!kanDoor}
-      className="knop-bloem mt-5 flex w-full items-center justify-center gap-2 bg-zand px-6 py-4 font-semibold text-ink transition hover:bg-zand-licht disabled:cursor-not-allowed disabled:opacity-40"
+      className="knop-bloem mt-5 flex w-full items-center justify-center gap-2 bg-roze px-6 py-4 font-semibold text-white transition hover:bg-roze-diep disabled:cursor-not-allowed disabled:opacity-40"
     >
       {tekst} <ArrowRight className="h-4 w-4" />
     </button>
@@ -808,7 +808,7 @@ export default function AanvraagFormulier() {
 
           <button
             ref={knopRef} type="submit" disabled={bezig}
-            className="knop-bloem mt-5 flex w-full items-center justify-center gap-2 bg-zand px-6 py-4 font-semibold text-ink transition hover:bg-zand-licht disabled:opacity-60"
+            className="knop-bloem mt-5 flex w-full items-center justify-center gap-2 bg-roze px-6 py-4 font-semibold text-white transition hover:bg-roze-diep disabled:opacity-60"
           >
             {bezig
               ? <><Loader2 className="h-4 w-4 animate-spin" /> Even geduld</>
