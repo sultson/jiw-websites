@@ -1,0 +1,867 @@
+/* Velvet Cakes by Anka - variant 2.
+   Opzet volgt nog steeds het voorbeeld dat ze zelf maakte: gesplitste opener,
+   rij soorten, script en hartjes. De kleuren komen sinds 25-09 uit de
+   aangeleverde huisstijl (Variation B): metallic goud, creme en cacao.
+
+   Over het goud, want daar zit de valkuil.
+   Het verloop loopt van #674318 tot #FFF2CB. Die lichte stops zijn schitterend
+   op cacao en volstrekt onleesbaar op creme (#FFF2CB op #F7F0E4 is 1,01:1).
+   Daarom drie soorten goud, elk met zijn eigen ondergrond:
+     - --goud-verloop, het aangeleverde metallic verloop, ALLEEN op cacao.
+     - --goud-verloop-licht, hetzelfde verloop met het lichtvenster omlaag
+       geschoven: elke stop houdt zijn plek in het ritme, maar het bereik loopt
+       van 8,6:1 tot 3,2:1 op creme. Voor het woordmerk en de haarlijntjes op
+       licht. Gemaakt door merk-licht.mjs, niet met de hand.
+     - --goud-diep, massief, voor alles wat tekst is op licht (min. 4,5:1).
+   Een gouden haarlijn om een cacaoknop telt als "op cacao": daar leest de lijn
+   tegen de vulling af, dus die mag het volle merkverloop dragen.
+   Elke combinatie is nagerekend in contrast.mjs - draai dat na een kleurwijziging. */
+:root{
+  --creme:#FCF8F1;         /* exact de creme uit 01-Logo-goud-creme.png */
+  --creme-2:#F7F0E4;
+  --zand:#EFE6D7;          /* warm vlak, verving het oude roze nude */
+  --cacao:#312B25;         /* exact de cacao uit 02-Logo-goud-cacao.png */
+  --cacao-2:#241F1A;
+  --ink:#2F2823;
+  --muted:#6E6257;
+  --goud-diep:#7F5C1D;     /* tekstgoud op licht */
+  --goud:#A77728;          /* lijnen, iconen, randen */
+  --goud-licht:#D6AF57;    /* decoratief op licht, tekst op cacao */
+  --goud-op-cacao:#E6C676;
+  --creme-op-cacao:#F3EADB;
+  --goud-verloop:linear-gradient(115deg,#8A6420,#C79A43 22%,#F0D695 42%,#B7862F 58%,#E6C676 78%,#8A6420);
+  /* uit merk-licht.mjs - zelfde ritme als het merkverloop, leesbaar venster */
+  --goud-verloop-licht:linear-gradient(115deg,#5A3F12,#704F17 14%,#8B621C 28%,#A57522 37%,#B07C24 40.5%,#8B621C 45%,#6A4A16 58%,#795519 67%,#986B1F 78%,#AB7923 84%,#815B1A 91%,#5E4213);
+  --goud-rand:rgba(167,119,40,.45);
+  --goud-rand-zacht:rgba(167,119,40,.26);
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Jost","Helvetica Neue",Arial,sans-serif;
+  --script:"Parisienne",cursive;
+  --script-ro:"Allura",cursive;
+  --maxw:1240px;
+  --koph:86px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--creme);color:var(--ink);
+  font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.1}
+p{margin:0 0 1em}
+a{color:inherit}
+
+.schrift{font-family:var(--script);color:var(--goud-diep);line-height:1.15}
+/* Parisienne heeft geen a-breve, s-virgula en t-virgula. Die drie letters
+   vielen in de Roemeense schrijfregels midden in het woord terug op een ander
+   lettertype: "sa cream impreuna" stond er dan half in schrijfletter. Niet op
+   het oog gezien maar gemeten, zie letters-ro.mjs. Allura heeft de hele
+   Roemeense tekenset en staat qua gewicht en ronding het dichtst bij
+   Parisienne. Alleen op de Roemeense pagina, zodat het Nederlands blijft wat
+   Armando al goedgekeurd heeft. Een tekenset repareren door de Roemeense
+   woorden te kiezen die wel passen was het alternatief, en dat is de taal van
+   de klant buigen naar ons lettertype. */
+html[lang="ro"] .schrift{font-family:var(--script-ro)}
+/* Het hartje is een svg, geen letterteken: Jost heeft U+2661 niet, waarna
+   Safari doorvalt naar Apple Color Emoji en er een rood hartje staat dat je
+   met css niet kunt kleuren. Maat blijft in em, dus alle font-size-regels
+   hieronder werken onveranderd door; stroke:currentColor laat color: werken. */
+.hartje{
+  width:1.1em;height:1.1em;display:inline-block;vertical-align:-.16em;flex:none;
+  color:var(--goud-diep);
+  fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
+}
+.bovenregel{
+  font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--goud-diep);margin:0 0 1rem;
+}
+
+/* ---------- knoppen ---------- */
+.knop{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--sans);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+  text-decoration:none;padding:1.05rem 2.1rem;border-radius:100px;
+  transition:background .25s,color .25s,border-color .25s,transform .2s;
+}
+.knop i{font-style:normal;transition:transform .25s}
+.knop:hover i{transform:translateX(4px)}
+/* cacao met een gouden haarlijn: de twee helften van de huisstijl in een knop */
+.knop-vol{background:var(--cacao);color:var(--creme);border:1px solid transparent}
+.knop-vol:hover{background:var(--goud-diep)}
+
+/* ---------- gouden haarlijn als verloop ----------
+   Een border kan geen verloop dragen: border-image negeert border-radius, dus
+   een pil zou vierkante hoeken krijgen. Daarom is het randje een ring - een
+   vlak in het goudverloop waaruit het midden met een mask wordt weggesneden.
+   Zo blijft border-radius:inherit werken en blijft de vulling los van het
+   randje, zodat de hover-overgang op background gewoon doorloopt.
+   inset:-1px legt de ring precies op de (doorzichtige) 1px border, dus de maat
+   van de knop verandert niet.
+
+   Twee verlopen, want twee verschillende rollen:
+     - knoppen met een cacaovulling krijgen het volle --goud-verloop. De lijn
+       ligt tegen cacao aan, dus juist de lichte stops maken hem zichtbaar;
+       een donkere stop zou er hier uit wegvallen.
+     - de lijnknop en de sociale rondjes hebben geen eigen vulling, daar IS het
+       randje de grens. Die krijgen --goud-verloop-licht, dat nergens onder
+       3,2:1 duikt en dus rondom zichtbaar blijft. */
+.knop-vol,.knop-lijn,.sociaal,.dock-cta{position:relative}
+.knop-vol::after,.knop-lijn::after,.sociaal::after,.dock-cta::after{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;
+  padding:1px;pointer-events:none;background:var(--goud-verloop);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+}
+.knop-lijn::after,.sociaal::after{background:var(--goud-verloop-licht)}
+/* de sociale rondjes zijn klein en staan naast elkaar; daar is een halve stop
+   van het verloop al genoeg schittering */
+.sociaal::after{opacity:.85;transition:opacity .2s}
+.sociaal:hover::after{opacity:1}
+
+/* ---------- kop ---------- */
+.kop{
+  position:sticky;top:0;z-index:40;
+  display:flex;align-items:center;gap:2rem;
+  /* het woordmerk heeft lucht nodig: de lussen van de schrijfletters lopen tot
+     aan de rand van de uitsnede, met krappe padding raakt het de balkrand */
+  padding:.85rem clamp(1rem,3vw,2.6rem);
+  background:rgba(252,248,241,.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--goud-rand-zacht);
+}
+.merk{flex:none;margin-right:auto;display:block}
+/* het aangeleverde woordmerk, krap uitgesneden (2396x870). De svg mag geen
+   <mask> bevatten: WebKit rastert een gemaskerde svg-in-img op de intrinsieke
+   maat en schaalt die op, wat op een retina-iPhone een wazig logo geeft. Zie
+   ontmasker.mjs - de lettervormen dragen het verloop nu rechtstreeks. */
+.merk img{width:auto;height:58px}
+.menu{display:flex;align-items:center;gap:clamp(1rem,2.4vw,2.2rem)}
+.menu a{
+  text-decoration:none;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink);opacity:.8;padding-bottom:3px;border-bottom:1px solid transparent;
+}
+.menu a:hover{opacity:1}
+.menu a.is-nu{opacity:1;border-bottom-color:var(--goud)}
+.kop-rechts{display:flex;align-items:center;gap:.9rem}
+.sociaal{
+  width:34px;height:34px;flex:none;border-radius:50%;
+  display:grid;place-items:center;background:var(--creme-2);
+  border:1px solid transparent;
+  transition:background .2s;
+}
+.sociaal:hover{background:var(--zand)}
+.sociaal svg{width:16px;height:16px;fill:var(--goud-diep)}
+.kop-cta{padding:.85rem 1.6rem;font-size:.68rem}
+
+/* ---------- taalkiezer ----------
+   Anka is Roemeense, dus Roemeens is geen bijzaak: de kiezer staat in de kop
+   en niet onderaan de pagina. Tekstknoppen en geen vlaggetjes - een vlag is
+   een land en geen taal. De actieve taal draagt tekstgoud (--goud-diep,
+   4,5:1 op creme), de inactieve --muted; geen opacity, want dan meet
+   contrast.mjs een kleur die er niet staat. */
+.taalkiezer{display:flex;align-items:center;gap:.5rem;flex:none}
+.taalkiezer>span{width:1px;height:12px;background:var(--goud-rand)}
+.lang-btn{
+  background:none;border:0;padding:.2rem .1rem;cursor:pointer;
+  font-family:var(--sans);font-weight:400;font-size:.7rem;letter-spacing:.14em;
+  color:var(--muted);border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.lang-btn:hover{color:var(--ink)}
+.lang-btn.is-nu{color:var(--goud-diep);border-bottom-color:var(--goud)}
+
+.menu-knop{display:none;background:none;border:0;padding:.5rem;cursor:pointer}
+.menu-knop span{display:block;width:24px;height:1px;background:var(--ink);margin:5px 0;transition:.25s}
+
+/* ---------- hero ---------- */
+.hero{
+  display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);
+  align-items:stretch;background:linear-gradient(120deg,#FEFBF6,#F8F1E4 70%,#EFE6D7);
+  /* de opener past op een scherm: hoger dan dit en de tekstkolom houdt
+     alleen maar lege creme onder zich over */
+  min-height:min(calc(100svh - var(--koph)),720px);
+}
+.hero-tekst{
+  padding:clamp(2.2rem,4vw,3.4rem) clamp(1.4rem,4vw,4rem);
+  display:flex;flex-direction:column;justify-content:center;text-align:center;
+  align-items:center;
+}
+.hero-tekst h1{
+  font-size:clamp(2.5rem,4.4vw,3.7rem);letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink);
+  /* Vangnet: een kop mag nooit de breedte van de pagina bepalen. Een lange
+     samenstelling zonder spatie ("Vruchtengebak") deed dat op 360 px wel, en
+     dan is de hele pagina opzij te slepen. De koppen dragen zelf een zacht
+     afbreekstreepje op de plek waar het hoort; dit is wat overblijft als dat
+     er een keer niet in staat. */
+  overflow-wrap:anywhere;
+}
+.schrift-groot{
+  font-size:clamp(2rem,3.6vw,2.9rem);margin:.1rem 0 1.1rem;
+}
+.hero-lead{max-width:34ch;color:var(--muted);font-size:.98rem;margin-bottom:1.7rem}
+.regel-hart{margin:1.5rem 0 .4rem;font-size:1.25rem}
+.streepregel{
+  display:flex;align-items:center;gap:1rem;margin:0;
+  font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--goud-diep);
+}
+.streepregel i{display:block;width:clamp(28px,6vw,70px);height:1px;background:var(--goud-verloop-licht)}
+
+.hero-foto{position:relative;overflow:hidden;min-height:clamp(340px,52vh,560px)}
+.hero-foto img{width:100%;height:100%;object-fit:cover;object-position:52% 26%}
+/* op een foto is wit met een zachte schaduw het enige dat altijd leest;
+   goud zou in de lichte plekken van de foto wegvallen */
+.hero-schrift{
+  position:absolute;right:clamp(1rem,3vw,3rem);top:clamp(1.5rem,6vw,4rem);
+  margin:0;font-size:clamp(1.9rem,3.4vw,3rem);text-align:center;
+  color:#FFFBF2;text-shadow:0 2px 20px rgba(36,31,26,.6);
+}
+.hartje-zwevend{position:absolute;font-size:clamp(1.2rem,2vw,1.8rem);color:rgba(255,251,242,.92);
+  filter:drop-shadow(0 2px 8px rgba(36,31,26,.55))}
+.hartje-zwevend.h1{right:clamp(4rem,10vw,9rem);top:clamp(.6rem,3vw,2rem)}
+.hartje-zwevend.h2{right:clamp(1rem,3vw,3rem);top:clamp(7rem,16vw,11rem)}
+
+/* ---------- waarden ---------- */
+.waarden{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+  max-width:var(--maxw);margin:0 auto;
+  padding:clamp(2.2rem,4vw,3.4rem) clamp(1.2rem,4vw,3rem);
+}
+.waarde{display:flex;align-items:center;gap:.9rem;justify-content:center}
+.waarde svg{
+  width:34px;height:34px;flex:none;
+  fill:none;stroke:var(--goud);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;
+}
+.waarde span{font-size:.92rem;color:var(--ink)}
+
+/* ---------- assortiment ---------- */
+.assortiment{background:var(--creme-2);padding:clamp(2.5rem,5vw,4rem) clamp(1.2rem,4vw,3rem)}
+.soorten{
+  max-width:var(--maxw);margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1rem,2vw,1.8rem);
+}
+/* Sinds 18-10-2026 zijn er zeven soorten en geen vijf meer, dus het aantal
+   deelt niet meer op in elke kolombreedte. Een laatste tegel die in zijn
+   eentje een nieuwe rij begint is een losse postzegel links in beeld; die
+   loopt daarom over de volle breedte. "nth-child(<kolommen>n+1):last-child"
+   is precies die tegel, dus de regel hoort bij het kolomaantal van die
+   breedte en staat bij elke breakpoint opnieuw. Met :last-child alleen zou
+   hij ook afgaan als het aantal wel opdeelt. */
+.assortiment .soorten>.soort:nth-child(4n+1):last-child{grid-column:1/-1}
+.assortiment .soorten>.soort:nth-child(4n+1):last-child img{aspect-ratio:16/9}
+.soort{text-decoration:none;text-align:center;display:block}
+.soort img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 38%}
+.soort h3{font-size:1.5rem;margin:1.1rem 0 .5rem}
+.meer{
+  font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--goud-diep);
+  display:inline-flex;gap:.45rem;
+}
+.meer i{font-style:normal;transition:transform .25s}
+.soort:hover .meer i{transform:translateX(4px)}
+.soort:hover img{opacity:.92}
+/* twee knoppen sinds 18-10-2026 (prijzen en smaken), dus flex met een gat
+   ertussen; op een smal scherm vallen ze onder elkaar */
+.assortiment-prijzen{
+  max-width:var(--maxw);margin:clamp(1.6rem,3vw,2.4rem) auto 0;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem 1rem;
+}
+
+/* ---------- assortimentspagina ---------- */
+/* De kop van een losse soortpagina is dezelfde gesplitste opener als op de
+   homepage, alleen lager: er staat hier een galerij onder die je wilt zien. */
+.hero-blad{min-height:min(calc(78svh - var(--koph)),580px)}
+.hero-blad .hero-tekst{text-align:left;align-items:flex-start}
+.hero-blad .hero-lead{max-width:40ch}
+.hero-blad .hero-foto img{object-position:50% 40%}
+.knop-lijn{border:1px solid transparent;color:var(--goud-diep)}
+.knop-lijn:hover{background:var(--zand)}
+.hero-knoppen{display:flex;flex-wrap:wrap;gap:.7rem}
+.kruimel{
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 1.2rem;
+}
+.kruimel a{text-decoration:none;color:var(--muted)}
+.kruimel a:hover{color:var(--goud-diep)}
+.kruimel b{font-weight:400;color:var(--goud-diep)}
+.kruimel span{margin:0 .3rem;color:var(--goud-diep)}
+
+.kenmerken{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.4rem,3vw,3rem);
+  max-width:var(--maxw);margin:0 auto;
+  padding:clamp(2.4rem,4.5vw,3.6rem) clamp(1.2rem,4vw,3rem);
+}
+.kenmerk{border-top:1px solid var(--goud-rand-zacht);padding-top:1.1rem}
+.kenmerk h3{font-size:1.35rem;margin-bottom:.5rem}
+.kenmerk p{color:var(--muted);font-size:.94rem;margin:0}
+
+/* ---------- prijzen ----------
+   Erbij gekomen 18-10-2026, toen Anka haar prijslijst stuurde. Een bedrag is
+   het enige cijfer op deze pagina's, dus het mag de serif en de diepe goudtint
+   hebben; de eenheid en de voorwaarde eronder blijven klein en rustig, want
+   "per kg" is geen nieuws. Geen kader eromheen: de haarlijn boven elke regel
+   doet hetzelfde werk als bij .kenmerk en houdt de pagina licht. */
+.prijsblok{
+  max-width:var(--maxw);margin:0 auto;
+  padding:0 clamp(1.2rem,4vw,3rem) clamp(1.4rem,3vw,2.2rem);
+  display:flex;flex-direction:column;align-items:flex-start;gap:1.2rem;
+}
+.prijslijst{list-style:none;margin:0;padding:0;width:100%;display:grid;gap:.1rem}
+.prijslijst li{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  align-items:baseline;gap:.4rem 1.2rem;
+  border-top:1px solid var(--goud-rand-zacht);padding:.85rem 0;
+}
+.prijs-wat{font-family:var(--serif);font-size:1.2rem;color:var(--ink)}
+.prijs-bedrag{
+  font-family:var(--serif);font-size:1.2rem;color:var(--goud-diep);
+  justify-self:end;text-align:right;
+}
+/* "per kg" hoeft niet even zwaar te wegen als het bedrag ervoor */
+.prijs-bedrag i{font-style:normal;font-size:.82rem;color:var(--muted)}
+.prijs-noot{
+  grid-column:1/-1;font-size:.82rem;color:var(--muted);
+}
+/* een regel zonder eigen omschrijving (de pagina is de omschrijving) zet het
+   bedrag gewoon links, anders hangt het aan een lege kolom */
+.prijslijst li:has(.prijs-bedrag:first-child) .prijs-bedrag{justify-self:start;text-align:left}
+
+.groep-prijs{
+  margin:1rem 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .7rem;
+  font-family:var(--serif);font-size:1.15rem;color:var(--goud-diep);
+}
+.groep-prijs i{font-style:normal;font-family:var(--sans);font-size:.78rem;color:var(--muted)}
+.groep-prijs span i{font-size:.8rem;color:var(--muted)}
+
+/* de prijspagina: dezelfde regels, maar per soort gegroepeerd */
+.hero-prijzen{grid-template-columns:1fr;min-height:0}
+.hero-prijzen .hero-tekst{max-width:var(--maxw);margin:0 auto;width:100%;padding-bottom:clamp(1.6rem,4vw,2.6rem)}
+/* Kolommen en geen grid: de soorten hebben heel verschillende lengtes (taarten
+   vier regels, macarons een) en in een grid trekt de langste van een rij de
+   hele rij hoog, met een gat onder de korte ernaast. Multi-column stapelt ze
+   wel strak op elkaar. break-inside houdt een soort bij elkaar. */
+.prijstabel{
+  max-width:var(--maxw);margin:0 auto;
+  padding:clamp(1.6rem,4vw,2.8rem) clamp(1.2rem,4vw,3rem);
+  columns:2;column-gap:clamp(1.8rem,4vw,3.4rem);
+}
+.prijsgroep{break-inside:avoid;margin-bottom:clamp(1.6rem,3vw,2.4rem)}
+.prijsgroep h2{font-size:clamp(1.5rem,2.6vw,2rem);margin-bottom:.2rem}
+.prijsgroep h2 a{text-decoration:none;color:inherit}
+.prijsgroep h2 a:hover{color:var(--goud-diep)}
+
+/* de prijsblokken op een soortpagina dragen sinds 18-10-2026 twee knoppen */
+.prijsblok-knoppen{display:flex;flex-wrap:wrap;gap:.8rem 1rem}
+
+/* ---------- smaken ----------
+   Haar smaakkaart van 18-10-2026. Twee kolommen zoals op haar eigen kaart, met
+   het nummer in goud ervoor. Multi-column en geen grid, om dezelfde reden als
+   bij de prijstabel: de namen zijn ongelijk lang en in een grid trekt de
+   langste de hele rij uit elkaar. Het nummer is aria-hidden - een schermlezer
+   hoort al dat het een genummerde lijst is, en "01 Chocolade en vanille" twee
+   keer tellen helpt niemand. */
+.smaaklijst{
+  max-width:var(--maxw);margin:0 auto;
+  /* de onderruimte kwam tot 18-10-2026 uit de noot die hieronder stond; die is
+     weg, en zonder eigen padding raakte "Andere smaken in overleg" de donkere
+     oproepband. Die lucht hoort dus hier en niet in een tekstregel */
+  padding:clamp(1.6rem,4vw,2.8rem) clamp(1.2rem,4vw,3rem) clamp(2.2rem,5vw,3.4rem);
+}
+.smaken{
+  list-style:none;margin:0;padding:0;
+  columns:2;column-gap:clamp(1.8rem,4vw,3.4rem);
+}
+.smaken li{
+  break-inside:avoid;
+  display:flex;align-items:baseline;gap:.9rem;
+  border-top:1px solid var(--goud-rand-zacht);padding:.8rem 0;
+}
+.smaak-nr{
+  font-family:var(--sans);font-size:.78rem;letter-spacing:.08em;
+  color:var(--goud-diep);flex:0 0 auto;
+}
+.smaak-naam{font-family:var(--serif);font-size:1.2rem;color:var(--ink)}
+/* haar twintigste regel is geen smaak maar de open deur, dus geen nummer en
+   geen plek in de lijst */
+.smaak-overleg{
+  margin:clamp(1.2rem,2.4vw,1.8rem) 0 0;
+  border-top:1px solid var(--goud-rand-zacht);padding-top:.9rem;
+  font-family:var(--serif);font-size:1.2rem;color:var(--goud-diep);
+}
+
+/* ---------- algemene voorwaarden ----------
+   Haar document van 18-10-2026. Een kolom en geen twee: dit is de enige pagina
+   van de site die van boven naar beneden gelezen wordt in plaats van bekeken,
+   en multi-column zoals bij de prijzen en de smaken zou een artikel midden in
+   een zin naar de volgende kolom gooien. 68ch is de regellengte waarop lange
+   zinnen nog te volgen zijn; de rest van de breedte blijft lucht. */
+.voorwaarden{
+  max-width:var(--maxw);margin:0 auto;
+  /* de zijmarge is letterlijk die van .hero-tekst en geen eigen clamp die er
+     dichtbij ligt: bij een eigen waarde stond de kolom op 1440 tien pixels en
+     op een telefoon drie pixels naast de hero erboven (gemeten) */
+  padding:clamp(1.8rem,4vw,3rem) clamp(1.4rem,4vw,4rem) clamp(2.4rem,5vw,3.6rem);
+}
+/* De leeskolom is smal, maar hij hangt aan de linkermarge en staat niet in het
+   midden: de hero erboven en de kop van de site lijnen links uit op dezelfde
+   marge, en een gecentreerde kolom eronder springt daar op een breed scherm
+   zichtbaar vanaf (gemeten: 127px verschil op 1440). */
+.vw-art,.vw-bindend{max-width:68ch}
+.vw-art{margin-bottom:clamp(1.8rem,3.4vw,2.6rem)}
+.vw-art h2{
+  display:flex;align-items:baseline;gap:.7rem;
+  font-size:clamp(1.3rem,2.2vw,1.7rem);margin-bottom:.7rem;
+  border-top:1px solid var(--goud-rand-zacht);padding-top:1rem;
+}
+.vw-nr{font-family:var(--sans);font-size:.78rem;letter-spacing:.08em;color:var(--goud-diep);flex:0 0 auto}
+.vw-art h3{
+  font-family:var(--sans);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--goud-diep);margin:1.2rem 0 .6rem;
+}
+.vw-punten,.vw-streep{margin:0;padding-left:1.4rem;color:var(--ink)}
+.vw-punten li,.vw-streep li{margin-bottom:.5rem;line-height:1.65}
+.vw-streep{list-style:none;padding-left:0}
+/* een gouden streepje in plaats van een bolletje: de bullet van haar document,
+   in de vorm die de rest van de site al gebruikt */
+.vw-streep li{position:relative;padding-left:1.2rem}
+.vw-streep li::before{
+  content:"";position:absolute;left:0;top:.72em;
+  width:.6rem;height:1px;background:var(--goud);
+}
+.vw-tekst{margin:0;color:var(--ink);line-height:1.65}
+/* de wettelijke uitsluiting in artikel 7 weegt zwaarder dan de regels eronder,
+   want die bepaalt of de staffel daaronder uberhaupt aan de orde is */
+.vw-noot{
+  margin:0 0 1rem;padding:.8rem 1rem;line-height:1.6;
+  background:var(--creme-2);border-left:2px solid var(--goud);color:var(--ink);
+}
+.vw-gegevens{margin:0;display:grid;gap:.3rem}
+.vw-gegevens div{display:grid;grid-template-columns:13rem 1fr;gap:.2rem 1rem}
+.vw-gegevens dt{
+  font-family:var(--sans);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);padding-top:.2rem;
+}
+.vw-gegevens dd{margin:0;color:var(--ink)}
+.vw-gegevens a{color:var(--goud-diep)}
+/* naam, straat en postcode staan onder elkaar als adres en dragen geen label */
+.vw-adres{
+  font-style:normal;font-family:var(--serif);font-size:1.15rem;
+  line-height:1.5;color:var(--ink);margin:0 0 1rem;
+}
+.vw-bindend{
+  margin:clamp(1.4rem,3vw,2.2rem) 0 0;border-top:1px solid var(--goud-rand-zacht);
+  padding-top:1rem;font-size:.82rem;color:var(--muted);
+}
+.voet-vw a{color:inherit}
+
+.groep{padding:clamp(2.2rem,4.5vw,3.6rem) clamp(1.2rem,4vw,3rem)}
+.groep-gevuld{background:var(--creme-2)}
+.groep-kop{max-width:var(--maxw);margin:0 auto clamp(1.4rem,3vw,2.2rem)}
+.groep-kop h2{font-size:clamp(1.9rem,3.2vw,2.6rem)}
+.groep-kop p{color:var(--muted);max-width:60ch;margin:0}
+.groep-kop .lijntje{margin:1rem 0 1.1rem}
+
+.galerij{
+  max-width:var(--maxw);margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.6rem,1.4vw,1.2rem);
+}
+/* met twee of drie fotos ziet een vierkolomsraster er kaal uit */
+.galerij:has(.tegel:nth-child(3):last-child){grid-template-columns:repeat(3,1fr)}
+.galerij:has(.tegel:nth-child(2):last-child){grid-template-columns:repeat(2,1fr)}
+.tegel{margin:0;position:relative;cursor:zoom-in;overflow:hidden;background:var(--zand)}
+.tegel img{
+  width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;
+  transition:transform .5s ease;
+}
+.tegel:hover img,.tegel:focus-visible img{transform:scale(1.04)}
+.tegel:focus-visible{outline:2px solid var(--goud-diep);outline-offset:2px}
+.tegel figcaption{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:1.6rem .8rem .7rem;font-size:.78rem;color:var(--creme-op-cacao);
+  background:linear-gradient(transparent,rgba(36,31,26,.78));
+  opacity:0;transition:opacity .3s ease;
+}
+.tegel:hover figcaption,.tegel:focus-visible figcaption{opacity:1}
+.galerijnoot{
+  text-align:center;font-size:.76rem;letter-spacing:.06em;color:var(--muted);
+  margin:0;padding:1.6rem 1rem 0;
+}
+
+.verwant{padding:clamp(2.4rem,5vw,4rem) clamp(1.2rem,4vw,3rem)}
+.verwant .bovenregel{text-align:center}
+/* zes andere soorten naast de pagina waar je op staat: drie kolommen deelt dat
+   netjes in twee rijen, vier zou 4+2 geven */
+.verwant .soorten{grid-template-columns:repeat(3,1fr)}
+/* de homepage laat een alleen achterblijvende tegel over de volle breedte
+   lopen; hier deelt het aantal wel op, dus die uitzondering moet er weer af */
+.verwant .soort:last-child{grid-column:auto}
+.verwant .soort:last-child img{aspect-ratio:4/5}
+
+/* ---------- grote fotoweergave ---------- */
+/* Achtergrond helemaal dicht: met een doorzichtig vlak schemerde de galerij
+   eronder tijdens het vegen door de foto heen. */
+.lightbox{position:fixed;inset:0;z-index:60;background:var(--cacao-2)}
+.lightbox[hidden]{display:none}
+.lb-track{
+  position:absolute;inset:0;display:flex;
+  overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.lb-track::-webkit-scrollbar{display:none}
+.lb-slide{
+  flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always;
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(2.6rem,7vh,4rem) clamp(.5rem,4vw,4.5rem) clamp(3.6rem,9vh,5rem);
+  opacity:.35;transition:opacity .3s ease;
+}
+.lb-slide.is-nu{opacity:1}
+.lb-slide img{
+  max-width:100%;max-height:100%;width:auto;height:auto;
+  object-fit:contain;margin:auto;box-shadow:0 18px 50px rgba(0,0,0,.45);
+}
+/* nog niet geladen dia laat niets zien in plaats van een regel alt-tekst */
+.lb-slide img:not([src]){visibility:hidden}
+.lb-bar{
+  position:absolute;left:0;right:0;bottom:0;padding:.9rem 1rem 1.3rem;
+  text-align:center;pointer-events:none;
+  background:linear-gradient(transparent,rgba(36,31,26,.8) 40%);
+}
+#lb-caption{color:var(--creme-op-cacao);font-size:.85rem;letter-spacing:.06em;margin:0}
+.lb-teller{
+  margin:.45rem 0 0;font-size:.68rem;letter-spacing:.18em;
+  color:var(--goud-op-cacao);font-variant-numeric:tabular-nums;
+}
+.lightbox button{
+  background:none;border:0;color:var(--creme-op-cacao);cursor:pointer;
+  font-size:2.5rem;line-height:1;opacity:.7;transition:opacity .2s;padding:.5rem 1rem;
+}
+.lightbox button:hover{opacity:1}
+.lb-close{position:absolute;top:.6rem;right:1rem;font-size:2.2rem;z-index:2}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);z-index:2}
+.lb-prev{left:.2rem}
+.lb-next{right:.2rem}
+/* pagina eronder staat stil zolang de grote weergave open is */
+html.lb-open,body.lb-vast{overflow:hidden}
+body.lb-vast .dock{opacity:0;pointer-events:none}
+
+/* ---------- over mij ---------- */
+.over{
+  position:relative;background:var(--zand);
+  display:grid;grid-template-columns:minmax(0,42fr) minmax(0,33fr) minmax(0,25fr);
+  align-items:center;gap:clamp(1.5rem,4vw,3.5rem);
+  padding:clamp(2.5rem,5vw,4.5rem) clamp(1.4rem,5vw,4.5rem);
+}
+.over-tekst h2{font-size:clamp(2.2rem,3.6vw,3rem)}
+.lijntje{display:block;width:58px;height:1px;background:var(--goud-verloop-licht);margin:1.1rem 0 1.5rem}
+.over-tekst p{color:var(--muted);max-width:46ch}
+.over-onder{display:flex;align-items:center;gap:1.8rem;flex-wrap:wrap;margin-top:1.6rem}
+.handtekening{font-size:2.2rem;margin:0}
+.over-foto{position:relative}
+.over-foto img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+/* gouden kaderlijn die uit de foto steekt - decoratie, geen tekst.
+   Geen z-index:-1: .over maakt geen eigen stapelcontext, dus het kader zou
+   achter de achtergrond van de sectie verdwijnen in plaats van erachter de foto. */
+.over-foto::after{
+  content:"";position:absolute;inset:14px -14px -14px 14px;
+  border:1px solid var(--goud-rand);pointer-events:none;
+}
+.over-schrift{
+  margin:0;font-size:clamp(1.6rem,2.6vw,2.4rem);text-align:center;color:var(--goud-diep);
+}
+
+/* ---------- atelier ----------
+   De fotoshoot van oktober 2026. Een brede plaat van het kookeiland en daar
+   vijf verticale stills onder, in hetzelfde ritme als .strook zodat de twee
+   banden onder elkaar als een geheel lezen en niet als twee galerijen. */
+.atelier{
+  background:var(--creme-2);
+  padding:clamp(2.5rem,5vw,4rem) clamp(1.2rem,4vw,3rem);
+}
+.atelier-kop{max-width:var(--maxw);margin:0 auto 1.8rem}
+.atelier-kop h2{font-size:clamp(2rem,3.4vw,2.8rem)}
+.atelier-kop p:last-child{color:var(--muted);max-width:56ch}
+.atelier-breed{margin:0 auto;max-width:var(--maxw)}
+.atelier-breed img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;display:block}
+.atelier-raster{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  max-width:var(--maxw);margin:0 auto;
+}
+.atelier-raster img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;display:block}
+
+/* ---------- strook ---------- */
+.strook{display:grid;grid-template-columns:repeat(5,1fr)}
+.strook img{width:100%;height:auto;aspect-ratio:1;object-fit:cover}
+
+/* ---------- oproep ----------
+   Het enige donkere vlak van de pagina, en precies de cacaohelft van de
+   huisstijl: gouden monogram, script in het lichte goud, gouden knop. */
+.oproep{
+  background:var(--cacao);color:var(--creme-op-cacao);
+  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1.4rem;
+  padding:clamp(2.4rem,4.5vw,3.6rem) clamp(1.2rem,4vw,3rem);
+}
+.oproep-merk{width:64px;height:64px;flex:none}
+.oproep .schrift{
+  font-size:clamp(1.5rem,2.6vw,2.2rem);margin:0;text-align:center;
+  color:var(--goud-op-cacao);
+}
+.oproep .hartje{font-size:1.5rem;color:var(--goud-licht)}
+/* deze knop IS het goud, dus geen gouden randje eromheen */
+.oproep .knop-vol{background:var(--goud-licht);color:var(--cacao)}
+.oproep .knop-vol:hover{background:var(--goud-op-cacao)}
+.oproep .knop-vol::after{display:none}
+
+/* ---------- aanvraag ---------- */
+.aanvraag{
+  max-width:var(--maxw);margin:0 auto;
+  padding:clamp(3rem,6vw,5.5rem) clamp(1.2rem,4vw,3rem);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+  gap:clamp(2rem,5vw,4rem);align-items:start;
+}
+.aanvraag h2{font-size:clamp(2rem,3.4vw,2.8rem);margin-bottom:1rem}
+.aanvraag-lead{color:var(--muted)}
+.direct{display:flex;flex-wrap:wrap;gap:.5rem .8rem;align-items:center;margin-top:1.6rem}
+.direct a{color:var(--goud-diep);text-decoration:none;border-bottom:1px solid var(--goud-rand)}
+.direct a:hover{border-bottom-color:var(--goud)}
+.direct span{color:var(--goud-diep)}
+.aanvraag form{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;
+  background:#fff;padding:clamp(1.4rem,3.5vw,2.4rem);
+  border:1px solid var(--goud-rand-zacht);
+}
+.veld{display:flex;flex-direction:column;gap:.4rem}
+.veld-breed{grid-column:1/-1}
+.veld label{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.veld input,.veld select,.veld textarea{
+  font-family:var(--sans);font-size:1rem;font-weight:300;color:var(--ink);
+  border:0;border-bottom:1px solid rgba(47,40,35,.2);background:none;
+  padding:.55rem .2rem;resize:vertical;
+}
+.veld input:focus,.veld select:focus,.veld textarea:focus{outline:none;border-color:var(--goud)}
+.veld input[type=file]{font-size:.85rem;border:0;padding-left:0}
+.aanvraag form .knop{grid-column:1/-1;justify-self:start;cursor:pointer}
+.vormnoot{grid-column:1/-1;margin:0;font-size:.76rem;color:var(--muted)}
+
+/* ---------- voet ---------- */
+.voet{
+  background:var(--creme-2);border-top:1px solid var(--goud-rand-zacht);
+  padding:clamp(2.5rem,5vw,4rem) clamp(1.2rem,4vw,3rem) 2rem;
+  display:grid;grid-template-columns:auto 1fr auto;gap:clamp(1.5rem,4vw,3rem);
+  align-items:center;
+}
+.voet-merk{display:flex;align-items:center;gap:1rem}
+.voet-merk img{width:clamp(190px,20vw,240px);height:auto}
+.voet-gegevens{font-size:.92rem;color:var(--muted);text-align:center}
+.voet-gegevens p{margin:.2rem 0}
+.voet-gegevens b{color:var(--ink);font-weight:400}
+.voet-gegevens a{color:var(--goud-diep);text-decoration:none}
+.voet-gegevens a:hover{text-decoration:underline}
+.voet-volg{text-align:center}
+.voet-volg p{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
+.voet-iconen{display:flex;gap:.6rem;justify-content:center}
+.voet-slot{
+  grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:1rem;
+  margin:2rem 0 0;font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--goud-diep);
+}
+.voet-slot i{display:block;width:clamp(30px,10vw,120px);height:1px;background:var(--goud-verloop-licht)}
+
+/* ---------- meelopende knoppen ---------- */
+.dock{
+  position:fixed;right:clamp(1rem,3vw,2.2rem);bottom:clamp(1rem,3vw,2.2rem);
+  z-index:50;display:flex;align-items:center;gap:.7rem;
+  opacity:0;transform:translateY(16px);pointer-events:none;
+  transition:opacity .3s ease,transform .3s ease;
+}
+.dock.is-uit{opacity:1;transform:none;pointer-events:auto}
+.dock a{text-decoration:none;display:grid;place-items:center}
+.dock-wa{
+  width:54px;height:54px;flex:none;border-radius:50%;background:#25D366;
+  box-shadow:0 10px 28px rgba(36,31,26,.3);transition:transform .2s;
+}
+.dock-wa:hover{transform:translateY(-2px)}
+.dock-wa svg{width:27px;height:27px;fill:#fff;display:block}
+.dock-cta{
+  background:var(--cacao);color:var(--creme);border:1px solid transparent;
+  padding:1rem 1.7rem;border-radius:100px;
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;
+  box-shadow:0 10px 30px rgba(36,31,26,.3);transition:background .25s;
+}
+.dock-cta:hover{background:var(--goud-diep)}
+
+/* ---------- responsive ---------- */
+/* Zeven menu-items passen op 1440 nog ruim in de wijde zetting, maar op 1320
+   niet meer: dan breken ze in twee regels. Het krappe menu begon tot
+   18-10-2026 pas op 1100 en dat gat ertussen is precies een laptopscherm.
+   Apart van het blok hieronder, want de rest daarvan (kolommen, raster) hoort
+   niet op 1400 al om te klappen. */
+@media (max-width:1400px){
+  .menu{gap:1rem}
+  .menu a{font-size:.68rem;letter-spacing:.1em}
+}
+@media (max-width:1100px){
+  .merk img{height:50px}
+  .waarden{grid-template-columns:repeat(2,1fr);gap:1rem 1.5rem}
+  .soorten{grid-template-columns:repeat(3,1fr)}
+  .assortiment .soorten>.soort:nth-child(4n+1):last-child{grid-column:auto}
+  .assortiment .soorten>.soort:nth-child(4n+1):last-child img{aspect-ratio:4/5}
+  .assortiment .soorten>.soort:nth-child(3n+1):last-child{grid-column:1/-1}
+  .assortiment .soorten>.soort:nth-child(3n+1):last-child img{aspect-ratio:16/9}
+  .over{grid-template-columns:minmax(0,1fr) minmax(0,1fr);row-gap:2rem}
+  .over-schrift{grid-column:1/-1}
+  .verwant .soorten{grid-template-columns:repeat(3,1fr)}
+}
+/* ---------- wanneer het menu een knop wordt ----------
+   Stond tot 18-10-2026 op 860, en dat was te laat. De kop is een flexrij
+   zonder wrap: past het menu niet meer, dan breken de items in twee regels en
+   duwen ze de kop breder dan het scherm. Op 900 px was de pagina daardoor
+   opzij te slepen (scrollWidth 990 op een venster van 900) - met zes items al,
+   dus dat zat er langer in. Het is nooit gemeten omdat check.mjs maar twee
+   breedtes kende, 1440 en 390, en daar zit dit gat precies tussenin.
+
+   Met Smaken erbij (zeven items) begint het breken bij 1280, dus de grens gaat
+   mee omhoog. Hij staat op 1200 en niet op "net genoeg": het Engelse menu is
+   breder dan het Nederlandse, en de volgende keer dat er een item bij komt is
+   deze regel degene die het opvangt. kop-breedte.mjs meet het na.
+
+   De offerteknop blijft hier wel staan - met het menu achter een knop is er
+   ruimte zat; die verdwijnt pas op 860, waar hij echt niet meer past. */
+@media (max-width:1200px){
+  .menu{
+    position:absolute;top:100%;left:0;right:0;
+    display:none;flex-direction:column;align-items:flex-start;gap:1.3rem;
+    background:var(--creme);padding:1.8rem 1.4rem;
+    border-bottom:1px solid var(--goud-rand-zacht);
+    box-shadow:0 18px 30px rgba(36,31,26,.14);
+  }
+  .kop.is-open .menu{display:flex}
+  .menu-knop{display:block;order:3}
+}
+@media (max-width:860px){
+  :root{--koph:66px}
+  .kop{padding:.7rem 1rem;gap:.8rem}
+  .merk img{height:44px}
+  .kop-cta{display:none}
+  .kop-rechts{gap:.5rem;margin-left:auto}
+  .hero{grid-template-columns:1fr}
+  .hero-foto{order:-1;min-height:min(54vh,420px)}
+  .hero-tekst{padding-top:2.5rem}
+  .strook{grid-template-columns:repeat(3,1fr)}
+  .strook img:nth-child(4),.strook img:nth-child(5){display:none}
+  /* vijf verticale stills naast elkaar worden postzegels op een telefoon;
+     twee kolommen van vier, de vijfde valt af (de minst vertellende). */
+  .atelier-raster{grid-template-columns:repeat(2,1fr)}
+  .atelier-raster img:nth-child(5){display:none}
+  .aanvraag{grid-template-columns:1fr}
+  .prijstabel{columns:1}
+  .voet{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .voet-merk{flex-direction:column;gap:.6rem}
+  .hero-blad{min-height:0}
+  .hero-blad .hero-foto{min-height:min(46vh,360px)}
+  .kenmerken{grid-template-columns:1fr;gap:1.4rem}
+  .galerij,.galerij:has(.tegel:nth-child(3):last-child){grid-template-columns:repeat(3,1fr)}
+  .verwant .soorten{grid-template-columns:repeat(2,1fr)}
+  /* op de telefoon veeg je door de fotos, dan zijn de pijlen alleen maar in de weg */
+  .lb-prev,.lb-next{display:none}
+  .lb-slide{flex-basis:88%;padding-left:.3rem;padding-right:.3rem}
+}
+@media (max-width:620px){
+  body{font-size:16px}
+  .merk img{height:40px}
+  .soorten{grid-template-columns:repeat(2,1fr);gap:.8rem}
+  .assortiment .soorten>.soort:nth-child(2n+1):last-child{grid-column:1/-1}
+  .assortiment .soorten>.soort:nth-child(2n+1):last-child img{aspect-ratio:16/9}
+  .prijslijst li{grid-template-columns:1fr;gap:.15rem}
+  .prijs-bedrag{justify-self:start;text-align:left}
+  /* "Witte chocolade en framboos" in een kolom van 150 px breekt in drieen */
+  .smaken{columns:1}
+  /* een label van 13 rem naast de waarde laat op een telefoon 4 tekens over
+     voor "NL005463751B76"; onder elkaar dus */
+  .vw-gegevens div{grid-template-columns:1fr}
+  .vw-gegevens dt{padding-top:.4rem}
+  .waarden{grid-template-columns:1fr;gap:.8rem;padding-top:2rem}
+  .waarde{justify-content:flex-start}
+  .over{grid-template-columns:1fr;padding-top:2.5rem}
+  .over-foto{max-width:320px}
+  .over-foto::after{inset:10px -10px -10px 10px}
+  .strook{grid-template-columns:repeat(2,1fr)}
+  .strook img:nth-child(3){display:none}
+  .aanvraag form{grid-template-columns:1fr}
+  .galerij,
+  .galerij:has(.tegel:nth-child(3):last-child),
+  .galerij:has(.tegel:nth-child(2):last-child){grid-template-columns:repeat(2,1fr);gap:.5rem}
+  /* zonder aanwijsapparaat komt het bijschrift nooit tevoorschijn, dus laat het staan */
+  .tegel figcaption{opacity:1;font-size:.72rem;padding:1.4rem .6rem .55rem}
+  .hero-blad .hero-tekst{padding-top:2rem}
+  .hero-knoppen .knop{padding:.95rem 1.5rem}
+  .oproep-merk{width:52px;height:52px}
+  .dock{left:.8rem;right:.8rem;bottom:.8rem;gap:.6rem}
+  .dock-wa{width:50px;height:50px}
+  .dock-cta{flex:1;padding:.95rem 1rem;font-size:.7rem;text-align:center}
+}
+/* Op 320 breed paste de kop zelf niet: merk + taalkiezer + twee iconen +
+   menuknop maten samen 334 px. De pagina was daardoor opzij te slepen, op elke
+   pagina en in beide talen. Stond er al voor de fotoshoot van 10-10-2026; bij
+   het nameten op 320 kwam het boven. Op 360 en 390 was en is het goed. */
+@media (max-width:360px){
+  .kop{padding-left:.7rem;padding-right:.7rem;gap:.5rem}
+  .merk img{height:34px}
+  .kop-rechts{gap:.4rem}
+  /* input[type=date] en de keuzelijst dragen hun eigen minimumbreedte mee. In
+     een grid duwt die de kolom breder dan het scherm, en dan loopt de hele
+     pagina mee naar buiten - ook de kop erboven, die zelf prima paste. */
+  .aanvraag{grid-template-columns:minmax(0,1fr)}
+  .veld input,.veld select,.veld textarea{min-width:0;width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+
+/* ---------- heel smalle telefoons (320 px) ----------
+   Op 18-10-2026 kwam er een derde taalknop bij (EN naast NL en RO) en daarmee
+   stak de menuknop 19 px buiten beeld: de pagina was op een iPhone SE opzij te
+   slepen, op elke pagina en in elke taal. De kop is de enige plek waar dat
+   speelt, dus daar wordt ruimte gemaakt in plaats van overal.
+   De sociale rondjes gaan eruit: ze staan ook in de voet, en op 320 px hoort
+   in de kop alleen wat je daar nodig hebt - het merk, de taal en het menu.
+   De WhatsApp-knop blijft sowieso altijd zichtbaar in de zwevende balk. */
+@media (max-width:380px){
+  .kop .sociaal{display:none}
+  .kop-rechts{gap:.35rem}
+}
+
+/* ---------- formulier: lokvink en meldingen ----------
+   Nieuw bij de verhuizing naar jiw-websites. Het formulier verstuurt sinds toen
+   echt (POST naar /api/forms/aanvraag) in plaats van een WhatsApp-bericht op te
+   stellen, en dat brengt twee dingen mee die er niet waren: een lokvink tegen
+   bots en een regel waarin het antwoord van de server komt te staan. */
+
+/* Het lokvinkveld. Niet display:none en niet hidden: een deel van de bots kijkt
+   daarop en slaat het veld dan juist over. Dit staat buiten het scherm, buiten
+   de tabvolgorde (tabindex=-1 in de html) en buiten het voorleesprogramma
+   (aria-hidden), maar het bestaat wel voor wie het formulier leest zoals een
+   bot dat doet. */
+.lokvink{
+  position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+}
+
+/* De regel met het antwoord. Hij staat er altijd (leeg), want hij is
+   aria-live: een vak dat pas bij het antwoord wordt toegevoegd wordt door een
+   voorleesprogramma niet opgemerkt. Leeg heeft hij geen marge, zodat hij geen
+   gat onder de knop laat zolang er niets te melden is. */
+.form-melding{
+  grid-column:1/-1;margin:0;font-size:15px;line-height:1.6;
+}
+.form-melding:empty{display:none}
+.form-melding.is-goed{
+  font-family:var(--serif);font-size:20px;color:var(--goud-diep);
+  border-top:1px solid var(--goud-rand-zacht);padding-top:18px;margin-top:4px;
+}
+/* Rood is de enige kleur op deze site die niet uit haar huisstijl komt. Dat is
+   hier juist de bedoeling: een mislukte verzending moet niet wegvallen in het
+   goud. #9B2226 haalt 6,4:1 op creme. */
+.form-melding.is-mis{
+  color:#9B2226;border-top:1px solid rgba(155,34,38,.3);padding-top:18px;margin-top:4px;
+}

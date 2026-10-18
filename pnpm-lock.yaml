@@ -3359,6 +3359,25 @@ importers:
         specifier: ^4.0.0
         version: 4.85.0(@cloudflare/workers-types@4.20260424.1)
 
+  apps/velvet-cakes-by-anka:
+    dependencies:
+      '@jiw/cloudflare-forms':
+        specifier: workspace:*
+        version: link:../../packages/cloudflare-forms
+    devDependencies:
+      '@cloudflare/workers-types':
+        specifier: ^4.20260424.1
+        version: 4.20260424.1
+      playwright:
+        specifier: ^1.62.1
+        version: 1.62.1
+      sharp:
+        specifier: ^0.35.4
+        version: 0.35.5(@types/node@22.19.17)
+      typescript:
+        specifier: ~5.8.2
+        version: 5.8.3
+
   apps/veronica-nail-art:
     dependencies:
       '@tailwindcss/vite':

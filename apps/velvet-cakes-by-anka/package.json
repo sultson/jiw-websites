@@ -1,0 +1,25 @@
+{
+  "name": "@jiw/velvet-cakes-by-anka",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/gen-mail-logo.mjs && node bouw.mjs --prod && node tools/vooraf.mjs",
+    "build:concept": "node tools/gen-mail-logo.mjs && node bouw.mjs && node tools/vooraf.mjs --concept",
+    "dev": "pnpm build && wrangler dev --port=3074",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "lint": "tsc --noEmit -p tsconfig.worker.json",
+    "tegenproef": "node tools/tegenproef.mjs",
+    "keur": "node tools/keur.mjs"
+  },
+  "dependencies": {
+    "@jiw/cloudflare-forms": "workspace:*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "playwright": "^1.62.1",
+    "sharp": "^0.35.4",
+    "typescript": "~5.8.2"
+  }
+}

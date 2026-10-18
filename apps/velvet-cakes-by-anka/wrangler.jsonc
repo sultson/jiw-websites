@@ -1,0 +1,86 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "velvet-cakes-by-anka",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // De adressen van de site zijn zonder .html (/taarten, niet /taarten.html) en
+    // de twee niet-Nederlandse talen staan onder een map die op een slash eindigt
+    // (/en/, /ro/). Dat is precies wat elke canonical, elke hreflang en elke
+    // sitemap-regel hier zegt, dus "auto-trailing-slash" laat /taarten een 200
+    // geven en /en/ ook, zonder dat er twee vormen van hetzelfde adres blijven
+    // staan.
+    "html_handling": "auto-trailing-slash",
+    // Een onbekend pad krijgt dist/404.html MET status 404, niet de startpagina
+    // met een 200 - dat tweede leest Google als een soft 404.
+    "not_found_handling": "404-page",
+    // Alleen het formulier en de omleidingen gaan door de worker. Alle 31
+    // pagina's komen rechtstreeks van de edge zonder worker ertussen; dat is het
+    // hele punt van een statische site.
+    "run_worker_first": ["/api/*", "/*.html"]
+  },
+  // Twee hostnamen, en maar een ervan levert pagina's uit.
+  //
+  // velvetcakesbyanka.nl is de canonieke. Dit domein heeft geen geschiedenis -
+  // er stond nooit een site op, alleen haar Purelymail-mailbox - dus geldt de
+  // huisregel uit de root CLAUDE.md: apex canoniek, www ernaartoe. Dat is
+  // andersom dan bij framemedia, waar www al jaren uitgeleverd werd.
+  //
+  // www hangt er wel aan, met een Redirect Rule op de zone die hem met een 301
+  // naar de apex stuurt (pad en query intact). Dynamic Redirects lopen voor
+  // Workers, dus de worker wordt daar niet aangeroepen. www blijft als custom
+  // domain gebonden en wordt geen losse DNS-regel: wordt die rule ooit
+  // weggehaald, dan levert www de site uit in plaats van een foutmelding -
+  // dubbele inhoud is een betere dag dan een storing.
+  "routes": [
+    {
+      "pattern": "velvetcakesbyanka.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.velvetcakesbyanka.nl",
+      "custom_domain": true
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["no-reply@notify.velvetcakesbyanka.nl"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "velvet-cakes-by-anka",
+    // Aanvragen komen bij ons binnen en niet bij Anka. Dat is bewust: dit is de
+    // eerste dag dat dit formulier bestaat en de bevestiging die de bezoeker
+    // terugkrijgt draagt dit adres als reply-to. Zet dit om naar haar eigen
+    // info@velvetcakesbyanka.nl zodra zij zegt dat de aanvragen bij haar mogen
+    // binnenkomen - dan verhuist ook contactEmail in worker/confirmation.ts mee.
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // Het verzenddomein notify.velvetcakesbyanka.nl staat op de zone
+    // velvetcakesbyanka.nl (DKIM, SPF en een p=reject DMARC op cf-bounce.notify.*
+    // en _dmarc.notify.*). Het stond er al voor deze verhuizing. LET OP: die
+    // records hangen aan cf-bounce.notify.velvetcakesbyanka.nl, niet aan
+    // notify.velvetcakesbyanka.nl - een dns-controle op dat tweede adres geeft
+    // leeg terug en dat is geen bewijs dat het verzenddomein mist.
+    //
+    // Haar eigen mail loopt via Purelymail op de apex (MX, SPF, DKIM, DMARC).
+    // Die staat los van dit subdomein en mag er niet door geraakt worden.
+    //
+    // Het deel voor de @ is vrij, dus no-reply@ veranderen is deze regel plus
+    // allowed_sender_addresses hierboven, zonder DNS-werk. Er komt niets aan op
+    // dit adres: de bevestiging draagt een reply-to naar LEAD_RECIPIENT.
+    "LEAD_SENDER": "no-reply@notify.velvetcakesbyanka.nl"
+  }
+}

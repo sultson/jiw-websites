@@ -1,0 +1,207 @@
+{
+ "ceremonie-engelenvleugels": {
+  "nl": "Dooptaart met ruffles en engelenvleugels",
+  "en": "Christening cake with ruffles and angel wings",
+  "ro": "Tort de botez cu volane și aripi de înger"
+ },
+ "ceremonie-doop-engelen": {
+  "nl": "Witte dooptaart met engelen en gouden kruis",
+  "en": "White christening cake with angels and a gold cross",
+  "ro": "Tort de botez alb cu îngeri și cruce aurie"
+ },
+ "ceremonie-doop-dominic": {
+  "nl": "Dooptaart met naam, beertje en ballonnen",
+  "en": "Christening cake with name, teddy and balloons",
+  "ro": "Tort de botez cu nume, ursuleț și baloane"
+ },
+ "ceremonie-babyshower-roze": {
+  "nl": "Babyshower-taart in roze met gouden lijst",
+  "en": "Baby shower cake in pink with a gold frame",
+  "ro": "Tort de baby shower în roz cu ramă aurie"
+ },
+ "klassiek-kroon-goud": {
+  "nl": "Ivoren taart met gouden kroon",
+  "en": "Ivory cake with a golden crown",
+  "ro": "Tort ivoire cu coroană aurie"
+ },
+ "klassiek-ivoor-bloemen": {
+  "nl": "Ivoor met bladgoud en suikerbloemen",
+  "en": "Ivory with gold leaf and sugar flowers",
+  "ro": "Ivoire cu foiță de aur și flori de zahăr"
+ },
+ "klassiek-gouden-hart": {
+  "nl": "Witte taart met gouden hart en foto",
+  "en": "White cake with a gold heart and photo",
+  "ro": "Tort alb cu inimă aurie și fotografie"
+ },
+ "klassiek-witte-bloemen": {
+  "nl": "Vanille met yoghurtmousse en aardbei",
+  "en": "Vanilla with yoghurt mousse and strawberry",
+  "ro": "Vanilie cu mousse de iaurt și căpșuni"
+ },
+ "klassiek-steenlook-goud": {
+  "nl": "Zwart, goud en een vleugje steenlook",
+  "en": "Black, gold and a touch of stone texture",
+  "ro": "Negru, auriu și un strop de textură de piatră"
+ },
+ "klassiek-macarons-drip": {
+  "nl": "Karameldrip met macarons",
+  "en": "Caramel drip with macarons",
+  "ro": "Drip de caramel cu macarons"
+ },
+ "klassiek-koppel-drip": {
+  "nl": "Chocoladedrip met handgemaakt koppel",
+  "en": "Chocolate drip with a handmade couple",
+  "ro": "Drip de ciocolată cu un cuplu modelat manual"
+ },
+ "klassiek-rode-strik": {
+  "nl": "Rode stippen met strik en gouden bel",
+  "en": "Red dots with a bow and golden bell",
+  "ro": "Buline roșii cu fundă și clopoțel auriu"
+ },
+ "klassiek-kroon-goud-2": {
+  "nl": "Kroontaart, van dichtbij",
+  "en": "Crown cake, up close",
+  "ro": "Tortul cu coroană, în detaliu"
+ },
+ "feest-leeuw-goud-20": {
+  "nl": "Zwart met goud voor een twintigste",
+  "en": "Black and gold for a twentieth birthday",
+  "ro": "Negru cu auriu pentru 20 de ani"
+ },
+ "feest-smoking": {
+  "nl": "Smokingtaart met vlinderdas",
+  "en": "Tuxedo cake with a bow tie",
+  "ro": "Tort smoking cu papion"
+ },
+ "feest-nagelstyliste": {
+  "nl": "Taart voor een nagelstyliste",
+  "en": "Cake for a nail stylist",
+  "ro": "Tort pentru o tehniciană de unghii"
+ },
+ "feest-groen-bier": {
+  "nl": "Een speciale taart voor een speciale dag",
+  "en": "A special cake for a special day",
+  "ro": "Un tort special pentru o zi specială"
+ },
+ "feest-hbd-my-king": {
+  "nl": "HBD my king",
+  "en": "HBD my king",
+  "ro": "HBD my king"
+ },
+ "feest-dad-mode": {
+  "nl": "Dad mode activated",
+  "en": "Dad mode activated",
+  "ro": "Dad mode activated"
+ },
+ "feest-voetbal": {
+  "nl": "Voetbaltaart met grasrand",
+  "en": "Football cake with a grass border",
+  "ro": "Tort de fotbal cu margine de iarbă"
+ },
+ "kinder-elsa-unicorn": {
+  "nl": "Elsa, Lilo en Stitch en een eenhoorn op een taart",
+  "en": "Elsa, Lilo & Stitch and a unicorn on one cake",
+  "ro": "Elsa, Lilo și Stitch și un unicorn pe tort"
+ },
+ "kinder-regenboog-vier": {
+  "nl": "Een taart vol kleur voor een vierde verjaardag",
+  "en": "A cake full of colour for a fourth birthday",
+  "ro": "Un tort plin de culoare pentru 4 ani"
+ },
+ "kinder-katten-paars": {
+  "nl": "Paarse kattentaart in twee lagen",
+  "en": "Purple cat cake in two tiers",
+  "ro": "Tort mov cu pisici, în două etaje"
+ },
+ "kinder-spiderman-6": {
+  "nl": "Spiderman voor een zesde verjaardag",
+  "en": "Spider-Man for a sixth birthday",
+  "ro": "Spider-Man pentru 6 ani"
+ },
+ "kinder-spiderman-rood": {
+  "nl": "Spiderman in rood en wit",
+  "en": "Spider-Man in red and white",
+  "ro": "Spider-Man în roșu și alb"
+ },
+ "kinder-pawpatrol-blauw": {
+  "nl": "Paw Patrol in blauw en groen",
+  "en": "Paw Patrol in blue and green",
+  "ro": "Paw Patrol în albastru și verde"
+ },
+ "kinder-pawpatrol-geel": {
+  "nl": "Paw Patrol met pootafdrukken",
+  "en": "Paw Patrol with paw prints",
+  "ro": "Paw Patrol cu lăbuțe"
+ },
+ "kinder-babyshark": {
+  "nl": "Baby Shark voor een tweede verjaardag",
+  "en": "Baby Shark for a second birthday",
+  "ro": "Baby Shark pentru 2 ani"
+ },
+ "kinder-hulk": {
+  "nl": "Hulk in groen en geel",
+  "en": "Hulk in green and yellow",
+  "ro": "Hulk în verde și galben"
+ },
+ "kinder-dino": {
+  "nl": "Dinotaart met palmbomen",
+  "en": "Dinosaur cake with palm trees",
+  "ro": "Tort cu dinozauri și palmieri"
+ },
+ "kinder-teddy-pastel": {
+  "nl": "Pastelbeertje voor een eerste verjaardag",
+  "en": "Pastel teddy for a first birthday",
+  "ro": "Ursuleț pastel pentru 1 an"
+ },
+ "kinder-teddy-boho": {
+  "nl": "Boho-beertje met regenboog",
+  "en": "Boho teddy with a rainbow",
+  "ro": "Ursuleț boho cu curcubeu"
+ },
+ "patisserie-buffet": {
+  "nl": "Dessert table met eclairs en entremets",
+  "en": "Dessert table with éclairs and entremets",
+  "ro": "Dessert table cu eclere și entremets"
+ },
+ "patisserie-eclairs": {
+  "nl": "Eclairs in drie smaken",
+  "en": "Éclairs in three flavours",
+  "ro": "Eclere în trei arome"
+ },
+ "patisserie-framboos-choux": {
+  "nl": "Choux met framboos en cremeux",
+  "en": "Choux with raspberry and cremeux",
+  "ro": "Choux cu zmeură și cremeux"
+ },
+ "patisserie-citroen-choux": {
+  "nl": "Choux met citroen",
+  "en": "Choux with lemon",
+  "ro": "Choux cu lămâie"
+ },
+ "patisserie-citroen": {
+  "nl": "Citroendessert met spiegelglazuur",
+  "en": "Lemon dessert with mirror glaze",
+  "ro": "Desert cu lămâie și glazură oglindă"
+ },
+ "patisserie-redvelvet-cupcakes": {
+  "nl": "Red velvet cupcakes met framboos",
+  "en": "Red velvet cupcakes with raspberry",
+  "ro": "Cupcakes red velvet cu zmeură"
+ },
+ "patisserie-mango-cupcakes": {
+  "nl": "Cupcakes met mango",
+  "en": "Cupcakes with mango",
+  "ro": "Cupcakes cu mango"
+ },
+ "patisserie-ferrero-cupcakes": {
+  "nl": "Cupcakes met praline",
+  "en": "Cupcakes with praline",
+  "ro": "Cupcakes cu praline"
+ },
+ "patisserie-verrines": {
+  "nl": "Verrines met aardbei, chocolade en praline",
+  "en": "Verrines with strawberry, chocolate and praline",
+  "ro": "Verrine cu căpșuni, ciocolată și praline"
+ }
+}
