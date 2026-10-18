@@ -82,13 +82,11 @@ const BRAND: ConfirmationEmailBrand = {
   logoWidth: 220,
   wordmark: 'Velvet Cakes by Anka',
   websiteUrl: SITE_URL,
-  /* Staat hier bewust NIET. De aanvragen komen vandaag bij ons binnen
-     (LEAD_RECIPIENT in wrangler.jsonc), en het adres van wie de aanvragen
-     ontvangt in haar eigen mail aan haar eigen klant zetten is ons merk in de
-     hare. De bevestiging draagt al een reply-to naar datzelfde adres, dus
-     "antwoord op deze mail of stuur een WhatsApp" is waar zonder het adres te
-     printen. Zet dit op info@velvetcakesbyanka.nl zodra LEAD_RECIPIENT naar
-     haar eigen mailbox gaat. */
+  /* Stond hier tot 18-10-2026 bewust niet: zolang de aanvragen bij ons
+     binnenkwamen was het printen van dat adres ons merk in het hare. Sinds
+     LEAD_RECIPIENT naar haar eigen postvak gaat is dit haar adres, hetzelfde
+     dat in artikel 1 van haar voorwaarden en in de voet van de site staat. */
+  contactEmail: 'info@velvetcakesbyanka.nl',
   colors: COLORS,
 };
 
@@ -128,7 +126,11 @@ const NL: ConfirmationEmailCopy = {
   kicker: 'Aanvraag via de website',
   receiptMessage: 'Je aanvraag is binnen',
   followUpMessage:
-    'Anka leest je aanvraag en komt bij je terug met een voorstel voor het ontwerp en de prijs. Heb je een inspiratiefoto die je er nog bij wilt hebben, stuur hem gerust mee.',
+    /* Tweede zin ("heb je een inspiratiefoto, stuur hem gerust mee") er op
+       18-10-2026 uit (Alfred). Hij vroeg om werk dat de bezoeker net gedaan
+       heeft: de foto zit al in het formulier, en wie hem oversloeg heeft dat
+       bewust gedaan. */
+    'Anka leest je aanvraag en komt bij je terug met een voorstel voor het ontwerp en de prijs.',
   detailsHeading: 'Wat je hebt ingevuld',
   messageHeading: 'Je smaak en idee',
   referenceLabel: 'Kenmerk',
@@ -146,7 +148,7 @@ const EN: ConfirmationEmailCopy = {
   kicker: 'Request via the website',
   receiptMessage: 'Your request is in',
   followUpMessage:
-    'Anka reads your request and comes back to you with a proposal for the design and the price. If you have a photo for inspiration you would like to add, feel free to send it along.',
+    'Anka reads your request and comes back to you with a proposal for the design and the price.',
   detailsHeading: 'What you filled in',
   messageHeading: 'Your flavour and idea',
   referenceLabel: 'Reference',
@@ -164,7 +166,7 @@ const RO: ConfirmationEmailCopy = {
   kicker: 'Cerere prin site',
   receiptMessage: 'Cererea ta a ajuns',
   followUpMessage:
-    'Anka îți citește cererea și revine cu o propunere pentru design și preț. Dacă ai o fotografie de inspirație pe care vrei să o adaugi, trimite-o liniștit.',
+    'Anka îți citește cererea și revine cu o propunere pentru design și preț.',
   detailsHeading: 'Ce ai completat',
   messageHeading: 'Aroma și ideea ta',
   referenceLabel: 'Referință',

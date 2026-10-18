@@ -179,9 +179,17 @@ naar datzelfde adres.
 | hostnamen | `velvetcakesbyanka.nl` (canoniek), `www.velvetcakesbyanka.nl` (301 naar de apex) |
 | zone | `0685f890a99e10dacce8ce8a18e4cbc3` |
 | afzender | `no-reply@notify.velvetcakesbyanka.nl` |
-| bestemming | `hallo@jouwidealewebsite.nl` (`LEAD_RECIPIENT`) |
+| bestemming | `info@velvetcakesbyanka.nl` (`LEAD_RECIPIENT`) — haar eigen postvak sinds 18-10-2026 |
 | R2 | `jiw-form-uploads-prod`, prefix `velvet-cakes-by-anka/` |
 | dev-poort | 3074 |
+
+**Geen testinzending meer tegen deze config.** `LEAD_RECIPIENT` staat sinds
+18-10-2026 op haar eigen postvak, en datzelfde adres staat als reply-to en als
+geprint contactadres op de bevestiging die de bezoeker terugkrijgt. Een test
+landt dus bij de klant. `node tools/keur.mjs --verstuur` leest dat adres uit
+`wrangler.jsonc` en weigert uit zichzelf zolang het niet
+`hallo@jouwidealewebsite.nl` is; de controle zonder die vlag kijkt alleen of het
+formulier goed staat en verstuurt niets.
 
 **De apex is canoniek, niet www.** Dit domein heeft geen geschiedenis — er stond
 nooit een site op, alleen haar Purelymail-mailbox — dus geldt de huisregel uit de

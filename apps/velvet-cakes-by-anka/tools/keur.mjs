@@ -17,10 +17,13 @@
  *   node tools/keur.mjs                 alles behalve het formulier
  *   node tools/keur.mjs --verstuur      ook een echte inzending
  *
- * Die laatste staat achter een vlag omdat hij een echte mail stuurt. Dat mag
- * zolang LEAD_RECIPIENT op hallo@jouwidealewebsite.nl staat; gaat hij ooit naar
- * info@velvetcakesbyanka.nl, dan mailt deze vlag de klant. Hij kijkt daarom
- * eerst zelf of het adres nog van ons is.
+ * Die laatste staat achter een vlag omdat hij een echte mail stuurt, en sinds
+ * 18-10-2026 WEIGERT hij: LEAD_RECIPIENT staat op info@velvetcakesbyanka.nl,
+ * dus een testinzending landt in het postvak van de klant. De controle
+ * hieronder leest het adres uit wrangler.jsonc en stopt - dat is geen afspraak
+ * maar een slot, want een afspraak vergeet je over drie weken. Wil je het
+ * formulier toch proberen, zet LEAD_RECIPIENT eerst terug op
+ * hallo@jouwidealewebsite.nl en deploy dat.
  */
 import { readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
@@ -61,6 +64,35 @@ try {
     const nu = await pagina.$('.taalkiezer span.is-nu[aria-current="true"]');
     if (nu && (await nu.textContent()).trim() === 'NL') goed('NL is geen link maar aria-current');
     else zeg('de taal waar je staat is geen aria-current span');
+
+    /* De drie staan op een lijn, in elke taal.
+       Hier zat een echte fout in tot 18-10-2026: de css sprak de
+       scheidingsstreepjes aan als `.taalkiezer>span`, en de taal waar je staat
+       IS een span (hierboven, geen link naar jezelf). Die kreeg daardoor
+       width:1px, height:12px en een gouden vulling, waardoor zijn tekst uit het
+       vakje liep en onder de andere twee zakte. Alleen te zien op de taal waar
+       je stond, dus nooit op alle drie tegelijk - vandaar dat deze controle de
+       drie talen apart langsgaat en niet een pagina.
+       Niet op het oog maar opgemeten: dezelfde bovenkant (1 px speling voor
+       afronding) en geen vakje dat tot een streepje is ingeklapt. */
+    for (const taal of ['', '/en', '/ro']) {
+      const meet = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+      await meet.goto(`${ADRES}${taal}/taarten`, { waitUntil: 'load' });
+      const vakjes = await meet.$$eval('.taalkiezer .lang-btn', els => els.map(e => {
+        const r = e.getBoundingClientRect();
+        return { t: e.textContent.trim(), top: Math.round(r.top), h: Math.round(r.height), w: Math.round(r.width) };
+      }));
+      const naam = taal || '/nl';
+      if (vakjes.length !== 3) { zeg(`${naam}: ${vakjes.length} taalknoppen, 3 verwacht`); }
+      else {
+        const spreiding = Math.max(...vakjes.map(v => v.top)) - Math.min(...vakjes.map(v => v.top));
+        const ingeklapt = vakjes.filter(v => v.w < 14 || v.h < 10);
+        if (spreiding <= 1 && !ingeklapt.length) goed(`${naam}: NL EN RO op een lijn (top-spreiding ${spreiding}px)`);
+        else if (ingeklapt.length) zeg(`${naam}: ${ingeklapt.map(v => `${v.t} is ${v.w}x${v.h}`).join(', ')} - ingeklapt vakje`);
+        else zeg(`${naam}: taalknoppen ${spreiding}px uit elkaar: ${vakjes.map(v => `${v.t}@${v.top}`).join(' ')}`);
+      }
+      await meet.close();
+    }
 
     // doorklikken en kijken of je er echt komt, in de juiste taal
     await pagina.click('.taalkiezer a:text-is("RO")');

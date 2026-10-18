@@ -748,6 +748,8 @@ const EN_ALGEMEEN = {
   'form.dank': 'Your request is in. You get a copy by email, and Anka comes back to you with a design and a price.',
   'form.mis': 'Sending did not work. Send a WhatsApp to 06 83 67 40 69 and your request is with her anyway.',
   'form.bezig': 'Sending',
+  'form.bezigregel': 'Your request is being sent. One moment.',
+  'form.upload': 'Your photo is being sent. {p}%',
 
   /* Stond hier tot de verhuizing als wa.* : de labels van het WhatsApp-bericht
      dat site.js uit het formulier bouwde. Het formulier verstuurt nu zelf en
@@ -868,6 +870,8 @@ const RO_ALGEMEEN = {
   'form.dank': 'Cererea ta a ajuns. Primești o copie pe e-mail, iar Anka revine cu un design și un preț.',
   'form.mis': 'Trimiterea nu a reușit. Trimite un WhatsApp la 06 83 67 40 69 și cererea ajunge oricum la ea.',
   'form.bezig': 'Se trimite',
+  'form.bezigregel': 'Cererea ta se trimite. Un moment.',
+  'form.upload': 'Fotografia se trimite. {p}%',
 
   /* Zie de noot in de Engelse tabel: de wa.*-sleutels zijn met het
      WhatsApp-bericht uit site.js verdwenen. */
@@ -954,7 +958,7 @@ const zetTaalkiezer = (html, taal, slug) => {
     : `      <a class="lang-btn" href="${adresVan(t, slug)}" lang="${t}" hreflang="${t}" title="${TAALNAAM[t]}">${t.toUpperCase()}</a>`));
   return html.split('<!--vc:talen-->').join(`
     <div class="taalkiezer" role="group" aria-label="Taal / Language / Limba">
-${items.join('\n      <span aria-hidden="true"></span>\n')}
+${items.join('\n      <span class="taalstreep" aria-hidden="true"></span>\n')}
     </div>`);
 };
 
@@ -1071,7 +1075,9 @@ const formulier = p => `<form novalidate method="post" action="/api/forms/aanvra
          Roemeens te kunnen zeggen. */ ''}data-dank="Je aanvraag is binnen. Je krijgt een kopie per mail, en Anka komt bij je terug met een ontwerp en een prijs."
     data-mis="Versturen lukte niet. Stuur een WhatsApp naar ${TEL_TEKST} en je aanvraag is alsnog bij haar."
     data-bezig="Versturen"
-    data-i18n-attr="data-dank:form.dank,data-mis:form.mis,data-bezig:form.bezig"><!--vc:formvelden:${p.slug}-->
+    data-bezigregel="Je aanvraag wordt verstuurd. Een moment."
+    data-upload="De foto wordt verstuurd. {p}%"
+    data-i18n-attr="data-dank:form.dank,data-mis:form.mis,data-bezig:form.bezig,data-bezigregel:form.bezigregel,data-upload:form.upload"><!--vc:formvelden:${p.slug}-->
     <div class="veld"><label for="naam" data-i18n="form.naam">Naam</label><input id="naam" name="firstName" type="text" required autocomplete="name" placeholder="Je naam" data-i18n-attr="placeholder:form.naam.ph"></div>
     <div class="veld"><label for="mail" data-i18n="form.mail">E-mail</label><input id="mail" name="email" type="email" required autocomplete="email" placeholder="jij@voorbeeld.nl" data-i18n-attr="placeholder:form.mail.ph"></div>
     <div class="veld"><label for="tel" data-i18n="form.tel">Telefoonnummer</label><input id="tel" name="tel" type="tel" autocomplete="tel" placeholder="Zodat Anka je kan bellen" data-i18n-attr="placeholder:form.tel.ph"></div>

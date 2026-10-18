@@ -79,12 +79,62 @@ if (formulier) {
   const knop = formulier.querySelector('[type="submit"]');
   const knopTekst = knop ? knop.innerHTML : '';
 
-  const zeg = (tekst, gelukt) => {
+  /* `soort` is 'goed', 'mis' of 'bezig'. Drie klassen in plaats van een
+     ja/nee, want tijdens het versturen is het geen van beide en een lopende
+     verzending in het groen melden is liegen over iets dat nog kan mislukken. */
+  const zeg = (tekst, soort) => {
     if (!melding) return;
     melding.textContent = tekst;
-    melding.classList.toggle('is-goed', !!gelukt);
-    melding.classList.toggle('is-mis', !gelukt);
+    melding.classList.toggle('is-goed', soort === 'goed');
+    melding.classList.toggle('is-mis', soort === 'mis');
+    melding.classList.toggle('is-bezig', soort === 'bezig');
   };
+
+  /* Het formulier in rust zetten en weer vrijgeven.
+
+     De velden worden NIET op disabled gezet: een disabled veld valt uit de
+     FormData, en die wordt hier pas na het blokkeren opgebouwd - dan vertrekt
+     er een lege aanvraag. Daarom een klasse op het formulier die de velden
+     dooft en de muis erbuiten houdt; de waarden blijven gewoon staan. */
+  const blokkeer = aan => {
+    formulier.classList.toggle('is-bezig', aan);
+    formulier.setAttribute('aria-busy', aan ? 'true' : 'false');
+    if (!knop) return;
+    knop.disabled = aan;
+    if (aan) {
+      /* De molen staat IN de knop, naast het woord. Op de knop drukken is de
+         laatste handeling van de bezoeker, dus daar kijkt hij ook. */
+      knop.innerHTML = `<span class="knop-molen" aria-hidden="true"></span> <span>${formulier.dataset.bezig || 'Versturen'}</span>`;
+    } else {
+      knop.innerHTML = knopTekst;
+    }
+  };
+
+  /* XMLHttpRequest en geen fetch, om een reden: fetch meldt niets over het
+     versturen zelf. Zit er een inspiratiefoto bij (en dat is een foto van een
+     telefoon, dus al snel enkele megabytes), dan duurt de upload op 4G
+     seconden tot tientallen seconden waarin fetch je niets te vertellen heeft.
+     Een molentje dat draait zonder iets te weten is precies de "hij hangt"
+     die dit moest oplossen. xhr.upload.progress weet het wel, dus de bezoeker
+     ziet een percentage lopen zolang er bytes de deur uit gaan, en pas daarna
+     de algemene regel terwijl de server de mail verstuurt. */
+  const verstuur = (data, bijUpload) => new Promise((klaar, mis) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', formulier.getAttribute('action'));
+    xhr.responseType = 'text';
+    xhr.upload.addEventListener('progress', e => {
+      if (e.lengthComputable) bijUpload(e.loaded / e.total);
+    });
+    xhr.addEventListener('load', () => {
+      let uitslag = {};
+      try { uitslag = JSON.parse(xhr.responseText); } catch (fout) { /* leeg antwoord */ }
+      klaar({ ok: xhr.status >= 200 && xhr.status < 300, uitslag });
+    });
+    xhr.addEventListener('error', () => mis(new Error('netwerk')));
+    xhr.addEventListener('timeout', () => mis(new Error('timeout')));
+    xhr.addEventListener('abort', () => mis(new Error('afgebroken')));
+    xhr.send(data);
+  });
 
   formulier.addEventListener('submit', async e => {
     e.preventDefault();
@@ -98,35 +148,48 @@ if (formulier) {
       return;
     }
 
-    if (knop) {
-      knop.disabled = true;
-      knop.textContent = formulier.dataset.bezig || 'Versturen';
-    }
-    zeg('', true);
+    /* Eerst de gegevens inlezen, dan pas het formulier op slot. Andersom is
+       hierboven bij blokkeer() al beschreven. */
+    const data = new FormData(formulier);
+    const foto = formulier.querySelector('input[type="file"]');
+    const heeftFoto = !!(foto && foto.files && foto.files.length);
+
+    blokkeer(true);
+    const bezigregel = formulier.dataset.bezigregel || formulier.dataset.bezig || '';
+    zeg(bezigregel, 'bezig');
+
+    /* Alleen een percentage tonen als er ook echt iets te uploaden valt. Een
+       formulier zonder foto is een paar kilobyte en staat in een oogwenk op
+       100 procent - dat telt af voor de bezoeker het gelezen heeft en leest
+       als gestotter. */
+    const bijUpload = deel => {
+      if (!heeftFoto) return;
+      const p = Math.min(99, Math.round(deel * 100));
+      const sjabloon = formulier.dataset.upload || '{p}%';
+      zeg(p >= 99 ? bezigregel : sjabloon.replace('{p}', String(p)), 'bezig');
+    };
 
     try {
-      const antwoord = await fetch(formulier.getAttribute('action'), {
-        method: 'POST',
-        body: new FormData(formulier),
-      });
-      const uitslag = await antwoord.json().catch(() => ({}));
-      if (!antwoord.ok || !uitslag.ok) {
+      const { ok, uitslag } = await verstuur(data, bijUpload);
+      if (!ok || !uitslag.ok) {
         /* Bij een 4xx draagt het antwoord de reden in de taal van het
            formulier. Die is preciezer dan onze eigen regel ("Vul de datum van
            het feest in"), dus die krijgt voorrang. */
-        zeg(uitslag.message || formulier.dataset.mis, false);
-        if (knop) { knop.disabled = false; knop.innerHTML = knopTekst; }
+        zeg(uitslag.message || formulier.dataset.mis, 'mis');
+        blokkeer(false);
         return;
       }
       /* Gelukt: het formulier gaat weg en de bedankregel komt ervoor in de
          plaats. Blijven staan nodigt uit tot nog een keer versturen, en dan
          komt dezelfde aanvraag twee keer binnen. */
+      formulier.classList.remove('is-bezig');
+      formulier.setAttribute('aria-busy', 'false');
       formulier.querySelectorAll('.veld, [type="submit"], .vormnoot').forEach(el => el.remove());
-      zeg(formulier.dataset.dank, true);
+      zeg(formulier.dataset.dank, 'goed');
       melding?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } catch (fout) {
-      zeg(formulier.dataset.mis, false);
-      if (knop) { knop.disabled = false; knop.innerHTML = knopTekst; }
+      zeg(formulier.dataset.mis, 'mis');
+      blokkeer(false);
     }
   });
 }

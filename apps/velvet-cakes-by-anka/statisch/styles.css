@@ -161,12 +161,22 @@ html[lang="ro"] .schrift{font-family:var(--script-ro)}
    en niet onderaan de pagina. Tekstknoppen en geen vlaggetjes - een vlag is
    een land en geen taal. De actieve taal draagt tekstgoud (--goud-diep,
    4,5:1 op creme), de inactieve --muted; geen opacity, want dan meet
-   contrast.mjs een kleur die er niet staat. */
+   contrast.mjs een kleur die er niet staat.
+
+   De scheidingsstreepjes dragen een eigen klasse en worden NIET op `>span`
+   aangesproken. Dat was er wel zo, en de taal waar je op stond is ook een
+   <span> (geen link naar jezelf, zie zetTaalkiezer in bouw.mjs) - die kreeg
+   daardoor width:1px, height:12px en een gouden vulling. Resultaat: de actieve
+   taal werd uit zijn eigen vakje geduwd en zakte onder de andere twee, met een
+   goudbalkje ervoor. Alleen zichtbaar op de taal waar je stond, dus in elke
+   schermafdruk een andere. */
 .taalkiezer{display:flex;align-items:center;gap:.5rem;flex:none}
-.taalkiezer>span{width:1px;height:12px;background:var(--goud-rand)}
+.taalkiezer>.taalstreep{width:1px;height:12px;background:var(--goud-rand);flex:none}
 .lang-btn{
+  display:inline-block;
   background:none;border:0;padding:.2rem .1rem;cursor:pointer;
   font-family:var(--sans);font-weight:400;font-size:.7rem;letter-spacing:.14em;
+  line-height:1.2;
   color:var(--muted);border-bottom:1px solid transparent;
   transition:color .2s,border-color .2s;
 }
@@ -864,4 +874,48 @@ body.lb-vast .dock{opacity:0;pointer-events:none}
    goud. #9B2226 haalt 6,4:1 op creme. */
 .form-melding.is-mis{
   color:#9B2226;border-top:1px solid rgba(155,34,38,.3);padding-top:18px;margin-top:4px;
+}
+
+/* ---------- het formulier terwijl het verstuurt ----------
+   Toegevoegd 18-10-2026. De knop zette alleen zijn eigen opschrift om, en dat
+   is op een telefoon het enige dat verandert terwijl een foto van vier
+   megabyte over 4G de deur uit gaat. Dat leest als een formulier dat vastloopt,
+   en een bezoeker die denkt dat het hangt drukt nog eens.
+
+   Drie dingen zeggen nu dat er iets gebeurt: de knop draagt een draaiend
+   molentje, de velden doven, en er staat een regel onder die bij een foto het
+   percentage meetelt (site.js, via xhr.upload). */
+.form-melding.is-bezig{
+  color:var(--muted);border-top:1px solid var(--goud-rand-zacht);
+  padding-top:18px;margin-top:4px;
+}
+
+/* De velden gaan niet op disabled - zie de noot bij blokkeer() in site.js, een
+   disabled veld valt uit de FormData. Dit houdt de muis erbuiten; de ingevulde
+   waarden blijven staan.
+
+   Ze worden ook NIET gedoofd. Dat stond er eerst wel (opacity .5), maar dan
+   zakt een label naar 2,1:1 op creme en staan de antwoorden die de bezoeker
+   net heeft ingetypt onleesbaar op het scherm, juist op het moment dat hij zit
+   te wachten en ze nog eens naleest. Het wachten wordt gemeld door de molen,
+   het opschrift van de knop en de regel eronder; daar is geen waas bij nodig
+   die tekst onleesbaar maakt. */
+form.is-bezig .veld{pointer-events:none}
+form.is-bezig .veld input,
+form.is-bezig .veld select,
+form.is-bezig .veld textarea{cursor:progress}
+form.is-bezig .knop[disabled]{cursor:progress;opacity:1}
+
+.knop-molen{
+  display:inline-block;width:.85em;height:.85em;vertical-align:-.08em;
+  border:1.5px solid currentColor;border-top-color:transparent;border-radius:50%;
+  animation:molen .7s linear infinite;
+}
+@keyframes molen{to{transform:rotate(360deg)}}
+
+/* Wie beweging heeft uitgezet krijgt geen draaiend wiel maar een rustige
+   pulse: het signaal blijft, de beweging niet. */
+@media (prefers-reduced-motion:reduce){
+  .knop-molen{animation:molen-rust 1.4s ease-in-out infinite;border-top-color:currentColor}
+  @keyframes molen-rust{0%,100%{opacity:1}50%{opacity:.35}}
 }

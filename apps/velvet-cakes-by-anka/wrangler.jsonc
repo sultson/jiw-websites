@@ -62,12 +62,15 @@
   ],
   "vars": {
     "SITE_ID": "velvet-cakes-by-anka",
-    // Aanvragen komen bij ons binnen en niet bij Anka. Dat is bewust: dit is de
-    // eerste dag dat dit formulier bestaat en de bevestiging die de bezoeker
-    // terugkrijgt draagt dit adres als reply-to. Zet dit om naar haar eigen
-    // info@velvetcakesbyanka.nl zodra zij zegt dat de aanvragen bij haar mogen
-    // binnenkomen - dan verhuist ook contactEmail in worker/confirmation.ts mee.
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // Aanvragen komen sinds 18-10-2026 rechtstreeks bij Anka binnen (Alfred).
+    // Dit adres is ook de reply-to EN het geprinte contactadres op de
+    // bevestiging die de bezoeker terugkrijgt (contactEmail in
+    // worker/confirmation.ts), dus het is haar eigen postvak dat meekijkt.
+    //
+    // LET OP: nooit meer een testaanvraag tegen deze config versturen - die
+    // komt bij de klant aan. Wil je het formulier toch proberen, zet dit eerst
+    // terug op hallo@jouwidealewebsite.nl.
+    "LEAD_RECIPIENT": "info@velvetcakesbyanka.nl",
     // Het verzenddomein notify.velvetcakesbyanka.nl staat op de zone
     // velvetcakesbyanka.nl (DKIM, SPF en een p=reject DMARC op cf-bounce.notify.*
     // en _dmarc.notify.*). Het stond er al voor deze verhuizing. LET OP: die
