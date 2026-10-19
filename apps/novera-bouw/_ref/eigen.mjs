@@ -1,5 +1,6 @@
 // Zet de foto's die Ekrem zelf stuurde (_ref/eigen/ek-NN.jpg) om naar webp in src/img/,
-// en schrijft meteen het galerijblok in pagina/werkzaamheden.html.
+// en schrijft meteen het galerijblok in pagina/werkzaamheden.html en het voor-en-na-blok
+// in pagina/stucwerk.html (allebei ook in het Engels).
 // Alles wat hier uit komt heet eigen-* of foto-NN: dat is echt werk van hem.
 // Draai: node _ref/eigen.mjs
 import { execFile } from 'node:child_process'
@@ -7,7 +8,7 @@ import { promisify } from 'node:util'
 import { mkdir, stat, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { GALERIJ, KAART, HERO } from './eigen-lijst.mjs'
+import { GALERIJ, KAART, HERO, VOORNA } from './eigen-lijst.mjs'
 
 const uitvoer = promisify(execFile)
 const HIER = path.dirname(fileURLToPath(import.meta.url))
@@ -15,11 +16,18 @@ const BRON = path.join(HIER, 'eigen')
 const UIT = path.join(HIER, '..', 'src', 'img')
 const PAG = path.join(HIER, '..', 'pagina', 'werkzaamheden.html')
 const PAG_EN = path.join(HIER, '..', 'pagina', 'en', 'services.html')
+const STUC = path.join(HIER, '..', 'pagina', 'stucwerk.html')
+const STUC_EN = path.join(HIER, '..', 'pagina', 'en', 'plastering.html')
 // De Engelse alt-teksten, op bron gezet. Stond een galerijfoto hier niet in, dan ging
 // er vroeger stilzwijgend een Nederlandse zin op de Engelse pagina staan.
 const ALT_EN = JSON.parse(await readFile(path.join(HIER, 'en-alt.json'), 'utf8'))
 const ontbreekt = GALERIJ.map((g) => g.bron).filter((b) => !ALT_EN[b])
 if (ontbreekt.length) throw new Error(`geen Engelse alt in en-alt.json voor: ${ontbreekt.join(', ')}`)
+// Hetzelfde voor de voor-en-na-paren: die dragen hun Engelse alt en bijschrift zelf.
+for (const p of VOORNA) {
+  for (const k of [p.voor, p.na]) if (!k.altEn) throw new Error(`geen altEn voor ${k.bron} in VOORNA`)
+  if (!p.bijEn) throw new Error(`geen bijEn voor ${p.naam} in VOORNA`)
+}
 const BIN = path.join(
   process.env.USERPROFILE || process.env.HOME,
   'dev/tools/ffmpeg/ffmpeg-9.0-essentials_build/bin'
@@ -67,6 +75,56 @@ if (HERO) {
   await ff(['-i', in_, '-vf', `crop=${w}:${hoog}:0:${y}`, '-quality', '84', uit])
   console.log(`ok   ${HERO.naam}  ${w}x${hoog}  ${await kb(uit)}kB  (${HERO.bron})`)
   n++
+}
+
+/* ── voor en na: 4:5 uit een staande foto ──────────────────
+   Allebei de helften krijgen dezelfde uitsnede en dezelfde maat, anders vergelijk
+   je twee kaders in plaats van twee muren. */
+const VN_B = 900
+const VN_H = 1125
+const vnBlok = { nl: [], en: [] }
+for (const paar of VOORNA) {
+  for (const [kant, k] of [['voor', paar.voor], ['na', paar.na]]) {
+    const in_ = path.join(BRON, `${k.bron}.jpg`)
+    const { w, h } = await maat(in_)
+    const hoog = Math.round((w * 5) / 4)
+    if (hoog > h) throw new Error(`${k.bron} is te laag voor een 4:5 uitsnede (${w}x${h})`)
+    const y = Math.round((h - hoog) * k.y)
+    const uit = path.join(UIT, `${paar.naam}-${kant}.webp`)
+    await ff([
+      '-i', in_,
+      '-vf', `crop=${w}:${hoog}:0:${y},scale=${VN_B}:${VN_H}:flags=lanczos`,
+      '-quality', '74', uit,
+    ])
+    console.log(`ok   ${paar.naam}-${kant}  ${VN_B}x${VN_H}  ${await kb(uit)}kB  (${k.bron})`)
+    n++
+  }
+  for (const [taal, woord] of [['nl', ['Voor', 'Na']], ['en', ['Before', 'After']]]) {
+    const kaart = (kant, i, k) =>
+      `          <div class="vn__k">\n` +
+      `            <img loading="lazy" src="/img/${paar.naam}-${kant}.webp" alt="${taal === 'nl' ? k.alt : k.altEn}" width="${VN_B}" height="${VN_H}" />\n` +
+      `            <span class="vn__tag vn__tag--${kant}">${woord[i]}</span>\n` +
+      `          </div>`
+    vnBlok[taal].push(
+      `      <figure class="vn__paar reveal">\n` +
+        `        <div class="vn__beeld">\n${kaart('voor', 0, paar.voor)}\n${kaart('na', 1, paar.na)}\n        </div>\n` +
+        `        <figcaption>${taal === 'nl' ? paar.bij : paar.bijEn}</figcaption>\n` +
+        `      </figure>`
+    )
+  }
+}
+
+const merkVn = /<!-- voorna -->[\s\S]*?<!-- \/voorna -->/
+for (const [pad, lijnen, naam] of [
+  [STUC, vnBlok.nl, 'stucwerk.html'],
+  [STUC_EN, vnBlok.en, 'en/plastering.html'],
+]) {
+  const bron = await readFile(pad, 'utf8')
+  if (!merkVn.test(bron)) throw new Error(`merktekens <!-- voorna --> staan niet in ${naam}`)
+  await writeFile(
+    pad,
+    bron.replace(merkVn, `<!-- voorna -->\n    <div class="vn">\n${lijnen.join('\n')}\n    </div>\n    <!-- /voorna -->`)
+  )
 }
 
 // ── galerij: hele foto, niets weggesneden. Twee maten: raster en groot. ──

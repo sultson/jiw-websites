@@ -2356,6 +2356,67 @@ p {
   background: rgba(255, 255, 255, 0.24);
 }
 
+/* ── voor en na ─────────────────────────────────────────── */
+/* De twee helften staan ALTIJD naast elkaar, ook op een telefoon. Onder elkaar
+   zijn het twee losse foto's en geen vergelijking meer: je ziet de voor-foto niet
+   terwijl je naar de na-foto kijkt. Daarom twee kolommen op elke breedte, en de
+   uitsnede is in eigen.mjs voor allebei dezelfde (4:5). */
+.vn {
+  display: grid;
+  gap: clamp(28px, 4vw, 44px);
+  max-width: 880px;
+  margin: 0 auto;
+}
+.vn__paar {
+  margin: 0;
+}
+.vn__beeld {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(8px, 1.4vw, 14px);
+}
+.vn__k {
+  position: relative;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--room-2);
+}
+.vn__k img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+.vn__tag {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-family: var(--kop);
+  font-weight: 700;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: #fff;
+}
+.vn__tag--voor {
+  background: var(--grijs);
+}
+.vn__tag--na {
+  background: var(--accent);
+}
+.vn__paar figcaption {
+  margin-top: 14px;
+  color: var(--grijs);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.sec--inkt .vn__paar figcaption {
+  color: var(--salie);
+}
+
 /* ── galerij met eigen foto's ───────────────────────────── */
 /* kolommen en niet een raster: de foto's staan staand en liggend door elkaar
    en in een raster met vaste verhouding wordt daar te veel van weggesneden */

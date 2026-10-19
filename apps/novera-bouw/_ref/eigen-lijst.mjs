@@ -2,10 +2,12 @@
 // ek-01 t/m ek-11 op 27-09-2026 (badkamers en toiletten), ek-12 t/m ek-14 op
 // 09-10-2026 (een trap wit in de lak, met balustrade en leuning), ek-15 t/m ek-21
 // diezelfde dag (stucwerk, schilderwerk en vloeren in een woning die hij leeg
-// opknapte, plus een ingebouwde tv-wand van gipsplaat).
+// opknapte, plus een ingebouwde tv-wand van gipsplaat). ek-22 t/m ek-32 op 19-10-2026:
+// één trapgat, van gestript tot geschilderd — zie VOORNA onderaan.
 // Originelen: _ref/eigen/ek-NN.jpg. Dit is de ENIGE lijst met volgorde en alt-tekst;
 // eigen.mjs maakt er de bestanden mee en schrijft het galerijblok in werkzaamheden.html
-// én het Engelse blok in en/services.html (alt-teksten uit _ref/en-alt.json).
+// én het Engelse blok in en/services.html (alt-teksten uit _ref/en-alt.json), plus het
+// voor-en-na-blok in stucwerk.html en en/plastering.html.
 //
 // De galerij staat in kolommen en niet in rijen, dus de lijst loopt van boven naar
 // beneden door kolom 1, dan kolom 2. Bovenaan staat met opzet een sterke, opgeleverde
@@ -38,6 +40,46 @@ export const GALERIJ = [
   { bron: 'ek-07', alt: 'Badkamer met zwarte wandtegels, een houten meubel en twee marmeren waskommen' },
   { bron: 'ek-05', alt: 'Badkamer met marmerlook wandplaten en een ingebouwd bad, de rand nog afgeplakt' },
   { bron: 'ek-11', alt: 'Badkamer bijna klaar, het meubel en de wasmachine staan nog in folie' },
+
+  // Het trapgat van 19-10-2026. De vier losse foto's hieronder; de voor-en-na-paren
+  // uit diezelfde klus staan in VOORNA en gaan niet door de galerij heen.
+  { bron: 'ek-23', alt: 'De hal onder de trap helemaal afgedekt met folie en zeil voordat het stucwerk begint' },
+  { bron: 'ek-26', alt: 'Trapgat met gladde witte wanden, de leuning terug aan de muur en de oude loper nog op de trap' },
+  { bron: 'ek-32', alt: 'Onderzijde van de trap na het stucwerk: strakke vlakken en een scherpe kant langs de trede' },
+  { bron: 'ek-25', alt: 'Overloop met gladde witte wanden en een glad plafond, het schilderwerk is af' },
+]
+
+/* ── voor en na ────────────────────────────────────────────
+   Eén klus, 19-10-2026: het trapgat en de overloop. De wanden waren tot op de oude
+   pleister gestript; daarna glad gestuct en geschilderd. De loper op de trap is in
+   alle na-foto's nog dezelfde, en dat is precies waarom het paar klopt: dit is
+   wandwerk, geen nieuwe trap. Zet er dus nooit traprenovatie bij.
+
+   4:5 uitsnede uit een staande telefoonfoto. y = waar de uitsnede begint, als deel
+   (0..1) van de ruimte die er verticaal over is. Bij een 9:16-bron is dat veel
+   ruimte, bij een 3:4-bron vrijwel niets. */
+export const VOORNA = [
+  {
+    naam: 'vn-wand',
+    voor: { bron: 'ek-29', y: 0.65, alt: 'De wand langs de trap gestript tot op de oude pleister, de leuning er nog voor en de treden onder het puin', altEn: 'The wall alongside the stairs stripped back to the old plaster, the handrail still in front of it and debris on the treads' },
+    na: { bron: 'ek-26', y: 0.3, alt: 'Dezelfde wand langs de trap, glad gestuct en wit geschilderd, met de leuning terug aan de muur', altEn: 'The same wall alongside the stairs, plastered smooth and painted white, with the handrail back on' },
+    bij: 'De wand langs de trap. Het losse materiaal eraf, de gaten gevuld en daarna in lagen glad getrokken. De leuning gaat eraf en weer terug.',
+    bijEn: 'The wall alongside the stairs. Loose material off, holes filled, then pulled smooth in layers. The handrail comes off and goes back on.',
+  },
+  {
+    naam: 'vn-dichtbij',
+    voor: { bron: 'ek-28', y: 0.4, alt: 'Van dichtbij: de gestripte wand onder de leuning, met restanten lijm en oude verf', altEn: 'Close up: the stripped wall below the handrail, with remnants of glue and old paint' },
+    na: { bron: 'ek-24', y: 0.78, alt: 'Van dichtbij: een wand onder de leuning na het stucwerk, strak wit en vlak', altEn: 'Close up: a wall below the handrail after plastering, crisp white and flat' },
+    bij: 'Van dichtbij. Hier komt het op aan: strijklicht in een trapgat trekt elke bult eruit zodra de verf erop zit. Rechts is er niets meer te zien.',
+    bijEn: 'Close up. This is what it comes down to: raking light in a stairwell pulls out every bump the moment the paint goes on. On the right there is nothing left to see.',
+  },
+  {
+    naam: 'vn-trapgat',
+    voor: { bron: 'ek-22', y: 0.5, alt: 'Naar beneden in het trapgat, de gebogen wand langs de trapboom nog kaal en bruin', altEn: 'Looking down the stairwell, the curved wall along the stringer still bare and brown' },
+    na: { bron: 'ek-31', y: 0.8, alt: 'Naar beneden in hetzelfde trapgat, alle wanden glad en wit afgewerkt', altEn: 'Looking down the same stairwell, every wall smooth and finished in white' },
+    bij: 'Naar beneden in het trapgat. De ronding langs de trapboom is het lastigste stuk van een huis om vlak te krijgen, en het valt het meest op.',
+    bijEn: 'Looking down the stairwell. The curve along the stringer is the hardest part of a house to get flat, and it is the part people notice most.',
+  },
 ]
 
 // ── kaartbeeld: 4:3 uit een staande foto. y = waar de uitsnede begint,
