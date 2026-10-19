@@ -49,7 +49,7 @@ const SITE = {
   email: "info@dagmarvoss.nl",
   street: "Grote Houtstraat 144 R-bv",
   city: "Haarlem",
-  zip: "2011 SR",
+  zip: "2011 SW",
   price: "105,00",
   linkedin: "https://www.linkedin.com/in/dagmarvoss/",
   facebook: "https://www.facebook.com/dagmarvoss.nl",
