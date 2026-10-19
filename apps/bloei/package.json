@@ -13,6 +13,7 @@
     "ship": "pnpm build && pnpm audit:seo && wrangler deploy",
     "ship:dry-run": "pnpm build && pnpm audit:seo && wrangler deploy --dry-run --outdir=dist-worker",
     "audit:seo": "node scripts/audit-seo.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
     "fonts": "node scripts/fonts.mjs",
     "icons": "node scripts/icons.mjs"
   },

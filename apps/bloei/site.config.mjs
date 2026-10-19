@@ -6,11 +6,17 @@
  * dan is een verhuizing naar een eigen domein een zoekactie door zeven
  * bestanden waarbij er altijd één blijft staan. Nu is het één regel.
  *
- * Dit is nog een conceptadres. Wordt het een echte site, dan verhuist SITE_URL
- * naar het eigen domein en blijft dit adres doorsturen (zie worker/index.ts en
- * VORIG_ADRES in de zusterapp fleurig).
+ * Sinds 19-10-2026 het eigen domein. De kale host is de canonieke: dit domein
+ * had geen enkele geschiedenis (geen A-record, nooit een site), dus er is geen
+ * www-verleden om te sparen zoals bij framemedia. `www` en het oude
+ * conceptadres sturen hierheen door met één 301 (zie ANDERE_HOSTS in
+ * worker/index.ts).
+ *
+ * Elk adres in de HTML komt hieruit, dus dit is de enige regel die bij een
+ * verhuizing om hoeft. Wie hier iets verandert: `pnpm audit:seo` rekent na of
+ * elke canonical, og:url en sitemapregel meeverhuisd is.
  */
-export const SITE_URL = 'https://bloei-concept.jouwconcept.app';
+export const SITE_URL = 'https://bloei-ouddorp.nl';
 
 export const SITE_NAAM = 'Bloei!';
 

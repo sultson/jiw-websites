@@ -1,6 +1,9 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
-  "name": "bloei-concept",
+  // Heette tot 19-10-2026 `bloei-concept`, naar het enige adres dat er toen was.
+  // De oude Worker is na het verplaatsen van die host weggehaald; staat hij er
+  // toch nog, dan houdt hij niets meer vast.
+  "name": "bloei",
   "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
   "main": "./worker/index.ts",
   "compatibility_date": "2026-04-24",
@@ -24,18 +27,24 @@
     // omheen, die hebben er niets te halen.
     "run_worker_first": ["/*", "!/assets/*", "!/img/*", "!/favicon.svg", "!/logo-email.png"]
   },
-  // Eén host, want dit is nog een concept. Komt er een eigen domein, dan komen
-  // hier de kale en de www-variant bij als custom_domain, gaat SITE_URL in
-  // site.config.mjs daarheen, en zet ANDERE_HOSTS in worker/index.ts dit adres
-  // door met één 301. Wie de www-variant vergeet zet de helft van de bezoekers
-  // op een foutpagina.
+  // Drie hosts, één winnaar. De kale is de canonieke (zie SITE_URL in
+  // site.config.mjs); `www` en het oude conceptadres hangen hier bewust aan en
+  // sturen met één 301 door via ANDERE_HOSTS in worker/index.ts.
+  //
+  // Waarom `www` erbij moet terwijl hij alleen doorstuurt: een host die hier
+  // niet staat bestaat niet, en dan krijgt de helft van de bezoekers die uit
+  // gewoonte www typt een foutpagina in plaats van een omleiding.
+  //
+  // Waarom het conceptadres blijft: het gaf tot de verhuizing een 200 met een
+  // complete kopie van deze site. Het is gedeeld, dus het staat in iemands
+  // tabblad en mogelijk in de index. Loskoppelen maakt er een dood adres van;
+  // aan laten hangen geeft de waarde door aan het echte domein.
   //
   // custom_domain en geen gewone route: bij het koppelen zet Cloudflare zelf het
   // DNS-record klaar, wat een gewone route niet doet.
-  //
-  // jouwconcept.app en niet jouwidealewebsite.nl: die zone zit op de grens van
-  // 100 custom domains.
   "routes": [
+    { "pattern": "bloei-ouddorp.nl", "custom_domain": true },
+    { "pattern": "www.bloei-ouddorp.nl", "custom_domain": true },
     { "pattern": "bloei-concept.jouwconcept.app", "custom_domain": true }
   ],
   "r2_buckets": [
@@ -44,27 +53,41 @@
       "bucket_name": "jiw-form-uploads-prod"
     }
   ],
-  // Verstuurd vanaf het gedeelde afzenderdomein notify.jouwidealewebsite.nl, dat
-  // in Cloudflare Email Service geverifieerd is en door de andere sites in deze
-  // monorepo gebruikt wordt. Krijgt Bloei! een eigen domein, dan hoort daar een
-  // eigen afzenderdomein bij (notify.<domein>), aan te melden in Cloudflare
-  // Email Service; dat is een aparte stap die het API-token in .env niet mag
-  // zetten.
+  // Verstuurd vanaf het eigen afzenderdomein notify.bloei-ouddorp.nl, sinds
+  // 19-10-2026. Dat stond tot dan op het gedeelde notify.jouwidealewebsite.nl:
+  // goed genoeg voor een concept, maar dan komt de bevestiging van de winkel
+  // aan vanaf het domein van het bureau, en dat is precies het soort verschil
+  // tussen afzender en inhoud waar een spamfilter op let.
+  //
+  // Het domein is in Cloudflare Email Service aangemeld en ingeschakeld, met
+  // DKIM, SPF en een DMARC op p=reject. Let op waar die records hangen: onder
+  // `cf-bounce.notify.bloei-ouddorp.nl` en `_dmarc.notify.bloei-ouddorp.nl`,
+  // NIET onder `notify.bloei-ouddorp.nl` zelf. Een lookup op die laatste naam
+  // geeft niets terug en dat is geen bewijs dat er iets mist.
+  //
+  // Het deel voor de @ is vrij: `no-reply@` naar iets anders veranderen is deze
+  // regel plus LEAD_SENDER hieronder, geen DNS-werk.
+  //
+  // De apex heeft zijn eigen Purelymail-records (MX, SPF, DKIM, DMARC) voor de
+  // mailbox van de winkel. Dat staat hier los van en mag niet aangeraakt worden.
   "send_email": [
     {
       "name": "LEAD_EMAIL",
-      "allowed_sender_addresses": ["aanvraag@notify.jouwidealewebsite.nl"]
+      "allowed_sender_addresses": ["no-reply@notify.bloei-ouddorp.nl"]
     }
   ],
   // Geen TURNSTILE_SECRET_KEY: dit formulier draait met `turnstile: false` en
   // leunt op het verborgen veld in worker/index.ts, dus er is geen widget om
   // tegen te controleren.
   // LET OP: de ontvanger is bewust ons eigen adres en niet dat van de klant.
-  // Dit is een concept, het e-mailadres van Bloei! is niet bevestigd, en een
-  // testaanvraag hoort niet in de inbox van een klant te belanden.
+  // De winkel heeft geen mailadres doorgegeven (zie WINKEL in site.config.mjs),
+  // dus de aanvragen komen voorlopig bij ons binnen en gaan met de hand door.
+  // Geeft de winkel er een door, dan verhuist LEAD_RECIPIENT daarheen — en
+  // vanaf dat moment geldt wat bij de andere klantensites geldt: nooit meer een
+  // testaanvraag tegen de live config, want die komt in hun inbox.
   "vars": {
     "SITE_ID": "bloei",
     "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
-    "LEAD_SENDER": "aanvraag@notify.jouwidealewebsite.nl"
+    "LEAD_SENDER": "no-reply@notify.bloei-ouddorp.nl"
   }
 }

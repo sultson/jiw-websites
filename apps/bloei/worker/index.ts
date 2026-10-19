@@ -94,12 +94,18 @@ const formulier = createFormWorker({
  */
 const CANONIEKE_HOST = new URL(SITE_URL).hostname;
 
-/* Nog leeg: de site staat op één conceptadres. Komt er een eigen domein, dan
-   komt het oude adres hier te staan en stuurt het zijn bezoekers met één 301
-   door, net als bij de zusterapp fleurig. Een host die niet in de routes van
-   wrangler.jsonc staat komt hier nooit langs, dus wat er te veel in staat kost
-   niets. */
-const ANDERE_HOSTS: string[] = [];
+/* De www-variant van het eigen domein en het oude conceptadres. Dat laatste
+   gaf tot 19-10-2026 een 200 met een complete kopie van deze site en een
+   robots.txt die alles toeliet; blijft dat zo, dan staan er twee volledige
+   sites van dezelfde winkel op dezelfde zoekwoorden. Het adres zelf blijft
+   bestaan en blijft aan deze Worker hangen, want het is gedeeld en staat in
+   iemands tabblad: doorsturen geeft de waarde door, weghalen gooit hem weg.
+
+   `www` staat er ook in terwijl er een omleidingsregel op de zone ligt die
+   hetzelfde doet. Dat is geen dubbel werk maar een tweede slot: verdwijnt die
+   regel ooit bij het opruimen van een andere site, dan degradeert dat naar
+   dezelfde 301 in plaats van naar twee hosts die allebei 200 geven. */
+const ANDERE_HOSTS: string[] = ['www.bloei-ouddorp.nl', 'bloei-concept.jouwconcept.app'];
 
 /* Oude adressen binnen deze site die verhuisd zijn, en waar ze nu staan. */
 const VERHUISD: Record<string, string> = {

@@ -1,6 +1,14 @@
 # Bloei! Ouddorp — wat klopt en wat nog niet
 
-Concept, gebouwd 7 oktober 2026. Live op <https://bloei-concept.jouwconcept.app>.
+Gebouwd 7 oktober 2026 als concept. **Sinds 19 oktober 2026 live op het eigen
+domein <https://bloei-ouddorp.nl>** (zie `SEO.md` voor de nulmeting van die dag).
+`www` en het oude conceptadres `bloei-concept.jouwconcept.app` sturen er met één
+301 naartoe.
+
+Let op: dat de site op een eigen domein staat verandert niets aan de lijst
+hieronder. Het adres, het nummer en de openingstijden zijn bevestigd, maar er is
+nog steeds geen mailadres, geen vectorlogo en geen kerstfoto, en de winkel heet
+voorlopig nog Vershal Ouddorp.
 
 De opdracht: de eigenaren van Fleurig! (Oud-Beijerland, `apps/fleurig`, inmiddels
 `TIJDELIJK_GESLOTEN`) beginnen onder de naam Bloei! en waren tevreden over de site
@@ -389,20 +397,45 @@ pnpm --filter @jiw/bloei ship     # build + audit:seo + wrangler deploy
 verkoopt bloemen, maar het zwaartepunt ligt bij planten, tuin en wonen.
 
 **De ontvanger van het formulier staat op `hallo@jouwidealewebsite.nl`**, niet op
-een adres van de klant (`LEAD_RECIPIENT` in `wrangler.jsonc`). Dit is een concept
-en het e-mailadres van de winkel is niet bevestigd; een testaanvraag hoort niet in
-de inbox van een klant te belanden.
+een adres van de klant (`LEAD_RECIPIENT` in `wrangler.jsonc`). De winkel heeft
+geen mailadres doorgegeven, dus de aanvragen komen bij ons binnen en gaan met de
+hand door. Geeft ze er een door, dan verhuist die regel daarheen — en vanaf dat
+moment geldt wat bij elke andere klantensite geldt: **nooit meer een testaanvraag
+tegen de live config**, want die komt in hun inbox.
 
-Het conceptadres staat op `jouwconcept.app` en niet op `jouwidealewebsite.nl`:
-die zone zit op de grens van 100 custom domains.
+## De verhuizing naar bloei-ouddorp.nl — 19 oktober
 
-Wordt dit een echte site, dan:
+Hier stond een lijstje van vijf dingen die moesten gebeuren "wordt dit een echte
+site". Dat is nu gedaan:
 
-1. `SITE_URL` in `site.config.mjs` naar het eigen domein.
-2. In `wrangler.jsonc` de apex én de `www`-variant als `custom_domain` erbij.
-3. Een zone-redirect van `www` naar de apex (301); een canonical alleen laat twee
-   hosts 200 geven.
-4. `bloei-concept.jouwconcept.app` in `ANDERE_HOSTS` (`worker/index.ts`), dan
-   stuurt het conceptadres door in plaats van een tweede kopie te serveren.
-5. Afzenderdomein `notify.<domein>` aanmelden bij Cloudflare Email Service, en
-   `LEAD_RECIPIENT` op het echte adres van de winkel.
+1. `SITE_URL` in `site.config.mjs` op `https://bloei-ouddorp.nl`. Elke canonical,
+   `og:url`, schema.org-blok en sitemapregel komt daaruit, dus dit was één regel.
+   De kale host is de canonieke: dit domein had geen A-record en nooit een site,
+   dus er is geen www-verleden om te sparen zoals bij `framemedia`.
+2. Apex én `www` als `custom_domain` in `wrangler.jsonc`, plus het conceptadres.
+   Die laatste hing aan de oude Worker en is met
+   `PUT /accounts/{id}/workers/domains` (`override_existing_origin: true`)
+   overgezet; die Worker is daarna weggehaald.
+3. De Worker heet nu `bloei` en niet meer `bloei-concept`.
+4. Zoneregel op `bloei-ouddorp.nl`: `www` → apex, 301, pad en querystring
+   behouden. Diezelfde omleiding staat ook in `ANDERE_HOSTS` in
+   `worker/index.ts`, als tweede slot.
+5. Afzender op `no-reply@notify.bloei-ouddorp.nl`. Dat domein was al in
+   Cloudflare Email Service aangemeld en ingeschakeld (DKIM, SPF, DMARC op
+   `p=reject`) — er was geen DNS-werk nodig. De records hangen onder
+   `cf-bounce.notify.bloei-ouddorp.nl`, niet onder `notify.bloei-ouddorp.nl`
+   zelf; een lookup op die laatste naam geeft niets en dat is geen fout.
+6. `pnpm indexnow` erbij, met sleutelbestand in `public/`. Op de dag van de
+   verhuizing gemeld: 202 Accepted voor vijf adressen.
+
+Eén testaanvraag verstuurd tegen de live site, met
+`jouwidealewebsite@gmail.com` als klant. `form_accepted` in `wrangler tail` en
+geen `Confirmation email failed` — dat laatste is de enige manier om zeker te
+weten dat de bevestiging aan de klant ook werkelijk weg is, want een mislukte
+bevestiging wordt alleen gelogd en geeft de bezoeker nog steeds `{"ok":true}`.
+
+Wat er niet mee verhuisd is: `LEAD_RECIPIENT` (de winkel heeft geen mailbox
+doorgegeven) en de disclaimer over de oude naam, die juist nu nodig is. Zie
+`SEO.md` voor wat er nog openstaat — Search Console en het Google
+Bedrijfsprofiel zijn de twee die er het meest uit halen, en die liggen beide
+buiten deze repo.
