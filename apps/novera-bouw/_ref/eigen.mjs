@@ -14,6 +14,12 @@ const HIER = path.dirname(fileURLToPath(import.meta.url))
 const BRON = path.join(HIER, 'eigen')
 const UIT = path.join(HIER, '..', 'src', 'img')
 const PAG = path.join(HIER, '..', 'pagina', 'werkzaamheden.html')
+const PAG_EN = path.join(HIER, '..', 'pagina', 'en', 'services.html')
+// De Engelse alt-teksten, op bron gezet. Stond een galerijfoto hier niet in, dan ging
+// er vroeger stilzwijgend een Nederlandse zin op de Engelse pagina staan.
+const ALT_EN = JSON.parse(await readFile(path.join(HIER, 'en-alt.json'), 'utf8'))
+const ontbreekt = GALERIJ.map((g) => g.bron).filter((b) => !ALT_EN[b])
+if (ontbreekt.length) throw new Error(`geen Engelse alt in en-alt.json voor: ${ontbreekt.join(', ')}`)
 const BIN = path.join(
   process.env.USERPROFILE || process.env.HOME,
   'dev/tools/ffmpeg/ffmpeg-9.0-essentials_build/bin'
@@ -65,6 +71,7 @@ if (HERO) {
 
 // ── galerij: hele foto, niets weggesneden. Twee maten: raster en groot. ──
 const regels = []
+const regelsEn = []
 for (let i = 0; i < GALERIJ.length; i++) {
   const nr = String(i + 1).padStart(2, '0')
   const in_ = path.join(BRON, `${GALERIJ[i].bron}.jpg`)
@@ -78,18 +85,25 @@ for (let i = 0; i < GALERIJ.length; i++) {
     n++
   }
   const { w, h } = await maat(path.join(UIT, `foto-${nr}.webp`))
-  regels.push(
+  const knop = (alt) =>
     `      <button class="gal__k" type="button" data-groot="/img/foto-${nr}-groot.webp">\n` +
-      `        <img loading="lazy" src="/img/foto-${nr}.webp" alt="${GALERIJ[i].alt}" width="${w}" height="${h}" />\n` +
-      `      </button>`
-  )
+    `        <img loading="lazy" src="/img/foto-${nr}.webp" alt="${alt}" width="${w}" height="${h}" />\n` +
+    `      </button>`
+  regels.push(knop(GALERIJ[i].alt))
+  regelsEn.push(knop(ALT_EN[GALERIJ[i].bron]))
   console.log(`ok   foto-${nr}  (${GALERIJ[i].bron})`)
 }
 
-const blok = `    <div class="gal reveal" id="gal">\n${regels.join('\n')}\n    </div>`
-const bron = await readFile(PAG, 'utf8')
+// Hetzelfde blok in twee talen, tussen dezelfde merktekens.
 const merk = /<!-- galerij -->[\s\S]*?<!-- \/galerij -->/
-if (!merk.test(bron)) throw new Error('merktekens <!-- galerij --> staan niet in werkzaamheden.html')
-await writeFile(PAG, bron.replace(merk, `<!-- galerij -->\n${blok}\n    <!-- /galerij -->`))
+for (const [pad, lijnen, naam] of [
+  [PAG, regels, 'werkzaamheden.html'],
+  [PAG_EN, regelsEn, 'en/services.html'],
+]) {
+  const blok = `    <div class="gal reveal" id="gal">\n${lijnen.join('\n')}\n    </div>`
+  const bron = await readFile(pad, 'utf8')
+  if (!merk.test(bron)) throw new Error(`merktekens <!-- galerij --> staan niet in ${naam}`)
+  await writeFile(pad, bron.replace(merk, `<!-- galerij -->\n${blok}\n    <!-- /galerij -->`))
+}
 
-console.log(`\n${n} beelden weggeschreven naar src/img/, ${GALERIJ.length} in de galerij`)
+console.log(`\n${n} beelden weggeschreven naar src/img/, ${GALERIJ.length} in de galerij (nl + en)`)

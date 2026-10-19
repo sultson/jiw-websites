@@ -1,7 +1,17 @@
-// Meet alle pagina's in een echte browser. node _ref/kijk.mjs [basis-url]
+// Meet alle pagina's in een echte browser. node _ref/kijk.mjs [basis-url] [opties]
 // Zonder url start hij zelf een servertje op dist/ (met schone adressen, net als de worker).
 // De site staat in twee talen: Nederlands op / en Engels op /en/. Alles hieronder
 // wordt per taal gemeten, met per taal de eigen adressen en de eigen zinnen.
+//
+// De volle ronde is ruim honderd keer een pagina inladen en duurt een kwartier. Dat is
+// te veel voor het omwisselen van een foto, dus er is een korte ronde:
+//   --snel            alleen desktop, en de ronde zonder JavaScript blijft liggen
+//   --pad=/a,/en/b    alleen deze pagina's meten (de twee startpagina's gaan altijd mee,
+//                     daar hangen de kop, de voet en het lint aan)
+// Wat overgeslagen is staat onderaan in het verslag. De volle ronde blijft wat telt
+// voor een oplevering; de korte is om te zien of de wijziging zelf klopt.
+// In Git Bash op Windows: MSYS_NO_PATHCONV=1 ervoor, anders maakt de shell van
+// --pad=/schilderwerk een C:/Program Files/... pad.
 import { chromium } from 'file:///C:/Users/nieuw/dev/claudius/node_modules/playwright/index.mjs'
 import http from 'node:http'
 import path from 'node:path'
@@ -112,7 +122,29 @@ const TYPE = {
   '.txt': 'text/plain; charset=utf-8',
 }
 
-let basis = process.argv[2]
+/* ── korte ronde ───────────────────────────────────────────
+   teMeten() snoeit alleen wat er ingeladen wordt. ALLE en taal.paden blijven de hele
+   lijst, want daar wordt elke interne link tegen gehouden - snoei je die mee, dan gaat
+   een goede link naar een niet-gemeten pagina ten onrechte om. */
+const vlaggen = process.argv.slice(2).filter((a) => a.startsWith('--'))
+const SNEL = vlaggen.includes('--snel')
+const alleenPad = (vlaggen.find((a) => a.startsWith('--pad=')) || '').slice(6)
+const GEVRAAGD = alleenPad ? alleenPad.split(',').map((p) => p.trim()).filter(Boolean) : null
+const teMeten = (taal, lijst) => {
+  if (!GEVRAAGD) return lijst
+  // de startpagina van de taal gaat altijd mee: kop, voet, lint en de pakketprijzen
+  // hangen daaraan, en die moeten bij elke wijziging kloppen
+  return lijst.filter((p) => p === taal.home || GEVRAAGD.includes(p))
+}
+if (GEVRAAGD) {
+  const onbekend = GEVRAAGD.filter((p) => !ALLE.includes(p))
+  if (onbekend.length) {
+    console.error(`Onbekende pagina in --pad: ${onbekend.join(', ')}`)
+    process.exit(1)
+  }
+}
+
+let basis = process.argv.slice(2).find((a) => !a.startsWith('--'))
 let server
 if (!basis) {
   server = http.createServer(async (req, res) => {
@@ -146,10 +178,12 @@ const zeg = (goed, wat) => (goed ? ok++ : fouten.push(wat))
 await mkdir(SHOTS, { recursive: true })
 const browser = await chromium.launch()
 
-for (const [naam, breed, hoog] of [
+const SCHERMEN = [
   ['desktop', 1440, 1000],
   ['telefoon', 390, 844],
-]) {
+]
+
+for (const [naam, breed, hoog] of SNEL ? SCHERMEN.slice(0, 1) : SCHERMEN) {
   const pg = await browser.newPage({ viewport: { width: breed, height: hoog } })
   const jsFouten = []
   pg.on('console', (m) => m.type() === 'error' && jsFouten.push(m.text()))
@@ -170,7 +204,7 @@ for (const [naam, breed, hoog] of [
   }
 
   for (const taal of TALEN) {
-    for (const pad of taal.paden) {
+    for (const pad of teMeten(taal, taal.paden)) {
       const merk = `${naam} ${pad}`
       jsFouten.length = 0
       mislukt.length = 0
@@ -598,6 +632,27 @@ for (const [naam, breed, hoog] of [
     zeg(ws.length === 0, `${naam} ${taal.code}: beeld van Werkspot staat er nog op: ${ws.join(', ')}`)
   }
 
+  // ── het label "Ons werk" hoort alleen bij een foto van Ekrem ──
+  // Dat ging twee keer mis: een beeld van ons met "Ons werk" eronder op de trappagina
+  // (03-10) en op stucwerk, schilderwerk en laminaat (tot 09-10). Alleen eigen-* en
+  // foto-NN komen uit _ref/eigen/, de rest hebben wij zelf gemaakt.
+  for (const taal of TALEN) {
+    for (const pad of teMeten(taal, [taal.home, ...taal.diensten])) {
+      await pg.goto(basis + pad, { waitUntil: 'networkidle' })
+      await langs()
+      const geclaimd = await pg.$$eval('.split__tag', (els) =>
+        els
+          .filter((t) => /^(Ons werk|Our work)$/i.test((t.textContent || '').trim()))
+          .map((t) => t.parentElement?.querySelector('img')?.getAttribute('src') || 'geen beeld')
+          .filter((s) => !/^\/img\/(eigen-|foto-\d)/.test(s))
+      )
+      zeg(
+        geclaimd.length === 0,
+        `${naam} ${taal.code} ${pad}: "Ons werk" staat bij een beeld dat niet van Ekrem is: ${geclaimd.join(', ')}`
+      )
+    }
+  }
+
   for (const taal of TALEN) {
     const stempel = `${naam} ${taal.code}`
 
@@ -839,12 +894,12 @@ for (const [naam, breed, hoog] of [
    Dit is ook precies waar deze site op zakte voor de overzetting: het telefoonnummer
    en de contactkaarten werden door app.js op de pagina gezet, en de halve pagina
    stond op opacity 0 te wachten op een IntersectionObserver. */
-{
+if (!SNEL) {
   const kaal = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1440, height: 1000 } })
   const pg = await kaal.newPage()
 
   for (const taal of TALEN) {
-    for (const pad of taal.paden) {
+    for (const pad of teMeten(taal, taal.paden)) {
       const merk = `zonder-js ${pad}`
       const r = await pg.goto(basis + pad, { waitUntil: 'domcontentloaded' })
       zeg(r && r.status() < 400, `${merk}: status ${r && r.status()}`)
@@ -918,6 +973,17 @@ for (const [naam, breed, hoog] of [
 await browser.close()
 if (server) server.close()
 console.log(`${ok} controles zonder fout`)
+// Zeggen wat er NIET gemeten is. Een korte ronde die "schoon" meldt zonder dat erbij
+// te zetten leest als dekking die er niet is.
+if (SNEL || GEVRAAGD) {
+  const over = []
+  if (SNEL) over.push('de telefoon', 'de ronde zonder JavaScript')
+  if (GEVRAAGD) {
+    const wel = new Set(TALEN.flatMap((t) => teMeten(t, t.paden)))
+    over.push(`${ALLE.filter((p) => !wel.has(p)).length} pagina's buiten --pad`)
+  }
+  console.log(`KORTE RONDE - niet gemeten: ${over.join(', ')}. Volle ronde: node _ref/kijk.mjs <url>`)
+}
 if (fouten.length) {
   console.log(`\n${fouten.length} FOUT:`)
   fouten.forEach((f) => console.log(' - ' + f))

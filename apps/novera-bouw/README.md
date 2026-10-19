@@ -42,7 +42,8 @@ pnpm --filter @jiw/novera-bouw lint           # tsc over worker/
 pnpm --filter @jiw/novera-bouw dev            # bouwt en start wrangler dev op :3068
 pnpm --filter @jiw/novera-bouw ship:dry-run   # bindings en routes nalopen
 pnpm --filter @jiw/novera-bouw ship           # bouwt en rolt uit
-pnpm --filter @jiw/novera-bouw kijk           # meten in een echte browser, tegen dist/
+pnpm --filter @jiw/novera-bouw kijk           # de volle ronde in een echte browser, tegen dist/
+pnpm --filter @jiw/novera-bouw kijk:snel      # de korte ronde: alleen desktop, zonder de JS-loze pas
 pnpm --filter @jiw/novera-bouw indexnow       # de adressen aanmelden bij Bing c.s.
 node _ref/kijk.mjs https://noverabouw.nl      # hetzelfde tegen het live adres
 node _ref/maak-beeld.mjs [naam]               # ons eigen beeld (opnieuw) genereren
@@ -65,6 +66,31 @@ menu, niet in de sitemap, `noindex`. Het logo erin wijst naar `/img/handtekening
 en hoort niet in de sitemap. Cloudflare levert hem uit mét status 404
 (`not_found_handling: "404-page"`), want een onbekend pad dat de startpagina met status 200
 teruggeeft leest Google als een soft 404.
+
+## De meting: twee rondes
+
+`_ref/kijk.mjs` is de volle ronde: 30 pagina's in twee talen, op desktop én telefoon, plus een pas
+zonder JavaScript. Ruim honderd keer een pagina inladen, een kwartier werk. Dat is de lat voor een
+oplevering, maar te zwaar voor het omwisselen van een foto — en daar is het een paar keer op
+vastgelopen.
+
+Daarom twee vlaggen:
+
+```
+node _ref/kijk.mjs --snel                              # alleen desktop, geen JS-loze pas
+node _ref/kijk.mjs --snel --pad=/schilderwerk,/en/painting   # plus: alleen deze pagina's
+```
+
+`--pad` snoeit alleen wat er ingeladen wordt. `ALLE` en `taal.paden` blijven de hele lijst, want
+daar wordt elke interne link tegen gehouden; snoei je die mee, dan valt een goede link naar een
+niet-gemeten pagina ten onrechte om. De startpagina van elke taal gaat altijd mee — kop, voet, lint
+en de pakketprijzen hangen daaraan.
+
+Een korte ronde zegt onderaan zelf wat hij heeft laten liggen. Laat die regel staan: "schoon"
+zonder dat erbij leest als dekking die er niet is.
+
+In Git Bash op Windows moet er `MSYS_NO_PATHCONV=1` voor, anders maakt de shell van
+`--pad=/schilderwerk` een `C:/Program Files/...`-pad.
 
 ## Twee talen
 
