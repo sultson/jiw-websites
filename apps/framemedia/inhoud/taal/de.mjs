@@ -232,8 +232,8 @@ export default {
     },
 
     TARIEVEN: [
-      { duur: '3 Minuten', prijs: '2990', zendtijd: '2 &times; 3 Minuten = 6 Minuten Sendezeit', bij: 'All-in, ohne Extras', uitgelicht: true },
-      { duur: '4 Minuten', prijs: '3990', zendtijd: '2 &times; 4 Minuten = 8 Minuten Sendezeit', bij: 'All-in, ohne Extras' },
+      { duur: '3 Minuten', prijs: '2990', zendtijd: '2 &times; 3 Minuten = 6 Minuten Sendezeit', bij: 'All-in, ohne Extras' },
+      { duur: '4 Minuten', prijs: '3950', zendtijd: '2 &times; 4 Minuten = 8 Minuten Sendezeit', bij: 'All-in, ohne Extras', uitgelicht: true },
       { duur: '5 Minuten', prijs: 'Auf Anfrage', zendtijd: '2 &times; 5 Minuten = 10 Minuten Sendezeit', bij: 'All-in, ohne Extras' },
     ],
     TARIEVEN_GROOT: [
@@ -299,7 +299,7 @@ export default {
       },
       {
         v: 'Was kostet das?',
-        a: 'Ein All-in-Beitrag von drei Minuten kostet 2990 und vier Minuten 3990. Darin ist alles enthalten: Vorbereitung, Aufnahme, Produktion, Montage, Moderation, Musikrechte, Sendergeb&uuml;hr und die Ausstrahlung. Den Preis f&uuml;r 5, 6 oder 9 Minuten nennen wir auf Anfrage.',
+        a: 'Ein All-in-Beitrag von drei Minuten kostet 2990 und vier Minuten 3950. Darin ist alles enthalten: Vorbereitung, Aufnahme, Produktion, Montage, Moderation, Musikrechte, Sendergeb&uuml;hr und die Ausstrahlung. Den Preis f&uuml;r 5, 6 oder 9 Minuten nennen wir auf Anfrage.',
       },
       {
         v: 'Wo wird gedreht?',
@@ -492,6 +492,7 @@ export default {
       },
     ],
 
+    VIDEOS_ALT: { '5vDZX9njxsI': 'Das Logo von Puur Genieten' },
     VIDEOS_BIJ: {
       'deTdhbPWHEw': 'Einf&uuml;hrung, mit KI erstellt',
       'hph7jDwIAck': 'Puur Genieten, SBS 6',
@@ -499,7 +500,6 @@ export default {
       'nnXSpXg--8o': 'RTL 4',
       'iEV0h4Me6Zs': 'RTL 4',
       '5vDZX9njxsI': 'Vorspann, RTL 4',
-      'v4jBMUAzz4U': 'Format, RTL 4',
       '0k0XVDhqFOw': 'Pilot, mit Klaas Wilting',
       'LyYLSzc4GgQ': 'Format, mit Bart Bosch',
       '_iHCL5n1Yis': 'Branded Content',

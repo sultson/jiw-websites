@@ -57,7 +57,7 @@ export default {
   mailen: 'Mailen',
 
   voet: {
-    zin: 'Creators of content. Branded content, studiofaciliteiten en formatontwikkeling voor de commerciele zenders.',
+    zin: 'Creators of content. Branded content, studiofaciliteiten en formatontwikkeling voor de commerci&euml;le zenders.',
     watWijDoen: 'Wat wij doen',
     studio: 'Studio',
     contact: 'Contact',
@@ -157,7 +157,7 @@ export default {
     },
     branded: {
       titel: 'Branded content | FRAME MEDIA',
-      omschrijving: 'Non-spot advertising: een redactioneel item van 3 tot 9 minuten waarin uw product in beeld komt en u zelf wordt geinterviewd. Werkwijze, wat erin zit en de tarieven.',
+      omschrijving: 'Non-spot advertising: een redactioneel item van 3 tot 9 minuten waarin uw product in beeld komt en u zelf wordt ge&iuml;nterviewd. Werkwijze, wat erin zit en de tarieven.',
     },
     studio: {
       titel: 'Studiofaciliteiten | FRAME MEDIA',
@@ -169,7 +169,7 @@ export default {
     },
     over: {
       titel: 'Over ons | FRAME MEDIA',
-      omschrijving: 'FRAME MEDIA is het platform voor vraag en aanbod van programmasponsoring op de commerciele zenders. Ons verhaal en ruim honderd opdrachtgevers.',
+      omschrijving: 'FRAME MEDIA is het platform voor vraag en aanbod van programmasponsoring op de commerci&euml;le zenders. Ons verhaal en ruim honderd opdrachtgevers.',
     },
     contact: {
       titel: 'Contact | FRAME MEDIA',
@@ -184,10 +184,10 @@ export default {
     // gelijk blijven aan wat er nu al staat. Zonder streepje: 'programma idee'
     // is de zoekopdracht waarop die pagina nummer 1 tot 2 staat, en bij een
     // verhuizing verander je niet precies dat. In de lopende tekst staat het
-    // wel met streepje ('programma-ideeen'), want zo is het Nederlands.
+    // wel met streepje ('programma-idee&euml;n'), want zo is het Nederlands.
     programmaIdee: {
       titel: 'Programma idee insturen? | FRAME MEDIA',
-      omschrijving: 'Goede programma-ideeen zijn goud waard. FRAME MEDIA beoordeelt uw tv-idee op inhoud en op sponsoring, werkt het uit tot een format en presenteert het aan de commerciele zenders. Alle ideeen vertrouwelijk.',
+      omschrijving: 'Goede programma-idee&euml;n zijn goud waard. FRAME MEDIA beoordeelt uw tv-idee op inhoud en op sponsoring, werkt het uit tot een format en presenteert het aan de commerci&euml;le zenders. Alle idee&euml;n vertrouwelijk.',
     },
     vacature: {
       titel: 'Vacature: zelfstandig accountmanager | FRAME MEDIA',

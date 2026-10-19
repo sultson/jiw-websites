@@ -663,6 +663,11 @@ table.vgl tbody tr:last-child th, table.vgl tbody tr:last-child td { border-bott
 }
 .ruimte-body .vink { grid-template-columns: 1fr; gap: .58rem; }
 .ruimte-body .vink li { font-size: .92rem; }
+
+/* De strook onder de contacthero: bereikbaarheid naast het rijtje waar je
+   voor kunt bellen. Sinds 19-10-2026 staat het formulier in de hero, dus
+   hieronder is de hele breedte vrij. */
+.contact-onder { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.6rem, 4vw, 3rem); align-items: start; }
 .blokken { display: grid; gap: 1.3rem; }
 .blok h4 {
   font-family: var(--kop); font-size: 1rem; color: var(--wit); letter-spacing: -.01em;
@@ -1262,6 +1267,7 @@ table.vgl thead th, table.vgl tbody th { background: rgba(255, 255, 255, .035); 
   .stappen { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .ruimte-body { grid-template-columns: 1fr; }
+  .contact-onder { grid-template-columns: 1fr; }
   .vac-grid { grid-template-columns: 1fr; }
   .vac-zij { position: static; }
   .videos { grid-template-columns: repeat(3, 1fr); }

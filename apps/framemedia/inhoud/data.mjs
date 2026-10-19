@@ -39,7 +39,7 @@ export const ROUTES = [
     nr: '01',
     kort: 'Branded content',
     titel: 'Uw bedrijf in een tv-programma',
-    zin: 'Drie tot vijf minuten zendtijd waarin uw product in beeld komt en u zelf wordt geinterviewd. Geen reclameblok, maar redactie.',
+    zin: 'Drie tot vijf minuten zendtijd waarin uw product in beeld komt en u zelf wordt ge&iuml;nterviewd. Geen reclameblok, maar redactie.',
     punten: ['Non-spot van 3 tot 9 minuten', 'Opname op locatie of in de studio', 'All-in vanaf 2990'],
   },
   {
@@ -70,7 +70,7 @@ export const ROUTES = [
 // aantal bedrijven is de referentielijst geteld.
 export const CIJFERS = [
   { getal: '100+', label: 'bedrijven op televisie gebracht' },
-  { getal: '7', label: 'commerciele zenders' },
+  { getal: '7', label: 'commerci&euml;le zenders' },
   { getal: '3-5', label: 'minuten zendtijd per item' },
   { getal: '1981', label: 'maken wij televisie sinds' },
 ];
@@ -83,7 +83,7 @@ export const VERGELIJKING = {
   rijen: [
     ['Duur', '20 tot 30 seconden', '3 tot 9 minuten'],
     ['Vorm', 'Advertentie in het reclameblok', 'Redactioneel item in het programma'],
-    ['Wie spreekt', 'Een voice-over', 'U zelf, geinterviewd door de presentator'],
+    ['Wie spreekt', 'Een voice-over', 'U zelf, ge&iuml;nterviewd door de presentator'],
     ['Locatie', 'Studio of set van het reclamebureau', 'Uw eigen bedrijf, of onze studio'],
     ['Kijker', 'Zapt weg of kijkt langs het blok heen', 'Kijkt door, want het is het programma'],
     ['Wat blijft hangen', 'Een boodschap', 'Een verhaal en een gezicht'],
@@ -140,8 +140,8 @@ export const INBEGREPEN_UITZENDING_PG = 'Uitzending op zaterdag en op zondag';
 // 5 minuten staat sinds 11-10-2026 op aanvraag, op verzoek van Armando; het
 // bedrag dat daar stond (4990) is eraf.
 export const TARIEVEN = [
-  { duur: '3 minuten', prijs: '2990', zendtijd: '2 &times; 3 minuten = 6 minuten zendtijd', bij: 'All-in, zonder extra&rsquo;s', uitgelicht: true },
-  { duur: '4 minuten', prijs: '3990', zendtijd: '2 &times; 4 minuten = 8 minuten zendtijd', bij: 'All-in, zonder extra&rsquo;s' },
+  { duur: '3 minuten', prijs: '2990', zendtijd: '2 &times; 3 minuten = 6 minuten zendtijd', bij: 'All-in, zonder extra&rsquo;s' },
+  { duur: '4 minuten', prijs: '3950', zendtijd: '2 &times; 4 minuten = 8 minuten zendtijd', bij: 'All-in, zonder extra&rsquo;s', uitgelicht: true },
   { duur: '5 minuten', prijs: 'Op aanvraag', zendtijd: '2 &times; 5 minuten = 10 minuten zendtijd', bij: 'All-in, zonder extra&rsquo;s' },
 ];
 
@@ -195,7 +195,7 @@ export const RUIMTES = [
       'Wifi en airconditioning',
     ],
     blokken: [
-      { kop: 'Decor', tekst: 'Het standaarddecor is een L-vormige horizontale banner van circa 9 meter breed en 80 cm hoog, met grafische effecten in rood-oranje tint, een ingebouwd beeldscherm en lichteffecten. Boven en onder hangen acht borden van 80 &times; 40 cm. Met magneetfolie is de look-and-feel aan te passen aan uw eigen huisstijl: een mooie en kostenefficiente manier om de studio van uw branding te voorzien.' },
+      { kop: 'Decor', tekst: 'Het standaarddecor is een L-vormige horizontale banner van circa 9 meter breed en 80 cm hoog, met grafische effecten in rood-oranje tint, een ingebouwd beeldscherm en lichteffecten. Boven en onder hangen acht borden van 80 &times; 40 cm. Met magneetfolie is de look-and-feel aan te passen aan uw eigen huisstijl: een mooie en kosteneffici&euml;nte manier om de studio van uw branding te voorzien.' },
       { kop: 'Licht', tekst: 'Het lichtplafond bestaat uit lampen en groepen lampen, bediend vanaf een 12-krings lichttafel in Regie A. Wijzigingen zijn daardoor onmiddellijk zichtbaar op de monitors en goed te beoordelen.' },
       { kop: 'Camera&rsquo;s', tekst: 'Wij werken met robotcamera&rsquo;s op vaste statieven. Meerdere camera&rsquo;s worden door een Remote Camera Operator op afstand bediend, wat de bezetting en dus de kosten laag houdt.' },
       { kop: 'Geluid', tekst: 'Headsets, reversmicrofoons of tafelmicrofoons, met kabel of zender. Decorluidsprekers voor video-instarts en vormgeving, en regie-aanwijzingen tijdens de repetitie.' },
@@ -210,7 +210,7 @@ export const RUIMTES = [
     ],
     naam: 'Regie A',
     type: 'Regieruimte',
-    zin: 'Regie A is gekoppeld aan Studio A. Die combinatie is ontworpen om opnamen en live-uitzendingen van televisieprogramma&rsquo;s, webcasts en webinars kostenefficient in een standaardset te realiseren.',
+    zin: 'Regie A is gekoppeld aan Studio A. Die combinatie is ontworpen om opnamen en live-uitzendingen van televisieprogramma&rsquo;s, webcasts en webinars kosteneffici&euml;nt in een standaardset te realiseren.',
     kerncijfers: [
       ['Vloeroppervlak', '9,75 &times; 5,25 m'],
       ['Hoogte', '2,75 m'],
@@ -267,7 +267,7 @@ export const RUIMTES = [
       'Airconditioning, uit tijdens opname',
     ],
     blokken: [
-      { kop: 'In &eacute;&eacute;n keer opnemen', tekst: 'Tunes, jingles en muziek kunnen live worden ingestart, waardoor een compleet programma in &eacute;&eacute;n keer kan worden vastgelegd. Dat maakt de productie zeer kostenefficient. Wij raden aan om tijdens de opname zo min mogelijk te stoppen, dat komt de flow van het gesprek ten goede.' },
+      { kop: 'In &eacute;&eacute;n keer opnemen', tekst: 'Tunes, jingles en muziek kunnen live worden ingestart, waardoor een compleet programma in &eacute;&eacute;n keer kan worden vastgelegd. Dat maakt de productie zeer kosteneffici&euml;nt. Wij raden aan om tijdens de opname zo min mogelijk te stoppen, dat komt de flow van het gesprek ten goede.' },
       { kop: 'Toch in delen', tekst: 'Moet het per se, dan kunnen onderdelen los van elkaar worden opgenomen of fragmenten opnieuw. Opname- en montagetijd worden dan wel langer.' },
       { kop: 'Afwerking en levering', tekst: 'Na de montage volgt de soundprocessing. Daarna is het WAV-bestand klaar; vanwege de bestandsgrootte coderen we dat meestal ook naar MP3. Verzending gaat onder meer via WeTransfer.' },
       { kop: 'Archivering', tekst: 'Wij bewaren uw podcast minimaal een jaar gratis in ons archief. Gaat er iets mis met uw eigen bestand, dan kunt u daarop terugvallen.' },
@@ -360,8 +360,15 @@ export const VIDEOS = [
   { id: 'UAUAB-dQgP4', titel: 'Hyde Park', bij: 'RTL 4', duur: '2:57', jaar: '2023' },
   { id: 'nnXSpXg--8o', titel: 'Algotrade', bij: 'RTL 4', duur: '1:58', jaar: '2023' },
   { id: 'iEV0h4Me6Zs', titel: 'Moderne Kunst', bij: 'RTL 4', duur: '1:43', jaar: '2023' },
-  { id: '5vDZX9njxsI', titel: 'Life Is Beautiful', bij: 'Leader, RTL 4', duur: '0:20', jaar: '2022' },
-  { id: 'v4jBMUAzz4U', titel: 'Hey Baby', bij: 'Format, RTL 4', duur: '1:12', jaar: '2021' },
+  // Heet op hun eigen kanaal 'Life Is Beautiful'; 19-10-2026 op verzoek van de
+  // klant hernoemd naar Puur Genieten - dat is de naam die het programma nu
+  // draagt. Het beeld van de leader draagt nog de oude naam, dus de thumbnail
+  // is vervangen door het Puur Genieten-logo (maak-pg-thumb.mjs). Daarom ook
+  // een eigen alt-tekst: het is geen beeld uit de film maar een logo.
+  { id: '5vDZX9njxsI', titel: 'Puur Genieten', bij: 'Leader, RTL 4', duur: '0:20', jaar: '2022', alt: 'Het logo van Puur Genieten' },
+  // 'Hey Baby' (v4jBMUAzz4U, format RTL 4) stond hier als kaart; 19-10-2026 op
+  // verzoek van de klant van de site af. Het tekstblok bij EIGEN_FORMATS staat
+  // er nog, dat is hun eigen formatlijst.
   { id: '0k0XVDhqFOw', titel: 'Code Blauw', bij: 'Pilot, met Klaas Wilting', duur: '0:54', jaar: '2021' },
   { id: 'LyYLSzc4GgQ', titel: 'Ren je Rot', bij: 'Format, met Bart Bosch', duur: '0:40', jaar: '2021' },
   // Stond als ConnectCar op hun eigen YouTube-kanaal; 10-10-2026 op verzoek van
@@ -536,7 +543,7 @@ export const VRAGEN = [
   },
   {
     v: 'Wat kost het?',
-    a: 'Een all-in item van drie minuten kost 2990 en vier minuten 3990. Daar zit alles in: voorbereiding, opname, productie, montage, presentatie, muziekrechten, zenderfee en de uitzending. De prijs van 5, 6 of 9 minuten geven wij op aanvraag.',
+    a: 'Een all-in item van drie minuten kost 2990 en vier minuten 3950. Daar zit alles in: voorbereiding, opname, productie, montage, presentatie, muziekrechten, zenderfee en de uitzending. De prijs van 5, 6 of 9 minuten geven wij op aanvraag.',
   },
   {
     v: 'Waar wordt er opgenomen?',
@@ -544,7 +551,7 @@ export const VRAGEN = [
   },
   {
     v: 'Wanneer wordt het uitgezonden?',
-    a: 'De programma&rsquo;s worden veelal in de ochtenden en middagen in de weekeinden uitgezonden op de commerciele zenders. Hoe vaak uw item de lucht in gaat, hangt af van het programma; bij het kennismakingsgesprek hoort u welke uitzendmomenten er voor u in beeld zijn.',
+    a: 'De programma&rsquo;s worden veelal in de ochtenden en middagen in de weekeinden uitgezonden op de commerci&euml;le zenders. Hoe vaak uw item de lucht in gaat, hangt af van het programma; bij het kennismakingsgesprek hoort u welke uitzendmomenten er voor u in beeld zijn.',
   },
   {
     v: 'Mag ik het item zelf gebruiken?',
@@ -560,6 +567,6 @@ export const VRAGEN = [
   },
   {
     v: 'Ik heb zelf een idee voor een programma. Kan dat?',
-    a: 'Ja, daar is een aparte route voor. Wij beoordelen het idee op inhoud en op sponsoring, en leggen het na overeenstemming voor aan de commerciele zenders. Alle ideeen worden vertrouwelijk behandeld.',
+    a: 'Ja, daar is een aparte route voor. Wij beoordelen het idee op inhoud en op sponsoring, en leggen het na overeenstemming voor aan de commerci&euml;le zenders. Alle idee&euml;n worden vertrouwelijk behandeld.',
   },
 ];

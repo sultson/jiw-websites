@@ -506,8 +506,16 @@ for (const taal of TALEN) {
   // niets.
   const data = { ...taal.data };
   if (taal.data.VIDEOS_BIJ) {
-    data.VIDEOS = NL_DATA.VIDEOS.map(v => ({ ...v, bij: taal.data.VIDEOS_BIJ[v.id] ?? v.bij }));
+    data.VIDEOS = NL_DATA.VIDEOS.map(v => ({
+      ...v,
+      bij: taal.data.VIDEOS_BIJ[v.id] ?? v.bij,
+      // Een eigen alt-tekst heeft maar een kaart (het logo van Puur
+      // Genieten); zonder deze regel stond daar de Nederlandse zin in
+      // het Engels en het Duits.
+      ...(taal.data.VIDEOS_ALT?.[v.id] ? { alt: taal.data.VIDEOS_ALT[v.id] } : {}),
+    }));
     delete data.VIDEOS_BIJ;
+    delete data.VIDEOS_ALT;
   }
   zetTaal({ data, ui: taal.ui, basis: taal.basis });
 

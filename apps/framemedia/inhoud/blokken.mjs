@@ -203,7 +203,7 @@ export const videoGrid = (n = D.VIDEOS.length) => `
 ${D.VIDEOS.slice(0, n).map(v => `        <button class="video-kaart kader" type="button" data-video="${v.id}" data-titel="${v.titel}">
           <span class="video-beeld">
             <img src="/assets/video/thumbs/${v.id}.webp" width="640" height="360" loading="lazy" decoding="async"
-                 alt="${U.beeldUit(v.titel)}">
+                 alt="${v.alt ?? U.beeldUit(v.titel)}">
             <span class="video-speel">${speel}</span>
             <span class="video-duur">${v.duur}</span>
           </span>
@@ -321,7 +321,7 @@ export const pgVideo = () => {
         <button class="video-kaart kader" type="button" data-video="${v.id}" data-titel="${v.titel}">
           <span class="video-beeld">
             <img src="/assets/video/thumbs/${v.id}.webp" width="640" height="360" loading="lazy" decoding="async"
-                 alt="${U.beeldUit(v.titel)}">
+                 alt="${v.alt ?? U.beeldUit(v.titel)}">
             <span class="video-speel">${speel}</span>
             <span class="video-duur">${v.duur}</span>
           </span>

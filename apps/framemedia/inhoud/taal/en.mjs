@@ -235,8 +235,8 @@ export default {
     },
 
     TARIEVEN: [
-      { duur: '3 minutes', prijs: '2990', zendtijd: '2 &times; 3 minutes = 6 minutes of airtime', bij: 'All-in, excluding add-ons', uitgelicht: true },
-      { duur: '4 minutes', prijs: '3990', zendtijd: '2 &times; 4 minutes = 8 minutes of airtime', bij: 'All-in, excluding add-ons' },
+      { duur: '3 minutes', prijs: '2990', zendtijd: '2 &times; 3 minutes = 6 minutes of airtime', bij: 'All-in, excluding add-ons' },
+      { duur: '4 minutes', prijs: '3950', zendtijd: '2 &times; 4 minutes = 8 minutes of airtime', bij: 'All-in, excluding add-ons', uitgelicht: true },
       { duur: '5 minutes', prijs: 'On request', zendtijd: '2 &times; 5 minutes = 10 minutes of airtime', bij: 'All-in, excluding add-ons' },
     ],
     TARIEVEN_GROOT: [
@@ -302,7 +302,7 @@ export default {
       },
       {
         v: 'What does it cost?',
-        a: 'An all-in item of three minutes costs 2990 and four minutes 3990. That covers everything: preparation, filming, production, editing, presenter, music rights, the channel fee and the broadcast. The price of 5, 6 or 9 minutes is quoted on request.',
+        a: 'An all-in item of three minutes costs 2990 and four minutes 3950. That covers everything: preparation, filming, production, editing, presenter, music rights, the channel fee and the broadcast. The price of 5, 6 or 9 minutes is quoted on request.',
       },
       {
         v: 'Where is it filmed?',
@@ -496,6 +496,7 @@ export default {
     ],
 
     // Alleen het label onder de kaart is taal; titels zijn programmanamen.
+    VIDEOS_ALT: { '5vDZX9njxsI': 'The Puur Genieten logo' },
     VIDEOS_BIJ: {
       'deTdhbPWHEw': 'Introduction, made with AI',
       'hph7jDwIAck': 'Puur Genieten, SBS 6',
@@ -503,7 +504,6 @@ export default {
       'nnXSpXg--8o': 'RTL 4',
       'iEV0h4Me6Zs': 'RTL 4',
       '5vDZX9njxsI': 'Title sequence, RTL 4',
-      'v4jBMUAzz4U': 'Format, RTL 4',
       '0k0XVDhqFOw': 'Pilot, with Klaas Wilting',
       'LyYLSzc4GgQ': 'Format, with Bart Bosch',
       '_iHCL5n1Yis': 'Branded content',
