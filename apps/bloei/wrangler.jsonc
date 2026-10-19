@@ -79,15 +79,16 @@
   // Geen TURNSTILE_SECRET_KEY: dit formulier draait met `turnstile: false` en
   // leunt op het verborgen veld in worker/index.ts, dus er is geen widget om
   // tegen te controleren.
-  // LET OP: de ontvanger is bewust ons eigen adres en niet dat van de klant.
-  // De winkel heeft geen mailadres doorgegeven (zie WINKEL in site.config.mjs),
-  // dus de aanvragen komen voorlopig bij ons binnen en gaan met de hand door.
-  // Geeft de winkel er een door, dan verhuist LEAD_RECIPIENT daarheen — en
-  // vanaf dat moment geldt wat bij de andere klantensites geldt: nooit meer een
-  // testaanvraag tegen de live config, want die komt in hun inbox.
+  // LET OP: de ontvanger is sinds 19-10-2026 de mailbox van de winkel zelf
+  // (`info@bloei-ouddorp.nl`, op de Purelymail-records van de apex). Daarmee
+  // geldt hier wat bij elke andere klantensite geldt: NOOIT een testaanvraag
+  // tegen deze config, want die komt in hun inbox. Moet er getest worden, zet
+  // LEAD_RECIPIENT eerst terug op `hallo@jouwidealewebsite.nl`.
+  // In de bevestiging aan de klant staat dit adres niet: de winkel heeft ons
+  // nog geen adres doorgegeven om te publiceren (zie WINKEL in site.config.mjs).
   "vars": {
     "SITE_ID": "bloei",
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_RECIPIENT": "info@bloei-ouddorp.nl",
     "LEAD_SENDER": "no-reply@notify.bloei-ouddorp.nl"
   }
 }

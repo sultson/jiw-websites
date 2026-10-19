@@ -27,7 +27,7 @@ const COPY: ConfirmationEmailCopy = {
   greeting: 'Beste {name},',
   receiptMessage: 'Uw aanvraag is bij ons binnen',
   followUpMessage:
-    'We kijken ernaar en laten u weten wat we voor u kunnen maken en wat het kost. Meestal is dat nog dezelfde of de eerstvolgende winkeldag. Dit is een aanvraag en nog geen bestelling: u zit nergens aan vast.',
+    'We kijken ernaar en laten u weten wat we voor u kunnen maken en wat het kost. Meestal is dat nog dezelfde of de eerstvolgende winkeldag.',
   detailsHeading: 'Uw aanvraag',
   messageHeading: 'Uw wensen',
   referenceLabel: 'Kenmerk',

@@ -396,12 +396,17 @@ pnpm --filter @jiw/bloei ship     # build + audit:seo + wrangler deploy
 `scripts/audit-seo.mjs` controleert op `GardenStore` en niet op `Florist`: Bloei!
 verkoopt bloemen, maar het zwaartepunt ligt bij planten, tuin en wonen.
 
-**De ontvanger van het formulier staat op `hallo@jouwidealewebsite.nl`**, niet op
-een adres van de klant (`LEAD_RECIPIENT` in `wrangler.jsonc`). De winkel heeft
-geen mailadres doorgegeven, dus de aanvragen komen bij ons binnen en gaan met de
-hand door. Geeft ze er een door, dan verhuist die regel daarheen — en vanaf dat
-moment geldt wat bij elke andere klantensite geldt: **nooit meer een testaanvraag
-tegen de live config**, want die komt in hun inbox.
+**De ontvanger van het formulier staat sinds 19-10-2026 op
+`info@bloei-ouddorp.nl`**, de mailbox van de winkel zelf (`LEAD_RECIPIENT` in
+`wrangler.jsonc`; die loopt over de Purelymail-records van de apex). Daarmee
+geldt hier wat bij elke andere klantensite geldt: **nooit een testaanvraag tegen
+de live config**, want die komt in hun inbox. Moet er getest worden, zet
+`LEAD_RECIPIENT` eerst terug op `hallo@jouwidealewebsite.nl`.
+
+Dat adres staat nergens op de site en ook niet in de bevestiging aan de klant: de
+winkel heeft ons geen adres gegeven om te publiceren, alleen een inbox om de
+aanvragen in te ontvangen. Contact loopt voor de bezoeker via telefoon en
+WhatsApp.
 
 ## De verhuizing naar bloei-ouddorp.nl — 19 oktober
 
@@ -434,8 +439,14 @@ geen `Confirmation email failed` — dat laatste is de enige manier om zeker te
 weten dat de bevestiging aan de klant ook werkelijk weg is, want een mislukte
 bevestiging wordt alleen gelogd en geeft de bezoeker nog steeds `{"ok":true}`.
 
-Wat er niet mee verhuisd is: `LEAD_RECIPIENT` (de winkel heeft geen mailbox
-doorgegeven) en de disclaimer over de oude naam, die juist nu nodig is. Zie
+Diezelfde avond is `LEAD_RECIPIENT` naar `info@bloei-ouddorp.nl` gezet en is de
+regel "Dit is een aanvraag en nog geen bestelling: u zit nergens aan vast" uit de
+bevestiging aan de klant gehaald. Die testaanvraag hierboven is dus de laatste
+die tegen deze config mocht. Op de site zelf staat die regel nog wel, als vinkje
+bij het formulier.
+
+Wat er niet mee verhuisd is: de disclaimer over de oude naam, die juist nu nodig
+is. Zie
 `SEO.md` voor wat er nog openstaat — Search Console en het Google
 Bedrijfsprofiel zijn de twee die er het meest uit halen, en die liggen beide
 buiten deze repo.
