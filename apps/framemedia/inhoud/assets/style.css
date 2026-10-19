@@ -939,6 +939,46 @@ table.vgl tbody tr:last-child th, table.vgl tbody tr:last-child td { border-bott
 .form-kaart.verstuurd form { display: none; }
 .form-kaart.verstuurd .form-dank { display: block; }
 
+/* De kop en de regel eronder in een formulierkaart. Stonden eerst per pagina
+   in een style-attribuut; nu hier, zodat de uitgelichte variant hieronder er
+   iets anders van kan maken zonder dat de tekst zelf verandert. */
+.form-kaart form > h2 { font-size: 1.24rem; letter-spacing: -.015em; margin-bottom: .6rem; }
+.form-noot-kop { margin: 0 0 1.4rem; }
+
+/* --- het uitgelichte formulier --------------------------------------------
+   Op /programma-idee/ is het formulier het doel van de pagina en niet een
+   bijzaak naast de tekst: wie daar binnenkomt heeft een idee en moet het
+   kunnen achterlaten. Daar krijgt de kolom meer breedte (.hero-grid-form) en
+   het vlak een rode rand met gloed, een rode streep bovenlangs, een grotere
+   kop en ruimere velden. Alleen maatwerk in de opmaak - geen woord van de
+   pagina verandert mee, want die tekst staat op zijn plek in Google.
+   --------------------------------------------------------------------------- */
+.hero-grid-form { grid-template-columns: 1fr 1.05fr; align-items: start; }
+
+.form-kaart.form-uit {
+  position: relative;
+  padding: clamp(1.9rem, 3.4vw, 3rem);
+  border-color: rgba(255, 77, 87, .42);
+  background-color: rgba(31, 25, 31, .7);
+  box-shadow: var(--glans), var(--diepte), 0 28px 70px -34px rgba(255, 77, 87, .45);
+}
+/* De streep bovenlangs. Los vlakje in plaats van overflow:hidden op de kaart,
+   want dat zou de focusring van het bovenste veld afsnijden. */
+.form-uit::before {
+  content: ''; position: absolute; inset: 0 0 auto; height: 4px;
+  border-radius: var(--radius-groot) var(--radius-groot) 0 0;
+  background: linear-gradient(90deg, var(--rood-vast), var(--rood));
+}
+.form-uit form > h2 { font-size: clamp(1.45rem, 2.4vw, 1.8rem); margin-bottom: .5rem; }
+.form-uit .form-noot-kop { font-size: .95rem; color: var(--tekst); }
+.form-uit .veld { margin-bottom: 1.25rem; }
+.form-uit .veld label { font-size: .92rem; }
+.form-uit .veld input, .form-uit .veld select, .form-uit .veld textarea {
+  padding: .88rem 1rem; font-size: 1.02rem;
+}
+.form-uit .veld textarea { min-height: 150px; }
+.form-uit button[type=submit] { font-size: 1.06rem; padding-block: 1.05rem; }
+
 .contact-lijst { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.3rem; }
 .contact-lijst li { display: flex; gap: .95rem; align-items: flex-start; }
 .contact-lijst svg { width: 20px; height: 20px; stroke: var(--rood); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: .22rem; }
