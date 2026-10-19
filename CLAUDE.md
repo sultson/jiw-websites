@@ -106,6 +106,21 @@ apps/         client sites (almost all a Vite + React 19 + TS 5.8 + Tailwind v4 
                           went half-applied. One form endpoint, `/api/forms/aanvraag`; before
                           the graduation the form sent nothing at all, it just opened wa.me.
                           dev port 3074. See its LEESMIJ.md + SEO.md.
+  novera-bouw/            same exception, graduated 03-10-2026 from jiw-concepts. `bouw.mjs`
+                          writes 30 static pages into dist/ — 15 nl on /, 15 en on /en/ — from
+                          one shell (`pagina/_schil.html`) plus a page per file. Serves
+                          noverabouw.nl (apex canonical, `www` 301s onto it) and sends from
+                          `offers@notify.noverabouw.nl` to `info@noverabouw.nl`, the client's
+                          own mailbox, so **never send a test submission against the deployed
+                          config**. Two blocks in `pagina/` are GENERATED, not hand-written:
+                          the gallery in werkzaamheden.html + en/services.html and the
+                          before/after block in stucwerk.html + en/plastering.html, both
+                          between `<!-- galerij -->` / `<!-- voorna -->` markers. Edit
+                          `_ref/eigen-lijst.mjs` and run `node _ref/eigen.mjs`, or your change
+                          is gone on the next run. `_ref/kijk.mjs` is the browser check: the
+                          full round is ~100 page loads and takes a quarter of an hour, so use
+                          `--snel --pad=/a,/en/b` while working and the full round before
+                          handing something over. dev port 3068. See its README + SEO.md.
   my-kim-nails/        dev port 3000 — frontend-only
   nail-it-rosmalen/    dev port 3002 — frontend-only
   sgv-nails/           placeholder (INFO.md only, not yet scaffolded)
