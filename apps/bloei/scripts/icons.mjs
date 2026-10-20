@@ -34,11 +34,12 @@ const APP = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const IMG = path.join(APP, 'public/img');
 const LOGO = path.join(IMG, 'logo-bloei-wit.svg');
 
-/* De huisstijl. Dennengroen is het vlak, lindegroen het blad erop — dezelfde
-   twee kleuren waarmee het logo zelf op een donkere ondergrond staat. */
+/* De huisstijl. Dennengroen is het vlak, het blad erop in zijn eigen twee
+   tinten — dezelfde kleuren waarmee het logo zelf op een donkere ondergrond
+   staat. */
 const DENNEN = '#173F2B';
 const SALIE = '#4F784B';
-const LINDE = '#B1C2A2';
+const LICHT = '#A9C58D';
 const WIT = '#FFFFFF';
 
 /* ------------------------------------------------------------------ */
@@ -46,10 +47,15 @@ const WIT = '#FFFFFF';
 /* ------------------------------------------------------------------ */
 
 /**
- * Het logo bestaat uit twee groepen met dezelfde transform: de letters en het
- * blad. Alleen de bladgroep is te herkennen aan zijn vulkleur, en die is geen
- * toeval — lindegroen staat in de huisstijl omschreven als precies de kleur
- * van het blad in deze versie van het logo.
+ * Sinds 20-10-2026 is dit de tweekleurige versie uit de huisstijlmap
+ * (01-Logos/Extras-tweekleurig). Daarvoor stond hier de eenkleurige: wit
+ * woordmerk, blad in één tint lindegroen (#B1C2A2). In de tweekleurige is dat
+ * blad gesplitst in een donkere helft (saliegroen) en een lichte (#A9C58D),
+ * waardoor het blad diepte krijgt in plaats van een silhouet te zijn.
+ *
+ * Voor dit script betekent dat: niet één bladgroep maar twee, plus één los pad
+ * dat buiten beide groepen staat en zijn eigen vulling draagt. Alles wat niet
+ * wit is, is blad.
  */
 const logo = await readFile(LOGO, 'utf8');
 
@@ -58,26 +64,31 @@ const logo = await readFile(LOGO, 'utf8');
 /* ------------------------------------------------------------------ */
 
 /**
- * De huisstijl leverde twee logo's: de witte versie als SVG, en de gekleurde
- * voor lichte vlakken alleen als PNG. Die tweede maken we hier zelf, door in
- * de vector de twee vullingen om te zetten — wit wordt dennengroen, lindegroen
- * wordt saliegroen. Precies wat er op hun PNG staat, maar dan als vector.
+ * De huisstijl levert per logo een hele waaier bestanden; wij houden er één als
+ * bron aan — de witte op doorzichtig — en maken de gekleurde voor lichte
+ * vlakken daaruit. Wit wordt dennengroen en de donkere bladhelft ook; de
+ * lichte helft blijft staan. Dat is precies hun eigen
+ * `bloei-primair-kleur-transparant.svg`, op de groepsindeling na: zij voegen de
+ * twee dennengroene groepen samen tot één, wij laten ze staan. Byte voor byte
+ * nagelopen op 20-10-2026, verder geen verschil.
  *
- * Waarom niet gewoon die PNG gebruiken: dan staan er twee bestanden van
+ * Waarom niet gewoon hun bestand gebruiken: dan staan er twee bestanden van
  * hetzelfde merk naast elkaar die alleen van vorm gelijk zijn zolang niemand
  * er iets aan doet. Nu is er één bron, en loopt de gekleurde versie per
  * definitie mee met de witte.
  */
-const logoKleur = logo
-  .replace(new RegExp(`fill="${WIT}"`, 'gi'), `fill="${DENNEN}"`)
-  .replace(new RegExp(`fill="${LINDE}"`, 'gi'), `fill="${SALIE}"`);
+const vervang = (tekst, van, naar) => {
+  const uit = tekst.replace(new RegExp(`fill="${van}"`, 'gi'), `fill="${naar}"`);
+  if (uit === tekst) {
+    throw new Error(
+      `icons: geen fill="${van}" in ${path.basename(LOGO)}. ` +
+      'Is er een nieuw logo aangeleverd met andere kleuren erin?',
+    );
+  }
+  return uit;
+};
 
-if (logoKleur === logo) {
-  throw new Error(
-    `icons: niets omgekleurd in ${path.basename(LOGO)}. ` +
-    'Staan de vullingen er nog als fill="#FFFFFF" en fill="#B1C2A2"?',
-  );
-}
+const logoKleur = vervang(vervang(logo, WIT, DENNEN), SALIE, DENNEN);
 
 await writeFile(
   path.join(IMG, 'logo-bloei-kleur.svg'),
@@ -89,32 +100,52 @@ await writeFile(
 );
 console.log('icons: logo-bloei-kleur.svg');
 
-const groepen = logo.split('<g transform="translate(50 32)"');
-const bladgroep = groepen.slice(1).find((g) => g.toUpperCase().includes(`FILL="${LINDE}"`));
-if (!bladgroep) {
+/**
+ * Elke vorm wordt een stukje SVG dat op zichzelf staat: inclusief zijn eigen
+ * vulling en, waar nodig, de binnenste transform. Die binnenste hoort erbij
+ * omdat de paden in de groepen in het assenstelsel van potrace staan
+ * (honderdsten, y omgekeerd); zonder die regel staat het blad duizenden
+ * eenheden buiten beeld. Het losse pad buiten de groepen staat juist wél in de
+ * eenheden van het logo en gaat ongewijzigd mee.
+ *
+ * Door elke vorm als compleet stukje te bewaren in plaats van als kaal pad kan
+ * de rest van dit script er vrij mee schuiven zonder bij te houden uit welke
+ * groep iets kwam — en houdt het blad zijn twee tinten.
+ */
+const GROEP = /<g transform="translate\(50 32\)" fill="(#[0-9A-Fa-f]{6})">([\s\S]*?)<\/g>\s*<\/g>/g;
+
+const vormen = [];
+let rest = logo;
+
+for (const m of logo.matchAll(GROEP)) {
+  rest = rest.replace(m[0], '');
+  if (m[1].toUpperCase() === WIT) continue; /* de letters */
+
+  const binnen = m[2].match(/<g[^>]*transform="translate\(0\.0+,343\.0+\)[^"]*"[^>]*>/);
+  if (!binnen) throw new Error(`icons: de binnenste transform van de groep ${m[1]} is niet gevonden.`);
+
+  for (const pad of m[2].match(/<path\b[^>]*\/>/g) ?? []) {
+    vormen.push(`<g transform="translate(50 32)" fill="${m[1]}">${binnen[0]}${pad}</g></g>`);
+  }
+}
+
+/* Wat er buiten de groepen staat. In de tweekleurige versie is dat één pad met
+   zijn eigen vulling; in de eenkleurige stond hier niets. */
+for (const pad of rest.match(/<path\b[^>]*\/>/g) ?? []) {
+  if (!/fill="#FFFFFF"/i.test(pad)) vormen.push(pad);
+}
+
+if (!vormen.length) {
   throw new Error(
-    `icons: geen bladgroep (fill="${LINDE}") in ${path.basename(LOGO)}. ` +
+    `icons: geen bladvormen in ${path.basename(LOGO)} — alles is wit. ` +
     'Is er een nieuw logo aangeleverd met andere kleuren erin?',
   );
 }
 
-/* Tot de volgende groep, of tot het eind. Het blad is de tweede van twee, dus
-   in de praktijk het eind, maar niet aannemen dat dat zo blijft. */
-const bladInhoud = bladgroep.split('<g transform="translate(50 32)"')[0];
-
-/* De binnenste transform hoort erbij: de paden staan in het assenstelsel van
-   potrace (honderdsten, y omgekeerd) en zonder die regel staat het blad
-   duizenden eenheden buiten beeld. */
-const binnen = bladInhoud.match(/<g[^>]*transform="translate\(0\.0+,343\.0+\)[^"]*"[^>]*>/);
-if (!binnen) throw new Error('icons: de binnenste transform van de bladgroep is niet gevonden.');
-
-const alle = bladInhoud.match(/<path\b[^>]*\/>/g);
-if (!alle?.length) throw new Error('icons: geen paden in de bladgroep.');
-
-/** Eén of meer paden op zichzelf, in het assenstelsel van het logo (680x410). */
-const bladSvg = (paden, fill) =>
+/** Eén of meer vormen op zichzelf, in het assenstelsel van het logo (680x410). */
+const bladSvg = (stukken) =>
   `<svg xmlns="http://www.w3.org/2000/svg" width="680" height="410" viewBox="0 0 680 410">` +
-  `<g transform="translate(50 32)" fill="${fill}">${binnen[0]}${paden.join('')}</g></g></svg>`;
+  `${stukken.join('')}</svg>`;
 
 /* ------------------------------------------------------------------ */
 /*  Meten waar de vormen precies staan                                 */
@@ -126,8 +157,8 @@ const bladSvg = (paden, fill) =>
  * offsets die het teruggeeft rekenen we terug naar de eenheden van het logo.
  */
 const SCHAAL = 4;
-const meet = async (paden) => {
-  const {info} = await sharp(Buffer.from(bladSvg(paden, LINDE)), {density: 72 * SCHAAL})
+const meet = async (stukken) => {
+  const {info} = await sharp(Buffer.from(bladSvg(stukken)), {density: 72 * SCHAAL})
     .trim({threshold: 1})
     .toBuffer({resolveWithObject: true});
   return {
@@ -143,36 +174,39 @@ const meet = async (paden) => {
 /* ------------------------------------------------------------------ */
 
 /**
- * De bladgroep bevat drie vormen: de twee blaadjes van de scheut die boven de
- * letters uitsteekt, en het losse blad dat dwars door de O van BLOEI valt.
- * Dat derde blad hoort bij de letters en niet bij de scheut — zet je ze samen
- * in een vierkant pictogram, dan zweeft er onder de scheut een vlek zonder
+ * Het blad bestaat uit meer vormen dan er blaadjes zijn: de scheut die boven de
+ * letters uitsteekt, en het losse blad dat dwars door de O van BLOEI valt. Dat
+ * losse blad hoort bij de letters en niet bij de scheut — zet je ze samen in
+ * een vierkant pictogram, dan zweeft er onder de scheut een vlek zonder
  * verband, en op 16 pixels is dat gewoon vuil.
  *
- * Welke dat is wordt gemeten en niet geteld: de twee blaadjes van de scheut
- * staan vlak bij elkaar in de steel, en het losse blad staat er ruim onder.
- * Clusteren op nabijheid en de grootste nemen geeft de scheut, ook als er ooit
- * een logo komt waarin de vormen in een andere volgorde staan of er eentje
- * bij komt.
+ * Welke dat is wordt gemeten en niet geteld: de vormen van de scheut staan vlak
+ * bij elkaar in de steel, en het losse blad staat er ruim onder. Clusteren op
+ * nabijheid en de grootste nemen geeft de scheut, ook als er ooit een logo komt
+ * waarin de vormen in een andere volgorde staan of er eentje bij komt. Dat
+ * laatste gebeurde ook: de tweekleurige versie heeft acht vormen waar de
+ * eenkleurige er drie had, want elk blaadje is gesplitst in een donkere en een
+ * lichte helft. Omdat die twee helften elkaar per definitie raken, vallen ze
+ * vanzelf in hetzelfde cluster.
  *
- * Gemeten in dit logo: de twee blaadjes van de scheut raken elkaar net niet
- * (3,5 eenheden ertussen, want hun rechthoeken lopen tot de steel en niet
- * eroverheen), en het losse blad ligt er 41 vandaan. De speling hieronder is
- * 2% van de breedte van het logo, dus ruwweg 14 — royaal boven de 3,5 en
- * ruim onder de 41.
+ * Gemeten in het eenkleurige logo: de blaadjes van de scheut raakten elkaar net
+ * niet (3,5 eenheden ertussen, want hun rechthoeken lopen tot de steel en niet
+ * eroverheen), en het losse blad lag er 41 vandaan. De speling hieronder is 2%
+ * van de breedte van het logo, dus ruwweg 14 — royaal boven de 3,5 en ruim
+ * onder de 41.
  */
 const SPELING = 680 * 0.02;
-const vakken = await Promise.all(alle.map((p) => meet([p])));
+const vakken = await Promise.all(vormen.map((v) => meet([v])));
 const raakt = (a, b) =>
   a.x - SPELING < b.x + b.w && b.x - SPELING < a.x + a.w &&
   a.y - SPELING < b.y + b.h && b.y - SPELING < a.y + a.h;
 
 /** Samenvoegen wat elkaar raakt, net zo lang tot er niets meer samen kan. */
-const clusters = alle.map((p, i) => ({paden: [p], vakken: [vakken[i]]}));
+const clusters = vormen.map((v, i) => ({stukken: [v], vakken: [vakken[i]]}));
 for (let i = 0; i < clusters.length; i++) {
   for (let j = i + 1; j < clusters.length; j++) {
     if (clusters[i].vakken.some((a) => clusters[j].vakken.some((b) => raakt(a, b)))) {
-      clusters[i].paden.push(...clusters[j].paden);
+      clusters[i].stukken.push(...clusters[j].stukken);
       clusters[i].vakken.push(...clusters[j].vakken);
       clusters.splice(j, 1);
       j = i; /* opnieuw langs de rest: dit cluster is net groter geworden */
@@ -182,14 +216,14 @@ for (let i = 0; i < clusters.length; i++) {
 
 const oppervlak = (c) => c.vakken.reduce((t, v) => t + v.w * v.h, 0);
 const scheut = clusters.sort((a, b) => oppervlak(b) - oppervlak(a))[0];
-const paden = scheut.paden;
+const stukken = scheut.stukken;
 
 console.log(
-  `icons: ${alle.length} vormen in de bladgroep, ${clusters.length} los van elkaar; ` +
-  `de scheut is er ${paden.length}`,
+  `icons: ${vormen.length} vormen in het blad, ${clusters.length} los van elkaar; ` +
+  `de scheut is er ${stukken.length}`,
 );
 
-const vak = await meet(paden);
+const vak = await meet(stukken);
 
 /* Vierkant eromheen, zodat het blad in een vierkant pictogram niet uitgerekt
    wordt. Het blad is hoger dan breed; de langste zijde bepaalt. */
@@ -203,17 +237,29 @@ const viewBox = [
 
 console.log(`icons: blad gemeten op ${vak.w.toFixed(1)}x${vak.h.toFixed(1)} in het logo`);
 
-/** Het blad strak uitgesneden, op maat, eventueel op een vlak. */
-const teken = (formaat, fill, achtergrond) => {
+/**
+ * Het blad strak uitgesneden, op maat, eventueel op een vlak.
+ *
+ * `plat` gooit de donkere bladhelft op de lichte tint, zodat er één silhouet
+ * overblijft in plaats van twee tinten. Dat is voor het tabblad: saliegroen
+ * haalt op dennengroen 2,3:1, en op 16 pixels valt die helft daardoor gewoon
+ * weg — je houdt een halve scheut over die eruitziet als een vlekje. Nagekeken
+ * op 16, 24, 32 en 48 pixels naast elkaar: tot ongeveer 48 wint het silhouet,
+ * daarboven wint de tweekleurige omdat je het blad dan echt ziet liggen.
+ */
+const teken = (formaat, achtergrond, plat = false) => {
   /* Op 62% van het vlak, zodat er rondom lucht staat en het blad op een
      afgerond vierkant niet tegen de hoeken aanloopt. */
   const binnenmaat = achtergrond ? Math.round(formaat * 0.62) : formaat;
   const marge = (formaat - binnenmaat) / 2;
+  const blad = plat
+    ? stukken.map((s) => s.replace(new RegExp(`fill="${SALIE}"`, 'gi'), `fill="${LICHT}"`))
+    : stukken;
   return Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${formaat}" height="${formaat}" viewBox="0 0 ${formaat} ${formaat}">` +
     (achtergrond ? `<rect width="${formaat}" height="${formaat}" fill="${achtergrond}"/>` : '') +
     `<svg x="${marge}" y="${marge}" width="${binnenmaat}" height="${binnenmaat}" viewBox="${viewBox}">` +
-    `<g transform="translate(50 32)" fill="${fill}">${binnen[0]}${paden.join('')}</g></g></svg></svg>`,
+    `${blad.join('')}</svg></svg>`,
   );
 };
 
@@ -225,30 +271,39 @@ await mkdir(IMG, {recursive: true});
 
 /**
  * De favicon zelf. Op een vlak en niet vrijstaand: een browser zet het tabblad
- * in zijn eigen kleur, en lindegroen blad op een lichtgrijs tabblad is bijna
+ * in zijn eigen kleur, en een groen blad op een lichtgrijs tabblad is bijna
  * niets. Dennengroen eronder maakt er een teken van dat op elk tabblad staat.
+ *
+ * Dit is het ene bestand dat een browser op 16 tot 32 pixels zet, dus als
+ * silhouet in één tint — zie `plat` hierboven.
  */
 await writeFile(
   path.join(APP, 'public/favicon.svg'),
   '<!-- Het blad uit het logo, op dennengroen. Niet met de hand getekend maar\n' +
   '     uitgeknipt uit public/img/logo-bloei-wit.svg door scripts/icons.mjs;\n' +
   '     draai dat script opnieuw als het logo verandert. -->\n' +
-  `${teken(100, LINDE, DENNEN).toString('utf8')}\n`,
+  `${teken(100, DENNEN, true).toString('utf8')}\n`,
   'utf8',
 );
 console.log('icons: favicon.svg');
 
+/**
+ * Het formaat van het bestand is niet het formaat waarop het te zien is. De 96
+ * is er voor Google's favicon-crawler en staat in een zoekresultaat op ruwweg
+ * 16 pixels; die gaat dus net als het tabblad plat. De andere drie komen op een
+ * beginscherm terecht en zijn daar groot genoeg voor de twee tinten.
+ */
 const BESTANDEN = [
-  ['apple-touch-icon.png', 180],
-  ['icon-96.png', 96],
-  ['icon-192.png', 192],
-  ['icon-512.png', 512],
+  ['apple-touch-icon.png', 180, false],
+  ['icon-96.png', 96, true],
+  ['icon-192.png', 192, false],
+  ['icon-512.png', 512, false],
 ];
 
-for (const [naam, formaat] of BESTANDEN) {
+for (const [naam, formaat, plat] of BESTANDEN) {
   const uit = path.join(IMG, naam);
-  await sharp(teken(formaat, LINDE, DENNEN), {density: 300}).png({compressionLevel: 9}).toFile(uit);
-  console.log(`icons: ${naam} (${formaat}x${formaat})`);
+  await sharp(teken(formaat, DENNEN, plat), {density: 300}).png({compressionLevel: 9}).toFile(uit);
+  console.log(`icons: ${naam} (${formaat}x${formaat})${plat ? ' plat' : ''}`);
 }
 
 /* ------------------------------------------------------------------ */

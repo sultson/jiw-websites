@@ -56,26 +56,45 @@ budgetveld in het formulier is één vrij invulveld geworden.
 **Sinds 18-10-2026 een echte vector**, aangeleverd door Alfred bij de huisstijl.
 Daarmee is de vraag om een vectorversie die hier stond afgehandeld.
 
-Eén bronbestand: `public/img/logo-bloei-wit.svg` — witte letters, lindegroen
+**Sinds 20-10-2026 de tweekleurige versie**, op verzoek van Armando: de map
+`01-Logos/Extras-tweekleurig` uit de huisstijl. Daarvoor stond de eenkleurige
+erop — hetzelfde merk, maar het blad in één vlakke tint lindegroen (`#B1C2A2`).
+In de tweekleurige is elk blaadje gesplitst in een donkere helft (saliegroen
+`#4F784B`) en een lichte (`#A9C58D`), waardoor het blad over de letters heen
+ligt in plaats van ernaast te staan.
+
+Eén bronbestand: `public/img/logo-bloei-wit.svg` — witte letters, tweekleurig
 blad, 680 × 410. Al het andere wordt daaruit gemaakt door `node scripts/icons.mjs`:
 
 | bestand | wat | waar |
 | --- | --- | --- |
 | `img/logo-bloei-wit.svg` | de bron | balk bovenaan, voet (alles op dennengroen) |
-| `img/logo-bloei-kleur.svg` | wit → dennengroen, linde → salie | lichte vlakken |
-| `favicon.svg` | alleen de scheut, op dennengroen | tabblad |
-| `img/icon-*.png`, `apple-touch-icon.png` | idem, als PNG | startknop, zoekresultaat |
+| `img/logo-bloei-kleur.svg` | wit → dennengroen, salie → dennengroen, licht blijft | lichte vlakken |
+| `favicon.svg` | alleen de scheut, op dennengroen, in één tint | tabblad |
+| `img/icon-96.png` | idem, in één tint | zoekresultaat (Google zet hem op ~16 px) |
+| `img/icon-192/512.png`, `apple-touch-icon.png` | de scheut in twee tinten, als PNG | startknop |
 | `logo-email.png` | de gekleurde versie, 480 px, ingebakken op `surfaceAlt` | bevestigingsmail |
 
-De gekleurde versie kwam er ook als PNG bij, maar die gebruiken we niet: twee
+De gekleurde versie zit ook in de huisstijlmap, maar die gebruiken we niet: twee
 bestanden van hetzelfde merk naast elkaar lopen vroeg of laat uit de pas. Het
-script leidt hem af en schrijft er een `<desc>` in dat hij gegenereerd is.
+script leidt hem af en schrijft er een `<desc>` in dat hij gegenereerd is. De
+afleiding is op 20-10-2026 pad voor pad naast hun eigen
+`bloei-primair-kleur-transparant.svg` gelegd: dezelfde vormen, dezelfde kleuren,
+alleen staan bij hen de twee dennengroene groepen samengevoegd.
 
-Het pictogram is de **scheut** (de twee blaadjes boven de letters), niet de hele
-bladgroep: daar zit ook het losse blad in dat door de O valt, en dat zweeft in
-een vierkant pictogram als een vlek zonder verband onder de scheut. Welke vormen
-bij de scheut horen wordt gemeten en niet geteld — zie de toelichting in
-`scripts/icons.mjs`.
+Het pictogram is de **scheut** (de blaadjes boven de letters), niet het hele
+blad: daar zit ook het losse blad in dat door de O valt, en dat zweeft in een
+vierkant pictogram als een vlek zonder verband onder de scheut. Welke vormen bij
+de scheut horen wordt gemeten en niet geteld — zie de toelichting in
+`scripts/icons.mjs`. Met de tweekleurige versie zijn dat er acht in plaats van
+drie, want elke helft is een eigen vorm; het clusteren vangt dat vanzelf op.
+
+**Waarom het tabbladteken in één tint staat.** Saliegroen haalt op dennengroen
+2,3:1. Op een logo van 58 pixels hoog is dat prima — de lichte helft draagt de
+vorm — maar op 16 pixels valt die donkere helft weg en houd je een halve scheut
+over die eruitziet als een vlekje. De 16/24/32/48 zijn naast elkaar gezet; tot
+ongeveer 48 pixels wint het silhouet, daarboven wint het tweekleurige blad.
+Vandaar `favicon.svg` en `icon-96.png` plat, de rest niet.
 
 Eerdere oplossingen, alle drie weg: een los bestand van 358 × 252 (te klein),
 een uitsnede uit de foto van de gevel (bracht het bord als rechthoek mee), en
@@ -165,7 +184,7 @@ van de gevel afgelezen, omdat er toen niets anders was; die hele reeks is weg.
 | --- | --- | --- |
 | Dennengroen | `#173F2B` | `ink` — balk bovenaan (gevraagd), voet, formulier, lopende tekst |
 | Saliegroen | `#4F784B` | `salie` — vullingen; verdiept als `accent-dark` voor tekst |
-| Lindegroen | `#B1C2A2` | `accent` — het accent op donker; dit is de bladkleur uit het logo |
+| Lindegroen | `#B1C2A2` | `accent` — het accent op donker. Was tot 20-10-2026 ook letterlijk de bladkleur van het logo; het tweekleurige blad gebruikt `#4F784B` en `#A9C58D`, maar lindegroen blijft als accentkleur staan, want die staat zo in de aangeleverde reeks |
 | Ivoor | `#F3EEDC` | `ivoor` — spaarzaam: kerstkaarten en de lampjes in het snoer |
 | Zandbruin | `#B99D71` | `zand` — de zwevende belknop en de lampjes in het kerstsnoer |
 | Framboos | `#c22a5f` | `roze` — de hoofdknop; komt niet uit de reeks, zie hieronder |

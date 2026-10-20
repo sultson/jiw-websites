@@ -548,13 +548,21 @@ export function Blad({className = ''}: {className?: string}) {
  * daarmee op elke hoogte net zacht). Nu een SVG: scherp op elk scherm, en
  * klein genoeg om niet als plaatje te hoeven laden.
  *
+ * Sinds 20-10-2026 staat de tweekleurige versie erop, uit de map
+ * `01-Logos/Extras-tweekleurig` van de huisstijl. Daarvoor stond hier de
+ * eenkleurige: hetzelfde merk, maar het blad in één vlakke tint lindegroen.
+ * Nu is het blad gesplitst in een donkere en een lichte helft, waardoor het
+ * blad over de letters heen ligt in plaats van ernaast te staan.
+ *
  * Twee bestanden, en welke je pakt hangt af van waar hij staat:
- * - `logo-bloei-wit.svg` — witte letters, lindegroen blad. Dit is de primaire
- *   versie. Hoort op dennengroen: de balk bovenaan en de voet.
- * - `logo-bloei-kleur.svg` — dennengroene letters, saliegroen blad. Alleen voor
- *   lichte vlakken. Zelfde vectorvorm, alleen de twee vullingen omgezet; de
- *   huisstijl leverde deze variant als PNG, en een PNG naast een SVG van
- *   hetzelfde merk gaat vroeg of laat uit elkaar lopen.
+ * - `logo-bloei-wit.svg` — witte letters, blad in saliegroen en lichtgroen.
+ *   Dit is de primaire versie en de bron. Hoort op dennengroen: de balk
+ *   bovenaan en de voet.
+ * - `logo-bloei-kleur.svg` — dennengroene letters, de donkere bladhelft mee in
+ *   dennengroen, de lichte blijft staan. Alleen voor lichte vlakken. Zelfde
+ *   vectorvorm, alleen de vullingen omgezet door `scripts/icons.mjs`; de
+ *   huisstijl levert deze variant ook zelf, en twee bestanden van hetzelfde
+ *   merk naast elkaar gaan vroeg of laat uit elkaar lopen.
  *
  * `donker` kiest daartussen. Zonder `plaatje` krijg je blad plus de naam als
  * tekst, meekleurend met de plek waar hij staat.
@@ -581,7 +589,7 @@ export function Merk({
     return (
       <span className={`inline-flex items-center gap-3 ${className}`}>
         <img
-          src={donker ? '/img/logo-bloei-wit.svg?v=20261018' : '/img/logo-bloei-kleur.svg?v=20261018'}
+          src={donker ? '/img/logo-bloei-wit.svg?v=20261020' : '/img/logo-bloei-kleur.svg?v=20261020'}
           width={680}
           height={410}
           alt="Bloei!"
