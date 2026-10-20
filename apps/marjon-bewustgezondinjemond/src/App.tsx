@@ -494,8 +494,8 @@ function Hero() {
                 staat hier op twee manieren. Onder lg vult hij de hele sectie
                 met de tekst eroverheen: daar loopt zij een bospad op je af,
                 hele figuur, 9:16, en dat pad sluit aan op de kop erboven.
-                Vanaf lg is hij de rechterkolom naast de tekst: daar de
-                close-up tegen de beukenstam, 4:5. Eén bestand met
+                Vanaf lg is hij de rechterkolom naast de tekst: daar staat zij
+                met een tak in haar handen, 4:5. Eén bestand met
                 object-position kan dit niet, en sinds we de hele sessie hebben
                 hoeft dat ook niet meer.
 
@@ -506,7 +506,7 @@ function Hero() {
             <picture>
               <source
                 media="(min-width: 1024px)"
-                srcSet="/img/hero-portret.webp?v=20261017 560w, /img/hero-portret-840.webp?v=20261017 840w, /img/hero-portret-1120.webp?v=20261017 1120w"
+                srcSet="/img/hero-portret.webp?v=20261020 560w, /img/hero-portret-840.webp?v=20261020 840w, /img/hero-portret-1120.webp?v=20261020 1120w"
                 sizes="min(45vw, 560px)"
                 width={560}
                 height={700}

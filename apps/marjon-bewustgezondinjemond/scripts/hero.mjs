@@ -15,9 +15,10 @@
 
    TWEE FOTO'S, want de hero staat op twee manieren op de pagina.
    - Vanaf lg is de foto de rechterkolom van het raster, 4:5, met de tekst
-     ernaast. Daar staat marjon-1: de close-up tegen de beukenstam, zij kijkt
-     je recht aan, petrolblouse tegen bruin blad. Dit is het origineel van de
-     opname die tot 15-10 de hero was.
+     ernaast. Daar staat marjon-13: zij staat met een tak in haar handen en
+     lacht in de camera, petrolblouse onder het zwart-witte vest. Marjon heeft
+     deze zelf gekozen op /fotokeuze (20-10-2026); daarvoor stond hier marjon-1,
+     de close-up tegen de beukenstam.
    - Onder lg vult de foto de hele sectie en staat de tekst eroverheen (zoals
      smoothbylau, op verzoek van 12-10). Daar staat marjon-12: zij loopt een
      bospad op je af, hele figuur, veel lucht erboven. Dat pad sluit aan op de
@@ -34,14 +35,24 @@ import {writeFileSync} from 'node:fs';
 const UP = 'public/img';
 
 const BEELD = {
-  /* marjon-1.jpg, 2400x3600. Met de hand opgemeten: haar haar begint op y=617,
-     haar kin op y=2126. Een 4:5-uitsnede over de volle breedte is 3000 hoog;
-     206 van boven laat ruimte boven haar hoofd en houdt haar gezicht op twee
-     vijfde van de hoogte. Haar gezicht vult dan de halve uitsnede - dat is de
-     close-up waar Armando om vroeg. */
+  /* marjon-13.jpg, 2400x3600. Met de hand opgemeten: haar haar begint op y=750,
+     haar kin op y=1450, haar handen met de tak liggen rond y=3250. Dit is een
+     ruimere opname dan marjon-1, dus haar gezicht vult hier een kwart van de
+     uitsnede in plaats van de helft; strakker snijden zou de tak uit haar
+     handen snijden en dat is juist wat de foto vertelt.
+
+     Een 4:5-uitsnede over de volle breedte is 3000 hoog, dus er kan 600 weg en
+     de enige vraag is: van boven of van onderen. 450 van boven is het midden
+     dat werkt. Vier standen in de browser naast elkaar gelegd op 720x900:
+       0   hands en tak vallen buiten beeld, boven haar hoofd blijft lucht over
+       300 haar vingers raken de onderrand
+       450 tak en handen er helemaal in, 300 ruimte boven haar hoofd    <- deze
+       600 (het maximum) haar kruin zit tegen de bovenrand aan
+     De automatische uitsnede die zij op /fotokeuze zag koos ongeveer stand 100;
+     deze staat daar iets onder en laat daardoor wel haar handen zien. */
   portret: {
-    bron: 'raw/fotograaf/marjon-1.jpg',
-    snede: {left: 0, top: 206, width: 2400, height: 3000},
+    bron: 'raw/fotograaf/marjon-13.jpg',
+    snede: {left: 0, top: 450, width: 2400, height: 3000},
     maten: [560, 840, 1120],
     kwaliteit: 88,
   },

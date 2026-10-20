@@ -82,13 +82,13 @@ const GEDRAAID = new Set([4]);
    op de site ziet - en niet een tweede, automatische uitsnede van dezelfde foto
    die er net naast zit. Verandert hero.mjs, dan hoort dit mee te veranderen. */
 const HAND = {
-  computer: {1: {left: 0, top: 206, width: 2400, height: 3000}},
+  computer: {13: {left: 0, top: 450, width: 2400, height: 3000}},
   telefoon: {12: {left: 450, top: 600, width: 1688, height: 3000}},
 };
 
 /* Wat er nu op de site staat. Staat als markering op de twee foto's en achter
    de knop "Zet terug zoals het nu staat". */
-const HUIDIG = {computer: 1, telefoon: 12};
+const HUIDIG = {computer: 13, telefoon: 12};
 
 const VAKKEN = {
   computer: {breedte: 720, hoogte: 900, kwaliteit: 80},
