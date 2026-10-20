@@ -979,63 +979,23 @@ table.vgl tbody tr:last-child th, table.vgl tbody tr:last-child td { border-bott
 .form-uit .veld textarea { min-height: 150px; }
 .form-uit button[type=submit] { font-size: 1.06rem; padding-block: 1.05rem; }
 
-/* --- de overbrugging naar het formulier -----------------------------------
-   Op /puurgenieten/ staat het formulier rechts naast de tekst en dan leest
-   een bezoeker eerst de hele linkerkolom voordat hij de kaart opmerkt. Dit
-   blokje overbrugt dat: een uitnodigende vraag die de aanloop is naar de kop
-   van de kaart ernaast (Doet u mee? -> Ja, ik wil meer informatie), met een
-   getekende pijl eronder.
-
-   Het is een eigen kolom in .hero-grid-brug en geen vlak dat over de tekst
-   heen zweeft. Daardoor kan het op geen enkele schermbreedte en in geen
-   enkele taal over een letter heen lopen - de browser rekent de ruimte uit.
-   Onder 1000px staat hij uit: daar is de hero te krap voor een derde kolom, en
-   onder 901px vouwt .hero-grid tot een kolom en staat het formulier onder de
-   tekst - dan wijst een pijl naar rechts sowieso nergens heen.
-   Decoratie, dus aria-hidden in de pagina. ------------------------------- */
-.form-brug { display: none; }
-
-/* Pas vanaf 1000px. Tussen 901 en 999 staan de twee kolommen al krap naast
-   elkaar; er dan ook nog een derde kolom tussen duwen laat de kop uit elkaar
-   vallen. Daar staat gewoon de hero zonder overbrugging. */
-@media (min-width: 1000px) {
-  /* De middelste kolom is zo breed als zijn inhoud. De gap mag kleiner dan in
-     de gewone hero, want de overbrugging zelf is nu de ruimte tussen de twee. */
-  .hero-grid-brug {
-    grid-template-columns: 1.2fr auto .88fr;
-    gap: clamp(.9rem, 1.9vw, 1.8rem);
-  }
-  .form-brug {
-    display: block; align-self: start; text-align: center;
-    width: clamp(118px, 11vw, 162px);
-    /* zelfde padding als de kaart ernaast, dus de vraag staat op dezelfde
-       hoogte als de kop in de kaart */
-    padding-top: clamp(1.9rem, 3.4vw, 3rem);
-    transform: rotate(-3deg);
-  }
-  .form-brug-kop {
-    font-family: var(--kop); font-weight: 700; letter-spacing: -.01em;
-    font-size: clamp(1.02rem, 1.5vw, 1.28rem); line-height: 1.2;
-    color: var(--wit); margin: 0 0 .35rem;
-  }
-  .form-brug-sub {
-    font-size: clamp(.78rem, 1vw, .9rem); line-height: 1.35;
-    color: var(--tekst); margin: 0;
-  }
-  .form-brug svg {
-    display: block; width: 88%; height: auto; margin: .6rem auto 0;
-    fill: none; stroke: var(--rood); stroke-width: 5;
-    stroke-linecap: round; stroke-linejoin: round;
-    filter: drop-shadow(0 0 9px rgba(255, 77, 87, .45));
-    animation: brug-wijs 2.8s ease-in-out infinite;
-  }
+/* --- de aanhef boven de kop van een formulier ------------------------------
+   Op /puurgenieten/ staat het formulier naast de tekst en dan leest een
+   bezoeker eerst de hele linkerkolom. De uitnodiging hoort daarom in de kaart
+   zelf en niet in het gat ernaast: de vraag staat boven de kop, zodat die kop
+   het antwoord erop wordt (Doet u mee? -> Ja, ik wil meer informatie).
+   Dezelfde vorm als .kicker in de hero, dus het past bij de pagina. ------- */
+.form-aanhef {
+  display: flex; align-items: center; gap: .55rem;
+  font-family: var(--kop); font-weight: 700;
+  font-size: clamp(1.02rem, 1.3vw, 1.18rem); letter-spacing: -.01em;
+  color: var(--rood); margin: 0 0 .5rem;
 }
-/* Een korte duw richting de kaart, niet een pijl die blijft stuiteren. */
-@keyframes brug-wijs {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(7px); }
+.form-aanhef::before {
+  content: ''; flex: none; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--rood); box-shadow: 0 0 10px rgba(255, 77, 87, .75);
 }
-@media (prefers-reduced-motion: reduce) { .form-brug svg { animation: none; } }
+.hero-grid-pg { grid-template-columns: 1.08fr .92fr; align-items: start; }
 
 .contact-lijst { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.3rem; }
 .contact-lijst li { display: flex; gap: .95rem; align-items: flex-start; }
