@@ -18,8 +18,12 @@ const AFDELINGEN = [
     icon: Flower2,
     kicker: 'Binnen',
     titel: 'Bloemen',
-    img: '/img/kaart-bloemen.webp',
-    alt: 'Orchideeën, anthurium en bromelia op de houten tafel in de winkel',
+    /* Sinds 20-10-2026 de foto van de bloementafel die de winkel zelf stuurde.
+       Liggend, want de opstelling loopt over de hele breedte: hortensia's en
+       tulpen bovenin, rozen en anjers eronder, de emmers rechts. */
+    img: '/img/afdeling-bloemen.webp',
+    liggend: true,
+    alt: 'De bloementafel in de winkel met hortensia’s, tulpen, rozen, anjers en emmers met boeketten',
     tekst:
       'De winkel staat vol met verse bloemen die we dagelijks aanvullen. Neem een boeket mee dat al klaar staat of laat er een samenstellen naar eigen keuze. Uiteraard denken wij graag met u mee.',
     punten: [
@@ -38,8 +42,8 @@ const AFDELINGEN = [
     icon: Leaf,
     kicker: 'Binnen',
     titel: 'Planten',
-    img: '/img/kaart-planten.webp',
-    alt: 'De stellingen in de winkel met vetplanten, potten en grote kamerplanten erboven',
+    img: '/img/kaart-planten.webp?v=20261020',
+    alt: 'De rij kamerplanten langs de houten wand in de winkel, van zamioculcas en ficus tot palmen',
     tekst: 'Van vetplant tot palmboom, in alle soorten en maten.',
     punten: [
       'Kamerplanten van klein tot groot',
@@ -52,8 +56,16 @@ const AFDELINGEN = [
     icon: Home,
     kicker: 'Binnen',
     titel: 'Wonen',
-    img: '/img/kaart-wonen.webp',
-    alt: 'Stellingen vol keramieken potten in oud roze, crème, groen en zwart',
+    img: '/img/kaart-wonen.webp?v=20261020',
+    alt: 'De woonhoek in de winkel met kandelaars, schapenvachten, windlichten en bonsai op de tafels',
+    /* Drie extra foto's van dezelfde hoek, als strook onder het blok. Eén
+       beeld laat van deze afdeling te weinig zien: het is geen schap met
+       dezelfde artikelen maar een tafel die elke paar weken anders staat. */
+    strook: [
+      ['/img/wonen-1.webp', 'Tafels met vachten, kandelaars, windlichten en bonsai'],
+      ['/img/wonen-2.webp', 'Een vaas met bessentakken, een hertenkop en een windlicht op een vacht'],
+      ['/img/wonen-3.webp', 'Stellingen vol keramieken potten met een bronskleurige vaas ervoor'],
+    ],
     tekst:
       'Potten in alle soorten en maten, van kunststof en keramiek tot rotan. Daarnaast luxe woonaccessoires, van klassiek tot landelijk.',
     punten: [
@@ -167,6 +179,26 @@ export default function Assortiment() {
               )}
             </div>
           </div>
+
+          {/* De extra foto's bij Wonen. Drie naast elkaar, ook op de telefoon:
+              het zijn sfeerbeelden van dezelfde hoek, dus ze horen als strook
+              gelezen te worden en niet als drie losse platen onder elkaar. */}
+          {a.strook && (
+            <ul className="mt-10 grid grid-cols-3 gap-3 sm:gap-5">
+              {a.strook.map(([src, alt]) => (
+                <li key={src}>
+                  <img
+                    src={src}
+                    alt={alt}
+                    loading="lazy"
+                    width={700}
+                    height={875}
+                    className="aspect-[4/5] w-full rounded-2xl object-cover"
+                  />
+                </li>
+              ))}
+            </ul>
+          )}
 
           {/* Grond en mest stond hieronder als eigen sectie met een eigen kop.
               Het hoort bij de tuin en staat er nu onder, als lijst in dezelfde

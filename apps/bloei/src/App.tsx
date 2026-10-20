@@ -256,14 +256,14 @@ function Hero() {
  */
 const WINKELKAARTEN = [
   {
-    img: '/img/kaart-bloemen.webp',
+    img: '/img/kaart-bloemen.webp?v=20261020',
     icon: Flower2,
     titel: 'Bloemen',
     tekst: 'De winkel staat vol met verse bloemen. Neem een boeket mee dat al klaar staat of laat er een samenstellen.',
     href: '/assortiment/#bloemen',
   },
   {
-    img: '/img/kaart-planten.webp',
+    img: '/img/kaart-planten.webp?v=20261020',
     icon: Leaf,
     titel: 'Planten',
     tekst: 'Kamerplanten in alle maten, van orchidee tot palmboom.',
@@ -277,7 +277,7 @@ const WINKELKAARTEN = [
     href: '/assortiment/#tuin',
   },
   {
-    img: '/img/kaart-wonen.webp',
+    img: '/img/kaart-wonen.webp?v=20261020',
     icon: Home,
     titel: 'Wonen',
     tekst: 'Binnen- en buitenpotten, schalen, vazen en allerlei woonaccessoires.',

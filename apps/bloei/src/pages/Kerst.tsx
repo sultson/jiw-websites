@@ -57,8 +57,11 @@ export default function Kerst() {
       <PaginaKop
         kicker="November en december"
         titel="Kerst bij Bloei!"
-        img="/img/seizoen-najaar.webp"
-        alt="De buitentafels in het najaar, vol chrysanten in geel, rood, oranje en wit"
+        /* Stond op de najaarsfoto met chrysanten, omdat er van kerst geen
+           enkel beeld was. Sinds 20-10-2026 de eerste echte kerstfoto uit de
+           winkel: de verlichte kunstboom met de dozen ervoor. */
+        img="/img/kerst-bomen.webp"
+        alt="Een verlichte besneeuwde kunstkerstboom in de winkel, met de dozen ervoor en kerstverlichting ernaast"
       >
         <div className="mt-8 flex flex-wrap gap-3">
           <a href={`tel:${TEL}`} className={KNOP_HOOFD}>

@@ -7,8 +7,8 @@ domein <https://bloei-ouddorp.nl>** (zie `SEO.md` voor de nulmeting van die dag)
 
 Let op: dat de site op een eigen domein staat verandert niets aan de lijst
 hieronder. Het adres, het nummer en de openingstijden zijn bevestigd, maar er is
-nog steeds geen mailadres, geen vectorlogo en geen kerstfoto, en de winkel heet
-voorlopig nog Vershal Ouddorp.
+nog steeds geen mailadres en geen vectorlogo, en de winkel heet voorlopig nog
+Vershal Ouddorp. Sinds 20-10-2026 is er wél een kerstfoto.
 
 De opdracht: de eigenaren van Fleurig! (Oud-Beijerland, `apps/fleurig`, inmiddels
 `TIJDELIJK_GESLOTEN`) beginnen onder de naam Bloei! en waren tevreden over de site
@@ -101,12 +101,27 @@ Nog te melden aan de klant:
 staan in `raw/`, de bewerkte in `public/img/`. Opnieuw maken:
 `node raw/maak-beelden.mjs`.
 
-**Wat ontbreekt: kerst.** Er is geen enkele kerstfoto. Kerst is volgens de
-aantekeningen juist het seizoen waar de winkel het van moet hebben, dus het blok
-op de homepage en de pagina `/kerst/` staan er wel, maar als tekst op hun eigen
-groen. Bewust geen gekochte sfeerfoto van een andere kerstafdeling: die zet een
-verwachting die de winkel daarna moet waarmaken. Zodra er foto's zijn kunnen ze
-er zo in.
+**Op 20-10-2026 kwamen er zes bij**, door Armando aangeleverd met de afdeling
+erbij waar ze horen:
+
+| Bron | Waar hij staat |
+| --- | --- |
+| `bloemen-tafel.jpg` | `kaart-bloemen` (tegel op de home, keuze Boeket in het formulier) en `afdeling-bloemen` (liggend, blok Bloemen op `/assortiment/`) |
+| `planten-rij.jpg` | `kaart-planten` (tegel, blok Planten, keuze Plant of bak) |
+| `wonen-decoratie.jpg` | `kaart-wonen` (tegel, blok Wonen) |
+| `wonen-tafel.jpg`, `wonen-vaas.jpg`, `wonen-potten.jpg` | `wonen-1/2/3`, de strook van drie onder het blok Wonen |
+| `kerst-snowtree.jpg` | `kerst-bomen` (kop van `/kerst/`) en `og-kerst` |
+
+De bloemenfoto is de enige liggende van de zes. In de staande tegel blijft er een
+smalle strook van over; daarom staat er op de assortimentspagina een eigen
+uitsnede van 4:3.
+
+**Kerst is daarmee niet langer alleen tekst.** De pagina `/kerst/` stond op een
+najaarsfoto met chrysanten omdat er van kerst geen enkel beeld was; nu staat de
+verlichte kunstboom erop. Armando noemde die foto zelf bij "wonen" — hij is naar
+kerst verplaatst omdat het de eerste echte kerstfoto is, en dat is een keuze die
+teruggedraaid mag worden. Het kerstdecor in groen (lichtsnoer, gloed, vurenbomen)
+staat er ongewijzigd bij.
 
 Ontbreekt verder: een foto van de eigenaren, en een foto van een boeket dat zij
 zelf gemaakt hebben.

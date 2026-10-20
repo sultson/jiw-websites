@@ -45,8 +45,8 @@ export const OPSLAG_SLEUTEL = 'bloei:aanvraag';
  * het abonnement hier op 14-10-2026 liet dichten. Besproken met Armando.
  */
 const SOORTEN = [
-  {id: 'boeket', img: '/img/kaart-bloemen.webp', icon: Flower2, titel: 'Boeket', onder: 'Op bestelling'},
-  {id: 'plant', img: '/img/kaart-planten.webp', icon: Leaf, titel: 'Plant of bak', onder: 'Binnen of buiten'},
+  {id: 'boeket', img: '/img/kaart-bloemen.webp?v=20261020', icon: Flower2, titel: 'Boeket', onder: 'Op bestelling'},
+  {id: 'plant', img: '/img/kaart-planten.webp?v=20261020', icon: Leaf, titel: 'Plant of bak', onder: 'Binnen of buiten'},
   {id: 'abonnement', img: '/img/zakelijk.webp', icon: Repeat, titel: 'Abonnement', onder: 'Thuis of in de zaak'},
 ] as const;
 
