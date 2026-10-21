@@ -669,7 +669,7 @@ export default function AanvraagFormulier() {
                 <span className={label}>Straat en huisnummer</span>
                 <input
                   value={straat} onChange={(e) => setStraat(e.target.value)}
-                  autoComplete="street-address" placeholder="Hogepad 9" className={`mt-1.5 ${veld}`}
+                  autoComplete="street-address" placeholder="Hoge Pad 9" className={`mt-1.5 ${veld}`}
                 />
               </label>
               <div className="mt-3 grid gap-3 sm:grid-cols-[7rem_1fr]">

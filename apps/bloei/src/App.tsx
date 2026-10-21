@@ -708,7 +708,7 @@ const VRAGEN: [string, string][] = [
   /* Tijdelijk — weg zodra de naam is overgegaan. Zie NaamMelding in layout.tsx. */
   [
     'Heet deze winkel niet Vershal Ouddorp?',
-    'Op dit moment nog wel. Bij Google en op Facebook staan we nog onder die naam; over een paar weken gaat de winkel verder als Bloei! Het adres aan het Hogepad blijft hetzelfde, net als de mensen en het assortiment. Alleen de naam verandert.',
+    'Op dit moment nog wel. Bij Google en op Facebook staan we nog onder die naam; over een paar weken gaat de winkel verder als Bloei! Het adres aan het Hoge Pad blijft hetzelfde, net als de mensen en het assortiment. Alleen de naam verandert.',
   ],
 ];
 

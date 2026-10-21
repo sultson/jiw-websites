@@ -338,7 +338,7 @@ console.log(`icons: logo-email.png (${MAIL_BREED}x${mailHoog})`);
 const manifest = {
   name: 'Bloei!',
   short_name: 'Bloei!',
-  description: 'Bloemen, planten, tuin en wonen aan het Hogepad in Ouddorp.',
+  description: 'Bloemen, planten, tuin en wonen aan het Hoge Pad in Ouddorp.',
   lang: 'nl-NL',
   start_url: '/',
   display: 'browser',

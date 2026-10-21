@@ -23,10 +23,17 @@ door de eigenaren zelf doorgegeven.
 
 | Wat | Wat er nu staat | Waar het vandaan komt |
 | --- | --- | --- |
-| Adres | Hogepad 9, 3253 BH Ouddorp | Openbare vermelding van **Vershal Ouddorp** |
+| Adres | Hoge Pad 9, 3253 BH Ouddorp | Openbare vermelding van **Vershal Ouddorp**; schrijfwijze bevestigd door Rebecca, 21-10-2026 |
 | Telefoon | 06 86 19 45 17 | Idem |
 | Openingstijden | ma t/m za 9:00-17:30, zo dicht | Doorgegeven door Armando, 14-10-2026; zaterdag apart bevestigd 15-10-2026 |
 | Coördinaten kaart | 51.81876, 3.93414 | Afgeleid van het adres hierboven |
+
+**De straat heet `Hoge Pad`, twee losse woorden.** Tot 21-10-2026 stond er overal
+`Hogepad`. Rebecca corrigeerde dat zelf. Nagekeken bij de PDOK-locatieserver (BAG):
+de officiële straatnaam is `Hoge Pad`, met een hoofdletter op allebei de woorden,
+zoals bij elke Nederlandse straatnaam van bijvoeglijk naamwoord plus zelfstandig
+naamwoord. Pad is onzijdig, dus in een zin is het *aan het Hoge Pad*, nooit *aan de*.
+Dat stond er op twee plekken fout en is meteen rechtgezet.
 
 **Er staat geen e-mailadres op de site.** Hier stond `info@bloei-ouddorp.nl`, en dat
 was verzonnen: er staat er geen op hun Facebook en nergens anders openbaar. Op
@@ -345,8 +352,8 @@ pagina's uit een eigen document met "> moet worden >" erin. Wat er gebeurd is:
 - **Homepage:** hero zegt *meststoffen* in plaats van *de zakken grond*. Nieuwe
   teksten voor alle drie de alinea's van "Over ons" (woonaccessoires,
   meststoffen, "van klassiek tot plukboeket", *woning* in plaats van *kamer*).
-  De bijschriften "Binnen in de winkel aan het Hogepad" en "Zo staan we erbij
-  aan het Hogepad" zijn weg, en bij "Waar u ons vindt" blijft alleen *Parkeren
+  De bijschriften "Binnen in de winkel aan het Hoge Pad" en "Zo staan we erbij
+  aan het Hoge Pad" zijn weg, en bij "Waar u ons vindt" blijft alleen *Parkeren
   kan voor de deur* staan.
 - **Veelgesteld:** "Kan ik zomaar binnenlopen?" en "Wanneer begint het
   kerstseizoen?" eruit. Nieuwe antwoorden op bestellen, boeketten op bestelling,

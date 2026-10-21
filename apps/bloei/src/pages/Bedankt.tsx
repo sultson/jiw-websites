@@ -119,7 +119,7 @@ export default function Bedankt() {
                       ? 'Wij komen langs'
                       : a.levering === 'bezorgen'
                         ? 'Bezorgen, in overleg'
-                        : 'Ophalen in de winkel, Hogepad 9'}
+                        : 'Ophalen in de winkel, Hoge Pad 9'}
                   </Regel>
                   {a.datum && <Regel term="Wanneer">{datumInWoorden(a.datum)}</Regel>}
                   {a.budget && <Regel term="Budget">{a.budget}</Regel>}

@@ -56,7 +56,7 @@ export const WINKEL = {
      Telefoon en WhatsApp staan er wel; die zijn bevestigd. Geeft de winkel er
      een door, dan komt hij hier terug en verschijnt hij vanzelf in de voet, bij
      de openingstijden en in de bevestigingsmail. */
-  straat: 'Hogepad 9',
+  straat: 'Hoge Pad 9',
   postcode: '3253 BH',
   plaats: 'Ouddorp',
   regio: 'Zuid-Holland',

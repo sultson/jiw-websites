@@ -46,7 +46,7 @@ export default function Kaart() {
 
   return (
     <div className="relative overflow-hidden rounded-2xl border border-line">
-      <div ref={doel} className="h-[26rem] w-full bg-ink" aria-label="Kaart met de winkel aan het Hogepad in Ouddorp" />
+      <div ref={doel} className="h-[26rem] w-full bg-ink" aria-label="Kaart met de winkel aan het Hoge Pad in Ouddorp" />
       <a
         href={ROUTE}
         target="_blank"

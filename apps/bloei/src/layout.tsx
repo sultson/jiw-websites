@@ -218,7 +218,7 @@ function NaamUitleg() {
       </div>
       <p className="mt-3 text-sm leading-relaxed text-ink-zacht">
         Zoekt u ons op Google of op Facebook, dan staan we daar nog onder die naam. Over een paar
-        weken gaat de winkel verder als Bloei! Hetzelfde adres aan het Hogepad, dezelfde mensen en
+        weken gaat de winkel verder als Bloei! Hetzelfde adres aan het Hoge Pad, dezelfde mensen en
         hetzelfde assortiment. Alleen de naam verandert.
       </p>
     </div>
@@ -408,7 +408,7 @@ export function Bezoek({streek = false, kraag = false}: {streek?: boolean; kraag
         <div>
           <img
             src="/img/winkelpui.webp"
-            alt="De gevel van Bloei! aan het Hogepad, met het groene naambord en de planten ervoor"
+            alt="De gevel van Bloei! aan het Hoge Pad, met het groene naambord en de planten ervoor"
             loading="lazy"
             width={1200}
             height={750}
@@ -443,7 +443,7 @@ export function Footer() {
               voor getekend is. */}
           <Merk maat="h-[72px]" plaatje />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/55">
-            Bloemen, planten, tuin en wonen aan het Hogepad in Ouddorp. Binnen en buiten, het hele jaar
+            Bloemen, planten, tuin en wonen aan het Hoge Pad in Ouddorp. Binnen en buiten, het hele jaar
             door.
           </p>
           <div className="mt-5 flex gap-3">

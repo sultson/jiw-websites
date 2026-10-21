@@ -35,7 +35,7 @@ export const STREEKKERNEN = [
 export const STRAAT = WINKELGEGEVENS.straat;
 export const PLAATS = `${WINKELGEGEVENS.postcode} ${WINKELGEGEVENS.plaats}`;
 export const ROUTE =
-  'https://www.google.com/maps/dir/?api=1&destination=Hogepad+9%2C+3253+BH+Ouddorp';
+  'https://www.google.com/maps/dir/?api=1&destination=Hoge+Pad+9%2C+3253+BH+Ouddorp';
 export const FACEBOOK = 'https://www.facebook.com/profile.php?id=100082968740640';
 
 /**
