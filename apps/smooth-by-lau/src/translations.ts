@@ -7,6 +7,7 @@ export const translations: Record<Lang, Dict> = {
     'nav.services':    'Behandelingen',
     'nav.suiker':      'Suikerontharing',
     'nav.brows':       'Wenkbrauwen',
+    'nav.lashes':      'Wimpers',
     'nav.gallery':     "Foto's",
     'nav.reviews':     'Recensies',
     'nav.visit':       'Bezoek',
@@ -16,7 +17,7 @@ export const translations: Record<Lang, Dict> = {
 
     'hero.kicker':     'Waspik',
     'hero.title':      'Naturally smooth,\nconfidently you.',
-    'hero.sub':        '100% natuurlijke suikerontharing en wenkbrauwbehandelingen. Jij mag er zijn, precies zoals je bent.',
+    'hero.sub':        '100% natuurlijke suikerontharing, wenkbrauwbehandelingen en Korean Lashlift. Jij mag er zijn, precies zoals je bent.',
     'hero.ctaBook':    'Boek afspraak',
 
     'usp.royx':        'ROYX PRO gecertificeerd',
@@ -96,9 +97,20 @@ export const translations: Record<Lang, Dict> = {
     'brows.t3.b':      'Brow lamination zet de haartjes in de juiste positie voor optisch vollere wenkbrauwen. Resultaat van 6 tot 8 weken.',
     'brows.cta':       'Boek een wenkbrauwbehandeling',
 
+    'lashes.kicker':   'Nieuw in de salon',
+    'lashes.title':    'Korean Lashlift: een open, frisse blik.',
+    'lashes.body':     'Met een Korean Lashlift geef je jouw natuurlijke wimpers een prachtige lift vanaf de aanzet. Hierdoor lijken je wimpers langer, voller en staan ze mooi omhoog. Het resultaat is een open, frisse blik zonder dat je mascara of wimperextensions nodig hebt.',
+    'lashes.p1.t':     'Je eigen wimpers, mooi omhoog',
+    'lashes.p1.b':     'Een lift vanaf de aanzet voor langere, vollere wimpers. Geen mascara of extensions nodig.',
+    'lashes.p2.t':     'Zachter dan een traditionele lashlift',
+    'lashes.p2.b':     'Waar traditionele lashlifts vaak werken met agressieve chemicaliën en veel lijm, gebruikt de Koreaanse methode een zachtere, lijmvrije of lijmarme techniek.',
+    'lashes.p3.t':     'Voedend voor je wimpers',
+    'lashes.p3.b':     'De focus ligt op de natuurlijke krul en de gezondheid van je eigen wimpers, met intens voedende ingrediënten.',
+    'lashes.cta':      'Boek een Korean Lashlift',
+
     'services.kicker': 'Prijslijst',
     'services.title':  'Behandelingen & tarieven',
-    'services.sub':    'Alle behandelingen worden uitgevoerd met 100% natuurlijke suikerpasta.',
+    'services.sub':    'Alle ontharingen worden uitgevoerd met 100% natuurlijke suikerpasta.',
     'services.book':   'Boek',
     'services.min':    'min',
 
@@ -108,6 +120,7 @@ export const translations: Record<Lang, Dict> = {
     'gallery.alle':       'Alle',
     'gallery.ontharing':  'Ontharing',
     'gallery.wenkbrauw':  'Wenkbrauwen',
+    'gallery.wimpers':    'Wimpers',
 
     'reviews.kicker':  'Klanten vertellen',
     'reviews.title':   'Recensies',
@@ -135,13 +148,13 @@ export const translations: Record<Lang, Dict> = {
     'faq.q3':          'Hoe lang blijft mijn huid glad?',
     'faq.a3':          'Gemiddeld 3 tot 6 weken, afhankelijk van je haargroei. Hoe vaker je suikert, hoe dunner de haren worden én hoe langer het resultaat aanhoudt.',
     'faq.q4':          'Welke zones kunnen behandeld worden?',
-    'faq.a4':          'Bijna alle lichaamszones: gezicht (kin, bovenlip, wangen, nek), oksels, benen, armen, bikini, Brazilian en rug. Ik doe ook wenkbrauwbehandelingen.',
+    'faq.a4':          'Bijna alle lichaamszones: gezicht (kin, bovenlip, wangen, nek), oksels, benen, armen, bikini, Brazilian en rug. Ik doe ook wenkbrauwbehandelingen en de Korean Lashlift.',
     'faq.q5':          'Hoe annuleer ik een afspraak?',
     'faq.a5':          'Stuur een berichtje of annuleer via de bevestigingsmail. Annuleer bij voorkeur minimaal 24 uur van tevoren.',
 
     'booking.close':   'Sluiten',
 
-    'footer.tagline':  'Suikerontharing & wenkbrauwspecialist in Waspik. Naturally smooth, confidently you.',
+    'footer.tagline':  'Suikerontharing, wenkbrauwen & Korean Lashlift in Waspik. Naturally smooth, confidently you.',
     'footer.rights':   '© Smooth By Lau. Alle rechten voorbehouden.',
     'footer.follow':   'Volg mij',
   },
@@ -150,6 +163,7 @@ export const translations: Record<Lang, Dict> = {
     'nav.services':    'Treatments',
     'nav.suiker':      'Sugar Waxing',
     'nav.brows':       'Eyebrows',
+    'nav.lashes':      'Lashes',
     'nav.gallery':     'Gallery',
     'nav.reviews':     'Reviews',
     'nav.visit':       'Visit',
@@ -159,7 +173,7 @@ export const translations: Record<Lang, Dict> = {
 
     'hero.kicker':     'Waspik',
     'hero.title':      'Naturally smooth,\nconfidently you.',
-    'hero.sub':        '100% natural sugar waxing and eyebrow treatments. You are welcome exactly as you are.',
+    'hero.sub':        '100% natural sugar waxing, eyebrow treatments and Korean Lash Lift. You are welcome exactly as you are.',
     'hero.ctaBook':    'Book now',
 
     'usp.royx':        'ROYX PRO certified',
@@ -239,9 +253,20 @@ export const translations: Record<Lang, Dict> = {
     'brows.t3.b':      'Brow lamination sets the hairs in the right position for visually fuller brows. Result lasts 6 to 8 weeks.',
     'brows.cta':       'Book an eyebrow treatment',
 
+    'lashes.kicker':   'New in the salon',
+    'lashes.title':    'Korean Lash Lift: an open, fresh look.',
+    'lashes.body':     'A Korean Lash Lift gives your natural lashes a beautiful lift from the root. Your lashes look longer and fuller and curl up nicely. The result is an open, fresh look without needing mascara or lash extensions.',
+    'lashes.p1.t':     'Your own lashes, lifted',
+    'lashes.p1.b':     'A lift from the root for longer, fuller lashes. No mascara or extensions needed.',
+    'lashes.p2.t':     'Gentler than a traditional lash lift',
+    'lashes.p2.b':     'Where traditional lash lifts often rely on harsh chemicals and plenty of glue, the Korean method uses a gentler, glue-free or low-glue technique.',
+    'lashes.p3.t':     'Nourishing for your lashes',
+    'lashes.p3.b':     'The focus is on the natural curl and the health of your own lashes, with deeply nourishing ingredients.',
+    'lashes.cta':      'Book a Korean Lash Lift',
+
     'services.kicker': 'Price list',
     'services.title':  'Treatments & prices',
-    'services.sub':    'All treatments use 100% natural sugar paste.',
+    'services.sub':    'All hair removal uses 100% natural sugar paste.',
     'services.book':   'Book',
     'services.min':    'min',
 
@@ -251,6 +276,7 @@ export const translations: Record<Lang, Dict> = {
     'gallery.alle':       'All',
     'gallery.ontharing':  'Hair removal',
     'gallery.wenkbrauw':  'Eyebrows',
+    'gallery.wimpers':    'Lashes',
 
     'reviews.kicker':  'What clients say',
     'reviews.title':   'Reviews',
@@ -278,13 +304,13 @@ export const translations: Record<Lang, Dict> = {
     'faq.q3':          'How long will my skin stay smooth?',
     'faq.a3':          'On average 3 to 6 weeks, depending on your hair growth. The more often you sugar wax, the thinner your hair becomes, and the longer the results last.',
     'faq.q4':          'Which areas can be treated?',
-    'faq.a4':          'Almost all body areas: face (chin, upper lip, cheeks, neck), armpits, legs, arms, bikini, Brazilian and back. I also do eyebrow treatments.',
+    'faq.a4':          'Almost all body areas: face (chin, upper lip, cheeks, neck), armpits, legs, arms, bikini, Brazilian and back. I also do eyebrow treatments and the Korean Lash Lift.',
     'faq.q5':          'How do I cancel an appointment?',
     'faq.a5':          'Send a message or cancel via the confirmation email. Preferably at least 24 hours in advance.',
 
     'booking.close':   'Close',
 
-    'footer.tagline':  'Sugar waxing & eyebrow specialist in Waspik. Naturally smooth, confidently you.',
+    'footer.tagline':  'Sugar waxing, eyebrows & Korean Lash Lift in Waspik. Naturally smooth, confidently you.',
     'footer.rights':   '© Smooth By Lau. All rights reserved.',
     'footer.follow':   'Follow me',
   },

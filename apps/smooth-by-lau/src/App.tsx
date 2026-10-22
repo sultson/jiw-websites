@@ -7,6 +7,7 @@ import About from './components/About';
 import PromiseSection from './components/Promise';
 import SugarWax from './components/SugarWax';
 import Brows from './components/Brows';
+import Lashes from './components/Lashes';
 import Services from './components/Services';
 import Gallery from './components/Gallery';
 import Reviews from './components/Reviews';
@@ -38,6 +39,7 @@ export default function App() {
         <PromiseSection t={t} />
         <SugarWax t={t} onBook={openBooking} />
         <Brows t={t} onBook={openBooking} />
+        <Lashes t={t} onBook={openBooking} />
         <Services lang={lang} t={t} />
         <Gallery t={t} />
         <Reviews lang={lang} t={t} />

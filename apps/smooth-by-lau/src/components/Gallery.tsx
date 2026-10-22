@@ -22,7 +22,13 @@ const wenkbrauwImages: Img[] = [
   { src: '/resultaat-wenkbrauwen-4.webp',     alt: 'Wenkbrauw behandeling resultaat',        cls: 'aspect-square' },
 ];
 
-type Tab = 'alle' | 'ontharing' | 'wenkbrauw';
+const wimperImages: Img[] = [
+  { src: '/resultaat-korean-lashlift-1.webp', alt: 'Korean Lashlift resultaat',              cls: 'aspect-square' },
+  { src: '/resultaat-korean-lashlift-2.webp', alt: 'Korean Lashlift resultaat',              cls: 'aspect-square' },
+  { src: '/resultaat-korean-lashlift-3.webp', alt: 'Korean Lashlift resultaat',              cls: 'aspect-square' },
+];
+
+type Tab = 'alle' | 'ontharing' | 'wenkbrauw' | 'wimpers';
 
 export default function Gallery({ t }: Props) {
   const [tab, setTab] = useState<Tab>('alle');
@@ -31,7 +37,8 @@ export default function Gallery({ t }: Props) {
   const images =
     tab === 'ontharing' ? ontharingImages
     : tab === 'wenkbrauw' ? wenkbrauwImages
-    : [...wenkbrauwImages, ...ontharingImages];
+    : tab === 'wimpers' ? wimperImages
+    : [...wenkbrauwImages, ...wimperImages, ...ontharingImages];
 
   return (
     <section id="fotos" className="py-20 md:py-28">
@@ -44,11 +51,11 @@ export default function Gallery({ t }: Props) {
 
         <div className="flex justify-center mb-8">
           <div className="inline-flex rounded-full border border-espresso/15 p-1 bg-cream shadow-sm">
-            {(['alle', 'ontharing', 'wenkbrauw'] as Tab[]).map(key => (
+            {(['alle', 'ontharing', 'wenkbrauw', 'wimpers'] as Tab[]).map(key => (
               <button
                 key={key}
                 onClick={() => { setTab(key); setIdx(null); }}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-3 sm:px-5 py-2 rounded-full text-[13px] sm:text-sm font-medium transition-colors ${
                   tab === key
                     ? 'bg-espresso text-cream'
                     : 'text-espresso/60 hover:text-espresso'

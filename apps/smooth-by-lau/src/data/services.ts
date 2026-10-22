@@ -23,8 +23,8 @@ export function formatPrice(p: number): string {
 export const serviceCategories: ServiceCategory[] = [
   {
     id: 'wenkbrauwen',
-    titleNl: 'Wenkbrauwen',
-    titleEn: 'Eyebrows',
+    titleNl: 'Wenkbrauwen & wimpers',
+    titleEn: 'Eyebrows & lashes',
     icon: 'flower',
     services: [
       {
@@ -66,6 +66,20 @@ export const serviceCategories: ServiceCategory[] = [
         descNl: 'Een browlift waarbij de wenkbrauwen worden behandeld met hybrid verf. Vollere, opgelichte wenkbrauwen met een resultaat van 6 tot 8 weken.',
         descEn: 'A brow lift finished with hybrid tint. Fuller, lifted brows with a result lasting 6 to 8 weeks.',
         price: 55, durationMin: 60,
+      },
+      {
+        id: 'korean-lashlift',
+        nameNl: 'Korean Lashlift',
+        nameEn: 'Korean Lash Lift',
+        descNl: 'Een lift vanaf de aanzet voor langere, vollere wimpers met een natuurlijke krul. Zachte, lijmarme methode met voedende ingrediënten.',
+        descEn: 'A lift from the root for longer, fuller lashes with a natural curl. A gentle, low-glue method with nourishing ingredients.',
+        price: 55, durationMin: 0,
+      },
+      {
+        id: 'wimpers-verven',
+        nameNl: 'Wimpers verven',
+        nameEn: 'Lash tint',
+        price: 20, durationMin: 0,
       },
     ],
   },
