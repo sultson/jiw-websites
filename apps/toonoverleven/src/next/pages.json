@@ -16956,7 +16956,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "textlink",
-                      "href": "mailto:info@toonoverleven.nl?subject=Vriend%20worden"
+                      "href": "mailto:penningmeester@toonoverleven.nl?subject=Vriend%20worden"
                     },
                     "children": [
                       {
@@ -17064,7 +17064,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "textlink",
-                      "href": "mailto:info@toonoverleven.nl?subject=Sponsoring"
+                      "href": "mailto:penningmeester@toonoverleven.nl?subject=Sponsoring"
                     },
                     "children": [
                       {
@@ -17254,61 +17254,10 @@
                     "linkKey": "link-11"
                   }
                 ]
-              },
-              {
-                "tag": "h3",
-                "attrs": {},
-                "children": [
-                  {
-                    "text": "Liever even contact?",
-                    "key": "text-27"
-                  }
-                ]
-              },
-              {
-                "tag": "p",
-                "attrs": {},
-                "children": [
-                  {
-                    "text": "Je hoeft niet precies te weten wat je nodig hebt.",
-                    "key": "text-28"
-                  }
-                ]
-              },
-              {
-                "tag": "a",
-                "attrs": {
-                  "class": "textlink",
-                  "href": "/contact"
-                },
-                "children": [
-                  {
-                    "text": "Neem contact op",
-                    "key": "text-29"
-                  },
-                  {
-                    "tag": "span",
-                    "attrs": {
-                      "class": "arrow",
-                      "aria-hidden": "true"
-                    },
-                    "children": [
-                      "→"
-                    ]
-                  }
-                ],
-                "linkKey": "link-12"
               }
             ]
           }
         ]
-      },
-      {
-        "tag": "site-slot",
-        "attrs": {
-          "name": "welcome"
-        },
-        "children": []
       }
     ],
     "texts": [
@@ -17446,21 +17395,6 @@
         "_key": "text-26",
         "label": "Op deze pagina",
         "text": "Onze verantwoording"
-      },
-      {
-        "_key": "text-27",
-        "label": "Liever even contact?",
-        "text": "Liever even contact?"
-      },
-      {
-        "_key": "text-28",
-        "label": "Liever even contact?",
-        "text": "Je hoeft niet precies te weten wat je nodig hebt."
-      },
-      {
-        "_key": "text-29",
-        "label": "Liever even contact?",
-        "text": "Neem contact op"
       }
     ],
     "images": [],
@@ -17478,7 +17412,7 @@
       {
         "_key": "link-2",
         "label": "Neem contact op over vriend worden→",
-        "href": "mailto:info@toonoverleven.nl?subject=Vriend%20worden"
+        "href": "mailto:penningmeester@toonoverleven.nl?subject=Vriend%20worden"
       },
       {
         "_key": "link-3",
@@ -17488,7 +17422,7 @@
       {
         "_key": "link-4",
         "label": "Neem contact op over sponsoring→",
-        "href": "mailto:info@toonoverleven.nl?subject=Sponsoring"
+        "href": "mailto:penningmeester@toonoverleven.nl?subject=Sponsoring"
       },
       {
         "_key": "link-5",
@@ -17524,11 +17458,6 @@
         "_key": "link-11",
         "label": "Onze verantwoording",
         "href": "/over-ons/steun-ons#onze-verantwoording"
-      },
-      {
-        "_key": "link-12",
-        "label": "Neem contact op→",
-        "href": "/contact"
       }
     ],
     "description": "Met een gift, tijd, materialen of een andere bijdrage help je ons om een plek voor ontmoeting en activiteiten in Zeewolde te bieden. Kies de manier die bij je past.",
@@ -17706,7 +17635,7 @@
                 "tag": "a",
                 "attrs": {
                   "class": "textlink",
-                  "href": "mailto:info@toonoverleven.nl?subject=Sponsoring"
+                  "href": "mailto:penningmeester@toonoverleven.nl?subject=Sponsoring"
                 },
                 "children": [
                   {
@@ -17800,7 +17729,7 @@
       {
         "_key": "link-2",
         "label": "Neem contact op over sponsoring→",
-        "href": "mailto:info@toonoverleven.nl?subject=Sponsoring"
+        "href": "mailto:penningmeester@toonoverleven.nl?subject=Sponsoring"
       }
     ],
     "description": "Bedrijven, fondsen en betrokken mensen helpen Toon over Leven met geld, materialen of hun vakkennis. Dankzij hun steun kunnen we een plek voor ontmoeting en activiteiten bieden. We",
@@ -18373,23 +18302,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "/documents/avg-spelregels.pdf",
-                      "target": "_blank",
-                      "rel": "noopener noreferrer"
-                    },
-                    "children": [
-                      {
-                        "text": "AVG-spelregels (pdf)",
-                        "key": "text-37"
-                      }
-                    ],
-                    "linkKey": "link-11"
-                  },
-                  {
-                    "tag": "a",
-                    "attrs": {
-                      "class": "download",
-                      "href": "/documents/gedragscode-en-houding.pdf",
+                      "href": "/documents/gedragscode-en-houding-202610.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18405,7 +18318,23 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "/documents/klachtenformulier.pdf",
+                      "href": "/documents/ipso-privacy-spelregels-202610.pdf",
+                      "target": "_blank",
+                      "rel": "noopener noreferrer"
+                    },
+                    "children": [
+                      {
+                        "text": "IPSO privacy-spelregels (pdf)",
+                        "key": "text-37"
+                      }
+                    ],
+                    "linkKey": "link-11"
+                  },
+                  {
+                    "tag": "a",
+                    "attrs": {
+                      "class": "download",
+                      "href": "/documents/klachtenformulier-202610.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18421,7 +18350,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "/documents/klachtenprocedure.pdf",
+                      "href": "/documents/klachtenprocedure-202610.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18437,7 +18366,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "/documents/vertrouwenscontactpersoon.pdf",
+                      "href": "/documents/vertrouwenscontactpersoon-202610.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18453,7 +18382,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "/documents/vrijwilligersovereenkomst.pdf",
+                      "href": "/documents/vrijwilligersovereenkomst-202610.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18469,7 +18398,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "/documents/vrijwilligersreglement.pdf",
+                      "href": "/documents/vrijwilligersreglement-202610.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18485,7 +18414,7 @@
                     "tag": "a",
                     "attrs": {
                       "class": "download",
-                      "href": "/documents/wet-en-regelgeving.pdf",
+                      "href": "/documents/wet-en-regelgeving-202610.pdf",
                       "target": "_blank",
                       "rel": "noopener noreferrer"
                     },
@@ -18887,7 +18816,7 @@
       {
         "_key": "text-37",
         "label": "Vrijwilligersbeleid en afspraken",
-        "text": "AVG-spelregels (pdf)"
+        "text": "IPSO privacy-spelregels (pdf)"
       },
       {
         "_key": "text-38",
@@ -19005,42 +18934,42 @@
       {
         "_key": "link-6",
         "label": "Vertrouwenscontactpersoon (pdf)",
-        "href": "/documents/vertrouwenscontactpersoon.pdf"
+        "href": "/documents/vertrouwenscontactpersoon-202610.pdf"
       },
       {
         "_key": "link-7",
         "label": "Vrijwilligersreglement (pdf)",
-        "href": "/documents/vrijwilligersreglement.pdf"
+        "href": "/documents/vrijwilligersreglement-202610.pdf"
       },
       {
         "_key": "link-8",
         "label": "Vrijwilligersovereenkomst (pdf)",
-        "href": "/documents/vrijwilligersovereenkomst.pdf"
+        "href": "/documents/vrijwilligersovereenkomst-202610.pdf"
       },
       {
         "_key": "link-9",
         "label": "Klachtenprocedure (pdf)",
-        "href": "/documents/klachtenprocedure.pdf"
+        "href": "/documents/klachtenprocedure-202610.pdf"
       },
       {
         "_key": "link-10",
         "label": "Klachtenformulier (pdf)",
-        "href": "/documents/klachtenformulier.pdf"
+        "href": "/documents/klachtenformulier-202610.pdf"
       },
       {
         "_key": "link-11",
         "label": "AVG-spelregels (pdf)",
-        "href": "/documents/avg-spelregels.pdf"
+        "href": "/documents/ipso-privacy-spelregels-202610.pdf"
       },
       {
         "_key": "link-12",
         "label": "Wet- en regelgeving (pdf)",
-        "href": "/documents/wet-en-regelgeving.pdf"
+        "href": "/documents/wet-en-regelgeving-202610.pdf"
       },
       {
         "_key": "link-13",
         "label": "Gedragscode en houding (pdf)",
-        "href": "/documents/gedragscode-en-houding.pdf"
+        "href": "/documents/gedragscode-en-houding-202610.pdf"
       },
       {
         "_key": "link-14",
@@ -22392,292 +22321,9 @@
     "videos": []
   },
   {
-    "path": "/activiteiten/sponsordiner",
-    "title": "Sponsordiner bij Classic Mike",
-    "description": "Een feestelijke avond bij Classic Mike in Zeewolde ten bate van Toon over Leven.",
-    "tree": [
-      {
-        "tag": "div",
-        "attrs": {
-          "class": "wrap crumb"
-        },
-        "children": [
-          {
-            "tag": "a",
-            "attrs": {
-              "href": "/"
-            },
-            "children": [
-              {
-                "text": "Home",
-                "key": "text-0"
-              }
-            ],
-            "linkKey": "link-0"
-          },
-          {
-            "text": " / ",
-            "key": "text-1"
-          },
-          {
-            "tag": "a",
-            "attrs": {
-              "href": "/activiteiten"
-            },
-            "children": [
-              {
-                "text": "Activiteiten",
-                "key": "text-2"
-              }
-            ],
-            "linkKey": "link-1"
-          },
-          {
-            "text": " / Sponsordiner bij Classic Mike",
-            "key": "text-3"
-          }
-        ]
-      },
-      {
-        "tag": "div",
-        "attrs": {
-          "class": "hero-band page-hero"
-        },
-        "children": [
-          {
-            "tag": "section",
-            "attrs": {
-              "class": "wrap hero"
-            },
-            "children": [
-              {
-                "tag": "div",
-                "attrs": {
-                  "class": "hero-copy"
-                },
-                "children": [
-                  {
-                    "tag": "span",
-                    "attrs": {
-                      "class": "eyebrow"
-                    },
-                    "children": [
-                      {
-                        "text": "Activiteiten",
-                        "key": "text-4"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "h1",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "text": "Sponsordiner bij Classic Mike",
-                        "key": "text-5"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "p",
-                    "attrs": {
-                      "class": "lead"
-                    },
-                    "children": [
-                      {
-                        "text": "Een feestelijke avond bij Classic Mike in Zeewolde ten bate van Toon over Leven. Het diner van 6 november 2026 is uitgesteld; de nieuwe datum volgt, waarschijnlijk in april 2027.",
-                        "key": "text-6"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "tag": "div",
-                "attrs": {
-                  "class": "hero-art"
-                },
-                "children": [
-                  {
-                    "tag": "img",
-                    "attrs": {
-                      "class": "hero-image",
-                      "src": "/img/approved/sponsordiner-classic-mike.webp",
-                      "alt": "Gasten aan lange tafels tussen de klassieke auto’s bij Classic Mike",
-                      "loading": "eager"
-                    },
-                    "children": [],
-                    "imageKey": "image-0"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "tag": "div",
-        "attrs": {
-          "class": "wrap body-layout"
-        },
-        "children": [
-          {
-            "tag": "div",
-            "attrs": {
-              "class": "content"
-            },
-            "children": [
-              {
-                "tag": "section",
-                "attrs": {
-                  "class": "copy-section"
-                },
-                "children": [
-                  {
-                    "tag": "h2",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "text": "Is dit iets voor mij?",
-                        "key": "text-7"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "p",
-                    "attrs": {},
-                    "children": [
-                      {
-                        "text": "Twijfel je of deze activiteit bij je past, of vind je de eerste keer spannend? Neem gerust contact op. We denken graag met je mee.",
-                        "key": "text-8"
-                      }
-                    ]
-                  },
-                  {
-                    "tag": "a",
-                    "attrs": {
-                      "class": "textlink",
-                      "href": "/contact"
-                    },
-                    "children": [
-                      {
-                        "text": "Stel je vraag →",
-                        "key": "text-9"
-                      }
-                    ],
-                    "linkKey": "link-2"
-                  }
-                ]
-              },
-              {
-                "tag": "site-slot",
-                "attrs": {
-                  "name": "activityMoments"
-                },
-                "children": []
-              }
-            ]
-          },
-          {
-            "tag": "site-slot",
-            "attrs": {
-              "name": "activityPractical"
-            },
-            "children": []
-          }
-        ]
-      },
-      {
-        "tag": "site-slot",
-        "attrs": {
-          "name": "welcome"
-        },
-        "children": []
-      }
-    ],
-    "texts": [
-      {
-        "_key": "text-0",
-        "label": "Sponsordiner bij Classic Mike",
-        "text": "Home"
-      },
-      {
-        "_key": "text-1",
-        "label": "Sponsordiner bij Classic Mike",
-        "text": " / "
-      },
-      {
-        "_key": "text-2",
-        "label": "Sponsordiner bij Classic Mike",
-        "text": "Activiteiten"
-      },
-      {
-        "_key": "text-3",
-        "label": "Sponsordiner bij Classic Mike",
-        "text": " / Sponsordiner bij Classic Mike"
-      },
-      {
-        "_key": "text-4",
-        "label": "Sponsordiner bij Classic Mike",
-        "text": "Activiteiten"
-      },
-      {
-        "_key": "text-5",
-        "label": "Sponsordiner bij Classic Mike",
-        "text": "Sponsordiner bij Classic Mike"
-      },
-      {
-        "_key": "text-6",
-        "label": "Sponsordiner bij Classic Mike",
-        "text": "Een feestelijke avond bij Classic Mike in Zeewolde ten bate van Toon over Leven. Het diner van 6 november 2026 is uitgesteld; de nieuwe datum volgt, waarschijnlijk in april 2027."
-      },
-      {
-        "_key": "text-7",
-        "label": "Is dit iets voor mij?",
-        "text": "Is dit iets voor mij?"
-      },
-      {
-        "_key": "text-8",
-        "label": "Is dit iets voor mij?",
-        "text": "Twijfel je of deze activiteit bij je past, of vind je de eerste keer spannend? Neem gerust contact op. We denken graag met je mee."
-      },
-      {
-        "_key": "text-9",
-        "label": "Is dit iets voor mij?",
-        "text": "Stel je vraag →"
-      }
-    ],
-    "images": [
-      {
-        "_key": "image-0",
-        "label": "Sponsordiner bij Classic Mike",
-        "src": "/img/approved/sponsordiner-classic-mike.webp",
-        "alt": "Gasten aan lange tafels tussen de klassieke auto’s bij Classic Mike"
-      }
-    ],
-    "links": [
-      {
-        "_key": "link-0",
-        "label": "Home",
-        "href": "/"
-      },
-      {
-        "_key": "link-1",
-        "label": "Activiteiten",
-        "href": "/activiteiten"
-      },
-      {
-        "_key": "link-2",
-        "label": "Stel je vraag →",
-        "href": "/contact"
-      }
-    ],
-    "videos": []
-  },
-  {
     "path": "/privacy",
-    "title": "Privacy en cookies",
-    "description": "Hoe Toon over Leven omgaat met je contactgegevens, video’s en cookies.",
+    "title": "Privacy bij Toon over Leven",
+    "description": "Hoe Toon over Leven omgaat met je gegevens als je contact opneemt, je aanmeldt, de nieuwsbrief ontvangt of een video bekijkt.",
     "tree": [
       {
         "tag": "div",
@@ -22710,7 +22356,6 @@
           "class": "wrap section reading-content"
         },
         "children": [
-          "\n      ",
           {
             "tag": "span",
             "attrs": {
@@ -22719,29 +22364,29 @@
             "children": [
               {
                 "text": "Toon over Leven",
-                "key": "text-2"
+                "key": "p-1"
               }
             ]
           },
-          "\n      ",
           {
             "tag": "h1",
             "attrs": {},
             "children": [
               {
-                "text": "Privacy en cookies",
-                "key": "text-3"
+                "text": "Privacy bij Toon over Leven",
+                "key": "p-2"
               }
             ]
           },
-          "\n      ",
           {
-            "tag": "h2",
-            "attrs": {},
+            "tag": "p",
+            "attrs": {
+              "class": "privacy-date"
+            },
             "children": [
               {
-                "text": "Contact en kennismaken",
-                "key": "text-4"
+                "text": "Laatst bijgewerkt: 19 oktober 2026",
+                "key": "p-3"
               }
             ]
           },
@@ -22752,115 +22397,25 @@
             },
             "children": []
           },
-          "\n      ",
           {
             "tag": "p",
             "attrs": {},
             "children": [
               {
-                "text": "\n        Stichting Toon over Leven, ",
-                "key": "text-2000"
+                "text": "Bij Toon over Leven kun je terecht voor ontmoeting, ondersteuning en activiteiten als kanker je leven raakt. We gaan zorgvuldig om met wat je ons vertelt en met je persoonsgegevens. Hieronder lees je hoe we dat doen.",
+                "key": "p-4"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Stichting Toon over Leven is verantwoordelijk voor het gebruik van je persoonsgegevens. Je kunt ons bereiken via",
+                "key": "p-5"
               },
-              {
-                "tag": "site-slot",
-                "attrs": {
-                  "name": "fact",
-                  "field": "locatie.adres"
-                },
-                "children": []
-              },
-              {
-                "text": ", gebruikt de gegevens die je in het contactformulier\n        invult om je bericht te beantwoorden en een kennismaking af te spreken.\n        Deel geen medische gegevens of andere gevoelige informatie via het\n        formulier.\n      ",
-                "key": "text-2001"
-              }
-            ]
-          },
-          "\n      ",
-          {
-            "tag": "p",
-            "attrs": {},
-            "children": [
-              {
-                "text": "\n        We verwerken je naam, e-mailadres en eventuele aanvullende\n        contactgegevens en bericht op basis van ons gerechtvaardigd belang om\n        contactverzoeken te behandelen. Je gegevens worden niet verkocht of\n        gebruikt voor advertenties.\n      ",
-                "key": "text-6"
-              }
-            ]
-          },
-          "\n      ",
-          {
-            "tag": "h2",
-            "attrs": {},
-            "children": [
-              {
-                "text": "Verwerking en beveiliging",
-                "key": "text-7"
-              }
-            ]
-          },
-          "\n      ",
-          {
-            "tag": "p",
-            "attrs": {},
-            "children": [
-              {
-                "text": "\n        De website en het formulier worden technisch verwerkt via Cloudflare.\n        Een kopie van je aanvraag wordt beveiligd opgeslagen bij Cloudflare en\n        per e-mail doorgestuurd naar Toon over Leven. Alleen mensen die je verzoek\n        behandelen mogen deze gegevens gebruiken. De technische kopie bij\n        Cloudflare wordt na 90 dagen automatisch verwijderd. E-mailberichten\n        bewaren we zolang dat nodig is om je verzoek af te handelen.\n      ",
-                "key": "text-8"
-              }
-            ]
-          },
-          "\n      ",
-          {
-            "tag": "h2",
-            "attrs": {},
-            "children": [
-              {
-                "text": "Video’s en externe websites",
-                "key": "text-9"
-              }
-            ]
-          },
-          "\n      ",
-          {
-            "tag": "p",
-            "attrs": {},
-            "children": [
-              {
-                "text": "\n        Er laden geen YouTube-video’s of externe videominiaturen voordat je daar\n        zelf toestemming voor geeft. Bij het starten van een video maken we\n        verbinding met youtube-nocookie.com. YouTube kan daarna gegevens\n        verwerken en opslaan. Met ‘Video sluiten en toestemming intrekken’ stop\n        je de ingesloten video; al door YouTube verwerkte gegevens worden\n        daarmee niet gewist. Je toestemming wordt niet opgeslagen voor een\n        volgend bezoek.\n      ",
-                "key": "text-10"
-              }
-            ]
-          },
-          "\n      ",
-          {
-            "tag": "p",
-            "attrs": {},
-            "children": [
-              {
-                "text": "\n        Facebook en Instagram zijn gewone links; er zijn geen ingesloten sociale\n        feeds. De site gebruikt geen advertentiecookies. Technische beveiliging\n        kan noodzakelijk zijn voor het formulier.\n      ",
-                "key": "text-11"
-              }
-            ]
-          },
-          "\n      ",
-          {
-            "tag": "h2",
-            "attrs": {},
-            "children": [
-              {
-                "text": "Je rechten en vragen",
-                "key": "text-12"
-              }
-            ]
-          },
-          "\n      ",
-          {
-            "tag": "p",
-            "attrs": {},
-            "children": [
-              {
-                "text": "\n        Je kunt inzage, correctie of verwijdering van je gegevens vragen en\n        bezwaar maken tegen verwerking. Mail naar \n        ",
-                "key": "text-13"
-              },
+              " ",
               {
                 "tag": "a",
                 "attrs": {
@@ -22879,9 +22434,10 @@
                 ]
               },
               {
-                "text": " of bel \n        ",
-                "key": "text-15"
+                "text": ", telefonisch op",
+                "key": "p-6"
               },
+              " ",
               {
                 "tag": "a",
                 "attrs": {
@@ -22917,20 +22473,20 @@
                   }
                 ]
               },
+              " ",
               {
-                "text": ". Je kunt ook een klacht\n        indienen bij de Autoriteit Persoonsgegevens.\n      ",
-                "key": "text-17"
+                "text": "of op Mazerhard 37, 3891 BR Zeewolde.",
+                "key": "p-7"
               }
             ]
           },
-          "\n    ",
           {
             "tag": "h2",
             "attrs": {},
             "children": [
               {
-                "text": "Aanmelden voor activiteiten",
-                "key": "text-3000"
+                "text": "Als je contact opneemt of je aanmeldt",
+                "key": "p-8"
               }
             ]
           },
@@ -22939,8 +22495,78 @@
             "attrs": {},
             "children": [
               {
-                "text": "Als je je via de website aanmeldt voor een activiteit, verwerken we ook welke activiteit en welk moment je kiest. We gebruiken deze gegevens om je aanmelding af te handelen en je deelname te bevestigen. Dezelfde bewaartermijnen en rechten gelden voor deze gegevens.",
-                "key": "text-3001"
+                "text": "Wanneer je ons mailt of een formulier op onze website invult, ontvangen wij de gegevens die je invult. Bijvoorbeeld je naam, e-mailadres, eventueel je telefoonnummer en je vraag of aanmelding.",
+                "key": "p-9"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Het formulier komt in onze mailbox terecht. We gebruiken je gegevens om te reageren, je aanmelding te verwerken en praktische informatie over je deelname te geven. Zonder de gevraagde contactgegevens kunnen we je mogelijk niet antwoorden of je aanmelding niet afhandelen.",
+                "key": "p-10"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Voor het beantwoorden van vragen hebben wij een gerechtvaardigd belang: bereikbaar zijn en je zorgvuldig helpen. Gegevens die nodig zijn om je deelname te regelen, verwerken we voor het uitvoeren van de afspraken die we daarover met je maken.",
+                "key": "p-11"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Vermeld in een webformulier liever geen medische informatie. Voor een vraag of aanmelding is een beschrijving van je ziekte of behandeling meestal niet nodig.",
+                "key": "p-12"
+              }
+            ]
+          },
+          {
+            "tag": "h2",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Registratie van deelname",
+                "key": "p-13"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "We registreren deelname aan activiteiten in het registratiesysteem dat wij via IPSO gebruiken. Daarmee houden we overzicht over onze activiteiten en kunnen we verantwoording afleggen over het gebruik van ons aanbod en de financiering van onze organisatie.",
+                "key": "p-14"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "We beperken de registratie tot de gegevens die daarvoor nodig zijn. Ons gerechtvaardigd belang is het organiseren en verantwoorden van ons aanbod. Daarbij wegen we jouw privacy mee.",
+                "key": "p-15"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Gegevens waaruit je gezondheid blijkt, registreren we niet. Stuur bij aanmelden ook niet per ongeluk informatie over je gezondheid mee.",
+                "key": "p-16"
               }
             ]
           },
@@ -22950,7 +22576,7 @@
             "children": [
               {
                 "text": "Nieuwsbrief",
-                "key": "text-3002"
+                "key": "p-17"
               }
             ]
           },
@@ -22959,8 +22585,256 @@
             "attrs": {},
             "children": [
               {
-                "text": "Meld je je aan voor de nieuwsbrief, dan bewaren we je naam en e-mailadres om je af en toe nieuws te sturen. We gebruiken ze nergens anders voor. Je kunt je altijd afmelden met een mail naar info@toonoverleven.nl; dan halen we je gegevens uit de lijst.",
-                "key": "text-3003"
+                "text": "Meld je je aan voor onze nieuwsbrief? Dan gebruiken we je e-mailadres en, als je die opgeeft, je naam om de nieuwsbrief te versturen. Dat doen we met jouw toestemming.",
+                "key": "p-18"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Je kunt je altijd afmelden via de afmeldmogelijkheid in de nieuwsbrief of door ons te mailen. Een aanmelding voor een activiteit betekent niet dat je automatisch onze nieuwsbrief ontvangt.",
+                "key": "p-19"
+              }
+            ]
+          },
+          {
+            "tag": "h2",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Website, video’s en externe links",
+                "key": "p-20"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Voor het laten werken en beveiligen van de website verwerken onze technische dienstverleners gegevens zoals je IP-adres en informatie over je browser. Ons gerechtvaardigd belang is een goed werkende en veilige website. Voor strikt noodzakelijke cookies is geen toestemming nodig.",
+                "key": "p-21"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Op onze website staan video’s van YouTube. De videospeler wordt pas geladen nadat je daarvoor toestemming hebt gegeven. Vanaf dat moment kan Google, de aanbieder van YouTube, gegevens verwerken over bijvoorbeeld je apparaat, IP-adres en het bekijken van de video.",
+                "key": "p-22"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Je kunt weigeren; de rest van de website blijft beschikbaar. Via ‘Video sluiten en toestemming intrekken’ kun je de video stoppen en je toestemming voor het verder laden ervan intrekken. Gegevens die Google al heeft verwerkt, worden daardoor niet automatisch verwijderd. Meer informatie vind je in het privacybeleid van Google.",
+                "key": "p-23"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Via een link kun je naar SponsorKliks gaan om ons te steunen met je aankopen. Je verlaat dan onze website. SponsorKliks en de betrokken webwinkels verwerken gegevens volgens hun eigen privacy- en cookieverklaringen. Dit geldt ook wanneer je links naar andere externe websites volgt.",
+                "key": "p-24"
+              }
+            ]
+          },
+          {
+            "tag": "h2",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Wie hebben toegang?",
+                "key": "p-25"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Alleen vrijwilligers en andere betrokkenen die je gegevens nodig hebben voor hun werkzaamheden krijgen toegang.",
+                "key": "p-26"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "We gebruiken dienstverleners voor onze website, e-mail, nieuwsbrief en het IPSO-registratiesysteem. Met partijen die namens ons persoonsgegevens verwerken, maken we afspraken over vertrouwelijkheid, beveiliging en het gebruik van de gegevens. Wij verkopen je persoonsgegevens niet.",
+                "key": "p-27"
+              }
+            ]
+          },
+          {
+            "tag": "h2",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Hoe lang bewaren we je gegevens?",
+                "key": "p-28"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "We bewaren gegevens niet langer dan nodig:",
+                "key": "p-29"
+              }
+            ]
+          },
+          {
+            "tag": "ul",
+            "attrs": {},
+            "children": [
+              {
+                "tag": "li",
+                "attrs": {},
+                "children": [
+                  {
+                    "text": "Contact- en aanmeldgegevens bewaren we maximaal 24 maanden na het laatste relevante contact of de afronding van de activiteit. Gegevens die eerder niet meer nodig zijn, verwijderen we eerder.",
+                    "key": "p-30"
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "attrs": {},
+                "children": [
+                  {
+                    "text": "Voor de deelnemersregistratie in het IPSO-systeem geldt dat persoonsgegevens niet langer worden bewaard dan noodzakelijk is om de doelen te bereiken waarvoor ze zijn verzameld.",
+                    "key": "p-31"
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "attrs": {},
+                "children": [
+                  {
+                    "text": "Je nieuwsbriefgegevens bewaren we zolang je ingeschreven bent. Na afmelding gebruiken we ze niet meer om nieuwsbrieven te versturen.",
+                    "key": "p-32"
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "attrs": {},
+                "children": [
+                  {
+                    "text": "Als voor bepaalde gegevens een wettelijke bewaarplicht geldt, houden we de daarvoor geldende termijn aan.",
+                    "key": "p-33"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Daarna verwijderen we de gegevens of maken we ze daadwerkelijk anoniem.",
+                "key": "p-34"
+              }
+            ]
+          },
+          {
+            "tag": "h2",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Je gegevens en je rechten",
+                "key": "p-35"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Je kunt ons vragen welke persoonsgegevens we van je hebben en onjuiste gegevens laten verbeteren. Ook kun je vragen om verwijdering, beperking van het gebruik of, wanneer dat recht van toepassing is, overdracht van je gegevens. Je kunt bezwaar maken tegen verwerkingen die op een gerechtvaardigd belang berusten.",
+                "key": "p-36"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Heb je toestemming gegeven? Dan kun je die altijd intrekken. Dat verandert niets aan de rechtmatigheid van het gebruik vóór de intrekking.",
+                "key": "p-37"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Mail je verzoek naar",
+                "key": "p-38"
+              },
+              " ",
+              {
+                "tag": "a",
+                "attrs": {
+                  "href": "mailto:info@toonoverleven.nl",
+                  "data-contact": "email"
+                },
+                "children": [
+                  {
+                    "tag": "site-slot",
+                    "attrs": {
+                      "name": "fact",
+                      "field": "contact.email"
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "text": ". We reageren normaal gesproken binnen één maand. Als meer tijd nodig is, laten we dat binnen die maand weten. Soms moeten we controleren of het verzoek echt van jou komt. Stuur niet ongevraagd een kopie van je identiteitsbewijs mee.",
+                "key": "p-39"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Heb je vragen of een klacht? Neem gerust contact met ons op. Je kunt ook een klacht indienen bij de Autoriteit Persoonsgegevens.",
+                "key": "p-40"
+              }
+            ]
+          },
+          {
+            "tag": "p",
+            "attrs": {},
+            "children": [
+              {
+                "text": "Als onze werkwijze verandert, passen we deze verklaring aan. Op onze website staat de actuele versie.",
+                "key": "p-41"
               }
             ]
           }
@@ -22986,99 +22860,209 @@
         "text": " / Privacy"
       },
       {
-        "_key": "text-2",
-        "label": "Privacy en cookies",
+        "_key": "p-1",
+        "label": "Bovenregel",
         "text": "Toon over Leven"
       },
       {
-        "_key": "text-3",
-        "label": "Privacy en cookies",
-        "text": "Privacy en cookies"
+        "_key": "p-2",
+        "label": "Kop",
+        "text": "Privacy bij Toon over Leven"
       },
       {
-        "_key": "text-4",
-        "label": "Contact en kennismaken",
-        "text": "Contact en kennismaken"
+        "_key": "p-3",
+        "label": "Datum laatste wijziging",
+        "text": "Laatst bijgewerkt: 19 oktober 2026"
       },
       {
-        "_key": "text-6",
-        "label": "Contact en kennismaken",
-        "text": "\n        We verwerken je naam, e-mailadres en eventuele aanvullende\n        contactgegevens en bericht op basis van ons gerechtvaardigd belang om\n        contactverzoeken te behandelen. Je gegevens worden niet verkocht of\n        gebruikt voor advertenties.\n      "
+        "_key": "p-4",
+        "label": "Bij Toon over Leven kun je terecht voor ontmoeting, onderste",
+        "text": "Bij Toon over Leven kun je terecht voor ontmoeting, ondersteuning en activiteiten als kanker je leven raakt. We gaan zorgvuldig om met wat je ons vertelt en met je persoonsgegevens. Hieronder lees je hoe we dat doen."
       },
       {
-        "_key": "text-7",
-        "label": "Verwerking en beveiliging",
-        "text": "Verwerking en beveiliging"
+        "_key": "p-5",
+        "label": "Verantwoordelijke (begin)",
+        "text": "Stichting Toon over Leven is verantwoordelijk voor het gebruik van je persoonsgegevens. Je kunt ons bereiken via"
       },
       {
-        "_key": "text-8",
-        "label": "Verwerking en beveiliging",
-        "text": "\n        De website en het formulier worden technisch verwerkt via Cloudflare.\n        Een kopie van je aanvraag wordt beveiligd opgeslagen bij Cloudflare en\n        per e-mail doorgestuurd naar Toon over Leven. Alleen mensen die je verzoek\n        behandelen mogen deze gegevens gebruiken. De technische kopie bij\n        Cloudflare wordt na 90 dagen automatisch verwijderd. E-mailberichten\n        bewaren we zolang dat nodig is om je verzoek af te handelen.\n      "
+        "_key": "p-6",
+        "label": "Verantwoordelijke (telefoon)",
+        "text": ", telefonisch op"
       },
       {
-        "_key": "text-9",
-        "label": "Video’s en externe websites",
-        "text": "Video’s en externe websites"
+        "_key": "p-7",
+        "label": "Verantwoordelijke (adres)",
+        "text": "of op Mazerhard 37, 3891 BR Zeewolde."
       },
       {
-        "_key": "text-10",
-        "label": "Video’s en externe websites",
-        "text": "\n        Er laden geen YouTube-video’s of externe videominiaturen voordat je daar\n        zelf toestemming voor geeft. Bij het starten van een video maken we\n        verbinding met youtube-nocookie.com. YouTube kan daarna gegevens\n        verwerken en opslaan. Met ‘Video sluiten en toestemming intrekken’ stop\n        je de ingesloten video; al door YouTube verwerkte gegevens worden\n        daarmee niet gewist. Je toestemming wordt niet opgeslagen voor een\n        volgend bezoek.\n      "
+        "_key": "p-8",
+        "label": "Als je contact opneemt of je aanmeldt",
+        "text": "Als je contact opneemt of je aanmeldt"
       },
       {
-        "_key": "text-11",
-        "label": "Video’s en externe websites",
-        "text": "\n        Facebook en Instagram zijn gewone links; er zijn geen ingesloten sociale\n        feeds. De site gebruikt geen advertentiecookies. Technische beveiliging\n        kan noodzakelijk zijn voor het formulier.\n      "
+        "_key": "p-9",
+        "label": "Wanneer je ons mailt of een formulier op onze website invult",
+        "text": "Wanneer je ons mailt of een formulier op onze website invult, ontvangen wij de gegevens die je invult. Bijvoorbeeld je naam, e-mailadres, eventueel je telefoonnummer en je vraag of aanmelding."
       },
       {
-        "_key": "text-12",
-        "label": "Je rechten en vragen",
-        "text": "Je rechten en vragen"
+        "_key": "p-10",
+        "label": "Het formulier komt in onze mailbox terecht. We gebruiken je ",
+        "text": "Het formulier komt in onze mailbox terecht. We gebruiken je gegevens om te reageren, je aanmelding te verwerken en praktische informatie over je deelname te geven. Zonder de gevraagde contactgegevens kunnen we je mogelijk niet antwoorden of je aanmelding niet afhandelen."
       },
       {
-        "_key": "text-13",
-        "label": "Je rechten en vragen",
-        "text": "\n        Je kunt inzage, correctie of verwijdering van je gegevens vragen en\n        bezwaar maken tegen verwerking. Mail naar \n        "
+        "_key": "p-11",
+        "label": "Voor het beantwoorden van vragen hebben wij een gerechtvaard",
+        "text": "Voor het beantwoorden van vragen hebben wij een gerechtvaardigd belang: bereikbaar zijn en je zorgvuldig helpen. Gegevens die nodig zijn om je deelname te regelen, verwerken we voor het uitvoeren van de afspraken die we daarover met je maken."
       },
       {
-        "_key": "text-15",
-        "label": "Je rechten en vragen",
-        "text": " of bel \n        "
+        "_key": "p-12",
+        "label": "Vermeld in een webformulier liever geen medische informatie.",
+        "text": "Vermeld in een webformulier liever geen medische informatie. Voor een vraag of aanmelding is een beschrijving van je ziekte of behandeling meestal niet nodig."
       },
       {
-        "_key": "text-17",
-        "label": "Je rechten en vragen",
-        "text": ". Je kunt ook een klacht\n        indienen bij de Autoriteit Persoonsgegevens.\n      "
+        "_key": "p-13",
+        "label": "Registratie van deelname",
+        "text": "Registratie van deelname"
       },
       {
-        "_key": "text-2000",
-        "label": "Contactgegevens",
-        "text": "\n        Stichting Toon over Leven, "
+        "_key": "p-14",
+        "label": "We registreren deelname aan activiteiten in het registraties",
+        "text": "We registreren deelname aan activiteiten in het registratiesysteem dat wij via IPSO gebruiken. Daarmee houden we overzicht over onze activiteiten en kunnen we verantwoording afleggen over het gebruik van ons aanbod en de financiering van onze organisatie."
       },
       {
-        "_key": "text-2001",
-        "label": "Contactgegevens",
-        "text": ", gebruikt de gegevens die je in het contactformulier\n        invult om je bericht te beantwoorden en een kennismaking af te spreken.\n        Deel geen medische gegevens of andere gevoelige informatie via het\n        formulier.\n      "
+        "_key": "p-15",
+        "label": "We beperken de registratie tot de gegevens die daarvoor nodi",
+        "text": "We beperken de registratie tot de gegevens die daarvoor nodig zijn. Ons gerechtvaardigd belang is het organiseren en verantwoorden van ons aanbod. Daarbij wegen we jouw privacy mee."
       },
       {
-        "_key": "text-3000",
-        "label": "Aanmelden voor activiteiten",
-        "text": "Aanmelden voor activiteiten"
+        "_key": "p-16",
+        "label": "Gegevens waaruit je gezondheid blijkt, registreren we niet. ",
+        "text": "Gegevens waaruit je gezondheid blijkt, registreren we niet. Stuur bij aanmelden ook niet per ongeluk informatie over je gezondheid mee."
       },
       {
-        "_key": "text-3001",
-        "label": "Aanmelden voor activiteiten",
-        "text": "Als je je via de website aanmeldt voor een activiteit, verwerken we ook welke activiteit en welk moment je kiest. We gebruiken deze gegevens om je aanmelding af te handelen en je deelname te bevestigen. Dezelfde bewaartermijnen en rechten gelden voor deze gegevens."
-      },
-      {
-        "_key": "text-3002",
+        "_key": "p-17",
         "label": "Nieuwsbrief",
         "text": "Nieuwsbrief"
       },
       {
-        "_key": "text-3003",
-        "label": "Nieuwsbrief",
-        "text": "Meld je je aan voor de nieuwsbrief, dan bewaren we je naam en e-mailadres om je af en toe nieuws te sturen. We gebruiken ze nergens anders voor. Je kunt je altijd afmelden met een mail naar info@toonoverleven.nl; dan halen we je gegevens uit de lijst."
+        "_key": "p-18",
+        "label": "Meld je je aan voor onze nieuwsbrief? Dan gebruiken we je e-",
+        "text": "Meld je je aan voor onze nieuwsbrief? Dan gebruiken we je e-mailadres en, als je die opgeeft, je naam om de nieuwsbrief te versturen. Dat doen we met jouw toestemming."
+      },
+      {
+        "_key": "p-19",
+        "label": "Je kunt je altijd afmelden via de afmeldmogelijkheid in de n",
+        "text": "Je kunt je altijd afmelden via de afmeldmogelijkheid in de nieuwsbrief of door ons te mailen. Een aanmelding voor een activiteit betekent niet dat je automatisch onze nieuwsbrief ontvangt."
+      },
+      {
+        "_key": "p-20",
+        "label": "Website, video’s en externe links",
+        "text": "Website, video’s en externe links"
+      },
+      {
+        "_key": "p-21",
+        "label": "Voor het laten werken en beveiligen van de website verwerken",
+        "text": "Voor het laten werken en beveiligen van de website verwerken onze technische dienstverleners gegevens zoals je IP-adres en informatie over je browser. Ons gerechtvaardigd belang is een goed werkende en veilige website. Voor strikt noodzakelijke cookies is geen toestemming nodig."
+      },
+      {
+        "_key": "p-22",
+        "label": "Op onze website staan video’s van YouTube. De videospeler wo",
+        "text": "Op onze website staan video’s van YouTube. De videospeler wordt pas geladen nadat je daarvoor toestemming hebt gegeven. Vanaf dat moment kan Google, de aanbieder van YouTube, gegevens verwerken over bijvoorbeeld je apparaat, IP-adres en het bekijken van de video."
+      },
+      {
+        "_key": "p-23",
+        "label": "Je kunt weigeren; de rest van de website blijft beschikbaar.",
+        "text": "Je kunt weigeren; de rest van de website blijft beschikbaar. Via ‘Video sluiten en toestemming intrekken’ kun je de video stoppen en je toestemming voor het verder laden ervan intrekken. Gegevens die Google al heeft verwerkt, worden daardoor niet automatisch verwijderd. Meer informatie vind je in het privacybeleid van Google."
+      },
+      {
+        "_key": "p-24",
+        "label": "Via een link kun je naar SponsorKliks gaan om ons te steunen",
+        "text": "Via een link kun je naar SponsorKliks gaan om ons te steunen met je aankopen. Je verlaat dan onze website. SponsorKliks en de betrokken webwinkels verwerken gegevens volgens hun eigen privacy- en cookieverklaringen. Dit geldt ook wanneer je links naar andere externe websites volgt."
+      },
+      {
+        "_key": "p-25",
+        "label": "Wie hebben toegang?",
+        "text": "Wie hebben toegang?"
+      },
+      {
+        "_key": "p-26",
+        "label": "Alleen vrijwilligers en andere betrokkenen die je gegevens n",
+        "text": "Alleen vrijwilligers en andere betrokkenen die je gegevens nodig hebben voor hun werkzaamheden krijgen toegang."
+      },
+      {
+        "_key": "p-27",
+        "label": "We gebruiken dienstverleners voor onze website, e-mail, nieu",
+        "text": "We gebruiken dienstverleners voor onze website, e-mail, nieuwsbrief en het IPSO-registratiesysteem. Met partijen die namens ons persoonsgegevens verwerken, maken we afspraken over vertrouwelijkheid, beveiliging en het gebruik van de gegevens. Wij verkopen je persoonsgegevens niet."
+      },
+      {
+        "_key": "p-28",
+        "label": "Hoe lang bewaren we je gegevens?",
+        "text": "Hoe lang bewaren we je gegevens?"
+      },
+      {
+        "_key": "p-29",
+        "label": "We bewaren gegevens niet langer dan nodig:",
+        "text": "We bewaren gegevens niet langer dan nodig:"
+      },
+      {
+        "_key": "p-30",
+        "label": "Contact- en aanmeldgegevens bewaren we maximaal 24 maanden n",
+        "text": "Contact- en aanmeldgegevens bewaren we maximaal 24 maanden na het laatste relevante contact of de afronding van de activiteit. Gegevens die eerder niet meer nodig zijn, verwijderen we eerder."
+      },
+      {
+        "_key": "p-31",
+        "label": "Voor de deelnemersregistratie in het IPSO-systeem geldt dat ",
+        "text": "Voor de deelnemersregistratie in het IPSO-systeem geldt dat persoonsgegevens niet langer worden bewaard dan noodzakelijk is om de doelen te bereiken waarvoor ze zijn verzameld."
+      },
+      {
+        "_key": "p-32",
+        "label": "Je nieuwsbriefgegevens bewaren we zolang je ingeschreven ben",
+        "text": "Je nieuwsbriefgegevens bewaren we zolang je ingeschreven bent. Na afmelding gebruiken we ze niet meer om nieuwsbrieven te versturen."
+      },
+      {
+        "_key": "p-33",
+        "label": "Als voor bepaalde gegevens een wettelijke bewaarplicht geldt",
+        "text": "Als voor bepaalde gegevens een wettelijke bewaarplicht geldt, houden we de daarvoor geldende termijn aan."
+      },
+      {
+        "_key": "p-34",
+        "label": "Daarna verwijderen we de gegevens of maken we ze daadwerkeli",
+        "text": "Daarna verwijderen we de gegevens of maken we ze daadwerkelijk anoniem."
+      },
+      {
+        "_key": "p-35",
+        "label": "Je gegevens en je rechten",
+        "text": "Je gegevens en je rechten"
+      },
+      {
+        "_key": "p-36",
+        "label": "Je kunt ons vragen welke persoonsgegevens we van je hebben e",
+        "text": "Je kunt ons vragen welke persoonsgegevens we van je hebben en onjuiste gegevens laten verbeteren. Ook kun je vragen om verwijdering, beperking van het gebruik of, wanneer dat recht van toepassing is, overdracht van je gegevens. Je kunt bezwaar maken tegen verwerkingen die op een gerechtvaardigd belang berusten."
+      },
+      {
+        "_key": "p-37",
+        "label": "Heb je toestemming gegeven? Dan kun je die altijd intrekken.",
+        "text": "Heb je toestemming gegeven? Dan kun je die altijd intrekken. Dat verandert niets aan de rechtmatigheid van het gebruik vóór de intrekking."
+      },
+      {
+        "_key": "p-38",
+        "label": "Verzoek (begin)",
+        "text": "Mail je verzoek naar"
+      },
+      {
+        "_key": "p-39",
+        "label": "Verzoek (vervolg)",
+        "text": ". We reageren normaal gesproken binnen één maand. Als meer tijd nodig is, laten we dat binnen die maand weten. Soms moeten we controleren of het verzoek echt van jou komt. Stuur niet ongevraagd een kopie van je identiteitsbewijs mee."
+      },
+      {
+        "_key": "p-40",
+        "label": "Heb je vragen of een klacht? Neem gerust contact met ons op.",
+        "text": "Heb je vragen of een klacht? Neem gerust contact met ons op. Je kunt ook een klacht indienen bij de Autoriteit Persoonsgegevens."
+      },
+      {
+        "_key": "p-41",
+        "label": "Als onze werkwijze verandert, passen we deze verklaring aan.",
+        "text": "Als onze werkwijze verandert, passen we deze verklaring aan. Op onze website staat de actuele versie."
       }
     ],
     "images": [],

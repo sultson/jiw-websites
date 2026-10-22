@@ -13,11 +13,19 @@ export const PAGINAS: Record<string, { titel: string; omschrijving: string }> =
     ]),
     ...Object.entries(activityTypes).map(([slug, a]) => ["/aanmelden/" + slug, {titel: "Aanmelden: " + a.title, omschrijving: "Aanmelden voor " + a.title}]),
     [
+      "/aanmelden",
+      {
+        titel: "Aanmelden of een vraag stellen",
+        omschrijving:
+          "Meld je aan voor een activiteit van Toon over Leven, of stel eerst je vraag. We laten je weten of er een plekje voor je is.",
+      },
+    ],
+    [
       "/privacy",
       {
-        titel: "Privacy en cookies",
+        titel: "Privacy bij Toon over Leven",
         omschrijving:
-          "Hoe Toon over Leven omgaat met je contactgegevens, video’s en cookies.",
+          "Hoe Toon over Leven omgaat met je gegevens als je contact opneemt, je aanmeldt, de nieuwsbrief ontvangt of een video bekijkt.",
       },
     ],
   ]);
@@ -61,6 +69,10 @@ export const VERHUISD: Record<string, string> = {
   // The inloopavond stopped in October 2026.
   "/activiteiten/inloopavond": "/activiteiten/inloopochtend",
   "/aanmelden/inloopavond": "/activiteiten/inloopochtend",
+  // The sponsordiner of 6 November 2026 was cancelled.
+  "/activiteiten/sponsordiner": "/activiteiten",
+  "/aanmelden/sponsordiner": "/activiteiten",
+  "/activiteit/sponsordiner-bij-classic-mike-zeewolde": "/activiteiten",
 };
 export function slugify(waarde: string): string {
   const slug = waarde

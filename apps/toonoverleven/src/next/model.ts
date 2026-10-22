@@ -105,12 +105,4 @@ export const activityTypes: Record<
     image: "activiteit-mindfulness-v2.jpg",
     description: "Vraag naar de volgende gelegenheid voor voetreflexmassage.",
   },
-  sponsordiner: {
-    title: "Sponsordiner bij Classic Mike",
-    category: "Overig",
-    image: "sponsordiner-classic-mike",
-    locatie: "Classic Mike, Tweespan 21, Zeewolde",
-    description:
-      "Een feestelijke avond bij Classic Mike in Zeewolde ten bate van Toon over Leven.",
-  },
 };

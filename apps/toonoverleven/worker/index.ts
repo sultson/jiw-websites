@@ -78,14 +78,29 @@ const contactWorker = createFormWorker({
   honeypotField: 'company',
 });
 
+/** Aanmelden voor een activiteit. Het formulier bevestigt geen plek: het huis laat weten of er ruimte is. */
 const registrationWorker = createFormWorker({
   formPath: '/api/forms/activity', locale: 'nl', siteName: 'Toon over Leven',
   ownerName: 'het inloophuis', senderName: 'Toon over Leven', subjectPrefix: 'Aanmelding via de site',
   subjectFields: ['onderwerp', 'moment'], messageField: 'bericht',
-  emailFields: [{name:'onderwerp',label:'Activiteit'}, {name:'moment',label:'Datum en tijd'}, {name:'activiteitId',label:'Agendamoment'}],
-  leadEmail: {heading:'Nieuwe aanmelding voor een activiteit', messageHeading:'Bericht', includeAttachments:false},
-  confirmationCopy: {subject:'Je aanmelding bij {siteName}', openingSentence:'We hebben je aanmelding ontvangen. Je plek is definitief zodra wij je deelname hebben bevestigd.', detailsHeading:'Je aanmelding', messageHeading:'Bericht'},
-  confirmationFollowUpSentence: 'Een van onze vrijwilligers neemt contact met je op om je deelname te bevestigen.',
+  emailFields: [{name:'onderwerp',label:'Activiteit'}, {name:'moment',label:'Datum en tijd'}, {name:'personen',label:'Aantal personen'}, {name:'telefoon',label:'Telefoonnummer'}],
+  leadOnlyEmailFields: [{name:'activiteitId',label:'Agendamoment'}],
+  leadEmail: {heading:'Nieuwe aanmelding voor een activiteit', messageHeading:'Opmerking of vraag', nameLabels: {firstName:'Naam', lastName:'Achternaam', email:'E-mailadres'}, includeAttachments:false},
+  confirmationCopy: {subject:'Je aanmelding bij {siteName}', openingSentence:'Bedankt voor je aanmelding! We hebben hem ontvangen. Je hoort van ons of er een plekje voor je is.', detailsHeading:'Je aanmelding', messageHeading:'Opmerking of vraag'},
+  confirmationFollowUpSentence: 'Liever even overleggen? Bel ons op 036 845 02 65 of 06 38 52 90 60, of mail naar info@toonoverleven.nl.',
+  requireFirstName:true, requireLastName:false, requireEmail:true, honeypotField:'company',
+});
+
+/** Een vraag over een activiteit of over het huis. Geen activiteit of datum nodig, wel de vraag zelf. */
+const questionWorker = createFormWorker({
+  formPath: '/api/forms/vraag', locale: 'nl', siteName: 'Toon over Leven',
+  ownerName: 'het inloophuis', senderName: 'Toon over Leven', subjectPrefix: 'Vraag via de site',
+  subjectFields: ['onderwerp'], messageField: 'bericht',
+  requiredFields: [{ name: 'bericht', label: 'Je vraag', message: 'Vul je vraag in.' }],
+  emailFields: [{name:'activiteit',label:'Over de activiteit'}, {name:'telefoon',label:'Telefoonnummer'}],
+  leadEmail: {heading:'Nieuwe vraag via de site', messageHeading:'Vraag', nameLabels: {firstName:'Naam', lastName:'Achternaam', email:'E-mailadres'}, includeAttachments:false},
+  confirmationCopy: {subject:'Je vraag aan {siteName}', openingSentence:'Bedankt voor je vraag. We hebben hem ontvangen en je hoort zo snel mogelijk van ons.', detailsHeading:'Je gegevens', messageHeading:'Je vraag'},
+  confirmationFollowUpSentence: 'Liever meteen iemand spreken? Bel 036 845 02 65 of 06 38 52 90 60.',
   requireFirstName:true, requireLastName:false, requireEmail:true, honeypotField:'company',
 });
 
@@ -477,13 +492,17 @@ export default {
       const now = new Date(new Date().toLocaleString('en-US', {timeZone:'Europe/Amsterdam'}));
       const events = expandeer(content.agenda,now,new Date(now.getFullYear()+1,now.getMonth(),now.getDate()));
       const event = events.find(a=>a.id===fields.get('activiteitId'));
-      if (!event || !event.aanmelden || event.volgeboekt || event.aanmeldEmail || event.aanmeldUrl)
+      // aanmeldEmail is the old "mail us to register"; those moments take the form now too.
+      if (!event || !event.aanmelden || event.volgeboekt || event.aanmeldUrl)
         return Response.json({ok:false},{status:409});
       fields.set('onderwerp', 'Aanmelden: ' + event.titel);
       fields.set('moment', momentLabel(event));
       const headers = new Headers(request.headers);headers.delete('content-type');headers.delete('content-length');
       const normalized = new Request(request,{headers,body:fields});
       return registrationWorker.fetch!(normalized as typeof request, env, ctx);
+    }
+    if (url.pathname === '/api/forms/vraag') {
+      return questionWorker.fetch!(request, env, ctx);
     }
     if (url.pathname === '/api/forms/nieuwsbrief') {
       return newsletterWorker.fetch!(request, env, ctx);

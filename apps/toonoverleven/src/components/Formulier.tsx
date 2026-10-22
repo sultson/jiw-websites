@@ -36,6 +36,8 @@ export default function Formulier({
   contact = { email: 'info@toonoverleven.nl', telefoon: '036 845 02 65', mobiel: '06 38 52 90 60' },
   prefix,
   keuzes: routeKeuzes,
+  vraagKeuze = false,
+  onVraag,
 }: {
   onderwerp?: string;
   compact?: boolean;
@@ -46,6 +48,9 @@ export default function Formulier({
   prefix?: string;
   /** De keuzes van zo'n contactblok. `sleutel` is wat een link meegeeft als ?vraag=. */
   keuzes?: { sleutel: string; waarde: string; label: string }[];
+  /** Op /contact: kiezen tussen kennismaken en alleen een vraag stellen, zonder afspraak. */
+  vraagKeuze?: boolean;
+  onVraag?: (vraag: boolean) => void;
 }) {
   const sleutel = useId();
   const TEL = contact.telefoon, MAIL = contact.email, TEL_LINK = 'tel:' + TEL.replace(/[^+0-9]/g, '');
@@ -67,6 +72,8 @@ export default function Formulier({
   const [gekozen, setGekozen] = useState(onderwerp ?? (compact ? 'Een kennismaking aanvragen' : ONDERWERPEN[0].waarde));
   const [activiteit, setActiviteit] = useState<string | null>(null);
   const [routeKeuze, setRouteKeuze] = useState('');
+  const [vraag, setVraag] = useState(false);
+  const kiesVraag = (waarde: boolean) => { setVraag(waarde); onVraag?.(waarde); };
   // Een kaart op dezelfde pagina kan een keuze voorselecteren met ?vraag=, ook
   // als het formulier al op het scherm staat.
   const adres = useAdres();
@@ -94,7 +101,7 @@ export default function Formulier({
     setFout(null);
 
     const data = new FormData(e.currentTarget);
-    data.set('onderwerp', registration ? 'Aanmelden: ' + registration.title : routeKeuzes ? `${prefix}: ${routeKeuze}` : gekozen);
+    data.set('onderwerp', registration ? 'Aanmelden: ' + registration.title : routeKeuzes ? `${prefix}: ${routeKeuze}` : vraag ? 'Vraag' : gekozen);
     if (registration) { data.set('moment', registration.date); data.set('activiteitId', registration.id); }
     // Er staat geen Turnstile-widget op deze site; de Worker draait met de
     // ontwikkelsleutel en accepteert daarom deze waarde.
@@ -122,9 +129,9 @@ export default function Formulier({
         <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-blos">
           <Check className="h-7 w-7 text-wijn" aria-hidden="true" />
         </div>
-        <h3 className="text-[1.35rem]">{registration ? copy.signupSuccessTitle : copy.successTitle}</h3>
+        <h3 className="text-[1.35rem]">{registration ? copy.signupSuccessTitle : vraag ? copy.questionSuccessTitle : copy.successTitle}</h3>
         <p className="mx-auto mt-3 max-w-[46ch] leading-relaxed text-inkt-zacht">
-          {registration ? copy.signupSuccessText : copy.successText}{' '}
+          {registration ? copy.signupSuccessText : vraag ? copy.questionSuccessText : copy.successText}{' '}
           Liever meteen iemand spreken? Bel {telefoons}.
         </p>
       </div>
@@ -180,6 +187,15 @@ export default function Formulier({
           </label>
         ))}
       </fieldset>}
+      {vraagKeuze && <fieldset className="route-choices contact-mode">
+        <legend>{copy.modeLabel}</legend>
+        {[false, true].map((waarde) => (
+          <label key={String(waarde)}>
+            <input type="radio" name="soort" checked={vraag === waarde} onChange={() => kiesVraag(waarde)} />
+            <span>{waarde ? copy.contactModeQuestion : copy.contactModeMeet}</span>
+          </label>
+        ))}
+      </fieldset>}
       {activiteit && <p className="form-activity">Je vraag gaat over: <strong>{activiteit}</strong></p>}
       <div className={compact ? 'contact-fields' : 'mt-6 grid gap-4 sm:grid-cols-2'}>
         <Veld id={`${sleutel}-naam`} naam="firstName" label={copy.nameLabel} placeholder={compact ? 'Je naam' : undefined} verplicht autoComplete="given-name" />
@@ -187,6 +203,13 @@ export default function Formulier({
         {!compact && <div className="sm:col-span-2">
           <Veld id={`${sleutel}-tel`} naam="telefoon" label="Je telefoonnummer" type="tel" autoComplete="tel" />
         </div>}
+        {vraagKeuze && vraag && <>
+          <Veld id={`${sleutel}-tel`} naam="telefoon" label="Telefoonnummer" placeholder="Als je liever gebeld wordt" type="tel" autoComplete="tel" />
+          <div>
+            <label htmlFor={`${sleutel}-bericht`}>{copy.questionLabel}</label>
+            <textarea id={`${sleutel}-bericht`} name="bericht" rows={4} required />
+          </div>
+        </>}
         {routeKeuzes && <>
           <Veld id={`${sleutel}-tel`} naam="telefoon" label="Telefoonnummer" placeholder="Als je liever gebeld wordt" type="tel" autoComplete="tel" />
           <div>
@@ -237,7 +260,7 @@ export default function Formulier({
         disabled={bezig}
         className="mt-6 inline-flex min-h-[3.1rem] items-center justify-between gap-3 rounded-full border border-wijn bg-wijn px-[1.4rem] py-3 text-[0.95rem] font-extrabold leading-tight text-white transition hover:-translate-y-0.5 hover:border-wijn-diep hover:bg-wijn-diep disabled:opacity-60 disabled:hover:translate-y-0 max-sm:w-full"
       >
-        <span>{registration ? copy.signupSubmit : activiteit ? 'Vraag over activiteit versturen' : routeKeuzes ? 'Versturen' : compact ? copy.contactSubmit : 'Versturen'}</span>
+        <span>{registration ? copy.signupSubmit : activiteit ? 'Vraag over activiteit versturen' : routeKeuzes ? 'Versturen' : vraag ? copy.questionSubmit : compact ? copy.contactSubmit : 'Versturen'}</span>
         {bezig ? (
           <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
         ) : (

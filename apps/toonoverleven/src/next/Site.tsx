@@ -16,6 +16,7 @@ import {
 import type { Activiteit, Content } from "../content/types";
 import { bron } from "../content/image";
 import Formulier from "../components/Formulier";
+import Aanmelding, { type Moment } from "../components/Aanmelding";
 import { eventPath, findEvent, momentLabel as moment } from "./events";
 import { interfaceCopy } from "./interface";
 import { THEMA_LABEL, DOELGROEP_LABEL } from "../agenda/model";
@@ -360,12 +361,7 @@ function Slot({
       );
     }
     case "contact":
-      return (
-        <section className="form-card" id="kennismaken">
-<h2>{copy.contactTitle}</h2><p>{copy.contactIntro}</p>
-          <Formulier compact copy={copy} contact={ctx.content.teksten.praktisch.contact} />
-        </section>
-      );
+      return <ContactBlock ctx={ctx} />;
     case "routeContact": {
       const route = ROUTE_CHOICES[attrs.route];
       return route ? (
@@ -397,7 +393,7 @@ function Slot({
                 Bekijk alle sponsors →
               </a>
             </div>
-            <Sponsors ctx={ctx} limit={6} />
+            <Sponsors ctx={ctx} compact />
             <a className="textlink" href="/over-ons/steun-ons">
               Ook bijdragen? →
             </a>
@@ -445,14 +441,26 @@ function Slot({
       return null;
   }
 }
-function Sponsors({ ctx, limit }: { ctx: Context; limit?: number }) {
+/** The /contact form. Asking a question needs no appointment (Ron, 19-10-2026), so the heading follows the choice. */
+function ContactBlock({ ctx }: { ctx: Context }) {
+  const copy = interfaceCopy(ctx.content);
+  const [vraag, setVraag] = useState(false);
   return (
-    <div className="sponsor-grid">
-      {ctx.content.sponsoren.slice(0, limit).map((s) => {
+    <section className="form-card" id="kennismaken">
+      <h2>{vraag ? copy.questionTitle : copy.contactTitle}</h2><p>{vraag ? copy.questionIntro : copy.contactIntro}</p>
+      <Formulier compact vraagKeuze onVraag={setVraag} copy={copy} contact={ctx.content.teksten.praktisch.contact} />
+    </section>
+  );
+}
+/** Every current sponsor, on the homepage too (Ron, 21-10-2026); `compact` drops the names under the logos. */
+function Sponsors({ ctx, compact }: { ctx: Context; compact?: boolean }) {
+  return (
+    <div className={"sponsor-grid" + (compact ? " sponsor-grid-compact" : "")}>
+      {ctx.content.sponsoren.map((s) => {
         const contents = (
           <>
             <img src={s.beeld} alt={s.naam} loading="lazy" />
-            {!limit && <span>{s.naam}</span>}
+            {!compact && <span>{s.naam}</span>}
           </>
         );
         return s.web ? (
@@ -665,10 +673,12 @@ function imageStyle(img: Activiteit['img']): CSSProperties | undefined {
 function SignupAction({ ctx, event }: { ctx: Context; event: Activiteit }) {
   const copy = interfaceCopy(ctx.content);
   if (event.volgeboekt) return <p className="notice">{copy.full}</p>;
-  if (!event.aanmelden) return <p className="notice">{copy.noSignup}</p>;
-  const href = event.aanmeldUrl ? safeLink(event.aanmeldUrl) : event.aanmeldEmail ? '/contact?activiteit=' + encodeURIComponent(event.titel) + '#kennismaken' : eventPath(event, 'aanmelden');
-  return <a className="btn" href={href}>{event.aanmeldEmail || event.aanmeldUrl ? copy.externalSignup : copy.signupLink} →</a>;
+  if (!event.aanmelden) return <><p className="notice">{copy.noSignup}</p><p><a className="textlink" href="/aanmelden?vraag">{copy.questionTitle} →</a></p></>;
+  // An external page only where the organiser runs the signup; everything else uses our own registration page.
+  return <a className="btn" href={event.aanmeldUrl ? safeLink(event.aanmeldUrl) : eventPath(event, 'aanmelden')}>{copy.externalSignup} →</a>;
 }
+/** The moments one can register for on our own registration page. */
+const registrable = (ctx: Context) => upcoming(ctx).filter((a) => a.aanmelden && !a.aanmeldUrl);
 function ActivityPractical({ ctx, event, type }: { ctx: Context; event?: Activiteit; type?: string }) {
   const a = event || upcoming(ctx, type)[0];
   const [date, time] = a ? moment(a).split(' · ') : [];
@@ -699,13 +709,31 @@ function ActivityPage({ ctx, event }: { ctx: Context; event: Activiteit }) {
 }
 function RegistrationPage({ ctx }: { ctx: Context }) {
   const copy = interfaceCopy(ctx.content);
-  const exact = findEvent(upcoming(ctx), ctx.path);
+  const all = upcoming(ctx);
+  const options = registrable(ctx);
   const type = decodeURIComponent(ctx.path.split('/')[2] || '');
-  const events = exact ? [exact] : upcoming(ctx, type);
-  const [selected, setSelected] = useState(events[0]?.id || '');
-  const event = events.find(a => a.id === selected);
-  const title = event?.titel || activityTypes[type]?.title || 'Activiteit';
-  return <><Breadcrumb title={'Aanmelden: ' + title} /><PageHero title={'Meedoen aan ' + title} eyebrow="Samen iets doen" img={event ? eventImage(event) : activityTypes[type] ? image(activityTypes[type].image) : undefined} /><div className="wrap contact-layout"><div>{event ? <><h2>{title}</h2><p>{moment(event)}</p><p>{event.locatie || ctx.content.teksten.praktisch.locatie.adres}</p><a className="textlink" href={eventPath(event)}>Terug naar de activiteit →</a></> : <p>{copy.noDate}</p>}</div><section className="form-card"><h2>{copy.signupTitle}</h2>{events.length > 1 && <label>{copy.dateLabel}<select value={selected} onChange={e => setSelected(e.target.value)}>{events.map(a => <option key={a.id} value={a.id}>{moment(a)}</option>)}</select></label>}{event && event.aanmelden && !event.volgeboekt && !event.aanmeldEmail && !event.aanmeldUrl ? <><p>{copy.signupIntro}</p><Formulier key={event.id} compact registration={{ title: event.titel, date: moment(event), id: event.id }} copy={copy} contact={ctx.content.teksten.praktisch.contact} /></> : event ? <SignupAction ctx={ctx} event={event} /> : <a className="btn" href="/contact">{copy.contactLink} →</a>}</section></div><Template path="@visit" ctx={ctx} /></>;
+  // From an activity's button: that moment, or for a kind of activity its first open moment.
+  const event = findEvent(all, ctx.path) ?? (type ? options.find((a) => a.activiteitType === type && !a.volgeboekt) : undefined);
+  const moments: Moment[] = options.map((a) => ({ id: a.id, titel: a.titel, moment: moment(a), vol: Boolean(a.volgeboekt) }));
+  const locatie = event?.locatie || ctx.content.teksten.praktisch.locatie.adres;
+  const title = 'Aanmelden of een vraag stellen';
+  return <><Breadcrumb title={event ? event.titel : title} /><PageHero title={event ? event.titel : title} eyebrow={event ? title : 'Activiteiten'} img={event ? eventImage(event) : undefined} />
+    <div className="wrap contact-layout signup-layout">
+      <div className="contact-copy">
+        {event ? <section className="copy-section">
+          <p className="preserve-lines"><strong>{copy.locationLabel}</strong><br />{locatie}</p>
+          {event.bijdrage && <p><strong>{copy.contributionLabel}</strong><br />{event.bijdrage}</p>}
+          <a className="textlink" href={eventPath(event)}>Terug naar de activiteit →</a>
+        </section> : <section className="copy-section">
+          <h2>Welke activiteiten?</h2>
+          <p>Hier meld je je aan voor activiteiten waarvoor je je vooraf opgeeft. Voor de inloop hoef je je niet aan te melden; dan loop je gewoon binnen.</p>
+          <a className="textlink" href="/activiteiten#agenda">{copy.allActivities} →</a>
+        </section>}
+      </div>
+      <section className="form-card" id="aanmelden">
+        <Aanmelding momenten={moments} gekozen={event?.id} copy={copy} contact={ctx.content.teksten.praktisch.contact} />
+      </section>
+    </div></>;
 }
 
 export default function Site({ ctx }: { ctx: Context }) {
@@ -719,7 +747,7 @@ export default function Site({ ctx }: { ctx: Context }) {
   if (news)
     body = <><Breadcrumb title={news.titel} parent="/nieuws" parentTitle="Nieuws" /><PageHero title={news.titel} eyebrow={news.datum} img={news.img} /><div className="wrap body-layout"><article className="content news-body"><RijkeTekst blokken={news.body} /></article><aside className="side-note"><h2>Liever even contact?</h2><a className="textlink" href="/contact">Neem contact op →</a><p><a href="/nieuws">Alle nieuwsberichten →</a></p></aside></div><Template path="@visit" ctx={ctx} /></>;
   else if (event) body = <ActivityPage ctx={ctx} event={event} />;
-  else if (ctx.path.startsWith('/aanmelden/')) body = <RegistrationPage ctx={ctx} />;
+  else if (ctx.path === '/aanmelden' || ctx.path.startsWith('/aanmelden/')) body = <RegistrationPage ctx={ctx} />;
   else if (template(ctx.path)) body = <Template path={ctx.path} ctx={ctx} />;
  else
     body = (

@@ -289,3 +289,47 @@
 .approved-site .newsletter-trap { position: absolute; left: -9999px; width: 0; height: 0; opacity: 0; }
 .approved-site .newsletter-done { margin-top: 20px; font-weight: 600; color: var(--wine); }
 @media (max-width: 700px) { .approved-site .newsletter-form { grid-template-columns: 1fr; } }
+
+/* Late October 2026. */
+/* Registration page: register or ask a question. */
+.approved-site .signup-mode { grid-template-columns: 1fr 1fr; }
+.approved-site .signup-mode legend { grid-column: 1 / -1; }
+.approved-site .signup-form > h2 { margin: 8px 0 12px; }
+.approved-site .signup-form .signup-intro { margin: 0 0 28px; }
+.approved-site .signup-for { margin: 0 0 28px; padding: 18px 20px; border-radius: 12px; background: #fff; border: 1px solid var(--line); }
+.approved-site .signup-for h3, .approved-site .signup-details { margin: 0 0 8px; font-size: 16px; font-weight: 600; font-family: inherit; }
+.approved-site .signup-for p { margin: 0; }
+.approved-site .signup-for .signup-for-title { font-family: Georgia, 'Times New Roman', serif; font-size: 22px; color: var(--wine); line-height: 1.3; }
+.approved-site .signup-for .textlink { margin-top: 10px; padding: 0; border: 0; background: none; cursor: pointer; font-size: 15px; }
+.approved-site .signup-details { margin-bottom: 16px; }
+.approved-site .signup-form select { display: block; width: 100%; min-height: 56px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink); }
+.approved-site .field-hint { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+.approved-site .signup-error { margin: 20px 0 0; padding: 12px 15px; border-radius: 12px; background: var(--rose); }
+.approved-site .signup-form > button[type="submit"] { display: inline-flex; gap: 12px; align-items: center; }
+.approved-site .signup-alternative { font-size: 15px; color: var(--muted); }
+.approved-site .signup-done { text-align: center; }
+.approved-site .signup-done-icon { display: grid; place-items: center; width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 50%; background: var(--rose); }
+.approved-site .signup-done .signup-closing { margin-top: 18px; font-weight: 600; color: var(--wine); }
+/* The /contact form: getting acquainted or just a question. */
+.approved-site .contact-mode { grid-template-columns: 1fr 1fr; }
+.approved-site .contact-mode legend { grid-column: 1 / -1; }
+@media (max-width: 420px) { .approved-site .signup-mode, .approved-site .contact-mode { grid-template-columns: 1fr; } }
+/* Every sponsor on the homepage: smaller tiles, two rows on a wide screen. */
+.approved-site .sponsor-grid-compact { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+@media (max-width: 900px) { .approved-site .sponsor-grid-compact { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .approved-site .sponsor-grid-compact { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; } }
+/* Header logo back down so the header is not so tall (accepted 19-10-2026), still a little larger
+   than the original 132px. The footer logo grows only where the footer has four columns: there
+   the first column is shorter than "Even contact", so the green bar keeps its height. */
+.approved-site .brand img { width: 148px; }
+.approved-site .header { min-height: 88px; }
+@media (max-width: 900px) { .approved-site .header .brand img { width: 132px; } .approved-site .header { min-height: 78px; } }
+@media (max-width: 699px) { .approved-site .header .brand img { width: 120px; } .approved-site .header { min-height: 72px; } }
+@media (max-width: 360px) { .approved-site .header .brand img { width: 100px; } }
+@media (min-width: 901px) { .approved-site .footer-logo { width: 200px; } }
+/* The opened mobile menu starts right under the lower header. */
+@media (max-width: 1120px) { .approved-site .site-nav.is-open { top: 88px; max-height: calc(100dvh - 88px); } }
+@media (max-width: 900px) { .approved-site .site-nav.is-open { top: 78px; max-height: calc(100dvh - 78px); } }
+@media (max-width: 699px) { .approved-site .site-nav.is-open { top: 72px; max-height: calc(100dvh - 72px); } }
+.approved-site .signup-form .contact-fields input { padding: 10px 14px; border: 1px solid var(--line); font: inherit; }
+@media (max-width: 699px) { .approved-site .signup-layout .form-card { order: -1; } }

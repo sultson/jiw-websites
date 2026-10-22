@@ -147,36 +147,6 @@
     "aanmeldEmail": "info@toonoverleven.nl"
   },
   {
-    "id": "sponsordiner-bij-classic-mike-zeewolde",
-    "slug": "sponsordiner-bij-classic-mike-zeewolde",
-    "activiteitType": "sponsordiner",
-    "soort": "activiteit",
-    "titel": "Sponsordiner bij Classic Mike, Zeewolde",
-    "categorie": "Overig",
-    "categorieen": [
-      "Overig"
-    ],
-    "omschrijving": "We nodigen u uit om op 6 november aanstaande aanwezig te zijn tijdens het unieke Sponsorevent dat wij organiseren in samenwerking met Classic Mike in Zeewolde.\n\nU kunt rekenen op een feestelijke avond tussen prachtige klassieke auto’s, met een smakelijk driegangendiner op Italiaanse leest geschoeid, lekkere drankjes, rustige live muziek en een vleugje temperament door de populaire zanggroep De Italianen. En natuurlijk goede gesprekken met andere gasten. Als afsluiting staat een barista klaar voor een heerlijk kopje koffie.\n\n## **Dit kunt u verwachten**\n\nBij aankomst wordt u naar een parkeerplaats begeleid. Vanaf 17.30 uur rollen we de oranje loper voor u uit bij Classic Mike. Na een feestelijk welkomstdrankje tussen de klassieke auto’s begeleiden onze speciale gastvrouwen u naar uw plaats aan één van de sfeervol gedekte lange tafels.\n\nDaar geniet u van een smakelijk Italiaans driegangendiner. Muziek, bijzondere momenten en een vleugje entertainment zorgen voor een ontspannen en gezellige avond. We vertellen natuurlijk niet alles vooraf, want een verrassing hoort er tenslotte bij. Natuurlijk zal er ook wat aandacht zijn voor het werk van Stichting Toon Over Leven. Hieronder alvast wat informatie.\n\n## **Programma**\n\n|  |  |\n| --- | --- |\n| Datum | Vrijdag 6 november 2026 |\n| Waar | Classic Mike, Tweespan 21, Zeewolde |\n| Inloop en feestelijk onthaal | Tussen 17.30 en 18.30 uur wordt u ontvangen op de oranje loper en krijgt u de gelegenheid om onder het genot van een welkomstdrankje te netwerken tussen de klassiekers met live achtergrondmuziek. |\n| Plaatsnemen | Om 18:30 uur wordt u begeleid naar uw zitplaats door de dames van Breed Vermaak, waarna de avond zal worden geopend |\n| Start culinaire avond | Om ongeveer 18:45 uur begint het officiële programma bestaande uit het driegangendiner, een muzikaal intermezzo van ‘De Italianen’ en een gastspreker. |\n| Einde van de avond | Na de afsluiting met een heerlijk kopje koffie is uiterlijk 22:00 uur de zaal weer leeg |\n\nBezoekers met een rolstoel zijn van harte welkom. Houdt u er wel rekening mee dat er helaas geen rolstoeltoilet aanwezig is.\n\n## **Meedoen**\n\n**Als bedrijf**\n\nWilt u met uw bedrijf of enkele collega’s deelnemen aan het diner, meldt u dan via deze pagina aan voor het evenement via de knop “Meld je aan!”  Bij het inschrijven komt u ook op de pagina “De Bedrijfspagina”. Om technische redenen kunnen we deze pagina helaas niet verwijderen of wijzigen, maar is daardoor wel verplicht. Vul hier uw bedrijfsgegevens in, maar een actie aanmaken is niet verplicht. Zet dan het bedrag op “0”.\n\n**Als persoon**\n\nWilt u als persoon deelnemen aan het diner, meldt u dan via deze pagina aan voor het evenement via de knop “Meld je aan!”\n",
-    "img": "/img/approved/hero.webp",
-    "datum": "2026-11-06",
-    "heleDag": false,
-    "begintijd": "17:30",
-    "eindtijd": "22:00",
-    "herhaling": "eenmalig",
-    "overslaan": [],
-    "aanmelden": true,
-    "volgeboekt": false,
-    "locatie": "Classic Mike, Tweespan 21, Zeewolde",
-    "doelgroepen": [
-      "iedereen"
-    ],
-    "themas": [
-      "ontmoeten"
-    ],
-    "aanmeldEmail": "info@toonoverleven.nl",
-    "aanmeldUrl": "https://acties.tegenkanker.nl/project/sponsordiner"
-  },
-  {
     "id": "inloop-met-activiteit-november",
     "slug": "inloop-met-activiteit-november",
     "activiteitType": "inloop-met-activiteit",

@@ -20,6 +20,12 @@ const paths = new Set([
   ...Object.keys(VERHUISD),
   ...defaults.agenda.map((a) => "/activiteit/" + a.slug),
 ]);
+// An event page or its registration page, with or without the date of a series moment.
+const slugs = new Set(defaults.agenda.map((a) => a.slug));
+const eventLink = (href: string) => {
+  const m = /^\/(activiteit|aanmelden)\/([^/]+)(\/\d{4}-\d{2}-\d{2})?$/.exec(href);
+  return Boolean(m && slugs.has(decodeURIComponent(m[2])));
+};
 let count = 0;
 for (const path of PADEN) {
   const html = render(path);
@@ -38,10 +44,16 @@ for (const path of PADEN) {
     if (
       m[1].startsWith("/") &&
       !m[1].startsWith("/docs/") &&
+      !m[1].startsWith("/documents/") &&
       !m[1].startsWith("/img/")
     )
-      assert(paths.has(m[1]), `${path}: unknown internal link ${m[1]}`);
+      assert(paths.has(m[1]) || eventLink(m[1]), `${path}: unknown internal link ${m[1]}`);
   }
+  for (const m of html.matchAll(/href="(\/documents\/[^"?#]+)"/g))
+    assert(
+      existsSync(fileURLToPath(new URL("../public" + m[1], import.meta.url))),
+      `${path}: missing document ${m[1]}`,
+    );
   for (const m of html.matchAll(/src="(\/img\/[^"?]+)"/g))
     assert(
       existsSync(fileURLToPath(new URL("../public" + m[1], import.meta.url))),
@@ -57,9 +69,13 @@ for (const path of PADEN) {
     assert(!html.includes("<iframe"), `${path}: video before consent`);
   count++;
 }
-assert.equal(defaults.agenda.length, 13);
+assert.equal(defaults.agenda.length, 12);
+assert(!defaults.agenda.some((a) => a.activiteitType === "sponsordiner"));
 assert(defaults.agenda.every((a) => a.herhaling === "eenmalig"));
-assert(defaults.sponsoren.some((s) => s.naam === "Café het Plein"));
+// Ron Wille, 21-10-2026: fourteen sponsors, his four for the homepage first.
+assert.equal(defaults.sponsoren.length, 14);
+assert(!defaults.sponsoren.some((s) => s.naam === "Café het Plein"));
+assert.deepEqual(defaults.sponsoren.slice(0, 4).map((s) => s.naam), ["Vaillant Fonds", "Windpark Zeewolde", "Swim to Fight Cancer Zeewolde", "Oranje Fonds"]);
 assert(render("/over-ons/organisatie-en-verantwoording").includes("820209685"));
 assert(
   render("/over-ons/organisatie-en-verantwoording").includes("Mike Kastrop"),
@@ -69,8 +85,10 @@ assert(
     "https://www.sponsorkliks.com/products/shops.php?club=5378",
   ),
 );
-assert(render("/ik-heb-kanker").includes("Als de scans stil zijn"));
-assert(render("/ik-heb-kanker").includes("Henk"));
+// Henk's poem moved from /ik-heb-kanker to /na-de-behandeling in October 2026.
+assert(render("/na-de-behandeling").includes("Als de scans stil zijn"));
+assert(render("/na-de-behandeling").includes("Henk"));
+assert(!render("/ik-heb-kanker").includes("Als de scans stil zijn"));
 assert(!render("/activiteiten/zenmeditatie").includes("28 september"));
 assert(
   render("/activiteiten/zenmeditatie").includes(
@@ -107,13 +125,3 @@ console.log(
   `${count} pagina’s: SSR, links, afbeeldingen, CMS-tekst, lege agenda, videoprivacy en inhoudelijke correcties gecontroleerd.`,
 );
 
-assert(
-  !render("/activiteit/sponsordiner-bij-classic-mike-zeewolde").includes(
-    "| ---",
-  ),
-);
-assert(
-  render("/activiteit/sponsordiner-bij-classic-mike-zeewolde").includes(
-    '<th scope="row">Datum</th>',
-  ),
-);

@@ -40,7 +40,7 @@ export default function App({ start }: { start?: Start } = {}) {
       ? inhoud.nieuws.find((n) => n.slug === decodeURIComponent(pad.slice(8)))
       : null;
     const event = /^\/(activiteit|aanmelden)\//.test(pad) ? findEvent(agenda, pad) : undefined;
-    const signupTitle = pad.startsWith('/aanmelden/') ? 'Aanmelden: ' + (event?.titel || activityTypes[pad.split('/')[2]]?.title || 'Activiteit') : null;
+    const signupTitle = pad === '/aanmelden' ? 'Aanmelden of een vraag stellen' : pad.startsWith('/aanmelden/') ? 'Aanmelden: ' + (event?.titel || activityTypes[pad.split('/')[2]]?.title || 'Activiteit') : null;
     document.title = signupTitle ? signupTitle + ' · Toon over Leven' : event ? event.titel + ' · Toon over Leven' : page?.title
       ? `${page.title} · Toon over Leven`
       : news

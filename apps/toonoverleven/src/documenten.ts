@@ -51,12 +51,12 @@ export const VERANTWOORDING: Stuk[] = [
 ];
 
 export const VRIJWILLIGERSBELEID: Stuk[] = [
-  { naam: 'Vrijwilligersreglement', bestand: '/docs/vrijwilligersreglement.pdf', grootte: '245 kB' },
-  { naam: 'Vrijwilligersovereenkomst', bestand: '/docs/vrijwilligersovereenkomst.pdf', grootte: '847 kB' },
-  { naam: 'Gedragscode en houding', bestand: '/docs/gedragscode.pdf', grootte: '394 kB' },
-  { naam: 'Vertrouwenscontactpersoon', bestand: '/docs/vertrouwenscontactpersoon.pdf', grootte: '166 kB' },
-  { naam: 'Klachtenprocedure', bestand: '/docs/klachtenprocedure.pdf', grootte: '604 kB' },
-  { naam: 'Klachtenformulier', bestand: '/docs/klachtenformulier.pdf', grootte: '360 kB' },
-  { naam: 'AVG-spelregels', bestand: '/docs/avg-spelregels.pdf', grootte: '141 kB' },
-  { naam: 'Wet- en regelgeving', bestand: '/docs/wet-en-regelgeving.pdf', grootte: '495 kB' },
+  { naam: 'Gedragscode en houding', bestand: '/documents/gedragscode-en-houding-202610.pdf', grootte: '406 kB' },
+  { naam: 'IPSO privacy-spelregels', bestand: '/documents/ipso-privacy-spelregels-202610.pdf', grootte: '180 kB' },
+  { naam: 'Klachtenformulier', bestand: '/documents/klachtenformulier-202610.pdf', grootte: '364 kB' },
+  { naam: 'Klachtenprocedure', bestand: '/documents/klachtenprocedure-202610.pdf', grootte: '586 kB' },
+  { naam: 'Vertrouwenscontactpersoon', bestand: '/documents/vertrouwenscontactpersoon-202610.pdf', grootte: '301 kB' },
+  { naam: 'Vrijwilligersovereenkomst', bestand: '/documents/vrijwilligersovereenkomst-202610.pdf', grootte: '745 kB' },
+  { naam: 'Vrijwilligersreglement', bestand: '/documents/vrijwilligersreglement-202610.pdf', grootte: '549 kB' },
+  { naam: 'Wet- en regelgeving', bestand: '/documents/wet-en-regelgeving-202610.pdf', grootte: '835 kB' },
 ];
