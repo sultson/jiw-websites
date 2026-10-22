@@ -2417,6 +2417,64 @@ p {
   color: var(--salie);
 }
 
+/* Een kop per klus binnen hetzelfde blok. Zonder die kop lezen de paren van twee
+   verschillende huizen als één klus, en dan klopt er geen enkel bijschrift meer. */
+.vn__klus {
+  max-width: 62ch;
+}
+.vn__klus h3 {
+  font-family: var(--kop);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+  line-height: 1.25;
+  margin: 0 0 10px;
+}
+.vn__klus p {
+  margin: 0;
+  color: var(--grijs);
+  line-height: 1.7;
+}
+
+/* De losse foto's van dezelfde klus. Dit is géén vergelijking maar context bij het
+   paar erboven, dus ze staan klein en met een eigen bijschrift. Op een telefoon
+   naast het bijschrift in plaats van drie kolommen van 100px breed. */
+.vn__los {
+  display: grid;
+  gap: clamp(14px, 2.2vw, 20px);
+}
+.vn__los figure {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: 14px;
+  align-items: center;
+}
+.vn__los img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--r);
+  background: var(--room-2);
+}
+.vn__los figcaption {
+  color: var(--grijs);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+@media (min-width: 620px) {
+  .vn__los {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .vn__los figure {
+    display: block;
+  }
+  .vn__los figcaption {
+    margin-top: 10px;
+  }
+}
+
 /* ── galerij met eigen foto's ───────────────────────────── */
 /* kolommen en niet een raster: de foto's staan staand en liggend door elkaar
    en in een raster met vaste verhouding wordt daar te veel van weggesneden */

@@ -27,6 +27,11 @@ const SHOTS = path.join(HIER, 'shots')
    Per taal: de negen dienstpagina's, de vaste pagina's en de
    zinnen die app.js zelf op de pagina zet. Staat een zin hier
    fout, dan valt de meting om — dat is de bedoeling. */
+// Het enige mailadres dat op de site hoort te staan. Staat in bouw.mjs als
+// BEDRIJF.email; hier apart, want een meting die zijn waarde uit de build haalt
+// keurt elke wijziging automatisch goed.
+const MAIL = 'info@noverabouw.nl'
+
 const TALEN = [
   {
     code: 'nl',
@@ -46,6 +51,7 @@ const TALEN = [
     home: '/',
     overzicht: '/werkzaamheden',
     badkamer: '/badkamer',
+    stuc: '/stucwerk',
     aanbod: '/aanbod',
     materialen: '/materialen',
     contact: '/contact',
@@ -88,6 +94,7 @@ const TALEN = [
     home: '/en',
     overzicht: '/en/services',
     badkamer: '/en/bathroom',
+    stuc: '/en/plastering',
     aanbod: '/en/products',
     materialen: '/en/materials',
     contact: '/en/contact',
@@ -567,6 +574,70 @@ for (const [naam, breed, hoog] of SNEL ? SCHERMEN.slice(0, 1) : SCHERMEN) {
           )
       )
       zeg(vreemd.length === 0, `${merk}: verzoek naar ${[...new Set(vreemd)].join(', ')}`)
+
+      // Het mailadres van Ekrem staat sinds 22-10-2026 in de voet van elke pagina.
+      // Gemeten op de HTML en niet op de tekst: textContent plakt losse stukjes
+      // aan elkaar ("...90 40" + het adres, of het adres + "Mail ons"), waardoor
+      // elke adresregex op de contactpagina een domein leest dat er niet staat.
+      // In de HTML staat er een tag tussen en houdt het domein zijn grenzen.
+      const domeinen = [
+        ...new Set(
+          [...(await pg.content()).matchAll(/@([\w.-]+\.\w{2,})/g)].map((m) => m[1].toLowerCase())
+        ),
+      ]
+      // voorbeeld.nl en example.com zijn de grijze voorbeeldtekst in het mailveld
+      // op de contactpagina, geen adres waar iets heen gaat.
+      const vreemdMail = domeinen.filter(
+        (d) => ![MAIL.split('@')[1], 'voorbeeld.nl', 'example.com'].includes(d)
+      )
+      zeg(vreemdMail.length === 0, `${merk}: mailadres van een ander: ${vreemdMail.join(', ')}`)
+      const mailto = [
+        ...new Set(
+          await pg.$$eval('a[href^="mailto:"]', (e) =>
+            e.map((x) => x.href.replace(/^mailto:/i, '').toLowerCase())
+          )
+        ),
+      ]
+      zeg(
+        mailto.length === 1 && mailto[0] === MAIL,
+        `${merk}: mailto-links op de pagina: ${mailto.join(', ') || 'geen'}`
+      )
+      zeg(
+        !!(await pg.$(`#voetContact a[href="mailto:${MAIL}"]`)),
+        `${merk}: ${MAIL} staat niet in de voet`
+      )
+
+      /* Het voor-en-na-blok op de stucpagina. Dat blok wordt door _ref/eigen.mjs
+         geschreven uit VOORNA in _ref/eigen-lijst.mjs; valt dit om, dan is het met
+         de hand bewerkt en is het op de volgende run van dat script weer weg.
+         Twee klussen (het trapgat van 19-10, de kamer van 22-10), vier paren, en
+         onder de kamer drie losse foto's uit diezelfde klus. */
+      if (pad === taal.stuc) {
+        const koppen = await pg.$$eval('.vn__klus h3', (e) => e.map((x) => x.textContent.trim()))
+        zeg(koppen.length === 2, `${merk}: ${koppen.length} klussen in het voor-en-na-blok in plaats van 2`)
+        const paren = await pg.$$('.vn__paar')
+        zeg(paren.length === 4, `${merk}: ${paren.length} voor-en-na-paren in plaats van 4`)
+        for (const p of paren) {
+          // een voor zonder na ernaast is geen vergelijking maar een losse foto,
+          // en de twee helften staan naast elkaar op elke breedte — ook op een
+          // telefoon, want onder elkaar zie je de voor-foto niet meer.
+          const k = await p.$$eval('.vn__k img', (e) =>
+            e.map((x) => ({ r: x.getBoundingClientRect(), tag: x.nextElementSibling?.className || '' }))
+          )
+          zeg(
+            k.length === 2 && /--voor/.test(k[0].tag) && /--na/.test(k[1].tag),
+            `${merk}: een paar zonder een voor en een na ernaast`
+          )
+          if (k.length === 2) {
+            zeg(
+              Math.abs(k[0].r.top - k[1].r.top) < 2 && k[1].r.left > k[0].r.left,
+              `${merk}: de twee helften van een paar staan niet naast elkaar`
+            )
+          }
+        }
+        const los = await pg.$$('.vn__los figure')
+        zeg(los.length === 3, `${merk}: ${los.length} losse foto's onder het paar in plaats van 3`)
+      }
 
       if (naam === 'desktop') {
         const bestand = (pad === '/' ? 'home' : pad.slice(1).replace(/\/$/, '-home').replace(/\//g, '-')) + '.png'

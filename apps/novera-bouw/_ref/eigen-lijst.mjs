@@ -3,7 +3,8 @@
 // 09-10-2026 (een trap wit in de lak, met balustrade en leuning), ek-15 t/m ek-21
 // diezelfde dag (stucwerk, schilderwerk en vloeren in een woning die hij leeg
 // opknapte, plus een ingebouwde tv-wand van gipsplaat). ek-22 t/m ek-32 op 19-10-2026:
-// één trapgat, van gestript tot geschilderd — zie VOORNA onderaan.
+// één trapgat, van gestript tot geschilderd. ek-33 t/m ek-40 op 22-10-2026: één kamer
+// waar de verf bovenaan de wand losliet — allebei die klussen staan in VOORNA onderaan.
 // Originelen: _ref/eigen/ek-NN.jpg. Dit is de ENIGE lijst met volgorde en alt-tekst;
 // eigen.mjs maakt er de bestanden mee en schrijft het galerijblok in werkzaamheden.html
 // én het Engelse blok in en/services.html (alt-teksten uit _ref/en-alt.json), plus het
@@ -47,38 +48,97 @@ export const GALERIJ = [
   { bron: 'ek-26', alt: 'Trapgat met gladde witte wanden, de leuning terug aan de muur en de oude loper nog op de trap' },
   { bron: 'ek-32', alt: 'Onderzijde van de trap na het stucwerk: strakke vlakken en een scherpe kant langs de trede' },
   { bron: 'ek-25', alt: 'Overloop met gladde witte wanden en een glad plafond, het schilderwerk is af' },
+
+  // De kamer van 22-10-2026. Het voor-en-na van die klus staat in VOORNA; hier staan
+  // de twee foto's die ook los overeind blijven. De drie kale voor-foto's staan met
+  // opzet NIET in deze galerij: een gestripte wand zonder de na-foto ernaast leest
+  // hier als een klus die niet af is. Die hangen onder het paar op /stucwerk.
+  { bron: 'ek-37', alt: 'Wapeningsband over een scheur in de wand, klaar om dichtgezet te worden' },
+  { bron: 'ek-40', alt: 'Penant naast de haldeur, glad gestuct van plint tot plafond' },
 ]
 
 /* ── voor en na ────────────────────────────────────────────
-   Eén klus, 19-10-2026: het trapgat en de overloop. De wanden waren tot op de oude
-   pleister gestript; daarna glad gestuct en geschilderd. De loper op de trap is in
-   alle na-foto's nog dezelfde, en dat is precies waarom het paar klopt: dit is
-   wandwerk, geen nieuwe trap. Zet er dus nooit traprenovatie bij.
+   Een lijst klussen, elk met een eigen kop en een of meer paren. Een paar is pas een
+   paar als het DEZELFDE plek is, van hetzelfde punt af gefotografeerd; staat er een
+   andere muur naast, dan vergelijkt niemand iets. Daarom staan hier minder paren dan
+   er na-foto's zijn, en hangen de losse foto's van dezelfde klus eronder in `los`.
 
    4:5 uitsnede uit een staande telefoonfoto. y = waar de uitsnede begint, als deel
    (0..1) van de ruimte die er verticaal over is. Bij een 9:16-bron is dat veel
-   ruimte, bij een 3:4-bron vrijwel niets. */
+   ruimte, bij een 3:4-bron vrijwel niets.
+
+   `los` is vierkant (1:1) en staat drie naast elkaar onder het paar. Daar mag een
+   liggende foto in: bij een liggende bron stuurt x waar de uitsnede begint, bij een
+   staande y. Dat is de enige plek waar een kale voor-foto thuishoort — in de galerij
+   op /werkzaamheden staat werk dat af is. */
 export const VOORNA = [
   {
-    naam: 'vn-wand',
-    voor: { bron: 'ek-29', y: 0.65, alt: 'De wand langs de trap gestript tot op de oude pleister, de leuning er nog voor en de treden onder het puin', altEn: 'The wall alongside the stairs stripped back to the old plaster, the handrail still in front of it and debris on the treads' },
-    na: { bron: 'ek-26', y: 0.3, alt: 'Dezelfde wand langs de trap, glad gestuct en wit geschilderd, met de leuning terug aan de muur', altEn: 'The same wall alongside the stairs, plastered smooth and painted white, with the handrail back on' },
-    bij: 'De wand langs de trap. Het losse materiaal eraf, de gaten gevuld en daarna in lagen glad getrokken. De leuning gaat eraf en weer terug.',
-    bijEn: 'The wall alongside the stairs. Loose material off, holes filled, then pulled smooth in layers. The handrail comes off and goes back on.',
+    naam: 'trapgat',
+    kop: 'Het trapgat dat nergens meer vlak was',
+    kopEn: 'The stairwell that was flat nowhere',
+    intro:
+      "Één klus van Ekrem, van gestript tot geschilderd. De loper op de trap is op de na-foto's " +
+      'nog dezelfde: dit is wandwerk, geen nieuwe trap.',
+    introEn:
+      "One job of Ekrem's, from stripped to painted. The carpet on the stairs is the same one in " +
+      'every after photo: this is wall work, not a new staircase.',
+    paren: [
+      {
+        naam: 'vn-wand',
+        voor: { bron: 'ek-29', y: 0.65, alt: 'De wand langs de trap gestript tot op de oude pleister, de leuning er nog voor en de treden onder het puin', altEn: 'The wall alongside the stairs stripped back to the old plaster, the handrail still in front of it and debris on the treads' },
+        na: { bron: 'ek-26', y: 0.3, alt: 'Dezelfde wand langs de trap, glad gestuct en wit geschilderd, met de leuning terug aan de muur', altEn: 'The same wall alongside the stairs, plastered smooth and painted white, with the handrail back on' },
+        bij: 'De wand langs de trap. Het losse materiaal eraf, de gaten gevuld en daarna in lagen glad getrokken. De leuning gaat eraf en weer terug.',
+        bijEn: 'The wall alongside the stairs. Loose material off, holes filled, then pulled smooth in layers. The handrail comes off and goes back on.',
+      },
+      {
+        naam: 'vn-dichtbij',
+        voor: { bron: 'ek-28', y: 0.4, alt: 'Van dichtbij: de gestripte wand onder de leuning, met restanten lijm en oude verf', altEn: 'Close up: the stripped wall below the handrail, with remnants of glue and old paint' },
+        na: { bron: 'ek-24', y: 0.78, alt: 'Van dichtbij: een wand onder de leuning na het stucwerk, strak wit en vlak', altEn: 'Close up: a wall below the handrail after plastering, crisp white and flat' },
+        bij: 'Van dichtbij. Hier komt het op aan: strijklicht in een trapgat trekt elke bult eruit zodra de verf erop zit. Rechts is er niets meer te zien.',
+        bijEn: 'Close up. This is what it comes down to: raking light in a stairwell pulls out every bump the moment the paint goes on. On the right there is nothing left to see.',
+      },
+      {
+        naam: 'vn-trapgat',
+        voor: { bron: 'ek-22', y: 0.5, alt: 'Naar beneden in het trapgat, de gebogen wand langs de trapboom nog kaal en bruin', altEn: 'Looking down the stairwell, the curved wall along the stringer still bare and brown' },
+        na: { bron: 'ek-31', y: 0.8, alt: 'Naar beneden in hetzelfde trapgat, alle wanden glad en wit afgewerkt', altEn: 'Looking down the same stairwell, every wall smooth and finished in white' },
+        bij: 'Naar beneden in het trapgat. De ronding langs de trapboom is het lastigste stuk van een huis om vlak te krijgen, en het valt het meest op.',
+        bijEn: 'Looking down the stairwell. The curve along the stringer is the hardest part of a house to get flat, and it is the part people notice most.',
+      },
+    ],
   },
+  /* 22-10-2026. Eén kamer in een bovenwoning: de verf liet bovenaan de wand in vellen
+     los tot op de oude pleister, lager zaten pluggaten, scheuren en oude reparaties.
+     ek-33, ek-34 en ek-35 zijn aantoonbaar dezelfde wand (dezelfde drie gaten op een
+     rij, dezelfde naad, dezelfde radiator onder hetzelfde raam) en ek-38 is diezelfde
+     wand af — daarom is ek-34/ek-38 een paar en de rest niet.
+     ek-39 blijft ongebruikt: dat is dezelfde penant als ek-40 vanuit de kamer in plaats
+     van vanuit de hal, en naast elkaar lezen die twee als één foto. */
   {
-    naam: 'vn-dichtbij',
-    voor: { bron: 'ek-28', y: 0.4, alt: 'Van dichtbij: de gestripte wand onder de leuning, met restanten lijm en oude verf', altEn: 'Close up: the stripped wall below the handrail, with remnants of glue and old paint' },
-    na: { bron: 'ek-24', y: 0.78, alt: 'Van dichtbij: een wand onder de leuning na het stucwerk, strak wit en vlak', altEn: 'Close up: a wall below the handrail after plastering, crisp white and flat' },
-    bij: 'Van dichtbij. Hier komt het op aan: strijklicht in een trapgat trekt elke bult eruit zodra de verf erop zit. Rechts is er niets meer te zien.',
-    bijEn: 'Close up. This is what it comes down to: raking light in a stairwell pulls out every bump the moment the paint goes on. On the right there is nothing left to see.',
-  },
-  {
-    naam: 'vn-trapgat',
-    voor: { bron: 'ek-22', y: 0.5, alt: 'Naar beneden in het trapgat, de gebogen wand langs de trapboom nog kaal en bruin', altEn: 'Looking down the stairwell, the curved wall along the stringer still bare and brown' },
-    na: { bron: 'ek-31', y: 0.8, alt: 'Naar beneden in hetzelfde trapgat, alle wanden glad en wit afgewerkt', altEn: 'Looking down the same stairwell, every wall smooth and finished in white' },
-    bij: 'Naar beneden in het trapgat. De ronding langs de trapboom is het lastigste stuk van een huis om vlak te krijgen, en het valt het meest op.',
-    bijEn: 'Looking down the stairwell. The curve along the stringer is the hardest part of a house to get flat, and it is the part people notice most.',
+    naam: 'kamer',
+    kop: 'De kamer waar de verf van de muur kwam',
+    kopEn: 'The room where the paint came off the wall',
+    intro:
+      'Dezelfde aanpak in een kamer: alles wat los zat eraf, de scheuren met band dichtgezet, ' +
+      'de gaten gevuld en daarna de hele wand in lagen glad getrokken. Van plint tot plafond, ' +
+      'niet alleen de plek waar het misging.',
+    introEn:
+      'The same approach in a room: everything loose off, the cracks taped and filled, the holes ' +
+      'made good and then the whole wall pulled smooth in layers. Skirting to ceiling, not just ' +
+      'the spot where it went wrong.',
+    paren: [
+      {
+        naam: 'vn-kamer',
+        voor: { bron: 'ek-34', y: 0.5, alt: 'De wand bij het raam: de bovenste helft tot op de oude pleister afgebladderd, met pluggaten en een oude reparatie eronder', altEn: 'The wall by the window: the top half flaked back to the old plaster, with plug holes and an old repair below it' },
+        na: { bron: 'ek-38', y: 0.5, alt: 'Dezelfde wand bij het raam, van plint tot plafond glad gestuct, met dezelfde leiding en radiator ernaast', altEn: 'The same wall by the window, plastered smooth from skirting to ceiling, with the same pipe and radiator beside it' },
+        bij: 'Dezelfde hoek, hetzelfde raam, dezelfde radiator. Bovenin liet de verf los tot op de pleister, in het midden zaten de gaten van wat er aan de muur hing. Daar is nu niets meer van terug te zien.',
+        bijEn: 'Same corner, same window, same radiator. Along the top the paint was letting go down to the plaster, in the middle sat the holes from whatever used to hang there. None of it shows any more.',
+      },
+    ],
+    los: [
+      { bron: 'ek-33', y: 0.6, alt: 'Dezelfde kamer van verder af, de losse verf eraf geschraapt en het schraapsel over de vloer', altEn: 'The same room from further back, the loose paint scraped off and the scrapings across the floor', bij: 'Eerst alles eraf wat los zat. Wat op de vloer ligt, komt anders na een jaar als een blaas in de nieuwe verf terug.', bijEn: 'First everything loose comes off. What is on the floor would otherwise come back as a blister in the new paint within a year.' },
+      { bron: 'ek-35', x: 0.25, alt: 'Van dichtbij drie pluggaten op een rij in de wand, met de verf die er in vellen naast loslaat', altEn: 'Close up of three plug holes in a row in the wall, with the paint letting go in sheets beside them', bij: 'Van dichtbij, en het is dezelfde wand als hierboven: diezelfde drie gaten op een rij, diezelfde naad.', bijEn: 'Close up, and it is the same wall as above: those same three holes in a row, that same seam.' },
+      { bron: 'ek-36', y: 0.5, alt: 'Bladderende verf en kale pleister in een hoek, met wapeningsband dat er al overheen zit', altEn: 'Flaking paint and bare plaster in a corner, with scrim tape already over it', bij: 'Waar een scheur zat gaat er band overheen voordat er gevuld wordt. Zonder dat staat dezelfde scheur er volgend jaar weer.', bijEn: 'Where there was a crack, tape goes over it before any filling. Without that the same crack is back next year.' },
+    ],
   },
 ]
 

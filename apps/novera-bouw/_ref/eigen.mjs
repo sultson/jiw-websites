@@ -23,10 +23,17 @@ const STUC_EN = path.join(HIER, '..', 'pagina', 'en', 'plastering.html')
 const ALT_EN = JSON.parse(await readFile(path.join(HIER, 'en-alt.json'), 'utf8'))
 const ontbreekt = GALERIJ.map((g) => g.bron).filter((b) => !ALT_EN[b])
 if (ontbreekt.length) throw new Error(`geen Engelse alt in en-alt.json voor: ${ontbreekt.join(', ')}`)
-// Hetzelfde voor de voor-en-na-paren: die dragen hun Engelse alt en bijschrift zelf.
-for (const p of VOORNA) {
-  for (const k of [p.voor, p.na]) if (!k.altEn) throw new Error(`geen altEn voor ${k.bron} in VOORNA`)
-  if (!p.bijEn) throw new Error(`geen bijEn voor ${p.naam} in VOORNA`)
+// Hetzelfde voor de voor-en-na-klussen: die dragen hun Engelse kop, alt en bijschrift zelf.
+for (const klus of VOORNA) {
+  if (!klus.kopEn || !klus.introEn) throw new Error(`geen kopEn/introEn voor klus ${klus.naam}`)
+  for (const p of klus.paren) {
+    for (const k of [p.voor, p.na]) if (!k.altEn) throw new Error(`geen altEn voor ${k.bron} in VOORNA`)
+    if (!p.bijEn) throw new Error(`geen bijEn voor ${p.naam} in VOORNA`)
+  }
+  for (const l of klus.los ?? []) {
+    if (!l.altEn) throw new Error(`geen altEn voor ${l.bron} in los van ${klus.naam}`)
+    if (!l.bijEn) throw new Error(`geen bijEn voor ${l.bron} in los van ${klus.naam}`)
+  }
 }
 const BIN = path.join(
   process.env.USERPROFILE || process.env.HOME,
@@ -82,35 +89,76 @@ if (HERO) {
    je twee kaders in plaats van twee muren. */
 const VN_B = 900
 const VN_H = 1125
+const LOS = 760 // vierkant
 const vnBlok = { nl: [], en: [] }
-for (const paar of VOORNA) {
-  for (const [kant, k] of [['voor', paar.voor], ['na', paar.na]]) {
-    const in_ = path.join(BRON, `${k.bron}.jpg`)
-    const { w, h } = await maat(in_)
-    const hoog = Math.round((w * 5) / 4)
-    if (hoog > h) throw new Error(`${k.bron} is te laag voor een 4:5 uitsnede (${w}x${h})`)
-    const y = Math.round((h - hoog) * k.y)
-    const uit = path.join(UIT, `${paar.naam}-${kant}.webp`)
-    await ff([
-      '-i', in_,
-      '-vf', `crop=${w}:${hoog}:0:${y},scale=${VN_B}:${VN_H}:flags=lanczos`,
-      '-quality', '74', uit,
-    ])
-    console.log(`ok   ${paar.naam}-${kant}  ${VN_B}x${VN_H}  ${await kb(uit)}kB  (${k.bron})`)
-    n++
-  }
-  for (const [taal, woord] of [['nl', ['Voor', 'Na']], ['en', ['Before', 'After']]]) {
-    const kaart = (kant, i, k) =>
-      `          <div class="vn__k">\n` +
-      `            <img loading="lazy" src="/img/${paar.naam}-${kant}.webp" alt="${taal === 'nl' ? k.alt : k.altEn}" width="${VN_B}" height="${VN_H}" />\n` +
-      `            <span class="vn__tag vn__tag--${kant}">${woord[i]}</span>\n` +
-      `          </div>`
+for (const klus of VOORNA) {
+  for (const [taal, woord] of [['nl', 'kop'], ['en', 'kopEn']]) {
     vnBlok[taal].push(
-      `      <figure class="vn__paar reveal">\n` +
-        `        <div class="vn__beeld">\n${kaart('voor', 0, paar.voor)}\n${kaart('na', 1, paar.na)}\n        </div>\n` +
-        `        <figcaption>${taal === 'nl' ? paar.bij : paar.bijEn}</figcaption>\n` +
-        `      </figure>`
+      `      <header class="vn__klus reveal">\n` +
+        `        <h3>${klus[woord]}</h3>\n` +
+        `        <p>${taal === 'nl' ? klus.intro : klus.introEn}</p>\n` +
+        `      </header>`
     )
+  }
+  for (const paar of klus.paren) {
+    for (const [kant, k] of [['voor', paar.voor], ['na', paar.na]]) {
+      const in_ = path.join(BRON, `${k.bron}.jpg`)
+      const { w, h } = await maat(in_)
+      const hoog = Math.round((w * 5) / 4)
+      if (hoog > h) throw new Error(`${k.bron} is te laag voor een 4:5 uitsnede (${w}x${h})`)
+      const y = Math.round((h - hoog) * k.y)
+      const uit = path.join(UIT, `${paar.naam}-${kant}.webp`)
+      await ff([
+        '-i', in_,
+        '-vf', `crop=${w}:${hoog}:0:${y},scale=${VN_B}:${VN_H}:flags=lanczos`,
+        '-quality', '74', uit,
+      ])
+      console.log(`ok   ${paar.naam}-${kant}  ${VN_B}x${VN_H}  ${await kb(uit)}kB  (${k.bron})`)
+      n++
+    }
+    for (const [taal, woord] of [['nl', ['Voor', 'Na']], ['en', ['Before', 'After']]]) {
+      const kaart = (kant, i, k) =>
+        `          <div class="vn__k">\n` +
+        `            <img loading="lazy" src="/img/${paar.naam}-${kant}.webp" alt="${taal === 'nl' ? k.alt : k.altEn}" width="${VN_B}" height="${VN_H}" />\n` +
+        `            <span class="vn__tag vn__tag--${kant}">${woord[i]}</span>\n` +
+        `          </div>`
+      vnBlok[taal].push(
+        `      <figure class="vn__paar reveal">\n` +
+          `        <div class="vn__beeld">\n${kaart('voor', 0, paar.voor)}\n${kaart('na', 1, paar.na)}\n        </div>\n` +
+          `        <figcaption>${taal === 'nl' ? paar.bij : paar.bijEn}</figcaption>\n` +
+          `      </figure>`
+      )
+    }
+  }
+  // De losse foto's van dezelfde klus: vierkant, drie naast elkaar onder het paar.
+  // Liggende bron -> x stuurt de uitsnede, staande bron -> y.
+  if (klus.los?.length) {
+    const losNl = []
+    const losEn = []
+    for (const l of klus.los) {
+      const in_ = path.join(BRON, `${l.bron}.jpg`)
+      const { w, h } = await maat(in_)
+      const zij = Math.min(w, h)
+      const x = Math.round((w - zij) * (l.x ?? 0.5))
+      const y = Math.round((h - zij) * (l.y ?? 0.5))
+      const uit = path.join(UIT, `${klus.naam}-los-${l.bron}.webp`)
+      await ff([
+        '-i', in_,
+        '-vf', `crop=${zij}:${zij}:${x}:${y},scale=${LOS}:${LOS}:flags=lanczos`,
+        '-quality', '74', uit,
+      ])
+      console.log(`ok   ${klus.naam}-los-${l.bron}  ${LOS}x${LOS}  ${await kb(uit)}kB`)
+      n++
+      const fig = (alt, bij) =>
+        `        <figure>\n` +
+        `          <img loading="lazy" src="/img/${klus.naam}-los-${l.bron}.webp" alt="${alt}" width="${LOS}" height="${LOS}" />\n` +
+        `          <figcaption>${bij}</figcaption>\n` +
+        `        </figure>`
+      losNl.push(fig(l.alt, l.bij))
+      losEn.push(fig(l.altEn, l.bijEn))
+    }
+    vnBlok.nl.push(`      <div class="vn__los reveal">\n${losNl.join('\n')}\n      </div>`)
+    vnBlok.en.push(`      <div class="vn__los reveal">\n${losEn.join('\n')}\n      </div>`)
   }
 }
 

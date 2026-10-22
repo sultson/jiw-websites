@@ -30,9 +30,10 @@ const BEDRIJF = {
   telefoon: '31648569040',
   whatsapp: '31648569040',
   naam: 'Ekrem',
-  // Nog geen mailbox op het eigen domein. Zodra die er is komt hij hier, dan staat
-  // hij op de contactpagina en in de voet.
-  email: '',
+  // De mailbox op het eigen domein (Purelymail). Dit is hetzelfde adres waar het
+  // formulier zijn leads heen stuurt en waar de bevestiging op reply-to staat; sinds
+  // 22-10-2026 staat hij ook op de contactpagina en in de voet, op verzoek van Ekrem.
+  email: 'info@noverabouw.nl',
 }
 
 // 31648569040 -> 06 48 56 90 40

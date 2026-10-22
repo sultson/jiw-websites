@@ -52,6 +52,14 @@ node _ref/maak-handtekening-logo.mjs          # het logo voor Ekrems mailhandtek
 node _ref/eigen.mjs                           # de foto's die Ekrem zelf stuurde -> src/img/
 ```
 
+**Twee blokken in `pagina/` zijn geschreven door `_ref/eigen.mjs` en niet met de hand:** de
+galerij in `werkzaamheden.html` + `en/services.html` en het voor-en-na-blok in `stucwerk.html` +
+`en/plastering.html`, allebei tussen `<!-- galerij -->` / `<!-- voorna -->`. De bron is
+`_ref/eigen-lijst.mjs`: `GALERIJ` is werk dat af is, `VOORNA` is een lijst klussen met elk een
+eigen kop, een of meer paren (dezelfde plek, hetzelfde kader) en optioneel `los` — vierkante
+foto's uit diezelfde klus die geen paar vormen. Een kale voor-foto hoort in `los` en niet in de
+galerij. Bewerk je het blok in de HTML, dan is dat weg bij de volgende run van dat script.
+
 **Bewerk `pagina/` en `src/`, nooit iets in `dist/`.** Die map wordt bij elke build weggegooid en
 opnieuw geschreven. `src/` is wél bron: `styles.css`, `app.js`, `404.html`, `favicon.svg` en `img/`
 gaan ongewijzigd mee naar `dist/`.
@@ -124,11 +132,14 @@ achter JavaScript zetten (zie `CLAUDE.md`, "Never gate content visibility on JS"
 (`/api/forms/offerte` en `/api/forms/en/quote`). Aanvragen gaan naar `info@noverabouw.nl` —
 Ekrem zelf, op het eigen domein — en worden verstuurd vanaf `offers@notify.noverabouw.nl`.
 
-Dat adres staat op drie plekken en die moeten gelijk blijven: `LEAD_RECIPIENT` in
+Dat adres staat op vier plekken en die moeten gelijk blijven: `LEAD_RECIPIENT` in
 `wrangler.jsonc`, de reply-to op de bevestiging (die zet het pakket zelf uit `LEAD_RECIPIENT`),
-en `MAIL` in `worker/confirmation-email.ts`, waar het als klikbaar contactadres in de
-bevestiging staat. Wijzig je het op één plek, dan drukt de mail een ander adres af dan waar een
-antwoord heen gaat.
+`MAIL` in `worker/confirmation-email.ts`, waar het als klikbaar contactadres in de
+bevestiging staat, en sinds 22-10-2026 `BEDRIJF.email` in `bouw.mjs` — daarmee staat het ook in
+de voet van elke pagina, op een kaart op de contactpagina en in het schema-blok voor Google.
+Wijzig je het op één plek, dan drukt de mail een ander adres af dan waar een antwoord heen gaat.
+`_ref/kijk.mjs` meet het mee: één mailto-adres per pagina, dat adres in de voet, en geen domein
+van iemand anders in de HTML (op de voorbeeldtekst in het mailveld na).
 
 De aanvrager krijgt een bevestiging in het merk van Novera
 (`worker/confirmation-email.ts`, kleuren uit `_ref/branding-kit/guidelines/palette.json`). Het
