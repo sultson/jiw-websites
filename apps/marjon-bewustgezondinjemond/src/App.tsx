@@ -43,6 +43,13 @@ const INSTA = 'https://www.instagram.com/marjon_ooteman_1/';
    pagina "Bewust gezond in je mond". Dit is het adres waar die deellink op uitkomt. */
 const FB = 'https://www.facebook.com/people/Bewust-gezond-in-je-mond/61593185683528/';
 const MAIL = 'info@marjonooteman.nl';
+/* Handelsregister: eenmanszaak "Marjon Ooteman", handelsnaam "Bewust gezond in
+   je mond", KvK 37154226, vestigingsnummer 000012122327 (uittreksel via
+   Armando, 22-10-2026). Alleen het KvK-nummer staat op de site: dat is wat
+   art. 3:15d BW van een dienstverlener vraagt en wat een bezoeker kan
+   natrekken. Het vestigingsnummer zegt een bezoeker niets. Het adres
+   Kievitlaan 99 blijft er bewust af, zie de toelichting in privacytekst.js. */
+const KVK = '37154226';
 /* Marjon is aangesloten bij NVM-mondhygienisten; klachten lopen via hun
    klachtenregeling, niet via de praktijk. (Opgegeven door Marjon, 01-10-2026.) */
 const KLACHTEN_URL = 'https://www.mondhygienisten.nl/klacht-over-je-mondhygienist/';
@@ -1146,6 +1153,7 @@ function Footer() {
         <div className="text-sm">
           <p>{TEL_TONEN}</p>
           <p>{MAIL}</p>
+          <p className="mt-1 text-room/55">KvK {KVK}</p>
         </div>
       </div>
       <div className="mx-auto mt-8 flex max-w-6xl flex-col gap-2 border-t border-room/15 px-5 pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">

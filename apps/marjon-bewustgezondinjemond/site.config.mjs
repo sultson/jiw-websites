@@ -33,6 +33,11 @@ export const PRAKTIJK = {
      telefoon en voor schema.org, maar in een zin leest het als een foutcode. */
   telefoonWeergave: '06 20594924',
   email: 'info@marjonooteman.nl',
+  /* Handelsregister, uittreksel via Armando 22-10-2026: eenmanszaak
+     "Marjon Ooteman", handelsnaam "Bewust gezond in je mond", KvK 37154226,
+     vestigingsnummer 000012122327. Alleen het KvK-nummer is publiek op de
+     site; het vestigingsadres blijft er bewust af. */
+  kvk: '37154226',
   plaats: 'Schagen',
   regio: 'Noord-Holland',
   land: 'NL',

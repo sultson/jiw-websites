@@ -19,6 +19,8 @@ export declare const PRAKTIJK: {
   telefoon: string;
   telefoonWeergave: string;
   email: string;
+  /** Het KvK-nummer van de eenmanszaak. Staat in de footer en op /privacy. */
+  kvk: string;
   plaats: string;
   regio: string;
   land: string;

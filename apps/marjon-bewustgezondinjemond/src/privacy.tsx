@@ -4,7 +4,7 @@ import {Bloem} from './bloem';
 import {ga} from './specialisaties';
 import {HOOFDSTUKKEN, PARTIJEN, VERKLARING_BIJGEWERKT} from './privacytekst';
 import {useKop} from './kop';
-import {HAAR_NAAM} from '../site.config.mjs';
+import {HAAR_NAAM, PRAKTIJK} from '../site.config.mjs';
 import {
   bewaarKeuze,
   keuze as gekozen,
@@ -258,6 +258,10 @@ export function PrivacyPagina({tel, telTonen, mail}: {tel: string; telTonen: str
               {mail}
             </a>
           </p>
+          {/* Haar eigen pdf noemt het KvK-nummer niet. Dit is geen tekst van
+              onszelf maar een registergegeven: wie wil weten wie er achter
+              "Bewust Gezond in je Mond" zit, kan het hiermee natrekken. */}
+          <p className="mt-2 leading-relaxed text-inkt/75">KvK-nummer: {PRAKTIJK.kvk}</p>
         </div>
 
         {HOOFDSTUKKEN.map((h) => (

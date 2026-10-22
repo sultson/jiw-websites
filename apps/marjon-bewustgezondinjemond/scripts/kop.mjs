@@ -62,6 +62,15 @@ const PERSOON = {
     addressCountry: PRAKTIJK.land,
   },
   areaServed: {'@type': 'AdministrativeArea', name: PRAKTIJK.regio},
+  /* Het KvK-nummer van de eenmanszaak. Een Person en geen Organization, want
+     die is er op deze site niet: de zaak is zij. Als PropertyValue, want
+     schema.org kent geen eigen veld voor een handelsregisternummer. */
+  identifier: {
+    '@type': 'PropertyValue',
+    name: 'KvK-nummer',
+    value: PRAKTIJK.kvk,
+    propertyID: 'https://www.kvk.nl/',
+  },
   sameAs: [PRAKTIJK.instagram, PRAKTIJK.facebook],
 };
 
