@@ -1,0 +1,18 @@
+---
+import Layout from '../components/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { routes } from '../data/content';
+// One page for every language: Workers Static Assets serves this file with a 404 status.
+const links = [
+  { lang: 'nl', title: 'Pagina niet gevonden', text: 'Deze pagina bestaat niet (meer).', href: routes.nl.home, cta: 'Naar de homepage' },
+  { lang: 'en', title: 'Page not found', text: 'This page does not exist.', href: routes.en.home, cta: 'Go to the home page' },
+  { lang: 'de', title: 'Seite nicht gefunden', text: 'Diese Seite existiert nicht (mehr).', href: routes.de.home, cta: 'Zur Startseite' },
+];
+---
+<Layout lang="nl" title="404 | Rescue Watercraft" description="Pagina niet gevonden." noindex>
+  <section class="section"><div class="container notfound">
+    <p class="eyebrow">404</p>
+    {links.map(link => <div lang={link.lang}><h1>{link.title}</h1><p>{link.text}</p><a class="text-link" href={link.href}>{link.cta} <Icon name="arrow"/></a></div>)}
+  </div></section>
+</Layout>
+<style>.notfound{display:grid;gap:36px}.notfound h1{font-size:clamp(1.8rem,3vw,2.6rem)}.notfound p{color:var(--body);margin:8px 0 12px}</style>

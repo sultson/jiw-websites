@@ -1,16 +1,39 @@
-import { createFormWorker, type CloudflareFormsEnv } from '@jiw/cloudflare-forms';
-type Env=CloudflareFormsEnv&{ASSETS:Fetcher;WEBSITE_ASSETS:R2Bucket;APIFY_TOKEN?:string};
+import { createFormWorker, type CloudflareFormsEnv, type LeadFormConfig } from '@jiw/cloudflare-forms';
+import { confirmationEmail } from './confirmation';
+type Env=CloudflareFormsEnv&{ASSETS:Fetcher;WEBSITE_ASSETS:R2Bucket;APIFY_TOKEN?:string;CANONICAL_HOST:string;LIVE?:string};
 
-const common={siteName:'Rescue Watercraft',ownerName:'Rescue Watercraft',senderName:'Rescue Watercraft',confirmationFollowUpSentence:'Een specialist van Rescue Watercraft neemt binnen 24 tot 48 uur contact met u op.',messageField:'message',subjectFields:['subject','organisation'],requiredFields:[{name:'phone',label:'telefoonnummer',message:'Vul uw telefoonnummer in.'},{name:'subject',label:'onderwerp',message:'Maak een keuze of vul een onderwerp in.'},{name:'privacyConsent',label:'privacytoestemming',message:'Ga akkoord met de verwerking van uw gegevens.'}],emailFields:[{name:'phone',label:'Telefoon'},{name:'organisation',label:'Organisatie'},{name:'subject',label:'Onderwerp'},{name:'language',label:'Taal'},{name:'pageUrl',label:'Pagina'},{name:'privacyConsent',label:'Toestemming'}]};
-const commonEn={...common,locale:'en' as const,confirmationFollowUpSentence:'A Rescue Watercraft specialist will contact you within 24 to 48 hours.',requiredFields:[{name:'phone',label:'phone number',message:'Enter your phone number.'},{name:'subject',label:'subject',message:'Select an option or enter a subject.'},{name:'privacyConsent',label:'privacy consent',message:'Agree to the processing of your data.'}],emailFields:[{name:'phone',label:'Phone'},{name:'organisation',label:'Organisation'},{name:'subject',label:'Subject'},{name:'language',label:'Language'},{name:'pageUrl',label:'Page'},{name:'privacyConsent',label:'Consent'}]};
-const workers:Record<string,ReturnType<typeof createFormWorker>>={
-  '/api/forms/course':createFormWorker({...common,formPath:'/api/forms/course',subjectPrefix:'Nieuwe opleidingsaanvraag Rescue Watercraft',turnstile:false}),
-  '/api/forms/equipment':createFormWorker({...common,formPath:'/api/forms/equipment',subjectPrefix:'Nieuwe equipmentaanvraag Rescue Watercraft'}),
-  '/api/forms/contact':createFormWorker({...common,formPath:'/api/forms/contact',subjectPrefix:'Nieuw contactverzoek Rescue Watercraft'}),
-  '/api/forms/en/course':createFormWorker({...commonEn,formPath:'/api/forms/en/course',subjectPrefix:'New training request Rescue Watercraft',turnstile:false}),
-  '/api/forms/en/equipment':createFormWorker({...commonEn,formPath:'/api/forms/en/equipment',subjectPrefix:'New equipment request Rescue Watercraft'}),
-  '/api/forms/en/contact':createFormWorker({...commonEn,formPath:'/api/forms/en/contact',subjectPrefix:'New contact request Rescue Watercraft'}),
+type Lang='nl'|'en'|'de';
+type Kind='course'|'equipment'|'contact';
+// Validation messages the visitor only sees when the browser check was skipped. The
+// package speaks nl or en, so German pages fall back to English for its built-in ones.
+const required:Record<Lang,LeadFormConfig['requiredFields']>={
+  nl:[{name:'phone',label:'telefoonnummer',message:'Vul uw telefoonnummer in.'},{name:'subject',label:'onderwerp',message:'Maak een keuze of vul een onderwerp in.'},{name:'privacyConsent',label:'privacytoestemming',message:'Ga akkoord met de verwerking van uw gegevens.'}],
+  en:[{name:'phone',label:'phone number',message:'Enter your phone number.'},{name:'subject',label:'subject',message:'Select an option or enter a subject.'},{name:'privacyConsent',label:'privacy consent',message:'Agree to the processing of your data.'}],
+  de:[{name:'phone',label:'Telefonnummer',message:'Bitte geben Sie Ihre Telefonnummer ein.'},{name:'subject',label:'Betreff',message:'Bitte wählen Sie eine Option oder geben Sie einen Betreff ein.'},{name:'privacyConsent',label:'Datenschutz',message:'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'}],
 };
+// The notification is for the owner, so it is Dutch whatever the page language; the
+// language row and the subject's (EN)/(DE) tell them which language to answer in.
+const headings:Record<Kind,string>={course:'Nieuwe opleidingsaanvraag',equipment:'Nieuwe equipmentaanvraag',contact:'Nieuw contactverzoek'};
+function formConfig(kind:Kind,lang:Lang,origin:string):LeadFormConfig{
+  const formPath=`/api/forms/${lang==='nl'?'':`${lang}/`}${kind}`;
+  return {
+    formPath,locale:lang==='nl'?'nl':'en',siteName:'Rescue Watercraft',ownerName:'Rescue Watercraft',senderName:'Rescue Watercraft',
+    subjectPrefix:`${headings[kind]} Rescue Watercraft${lang==='nl'?'':` (${lang.toUpperCase()})`}`,
+    turnstile:false,honeypotField:'website',messageField:'message',subjectFields:['subject','organisation'],requiredFields:required[lang],
+    emailFields:[{name:'phone',label:'Telefoon'},{name:'organisation',label:'Organisatie'},{name:'subject',label:'Onderwerp'}],
+    leadOnlyEmailFields:[{name:'language',label:'Taal'},{name:'pageUrl',label:'Pagina'},{name:'privacyConsent',label:'Toestemming'}],
+    leadEmail:{heading:`${headings[kind]} via de website`,messageHeading:'Vraag of toelichting',nameLabels:{firstName:'Voornaam',lastName:'Achternaam',email:'E-mail'},includeAttachments:false},
+    confirmationEmail:confirmationEmail(origin,lang),
+  };
+}
+const formRoutes=new Map<string,[Kind,Lang]>((['nl','en','de'] as Lang[]).flatMap(lang=>(['course','equipment','contact'] as Kind[]).map(kind=>[`/api/forms/${lang==='nl'?'':`${lang}/`}${kind}`,[kind,lang]] as [string,[Kind,Lang]])));
+const formWorkers=new Map<string,ReturnType<typeof createFormWorker>>();
+function formWorker(path:string,origin:string){
+  const route=formRoutes.get(path);if(!route)return undefined;
+  const key=`${origin}${path}`;let worker=formWorkers.get(key);
+  if(!worker){worker=createFormWorker(formConfig(route[0],route[1],origin));formWorkers.set(key,worker);}
+  return worker;
+}
 
 const feedChannels={linkedin:'https://www.linkedin.com/company/rescue-watercraft-b-v/'} as const;
 const asUrl=(value:unknown)=>typeof value==='string'&&/^https?:\/\//.test(value)?value:'';
@@ -97,4 +120,27 @@ async function film(request:Request,env:Env,key:string):Promise<Response>{
   return new Response(object.body,{status:range?206:200,headers});
 }
 
-export default{async fetch(request,env,ctx){const url=new URL(request.url);const filmKey=films[url.pathname];if(filmKey)return film(request,env,filmKey);if(url.pathname==='/api/social-feed'&&request.method==='GET')return socialFeed(request,env,ctx);const worker=workers[url.pathname];if(worker)return worker.fetch!(request,env,ctx);return env.ASSETS.fetch(request);}} satisfies ExportedHandler<Env>;
+// Hosts: the canonical host serves the site; www 301s onto it. Until LIVE is "true" the
+// concept hosts serve the site too, with X-Robots-Tag: noindex so nothing competes with
+// the canonical host in the index. Once LIVE is "true" they 301 there, path preserved.
+// Redirects only on https: `wrangler dev` serves the route hosts over plain http and
+// would otherwise bounce local testing to production.
+function hostRedirect(url:URL,env:Env):Response|undefined{
+  if(url.protocol!=='https:'||url.hostname===env.CANONICAL_HOST)return undefined;
+  if(url.hostname===`www.${env.CANONICAL_HOST}`||env.LIVE==='true')return Response.redirect(`https://${env.CANONICAL_HOST}${url.pathname}${url.search}`,301);
+  return undefined;
+}
+function withNoindex(response:Response,url:URL,env:Env):Response{
+  if(url.hostname===env.CANONICAL_HOST)return response;
+  const headers=new Headers(response.headers);headers.set('X-Robots-Tag','noindex');
+  return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+}
+
+export default{async fetch(request,env,ctx){
+  const url=new URL(request.url);
+  const filmKey=films[url.pathname];if(filmKey)return film(request,env,filmKey);
+  if(url.pathname==='/api/social-feed'&&request.method==='GET')return socialFeed(request,env,ctx);
+  const worker=formWorker(url.pathname,url.origin);if(worker)return worker.fetch!(request,env,ctx);
+  const redirect=hostRedirect(url,env);if(redirect)return redirect;
+  return withNoindex(await env.ASSETS.fetch(request),url,env);
+}} satisfies ExportedHandler<Env>;

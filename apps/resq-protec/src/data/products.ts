@@ -18,6 +18,7 @@ export type Product = {
 export const productCategories = {
   nl: { protection: 'Beschermingsmiddelen', rescue: 'Reddingsmaterialen', accessories: 'Accessoires' },
   en: { protection: 'Protective equipment', rescue: 'Rescue equipment', accessories: 'Accessories' },
+  de: { protection: 'Schutzausrüstung', rescue: 'Rettungsmaterial', accessories: 'Zubehör' },
 };
 
 // Client Word files supply the bilingual copy; attached manufacturer PDFs take

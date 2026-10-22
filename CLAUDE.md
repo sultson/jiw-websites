@@ -137,6 +137,12 @@ apps/         client sites (almost all a Vite + React 19 + TS 5.8 + Tailwind v4 
                           in a few weeks — that is why `alternateName` sits in the
                           `GardenStore` block and a disclaimer runs on every page. dev port
                           3065. See its NOTITIES.md + SEO.md.
+  resq-protec/            Rescue Watercraft. Astro, static, nl on / + en on /en + de on /de
+                          (de added 22-10-2026), 60 pages. Canonicals, hreflang, schema.org
+                          and the sitemap already point at rescuewatercraft.eu; the concept
+                          hosts serve noindex until `LIVE` flips to "true" in wrangler.jsonc,
+                          then 301 there. `pnpm build` runs tools/check-seo.mjs (prerender
+                          gate, 9 forms). Go-live steps in its README. dev port 3014.
   my-kim-nails/        dev port 3000 — frontend-only
   nail-it-rosmalen/    dev port 3002 — frontend-only
   sgv-nails/           placeholder (INFO.md only, not yet scaffolded)

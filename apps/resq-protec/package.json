@@ -5,15 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --port 3014 --host",
-    "build": "astro build",
+    "build": "astro build && node tools/check-seo.mjs",
     "preview": "astro preview",
     "ship": "pnpm build && wrangler deploy",
     "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
     "clean": "rm -rf dist .astro",
-    "lint": "astro check && tsc --noEmit -p tsconfig.worker.json"
+    "lint": "astro check && tsc --noEmit -p tsconfig.worker.json",
+    "gen-mail-logo": "node tools/gen-mail-logo.mjs",
+    "check": "node tools/check-seo.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.0",
     "@jiw/cloudflare-forms": "workspace:*",
     "astro": "^5.16.0",
     "video.js": "8.23.8"
@@ -22,6 +23,7 @@
     "@astrojs/check": "^0.9.4",
     "@cloudflare/workers-types": "^4.20260424.1",
     "typescript": "~5.8.2",
-    "wrangler": "^4.85.0"
+    "wrangler": "^4.85.0",
+    "sharp": "^0.34.5"
   }
 }

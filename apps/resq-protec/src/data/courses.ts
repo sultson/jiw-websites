@@ -222,6 +222,109 @@ const courses: Record<Lang, Course[]> = {
       ],
     },
   ],
+  de: [
+    {
+      title: 'Rescue Watercraft Operator',
+      category: 'Operator',
+      duration: '3 Tage',
+      audience: 'Einsatzkräfte mit dem Lifeguard-Diplom der Reddingsbrigade oder der Qualifikation Oppervlakteredder Brandweer (niederländische Feuerwehr-Oberflächenretter).',
+      image: '/images/rwc-operator.webp',
+      imageAlt: 'Rettungs-Jetski mit Rettungsschlitten transportiert eine verunglückte Person, begleitet von zwei Einsatzkräften',
+      imageWidth: 1600,
+      imageHeight: 940,
+      summary: 'Lernen Sie, mit einem speziell angepassten Jetski und einem Rettungsschlitten professionelle und sichere Wasserrettungen durchzuführen. Die dreitägige Ausbildung verbindet Theorie mit intensivem Praxistraining.',
+      sections: [
+        {
+          title: 'Professionelle und sichere Wasserrettung',
+          paragraphs: [
+            'Einen speziell angepassten Jetski in Kombination mit einem Rettungsschlitten bezeichnen wir als Rescue Watercraft (RWC). In dieser Ausbildung lernen Sie, dieses System bei Rettungs- und Hilfeleistungseinsätzen sicher und effektiv einzusetzen, damit Sie Ertrinkende kontrolliert anfahren und aus dem Wasser retten können.',
+            'Im Mittelpunkt stehen sicheres Fahren, Manövrieren, Rettungstechniken, Kommunikation und die Zusammenarbeit mit anderen Hilfsdiensten. Besondere Aufmerksamkeit gilt anspruchsvollen Bedingungen und dem Einsatz auf Flüssen.',
+          ],
+        },
+        {
+          title: 'Zulassungsvoraussetzungen',
+          items: [
+            'Mindestens 18 Jahre alt.',
+            'Lifeguard-Diplom der Reddingsbrigade oder Qualifikation Oppervlakteredder Brandweer.',
+            'Gültiger Erste-Hilfe-Nachweis.',
+            'Gültiges Klein Vaarbewijs I (niederländischer Sportbootführerschein).',
+          ],
+        },
+        {
+          title: 'Inhalt der Ausbildung',
+          items: [
+            'Sicherheitsverfahren, Vorschriften und Kontrollen vor der Nutzung.',
+            'Fahr- und Manövriertechniken in Strömung, Wellen und Flachwasser.',
+            'Sicheres Anfahren und Retten von Ertrinkenden mit dem Rescue Watercraft.',
+            'Kommunikation und Zusammenarbeit unter anderem mit Wasserrettungsorganisationen, Feuerwehr, Polizei und Rijkswaterstaat (niederländische Wasserstraßenbehörde).',
+            'Capsize-Training: richtiges Handeln, wenn der Rettungs-Jetski kentert.',
+          ],
+        },
+        {
+          title: 'Prüfung und Zertifizierung',
+          paragraphs: [
+            'Die Ausbildung schließt mit einer Proeve van Bekwaamheid (PvB, praktische Prüfung) ab, in der Sie nachweisen, dass Sie über die erforderlichen theoretischen Kenntnisse und praktischen Fähigkeiten verfügen.',
+            'Nach erfolgreichem Abschluss der Ausbildung und bestandener Proeve van Bekwaamheid wird Ihnen in Zusammenarbeit mit der Reddingsbrigade ein international anerkanntes Zertifikat überreicht. Dieses Zertifikat wird von der International Life Saving Federation of Europe (ILSE) ausgestellt und bestätigt, dass Sie die festgelegten Anforderungen an Kenntnisse und Fähigkeiten im Rettungs- und Sicherheitsbereich erfüllen.',
+          ],
+        },
+        {
+          title: 'Weitere Informationen',
+          paragraphs: ['Möchten Sie mehr über die Ausbildung zum Rescue Watercraft Operator oder die Möglichkeiten für Ihre Organisation erfahren? Nehmen Sie für weitere Informationen Kontakt mit uns auf.'],
+        },
+      ],
+    },
+    {
+      title: 'Ausbilder Rescue Watercraft Operator',
+      category: 'Ausbilder',
+      duration: '2 Tage',
+      audience: 'Erfahrene RWC-Operatoren von Wasserrettungsorganisationen, Hilfsdiensten und Behörden.',
+      image: '/images/course-instructor.webp',
+      imageAlt: 'Ausbilder begleitet einen Teilnehmer auf einem Rettungs-Jetski',
+      imageWidth: 1200,
+      imageHeight: 750,
+      summary: 'Entwickeln Sie sich als erfahrener RWC-Operator zum Ausbilder. In dieser zweitägigen, praxisorientierten Ausbildung lernen Sie, Kollegen, Einsatzkräfte und Mitarbeiter von Behörden zu selbstständig und sicher einsetzbaren RWC-Operatoren auszubilden.',
+      sections: [
+        {
+          title: 'Werden Sie RWC-Ausbilder',
+          paragraphs: [
+            'Die Ausbildung verbindet theoretisches Wissen mit intensivem Praxistraining auf dem Wasser. Sie entwickeln die Fähigkeiten, Trainings vorzubereiten, Anweisungen klar zu vermitteln und Lehrgangsteilnehmer professionell und sicher zu begleiten.',
+            'Nach Abschluss können Sie Kenntnisse und Fähigkeiten zur Bedienung, Sicherheit und zum operativen Einsatz von Rettungs-Jetskis vermitteln, gemäß den geltenden Ausbildungsrichtlinien der International Life Saving Federation (ILS).',
+          ],
+        },
+        {
+          title: 'Zulassungsvoraussetzungen',
+          items: [
+            'Ein gültiges RWC-Operator-Zertifikat.',
+            'Mindestens eine volle Saison Erfahrung im Fahren eines Rettungs-Jetskis oder nachweislich gleichwertige Erfahrung.',
+            'Ein gültiger Erste-Hilfe-Nachweis.',
+            'Mindestens Klein Vaarbewijs I.',
+          ],
+        },
+        {
+          title: 'Ausbildungsprogramm',
+          paragraphs: ['Die Ausbildung dauert zwei Tage und besteht aus Theorie, Praxistraining und einer abschließenden Beurteilung.'],
+          items: [
+            'Unterrichtsvorbereitung und Unterrichtsaufbau: effektive Trainingseinheiten planen, vorbereiten und durchführen.',
+            'Instruktions- und Demonstrationsfähigkeiten: Fahrtechniken, Rettungsmaßnahmen und Bedienabläufe klar erklären und vormachen.',
+            'Sicherheit und Risikomanagement: Risiken erkennen, Sicherheitsmaßnahmen anwenden und während der Übungen die Aufsicht führen.',
+            'Ausbildungsrichtlinien und Beurteilungskriterien: Verständnis der Richtlinien und Anforderungen der International Life Saving Federation (ILS) für die Ausbildung und Beurteilung von RWC-Operatoren.',
+            'Praxisanleitung auf dem Wasser: Lehrgangsteilnehmer bei realistischen Übungen mit dem Rettungs-Jetski begleiten und beurteilen.',
+          ],
+        },
+        {
+          title: 'Abschließende Beurteilung',
+          paragraphs: ['Die Ausbildung schließt mit einer Beurteilung der theoretischen Kenntnisse, der praktischen Fähigkeiten und der Instruktionsfähigkeiten ab. Die Beurteilung erfolgt unter der Verantwortung eines befugten Ausbilders der Reddingsbrigade gemäß den geltenden Ausbildungsrichtlinien.'],
+        },
+        {
+          title: 'Für wen ist diese Ausbildung gedacht?',
+          paragraphs: [
+            'Diese Ausbildung richtet sich an erfahrene RWC-Operatoren von Wasserrettungsorganisationen, Hilfsdiensten und Behörden, die ihr Wissen und ihre Praxiserfahrung an Kollegen und neue Operatoren weitergeben möchten.',
+            'Nach Abschluss verfügen Sie über die nötigen Instruktionsfähigkeiten, um RWC-Trainings strukturiert, professionell und sicherheitsorientiert durchzuführen.',
+          ],
+        },
+      ],
+    },
+  ],
 };
 
 export function getCourses(lang: Lang = 'nl'): Course[] {

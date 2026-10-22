@@ -1,26 +1,37 @@
 ---
 import Layout from './Layout.astro';
 import Icon from './Icon.astro';
-import { routes, type Lang } from '../data/content';
+import { routes, pick, url, SITE, type Lang } from '../data/content';
 import type { Product } from '../data/products';
 const { lang, product } = Astro.props as { lang: Lang; product: Product };
-const nl = lang === 'nl';
+const t = (nl: string, en: string, de: string) => pick(lang, nl, en, de);
 const r = routes[lang];
 const main = product.images[0];
 const requestUrl = `${r.equipment}?product=${product.id}#aanvragen`;
+const long = `${product.name} | ${product.category} | Rescue Watercraft`;
+const pageTitle = long.length <= 70 ? long : `${product.name} | Rescue Watercraft`;
+const equipmentName = t('Equipment', 'Equipment', 'Ausrüstung');
+const schema = [
+  { '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Rescue Watercraft', item: url(r.home) },
+    { '@type': 'ListItem', position: 2, name: equipmentName, item: url(r.equipment) },
+    { '@type': 'ListItem', position: 3, name: product.name, item: url(product.url) },
+  ] },
+  { '@type': 'Product', name: product.name, description: product.summary, category: product.category, url: url(product.url), image: product.images.map(image => `${SITE}${image.src}`), seller: { '@id': `${SITE}/#organization` } },
+];
 ---
-<Layout lang={lang} title={`${product.name} | Rescue Watercraft`} description={product.summary} canonicalPath={product.url} image={main.src}>
+<Layout lang={lang} title={pageTitle} description={product.summary} canonicalPath={product.url} image={main.src} schema={schema}>
   <section class="product-intro section">
     <div class="container">
-      <a class="text-link back" href={`${r.equipment}?category=${encodeURIComponent(product.category)}`}><span aria-hidden="true">←</span>{nl?'Terug naar equipment':'Back to equipment'}</a>
+      <a class="text-link back" href={`${r.equipment}?category=${encodeURIComponent(product.category)}`}><span aria-hidden="true">←</span>{t('Terug naar equipment','Back to equipment','Zurück zur Ausrüstung')}</a>
       <div class="product-grid">
         <figure class="main-image"><img src={main.src} alt={product.name} width={main.width} height={main.height} fetchpriority="high"/></figure>
         <div class="product-heading">
           <p class="eyebrow">{product.category}</p>
           <h1>{product.name}</h1>
           <p class="lead">{product.summary}</p>
-          <p class="availability">{nl?'Beschikbaarheid, uitvoering en maatvoering op aanvraag.':'Availability, model and sizing on request.'}</p>
-          <div class="actions"><a class="button" href={requestUrl}>{nl?'Vraag dit product aan':'Request this product'}<Icon name="arrow"/></a>{product.technicalSheet&&<a class="text-link" href={product.technicalSheet} target="_blank" rel="noreferrer">{nl?'Technische fiche (PDF)':'Technical sheet (PDF)'}<Icon name="arrow"/></a>}</div>
+          <p class="availability">{t('Beschikbaarheid, uitvoering en maatvoering op aanvraag.','Availability, model and sizing on request.','Verfügbarkeit, Ausführung und Größen auf Anfrage.')}</p>
+          <div class="actions"><a class="button" href={requestUrl}>{t('Vraag dit product aan','Request this product','Dieses Produkt anfragen')}<Icon name="arrow"/></a>{product.technicalSheet&&<a class="text-link" href={product.technicalSheet} target="_blank" rel="noreferrer">{t('Technische fiche (PDF)','Technical sheet (PDF)','Technisches Datenblatt (PDF)')}<Icon name="arrow"/></a>}</div>
         </div>
       </div>
     </div>
@@ -30,10 +41,10 @@ const requestUrl = `${r.equipment}?product=${product.id}#aanvragen`;
       <div class="description">
         {product.sections.map(section=><section class="information-section"><h2>{section.title}</h2>{section.paragraphs?.map(text=><p>{text}</p>)}{section.items&&<ul>{section.items.map(text=><li>{text}</li>)}</ul>}</section>)}
       </div>
-      {product.images.length>1&&<aside class="product-photos" aria-labelledby="photos-title"><h2 id="photos-title">{nl?'Productfoto’s':'Product photos'}</h2><div class="photo-grid">{product.images.slice(1).map((photo,i)=><a href={photo.src} target="_blank" rel="noreferrer" aria-label={nl?`Bekijk foto ${i+2} van ${product.name}`:`View photo ${i+2} of ${product.name}`}><img src={photo.src} alt={`${product.name} — ${nl?'foto':'photo'} ${i+2}`} width={photo.width} height={photo.height} loading="lazy"/></a>)}</div></aside>}
+      {product.images.length>1&&<aside class="product-photos" aria-labelledby="photos-title"><h2 id="photos-title">{t('Productfoto’s','Product photos','Produktfotos')}</h2><div class="photo-grid">{product.images.slice(1).map((photo,i)=><a href={photo.src} target="_blank" rel="noreferrer" aria-label={t(`Bekijk foto ${i+2} van ${product.name}`,`View photo ${i+2} of ${product.name}`,`Foto ${i+2} von ${product.name} ansehen`)}><img src={photo.src} alt={`${product.name}, ${t('foto','photo','Foto')} ${i+2}`} width={photo.width} height={photo.height} loading="lazy"/></a>)}</div></aside>}
     </div>
   </section>
-  <section class="product-contact section"><div class="container"><p class="eyebrow">{nl?'Persoonlijk advies':'Personal advice'}</p><h2>{nl?'De juiste uitrusting voor uw team.':'The right equipment for your team.'}</h2><p class="lead">{nl?'Bespreek uw wensen voor dit product. Wij adviseren over de uitvoering, maatvoering en beschikbaarheid.':'Tell us what you need from this product. We can advise on model, sizing and availability.'}</p><a class="button" href={requestUrl}>{nl?'Vraag dit product aan':'Request this product'}<Icon name="arrow"/></a></div></section>
+  <section class="product-contact section"><div class="container"><p class="eyebrow">{t('Persoonlijk advies','Personal advice','Persönliche Beratung')}</p><h2>{t('De juiste uitrusting voor uw team.','The right equipment for your team.','Die richtige Ausrüstung für Ihr Team.')}</h2><p class="lead">{t('Bespreek uw wensen voor dit product. Wij adviseren over de uitvoering, maatvoering en beschikbaarheid.','Tell us what you need from this product. We can advise on model, sizing and availability.','Besprechen Sie Ihre Wünsche zu diesem Produkt. Wir beraten Sie zu Ausführung, Größe und Verfügbarkeit.')}</p><a class="button" href={requestUrl}>{t('Vraag dit product aan','Request this product','Dieses Produkt anfragen')}<Icon name="arrow"/></a></div></section>
 </Layout>
 <style>
   .product-intro{background:var(--mist)}.back{margin-bottom:38px}.product-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(36px,6vw,80px)}.main-image{margin:0;aspect-ratio:1;background:white;display:flex;align-items:center;justify-content:center;padding:clamp(20px,3vw,40px)}.main-image img{width:100%;height:100%;object-fit:contain}.product-heading h1{font-size:clamp(2.1rem,4vw,4rem);overflow-wrap:anywhere}.availability{color:var(--muted);font-size:.85rem;margin:24px 0}.actions{display:flex;flex-wrap:wrap;align-items:center;gap:24px}.information-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:start;gap:clamp(40px,7vw,100px)}.information-section{margin-bottom:38px}.information-section:last-child{margin:0}.information-section h2,.product-photos h2{font-size:1.5rem;margin:0 0 18px;line-height:1.2}.information-section p,.information-section li{color:var(--body);font-size:.95rem}.information-section ul{padding-left:22px}.information-section li+li{margin-top:9px}.photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.photo-grid a{display:flex;aspect-ratio:1;border:1px solid var(--line);padding:12px;background:white}.photo-grid img{width:100%;height:100%;object-fit:contain}.photo-grid a:focus-visible{outline:3px solid var(--green-ink);outline-offset:3px}.product-contact{background:var(--mist)}.product-contact .button{margin-top:28px}@media(max-width:800px){.product-grid,.information-grid{grid-template-columns:1fr}.product-heading{order:-1}.main-image{max-width:600px;width:100%;margin-inline:auto}.information-section p,.information-section li{font-size:.9rem}.actions{gap:20px}.product-photos{margin-top:12px}}

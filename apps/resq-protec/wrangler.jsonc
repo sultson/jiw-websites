@@ -9,17 +9,29 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "html_handling": "drop-trailing-slash",
-    "run_worker_first": ["/api/*"]
+    "not_found_handling": "404-page",
+    // Pages go through the Worker (host redirects + noindex on concept hosts); static
+    // files are served straight from the asset store.
+    "run_worker_first": ["/*", "!/_astro/*", "!/images/*", "!/fonts/*", "!/downloads/*", "!/vendor/*", "!/favicon.svg", "!/favicon.png"]
   },
+  // Go-live on rescuewatercraft.eu: uncomment the two routes below, set LIVE to "true",
+  // `pnpm ship`, then add the zone redirect rule www -> apex (see README). The concept
+  // hosts then 301 onto the apex, path preserved.
   "routes": [
     { "pattern": "resqprotec.jouwidealewebsite.nl", "custom_domain": true },
     { "pattern": "rescuewatercraft.jouwidealewebsite.nl", "custom_domain": true }
+    // ,{ "pattern": "rescuewatercraft.eu", "custom_domain": true }
+    // ,{ "pattern": "www.rescuewatercraft.eu", "custom_domain": true }
   ],
   "r2_buckets": [{ "binding": "WEBSITE_ASSETS", "bucket_name": "jiw-large-website-assets" }, { "binding": "FORM_UPLOADS", "bucket_name": "jiw-form-uploads-prod" }],
-  "send_email": [{ "name": "LEAD_EMAIL", "allowed_sender_addresses": ["website@notify.rescuewatercraft.nl"] }],
+  "send_email": [{ "name": "LEAD_EMAIL", "allowed_sender_addresses": ["no-reply@notify.rescuewatercraft.eu"] }],
   "vars": {
     "SITE_ID": "resq-protec",
-    "LEAD_RECIPIENT": "info@rescuewatercraft.nl",
-    "LEAD_SENDER": "website@notify.rescuewatercraft.nl"
+    // Our own inbox until the client's address is confirmed. It is also the reply-to on
+    // the visitor's confirmation.
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_SENDER": "no-reply@notify.rescuewatercraft.eu",
+    "CANONICAL_HOST": "rescuewatercraft.eu",
+    "LIVE": "false"
   }
 }

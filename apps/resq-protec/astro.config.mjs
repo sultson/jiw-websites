@@ -1,9 +1,10 @@
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 
+// sitemap.xml, robots.txt and llms.txt are endpoints in src/pages, built on SITE in
+// src/data/content.ts; the sitemap integration could not pair pages whose slugs differ
+// per language.
 export default defineConfig({
-  site: 'https://resqprotec.jouwidealewebsite.nl',
-  integrations: [sitemap()],
-  build: { format: 'file' },
+  site: 'https://rescuewatercraft.eu',
+  build: { format: 'file', inlineStylesheets: 'auto' },
   compressHTML: true,
 });

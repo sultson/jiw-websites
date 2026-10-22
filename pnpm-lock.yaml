@@ -2661,9 +2661,6 @@ importers:
 
   apps/resq-protec:
     dependencies:
-      '@astrojs/sitemap':
-        specifier: ^3.7.0
-        version: 3.7.3
       '@jiw/cloudflare-forms':
         specifier: workspace:*
         version: link:../../packages/cloudflare-forms
@@ -2680,6 +2677,9 @@ importers:
       '@cloudflare/workers-types':
         specifier: ^4.20260424.1
         version: 4.20260424.1
+      sharp:
+        specifier: ^0.34.5
+        version: 0.34.5
       typescript:
         specifier: ~5.8.2
         version: 5.8.3
