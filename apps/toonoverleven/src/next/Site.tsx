@@ -133,9 +133,10 @@ function Header({ path }: { path: string }) {
                 ["Steun ons", "/over-ons/steun-ons"],
                 ["Onze sponsors", "/over-ons/onze-sponsors"],
                 ["Verantwoording", "/over-ons/organisatie-en-verantwoording"],
-                ["Nieuws", "/nieuws"],
               ],
             ],
+            // Its own item since 23-10-2026 (Ron); it was under Over Toon.
+            ["Nieuws", "/nieuws"],
           ] as [string, string, string[][]?][]).map(([label, href, children]) => !children ? (
             <a className="nav-trigger nav-link" key={label} href={href} aria-current={path === href ? "page" : undefined}>{label}</a>
           ) : (
