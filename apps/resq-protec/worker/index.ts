@@ -125,9 +125,23 @@ async function film(request:Request,env:Env,key:string):Promise<Response>{
 // the canonical host in the index. Once LIVE is "true" they 301 there, path preserved.
 // Redirects only on https: `wrangler dev` serves the route hosts over plain http and
 // would otherwise bounce local testing to production.
-function hostRedirect(url:URL,env:Env):Response|undefined{
+// Where a path lives now: the default language carries no prefix (/en/contact on an
+// English-default build is /contact), and Dutch was on `/` before English took over, so
+// an old Dutch-only address (/actueel) is its /nl/ page. Anything else stays as it is.
+async function currentPath(path:string,env:Env):Promise<string>{
+  const defaultLang=env.DEFAULT_LANG??'nl';
+  const unprefixed=path.match(new RegExp(`^/${defaultLang}(/.*)?$`));if(unprefixed)return unprefixed[1]||'/';
+  if(defaultLang==='nl'||/^\/(nl|de)(\/|$)/.test(path))return path;
+  const exists=async(p:string)=>(await env.ASSETS.fetch(new Request(`https://${env.CANONICAL_HOST}${p}`,{method:'HEAD'}))).ok;
+  return !(await exists(path))&&await exists(`/nl${path}`)?`/nl${path}`:path;
+}
+async function hostRedirect(url:URL,env:Env):Promise<Response|undefined>{
   if(url.protocol!=='https:'||url.hostname===env.CANONICAL_HOST)return undefined;
-  if(url.hostname===`www.${env.CANONICAL_HOST}`||env.LIVE==='true')return Response.redirect(`https://${env.CANONICAL_HOST}${url.pathname}${url.search}`,301);
+  // The IndexNow key answers on every host, so the concept hosts' old URLs can be
+  // submitted for a recrawl that finds the 301 (tools/indexnow.mjs --host).
+  if(/^\/[0-9a-f]{32}\.txt$/.test(url.pathname))return undefined;
+  // One hop straight to where the page lives now, so an old concept URL never chains.
+  if(url.hostname===`www.${env.CANONICAL_HOST}`||env.LIVE==='true')return Response.redirect(`https://${env.CANONICAL_HOST}${await currentPath(url.pathname,env)}${url.search}`,301);
   return undefined;
 }
 // rescuewatercraft.nl (and www) is the Dutch way in: every URL there 301s, in one hop,
@@ -156,16 +170,9 @@ export default{async fetch(request,env,ctx){
   if(url.pathname==='/api/social-feed'&&request.method==='GET')return socialFeed(request,env,ctx);
   const defaultLang=env.DEFAULT_LANG??'nl';
   const worker=formWorker(url.pathname,url.origin,defaultLang);if(worker)return worker.fetch!(request,env,ctx);
-  const redirect=hostRedirect(url,env);if(redirect)return redirect;
-  // The default language has no prefix: /en/contact on an English-default build is /contact.
-  const unprefixed=url.pathname.match(new RegExp(`^/${defaultLang}(/.*)?$`));
-  if(unprefixed)return Response.redirect(`${url.origin}${unprefixed[1]||'/'}${url.search}`,301);
+  const redirect=await hostRedirect(url,env);if(redirect)return redirect;
   const response=await env.ASSETS.fetch(request);
-  // Dutch was on `/` before English took over; an old Dutch-only address (/actueel,
-  // /opleidingen-en-trainingen) 301s to its /nl/ page instead of a 404.
-  if(response.status===404&&defaultLang!=='nl'&&!/^\/(nl|de)(\/|$)/.test(url.pathname)){
-    const dutch=new URL(`/nl${url.pathname}`,url);
-    if((await env.ASSETS.fetch(new Request(dutch,{method:'HEAD'}))).ok)return Response.redirect(`${dutch}${url.search}`,301);
-  }
+  // Only a miss can be an old address; a page that exists is served without a lookup.
+  if(response.status===404){const path=await currentPath(url.pathname,env);if(path!==url.pathname)return Response.redirect(`${url.origin}${path}${url.search}`,301);}
   return withNoindex(response,url,env);
 }} satisfies ExportedHandler<Env>;

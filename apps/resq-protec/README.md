@@ -93,6 +93,11 @@ path preserved. `www.rescuewatercraft.eu` always 301s to the apex.
   config**: point `LEAD_RECIPIENT` back at `hallo@jouwidealewebsite.nl` first.
 - IndexNow (Bing, which also feeds ChatGPT search and Copilot): `pnpm indexnow` after a
   deploy that adds or changes pages. The key is the `.txt` file in `public/`.
+  `node tools/indexnow.mjs --host <concept host>` resubmits a concept host's old URLs
+  (incl. the Dutch-on-`/` and `/en/` addresses) so Bing recrawls them and finds the 301;
+  done for both concept hosts on 23-10-2026. The key file is the one path the concept
+  hosts answer without redirecting. Every old address 301s in one hop to where the page
+  lives now.
 
 Still open:
 
