@@ -17,6 +17,7 @@ import type { Activiteit, Content } from "../content/types";
 import { bron } from "../content/image";
 import Formulier from "../components/Formulier";
 import Aanmelding, { type Moment } from "../components/Aanmelding";
+import Vraagbaak from "../components/Vraagbaak";
 import { eventPath, findEvent, momentLabel as moment } from "./events";
 import { interfaceCopy } from "./interface";
 import { THEMA_LABEL, DOELGROEP_LABEL } from "../agenda/model";
@@ -372,6 +373,8 @@ function Slot({
     }
     case "newsletter":
       return <Nieuwsbrief />;
+    case "vraagbaak":
+      return <section className="form-card"><Vraagbaak copy={copy} /></section>;
     case "video": {
       const video = edit?.videos?.find(v => v._key === attrs.videoKey);
       return <Video id={video?.video ?? attrs.video} title={video?.title ?? attrs.title} text={video?.text ?? attrs.text} ctx={ctx} />;

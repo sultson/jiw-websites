@@ -4512,6 +4512,119 @@
       {
         "tag": "section",
         "attrs": {
+          "class": "wrap audience-story one-story vraagbaak-block",
+          "id": "vraagbaak"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "story-copy"
+            },
+            "children": [
+              {
+                "tag": "section",
+                "attrs": {
+                  "class": "copy-section"
+                },
+                "children": [
+                  {
+                    "tag": "h2",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Vragen over je studie, werk of toekomst?",
+                        "key": "text-46"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "tag": "p",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "Kanker kan je plannen flink veranderen. Wat past nu bij je? Hoe combineer je studie of werk met herstel? En hoe pak je de draad weer op?",
+                            "key": "text-47"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "p",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "Bij Vraagbaak Koers en Kanker kun je individueel in gesprek met re-integratiecoach Irmgard van der Vegt. Je kunt je vragen en zorgen delen en samen kijken naar een volgende stap.",
+                            "key": "text-48"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "p",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "Voor jongvolwassenen van 18 tot 39 jaar. Ben je ouder? Ook dan ben je welkom.",
+                            "key": "text-49"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "p",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "Iedere tweede en vierde dinsdag van de maand, van 9.00 tot 10.00 uur. Op afspraak bij Toon over Leven in Zeewolde.",
+                            "key": "text-50"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "div",
+                        "attrs": {
+                          "class": "actions"
+                        },
+                        "children": [
+                          {
+                            "tag": "a",
+                            "attrs": {
+                              "class": "btn",
+                              "href": "/vraagbaak-koers-en-kanker"
+                            },
+                            "children": [
+                              {
+                                "text": "Bekijk de Vraagbaak en vraag een afspraak aan",
+                                "key": "text-51"
+                              },
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "arrow",
+                                  "aria-hidden": "true"
+                                },
+                                "children": [
+                                  "→"
+                                ]
+                              }
+                            ],
+                            "linkKey": "link-12"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "attrs": {
           "class": "wrap contact-layout route-contact",
           "id": "contact-jongeren"
         },
@@ -5306,6 +5419,36 @@
         "_key": "route-contact-2",
         "label": "Contactblok jongeren",
         "text": "Laat je naam en e-mailadres achter, dan nemen we contact met je op. Je hoeft niets uit te leggen."
+      },
+      {
+        "_key": "text-46",
+        "label": "Vragen over je studie, werk of toekomst?",
+        "text": "Vragen over je studie, werk of toekomst?"
+      },
+      {
+        "_key": "text-47",
+        "label": "Vragen over je studie, werk of toekomst?",
+        "text": "Kanker kan je plannen flink veranderen. Wat past nu bij je? Hoe combineer je studie of werk met herstel? En hoe pak je de draad weer op?"
+      },
+      {
+        "_key": "text-48",
+        "label": "Vragen over je studie, werk of toekomst?",
+        "text": "Bij Vraagbaak Koers en Kanker kun je individueel in gesprek met re-integratiecoach Irmgard van der Vegt. Je kunt je vragen en zorgen delen en samen kijken naar een volgende stap."
+      },
+      {
+        "_key": "text-49",
+        "label": "Vragen over je studie, werk of toekomst?",
+        "text": "Voor jongvolwassenen van 18 tot 39 jaar. Ben je ouder? Ook dan ben je welkom."
+      },
+      {
+        "_key": "text-50",
+        "label": "Vragen over je studie, werk of toekomst?",
+        "text": "Iedere tweede en vierde dinsdag van de maand, van 9.00 tot 10.00 uur. Op afspraak bij Toon over Leven in Zeewolde."
+      },
+      {
+        "_key": "text-51",
+        "label": "Vragen over je studie, werk of toekomst?",
+        "text": "Bekijk de Vraagbaak en vraag een afspraak aan"
       }
     ],
     "images": [
@@ -5394,6 +5537,11 @@
         "_key": "link-11",
         "label": "03Even naar buitenLoop mee, praat als je wilt en neem de tijd om anderen te leren kennen. De route is ongeveer drie kilometer.Bekijk de wandeling ↗",
         "href": "/activiteiten/wandelen"
+      },
+      {
+        "_key": "link-12",
+        "label": "Bekijk de Vraagbaak en vraag een afspraak aan→",
+        "href": "/vraagbaak-koers-en-kanker"
       }
     ],
     "videos": []
@@ -7931,6 +8079,985 @@
       }
     ],
     "description": "Zoek je andere jongeren, mensen in een vergelijkbare levensfase of andere naasten? Vertel ons waar je behoefte aan hebt. Dan kunnen we samen kijken wat er op dit moment mogelijk is",
+    "videos": []
+  },
+  {
+    "path": "/vraagbaak-koers-en-kanker",
+    "title": "Vraagbaak Koers en Kanker",
+    "description": "Hét vragenuur over jouw studie, werk en toekomst met of na kanker. Een individueel gesprek met re-integratieconsultant Irmgard van der Vegt bij Toon over Leven in Zeewolde.",
+    "tree": [
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "wrap crumb"
+        },
+        "children": [
+          {
+            "tag": "a",
+            "attrs": {
+              "class": "",
+              "href": "/"
+            },
+            "children": [
+              {
+                "text": "Home",
+                "key": "text-0"
+              }
+            ],
+            "linkKey": "link-0"
+          },
+          " ",
+          {
+            "tag": "span",
+            "attrs": {
+              "aria-hidden": "true"
+            },
+            "children": [
+              " / "
+            ]
+          },
+          {
+            "tag": "a",
+            "attrs": {
+              "class": "",
+              "href": "/jong-en-kanker"
+            },
+            "children": [
+              {
+                "text": "Jong en kanker",
+                "key": "text-1"
+              }
+            ],
+            "linkKey": "link-1"
+          },
+          " ",
+          {
+            "tag": "span",
+            "attrs": {
+              "aria-hidden": "true"
+            },
+            "children": [
+              " / "
+            ]
+          },
+          {
+            "text": " Vraagbaak Koers en Kanker",
+            "key": "text-2"
+          }
+        ]
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "hero-band reading-hero"
+        },
+        "children": [
+          {
+            "tag": "section",
+            "attrs": {
+              "class": "wrap plain-hero"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "hero-copy"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {
+                      "class": "eyebrow"
+                    },
+                    "children": [
+                      {
+                        "text": "Jong en kanker · studie en werk",
+                        "key": "text-3"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h1",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Vraagbaak Koers en Kanker",
+                        "key": "text-4"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "hero-story"
+                    },
+                    "children": [
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "hero-sub"
+                        },
+                        "children": [
+                          {
+                            "text": "Hét vragenuur over jouw studie, werk en toekomst met of na kanker.",
+                            "key": "text-5"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "p",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "Als je kanker hebt of hebt gehad, kunnen je plannen veranderen. Misschien twijfel je over je studie, wil je weer aan het werk of zoek je naar een richting die past bij hoe je leven er nu uitziet. Bij Vraagbaak Koers en Kanker is er ruimte voor jouw vragen.",
+                            "key": "text-6"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "actions"
+                    },
+                    "children": [
+                      {
+                        "tag": "a",
+                        "attrs": {
+                          "class": "btn",
+                          "href": "#afspraak"
+                        },
+                        "children": [
+                          {
+                            "text": "Afspraak aanvragen",
+                            "key": "text-7"
+                          },
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "arrow",
+                              "aria-hidden": "true"
+                            },
+                            "children": [
+                              "→"
+                            ]
+                          }
+                        ],
+                        "linkKey": "link-2"
+                      },
+                      {
+                        "tag": "a",
+                        "attrs": {
+                          "class": "textlink",
+                          "href": "#met-welke-vragen-kun-je-komen"
+                        },
+                        "children": [
+                          {
+                            "text": "Met welke vragen kun je komen?",
+                            "key": "text-8"
+                          },
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "arrow",
+                              "aria-hidden": "true"
+                            },
+                            "children": [
+                              "→"
+                            ]
+                          }
+                        ],
+                        "linkKey": "link-3"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "wrap body-layout"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "content reading-content"
+            },
+            "children": [
+              {
+                "tag": "section",
+                "attrs": {
+                  "class": "copy-section",
+                  "id": "wat-kun-je-verwachten"
+                },
+                "children": [
+                  {
+                    "tag": "h2",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Wat kun je verwachten?",
+                        "key": "text-9"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Tijdens een individueel gesprek kun je met Irmgard van der Vegt, re-integratieconsultant en netwerkcoördinator Onco in Balans, praten over studie en werk tijdens of na kanker.",
+                        "key": "text-10"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Je kunt je zorgen delen, vragen stellen en samen kijken naar wat op dit moment bij je past. Je krijgt tips en praktische handvatten om keuzes te maken tijdens je behandeling, herstel of terugkeer naar werk of studie.",
+                        "key": "text-11"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "section",
+                "attrs": {
+                  "class": "copy-section",
+                  "id": "met-welke-vragen-kun-je-komen"
+                },
+                "children": [
+                  {
+                    "tag": "h2",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Met welke vragen kun je komen?",
+                        "key": "text-12"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Je kunt bijvoorbeeld vragen hebben over:",
+                        "key": "text-13"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "tag": "li",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "strong",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "text": "Studie en loopbaan:",
+                                "key": "text-14"
+                              }
+                            ]
+                          },
+                          " ",
+                          {
+                            "text": "Welke opleiding of welk werk past bij mij? Hoe maak ik keuzes als mijn toekomst onzeker voelt?",
+                            "key": "text-15"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "strong",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "text": "Doorgaan of weer beginnen:",
+                                "key": "text-16"
+                              }
+                            ]
+                          },
+                          " ",
+                          {
+                            "text": "Hoe combineer ik studie of werk met behandelingen, herstel en mijn sociale leven? Hoe bouw ik weer rustig op?",
+                            "key": "text-17"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "strong",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "text": "Energie en concentratie:",
+                                "key": "text-18"
+                              }
+                            ]
+                          },
+                          " ",
+                          {
+                            "text": "Hoe ga ik om met vermoeidheid, geheugenproblemen of gevoeligheid voor prikkels?",
+                            "key": "text-19"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "strong",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "text": "Afspraken en verwachtingen:",
+                                "key": "text-20"
+                              }
+                            ]
+                          },
+                          " ",
+                          {
+                            "text": "Wat bespreek ik met mijn werkgever of opleiding? Hoe leg ik uit wat wel en niet lukt?",
+                            "key": "text-21"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "strong",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "text": "Begeleiding:",
+                                "key": "text-22"
+                              }
+                            ]
+                          },
+                          " ",
+                          {
+                            "text": "Wat doet de bedrijfsarts en waar kan ik terecht voor verdere ondersteuning?",
+                            "key": "text-23"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "tag": "strong",
+                            "attrs": {},
+                            "children": [
+                              {
+                                "text": "Inkomen en regelingen:",
+                                "key": "text-24"
+                              }
+                            ]
+                          },
+                          " ",
+                          {
+                            "text": "Wat als werken voorlopig niet lukt of ik mijn baan ben kwijtgeraakt? Welke vragen spelen er rond een uitkering, re-integratie en wet- en regelgeving?",
+                            "key": "text-25"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Ook als je nog niet precies weet wat je vraag is, ben je welkom.",
+                        "key": "text-26"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "section",
+                "attrs": {
+                  "class": "copy-section",
+                  "id": "voor-wie"
+                },
+                "children": [
+                  {
+                    "tag": "h2",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Voor wie?",
+                        "key": "text-27"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Vraagbaak Koers en Kanker is opgezet voor jongvolwassenen van 18 tot 39 jaar, ook wel AYA’s genoemd, die leven met of na kanker.",
+                        "key": "text-28"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Ben je ouder en heb je vragen over studie, werk of je toekomst? Ook dan ben je welkom.",
+                        "key": "text-29"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Je kunt komen tijdens je behandeling, in de periode van herstel of wanneer je later opnieuw tegen vragen aanloopt.",
+                        "key": "text-30"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "section",
+                "attrs": {
+                  "class": "copy-section",
+                  "id": "meer-ondersteuning-nodig"
+                },
+                "children": [
+                  {
+                    "tag": "h2",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Meer ondersteuning nodig?",
+                        "key": "text-31"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Heb je na het gesprek nog vragen? Dan mag je gerust nog een keer komen. Samen kunnen we ook bekijken welke verdere ondersteuning bij je past en of daarvoor een vergoeding mogelijk is.",
+                        "key": "text-32"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attrs": {
+                      "class": "small"
+                    },
+                    "children": [
+                      {
+                        "text": "Deze activiteit wordt mede mogelijk gemaakt met subsidie van het Oranje Fonds.",
+                        "key": "text-33"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "aside",
+            "attrs": {
+              "class": "side-note",
+              "aria-label": "Praktisch"
+            },
+            "children": [
+              {
+                "tag": "h3",
+                "attrs": {},
+                "children": [
+                  {
+                    "text": "Praktisch",
+                    "key": "text-34"
+                  }
+                ]
+              },
+              {
+                "tag": "ul",
+                "attrs": {
+                  "class": "facts"
+                },
+                "children": [
+                  {
+                    "tag": "li",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "tag": "strong",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "Wanneer:",
+                            "key": "text-35"
+                          }
+                        ]
+                      },
+                      " ",
+                      {
+                        "text": "iedere tweede en vierde dinsdag van de maand",
+                        "key": "text-36"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "li",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "tag": "strong",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "Tijd:",
+                            "key": "text-37"
+                          }
+                        ]
+                      },
+                      " ",
+                      {
+                        "text": "van 9.00 tot 10.00 uur, op afspraak",
+                        "key": "text-38"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "li",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "tag": "strong",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "Waar:",
+                            "key": "text-39"
+                          }
+                        ]
+                      },
+                      " ",
+                      {
+                        "text": "Stichting Toon over Leven, Mazerhard 37, 3891 BR Zeewolde",
+                        "key": "text-40"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "li",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "tag": "strong",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "Gesprek met:",
+                            "key": "text-41"
+                          }
+                        ]
+                      },
+                      " ",
+                      {
+                        "text": "Irmgard van der Vegt",
+                        "key": "text-42"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "a",
+                "attrs": {
+                  "class": "btn",
+                  "href": "#afspraak"
+                },
+                "children": [
+                  {
+                    "text": "Afspraak aanvragen",
+                    "key": "text-43"
+                  },
+                  {
+                    "tag": "span",
+                    "attrs": {
+                      "class": "arrow",
+                      "aria-hidden": "true"
+                    },
+                    "children": [
+                      "→"
+                    ]
+                  }
+                ],
+                "linkKey": "link-4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "attrs": {
+          "class": "wrap contact-layout",
+          "id": "afspraak"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "contact-copy"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attrs": {
+                  "class": "eyebrow"
+                },
+                "children": [
+                  {
+                    "text": "Praktisch en aanmelden",
+                    "key": "text-44"
+                  }
+                ]
+              },
+              {
+                "tag": "h2",
+                "attrs": {},
+                "children": [
+                  {
+                    "text": "Afspraak aanvragen",
+                    "key": "text-45"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attrs": {},
+                "children": [
+                  {
+                    "text": "Wil je een afspraak maken? Vul het aanmeldformulier in en geef aan welke datum je voorkeur heeft. We nemen contact met je op om je afspraak te bevestigen.",
+                    "key": "text-46"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "site-slot",
+            "attrs": {
+              "name": "vraagbaak"
+            },
+            "children": []
+          }
+        ]
+      },
+      {
+        "tag": "site-slot",
+        "attrs": {
+          "name": "welcome"
+        },
+        "children": []
+      }
+    ],
+    "texts": [
+      {
+        "_key": "text-0",
+        "label": "Vraagbaak Koers en Kanker",
+        "text": "Home"
+      },
+      {
+        "_key": "text-1",
+        "label": "Vraagbaak Koers en Kanker",
+        "text": "Jong en kanker"
+      },
+      {
+        "_key": "text-2",
+        "label": "Vraagbaak Koers en Kanker",
+        "text": " Vraagbaak Koers en Kanker"
+      },
+      {
+        "_key": "text-3",
+        "label": "Vraagbaak Koers en Kanker",
+        "text": "Jong en kanker · studie en werk"
+      },
+      {
+        "_key": "text-4",
+        "label": "Vraagbaak Koers en Kanker",
+        "text": "Vraagbaak Koers en Kanker"
+      },
+      {
+        "_key": "text-5",
+        "label": "Vraagbaak Koers en Kanker",
+        "text": "Hét vragenuur over jouw studie, werk en toekomst met of na kanker."
+      },
+      {
+        "_key": "text-6",
+        "label": "Vraagbaak Koers en Kanker",
+        "text": "Als je kanker hebt of hebt gehad, kunnen je plannen veranderen. Misschien twijfel je over je studie, wil je weer aan het werk of zoek je naar een richting die past bij hoe je leven er nu uitziet. Bij Vraagbaak Koers en Kanker is er ruimte voor jouw vragen."
+      },
+      {
+        "_key": "text-7",
+        "label": "Vraagbaak Koers en Kanker",
+        "text": "Afspraak aanvragen"
+      },
+      {
+        "_key": "text-8",
+        "label": "Vraagbaak Koers en Kanker",
+        "text": "Met welke vragen kun je komen?"
+      },
+      {
+        "_key": "text-9",
+        "label": "Wat kun je verwachten?",
+        "text": "Wat kun je verwachten?"
+      },
+      {
+        "_key": "text-10",
+        "label": "Wat kun je verwachten?",
+        "text": "Tijdens een individueel gesprek kun je met Irmgard van der Vegt, re-integratieconsultant en netwerkcoördinator Onco in Balans, praten over studie en werk tijdens of na kanker."
+      },
+      {
+        "_key": "text-11",
+        "label": "Wat kun je verwachten?",
+        "text": "Je kunt je zorgen delen, vragen stellen en samen kijken naar wat op dit moment bij je past. Je krijgt tips en praktische handvatten om keuzes te maken tijdens je behandeling, herstel of terugkeer naar werk of studie."
+      },
+      {
+        "_key": "text-12",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Met welke vragen kun je komen?"
+      },
+      {
+        "_key": "text-13",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Je kunt bijvoorbeeld vragen hebben over:"
+      },
+      {
+        "_key": "text-14",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Studie en loopbaan:"
+      },
+      {
+        "_key": "text-15",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Welke opleiding of welk werk past bij mij? Hoe maak ik keuzes als mijn toekomst onzeker voelt?"
+      },
+      {
+        "_key": "text-16",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Doorgaan of weer beginnen:"
+      },
+      {
+        "_key": "text-17",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Hoe combineer ik studie of werk met behandelingen, herstel en mijn sociale leven? Hoe bouw ik weer rustig op?"
+      },
+      {
+        "_key": "text-18",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Energie en concentratie:"
+      },
+      {
+        "_key": "text-19",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Hoe ga ik om met vermoeidheid, geheugenproblemen of gevoeligheid voor prikkels?"
+      },
+      {
+        "_key": "text-20",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Afspraken en verwachtingen:"
+      },
+      {
+        "_key": "text-21",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Wat bespreek ik met mijn werkgever of opleiding? Hoe leg ik uit wat wel en niet lukt?"
+      },
+      {
+        "_key": "text-22",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Begeleiding:"
+      },
+      {
+        "_key": "text-23",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Wat doet de bedrijfsarts en waar kan ik terecht voor verdere ondersteuning?"
+      },
+      {
+        "_key": "text-24",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Inkomen en regelingen:"
+      },
+      {
+        "_key": "text-25",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Wat als werken voorlopig niet lukt of ik mijn baan ben kwijtgeraakt? Welke vragen spelen er rond een uitkering, re-integratie en wet- en regelgeving?"
+      },
+      {
+        "_key": "text-26",
+        "label": "Met welke vragen kun je komen?",
+        "text": "Ook als je nog niet precies weet wat je vraag is, ben je welkom."
+      },
+      {
+        "_key": "text-27",
+        "label": "Voor wie?",
+        "text": "Voor wie?"
+      },
+      {
+        "_key": "text-28",
+        "label": "Voor wie?",
+        "text": "Vraagbaak Koers en Kanker is opgezet voor jongvolwassenen van 18 tot 39 jaar, ook wel AYA’s genoemd, die leven met of na kanker."
+      },
+      {
+        "_key": "text-29",
+        "label": "Voor wie?",
+        "text": "Ben je ouder en heb je vragen over studie, werk of je toekomst? Ook dan ben je welkom."
+      },
+      {
+        "_key": "text-30",
+        "label": "Voor wie?",
+        "text": "Je kunt komen tijdens je behandeling, in de periode van herstel of wanneer je later opnieuw tegen vragen aanloopt."
+      },
+      {
+        "_key": "text-31",
+        "label": "Meer ondersteuning nodig?",
+        "text": "Meer ondersteuning nodig?"
+      },
+      {
+        "_key": "text-32",
+        "label": "Meer ondersteuning nodig?",
+        "text": "Heb je na het gesprek nog vragen? Dan mag je gerust nog een keer komen. Samen kunnen we ook bekijken welke verdere ondersteuning bij je past en of daarvoor een vergoeding mogelijk is."
+      },
+      {
+        "_key": "text-33",
+        "label": "Meer ondersteuning nodig?",
+        "text": "Deze activiteit wordt mede mogelijk gemaakt met subsidie van het Oranje Fonds."
+      },
+      {
+        "_key": "text-34",
+        "label": "Praktisch",
+        "text": "Praktisch"
+      },
+      {
+        "_key": "text-35",
+        "label": "Praktisch",
+        "text": "Wanneer:"
+      },
+      {
+        "_key": "text-36",
+        "label": "Praktisch",
+        "text": "iedere tweede en vierde dinsdag van de maand"
+      },
+      {
+        "_key": "text-37",
+        "label": "Praktisch",
+        "text": "Tijd:"
+      },
+      {
+        "_key": "text-38",
+        "label": "Praktisch",
+        "text": "van 9.00 tot 10.00 uur, op afspraak"
+      },
+      {
+        "_key": "text-39",
+        "label": "Praktisch",
+        "text": "Waar:"
+      },
+      {
+        "_key": "text-40",
+        "label": "Praktisch",
+        "text": "Stichting Toon over Leven, Mazerhard 37, 3891 BR Zeewolde"
+      },
+      {
+        "_key": "text-41",
+        "label": "Praktisch",
+        "text": "Gesprek met:"
+      },
+      {
+        "_key": "text-42",
+        "label": "Praktisch",
+        "text": "Irmgard van der Vegt"
+      },
+      {
+        "_key": "text-43",
+        "label": "Praktisch",
+        "text": "Afspraak aanvragen"
+      },
+      {
+        "_key": "text-44",
+        "label": "Praktisch",
+        "text": "Praktisch en aanmelden"
+      },
+      {
+        "_key": "text-45",
+        "label": "Afspraak aanvragen",
+        "text": "Afspraak aanvragen"
+      },
+      {
+        "_key": "text-46",
+        "label": "Afspraak aanvragen",
+        "text": "Wil je een afspraak maken? Vul het aanmeldformulier in en geef aan welke datum je voorkeur heeft. We nemen contact met je op om je afspraak te bevestigen."
+      }
+    ],
+    "images": [],
+    "links": [
+      {
+        "_key": "link-0",
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "_key": "link-1",
+        "label": "Jong en kanker",
+        "href": "/jong-en-kanker"
+      },
+      {
+        "_key": "link-2",
+        "label": "Afspraak aanvragen→",
+        "href": "#afspraak"
+      },
+      {
+        "_key": "link-3",
+        "label": "Met welke vragen kun je komen?→",
+        "href": "#met-welke-vragen-kun-je-komen"
+      },
+      {
+        "_key": "link-4",
+        "label": "Afspraak aanvragen→",
+        "href": "#afspraak"
+      }
+    ],
     "videos": []
   },
   {
@@ -12627,6 +13754,70 @@
                     "linkKey": "link-4"
                   }
                 ]
+              },
+              {
+                "tag": "section",
+                "attrs": {
+                  "class": "option"
+                },
+                "children": [
+                  {
+                    "tag": "span",
+                    "attrs": {
+                      "class": "eyebrow"
+                    },
+                    "children": [
+                      {
+                        "text": "Verdieping · 05",
+                        "key": "text-22"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Vragen over werk of studie?",
+                        "key": "text-23"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "text": "Bij Vraagbaak Koers en Kanker praat je één op één met een re-integratieconsultant over studie, werk en je toekomst met of na kanker.",
+                        "key": "text-24"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "a",
+                    "attrs": {
+                      "class": "textlink",
+                      "href": "/vraagbaak-koers-en-kanker"
+                    },
+                    "children": [
+                      {
+                        "text": "Vraagbaak Koers en Kanker",
+                        "key": "text-25"
+                      },
+                      {
+                        "tag": "span",
+                        "attrs": {
+                          "class": "arrow",
+                          "aria-hidden": "true"
+                        },
+                        "children": [
+                          "→"
+                        ]
+                      }
+                    ],
+                    "linkKey": "link-5"
+                  }
+                ]
               }
             ]
           }
@@ -12750,6 +13941,26 @@
         "_key": "text-21",
         "label": "Samenwerken met zorgprofessionals",
         "text": "Vind hulp bij kanker"
+      },
+      {
+        "_key": "text-22",
+        "label": "Vragen over werk of studie?",
+        "text": "Verdieping · 05"
+      },
+      {
+        "_key": "text-23",
+        "label": "Vragen over werk of studie?",
+        "text": "Vragen over werk of studie?"
+      },
+      {
+        "_key": "text-24",
+        "label": "Vragen over werk of studie?",
+        "text": "Bij Vraagbaak Koers en Kanker praat je één op één met een re-integratieconsultant over studie, werk en je toekomst met of na kanker."
+      },
+      {
+        "_key": "text-25",
+        "label": "Vragen over werk of studie?",
+        "text": "Vraagbaak Koers en Kanker"
       }
     ],
     "images": [],
@@ -12778,6 +13989,11 @@
         "_key": "link-4",
         "label": "Vind hulp bij kanker→",
         "href": "https://www.kanker.nl/hulp-en-ondersteuning/vind-hulp-bij-kanker"
+      },
+      {
+        "_key": "link-5",
+        "label": "Vraagbaak Koers en Kanker→",
+        "href": "/vraagbaak-koers-en-kanker"
       }
     ],
     "description": "Kanker kan veel vragen oproepen over je gevoelens, energie, werk, relaties en het dagelijks leven. In alle informatie over ziekte en zorg raak je soms het overzicht kwijt. Hier vin",

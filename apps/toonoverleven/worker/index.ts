@@ -104,6 +104,19 @@ const questionWorker = createFormWorker({
   requireFirstName:true, requireLastName:false, requireEmail:true, honeypotField:'company',
 });
 
+/** Een afspraak bij de Vraagbaak Koers en Kanker. Het huis bevestigt de afspraak zelf. */
+const vraagbaakWorker = createFormWorker({
+  formPath: '/api/forms/vraagbaak', locale: 'nl', siteName: 'Toon over Leven',
+  ownerName: 'het inloophuis', senderName: 'Toon over Leven', subjectPrefix: 'Vraagbaak Koers en Kanker',
+  subjectFields: ['voorkeursdatum'], messageField: 'bericht',
+  requiredFields: [{ name: 'voorkeursdatum', label: 'Voorkeursdatum', message: 'Kies een voorkeursdatum.' }],
+  emailFields: [{name:'voorkeursdatum',label:'Voorkeursdatum'}, {name:'telefoon',label:'Telefoonnummer'}],
+  leadEmail: {heading:'Nieuwe aanvraag voor de Vraagbaak Koers en Kanker', messageHeading:'Waarover wil je sparren?', nameLabels: {firstName:'Naam', lastName:'Achternaam', email:'E-mailadres'}, includeAttachments:false},
+  confirmationCopy: {subject:'Je aanvraag voor de Vraagbaak Koers en Kanker', openingSentence:'Bedankt voor je aanvraag voor de Vraagbaak Koers en Kanker. We nemen contact met je op om je afspraak te bevestigen.', detailsHeading:'Je aanvraag', messageHeading:'Waarover wil je sparren?'},
+  confirmationFollowUpSentence: 'Liever even overleggen? Bel ons op 036 845 02 65 of 06 38 52 90 60, of mail naar info@toonoverleven.nl.',
+  requireFirstName:true, requireLastName:false, requireEmail:true, honeypotField:'company',
+});
+
 /** Aanmelden voor de nieuwsbrief. Het huis houdt de lijst zelf bij, dus het is een bericht aan het huis. */
 const newsletterWorker = createFormWorker({
   formPath: '/api/forms/nieuwsbrief', locale: 'nl', siteName: 'Toon over Leven',
@@ -503,6 +516,9 @@ export default {
     }
     if (url.pathname === '/api/forms/vraag') {
       return questionWorker.fetch!(request, env, ctx);
+    }
+    if (url.pathname === '/api/forms/vraagbaak') {
+      return vraagbaakWorker.fetch!(request, env, ctx);
     }
     if (url.pathname === '/api/forms/nieuwsbrief') {
       return newsletterWorker.fetch!(request, env, ctx);

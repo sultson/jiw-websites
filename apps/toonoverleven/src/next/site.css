@@ -333,3 +333,8 @@
 @media (max-width: 699px) { .approved-site .site-nav.is-open { top: 72px; max-height: calc(100dvh - 72px); } }
 .approved-site .signup-form .contact-fields input { padding: 10px 14px; border: 1px solid var(--line); font: inherit; }
 @media (max-width: 699px) { .approved-site .signup-layout .form-card { order: -1; } }
+
+/* Vraagbaak Koers en Kanker (Marcel, 19-10-2026). */
+.knowledge-choices .options > .option:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.vraagbaak-block .actions { margin-top: 8px; }
+.side-note .facts { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 8px; }
