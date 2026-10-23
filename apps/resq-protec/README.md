@@ -73,25 +73,28 @@ the subject. A failed confirmation is only logged: read `wrangler tail` for
 site with `X-Robots-Tag: noindex`. Once `LIVE` is `"true"`, they 301 to the apex with the
 path preserved. `www.rescuewatercraft.eu` always 301s to the apex.
 
-## Go-live on rescuewatercraft.eu
+## Live on rescuewatercraft.eu (since 23-10-2026)
 
-The zone `rescuewatercraft.eu` is in our Cloudflare account and the registry delegates to
-it (verified 22-10-2026). Remaining steps:
+- Apex canonical. `www` is attached as a custom domain and 301s onto the apex twice
+  over: a zone redirect rule (`http_request_dynamic_redirect`) and the Worker. The
+  concept hosts stay attached and 301 onto the apex, path preserved (`LIVE` = `"true"`).
+- Zone: Always Use HTTPS on, minimum TLS 1.2, bot fight mode / AI-crawler blocking /
+  managed robots.txt all off, so Googlebot, Bingbot, GPTBot, OAI-SearchBot, ClaudeBot
+  and PerplexityBot all get the pages (verified: every sitemap URL 200, self-canonical,
+  no noindex, for each of them). Hostnet's parking `A 91.184.0.200` was deleted.
+- Forms go to `info@rescuewatercraft.nl`, the client's own mailbox and the reply-to on
+  the visitor's confirmation. **Never send a test submission against the deployed
+  config**: point `LEAD_RECIPIENT` back at `hallo@jouwidealewebsite.nl` first.
+- IndexNow (Bing, which also feeds ChatGPT search and Copilot): `pnpm indexnow` after a
+  deploy that adds or changes pages. The key is the `.txt` file in `public/`.
 
-1. Dashboard → DNS for the zone: delete the apex `A 91.184.0.200` record (Hostnet's old
-   server). A Workers custom domain will not attach to a hostname that already has a
-   record. Leave the `notify` / `cf-bounce` records alone: they carry the form mail.
-2. `wrangler.jsonc`: uncomment the two `rescuewatercraft.eu` routes, set `LIVE` to
-   `"true"`, and set `DEFAULT_LANG` to the language that goes on `/` (see above). Then
-   `pnpm --filter @jiw/resq-protec ship`.
-3. Zone redirect rule `www` → apex (301), like the other client domains (Rulesets API,
-   `http_request_dynamic_redirect`; no `kind` field on the PUT). The Worker also does
-   it, so this is belt and braces.
-4. Zone setting "Always Use HTTPS" on: a new zone serves `http://` as a plain 200.
-5. Set `LEAD_RECIPIENT` to the client's mailbox once they confirm which one.
-   **Never send a test submission after that.**
-6. Search Console: add the domain property and submit `/sitemap.xml`.
-7. Apex mail: the Cloudflare zone has no MX, SPF or DMARC on the apex. Hostnet used to
-   publish `v=spf1 … -all` and `p=reject`, and those disappear as resolver caches
-   expire. If the client does not send mail from `@rescuewatercraft.eu`, add a null MX,
-   `v=spf1 -all` and `_dmarc` `v=DMARC1; p=reject`.
+Still open:
+
+1. Search Console: add the domain property (TXT record on this zone) and submit
+   `https://rescuewatercraft.eu/sitemap.xml`. Same in Bing Webmaster Tools (it can
+   import from Search Console).
+2. Apex mail: the zone has no MX, SPF or DMARC on the apex, so nothing stops a third
+   party spoofing mail from `@rescuewatercraft.eu`. The client mails from
+   `@rescuewatercraft.nl`; if they confirm the `.eu` apex never sends, add a null MX,
+   `v=spf1 -all` and `_dmarc` `v=DMARC1; p=reject`. Leave the `notify` / `cf-bounce`
+   records alone: they carry the form mail.

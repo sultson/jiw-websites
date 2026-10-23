@@ -138,14 +138,17 @@ apps/         client sites (almost all a Vite + React 19 + TS 5.8 + Tailwind v4 
                           `GardenStore` block and a disclaimer runs on every page. dev port
                           3065. See its NOTITIES.md + SEO.md.
   resq-protec/            Rescue Watercraft. Astro, static, nl/en/de (de added 22-10-2026),
-                          60 pages. DEFAULT_LANG in wrangler.jsonc picks the language on /
+                          60 pages. LIVE on rescuewatercraft.eu since 23-10-2026 (apex
+                          canonical, www + concept hosts 301 there). Forms go to
+                          info@rescuewatercraft.nl, the client's own mailbox, so NEVER
+                          send a test submission against the deployed config.
+                          DEFAULT_LANG in wrangler.jsonc picks the language on /
                           (en since 23-10-2026, was nl) and the
                           others go under /<lang>; pages are src/routes/* mounted per
-                          language by an integration in astro.config.mjs, not page files. Canonicals, hreflang, schema.org
-                          and the sitemap already point at rescuewatercraft.eu; the concept
-                          hosts serve noindex until `LIVE` flips to "true" in wrangler.jsonc,
-                          then 301 there. `pnpm build` runs tools/check-seo.mjs (prerender
-                          gate, 9 forms). Go-live steps in its README. dev port 3014.
+                          language by an integration in astro.config.mjs, not page files.
+                          `pnpm build` runs tools/check-seo.mjs (prerender gate, 9 forms);
+                          `pnpm indexnow` after page changes. Open items (Search Console,
+                          apex mail records) in its README. dev port 3014.
   my-kim-nails/        dev port 3000 — frontend-only
   nail-it-rosmalen/    dev port 3002 — frontend-only
   sgv-nails/           placeholder (INFO.md only, not yet scaffolded)

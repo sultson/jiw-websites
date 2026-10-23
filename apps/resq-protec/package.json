@@ -12,7 +12,8 @@
     "clean": "rm -rf dist .astro",
     "lint": "astro check && tsc --noEmit -p tsconfig.worker.json",
     "gen-mail-logo": "node tools/gen-mail-logo.mjs",
-    "check": "node tools/check-seo.mjs"
+    "check": "node tools/check-seo.mjs",
+    "indexnow": "node tools/indexnow.mjs"
   },
   "dependencies": {
     "@jiw/cloudflare-forms": "workspace:*",
