@@ -10,7 +10,8 @@ import { useRouter } from 'sanity/router';
  * en per onderdeel waar het op de site terechtkomt.
  */
 
-const SITE = 'https://toonoverleven.jouwidealewebsite.nl';
+// The site this Studio is served from: the concept address today, toonoverleven.nl after the move.
+const SITE = typeof window === 'undefined' ? 'https://toonoverleven.nl' : window.location.origin;
 
 const kaarten = [
   {

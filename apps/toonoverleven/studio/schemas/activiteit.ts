@@ -33,15 +33,10 @@ export const activiteit = defineType({
   fieldsets: [
     // Van en tot naast elkaar: het is één gegeven en het leest als één regel.
     { name: 'tijd', title: 'Hoe laat', options: { columns: 2 } },
+    // What is rarely needed sits folded away at the bottom, so the form reads as one fills it in.
+    { name: 'meer', title: 'Meer instellingen', options: { collapsible: true, collapsed: true } },
   ],
   fields: [
-    defineField({name:'archief',title:'Archiveren',type:'boolean',description:'Een gearchiveerd moment verschijnt niet in de agenda op de site.',initialValue:false}),
-    defineField({name:'slug',title:'Adres van dit moment',type:'slug',options:{source:'titel'},description:'Een uniek adres voor dit agendamoment.'}),
-    defineField({name:'activiteitType',title:'Vaste activiteit',type:'string',description:'Koppelt dit moment aan de bijbehorende activiteit op de bezoekroutes.',options:{list:[{title:'Inloopochtend',value:'inloopochtend'},{title:'Inloop / Open atelier',value:'inloop-met-activiteit'},{title:'Wandelen',value:'wandelen'},{title:'Zenmeditatie',value:'zenmeditatie'},{title:'Mandala stippen',value:'mandala-stippen'},{title:'Encaustic art',value:'encaustic-art'},{title:'Junk journaling',value:'junk-journaling'},{title:'Mixed media',value:'mixed-media'},{title:'Voetreflexmassage',value:'voetreflexmassage'},{title:'Sponsordiner',value:'sponsordiner'}]}}),
-    defineField({name:'categorieen',title:'Extra categorieën',type:'array',of:[{type:'string'}],options:{list:['Inloop','Creatief','Bewegen','Wellness','Overig']}}),
-    defineField({name:'volgeboekt',title:'Volgeboekt',type:'boolean',initialValue:false}),
-    defineField({name:'aanmeldEmail',title:'E-mailadres voor aanmelding',type:'string',description:'Optioneel: opent een e-mail in plaats van het formulier op de site. Laat beide aanmeldvelden leeg voor het eigen aanmeldformulier.'}),
-    defineField({name:'aanmeldUrl',title:'Externe aanmeldpagina',type:'url',description:'Heeft voorrang op het e-mailadres. Zonder externe bestemming gebruikt de site het eigen aanmeldformulier.',validation:r=>r.uri({scheme:['https']})}),
 
     defineField({
       name: 'soort',
@@ -63,105 +58,6 @@ export const activiteit = defineType({
       description: 'Bijvoorbeeld "Inloopochtend" of "Workshop encaustic art".',
       validation: (rule) => rule.required().error('Zonder naam is er niets te zien in de agenda.'),
     }),
-    defineField({
-      name: 'categorie',
-      title: 'Soort activiteit',
-      type: 'string',
-      initialValue: 'Inloop',
-      description:
-        'Bepaalt het sfeerbeeld zonder eigen foto. Categorieën bepalen de labels en knoppen in de agenda: Inloop heet daar Ontmoeten, Wellness heet Ontspannen.',
-      hidden: isMededeling,
-      options: {
-        list: [
-          { title: 'Inloop', value: 'Inloop' },
-          { title: 'Creatief', value: 'Creatief' },
-          { title: 'Bewegen', value: 'Bewegen' },
-          { title: 'Wellness', value: 'Wellness' },
-          { title: 'Overig', value: 'Overig' },
-        ],
-      },
-    }),
-    defineField({
-      name: 'doelgroepen',
-      title: 'Voor wie is het',
-      type: 'array',
-      of: [{ type: 'string' }],
-      initialValue: ['iedereen'],
-      description:
-        'Bepaalt het doelgroepfilter in de agenda. Specifiek voor jongeren of 35 tot 50 verschijnt ook op Jong & kanker; specifiek voor naasten ook op Voor naasten. Kies Iedereen voor algemeen aanbod.',
-      hidden: isMededeling,
-      options: {
-        layout: 'grid',
-        list: [
-          { title: 'Iedereen', value: 'iedereen' },
-          { title: 'Jongeren en jongvolwassenen (15 tot 35)', value: 'jongeren-15-35' },
-          { title: 'Mensen van 35 tot 50', value: '35-50' },
-          { title: 'Naasten: partner, kind, familie of vriend', value: 'naasten' },
-        ],
-      },
-      validation: (rule) => rule.unique(),
-    }),
-    defineField({
-      name: 'themas',
-      title: 'Thema\'s',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description:
-        'Bepaalt onder welke themafilters deze activiteit in de agenda verschijnt. Meerdere thema\'s zijn mogelijk.',
-      hidden: isMededeling,
-      options: {
-        layout: 'grid',
-        list: [
-          { title: 'Ontmoeten', value: 'ontmoeten' },
-          { title: 'Bewegen & ontspannen', value: 'bewegen-en-ontspannen' },
-          { title: 'Werk & studie', value: 'werk-en-studie' },
-          { title: 'Herstel & energie', value: 'herstel-en-energie' },
-          { title: 'Relaties & gezin', value: 'relaties-en-gezin' },
-          { title: 'Informatie & inspiratie', value: 'informatie-en-inspiratie' },
-        ],
-      },
-      // Een waarschuwing en geen fout: zonder thema kan het gewoon in de agenda
-      // staan, alleen niet op een themapagina. Dat mag de invuller weten zonder
-      // dat het opslaan erdoor tegengehouden wordt.
-      validation: (rule) =>
-        rule
-          .unique()
-          .custom((waarde) =>
-            Array.isArray(waarde) && waarde.length
-              ? true
-              : 'Zonder thema is dit zichtbaar bij Alle thema’s, maar niet bij een specifiek themafilter.',
-          )
-          .warning(),
-    }),
-
-    defineField({
-      name: 'omschrijving',
-      title: 'Waar gaat het over',
-      type: 'text',
-      rows: 4,
-      description:
-        'Een paar zinnen, zoals u ze ook op Facebook zou zetten. Dit staat op de kaart in de agenda.',
-    }),
-    defineField({
-      name: 'afbeelding',
-      title: 'Foto',
-      type: 'image',
-      options: { hotspot: true },
-      description:
-        'Mag leeg blijven. Zonder eigen foto krijgt de kaart het sfeerbeeld dat bij de categorie hoort.',
-      hidden: isMededeling,
-    }),
-
-    defineField({name:'reeksFotos', title:'Extra foto’s voor afwisseling in de reeks',type:'array',of:[{type:'image',options:{hotspot:true}}],
-      description:'Optioneel. De hoofdfoto en deze foto’s wisselen per datum af, in deze volgorde. Elke datum houdt hetzelfde beeld zolang u de reeks en de fotovolgorde niet wijzigt. Met alleen de hoofdfoto gebruiken alle datums dat beeld.',
-      hidden:({parent})=>parent?.soort==='mededeling'||!parent?.herhaling||parent.herhaling==='eenmalig',validation:r=>r.max(6)}),
-    defineField({
-      name: 'vervangtReeks', title: 'Vervangt op deze datum de gewone inloop', type: 'reference', to: [{type:'activiteit'}],
-      options: {filter: 'archief != true && soort == "activiteit" && herhaling in ["wekelijks", "tweewekelijks", "maandelijks"]'},
-      description: 'Kies de vaste reeks als dit een bijzondere invulling van dezelfde ochtend is. De site toont dan alleen dit moment. Laat leeg als beide activiteiten naast elkaar plaatsvinden. Archiveert u dit bijzondere moment, dan verschijnt de gewone inloop weer.',
-      hidden: ({parent}) => parent?.soort === 'mededeling' || (parent?.herhaling && parent.herhaling !== 'eenmalig'),
-    }),
-
     defineField({
       name: 'datum',
       title: 'Datum',
@@ -263,6 +159,106 @@ export const activiteit = defineType({
       hidden: ({ parent }) =>
         parent?.soort === 'mededeling' || !parent?.herhaling || parent?.herhaling === 'eenmalig',
     }),
+    defineField({
+      name: 'categorie',
+      title: 'Soort activiteit',
+      type: 'string',
+      initialValue: 'Inloop',
+      description:
+        'Bepaalt het sfeerbeeld zonder eigen foto. Categorieën bepalen de labels en knoppen in de agenda: Inloop heet daar Ontmoeten, Wellness heet Ontspannen.',
+      hidden: isMededeling,
+      options: {
+        list: [
+          { title: 'Inloop', value: 'Inloop' },
+          { title: 'Creatief', value: 'Creatief' },
+          { title: 'Bewegen', value: 'Bewegen' },
+          { title: 'Wellness', value: 'Wellness' },
+          { title: 'Overig', value: 'Overig' },
+        ],
+      },
+    }),
+    defineField({name:'activiteitType',title:'Vaste activiteit',type:'string',description:'Koppelt dit moment aan de bijbehorende activiteit op de bezoekroutes.',options:{list:[{title:'Inloopochtend',value:'inloopochtend'},{title:'Inloop / Open atelier',value:'inloop-met-activiteit'},{title:'Wandelen',value:'wandelen'},{title:'Zenmeditatie',value:'zenmeditatie'},{title:'Mandala stippen',value:'mandala-stippen'},{title:'Encaustic art',value:'encaustic-art'},{title:'Junk journaling',value:'junk-journaling'},{title:'Mixed media',value:'mixed-media'},{title:'Voetreflexmassage',value:'voetreflexmassage'},{title:'Sponsordiner',value:'sponsordiner'}]}}),
+    defineField({
+      name: 'doelgroepen',
+      title: 'Voor wie is het',
+      type: 'array',
+      of: [{ type: 'string' }],
+      initialValue: ['iedereen'],
+      description:
+        'Bepaalt het doelgroepfilter in de agenda. Specifiek voor jongeren of 35 tot 50 verschijnt ook op Jong & kanker; specifiek voor naasten ook op Voor naasten. Kies Iedereen voor algemeen aanbod.',
+      hidden: isMededeling,
+      options: {
+        layout: 'grid',
+        list: [
+          { title: 'Iedereen', value: 'iedereen' },
+          { title: 'Jongeren en jongvolwassenen (15 tot 35)', value: 'jongeren-15-35' },
+          { title: 'Mensen van 35 tot 50', value: '35-50' },
+          { title: 'Naasten: partner, kind, familie of vriend', value: 'naasten' },
+        ],
+      },
+      validation: (rule) => rule.unique(),
+    }),
+    defineField({
+      name: 'themas',
+      title: 'Thema\'s',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description:
+        'Bepaalt onder welke themafilters deze activiteit in de agenda verschijnt. Meerdere thema\'s zijn mogelijk.',
+      hidden: isMededeling,
+      options: {
+        layout: 'grid',
+        list: [
+          { title: 'Ontmoeten', value: 'ontmoeten' },
+          { title: 'Bewegen & ontspannen', value: 'bewegen-en-ontspannen' },
+          { title: 'Werk & studie', value: 'werk-en-studie' },
+          { title: 'Herstel & energie', value: 'herstel-en-energie' },
+          { title: 'Relaties & gezin', value: 'relaties-en-gezin' },
+          { title: 'Informatie & inspiratie', value: 'informatie-en-inspiratie' },
+        ],
+      },
+      // Een waarschuwing en geen fout: zonder thema kan het gewoon in de agenda
+      // staan, alleen niet op een themapagina. Dat mag de invuller weten zonder
+      // dat het opslaan erdoor tegengehouden wordt.
+      validation: (rule) =>
+        rule
+          .unique()
+          .custom((waarde) =>
+            Array.isArray(waarde) && waarde.length
+              ? true
+              : 'Zonder thema is dit zichtbaar bij Alle thema’s, maar niet bij een specifiek themafilter.',
+          )
+          .warning(),
+    }),
+
+    defineField({
+      name: 'omschrijving',
+      title: 'Waar gaat het over',
+      type: 'text',
+      rows: 4,
+      description:
+        'Een paar zinnen, zoals u ze ook op Facebook zou zetten. Dit staat op de kaart in de agenda.',
+    }),
+    defineField({
+      name: 'afbeelding',
+      title: 'Foto',
+      type: 'image',
+      options: { hotspot: true },
+      description:
+        'Mag leeg blijven. Zonder eigen foto krijgt de kaart het sfeerbeeld dat bij de categorie hoort.',
+      hidden: isMededeling,
+    }),
+
+    defineField({name:'reeksFotos', title:'Extra foto’s voor afwisseling in de reeks',type:'array',of:[{type:'image',options:{hotspot:true}}],
+      description:'Optioneel. De hoofdfoto en deze foto’s wisselen per datum af, in deze volgorde. Elke datum houdt hetzelfde beeld zolang u de reeks en de fotovolgorde niet wijzigt. Met alleen de hoofdfoto gebruiken alle datums dat beeld.',
+      hidden:({parent})=>parent?.soort==='mededeling'||!parent?.herhaling||parent.herhaling==='eenmalig',validation:r=>r.max(6)}),
+    defineField({
+      name: 'vervangtReeks', title: 'Vervangt op deze datum de gewone inloop', type: 'reference', to: [{type:'activiteit'}],
+      options: {filter: 'archief != true && soort == "activiteit" && herhaling in ["wekelijks", "tweewekelijks", "maandelijks"]'},
+      description: 'Kies de vaste reeks als dit een bijzondere invulling van dezelfde ochtend is. De site toont dan alleen dit moment. Laat leeg als beide activiteiten naast elkaar plaatsvinden. Archiveert u dit bijzondere moment, dan verschijnt de gewone inloop weer.',
+      hidden: ({parent}) => parent?.soort === 'mededeling' || (parent?.herhaling && parent.herhaling !== 'eenmalig'),
+    }),
+
 
     defineField({
       name: 'aanmelden',
@@ -273,6 +269,7 @@ export const activiteit = defineType({
         'Staat dit uit, dan zegt de site "loop zo binnen". Staat het aan, dan komt er een knop bij om zich op te geven.',
       hidden: isMededeling,
     }),
+    defineField({name:'volgeboekt',title:'Volgeboekt',type:'boolean',initialValue:false}),
     defineField({
       name: 'bijdrage',
       title: 'Wat het kost',
@@ -289,6 +286,12 @@ export const activiteit = defineType({
       description: 'Alleen invullen als het ergens anders is dan in het huis zelf.',
       hidden: isMededeling,
     }),
+    defineField({name:'categorieen',title:'Extra categorieën',type:'array',of:[{type:'string'}],options:{list:['Inloop','Creatief','Bewegen','Wellness','Overig']},fieldset:'meer'}),
+    defineField({name:'aanmeldUrl',title:'Externe aanmeldpagina',type:'url',description:'Alleen invullen als een andere organisatie de aanmelding regelt. Leeg laten: dan meldt men zich aan via het aanmeldformulier van de site.',validation:r=>r.uri({scheme:['https']}),fieldset:'meer'}),
+    defineField({name:'archief',title:'Archiveren',type:'boolean',description:'Een gearchiveerd moment verschijnt niet in de agenda op de site.',initialValue:false,fieldset:'meer'}),
+    defineField({name:'slug',title:'Adres van dit moment',type:'slug',options:{source:'titel'},description:'Een uniek adres voor dit agendamoment.',fieldset:'meer'}),
+    // Since 22-10-2026 every signup goes through the site's own registration page; the old mail address is no longer used.
+    defineField({name:'aanmeldEmail',title:'E-mailadres voor aanmelding (niet meer in gebruik)',type:'string',hidden:true}),
   ],
   orderings: [
     { name: 'datumAsc', title: 'Eerstvolgende bovenaan', by: [{ field: 'datum', direction: 'asc' }] },

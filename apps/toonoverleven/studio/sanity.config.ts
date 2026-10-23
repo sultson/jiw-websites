@@ -75,7 +75,9 @@ const structure = (S: StructureBuilder) =>
               S.view.component(SitePreview).title('Voorbeeld'),
             ]),
         ),
-      S.documentTypeListItem('sponsor').title('Sponsoren').icon(HeartIcon),
+      // In the order the site shows them, so the list matches the homepage.
+      S.documentTypeListItem('sponsor').title('Sponsoren').icon(HeartIcon)
+        .child(S.documentTypeList('sponsor').title('Sponsoren').defaultOrdering([{ field: 'volgorde', direction: 'asc' }, { field: 'naam', direction: 'asc' }])),
     ]);
 
 export default defineConfig({
