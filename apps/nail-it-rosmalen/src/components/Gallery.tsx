@@ -3,17 +3,25 @@ import Lightbox from './Lightbox';
 
 type Props = { t: (k: string) => string };
 
+// Newest first, by Instagram post date (@nagelstudio_nail_it); the date is in each comment.
 const images = [
-  { src: '/done-nails-1.webp', alt: 'Elegante gellak set', cls: 'row-span-2 aspect-[3/4]' },
-  { src: '/done-nails-2.webp', alt: 'French manicure', cls: 'aspect-square' },
-  { src: '/done-nails-3.webp', alt: 'Natuurlijke BIAB set', cls: 'aspect-square' },
-  { src: '/done-nails-4.webp', alt: 'Strakke gel afwerking', cls: 'aspect-[4/3]' },
-  { src: '/done-nails-5.webp', alt: 'Nail art detail', cls: 'aspect-[4/3]' },
-  { src: '/done-nails-6.webp', alt: 'Nude gellak', cls: 'aspect-square' },
-  { src: '/done-nails-7.webp', alt: 'Glossy finish', cls: 'aspect-square' },
-  { src: '/done-nails-8.webp', alt: 'Subtiele glitter', cls: 'aspect-[4/3]' },
-  { src: '/done-nails-9.webp', alt: 'Klassieke rode nagels', cls: 'aspect-[4/3]' },
-  { src: '/done-nails-10.webp', alt: 'Verfijnde manicure', cls: 'aspect-square' },
+  { src: '/done-nails-11.webp', alt: 'Babyboom met subtiele glitter voor een bruid' }, // 2026-08
+  { src: '/done-nails-12.webp', alt: 'Rode BIAB op de natuurlijke nagel met witte stippen' }, // 2026-04
+  { src: '/done-nails-13.webp', alt: 'Oudroze gellak met glitter' }, // 2025-10
+  { src: '/done-nails-14.webp', alt: 'Nude gellak met gouden glitter' }, // 2025-09
+  { src: '/done-nails-15.webp', alt: 'Rode gellak' }, // 2025-09
+  { src: '/done-nails-16.webp', alt: 'Lichtblauwe gellak' }, // 2025-02
+  { src: '/done-nails-17.webp', alt: 'Acrylnagels met verlenging in babyboom' }, // 2025-02
+  { src: '/done-nails-7.webp', alt: 'Lichtroze gellak' }, // 2024-10
+  { src: '/done-nails-6.webp', alt: 'Rode gellak, amandelvorm' }, // 2024-05
+  { src: '/done-nails-5.webp', alt: 'Herstel van beschadigde nagels, stap voor stap' }, // 2024-03
+  { src: '/done-nails-4.webp', alt: 'Donkerblauwe gellak' }, // 2023-11
+  { src: '/done-nails-3.webp', alt: 'Voor en na: roze verlenging' }, // 2023-10
+  { src: '/done-nails-2.webp', alt: 'Voor en na: nude met glitter' }, // 2023-01
+  { src: '/done-nails-10.webp', alt: 'Voor en na: natuurlijke set' }, // 2022-12
+  { src: '/done-nails-9.webp', alt: 'Nude gellak' }, // 2022-11
+  { src: '/done-nails-8.webp', alt: 'Rode bruidsnagels' }, // 2022-11
+  { src: '/done-nails-1.webp', alt: 'Grijze gellak met zwarte glitter' }, // 2022-09
 ];
 
 export default function Gallery({ t }: Props) {
@@ -33,7 +41,7 @@ export default function Gallery({ t }: Props) {
             <button
               key={img.src}
               onClick={() => setIdx(i)}
-              className={`group relative overflow-hidden rounded-xl md:rounded-2xl ${img.cls} ${
+              className={`group relative overflow-hidden rounded-xl md:rounded-2xl aspect-square ${
                 i === 0 ? 'col-span-2 md:col-span-2 md:row-span-2' : ''
               }`}
             >
