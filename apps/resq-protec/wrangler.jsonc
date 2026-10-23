@@ -39,6 +39,6 @@
     "LIVE": "false",
     // The language on `/`; the others live under /<lang>. The build reads this too
     // (tools/default-lang.mjs), so pages, sitemap, hreflang x-default and the Worker agree.
-    "DEFAULT_LANG": "nl"
+    "DEFAULT_LANG": "en"
   }
 }

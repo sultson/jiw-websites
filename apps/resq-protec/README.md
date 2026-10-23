@@ -7,9 +7,11 @@ and the host rules. Dev: `pnpm --filter @jiw/resq-protec dev` (port 3014).
 
 ## Default language
 
-`DEFAULT_LANG` in `wrangler.jsonc` decides which language sits on `/` (now `nl`: nl on `/`,
-en on `/en`, de on `/de`). With `en`, English moves to `/` and Dutch to `/nl`
-(`/nl/opleidingen-en-trainingen`, `/nl/equipment/alpine`, ...). One value drives
+`DEFAULT_LANG` in `wrangler.jsonc` decides which language sits on `/`. It is `en` since
+23-10-2026: English on `/`, Dutch on `/nl` (`/nl/opleidingen-en-trainingen`,
+`/nl/equipment/alpine`, ...), German on `/de`. With `nl`, Dutch is on `/` and English on
+`/en`. While English is the default, an old Dutch-only address on `/` (`/actueel`) 301s to
+its `/nl/` page instead of a 404. One value drives
 everything: the build reads it (`tools/default-lang.mjs`) for routes, sitemap,
 hreflang x-default, the language switcher order and llms.txt, and the Worker reads it for
 the confirmation mail's website link and to 301 `/<default>/...` onto the unprefixed URL.

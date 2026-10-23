@@ -146,5 +146,12 @@ export default{async fetch(request,env,ctx){
   // The default language has no prefix: /en/contact on an English-default build is /contact.
   const unprefixed=url.pathname.match(new RegExp(`^/${defaultLang}(/.*)?$`));
   if(unprefixed)return Response.redirect(`${url.origin}${unprefixed[1]||'/'}${url.search}`,301);
-  return withNoindex(await env.ASSETS.fetch(request),url,env);
+  const response=await env.ASSETS.fetch(request);
+  // Dutch was on `/` before English took over; an old Dutch-only address (/actueel,
+  // /opleidingen-en-trainingen) 301s to its /nl/ page instead of a 404.
+  if(response.status===404&&defaultLang!=='nl'&&!/^\/(nl|de)(\/|$)/.test(url.pathname)){
+    const dutch=new URL(`/nl${url.pathname}`,url);
+    if((await env.ASSETS.fetch(new Request(dutch,{method:'HEAD'}))).ok)return Response.redirect(`${dutch}${url.search}`,301);
+  }
+  return withNoindex(response,url,env);
 }} satisfies ExportedHandler<Env>;

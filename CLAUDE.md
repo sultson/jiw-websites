@@ -139,7 +139,7 @@ apps/         client sites (almost all a Vite + React 19 + TS 5.8 + Tailwind v4 
                           3065. See its NOTITIES.md + SEO.md.
   resq-protec/            Rescue Watercraft. Astro, static, nl/en/de (de added 22-10-2026),
                           60 pages. DEFAULT_LANG in wrangler.jsonc picks the language on /
-                          (now nl; en was trialled 23-10-2026 on a preview URL) and the
+                          (en since 23-10-2026, was nl) and the
                           others go under /<lang>; pages are src/routes/* mounted per
                           language by an integration in astro.config.mjs, not page files. Canonicals, hreflang, schema.org
                           and the sitemap already point at rescuewatercraft.eu; the concept
