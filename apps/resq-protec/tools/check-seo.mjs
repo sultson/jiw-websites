@@ -10,12 +10,14 @@
 // form posts to a route the Worker answers.
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { defaultLang } from './default-lang.mjs';
 
 const SITE = 'https://rescuewatercraft.eu';
 const DIST = new URL('../dist/', import.meta.url).pathname;
 const WORD_FLOOR = 120;
 // Contact and the news feed are short by nature; the feed refreshes from LinkedIn in the browser.
-const SHORT_PAGES = new Set(['/contact', '/en/contact', '/de/kontakt', '/actueel', '/en/updates', '/de/aktuelles']);
+const SHORT_PAGES = /\/(contact|kontakt|actueel|updates|aktuelles)$/;
+const DEFAULT_LANG = defaultLang();
 const FORM_ROUTES = new Set(['nl', 'en', 'de'].flatMap(l => ['course', 'equipment', 'contact'].map(k => `/api/forms/${l === 'nl' ? '' : `${l}/`}${k}`)));
 
 const walk = dir => readdirSync(dir).flatMap(name => {
@@ -39,7 +41,7 @@ const exists = path => {
   // Worker-served paths are not files.
   return path.startsWith('/api/');
 };
-const langOf = path => (path === '/en' || path.startsWith('/en/') ? 'en' : path === '/de' || path.startsWith('/de/') ? 'de' : 'nl');
+const langOf = path => ['nl', 'en', 'de'].find(l => path === `/${l}` || path.startsWith(`/${l}/`)) ?? DEFAULT_LANG;
 const text = html => html
   .replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<style[\s\S]*?<\/style>/g, ' ').replace(/<template[\s\S]*?<\/template>/g, ' ')
   .replace(/<[^>]+>/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ').replace(/\s+/g, ' ').trim();
@@ -84,6 +86,7 @@ for (const file of pages) {
     }
   }
   if (hreflangs[lang] !== expected) fail('hreflang for its own language is not itself');
+  if (hreflangs['x-default'] !== hreflangs[DEFAULT_LANG]) fail(`x-default is not the ${DEFAULT_LANG} page`);
 
   for (const [, json] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     try { JSON.parse(json); } catch { fail('JSON-LD does not parse'); }
@@ -91,7 +94,7 @@ for (const file of pages) {
   if (!html.includes('application/ld+json')) fail('no JSON-LD');
 
   const words = text(html.replace(/<header class="site-header"[\s\S]*?<\/header>/, '').replace(/<footer[\s\S]*?<\/footer>/, '')).split(' ').length;
-  if (words < (SHORT_PAGES.has(path) ? 50 : WORD_FLOOR)) fail(`only ${words} words of body text`);
+  if (words < (SHORT_PAGES.test(path) ? 50 : WORD_FLOOR)) fail(`only ${words} words of body text`);
 
   for (const [, href] of html.matchAll(/<a[^>]*\shref="(\/[^"]*)"/g)) {
     if (href.startsWith('//')) continue;
@@ -119,4 +122,4 @@ if (errors.length) {
   console.error(`check-seo: ${errors.length} problem(s)\n${errors.map(e => `  - ${e}`).join('\n')}`);
   process.exit(1);
 }
-console.log(`check-seo: ${pages.length} pages whole in the HTML, ${listed.size} in the sitemap, ${forms} forms wired.`);
+console.log(`check-seo (default ${DEFAULT_LANG} on /): ${pages.length} pages whole in the HTML, ${listed.size} in the sitemap, ${forms} forms wired.`);

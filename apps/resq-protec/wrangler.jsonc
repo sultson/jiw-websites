@@ -5,6 +5,10 @@
   "main": "./worker/index.ts",
   "compatibility_date": "2026-04-24",
   "observability": { "enabled": true },
+  // No production workers.dev address; version previews on (`wrangler versions upload
+  // --preview-alias <name>`) so a variant can be tried without touching the concept hosts.
+  "workers_dev": false,
+  "preview_urls": true,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
@@ -32,6 +36,9 @@
     "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
     "LEAD_SENDER": "no-reply@notify.rescuewatercraft.eu",
     "CANONICAL_HOST": "rescuewatercraft.eu",
-    "LIVE": "false"
+    "LIVE": "false",
+    // The language on `/`; the others live under /<lang>. The build reads this too
+    // (tools/default-lang.mjs), so pages, sitemap, hreflang x-default and the Worker agree.
+    "DEFAULT_LANG": "nl"
   }
 }

@@ -1,0 +1,5 @@
+---
+import Home from '../components/Home.astro';
+import { langOfPath } from '../data/content';
+---
+<Home lang={langOfPath(Astro.url.pathname)}/>

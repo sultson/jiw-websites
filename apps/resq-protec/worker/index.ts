@@ -1,6 +1,6 @@
 import { createFormWorker, type CloudflareFormsEnv, type LeadFormConfig } from '@jiw/cloudflare-forms';
 import { confirmationEmail } from './confirmation';
-type Env=CloudflareFormsEnv&{ASSETS:Fetcher;WEBSITE_ASSETS:R2Bucket;APIFY_TOKEN?:string;CANONICAL_HOST:string;LIVE?:string};
+type Env=CloudflareFormsEnv&{ASSETS:Fetcher;WEBSITE_ASSETS:R2Bucket;APIFY_TOKEN?:string;CANONICAL_HOST:string;LIVE?:string;DEFAULT_LANG?:Lang};
 
 type Lang='nl'|'en'|'de';
 type Kind='course'|'equipment'|'contact';
@@ -14,7 +14,7 @@ const required:Record<Lang,LeadFormConfig['requiredFields']>={
 // The notification is for the owner, so it is Dutch whatever the page language; the
 // language row and the subject's (EN)/(DE) tell them which language to answer in.
 const headings:Record<Kind,string>={course:'Nieuwe opleidingsaanvraag',equipment:'Nieuwe equipmentaanvraag',contact:'Nieuw contactverzoek'};
-function formConfig(kind:Kind,lang:Lang,origin:string):LeadFormConfig{
+function formConfig(kind:Kind,lang:Lang,origin:string,defaultLang:Lang):LeadFormConfig{
   const formPath=`/api/forms/${lang==='nl'?'':`${lang}/`}${kind}`;
   return {
     formPath,locale:lang==='nl'?'nl':'en',siteName:'Rescue Watercraft',ownerName:'Rescue Watercraft',senderName:'Rescue Watercraft',
@@ -23,15 +23,15 @@ function formConfig(kind:Kind,lang:Lang,origin:string):LeadFormConfig{
     emailFields:[{name:'phone',label:'Telefoon'},{name:'organisation',label:'Organisatie'},{name:'subject',label:'Onderwerp'}],
     leadOnlyEmailFields:[{name:'language',label:'Taal'},{name:'pageUrl',label:'Pagina'},{name:'privacyConsent',label:'Toestemming'}],
     leadEmail:{heading:`${headings[kind]} via de website`,messageHeading:'Vraag of toelichting',nameLabels:{firstName:'Voornaam',lastName:'Achternaam',email:'E-mail'},includeAttachments:false},
-    confirmationEmail:confirmationEmail(origin,lang),
+    confirmationEmail:confirmationEmail(origin,lang,defaultLang),
   };
 }
 const formRoutes=new Map<string,[Kind,Lang]>((['nl','en','de'] as Lang[]).flatMap(lang=>(['course','equipment','contact'] as Kind[]).map(kind=>[`/api/forms/${lang==='nl'?'':`${lang}/`}${kind}`,[kind,lang]] as [string,[Kind,Lang]])));
 const formWorkers=new Map<string,ReturnType<typeof createFormWorker>>();
-function formWorker(path:string,origin:string){
+function formWorker(path:string,origin:string,defaultLang:Lang){
   const route=formRoutes.get(path);if(!route)return undefined;
   const key=`${origin}${path}`;let worker=formWorkers.get(key);
-  if(!worker){worker=createFormWorker(formConfig(route[0],route[1],origin));formWorkers.set(key,worker);}
+  if(!worker){worker=createFormWorker(formConfig(route[0],route[1],origin,defaultLang));formWorkers.set(key,worker);}
   return worker;
 }
 
@@ -140,7 +140,11 @@ export default{async fetch(request,env,ctx){
   const url=new URL(request.url);
   const filmKey=films[url.pathname];if(filmKey)return film(request,env,filmKey);
   if(url.pathname==='/api/social-feed'&&request.method==='GET')return socialFeed(request,env,ctx);
-  const worker=formWorker(url.pathname,url.origin);if(worker)return worker.fetch!(request,env,ctx);
+  const defaultLang=env.DEFAULT_LANG??'nl';
+  const worker=formWorker(url.pathname,url.origin,defaultLang);if(worker)return worker.fetch!(request,env,ctx);
   const redirect=hostRedirect(url,env);if(redirect)return redirect;
+  // The default language has no prefix: /en/contact on an English-default build is /contact.
+  const unprefixed=url.pathname.match(new RegExp(`^/${defaultLang}(/.*)?$`));
+  if(unprefixed)return Response.redirect(`${url.origin}${unprefixed[1]||'/'}${url.search}`,301);
   return withNoindex(await env.ASSETS.fetch(request),url,env);
 }} satisfies ExportedHandler<Env>;

@@ -1,0 +1,5 @@
+---
+import Updates from '../components/Updates.astro';
+import { langOfPath } from '../data/content';
+---
+<Updates lang={langOfPath(Astro.url.pathname)}/>

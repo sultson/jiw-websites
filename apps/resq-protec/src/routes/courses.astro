@@ -1,0 +1,5 @@
+---
+import Catalogue from '../components/Catalogue.astro';
+import { langOfPath } from '../data/content';
+---
+<Catalogue lang={langOfPath(Astro.url.pathname)} kind="courses"/>

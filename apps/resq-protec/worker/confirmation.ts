@@ -73,15 +73,13 @@ const translations: Record<'nl' | 'en' | 'de', ConfirmationEmailCopy> = {
   },
 };
 
-const homePaths = { nl: '/', en: '/en', de: '/de' };
-
 /**
  * Built per origin, so the logo and the website button point at the host that served
  * the form: the concept host today, rescuewatercraft.eu from go-live, with no edit.
  * No `contactEmail`: replies go to LEAD_RECIPIENT via reply-to, which is our inbox
  * until the client's own address takes over.
  */
-export function confirmationEmail(origin: string, lang: 'nl' | 'en' | 'de'): LocalizedConfirmationEmailConfig {
+export function confirmationEmail(origin: string, lang: 'nl' | 'en' | 'de', defaultLang: 'nl' | 'en' | 'de'): LocalizedConfirmationEmailConfig {
   return {
     defaultLocale: lang,
     translations,
@@ -89,7 +87,7 @@ export function confirmationEmail(origin: string, lang: 'nl' | 'en' | 'de'): Loc
       logoUrl: `${origin}/images/mail-logo.png`,
       logoAlt: 'Rescue Watercraft',
       logoWidth: 260,
-      websiteUrl: `${origin}${homePaths[lang]}`,
+      websiteUrl: `${origin}${lang === defaultLang ? '/' : `/${lang}`}`,
       colors,
     },
   };

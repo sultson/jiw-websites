@@ -1,0 +1,5 @@
+---
+import Contact from '../components/Contact.astro';
+import { langOfPath } from '../data/content';
+---
+<Contact lang={langOfPath(Astro.url.pathname)}/>

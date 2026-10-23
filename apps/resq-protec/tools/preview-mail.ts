@@ -10,7 +10,7 @@ let n = 0;
 const env = {
   LEAD_EMAIL: { send: async (m: { to: string; subject: string; html: string }) => { writeFileSync(`${out}/${++n}-${m.to.includes('jouwidealewebsite@') ? 'confirmation' : 'lead'}.html`, m.html); console.log(n, m.to, '|', m.subject); } },
   FORM_UPLOADS: { put: async () => undefined },
-  SITE_ID: 'resq-protec', LEAD_RECIPIENT: 'hallo@jouwidealewebsite.nl', LEAD_SENDER: 'no-reply@notify.rescuewatercraft.eu', CANONICAL_HOST: 'rescuewatercraft.eu', TURNSTILE_SECRET_KEY: '',
+  SITE_ID: 'resq-protec', LEAD_RECIPIENT: 'hallo@jouwidealewebsite.nl', LEAD_SENDER: 'no-reply@notify.rescuewatercraft.eu', CANONICAL_HOST: 'rescuewatercraft.eu', DEFAULT_LANG: process.env.DEFAULT_LANG ?? 'nl', TURNSTILE_SECRET_KEY: '',
 } as never;
 for (const [path, lang, subject] of [['/api/forms/course', 'nl', 'Rescue watercraft operator'], ['/api/forms/en/equipment', 'en', 'The IONIC Pro Matrix'], ['/api/forms/de/contact', 'de', 'Vorführung']]) {
   const body = new FormData();

@@ -1,11 +1,35 @@
 # Rescue Watercraft
 
-Astro, fully static: every page is complete in the HTML (60 pages: nl on `/`, en on
-`/en`, de on `/de`, 15 product pages per language, plus a 404). The Worker
+Astro, fully static: every page is complete in the HTML (60 pages: the default language
+on `/`, the other two under `/<lang>`, 15 product pages per language, plus a 404). The Worker
 (`worker/index.ts`) serves the lead forms, the brand films from R2, the LinkedIn feed,
 and the host rules. Dev: `pnpm --filter @jiw/resq-protec dev` (port 3014).
 
+## Default language
+
+`DEFAULT_LANG` in `wrangler.jsonc` decides which language sits on `/` (now `nl`: nl on `/`,
+en on `/en`, de on `/de`). With `en`, English moves to `/` and Dutch to `/nl`
+(`/nl/opleidingen-en-trainingen`, `/nl/equipment/alpine`, ...). One value drives
+everything: the build reads it (`tools/default-lang.mjs`) for routes, sitemap,
+hreflang x-default, the language switcher order and llms.txt, and the Worker reads it for
+the confirmation mail's website link and to 301 `/<default>/...` onto the unprefixed URL.
+Form endpoints stay per language and do not move.
+
+Pick it **before** go-live: switching afterwards changes every URL Google has indexed.
+
+Trying another default without touching the concept hosts (preview URLs are on for this
+Worker, the workers.dev production address is off):
+
+    DEFAULT_LANG=en pnpm build
+    npx wrangler versions upload --preview-alias en-default --var DEFAULT_LANG:en
+    # -> https://en-default-resq-protec.alfredsultson.workers.dev (noindex)
+
 ## Where things live
+
+- `src/routes/*.astro`: one entrypoint per page type, mounted at its URL in every
+  language by the small integration in `astro.config.mjs`. Not a file per language (the
+  URLs follow `DEFAULT_LANG`) and not one catch-all route (Astro bundles CSS per route,
+  so a catch-all gave every page the styles of every component).
 
 - `src/data/content.ts`: routes per language, `SITE` (the production origin every
   canonical, hreflang, og:url, schema.org id and sitemap entry is built on), SEO titles
@@ -55,8 +79,9 @@ it (verified 22-10-2026). Remaining steps:
 1. Dashboard → DNS for the zone: delete the apex `A 91.184.0.200` record (Hostnet's old
    server). A Workers custom domain will not attach to a hostname that already has a
    record. Leave the `notify` / `cf-bounce` records alone: they carry the form mail.
-2. `wrangler.jsonc`: uncomment the two `rescuewatercraft.eu` routes and set `LIVE` to
-   `"true"`. Then `pnpm --filter @jiw/resq-protec ship`.
+2. `wrangler.jsonc`: uncomment the two `rescuewatercraft.eu` routes, set `LIVE` to
+   `"true"`, and set `DEFAULT_LANG` to the language that goes on `/` (see above). Then
+   `pnpm --filter @jiw/resq-protec ship`.
 3. Zone redirect rule `www` → apex (301), like the other client domains (Rulesets API,
    `http_request_dynamic_redirect`; no `kind` field on the PUT). The Worker also does
    it, so this is belt and braces.

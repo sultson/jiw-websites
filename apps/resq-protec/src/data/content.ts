@@ -6,11 +6,27 @@ export const langs: Lang[] = ['nl', 'en', 'de'];
 // go-live is only a matter of attaching the domain (see README).
 export const SITE = 'https://rescuewatercraft.eu';
 
-export const routes = {
-  nl: { home: '/', courses: '/opleidingen-en-trainingen', equipment: '/equipment', updates: '/actueel', contact: '/contact' },
-  en: { home: '/en', courses: '/en/courses-and-training', equipment: '/en/equipment', updates: '/en/updates', contact: '/en/contact' },
-  de: { home: '/de', courses: '/de/ausbildung-und-training', equipment: '/de/ausruestung', updates: '/de/aktuelles', contact: '/de/kontakt' },
+declare const __DEFAULT_LANG__: Lang;
+/** The language on `/`. Set by DEFAULT_LANG in wrangler.jsonc (see tools/default-lang.mjs). */
+export const defaultLang: Lang = __DEFAULT_LANG__;
+/** The language of a built path: its /<lang> prefix, or the default language without one. */
+export const langOfPath = (path: string): Lang => langs.find(lang => lang !== defaultLang && (path === `/${lang}` || path.startsWith(`/${lang}/`) || path.startsWith(`/${lang}.`))) ?? defaultLang;
+/** The default language first: it is the x-default and leads every list of languages. */
+export const langOrder: Lang[] = [defaultLang, ...langs.filter(lang => lang !== defaultLang)];
+
+const slugs = {
+  nl: { courses: 'opleidingen-en-trainingen', equipment: 'equipment', updates: 'actueel', contact: 'contact' },
+  en: { courses: 'courses-and-training', equipment: 'equipment', updates: 'updates', contact: 'contact' },
+  de: { courses: 'ausbildung-und-training', equipment: 'ausruestung', updates: 'aktuelles', contact: 'kontakt' },
 };
+const prefix = (lang: Lang) => (lang === defaultLang ? '' : `/${lang}`);
+export const routes = Object.fromEntries(langs.map(lang => [lang, {
+  home: prefix(lang) || '/',
+  courses: `${prefix(lang)}/${slugs[lang].courses}`,
+  equipment: `${prefix(lang)}/${slugs[lang].equipment}`,
+  updates: `${prefix(lang)}/${slugs[lang].updates}`,
+  contact: `${prefix(lang)}/${slugs[lang].contact}`,
+}])) as Record<Lang, { home: string; courses: string; equipment: string; updates: string; contact: string }>;
 export type PageKey = keyof typeof routes.nl;
 
 export const locales: Record<Lang, string> = { nl: 'nl-NL', en: 'en-GB', de: 'de-DE' };

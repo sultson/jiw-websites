@@ -1,9 +1,11 @@
 import type { APIRoute } from 'astro';
-import { routes, seo, url, copy } from '../data/content';
+import { routes, seo, url, copy, langOrder, langNames } from '../data/content';
 import { getCourses } from '../data/courses';
 import { getProducts } from '../data/products';
 
 // A plain-text map of the site for AI assistants and answer engines (llmstxt.org).
+const inEnglish = { nl: 'Dutch', en: 'English', de: 'German' };
+
 export const GET: APIRoute = () => {
   const en = routes.en;
   const lines = [
@@ -11,7 +13,7 @@ export const GET: APIRoute = () => {
     '',
     `> ${seo.en.home.description}`,
     '',
-    'Rescue Watercraft B.V. (Nijmegen, the Netherlands) supplies rescue watercraft (a jet ski with the Rescue Raft sled), professional water rescue equipment, and RWC operator and instructor training together with Reddingsbrigade Nederland. Clients are fire services, safety regions, police, defence, municipalities and Rijkswaterstaat. The site is in Dutch (primary), English and German. Contact: info@rescuewatercraft.nl, +31 6 133 658 40.',
+    `Rescue Watercraft B.V. (Nijmegen, the Netherlands) supplies rescue watercraft (a jet ski with the Rescue Raft sled), professional water rescue equipment, and RWC operator and instructor training together with Reddingsbrigade Nederland. Clients are fire services, safety regions, police, defence, municipalities and Rijkswaterstaat. The site is in ${inEnglish[langOrder[0]]} (primary), ${langOrder.slice(1).map(l => inEnglish[l]).join(' and ')}. Contact: info@rescuewatercraft.nl, +31 6 133 658 40.`,
     '',
     '## Pages',
     `- [Home](${url(en.home)}): ${copy.en.heroText}`,
@@ -26,8 +28,7 @@ export const GET: APIRoute = () => {
     ...getProducts('en').map(product => `- [${product.name}](${url(product.url)}): ${product.summary}`),
     '',
     '## Other languages',
-    `- Nederlands: ${url(routes.nl.home)}`,
-    `- Deutsch: ${url(routes.de.home)}`,
+    ...langOrder.filter(l => l !== 'en').map(l => `- ${langNames[l]}: ${url(routes[l].home)}`),
     '',
   ];
   return new Response(lines.join('\n'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });

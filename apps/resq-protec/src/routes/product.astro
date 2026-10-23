@@ -1,0 +1,10 @@
+---
+import ProductDetail from '../components/ProductDetail.astro';
+import { langOfPath } from '../data/content';
+import { getProducts } from '../data/products';
+// Mounted under every language's equipment route; the slug is the same in each.
+export const getStaticPaths = () => getProducts().map(product => ({ params: { product: product.id } }));
+const lang = langOfPath(Astro.url.pathname);
+const product = getProducts(lang).find(item => item.id === Astro.params.product)!;
+---
+<ProductDetail lang={lang} product={product}/>
