@@ -82,6 +82,12 @@ path preserved. `www.rescuewatercraft.eu` always 301s to the apex.
   managed robots.txt all off, so Googlebot, Bingbot, GPTBot, OAI-SearchBot, ClaudeBot
   and PerplexityBot all get the pages (verified: every sitemap URL 200, self-canonical,
   no noindex, for each of them). Hostnet's parking `A 91.184.0.200` was deleted.
+- `rescuewatercraft.nl` + `www` (the client's older domain, zone on our account since
+  23-10-2026) are attached to this Worker and 301 every URL to the **Dutch** version on
+  .eu in one hop (`DUTCH_HOSTS`): `/` -> `/nl`, a Dutch page that exists -> its `/nl/`
+  page, another existing path (`/de/kontakt`) -> itself, anything else -> `/nl`. That
+  zone also carries the Purelymail records (MX, SPF, DKIM, DMARC) for
+  info@rescuewatercraft.nl: do not touch them. Always Use HTTPS + TLS 1.2 are on there too.
 - Forms go to `info@rescuewatercraft.nl`, the client's own mailbox and the reply-to on
   the visitor's confirmation. **Never send a test submission against the deployed
   config**: point `LEAD_RECIPIENT` back at `hallo@jouwidealewebsite.nl` first.

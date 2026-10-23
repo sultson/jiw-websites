@@ -1,6 +1,6 @@
 import { createFormWorker, type CloudflareFormsEnv, type LeadFormConfig } from '@jiw/cloudflare-forms';
 import { confirmationEmail } from './confirmation';
-type Env=CloudflareFormsEnv&{ASSETS:Fetcher;WEBSITE_ASSETS:R2Bucket;APIFY_TOKEN?:string;CANONICAL_HOST:string;LIVE?:string;DEFAULT_LANG?:Lang};
+type Env=CloudflareFormsEnv&{ASSETS:Fetcher;WEBSITE_ASSETS:R2Bucket;APIFY_TOKEN?:string;CANONICAL_HOST:string;LIVE?:string;DEFAULT_LANG?:Lang;DUTCH_HOSTS?:string};
 
 type Lang='nl'|'en'|'de';
 type Kind='course'|'equipment'|'contact';
@@ -130,6 +130,19 @@ function hostRedirect(url:URL,env:Env):Response|undefined{
   if(url.hostname===`www.${env.CANONICAL_HOST}`||env.LIVE==='true')return Response.redirect(`https://${env.CANONICAL_HOST}${url.pathname}${url.search}`,301);
   return undefined;
 }
+// rescuewatercraft.nl (and www) is the Dutch way in: every URL there 301s, in one hop,
+// to the Dutch page on the canonical host. A Dutch page that exists under /nl wins, then
+// the same path if it exists (/de/kontakt), and anything else (an old URL from before
+// this site) lands on the Dutch home page rather than a 404.
+async function dutchHostRedirect(url:URL,env:Env):Promise<Response|undefined>{
+  const hosts=(env.DUTCH_HOSTS??'').split(',').map(host=>host.trim()).filter(Boolean);
+  if(!hosts.includes(url.hostname))return undefined;
+  const exists=async(path:string)=>(await env.ASSETS.fetch(new Request(`https://${env.CANONICAL_HOST}${path}`,{method:'HEAD'}))).ok;
+  const path=url.pathname.replace(/\/+$/,'')||'/';
+  const dutch=(env.DEFAULT_LANG??'nl')==='nl'?path:path==='/'?'/nl':path.startsWith('/nl/')||path==='/nl'?path:`/nl${path}`;
+  const target=await exists(dutch)?dutch:path!=='/'&&await exists(path)?path:(env.DEFAULT_LANG??'nl')==='nl'?'/':'/nl';
+  return Response.redirect(`https://${env.CANONICAL_HOST}${target}${url.search}`,301);
+}
 function withNoindex(response:Response,url:URL,env:Env):Response{
   if(url.hostname===env.CANONICAL_HOST)return response;
   const headers=new Headers(response.headers);headers.set('X-Robots-Tag','noindex');
@@ -138,6 +151,7 @@ function withNoindex(response:Response,url:URL,env:Env):Response{
 
 export default{async fetch(request,env,ctx){
   const url=new URL(request.url);
+  const dutchRedirect=await dutchHostRedirect(url,env);if(dutchRedirect)return dutchRedirect;
   const filmKey=films[url.pathname];if(filmKey)return film(request,env,filmKey);
   if(url.pathname==='/api/social-feed'&&request.method==='GET')return socialFeed(request,env,ctx);
   const defaultLang=env.DEFAULT_LANG??'nl';

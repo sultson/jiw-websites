@@ -139,7 +139,9 @@ apps/         client sites (almost all a Vite + React 19 + TS 5.8 + Tailwind v4 
                           3065. See its NOTITIES.md + SEO.md.
   resq-protec/            Rescue Watercraft. Astro, static, nl/en/de (de added 22-10-2026),
                           60 pages. LIVE on rescuewatercraft.eu since 23-10-2026 (apex
-                          canonical, www + concept hosts 301 there). Forms go to
+                          canonical, www + concept hosts 301 there; rescuewatercraft.nl
+                          + www 301 to the Dutch pages on .eu, and that zone holds the
+                          client's Purelymail records, leave them). Forms go to
                           info@rescuewatercraft.nl, the client's own mailbox, so NEVER
                           send a test submission against the deployed config.
                           DEFAULT_LANG in wrangler.jsonc picks the language on /

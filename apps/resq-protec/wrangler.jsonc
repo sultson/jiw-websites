@@ -26,6 +26,10 @@
     { "pattern": "rescuewatercraft.jouwidealewebsite.nl", "custom_domain": true }
     ,{ "pattern": "rescuewatercraft.eu", "custom_domain": true }
     ,{ "pattern": "www.rescuewatercraft.eu", "custom_domain": true }
+    // The client's old .nl domain: everything 301s to the Dutch pages on .eu (DUTCH_HOSTS).
+    // Its zone also carries the Purelymail records for info@rescuewatercraft.nl; leave them.
+    ,{ "pattern": "rescuewatercraft.nl", "custom_domain": true }
+    ,{ "pattern": "www.rescuewatercraft.nl", "custom_domain": true }
   ],
   "r2_buckets": [{ "binding": "WEBSITE_ASSETS", "bucket_name": "jiw-large-website-assets" }, { "binding": "FORM_UPLOADS", "bucket_name": "jiw-form-uploads-prod" }],
   "send_email": [{ "name": "LEAD_EMAIL", "allowed_sender_addresses": ["no-reply@notify.rescuewatercraft.eu"] }],
@@ -40,6 +44,8 @@
     "LIVE": "true",
     // The language on `/`; the others live under /<lang>. The build reads this too
     // (tools/default-lang.mjs), so pages, sitemap, hreflang x-default and the Worker agree.
-    "DEFAULT_LANG": "en"
+    "DEFAULT_LANG": "en",
+    // Hosts whose every URL 301s to the Dutch version on CANONICAL_HOST.
+    "DUTCH_HOSTS": "rescuewatercraft.nl,www.rescuewatercraft.nl"
   }
 }
