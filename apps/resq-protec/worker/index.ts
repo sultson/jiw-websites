@@ -135,11 +135,23 @@ async function currentPath(path:string,env:Env):Promise<string>{
   const exists=async(p:string)=>(await env.ASSETS.fetch(new Request(`https://${env.CANONICAL_HOST}${p}`,{method:'HEAD'}))).ok;
   return !(await exists(path))&&await exists(`/nl${path}`)?`/nl${path}`:path;
 }
+// /sitemap-old.xml on a concept host: every URL that host ever served (today's pages plus
+// the Dutch-on-`/` and `/en/` addresses from before English became the default). Submitted
+// in Search Console under the jouwidealewebsite.nl domain property, it makes Google
+// recrawl them, find the 301s and drop them; tools/indexnow.mjs --host reads it for Bing.
+async function oldSitemap(url:URL,env:Env):Promise<Response>{
+  const sitemap=await (await env.ASSETS.fetch(new Request(`https://${env.CANONICAL_HOST}/sitemap.xml`))).text();
+  const paths=[...sitemap.matchAll(/<loc>https:\/\/[^/<]+([^<]*)<\/loc>/g)].map(m=>m[1]||'/');
+  const legacy=paths.flatMap(p=>p==='/nl'||p.startsWith('/de')?[]:p.startsWith('/nl/')?[p.slice(3)]:[p==='/'?'/en':`/en${p}`]);
+  const urls=[...new Set([...paths,...legacy])].map(p=>`<url><loc>${url.origin}${p}</loc></url>`).join('\n');
+  return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,{headers:{'Content-Type':'application/xml; charset=utf-8','Cache-Control':'public, max-age=3600'}});
+}
 async function hostRedirect(url:URL,env:Env):Promise<Response|undefined>{
   if(url.protocol!=='https:'||url.hostname===env.CANONICAL_HOST)return undefined;
   // The IndexNow key answers on every host, so the concept hosts' old URLs can be
   // submitted for a recrawl that finds the 301 (tools/indexnow.mjs --host).
   if(/^\/[0-9a-f]{32}\.txt$/.test(url.pathname))return undefined;
+  if(url.pathname==='/sitemap-old.xml'&&url.hostname!==`www.${env.CANONICAL_HOST}`)return oldSitemap(url,env);
   // One hop straight to where the page lives now, so an old concept URL never chains.
   if(url.hostname===`www.${env.CANONICAL_HOST}`||env.LIVE==='true')return Response.redirect(`https://${env.CANONICAL_HOST}${await currentPath(url.pathname,env)}${url.search}`,301);
   return undefined;

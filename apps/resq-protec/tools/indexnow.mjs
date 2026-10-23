@@ -4,9 +4,10 @@
 // Google does not take part; Search Console stays the route there. Bing matters beyond
 // Bing itself: its index feeds ChatGPT search, Copilot and DuckDuckGo.
 //
-// `--host <old host>` submits the same pages on a host that now 301s to SITE (the
-// concept hosts), plus the addresses from when Dutch sat on `/` and English on `/en`, so
-// Bing recrawls them, finds the redirect and drops them from its index.
+// `--host <old host>` submits a host that now 301s to SITE (the concept hosts) instead:
+// every URL in its /sitemap-old.xml (served by the Worker, including the addresses from
+// when Dutch sat on `/` and English on `/en`), so Bing recrawls them, finds the redirect
+// and drops them from its index.
 //
 // The key is the name of the .txt file in public/, and that file contains the key. It
 // must be reachable on the live host or IndexNow rejects the whole list, so this checks
@@ -25,9 +26,10 @@ const canonical = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
 if (!canonical.length) throw new Error('no URLs in dist/sitemap.xml - build first');
 const foreign = canonical.find(u => !u.startsWith(SITE));
 if (foreign) throw new Error(`sitemap lists another host: ${foreign}`);
-const paths = canonical.map(u => u.slice(SITE.length) || '/');
-const legacy = hostArg > 0 ? paths.flatMap(p => p === '/nl' ? [] : p.startsWith('/nl/') ? [p.slice(3)] : p.startsWith('/de') ? [] : [p === '/' ? '/en' : `/en${p}`]) : [];
-const urls = [...new Set([...paths, ...legacy])].map(p => `${origin}${p}`);
+const urls = hostArg > 0
+  ? [...(await (await fetch(`${origin}/sitemap-old.xml`, { redirect: 'manual' })).text()).matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1])
+  : canonical;
+if (!urls.length) throw new Error(`no URLs for ${host}`);
 
 const live = await fetch(`${origin}/${key}.txt`, { redirect: 'manual' });
 if (!live.ok || (await live.text()).trim() !== key) throw new Error(`key file is not live on ${host} (${live.status}) - deploy first`);
