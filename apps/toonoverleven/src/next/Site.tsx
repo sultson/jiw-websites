@@ -200,6 +200,9 @@ function Tree({
     return value.endsWith('↗') ? <>{value.slice(0, -1).trimEnd()} <ArrowUpRight className="inline-arrow" size={18} aria-hidden="true" /></> : value;
   }
   const { tag, attrs, children } = node;
+  // A line that only makes sense once an editor fills it in, like Kosten on the Vraagbaak.
+  const optional = attrs["data-hide-empty"];
+  if (optional && !(edit?.texts?.find((t) => t._key === optional)?.text ?? "").trim()) return null;
   if (tag === "site-slot")
     return (
       <Slot
@@ -212,7 +215,7 @@ function Tree({
     );
   const props: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(attrs)) {
-    if (key.startsWith("on") || key === "data-sub") continue;
+    if (key.startsWith("on") || key === "data-sub" || key === "data-hide-empty") continue;
     const k =
       (
         {

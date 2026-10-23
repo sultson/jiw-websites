@@ -8698,6 +8698,29 @@
                         "key": "text-42"
                       }
                     ]
+                  },
+                  {
+                    "tag": "li",
+                    "attrs": {
+                      "data-hide-empty": "text-48"
+                    },
+                    "children": [
+                      {
+                        "tag": "strong",
+                        "attrs": {},
+                        "children": [
+                          {
+                            "text": "Kosten:",
+                            "key": "text-47"
+                          }
+                        ]
+                      },
+                      " ",
+                      {
+                        "text": "",
+                        "key": "text-48"
+                      }
+                    ]
                   }
                 ]
               },
@@ -9028,6 +9051,16 @@
         "_key": "text-46",
         "label": "Afspraak aanvragen",
         "text": "Wil je een afspraak maken? Vul het aanmeldformulier in en geef aan welke datum je voorkeur heeft. We nemen contact met je op om je afspraak te bevestigen."
+      },
+      {
+        "_key": "text-47",
+        "label": "Praktisch",
+        "text": "Kosten:"
+      },
+      {
+        "_key": "text-48",
+        "label": "Kosten (leeg laten = regel niet tonen)",
+        "text": ""
       }
     ],
     "images": [],
