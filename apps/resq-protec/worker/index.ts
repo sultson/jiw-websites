@@ -4,12 +4,15 @@ type Env=CloudflareFormsEnv&{ASSETS:Fetcher;WEBSITE_ASSETS:R2Bucket;APIFY_TOKEN?
 
 type Lang='nl'|'en'|'de';
 type Kind='course'|'equipment'|'contact';
-// Validation messages the visitor only sees when the browser check was skipped. The
+// Validation messages the visitor only sees when the browser check was skipped.
+// pageUrl is filled in by the page script, so an empty one means the form was posted by
+// something that read the HTML without running it: the bot spam of 24-10-2026 came in
+// exactly like that. The
 // package speaks nl or en, so German pages fall back to English for its built-in ones.
 const required:Record<Lang,LeadFormConfig['requiredFields']>={
-  nl:[{name:'phone',label:'telefoonnummer',message:'Vul uw telefoonnummer in.'},{name:'subject',label:'onderwerp',message:'Maak een keuze of vul een onderwerp in.'},{name:'privacyConsent',label:'privacytoestemming',message:'Ga akkoord met de verwerking van uw gegevens.'}],
-  en:[{name:'phone',label:'phone number',message:'Enter your phone number.'},{name:'subject',label:'subject',message:'Select an option or enter a subject.'},{name:'privacyConsent',label:'privacy consent',message:'Agree to the processing of your data.'}],
-  de:[{name:'phone',label:'Telefonnummer',message:'Bitte geben Sie Ihre Telefonnummer ein.'},{name:'subject',label:'Betreff',message:'Bitte wählen Sie eine Option oder geben Sie einen Betreff ein.'},{name:'privacyConsent',label:'Datenschutz',message:'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'}],
+  nl:[{name:'pageUrl',label:'pagina',message:'Verstuur het formulier vanaf de website.'},{name:'phone',label:'telefoonnummer',message:'Vul uw telefoonnummer in.'},{name:'subject',label:'onderwerp',message:'Maak een keuze of vul een onderwerp in.'},{name:'privacyConsent',label:'privacytoestemming',message:'Ga akkoord met de verwerking van uw gegevens.'}],
+  en:[{name:'pageUrl',label:'page',message:'Please send the form from the website.'},{name:'phone',label:'phone number',message:'Enter your phone number.'},{name:'subject',label:'subject',message:'Select an option or enter a subject.'},{name:'privacyConsent',label:'privacy consent',message:'Agree to the processing of your data.'}],
+  de:[{name:'pageUrl',label:'Seite',message:'Bitte senden Sie das Formular über die Website.'},{name:'phone',label:'Telefonnummer',message:'Bitte geben Sie Ihre Telefonnummer ein.'},{name:'subject',label:'Betreff',message:'Bitte wählen Sie eine Option oder geben Sie einen Betreff ein.'},{name:'privacyConsent',label:'Datenschutz',message:'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'}],
 };
 // The notification is for the owner, so it is Dutch whatever the page language; the
 // language row and the subject's (EN)/(DE) tell them which language to answer in.
@@ -19,7 +22,7 @@ function formConfig(kind:Kind,lang:Lang,origin:string,defaultLang:Lang):LeadForm
   return {
     formPath,locale:lang==='nl'?'nl':'en',siteName:'Rescue Watercraft',ownerName:'Rescue Watercraft',senderName:'Rescue Watercraft',
     subjectPrefix:`${headings[kind]} Rescue Watercraft${lang==='nl'?'':` (${lang.toUpperCase()})`}`,
-    turnstile:false,honeypotField:'website',messageField:'message',subjectFields:['subject','organisation'],requiredFields:required[lang],
+    turnstile:true,honeypotField:'website',messageField:'message',subjectFields:['subject','organisation'],requiredFields:required[lang],
     emailFields:[{name:'phone',label:'Telefoon'},{name:'organisation',label:'Organisatie'},{name:'subject',label:'Onderwerp'}],
     leadOnlyEmailFields:[{name:'language',label:'Taal'},{name:'pageUrl',label:'Pagina'},{name:'privacyConsent',label:'Toestemming'}],
     leadEmail:{heading:`${headings[kind]} via de website`,messageHeading:'Vraag of toelichting',nameLabels:{firstName:'Voornaam',lastName:'Achternaam',email:'E-mail'},includeAttachments:false},
