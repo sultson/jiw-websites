@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    // WebWorker, niet alleen ES2022: File en FormData komen daaruit, en
+    // @jiw/cloudflare-forms is daartegen getypeerd. Zonder deze regel valt het
+    // pakket zelf om op fouten over File en size, en dan lijkt het alsof er
+    // iets mis is met de worker hier.
+    "lib": ["ES2022", "WebWorker"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "allowImportingTsExtensions": true,
+    "types": ["@cloudflare/workers-types"],
+    "noEmit": true
+  },
+  "include": ["worker"]
+}

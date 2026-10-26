@@ -1,0 +1,77 @@
+Bron: notulen van een overleg MET Pascal, doorgegeven door Armando in de
+WhatsApp-groep "Claudius Hulskers 2.0" op 25-10-2026.
+
+Dit is een sterkere bron dan doorgegeven-armando.txt van 20-10-2026. Dat was van
+horen zeggen uit een gesprek tussen Armando en Pascal; dit zijn aantekeningen uit
+een overleg waarin Pascal zelf de begrippen uitlegde. Het is nog steeds niet zijn
+eigen schrift, dus elke regel die hierop rust gaat naar NALEZEN-PASCAL.md - maar
+deze bron gaat VOOR op zijn advertentie van 2018 en voor de doorgegeven regels van
+20-10-2026 waar ze elkaar tegenspreken.
+
+VEROUDERD IN DIT BESTAND (pascal-whatsapp-25-10-2026.txt, zijn eigen schrift van
+diezelfde dag, gaat hierop voor):
+  - De alinea "Renovlies en glasweefselbehang zijn goedkoper dan stucen en schilderen,
+    omdat er geen scheurtjes in komen die gerepareerd moeten worden". Die stond hier
+    en stond dus ook op de pagina. Toen Pascal die zin op de pagina zag: "Deze mag er
+    wel uit." De vergelijking met stucen of schilderen staat nergens meer op de site;
+    wat blijft is zijn eigen reden uit 2018, en die gaat over LATER (een wand die
+    eenmaal geplakt is, kan altijd weer overgetext worden). controleer.mjs 15e.
+
+VEROUDERD door dit overleg, elders in het korpus:
+
+  1. marktplaats-advertentie.txt (2018) gebruikt "vliesbehang" voor het materiaal
+     dat je OVERTEXT: "wanden die eenmaal voorzien zijn van vliesbehang of
+     glasweefselbehang, kunnen ten alle tijden overgetext worden", en zet de drie
+     soorten in een adem met "verschillende printen & designs". Volgens dit overleg
+     is vliesbehang gewoon normaal behang, en is de print juist het kenmerk van
+     glasweefselbehang. Zijn eigen advertentie is op dit punt dus los geformuleerd.
+     De site volgt dit overleg: overtexen is renovlies en glasweefselbehang.
+
+  2. doorgegeven-armando.txt, zevende regel: "Beide kunnen samen aangebracht worden
+     binnen de optie van 23 euro per m2." Dat is onjuist. Er wordt EEN coating
+     gekozen, niet twee.
+
+  3. doorgegeven-armando.txt, eerste regel: "Natuurlijk doet Pascal egaliseren,
+     schuren en voorstrijken zelf, indien nodig." Egaliseren doet Pascal NIET. Dat
+     woord mag nergens meer op de site staan; schuren en voorstrijken blijven.
+
+  4. marktplaats-advertentie.txt, de prijzen: EUR 10,00 plakken en EUR 16,00
+     inclusief texen zijn vervangen door EUR 11,00 en EUR 17,50. De 23 euro voor
+     twee keer texen is in dit overleg niet genoemd en blijft dus staan.
+
+  5. sikkens-producten.txt: AkzoNobel claimt voor Anti Marks bestand tegen strepen,
+     vegen en stoten van "schoenen, koffers en tassen". Pascal zegt dat een koffer
+     wel schade geeft. Hij brengt het aan, dus zijn ervaring gaat voor de folder.
+     De site claimt alleen nog strepen en vegen.
+
+---
+
+Renovlies
+Het is behang dat op de wand wordt geplakt, waarbij je er over text.
+Pascal gebruikt 215 gram per m2, meer dan de meeste bedrijven gebruiken; die
+gebruiken meestal maar 165 gram per m2.
+Het is dik en krimpscheurtjes ontstaan niet; het is scheuroverbruggend.
+
+Glasweefselbehang
+Het is behang dat op de wand wordt geplakt, waarbij je er over text.
+Krimpscheurtjes ontstaan niet; het is scheuroverbruggend.
+Het is als echt behang met een patroon: je blijft het patroon zien terwijl je er
+over text of schildert.
+
+Vliesbehang
+Normaal behang in alle soorten en maten.
+
+Renovlies en glasweefselbehang zijn goedkoper dan stucen en schilderen, omdat er
+geen scheurtjes in komen die gerepareerd moeten worden voordat er een andere kleur
+verf over kan. Dus eigenlijk geen herstelwerk.
+
+Van de drie tex-materialen kan er maar EEN gekozen worden, niet twee. De
+tex-opties hebben schrobklasse 1.
+
+De Anti Marks kan niet zonder schade van koffers.
+
+Easy Clean is ketchupbestendig, dus ideaal voor de keuken.
+
+Pascal doet niet: egaliseren.
+
+De 10 euro mag naar 11 euro. De 16 euro mag naar 17,50.

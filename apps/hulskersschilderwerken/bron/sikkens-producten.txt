@@ -1,0 +1,68 @@
+Bron: de fabrikant zelf, sikkens.nl, nagekeken op 20-10-2026.
+
+INGEPERKT door Pascal (overleg 25-10-2026, zie zijn-tekst/overleg-pascal-25-10-2026.txt):
+  - AkzoNobel claimt voor Anti Marks bestand tegen strepen, vegen en stoten van
+    "schoenen, koffers en tassen". Pascal zegt dat een KOFFER wel schade geeft. Hij
+    brengt het aan en ziet de wand terug, dus zijn ervaring gaat voor de folder. Op de
+    pagina staan alleen nog strepen en vegen; koffers, tassen en "stoten" zijn eruit.
+    controleer.mjs 16b gaat af op "koffer" en "tassen".
+    Dit is de reden dat dit kopje hier staat: de woorden hieronder zijn letterlijk waar
+    volgens de fabrikant, dus geen enkele poort houdt ze tegen. De bron is hier de
+    verkeerde, niet de bewering.
+  - Er wordt EEN van de drie coatings gekozen, niet twee. Wat hieronder over combineren
+    of stapelen zou kunnen suggereren geldt dus niet voor de site.
+  - Schrobklasse 1 geldt volgens dit blad voor alle drie. Het stond tot 20-10-2026 onder
+    de drie kaarten op de site en Armando streepte het door (een norm uit een
+    fabrikantblad zegt een bewoner niets). Pascal noemde het op 25-10-2026 weer in de
+    notulen, en diezelfde avond gaf Armando door dat de klant hem er wel op wil hebben.
+    Sindsdien staat hij er weer, maar andersom opgeschreven: eerst wat de bewoner eraan
+    heeft (schrobvast), dan de norm die het narekenbaar maakt. controleer.mjs 16d eist
+    hem nu, want deze regel is drie keer van richting gewisseld.
+
+Dit bestand staat BEWUST niet in bron/zijn-tekst/. Dat is het korpus van Pascal zijn
+eigen woorden, en dit is de tekst van AkzoNobel. Een fabrikantclaim mag geen woorden
+"verantwoorden" in een zin die namens Pascal spreekt - daarom draagt alles wat hieruit
+komt het merk `feit` met dit bestand als bron, en staat het apart op NALEZEN-PASCAL.md.
+
+Armando gaf op 20-10-2026 door dat Pascal met Sikkens werkt, met twee producten erbij,
+en vroeg of hij ze goed schreef. Drie dingen stonden anders:
+
+  "Sikkens Anti Marx"          -> Alpha Rezisto Anti Marks
+  "Sikkens Resisto Easy Clean" -> Alpha Rezisto Easy Clean   (Rezisto, met een z)
+  "Sikkens puur mat"           -> Alphacryl Pure Mat SF
+
+Over de vorm: Sikkens zet ze alle drie onder "binnenmuurverf". De site zei daarom eerst
+muurverf. Armando meldde op 20-10-2026 dat Pascal zelf coating zegt, en dat is wat er nu
+staat. Geen van beide is fout - muurverf is een coating, en coating is het woord dat de
+schilder gebruikt die het aanbrengt. In een zin die namens Pascal spreekt wint zijn
+eigen woord van het etiket van de fabrikant.
+
+Wat NIET mag: hieruit afleiden dat het iets anders is dan muurverf (een los laagje
+bovenop, een beschermlaag over de verf heen, een tweede behandeling met een eigen
+prijs). Het is dezelfde emmer, alleen het woord van de schilder.
+
+Let op bij Anti Marks: de fabrikant claimt bestand tegen strepen, vegen en stoten
+(schoenen, koffers, tassen) en schrobklasse 1. NIET krasvast - dat is een andere claim
+en die staat nergens bij Sikkens. De site zegt daarom strepen en stoten.
+
+---
+
+Alpha Rezisto Anti Marks
+  Binnenmuurverf voor intensief gebruikte ruimtes (musea, scholen, kleedkamers).
+  Extreem bestand tegen strepen, vegen en stoten van schoenen, koffers en tassen.
+  Schrobklasse 1 volgens DIN EN 13300. Mat. Watergedragen.
+  https://www.sikkens.nl/nl/producten/alpha-rezisto-anti-marks
+
+Alpha Rezisto Easy Clean
+  Binnenmuurverf, opvolger van Alpha Rezisto Mat. Ultiem vlekafstotend en makkelijk
+  reinigbaar; water-, vuil- en vetafstotend door Stainshield-technologie, zodat vlekken
+  niet in de verflaag trekken. Extreem schrobvast, klasse 1 volgens DIN EN 13300, en
+  glanst niet op na herhaald schoonmaken. Mat. 10 m2 per liter.
+  https://www.sikkens.nl/nl/producten/alpha-rezisto-easy-clean
+
+Alphacryl Pure Mat SF
+  Binnenmuurverf, extreem mat, perfecte vloei, schrobvast zonder op te glanzen.
+  Schrobklasse 1. Wordt onder andere in het Rijksmuseum gebruikt.
+  https://www.sikkens.nl/nl/producten/alphacryl-pure-mat-sf
+
+Schrobklasse 1 is de hoogste van de vijf klassen in DIN EN 13300.

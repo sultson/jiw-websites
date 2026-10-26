@@ -102,3 +102,12 @@ apps/dagmar-voss/shots/
 # uitlevert staat gegenereerd in inhoud/assets/ en oud/.
 apps/framemedia/raw
 apps/framemedia/shots
+
+# hulskersschilderwerken: de schermafdrukken die proef.mjs (gedrag), shot.mjs en
+# tools/live.mjs (de echte proefaanvraag op de live site) maken. Meetresultaat, geen
+# bron: elke run schrijft ze opnieuw. public/logo-mail.png is er WEL bij - die is ook
+# gegenereerd, maar de bevestigingsmail verwijst ernaar en build.mjs zakt als hij
+# ontbreekt, net als bij velvet-cakes-by-anka en resq-protec.
+apps/hulskersschilderwerken/proef/
+apps/hulskersschilderwerken/tools/live-*.png
+apps/hulskersschilderwerken/schermfoto-*.png

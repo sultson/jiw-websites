@@ -1,0 +1,81 @@
+Bron: Marktplaats-advertentie m1276829392 "Hulskers Schilderwerken / Renovlies",
+online sinds 18-04-2018, opgehaald 19-10-2026. Dit is Pascal zijn eigen tekst,
+woordelijk overgenomen. Alles onder de streep telt als zijn woorden.
+
+Let op bij het nalezen: hij schrijft u, niet je. Zijn prijzen staan ex btw en
+gelden vanaf 100 m2.
+
+VEROUDERD in deze advertentie (doorgegeven via Armando, 20-10-2026):
+  - Traprenovatie doet Pascal NIET meer. Staat hier nog met twee foto's erbij en
+    als trefwoord, maar hij is op 20-10-2026 van de hele site gehaald. Zet hem niet
+    terug omdat hij hier staat - deze tekst is van 2018.
+  - De 16 euro is EEN keer texen, en er bestaat een optie van 23 euro voor twee keer.
+    Dat staat hier niet in; zie doorgegeven-armando.txt.
+
+VEROUDERD in deze advertentie (overleg met Pascal, 25-10-2026 - zie
+overleg-pascal-25-10-2026.txt, dat gaat hierop voor):
+  - DE PRIJZEN. EUR 10,00 is 11,00 geworden en EUR 16,00 is 17,50. De bedragen hieronder
+    zijn dus historisch. controleer.mjs 17 gaat af op 10 en 16 euro per m2.
+  - DE BEGRIPPEN. Deze tekst zet renovlies, vliesbehang en glasweefselbehang in een adem
+    ("deze soorten behang zijn er in verschillende printen & designs en is in alle
+    kleuren over te texen") en gebruikt "vliesbehang" ook voor het materiaal dat je
+    OVERTEXT ("wanden die eenmaal voorzien zijn van vliesbehang of glasweefselbehang,
+    kunnen ten alle tijden overgetext worden"). Volgens het overleg zijn dat drie
+    verschillende dingen: vliesbehang is gewoon behang en wordt niet getext, en het
+    patroon is het kenmerk van glasweefselbehang en niet van renovlies.
+    Dit is de belangrijkste waarschuwing bij dit bestand: wie hieruit schrijft krijgt
+    die verwarring er gratis bij, en de bronpoort keurt het goed - want het KLOPT tegen
+    deze bron. controleer.mjs 15a gaat af op zo'n zin.
+
+---
+
+Hulskers Schilderwerken / Renovlies
+
+Voor al uw Schilderwerk & Renovlies / Vlies Behang.
+
+Schilderwerk : Binnen en Buiten.
+
+Wandafwerking : Glasweefselbehang, Renovlies & Vliesbehang
+
+Sauswerk : Plafonds & Wanden.
+
+Traprenovatie: Foto 2 & 3
+Foto 2 is de oude bestaande trap.
+Foto 3 is dezelfde trap na de renovatie.
+
+Voor al uw schilderwerk binnen en buiten, krijgt u een duidelijke offerte.
+
+Heeft u een nieuwbouw of bestaande woning waarvan de wanden behangklaar zijn opgeleverd en u weet niet wat voor wandafwerking u wilt?
+Kies voor Renovlies, Vliesbehang of Glasweefselbehang, deze soorten behang zijn er in verschillende printen & designs en is in alle kleuren over te texen.
+Renovlies behang of Glasweefsel behang is scheur overbruggend zodat kleine scheurtjes die veel voorkomen in nieuwbouw woningen niet meer zichtbaar zijn.
+Relatief goedkoop want wanden die eenmaal voorzien zijn van vliesbehang of glasweefselbehang, kunnen ten alle tijden overgetext worden.
+
+Renovlies behang is een zeer gewilde behangsoort, omdat deze vrij dik en stevig is.{ kan naadloos worden geplakt. }
+
+Een voorbeeld :
+Ik kan uw muren al voorzien van Glasweefselbehang of Renovlies vanaf €10,00 PER/M2 inclusief behang & lijm ex btw.
+Wilt u het echter ook getext hebben, dan kan ik u een totaalprijs aanbieden vanaf
+€16,00 PER/M2 dit is inclusief alle materialen ! ! ! {ex Btw}
+Prijzen gelden vanaf 100 m2.
+
+Vanaf 100 m2 plakken wij in heel Nederland.
+TIJDIG RESERVEREN IS GEWENST !!!
+
+Vraag vrijblijvend naar informatie of prijzen.
+
+Woningen vanaf 2 jaar en ouder vallen in de 9% btw regeling.
+
+Geen betalingen vooruit, pas als de werkzaamheden zijn verricht.
+
+We gaan pas naar huis als de klant tevreden is.
+
+Hulskers Schilderwerken
+Tel : 06-20 41 82 67.
+hulskersschilderwerken@gmail.com
+
+trefwoorden : glasvezelbehang - glasweefselbehang - glasvlies - scan - renovlies - schilderwerk - latex - saus - traprenovatie
+
+Kenmerken van de advertentie:
+Type : Behangen, Binnenschilderwerk, Buitenschilderwerk
+Service : Garantie, Kleuradvies
+Plaats : Coevorden

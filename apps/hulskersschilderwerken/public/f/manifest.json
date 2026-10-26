@@ -1,0 +1,129 @@
+{
+ "woonkeuken-groen": [
+  {
+   "bestand": "f/woonkeuken-groen-640.webp",
+   "w": 640,
+   "h": 360
+  },
+  {
+   "bestand": "f/woonkeuken-groen-1000.webp",
+   "w": 1000,
+   "h": 562
+  }
+ ],
+ "pascal-portret": [
+  {
+   "bestand": "f/pascal-portret-800.webp",
+   "w": 800,
+   "h": 600
+  }
+ ],
+ "overloop-taupe": [
+  {
+   "bestand": "f/overloop-taupe-600.webp",
+   "w": 600,
+   "h": 800
+  },
+  {
+   "bestand": "f/overloop-taupe-900.webp",
+   "w": 900,
+   "h": 1200
+  }
+ ],
+ "hal-grijs-trap": [
+  {
+   "bestand": "f/hal-grijs-trap-600.webp",
+   "w": 600,
+   "h": 800
+  },
+  {
+   "bestand": "f/hal-grijs-trap-900.webp",
+   "w": 900,
+   "h": 1200
+  }
+ ],
+ "woonkeuken-staand": [
+  {
+   "bestand": "f/woonkeuken-staand-600.webp",
+   "w": 576,
+   "h": 768
+  }
+ ],
+ "nieuwbouw-houten-trap": [
+  {
+   "bestand": "f/nieuwbouw-houten-trap-600.webp",
+   "w": 600,
+   "h": 450
+  },
+  {
+   "bestand": "f/nieuwbouw-houten-trap-900.webp",
+   "w": 900,
+   "h": 675
+  }
+ ],
+ "nieuwbouw-rolsteiger": [
+  {
+   "bestand": "f/nieuwbouw-rolsteiger-600.webp",
+   "w": 600,
+   "h": 450
+  },
+  {
+   "bestand": "f/nieuwbouw-rolsteiger-900.webp",
+   "w": 900,
+   "h": 675
+  }
+ ],
+ "fotobehang-bos": [
+  {
+   "bestand": "f/fotobehang-bos-600.webp",
+   "w": 600,
+   "h": 450
+  },
+  {
+   "bestand": "f/fotobehang-bos-900.webp",
+   "w": 900,
+   "h": 675
+  }
+ ],
+ "stalen-deuren-wit": [
+  {
+   "bestand": "f/stalen-deuren-wit-600.webp",
+   "w": 600,
+   "h": 450
+  },
+  {
+   "bestand": "f/stalen-deuren-wit-900.webp",
+   "w": 900,
+   "h": 675
+  }
+ ],
+ "buiten-gevel-riet": [
+  {
+   "bestand": "f/buiten-gevel-riet-600.webp",
+   "w": 600,
+   "h": 450
+  },
+  {
+   "bestand": "f/buiten-gevel-riet-900.webp",
+   "w": 900,
+   "h": 675
+  }
+ ],
+ "buiten-voordeur": [
+  {
+   "bestand": "f/buiten-voordeur-600.webp",
+   "w": 600,
+   "h": 450
+  },
+  {
+   "bestand": "f/buiten-voordeur-900.webp",
+   "w": 900,
+   "h": 675
+  }
+ ],
+ "_wandkleur": {
+  "overloop-taupe": "#664C35",
+  "hal-grijs-trap": "#676055",
+  "woonkeuken-staand": "#A6A379"
+ }
+}

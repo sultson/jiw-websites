@@ -1,0 +1,111 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "hulskersschilderwerken",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // De canonical van de tweede pagina is /werkwijze/ MET slash, en dat is ook wat de
+    // sitemap en elke interne link zeggen. Met de standaardwaarde ("auto-trailing-slash")
+    // kiest Workers zelf welke vorm een 200 geeft en wordt de andere een 307, en dan
+    // wijzen canonical en sitemap naar een omleiding. Stond in de conceptmap om dezelfde
+    // reden al zo in wrangler.toml.
+    "html_handling": "force-trailing-slash",
+    // Een onbekend pad krijgt dist/404.html MET status 404, niet de startpagina met een
+    // 200 - dat tweede leest Google als een soft 404.
+    "not_found_handling": "404-page",
+    // ALLES door de worker, niet alleen /api/*.
+    //
+    // Dat is nodig omdat de worker omleidingen doet (www, het oude conceptadres, en
+    // http naar https). Workers Assets levert een bestand dat in dist/ ligt zelf uit en
+    // draait de worker dan NIET - die is standaard alleen de terugval voor wat er niet
+    // ligt. Zonder deze regel geeft hulskers-renovlies-concept.jouwconcept.app dus een
+    // gewone 200 met de hele site erop: precies de tweede kopie die de omleiding moet
+    // voorkomen, en van buiten ziet dat eruit alsof het werkte (zie cdlf, 10-10-2026).
+    //
+    // De kosten zijn een worker-aanroep per verzoek op een site van twee pagina's; de
+    // pagina komt daarna nog steeds van de edge via env.ASSETS.fetch.
+    "run_worker_first": true
+  },
+  // Twee hostnamen, en maar een ervan levert pagina's uit.
+  //
+  // hulskersschilderwerken.nl is de canonieke. Dit domein heeft geen geschiedenis - er
+  // stond nooit een site op, alleen zijn Purelymail-records voor de mailbox - dus geldt
+  // de huisregel uit de root CLAUDE.md: apex canoniek, www ernaartoe. Dat is andersom
+  // dan bij framemedia, waar www al jaren uitgeleverd werd en dus is wat Google heeft.
+  //
+  // www hangt er wel aan, met een Redirect Rule op de zone die hem met een 301 naar de
+  // apex stuurt (pad en query intact). Dynamic Redirects lopen voor Workers, dus de
+  // worker wordt daar normaal niet eens aangeroepen; ANDERE_HOSTS in worker/index.ts is
+  // het tweede slot. www blijft als custom domain gebonden en wordt geen losse
+  // DNS-regel: wordt die rule ooit weggehaald, dan vangt de worker hem op in plaats van
+  // de site uit te leveren.
+  //
+  // Het oude conceptadres hangt hier OOK aan, en levert geen pagina's uit: ANDERE_HOSTS
+  // in worker/index.ts stuurt hem met een 301 naar de apex, pad en query intact.
+  //
+  // Dat moest, en niet omdat een gedeelde link anders doodloopt. De conceptsite stond
+  // van 19-10 tot 26-10-2026 online MET `Allow: /` in robots.txt, dus dat adres was een
+  // complete tweede kopie van deze site die om dezelfde zoekwoorden concurreerde (zie
+  // de regel over velvet-cakes-concept in de root CLAUDE.md - daar staat die tweede
+  // kopie er nog). Het is op 26-10-2026 van de worker `hulskers-renovlies-concept`
+  // hierheen verhuisd; dat script draait nu nog maar houdt geen enkele hostname meer.
+  "routes": [
+    {
+      "pattern": "hulskersschilderwerken.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.hulskersschilderwerken.nl",
+      "custom_domain": true
+    },
+    {
+      "pattern": "hulskers-renovlies-concept.jouwconcept.app",
+      "custom_domain": true
+    }
+  ],
+  // Het formulier neemt geen bestanden aan, dus hier wordt niets in geschreven. De
+  // binding moet er wel zijn: CloudflareFormsEnv in @jiw/cloudflare-forms eist hem, en
+  // zonder valt de worker om op een ontbrekende binding in plaats van op een typefout.
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["no-reply@notify.hulskersschilderwerken.nl"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "hulskersschilderwerken",
+    // Aanvragen komen voorlopig bij ons binnen, niet bij Pascal (Alfred, 26-10-2026).
+    // Dit adres is de reply-to van de bevestiging die de bezoeker terugkrijgt; het
+    // GEPRINTE contactadres in die mail is zijn eigen gmail, dat al openbaar op de site
+    // staat (zie de noot bij `contactEmail` in worker/confirmation.ts).
+    //
+    // Zolang hier ons eigen adres staat, mag er getest worden. Gaat dit naar zijn eigen
+    // postvak, zet het dan eerst terug voordat je een proefaanvraag verstuurt.
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // Het verzenddomein notify.hulskersschilderwerken.nl staat op de zone
+    // hulskersschilderwerken.nl en is geverifieerd (gemeten 26-10-2026 met
+    // `wrangler email sending list`). LET OP: die records hangen aan
+    // cf-bounce.notify.hulskersschilderwerken.nl en _dmarc.notify.*, NIET aan
+    // notify.hulskersschilderwerken.nl zelf - een dns-controle op dat tweede adres
+    // geeft leeg terug en dat is geen bewijs dat het verzenddomein mist.
+    //
+    // Zijn eigen mail loopt via Purelymail op de apex (MX, SPF, DKIM, DMARC). Die staat
+    // los van dit subdomein en mag er niet door geraakt worden.
+    //
+    // Het deel voor de @ is vrij, dus no-reply@ veranderen is deze regel plus
+    // allowed_sender_addresses hierboven, zonder DNS-werk.
+    "LEAD_SENDER": "no-reply@notify.hulskersschilderwerken.nl"
+  }
+}

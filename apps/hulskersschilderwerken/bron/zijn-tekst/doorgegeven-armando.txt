@@ -1,0 +1,78 @@
+Bron: Armando in de WhatsApp-groep "Claudius Hulskers 2.0", 20-10-2026. Zeven regels:
+het antwoord op de vraag of Pascal het voorwerk zelf doet, wat Pascal zelf tegen hem
+zei over wat er in zijn prijs zit, hoe ver hij rijdt voor werk onder de 100 m2, dat
+traprenovatie eruit is, wat de 16 euro precies is, dat er een derde optie van 23 euro
+bestaat, en met welke verf hij text.
+Dit is DOORGEGEVEN tekst: Armando spreekt Pascal, dus hij weet het, maar het zijn niet
+Pascals eigen woorden en het staat nergens op schrift van hem.
+
+VEROUDERD in dit bestand (overleg met Pascal, 25-10-2026 - zie
+overleg-pascal-25-10-2026.txt, dat gaat hierop voor):
+  - "Natuurlijk doet Pascal egaliseren, schuren en voorstrijken zelf." Egaliseren doet
+    hij NIET. Dat woord mag nergens op de site staan; controleer.mjs 13b1 gaat erop af.
+    Schuren en voorstrijken blijven wel staan.
+    En de rest van die regel is dezelfde dag alsnog gevallen, door Pascal zelf op
+    schrift - zie pascal-whatsapp-25-10-2026.txt, dat op dit bestand VOORGAAT. Hij
+    maakt een wand die niet behangklaar is ook niet behangklaar ("!!"). Schuren en
+    voorstrijken gaan over een wand die al behangklaar IS. Lees de hele eerste regel
+    hieronder dus niet meer als voorwerk om een wand behangklaar te maken;
+    controleer.mjs 13b4 gaat af op elke zin die dat weer beweert.
+  - "Beide kunnen samen aangebracht worden binnen de optie van 23 euro per m2." Onjuist:
+    er wordt EEN coating gekozen, niet twee. Dit stond op vier plekken op de site.
+  - De 16 euro per m2 is 17,50 geworden (en de 10 is 11). Dat het EEN keer texen is,
+    klopt nog wel; alleen het bedrag is veranderd.
+
+Daarom staat dit in een eigen bestand en niet bij zijn advertentie: elke regel op de
+site die hierop rust draagt bron "doorgegeven via Armando" en komt zo apart op
+NALEZEN-PASCAL.md te staan. Blijft dat bevestigen uit, dan weet de volgende dat deze
+regels van horen zeggen zijn.
+
+Let op: "indien nodig" hoort bij de bewering. Een wand die behangklaar is opgeleverd
+krijgt geen voorwerk, en dat is precies het geval dat zijn advertentie noemt.
+
+Let op bij de tweede regel: er staat schuren en lichte reparaties, en dus NIET dat
+egaliseren en voorstrijken ook in de prijs zitten. Die twee doet hij wel zelf (regel 1),
+maar of ze in de 10 en de 16 zitten staat hier niet. De site zegt daarom alleen wat hier
+staat; de rest is vraag 1 in de README. "Lichte" hoort bij de bewering: een wand die
+flink hersteld moet worden is geen lichte reparatie.
+
+Let op bij de derde regel: die gaat over het WERKGEBIED onder de 100 m2 en niet over de
+prijs. Zijn advertentie zegt alleen dat hij vanaf 100 m2 door heel Nederland rijdt en
+laat open wat daaronder gebeurt; dit vult dat gat. Er staat niet wat kleiner werk kost,
+dus daar zegt de site nog steeds niets over. De woonplaats is Coevorden, uit het
+KVK-uittreksel (Krimweg 109); Armando zei "zijn woonplaats".
+
+Let op bij de vierde regel: traprenovatie staat nog WEL in zijn Marktplaats-advertentie
+van 2018, met twee foto's erbij. Dit is dus een plek waar de oudere bron de verkeerde
+is. Van de site af, inclusief de structured data: een dienst laten staan die hij niet
+meer levert levert aanvragen op die hij moet weigeren.
+
+Let op bij de vijfde en zesde regel: zijn advertentie zegt alleen "wilt u het echter
+ook getext hebben, dan kan ik u een totaalprijs aanbieden vanaf EUR 16,00" en zegt
+NIET hoe vaak er dan getext wordt. De 23 euro staat er helemaal niet in. Beide staan
+daarom hier en niet bij zijn advertentie.
+
+Let op bij de zevende regel: wat de verf KAN staat niet hier maar in
+bron/sikkens-producten.txt, met de fabrikant als bron. Armando schreef "Anti Marx",
+"Resisto Easy Clean" en "puur mat"; de namen zijn nagekeken op sikkens.nl en staan
+daar in de juiste vorm. Dat Pascal ze gebruikt is doorgegeven, wat ze doen is van
+AkzoNobel, en dat zijn twee bronnen die niet door elkaar mogen lopen.
+
+Over het woord coating: Armando noemde ze zo, de site maakte er muurverf van omdat
+Sikkens dat op de emmer zet, en Armando kwam er op 20-10-2026 op terug - Pascal zelf
+zegt coating. Dat is nu het woord op de site. Zijn eigen vakwoord gaat voor het etiket
+van de fabrikant in een zin die namens hem spreekt; muurverf is ook een coating, dus
+er wordt niets beweerd wat niet waar is. Wat de site NIET doet is er een los laagje
+bovenop of een aparte behandeling van maken.
+
+---
+
+Natuurlijk doet Pascal egaliseren, schuren en voorstrijken zelf, indien nodig.
+De prijzen zijn inclusief schuren en lichte reparaties, zei de klant.
+Voor minder dan 100 m2 rijdt Pascal binnen 30 kilometer van zijn woonplaats Coevorden.
+Traprenovaties doet hij niet meer, dus dat kan weg.
+De 16 euro per m2 is 1 keer texen.
+Er is ook een optie van 23 euro per m2, en dat is 2 keer texen.
+Hij maakt gebruik van het merk Sikkens: Anti Marx en Resisto Easy Clean. Beide kunnen
+samen aangebracht worden binnen de optie van 23 euro per m2. Optioneel kan Sikkens
+puur mat ook.

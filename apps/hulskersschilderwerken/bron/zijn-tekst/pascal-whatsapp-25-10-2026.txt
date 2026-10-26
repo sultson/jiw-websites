@@ -1,0 +1,117 @@
+Bron: Pascal zelf, in WhatsApp. Armando stuurde op 25-10-2026 om 18:10 twee
+schermfoto's van zijn eigen antwoorden door in de groep "Claudius Hulskers 2.0".
+Hij reageerde daarin regel voor regel op blokken van de site.
+
+Dit is de STERKSTE bron in dit korpus. De advertentie van 2018 is ook zijn eigen
+tekst maar acht jaar oud; de notulen van 25-10-2026 zijn aantekeningen van een
+overleg. Dit is zijn eigen schrift van vandaag, over deze pagina's. Waar hij iets
+tegenspreekt, wint dit bestand - van alles.
+
+Nog steeds geen eigen website-copy van hem: hij schreef dit als correctie in een
+chat, niet als tekst voor de site. Regels die hierop rusten gaan dus nog gewoon
+naar NALEZEN-PASCAL.md.
+
+WAAR ELKE REGEL OVER GING (onze tekst, bewust BOVEN de streep - zie
+playground/CLAUDE.md: een eigen kopje telt niet mee als zijn woorden):
+
+  1. Bij het vakmanblok op de startpagina, waar stond: "Is uw wand nog niet
+     behangklaar, dan doet hij het voorwerk er zelf bij: schuren en voorstrijken,
+     voor zover dat nodig is." Daarop antwoordde hij de eerste twee regels
+     hieronder (de eerste om 17:33, bewerkt; de tweede om 17:37).
+  2. Bij de zin onder de drie soorten op /werkwijze/: "Renovliesbehang en
+     glasweefselbehang vallen goedkoper uit dan stucen of schilderen, omdat er
+     geen scheurtjes in komen die eerst gerepareerd moeten worden voordat er een
+     andere kleur over kan. Dat herstelwerk valt dus weg." Daarop: "Deze mag er
+     wel uit." (17:44)
+  3. Bij het blok "Het voorwerk" op /werkwijze/, dat uit twee alinea's bestond.
+     De tweede was: "Hij kijkt bij u welke wandafwerking het beste past en wat er
+     voor die wand nodig is. Bellen of appen kan ook, dan hoort u het meteen."
+     Daarop de laatste drie regels hieronder (17:50).
+  4. Bij de kaart "Vliesbehang" in het soortenblok op /werkwijze/, waar stond:
+     "Normaal behang, in alle soorten en maten. Dit is de wandafwerking zelf: er
+     wordt niet over getext en het overbrugt geen scheurtjes. Pascal behangt er ook
+     mee, maar het doet iets anders dan de twee hiernaast." Daarop de laatste twee
+     regels hieronder, met een schermfoto van precies die kaart erbij (20:01,
+     doorgestuurd door Armando). Hij schreef erboven: "Deze tekst mag aangepast
+     worden naar deze".
+
+     Dit is de eerste regel in dit korpus die GEEN correctie is maar aangeleverde
+     copy: hij schrijft hier de kaart zelf opnieuw. Alleen zijn opsomming is uit de
+     kapitalen en het streepje gehaald ("zowel Effen - Patroon of Fotobehang" werd
+     "effen, met patroon of fotobehang"), want dat streepje is de vorm waar de
+     ai-poort op afgaat.
+
+     LET OP WAT ZIJN VERSIE NIET MEER ZEGT: "er wordt niet over getext en het
+     overbrugt geen scheurtjes". Dat was de zin die het onderscheid met de twee
+     andere soorten hardop maakte, en het onderscheid is precies waar het overleg
+     van die ochtend om begonnen was. Hij staat er niet voor terug - het is zijn
+     kaart - maar het onderscheid zelf leunt nu op de wat-regels van de drie kaarten
+     ("Behang op de wand, daarna texen" tegen "Gewoon behang") en op vragen.a4 op de
+     startpagina. Komt dit ooit ter sprake: dat is de regel die eruit is, en
+     controleer.mjs 15a bewaakt nog wel de andere kant (nergens mag staan dat
+     vliesbehang wel getext of scheuroverbruggend is).
+
+VEROUDERD door dit bestand, elders in het korpus:
+
+  1. doorgegeven-armando.txt, eerste regel: "Natuurlijk doet Pascal egaliseren,
+     schuren en voorstrijken zelf, indien nodig." Die regel is op 25-10-2026 al
+     half ingetrokken (egaliseren doet hij niet, zie overleg-pascal). Nu valt ook
+     de rest: hij maakt een wand die NIET behangklaar is ook niet behangklaar.
+     Schuren en voorstrijken blijven, maar ze gaan over een wand die al
+     behangklaar IS - dat is iets heel anders dan voorwerk om hem zover te
+     krijgen. De site heeft dat acht dagen verkeerd gezegd.
+  2. overleg-pascal-25-10-2026.txt, de alinea "Renovlies en glasweefselbehang zijn
+     goedkoper dan stucen en schilderen". Dat stond in de notulen van datzelfde
+     overleg, maar toen hij de zin op de pagina zag wilde hij hem eruit.
+
+     HOE VER DIT STREKT - en dit is twee keer misgelopen, dus lees het hele blok
+     voordat je iets met het woord "goedkoop" doet.
+
+     Om 18:33 trok Armando zijn eigen verzoek van 16:00 in (de toekomstkant
+     expliciet maken, wat op de site "elke volgende kleur goedkoper" werd). Ik las
+     daarin dat het prijsargument er helemaal uit moest en schrapte ook "relatief
+     goedkoop" op drie plekken: de vierde van de vijf redenen, vragen.a3 en
+     werkwijze.b3_b. Om 18:40 zette Armando dat recht: "je hoefde alleen weg te
+     halen wat klant zei dat weg moest en mijn punt dat het aangepast moest worden
+     was dus niet meer relevant. op de homepagina kon alles dus hetzelfde blijven."
+
+     De grens ligt dus hier:
+       - WEG, want Pascal streepte hem door: de vergelijking met stucen of
+         schilderen. Die stond op twee plekken (werkwijze sVoet en b2_b).
+       - WEG, want van ons: "elke volgende kleur goedkoper" en elke andere
+         formulering van het prijsargument die wij bedacht hebben.
+       - BLIJFT, want van hem: "relatief goedkoop", met zijn eigen reden erachter
+         (een wand die eenmaal geplakt is, kan altijd weer overgetext worden).
+
+     Hier is een poort te streng gaan staan, en dat is niet onschuldig: hij haalde
+     de eigen tekst van de klant van zijn eigen site af. controleer.mjs 15e gaat af
+     op elk prijswoord met deze twee woorden als enige uitzondering, bij naam en met
+     haar reden, en zakt ook als die uitzondering nergens meer op slaat.
+
+Let op bij de eerste regel: hij noemt de wandschuurmachine zelf. Dat woord stond
+tot nu toe bewust NIET op de site - het komt van de werkwijzepagina van
+renovliesdirect.nl en dat is de concurrent waar we tegen moeten ranken, niet onze
+bron. Nu zegt hij het zelf, en dan mag het.
+
+Let op bij "cq": dat is zijn afkorting voor casu quo. Hij repareert waar nodig, en
+strijkt waar nodig voor. Er staat NIET dat voorstrijken in de prijs zit; wat in de
+prijs zit is schuren en lichte reparaties (doorgegeven-armando.txt, tweede regel).
+
+---
+
+Behangklare wanden loop ik langs met een wandschuurmachine voor een nog gladder
+eindresultaat en waar nodig ga ik lichte beschadigingen repareren cq voorstrijken.
+
+De wanden moeten wel behangklaar zijn.
+Ps: door timmermannen, elektriciens en keukenbouwers worden de wanden nog wel eens
+beschadigd.
+
+Deze mag er wel uit.
+
+De tweede regel mag eruit.
+Behangklare wanden loop ik na om de laatste kleine beschadigingen te repareren.
+Ik ga wanden die niet behangklaar zijn, niet behangklaar maken !!
+
+Normaal behang, zowel Effen - Patroon of Fotobehang.
+Pascal behangt hier ook mee, het doet net iets anders met het aanzicht dan de twee
+soorten behang hiernaast.

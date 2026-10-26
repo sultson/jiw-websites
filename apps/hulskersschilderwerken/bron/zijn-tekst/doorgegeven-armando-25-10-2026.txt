@@ -1,0 +1,32 @@
+Bron: Armando in de WhatsApp-groep "Claudius Hulskers 2.0", 25-10-2026, 's avonds.
+Een regel, en het is een BEWERING over een bedrag: wat er in de prijs per m2 zit.
+
+Dit staat in een eigen bestand en niet bij doorgegeven-armando.txt van 20-10-2026,
+omdat het die regel op een punt TEGENSPREEKT. Daar stond uitdrukkelijk dat alleen
+schuren en lichte reparaties in de prijs zitten en dat over voorstrijken niets gezegd
+was. Dat was vijf dagen lang de reden dat het er niet stond, met een eigen regel in
+controleer.mjs (13b3) die afging zodra iemand het er toch bij zette. Die regel is nu
+vervallen en de eis staat in 13b2. Wie dit bestand niet leest, ziet in het oudere
+bestand nog de oude grens staan.
+
+Het blijft doorgegeven tekst: Armando spreekt Pascal, maar dit staat nergens op schrift
+van Pascal zelf. Elke regel op de site die hierop rust draagt die bron en komt zo apart
+op NALEZEN-PASCAL.md. Het gaat hier bovendien om geld, dus dit is precies het soort
+regel dat hij zelf moet bevestigen.
+
+WAT HIER NIET BIJ STAAT, en dat is met opzet: egaliseren. Dat doet Pascal helemaal
+niet (overleg-pascal-25-10-2026.txt), dus een uitspraak over egaliseren in de prijs kan
+niet bestaan. En voorstrijken gaat nog steeds over een wand die AL behangklaar is -
+een wand die dat niet is maakt hij ook niet behangklaar (pascal-whatsapp-25-10-2026.txt,
+met twee uitroeptekens). Dit zegt alleen wie het voorstrijken betaalt, niet wanneer het
+gebeurt.
+
+VEROUDERD door deze regel, elders in het korpus:
+  - doorgegeven-armando.txt, de aantekening bij de tweede regel: "er staat schuren en
+    lichte reparaties, en dus NIET dat egaliseren en voorstrijken ook in de prijs
+    zitten". Voor voorstrijken geldt dat niet meer. Voor egaliseren wel, en die kant is
+    sterker geworden, niet zwakker.
+
+---
+
+Prijs is inclusief voorstrijken.
