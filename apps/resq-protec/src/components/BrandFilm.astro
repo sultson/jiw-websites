@@ -11,8 +11,8 @@ const t=(nl:string,en:string,de:string)=>pick(lang,nl,en,de);
     </div>
     <div class="film-player">
       <video id="brandfilm-player" controls playsinline preload="none" poster="/images/brandfilm-poster-1280.webp?v=20261022" aria-label={t('Rescue Watercraft brandfilm','Rescue Watercraft brand film','Rescue Watercraft Imagefilm')} data-language={lang} width="1920" height="1080">
-        <source src="/api/brandfilm" type="video/mp4"/>
-        <a href="/api/brandfilm">{t('Bekijk de brandfilm','Watch the brand film','Imagefilm ansehen')}</a>
+        <source src="/api/brandfilm?v=20261027" type="video/mp4"/>
+        <a href="/api/brandfilm?v=20261027">{t('Bekijk de brandfilm','Watch the brand film','Imagefilm ansehen')}</a>
       </video>
       <button type="button" class="film-sound" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="wave" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>{t('Geluid aan','Sound on','Ton an')}</button>
     </div>

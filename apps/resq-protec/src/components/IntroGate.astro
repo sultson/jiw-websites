@@ -50,7 +50,7 @@ const t=(nl:string,en:string,de:string)=>pick(lang,nl,en,de);
     gate.querySelector('[data-gate-watch]')!.addEventListener('click',()=>{
       try{localStorage.setItem(KEY,'1');}catch{}
       gate.classList.add('is-playing');cinema.hidden=false;
-      video.src='/api/brandfilm';
+      video.src='/api/brandfilm?v=20261027';
       // play() inside the click keeps the gesture, so the film may start with sound.
       video.play().catch(()=>{video.muted=true;video.play().catch(()=>{});});
       gate.querySelector<HTMLElement>('.gate-close')!.focus();
