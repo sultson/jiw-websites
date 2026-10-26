@@ -954,8 +954,11 @@ const homes: Home[] = [
     id: 'jonkersweg55', name: 'Jonkersweg 55',
     location: 'Jonkersweg 55, 7104 AB Winterswijk Meddo, Recreatiepark Den Möllenhof',
     imgs: [
-      '/img/jonkersweg-1.webp', '/img/jonkersweg-2.webp', '/img/jonkersweg-12.webp',
-      '/img/jonkersweg-3.webp', '/img/jonkersweg-4.webp',
+      '/img/jonkersweg-1.webp',
+      '/img/jonkersweg55-woonkamer-1.webp', '/img/jonkersweg55-woonkamer-2.webp',
+      '/img/jonkersweg55-woonkamer-3.webp', '/img/jonkersweg55-woonkamer-4.webp',
+      '/img/jonkersweg55-woonkamer-5.webp', '/img/jonkersweg55-woonkamer-6.webp',
+      '/img/jonkersweg55-woonkamer-7.webp', '/img/jonkersweg-4.webp',
       '/img/jonkersweg-5.webp', '/img/jonkersweg-6.webp', '/img/jonkersweg-7.webp', '/img/jonkersweg-8.webp',
       '/img/jonkersweg-9.webp', '/img/jonkersweg-10.webp', '/img/jonkersweg-11.webp',
     ],
