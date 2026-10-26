@@ -23,24 +23,26 @@ const PATH_ORDER = ['vip', 'immigration', 'relocation'];
 
 /* Static photograph, not video: the old 6 MB clip downloaded in full on phones and
    showed a canal that is not Rotterdam. */
-const HERO_IMAGE = '/images/hero-rotterdam-port.jpg?v=20261023';
-const HERO_IMAGE_SMALL = '/images/hero-rotterdam-port-1200.jpg?v=20261023';
+const HERO_IMAGE = '/images/hero-rotterdam-skyline.jpg?v=20261026';
+const HERO_IMAGE_SMALL = '/images/hero-rotterdam-skyline-1200.jpg?v=20261026';
 const AUDIENCE_ICONS = ['users', 'building', 'mapPin', 'shield'];
 const paths = [...h.paths.items].sort(
   (a, b) => PATH_ORDER.indexOf(a.key) - PATH_ORDER.indexOf(b.key)
 );
 ---
 
-<!-- 1. Hero: edge-to-edge photograph, left-aligned copy -->
+<!-- 1. Hero: edge-to-edge photograph, left-aligned copy. The photo is a 2.7:1
+     panorama, so on any screen narrower than that it is cropped by height: sizes
+     says so, or phones would pick the 1200w file and blow it up. -->
 <section class="relative flex min-h-[92svh] items-center overflow-hidden bg-navy pt-24 lg:min-h-[calc(100svh-7.5rem)] lg:pt-0" data-wa-hero>
   <img
     src={HERO_IMAGE}
     srcset={`${HERO_IMAGE_SMALL} 1200w, ${HERO_IMAGE} 2048w`}
-    sizes="100vw"
+    sizes="(max-aspect-ratio: 8/3) 270vh, 100vw"
     alt=""
-    class="absolute inset-0 h-full w-full object-cover object-[74%_50%] md:object-[62%_50%]"
+    class="absolute inset-0 h-full w-full object-cover object-[55%_50%] md:object-[85%_50%]"
     width="2048"
-    height="1152"
+    height="762"
     fetchpriority="high"
     decoding="async"
   />

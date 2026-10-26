@@ -472,7 +472,7 @@ export const core: CoreContent = {
         'E & I: Expat, Relocation and Immigration Services The Netherlands begon met een eenvoudige observatie vanuit de ambassadewereld: de mensen die het beste van land wisselen, zijn degenen die persoonlijk worden begeleid. Niet als dossier beheerd. Begeleid.',
         'Vandaag begeleiden Johanna en haar netwerk professionals, stellen, gezinnen en oprichters naar Nederland, met een specialisme dat niemand anders claimt: Rotterdam, Europoort en de industrieregio rond de grootste haven van Europa.',
       ],
-      image: '/images/about-joanna.jpg',
+      image: '/images/about-joanna.jpg?v=20261026',
       imageAlt: 'Johanna, oprichter van E & I, in haar kantoor',
       approach: {
         heading: 'Onze persoonlijke relocatieaanpak',

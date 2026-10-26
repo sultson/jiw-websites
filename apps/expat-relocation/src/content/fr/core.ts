@@ -472,7 +472,7 @@ export const core: CoreContent = {
         'E & I : Expat, Relocation and Immigration Services The Netherlands est né d’une observation simple, faite au cœur du monde des ambassades : ceux qui changent de pays le mieux sont ceux qui sont personnellement accompagnés. Pas gérés comme des dossiers. Accompagnés.',
         'Aujourd’hui, Johanna et son réseau guident professionnels, couples, familles et fondateurs vers les Pays-Bas, avec une spécialité que personne d’autre ne revendique : Rotterdam, Europoort et la région industrielle autour du plus grand port d’Europe.',
       ],
-      image: '/images/about-joanna.jpg',
+      image: '/images/about-joanna.jpg?v=20261026',
       imageAlt: 'Johanna, fondatrice d’E & I, dans son bureau',
       approach: {
         heading: 'Notre approche personnelle de la relocation',

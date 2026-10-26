@@ -472,7 +472,7 @@ export const core: CoreContent = {
         'E & I：Expat, Relocation and Immigration Services The Netherlands 始于使馆圈里一个朴素的观察：跨国搬迁做得最好的人，都是有人亲自陪同的人。不是被当成案件来管理，而是被陪伴。',
         '如今，Johanna 与她的人脉网络引导专业人士、伴侣、家庭与创业者进入荷兰，并拥有无人敢自称的专长：Rotterdam、Europoort 以及欧洲最大港口周边的工业区。',
       ],
-      image: '/images/about-joanna.jpg',
+      image: '/images/about-joanna.jpg?v=20261026',
       imageAlt: 'E & I 创始人 Johanna 在她的办公室里',
       approach: {
         heading: '我们个人化的搬迁方式',

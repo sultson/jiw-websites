@@ -353,7 +353,7 @@ export const core: CoreContent = {
       'E & I: Expat, Relocation and Immigration Services The Netherlands began with a simple observation from inside the embassy world: the people who move countries best are the ones who are personally accompanied. Not case-managed. Accompanied.',
       'Today Johanna and her network guide professionals, couples, families and founders into the Netherlands, with a specialism no one else claims: Rotterdam, Europoort and the industrial region around Europe’s largest port.',
     ],
-    image: '/images/about-joanna.jpg',
+    image: '/images/about-joanna.jpg?v=20261026',
     imageAlt: 'Johanna, founder of E & I, in her office',
     approach: {
       heading: 'Our personal relocation approach',
