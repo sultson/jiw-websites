@@ -3,17 +3,17 @@ export const seoCopy: Record<string, Record<string, {title: string; description:
   "landing": {
     "nl": {
       "title": "Vakantiehuis Winterswijk met sauna | Particulier verhuurd",
-      "description": "Negen vakantiehuizen in Winterswijk (Achterhoek), elk met eigen sauna. Particulier verhuurd, zonder tussenpersoon. Met hond, paard of als groep tot 40.",
+      "description": "Tien vakantiehuizen in Winterswijk (Achterhoek), elk met eigen sauna. Particulier verhuurd, zonder tussenpersoon. Met hond, paard of als groep tot 40.",
       "h1": "Vakantiehuizen in Winterswijk met eigen sauna"
     },
     "de": {
       "title": "Ferienhaus Winterswijk mit Sauna | Privat vom Vermieter",
-      "description": "Neun Ferienhäuser in Winterswijk (Achterhoek), nah an der Grenze, alle mit eigener Sauna. Privat vermietet, ohne Vermittler. Mit Hund, Pferd oder als Gruppe.",
+      "description": "Zehn Ferienhäuser in Winterswijk (Achterhoek), nah an der Grenze, alle mit eigener Sauna. Privat vermietet, ohne Vermittler. Mit Hund, Pferd oder als Gruppe.",
       "h1": "Ferienhäuser in Winterswijk mit eigener Sauna"
     },
     "en": {
       "title": "Winterswijk holiday homes with sauna | Book direct",
-      "description": "Explore nine holiday homes in Winterswijk, each with a private sauna. Five welcome dogs. Choose your home and enquire directly about availability.",
+      "description": "Explore ten holiday homes in Winterswijk, each with a private sauna. Five welcome dogs. Choose your home and enquire directly about availability.",
       "h1": "Holiday homes in Winterswijk with a private sauna"
     }
   },
@@ -49,6 +49,23 @@ export const seoCopy: Record<string, Record<string, {title: string; description:
       "title": "Villa Winterswijk 57 | Sauna and bath",
       "description": "Villa Winterswijk 57 sleeps 6 and has a private sauna and bath. Dogs welcome. Ask about booking this home together with neighbouring number 55.",
       "h1": "Jonkersweg 57: Villa Winterswijk with sauna and bath"
+    }
+  },
+  "jonkersweg63": {
+    "nl": {
+      "title": "Jonkersweg 63: sauna en bubbelbad bij het Hilgelo",
+      "description": "Vakantiehuis voor 6 in Winterswijk Meddo, 100 m van het Hilgelo. Sauna, ligbad met whirlpool, 3 slaapkamers en een omheinde tuin van 800 m². Vraag direct aan.",
+      "h1": "Jonkersweg 63: vakantiehuis voor 6 met sauna en bubbelbad bij het Hilgelo"
+    },
+    "de": {
+      "title": "Jonkersweg 63: Sauna und Whirlpool am Hilgelo",
+      "description": "Ferienhaus für 6 in Winterswijk Meddo, 100 m vom Hilgelo. Sauna, Whirlpool-Badewanne, 3 Schlafzimmer und 800 m² eingezäunter Garten. Direkt anfragen.",
+      "h1": "Jonkersweg 63: Ferienhaus für 6 mit Sauna und Whirlpool am Hilgelo"
+    },
+    "en": {
+      "title": "Jonkersweg 63: sauna and whirlpool by Hilgelo lake",
+      "description": "Holiday home for 6 in Winterswijk Meddo, 100 m from Hilgelo lake. Sauna, whirlpool bath, 3 bedrooms and an 800 m² fenced garden. Enquire direct.",
+      "h1": "Jonkersweg 63: sleeps 6, with sauna and whirlpool bath by Hilgelo lake"
     }
   },
   "jonkersweg65": {
@@ -173,17 +190,17 @@ export const seoCopy: Record<string, Record<string, {title: string; description:
   "dogs": {
     "nl": {
       "title": "Vakantiehuis met hond in Winterswijk | Met eigen sauna",
-      "description": "In vijf van onze negen vakantiehuizen in Winterswijk is uw hond welkom, elk met eigen sauna. Bij het Hilgelo of in het bos, met wandelpaden vlakbij.",
+      "description": "In vijf van onze tien vakantiehuizen in Winterswijk is uw hond welkom, elk met eigen sauna. Bij het Hilgelo of in het bos, met wandelpaden vlakbij.",
       "h1": "Vakantiehuis met hond in Winterswijk, met eigen sauna"
     },
     "de": {
       "title": "Ferienhaus mit Hund in Winterswijk | Mit eigener Sauna",
-      "description": "In fünf unserer neun Ferienhäuser in Winterswijk ist Ihr Hund willkommen, jedes mit eigener Sauna. Am Hilgelo oder im Wald, gleich hinter der Grenze.",
+      "description": "In fünf unserer zehn Ferienhäuser in Winterswijk ist Ihr Hund willkommen, jedes mit eigener Sauna. Am Hilgelo oder im Wald, gleich hinter der Grenze.",
       "h1": "Ferienhaus mit Hund und Sauna in Winterswijk"
     },
     "en": {
       "title": "Dog-friendly holiday homes in Winterswijk | Private sauna",
-      "description": "Your dog is welcome in five of our nine holiday homes in Winterswijk, each with a private sauna. By Hilgelo lake or in the woods, with walks nearby.",
+      "description": "Your dog is welcome in five of our ten holiday homes in Winterswijk, each with a private sauna. By Hilgelo lake or in the woods, with walks nearby.",
       "h1": "Dog-friendly holiday homes in Winterswijk with a sauna"
     }
   },

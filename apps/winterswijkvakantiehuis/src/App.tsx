@@ -126,7 +126,7 @@ const t = {
        from the body copy: these are what a searcher reads in the result list. */
     meta: {
       title: 'Vakantiehuizen in Winterswijk met sauna | Winterswijk Vakantiehuis',
-      description: 'Karaktervolle vakantiehuizen in Winterswijk en de Achterhoek. Elk huis heeft een eigen sauna, uw hond is welkom in vijf van de negen huizen en uw paard mag mee. Boek direct bij de beheerder.',
+      description: 'Karaktervolle vakantiehuizen in Winterswijk en de Achterhoek. Elk huis heeft een eigen sauna, uw hond is welkom in vijf van de tien huizen en uw paard mag mee. Boek direct bij de beheerder.',
       todoTitle: 'Te doen in Winterswijk en de Achterhoek | Winterswijk Vakantiehuis',
       todoDescription: 'Fietsen, wandelen, natuur en evenementen rond Winterswijk. Waar u fietsen huurt, wat er nu in de natuur te zien is en wat er speelt tijdens uw verblijf.',
       horsesTitle: 'Vakantie met uw eigen paard in Winterswijk | Winterswijk Vakantiehuis',
@@ -142,7 +142,7 @@ const t = {
     hero: {
       kicker: 'Vakantiehuizen in de Achterhoek',
       title: 'Even helemaal weg, kom tot rust in de natuur',
-      sub: 'Negen karaktervolle vakantiehuizen in Winterswijk, particulier verhuurd. U boekt rechtstreeks bij ons, zonder tussenpersoon.',
+      sub: 'Tien karaktervolle vakantiehuizen in Winterswijk, particulier verhuurd. U boekt rechtstreeks bij ons, zonder tussenpersoon.',
       ctaHomes: 'Bekijk de huizen',
       ctaAvail: 'Check beschikbaarheid',
     },
@@ -157,12 +157,12 @@ const t = {
     },
     homes: {
       title: 'Onze vakantiehuizen',
-      sub: 'Elk huis heeft een eigen sauna en in vijf van de negen huizen is uw hond welkom. Het verschil zit in de plek: onze drie huizen aan de Jonkersweg staan op een kleinschalig recreatiepark, vlak bij het meer het Hilgelo, en onze woningen op de Kattenberg staan midden in het bos.',
+      sub: 'Elk huis heeft een eigen sauna en in vijf van de tien huizen is uw hond welkom. Het verschil zit in de plek: onze vier huizen aan de Jonkersweg staan op een kleinschalig recreatiepark, vlak bij het meer het Hilgelo, en onze woningen op de Kattenberg staan midden in het bos.',
       guests: 'gasten', bedrooms: 'slaapkamers', book: 'Bekijk & boek', view: 'Bekijk huis',
       capacityAsk: 'Indeling op aanvraag',
       badgeLake: 'Aan het meer', badgeForest: 'In het bos', badgeAccessible: 'Rolstoeltoegankelijk',
       groupLake: 'Aan het meer het Hilgelo: Jonkersweg, Den Möllenhof',
-      groupLakeText: 'Drie huizen naast elkaar op recreatiepark Den Möllenhof in Winterswijk Meddo, op een paar minuten van het Hilgelo met zijn strandje en wandelpaden. Alle drie bieden ze plek aan zes personen en hebben ze een eigen sauna.',
+      groupLakeText: 'Vier huizen dicht bij elkaar op recreatiepark Den Möllenhof in Winterswijk Meddo, op een paar minuten van het Hilgelo met zijn strandje en wandelpaden. Alle vier bieden ze plek aan zes personen en hebben ze een eigen sauna.',
       groupForest: 'In het bos op de Kattenberg, vlak bij natuurreservaat Korenburgerveen en Meddoseveen',
       groupForestText: 'Onze woningen op de Kattenberg staan juist midden in het bos: het groen begint achter de tuin en de wandel-, fiets- en ruiterpaden bij de deur. Ook hier heeft elk huis een eigen sauna.',
       /* Was "Meer locaties op komst" — Aemilius op Curaçao is inmiddels open, dus dit blok
@@ -252,15 +252,15 @@ const t = {
     },
     about: {
       title: 'Over ons',
-      text: 'Winterswijk Vakantiehuis is een particuliere verhuurder in de Achterhoek. Wij beheren negen vakantiehuizen in Winterswijk: eigen huizen en huizen die eigenaren aan ons toevertrouwen. U boekt rechtstreeks bij ons, zonder tussenpersoon of boekingssite, en heeft voor, tijdens en na uw verblijf contact met dezelfde mensen. We wonen hier zelf, kennen de fietsroutes en weten wat er tijdens uw verblijf in de buurt te doen is.',
+      text: 'Winterswijk Vakantiehuis is een particuliere verhuurder in de Achterhoek. Wij beheren tien vakantiehuizen in Winterswijk: eigen huizen en huizen die eigenaren aan ons toevertrouwen. U boekt rechtstreeks bij ons, zonder tussenpersoon of boekingssite, en heeft voor, tijdens en na uw verblijf contact met dezelfde mensen. We wonen hier zelf, kennen de fietsroutes en weten wat er tijdens uw verblijf in de buurt te doen is.',
       point1: 'Persoonlijk beheerd, geen groot verhuurkantoor',
       point2: 'Alleen eigen of in beheer genomen huizen',
       point3: 'Persoonlijke tips over routes, natuur en evenementen',
-      point4: 'Uw hond is in vijf van onze negen huizen welkom',
+      point4: 'Uw hond is in vijf van onze tien huizen welkom',
       stats: [
         {value: '25', label: 'jaar ervaring'},
-        {value: '5 van 9', label: 'hondvriendelijk'},
-        {value: '9', label: 'vakantiewoningen'},
+        {value: '5 van 10', label: 'hondvriendelijk'},
+        {value: '10', label: 'vakantiewoningen'},
       ],
     },
     contact: {
@@ -395,7 +395,7 @@ const t = {
     nav: {homes: 'Homes', horses: 'Horses', curacao: 'Curaçao', area: 'The area', availability: 'Availability', about: 'About', contact: 'Contact'},
     meta: {
       title: 'Holiday homes in Winterswijk with a private sauna | Winterswijk Vakantiehuis',
-      description: 'Characterful holiday homes in Winterswijk and the Achterhoek. Every home has its own sauna, dogs are welcome in five of the nine homes and your horse can come along. Book directly with the owner.',
+      description: 'Characterful holiday homes in Winterswijk and the Achterhoek. Every home has its own sauna, dogs are welcome in five of the ten homes and your horse can come along. Book directly with the owner.',
       todoTitle: 'Things to do in Winterswijk and the Achterhoek | Winterswijk Vakantiehuis',
       todoDescription: 'Cycling, walking, wildlife and events around Winterswijk. Where to rent bikes, what can be spotted in nature right now and what is on during your stay.',
       horsesTitle: 'Holidays with your own horse in Winterswijk | Winterswijk Vakantiehuis',
@@ -411,7 +411,7 @@ const t = {
     hero: {
       kicker: 'Vacation homes in the Achterhoek',
       title: 'Get away from it all, find peace in nature',
-      sub: 'Nine characterful holiday homes in Winterswijk, let privately. You book directly with us, with no agency in between.',
+      sub: 'Ten characterful holiday homes in Winterswijk, let privately. You book directly with us, with no agency in between.',
       ctaHomes: 'View the homes',
       ctaAvail: 'Check availability',
     },
@@ -423,12 +423,12 @@ const t = {
     },
     homes: {
       title: 'Our vacation homes',
-      sub: 'Every home has its own private sauna and your dog is welcome in five of the nine. The difference is the setting: our three homes on the Jonkersweg sit on a small-scale holiday park, close to the Hilgelo lake, while our homes on the Kattenberg sit right in the middle of the woods.',
+      sub: 'Every home has its own private sauna and your dog is welcome in five of the ten. The difference is the setting: our four homes on the Jonkersweg sit on a small-scale holiday park, close to the Hilgelo lake, while our homes on the Kattenberg sit right in the middle of the woods.',
       guests: 'guests', bedrooms: 'bedrooms', book: 'View & book', view: 'View home',
       capacityAsk: 'Layout on request',
       badgeLake: 'By the lake', badgeForest: 'In the woods', badgeAccessible: 'Wheelchair accessible',
       groupLake: 'By the Hilgelo lake: Jonkersweg, Den Möllenhof',
-      groupLakeText: 'Three homes side by side on the Den Möllenhof holiday park in Winterswijk Meddo, a few minutes from the Hilgelo lake with its little beach and walking paths. All three sleep six and have their own sauna.',
+      groupLakeText: 'Four homes close together on the Den Möllenhof holiday park in Winterswijk Meddo, a few minutes from the Hilgelo lake with its little beach and walking paths. All four sleep six and have their own sauna.',
       groupForest: 'In the woods on the Kattenberg, close to the Korenburgerveen and Meddoseveen nature reserves',
       groupForestText: 'Our homes on the Kattenberg sit right in the forest: the greenery starts behind the garden and the walking, cycling and bridle paths start at the door. Here too, every home has its own sauna.',
       curacaoKicker: 'Also on Curaçao',
@@ -511,15 +511,15 @@ const t = {
     },
     about: {
       title: 'About us',
-      text: 'Winterswijk Vakantiehuis is a private holiday-home host in the Achterhoek. We manage nine holiday homes in Winterswijk: our own and homes their owners entrust to us. You book directly with us, with no agency or booking site in between, and you deal with the same people before, during and after your stay. We live here ourselves, know the cycle routes and know what is on nearby while you are here.',
+      text: 'Winterswijk Vakantiehuis is a private holiday-home host in the Achterhoek. We manage ten holiday homes in Winterswijk: our own and homes their owners entrust to us. You book directly with us, with no agency or booking site in between, and you deal with the same people before, during and after your stay. We live here ourselves, know the cycle routes and know what is on nearby while you are here.',
       point1: 'Personally managed, not a large rental agency',
       point2: 'Only our own or entrusted homes',
       point3: 'Personal tips on routes, wildlife and events',
-      point4: 'Your dog is welcome in five of our nine homes',
+      point4: 'Your dog is welcome in five of our ten homes',
       stats: [
         {value: '25', label: 'years of experience'},
-        {value: '5 of 9', label: 'dog friendly'},
-        {value: '9', label: 'holiday homes'},
+        {value: '5 of 10', label: 'dog friendly'},
+        {value: '10', label: 'holiday homes'},
       ],
     },
     contact: {
@@ -643,7 +643,7 @@ const t = {
     nav: {homes: 'Häuser', horses: 'Pferde', curacao: 'Curaçao', area: 'Umgebung', availability: 'Verfügbarkeit', about: 'Über uns', contact: 'Kontakt'},
     meta: {
       title: 'Ferienhäuser in Winterswijk mit eigener Sauna | Winterswijk Vakantiehuis',
-      description: 'Charaktervolle Ferienhäuser in Winterswijk und im Achterhoek. Jedes Haus hat eine eigene Sauna, in fünf von neun Häusern ist Ihr Hund willkommen und Ihr Pferd darf mit. Direkt beim Gastgeber buchen.',
+      description: 'Charaktervolle Ferienhäuser in Winterswijk und im Achterhoek. Jedes Haus hat eine eigene Sauna, in fünf von zehn Häusern ist Ihr Hund willkommen und Ihr Pferd darf mit. Direkt beim Gastgeber buchen.',
       todoTitle: 'Ausflüge und Aktivitäten rund um Winterswijk | Winterswijk Vakantiehuis',
       todoDescription: 'Radfahren, Wandern, Natur und Veranstaltungen rund um Winterswijk. Wo Sie Räder mieten, was gerade in der Natur zu sehen ist und was während Ihres Aufenthalts läuft.',
       horsesTitle: 'Urlaub mit eigenem Pferd in Winterswijk | Winterswijk Vakantiehuis',
@@ -659,7 +659,7 @@ const t = {
     hero: {
       kicker: 'Ferienhäuser im Achterhoek',
       title: 'Einfach mal raus, zur Ruhe kommen in der Natur',
-      sub: 'Neun charaktervolle Ferienhäuser in Winterswijk, gleich hinter der Grenze. Privat vermietet: Sie buchen direkt bei uns, ohne Vermittler.',
+      sub: 'Zehn charaktervolle Ferienhäuser in Winterswijk, gleich hinter der Grenze. Privat vermietet: Sie buchen direkt bei uns, ohne Vermittler.',
       ctaHomes: 'Häuser ansehen',
       ctaAvail: 'Verfügbarkeit prüfen',
     },
@@ -671,12 +671,12 @@ const t = {
     },
     homes: {
       title: 'Unsere Ferienhäuser',
-      sub: 'Jedes Haus hat eine eigene Sauna und in fünf der neun Häuser ist Ihr Hund willkommen. Der Unterschied liegt in der Lage: unsere drei Häuser an der Jonkersweg liegen in einem kleinen, überschaubaren Ferienpark, ganz nah am See Hilgelo, unsere Häuser auf dem Kattenberg dagegen mitten im Wald.',
+      sub: 'Jedes Haus hat eine eigene Sauna und in fünf der zehn Häuser ist Ihr Hund willkommen. Der Unterschied liegt in der Lage: unsere vier Häuser an der Jonkersweg liegen in einem kleinen, überschaubaren Ferienpark, ganz nah am See Hilgelo, unsere Häuser auf dem Kattenberg dagegen mitten im Wald.',
       guests: 'Gäste', bedrooms: 'Schlafzimmer', book: 'Ansehen & buchen', view: 'Haus ansehen',
       capacityAsk: 'Aufteilung auf Anfrage',
       badgeLake: 'Am See', badgeForest: 'Im Wald', badgeAccessible: 'Rollstuhlgerecht',
       groupLake: 'Am See Hilgelo: Jonkersweg, Den Möllenhof',
-      groupLakeText: 'Drei Häuser nebeneinander im Ferienpark Den Möllenhof in Winterswijk Meddo, wenige Minuten vom Badesee Hilgelo mit Strand und Wanderwegen. Alle drei bieten Platz für sechs Personen und haben eine eigene Sauna.',
+      groupLakeText: 'Vier Häuser dicht beieinander im Ferienpark Den Möllenhof in Winterswijk Meddo, wenige Minuten vom Badesee Hilgelo mit Strand und Wanderwegen. Alle vier bieten Platz für sechs Personen und haben eine eigene Sauna.',
       groupForest: 'Im Wald auf dem Kattenberg, nahe den Naturschutzgebieten Korenburgerveen und Meddoseveen',
       groupForestText: 'Unsere Häuser auf dem Kattenberg liegen mitten im Wald: das Grün beginnt hinter dem Garten, Wander-, Rad- und Reitwege direkt an der Tür. Auch hier hat jedes Haus eine eigene Sauna.',
       curacaoKicker: 'Auch auf Curaçao',
@@ -759,15 +759,15 @@ const t = {
     },
     about: {
       title: 'Über uns',
-      text: 'Winterswijk Vakantiehuis ist ein privater Vermieter im Achterhoek, gleich hinter der Grenze bei Bocholt und Vreden. Wir verwalten neun Ferienhäuser in Winterswijk: eigene Häuser und Häuser, die Eigentümer uns anvertrauen. Sie buchen direkt bei uns, ohne Vermittler oder Buchungsportal, und haben vor, während und nach Ihrem Aufenthalt dieselben Ansprechpartner. Wir wohnen selbst hier, kennen die Radrouten und wissen, was während Ihres Aufenthalts in der Umgebung los ist.',
+      text: 'Winterswijk Vakantiehuis ist ein privater Vermieter im Achterhoek, gleich hinter der Grenze bei Bocholt und Vreden. Wir verwalten zehn Ferienhäuser in Winterswijk: eigene Häuser und Häuser, die Eigentümer uns anvertrauen. Sie buchen direkt bei uns, ohne Vermittler oder Buchungsportal, und haben vor, während und nach Ihrem Aufenthalt dieselben Ansprechpartner. Wir wohnen selbst hier, kennen die Radrouten und wissen, was während Ihres Aufenthalts in der Umgebung los ist.',
       point1: 'Persönlich betreut, keine große Vermietungsagentur',
       point2: 'Nur eigene oder anvertraute Häuser',
       point3: 'Persönliche Tipps zu Routen, Natur und Veranstaltungen',
-      point4: 'Ihr Hund ist in fünf unserer neun Häuser willkommen',
+      point4: 'Ihr Hund ist in fünf unserer zehn Häuser willkommen',
       stats: [
         {value: '25', label: 'Jahre Erfahrung'},
-        {value: '5 von 9', label: 'hundefreundlich'},
-        {value: '9', label: 'Ferienhäuser'},
+        {value: '5 von 10', label: 'hundefreundlich'},
+        {value: '10', label: 'Ferienhäuser'},
       ],
     },
     contact: {
@@ -935,10 +935,10 @@ type Home = {
       accessible holiday home in Winterswijk — so it gets its own band on the landing page. */
   accessible?: boolean;
   /** huurkalender.nl calendar id for this home (account 21492). The Den Möllenhof
-      homes are "DenMöllenhof 55 / 57 / 65" there, i.e. the Jonkersweg house numbers;
+      homes are "DenMöllenhof 55 / 57 / 63 / 65" there, i.e. the Jonkersweg house numbers;
       the Kattenberg ones were added in Oct 2026 as "Kattenberg 4a 8 persoons" (the XL)
-      and "Kattenberg Chalet". The account also carries a "DenMöllenhof 63" (21479)
-      that has no page on this site. Homes without an id fall back to WhatsApp. */
+      and "Kattenberg Chalet". 63 (21479) sat in the account without a page until the
+      owner asked for it on 26-10. Homes without an id fall back to WhatsApp. */
   calId?: number;
   /** For a page that stands for several identical units: one calendar per unit, with
       a switch above the calendar. calId is then the unit shown first. */
@@ -1045,6 +1045,47 @@ const homes: Home[] = [
       nl: 'Jonkersweg 65 is het derde huis dat wij op recreatiepark Den Möllenhof in Winterswijk Meddo verhuren, met dezelfde vertrouwde rode topgevel en groene luiken. Er is plek voor zes personen en net als in onze andere huizen hoort er een eigen sauna bij. De woonkamer is ruim en licht: twee leren banken, twee rode fauteuils en een gashaard in een zwart marmeren schouw, met de karakteristieke boogramen en openslaande deuren naar de tuin. De keuken loopt door vanaf de woonkamer en is compleet ingericht met oven, kookplaat, granieten werkblad en koffiezetapparaat. De slaapkamers hebben boxsprings die u als tweepersoonsbed of als losse bedden kunt zetten. Buiten heeft dit huis iets extra’s: een overdekte veranda met een royale loungeset, waar u ook bij een buitje droog blijft zitten, én een eigen terras met tuinmeubilair aan het gazon tussen de berken en hortensia’s. Uw hond mag mee. Het Hilgelo ligt vlakbij en vanaf het park stapt u zo het coulisselandschap in.',
       en: 'Jonkersweg 65 is the third home we rent out on the Den Möllenhof holiday park in Winterswijk Meddo, with the same familiar red timber gable and green shutters. It sleeps six and, like our other homes, comes with its own sauna. The living room is roomy and light: two leather sofas, two red armchairs and a gas fireplace in a black marble surround, with the characteristic arched windows and garden doors. The kitchen runs on from the living room and is fully equipped with an oven, hob, granite worktop and coffee maker. The bedrooms have box-spring beds that can be set up as a double or as two singles. Outside this home has something extra: a covered veranda with a generous lounge set, so you stay dry even in a shower, plus a private terrace with garden furniture on the lawn among the birches and hydrangeas. Your dog is welcome. The Hilgelo lake is close by and from the park you step straight into the hedgerow landscape.',
       de: 'Jonkersweg 65 ist das dritte Haus, das wir im Ferienpark Den Möllenhof in Winterswijk Meddo vermieten, mit dem gleichen vertrauten roten Holzgiebel und grünen Fensterläden. Es bietet Platz für sechs Personen und hat, wie unsere anderen Häuser, eine eigene Sauna. Das Wohnzimmer ist geräumig und hell: zwei Ledersofas, zwei rote Sessel und ein Gaskamin in schwarzem Marmorkamin, dazu die charakteristischen Bogenfenster und Gartentüren. Die Küche schließt an das Wohnzimmer an und ist komplett ausgestattet mit Backofen, Kochfeld, Granitarbeitsplatte und Kaffeemaschine. Die Schlafzimmer haben Boxspringbetten, die als Doppelbett oder als zwei Einzelbetten gestellt werden können. Draußen hat dieses Haus etwas Besonderes: eine überdachte Veranda mit großzügigem Loungeset, sodass Sie auch bei einem Schauer trocken sitzen, sowie eine eigene Terrasse mit Gartenmöbeln am Rasen zwischen Birken und Hortensien. Ihr Hund darf mit. Der Badesee Hilgelo liegt ganz in der Nähe und vom Park aus sind Sie direkt in der Heckenlandschaft.',
+    },
+  },
+  {
+    /* Fourth Jonkersweg home, sent in by the owner on 26-10 ("Deze woning willen we ook op
+       WinterswijkVakantiehuis. Jonkersweg 63 bij het meer. Geen gashaard. Geen huisdieren").
+       Facts from the home's own site, denmollenhof63.nl (/de-woning/): six guests, three
+       bedrooms with double Swiss Sense boxsprings, two bathrooms, colour-therapy sauna,
+       whirlpool bath, 800 m² fenced garden. Written fresh rather than lifted, so the two
+       sites do not carry the same text. The whirlpool is a bath indoors, not an outdoor
+       tub, so it is described in the copy and the "Hot tub" chip stays off. No gasfire
+       and no pets, per the owner's own message. */
+    id: 'jonkersweg63', name: 'Jonkersweg 63',
+    location: 'Jonkersweg 63, 7104 AB Winterswijk Meddo, Recreatiepark Den Möllenhof',
+    imgs: [
+      '/img/jonkersweg63-1.webp', '/img/jonkersweg63-2.webp', '/img/jonkersweg63-3.webp',
+      '/img/jonkersweg63-4.webp', '/img/jonkersweg63-5.webp', '/img/jonkersweg63-6.webp',
+      '/img/jonkersweg63-7.webp', '/img/jonkersweg63-8.webp', '/img/jonkersweg63-9.webp',
+    ],
+    area: 'lake', guests: 6, bedrooms: 3, pets: false, calId: 21479,
+    petsNote: {
+      long: {
+        nl: 'In deze woning zijn geen huisdieren toegestaan. Komt u met een hond? Dan bent u welkom in Jonkersweg 55, 57 of 65, op hetzelfde park.',
+        en: 'Pets are not allowed in this home. Travelling with a dog? Then Jonkersweg 55, 57 or 65, on the same park, will welcome you.',
+        de: 'In diesem Haus sind keine Haustiere erlaubt. Sie reisen mit Hund? Dann sind Sie in Jonkersweg 55, 57 oder 65 im selben Park willkommen.',
+      },
+    },
+    amenities: ['wifi', 'sauna', 'bath', 'shower', 'terrace', 'garden', 'washer', 'babycot', 'lake', 'park', 'parking'],
+    tagline: {
+      nl: 'Sauna, bubbelbad en een omheinde tuin van 800 m²',
+      en: 'Sauna, whirlpool bath and an 800 m² fenced garden',
+      de: 'Sauna, Whirlpool-Badewanne und 800 m² eingezäunter Garten',
+    },
+    blurb: {
+      nl: 'Gerenoveerd vakantiehuis voor zes personen op Den Möllenhof, op 100 meter van het Hilgelo. Drie slaapkamers met boxsprings, twee badkamers, een kleurentherapie sauna, een ligbad met whirlpool en een omheinde tuin van 800 m² met veranda.',
+      en: 'Renovated holiday home for six on Den Möllenhof, 100 metres from the Hilgelo lake. Three bedrooms with box-spring beds, two bathrooms, a colour-therapy sauna, a whirlpool bath and an 800 m² fenced garden with a veranda.',
+      de: 'Renoviertes Ferienhaus für sechs Personen im Ferienpark Den Möllenhof, 100 Meter vom Badesee Hilgelo. Drei Schlafzimmer mit Boxspringbetten, zwei Badezimmer, eine Farblicht-Sauna, eine Whirlpool-Badewanne und ein eingezäunter Garten von 800 m² mit Veranda.',
+    },
+    long: {
+      nl: 'Jonkersweg 63 staat op recreatiepark Den Möllenhof in Winterswijk Meddo, op 100 meter van het Hilgelo met zijn zandstranden en ligweides. Het huis is onlangs gerenoveerd en biedt plek aan zes personen. Aan de voorkant kijkt u over de weilanden, de achtertuin grenst aan het bos. De woonkamer heeft een grote hoekbank en twee fauteuils, een eettafel met zes stoelen en openslaande deuren naar het terras, zodat u vanuit de hele living de tuin ziet. De keuken heeft een keramische kookplaat, combi-oven, vaatwasser, koelkast met vriezer, Nespresso en een filterkoffiezetapparaat. Er zijn drie slaapkamers, elk met een tweepersoons Swiss Sense boxspring. Eén slaapkamer en een badkamer liggen op de begane grond, handig voor wie minder goed ter been is. Die badkamer heeft een inloopdouche en een ligbad met whirlpool; boven vindt u de tweede badkamer met inloopdouche en een kleurentherapie sauna. Er is vloerverwarming, een apart toilet in de hal, en een wasmachine en droger. Voor de kleinsten staan er een ledikant, commode en kinderservies klaar. Buiten ligt een volledig omheinde tuin van ruim 800 m² met meerdere terrassen, een veranda met loungeset, een barbecue en twee ligbedden. Op de eigen oprit parkeert u tot vier auto’s en fietsen zet u in de afsluitbare berging. Een gashaard heeft dit huis niet. Winterswijk centrum ligt op 3 kilometer.',
+      en: 'Jonkersweg 63 stands on the Den Möllenhof holiday park in Winterswijk Meddo, 100 metres from the Hilgelo lake with its sandy beaches and lawns. The house was recently renovated and sleeps six. At the front you look out over the meadows, and the back garden borders the woods. The living room has a large corner sofa and two armchairs, a dining table with six chairs and garden doors onto the terrace, so the garden is in view from the whole room. The kitchen has a ceramic hob, combination oven, dishwasher, fridge-freezer, Nespresso and a filter coffee maker. There are three bedrooms, each with a double Swiss Sense box-spring bed. One bedroom and a bathroom are on the ground floor, which helps guests who are less steady on their feet. That bathroom has a walk-in shower and a whirlpool bath; upstairs is the second bathroom with a walk-in shower and a colour-therapy sauna. There is underfloor heating, a separate toilet in the hall, and a washing machine and dryer. For little ones there is a cot, a changing table and children’s tableware. Outside is a fully fenced garden of over 800 m² with several terraces, a veranda with a lounge set, a barbecue and two sun loungers. The private driveway takes up to four cars and bikes go in the lockable shed. This home has no gas fireplace. Winterswijk town centre is 3 kilometres away.',
+      de: 'Jonkersweg 63 liegt im Ferienpark Den Möllenhof in Winterswijk Meddo, 100 Meter vom Badesee Hilgelo mit seinen Sandstränden und Liegewiesen. Das Haus wurde kürzlich renoviert und bietet Platz für sechs Personen. Vorne blicken Sie über die Weiden, der Garten hinter dem Haus grenzt an den Wald. Das Wohnzimmer hat ein großes Ecksofa und zwei Sessel, einen Esstisch mit sechs Stühlen und Gartentüren zur Terrasse, sodass Sie den Garten aus dem ganzen Raum sehen. Die Küche hat ein Ceran-Kochfeld, einen Kombi-Backofen, Geschirrspüler, Kühlschrank mit Gefrierfach, Nespresso und eine Filterkaffeemaschine. Es gibt drei Schlafzimmer, jedes mit einem Swiss-Sense-Boxspring-Doppelbett. Ein Schlafzimmer und ein Badezimmer liegen im Erdgeschoss, praktisch für Gäste, die nicht mehr so gut zu Fuß sind. Dieses Badezimmer hat eine begehbare Dusche und eine Whirlpool-Badewanne; oben liegt das zweite Badezimmer mit begehbarer Dusche und einer Farblicht-Sauna. Es gibt Fußbodenheizung, ein separates WC im Flur sowie Waschmaschine und Trockner. Für die Kleinsten stehen Kinderbett, Wickelkommode und Kindergeschirr bereit. Draußen liegt ein vollständig eingezäunter Garten von über 800 m² mit mehreren Terrassen, einer Veranda mit Loungeset, einem Grill und zwei Liegen. Auf der eigenen Einfahrt parken bis zu vier Autos, Fahrräder stellen Sie in den abschließbaren Schuppen. Einen Gaskamin hat dieses Haus nicht. Das Zentrum von Winterswijk ist 3 Kilometer entfernt.',
     },
   },
   {
@@ -1762,6 +1803,7 @@ function homeJsonLd(home: Home, lang: Lang, canonical: string) {
   const homeGeo: Record<string, {latitude: number; longitude: number}> = {
     jonkersweg55: {latitude: 51.995184, longitude: 6.704956},
     jonkersweg57: {latitude: 51.995335, longitude: 6.705091},
+    jonkersweg63: {latitude: 51.994996, longitude: 6.705606},
     jonkersweg65: {latitude: 51.994966, longitude: 6.705925},
     kattenberg8: {latitude: 51.986932, longitude: 6.678607},
     finschalet: {latitude: 51.986932, longitude: 6.678607},
@@ -2523,8 +2565,8 @@ function Landing({lang, L}: {lang: Lang; L: any}) {
               ))}
             </ul>
             {/* Trust figures taken from the owner's own site. Their "100% pet friendly" is
-                dropped to "5 of 9": per Marie (05-08) all three Jonkersweg homes take dogs,
-                two of the four kattenberg6 homes do, and the XL and the chalet take none. */}
+                dropped to "5 of 10": per Marie (05-08) Jonkersweg 55, 57 and 65 take dogs,
+                two of the four kattenberg6 homes do, and the XL, the chalet and 63 take none. */}
             <div className="mt-7 grid grid-cols-3 gap-4">
               {L.about.stats.map((s: {value: string; label: string}) => (
                 <div key={s.label} className="bg-white rounded-2xl border border-brand-sand px-4 py-4 text-center">

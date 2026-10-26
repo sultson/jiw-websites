@@ -46,17 +46,17 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       kicker: 'Groepsaccommodatie in de Achterhoek',
       label: 'Groepsaccommodatie',
       intro: [
-        'Met familie, vrienden of een club naar Winterswijk? Wij verhuren negen vakantiehuizen op twee plekken, en op allebei boekt u meerdere huizen naast of vlak bij elkaar. Aan de Jonkersweg bij het Hilgelo is plek voor 18 personen, op de Kattenberg in het bos voor maximaal 40.',
+        'Met familie, vrienden of een club naar Winterswijk? Wij verhuren tien vakantiehuizen op twee plekken, en op allebei boekt u meerdere huizen naast of vlak bij elkaar. Aan de Jonkersweg bij het Hilgelo is plek voor 24 personen, op de Kattenberg in het bos voor maximaal 40.',
         'Zo heeft ieder gezin een eigen huis met eigen keuken, badkamer en sauna, en zit u toch samen op één terrein. Dat is het verschil met een groepsgebouw met één grote slaapzaal: overdag en aan tafel samen, en ’s avonds ieder zijn eigen rust.',
       ],
       sections: [
         {
-          title: 'Aan de Jonkersweg: tot 18 personen bij het Hilgelo',
+          title: 'Aan de Jonkersweg: tot 24 personen bij het Hilgelo',
           text: [
-            'Op recreatiepark Den Möllenhof in Winterswijk Meddo verhuren we drie huizen voor elk zes personen. Jonkersweg 55 en 57 staan direct naast elkaar, nummer 65 staat een paar huizen verderop op hetzelfde park. Alle drie hebben een eigen sauna en in alle drie is uw hond welkom.',
+            'Op recreatiepark Den Möllenhof in Winterswijk Meddo verhuren we vier huizen voor elk zes personen. Jonkersweg 55 en 57 staan direct naast elkaar, 63 en 65 een paar huizen verderop op hetzelfde park. Alle vier hebben een eigen sauna. Uw hond is welkom in 55, 57 en 65; in 63 zijn geen huisdieren toegestaan.',
             'Het Hilgelo, met strandje en wandelpaden, ligt op een paar minuten. Rijdt er iemand in uw groep paard? Op hetzelfde park zijn stallen en weides, dus het paard kan gewoon mee.',
           ],
-          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg65'],
+          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg63', 'jonkersweg65'],
         },
         {
           title: 'Op de Kattenberg: tot 40 personen in het bos',
@@ -72,7 +72,8 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
         note: 'Welke combinatie kan, hangt af van wat er in uw periode vrij is. Geef uw groepsgrootte door, dan zoeken wij de indeling die past.',
         items: [
           {size: '12 personen', text: 'Jonkersweg 55 en 57, twee huizen direct naast elkaar. Hond welkom.'},
-          {size: '18 personen', text: 'Alle drie de huizen aan de Jonkersweg, bij het Hilgelo. Hond en paard welkom.'},
+          {size: '18 personen', text: 'Jonkersweg 55, 57 en 65, bij het Hilgelo. Hond en paard welkom.'},
+          {size: '24 personen', text: 'Alle vier de huizen aan de Jonkersweg, bij het Hilgelo. In 63 mag geen hond mee.'},
           {size: '14 personen', text: 'Boswoning Kattenberg XL met een boswoning ernaast, met een aangepaste slaapkamer beneden.'},
           {size: '24 personen', text: 'De vier boswoningen op de Kattenberg. In twee daarvan mag een hond mee.'},
           {size: '40 personen', text: 'Alle zes woningen op de Kattenberg, samen midden in het bos.'},
@@ -81,7 +82,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       faq: [
         {q: 'Kunnen we meerdere huizen tegelijk boeken?', a: 'Ja. Geef in uw aanvraag het aantal personen en de gewenste periode door. Wij kijken welke huizen dan samen vrij zijn en stellen een indeling voor.'},
         {q: 'Is er een gezamenlijke ruimte of groepszaal?', a: 'Nee. Iedere woning heeft een eigen woonkamer, keuken, badkamer en sauna. Samen eten kan op de terrassen of in een van de woonkamers; de XL heeft een eettafel voor acht.'},
-        {q: 'Mag de hond mee met de groep?', a: 'Aan de Jonkersweg is uw hond welkom in alle drie de huizen. Op de Kattenberg mag een hond mee in twee van de vier boswoningen. In de XL en het Fins chalet zijn geen huisdieren toegestaan.'},
+        {q: 'Mag de hond mee met de groep?', a: 'Aan de Jonkersweg is uw hond welkom in 55, 57 en 65; in 63 niet. Op de Kattenberg mag een hond mee in twee van de vier boswoningen. In de XL en het Fins chalet zijn geen huisdieren toegestaan.'},
         {q: 'Kan een groepslid met een rolstoel mee?', a: 'In de Boswoning Kattenberg XL liggen een aangepaste slaapkamer en badkamer op de begane grond, met drempelloze douche, douchestoel en steunbeugels. De sauna en de andere slaapkamers zijn boven.'},
         {q: 'Hoe boeken we?', a: 'Rechtstreeks bij ons, via het formulier, WhatsApp of telefoon, zonder tussenpersoon. Uw aanvraag is nog geen bevestigde reservering: we bespreken eerst de beschikbaarheid en uw wensen.'},
       ],
@@ -95,17 +96,17 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       kicker: 'Gruppenunterkunft im Achterhoek',
       label: 'Gruppenunterkunft',
       intro: [
-        'Mit Familie, Freunden oder dem Verein nach Winterswijk? Wir vermieten neun Ferienhäuser an zwei Orten, und an beiden buchen Sie mehrere Häuser nebeneinander oder ganz in der Nähe. Am Jonkersweg beim Hilgelo ist Platz für 18 Personen, auf dem Kattenberg im Wald für bis zu 40.',
+        'Mit Familie, Freunden oder dem Verein nach Winterswijk? Wir vermieten zehn Ferienhäuser an zwei Orten, und an beiden buchen Sie mehrere Häuser nebeneinander oder ganz in der Nähe. Am Jonkersweg beim Hilgelo ist Platz für 24 Personen, auf dem Kattenberg im Wald für bis zu 40.',
         'So hat jede Familie ein eigenes Haus mit eigener Küche, eigenem Bad und eigener Sauna, und Sie sind trotzdem zusammen auf einem Gelände. Das ist der Unterschied zu einem Gruppenhaus mit Schlafsaal: tagsüber und beim Essen zusammen, abends jeder für sich.',
       ],
       sections: [
         {
-          title: 'Am Jonkersweg: bis 18 Personen am Hilgelo',
+          title: 'Am Jonkersweg: bis 24 Personen am Hilgelo',
           text: [
-            'Im Ferienpark Den Möllenhof in Winterswijk Meddo vermieten wir drei Häuser für je sechs Personen. Jonkersweg 55 und 57 stehen direkt nebeneinander, Nummer 65 ein paar Häuser weiter im selben Park. Alle drei haben eine eigene Sauna, und in allen drei ist Ihr Hund willkommen.',
+            'Im Ferienpark Den Möllenhof in Winterswijk Meddo vermieten wir vier Häuser für je sechs Personen. Jonkersweg 55 und 57 stehen direkt nebeneinander, 63 und 65 ein paar Häuser weiter im selben Park. Alle vier haben eine eigene Sauna. Ihr Hund ist in 55, 57 und 65 willkommen; in 63 sind keine Haustiere erlaubt.',
             'Der Badesee Hilgelo mit Strand und Wanderwegen ist wenige Minuten entfernt. Reitet jemand in Ihrer Gruppe? Im selben Park gibt es Ställe und Weiden, das Pferd kann also mit.',
           ],
-          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg65'],
+          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg63', 'jonkersweg65'],
         },
         {
           title: 'Auf dem Kattenberg: bis 40 Personen im Wald',
@@ -121,7 +122,8 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
         note: 'Welche Kombination möglich ist, hängt davon ab, was in Ihrem Zeitraum frei ist. Nennen Sie uns Ihre Gruppengröße, dann suchen wir die passende Aufteilung.',
         items: [
           {size: '12 Personen', text: 'Jonkersweg 55 und 57, zwei Häuser direkt nebeneinander. Hunde willkommen.'},
-          {size: '18 Personen', text: 'Alle drei Häuser am Jonkersweg beim Hilgelo. Hund und Pferd willkommen.'},
+          {size: '18 Personen', text: 'Jonkersweg 55, 57 und 65 beim Hilgelo. Hund und Pferd willkommen.'},
+          {size: '24 Personen', text: 'Alle vier Häuser am Jonkersweg beim Hilgelo. In 63 darf kein Hund mit.'},
           {size: '14 Personen', text: 'Waldhaus Kattenberg XL mit einem Waldhaus daneben, mit angepasstem Schlafzimmer im Erdgeschoss.'},
           {size: '24 Personen', text: 'Die vier Waldhäuser auf dem Kattenberg. In zweien darf ein Hund mit.'},
           {size: '40 Personen', text: 'Alle sechs Häuser auf dem Kattenberg, zusammen mitten im Wald.'},
@@ -130,7 +132,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       faq: [
         {q: 'Können wir mehrere Häuser gleichzeitig buchen?', a: 'Ja. Nennen Sie in Ihrer Anfrage die Personenzahl und den Zeitraum. Wir prüfen, welche Häuser dann gemeinsam frei sind, und schlagen eine Aufteilung vor.'},
         {q: 'Gibt es einen Gemeinschaftsraum?', a: 'Nein. Jedes Haus hat ein eigenes Wohnzimmer, eine eigene Küche, ein eigenes Bad und eine eigene Sauna. Gemeinsam essen können Sie auf den Terrassen oder in einem der Wohnzimmer; das XL hat einen Esstisch für acht.'},
-        {q: 'Darf der Hund mit der Gruppe mit?', a: 'Am Jonkersweg ist Ihr Hund in allen drei Häusern willkommen. Auf dem Kattenberg darf ein Hund in zwei der vier Waldhäuser mit. Im XL und im finnischen Chalet sind keine Haustiere erlaubt.'},
+        {q: 'Darf der Hund mit der Gruppe mit?', a: 'Am Jonkersweg ist Ihr Hund in 55, 57 und 65 willkommen, in 63 nicht. Auf dem Kattenberg darf ein Hund in zwei der vier Waldhäuser mit. Im XL und im finnischen Chalet sind keine Haustiere erlaubt.'},
         {q: 'Kann ein Gruppenmitglied im Rollstuhl mitkommen?', a: 'Im Waldhaus Kattenberg XL liegen ein angepasstes Schlafzimmer und Bad im Erdgeschoss, mit schwellenloser Dusche, Duschstuhl und Haltegriffen. Die Sauna und die übrigen Schlafzimmer sind oben.'},
         {q: 'Wie buchen wir?', a: 'Direkt bei uns, per Formular, WhatsApp oder Telefon, ohne Vermittler. Ihre Anfrage ist noch keine bestätigte Buchung: Wir besprechen zuerst Verfügbarkeit und Wünsche.'},
       ],
@@ -144,17 +146,17 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       kicker: 'Group accommodation in the Achterhoek',
       label: 'Group stays',
       intro: [
-        'Coming to Winterswijk with family, friends or a club? We rent out nine holiday homes in two places, and in both you can book several homes next to or close to each other. On Jonkersweg by Hilgelo lake there is room for 18 people, on the Kattenberg in the woods for up to 40.',
+        'Coming to Winterswijk with family, friends or a club? We rent out ten holiday homes in two places, and in both you can book several homes next to or close to each other. On Jonkersweg by Hilgelo lake there is room for 24 people, on the Kattenberg in the woods for up to 40.',
         'Each family gets its own home with its own kitchen, bathroom and sauna, while the whole group stays on one site. That is the difference from a group house with a single dormitory: together during the day and at the table, and your own space in the evening.',
       ],
       sections: [
         {
-          title: 'Jonkersweg: up to 18 guests by Hilgelo lake',
+          title: 'Jonkersweg: up to 24 guests by Hilgelo lake',
           text: [
-            'On the Den Möllenhof holiday park in Winterswijk Meddo we rent out three homes that each sleep six. Jonkersweg 55 and 57 stand right next to each other, and number 65 is a few houses along on the same park. All three have a private sauna and all three welcome dogs.',
+            'On the Den Möllenhof holiday park in Winterswijk Meddo we rent out four homes that each sleep six. Jonkersweg 55 and 57 stand right next to each other, and 63 and 65 are a few houses along on the same park. All four have a private sauna. Dogs are welcome in 55, 57 and 65; no pets are allowed in 63.',
             'Hilgelo lake, with its beach and walking paths, is a few minutes away. Does someone in your group ride? The same park has stables and paddocks, so the horse can come too.',
           ],
-          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg65'],
+          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg63', 'jonkersweg65'],
         },
         {
           title: 'Kattenberg: up to 40 guests in the woods',
@@ -170,7 +172,8 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
         note: 'Which combination works depends on what is free for your dates. Tell us your group size and we will find the set-up that fits.',
         items: [
           {size: '12 guests', text: 'Jonkersweg 55 and 57, two homes right next to each other. Dogs welcome.'},
-          {size: '18 guests', text: 'All three Jonkersweg homes by Hilgelo lake. Dogs and horses welcome.'},
+          {size: '18 guests', text: 'Jonkersweg 55, 57 and 65 by Hilgelo lake. Dogs and horses welcome.'},
+          {size: '24 guests', text: 'All four Jonkersweg homes by Hilgelo lake. No dogs in 63.'},
           {size: '14 guests', text: 'Kattenberg XL plus a woodland home next door, with an adapted bedroom downstairs.'},
           {size: '24 guests', text: 'The four woodland homes on the Kattenberg. Two of them take dogs.'},
           {size: '40 guests', text: 'All six homes on the Kattenberg, together in the woods.'},
@@ -179,7 +182,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       faq: [
         {q: 'Can we book several homes at once?', a: 'Yes. Give the number of guests and your dates in your enquiry. We check which homes are free together and suggest a set-up.'},
         {q: 'Is there a shared common room?', a: 'No. Every home has its own living room, kitchen, bathroom and sauna. You can eat together on the terraces or in one of the living rooms; the XL has a dining table for eight.'},
-        {q: 'Can the dog come with the group?', a: 'On Jonkersweg dogs are welcome in all three homes. On the Kattenberg a dog can come in two of the four woodland homes. No pets are allowed in the XL or the Finnish chalet.'},
+        {q: 'Can the dog come with the group?', a: 'On Jonkersweg dogs are welcome in 55, 57 and 65, but not in 63. On the Kattenberg a dog can come in two of the four woodland homes. No pets are allowed in the XL or the Finnish chalet.'},
         {q: 'Can a group member who uses a wheelchair come?', a: 'Kattenberg XL has an adapted bedroom and bathroom on the ground floor, with a step-free shower, shower chair and grab rails. The sauna and the other bedrooms are upstairs.'},
         {q: 'How do we book?', a: 'Directly with us, by form, WhatsApp or phone, with no agency in between. An enquiry is not yet a confirmed booking: we first discuss availability and your wishes.'},
       ],
@@ -195,11 +198,11 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       kicker: 'Vakantie met hond in de Achterhoek',
       label: 'Vakantiehuis met hond',
       intro: [
-        'In vijf van onze negen vakantiehuizen in Winterswijk is uw hond welkom, en elk van die huizen heeft een eigen sauna. Hieronder ziet u per huis wat er kan, zodat u vooraf weet waar u aan toe bent.',
+        'In vijf van onze tien vakantiehuizen in Winterswijk is uw hond welkom, en elk van die huizen heeft een eigen sauna. Hieronder ziet u per huis wat er kan, zodat u vooraf weet waar u aan toe bent.',
       ],
       sections: [
         {
-          title: 'Jonkersweg: hond welkom in alle drie de huizen',
+          title: 'Jonkersweg: hond welkom in 55, 57 en 65',
           text: [
             'Op recreatiepark Den Möllenhof in Winterswijk Meddo mag uw hond mee in Jonkersweg 55, 57 en 65. Elk huis is voor zes personen, met een eigen sauna en een terras aan het groen.',
             'Rond het Hilgelo loopt een hondenroute die het hele jaar open is, en vanaf het park stapt u zo het coulisselandschap in, met beken, houtwallen en zandpaden. Komt u met meer honden of een grotere groep? Jonkersweg 55 en 57 staan naast elkaar.',
@@ -247,11 +250,11 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       kicker: 'Urlaub mit Hund im Achterhoek',
       label: 'Ferienhaus mit Hund',
       intro: [
-        'In fünf unserer neun Ferienhäuser in Winterswijk ist Ihr Hund willkommen, und jedes dieser Häuser hat eine eigene Sauna. Winterswijk liegt direkt hinter der Grenze bei Bocholt und Vreden. Unten sehen Sie pro Haus, was möglich ist, damit Sie vorab Bescheid wissen.',
+        'In fünf unserer zehn Ferienhäuser in Winterswijk ist Ihr Hund willkommen, und jedes dieser Häuser hat eine eigene Sauna. Winterswijk liegt direkt hinter der Grenze bei Bocholt und Vreden. Unten sehen Sie pro Haus, was möglich ist, damit Sie vorab Bescheid wissen.',
       ],
       sections: [
         {
-          title: 'Jonkersweg: Hund willkommen in allen drei Häusern',
+          title: 'Jonkersweg: Hund willkommen in 55, 57 und 65',
           text: [
             'Im Ferienpark Den Möllenhof in Winterswijk Meddo darf Ihr Hund in Jonkersweg 55, 57 und 65 mit. Jedes Haus ist für sechs Personen, mit eigener Sauna und einer Terrasse im Grünen.',
             'Rund um den Hilgelo führt eine Hunderoute, die das ganze Jahr offen ist, und vom Park aus sind Sie direkt in der Heckenlandschaft mit Bächen, Wallhecken und Sandwegen. Mit mehreren Hunden oder einer größeren Gruppe unterwegs? Jonkersweg 55 und 57 stehen nebeneinander.',
@@ -299,11 +302,11 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       kicker: 'Holidays with a dog in the Achterhoek',
       label: 'Dog-friendly homes',
       intro: [
-        'Your dog is welcome in five of our nine holiday homes in Winterswijk, and each of those homes has a private sauna. Below you can see what is possible in each home, so you know where you stand before you enquire.',
+        'Your dog is welcome in five of our ten holiday homes in Winterswijk, and each of those homes has a private sauna. Below you can see what is possible in each home, so you know where you stand before you enquire.',
       ],
       sections: [
         {
-          title: 'Jonkersweg: dogs welcome in all three homes',
+          title: 'Jonkersweg: dogs welcome in 55, 57 and 65',
           text: [
             'On the Den Möllenhof holiday park in Winterswijk Meddo your dog can come to Jonkersweg 55, 57 and 65. Each home sleeps six, with a private sauna and a terrace facing the greenery.',
             'A dog route runs around Hilgelo lake all year round, and from the park you step straight into the hedgerow landscape of streams, wooded banks and sandy tracks. Travelling with several dogs or a bigger group? Jonkersweg 55 and 57 stand side by side.',
@@ -378,9 +381,9 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
         {
           title: 'Vakantiehuizen bij het Hilgelo',
           text: [
-            'Jonkersweg 55, 57 en 65 zijn elk voor zes personen, met een eigen sauna, en in alle drie is uw hond welkom. 55 en 57 staan naast elkaar en 65 een paar huizen verderop, dus samen is er plek voor 18 personen. Op het park zijn ook stallen en weides voor uw paard.',
+            'Jonkersweg 55, 57, 63 en 65 zijn elk voor zes personen, met een eigen sauna. Uw hond is welkom in 55, 57 en 65. 55 en 57 staan naast elkaar, 63 en 65 een paar huizen verderop, dus samen is er plek voor 24 personen. Jonkersweg 63 ligt op 100 meter van het meer. Op het park zijn ook stallen en weides voor uw paard.',
           ],
-          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg65'],
+          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg63', 'jonkersweg65'],
         },
       ],
       walks: {
@@ -394,7 +397,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       },
       faq: [
         {q: 'Hoe groot is het Hilgelo?', a: 'Zo’n 36 hectare water, met een zandstrand en ruime lig- en speelweiden.'},
-        {q: 'Hoe ver is het Hilgelo van het vakantiehuis?', a: 'Vanaf onze drie huizen aan de Jonkersweg ligt het om de hoek: de Jonkersweg komt uit aan de westkant van het meer. Vanaf de huizen op de Kattenberg, in het bos, gaat u er met de fiets of de auto naartoe.'},
+        {q: 'Hoe ver is het Hilgelo van het vakantiehuis?', a: 'Vanaf onze vier huizen aan de Jonkersweg ligt het om de hoek: de Jonkersweg komt uit aan de westkant van het meer. Vanaf de huizen op de Kattenberg, in het bos, gaat u er met de fiets of de auto naartoe.'},
         {q: 'Hoe lang duurt een rondje om het Hilgelo?', a: 'Volgens een van onze gasten kost een rondje wandelen om het water ongeveer 75 minuten.'},
         {q: 'Wat kan ik bij het Hilgelo huren?', a: 'Waterfietsen, kano’s, ligstoelen en parasols huurt u ter plekke. Er is ook een surfkluis.'},
         {q: 'Mag mijn hond mee naar het Hilgelo?', a: 'Ja, op de route rond het meer, het hele jaar. Alleen op het strand aan de oostkant zijn honden van 1 mei tot 1 oktober niet toegestaan.'},
@@ -434,9 +437,9 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
         {
           title: 'Ferienhäuser am Hilgelo',
           text: [
-            'Jonkersweg 55, 57 und 65 sind jeweils für sechs Personen, mit eigener Sauna, und in allen drei ist Ihr Hund willkommen. 55 und 57 stehen nebeneinander, 65 ein paar Häuser weiter, zusammen also Platz für 18 Personen. Im Park gibt es auch Ställe und Weiden für Ihr Pferd.',
+            'Jonkersweg 55, 57, 63 und 65 sind jeweils für sechs Personen, mit eigener Sauna. Ihr Hund ist in 55, 57 und 65 willkommen. 55 und 57 stehen nebeneinander, 63 und 65 ein paar Häuser weiter, zusammen also Platz für 24 Personen. Jonkersweg 63 liegt 100 Meter vom See. Im Park gibt es auch Ställe und Weiden für Ihr Pferd.',
           ],
-          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg65'],
+          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg63', 'jonkersweg65'],
         },
       ],
       walks: {
@@ -450,7 +453,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       },
       faq: [
         {q: 'Wie groß ist der Hilgelo?', a: 'Rund 36 Hektar Wasser, mit Sandstrand und weiten Liege- und Spielwiesen.'},
-        {q: 'Wie weit ist der Hilgelo vom Ferienhaus entfernt?', a: 'Von unseren drei Häusern am Jonkersweg liegt er um die Ecke: der Jonkersweg mündet an der Westseite des Sees. Von den Häusern auf dem Kattenberg, im Wald, fahren Sie mit dem Rad oder dem Auto hin.'},
+        {q: 'Wie weit ist der Hilgelo vom Ferienhaus entfernt?', a: 'Von unseren vier Häusern am Jonkersweg liegt er um die Ecke: der Jonkersweg mündet an der Westseite des Sees. Von den Häusern auf dem Kattenberg, im Wald, fahren Sie mit dem Rad oder dem Auto hin.'},
         {q: 'Wie lange dauert eine Runde um den Hilgelo?', a: 'Laut einem unserer Gäste dauert eine Runde zu Fuß um den See etwa 75 Minuten.'},
         {q: 'Was kann man am Hilgelo mieten?', a: 'Tretboote, Kanus, Liegestühle und Sonnenschirme mieten Sie vor Ort. Es gibt auch ein Surfdepot.'},
         {q: 'Darf mein Hund mit an den Hilgelo?', a: 'Ja, auf dem Weg um den See, das ganze Jahr. Nur am Strand an der Ostseite sind Hunde vom 1. Mai bis 1. Oktober nicht erlaubt.'},
@@ -490,9 +493,9 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
         {
           title: 'Holiday homes by the Hilgelo',
           text: [
-            'Jonkersweg 55, 57 and 65 each sleep six, each has a private sauna, and dogs are welcome in all three. 55 and 57 stand side by side and 65 a few doors along, so together they sleep 18. The park also has stables and paddocks for your horse.',
+            'Jonkersweg 55, 57, 63 and 65 each sleep six and each has a private sauna. Dogs are welcome in 55, 57 and 65. 55 and 57 stand side by side, 63 and 65 a few doors along, so together they sleep 24. Jonkersweg 63 is 100 metres from the lake. The park also has stables and paddocks for your horse.',
           ],
-          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg65'],
+          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg63', 'jonkersweg65'],
         },
       ],
       walks: {
@@ -506,7 +509,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       },
       faq: [
         {q: 'How big is Hilgelo lake?', a: 'Some 36 hectares of water, with a sandy beach and generous lawns to play and sunbathe on.'},
-        {q: 'How far is the Hilgelo from the holiday home?', a: 'From our three homes on Jonkersweg it is around the corner: Jonkersweg comes out on the west side of the lake. From the homes on the Kattenberg, in the woods, you get there by bike or car.'},
+        {q: 'How far is the Hilgelo from the holiday home?', a: 'From our four homes on Jonkersweg it is around the corner: Jonkersweg comes out on the west side of the lake. From the homes on the Kattenberg, in the woods, you get there by bike or car.'},
         {q: 'How long is a walk round the Hilgelo?', a: 'According to one of our guests, a walk all the way round the lake takes about 75 minutes.'},
         {q: 'What can I hire at the Hilgelo?', a: 'Pedalos, canoes, deckchairs and parasols are for hire on site. There is also a surf locker.'},
         {q: 'Can my dog come to the Hilgelo?', a: 'Yes, on the route round the lake, all year. Only the beach on the east side is closed to dogs from 1 May to 1 October.'},
