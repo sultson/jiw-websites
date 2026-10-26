@@ -83,8 +83,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: 'BSN 登记的服务费用',
-          kind: 'fixed',
-          amount: '投资额 €295 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '在合适的窗口、合适的时机订好市政厅预约',
             '提前核查文件、认证与翻译要求',
@@ -222,8 +223,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: '市政厅登记的服务费用',
-          kind: 'fixed',
-          amount: '投资额 €295 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '在法律规定的五天期限内订好预约',
             '核查地址与房东同意，避免登记被拒',
@@ -353,8 +355,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: '医疗保险指导的服务费用',
-          kind: 'fixed',
-          amount: '投资额 €195 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '根据您的情况与家庭状况选定合适的荷兰保单',
             '与您一同填写并提交申请',
@@ -485,8 +488,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: '择校服务专业费用',
-          kind: 'fixed',
-          amount: '投资额 €995 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '一份真正适合您孩子的国际学校、双语学校或荷兰学校名单',
             '在您做决定之前，核实等候名单、招生时间窗与学区规则',
@@ -753,8 +757,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: '机场接机专业费用',
-          kind: 'fixed',
-          amount: '€395 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '专业司机与商务车辆，按您的人数和行李量匹配',
             '全程监控航班，延误不会让您失去预订',

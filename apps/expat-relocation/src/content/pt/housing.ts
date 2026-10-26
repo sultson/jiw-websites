@@ -84,8 +84,9 @@ export const housing: SectionContent = {
         },
         fees: {
           title: 'Honorários profissionais para uma procura de habitação',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €1.750',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Um resumo escrito e uma pré-seleção ajustada à forma como realmente vive',
             'Acesso a anúncios através da nossa rede de agentes, incluindo casas que nunca são publicitadas',
@@ -352,8 +353,9 @@ export const housing: SectionContent = {
         },
         fees: {
           title: 'Honorários profissionais para o apoio nas visitas',
-          kind: 'fixed',
-          amount: '€295 por visita',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Presença na visita, pessoalmente, com as perguntas que um senhorio espera',
             'Um veredicto escrito e honesto sobre o imóvel, incluindo o que nós não aceitaríamos',
@@ -484,8 +486,9 @@ export const housing: SectionContent = {
         },
         fees: {
           title: 'Honorários para a revisão de um contrato de arrendamento',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €395',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Revisão completa do contrato e das condições gerais que o acompanham',
             'A renda testada face ao sistema de pontos neerlandês enquanto o prazo para contestar está aberto',

@@ -227,22 +227,9 @@ export const business: SectionContent = {
         },
         fees: {
           title: 'Onorario per la costituzione della società',
-          kind: 'tiered',
-          amount: 'Investimento da 2.495 €',
-          tiers: [
-            {
-              label: 'Impresa individuale (ZZP)',
-              amount: 'Investimento da 2.495 €',
-            },
-            {
-              label: 'BV olandese',
-              amount: 'Investimento da 3.495 €',
-            },
-            {
-              label: 'Struttura di holding internazionale',
-              amount: 'Su misura',
-            },
-          ],
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Struttura consigliata prima che venga depositato qualsiasi cosa, non dopo',
             'Atto notarile coordinato per una BV, documenti costitutivi compresi',
@@ -380,8 +367,9 @@ export const business: SectionContent = {
         },
         fees: {
           title: 'Onorario per l\'iscrizione alla KvK',
-          kind: 'fixed',
-          amount: 'Investimento da 395 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Modulo di iscrizione preparato e codici di attività SBI scelti correttamente',
             'Appuntamento alla KvK prenotato e affrontato insieme a lei',

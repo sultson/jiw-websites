@@ -33,6 +33,12 @@ const CONTENT = path.join(APP, 'src', 'content');
 const KEEP = new Set(['slug', 'image', 'image2', 'form', 'path', 'key', 'kind', 'href', 'imageAlt', 'image2Alt']);
 /** ...except alt text, which IS prose. Kept out of KEEP explicitly below. */
 const ALT = new Set(['imageAlt', 'image2Alt']);
+/**
+ * Identity keys only ever hold a string. `ui.form` shares its name with the
+ * per-service `form` kind but is an object of form labels, so it must be walked:
+ * skipping it left the it/pt/zh forms in English.
+ */
+const isIdentity = (k, v) => KEEP.has(k) && !ALT.has(k) && typeof v === 'string';
 
 /** The eight content modules that make up one language. */
 export const MODULES = ['core', 'immigration', 'housing', 'relocation', 'industrial', 'business', 'vip', 'guides'];
@@ -69,7 +75,7 @@ export function extract(node, prefix = '', out = {}) {
   }
   if (node && typeof node === 'object') {
     for (const [k, v] of Object.entries(node)) {
-      if (KEEP.has(k) && !ALT.has(k)) continue;
+      if (isIdentity(k, v)) continue;
       extract(v, prefix ? `${prefix}.${k}` : k, out);
     }
   }
@@ -88,7 +94,7 @@ export function apply(node, map, prefix = '') {
   if (node && typeof node === 'object') {
     const out = {};
     for (const [k, v] of Object.entries(node)) {
-      if (KEEP.has(k) && !ALT.has(k)) {
+      if (isIdentity(k, v)) {
         out[k] = v;
         continue;
       }

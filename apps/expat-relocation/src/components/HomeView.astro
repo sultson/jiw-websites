@@ -4,6 +4,7 @@ import LeadForm from './LeadForm.astro';
 import { site } from '../data/site';
 import { SECTIONS, localizePath, type Lang } from '../lib/i18n';
 import { getContent } from '../lib/content';
+import { whatsappHref } from '../lib/whatsapp';
 
 interface Props {
   lang: Lang;
@@ -12,45 +13,42 @@ const { lang } = Astro.props;
 const c = getContent(lang);
 const h = c.core.home;
 const l = (p: string) => localizePath(p, lang);
+const wa = whatsappHref(lang, Astro.url.pathname);
 
 /* The three entry paths are ordered here rather than in the content files so all
-   six languages stay in step. Relocation and VIP lead, immigration follows: the
-   brand is a boutique relocation consultancy that also handles immigration. */
-const PATH_ORDER = ['relocation', 'vip', 'immigration'];
+   languages stay in step. Packages lead, then immigration, then single services:
+   the easiest route through the page has to lead to what the client sells, not
+   to a housing search on its own (analysis of Oct 2026, confirmed by the client). */
+const PATH_ORDER = ['vip', 'immigration', 'relocation'];
+
+/* Static photograph, not video: the old 6 MB clip downloaded in full on phones and
+   showed a canal that is not Rotterdam. */
+const HERO_IMAGE = '/images/hero-rotterdam-port.jpg?v=20261023';
+const HERO_IMAGE_SMALL = '/images/hero-rotterdam-port-1200.jpg?v=20261023';
+const AUDIENCE_ICONS = ['users', 'building', 'mapPin', 'shield'];
 const paths = [...h.paths.items].sort(
   (a, b) => PATH_ORDER.indexOf(a.key) - PATH_ORDER.indexOf(b.key)
 );
 ---
 
-<!-- 1. Hero: edge-to-edge video, left-aligned copy -->
-<section class="relative flex min-h-[92svh] items-center overflow-hidden bg-navy pt-24">
-  <video
-    id="hero-video"
-    class="absolute inset-0 h-full w-full object-cover"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="metadata"
-    poster="/images/hero-poster.jpg?v=20260801"
-  >
-    <source src="/hero.mp4?v=20260801" type="video/mp4" />
-  </video>
-  <!-- Poster overlay: fades out once the video is actually rendering frames, so the
-       thumbnail-to-video switch is a soft crossfade instead of a hard cut. -->
+<!-- 1. Hero: edge-to-edge photograph, left-aligned copy -->
+<section class="relative flex min-h-[92svh] items-center overflow-hidden bg-navy pt-24 lg:min-h-[calc(100svh-7.5rem)] lg:pt-0" data-wa-hero>
   <img
-    id="hero-poster-overlay"
-    src="/images/hero-poster.jpg?v=20260801"
+    src={HERO_IMAGE}
+    srcset={`${HERO_IMAGE_SMALL} 1200w, ${HERO_IMAGE} 2048w`}
+    sizes="100vw"
     alt=""
-    aria-hidden="true"
-    class="pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-out"
-    width="1600"
-    height="900"
+    class="absolute inset-0 h-full w-full object-cover object-[74%_50%] md:object-[62%_50%]"
+    width="2048"
+    height="1152"
     fetchpriority="high"
+    decoding="async"
   />
-  <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/50 to-navy/20"></div>
-  <div class="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/40 to-transparent"></div>
-  <div class="container-site relative py-20">
+  <!-- Scrim: bottom-up on phones, where the copy covers the whole frame; from the
+       left on wider screens, where the skyline and the sun sit right of the copy. -->
+  <div class="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/55 to-navy/10 md:from-navy/70 md:via-navy/15 md:to-transparent"></div>
+  <div class="absolute inset-0 hidden bg-gradient-to-r from-navy/85 via-navy/40 to-transparent md:block"></div>
+  <div class="container-site relative py-20 lg:py-16">
     <div class="max-w-3xl">
       <p class="flex items-center gap-3">
         <span class="h-px w-10 bg-gold" aria-hidden="true"></span>
@@ -60,12 +58,22 @@ const paths = [...h.paths.items].sort(
         {h.hero.h1}
       </h1>
       <p class="mt-7 max-w-xl text-[1.02rem] leading-relaxed text-white/85">{h.hero.sub}</p>
+      <ul class="mt-7 flex flex-wrap gap-x-6 gap-y-2.5">
+        {h.hero.points.map((point) => (
+          <li class="flex items-center gap-2.5 text-[0.9rem] text-white/90">
+            <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold text-navy">
+              <Icon name="check" size={12} />
+            </span>
+            {point}
+          </li>
+        ))}
+      </ul>
       <div class="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-        <a href={l(SECTIONS.contact)} class="btn btn-white">
+        <a href={l(SECTIONS.vip)} class="btn btn-gold-fill">
           {h.hero.ctaPrimary}
           <Icon name="arrow" size={15} />
         </a>
-        <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn btn-gold">
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-gold">
           <Icon name="whatsapp" size={15} />
           {h.hero.ctaWhatsapp}
         </a>
@@ -80,7 +88,86 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 2. Three paths, presented as cards -->
+<!-- 2. Packages and port, side by side, directly under the hero -->
+<section class="container-site pt-12 pb-14 md:pt-16 md:pb-20">
+  <div class="grid gap-6 lg:grid-cols-2">
+    <a href={l(SECTIONS.vip)} class="card group flex flex-col bg-white shadow-card sm:flex-row">
+      <img
+        src="/images/rotterdam.jpg"
+        alt={h.featured.packages.imageAlt}
+        class="aspect-[16/10] w-full object-cover sm:aspect-auto sm:w-2/5"
+        width="800"
+        height="536"
+        loading="lazy"
+      />
+      <div class="flex flex-1 flex-col p-7 md:p-8">
+        <h2 class="font-display text-2xl leading-snug transition-colors group-hover:text-gold md:text-[1.7rem]">{h.featured.packages.title}</h2>
+        <p class="mt-3 flex-1 text-[0.94rem] leading-relaxed">{h.featured.packages.text}</p>
+        <span class="btn btn-gold-fill mt-6 self-start">
+          {h.featured.packages.label}
+          <Icon name="arrow" size={15} />
+        </span>
+      </div>
+    </a>
+    <a href={l(SECTIONS.industrial)} class="card group flex flex-col bg-white shadow-card sm:flex-row">
+      <img
+        src="/images/port-services.jpg?v=20261023"
+        alt={h.featured.port.imageAlt}
+        class="aspect-[16/10] w-full object-cover sm:aspect-auto sm:w-2/5"
+        width="800"
+        height="536"
+        loading="lazy"
+      />
+      <div class="flex flex-1 flex-col p-7 md:p-8">
+        <h2 class="font-display text-2xl leading-snug md:text-[1.7rem]">
+          <span class="transition-colors group-hover:text-gold">{h.featured.port.title}</span>
+          <span class="mt-1 block text-xl text-gold md:text-[1.35rem]">{h.featured.port.subtitle}</span>
+        </h2>
+        <p class="mt-3 flex-1 text-[0.94rem] leading-relaxed">{h.featured.port.text}</p>
+        <span class="btn btn-navy mt-6 self-start">
+          {h.featured.port.label}
+          <Icon name="arrow" size={15} />
+        </span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- 3. Who we work for, then a slim contact strip -->
+<section class="border-y border-line-warm band-sand">
+  <div class="container-site py-14 md:py-18">
+    <h2 class="eyebrow eyebrow-navy text-center">{h.audience.heading}</h2>
+    <div class="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-0 lg:divide-x lg:divide-line-warm">
+      {h.audience.items.map((item, i) => (
+        <a href={l(item.path)} class="group text-center lg:px-7">
+          <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-white text-gold">
+            <Icon name={AUDIENCE_ICONS[i] ?? 'check'} size={22} />
+          </span>
+          <h3 class="mt-4 font-display text-xl transition-colors group-hover:text-gold">{item.title}</h3>
+          <p class="mx-auto mt-2 max-w-xs text-[0.9rem] leading-relaxed">{item.text}</p>
+        </a>
+      ))}
+    </div>
+    <div class="card mt-12 flex flex-col gap-6 bg-white p-7 md:flex-row md:items-center md:justify-between md:p-8">
+      <div>
+        <h2 class="font-display text-2xl md:text-3xl">{h.contactBar.heading}</h2>
+        <p class="mt-2 text-[0.94rem] leading-relaxed text-ink-soft">{h.contactBar.text}</p>
+      </div>
+      <div class="flex shrink-0 flex-col gap-3 sm:flex-row">
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-whatsapp">
+          <Icon name="whatsapp" size={16} />
+          {h.contactBar.whatsappLabel}
+        </a>
+        <a href="#contact-form" class="btn btn-outline">
+          <Icon name="mail" size={16} />
+          {h.contactBar.formLabel}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Three paths, presented as cards -->
 <section id="paths" class="container-site py-16 md:py-24">
   <div class="max-w-2xl">
     <h2 class="font-display text-3xl md:text-4xl">{h.paths.heading}</h2>
@@ -101,7 +188,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 3. Most requested services -->
+<!-- 5. Most requested services -->
 <section class="border-y border-line-warm band-sand">
   <div class="container-site py-16 md:py-22">
     <div class="text-center">
@@ -122,7 +209,51 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 4. Ports, harbours & offshore (dark band) -->
+<!-- 6. Johanna, in her own words -->
+<section class="container-site py-16 md:py-24">
+  <div class="mx-auto grid max-w-5xl gap-8 md:grid-cols-[1fr_1.4fr] md:gap-16">
+    <div>
+      <span class="eyebrow eyebrow-navy">{h.intro.eyebrow}</span>
+      <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.intro.heading}</h2>
+      <span class="gold-rule mt-6"></span>
+    </div>
+    <div>
+      {h.intro.text.map((p) => (
+        <p class="mt-5 text-[1.02rem] leading-relaxed first:mt-0">{p}</p>
+      ))}
+      <p class="mt-6 font-display text-lg italic text-navy">{h.intro.signature}</p>
+      <a href={l(SECTIONS.about)} class="link-editorial mt-7">{h.intro.label}</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Immigration -->
+<section class="border-y border-line-warm band-sand">
+  <div class="container-site py-16 md:py-24">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="eyebrow eyebrow-navy">{h.immigrationBlock.eyebrow}</span>
+      <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.immigrationBlock.heading}</h2>
+      {h.immigrationBlock.text.map((p) => (
+        <p class="mx-auto mt-5 max-w-2xl leading-relaxed">{p}</p>
+      ))}
+    </div>
+    <div class="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-3">
+      {h.immigrationBlock.links.map((link) => (
+        <a
+          href={l(link.path)}
+          class="rounded-full border border-line bg-white px-5 py-2.5 text-[0.85rem] font-medium text-navy transition-colors hover:border-gold hover:text-gold"
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+    <div class="mt-9 text-center">
+      <a href={l(SECTIONS.immigration)} class="link-editorial">{h.immigrationBlock.label}</a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Ports, harbours & offshore (dark band) -->
 <section class="bg-navy">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl text-center">
@@ -169,7 +300,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 5. VIP band: full-bleed navy with photo backdrop and gold CTA -->
+<!-- 9. VIP band: full-bleed navy with photo backdrop and gold CTA -->
 <section class="relative overflow-hidden bg-navy">
   <img
     src="/images/vip-welcome.jpg?v=20260731"
@@ -198,7 +329,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 6. Family relocation -->
+<!-- 10. Family relocation -->
 <section class="border-y border-line-warm band-sand">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2 md:gap-16">
@@ -222,31 +353,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 7. Immigration -->
-<section class="container-site py-16 md:py-24">
-  <div class="mx-auto max-w-3xl text-center">
-    <span class="eyebrow eyebrow-navy">{h.immigrationBlock.eyebrow}</span>
-    <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.immigrationBlock.heading}</h2>
-    {h.immigrationBlock.text.map((p) => (
-      <p class="mx-auto mt-5 max-w-2xl leading-relaxed">{p}</p>
-    ))}
-  </div>
-  <div class="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-3">
-    {h.immigrationBlock.links.map((link) => (
-      <a
-        href={l(link.path)}
-        class="rounded-full border border-line px-5 py-2.5 text-[0.85rem] font-medium text-navy transition-colors hover:border-gold hover:text-gold"
-      >
-        {link.label}
-      </a>
-    ))}
-  </div>
-  <div class="mt-9 text-center">
-    <a href={l(SECTIONS.immigration)} class="link-editorial">{h.immigrationBlock.label}</a>
-  </div>
-</section>
-
-<!-- 8. Housing: image band with overlay card -->
+<!-- 11. Housing: image band with overlay card -->
 <section class="relative">
   <img
     src="/images/canal-colour.jpg"
@@ -275,7 +382,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 9. Business -->
+<!-- 12. Business -->
 <section class="container-site py-16 md:py-24">
   <div class="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2 md:gap-16">
     <div>
@@ -290,7 +397,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 10. Life here: a full-bleed photo strip, static, no captions -->
+<!-- 13. Life here: a full-bleed photo strip, static, no captions -->
 <section aria-hidden="true" class="grid grid-cols-2 md:grid-cols-4">
   {[
     { src: '/images/cyclist-canal.jpg', alt: '' },
@@ -309,7 +416,7 @@ const paths = [...h.paths.items].sort(
   ))}
 </section>
 
-<!-- 11. Why boutique (dark band) -->
+<!-- 14. Why boutique (dark band) -->
 <section class="bg-navy">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl text-center">
@@ -338,7 +445,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 11. Reviews: star-led cards -->
+<!-- 15. Reviews: star-led cards -->
 <section class="border-y border-line-warm band-sand">
   <div class="container-site py-16 md:py-24">
     <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -370,20 +477,20 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 12. WhatsApp CTA -->
+<!-- 16. WhatsApp CTA -->
 <section class="bg-navy">
   <div class="container-site py-16 text-center md:py-20">
     <span class="gold-rule mx-auto"></span>
     <h2 class="mx-auto mt-6 max-w-2xl font-display text-3xl text-white md:text-4xl">{h.whatsappCta.heading}</h2>
     <p class="mx-auto mt-4 max-w-xl leading-relaxed text-white/70">{h.whatsappCta.text}</p>
-    <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn btn-whatsapp mt-9">
+    <a href={wa} target="_blank" rel="noopener" class="btn btn-whatsapp mt-9">
       <Icon name="whatsapp" size={16} />
       {h.whatsappCta.label}
     </a>
   </div>
 </section>
 
-<!-- 13. Contact form: details left, form right -->
+<!-- 17. Contact form: details left, form right -->
 <section class="band-inquiry border-t border-line-warm" id="contact-form">
   <div class="container-site py-16 md:py-24">
     <div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
@@ -404,7 +511,7 @@ const paths = [...h.paths.items].sort(
             </span>
             <span class="font-medium text-navy transition-colors group-hover:text-gold">{site.email}</span>
           </a>
-          <a href={site.whatsappUrl} target="_blank" rel="noopener" class="group flex items-center gap-4">
+          <a href={wa} target="_blank" rel="noopener" class="group flex items-center gap-4">
             <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
               <Icon name="whatsapp" size={18} />
             </span>
@@ -418,17 +525,3 @@ const paths = [...h.paths.items].sort(
     </div>
   </div>
 </section>
-
-<script>
-  // Crossfade the hero poster overlay away once the video is actually playing.
-  const video = document.getElementById('hero-video') as HTMLVideoElement | null;
-  const overlay = document.getElementById('hero-poster-overlay');
-  const fadeOut = () => overlay?.classList.add('opacity-0');
-  if (video && overlay) {
-    if (!video.paused && video.currentTime > 0.05 && video.readyState >= 3) {
-      fadeOut();
-    } else {
-      video.addEventListener('playing', fadeOut, { once: true });
-    }
-  }
-</script>

@@ -3,11 +3,13 @@ import Icon from './Icon.astro';
 import { site } from '../data/site';
 import { SECTIONS, localizePath, type Lang } from '../lib/i18n';
 import { getContent } from '../lib/content';
+import { whatsappHref } from '../lib/whatsapp';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
+const wa = whatsappHref(lang, Astro.url.pathname);
 const c = getContent(lang);
 const f = c.core.ui.footer;
 const nav = c.core.ui.nav;
@@ -93,7 +95,7 @@ const year = new Date().getFullYear();
           </li>
           <li class="flex items-center gap-3">
             <Icon name="whatsapp" size={16} class="shrink-0 text-gold/70" />
-            <a href={site.whatsappUrl} target="_blank" rel="noopener" class="transition-colors hover:text-white">{site.whatsapp.display}</a>
+            <a href={wa} target="_blank" rel="noopener" class="transition-colors hover:text-white">{site.whatsapp.display}</a>
           </li>
           <li class="flex items-center gap-3">
             <span class="text-[0.7rem] uppercase tracking-[0.16em] text-white/50">{f.kvkLabel}</span>

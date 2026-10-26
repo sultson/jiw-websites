@@ -83,8 +83,10 @@ export const housing: SectionContent = {
       },
       fees: {
         title: 'Professional fees for a housing search',
-        kind: 'fixed',
-        amount: 'Investment from €1,750',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'A written brief and a shortlist matched to how you actually live',
           'Access to listings through our agent network, including homes never advertised',
@@ -364,8 +366,10 @@ export const housing: SectionContent = {
       },
       fees: {
         title: 'Professional fees for viewing assistance',
-        kind: 'fixed',
-        amount: '€295 per viewing',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Attendance at the viewing, in person, with the questions a landlord expects',
           'An honest written verdict on the property, including what we would not accept',
@@ -502,8 +506,10 @@ export const housing: SectionContent = {
       },
       fees: {
         title: 'Professional fees for a rental contract review',
-        kind: 'fixed',
-        amount: 'Investment from €395',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Full review of the contract and the general terms attached to it',
           'The rent tested against the Dutch points system while the window to object is open',

@@ -3,6 +3,7 @@ import Icon from './Icon.astro';
 import { site } from '../data/site';
 import { LANGS, LANG_LABELS, SECTIONS, localizePath, type Lang } from '../lib/i18n';
 import { getContent } from '../lib/content';
+import { whatsappHref } from '../lib/whatsapp';
 
 interface Props {
   lang: Lang;
@@ -11,6 +12,7 @@ interface Props {
   availableLangs?: readonly Lang[];
 }
 const { lang, path, availableLangs = LANGS } = Astro.props;
+const wa = whatsappHref(lang, Astro.url.pathname);
 const c = getContent(lang);
 const nav = c.core.ui.nav;
 
@@ -77,7 +79,7 @@ const isActive = (href: string) => {
       </div>
       <div class="flex items-center gap-7">
         <a href={`mailto:${site.email}`} class="transition-colors hover:text-navy">{site.email}</a>
-        <a href={site.whatsappUrl} target="_blank" rel="noopener" class="flex items-center gap-2 text-navy transition-colors hover:text-gold">
+        <a href={wa} target="_blank" rel="noopener" class="flex items-center gap-2 text-navy transition-colors hover:text-gold">
           <Icon name="whatsapp" size={14} />
           {c.core.ui.cta.whatsapp}
         </a>
@@ -100,7 +102,7 @@ const isActive = (href: string) => {
     <a href={l('/')} class="absolute left-1/2 -translate-x-1/2" aria-label={site.name}>
       <img src="/images/logo.png" alt={site.name} class="h-12 w-auto md:h-[3.5rem]" width="750" height="150" />
     </a>
-    <a href={site.whatsappUrl} target="_blank" rel="noopener" class="-mr-2 p-2 text-navy lg:hidden" aria-label={c.core.ui.cta.whatsapp}>
+    <a href={wa} target="_blank" rel="noopener" class="-mr-2 p-2 text-navy lg:hidden" aria-label={c.core.ui.cta.whatsapp}>
       <Icon name="whatsapp" size={22} />
     </a>
   </div>
@@ -153,7 +155,7 @@ const isActive = (href: string) => {
       ))}
     </nav>
     <div class="mt-auto space-y-4 px-6 pb-8">
-      <a href={site.whatsappUrl} target="_blank" rel="noopener" class="btn btn-whatsapp w-full">
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-whatsapp w-full">
         <Icon name="whatsapp" size={16} />
         {c.core.ui.cta.whatsappLong}
       </a>

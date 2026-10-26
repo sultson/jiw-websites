@@ -22,6 +22,7 @@ const selectField = kind === 'vip' ? 'package' : 'service';
 const selectLabel = kind === 'vip' ? c.core.contact.formCopy.vip.package : (copy as any).service;
 const selectOptions: string[] =
   kind === 'vip' ? c.core.contact.formCopy.vip.packageOptions : (copy as any).serviceOptions;
+const shared = c.core.contact.formCopy.shared;
 ---
 
 <div class="relative" data-lead-wrap>
@@ -104,6 +105,10 @@ const selectOptions: string[] =
             <input name="movingFrom" type="text" class="form-input" />
           </label>
           <label class="block">
+            <span class="form-label">{shared.nationality}</span>
+            <input name="nationality" type="text" autocomplete="off" class="form-input" />
+          </label>
+          <label class="block">
             <span class="form-label">{c.core.contact.formCopy.relocation.household}</span>
             <div class="relative">
               <select name="household" class="form-input cursor-pointer appearance-none pr-10">
@@ -121,6 +126,10 @@ const selectOptions: string[] =
           <label class="block">
             <span class="form-label">{c.core.contact.formCopy.vip.movingFrom}</span>
             <input name="movingFrom" type="text" class="form-input" />
+          </label>
+          <label class="block">
+            <span class="form-label">{shared.nationality}</span>
+            <input name="nationality" type="text" autocomplete="off" class="form-input" />
           </label>
           <label class="block">
             <span class="form-label">{c.core.contact.formCopy.vip.arrival}</span>
@@ -156,6 +165,21 @@ const selectOptions: string[] =
           </div>
         </fieldset>
       )}
+
+      <!-- Nothing preselected: a default here would put an answer in the visitor's mouth. -->
+      <fieldset class="block sm:col-span-2">
+        <legend class="form-label">{shared.costs}</legend>
+        <div class="flex flex-wrap gap-2 pt-1">
+          {shared.costsOptions.map((opt) => (
+            <label class="cursor-pointer">
+              <input type="radio" name="costsCoveredBy" value={opt} class="peer sr-only" />
+              <span class="inline-flex rounded-full border border-line px-4 py-2 text-[0.78rem] tracking-[0.06em] text-ink transition-colors peer-checked:border-navy peer-checked:bg-navy peer-checked:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-gold/50">
+                {opt}
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
     </div>
 
     <label class="mt-5 block">

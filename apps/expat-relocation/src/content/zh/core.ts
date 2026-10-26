@@ -28,6 +28,12 @@ export const core: CoreContent = {
         send: '发送咨询',
         sending: '发送中…',
         explore: '了解详情',
+        enquire: '咨询此项服务',
+        quote: '索取报价',
+      },
+      whatsappPrefill: {
+        general: '您好 Johanna，我正计划搬到荷兰，有一个问题想咨询。',
+        topic: '您好 Johanna，我想咨询：{topic}',
       },
       langBanner: {
         prompt: '您希望以 {lang} 浏览本网站吗？',
@@ -35,17 +41,17 @@ export const core: CoreContent = {
         dismiss: '不用了，谢谢',
       },
       form: {
-        firstName: 'First name',
-        lastName: 'Last name',
-        email: 'Email address',
-        phone: 'Phone / WhatsApp',
-        optional: 'optional',
-        successTitle: 'Thank you, your inquiry has been sent',
-        successBody: 'Johanna will personally review your situation and reply within one business day, usually much sooner. For anything urgent, message us on WhatsApp.',
-        errorTitle: 'Something went wrong',
-        errorBody: 'Your inquiry could not be sent. Please try again, or message us on WhatsApp.',
-        consent: 'By sending this form you agree to our privacy policy.',
-        nextSteps: 'After you send this form, Johanna personally reviews your situation and replies within one business day with an honest assessment of whether and how we can help. If your request falls outside our services or region, we tell you straight away.',
+        firstName: '名',
+        lastName: '姓',
+        email: '电子邮箱',
+        phone: '电话 / WhatsApp',
+        optional: '选填',
+        successTitle: '谢谢，您的咨询已发送',
+        successBody: 'Johanna 会亲自了解您的情况，并在一个工作日内回复，通常会更快。如有紧急情况，请通过 WhatsApp 联系我们。',
+        errorTitle: '出现了问题',
+        errorBody: '您的咨询未能发送。请重试，或通过 WhatsApp 联系我们。',
+        consent: '提交此表单即表示您同意我们的隐私政策。',
+        nextSteps: '提交表单后，Johanna 会亲自了解您的情况，并在一个工作日内给出坦诚的评估：我们能否帮助您、如何帮助您。如果您的需求超出我们的服务或地区范围，我们会立即告知。',
       },
       footer: {
         tagline: '一家精品搬迁咨询公司，服务在 Rotterdam、Europoort 及更广阔港区安顿的国际专业人士与家庭。',
@@ -69,15 +75,76 @@ export const core: CoreContent = {
       },
     },
     home: {
-      metaTitle: '荷兰精品搬迁与移民服务 | E & I',
-      metaDescription: '一家精品搬迁咨询公司，服务在 Rotterdam、Europoort 及更广阔港区安顿的国际专业人士、家庭与创业者。住房、学校、各项登记、移民与 VIP 套餐。',
+      metaTitle: '荷兰鹿特丹搬迁与移民服务 | E & I',
+      metaDescription: '为前往荷兰的非欧盟专业人士、家庭及雇主提供移民与搬迁服务。在 Rotterdam 及港口地区提供一对一陪同。',
       hero: {
         h1: '荷兰精品搬迁与移民服务',
-        sub: '一家私人搬迁咨询公司，服务在 Rotterdam、Europoort 及更广阔港区安顿的国际专业人士、家庭与创业者。移民包含在内，却从来不是全部。',
-        ctaPrimary: '预约搬迁咨询',
+        sub: '服务对象是非欧盟专业人士、家庭，以及聘请他们来荷兰的雇主。居留许可、住房与安顿作为一个整体计划完成，覆盖 Rotterdam、海牙及港口地区。',
+        ctaPrimary: '查看我们的套餐',
         ctaWhatsapp: '直接通过 WhatsApp 联系我们',
         ctaSecondary: '开启您的搬迁',
         trust: '由 Johanna 亲自陪同，24/7 随时可联系',
+        points: [
+          '一对一陪同',
+          '移民与搬迁一个计划完成',
+          '港口地区专家',
+        ],
+      },
+      featured: {
+        packages: {
+          title: '移民与搬迁套餐',
+          text: '为 Rotterdam 及周边地区的国际专业人士、非欧盟家庭和雇主提供全程支持：居留许可、住房、学校与各项手续，一个计划全部搞定。',
+          label: '查看我们的套餐',
+          imageAlt: '横跨马斯河的伊拉斯谟大桥与 Rotterdam 天际线',
+        },
+        port: {
+          title: '港口服务',
+          subtitle: 'Europoort、Botlek 与 Maasvlakte',
+          text: '为在 Rotterdam 港工作的国际工程师和专业人员，以及聘用他们的企业，提供移民与搬迁服务。',
+          label: '了解更多',
+          imageAlt: 'Rotterdam 港的集装箱起重机',
+        },
+      },
+      audience: {
+        heading: '我们的服务对象',
+        items: [
+          {
+            title: '国际专业人士与家庭',
+            text: '非欧盟公民及其家人：居留许可、住房、学校以及安顿生活的各种实际事务。',
+            path: '/vip-services/family-relocation-immigration-services-netherlands',
+          },
+          {
+            title: '雇主',
+            text: '为您聘用的国际员工办理工作许可、IND 担保与搬迁。',
+            path: '/starting-a-business/employer-immigration-services-netherlands',
+          },
+          {
+            title: '本地经验',
+            text: '立足 Rotterdam 与海牙之间，熟悉从 Botlek 到 Maasvlakte 的整个港区。',
+            path: '/industrial-expat-services',
+          },
+          {
+            title: '全程支持',
+            text: '从第一份许可到您真正安顿下来，始终由一位了解您全部情况的人负责。',
+            path: '/about',
+          },
+        ],
+      },
+      contactBar: {
+        heading: '联系我们',
+        text: '关于许可、套餐或员工搬迁有疑问？我们乐意为您解答。',
+        whatsappLabel: '通过 WhatsApp 聊天',
+        formLabel: '给我们留言',
+      },
+      intro: {
+        eyebrow: '您的专属联系人',
+        heading: '您好，我是 Johanna',
+        text: [
+          '我在使馆领域工作多年后，于 2016 年创立了 E & I。那段经历至今影响着我的工作方式：换一个国家生活，最顺利的情况是有人一路陪同，而不是只拿到一份清单。',
+          '因此每位客户都由我亲自服务。我为您准备居留申请、寻找住房、陪您前往市政厅和 IND，抵达之后也依然在同一个 WhatsApp 号码上为您服务。',
+        ],
+        signature: 'Johanna，E & I 创始人',
+        label: '进一步了解 Johanna',
       },
       paths: {
         heading: '我们可以怎样助您抵达？',
@@ -94,8 +161,8 @@ export const core: CoreContent = {
           },
           {
             key: 'relocation',
-            title: '搬迁与住房',
-            text: '完整搬迁套餐，或单项预订的服务：找房、学校、BSN、保险，以及其间的一切。',
+            title: '搬迁与单项服务',
+            text: '单独办理搬迁中的某一项，例如住房、学校或登记，也可加入套餐。可应要求提供。',
             label: '了解搬迁服务',
             path: '/relocation',
             image: '/images/path-relocation.jpg?v=20260731',
@@ -103,9 +170,9 @@ export const core: CoreContent = {
           },
           {
             key: 'vip',
-            title: 'VIP 搬迁',
-            text: '为艺术家、运动员、企业高管以及周末飞抵的客户而设。整场搬迁围绕一次到访编排，每一扇门都已为您打开。',
-            label: '了解 VIP 服务',
+            title: '套餐与 VIP 搬迁',
+            text: '面向情侣、家庭和企业的套餐，涵盖整个搬迁过程并包含移民手续，另有为高管、艺术家和运动员提供的礼宾服务。',
+            label: '查看我们的套餐',
             path: '/vip-services',
             image: '/images/path-vip.jpg?v=20260731',
             imageAlt: '司机在 Rotterdam 天际线前为客人打开车门',
@@ -121,8 +188,8 @@ export const core: CoreContent = {
             path: '/immigration/highly-skilled-migrant-visa-netherlands',
           },
           {
-            label: '找房协助',
-            path: '/housing/housing-search-assistance-netherlands',
+            label: '家庭搬迁套餐',
+            path: '/vip-services/family-relocation-immigration-services-netherlands',
           },
           {
             label: '荷兰伴侣签证',
@@ -231,7 +298,7 @@ export const core: CoreContent = {
         eyebrow: '港口、码头与海上作业',
         heading: 'Rotterdam 港的专属顾问',
         text: [
-          '欧洲最大的港口不会出现在搬迁宣传册里，却有数以万计的国际专业人士在那里建立事业。我们是唯一一家专注于 Rotterdam、其南部区域、Europoort 与 Maasvlakte 的精品咨询公司，每天与把人才带到这里的港口、海工、航运与工程企业打交道。',
+          '欧洲最大的港口不会出现在搬迁宣传册里，却有数以万计的国际专业人士在那里建立事业。我们是唯一一家专注于 Rotterdam、其南部区域、Europoort、Botlek 与 Maasvlakte 的精品咨询公司，每天与把人才带到这里的港口、海工、航运与工程企业打交道。',
         ],
         label: '工业区外籍人士服务',
         areas: [
@@ -240,7 +307,7 @@ export const core: CoreContent = {
             text: '天际线生活、国际学校，以及荷兰变化最快的城市。',
           },
           {
-            title: 'Europoort 与 Maasvlakte',
+            title: 'Europoort、Botlek 与 Maasvlakte',
             text: '为港口、海工与炼化行业的专业人士及其家庭提供务实的搬迁服务。',
           },
           {
@@ -495,6 +562,15 @@ export const core: CoreContent = {
         heading: '联系详情',
       },
       formCopy: {
+        shared: {
+          nationality: '国籍',
+          costs: '搬迁费用由谁承担？',
+          costsOptions: [
+            '我的雇主',
+            '我本人或家人',
+            '暂不确定',
+          ],
+        },
         immigration: {
           heading: '移民与搬迁咨询登记',
           text: '请告诉我们您的国籍，以及您考虑的路径。不确定哪种签证适合您？直说无妨，这样的评估正是我们的专长。',

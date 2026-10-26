@@ -83,8 +83,10 @@ export const immigration: SectionContent = {
       },
       fees: {
         title: 'Professional fees for a highly skilled migrant application',
-        kind: 'fixed',
-        amount: 'Investment from €1,295',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Assessment of the salary criterion that applies to your age and situation',
           'The full application file prepared and filed through your recognised sponsor',
@@ -224,8 +226,10 @@ export const immigration: SectionContent = {
       },
       fees: {
         title: 'Professional fees for an EU Blue Card application',
-        kind: 'fixed',
-        amount: 'Investment from €1,295',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Qualification and salary tested against the Blue Card criteria before you commit',
           'Diploma evaluation arranged where the IND requires one',
@@ -515,8 +519,10 @@ export const immigration: SectionContent = {
       },
       fees: {
         title: 'Professional fees for a partner visa application',
-        kind: 'fixed',
-        amount: 'Investment from €895',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Assessment of the relationship evidence before anything is filed',
           'Sponsor and applicant files prepared together so they cannot contradict each other',
@@ -654,8 +660,10 @@ export const immigration: SectionContent = {
       },
       fees: {
         title: 'Professional fees for a family reunification application',
-        kind: 'fixed',
-        amount: 'Investment from €1,195',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Income and sponsor requirements checked against your actual contract',
           'One coordinated file for your partner and each child',
@@ -806,8 +814,10 @@ export const immigration: SectionContent = {
       },
       fees: {
         title: 'Professional fees for a startup visa application',
-        kind: 'fixed',
-        amount: 'Investment from €2,495',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Immigration strategy and eligibility consultation',
           'Support structuring the plan the application is judged on',
@@ -938,8 +948,10 @@ export const immigration: SectionContent = {
       },
       fees: {
         title: 'Professional fees for a DAFT application',
-        kind: 'fixed',
-        amount: 'Investment from €2,295',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Eligibility assessment under the Dutch American Friendship Treaty',
           'Company registration and the investment structured to meet the treaty test',
@@ -1053,8 +1065,10 @@ export const immigration: SectionContent = {
       },
       fees: {
         title: 'Professional fees for a business visa application',
-        kind: 'fixed',
-        amount: 'Investment from €795',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Assessment of the right visa type for the purpose and length of your trip',
           'Invitation and supporting documents prepared to consular standard',
@@ -1189,8 +1203,10 @@ export const immigration: SectionContent = {
       },
       fees: {
         title: 'Professional fees for a residence permit application',
-        kind: 'fixed',
-        amount: 'Investment from €895',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Assessment of which permit fits your situation and which one lasts',
           'Application prepared and filed with the IND',

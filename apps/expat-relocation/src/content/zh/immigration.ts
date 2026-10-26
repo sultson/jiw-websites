@@ -96,8 +96,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: '高技能移民申请的服务费用',
-          kind: 'fixed',
-          amount: '投资额 €1,295 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '评估适用于您年龄与情况的薪资标准',
             '完整申请案卷的准备，并通过您的认可担保方提交',
@@ -239,8 +240,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: '欧盟蓝卡申请的服务费用',
-          kind: 'fixed',
-          amount: '投资额 €1,295 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '在您做出决定之前，先按蓝卡标准检验您的资历与薪资',
             '在 IND 要求时，安排文凭认证',
@@ -536,8 +538,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: '伴侣签证申请的专业服务费',
-          kind: 'fixed',
-          amount: '投资额 €895 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '在递交任何材料之前，先评估关系证据',
             '担保人与申请人的档案一同准备，确保两者不会自相矛盾',
@@ -678,8 +681,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: '家庭团聚申请的专业服务费',
-          kind: 'fixed',
-          amount: '投资额 €1,195 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '对照您的实际合同核查收入与担保人要求',
             '为您的伴侣与每个孩子建立一份统筹一致的档案',
@@ -836,8 +840,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: '创业签证申请的专业服务费',
-          kind: 'fixed',
-          amount: '投资额 €2,495 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '移民策略与资格咨询',
             '协助搭建决定申请成败的那份计划',
@@ -978,8 +983,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'DAFT 申请的专业服务费用',
-          kind: 'fixed',
-          amount: '投资额 €2,295 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '依据《荷美友好条约》进行资格评估',
             '公司注册，以及按条约标准搭建的投资结构',
@@ -1101,8 +1107,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: '商务签证申请的专业服务费用',
-          kind: 'fixed',
-          amount: '投资额 €795 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '根据出行目的与时长评估合适的签证类型',
             '按领事标准准备邀请函与支撑文件',
@@ -1240,8 +1247,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: '居留许可申请的专业服务费用',
-          kind: 'fixed',
-          amount: '投资额 €895 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '评估哪一种许可适合您的情况，以及哪一种更长久',
             '申请材料的准备，并向 IND 递交',

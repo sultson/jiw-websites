@@ -96,8 +96,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Honorários por um pedido de trabalhador altamente qualificado',
-          kind: 'fixed',
-          amount: 'Investimento a partir de 1.295 €',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Verificação do limiar salarial aplicável à sua idade e à sua situação',
             'O processo completo preparado e entregue através do seu patrocinador reconhecido',
@@ -239,8 +240,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Honorários por um pedido de Cartão Azul UE',
-          kind: 'fixed',
-          amount: 'Investimento a partir de 1.295 €',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Qualificação e salário testados face aos critérios do Cartão Azul antes de se comprometer',
             'Avaliação do diploma tratada onde o IND a exige',
@@ -536,8 +538,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Honorários para um pedido de visto de cônjuge',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €895',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Avaliação das provas da relação antes de qualquer submissão',
             'Processos do garante e do requerente preparados em conjunto para que não se contradigam',
@@ -678,8 +681,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Honorários para um pedido de reagrupamento familiar',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €1.195',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Requisitos de rendimento e de garante verificados face ao seu contrato real',
             'Um processo coordenado para o seu companheiro e para cada filho',
@@ -836,8 +840,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Honorários para um pedido de visto para startups',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €2.495',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Consulta de estratégia de imigração e de elegibilidade',
             'Apoio na estruturação do plano pelo qual o pedido é avaliado',
@@ -978,8 +983,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Honorários para um pedido DAFT',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €2.295',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Avaliação de elegibilidade ao abrigo do Dutch American Friendship Treaty',
             'Registo da empresa e estruturação do investimento para cumprir o critério do tratado',
@@ -1101,8 +1107,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Honorários para um pedido de visto de negócios',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €795',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Avaliação do tipo de visto adequado ao objetivo e à duração da sua viagem',
             'Convite e documentos de suporte preparados segundo o padrão consular',
@@ -1240,8 +1247,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Honorários para um pedido de autorização de residência',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €895',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Avaliação da autorização que se adequa à sua situação e da que se mantém a prazo',
             'Pedido preparado e submetido ao IND',

@@ -83,8 +83,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: 'Onorario per la registrazione BSN',
-          kind: 'fixed',
-          amount: 'Investimento da 295 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Appuntamento in comune prenotato allo sportello giusto e nel momento giusto',
             'Requisiti di documenti, legalizzazione e traduzione verificati in anticipo',
@@ -222,8 +223,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: 'Onorario per l\'iscrizione al comune',
-          kind: 'fixed',
-          amount: 'Investimento da 295 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Appuntamento prenotato entro la finestra di cinque giorni prevista dalla legge',
             'Indirizzo e consenso del locatore verificati perché l\'iscrizione non venga rifiutata',
@@ -353,8 +355,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: 'Onorario per la consulenza sull\'assicurazione sanitaria',
-          kind: 'fixed',
-          amount: 'Investimento da 195 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'La polizza olandese giusta individuata per la sua situazione e il suo nucleo',
             'Domanda compilata e presentata insieme a lei',
@@ -485,8 +488,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: 'Onorario per una ricerca della scuola',
-          kind: 'fixed',
-          amount: 'Investimento da 995 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Una rosa di scuole internazionali, bilingui o olandesi che si adattino davvero a suo figlio',
             'Liste d\'attesa, finestre di ammissione e regole di bacino verificate prima che scelga',
@@ -753,8 +757,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: 'Onorario per l\'accoglienza in aeroporto',
-          kind: 'fixed',
-          amount: 'Da 395 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Un autista professionista e un\'auto di rappresentanza adeguati al suo gruppo e ai suoi bagagli',
             'Volo monitorato perché i ritardi non le costino la prenotazione',

@@ -4,6 +4,7 @@ import LeadForm from './LeadForm.astro';
 import type { PackageContent } from '../content/types';
 import { SECTIONS, localizePath, type Lang } from '../lib/i18n';
 import { getContent } from '../lib/content';
+import { whatsappHref } from '../lib/whatsapp';
 
 interface Props {
   lang: Lang;
@@ -13,10 +14,11 @@ interface Props {
 const { lang, pkg: p, siblings } = Astro.props;
 const c = getContent(lang);
 const l = (path: string) => localizePath(path, lang);
+const wa = whatsappHref(lang, Astro.url.pathname);
 ---
 
 <!-- Full-bleed package hero -->
-<section class="relative bg-navy">
+<section class="relative bg-navy" data-wa-hero>
   <img src={p.image} alt={p.imageAlt} class="absolute inset-0 h-full w-full object-cover opacity-40" width="1600" height="1067" loading="eager" fetchpriority="high" />
   <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/55 to-navy/25"></div>
   <div class="container-site relative flex min-h-[70vh] flex-col items-center justify-end pb-16 pt-40 text-center md:pb-20">
@@ -26,6 +28,16 @@ const l = (path: string) => localizePath(path, lang);
     <p class="mt-7 rounded-full border border-gold/50 px-6 py-2.5 text-[0.8rem] uppercase tracking-[0.2em] text-white">
       {p.investment}
     </p>
+    <div class="mt-9 flex flex-col items-center gap-4 sm:flex-row">
+      <a href="#inquiry" class="btn btn-white">
+        {c.vip.tailored.label}
+        <Icon name="arrow" size={15} />
+      </a>
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-gold">
+        <Icon name="whatsapp" size={15} />
+        {c.core.ui.cta.whatsappLong}
+      </a>
+    </div>
   </div>
 </section>
 

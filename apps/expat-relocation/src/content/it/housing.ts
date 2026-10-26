@@ -84,8 +84,9 @@ export const housing: SectionContent = {
         },
         fees: {
           title: 'Onorario per una ricerca della casa',
-          kind: 'fixed',
-          amount: 'Investimento da 1.750 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Un profilo scritto e una selezione costruita su come vive davvero',
             'Accesso agli immobili tramite la nostra rete di agenzie, comprese case mai pubblicizzate',
@@ -352,8 +353,9 @@ export const housing: SectionContent = {
         },
         fees: {
           title: 'Onorario per l\'assistenza alle visite',
-          kind: 'fixed',
-          amount: '295 € a visita',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Presenza alla visita, di persona, con le domande che un proprietario si aspetta',
             'Un verdetto scritto e onesto sull\'immobile, compreso ciò che noi non accetteremmo',
@@ -484,8 +486,9 @@ export const housing: SectionContent = {
         },
         fees: {
           title: 'Onorario per la revisione di un contratto di locazione',
-          kind: 'fixed',
-          amount: 'Investimento da 395 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Revisione completa del contratto e delle condizioni generali allegate',
             'L\'affitto verificato con il sistema a punti olandese finché la finestra per opporsi è aperta',

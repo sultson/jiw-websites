@@ -227,22 +227,9 @@ export const business: SectionContent = {
         },
         fees: {
           title: '公司设立的专业服务费',
-          kind: 'tiered',
-          amount: '投资额 €2,495 起',
-          tiers: [
-            {
-              label: '个体经营（ZZP）',
-              amount: '投资额 €2,495 起',
-            },
-            {
-              label: '荷兰 BV',
-              amount: '投资额 €3,495 起',
-            },
-            {
-              label: '国际控股架构',
-              amount: '量身定制',
-            },
-          ],
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '在任何申报之前给出架构建议，而不是事后补救',
             '为 BV 协调公证契据，包括设立文件',
@@ -380,8 +367,9 @@ export const business: SectionContent = {
         },
         fees: {
           title: 'KvK 注册的专业服务费',
-          kind: 'fixed',
-          amount: '投资额 €395 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '准备注册表格并正确选定 SBI 经营活动代码',
             '预约 KvK 并陪同您一同前往',

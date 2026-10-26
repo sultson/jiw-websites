@@ -28,6 +28,12 @@ export const core: CoreContent = {
         send: 'Enviar pedido',
         sending: 'A enviar…',
         explore: 'Explorar',
+        enquire: 'Pedir informações sobre este serviço',
+        quote: 'Pedir orçamento',
+      },
+      whatsappPrefill: {
+        general: 'Olá Johanna, estou a planear uma mudança para os Países Baixos e tenho uma pergunta.',
+        topic: 'Olá Johanna, tenho uma pergunta sobre: {topic}',
       },
       langBanner: {
         prompt: 'Prefere consultar este site em {lang}?',
@@ -35,17 +41,17 @@ export const core: CoreContent = {
         dismiss: 'Não, obrigado',
       },
       form: {
-        firstName: 'First name',
-        lastName: 'Last name',
-        email: 'Email address',
-        phone: 'Phone / WhatsApp',
-        optional: 'optional',
-        successTitle: 'Thank you, your inquiry has been sent',
-        successBody: 'Johanna will personally review your situation and reply within one business day, usually much sooner. For anything urgent, message us on WhatsApp.',
-        errorTitle: 'Something went wrong',
-        errorBody: 'Your inquiry could not be sent. Please try again, or message us on WhatsApp.',
-        consent: 'By sending this form you agree to our privacy policy.',
-        nextSteps: 'After you send this form, Johanna personally reviews your situation and replies within one business day with an honest assessment of whether and how we can help. If your request falls outside our services or region, we tell you straight away.',
+        firstName: 'Nome próprio',
+        lastName: 'Apelido',
+        email: 'Endereço de e-mail',
+        phone: 'Telefone / WhatsApp',
+        optional: 'opcional',
+        successTitle: 'Obrigado, o seu pedido foi enviado',
+        successBody: 'A Johanna analisará pessoalmente a sua situação e responderá no prazo de um dia útil, normalmente muito antes. Para algo urgente, escreva-nos no WhatsApp.',
+        errorTitle: 'Algo correu mal',
+        errorBody: 'Não foi possível enviar o seu pedido. Tente novamente ou escreva-nos no WhatsApp.',
+        consent: 'Ao enviar este formulário, aceita a nossa política de privacidade.',
+        nextSteps: 'Depois de enviar este formulário, a Johanna analisa pessoalmente a sua situação e responde no prazo de um dia útil com uma avaliação honesta sobre se e como podemos ajudar. Se o seu pedido estiver fora dos nossos serviços ou da nossa região, dizemos-lhe de imediato.',
       },
       footer: {
         tagline: 'Uma consultoria boutique de relocalização para profissionais e famílias internacionais que se instalam em Roterdão, no Europoort e na região portuária envolvente.',
@@ -69,15 +75,76 @@ export const core: CoreContent = {
       },
     },
     home: {
-      metaTitle: 'Serviços boutique de relocalização e imigração nos Países Baixos | E & I',
-      metaDescription: 'Uma consultoria boutique de relocalização para profissionais, famílias e empresários internacionais que se instalam em Roterdão, no Europoort e na região portuária envolvente. Habitação, escolas, registos, imigração e pacotes VIP.',
+      metaTitle: 'Serviços de relocalização e imigração Países Baixos, Roterdão | E & I',
+      metaDescription: 'Imigração e relocalização para profissionais, famílias e empregadores de fora da UE que se mudam para os Países Baixos. Acompanhamento pessoal em Roterdão e na região portuária.',
       hero: {
         h1: 'Serviços boutique de relocalização e imigração nos Países Baixos',
-        sub: 'Uma consultoria privada de relocalização para profissionais, famílias e empresários internacionais que se instalam em Roterdão, no Europoort e na região portuária envolvente. A imigração está incluída, nunca é a história toda.',
-        ctaPrimary: 'Marque uma consulta',
+        sub: 'Para profissionais e famílias de fora da UE, e para os empregadores que os trazem. Autorizações, habitação e instalação tratadas como um só plano, em Roterdão, Haia e na região portuária.',
+        ctaPrimary: 'Ver os nossos pacotes',
         ctaWhatsapp: 'Escreva-nos no WhatsApp',
         ctaSecondary: 'Comece a sua mudança',
         trust: 'Acompanhamento pessoal da Johanna, disponível 24 horas por dia',
+        points: [
+          'Acompanhamento pessoal',
+          'Imigração e relocalização num só plano',
+          'Especialistas na região portuária',
+        ],
+      },
+      featured: {
+        packages: {
+          title: 'Pacotes de imigração e relocalização',
+          text: 'Apoio completo para profissionais internacionais, famílias de fora da UE e empregadores em Roterdão e arredores: a autorização, a casa, a escola e a papelada num só plano.',
+          label: 'Ver os nossos pacotes',
+          imageAlt: 'A ponte Erasmus e o horizonte de Roterdão sobre o Mosa',
+        },
+        port: {
+          title: 'Serviços portuários',
+          subtitle: 'Europoort, Botlek e Maasvlakte',
+          text: 'Imigração e relocalização para os engenheiros e especialistas internacionais que trabalham no porto de Roterdão, e para as empresas que os contratam.',
+          label: 'Saber mais',
+          imageAlt: 'Gruas de contentores no porto de Roterdão',
+        },
+      },
+      audience: {
+        heading: 'Para quem trabalhamos',
+        items: [
+          {
+            title: 'Profissionais e famílias internacionais',
+            text: 'Cidadãos de fora da UE e as suas famílias: autorizações, habitação, escolas e o lado prático da instalação.',
+            path: '/vip-services/family-relocation-immigration-services-netherlands',
+          },
+          {
+            title: 'Empregadores',
+            text: 'Autorizações de trabalho, patrocínio junto do IND e relocalização para o pessoal internacional que contrata.',
+            path: '/starting-a-business/employer-immigration-services-netherlands',
+          },
+          {
+            title: 'Conhecimento local',
+            text: 'Sediados entre Roterdão e Haia, e em casa no porto, do Botlek à Maasvlakte.',
+            path: '/industrial-expat-services',
+          },
+          {
+            title: 'Apoio completo',
+            text: 'Da primeira autorização ao dia em que se sente em casa, com uma só pessoa que conhece todo o seu processo.',
+            path: '/about',
+          },
+        ],
+      },
+      contactBar: {
+        heading: 'Fale connosco',
+        text: 'Uma pergunta sobre uma autorização, um pacote ou a relocalização da sua equipa? Teremos todo o gosto em ajudar.',
+        whatsappLabel: 'Conversar no WhatsApp',
+        formLabel: 'Enviar-nos uma mensagem',
+      },
+      intro: {
+        eyebrow: 'A sua pessoa de contacto',
+        heading: 'Olá, sou a Johanna',
+        text: [
+          'Fundei a E & I em 2016, depois de anos no mundo das embaixadas. O que lá vi continua a orientar o trabalho: quem muda de país sai-se melhor quando alguém o acompanha, não quando lhe entregam uma lista de tarefas.',
+          'Por isso, cada cliente trabalha comigo pessoalmente. Preparo a sua autorização, procuro a sua casa, acompanho-o à câmara municipal e ao IND, e continuo na mesma linha de WhatsApp depois de chegar.',
+        ],
+        signature: 'Johanna, fundadora da E & I',
+        label: 'Mais sobre a Johanna',
       },
       paths: {
         heading: 'Como podemos ajudá-lo a chegar?',
@@ -94,8 +161,8 @@ export const core: CoreContent = {
           },
           {
             key: 'relocation',
-            title: 'Relocalização e habitação',
-            text: 'Pacotes completos de relocalização ou serviços avulso: procura de casa, escolas, BSN, seguro e tudo o que fica pelo meio.',
+            title: 'Relocalização e serviços avulsos',
+            text: 'Uma parte da mudança à parte, como habitação, escolas ou registo, ou como complemento de um pacote. Sob consulta.',
             label: 'Explorar relocalização',
             path: '/relocation',
             image: '/images/path-relocation.jpg?v=20260731',
@@ -103,9 +170,9 @@ export const core: CoreContent = {
           },
           {
             key: 'vip',
-            title: 'Relocalização VIP',
-            text: 'Para artistas, atletas, quadros de direção e visitas de fim de semana. Toda a mudança orquestrada em torno de uma única visita, com todas as portas já abertas.',
-            label: 'Explorar serviços VIP',
+            title: 'Pacotes e relocalização VIP',
+            text: 'Pacotes para casais, famílias e empresas que cobrem toda a mudança, imigração incluída, e ainda um serviço de concierge para executivos, artistas e atletas.',
+            label: 'Ver os nossos pacotes',
             path: '/vip-services',
             image: '/images/path-vip.jpg?v=20260731',
             imageAlt: 'Motorista a abrir a porta de um carro com o skyline de Roterdão ao fundo',
@@ -121,8 +188,8 @@ export const core: CoreContent = {
             path: '/immigration/highly-skilled-migrant-visa-netherlands',
           },
           {
-            label: 'Apoio na procura de habitação',
-            path: '/housing/housing-search-assistance-netherlands',
+            label: 'Pacote de relocalização familiar',
+            path: '/vip-services/family-relocation-immigration-services-netherlands',
           },
           {
             label: 'Visto de cônjuge nos Países Baixos',
@@ -231,7 +298,7 @@ export const core: CoreContent = {
         eyebrow: 'Portos, docas e offshore',
         heading: 'O especialista do porto de Roterdão',
         text: [
-          'O maior porto da Europa não aparece nas brochuras de relocalização e, no entanto, dezenas de milhares de profissionais internacionais constroem ali a sua carreira. Somos a única consultoria boutique especializada em Roterdão, na região a sul, no Europoort e na Maasvlakte, e trabalhamos diariamente com as empresas portuárias, offshore, de navegação e de engenharia que trazem pessoas para cá.',
+          'O maior porto da Europa não aparece nas brochuras de relocalização e, no entanto, dezenas de milhares de profissionais internacionais constroem ali a sua carreira. Somos a única consultoria boutique especializada em Roterdão, na região a sul, no Europoort, no Botlek e na Maasvlakte, e trabalhamos diariamente com as empresas portuárias, offshore, de navegação e de engenharia que trazem pessoas para cá.',
         ],
         label: 'Serviços para expatriados na indústria',
         areas: [
@@ -240,7 +307,7 @@ export const core: CoreContent = {
             text: 'Viver entre arranha-céus, escolas internacionais e a cidade que mais depressa muda nos Países Baixos.',
           },
           {
-            title: 'Europoort e Maasvlakte',
+            title: 'Europoort, Botlek e Maasvlakte',
             text: 'Relocalização concreta para profissionais do porto, do offshore e das refinarias e para as suas famílias.',
           },
           {
@@ -495,6 +562,15 @@ export const core: CoreContent = {
         heading: 'Dados',
       },
       formCopy: {
+        shared: {
+          nationality: 'Nacionalidade',
+          costs: 'Quem paga os custos da relocalização?',
+          costsOptions: [
+            'O meu empregador',
+            'Eu ou a minha família',
+            'Ainda não sei',
+          ],
+        },
         immigration: {
           heading: 'Pedido de imigração e relocalização',
           text: 'Diga-nos a sua nacionalidade e a via que tem em mente. Não sabe que visto lhe serve? Diga-o, essa avaliação é exatamente o que fazemos.',

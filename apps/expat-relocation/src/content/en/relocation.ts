@@ -82,8 +82,10 @@ export const relocation: SectionContent = {
       },
       fees: {
         title: 'Professional fees for BSN registration',
-        kind: 'fixed',
-        amount: 'Investment from €295',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Municipality appointment booked at the right desk and the right moment',
           'Document, legalisation and translation requirements checked in advance',
@@ -227,8 +229,10 @@ export const relocation: SectionContent = {
       },
       fees: {
         title: 'Professional fees for municipality registration',
-        kind: 'fixed',
-        amount: 'Investment from €295',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Appointment booked within the five-day window the law allows',
           'Address and landlord consent checked so registration is not refused',
@@ -364,8 +368,10 @@ export const relocation: SectionContent = {
       },
       fees: {
         title: 'Professional fees for health insurance guidance',
-        kind: 'fixed',
-        amount: 'Investment from €195',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'The right Dutch policy identified for your situation and household',
           'Application completed and submitted with you',
@@ -502,8 +508,10 @@ export const relocation: SectionContent = {
       },
       fees: {
         title: 'Professional fees for a school search',
-        kind: 'fixed',
-        amount: 'Investment from €995',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'A shortlist of international, bilingual or Dutch schools that genuinely fit your child',
           'Waiting lists, admission windows and catchment rules checked before you choose',
@@ -783,8 +791,10 @@ export const relocation: SectionContent = {
       },
       fees: {
         title: 'Professional fees for airport collection',
-        kind: 'fixed',
-        amount: 'From €395',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'A professional chauffeur and an executive vehicle matched to your party and luggage',
           'Flight monitored so delays do not cost you the booking',

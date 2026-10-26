@@ -227,22 +227,9 @@ export const business: SectionContent = {
         },
         fees: {
           title: 'Honorários para a constituição de empresa',
-          kind: 'tiered',
-          amount: 'Investimento a partir de €2.495',
-          tiers: [
-            {
-              label: 'Empresa em nome individual (ZZP)',
-              amount: 'Investimento a partir de €2.495',
-            },
-            {
-              label: 'BV neerlandesa',
-              amount: 'Investimento a partir de €3.495',
-            },
-            {
-              label: 'Estrutura de holding internacional',
-              amount: 'À medida',
-            },
-          ],
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Estrutura aconselhada antes de qualquer registo, não depois',
             'Escritura notarial coordenada no caso de uma BV, incluindo os documentos de constituição',
@@ -380,8 +367,9 @@ export const business: SectionContent = {
         },
         fees: {
           title: 'Honorários para o registo na KvK',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €395',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Formulário de registo preparado e códigos de atividade SBI corretamente escolhidos',
             'Marcação na KvK feita e acompanhada consigo',

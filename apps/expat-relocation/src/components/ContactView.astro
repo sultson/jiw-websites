@@ -5,11 +5,13 @@ import { site } from '../data/site';
 import { type Lang } from '../lib/i18n';
 import { getContent } from '../lib/content';
 import PageHero from './PageHero.astro';
+import { whatsappHref } from '../lib/whatsapp';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
+const wa = whatsappHref(lang, Astro.url.pathname);
 const c = getContent(lang);
 const ct = c.core.contact;
 ---
@@ -36,7 +38,7 @@ const ct = c.core.contact;
             </span>
             <span class="font-medium text-navy transition-colors group-hover:text-gold">{site.phone.display}</span>
           </a>
-          <a href={site.whatsappUrl} target="_blank" rel="noopener" class="group flex items-center gap-4">
+          <a href={wa} target="_blank" rel="noopener" class="group flex items-center gap-4">
             <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
               <Icon name="whatsapp" size={18} />
             </span>

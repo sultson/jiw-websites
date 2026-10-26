@@ -208,13 +208,10 @@ export const business: SectionContent = {
       },
       fees: {
         title: 'Professional fees for company setup',
-        kind: 'tiered',
-        amount: 'Investment from €2,495',
-        tiers: [
-          { label: 'Sole proprietorship (ZZP)', amount: 'Investment from €2,495' },
-          { label: 'Dutch BV', amount: 'Investment from €3,495' },
-          { label: 'International holding structure', amount: 'Tailor-made' },
-        ],
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Structure advised before anything is filed, not after',
           'Notarial deed coordinated for a BV, including the incorporation documents',
@@ -349,8 +346,10 @@ export const business: SectionContent = {
       },
       fees: {
         title: 'Professional fees for KvK registration',
-        kind: 'fixed',
-        amount: 'Investment from €395',
+        kind: 'tailored',
+        amount: 'Available upon request',
+        amountNote:
+          'Available on its own or as part of a complete package. You receive a fixed quotation after a short conversation about your situation.',
         includes: [
           'Registration form prepared and the SBI activity codes chosen correctly',
           'KvK appointment booked and attended with you',

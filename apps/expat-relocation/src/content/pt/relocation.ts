@@ -83,8 +83,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: 'Honorários profissionais para o registo do BSN',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €295',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Reunião na câmara municipal marcada no balcão certo e no momento certo',
             'Requisitos de documentos, legalização e tradução verificados antecipadamente',
@@ -222,8 +223,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: 'Honorários profissionais para o registo na câmara municipal',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €295',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Reunião marcada dentro do prazo de cinco dias previsto na lei',
             'Morada e autorização do senhorio verificadas para que o registo não seja recusado',
@@ -353,8 +355,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: 'Honorários profissionais para o aconselhamento sobre seguro de saúde',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €195',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'A apólice neerlandesa certa identificada para a sua situação e o seu agregado familiar',
             'Pedido preenchido e submetido consigo',
@@ -485,8 +488,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: 'Honorários para uma procura de escola',
-          kind: 'fixed',
-          amount: 'Investimento a partir de €995',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Uma pré-seleção de escolas internacionais, bilingues ou neerlandesas que se ajustam realmente ao seu filho',
             'Listas de espera, prazos de admissão e regras de área de residência verificados antes de escolher',
@@ -753,8 +757,9 @@ export const relocation: SectionContent = {
         },
         fees: {
           title: 'Honorários para a recolha no aeroporto',
-          kind: 'fixed',
-          amount: 'A partir de €395',
+          kind: 'tailored',
+          amount: 'Sob consulta',
+          amountNote: 'Disponível em separado ou como parte de um pacote completo. Recebe um orçamento fixo após uma breve conversa sobre a sua situação.',
           includes: [
             'Um motorista profissional e uma viatura executiva à medida do seu grupo e da bagagem',
             'Voo monitorizado para que os atrasos não lhe custem a reserva',

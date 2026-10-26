@@ -14,9 +14,12 @@ interface Props {
   links?: { label: string; path: string }[];
 }
 const { eyebrow, title, intro = [], image, imageAlt = '', links = [] } = Astro.props;
+/* Buttons passed in the `actions` slot (service pages: enquire + WhatsApp). A hero
+   with its own WhatsApp button hides the floating one while it is on screen. */
+const hasActions = Astro.slots.has('actions');
 ---
 
-<section class="relative isolate overflow-hidden bg-navy">
+<section class="relative isolate overflow-hidden bg-navy" data-wa-hero={hasActions ? '' : undefined}>
   {image && (
     <img
       src={image}
@@ -51,6 +54,11 @@ const { eyebrow, title, intro = [], image, imageAlt = '', links = [] } = Astro.p
               {link.label}
             </a>
           ))}
+        </div>
+      )}
+      {hasActions && (
+        <div class="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+          <slot name="actions" />
         </div>
       )}
     </div>

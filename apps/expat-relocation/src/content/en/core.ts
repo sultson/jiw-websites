@@ -25,6 +25,12 @@ export const core: CoreContent = {
       send: 'Send inquiry',
       sending: 'Sending…',
       explore: 'Explore',
+      enquire: 'Ask about this service',
+      quote: 'Request a quote',
+    },
+    whatsappPrefill: {
+      general: 'Hi Johanna, I am planning a move to the Netherlands and have a question.',
+      topic: 'Hi Johanna, I have a question about: {topic}',
     },
     langBanner: {
       prompt: 'Would you prefer to read this site in {lang}?',
@@ -71,16 +77,73 @@ export const core: CoreContent = {
   },
 
   home: {
-    metaTitle: 'Relocation & Immigration Services Netherlands | E & I',
+    metaTitle: 'Relocation & Immigration Services Netherlands, Rotterdam | E & I',
     metaDescription:
-      'Boutique relocation support for professionals, families and entrepreneurs moving to the Netherlands. Immigration, housing, registration and settling in.',
+      'Immigration and relocation for non-EU professionals, families and employers moving to the Netherlands. Personal guidance in Rotterdam and the port region.',
     hero: {
       h1: 'Boutique Relocation & Immigration Services in the Netherlands',
-      sub: 'A private relocation consultancy for international professionals, families and entrepreneurs settling in Rotterdam, Europoort and the wider port region. Immigration included, never the whole story.',
-      ctaPrimary: 'Book a relocation consultation',
+      sub: 'For non-EU professionals, families and the employers who bring them here. Permits, housing and settling in, handled as one plan across Rotterdam, The Hague and the port region.',
+      ctaPrimary: 'View our packages',
       ctaWhatsapp: 'WhatsApp us directly',
       ctaSecondary: 'Start your relocation',
       trust: 'Personally guided by Johanna, reachable 24/7',
+      points: ['Personal guidance', 'Immigration and relocation in one plan', 'Port region specialist'],
+    },
+    featured: {
+      packages: {
+        title: 'Immigration & Relocation Packages',
+        text: 'Complete support for international professionals, non-EU families and employers in Rotterdam and the surrounding area: the permit, the home, the school and the paperwork in one plan.',
+        label: 'View our packages',
+        imageAlt: 'The Erasmus Bridge and the Rotterdam skyline across the Maas',
+      },
+      port: {
+        title: 'Port Services',
+        subtitle: 'Europoort, Botlek & Maasvlakte',
+        text: 'Immigration and relocation for the international engineers and specialists who work in the Rotterdam port, and for the companies that hire them.',
+        label: 'Learn more',
+        imageAlt: 'Container cranes in the port of Rotterdam',
+      },
+    },
+    audience: {
+      heading: 'Who we work for',
+      items: [
+        {
+          title: 'International professionals & families',
+          text: 'Non-EU nationals and their families: permits, housing, schools and the practical side of settling in.',
+          path: '/vip-services/family-relocation-immigration-services-netherlands',
+        },
+        {
+          title: 'Employers',
+          text: 'Work permits, IND sponsorship and relocation for the international staff you hire.',
+          path: '/starting-a-business/employer-immigration-services-netherlands',
+        },
+        {
+          title: 'Local expertise',
+          text: 'Based between Rotterdam and The Hague, and at home in the port from the Botlek to the Maasvlakte.',
+          path: '/industrial-expat-services',
+        },
+        {
+          title: 'Complete support',
+          text: 'From the first permit to the day you feel at home, with one person who knows your whole file.',
+          path: '/about',
+        },
+      ],
+    },
+    contactBar: {
+      heading: 'Get in touch',
+      text: 'A question about a permit, a package or relocating your staff? We are happy to help.',
+      whatsappLabel: 'Chat on WhatsApp',
+      formLabel: 'Send us a message',
+    },
+    intro: {
+      eyebrow: 'Your point of contact',
+      heading: 'Hello, I am Johanna',
+      text: [
+        'I founded E & I in 2016, after years in the embassy world. What I saw there still shapes the work: people who move countries do best when someone goes with them, not when they are handed a checklist.',
+        'So every client works with me personally. I prepare your permit, search for your home, come along to the municipality and the IND, and stay on the same WhatsApp line once you have arrived.',
+      ],
+      signature: 'Johanna, founder of E & I',
+      label: 'More about Johanna',
     },
     paths: {
       heading: 'How can we help you arrive?',
@@ -97,8 +160,8 @@ export const core: CoreContent = {
         },
         {
           key: 'relocation',
-          title: 'Relocation & housing',
-          text: 'Complete relocation packages or individually booked services: housing search, schools, BSN, insurance and everything in between.',
+          title: 'Relocation & single services',
+          text: 'One part of the move on its own, such as housing, schools or registration, or added to a package. Available on request.',
           label: 'Explore relocation',
           path: '/relocation',
           image: '/images/path-relocation.jpg?v=20260731',
@@ -106,9 +169,9 @@ export const core: CoreContent = {
         },
         {
           key: 'vip',
-          title: 'VIP relocation',
-          text: 'For artists, athletes, executives and weekend fly-ins. Your entire move orchestrated around one visit, with every door already open.',
-          label: 'Explore VIP services',
+          title: 'Packages & VIP relocation',
+          text: 'Couple, family and business packages that cover the whole move, immigration included, plus a concierge service for executives, artists and athletes.',
+          label: 'View our packages',
           path: '/vip-services',
           image: '/images/path-vip.jpg?v=20260731',
           imageAlt: 'Chauffeur opening a car door against the Rotterdam skyline',
@@ -120,7 +183,7 @@ export const core: CoreContent = {
       sub: 'The eight things expats ask us for first.',
       items: [
         { label: 'Highly skilled migrant visa', path: '/immigration/highly-skilled-migrant-visa-netherlands' },
-        { label: 'Housing search assistance', path: '/housing/housing-search-assistance-netherlands' },
+        { label: 'Family relocation package', path: '/vip-services/family-relocation-immigration-services-netherlands' },
         { label: 'Partner visa Netherlands', path: '/immigration/partner-visa-netherlands' },
         { label: 'BSN registration', path: '/relocation/bsn-registration-netherlands' },
         { label: 'Startup visa Netherlands', path: '/immigration/startup-visa-netherlands' },
@@ -180,12 +243,12 @@ export const core: CoreContent = {
       eyebrow: 'Ports, harbours & offshore',
       heading: 'The specialist for the port of Rotterdam',
       text: [
-        'Europe’s largest port does not appear in relocation brochures, yet tens of thousands of international professionals build their careers there. We are the only boutique consultancy specialised in Rotterdam, the region south of it, Europoort and the Maasvlakte, working daily with the port, offshore, shipping and engineering companies that bring people here.',
+        'Europe’s largest port does not appear in relocation brochures, yet tens of thousands of international professionals build their careers there. We are the only boutique consultancy specialised in Rotterdam, the region south of it, Europoort, the Botlek and the Maasvlakte, working daily with the port, offshore, shipping and engineering companies that bring people here.',
       ],
       label: 'Industrial expat services',
       areas: [
         { title: 'Rotterdam', text: 'Skyline living, international schools and the fastest-changing city in the Netherlands.' },
-        { title: 'Europoort & Maasvlakte', text: 'Practical relocation for port, offshore and refinery professionals and their families.' },
+        { title: 'Europoort, Botlek & Maasvlakte', text: 'Practical relocation for port, offshore and refinery professionals and their families.' },
         { title: 'South of Rotterdam', text: 'Quiet towns like Brielle, Rozenburg and Hellevoetsluis, minutes from the terminals and a world away from them.' },
       ],
       advantages: [
@@ -373,6 +436,11 @@ export const core: CoreContent = {
       heading: 'Details',
     },
     formCopy: {
+      shared: {
+        nationality: 'Nationality',
+        costs: 'Who covers the relocation costs?',
+        costsOptions: ['My employer', 'Myself or my family', 'Not sure yet'],
+      },
       immigration: {
         heading: 'Immigration & relocation intake',
         text: 'Tell us your nationality and the route you have in mind. Not sure which visa fits? Say so, that assessment is exactly what we do.',

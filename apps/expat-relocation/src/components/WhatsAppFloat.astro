@@ -1,23 +1,41 @@
 ---
 import Icon from './Icon.astro';
-import { site } from '../data/site';
 import { getContent } from '../lib/content';
 import type { Lang } from '../lib/i18n';
+import { whatsappHref } from '../lib/whatsapp';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
+const wa = whatsappHref(lang, Astro.url.pathname);
 const c = getContent(lang);
 ---
 
-<!-- Persistent WhatsApp entry point: present, elegant, never a popup. -->
+<!-- Persistent WhatsApp entry point: present, elegant, never a popup. It steps
+     aside while a hero that has its own WhatsApp button is on screen, so the two
+     never stack on a phone. Without JS it simply stays visible. -->
 <a
-  href={site.whatsappUrl}
+  href={wa}
+  data-wa-float
   target="_blank"
   rel="noopener"
   aria-label={c.core.ui.cta.whatsappLong}
-  class="fixed bottom-5 right-5 z-40 flex h-13 w-13 items-center justify-center rounded-full bg-[#1faa55] text-white shadow-lift transition-transform duration-200 hover:scale-105 md:bottom-7 md:right-7"
+  class="fixed bottom-5 right-5 z-40 flex h-13 w-13 items-center justify-center rounded-full bg-[#1faa55] text-white shadow-lift transition-[opacity,transform] duration-300 hover:scale-105 data-[hidden]:pointer-events-none data-[hidden]:translate-y-3 data-[hidden]:opacity-0 md:bottom-7 md:right-7"
 >
   <Icon name="whatsapp" size={26} />
 </a>
+
+<script>
+  const float = document.querySelector<HTMLElement>('[data-wa-float]');
+  const hero = document.querySelector('[data-wa-hero]');
+  if (float && hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) float.dataset.hidden = '';
+        else delete float.dataset.hidden;
+      },
+      { rootMargin: '0px 0px -35% 0px' }
+    ).observe(hero);
+  }
+</script>

@@ -196,6 +196,18 @@ export interface UiStrings {
     send: string;
     sending: string;
     explore: string;
+    /** Hero button on service pages, jumps to the form on the same page. */
+    enquire: string;
+    /** Button in the fee panel, jumps to the form on the same page. */
+    quote: string;
+  };
+  /**
+   * Prefilled WhatsApp text, so Johanna sees which page a chat started from.
+   * `topic` carries a {topic} placeholder filled with the page title.
+   */
+  whatsappPrefill: {
+    general: string;
+    topic: string;
   };
   langBanner: {
     /** e.g. 'Prefer to read this site in {lang}?' */
@@ -258,6 +270,32 @@ export interface HomeContent {
     ctaSecondary: string;
     /** Short trust line under the CTAs, next to the stars. */
     trust: string;
+    /** Three short checks above the buttons. */
+    points: string[];
+  };
+  /**
+   * The two blocks directly under the hero: the packages and the port. Client
+   * request (Oct 2026) to put the full packages and the Europoort, Botlek and
+   * Maasvlakte work where nobody has to look for them.
+   */
+  featured: {
+    packages: { title: string; text: string; label: string; imageAlt: string };
+    port: { title: string; subtitle: string; text: string; label: string; imageAlt: string };
+  };
+  /** Who the service is for: non-EU families and professionals, employers, the region. */
+  audience: {
+    heading: string;
+    items: { title: string; text: string; path: string }[];
+  };
+  /** Slim contact strip under the audience row. */
+  contactBar: { heading: string; text: string; whatsappLabel: string; formLabel: string };
+  /** Johanna's short personal introduction, linking to the About page. */
+  intro: {
+    eyebrow: string;
+    heading: string;
+    text: string[];
+    signature: string;
+    label: string;
   };
   /** Three-path split directly under the hero. */
   paths: {
@@ -371,6 +409,15 @@ export interface ContactContent {
 
 /** Labels for the three tailored lead forms. */
 export interface FormsCopy {
+  /**
+   * Two qualifying questions on every form, so an enquiry shows at a glance
+   * whether it is a non-EU move and whether an employer pays.
+   */
+  shared: {
+    nationality: string;
+    costs: string;
+    costsOptions: string[];
+  };
   immigration: {
     heading: string;
     text: string;

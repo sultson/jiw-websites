@@ -5,6 +5,7 @@ import LeadForm from './LeadForm.astro';
 import type { ServiceContent } from '../content/types';
 import { localizePath, type Lang } from '../lib/i18n';
 import { getContent } from '../lib/content';
+import { whatsappHref } from '../lib/whatsapp';
 
 interface Props {
   lang: Lang;
@@ -21,9 +22,19 @@ const c = getContent(lang);
 const l = (p: string) => localizePath(p, lang);
 const supportImage = s.image2 ?? sectionImage;
 const supportAlt = s.image2 ? (s.image2Alt ?? '') : '';
+const wa = whatsappHref(lang, Astro.url.pathname);
 ---
 
-<PageHero eyebrow={s.eyebrow} title={s.title} intro={s.intro} image={s.image} imageAlt={s.imageAlt} />
+<PageHero eyebrow={s.eyebrow} title={s.title} intro={s.intro} image={s.image} imageAlt={s.imageAlt}>
+  <a slot="actions" href="#inquiry" class="btn btn-white">
+    {c.core.ui.cta.enquire}
+    <Icon name="arrow" size={15} />
+  </a>
+  <a slot="actions" href={wa} target="_blank" rel="noopener" class="btn btn-gold">
+    <Icon name="whatsapp" size={15} />
+    {c.core.ui.cta.whatsappLong}
+  </a>
+</PageHero>
 
 <!-- What the permit or procedure actually is. Defines the subject before the page
      starts qualifying the reader, and answers the "what is X" search directly. -->
@@ -154,6 +165,13 @@ const supportAlt = s.image2 ? (s.image2Alt ?? '') : '';
             {s.fees.amountNote && (
               <p class="mt-4 text-[0.9rem] leading-relaxed text-white/70">{s.fees.amountNote}</p>
             )}
+            <div class="mt-7 flex flex-wrap gap-3">
+              <a href="#inquiry" class="btn btn-gold-fill">{c.core.ui.cta.quote}</a>
+              <a href={wa} target="_blank" rel="noopener" class="btn btn-gold" aria-label={c.core.ui.cta.whatsappLong}>
+                <Icon name="whatsapp" size={15} />
+                {c.core.ui.cta.whatsapp}
+              </a>
+            </div>
           </div>
           <div>
             {s.fees.tiers && (

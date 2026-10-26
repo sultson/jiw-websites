@@ -96,8 +96,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Onorario per una domanda come lavoratore altamente qualificato',
-          kind: 'fixed',
-          amount: 'Investimento da 1.295 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Verifica della soglia retributiva applicabile alla sua età e alla sua situazione',
             'Il fascicolo completo preparato e depositato tramite il suo sponsor riconosciuto',
@@ -239,8 +240,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Onorario per una domanda di Carta Blu UE',
-          kind: 'fixed',
-          amount: 'Investimento da 1.295 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Titolo di studio e retribuzione verificati rispetto ai criteri della Carta Blu prima che lei si impegni',
             'Valutazione del diploma organizzata dove l\'IND la richiede',
@@ -536,8 +538,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Onorario per una domanda di visto per partner',
-          kind: 'fixed',
-          amount: 'Investimento da 895 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Valutazione delle prove della relazione prima che venga depositato qualsiasi cosa',
             'Fascicoli della persona di riferimento e del richiedente costruiti insieme perché non possano contraddirsi',
@@ -678,8 +681,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Onorario per una domanda di ricongiungimento familiare',
-          kind: 'fixed',
-          amount: 'Investimento da 1.195 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Requisiti di reddito e di persona di riferimento verificati sul suo contratto reale',
             'Un fascicolo coordinato per il suo partner e per ciascun figlio',
@@ -836,8 +840,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Onorario per una domanda di visto startup',
-          kind: 'fixed',
-          amount: 'Investimento da 2.495 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Strategia di immigrazione e consulenza sui requisiti',
             'Supporto nella costruzione del piano su cui viene giudicata la domanda',
@@ -978,8 +983,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Onorario per una domanda DAFT',
-          kind: 'fixed',
-          amount: 'Investimento da 2.295 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Valutazione dei requisiti in forza del Dutch American Friendship Treaty',
             'Registrazione della società e investimento strutturati per superare la verifica del trattato',
@@ -1101,8 +1107,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Onorario per una domanda di visto per affari',
-          kind: 'fixed',
-          amount: 'Investimento da 795 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Individuazione del tipo di visto adatto allo scopo e alla durata del suo viaggio',
             'Invito e documenti giustificativi preparati secondo lo standard consolare',
@@ -1240,8 +1247,9 @@ export const immigration: SectionContent = {
         },
         fees: {
           title: 'Onorario per una domanda di permesso di soggiorno',
-          kind: 'fixed',
-          amount: 'Investimento da 895 €',
+          kind: 'tailored',
+          amount: 'Su richiesta',
+          amountNote: 'Disponibile singolarmente o all’interno di un pacchetto completo. Riceverete un preventivo fisso dopo un breve colloquio sulla vostra situazione.',
           includes: [
             'Individuazione del permesso adatto alla sua situazione e di quello che dura nel tempo',
             'Domanda preparata e depositata presso l\'IND',

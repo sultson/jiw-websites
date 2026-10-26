@@ -84,8 +84,9 @@ export const housing: SectionContent = {
         },
         fees: {
           title: '住房搜寻的专业服务费',
-          kind: 'fixed',
-          amount: '投资额 €1,750 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '一份书面需求说明，以及与您真实生活方式相匹配的候选房源',
             '通过我们的中介网络获取房源，包括从未公开发布的房子',
@@ -352,8 +353,9 @@ export const housing: SectionContent = {
         },
         fees: {
           title: '看房协助的专业服务费',
-          kind: 'fixed',
-          amount: '每次看房 €295',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '亲自到场看房，并提出房东预料之中的那些专业问题',
             '关于这套房子的坦率书面结论，包括我们自己不会接受的地方',
@@ -484,8 +486,9 @@ export const housing: SectionContent = {
         },
         fees: {
           title: '租房合同审核的服务费用',
-          kind: 'fixed',
-          amount: '投资额 €395 起',
+          kind: 'tailored',
+          amount: '可应要求提供',
+          amountNote: '可单独预订，也可作为完整套餐的一部分。简短沟通您的情况后，您将收到固定报价。',
           includes: [
             '合同及其附带通用条款的完整审核',
             '趁异议期尚未关闭，依据荷兰积分制核算租金',
