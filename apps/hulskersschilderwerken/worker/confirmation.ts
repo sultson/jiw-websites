@@ -97,11 +97,13 @@ const BRAND: ConfirmationEmailBrand = {
    * ons merk in het zijne. Dat geldt hier niet: dit is Pascals eigen adres, het staat
    * al openbaar op zijn site, in de voet en in de bedrijvengidsen.
    *
-   * Let op het gevolg: de reply-to van deze mail gaat naar LEAD_RECIPIENT (nu nog ons
-   * postvak) en het GEPRINTE adres gaat naar hem. Wie antwoordt komt dus bij ons uit en
-   * wie het adres aanklikt bij hem. Beide wegen werken en beide komen aan; wordt
-   * LEAD_RECIPIENT ooit zijn eigen postvak, dan vallen ze samen en hoeft hier niets te
-   * veranderen.
+   * Let op het gevolg. De reply-to van deze mail gaat naar LEAD_RECIPIENT en dat is
+   * sinds 26-10-2026 info@hulskersschilderwerken.nl; het GEPRINTE adres is zijn gmail.
+   * Beide zijn dus van hem, maar het zijn er twee: wie antwoordt komt op info@ uit en
+   * wie het adres aanklikt op de gmail. Dat werkt, en het is niet mooi - zijn eigen
+   * domein in de mail staat sterker dan een gmail. Dit staat er nog omdat de gmail het
+   * adres is dat hij zelf openbaar heeft gemaakt; info@ hier printen is zijn keuze en
+   * niet de onze (open vraag aan hem, 26-10-2026).
    */
   contactEmail: 'hulskersschilderwerken@gmail.com',
   colors: COLORS,

@@ -86,14 +86,21 @@
   ],
   "vars": {
     "SITE_ID": "hulskersschilderwerken",
-    // Aanvragen komen voorlopig bij ons binnen, niet bij Pascal (Alfred, 26-10-2026).
-    // Dit adres is de reply-to van de bevestiging die de bezoeker terugkrijgt; het
-    // GEPRINTE contactadres in die mail is zijn eigen gmail, dat al openbaar op de site
-    // staat (zie de noot bij `contactEmail` in worker/confirmation.ts).
+    // Aanvragen gaan sinds 26-10-2026 (Alfred, zelfde dag als de livegang) rechtstreeks
+    // naar Pascals eigen postvak op zijn eigen domein, niet meer naar
+    // hallo@jouwidealewebsite.nl. Dit adres is ook de reply-to van de bevestiging die de
+    // bezoeker terugkrijgt, dus wie daarop antwoordt komt bij hem uit en niet bij ons.
     //
-    // Zolang hier ons eigen adres staat, mag er getest worden. Gaat dit naar zijn eigen
-    // postvak, zet het dan eerst terug voordat je een proefaanvraag verstuurt.
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // Het GEPRINTE contactadres in die bevestiging is nog zijn gmail, dat al openbaar op
+    // de site staat (zie de noot bij `contactEmail` in worker/confirmation.ts). Dat zijn
+    // dus twee adressen van hem: antwoorden komt op info@, aanklikken op de gmail.
+    //
+    // LET OP voor wie hierna test: een inzending tegen deze config mailt een echte
+    // klantmailbox. Zet LEAD_RECIPIENT eerst terug op hallo@jouwidealewebsite.nl, of
+    // draai `tools/live.mjs --droog`. Wil je het toch echt versturen, dan moet je het
+    // adres van de klant woordelijk meegeven aan `--naar-klant=`; dat is geen vlag die
+    // je per ongeluk typt (zie de pal in tools/live.mjs).
+    "LEAD_RECIPIENT": "info@hulskersschilderwerken.nl",
     // Het verzenddomein notify.hulskersschilderwerken.nl staat op de zone
     // hulskersschilderwerken.nl en is geverifieerd (gemeten 26-10-2026 met
     // `wrangler email sending list`). LET OP: die records hangen aan
