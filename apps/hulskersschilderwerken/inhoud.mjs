@@ -31,9 +31,36 @@ export const BEDRIJF = {
   // aantal dagen staat hier als getal en wordt in build.mjs tegen de dagenlijst van de
   // JSON-LD gelegd: anders is "7 dagen per week" een bewering die niemand nameet en kan
   // de lijst op zes dagen staan terwijl dit getal 7 blijft zeggen.
+  //
+  // Sinds 27-10-2026 zijn deze drie waarden GEMETEN en niet meer alleen doorgegeven: zijn
+  // eigen geclaimde Google-profiel zegt zeven dagen 07:00-23:00 (bron/gbp.json). Dat is
+  // een bron buiten ons om, dus ze zijn van de nalooplijst af. bron/gbp.mjs zakt zodra het
+  // profiel iets anders gaat zeggen dan deze waarden.
   openDagen: 7,
   openVan: '07:00',
   openTot: '23:00',
+}
+
+/**
+ * Zijn Google-bedrijfsprofiel, gemeten in bron/gbp.mjs (uitkomst in bron/gbp.json).
+ *
+ * De `cid` is het nummer waarmee Google het profiel zelf aanduidt, en
+ * `maps.google.com/?cid=<cid>` is het stabiele adres ervan. Daarom staat hier de cid en
+ * niet de kant-en-klare url: er is dan een plek waar hij staat, en build.mjs en
+ * tools/vooraf.mjs zetten hem allebei uit dit getal in elkaar.
+ *
+ * De doorgegeven `share.google`-link staat er NIET in. Die is een omleider: hij zegt niet
+ * welk profiel het is, en wat hij morgen uitwijst beslist Google. In `sameAs` hoort het
+ * adres dat de entiteit zelf benoemt, want dat is wat Google naast deze site legt.
+ *
+ * De kgmid (het nummer van de entiteit in de Knowledge Graph) staat erbij omdat het de
+ * enige manier is om terug te vinden welk profiel er doorgegeven is.
+ */
+export const GBP = {
+  cid: '11940519625446020035',
+  kgmid: '/g/11zz__vl20',
+  place_id: 'ChIJG-w4hhfqZ2QRw1NK9FU_taU',
+  get url() { return `https://maps.google.com/?cid=${this.cid}` },
 }
 
 /**
@@ -1027,6 +1054,16 @@ const ARM2 = 'bron/zijn-tekst/doorgegeven-armando-25-10-2026.txt (doorgegeven vi
 // en eigen bestand om dezelfde reden als ARM2 - die twee bestanden dragen een kop met
 // wat er achterhaald is, en een nieuwe regel eronder plakken maakt zo'n kop onleesbaar.
 const ARM3 = 'bron/zijn-tekst/doorgegeven-armando-27-10-2026.txt (doorgegeven via Armando, 27-10-2026)'
+// Zijn eigen Google-bedrijfsprofiel, geclaimd en door hem ingericht, gemeten met
+// bron/gbp.mjs. Sterker dan ARM3: wat daar staat publiceert hij zelf over zijn eigen
+// zaak, net als zijn Marktplaats-advertentie, en het is narekenbaar. De openingstijden
+// rusten daarom niet meer op de doorgegeven regel en staan niet meer op de nalooplijst.
+//
+// Let op bij het hergebruiken: de OMSCHRIJVING in dat profiel is woordelijk de copy van
+// deze site. Die staat met opzet niet in het bronbestand - anders verantwoordt onze
+// eigen tekst zichzelf en is de poort er een die zichzelf de hand boven het hoofd houdt
+// (de val van cdlf, 09-10-2026). Alleen de zaakgegevens staan erin.
+const GPROF = 'bron/zijn-tekst/google-profiel-27-10-2026.txt (zijn eigen Google-bedrijfsprofiel, geclaimd, gemeten 27-10-2026)'
 // De fabrikant. Dit bestand staat BEWUST buiten bron/zijn-tekst: het is de tekst van
 // AkzoNobel en niet van Pascal, dus het mag geen woord in een zin van hem dekken. Wat
 // de verf doet is daarmee een `feit` met een eigen bron, en dat Pascal ermee werkt is

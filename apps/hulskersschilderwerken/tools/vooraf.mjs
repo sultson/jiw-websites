@@ -31,8 +31,9 @@
 //   15. het oude conceptadres staat nergens meer in de html
 //   16. de openingstijden staan in de JSON-LD van de startpagina en zijn dezelfde als
 //       in inhoud.mjs (ze staan nergens zichtbaar, dus niets anders meldt hun verdwijnen)
+//   17. zijn Google-bedrijfsprofiel staat in sameAs, met de cid uit inhoud.mjs
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
-import { BEDRIJF, FORM_PAD, INDEXEERBAAR_PADEN } from '../inhoud.mjs';
+import { BEDRIJF, GBP, FORM_PAD, INDEXEERBAAR_PADEN } from '../inhoud.mjs';
 
 const DEV = process.argv.includes('--dev');
 const ADRES = `https://${BEDRIJF.domein}`;
@@ -239,6 +240,27 @@ for (const p of paginas) {
           );
         }
       }
+    }
+
+    // ----------------------------------- 17. het Google-bedrijfsprofiel in sameAs
+    //
+    // Zelfde soort eis als de openingstijden hierboven, en om dezelfde reden: `sameAs`
+    // is onzichtbaar op de pagina, dus als het blok bij een herschikking wegvalt klaagt
+    // er niets. Het is wel de enige regel waarmee deze site en zijn profiel voor Google
+    // hetzelfde bedrijf zijn.
+    //
+    // De toets is de CID en niet de hele url: de url wordt in build.mjs uit die cid
+    // gezet, dus de cid is wat er mis kan gaan. Hier letterlijk "11940519625446020035"
+    // neerzetten zou de controle zijn eigen cijfers laten bijhouden - de les van de
+    // prijswijziging van 25-10-2026.
+    const zaakmet = home.ld.find((d) => d && d.sameAs);
+    const same = zaakmet ? [].concat(zaakmet.sameAs) : [];
+    if (!same.length) {
+      zak('/ heeft geen sameAs in de structured data - zijn Google-bedrijfsprofiel staat er niet in');
+    } else if (!same.includes(GBP.url)) {
+      zak(`/ heeft sameAs ${same.join(', ')}, daar hoort ${GBP.url} bij te staan`);
+    } else if (!same.some((u) => u.includes(GBP.cid))) {
+      zak(`/ noemt in sameAs niet de cid ${GBP.cid} uit inhoud.mjs`);
     }
   }
 }

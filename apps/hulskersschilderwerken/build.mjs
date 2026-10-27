@@ -18,7 +18,7 @@ import { fileURLToPath } from 'node:url'
 // vanaf nu een bewuste keuze en geen achterstand.
 import { aipoort, platteTekst } from './tools/poorten/aipoort.mjs'
 import { bronpoort } from './tools/poorten/bronpoort.mjs'
-import { BEDRIJF, FORM_PAD, INDEXEERBAAR_PADEN, PRIJZEN, SOORTEN, VERF, TEKST, MERKEN, NAP_MERKEN, AI_TOEGESTAAN } from './inhoud.mjs'
+import { BEDRIJF, GBP, FORM_PAD, INDEXEERBAAR_PADEN, PRIJZEN, SOORTEN, VERF, TEKST, MERKEN, NAP_MERKEN, AI_TOEGESTAAN } from './inhoud.mjs'
 
 const HIER = path.dirname(fileURLToPath(import.meta.url))
 const DIST = path.join(HIER, 'dist')
@@ -1008,6 +1008,15 @@ const ZAAK = {
     opens: BEDRIJF.openVan,
     closes: BEDRIJF.openTot,
   }],
+  // Zijn Google-bedrijfsprofiel (vraag Armando, 27-10-2026). `sameAs` is de plek waar je
+  // Google vertelt dat deze site en die entiteit hetzelfde bedrijf zijn; het profiel wijst
+  // sinds de verhuizing al terug naar dit domein, dus hiermee wijzen ze naar elkaar.
+  //
+  // Het adres komt uit GBP.cid en staat hier niet uitgeschreven: de cid is het enige dat
+  // Google zelf gebruikt om dit profiel aan te duiden, en een url met een getal erin dat
+  // op twee plekken staat loopt uit de pas. tools/vooraf.mjs toetst op de gebouwde pagina
+  // dat deze url er echt staat en dat de cid erin dezelfde is als in inhoud.mjs.
+  sameAs: [GBP.url],
   // Schilderwerk stond hier niet in, terwijl het de helft van zijn bedrijf is en zijn
   // advertentie ermee opent. Google las de site daardoor net zo smal als een bezoeker
   // hem las (feedback Armando, 20-10-2026).

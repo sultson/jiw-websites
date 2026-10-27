@@ -1,0 +1,34 @@
+Bron: zijn eigen Google-bedrijfsprofiel, gemeten op 27-10-2026 met bron/gbp.mjs.
+Uitkomst staat in bron/gbp.json; cid 11940519625446020035, kgmid /g/11zz__vl20.
+
+Waarom dit in zijn-tekst staat en niet in een losse bronmap: het profiel is GECLAIMD
+(is_claimed: true) en door hem ingericht. Wat daar staat publiceert hij zelf over zijn
+eigen zaak, net als zijn Marktplaats-advertentie. Dat is iets anders dan een regel die
+via Armando is doorgegeven, en iets anders dan een fabrikantblad.
+
+LET OP, EEN DEEL VAN DIT PROFIEL IS ONZE EIGEN TEKST EN STAAT HIER DAAROM NIET IN.
+De omschrijving in het profiel is woordelijk de copy van deze site (renovliesbehang,
+215 gram, Sikkens, "u betaalt pas als het werk klaar is"). Die mag NIET als korpus
+dienen: dan verantwoordt onze eigen tekst zichzelf en is de bronpoort een poort die
+zichzelf de hand boven het hoofd houdt - precies de val van cdlf, 09-10-2026. Alleen de
+gemeten zaakgegevens staan hieronder.
+
+Wat het profiel verder zegt en wat dat voor de vindbaarheid betekent, staat in SEO.md:
+geclaimd, 11 foto's, een logo, een omschrijving, maar NUL beoordelingen en geen openbaar
+adres (service-area business), en daardoor in geen enkele Maps-zoekopdracht vanuit
+Coevorden te vinden - ook niet op zijn eigen naam.
+
+De doorgegeven regel van dezelfde dag (doorgegeven-armando-27-10-2026.txt) zei hetzelfde
+over de openingstijden. Die staat er nog, met een kop die zegt dat dit bestand nu de
+bron is. bron/gbp.mjs zakt zodra het profiel iets anders gaat zeggen dan inhoud.mjs.
+
+---
+
+De openingstijden zijn 7 dagen per week van 07:00 tot 23:00, elke dag van 07:00 tot
+23:00: maandag, dinsdag, woensdag, donderdag, vrijdag, zaterdag en zondag.
+
+Het telefoonnummer is 06-20 41 82 67.
+
+De zaak staat in het profiel onder de categorie Schilder.
+
+De website is hulskersschilderwerken.nl.

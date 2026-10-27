@@ -659,7 +659,10 @@ body.lb-vast .dock{opacity:0;pointer-events:none}
 .voet{
   background:var(--creme-2);border-top:1px solid var(--goud-rand-zacht);
   padding:clamp(2.5rem,5vw,4rem) clamp(1.2rem,4vw,3rem) 2rem;
-  display:grid;grid-template-columns:auto 1fr auto;gap:clamp(1.5rem,4vw,3rem);
+  /* 1fr auto 1fr, niet auto 1fr auto: met twee gelijke buitenkolommen staat het
+     middenblok op het midden van de pagina. Met auto-buitenkolommen schoof het
+     mee met het breedteverschil tussen het logo en het volg-blok. */
+  display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(1.5rem,4vw,3rem);
   align-items:center;
 }
 .voet-merk{display:flex;align-items:center;gap:1rem}
@@ -669,7 +672,7 @@ body.lb-vast .dock{opacity:0;pointer-events:none}
 .voet-gegevens b{color:var(--ink);font-weight:400}
 .voet-gegevens a{color:var(--goud-diep);text-decoration:none}
 .voet-gegevens a:hover{text-decoration:underline}
-.voet-volg{text-align:center}
+.voet-volg{text-align:center;justify-self:end}
 .voet-volg p{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
 .voet-iconen{display:flex;gap:.6rem;justify-content:center}
 .voet-slot{
@@ -767,6 +770,7 @@ body.lb-vast .dock{opacity:0;pointer-events:none}
   .aanvraag{grid-template-columns:1fr}
   .prijstabel{columns:1}
   .voet{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .voet-volg{justify-self:center}
   .voet-merk{flex-direction:column;gap:.6rem}
   .hero-blad{min-height:0}
   .hero-blad .hero-foto{min-height:min(46vh,360px)}
