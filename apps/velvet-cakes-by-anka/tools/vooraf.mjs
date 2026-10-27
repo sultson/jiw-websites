@@ -29,6 +29,8 @@
 //   12. de sitemap dekt precies de pagina's die indexeerbaar zijn
 //   13. de drie verhuisde adressen (eclairs, choux, cupcakes) komen nergens
 //       meer voor als link
+//   14. het Bakery-blok draagt haar Google-bedrijfsprofiel (sameAs + hasMap)
+//       en zeven dagen 07:00-23:00, gelijk aan wat er in dat profiel staat
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 
 const CONCEPT = process.argv.includes('--concept');
@@ -51,6 +53,13 @@ const WOORDVLOER = 150;
 // bezoeker over een omleiding naar een pagina die je ook direct had kunnen
 // aanwijzen.
 const VERHUISD = ['eclairs', 'choux.html', 'cupcakes.html'];
+
+// Haar Google-bedrijfsprofiel en haar openingstijden. Die twee horen bij
+// elkaar: het profiel is wat Google gebruikt, dit blok is wat het bevestigt.
+// Raakt een van de twee zoek, dan staat de site het profiel stil tegen te
+// spreken en is er in de pagina niets aan te zien.
+const GBP = 'https://maps.google.com/?cid=7038032441905336788';
+const DAGEN = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 const bestanden = [];
 (function loop(map) {
@@ -140,12 +149,34 @@ for (const pad of bestanden) {
 
   // JSON-LD die niet parseert is erger dan geen JSON-LD: Google meldt hem als
   // fout en negeert hem, en in de html is er niets aan te zien.
+  let bakkerij = null;
   for (const s of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     try {
       const b = JSON.parse(s[1].replace(/\\u003c/g, '<'));
       if (!b['@context'] || !b['@type']) zeg('JSON-LD zonder @context of @type');
+      if (b['@type'] === 'Bakery') {
+        if (bakkerij) zeg('twee keer een Bakery-blok');
+        else bakkerij = b;
+      }
     } catch (e) {
       zeg(`JSON-LD parseert niet: ${e.message}`);
+    }
+  }
+
+  // Het bedrijfsblok. De 404 hoort er geen te dragen: dat is geen pagina over
+  // haar bedrijf.
+  if (is404) {
+    if (bakkerij) zeg('de foutpagina draagt een Bakery-blok');
+  } else if (!bakkerij) {
+    zeg('geen Bakery-blok');
+  } else {
+    if (!(bakkerij.sameAs || []).includes(GBP)) zeg('het Bakery-blok noemt haar Google-bedrijfsprofiel niet in sameAs');
+    if (bakkerij.hasMap !== GBP) zeg(`hasMap is ${bakkerij.hasMap || 'leeg'}, verwacht het Google-bedrijfsprofiel`);
+    const uren = bakkerij.openingHoursSpecification || [];
+    const dagen = uren.flatMap(u => [].concat(u.dayOfWeek || []).map(d => d.replace('https://schema.org/', '')));
+    for (const d of DAGEN) if (!dagen.includes(d)) zeg(`geen openingstijd voor ${d}`);
+    for (const u of uren) {
+      if (u.opens !== '07:00' || u.closes !== '23:00') zeg(`openingstijd ${u.opens}-${u.closes}, haar profiel zegt 07:00-23:00`);
     }
   }
 

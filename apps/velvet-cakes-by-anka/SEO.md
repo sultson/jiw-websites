@@ -71,6 +71,31 @@ is het een tabel in `bouw.mjs` en niet een verbouwing van de links.
 Dat is het blok waar Google een lokaal bedrijf uit haalt, en "Bergen op Zoom" is
 precies waar haar klanten op zoeken.
 
+### Haar Google-bedrijfsprofiel
+
+Sinds 27-10-2026 staat haar profiel in `sameAs` en in `hasMap`, als
+`https://maps.google.com/?cid=7038032441905336788`. De cid-vorm is de enige
+stabiele: een `share.google`-link is een doorverwijzing die Google mag
+intrekken, en een `/maps/place/`-url draagt de naam en de coordinaten in het pad
+en breekt zodra ze iets in het profiel wijzigt. Het profiel is geclaimd,
+categorie Taartenwinkel, en staat op zeven dagen 07:00–23:00 — gelijk aan
+`openingHoursSpecification`. `tools/vooraf.mjs` controleert die twee samen en
+stopt de bouw als er een van wegvalt.
+
+> **Er is een tweede geclaimd profiel.** Cid `3187555844262572482`, zelfde
+> telefoonnummer en zelfde website, zonder adres (Google zet zo'n profiel op het
+> middelpunt van Nederland), ma–za 08:00–20:00, een foto. Zolang dat er staat
+> splitst het reviews, foto's en lokale signalen over twee profielen en kiest
+> Google zelf welk er bij een zoekopdracht verschijnt. Dat is iets voor Anka:
+> het dubbele profiel laten verwijderen of samenvoegen in de profielbeheerder.
+> Dit blok wijst bewust naar het profiel mét adres.
+
+**De plaats loopt uiteen met het profiel.** Het profiel staat op Halsteren
+(Dr. Ensinkstraat 16, 4661 EH), de site zegt Bergen op Zoom. Halsteren hoort bij
+de gemeente Bergen op Zoom, dus geen van beide is onwaar, en Bergen op Zoom is
+waar op gezocht wordt. Laat staan tenzij iemand bewust kiest om de site op
+Halsteren te zetten.
+
 Het adres is **alleen de plaats en niet de straat.** Haar huisadres staat in haar
 algemene voorwaarden omdat dat wettelijk moet, maar het in de structured data van
 elke pagina zetten is het breed rondsturen van het huisadres van iemand die thuis

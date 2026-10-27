@@ -112,6 +112,19 @@ const MAIL = 'info@velvetcakesbyanka.nl';
 const TEL_TEKST = '06 83 67 40 69';
 const WA_NUMMER = '31683674069';
 
+/* Haar Google-bedrijfsprofiel. Armando deelde het op 27-10-2026 als een
+   share.google-link; die lost op naar kgmid /g/11z_mgh862 en is geen adres om
+   in structured data te zetten, want zo'n link is een doorverwijzing die Google
+   mag intrekken. Dit is hetzelfde profiel in zijn vaste vorm:
+   cid 7038032441905336788 (place_id ChIJS9pWf15rxEcR1FFxgTcdrGE, feature
+   0x47c46b5e7f56da4b:0x61ac1d37817151d4), geclaimd, Taartenwinkel, zeven dagen
+   07:00-23:00 - gelijk aan de openingstijden hieronder.
+   LET OP: er staat een TWEEDE geclaimd profiel op hetzelfde telefoonnummer en
+   dezelfde website (cid 3187555844262572482, zonder adres, ma-za 08:00-20:00).
+   Zolang dat er staat splitst het de signalen. Dit blok wijst bewust naar het
+   profiel met het adres, want dat is het profiel dat Armando deelde. */
+const GBP = 'https://maps.google.com/?cid=7038032441905336788';
+
 /* ---------- bijschriften ----------
    De 41 fotos die er al stonden komen uit bijschriften.json, dat haal-caps.mjs
    uit concept 1 trekt: dezelfde foto draagt in beide concepten dezelfde regel,
@@ -1338,10 +1351,17 @@ const schema = (taal, slug, titel) => {
       opens: '07:00',
       closes: '23:00',
     }],
+    /* Haar Google-bedrijfsprofiel, doorgegeven door Armando op 27-10-2026.
+       De cid-vorm is de enige stabiele: het profiel heeft geen vast webadres
+       en een /maps/place/-link draagt de naam en de coordinaten in het pad,
+       dus die breekt zodra ze iets in het profiel wijzigt. sameAs is waar
+       Google de koppeling leest, hasMap is de kaartverwijzing voor de rest. */
     sameAs: [
       'https://www.instagram.com/ionecaterina1987',
       'https://www.facebook.com/share/1Hu1g4kP7w/',
+      GBP,
     ],
+    hasMap: GBP,
   }];
   if (slug !== 'index') {
     blokken.push({
