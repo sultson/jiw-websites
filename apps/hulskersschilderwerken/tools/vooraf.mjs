@@ -34,6 +34,7 @@
 //   17. zijn Google-bedrijfsprofiel staat in sameAs, met de cid uit inhoud.mjs
 //   18. de hulppagina's: precies HULP_PADEN, altijd noindex, geen canonical, niet in de
 //       sitemap, en geen enkele pagina linkt ernaartoe
+//   19. het adres dat de bevestigingsmail print is hetzelfde als dat van de site
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { BEDRIJF, GBP, FORM_PAD, INDEXEERBAAR_PADEN, HULP_PADEN } from '../inhoud.mjs';
 
@@ -373,6 +374,23 @@ if (DEV) {
 // De mail-png. worker/confirmation.ts verwijst ernaar; ontbreekt hij, dan krijgt de
 // bezoeker een gebroken plaatje in de enige mail die hij ooit van Pascal krijgt.
 if (!existsSync('dist/logo-mail.png')) zak('vooraf: dist/logo-mail.png ontbreekt - de bevestigingsmail verwijst ernaar');
+
+// ----------------------------------------- 19. het geprinte mailadres in de bevestiging
+//
+// worker/confirmation.ts print zijn mailadres onder de bevestigingsmail, en dat staat
+// daar als tekst (dat bestand gaat de worker-bundel in, inhoud.mjs is de hele sitecopy).
+// Twee kopieen van hetzelfde adres, en op 26-10-2026 liepen ze een dag uit elkaar: de
+// reply-to ging al naar info@ terwijl er zijn gmail onder de mail stond. Zelfde aanpak
+// als regel 7, die het formulieradres tegen worker/index.ts legt - de poort leest de
+// andere plek en vergelijkt, in plaats van dat hier een derde kopie van het adres staat.
+{
+  const bron = readFileSync('worker/confirmation.ts', 'utf8');
+  const m = bron.match(/contactEmail:\s*'([^']+)'/);
+  if (!m) zak('vooraf: worker/confirmation.ts heeft geen contactEmail meer - print de mail nog wel een adres?');
+  else if (m[1] !== BEDRIJF.mail) {
+    zak(`vooraf: de bevestigingsmail print ${m[1]}, de site geeft ${BEDRIJF.mail} (inhoud.mjs)`);
+  }
+}
 
 // ----------------------------------------------------------------------------- uitslag
 if (fouten.length) {

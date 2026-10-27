@@ -91,9 +91,14 @@
     // hallo@jouwidealewebsite.nl. Dit adres is ook de reply-to van de bevestiging die de
     // bezoeker terugkrijgt, dus wie daarop antwoordt komt bij hem uit en niet bij ons.
     //
-    // Het GEPRINTE contactadres in die bevestiging is nog zijn gmail, dat al openbaar op
-    // de site staat (zie de noot bij `contactEmail` in worker/confirmation.ts). Dat zijn
-    // dus twee adressen van hem: antwoorden komt op info@, aanklikken op de gmail.
+    // Sinds 27-10-2026 geeft de site datzelfde adres ook als zijn mailadres (voet,
+    // contactkaartje, mailhandtekening, en als geprint adres onder de bevestiging). Het
+    // stond daar een dag lang anders - de reply-to op info@, het geprinte adres zijn
+    // gmail - en dat is nu een poort: tools/vooraf.mjs regel 19 legt het adres in
+    // worker/confirmation.ts naast BEDRIJF.mail uit inhoud.mjs.
+    //
+    // Het blijven wel twee onafhankelijke waarden: wat de site TOONT staat in inhoud.mjs,
+    // waar de lead LANDT staat hier. Ze zijn nu gelijk; ze hoeven dat niet te zijn.
     //
     // LET OP voor wie hierna test: een inzending tegen deze config mailt een echte
     // klantmailbox. Zet LEAD_RECIPIENT eerst terug op hallo@jouwidealewebsite.nl, of

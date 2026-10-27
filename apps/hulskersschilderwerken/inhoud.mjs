@@ -13,7 +13,23 @@ export const BEDRIJF = {
   telWeergave: '06-20 41 82 67',
   telLink: '+31620418267',
   wa: '31620418267',
-  mail: 'hulskersschilderwerken@gmail.com',
+  // Sinds 27-10-2026 zijn adres op zijn eigen domein, doorgegeven via Armando ("we hebben
+  // inmiddels een info@hulskersschilderwerken.nl aangemaakt"). Was
+  // hulskersschilderwerken@gmail.com, en dat adres staat nog in zijn Marktplaats-
+  // advertentie en in de gidsen - het is dus niet fout, het is niet meer het adres dat
+  // de site geeft.
+  //
+  // Dit is de ENIGE plek waar het staat. Het komt in de voet, het contactkaartje, de
+  // mailhandtekening (handtekening.mjs), de JSON-LD en als geprint adres in de
+  // bevestigingsmail (worker/confirmation.ts leest deze waarde, en tools/vooraf.mjs
+  // regel 19 zakt zodra die twee uit elkaar lopen). Een mailadres op twee plekken is
+  // precies het soort gegeven dat jaren half oud blijft staan.
+  //
+  // Let op het verschil met de ONTVANGER van de aanvragen: die staat in wrangler.jsonc
+  // (LEAD_RECIPIENT) en is sinds 26-10-2026 hetzelfde info@-adres. Dat zijn twee
+  // onafhankelijke waarden - wat de site TOONT en waar de lead LANDT - en ze hoeven niet
+  // per se gelijk te zijn.
+  mail: 'info@hulskersschilderwerken.nl',
   straat: 'Krimweg 109',
   postcode: '7741 MC',
   plaats: 'Coevorden',
@@ -1070,6 +1086,11 @@ const ARM2 = 'bron/zijn-tekst/doorgegeven-armando-25-10-2026.txt (doorgegeven vi
 // en eigen bestand om dezelfde reden als ARM2 - die twee bestanden dragen een kop met
 // wat er achterhaald is, en een nieuwe regel eronder plakken maakt zo'n kop onleesbaar.
 const ARM3 = 'bron/zijn-tekst/doorgegeven-armando-27-10-2026.txt (doorgegeven via Armando, 27-10-2026)'
+// Vierde doorgegeven regel, diezelfde dag maar een ander onderwerp: zijn mailadres op het
+// eigen domein. Eigen bestand en niet onderaan ARM3, om dezelfde reden als ARM2 en ARM3 -
+// dat bestand draagt een kop over wat eraan achterhaald is, en een tweede onderwerp
+// eronder maakt die kop onleesbaar. Een bron per onderwerp is na te lezen.
+const ARM4 = 'bron/zijn-tekst/doorgegeven-armando-27-10-2026-mailadres.txt (doorgegeven via Armando, 27-10-2026)'
 // Zijn eigen Google-bedrijfsprofiel, geclaimd en door hem ingericht, gemeten met
 // bron/gbp.mjs. Sterker dan ARM3: wat daar staat publiceert hij zelf over zijn eigen
 // zaak, net als zijn Marktplaats-advertentie, en het is narekenbaar. De openingstijden
@@ -1303,7 +1324,11 @@ export const MERKEN = {
 // Registergegevens die als losse waarde in de pagina komen.
 export const NAP_MERKEN = {
   'bedrijf.telWeergave': { merk: 'feit', bron: KVK },
-  'bedrijf.mail': { merk: 'feit', bron: KVK },
+  // Zijn mailadres. `afgeleid` en niet meer `feit` op KVK: dat bestand noemt zijn gmail,
+  // en sinds 27-10-2026 geeft de site info@hulskersschilderwerken.nl. Dat adres is net
+  // aangemaakt, dus het staat nergens anders openbaar - het rust volledig op de regel van
+  // Armando (ARM4) en hoort daarom op de nalooplijst tot Pascal het bevestigt.
+  'bedrijf.mail': { merk: 'afgeleid', bron: ARM4 },
   'bedrijf.straat': { merk: 'feit', bron: KVK },
   'bedrijf.postcode': { merk: 'feit', bron: KVK },
   'bedrijf.kvk': { merk: 'feit', bron: KVK },

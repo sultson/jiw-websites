@@ -1,0 +1,31 @@
+Bron: Armando in de WhatsApp-groep "Claudius Hulskers 2.0", 27-10-2026, 14:08.
+Een regel: zijn mailadres op het eigen domein.
+
+Eigen bestand en niet onderaan doorgegeven-armando-27-10-2026.txt (de openingstijden),
+om dezelfde reden als dat bestand zelf noemt: die bestanden dragen een kop met wat er
+inmiddels achterhaald is, en een tweede onderwerp eronder plakken maakt zo'n kop
+onleesbaar. Een bron per onderwerp is na te lezen; een bron die groeit is dat niet.
+
+WAT ER VERANDERT. De site gaf tot vandaag hulskersschilderwerken@gmail.com. Dat adres is
+niet fout en blijft bestaan: het staat in zijn Marktplaats-advertentie, in de
+bedrijvengidsen en in het KVK-bestand (kvk-en-vindplaatsen.txt), en het is het adres dat
+hij zelf openbaar heeft gemaakt. Het is alleen niet meer het adres dat de site geeft.
+
+Daarmee rust het nieuwe adres op NIETS ANDERS dan deze regel. Het is net aangemaakt, dus
+er is geen tweede vindplaats om het tegen te toetsen - anders dan bij de openingstijden,
+die diezelfde dag in zijn eigen geclaimde Google-profiel bleken te staan en daarom van de
+nalooplijst af konden. Dit blijft dus doorgegeven tekst, met een regel op
+NALEZEN-PASCAL.md, en de vraag eromheen staat daar ook: leest hij dat postvak, en wil hij
+dat de gmail uit zijn gidsvermeldingen ook vervangen wordt? Zolang die twee naast elkaar
+bestaan is er een adres waar post heen kan dat niemand opent.
+
+WAT HIER NIET MEE BESLOTEN IS. De ONTVANGER van een offerteaanvraag staat los van wat de
+site toont: die staat in wrangler.jsonc (LEAD_RECIPIENT) en ging op 26-10-2026 al naar
+info@. Dit bestand gaat alleen over het adres dat een bezoeker ziet en aanklikt. En of
+info@ echt een werkend postvak is, is van buiten niet te meten - zijn mail loopt via
+Purelymail op de apex en of dat adres daar bestaat staat niet in Cloudflare. Komt er een
+aanvraag niet aan, dan is dat het eerste om te checken en niet de site.
+
+---
+
+We hebben inmiddels een info@hulskersschilderwerken.nl aangemaakt.

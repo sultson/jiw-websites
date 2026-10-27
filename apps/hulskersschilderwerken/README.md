@@ -1353,14 +1353,15 @@ steekt er niets buiten 390 en 1280, en staat het logo niet uitgerekt. Die eerste
 reden dat hij bestaat: een knop die alleen platte tekst kopieert ziet er hetzelfde uit en
 levert een handtekening zonder logo op.
 
-### Eén regel die een beslissing van Pascal vraagt
+### ~~Eén regel die een beslissing van Pascal vraagt~~ Beantwoord in ronde 22
 
-In de handtekening staat `BEDRIJF.mail`, en dat is zijn gmail - hetzelfde adres dat de
+In de handtekening staat `BEDRIJF.mail`, en dat was zijn gmail - hetzelfde adres dat de
 site toont. Sinds 26-10-2026 komen aanvragen binnen op `info@hulskersschilderwerken.nl`.
-Dat zijn dus twee adressen van hem, en in een handtekening onder een mail van zijn eigen
-domein staat de gmail zwak. Dezelfde vraag staat open bij het geprinte adres in de
-bevestigingsmail (zie de noot bij `contactEmail` in `worker/confirmation.ts`). Antwoord
-is één regel in `inhoud.mjs`, en dan veranderen de site, de mail en de handtekening mee.
+Dat waren dus twee adressen van hem, en in een handtekening onder een mail van zijn eigen
+domein staat een gmail zwak. Dezelfde vraag stond open bij het geprinte adres in de
+bevestigingsmail. **Beantwoord op 27-10-2026** (Armando: "we hebben inmiddels een
+info@hulskersschilderwerken.nl aangemaakt"), zie ronde 22 - en het was inderdaad één regel
+in `inhoud.mjs`, waarna de site, de mail en de handtekening alle drie meeveranderden.
 
 ### Een valse treffer die een betere regel opleverde
 
@@ -1371,18 +1372,79 @@ had kunnen toedekken staat er als eigen eis voor terug: buiten de scripts mag er
 onvervangen `${...}` in de html staan - een sjabloon dat niet is ingevuld, en dat is wat
 die regel in de praktijk ving.
 
+## Ronde 22 (27-10-2026): het servicegebied hermeten, en zijn mailadres
+
+Twee dingen op dezelfde middag, en ze hebben los van elkaar dezelfde vorm: een reparatie
+is pas af als de meting een ander getal geeft.
+
+### Het servicegebied: de pin schoof 113 km
+
+Armando haalde "heel Nederland" uit het servicegebied van zijn Google-profiel. Hermeten
+met `bron/gbp.mjs`: de coördinaat ging van 52,1910 / 5,2796 (bij Nijkerk, **110 km** van
+Krimweg 109) naar 52,6974 / 6,7178 (**4,5 km**, en 2,6 km van Dalen). Dat is het
+zwaartepunt van Coevorden-Dalen-Schoonebeek-Emmen-Hardenberg, dus het vermoeden uit
+`SEO.md` is achteraf bevestigd: het *was* het servicegebied en geen verkeerd adres.
+
+Wat niet bewoog: **geen openbaar adres** (stap 2 van het reparatiepad staat open), **nul
+beoordelingen**, één categorie. En in Maps staat hij nog nergens.
+
+**`bron/maps.mjs` is nieuw, en dat is de echte les hier.** De vondst van ronde 21 ("hij
+komt in geen enkele Maps-zoekopdracht vanuit Coevorden voor") was met de hand gemeten en
+dus niet te herhalen. Een meting die je niet kunt overdoen kan geen verschil aanwijzen, en
+juist het verschil is het bewijs. Nu vast: vier zoekwoorden × twee zoomniveaus vanaf zijn
+eigen deur, elke ronde bijgeschreven in `bron/maps.json`, met de hele item van wie er wél
+staat (dan is "je krijgt Wim Hulskers" een feit en geen waarneming) en met een storing als
+eigen regel die **niet** in de noemer meetelt - de les van lijffull, 25-10-2026.
+
+Nulmeting een kwartier na de wijziging: 0 van de 7 geldige metingen, ook niet op zijn eigen
+naam. Dat is te vroeg om iets te betekenen; het is de nulmeting waartegen de volgende ronde
+iets zegt. Lees `hulskers schilderwerken` als ondergrens: staat hij daar niet, dan heeft hij
+in Maps geen plek en zijn de vakwoorden zinloos om te lezen.
+
+### Zijn mailadres: één regel, en een poort tegen de kopie
+
+`BEDRIJF.mail` is `info@hulskersschilderwerken.nl`. Daarmee is de open vraag van ronde 21
+beantwoord en lopen de voet, het contactkaartje, de JSON-LD, de mailhandtekening en het
+geprinte adres in de bevestigingsmail weer gelijk.
+
+Drie dingen die eromheen horen, en de middelste is de eigenlijke fout:
+
+1. **Het merk verschuift van `feit`/KVK naar `afgeleid`/ARM4.** Het KVK-bestand noemt zijn
+   gmail; het nieuwe adres is net aangemaakt en staat nergens anders openbaar, dus het rust
+   volledig op de doorgegeven regel. Het staat daarmee op `NALEZEN-PASCAL.md` - anders dan
+   de openingstijden, die diezelfde dag in zijn eigen geclaimde profiel bleken te staan en
+   daarom van de nalooplijst af konden.
+2. **`worker/confirmation.ts` had een eigen kopie van het adres**, en dat is precies hoe de
+   twee een dag uit elkaar konden lopen (reply-to op info@, geprint adres de gmail). Het
+   blijft daar tekst - dat bestand gaat de worker-bundel in en `inhoud.mjs` is de hele
+   sitecopy - maar er staat nu een poort op in plaats van een afspraak: **`vooraf.mjs`
+   regel 19** legt die regel naast `BEDRIJF.mail` en zakt bij verschil. Zelfde aanpak als
+   regel 7, die het formulieradres tegen `worker/index.ts` legt. Getest met het oude adres,
+   met een onzinadres en met het veld eruit.
+3. De gmail is nergens meer in `dist/` en op de live site staat hij op geen van de drie
+   adressen. Een tweede regel was niet nodig: `controleer.mjs` regel 4 laat alleen
+   `BEDRIJF.mail` staan en zakt op elk ander mailadres in de pagina.
+
+Wat dit **niet** beslist: waar de lead landt (`LEAD_RECIPIENT` in `wrangler.jsonc`) is een
+onafhankelijke waarde. Ze zijn nu gelijk; ze hoeven dat niet te zijn. En of `info@` een
+werkend postvak is, is van buiten niet te meten - zijn mail loopt via Purelymail op de
+apex. Komt een aanvraag niet aan, dan is dat het eerste om te checken en niet de site.
+Zolang de gmail in zijn gidsvermeldingen blijft staan, is er een adres waar post heen kan
+dat niemand opent; dat is een vraag aan hem.
+
 ## Aandachtspunten
 
 - **De foto's zijn via WhatsApp binnengekomen** en daardoor teruggeschaald naar
   ~1178 px breed. `fotos.py` schaalt bewust niet op, dus de hero is op een grote
   laptop zachter dan gewenst. Originelen opvragen is de enige echte oplossing.
-- **`http://` geeft nog 200 in plaats van een omleiding naar https.** Always Use HTTPS
-  staat niet vanzelf aan op een nieuwe zone en het wrangler-token mag die instelling
-  alleen lezen. Wordt dit een echte site, zet de omleiding dan in een worker
-  (`main` + `run_worker_first = true`, zie `cdlf/worker.mjs`).
-- **Het offerteformulier heeft geen server.** Het zet de antwoorden in een bericht en
-  opent WhatsApp of de mail. Dat werkt echt, maar er wordt niets opgeslagen en er is
-  dus ook geen opvolging als iemand halverwege afhaakt.
+- ~~**`http://` geeft nog 200 in plaats van een omleiding naar https.**~~ **Opgelost bij
+  de verhuizing, 26-10-2026.** Always Use HTTPS staat nog steeds niet aan op die zone en
+  het token mag die instelling alleen lezen, dus de omleiding zit in `worker/index.ts`
+  (`run_worker_first`). Nagemeten op status en location-kop.
+- ~~**Het offerteformulier heeft geen server.**~~ **Achterhaald sinds 26-10-2026.** Het
+  verstuurt nu echt via `@jiw/cloudflare-forms` (`POST /api/forms/offerte`), met een
+  bevestigingsmail aan de bezoeker. Bouw de WhatsApp-variant dus niet terug: dat was de
+  vorm van het concept, niet een keuze die nog geldt.
 
 ## Bestanden
 
@@ -1407,6 +1469,8 @@ die regel in de praktijk ving.
 | `kijk-live-zweef.mjs` | dezelfde twee punten op de LIVE site (ronde 16) |
 | `shot-soorten.mjs` | uitsnede van het soortenblok, "Wat het kost" en het verfblok (ronde 17) |
 | `kijk-soortlijst.mjs` | leest de keuzelijst "Wat heeft u nodig?" uit de dom van beide pagina's (ronde 20) |
+| `bron/gbp.mjs` | zijn Google-bedrijfsprofiel meten (cid, adres, coordinaat, tijden) -> `bron/gbp.json` |
+| `bron/maps.mjs` | staat hij in Maps vanaf zijn eigen deur, en op welke plek -> `bron/maps.json` (ronde 22) |
 | `bron/seo/kw.mjs` | zoekvolume + klikprijs voor renovlies en zijn buren (ronde 17) |
 | `bron/seo/serp.mjs` | wie staat er nu op die woorden, en wat voor pagina is dat (ronde 17) |
 | `dienen.mjs` | kleine statische server voor de browserscripts |
