@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3065 --host=0.0.0.0",
-    "build": "pnpm sitemap && vite build",
+    "build": "pnpm check:socials && pnpm sitemap && vite build",
     "preview": "vite preview --port=4365",
     "clean": "rm -rf dist dist-worker",
     "lint": "tsc --noEmit && tsc --noEmit -p tsconfig.worker.json",
     "sitemap": "node scripts/sitemap.mjs",
+    "check:socials": "node scripts/check-socials.mjs",
     "ship": "pnpm build && wrangler deploy",
     "ship:dry-run": "pnpm build && wrangler deploy --dry-run --outdir=dist-worker"
   },

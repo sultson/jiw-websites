@@ -166,8 +166,16 @@ export const STICHTINGEN: Stichting[] = [
     kvk: '16071',
     crib: '310043840',
     rsin: null,
+    /* Aangeleverd door Armando op 27-10-2026. De Facebook-pagina hier is NIET
+       dezelfde als die er tot die dag stond: dat was
+       facebook.com/p/Bonaire-Diaspora-Of-Africa-Foundation-61579249800630/
+       ("Bonaire Diaspora Of Africa Foundation", Kralendijk). Die pagina bestaat
+       nog steeds. Er zijn dus twee Facebook-pagina's van deze stichting en de
+       klant heeft niet gezegd welke de andere vervangt — zolang dat niet
+       beslist is staat hier de pagina die hij als laatste doorgaf, en is de
+       oude in één regel terug te zetten. */
     socials: [
-      {soort: 'facebook', url: 'https://www.facebook.com/p/Bonaire-Diaspora-Of-Africa-Foundation-61579249800630/'},
+      {soort: 'facebook', url: 'https://www.facebook.com/people/Bonaire-Diaspora/61583526864672/'},
       {soort: 'linkedin', url: 'https://www.linkedin.com/in/bonaire-diaspora-of-africa-foundation-foundation-a40749379/'},
     ],
     logo: '/img/logo-bonaire.png',
@@ -261,8 +269,12 @@ export const STICHTINGEN: Stichting[] = [
     kvk: '170355',
     crib: '102733703',
     rsin: null,
+    /* Zelfde geval als bij Bonaire, ook 27-10-2026. De Facebook-pagina was
+       facebook.com/profile.php?id=61577495043318 ("Curaçao Diaspora Of Africa
+       Foundation", Willemstad) en die bestaat nog. Hier staat nu de pagina die
+       de klant doorgaf: "Curaçao Diaspora". */
     socials: [
-      {soort: 'facebook', url: 'https://www.facebook.com/profile.php?id=61577495043318'},
+      {soort: 'facebook', url: 'https://www.facebook.com/people/Cura%C3%A7ao-Diaspora/61577904852700/'},
       {soort: 'instagram', url: 'https://www.instagram.com/curacao_diaspora/'},
       {soort: 'linkedin', url: 'https://www.linkedin.com/in/cura%C3%A7ao-diaspora-of-africa-fundation-8393a7373/'},
     ],
@@ -1099,11 +1111,35 @@ export const AGENDA: Activiteit[] = [
   },
 ];
 
-export const SOCIALS_ALGEMEEN = [
-  {soort: 'facebook' as const, url: 'https://www.facebook.com/profile.php?id=61577495043318', label: 'Facebook'},
-  {soort: 'instagram' as const, url: 'https://www.instagram.com/curacao_diaspora/', label: 'Instagram'},
-  {soort: 'linkedin' as const, url: 'https://www.linkedin.com/in/cura%C3%A7ao-diaspora-of-africa-fundation-8393a7373/', label: 'LinkedIn'},
-];
+/**
+ * De drie knoppen onder "Volg ons" in de voet, op elke pagina in elke taal.
+ *
+ * Er is geen gezamenlijk 3 Diaspora-account. Dit zijn de accounts van Curaçao,
+ * de enige stichting met alle drie de platformen; Bonaire heeft Facebook en
+ * LinkedIn en staat alleen op zijn eigen pagina, Nederland heeft niets.
+ *
+ * Afgeleid uit STICHTINGEN en niet nog een keer uitgeschreven: tot 27-10-2026
+ * stonden hier dezelfde drie adressen als losse letterlijke tekst, en toen de
+ * klant een andere Facebook-pagina doorgaf wees de voet naar de oude pagina en
+ * de Curaçao-pagina naar de nieuwe. Eén bron, dus dat kan niet meer uit elkaar
+ * lopen.
+ */
+const LABEL = {facebook: 'Facebook', instagram: 'Instagram', linkedin: 'LinkedIn'} as const;
+
+export const SOCIALS_ALGEMEEN = STICHTINGEN.find((s) => s.id === 'curacao')!.socials.map((s) => ({
+  soort: s.soort,
+  url: s.url,
+  label: LABEL[s.soort],
+}));
+
+/**
+ * Elk account van alle drie de stichtingen, voor het `sameAs`-blok in
+ * index.html — dat is wat Google uitleest, en daar horen ze alle vijf in en
+ * niet alleen de drie uit de voet. index.html is een statisch bestand en kan
+ * deze lijst niet importeren, dus scripts/check-socials.mjs legt de twee naast
+ * elkaar en laat de build zakken zodra ze niet meer gelijk zijn.
+ */
+export const SOCIALS_ALLE = STICHTINGEN.flatMap((s) => s.socials.map((so) => so.url));
 
 /**
  * De ANBI-pagina van de Nederlandse stichting.
