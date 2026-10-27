@@ -1,0 +1,304 @@
+{
+ "cid": "11940519625446020035",
+ "deur": [
+  52.6576,
+  6.7052
+ ],
+ "rondes": [
+  {
+   "gemeten": "2026-10-27T14:18",
+   "cid": "11940519625446020035",
+   "deur": [
+    52.6576,
+    6.7052
+   ],
+   "metingen": [
+    {
+     "woord": "hulskers schilderwerken",
+     "zoom": 14,
+     "fout": "40102 No Search Results."
+    },
+    {
+     "woord": "hulskers schilderwerken",
+     "zoom": 11,
+     "resultaten": 2,
+     "plek": null,
+     "top": [
+      {
+       "plek": 1,
+       "naam": "Wim Hulskers",
+       "cid": "2121190972929250305",
+       "soort": "Architect",
+       "beoordelingen": 5
+      },
+      {
+       "plek": 2,
+       "naam": "Hulskers Automotive",
+       "cid": "5052439546304352874",
+       "soort": "Autoreparatie en -onderhoud",
+       "beoordelingen": 48
+      }
+     ]
+    },
+    {
+     "woord": "schilder coevorden",
+     "zoom": 14,
+     "resultaten": 7,
+     "plek": null,
+     "top": [
+      {
+       "plek": 1,
+       "naam": "Vda schilders",
+       "cid": "16635293263568951662",
+       "soort": "Schilder",
+       "beoordelingen": 5
+      },
+      {
+       "plek": 2,
+       "naam": "Ahlers Coevorden",
+       "cid": "12512616265747530206",
+       "soort": "Schilder",
+       "beoordelingen": 42
+      },
+      {
+       "plek": 3,
+       "naam": "Schilderwerken Westinga",
+       "cid": "16681055640101972110",
+       "soort": "Schilder",
+       "beoordelingen": 5
+      },
+      {
+       "plek": 4,
+       "naam": "SchildersDeco Arkes",
+       "cid": "15961154981628757239",
+       "soort": "Schilder",
+       "beoordelingen": 1
+      },
+      {
+       "plek": 5,
+       "naam": "BB Behangservice",
+       "cid": "16646923695102752317",
+       "soort": "Schilder",
+       "beoordelingen": 0
+      }
+     ]
+    },
+    {
+     "woord": "schilder coevorden",
+     "zoom": 11,
+     "resultaten": 38,
+     "plek": null,
+     "top": [
+      {
+       "plek": 1,
+       "naam": "Vda schilders",
+       "cid": "16635293263568951662",
+       "soort": "Schilder",
+       "beoordelingen": 5
+      },
+      {
+       "plek": 2,
+       "naam": "Ahlers Coevorden",
+       "cid": "12512616265747530206",
+       "soort": "Schilder",
+       "beoordelingen": 42
+      },
+      {
+       "plek": 3,
+       "naam": "Schilderwerken Westinga",
+       "cid": "16681055640101972110",
+       "soort": "Schilder",
+       "beoordelingen": 5
+      },
+      {
+       "plek": 4,
+       "naam": "SchildersDeco Arkes",
+       "cid": "15961154981628757239",
+       "soort": "Schilder",
+       "beoordelingen": 1
+      },
+      {
+       "plek": 5,
+       "naam": "BB Behangservice",
+       "cid": "16646923695102752317",
+       "soort": "Schilder",
+       "beoordelingen": 0
+      }
+     ]
+    },
+    {
+     "woord": "renovlies coevorden",
+     "zoom": 14,
+     "resultaten": 15,
+     "plek": null,
+     "top": [
+      {
+       "plek": 1,
+       "naam": "Ahlers Coevorden",
+       "cid": "12512616265747530206",
+       "soort": "Schilder",
+       "beoordelingen": 42
+      },
+      {
+       "plek": 2,
+       "naam": "SchildersDeco Tes",
+       "cid": "2473134406844662397",
+       "soort": "Schilder",
+       "beoordelingen": 0
+      },
+      {
+       "plek": 3,
+       "naam": "DE Zaag klusbedrijf",
+       "cid": "16831218781900538055",
+       "soort": "Bouwbedrijf",
+       "beoordelingen": 19
+      },
+      {
+       "plek": 4,
+       "naam": "Ter Steege Bouw Vastgoed Coevorden",
+       "cid": "8242221522556023421",
+       "soort": "Bouwbedrijf",
+       "beoordelingen": 2
+      },
+      {
+       "plek": 5,
+       "naam": "Ropac Geveltechniek",
+       "cid": "5194313658794925397",
+       "soort": "Bouwbedrijf",
+       "beoordelingen": 14
+      }
+     ]
+    },
+    {
+     "woord": "renovlies coevorden",
+     "zoom": 11,
+     "resultaten": 49,
+     "plek": null,
+     "top": [
+      {
+       "plek": 1,
+       "naam": "Ahlers Coevorden",
+       "cid": "12512616265747530206",
+       "soort": "Schilder",
+       "beoordelingen": 42
+      },
+      {
+       "plek": 2,
+       "naam": "vanuit het voorhuis",
+       "cid": "13894268901839113308",
+       "soort": "Architectenbureau",
+       "beoordelingen": 1
+      },
+      {
+       "plek": 3,
+       "naam": "Blok Schilderwerken",
+       "cid": "8500392750939827044",
+       "soort": "Schilder",
+       "beoordelingen": 1
+      },
+      {
+       "plek": 4,
+       "naam": "SchildersDeco Tes",
+       "cid": "2473134406844662397",
+       "soort": "Schilder",
+       "beoordelingen": 0
+      },
+      {
+       "plek": 5,
+       "naam": "DE Zaag klusbedrijf",
+       "cid": "16831218781900538055",
+       "soort": "Bouwbedrijf",
+       "beoordelingen": 19
+      }
+     ]
+    },
+    {
+     "woord": "behanger coevorden",
+     "zoom": 14,
+     "resultaten": 8,
+     "plek": null,
+     "top": [
+      {
+       "plek": 3,
+       "naam": "Ahlers Coevorden",
+       "cid": "12512616265747530206",
+       "soort": "Schilder",
+       "beoordelingen": 42
+      },
+      {
+       "plek": 4,
+       "naam": "BB Behangservice",
+       "cid": "16646923695102752317",
+       "soort": "Schilder",
+       "beoordelingen": 0
+      },
+      {
+       "plek": 5,
+       "naam": "Printer 27, Behang",
+       "cid": "4707371548116434405",
+       "soort": "Zone",
+       "beoordelingen": 0
+      },
+      {
+       "plek": 6,
+       "naam": "Vda schilders",
+       "cid": "16635293263568951662",
+       "soort": "Schilder",
+       "beoordelingen": 5
+      },
+      {
+       "plek": 7,
+       "naam": "Schilderwerken Westinga",
+       "cid": "16681055640101972110",
+       "soort": "Schilder",
+       "beoordelingen": 5
+      }
+     ]
+    },
+    {
+     "woord": "behanger coevorden",
+     "zoom": 11,
+     "resultaten": 20,
+     "plek": null,
+     "top": [
+      {
+       "plek": 1,
+       "naam": "Ahlers Coevorden",
+       "cid": "12512616265747530206",
+       "soort": "Schilder",
+       "beoordelingen": 42
+      },
+      {
+       "plek": 2,
+       "naam": "BB Behangservice",
+       "cid": "16646923695102752317",
+       "soort": "Schilder",
+       "beoordelingen": 0
+      },
+      {
+       "plek": 3,
+       "naam": "Printer 27, Behang",
+       "cid": "4707371548116434405",
+       "soort": "Zone",
+       "beoordelingen": 0
+      },
+      {
+       "plek": 4,
+       "naam": "Vda schilders",
+       "cid": "16635293263568951662",
+       "soort": "Schilder",
+       "beoordelingen": 5
+      },
+      {
+       "plek": 5,
+       "naam": "Schilderwerken Westinga",
+       "cid": "16681055640101972110",
+       "soort": "Schilder",
+       "beoordelingen": 5
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

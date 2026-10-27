@@ -194,6 +194,47 @@ niet in deze repo**:
    `bron/gbp.json` opnieuw. Verschuift die coördinaat niet naar Coevorden, dan is de
    wijziging niet aangekomen — zelfde regel als bij elke andere reparatie hier.
 
+### Stap 1 is gedaan, en de pin is verschoven (27-10-2026, 14:1x)
+
+Armando haalde "heel Nederland" diezelfde middag uit het servicegebied. Hermeten met
+`bron/gbp.mjs`:
+
+| | vóór | ná |
+| --- | --- | --- |
+| coördinaat | 52,1910 / 5,2796 | 52,6974 / 6,7178 |
+| tot Krimweg 109 | **110 km** | **4,5 km** |
+| tot Dalen | 115 km | 2,6 km |
+
+De pin schoof **113 km** op en ligt nu in zijn eigen werkgebied, een paar kilometer
+noordelijk van zijn adres — precies wat je verwacht van een zwaartepunt over Coevorden,
+Dalen, Schoonebeek, Emmen en Hardenberg. Daarmee is het vermoeden ook achteraf bevestigd:
+het *was* het servicegebied en niet een verkeerd adres.
+
+Wat **niet** verschoven is: het profiel heeft nog steeds geen openbaar adres (stap 2 staat
+dus open) en nog nul beoordelingen, en in Maps is hij nog nergens te vinden — zie het blok
+hieronder. Een correcte pin is nodig, niet genoeg.
+
+## Staat hij in Maps? (`bron/maps.mjs` → `bron/maps.json`)
+
+Deze vraag was op 27-10-2026 eerst met de hand gemeten, en een meting die je niet kunt
+overdoen kan geen verschil aanwijzen — juist het verschil is hier het bewijs. Nu vast:
+vier zoekwoorden × twee zoomniveaus, vanaf **zijn eigen deur** (52,6576 / 6,7052) en niet
+vanaf het centrum, want Maps kiest op afstand tot de zoeker.
+
+**Nulmeting, 15 minuten ná de servicegebied-wijziging: 0 van de 7 geldige metingen.** Hij
+staat nergens, ook niet op `hulskers schilderwerken` — daar geeft zoom 11 twee resultaten
+(Wim Hulskers, Hulskers Automotive) en zoom 14 een storing (`40102 No Search Results`, die
+telt niet in de noemer). Op `schilder coevorden` 38 resultaten zonder hem, op
+`renovlies coevorden` 49, op `behanger coevorden` 20. Steeds staat Ahlers Coevorden
+bovenaan.
+
+Lees dat **niet** als "de reparatie werkte niet". Het is een meting van een kwartier na de
+wijziging, en Google heeft dagen nodig; de pin bewoog wel, dus de wijziging is aangekomen.
+Deze ronde is de nulmeting waartegen de volgende iets betekent. Meet over een week en over
+twee weken opnieuw (`node bron/maps.mjs`, elke ronde wordt bijgeschreven), en lees de rij
+die `--toon` geeft: `hulskers schilderwerken` is de harde ondergrens. Staat hij daar nog
+niet op, dan heeft hij in Maps nog geen plek en zijn de vakwoorden zinloos om te lezen.
+
 Let op bij het lezen van het resultaat: de geografie rechtzetten is nodig, niet genoeg. Het
 profiel heeft nul beoordelingen en het domein staat sinds 26-10-2026 live, dus ook met een
 correcte pin blijft hij de eerste weken onderaan. Een nulmeting nu en nog een over twee
