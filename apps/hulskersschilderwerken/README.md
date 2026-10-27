@@ -57,6 +57,7 @@ node meet.mjs        # meet in Chromium op 360 t/m 1440, beide pagina's
 node proef.mjs       # klikt menu, rekenhulp, stroken en /werkwijze/ echt door
 node tools/live.mjs  # vult het ECHTE formulier op de LIVE site in (verstuurt!)
 node shot.mjs        # schermfoto's van beide pagina's
+node tools/handtekening-kijk.mjs  # klikproef op /handtekening/ (klembord, velden, logo)
 ```
 
 `meet.mjs` kijkt naar breedtes, tekstgroottes en kleine kapitalen in de kopletter,
@@ -1284,6 +1285,92 @@ antwoord ertussen). Ze zijn hier alsnog verwerkt, samen met de tekst die de klan
    texen" tegen "Gewoon behang") en op `vragen.a4`. Controle 15a bewaakt nog wel de
    andere kant: nergens mag staan dat vliesbehang wél getext of scheuroverbruggend is.
 
+## Ronde 21 (27-10-2026): de mailhandtekening op /handtekening/
+
+Armando: "kan je voor hulskers hetzelfde maken als dit https://noverabouw.nl/handtekening
+maar hulskers gebruikt alleen de mail app op iphone / macbook de officiele". Dat is dus
+dezelfde pagina als bij Novera, met instructies voor Mail van Apple en voor niets anders.
+
+`/handtekening/` komt uit `handtekening.mjs` en is de eerste **hulppagina**: wel gebouwd,
+geen pagina van de site. Noindex (ook in een productiebouw), geen canonical, niet in de
+sitemap, en geen enkele pagina linkt ernaartoe. `HULP_PADEN` in `inhoud.mjs` is de lijst;
+`tools/vooraf.mjs` keurt zo'n pagina met die eisen in plaats van met de eisen van een
+inhoudspagina, en zakt op een pagina in `dist/` die in geen van beide lijsten staat.
+
+Wél alleen noindex en **geen `Disallow:` in robots.txt**. Een adres dat een crawler niet
+mag ophalen, kan hij ook niet op noindex zien staan.
+
+### Drie dingen die hier anders zijn dan bij Novera
+
+1. **De handtekening staat als gewone html in de pagina.** Bij Novera tekende het script
+   hem pas in de browser; dan staat de enige inhoud van de pagina in een `<script>` -
+   precies wat de woordvloer van `vooraf.mjs` moet vangen, en niets kan er dan op
+   toetsen. Dezelfde functie gaat met `String()` ook mee naar de browser, dus er is één
+   rekensom voor de naam en de functie die Pascal zelf intypt en niet twee.
+2. **De gegevens komen uit `BEDRIJF`** en staan niet in de pagina op schrift. Een
+   handtekening is de plek waar een oud telefoonnummer het langst blijft staan: hij hangt
+   onder elke mail en niemand leest hem nog.
+3. **De maat van het logo komt uit het bestand.** `handtekening.mjs` leest de IHDR van
+   `public/logo-mail.png` (geen afhankelijkheid, vier bytes op 16 en op 20) en rekent de
+   hoogte uit de echte verhouding. Een vaste hoogte zou het logo stil uitrekken zodra het
+   merkbestand verandert, en dat ziet alleen de ontvanger.
+
+### Waarom de iPhone-weg via een mail loopt en niet via de knop
+
+Mail op de telefoon laat een afbeelding niet rechtstreeks in het handtekeningveld toe;
+de weg die het wel doet is hem uit een ontvangen mail kopiëren. Daarom staat die weg
+vooraan en de snelle knop erachter. De twee valkuilen die op de pagina staan zijn allebei
+van Mail en van niets anders:
+
+- op de Mac vervangt Mail de kleuren en het lettertype zolang het vinkje over het
+  standaardberichtlettertype aan staat (nieuwere versies: *Pas aan standaardbericht-
+  lettertype aan*, oudere: *Gebruik altijd mijn standaardlettertype*);
+- op de telefoon is de opmaak na het plakken soms weg, en komt hij terug met schudden.
+
+Mac en telefoon bewaren elk hun eigen handtekening, dus hij zet hem twee keer. Dat staat
+er ook, want anders is de tweede helft onzichtbaar werk.
+
+### De poorten die hierbij horen
+
+In `handtekening.mjs`, dus de bouw zakt:
+
+- elk zaakgegeven uit `inhoud.mjs` staat ook echt in de handtekening (nummer, tel-link,
+  mailadres, domein, plaats, KvK, logo);
+- geen `class` en geen `<style>`: een mailprogramma leest geen stylesheet;
+- elk adres in de handtekening is volledig. Een pad dat met `/` begint zoekt het
+  mailprogramma van de ontvanger op ZIJN domein, en dan staat er een kapot plaatje;
+- de tekst van de pagina gaat door dezelfde ai-poort als de copy van de site.
+
+In `tools/vooraf.mjs` (regel 18): de hulppagina's in `dist/` zijn precies `HULP_PADEN`,
+ze dragen noindex, ze hebben geen canonical, ze staan niet in de sitemap, geen pagina
+linkt ernaartoe, en wat zo'n pagina met een volledig adres op ons eigen domein ophaalt
+ligt ook echt in `dist/`. Alle zeven getest door ze stuk te maken.
+
+En `node tools/handtekening-kijk.mjs` is de klikproef: volgt het voorbeeld de velden,
+blijven de gegevens uit `inhoud.mjs` staan terwijl hij typt, valt een leeg naamveld terug
+op zijn naam, zet de knop echt **html** op het klembord (met logo, nummer, zonder class),
+steekt er niets buiten 390 en 1280, en staat het logo niet uitgerekt. Die eerste is de
+reden dat hij bestaat: een knop die alleen platte tekst kopieert ziet er hetzelfde uit en
+levert een handtekening zonder logo op.
+
+### Eén regel die een beslissing van Pascal vraagt
+
+In de handtekening staat `BEDRIJF.mail`, en dat is zijn gmail - hetzelfde adres dat de
+site toont. Sinds 26-10-2026 komen aanvragen binnen op `info@hulskersschilderwerken.nl`.
+Dat zijn dus twee adressen van hem, en in een handtekening onder een mail van zijn eigen
+domein staat de gmail zwak. Dezelfde vraag staat open bij het geprinte adres in de
+bevestigingsmail (zie de noot bij `contactEmail` in `worker/confirmation.ts`). Antwoord
+is één regel in `inhoud.mjs`, en dan veranderen de site, de mail en de handtekening mee.
+
+### Een valse treffer die een betere regel opleverde
+
+`vooraf.mjs` zag `src="${G.logo}"` in de meegestuurde functie staan en las dat als een
+verwijzing naar een bestand met een dollarteken in de naam. De link-regels meten nu
+buiten de `<script>`-blokken, want een `src=` binnen een script is geen adres. Wat dat
+had kunnen toedekken staat er als eigen eis voor terug: buiten de scripts mag er geen
+onvervangen `${...}` in de html staan - een sjabloon dat niet is ingevuld, en dat is wat
+die regel in de praktijk ving.
+
 ## Aandachtspunten
 
 - **De foto's zijn via WhatsApp binnengekomen** en daardoor teruggeschaald naar
@@ -1303,6 +1390,8 @@ antwoord ertussen). Ze zijn hier alsnog verwerkt, samen met de tekst die de klan
 | --- | --- |
 | `inhoud.mjs` | alle copy, de merken per regel, de prijzen, de NAP-gegevens |
 | `build.mjs` | poorten, css, html, dist/, nalooplijst |
+| `handtekening.mjs` | de hulppagina /handtekening/ + de mailhandtekening zelf (ronde 21) |
+| `tools/handtekening-kijk.mjs` | klikproef op die pagina: klembord, velden, logo, breedtes |
 | `fotos.py` | uitsnedes, webp, manifest, gemeten wandkleuren |
 | `controleer.mjs` | leest de gebouwde pagina's na |
 | `meet.mjs` | breedtes en tekstgroottes in Chromium |

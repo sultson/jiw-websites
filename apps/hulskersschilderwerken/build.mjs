@@ -18,7 +18,10 @@ import { fileURLToPath } from 'node:url'
 // vanaf nu een bewuste keuze en geen achterstand.
 import { aipoort, platteTekst } from './tools/poorten/aipoort.mjs'
 import { bronpoort } from './tools/poorten/bronpoort.mjs'
-import { BEDRIJF, GBP, FORM_PAD, INDEXEERBAAR_PADEN, PRIJZEN, SOORTEN, VERF, TEKST, MERKEN, NAP_MERKEN, AI_TOEGESTAAN } from './inhoud.mjs'
+import { BEDRIJF, GBP, FORM_PAD, INDEXEERBAAR_PADEN, HULP_PADEN, PRIJZEN, SOORTEN, VERF, TEKST, MERKEN, NAP_MERKEN, AI_TOEGESTAAN } from './inhoud.mjs'
+// De mailhandtekening op /handtekening/. Een hulppagina met zijn eigen opmaak en zijn
+// eigen ai-poort; hij deelt alleen de gegevens uit inhoud.mjs met de site.
+import { paginaHandtekening } from './handtekening.mjs'
 
 const HIER = path.dirname(fileURLToPath(import.meta.url))
 const DIST = path.join(HIER, 'dist')
@@ -2016,6 +2019,41 @@ for (const [bestand, inhoud] of PAGINAS) {
 }
 const alleHtml = PAGINAS.map(([, h]) => h).join('\n')
 
+/*
+ * De hulppagina's. Ze staan NIET in PAGINAS en niet in alleHtml, en dat is met opzet:
+ * die lijst voedt de foto-opruiming en de eisen die bij een inhoudspagina horen. Een
+ * hulppagina heeft geen kop, geen voet, geen offerteblok en geen plek in de sitemap.
+ *
+ * De bouw zakt zodra deze lijst en HULP_PADEN in inhoud.mjs uit elkaar lopen, want
+ * tools/vooraf.mjs keurt ze op die lijst: een hulppagina die daar niet in staat wordt
+ * als inhoudspagina gekeurd en zakt dan op de canonical, de woordvloer en de sitemap.
+ */
+const HULPPAGINAS = [[path.join('handtekening', 'index.html'), '/handtekening/', paginaHandtekening()]]
+{
+  const gebouwd = HULPPAGINAS.map(([, adres]) => adres).sort().join('|')
+  const verwacht = [...HULP_PADEN].sort().join('|')
+  if (gebouwd !== verwacht) {
+    throw new Error(`build: hulppagina's ${gebouwd || '(geen)'} komen niet overeen met HULP_PADEN ${verwacht}`)
+  }
+  for (const [bestand, , inhoud] of HULPPAGINAS) {
+    const uit = path.join(DIST, bestand)
+    fs.mkdirSync(path.dirname(uit), { recursive: true })
+    fs.writeFileSync(uit, inhoud)
+  }
+}
+
+/*
+ * En geen enkele pagina van de site mag ernaartoe linken. Dat is wat een hulppagina
+ * hulppagina houdt: hij hangt niet in het menu en niet in de voet, dus hij komt alleen
+ * bij wie het adres krijgt toegestuurd. Een link die er stil bij komt zet hem alsnog in
+ * de zichtbare site en in de crawl.
+ */
+for (const adres of HULP_PADEN) {
+  if (alleHtml.includes(`href="${adres}"`) || alleHtml.includes(`href="${adres.replace(/\/$/, '')}"`)) {
+    throw new Error(`build: een pagina van de site linkt naar de hulppagina ${adres}`)
+  }
+}
+
 // Alleen foto's die de pagina's ook echt gebruiken gaan mee. Een webp die blijft liggen
 // nadat je een kaart vervangen hebt, wordt anders stil mee de Worker op geupload.
 const gebruikt = new Set([...alleHtml.matchAll(/f\/([a-z0-9-]+)-\d+\.webp/g)].map((m) => m[1]))
@@ -2101,5 +2139,9 @@ fs.writeFileSync(
   `## ${nalopen.length} regels\n\n${regels}\n`
 )
 
-console.log(`\ngebouwd: ${PAGINAS.map(([b]) => 'dist/' + b.replace(/\\/g, '/')).join(' + ')} + ${cssNaam}`)
+console.log(
+  `\ngebouwd: ${[...PAGINAS.map(([b]) => b), ...HULPPAGINAS.map(([b]) => b)]
+    .map((b) => 'dist/' + b.replace(/\\/g, '/'))
+    .join(' + ')} + ${cssNaam}`
+)
 console.log(`nalooplijst: NALEZEN-PASCAL.md (${nalopen.length} regels)`)

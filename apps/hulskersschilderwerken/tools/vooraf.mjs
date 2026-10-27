@@ -32,17 +32,22 @@
 //   16. de openingstijden staan in de JSON-LD van de startpagina en zijn dezelfde als
 //       in inhoud.mjs (ze staan nergens zichtbaar, dus niets anders meldt hun verdwijnen)
 //   17. zijn Google-bedrijfsprofiel staat in sameAs, met de cid uit inhoud.mjs
+//   18. de hulppagina's: precies HULP_PADEN, altijd noindex, geen canonical, niet in de
+//       sitemap, en geen enkele pagina linkt ernaartoe
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
-import { BEDRIJF, GBP, FORM_PAD, INDEXEERBAAR_PADEN } from '../inhoud.mjs';
+import { BEDRIJF, GBP, FORM_PAD, INDEXEERBAAR_PADEN, HULP_PADEN } from '../inhoud.mjs';
 
 const DEV = process.argv.includes('--dev');
 const ADRES = `https://${BEDRIJF.domein}`;
 const OUD_CONCEPT = 'hulskers-renovlies-concept.jouwconcept.app';
 
 // De tekstvloer per pagina. Lager dan dit en er staat iets niet in de html. De 404 is
-// bewust kort en heeft zijn eigen, veel lagere vloer.
+// bewust kort en heeft zijn eigen, veel lagere vloer. Een hulppagina staat daartussenin:
+// hij is geen inhoudspagina, maar zijn hele reden van bestaan is de uitleg erop, en die
+// hoort in de html te staan en niet door een script getekend te worden.
 const WOORDVLOER = 400;
 const WOORDVLOER_404 = 15;
+const WOORDVLOER_HULP = 150;
 
 const fouten = [];
 const zak = (m) => fouten.push(m);
@@ -81,7 +86,8 @@ const paginas = bestanden.map((bestand) => ({
 }));
 
 const is404 = (p) => p.adres === null;
-const indexeerbaar = paginas.filter((p) => !is404(p));
+const isHulp = (p) => p.adres !== null && HULP_PADEN.includes(p.adres);
+const indexeerbaar = paginas.filter((p) => !is404(p) && !isHulp(p));
 
 /** De zichtbare tekst: zonder script, zonder style, zonder tags. */
 function tekstVan(html) {
@@ -133,6 +139,8 @@ for (const p of paginas) {
   const canon = (p.html.match(/rel="canonical" href="([^"]+)"/) || [])[1];
   if (is404(p)) {
     if (canon) zakP(`heeft een canonical (${canon}) - een foutpagina hoort er geen te hebben`);
+  } else if (isHulp(p)) {
+    if (canon) zakP(`heeft een canonical (${canon}) - een hulppagina vraagt niet om opname`);
   } else if (!canon) {
     zakP('heeft geen canonical');
   } else if (canon !== `${ADRES}${p.adres}`) {
@@ -141,7 +149,7 @@ for (const p of paginas) {
 
   // 4. de woordvloer - staat de inhoud in de html, of in een script?
   const woorden = tekstVan(p.html).split(' ').filter(Boolean).length;
-  const vloer = is404(p) ? WOORDVLOER_404 : WOORDVLOER;
+  const vloer = is404(p) ? WOORDVLOER_404 : isHulp(p) ? WOORDVLOER_HULP : WOORDVLOER;
   if (woorden < vloer) {
     zakP(`heeft ${woorden} woorden in de html, onder de vloer van ${vloer} - staat de tekst in een script?`);
   }
@@ -149,7 +157,10 @@ for (const p of paginas) {
   // 5. noindex
   const dicht = /<meta name="robots" content="noindex/.test(p.html);
   if (is404(p) && !dicht) zakP('staat niet op noindex - een foutpagina hoort niet in de index');
-  if (!is404(p)) {
+  // Een hulppagina staat ALTIJD op noindex, ook in een productiebouw. Hij hangt aan de
+  // indexschakelaar van build.mjs niet mee: hij is geen pagina van de site.
+  if (isHulp(p) && !dicht) zakP('staat niet op noindex - een hulppagina hoort niet in de index');
+  if (!is404(p) && !isHulp(p)) {
     if (DEV && !dicht) zakP('staat niet op noindex in een dichte bouw');
     if (!DEV && dicht) zakP('staat op noindex in een productiebouw - dan ziet niemand de pagina');
   }
@@ -167,8 +178,25 @@ for (const p of paginas) {
     }
   }
 
-  // 8 + 9 + 10. interne links en bestanden
-  for (const m of p.html.matchAll(/(?:src|href)="(?!https?:|mailto:|tel:|data:|#)([^"]+)"/g)) {
+  /*
+   * 8 + 9 + 10. interne links en bestanden
+   *
+   * Buiten de scripts gemeten. Een src= binnen een <script> is geen adres maar een
+   * stukje tekst waar de browser nog iets in invult: de hulppagina zet de bouwer van de
+   * handtekening met String() in de pagina, en daar staat letterlijk src="${G.logo}" in.
+   * Dat las deze regel als een verwijzing naar een bestand met een dollarteken in de
+   * naam (gevonden 27-10-2026, door die pagina).
+   *
+   * Wat dat zou kunnen toedekken is een adres dat in javascript staat en nergens heen
+   * gaat. Daarvoor in de plaats staat de eis hieronder: buiten de scripts mag er geen
+   * onvervangen ${...} in de html staan - dat is een sjabloon dat niet is ingevuld, en
+   * dat is wat deze regel in de praktijk ving.
+   */
+  const zonderScript = p.html.replace(/<script[\s\S]*?<\/script>/gi, ' ');
+  for (const m of zonderScript.matchAll(/\$\{[^}]*\}/g)) {
+    zakP(`draagt een onvervangen sjabloon ${m[0]} in de html`);
+  }
+  for (const m of zonderScript.matchAll(/(?:src|href)="(?!https?:|mailto:|tel:|data:|#)([^"]+)"/g)) {
     const url = m[1];
     const schoon = url.split(/[?#]/)[0];
     if (!schoon || schoon.startsWith('//')) continue;
@@ -198,6 +226,48 @@ for (const p of paginas) {
 
   // 15. het oude conceptadres
   if (p.html.includes(OUD_CONCEPT)) zakP(`noemt het oude conceptadres ${OUD_CONCEPT}`);
+}
+
+// ------------------------------------------------------------- 18. de hulppagina's
+{
+  const uitInhoud = [...HULP_PADEN].sort();
+  const uitDist = paginas.filter(isHulp).map((p) => p.adres).sort();
+  if (uitInhoud.join('|') !== uitDist.join('|')) {
+    zak(`vooraf: HULP_PADEN in inhoud.mjs zegt ${uitInhoud.join(', ') || '(niets)'}, maar in dist/ staat ${uitDist.join(', ') || '(niets)'}`);
+  }
+
+  /*
+   * Geen enkele pagina linkt naar een hulppagina. Dat is wat hem buiten de site houdt:
+   * hij staat niet in het menu en niet in de voet, dus hij komt alleen bij wie het adres
+   * krijgt toegestuurd. build.mjs gooit hier ook op, maar die kijkt naar de html die hij
+   * net zelf gemaakt heeft; dit kijkt naar wat er in dist/ ligt.
+   */
+  for (const p of paginas) {
+    if (isHulp(p)) continue;
+    for (const adres of HULP_PADEN) {
+      if (p.html.includes(`href="${adres}"`) || p.html.includes(`href="${adres.replace(/\/$/, '')}"`)) {
+        zak(`${p.adres ?? '404.html'} linkt naar de hulppagina ${adres} - dan is het geen hulppagina meer`);
+      }
+    }
+  }
+
+  /*
+   * En wat een hulppagina met een VOLLEDIG adres op ons eigen domein ophaalt, moet ook
+   * echt in dist/ liggen. Regel 10 hierboven slaat dat over, want die kijkt alleen naar
+   * paden die met / beginnen - en de mailhandtekening moet juist een volledig adres
+   * dragen, anders zoekt het mailprogramma van de ontvanger het logo op zijn eigen
+   * domein. Precies daardoor zou een ontbrekende plaat hier stil blijven: op de pagina
+   * zelf valt hij op, in de mail van de ontvanger niet.
+   */
+  for (const p of paginas.filter(isHulp)) {
+    for (const m of p.html.matchAll(new RegExp(`(?:src|href)="https://${BEDRIJF.domein.replace(/\./g, '\\.')}(/[^"]*)"`, 'g'))) {
+      const schoon = m[1].split(/[?#]/)[0];
+      if (schoon === '/' || schoon.endsWith('/')) continue;
+      if (!existsSync(`dist${schoon}`)) {
+        zak(`${p.adres} haalt ${ADRES}${schoon} op, maar dist${schoon} bestaat niet`);
+      }
+    }
+  }
 }
 
 // ------------------------------------------------- 16. de openingstijden in de JSON-LD
@@ -311,6 +381,8 @@ if (fouten.length) {
   console.error('');
   process.exit(1);
 }
+const hulp = paginas.filter(isHulp).length;
 console.log(
-  `vooraf: ${paginas.length} pagina's schoon (${indexeerbaar.length} indexeerbaar${DEV ? ', dichte bouw' : ''})`,
+  `vooraf: ${paginas.length} pagina's schoon (${indexeerbaar.length} indexeerbaar, ` +
+    `${hulp} hulppagina${hulp === 1 ? '' : "'s"}${DEV ? ', dichte bouw' : ''})`,
 );

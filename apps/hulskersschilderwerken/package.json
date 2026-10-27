@@ -12,6 +12,7 @@
     "lint": "tsc --noEmit -p tsconfig.worker.json",
     "controleer": "node controleer.mjs",
     "meet": "node meet.mjs",
+    "handtekening": "node tools/handtekening-kijk.mjs",
     "proef": "node proef.mjs",
     "indexnow": "node tools/indexnow.mjs"
   },

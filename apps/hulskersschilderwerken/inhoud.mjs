@@ -94,6 +94,22 @@ export const FORM_PAD = '/api/forms/offerte'
  */
 export const INDEXEERBAAR_PADEN = ['/', '/werkwijze/']
 
+/**
+ * Hulppagina's: wel gebouwd, geen pagina van de site.
+ *
+ * Ze dragen noindex (ook in een productiebouw), hebben geen canonical, staan niet in de
+ * sitemap, en geen enkele pagina linkt ernaartoe. Wie het adres niet krijgt toegestuurd,
+ * vindt het niet. tools/vooraf.mjs keurt ze met die eisen in plaats van met de eisen van
+ * een inhoudspagina, en zakt op een pagina in dist/ die in geen van beide lijsten staat.
+ *
+ * Alleen noindex en dus GEEN `Disallow:` in robots.txt. Een adres dat een crawler niet
+ * mag ophalen kan hij ook niet op noindex zien staan, en dan is het verbod juist de reden
+ * dat het adres kaal in de zoekresultaten kan opduiken.
+ *
+ * /handtekening/ is de mailhandtekening van Pascal (zie handtekening.mjs).
+ */
+export const HULP_PADEN = ['/handtekening/']
+
 // De prijzen. Staan hier los zodat er een plek is om ze bij te werken als Pascal ze
 // verandert, in plaats van verspreid door de pagina.
 //
