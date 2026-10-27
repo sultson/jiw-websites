@@ -160,9 +160,50 @@ site. Die mag niet als korpus voor de bronpoort dienen — dan verantwoordt onze
 zichzelf. Daarom staat alleen het zaakgegeven in
 `bron/zijn-tekst/google-profiel-27-10-2026.txt`, met die reden erboven de streep.
 
+## Het middelpunt van Nederland repareren
+
+De coördinaat die het profiel teruggeeft (52,1910 / 5,2796) ligt bij Nijkerk, **112 km van
+Coevorden**. Dat is geen afrondingsfout en geen verkeerd adres: zo ver mis word je alleen
+als Google de pin op het **zwaartepunt van het servicegebied** zet.
+
+Vermoeden, en het past exact: het servicegebied staat op heel Nederland. Zijn eigen
+profielomschrijving zegt "Projecten vanaf 100 m2 in heel Nederland", en dat is precies de
+reden waarom iemand dat vakje zo invult. Het is niet gemeten — het servicegebied staat niet
+in `business_data/google/my_business_info` — maar het is één scherm in zijn dashboard om na
+te kijken, en er is geen tweede verklaring die 112 km oplevert.
+
+De reparatie, in deze volgorde, en **alles behalve de laatste stap zit in zijn dashboard en
+niet in deze repo**:
+
+1. **Servicegebied terug naar Coevorden en omstreken** (Coevorden, Dalen, Schoonebeek,
+   Emmen, Hardenberg — dezelfde rij als in zijn omschrijving). Max 20 gebieden, en Google
+   adviseert niet verder dan waar hij nog dezelfde dag heen rijdt. De landelijke klussen
+   vanaf 100 m2 blijven op de **site** staan; dat is een aanbod, geen servicegebied.
+2. **Adres invullen: Krimweg 109, Coevorden.** Daarna is het een keuze of hij hem laat zien.
+   Verbergen mag (service-area business, Google vraagt het adres alleen voor de
+   verificatie), maar een zichtbaar adres is het sterkste lokale signaal dat er is en geeft
+   hem een echte pin in Coevorden in plaats van een zwaartepunt. Het is zijn huisadres, dus
+   dat is zijn beslissing en niet de onze.
+3. Reken op **hervalidatie** na een adreswijziging (meestal video), en op een profiel dat
+   een paar dagen in de wachtkamer staat. Doe het dus niet in dezelfde week als een
+   advertentiecampagne, en verander niet tegelijk de naam en de categorieën — meerdere
+   wijzigingen in één keer trekt een handmatige controle aan.
+4. **Tweede categorie** (wandafwerking ligt dichter op zijn vak dan Schilder) en de
+   attributen, pas nadat het adres door de controle is.
+5. **Hermeten**, en dat is het enige stuk dat hier staat: `node bron/gbp.mjs` schrijft
+   `bron/gbp.json` opnieuw. Verschuift die coördinaat niet naar Coevorden, dan is de
+   wijziging niet aangekomen — zelfde regel als bij elke andere reparatie hier.
+
+Let op bij het lezen van het resultaat: de geografie rechtzetten is nodig, niet genoeg. Het
+profiel heeft nul beoordelingen en het domein staat sinds 26-10-2026 live, dus ook met een
+correcte pin blijft hij de eerste weken onderaan. Een nulmeting nu en nog een over twee
+weken zegt meer dan één meting direct na de wijziging.
+
 ## Wat de volgende hierop kan doen
 
 - Search Console aanzetten en de sitemap indienen (zie boven).
+- **Het servicegebied en het adres in zijn profiel** — zie het blok hierboven. Dit is de
+  enige reden dat hij in Maps vanuit zijn eigen stad niet bestaat.
 - **Reviews op zijn Google-profiel.** Nul staat er nu. Dit is de zwaarste van de lijst, en
   het is geen sitewerk.
 - **Een tweede categorie in zijn profiel** die over wandafwerking gaat, en de attributen
