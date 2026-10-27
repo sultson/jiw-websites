@@ -12,9 +12,13 @@
  *  - zet de knop de handtekening als HTML op het klembord, mét het logo en de kleuren?
  *    Een knop die alleen platte tekst kopieert ziet er hetzelfde uit en levert bij
  *    Pascal een handtekening zonder logo op. Dat merkt hij pas als de ontvanger het zegt.
- *  - volgt het voorbeeld zijn naam en functie? De pagina bouwt de handtekening twee
- *    keer met dezelfde functie (hier in de bouw, en in de browser), dus die twee kunnen
- *    uit elkaar lopen zodra iemand er een van aanpast.
+ *  - volgt het voorbeeld zijn naam? De pagina bouwt de handtekening twee keer met
+ *    dezelfde functie (hier in de bouw, en in de browser), dus die twee kunnen uit
+ *    elkaar lopen zodra iemand er een van aanpast.
+ *  - staan het logo en de tekst echt NAAST elkaar, gemeten in de browser? De bouwpoort
+ *    telt de vakken van de tabel, en dat is de vorm. Of ze ook naast elkaar LANDEN is
+ *    iets anders: een cel die te breed wordt duwt de tekst eronder zonder dat de html
+ *    verandert. Dus hier de echte vakken vergelijken.
  *  - steekt er niets buiten het scherm op een telefoon?
  *
  * Over een server en niet over file://, zelfde reden als bij meet.mjs: de pagina haalt
@@ -62,12 +66,19 @@ try {
     }
     await pagina.goto(`${basis}/handtekening/`, { waitUntil: 'domcontentloaded' })
 
-    // 1. het voorbeeld volgt de velden
+    // 1. het voorbeeld volgt het naamveld
     await pagina.fill('#naam', 'Jan Hulskers')
-    await pagina.fill('#functie', 'Voorman')
     const tekst = await pagina.textContent('#voorbeeld')
-    if (!tekst.includes('Jan Hulskers') || !tekst.includes('Voorman')) {
-      zak(`${maat.naam}: het voorbeeld volgt de velden niet (${tekst.slice(0, 60)})`)
+    if (!tekst.includes('Jan Hulskers')) {
+      zak(`${maat.naam}: het voorbeeld volgt het naamveld niet (${tekst.slice(0, 60)})`)
+    }
+    /*
+     * Er is geen functieveld meer (zie de kop van handtekening.mjs). Zodra er weer een
+     * veld bijkomt moet deze proef mee, anders typt Pascal straks in een veld dat niets
+     * doet - precies het geval dat hier niet opvalt, want het voorbeeld ziet er goed uit.
+     */
+    if (await pagina.$('#functie')) {
+      zak(`${maat.naam}: er staat weer een functieveld op de pagina en deze proef toetst het niet`)
     }
     // en de gegevens uit inhoud.mjs blijven staan terwijl hij typt
     for (const waarde of [G.telToon, G.mail, G.domein, G.kvk]) {
@@ -96,10 +107,46 @@ try {
     if (!klembord.includes(G.telToon)) zak(`${maat.naam}: het telefoonnummer staat niet op het klembord`)
     if (/\sclass=/.test(klembord)) zak(`${maat.naam}: er staat een class op het klembord`)
 
-    // 4. niets buiten het scherm
+    /*
+     * 3b. logo en tekst naast elkaar, in de browser gemeten.
+     *
+     * Niet op de html maar op de vakken: het logo moet LINKS van de naam eindigen en de
+     * twee moeten elkaar in de hoogte overlappen. Alleen "de naam staat rechts van het
+     * logo" is niet genoeg - dan slaagt een gestapelde handtekening ook, want daar staat
+     * de naam ook rechts van de linkerrand van het logo.
+     */
+    const naast = await pagina.evaluate(() => {
+      const beeld = document.querySelector('#voorbeeld img')
+      const vak = document.querySelector('#voorbeeld td:nth-child(2)')
+      if (!beeld || !vak) return null
+      const a = beeld.getBoundingClientRect()
+      const b = vak.getBoundingClientRect()
+      return {
+        rechtsVan: Math.round(b.left - a.right),
+        overlap: Math.round(Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)),
+      }
+    })
+    if (!naast) zak(`${maat.naam}: de handtekening heeft geen tweede vak met de tekst erin`)
+    else if (naast.rechtsVan < 0 || naast.overlap <= 0) {
+      zak(
+        `${maat.naam}: logo en tekst staan niet naast elkaar (tekst begint ${naast.rechtsVan} px na het logo, overlap in hoogte ${naast.overlap} px)`,
+      )
+    }
+
+    /*
+     * 4. niets buiten het scherm.
+     *
+     * De handtekening zelf telt hier NIET mee: die is zo breed als hij in de mail is
+     * (ongeveer 395 px, logo naast de tekst) en schuift binnen zijn eigen vak. Hem laten
+     * meetellen zou betekenen dat zijn logo in elke mail kleiner wordt om deze
+     * hulppagina te laten passen. Het VAK eromheen telt wel mee - anders schuift straks
+     * de hele pagina opzij en heet dat hetzelfde.
+     */
     const over = await pagina.evaluate((breed) => {
       const uit = []
+      const kader = document.getElementById('voorbeeld')
       for (const el of document.querySelectorAll('body *')) {
+        if (el !== kader && kader.contains(el)) continue
         const r = el.getBoundingClientRect()
         if (r.width && (r.right > breed + 1 || r.left < -1)) {
           uit.push(`${el.tagName.toLowerCase()} ${Math.round(r.left)}-${Math.round(r.right)}`)
@@ -108,6 +155,15 @@ try {
       return uit.slice(0, 4)
     }, maat.breed)
     if (over.length) zak(`${maat.naam}: steekt buiten de ${maat.breed} px: ${over.join(', ')}`)
+
+    // en het vak schuift ook echt, in plaats van de handtekening af te knippen
+    const schuift = await pagina.evaluate(() => {
+      const k = document.getElementById('voorbeeld')
+      return { kan: k.scrollWidth > k.clientWidth, stijl: getComputedStyle(k).overflowX }
+    })
+    if (schuift.kan && schuift.stijl !== 'auto' && schuift.stijl !== 'scroll') {
+      zak(`${maat.naam}: de handtekening past niet in het vak en is niet te schuiven (overflow-x: ${schuift.stijl})`)
+    }
 
     // 5. het logo is echt geladen en staat niet uitgerekt
     await pagina

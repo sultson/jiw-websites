@@ -12,14 +12,20 @@
  *    Novera tekende het script hem pas in de browser, en dan staat de enige inhoud van
  *    de pagina in een <script> - precies wat de woordvloer van vooraf.mjs moet vangen,
  *    en niets kan er dan op toetsen. Dezelfde functie gaat ook mee naar de browser (via
- *    String(), zie onderaan), zodat er een rekensom bestaat voor de naam en de functie
- *    die Pascal zelf intypt en niet twee.
+ *    String(), zie onderaan), zodat er een rekensom bestaat voor de naam die Pascal zelf
+ *    intypt en niet twee.
  *
  * 2. De gegevens komen uit BEDRIJF in inhoud.mjs en staan hier niet op schrift. Een
  *    handtekening is de plek waar een oud telefoonnummer het langst blijft staan: hij
  *    hangt onder elke mail en niemand leest hem nog. Verandert zijn nummer, dan is
  *    inhoud.mjs de enige plek waar je hoeft te zijn, en controleer.mjs legt de gebouwde
  *    pagina ernaast.
+ *
+ * Er is GEEN functieveld, en onder de naam staat geen "Eigenaar - Hulskers
+ * Schilderwerken" (Armando streepte die regel door op 27-10-2026). Novera heeft dat veld
+ * omdat daar meer mensen mailen; hier mailt Pascal. En de bedrijfsnaam staat al in het
+ * logo ernaast, dus die regel zei hem een tweede keer. Zet je het veld terug, zet dan
+ * ook de regel terug - een veld dat niets verandert is erger dan geen veld.
  *
  * De instructies gaan ALLEEN over Mail van Apple, op de Mac en op de iPhone (Armando,
  * 27-10-2026: "hulskers gebruikt alleen de mail app op iphone / macbook de officiele").
@@ -50,7 +56,7 @@ const HIER = path.dirname(fileURLToPath(import.meta.url))
 /* De weergavebreedte van het logo in de handtekening. De hoogte komt uit de plaat. */
 const LOGO_BREED = 174
 
-const STANDAARD = { naam: 'Pascal Hulskers', functie: 'Eigenaar' }
+const STANDAARD = { naam: 'Pascal Hulskers' }
 
 /*
  * De tekst van de pagina. Een eigen blok, zodat hij door dezelfde ai-poort gaat als de
@@ -60,9 +66,8 @@ const STANDAARD = { naam: 'Pascal Hulskers', functie: 'Eigenaar' }
 export const HT = {
   omschrijving: 'Hulppagina: hier kopieert Pascal zijn mailhandtekening met logo.',
   kop: 'Mailhandtekening',
-  lead: 'Vul uw naam en functie in, kopieer de handtekening en zet hem in Mail. Het logo en de kleuren staan er al in.',
+  lead: 'Vul uw naam in, kopieer de handtekening en zet hem in Mail. Het logo en de kleuren staan er al in.',
   veldNaam: 'Naam',
-  veldFunctie: 'Functie',
   kopieer: 'Handtekening kopieren',
   selecteer: 'Selecteer hem zelf',
   gelukt: 'Gekopieerd, met logo en kleuren.',
@@ -102,30 +107,25 @@ export const HT = {
 /* ------------------------------------------------------------------ de handtekening
  *
  * Deze functie draait twee keer: hier in de bouw (voor de html die in de pagina staat)
- * en in de browser (zodra Pascal zijn naam of functie wijzigt). Hij gaat met String()
+ * en in de browser (zodra Pascal zijn naam wijzigt). Hij gaat met String()
  * mee de pagina in, dus hij mag NIETS gebruiken wat buiten zijn eigen argumenten staat.
  *
  * Een tabel met stijl per element en geen enkele klasse: een mailprogramma leest geen
  * stylesheet, en Mail knipt bij het plakken alles weg wat het niet begrijpt.
  */
-export function handtekeningHtml(naam, functie, G) {
+export function handtekeningHtml(naam, G) {
   const ont = (s) =>
     String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
   const n = ont(naam.trim() || G.naam)
-  const f = ont(functie.trim())
-  const onder = f ? `${f} &middot; ${ont(G.bedrijf)}` : ont(G.bedrijf)
 
   return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;">
   <tr>
-    <td style="padding:0 0 11px;">
+    <td style="vertical-align:middle;padding:0 18px 0 0;">
       <img src="${G.logo}" width="${G.breed}" height="${G.hoog}" alt="${ont(G.bedrijf)}" style="display:block;border:0;width:${G.breed}px;height:${G.hoog}px;" />
     </td>
-  </tr>
-  <tr>
-    <td style="border-top:2px solid ${G.blauw};padding:11px 0 0;">
+    <td style="vertical-align:middle;border-left:2px solid ${G.blauw};padding:2px 0 2px 18px;">
       <div style="font:700 16px/1.3 Arial,Helvetica,sans-serif;color:${G.navy};">${n}</div>
-      <div style="font:400 13px/1.5 Arial,Helvetica,sans-serif;color:${G.grijs};padding-top:2px;">${onder}</div>
-      <div style="height:10px;line-height:10px;font-size:0;">&nbsp;</div>
+      <div style="height:8px;line-height:8px;font-size:0;">&nbsp;</div>
       <div style="font:400 13px/1.7 Arial,Helvetica,sans-serif;color:${G.inkt};">
         <a href="tel:${G.telLink}" style="color:${G.inkt};text-decoration:none;">${G.telToon}</a><br />
         <a href="mailto:${G.mail}" style="color:${G.inkt};text-decoration:none;">${G.mail}</a><br />
@@ -139,10 +139,15 @@ export function handtekeningHtml(naam, functie, G) {
 }
 
 /* De platte versie, voor een mailprogramma dat alleen tekst aanneemt. Draait alleen in
-   de browser, naast de html op het klembord. */
-export function handtekeningPlat(naam, functie, G) {
-  const r = [naam.trim() || G.naam]
-  r.push(functie.trim() ? `${functie.trim()} - ${G.bedrijf}` : G.bedrijf)
+   de browser, naast de html op het klembord.
+ *
+ * Hier staat de bedrijfsnaam WEL als regel, terwijl hij uit de html-versie is (Armando,
+ * 27-10-2026, streepte "Eigenaar - Hulskers Schilderwerken" door). Dat is geen
+ * verschil dat uit de pas loopt maar de reden ervoor: in de html draagt het logo de
+ * naam, en in platte tekst is er geen logo. Zonder die regel staat er een mail van
+ * Pascal Hulskers zonder dat ergens zijn bedrijf staat. */
+export function handtekeningPlat(naam, G) {
+  const r = [naam.trim() || G.naam, G.bedrijf]
   r.push('', G.telToon, G.mail, G.domein, '', `${G.plaats} - KvK ${G.kvk}`)
   return r.join('\n')
 }
@@ -202,7 +207,11 @@ label{flex:1 1 200px;font-size:13px;font-weight:600;color:var(--navy)}
 input{display:block;width:100%;margin-top:6px;padding:11px 12px;font:400 16px/1.4 inherit;
   color:var(--inkt);background:#fff;border:1px solid #C9CFDB;border-radius:6px}
 input:focus{outline:2px solid var(--blauw);outline-offset:1px}
-.voorbeeld{padding:4px 0 2px}
+/* De handtekening staat naast elkaar en is daarmee ongeveer 395 px breed. Dat past niet
+   in deze kaart op een telefoon, en dat is goed: de maat hoort bij de MAIL en niet bij
+   deze pagina. Hem hier smaller maken zou zijn logo in elke mail kleiner maken om een
+   hulppagina te laten passen. Dus schuiven, en de kaart knipt. */
+.voorbeeld{padding:4px 0 2px;overflow-x:auto}
 .knoppen{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:22px}
 button{font:600 15px/1.2 inherit;padding:12px 20px;border-radius:6px;border:1px solid var(--navy);
   background:var(--navy);color:#fff;cursor:pointer}
@@ -229,6 +238,10 @@ footer a{color:var(--navy)}
  *    klasse is opmaak die alleen hier werkt.
  * 3. Het logo hangt aan een volledig adres. Een pad dat met / begint zoekt het
  *    mailprogramma van de ontvanger op ZIJN domein, en dan staat er een kapot plaatje.
+ * 4. Logo en tekst staan NAAST elkaar: een rij met twee vakken (Armando, 27-10-2026,
+ *    "kan het niet naast elkaar zoals bij novera bouw"). Hij stond gestapeld, en dat is
+ *    de vorm waar hij vanzelf naar terugvalt zodra iemand aan de tabel sleutelt - een
+ *    tweede <tr> erbij en het staat weer onder elkaar, zonder dat er iets kapot lijkt.
  */
 function keurHandtekening(html, G) {
   const moet = [
@@ -251,12 +264,22 @@ function keurHandtekening(html, G) {
       throw new Error(`handtekening: ${m[1]} is geen volledig adres - bij de ontvanger wijst dat naar zijn eigen domein`)
     }
   }
+  const rijen = (html.match(/<tr\b/g) || []).length
+  const vakken = (html.match(/<td\b/g) || []).length
+  if (rijen !== 1 || vakken !== 2) {
+    throw new Error(
+      `handtekening: logo en tekst moeten naast elkaar staan (een rij met twee vakken), gevonden: ${rijen} rij(en) en ${vakken} vak(ken)`,
+    )
+  }
+  if (!/<td[^>]*border-left:/.test(html)) {
+    throw new Error('handtekening: de streep tussen logo en tekst staat niet op het rechtervak (border-left)')
+  }
 }
 
 export function paginaHandtekening() {
   const G = handtekeningGegevens()
   const lijst = (regels) => regels.map((r) => `        <li>${r}</li>`).join('\n')
-  const voorbeeld = handtekeningHtml(STANDAARD.naam, STANDAARD.functie, G)
+  const voorbeeld = handtekeningHtml(STANDAARD.naam, G)
   keurHandtekening(voorbeeld, G)
 
   return `<!doctype html>
@@ -280,9 +303,6 @@ export function paginaHandtekening() {
     <div class="velden">
       <label>${HT.veldNaam}
         <input id="naam" type="text" value="${STANDAARD.naam}" autocomplete="off" spellcheck="false">
-      </label>
-      <label>${HT.veldFunctie}
-        <input id="functie" type="text" value="${STANDAARD.functie}" autocomplete="off" spellcheck="false">
       </label>
     </div>
 
@@ -317,13 +337,11 @@ var G = ${JSON.stringify(G)};
 ${String(handtekeningHtml)}
 ${String(handtekeningPlat)}
 var veldNaam = document.getElementById('naam')
-var veldFunctie = document.getElementById('functie')
 var voorbeeld = document.getElementById('voorbeeld')
 var melding = document.getElementById('melding')
 
-function teken(){ voorbeeld.innerHTML = handtekeningHtml(veldNaam.value, veldFunctie.value, G) }
+function teken(){ voorbeeld.innerHTML = handtekeningHtml(veldNaam.value, G) }
 veldNaam.addEventListener('input', teken)
-veldFunctie.addEventListener('input', teken)
 
 function zeg(t){ melding.textContent = t; setTimeout(function(){ melding.textContent = '' }, 5000) }
 
@@ -341,8 +359,8 @@ document.getElementById('kies').addEventListener('click', function(){
 })
 
 document.getElementById('kopieer').addEventListener('click', function(){
-  var html = handtekeningHtml(veldNaam.value, veldFunctie.value, G)
-  var plat = handtekeningPlat(veldNaam.value, veldFunctie.value, G)
+  var html = handtekeningHtml(veldNaam.value, G)
+  var plat = handtekeningPlat(veldNaam.value, G)
   var klaar = function(){ zeg(${JSON.stringify(HT.gelukt)}) }
   var terugval = function(){
     kies()
