@@ -1,6 +1,14 @@
 Bron: Armando in de WhatsApp-groep "Claudius Hulskers 2.0", 27-10-2026.
 Een regel: de openingstijden, bedoeld voor de structured data.
 
+ACHTERHAALD ALS BRON, LATER DIEZELFDE DAG. Dit bestand is niet fout - het is alleen niet
+meer de bron waarop de site rust. Zijn eigen GECLAIMDE Google-bedrijfsprofiel noemt
+precies dezelfde zeven dagen 07:00-23:00 (gemeten met bron/gbp.mjs, zie
+google-profiel-27-10-2026.txt). Dat is zijn eigen publicatie en narekenbaar, dus de drie
+waarden in inhoud.mjs wijzen daarnaar en staan niet meer op NALEZEN-PASCAL.md. Zet ze
+niet terug op dit bestand: dan komen ze terug op de nalooplijst voor iets wat hij zelf
+al openbaar heeft gemaakt.
+
 Eigen bestand en niet onderaan doorgegeven-armando.txt, om dezelfde reden als de regel
 van 25-10-2026: die bestanden dragen allebei een kop met wat er inmiddels achterhaald
 is, en een nieuwe regel onder zo'n kop plakken maakt die kop onleesbaar. Een bron per

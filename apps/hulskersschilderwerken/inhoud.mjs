@@ -1293,11 +1293,16 @@ export const NAP_MERKEN = {
   'bedrijf.kvk': { merk: 'feit', bron: KVK },
   // De openingstijden. `afgeleid` en niet `feit`: een openingstijd is geen algemeen
   // controleerbaar gegeven zoals een KVK-nummer, het is een uitspraak van de zaak zelf.
-  // Ze staan niet in het KVK-uittreksel en niet in zijn advertentie, dus ze rusten
-  // volledig op wat Armando doorgaf - en daarmee staan ze op de nalooplijst.
-  'bedrijf.openDagen': { merk: 'afgeleid', bron: ARM3 },
-  'bedrijf.openVan': { merk: 'afgeleid', bron: ARM3 },
-  'bedrijf.openTot': { merk: 'afgeleid', bron: ARM3 },
+  //
+  // Tot 27-10-2026 rustten ze volledig op wat Armando doorgaf (ARM3) en stonden ze
+  // daarom op de nalooplijst. Diezelfde dag bleek zijn eigen geclaimde Google-profiel
+  // precies dezelfde zeven dagen 07:00-23:00 te noemen, en dat is zijn eigen publicatie
+  // over zijn eigen zaak. Daarmee is het geen van-horen-zeggen meer. bron/gbp.mjs zakt
+  // zodra het profiel iets anders gaat zeggen dan deze waarden, dus de koppeling blijft
+  // gemeten en wordt geen aanname van vandaag.
+  'bedrijf.openDagen': { merk: 'afgeleid', bron: GPROF },
+  'bedrijf.openVan': { merk: 'afgeleid', bron: GPROF },
+  'bedrijf.openTot': { merk: 'afgeleid', bron: GPROF },
   // Drie bedragen, drie bronnen. 11 en 17,50 komen uit het overleg van 25-10-2026 en
   // niet meer uit zijn advertentie (daar staat 10 en 16); de 23 staat op de doorgegeven
   // regel van 20-10-2026 en is in dat overleg niet aangeroerd.

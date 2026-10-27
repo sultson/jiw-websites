@@ -120,13 +120,57 @@ binnen- en buitenschilderwerk, sauswerk). Traprenovatie staat er sinds 20-10-202
 meer in: die dienst doet hij niet meer, en een dienst in de structured data laten staan
 die hij niet levert is vragen om een aanvraag die hij moet weigeren.
 
+Sinds 27-10-2026 staan er ook de **openingstijden** in (zeven dagen 07:00–23:00, één
+`OpeningHoursSpecification` met alle dagen erin) en **`sameAs`** met zijn eigen
+Google-bedrijfsprofiel. Dat laatste is de regel waarmee deze site en die entiteit voor
+Google hetzelfde bedrijf zijn; zijn profiel wijst sinds de verhuizing al terug naar dit
+domein, dus ze wijzen nu naar elkaar.
+
+Beide zijn **onzichtbaar op de pagina**, en dat is precies waarom er een poort op zit
+(`tools/vooraf.mjs` regel 16 en 17): valt zo'n blok bij een herschikking weg, dan klaagt
+er niets — de pagina werkt prima. Die poorten rekenen met de waarden uit `inhoud.mjs` en
+niet met `07:00` of de cid op schrift, want een controle die zijn eigen cijfers bijhoudt
+houdt de oude waarde in stand.
+
+## Zijn Google-bedrijfsprofiel, gemeten
+
+`bron/gbp.mjs` → `bron/gbp.json`, 27-10-2026. cid `11940519625446020035`, kgmid
+`/g/11zz__vl20`, place_id `ChIJG-w4hhfqZ2QRw1NK9FU_taU`.
+
+Wat er goed staat: **geclaimd**, de site wijst naar `hulskersschilderwerken.nl`, het
+telefoonnummer klopt met de site, 11 foto's, een logo, een gevulde omschrijving, en zeven
+dagen 07:00–23:00 — dezelfde tijden die Armando doorgaf, nu dus ook gemeten.
+
+Twee dingen die het profiel verklaren én begrenzen:
+
+- **Nul beoordelingen.** Dat is de sterkste knop die er nu is voor lokale vindbaarheid, en
+  hij zit niet in de site.
+- **Geen openbaar adres** (service-area business; de coördinaat die het profiel teruggeeft
+  is het middelpunt van Nederland, geen echte plek). Daardoor heeft hij geen vaste positie
+  in Maps, en inderdaad: in **geen enkele** Maps-zoekopdracht vanuit Coevorden komt hij
+  voor — ook niet op zijn eigen naam. Gemeten op vier zoekwoorden en twee zoomniveaus, via
+  Playwright en via DataForSEO. Je krijgt Wim Hulskers (architect), Hulskers Automotive en
+  acht andere schilders. Dat is geen fout in de meting; dat is de stand.
+- Eén categorie, **Schilder** (plus de generieke "Service establishment"), en geen
+  attributen. Zijn vak is wandafwerking; een tweede categorie die daar dichter op zit is
+  gratis en kan geen pagina voor hem doen.
+
+Let op bij hergebruik: de **omschrijving** in dat profiel is woordelijk de copy van deze
+site. Die mag niet als korpus voor de bronpoort dienen — dan verantwoordt onze eigen tekst
+zichzelf. Daarom staat alleen het zaakgegeven in
+`bron/zijn-tekst/google-profiel-27-10-2026.txt`, met die reden erboven de streep.
+
 ## Wat de volgende hierop kan doen
 
 - Search Console aanzetten en de sitemap indienen (zie boven).
-- Echte renovlies-reviews. Het beoordelingsblok van de referentiesite staat hier bewust
-  leeg: hij heeft 5,0 uit 32 reviews op Marktplaats, maar die gaan over tuinstoelen, een
-  servies en een magnetron, en bij de meeste staat "betaalt snel" omdat hij de koper was.
-  Een cijfer kan waar zijn en tegelijk een leugen over zijn vakwerk.
+- **Reviews op zijn Google-profiel.** Nul staat er nu. Dit is de zwaarste van de lijst, en
+  het is geen sitewerk.
+- **Een tweede categorie in zijn profiel** die over wandafwerking gaat, en de attributen
+  invullen. Het profiel is geclaimd en verder leeg; dat is gratis te repareren.
+- Echte renovlies-reviews op de site zelf. Het beoordelingsblok van de referentiesite
+  staat hier bewust leeg: hij heeft 5,0 uit 32 reviews op Marktplaats, maar die gaan over
+  tuinstoelen, een servies en een magnetron, en bij de meeste staat "betaalt snel" omdat
+  hij de koper was. Een cijfer kan waar zijn en tegelijk een leugen over zijn vakwerk.
 - De open vragen uit `NALEZEN-PASCAL.md`. De vaktechniek die de referentiesite op zijn
   werkwijzepagina heeft (schuurmachine, gramgewicht van het vlies, naden, verfmerk) is
   precies de inhoud die zo'n pagina sterk maakt, en precies wat je niet mag verzinnen.

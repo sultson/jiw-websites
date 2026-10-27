@@ -159,6 +159,12 @@ const TOEGESTANE_HOSTS = {
   'fonts.googleapis.com': 'stylesheet van het lettertype',
   'fonts.gstatic.com': 'het lettertype zelf',
   'schema.org': 'alleen de naamruimte in de structured data, geen link op de pagina',
+  // Zijn eigen Google-bedrijfsprofiel in `sameAs`. Dit is geen link op de pagina maar
+  // een verwijzing in de structured data, en juist daar is naar buiten wijzen de hele
+  // bedoeling: zo weet Google dat deze site en die entiteit hetzelfde bedrijf zijn. De
+  // regel die hierboven staat ("Pascal heeft geen eigen site, dus elke externe link is
+  // een uitzondering") gaat over een bezoeker die wegklikt, en dat kan hier niet.
+  'maps.google.com': 'zijn eigen Google-bedrijfsprofiel in sameAs, alleen in de structured data',
 }
 const geraakt = new Set()
 for (const m of ALLES.matchAll(/https?:\/\/([a-z0-9.-]+)/gi)) {
@@ -169,6 +175,21 @@ for (const m of ALLES.matchAll(/https?:\/\/([a-z0-9.-]+)/gi)) {
 }
 for (const host of Object.keys(TOEGESTANE_HOSTS)) {
   if (!geraakt.has(host)) zak(`TOEGESTANE_HOSTS noemt ${host}, maar die staat niet meer in de pagina's. Haal hem weg.`)
+}
+/*
+ * En de uitzondering mag niet meer toelaten dan haar reden draagt. Twee hosts staan
+ * hierboven met "alleen in de structured data" als reden, en zonder deze regel is dat
+ * een reden en geen eis: een knop "bekijk ons op Google Maps" zou er morgen stil
+ * langskomen, en dat is precies de uitgaande link waarvoor controle 12 bestaat.
+ *
+ * Getoetst op href en src, want dat is wat een bezoeker kan aanklikken.
+ */
+for (const host of ['maps.google.com', 'schema.org']) {
+  for (const m of ALLES.matchAll(/(?:href|src)="(https?:\/\/[^"]+)"/gi)) {
+    if (m[1].toLowerCase().includes(host)) {
+      zak(`${host} staat in een href of src (${m[1]}) en hoort alleen in de structured data te staan`)
+    }
+  }
 }
 
 // 13. De prijzen komen uit PRIJZEN en nergens anders vandaan. Dit geldt over beide
