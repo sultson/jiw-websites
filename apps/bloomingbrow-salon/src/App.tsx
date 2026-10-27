@@ -37,12 +37,11 @@ const whatsappUrl = 'https://wa.me/31651720796';
 const email = 'bloomingbrowsalon@gmail.com';
 const termsUrl = 'https://drive.google.com/file/d/1tSKFI6zEMIHyykQRMQ2Thdp4CoVJVoF6/view?usp=sharing';
 
-// Alles rond PMU (powderbrows en ombre lipblush) staat uit zolang de vergunning er niet is.
-// De content blijft hieronder staan: zet pmuAan weer op true en de hele site is terug zoals
-// hij was - behandelkaarten, prijzen, resultaten, certificaat, FAQ en teksten.
-// Let op: ook de titel/description in index.html en de aanbod-items in de schema.org blok
-// daar zijn aangepast, en in Salonized moeten de PMU-diensten los uitgezet worden.
-const pmuAan = false;
+// PMU (powderbrows en ombre lipblush) staat weer aan sinds 27-10-2026: de vergunning is
+// geregeld. Op false zet alles eromheen uit - behandelkaarten, prijzen, resultaten,
+// certificaat, FAQ en teksten. Let op: titel/description en de aanbod-items in de schema.org
+// blok in index.html gaan niet mee met de vlag, en Salonized staat er los van.
+const pmuAan = true;
 
 type Copy = {
   nav: string[];
