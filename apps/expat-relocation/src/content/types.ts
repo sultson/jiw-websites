@@ -201,6 +201,8 @@ export interface UiStrings {
     /** Button in the fee panel, jumps to the form on the same page. */
     quote: string;
   };
+  /** Coloured contact strip near the top of every service page. */
+  ctaStrip: { heading: string; text: string };
   /**
    * Prefilled WhatsApp text, so Johanna sees which page a chat started from.
    * `topic` carries a {topic} placeholder filled with the page title.
@@ -289,12 +291,11 @@ export interface HomeContent {
   };
   /** Slim contact strip under the audience row. */
   contactBar: { heading: string; text: string; whatsappLabel: string; formLabel: string };
-  /** Johanna's short personal introduction, linking to the About page. */
+  /** Johanna's short personal introduction in her own words, linking to About. */
   intro: {
     eyebrow: string;
     heading: string;
     text: string[];
-    signature: string;
     label: string;
   };
   /** Three-path split directly under the hero. */
@@ -384,11 +385,10 @@ export interface AboutContent {
   intro: string[];
   image: string;
   imageAlt: string;
-  approach: { heading: string; text: string[] };
-  /** Operating since 2016. Credibility the client asked to have on record. */
-  history: { heading: string; text: string[] };
-  boutique: { heading: string; text: string[]; points: { title: string; text: string }[] };
-  families: { heading: string; text: string[] };
+  /** Johanna's own story, section by section, as she wrote it (Oct 2026). */
+  sections: { heading: string; text: string[] }[];
+  /** Pull quote shown on a navy band between the sections. */
+  quote: string;
   reviews: { heading: string; sub: string };
   cta: Cta;
 }
@@ -404,6 +404,8 @@ export interface ContactContent {
   whatsapp: { heading: string; text: string; label: string };
   emergency: { heading: string; text: string };
   details: { heading: string };
+  /** Johanna's personal note beside her photo, above the forms. */
+  personal: { heading: string; text: string[]; name: string; role: string };
   formCopy: FormsCopy;
 }
 

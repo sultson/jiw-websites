@@ -39,7 +39,7 @@ const wa = whatsappHref(lang, Astro.url.pathname);
 <!-- What the permit or procedure actually is. Defines the subject before the page
      starts qualifying the reader, and answers the "what is X" search directly. -->
 {s.explainer && (
-  <section class="border-b border-line">
+  <section class="band-champagne border-b border-line-warm">
     <div class="container-site py-14 md:py-18">
       <div class="mx-auto max-w-3xl">
         <h2 class="font-display text-3xl md:text-4xl">{s.explainer.title}</h2>
@@ -77,6 +77,28 @@ const wa = whatsappHref(lang, Astro.url.pathname);
         loading="lazy"
       />
     )}
+  </div>
+</section>
+
+<!-- Contact strip on navy, so the first screens after the hero offer a next step
+     without scrolling to the form (client, Oct 2026) -->
+<section class="bg-navy">
+  <div class="container-site flex flex-col gap-7 py-12 md:flex-row md:items-center md:justify-between">
+    <div class="max-w-xl">
+      <span class="gold-rule"></span>
+      <h2 class="mt-5 font-display text-2xl text-white md:text-3xl">{c.core.ui.ctaStrip.heading}</h2>
+      <p class="mt-3 text-[0.95rem] leading-relaxed text-white/75">{c.core.ui.ctaStrip.text}</p>
+    </div>
+    <div class="flex shrink-0 flex-col gap-3 sm:flex-row">
+      <a href="#inquiry" class="btn btn-white">
+        {c.core.ui.cta.enquire}
+        <Icon name="arrow" size={15} />
+      </a>
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-whatsapp">
+        <Icon name="whatsapp" size={16} />
+        {c.core.ui.cta.whatsapp}
+      </a>
+    </div>
   </div>
 </section>
 
@@ -166,7 +188,7 @@ const wa = whatsappHref(lang, Astro.url.pathname);
               <p class="mt-4 text-[0.9rem] leading-relaxed text-white/70">{s.fees.amountNote}</p>
             )}
             <div class="mt-7 flex flex-wrap gap-3">
-              <a href="#inquiry" class="btn btn-gold-fill">{c.core.ui.cta.quote}</a>
+              <a href="#inquiry" class="btn btn-white">{c.core.ui.cta.quote}</a>
               <a href={wa} target="_blank" rel="noopener" class="btn btn-gold" aria-label={c.core.ui.cta.whatsappLong}>
                 <Icon name="whatsapp" size={15} />
                 {c.core.ui.cta.whatsapp}

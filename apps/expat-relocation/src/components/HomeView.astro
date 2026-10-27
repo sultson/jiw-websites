@@ -25,7 +25,7 @@ const PATH_ORDER = ['vip', 'immigration', 'relocation'];
    showed a canal that is not Rotterdam. */
 const HERO_IMAGE = '/images/hero-rotterdam-skyline.jpg?v=20261026';
 const HERO_IMAGE_SMALL = '/images/hero-rotterdam-skyline-1200.jpg?v=20261026';
-const AUDIENCE_ICONS = ['users', 'building', 'mapPin', 'shield'];
+const AUDIENCE_ICONS = ['usersSolid', 'buildingSolid', 'homeSolid', 'checkCircleSolid'];
 const paths = [...h.paths.items].sort(
   (a, b) => PATH_ORDER.indexOf(a.key) - PATH_ORDER.indexOf(b.key)
 );
@@ -71,7 +71,7 @@ const paths = [...h.paths.items].sort(
         ))}
       </ul>
       <div class="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
-        <a href={l(SECTIONS.vip)} class="btn btn-gold-fill">
+        <a href={l(SECTIONS.vip)} class="btn btn-white">
           {h.hero.ctaPrimary}
           <Icon name="arrow" size={15} />
         </a>
@@ -90,108 +90,116 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 2. Packages and port, side by side, directly under the hero -->
-<section class="container-site pt-12 pb-14 md:pt-16 md:pb-20">
-  <div class="grid gap-6 lg:grid-cols-2">
-    <a href={l(SECTIONS.vip)} class="card group flex flex-col bg-white shadow-card sm:flex-row">
-      <img
-        src="/images/rotterdam.jpg"
-        alt={h.featured.packages.imageAlt}
-        class="aspect-[16/10] w-full object-cover sm:aspect-auto sm:w-2/5"
-        width="800"
-        height="536"
-        loading="lazy"
-      />
-      <div class="flex flex-1 flex-col p-7 md:p-8">
-        <h2 class="font-display text-2xl leading-snug transition-colors group-hover:text-gold md:text-[1.7rem]">{h.featured.packages.title}</h2>
-        <p class="mt-3 flex-1 text-[0.94rem] leading-relaxed">{h.featured.packages.text}</p>
-        <span class="btn btn-gold-fill mt-6 self-start">
-          {h.featured.packages.label}
-          <Icon name="arrow" size={15} />
-        </span>
-      </div>
-    </a>
-    <a href={l(SECTIONS.industrial)} class="card group flex flex-col bg-white shadow-card sm:flex-row">
-      <img
-        src="/images/port-services.jpg?v=20261023"
-        alt={h.featured.port.imageAlt}
-        class="aspect-[16/10] w-full object-cover sm:aspect-auto sm:w-2/5"
-        width="800"
-        height="536"
-        loading="lazy"
-      />
-      <div class="flex flex-1 flex-col p-7 md:p-8">
-        <h2 class="font-display text-2xl leading-snug md:text-[1.7rem]">
-          <span class="transition-colors group-hover:text-gold">{h.featured.port.title}</span>
-          <span class="mt-1 block text-xl text-gold md:text-[1.35rem]">{h.featured.port.subtitle}</span>
-        </h2>
-        <p class="mt-3 flex-1 text-[0.94rem] leading-relaxed">{h.featured.port.text}</p>
-        <span class="btn btn-navy mt-6 self-start">
-          {h.featured.port.label}
-          <Icon name="arrow" size={15} />
-        </span>
-      </div>
-    </a>
+<!-- 2. Packages and port, side by side, directly under the hero, on the warm
+     band so the golden hour of the header carries on past it -->
+<section class="band-champagne border-b border-line-warm">
+  <div class="container-site py-12 md:py-16">
+    <div class="grid gap-6 lg:grid-cols-2">
+      <a href={l(SECTIONS.vip)} class="card group flex flex-col border-line-warm bg-white shadow-card sm:flex-row">
+        <img
+          src="/images/vip-family.jpg?v=20260731"
+          alt={h.featured.packages.imageAlt}
+          class="aspect-[16/10] w-full object-cover sm:aspect-auto sm:w-2/5"
+          width="800"
+          height="536"
+          loading="lazy"
+        />
+        <div class="flex flex-1 flex-col p-7 md:p-8">
+          <h2 class="font-display text-2xl leading-snug transition-colors group-hover:text-gold md:text-[1.7rem]">{h.featured.packages.title}</h2>
+          <p class="mt-3 flex-1 text-[0.94rem] leading-relaxed">{h.featured.packages.text}</p>
+          <span class="btn btn-navy mt-6 self-start">
+            {h.featured.packages.label}
+            <Icon name="arrow" size={15} />
+          </span>
+        </div>
+      </a>
+      <a href={l(SECTIONS.industrial)} class="card group flex flex-col border-line-warm bg-white shadow-card sm:flex-row">
+        <img
+          src="/images/port-services.jpg?v=20261023"
+          alt={h.featured.port.imageAlt}
+          class="aspect-[16/10] w-full object-cover sm:aspect-auto sm:w-2/5"
+          width="800"
+          height="536"
+          loading="lazy"
+        />
+        <div class="flex flex-1 flex-col p-7 md:p-8">
+          <h2 class="font-display text-2xl leading-snug md:text-[1.7rem]">
+            <span class="transition-colors group-hover:text-gold">{h.featured.port.title}</span>
+            <span class="mt-1 block text-xl text-gold md:text-[1.35rem]">{h.featured.port.subtitle}</span>
+          </h2>
+          <p class="mt-3 flex-1 text-[0.94rem] leading-relaxed">{h.featured.port.text}</p>
+          <span class="btn btn-navy mt-6 self-start">
+            {h.featured.port.label}
+            <Icon name="arrow" size={15} />
+          </span>
+        </div>
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- 3. Who we work for, then a slim contact strip -->
-<section class="border-y border-line-warm band-sand">
+<!-- 3. Who we work for: solid icons and sans titles so the row reads at a glance -->
+<section class="bg-white">
   <div class="container-site py-14 md:py-18">
-    <h2 class="eyebrow eyebrow-navy text-center">{h.audience.heading}</h2>
-    <div class="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-0 lg:divide-x lg:divide-line-warm">
+    <h2 class="eyebrow text-center">{h.audience.heading}</h2>
+    <div class="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-0 lg:divide-x lg:divide-line">
       {h.audience.items.map((item, i) => (
         <a href={l(item.path)} class="group text-center lg:px-7">
-          <span class="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-white text-gold">
-            <Icon name={AUDIENCE_ICONS[i] ?? 'check'} size={22} />
-          </span>
-          <h3 class="mt-4 font-display text-xl transition-colors group-hover:text-gold">{item.title}</h3>
-          <p class="mx-auto mt-2 max-w-xs text-[0.9rem] leading-relaxed">{item.text}</p>
+          <Icon name={AUDIENCE_ICONS[i] ?? 'checkCircleSolid'} size={40} class="mx-auto text-gold" />
+          <h3 class="mt-4 font-sans text-[1.05rem] font-semibold leading-snug tracking-normal text-navy transition-colors group-hover:text-gold">{item.title}</h3>
+          <p class="mx-auto mt-2 max-w-xs text-[0.92rem] leading-relaxed text-ink">{item.text}</p>
         </a>
       ))}
     </div>
-    <div class="card mt-12 flex flex-col gap-6 bg-white p-7 md:flex-row md:items-center md:justify-between md:p-8">
-      <div>
-        <h2 class="font-display text-2xl md:text-3xl">{h.contactBar.heading}</h2>
-        <p class="mt-2 text-[0.94rem] leading-relaxed text-ink-soft">{h.contactBar.text}</p>
-      </div>
-      <div class="flex shrink-0 flex-col gap-3 sm:flex-row">
-        <a href={wa} target="_blank" rel="noopener" class="btn btn-whatsapp">
-          <Icon name="whatsapp" size={16} />
-          {h.contactBar.whatsappLabel}
-        </a>
-        <a href="#contact-form" class="btn btn-outline">
-          <Icon name="mail" size={16} />
-          {h.contactBar.formLabel}
-        </a>
-      </div>
+  </div>
+</section>
+
+<!-- 4. Get in touch, on navy like the WhatsApp band further down -->
+<section class="bg-navy">
+  <div class="container-site flex flex-col gap-7 py-12 md:flex-row md:items-center md:justify-between md:py-14">
+    <div class="max-w-xl">
+      <span class="gold-rule"></span>
+      <h2 class="mt-5 font-display text-3xl text-white md:text-4xl">{h.contactBar.heading}</h2>
+      <p class="mt-3 leading-relaxed text-white/75">{h.contactBar.text}</p>
+    </div>
+    <div class="flex shrink-0 flex-col gap-3 sm:flex-row">
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-whatsapp">
+        <Icon name="whatsapp" size={16} />
+        {h.contactBar.whatsappLabel}
+      </a>
+      <a href="#contact-form" class="btn border-white/40 text-white hover:border-white hover:bg-white hover:text-navy">
+        <Icon name="mail" size={16} />
+        {h.contactBar.formLabel}
+      </a>
     </div>
   </div>
 </section>
 
-<!-- 4. Three paths, presented as cards -->
-<section id="paths" class="container-site py-16 md:py-24">
-  <div class="max-w-2xl">
-    <h2 class="font-display text-3xl md:text-4xl">{h.paths.heading}</h2>
-    <span class="gold-rule mt-6"></span>
-    <p class="mt-5 leading-relaxed">{h.paths.sub}</p>
-  </div>
-  <div class="mt-12 grid gap-6 md:grid-cols-3">
-    {paths.map((item) => (
-      <a href={l(item.path)} class="card group flex flex-col bg-sand">
-        <img src={item.image} alt={item.imageAlt} class="aspect-[16/10] w-full object-cover" width="800" height="500" loading="lazy" />
-        <div class="flex flex-1 flex-col p-7">
-          <h3 class="font-display text-2xl transition-colors group-hover:text-gold">{item.title}</h3>
-          <p class="mt-2.5 flex-1 text-[0.94rem] leading-relaxed">{item.text}</p>
-          <span class="link-editorial mt-6 self-start">{item.label}</span>
-        </div>
-      </a>
-    ))}
+<!-- 5. Three paths, presented as cards -->
+<section id="paths" class="band-sand border-b border-line">
+  <div class="container-site py-16 md:py-24">
+    <div class="max-w-2xl">
+      <h2 class="font-display text-3xl md:text-4xl">{h.paths.heading}</h2>
+      <span class="gold-rule mt-6"></span>
+      <p class="mt-5 leading-relaxed">{h.paths.sub}</p>
+    </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {paths.map((item) => (
+        <a href={l(item.path)} class="card group flex flex-col bg-white shadow-card">
+          <img src={item.image} alt={item.imageAlt} class="aspect-[16/10] w-full object-cover" width="800" height="500" loading="lazy" />
+          <div class="flex flex-1 flex-col p-7">
+            <h3 class="font-display text-2xl transition-colors group-hover:text-gold">{item.title}</h3>
+            <p class="mt-2.5 flex-1 text-[0.94rem] leading-relaxed">{item.text}</p>
+            <span class="link-editorial mt-6 self-start">{item.label}</span>
+          </div>
+        </a>
+      ))}
+    </div>
   </div>
 </section>
 
-<!-- 5. Most requested services -->
-<section class="border-y border-line-warm band-sand">
+<!-- 6. Most requested services -->
+<section class="bg-white">
   <div class="container-site py-16 md:py-22">
     <div class="text-center">
       <h2 class="font-display text-3xl md:text-4xl">{h.mostRequested.heading}</h2>
@@ -201,7 +209,7 @@ const paths = [...h.paths.items].sort(
       {h.mostRequested.items.map((item) => (
         <a
           href={l(item.path)}
-          class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-2.5 text-[0.85rem] font-medium text-navy transition-colors hover:border-gold hover:text-gold"
+          class="inline-flex items-center gap-2 rounded-full border border-line-warm bg-champagne px-5 py-2.5 text-[0.85rem] font-medium text-navy transition-colors hover:border-gold hover:text-gold"
         >
           {item.label}
           <Icon name="arrow" size={14} class="text-gold" />
@@ -211,26 +219,33 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 6. Johanna, in her own words -->
-<section class="container-site py-16 md:py-24">
-  <div class="mx-auto grid max-w-5xl gap-8 md:grid-cols-[1fr_1.4fr] md:gap-16">
-    <div>
-      <span class="eyebrow eyebrow-navy">{h.intro.eyebrow}</span>
-      <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.intro.heading}</h2>
-      <span class="gold-rule mt-6"></span>
-    </div>
-    <div>
-      {h.intro.text.map((p) => (
-        <p class="mt-5 text-[1.02rem] leading-relaxed first:mt-0">{p}</p>
-      ))}
-      <p class="mt-6 font-display text-lg italic text-navy">{h.intro.signature}</p>
-      <a href={l(SECTIONS.about)} class="link-editorial mt-7">{h.intro.label}</a>
+<!-- 7. Johanna, in her own words, beside her portrait -->
+<section class="band-champagne border-y border-line-warm">
+  <div class="container-site py-16 md:py-24">
+    <div class="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-[2fr_3fr] md:gap-16">
+      <img
+        src={c.core.about.image}
+        alt={c.core.about.imageAlt}
+        class="mx-auto aspect-[4/5] w-full max-w-sm rounded-3xl object-cover object-top shadow-card"
+        width="896"
+        height="1120"
+        loading="lazy"
+      />
+      <div>
+        <span class="eyebrow">{h.intro.eyebrow}</span>
+        <h2 class="mt-4 font-display text-3xl md:text-4xl">{h.intro.heading}</h2>
+        <span class="gold-rule mt-6"></span>
+        {h.intro.text.map((p) => (
+          <p class="mt-5 text-[1.02rem] leading-relaxed">{p}</p>
+        ))}
+        <a href={l(SECTIONS.about)} class="link-editorial mt-8">{h.intro.label}</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 7. Immigration -->
-<section class="border-y border-line-warm band-sand">
+<!-- 8. Immigration -->
+<section class="bg-white">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl text-center">
       <span class="eyebrow eyebrow-navy">{h.immigrationBlock.eyebrow}</span>
@@ -255,7 +270,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 8. Ports, harbours & offshore (dark band) -->
+<!-- 9. Ports, harbours & offshore (dark band) -->
 <section class="bg-navy">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl text-center">
@@ -266,8 +281,8 @@ const paths = [...h.paths.items].sort(
       ))}
     </div>
     <img
-      src="/images/europoort.jpg?v=20260731"
-      alt="Container terminals in the port of Rotterdam"
+      src="/images/port-rotterdam.jpg?v=20261027"
+      alt="Container cranes, ships and the refineries of the Rotterdam port at sunset"
       class="mt-12 aspect-[21/9] w-full rounded-3xl object-cover"
       width="1600"
       height="686"
@@ -302,7 +317,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 9. VIP band: full-bleed navy with photo backdrop and gold CTA -->
+<!-- 10. VIP band: full-bleed navy with photo backdrop and gold CTA -->
 <section class="relative overflow-hidden bg-navy">
   <img
     src="/images/vip-welcome.jpg?v=20260731"
@@ -331,7 +346,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 10. Family relocation -->
+<!-- 11. Family relocation -->
 <section class="border-y border-line-warm band-sand">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2 md:gap-16">
@@ -355,7 +370,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 11. Housing: image band with overlay card -->
+<!-- 12. Housing: image band with overlay card -->
 <section class="relative">
   <img
     src="/images/canal-colour.jpg"
@@ -384,7 +399,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 12. Business -->
+<!-- 13. Business -->
 <section class="container-site py-16 md:py-24">
   <div class="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2 md:gap-16">
     <div>
@@ -399,7 +414,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 13. Life here: a full-bleed photo strip, static, no captions -->
+<!-- 14. Life here: a full-bleed photo strip, static, no captions -->
 <section aria-hidden="true" class="grid grid-cols-2 md:grid-cols-4">
   {[
     { src: '/images/cyclist-canal.jpg', alt: '' },
@@ -418,7 +433,7 @@ const paths = [...h.paths.items].sort(
   ))}
 </section>
 
-<!-- 14. Why boutique (dark band) -->
+<!-- 15. Why boutique (dark band) -->
 <section class="bg-navy">
   <div class="container-site py-16 md:py-24">
     <div class="mx-auto max-w-3xl text-center">
@@ -447,7 +462,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 15. Reviews: star-led cards -->
+<!-- 16. Reviews: star-led cards -->
 <section class="border-y border-line-warm band-sand">
   <div class="container-site py-16 md:py-24">
     <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -479,7 +494,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 16. WhatsApp CTA -->
+<!-- 17. WhatsApp CTA -->
 <section class="bg-navy">
   <div class="container-site py-16 text-center md:py-20">
     <span class="gold-rule mx-auto"></span>
@@ -492,7 +507,7 @@ const paths = [...h.paths.items].sort(
   </div>
 </section>
 
-<!-- 17. Contact form: details left, form right -->
+<!-- 18. Contact form: details left, form right -->
 <section class="band-inquiry border-t border-line-warm" id="contact-form">
   <div class="container-site py-16 md:py-24">
     <div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">

@@ -31,6 +31,10 @@ export const core: CoreContent = {
         enquire: 'Vraag naar deze dienst',
         quote: 'Offerte aanvragen',
       },
+      ctaStrip: {
+        heading: 'Bespreek uw situatie persoonlijk',
+        text: 'Een paar regels is genoeg. Johanna leest elke aanvraag zelf en reageert binnen één werkdag.',
+      },
       whatsappPrefill: {
         general: 'Hallo Johanna, ik ben van plan naar Nederland te verhuizen en heb een vraag.',
         topic: 'Hallo Johanna, ik heb een vraag over: {topic}',
@@ -137,14 +141,16 @@ export const core: CoreContent = {
         formLabel: 'Stuur ons een bericht',
       },
       intro: {
-        eyebrow: 'Uw aanspreekpunt',
-        heading: 'Hallo, ik ben Johanna',
+        eyebrow: 'Een persoonlijke kijk op internationaal leven',
+        heading: 'Hallo, ik ben Johanna.',
         text: [
-          'Ik richtte E & I in 2016 op, na jaren in de wereld van ambassades. Wat ik daar zag, bepaalt het werk nog steeds: mensen die van land wisselen, redden het het best als iemand met hen meegaat, niet als ze een checklist in handen krijgen.',
-          'Daarom werkt elke klant persoonlijk met mij. Ik bereid uw vergunning voor, zoek uw woning, ga mee naar de gemeente en de IND, en blijf na uw aankomst bereikbaar op dezelfde WhatsApp-lijn.',
+          'Ik ben opgegroeid in een gezin dat vaak internationaal verhuisde, en weet daardoor dat een verhuizing naar het buitenland veel meer is dan het oversteken van een grens. Het gaat om nieuwe kansen grijpen, je weg vinden in een onbekende omgeving en je thuis gaan voelen in een nieuw land.',
+          'Die ervaringen hebben niet alleen mijn blik gevormd, maar ook mijn loopbaan.',
+          'Sinds 2009 werk ik in de Nederlandse immigratie, waarbij ik specialistische kennis combineer met een persoonlijk begrip van internationale mobiliteit.',
+          'Vandaag begeleid ik als oprichter van E & I Expat Relocation & Immigration Services the Netherlands internationale professionals, gezinnen en werkgevers bij immigratie en relocatie, met bijzondere aandacht voor Rotterdam en omgeving.',
+          'Mijn uitgangspunt is eenvoudig: uitzonderlijke service begint bij begrip voor de mensen achter elke internationale verhuizing.',
         ],
-        signature: 'Johanna, oprichter van E & I',
-        label: 'Meer over Johanna',
+        label: 'Lees mijn verhaal',
       },
       paths: {
         heading: 'Hoe kunnen wij u helpen aankomen?',
@@ -466,61 +472,64 @@ export const core: CoreContent = {
     about: {
       metaTitle: 'Over E & I | Boutique Expat- & Immigratiebureau Nederland',
       metaDescription: 'Maak kennis met E & I en Johanna: persoonlijke expat-relocatie en immigratie in Nederland, van visum en woning tot een zachte landing.',
-      eyebrow: 'Over E & I',
-      title: 'De boutique achter duizend aankomsten',
+      eyebrow: 'Het verhaal achter E & I',
+      title: 'Een leven gevormd door internationale ervaring',
       intro: [
-        'E & I: Expat, Relocation and Immigration Services The Netherlands begon met een eenvoudige observatie vanuit de ambassadewereld: de mensen die het beste van land wisselen, zijn degenen die persoonlijk worden begeleid. Niet als dossier beheerd. Begeleid.',
-        'Vandaag begeleiden Johanna en haar netwerk professionals, stellen, gezinnen en oprichters naar Nederland, met een specialisme dat niemand anders claimt: Rotterdam, Europoort en de industrieregio rond de grootste haven van Europa.',
+        'Internationaal leven hoort al bij mijn leven zolang ik me kan herinneren.',
+        'Ik groeide op in een gezin dat regelmatig naar het buitenland verhuisde, en ervoer zelf wat het betekent om een vertrouwde omgeving achter te laten en ergens anders een nieuw leven op te bouwen. Elke verhuizing bracht nieuwe kansen, onbekende culturen en de uitdaging om je ergens nieuw thuis te voelen.',
+        'In mijn jeugd werden onze internationale verhuizingen zorgvuldig gecoördineerd. Woning, school en praktische zaken waren geregeld voordat we aankwamen, zodat wij ons konden richten op het wennen aan onze nieuwe omgeving.',
+        'Pas toen mijn gezin zonder diezelfde professionele ondersteuning naar Nederland terugkeerde, begreep ik echt hoe waardevol die was. Hoewel we naar een vertrouwd land terugkwamen, bleek de overgang onverwacht zwaar.',
+        'Die ervaring heeft mijn overtuiging gevormd dat een geslaagde relocatie meer vraagt dan regelingen en papierwerk. Ze vraagt om vooruitzien, persoonlijke aandacht en iemand die begrijpt wat zo’n verhuizing met je doet.',
       ],
       image: '/images/about-joanna.jpg?v=20261026',
-      imageAlt: 'Johanna, oprichter van E & I, in haar kantoor',
-      approach: {
-        heading: 'Onze persoonlijke relocatieaanpak',
-        text: [
-          'Elke cliënt heeft één aanspreekpunt dat het hele dossier kent. Als de gemeente u persoonlijk nodig heeft, zitten wij in de stoel naast u. Als een verhuurder belt, nemen wij op in het Nederlands. Als er in uw eerste week om elf uur ’s avonds iets gebeurt, is de WhatsApp-lijn dezelfde persoon die u van het vliegveld haalde.',
-          'Die manier van werken schaalt niet naar duizenden cliënten per jaar. Dat is precies de bedoeling.',
-        ],
-      },
-      history: {
-        heading: 'Actief sinds 2016',
-        text: [
-          'E & I is opgericht in 2016 en begeleidt sindsdien mensen bij hun aankomst in Nederland. Een decennium in één regio is de reden dat wij weten welke gemeente welk document vraagt, welke verhuurders een kandidaat met een contract dat volgende maand ingaat überhaupt overwegen, en hoe lang de IND er in deze maand werkelijk over doet.',
-          'Het betekent ook dat de relaties echt zijn. Makelaars, notarissen, schooladministraties en ambtenaren die opnemen omdat ze de naam herkennen. Dat is het stille voordeel dat een kantoor niet kan kopen en een nieuwkomer niet kan nabootsen.',
-        ],
-      },
-      boutique: {
-        heading: 'Waarom werken met een boutique bureau',
-        text: [
-          'Corporate mobility-bureaus zijn gebouwd voor volume: portalen, tickets, servicelevels. Een boutique is gebouwd voor resultaat. U krijgt het oordeel van iemand die honderden cliënten door de IND heeft geleid, de snelheid van een team dat elk loket in de regio kent, en de discretie die een reputatie opgebouwd onder diplomaten vereist.',
-        ],
-        points: [
-          {
-            title: 'Wortels in de ambassadewereld',
-            text: 'Precisie en discretie geleerd waar fouten geen optie zijn.',
-          },
-          {
-            title: 'Een regio die niemand anders bedient',
-            text: 'Rotterdam, Europoort en de Maasvlakte, straat voor straat gekend.',
-          },
-          {
-            title: 'Immigratie en relocatie in één hand',
-            text: 'De vergunning, de woning en het leven eromheen, in de juiste volgorde door één team.',
-          },
-        ],
-      },
-      families: {
-        heading: 'Ondersteuning voor expats en gezinnen',
-        text: [
-          'De helft van een geslaagde relocatie heeft niets met papierwerk te maken. Scholen die bij uw kinderen passen, een buurt die bij uw avonden past, een huisarts, een sportschool, een route naar het werk. Onze settling-in-ondersteuning neemt dat even serieus als het visum, want daar wordt bepaald of een verhuizing slaagt.',
-        ],
-      },
+      imageAlt: 'Johanna, oprichter van E & I',
+      sections: [
+        {
+          heading: 'Van internationale ervaring naar professionele expertise',
+          text: [
+            'Mijn internationale jeugd wekte een blijvende belangstelling voor immigratie en internationale mobiliteit.',
+            'Ik studeerde rechten en vastgoed, en ontwikkelde zo een brede blik op de juridische, praktische en vastgoedkundige kanten van relocatie.',
+            'Daarnaast werkte ik voor ambassades en ministeries, wat mij waardevol inzicht gaf in administratieve procedures, internationale zaken en complexe regelgeving.',
+            'Sinds 2009 ben ik gespecialiseerd in Nederlandse immigratie en begeleid ik internationale professionals, gezinnen en werkgevers bij verblijfsvergunningen, gezinshereniging, kennismigratie en andere immigratieprocedures.',
+            'Ik richtte E & I Expat Relocation & Immigration Services the Netherlands op om deze professionele expertise te verbinden met de persoonlijke relocatiebegeleiding die ik zelf had ervaren en gewaardeerd.',
+          ],
+        },
+        {
+          heading: 'Een persoonlijke aanpak die verder gaat dan relocatie',
+          text: [
+            'Ik vind dat uitzonderlijke service persoonlijk hoort te voelen, nooit als een procedure.',
+            'Elke cliënt heeft andere prioriteiten, verwachtingen en omstandigheden. De een heeft specialistische hulp nodig bij een immigratieaanvraag. De ander zoekt volledige ondersteuning bij de vele details die komen kijken bij het verhuizen van werk en privéleven.',
+            'Mijn aanpak begint met het begrijpen van die persoonlijke behoeften.',
+            'Ik blijf het hele traject persoonlijk betrokken, met direct contact, continuïteit en één vertrouwd aanspreekpunt. In plaats van alleen losse taken af te handelen, kijk ik naar het grotere geheel, zie ik mogelijke obstakels aankomen en schakel ik waar nodig aanvullende expertise in.',
+            'Persoonlijke service betekent voor mij aandacht voor de details die voor elke cliënt belangrijk zijn, ook als die nooit op een standaard relocatiechecklist zouden staan.',
+          ],
+        },
+        {
+          heading: 'Relocatie op maat en VIP-begeleiding',
+          text: [
+            'Voor cliënten die een completere begeleiding zoeken, biedt E & I relocatieondersteuning op maat, afgestemd op hun omstandigheden, levensstijl en professionele verplichtingen.',
+            'Denk aan het regelen van huisvesting, gezinszaken, lokale voorzieningen en andere aspecten van het thuis raken in Nederland.',
+            'Voor bestuurders, internationale professionals en cliënten die extra discretie of flexibiliteit nodig hebben, bieden VIP-afspraken op maat een intensiever niveau van persoonlijke coördinatie, met ruimere bereikbaarheid en, als dat uitdrukkelijk is afgesproken, 24/7 ondersteuning.',
+            'Hoe ver mijn betrokkenheid gaat, stem ik altijd af op de persoon. Of het nu gaat om één immigratieprocedure of een volledige relocatie, dezelfde principes gelden: discretie, zorgvuldige voorbereiding, betrouwbaarheid en persoonlijke aandacht.',
+          ],
+        },
+        {
+          heading: 'Uw traject, persoonlijk begeleid',
+          text: [
+            'Vandaag ondersteunt E & I particulieren, gezinnen en werkgevers die naar Nederland verhuizen, met bijzondere aandacht voor Rotterdam, Europoort, Botlek en omgeving.',
+            'Mijn ambitie is nooit geweest om iedereen dezelfde relocatie te bieden. Ik wil elke cliënt de expertise, aandacht en begeleiding geven die zijn of haar situatie verdient.',
+            'Want een uitzonderlijke relocatie gaat niet alleen over het bereiken van een bestemming. Het gaat om het vertrouwen dat elk belangrijk detail in goede handen is.',
+          ],
+        },
+      ],
+      quote: 'Voor sommigen is relocatie een dienst. Voor mijn cliënten is het een persoonlijk begeleide ervaring.',
       reviews: {
         heading: 'Reviews & ervaringen van cliënten',
         sub: 'Wat cliënten zeggen over aankomen met E & I.',
       },
       cta: {
-        title: 'Maak kennis voordat u beslist',
-        text: 'Een kennismakingsgesprek kost niets en vertelt u precies waar u staat.',
+        title: 'Plant u uw verhuizing naar Nederland?',
+        text: 'Bekijk onze immigratie- en relocatiediensten of neem contact op om te bespreken hoe E & I u kan helpen.',
         label: 'Plan een relocatiegesprek',
       },
     },
@@ -560,6 +569,15 @@ export const core: CoreContent = {
       },
       details: {
         heading: 'Gegevens',
+      },
+      personal: {
+        heading: 'Uw volgende hoofdstuk begint met een persoonlijk gesprek',
+        text: [
+          'Elke internationale verhuizing is uniek, en goede begeleiding begint met begrip voor uw persoonlijke omstandigheden, ambities en verwachtingen.',
+          'Of u nu specialistische hulp bij immigratie zoekt, volledige relocatieondersteuning of een VIP-service op maat, ik bespreek graag uw plannen en kijk met u hoe E & I uw overstap naar Nederland zo soepel mogelijk kan maken.',
+        ],
+        name: 'Johanna',
+        role: 'CEO & eigenaar | Immigratie- & relocatieconsultant',
       },
       formCopy: {
         shared: {

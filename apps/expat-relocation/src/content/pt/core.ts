@@ -31,6 +31,10 @@ export const core: CoreContent = {
         enquire: 'Pedir informações sobre este serviço',
         quote: 'Pedir orçamento',
       },
+      ctaStrip: {
+        heading: 'Fale connosco pessoalmente sobre a sua situação',
+        text: 'Bastam algumas linhas. A Johanna analisa pessoalmente cada pedido e responde no prazo de um dia útil.',
+      },
       whatsappPrefill: {
         general: 'Olá Johanna, estou a planear uma mudança para os Países Baixos e tenho uma pergunta.',
         topic: 'Olá Johanna, tenho uma pergunta sobre: {topic}',
@@ -137,14 +141,16 @@ export const core: CoreContent = {
         formLabel: 'Enviar-nos uma mensagem',
       },
       intro: {
-        eyebrow: 'A sua pessoa de contacto',
-        heading: 'Olá, sou a Johanna',
+        eyebrow: 'Um olhar pessoal sobre a vida internacional',
+        heading: 'Olá, sou a Johanna.',
         text: [
-          'Fundei a E & I em 2016, depois de anos no mundo das embaixadas. O que lá vi continua a orientar o trabalho: quem muda de país sai-se melhor quando alguém o acompanha, não quando lhe entregam uma lista de tarefas.',
-          'Por isso, cada cliente trabalha comigo pessoalmente. Preparo a sua autorização, procuro a sua casa, acompanho-o à câmara municipal e ao IND, e continuo na mesma linha de WhatsApp depois de chegar.',
+          'Cresci numa família que mudava frequentemente de país, por isso sei que mudar-se para o estrangeiro é muito mais do que atravessar fronteiras. É abraçar novas oportunidades, orientar-se num ambiente desconhecido e criar um sentimento de pertença num novo país.',
+          'Estas experiências moldaram não só a minha forma de ver o mundo, mas também o meu percurso profissional.',
+          'Desde 2009 que dedico a minha carreira à imigração nos Países Baixos, aliando conhecimentos especializados a uma compreensão pessoal da mobilidade internacional.',
+          'Hoje, como fundadora da E & I Expat Relocation & Immigration Services the Netherlands, apoio profissionais internacionais, famílias e empregadores na imigração e na relocalização, com especial foco em Roterdão e na região envolvente.',
+          'A minha filosofia é simples: um serviço excecional começa por compreender as pessoas por trás de cada mudança internacional.',
         ],
-        signature: 'Johanna, fundadora da E & I',
-        label: 'Mais sobre a Johanna',
+        label: 'Conheça a minha história',
       },
       paths: {
         heading: 'Como podemos ajudá-lo a chegar?',
@@ -466,61 +472,64 @@ export const core: CoreContent = {
     about: {
       metaTitle: 'Sobre a E & I | Consultoria boutique de expatriados e relocalização nos Países Baixos',
       metaDescription: 'A E & I é a única consultoria boutique de relocalização e imigração para expatriados nos Países Baixos. Acompanhamento pessoal da Johanna, do visto à casa até ao dia em que se sentir em casa.',
-      eyebrow: 'Sobre a E & I',
-      title: 'A boutique por trás de mil chegadas',
+      eyebrow: 'A história por trás da E & I',
+      title: 'Uma vida moldada pela experiência internacional',
       intro: [
-        'A E & I: Expat, Relocation and Immigration Services The Netherlands nasceu de uma observação simples feita dentro do mundo das embaixadas: quem melhor muda de país é quem é acompanhado pessoalmente. Não gerido como processo. Acompanhado.',
-        'Hoje a Johanna e a sua rede acompanham profissionais, casais, famílias e fundadores até aos Países Baixos, com uma especialização que mais ninguém reivindica: Roterdão, o Europoort e a região industrial em torno do maior porto da Europa.',
+        'A vida internacional faz parte da minha vida desde que me lembro.',
+        'Ao crescer numa família que mudava frequentemente de país, vivi na primeira pessoa o que significa deixar para trás um ambiente familiar e construir uma nova vida no estrangeiro. Cada mudança trazia novas oportunidades, culturas desconhecidas e o desafio de encontrar um sentimento de pertença num lugar novo.',
+        'Ao longo da minha infância, as nossas mudanças internacionais eram cuidadosamente coordenadas. Casa, escola e questões práticas ficavam tratadas antes de chegarmos, o que nos permitia concentrar-nos em instalar-nos no novo ambiente.',
+        'Só quando a minha família regressou aos Países Baixos sem esse mesmo apoio profissional é que compreendi verdadeiramente o seu valor. Apesar de regressarmos a um país familiar, a transição revelou-se inesperadamente difícil.',
+        'Essa experiência moldou a minha convicção de que uma relocalização bem-sucedida exige mais do que preparativos e papelada. Exige antecipação, atenção pessoal e alguém que compreenda a experiência por trás da mudança.',
       ],
       image: '/images/about-joanna.jpg?v=20261026',
-      imageAlt: 'Johanna, fundadora da E & I, no seu escritório',
-      approach: {
-        heading: 'A nossa abordagem pessoal à relocalização',
-        text: [
-          'Cada cliente tem um único interlocutor que conhece todo o processo. Quando a câmara municipal o quer presencialmente, estamos na cadeira ao seu lado. Quando um senhorio telefona, respondemos em neerlandês. Quando acontece algo às onze da noite na sua primeira semana, na linha de WhatsApp está a mesma pessoa que o foi buscar ao aeroporto.',
-          'Esta forma de trabalhar não é escalável a milhares de clientes por ano. E é precisamente esse o ponto.',
-        ],
-      },
-      history: {
-        heading: 'Em atividade desde 2016',
-        text: [
-          'A E & I foi fundada em 2016 e desde então acompanha quem chega aos Países Baixos. Uma década numa só região é a razão pela qual sabemos que câmara municipal pede que documento, que senhorios sequer consideram um candidato cujo contrato começa no mês seguinte e quanto tempo demora realmente o IND no mês em que apresenta o pedido.',
-          'Significa também que as relações são reais. Agentes, notários, secretarias de escolas e funcionários que atendem porque reconhecem o nome. É a vantagem silenciosa que uma firma não pode comprar e que uma recém-chegada não consegue imitar.',
-        ],
-      },
-      boutique: {
-        heading: 'Porquê trabalhar com uma consultoria boutique',
-        text: [
-          'As empresas de mobilidade corporativa são feitas para o volume: portais, tickets, níveis de serviço. Uma boutique é feita para o resultado. Recebe o discernimento de quem acompanhou centenas de clientes através do IND, a rapidez de uma equipa que conhece todos os balcões da região e a discrição que exige uma reputação construída entre diplomatas.',
-        ],
-        points: [
-          {
-            title: 'Raízes no mundo das embaixadas',
-            text: 'Rigor e discrição aprendidos onde o erro não é opção.',
-          },
-          {
-            title: 'Uma região que mais ninguém serve',
-            text: 'Roterdão, o Europoort e a Maasvlakte, conhecidos rua a rua.',
-          },
-          {
-            title: 'Imigração e relocalização numa só mão',
-            text: 'A autorização, a casa e a vida à sua volta, ordenadas por uma só equipa.',
-          },
-        ],
-      },
-      families: {
-        heading: 'Apoio a expatriados e famílias',
-        text: [
-          'Metade de uma relocalização bem-sucedida nada tem a ver com papelada. Escolas que servem os seus filhos, um bairro que serve os seus serões, um médico, um ginásio, um caminho para o trabalho. O nosso apoio à instalação trata disso com a mesma seriedade que o visto, porque é isso que decide se uma mudança resulta.',
-        ],
-      },
+      imageAlt: 'Johanna, fundadora da E & I',
+      sections: [
+        {
+          heading: 'Da experiência internacional à competência profissional',
+          text: [
+            'A minha infância internacional despertou em mim um interesse duradouro pela imigração e pela mobilidade internacional.',
+            'Estudei Direito e Imobiliário, o que me deu uma perspetiva multidisciplinar sobre os aspetos jurídicos, práticos e imobiliários da relocalização.',
+            'O meu percurso profissional inclui também trabalho em embaixadas e ministérios, que me deu um conhecimento valioso de procedimentos administrativos, assuntos internacionais e enquadramentos regulamentares complexos.',
+            'Desde 2009 que me especializo em imigração nos Países Baixos, apoiando profissionais internacionais, famílias e empregadores com autorizações de residência, reagrupamento familiar, migração de trabalhadores altamente qualificados e outros procedimentos de imigração.',
+            'Fundei a E & I Expat Relocation & Immigration Services the Netherlands para aliar esta competência profissional ao apoio personalizado à relocalização que eu própria tinha vivido e valorizado.',
+          ],
+        },
+        {
+          heading: 'Uma abordagem pessoal que vai além da relocalização',
+          text: [
+            'Acredito que um serviço excecional deve ser sentido como pessoal, nunca burocrático.',
+            'Cada cliente tem prioridades, expectativas e circunstâncias diferentes. Alguns precisam de apoio especializado num pedido de imigração. Outros precisam de um acompanhamento completo nos muitos pormenores que envolve mudar a sua vida profissional e pessoal.',
+            'A minha abordagem começa por compreender essas necessidades individuais.',
+            'Mantenho-me pessoalmente envolvida ao longo de todo o percurso, com comunicação direta, continuidade e um ponto de contacto de confiança. Em vez de me limitar a gerir tarefas isoladas, tenho em conta o quadro geral, antecipo possíveis dificuldades e coordeno outros especialistas sempre que necessário.',
+            'Para mim, um serviço pessoal significa prestar atenção aos pormenores que importam a cada cliente, incluindo aqueles que nunca constariam de uma lista de verificação de relocalização comum.',
+          ],
+        },
+        {
+          heading: 'Relocalização à medida e assistência VIP',
+          text: [
+            'Para clientes que procuram uma experiência mais completa, a E & I oferece um apoio à relocalização à medida, pensado em função das suas circunstâncias, do seu estilo de vida e dos seus compromissos profissionais.',
+            'Pode incluir a coordenação do alojamento, das questões familiares, dos serviços locais e de outros aspetos da instalação nos Países Baixos.',
+            'Para executivos, profissionais internacionais e clientes que precisam de mais discrição ou flexibilidade, soluções VIP à medida podem oferecer um nível mais intenso de coordenação pessoal, incluindo disponibilidade alargada e, quando expressamente acordado, assistência 24 horas por dia, 7 dias por semana.',
+            'O nível de envolvimento é sempre ajustado a cada pessoa. Quer se trate de um único procedimento de imigração ou de uma relocalização completa, aplicam-se os mesmos princípios: discrição, preparação cuidadosa, fiabilidade e atenção pessoal.',
+          ],
+        },
+        {
+          heading: 'O seu percurso, acompanhado pessoalmente',
+          text: [
+            'Hoje, a E & I apoia particulares, famílias e empregadores que se mudam para os Países Baixos, com especial foco em Roterdão, no Europoort, no Botlek e na região envolvente.',
+            'A minha ambição nunca foi oferecer a todos a mesma experiência de relocalização. É dar a cada cliente o conhecimento, a atenção e o nível de acompanhamento que as suas circunstâncias merecem.',
+            'Porque uma relocalização excecional não se resume a chegar a um destino. Trata-se de ter a confiança de que cada pormenor importante está em boas mãos.',
+          ],
+        },
+      ],
+      quote: 'Para alguns, a relocalização é um serviço. Para os meus clientes, é uma experiência acompanhada pessoalmente.',
       reviews: {
         heading: 'Avaliações e experiências de clientes',
         sub: 'O que dizem os clientes sobre chegar com a E & I.',
       },
       cta: {
-        title: 'Conheça-nos antes de decidir',
-        text: 'Uma conversa diz-lhe exatamente em que ponto está.',
+        title: 'Está a planear a sua mudança para os Países Baixos?',
+        text: 'Conheça os nossos serviços de imigração e relocalização ou contacte-nos para saber como a E & I pode ajudar.',
         label: 'Marque uma consulta',
       },
     },
@@ -560,6 +569,15 @@ export const core: CoreContent = {
       },
       details: {
         heading: 'Dados',
+      },
+      personal: {
+        heading: 'O seu próximo capítulo começa com uma conversa pessoal',
+        text: [
+          'Cada mudança internacional é única, e um acompanhamento excecional começa por compreender as suas circunstâncias, ambições e expectativas.',
+          'Quer precise de apoio especializado em imigração, de um acompanhamento completo na relocalização ou de um serviço VIP à medida, terei todo o gosto em conversar sobre os seus planos e perceber como a E & I pode tornar a sua transição para os Países Baixos o mais tranquila possível.',
+        ],
+        name: 'Johanna',
+        role: 'CEO e Proprietária | Consultora de Imigração e Relocalização',
       },
       formCopy: {
         shared: {

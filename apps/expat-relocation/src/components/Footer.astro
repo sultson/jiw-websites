@@ -15,11 +15,11 @@ const f = c.core.ui.footer;
 const nav = c.core.ui.nav;
 const l = (p: string) => localizePath(p, lang);
 
-/* Same order as the header nav: relocation first, immigration after. */
+/* Same order as the header nav: relocation, immigration, then housing (client, Oct 2026). */
 const serviceLinks = [
   { label: nav.relocation, href: l(SECTIONS.relocation) },
-  { label: nav.housing, href: l(SECTIONS.housing) },
   { label: nav.immigration, href: l(SECTIONS.immigration) },
+  { label: nav.housing, href: l(SECTIONS.housing) },
   { label: nav.business, href: l(SECTIONS.business) },
   { label: nav.vip, href: l(SECTIONS.vip) },
   { label: c.industrial.title, href: l(SECTIONS.industrial) },

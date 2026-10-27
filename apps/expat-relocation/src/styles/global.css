@@ -23,6 +23,7 @@
   --color-ivory: #f5f5f7;
   --color-sand: #e3e6ed;
   --color-sand-deep: #efe6d6;
+  --color-champagne: #f8f2e4;
   --color-paper: #ffffff;
   --color-ink: #45526b;
   --color-ink-soft: #64708a;
@@ -121,6 +122,15 @@
   background:
     radial-gradient(120% 100% at 100% 0%, rgba(212, 175, 55, 0.1) 0%, transparent 55%),
     var(--color-sand);
+}
+
+/* Warm champagne band, from the brand gold at its palest. The light blue alone made
+   the upper homepage read grey next to the golden-hour header (client, Oct 2026), so
+   the two light bands now alternate: champagne for warmth, light blue for calm. */
+@utility band-champagne {
+  background:
+    radial-gradient(110% 90% at 0% 0%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+    var(--color-champagne);
 }
 
 /* Surface for every section carrying a lead form. These used to sit on bare white,

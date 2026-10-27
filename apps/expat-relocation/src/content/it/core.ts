@@ -31,6 +31,10 @@ export const core: CoreContent = {
         enquire: 'Chiedi informazioni su questo servizio',
         quote: 'Richiedi un preventivo',
       },
+      ctaStrip: {
+        heading: 'Parliamo personalmente della sua situazione',
+        text: 'Bastano poche righe. Johanna esamina personalmente ogni richiesta e risponde entro un giorno lavorativo.',
+      },
       whatsappPrefill: {
         general: 'Ciao Johanna, sto pianificando un trasferimento nei Paesi Bassi e ho una domanda.',
         topic: 'Ciao Johanna, ho una domanda su: {topic}',
@@ -137,14 +141,16 @@ export const core: CoreContent = {
         formLabel: 'Inviaci un messaggio',
       },
       intro: {
-        eyebrow: 'La vostra referente',
-        heading: 'Ciao, sono Johanna',
+        eyebrow: 'Uno sguardo personale sulla vita internazionale',
+        heading: 'Ciao, sono Johanna.',
         text: [
-          'Ho fondato E & I nel 2016, dopo anni nel mondo delle ambasciate. Ciò che ho visto lì guida ancora il mio lavoro: chi cambia paese ce la fa meglio quando qualcuno lo accompagna, non quando gli viene consegnata una lista di cose da fare.',
-          'Per questo ogni cliente lavora con me personalmente. Preparo il vostro permesso, cerco la vostra casa, vi accompagno al comune e all’IND e resto sulla stessa linea WhatsApp dopo il vostro arrivo.',
+          'Sono cresciuta in una famiglia che si spostava spesso da un paese all’altro, e so che trasferirsi all’estero significa molto più che attraversare un confine. Significa cogliere nuove opportunità, orientarsi in un ambiente sconosciuto e costruire un senso di appartenenza in un nuovo paese.',
+          'Queste esperienze hanno plasmato non solo il mio modo di vedere le cose, ma anche il mio percorso professionale.',
+          'Dal 2009 mi dedico all’immigrazione nei Paesi Bassi, unendo competenze specialistiche a una comprensione personale della mobilità internazionale.',
+          'Oggi, come fondatrice di E & I Expat Relocation & Immigration Services the Netherlands, assisto professionisti internazionali, famiglie e datori di lavoro nell’immigrazione e nel trasferimento, con particolare attenzione a Rotterdam e alla regione circostante.',
+          'La mia filosofia è semplice: un servizio eccellente comincia dal capire le persone che stanno dietro a ogni trasferimento internazionale.',
         ],
-        signature: 'Johanna, fondatrice di E & I',
-        label: 'Di più su Johanna',
+        label: 'Scopra la mia storia',
       },
       paths: {
         heading: 'Come possiamo accompagnarla all\'arrivo?',
@@ -466,61 +472,64 @@ export const core: CoreContent = {
     about: {
       metaTitle: 'Chi siamo | Consulenza boutique per expat e relocation nei Paesi Bassi | E & I',
       metaDescription: 'E & I è l\'unica consulenza boutique per il trasferimento e l\'immigrazione di expat nei Paesi Bassi. Guida personale di Johanna, dal visto alla casa al giorno in cui si sentirà a casa.',
-      eyebrow: 'Chi è E & I',
-      title: 'La boutique dietro mille arrivi',
+      eyebrow: 'La storia dietro E & I',
+      title: 'Una vita plasmata dall’esperienza internazionale',
       intro: [
-        'E & I: Expat, Relocation and Immigration Services The Netherlands è nata da una semplice osservazione fatta dall\'interno del mondo delle ambasciate: chi cambia paese meglio di tutti è chi viene accompagnato di persona. Non gestito come pratica. Accompagnato.',
-        'Oggi Johanna e la sua rete accompagnano professionisti, coppie, famiglie e fondatori nei Paesi Bassi, con una specializzazione che nessun altro rivendica: Rotterdam, Europoort e la regione industriale attorno al più grande porto d\'Europa.',
+        'La vita internazionale fa parte della mia vita da quando ho memoria.',
+        'Crescendo in una famiglia che si spostava spesso da un paese all’altro, ho vissuto in prima persona che cosa significhi lasciarsi alle spalle un ambiente familiare e costruirsi una nuova vita all’estero. Ogni trasferimento portava nuove opportunità, culture sconosciute e la sfida di sentirsi a casa in un posto nuovo.',
+        'Durante tutta la mia infanzia, i nostri trasferimenti internazionali venivano organizzati con cura. Casa, scuola e aspetti pratici erano sistemati prima del nostro arrivo, così potevamo concentrarci sull’ambientarci nel nuovo contesto.',
+        'Solo quando la mia famiglia è tornata nei Paesi Bassi senza quello stesso supporto professionale ne ho compreso fino in fondo il valore. Pur trattandosi di un paese familiare, il rientro si è rivelato inaspettatamente difficile.',
+        'Quell’esperienza ha formato la mia convinzione che un trasferimento ben riuscito richieda più di pratiche e documenti. Richiede lungimiranza, attenzione personale e qualcuno che capisca l’esperienza che c’è dietro il trasloco.',
       ],
       image: '/images/about-joanna.jpg?v=20261026',
-      imageAlt: 'Johanna, fondatrice di E & I, nel suo ufficio',
-      approach: {
-        heading: 'Il nostro approccio personale al trasferimento',
-        text: [
-          'Ogni cliente ha un unico referente che conosce l\'intero fascicolo. Quando il comune la vuole di persona, siamo sulla sedia accanto alla sua. Quando chiama un proprietario, rispondiamo in olandese. Quando succede qualcosa alle undici di sera nella sua prima settimana, sulla linea WhatsApp c\'è la stessa persona che l\'ha presa all\'aeroporto.',
-          'Questo modo di lavorare non è scalabile a migliaia di clienti l\'anno. Ed è esattamente questo il punto.',
-        ],
-      },
-      history: {
-        heading: 'Attivi dal 2016',
-        text: [
-          'E & I è stata fondata nel 2016 e da allora accompagna chi arriva nei Paesi Bassi. Un decennio in una sola regione è il motivo per cui sappiamo quale comune chiede quale documento, quali proprietari prenderanno anche solo in considerazione un candidato il cui contratto inizia il mese prossimo e quanto tempo impiega davvero l\'IND nel mese in cui lei presenta la domanda.',
-          'Significa anche che le relazioni sono reali. Agenzie, notai, segreterie scolastiche e funzionari che rispondono al telefono perché riconoscono il nome. È il vantaggio silenzioso che uno studio non può comprare e che chi è appena arrivato non può imitare.',
-        ],
-      },
-      boutique: {
-        heading: 'Perché scegliere una consulenza boutique',
-        text: [
-          'Le società di mobilità aziendale sono costruite per il volume: portali, ticket, livelli di servizio. Una boutique è costruita per il risultato. Ottiene il giudizio di chi ha accompagnato centinaia di clienti attraverso l\'IND, la rapidità di un team che conosce ogni sportello della regione e la discrezione che impone una reputazione costruita fra diplomatici.',
-        ],
-        points: [
-          {
-            title: 'Radici nel mondo delle ambasciate',
-            text: 'Precisione e discrezione imparate dove l\'errore non è contemplato.',
-          },
-          {
-            title: 'Una regione che nessun altro copre',
-            text: 'Rotterdam, Europoort e la Maasvlakte, conosciute strada per strada.',
-          },
-          {
-            title: 'Immigrazione e trasferimento in una sola mano',
-            text: 'Il permesso, la casa e la vita che le sta attorno, ordinati da un solo team.',
-          },
-        ],
-      },
-      families: {
-        heading: 'Assistenza per expat e famiglie',
-        text: [
-          'Metà di un trasferimento riuscito non ha nulla a che vedere con le pratiche. Scuole adatte ai suoi figli, un quartiere adatto alle sue serate, un medico, una palestra, un tragitto verso il lavoro. La nostra assistenza all\'ambientamento tratta queste cose con la stessa serietà del visto, perché sono loro a decidere se un trasferimento riesce.',
-        ],
-      },
+      imageAlt: 'Johanna, fondatrice di E & I',
+      sections: [
+        {
+          heading: 'Dall’esperienza internazionale alla competenza professionale',
+          text: [
+            'La mia infanzia internazionale ha fatto nascere in me un interesse duraturo per l’immigrazione e la mobilità internazionale.',
+            'Ho studiato giurisprudenza e scienze immobiliari, sviluppando uno sguardo multidisciplinare sugli aspetti legali, pratici e immobiliari del trasferimento.',
+            'Il mio percorso professionale comprende anche il lavoro presso ambasciate e ministeri, che mi ha dato una conoscenza preziosa delle procedure amministrative, degli affari internazionali e di contesti normativi complessi.',
+            'Dal 2009 mi sono specializzata nell’immigrazione nei Paesi Bassi, assistendo professionisti internazionali, famiglie e datori di lavoro con permessi di soggiorno, ricongiungimento familiare, migrazione di lavoratori altamente qualificati e altre procedure di immigrazione.',
+            'Ho fondato E & I Expat Relocation & Immigration Services the Netherlands per unire questa competenza professionale al supporto personalizzato al trasferimento che io stessa avevo vissuto e apprezzato.',
+          ],
+        },
+        {
+          heading: 'Un approccio personale che va oltre il trasferimento',
+          text: [
+            'Credo che un servizio eccellente debba risultare personale, mai burocratico.',
+            'Ogni cliente ha priorità, aspettative e circostanze diverse. Alcuni hanno bisogno di un’assistenza specialistica per una domanda di immigrazione. Altri cercano un supporto completo per i tanti dettagli legati al trasferimento della propria vita professionale e privata.',
+            'Il mio approccio comincia dal comprendere queste esigenze individuali.',
+            'Resto coinvolta personalmente per tutto il percorso, con una comunicazione diretta, continuità e un punto di riferimento di fiducia. Invece di limitarmi a gestire singoli compiti, guardo al quadro d’insieme, anticipo le possibili difficoltà e coinvolgo altre competenze quando serve.',
+            'Per me, servizio personale significa prestare attenzione ai dettagli che contano per ciascun cliente, compresi quelli che non compariranno mai in una normale checklist di trasferimento.',
+          ],
+        },
+        {
+          heading: 'Relocation su misura e assistenza VIP',
+          text: [
+            'Per i clienti che cercano un’esperienza più completa, E & I offre un’assistenza al trasferimento su misura, costruita attorno alle loro circostanze, al loro stile di vita e ai loro impegni professionali.',
+            'Può comprendere il coordinamento dell’alloggio, delle esigenze familiari, dei servizi locali e di altri aspetti dell’inserimento nei Paesi Bassi.',
+            'Per dirigenti, professionisti internazionali e clienti che richiedono maggiore discrezione o flessibilità, soluzioni VIP su misura possono offrire un livello più intenso di coordinamento personale, con una disponibilità estesa e, se espressamente concordato, assistenza 24 ore su 24, 7 giorni su 7.',
+            'Il livello di coinvolgimento è sempre calibrato sulla persona. Che l’incarico riguardi una singola procedura di immigrazione o un trasferimento completo, valgono gli stessi principi: discrezione, preparazione accurata, affidabilità e attenzione personale.',
+          ],
+        },
+        {
+          heading: 'Il suo percorso, guidato personalmente',
+          text: [
+            'Oggi E & I assiste privati, famiglie e datori di lavoro che si trasferiscono nei Paesi Bassi, con particolare attenzione a Rotterdam, Europoort, Botlek e alla regione circostante.',
+            'La mia ambizione non è mai stata offrire a tutti la stessa esperienza di trasferimento, ma dare a ogni cliente la competenza, l’attenzione e il livello di accompagnamento che la sua situazione merita.',
+            'Perché un trasferimento eccellente non consiste semplicemente nel raggiungere una destinazione. Consiste nel sapere con certezza che ogni dettaglio importante è in buone mani.',
+          ],
+        },
+      ],
+      quote: 'Per alcuni il trasferimento è un servizio. Per i miei clienti è un’esperienza guidata personalmente.',
       reviews: {
         heading: 'Recensioni ed esperienze dei clienti',
         sub: 'Che cosa dicono i clienti dell\'arrivo con E & I.',
       },
       cta: {
-        title: 'Ci conosca prima di decidere',
-        text: 'Una conversazione le dice esattamente a che punto è.',
+        title: 'Sta pianificando il suo trasferimento nei Paesi Bassi?',
+        text: 'Scopra i nostri servizi di immigrazione e relocation oppure ci contatti per capire come E & I può aiutarla.',
         label: 'Prenota una consulenza',
       },
     },
@@ -560,6 +569,15 @@ export const core: CoreContent = {
       },
       details: {
         heading: 'Dati',
+      },
+      personal: {
+        heading: 'Il suo prossimo capitolo comincia con una conversazione personale',
+        text: [
+          'Ogni trasferimento internazionale è unico, e un accompagnamento eccellente comincia dal comprendere le sue circostanze, le sue ambizioni e le sue aspettative.',
+          'Che le serva un’assistenza specialistica per l’immigrazione, un supporto completo al trasferimento o un servizio VIP su misura, sarò lieta di parlare dei suoi progetti e di valutare insieme come E & I può rendere il suo passaggio ai Paesi Bassi il più agevole possibile.',
+        ],
+        name: 'Johanna',
+        role: 'CEO e titolare | Consulente per immigrazione e relocation',
       },
       formCopy: {
         shared: {

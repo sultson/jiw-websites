@@ -28,6 +28,10 @@ export const core: CoreContent = {
       enquire: 'Ask about this service',
       quote: 'Request a quote',
     },
+    ctaStrip: {
+      heading: 'Discuss your situation personally',
+      text: 'A few lines are enough. Johanna reviews every enquiry herself and replies within one business day.',
+    },
     whatsappPrefill: {
       general: 'Hi Johanna, I am planning a move to the Netherlands and have a question.',
       topic: 'Hi Johanna, I have a question about: {topic}',
@@ -136,14 +140,16 @@ export const core: CoreContent = {
       formLabel: 'Send us a message',
     },
     intro: {
-      eyebrow: 'Your point of contact',
-      heading: 'Hello, I am Johanna',
+      eyebrow: 'A personal perspective on international living',
+      heading: 'Hello, I’m Johanna.',
       text: [
-        'I founded E & I in 2016, after years in the embassy world. What I saw there still shapes the work: people who move countries do best when someone goes with them, not when they are handed a checklist.',
-        'So every client works with me personally. I prepare your permit, search for your home, come along to the municipality and the IND, and stay on the same WhatsApp line once you have arrived.',
+        'Having grown up in an internationally mobile family, I understand that relocating abroad is about far more than crossing borders. It is about embracing new opportunities, navigating unfamiliar surroundings and creating a sense of belonging in a new country.',
+        'These experiences have shaped not only my perspective, but also my professional journey.',
+        'Since 2009, I have dedicated my career to Dutch immigration, combining specialist expertise with a personal understanding of international mobility.',
+        'Today, as the founder of E & I Expat Relocation & Immigration Services the Netherlands, I assist international professionals, families and employers with immigration and relocation, with a particular focus on Rotterdam and the surrounding region.',
+        'My philosophy is simple: exceptional service begins with understanding the people behind every international move.',
       ],
-      signature: 'Johanna, founder of E & I',
-      label: 'More about Johanna',
+      label: 'Discover my story',
     },
     paths: {
       heading: 'How can we help you arrive?',
@@ -347,52 +353,64 @@ export const core: CoreContent = {
     metaTitle: 'About E & I | Boutique Expat & Relocation Consultancy Netherlands',
     metaDescription:
       'E & I is the only boutique expat relocation and immigration consultancy in the Netherlands. Personal guidance by Johanna, from visa to housing to the day you feel at home.',
-    eyebrow: 'About E & I',
-    title: 'The boutique behind a thousand arrivals',
+    eyebrow: 'The story behind E & I',
+    title: 'A life shaped by international experience',
     intro: [
-      'E & I: Expat, Relocation and Immigration Services The Netherlands began with a simple observation from inside the embassy world: the people who move countries best are the ones who are personally accompanied. Not case-managed. Accompanied.',
-      'Today Johanna and her network guide professionals, couples, families and founders into the Netherlands, with a specialism no one else claims: Rotterdam, Europoort and the industrial region around Europe’s largest port.',
+      'International living has been part of my life for as long as I can remember.',
+      'Growing up in an internationally mobile family, I experienced firsthand what it means to leave familiar surroundings behind and establish a new life abroad. Each relocation brought new opportunities, unfamiliar cultures and the challenge of finding a sense of belonging somewhere new.',
+      'Throughout my childhood, our international moves were carefully coordinated. Homes, schools and practical arrangements were organised before we arrived, allowing us to focus on settling into our new surroundings.',
+      'It was only when my family returned to the Netherlands without that same professional support that I fully understood its value. Despite returning to a familiar country, the transition proved unexpectedly challenging.',
+      'That experience shaped my belief that successful relocation requires more than arrangements and paperwork. It requires foresight, personal attention and someone who understands the experience behind the move.',
     ],
     image: '/images/about-joanna.jpg?v=20261026',
-    imageAlt: 'Johanna, founder of E & I, in her office',
-    approach: {
-      heading: 'Our personal relocation approach',
-      text: [
-        'Every client has one point of contact who knows the whole file. When the municipality needs you in person, we are in the chair next to you. When a landlord calls, we answer in Dutch. When something happens at eleven at night in your first week, the WhatsApp line is the same person who collected you from the airport.',
-        'That way of working does not scale to thousands of clients per year. That is precisely the point.',
-      ],
-    },
-    history: {
-      heading: 'Operating since 2016',
-      text: [
-        'E & I was founded in 2016 and has been guiding arrivals into the Netherlands ever since. A decade in one region is why we know which municipality asks for which document, which landlords will consider an applicant whose contract starts next month, and how long the IND is really taking in the month you apply.',
-        'It also means the relationships are real. Agents, notaries, school registrars and civil servants who take the call because they recognise the name. That is the quiet advantage a firm cannot buy and a new one cannot imitate.',
-      ],
-    },
-    boutique: {
-      heading: 'Why work with a boutique consultancy',
-      text: [
-        'Corporate mobility firms are built for volume: portals, tickets, service levels. A boutique is built for outcomes. You get the judgment of someone who has walked hundreds of clients through the IND, the speed of a team that knows every desk in the region, and the discretion that a reputation built among diplomats demands.',
-      ],
-      points: [
-        { title: 'Embassy-world roots', text: 'Precision and discretion learned where mistakes are not an option.' },
-        { title: 'A region no one else serves', text: 'Rotterdam, Europoort and the Maasvlakte, known street by street.' },
-        { title: 'Immigration and relocation in one hand', text: 'The permit, the home and the life around it, sequenced by one team.' },
-      ],
-    },
-    families: {
-      heading: 'Support for expats and families',
-      text: [
-        'Half of a successful relocation has nothing to do with paperwork. Schools that fit your children, a neighbourhood that fits your evenings, a doctor, a gym, a route to work. Our settling-in support treats those as seriously as the visa, because that is what decides whether a move succeeds.',
-      ],
-    },
+    imageAlt: 'Johanna, founder of E & I',
+    sections: [
+      {
+        heading: 'From international experience to professional expertise',
+        text: [
+          'My international upbringing inspired a lasting interest in immigration and international mobility.',
+          'I pursued studies in law and real estate, developing a multidisciplinary perspective on the legal, practical and property-related aspects of relocation.',
+          'My professional background also includes working for embassies and government ministries, providing valuable insight into administrative procedures, international affairs and complex regulatory environments.',
+          'Since 2009, I have specialised in Dutch immigration, assisting international professionals, families and employers with residence permits, family reunification, highly skilled migration and other immigration procedures.',
+          'I founded E & I Expat Relocation & Immigration Services the Netherlands to combine this professional expertise with the personalised relocation support I had experienced and valued myself.',
+        ],
+      },
+      {
+        heading: 'A personal approach that goes beyond relocation',
+        text: [
+          'I believe exceptional service should feel personal, never procedural.',
+          'Every client has different priorities, expectations and circumstances. Some require specialist assistance with an immigration application. Others need comprehensive support with the many details involved in relocating their professional and personal lives.',
+          'My approach begins with understanding those individual needs.',
+          'I remain personally involved throughout the journey, providing direct communication, continuity and a trusted point of contact. Rather than simply managing individual tasks, I consider the wider picture, anticipate potential challenges and coordinate additional expertise where required.',
+          'For me, personal service means paying attention to the details that matter to each client, including those that may never appear on a standard relocation checklist.',
+        ],
+      },
+      {
+        heading: 'Bespoke relocation and VIP assistance',
+        text: [
+          'For clients seeking a more comprehensive experience, E & I offers tailored relocation assistance designed around their circumstances, lifestyle and professional commitments.',
+          'This may include coordinating accommodation, family arrangements, local services and other aspects of settling into the Netherlands.',
+          'For executives, international professionals and clients requiring additional discretion or flexibility, bespoke VIP arrangements can provide a more intensive level of personal coordination, including extended availability and, where specifically agreed, 24/7 assistance.',
+          'The level of involvement is always tailored to the individual. Whether the assignment concerns a single immigration procedure or a comprehensive relocation, the same principles apply: discretion, careful preparation, reliability and personal attention.',
+        ],
+      },
+      {
+        heading: 'Your journey, personally guided',
+        text: [
+          'Today, E & I supports individuals, families and employers relocating to the Netherlands, with a particular focus on Rotterdam, Europoort, Botlek and the surrounding region.',
+          'My ambition has never been to offer everyone the same relocation experience. It is to provide each client with the expertise, attention and level of guidance their circumstances deserve.',
+          'Because exceptional relocation is not simply about reaching a destination. It is about feeling confident that every important detail is in capable hands.',
+        ],
+      },
+    ],
+    quote: 'For some, relocation is a service. For my clients, it is a personally guided experience.',
     reviews: {
       heading: 'Reviews & client experiences',
       sub: 'What clients say about arriving with E & I.',
     },
     cta: {
-      title: 'Meet us before you decide',
-      text: 'One conversation tells you exactly where you stand.',
+      title: 'Planning your move to the Netherlands?',
+      text: 'Explore our immigration and relocation services or contact us to discuss how E & I can assist.',
       label: 'Book a relocation consultation',
     },
   },
@@ -434,6 +452,15 @@ export const core: CoreContent = {
     },
     details: {
       heading: 'Details',
+    },
+    personal: {
+      heading: 'Your next chapter begins with a personal conversation',
+      text: [
+        'Every international move is unique, and exceptional guidance begins with understanding your individual circumstances, ambitions and expectations.',
+        'Whether you require specialist immigration assistance, comprehensive relocation support or a bespoke VIP service, I welcome the opportunity to discuss your plans and explore how E & I can make your transition to the Netherlands as seamless as possible.',
+      ],
+      name: 'Johanna',
+      role: 'CEO & Owner | Immigration & Relocation Consultant',
     },
     formCopy: {
       shared: {
