@@ -1319,6 +1319,25 @@ const schema = (taal, slug, titel) => {
       addressCountry: 'NL',
     },
     areaServed: { '@type': 'City', name: 'Bergen op Zoom' },
+    /* Zeven dagen 07:00-23:00, doorgegeven door Armando op 27-10-2026 en gelijk
+       aan wat er in haar Google-bedrijfsprofiel staat. Die twee moeten hetzelfde
+       zeggen: lopen ze uiteen, dan is het profiel wat Google gebruikt en deze
+       regel wat het tegenspreekt. Dit is bereikbaarheid voor een aanvraag en
+       geen winkel waar je binnenloopt - er is geen bezoekadres op de site. */
+    openingHoursSpecification: [{
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: [
+        'https://schema.org/Monday',
+        'https://schema.org/Tuesday',
+        'https://schema.org/Wednesday',
+        'https://schema.org/Thursday',
+        'https://schema.org/Friday',
+        'https://schema.org/Saturday',
+        'https://schema.org/Sunday',
+      ],
+      opens: '07:00',
+      closes: '23:00',
+    }],
     sameAs: [
       'https://www.instagram.com/ionecaterina1987',
       'https://www.facebook.com/share/1Hu1g4kP7w/',
