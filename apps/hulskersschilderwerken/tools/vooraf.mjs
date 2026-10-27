@@ -29,6 +29,8 @@
 //   13. de JSON-LD parseert
 //   14. geen html-commentaar in de pagina (bouwnotities, zie 25-10-2026)
 //   15. het oude conceptadres staat nergens meer in de html
+//   16. de openingstijden staan in de JSON-LD van de startpagina en zijn dezelfde als
+//       in inhoud.mjs (ze staan nergens zichtbaar, dus niets anders meldt hun verdwijnen)
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { BEDRIJF, FORM_PAD, INDEXEERBAAR_PADEN } from '../inhoud.mjs';
 
@@ -73,6 +75,8 @@ const paginas = bestanden.map((bestand) => ({
   bestand,
   adres: adresVan(bestand),
   html: readFileSync(bestand, 'utf8'),
+  // Gevuld door regel 13, gebruikt door regel 16: de geparseerde JSON-LD-blokken.
+  ld: [],
 }));
 
 const is404 = (p) => p.adres === null;
@@ -179,7 +183,7 @@ for (const p of paginas) {
   //     pagina en kost precies de rich results waar hij voor staat.
   for (const m of p.html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
     try {
-      JSON.parse(m[1]);
+      p.ld.push(JSON.parse(m[1]));
     } catch (e) {
       zakP(`heeft JSON-LD die niet parseert: ${e.message}`);
     }
@@ -193,6 +197,50 @@ for (const p of paginas) {
 
   // 15. het oude conceptadres
   if (p.html.includes(OUD_CONCEPT)) zakP(`noemt het oude conceptadres ${OUD_CONCEPT}`);
+}
+
+// ------------------------------------------------- 16. de openingstijden in de JSON-LD
+//
+// De zaakgegevens staan op EEN pagina (de startpagina; /werkwijze/ draagt alleen een
+// BreadcrumbList), dus dit is een eis over die ene pagina en niet over alle.
+//
+// Waarom hij er is: openingstijden zijn het enige zaakgegeven dat NERGENS zichtbaar op
+// de site staat (doorgegeven via Armando, 27-10-2026 - zie de noot in dat bronbestand).
+// Een telefoonnummer dat uit de JSON-LD valt zie je op de pagina terug; dit niet. Een
+// stuk structured data dat stil verdwijnt is precies het soort fout dat maanden blijft
+// staan, want de pagina werkt prima.
+//
+// De tijden komen uit inhoud.mjs en staan hier niet als letterlijke "07:00" en "23:00":
+// een controle die zijn eigen cijfers bijhoudt houdt de oude waarde in stand (de les van
+// de prijswijziging van 25-10-2026). Wijzigt Pascal zijn tijden, dan is inhoud.mjs de
+// enige plek.
+{
+  const home = paginas.find((p) => p.adres === '/');
+  if (!home) {
+    zak('vooraf: geen startpagina gevonden om de zaakgegevens op te toetsen');
+  } else {
+    const zaak = home.ld.find((d) => d && d.openingHoursSpecification);
+    if (!zaak) {
+      zak('/ heeft geen openingHoursSpecification in de structured data');
+    } else {
+      const spec = [].concat(zaak.openingHoursSpecification);
+      if (spec.length !== 1) {
+        zak(`/ heeft ${spec.length} openingstijd-blokken, dat moet er een zijn met alle dagen erin`);
+      }
+      const dagen = [...new Set(spec.flatMap((s) => [].concat(s.dayOfWeek || [])))];
+      if (dagen.length !== BEDRIJF.openDagen) {
+        zak(`/ noemt ${dagen.length} dagen in de openingstijden, inhoud.mjs zegt ${BEDRIJF.openDagen}`);
+      }
+      for (const s of spec) {
+        if (s.opens !== BEDRIJF.openVan || s.closes !== BEDRIJF.openTot) {
+          zak(
+            `/ heeft openingstijd ${s.opens}-${s.closes} in de structured data, ` +
+              `inhoud.mjs zegt ${BEDRIJF.openVan}-${BEDRIJF.openTot}`,
+          );
+        }
+      }
+    }
+  }
 }
 
 // ------------------------------------------------------------- 11. sitemap en 12. robots

@@ -23,6 +23,17 @@ export const BEDRIJF = {
   // een gedeelde conceptlink niet doodloopt en er geen tweede kopie van de site
   // indexeerbaar blijft staan (het concept had `Allow: /` in robots.txt).
   domein: 'hulskersschilderwerken.nl',
+  // Openingstijden, doorgegeven via Armando (27-10-2026). Drie losse waarden en geen
+  // object, want ze gaan als NAP-waarde door de bronpoort en die krijgt een string.
+  //
+  // Ze staan ALLEEN in de structured data op de startpagina, in geen enkele zin op de
+  // pagina - zie de noot in bron/zijn-tekst/doorgegeven-armando-27-10-2026.txt. Het
+  // aantal dagen staat hier als getal en wordt in build.mjs tegen de dagenlijst van de
+  // JSON-LD gelegd: anders is "7 dagen per week" een bewering die niemand nameet en kan
+  // de lijst op zes dagen staan terwijl dit getal 7 blijft zeggen.
+  openDagen: 7,
+  openVan: '07:00',
+  openTot: '23:00',
 }
 
 /**
@@ -1012,6 +1023,10 @@ const ARM = 'bron/zijn-tekst/doorgegeven-armando.txt (doorgegeven via Armando, 2
 // een bron die zichzelf tegenspreekt moet dat zichtbaar doen - niet als bijzin in de
 // kop van het oudere bestand.
 const ARM2 = 'bron/zijn-tekst/doorgegeven-armando-25-10-2026.txt (doorgegeven via Armando, 25-10-2026)'
+// Derde doorgegeven regel: de openingstijden, voor de structured data. Eigen constante
+// en eigen bestand om dezelfde reden als ARM2 - die twee bestanden dragen een kop met
+// wat er achterhaald is, en een nieuwe regel eronder plakken maakt zo'n kop onleesbaar.
+const ARM3 = 'bron/zijn-tekst/doorgegeven-armando-27-10-2026.txt (doorgegeven via Armando, 27-10-2026)'
 // De fabrikant. Dit bestand staat BEWUST buiten bron/zijn-tekst: het is de tekst van
 // AkzoNobel en niet van Pascal, dus het mag geen woord in een zin van hem dekken. Wat
 // de verf doet is daarmee een `feit` met een eigen bron, en dat Pascal ermee werkt is
@@ -1239,6 +1254,13 @@ export const NAP_MERKEN = {
   'bedrijf.straat': { merk: 'feit', bron: KVK },
   'bedrijf.postcode': { merk: 'feit', bron: KVK },
   'bedrijf.kvk': { merk: 'feit', bron: KVK },
+  // De openingstijden. `afgeleid` en niet `feit`: een openingstijd is geen algemeen
+  // controleerbaar gegeven zoals een KVK-nummer, het is een uitspraak van de zaak zelf.
+  // Ze staan niet in het KVK-uittreksel en niet in zijn advertentie, dus ze rusten
+  // volledig op wat Armando doorgaf - en daarmee staan ze op de nalooplijst.
+  'bedrijf.openDagen': { merk: 'afgeleid', bron: ARM3 },
+  'bedrijf.openVan': { merk: 'afgeleid', bron: ARM3 },
+  'bedrijf.openTot': { merk: 'afgeleid', bron: ARM3 },
   // Drie bedragen, drie bronnen. 11 en 17,50 komen uit het overleg van 25-10-2026 en
   // niet meer uit zijn advertentie (daar staat 10 en 16); de 23 staat op de doorgegeven
   // regel van 20-10-2026 en is in dat overleg niet aangeroerd.

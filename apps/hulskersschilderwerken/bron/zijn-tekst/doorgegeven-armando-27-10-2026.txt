@@ -1,0 +1,28 @@
+Bron: Armando in de WhatsApp-groep "Claudius Hulskers 2.0", 27-10-2026.
+Een regel: de openingstijden, bedoeld voor de structured data.
+
+Eigen bestand en niet onderaan doorgegeven-armando.txt, om dezelfde reden als de regel
+van 25-10-2026: die bestanden dragen allebei een kop met wat er inmiddels achterhaald
+is, en een nieuwe regel onder zo'n kop plakken maakt die kop onleesbaar. Een bron per
+dag is na te lezen; een bron die groeit is dat niet.
+
+Het blijft DOORGEGEVEN tekst. Armando spreekt Pascal, dus het is geen gok, maar het
+staat nergens op schrift van Pascal zelf - anders dan zijn correcties van 25-10-2026
+(pascal-whatsapp-25-10-2026.txt), die op alles voorgaan. Elke regel die hierop rust
+draagt die bron en komt zo apart op NALEZEN-PASCAL.md.
+
+WAAR DEZE REGEL WEL EN NIET STAAT, en dat is met opzet: hij staat ALLEEN in de
+structured data op de startpagina en in geen enkele zin op de pagina. Een zichtbare
+regel "elke dag open van 07:00 tot 23:00" is een belofte over bereikbaarheid, en dat
+is iets anders dan een tijdvak waarin hij benaderbaar is. Zo'n zin hoort hij zelf te
+hebben gezegd voordat hij op zijn site staat. tools/vooraf.mjs regel 16 toetst dat de
+tijden in de JSON-LD staan en met inhoud.mjs overeenkomen.
+
+Let op bij het eventueel toch op de pagina zetten: Google wil dat structured data de
+zichtbare inhoud weergeeft, dus de twee kunnen niet uit elkaar lopen zonder dat een van
+de twee fout is. Omgekeerd geldt het ook: wordt de regel zichtbaar, dan moet hij uit
+dezelfde waarden in inhoud.mjs komen en niet uit een tweede plek.
+
+---
+
+De openingstijden zijn 7 dagen per week van 07:00 tot 23:00.

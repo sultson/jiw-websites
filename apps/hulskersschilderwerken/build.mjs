@@ -967,6 +967,19 @@ const WERK_DUIMEN = WERK.map(([naam, bijschrift, alt], i) =>
   `${img(naam, alt, '84px')}</button>`
 ).join('\n        ')
 
+// De zeven dagen voor de openingstijden. EEN specificatie met alle dagen erin en niet
+// zeven losse: dat is wat Google uitleest, en het is de enige vorm die niet half kan
+// verschuiven. De telling eronder is de koppeling met inhoud.mjs: daar staat openDagen
+// als getal (7), hier staat de lijst die in de pagina belandt, en zonder deze regel kan
+// die lijst op zes dagen komen te staan terwijl het getal 7 blijft zeggen. Zelfde reden
+// als bij FORM_PAD: twee plekken die hetzelfde moeten beweren lopen uit de pas.
+const OPEN_DAGEN = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+if (OPEN_DAGEN.length !== BEDRIJF.openDagen) {
+  throw new Error(
+    `build: inhoud.mjs zegt ${BEDRIJF.openDagen} open dagen, de structured data noemt er ${OPEN_DAGEN.length}`
+  )
+}
+
 const ZAAK = {
   '@context': 'https://schema.org',
   '@type': 'HousePainter',
@@ -983,6 +996,18 @@ const ZAAK = {
     addressCountry: 'NL',
   },
   areaServed: { '@type': 'Country', name: 'Nederland' },
+  // Openingstijden (doorgegeven via Armando, 27-10-2026). Alleen hier en bewust in geen
+  // enkele zin op de pagina: een zichtbare regel "elke dag open van 07:00 tot 23:00" is
+  // een belofte over bereikbaarheid en die hoort hij zelf gezegd te hebben. De tijden
+  // komen uit BEDRIJF, zodat een latere zichtbare regel uit dezelfde waarde komt en de
+  // twee niet uit elkaar kunnen lopen - Google wil dat structured data de zichtbare
+  // inhoud weergeeft, dus twee plekken betekent dat er een fout is.
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: OPEN_DAGEN,
+    opens: BEDRIJF.openVan,
+    closes: BEDRIJF.openTot,
+  }],
   // Schilderwerk stond hier niet in, terwijl het de helft van zijn bedrijf is en zijn
   // advertentie ermee opent. Google las de site daardoor net zo smal als een bezoeker
   // hem las (feedback Armando, 20-10-2026).

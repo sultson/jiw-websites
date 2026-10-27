@@ -8,7 +8,7 @@ Bronkorpus: `bron/zijn-tekst/` (zijn Marktplaats-advertentie, het KVK-uittreksel
 wat Armando doorgaf). Een regel met "doorgegeven via Armando" erachter staat hier
 altijd op, ook als de woorden kloppen: die is van horen zeggen tot Pascal hem bevestigt.
 
-## 50 regels
+## 53 regels
 
 - **nl.kaart.s2** &mdash; ons eigen getal
   > Aantal m2
@@ -156,6 +156,15 @@ altijd op, ook als de woorden kloppen: die is van horen zeggen tot Pascal hem be
 
 - **nl.werkwijze.a7_b** &mdash; bron/zijn-tekst/doorgegeven-armando.txt (doorgegeven via Armando, 20-10-2026) + bron/zijn-tekst/overleg-pascal-25-10-2026.txt (notulen overleg met Pascal, 25-10-2026) + bron/zijn-tekst/doorgegeven-armando-25-10-2026.txt (doorgegeven via Armando, 25-10-2026)
   > Schuren, lichte reparaties en voorstrijken zitten in de prijs. Schuren is nalopen met de wandschuurmachine op een al behangklare wand; voorstrijken doet Pascal waar dat nodig is.
+
+- **bedrijf.openDagen** &mdash; bron/zijn-tekst/doorgegeven-armando-27-10-2026.txt (doorgegeven via Armando, 27-10-2026)
+  > 7
+
+- **bedrijf.openVan** &mdash; bron/zijn-tekst/doorgegeven-armando-27-10-2026.txt (doorgegeven via Armando, 27-10-2026)
+  > 07:00
+
+- **bedrijf.openTot** &mdash; bron/zijn-tekst/doorgegeven-armando-27-10-2026.txt (doorgegeven via Armando, 27-10-2026)
+  > 23:00
 
 - **prijzen.plakkenTexen2** &mdash; bron/zijn-tekst/doorgegeven-armando.txt (doorgegeven via Armando, 20-10-2026)
   > 23
