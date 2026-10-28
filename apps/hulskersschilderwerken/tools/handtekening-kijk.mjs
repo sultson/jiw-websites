@@ -137,7 +137,7 @@ try {
      * 4. niets buiten het scherm.
      *
      * De handtekening zelf telt hier NIET mee: die is zo breed als hij in de mail is
-     * (ongeveer 395 px, logo naast de tekst) en schuift binnen zijn eigen vak. Hem laten
+     * (317 px, logo naast de tekst) en schuift binnen zijn eigen vak. Hem laten
      * meetellen zou betekenen dat zijn logo in elke mail kleiner wordt om deze
      * hulppagina te laten passen. Het VAK eromheen telt wel mee - anders schuift straks
      * de hele pagina opzij en heet dat hetzelfde.

@@ -53,8 +53,34 @@ import { BEDRIJF } from './inhoud.mjs'
 
 const HIER = path.dirname(fileURLToPath(import.meta.url))
 
-/* De weergavebreedte van het logo in de handtekening. De hoogte komt uit de plaat. */
-const LOGO_BREED = 174
+/*
+ * De maten van de handtekening. Ze staan hier bij elkaar omdat ze samen EEN rekensom
+ * zijn: logo + tussenruimte + de langste tekstregel moeten in het berichtveld van Mail
+ * passen. Op een telefoon is dat ongeveer 320 tot 360 px.
+ *
+ * Armando, 28-10-2026, met een schermafdruk uit Mail op zijn iPhone: "Het is vervelend
+ * dat ie over twee regels gaat." Er stond info@hulskersschilderwer / ken.nl en
+ * hulskersschilderwerken / .nl - midden in het woord afgebroken. De handtekening was 394
+ * px breed en het veld ongeveer 360, dus Mail hakte het langste woord doormidden.
+ *
+ * De reparatie is niet een andere regelval maar 74 px eraf, en ze zit op twee plekken:
+ *
+ *  - het mailadres en het webadres dragen white-space:nowrap, dus ze KUNNEN niet meer
+ *    midden in een woord breken;
+ *  - en de maten hieronder zorgen dat dat ook niet hoeft. Zonder dat tweede stuk zou de
+ *    tabel gewoon buiten het veld steken, en dan is er niets opgelost.
+ *
+ * tools/handtekening-breedte.mjs rekent dat na en zakt bij een regel die breekt of een
+ * tabel die niet past. Draai hem voordat je hier een getal omhoog zet: het mailadres is
+ * 30 tekens en dat is de regel die alles bepaalt.
+ */
+const LOGO_BREED = 110 /* was 174: 64 px eraf */
+const KIER = 14 /* ruimte links en rechts van de streep, was 18 */
+const MAAT = {
+  naam: 15, /* was 16 */
+  tekst: 12, /* was 13 - dit is de regel met het mailadres erin, dus hier zit de winst */
+  klein: 11,
+}
 
 const STANDAARD = { naam: 'Pascal Hulskers' }
 
@@ -118,21 +144,24 @@ export function handtekeningHtml(naam, G) {
     String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
   const n = ont(naam.trim() || G.naam)
 
+  /* Het adres en het webadres mogen nooit midden in het woord afbreken: nowrap. */
+  const vast = 'white-space:nowrap;'
+
   return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;">
   <tr>
-    <td style="vertical-align:middle;padding:0 18px 0 0;">
+    <td style="vertical-align:middle;padding:0 ${G.kier}px 0 0;">
       <img src="${G.logo}" width="${G.breed}" height="${G.hoog}" alt="${ont(G.bedrijf)}" style="display:block;border:0;width:${G.breed}px;height:${G.hoog}px;" />
     </td>
-    <td style="vertical-align:middle;border-left:2px solid ${G.blauw};padding:2px 0 2px 18px;">
-      <div style="font:700 16px/1.3 Arial,Helvetica,sans-serif;color:${G.navy};">${n}</div>
-      <div style="height:8px;line-height:8px;font-size:0;">&nbsp;</div>
-      <div style="font:400 13px/1.7 Arial,Helvetica,sans-serif;color:${G.inkt};">
-        <a href="tel:${G.telLink}" style="color:${G.inkt};text-decoration:none;">${G.telToon}</a><br />
-        <a href="mailto:${G.mail}" style="color:${G.inkt};text-decoration:none;">${G.mail}</a><br />
-        <a href="https://${G.domein}/" style="color:${G.blauw};text-decoration:none;font-weight:bold;">${G.domein}</a>
+    <td style="vertical-align:middle;border-left:2px solid ${G.blauw};padding:2px 0 2px ${G.kier}px;">
+      <div style="font:700 ${G.maatNaam}px/1.3 Arial,Helvetica,sans-serif;color:${G.navy};${vast}">${n}</div>
+      <div style="height:7px;line-height:7px;font-size:0;">&nbsp;</div>
+      <div style="font:400 ${G.maatTekst}px/1.7 Arial,Helvetica,sans-serif;color:${G.inkt};">
+        <a href="tel:${G.telLink}" style="color:${G.inkt};text-decoration:none;${vast}">${G.telToon}</a><br />
+        <a href="mailto:${G.mail}" style="color:${G.inkt};text-decoration:none;${vast}">${G.mail}</a><br />
+        <a href="https://${G.domein}/" style="color:${G.blauw};text-decoration:none;font-weight:bold;${vast}">${G.domein}</a>
       </div>
-      <div style="height:8px;line-height:8px;font-size:0;">&nbsp;</div>
-      <div style="font:400 11px/1.5 Arial,Helvetica,sans-serif;color:${G.grijs};">${ont(G.plaats)} &middot; KvK ${G.kvk}</div>
+      <div style="height:7px;line-height:7px;font-size:0;">&nbsp;</div>
+      <div style="font:400 ${G.maatKlein}px/1.5 Arial,Helvetica,sans-serif;color:${G.grijs};${vast}">${ont(G.plaats)} &middot; KvK ${G.kvk}</div>
     </td>
   </tr>
 </table>`
@@ -175,6 +204,10 @@ export function handtekeningGegevens() {
     logo: `https://${BEDRIJF.domein}/logo-mail.png`,
     breed: LOGO_BREED,
     hoog: Math.round((LOGO_BREED * echt.hoog) / echt.breed),
+    kier: KIER,
+    maatNaam: MAAT.naam,
+    maatTekst: MAAT.tekst,
+    maatKlein: MAAT.klein,
     bedrijf: BEDRIJF.kort,
     naam: STANDAARD.naam,
     telToon: BEDRIJF.telWeergave,
@@ -207,10 +240,9 @@ label{flex:1 1 200px;font-size:13px;font-weight:600;color:var(--navy)}
 input{display:block;width:100%;margin-top:6px;padding:11px 12px;font:400 16px/1.4 inherit;
   color:var(--inkt);background:#fff;border:1px solid #C9CFDB;border-radius:6px}
 input:focus{outline:2px solid var(--blauw);outline-offset:1px}
-/* De handtekening staat naast elkaar en is daarmee ongeveer 395 px breed. Dat past niet
-   in deze kaart op een telefoon, en dat is goed: de maat hoort bij de MAIL en niet bij
-   deze pagina. Hem hier smaller maken zou zijn logo in elke mail kleiner maken om een
-   hulppagina te laten passen. Dus schuiven, en de kaart knipt. */
+/* De handtekening is 317 px breed (zie de maten bovenin handtekening.mjs) en past
+   daarmee ook op een telefoon in deze kaart. Het schuiven blijft staan voor het geval
+   een langere naam hem toch breder maakt: dan knipt de kaart hem niet af. */
 .voorbeeld{padding:4px 0 2px;overflow-x:auto}
 .knoppen{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:22px}
 button{font:600 15px/1.2 inherit;padding:12px 20px;border-radius:6px;border:1px solid var(--navy);
@@ -273,6 +305,21 @@ function keurHandtekening(html, G) {
   }
   if (!/<td[^>]*border-left:/.test(html)) {
     throw new Error('handtekening: de streep tussen logo en tekst staat niet op het rechtervak (border-left)')
+  }
+  /*
+   * 5. Het mailadres en het webadres mogen niet midden in het woord afbreken (Armando,
+   *    28-10-2026). Dit is de goedkope helft van die reparatie en hij hoort hier, want
+   *    het is te zien aan de html. De andere helft - past het geheel wel in het veld van
+   *    Mail - is een meting en staat in tools/handtekening-breedte.mjs.
+   */
+  for (const [wat, naald] of [
+    ['het mailadres', `mailto:${G.mail}`],
+    ['het webadres', `https://${G.domein}/`],
+  ]) {
+    const regel = html.match(new RegExp(`<a href="${naald.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>`))
+    if (!regel || !regel[0].includes('white-space:nowrap')) {
+      throw new Error(`handtekening: ${wat} draagt geen white-space:nowrap en kan dus midden in het woord afbreken`)
+    }
   }
 }
 
