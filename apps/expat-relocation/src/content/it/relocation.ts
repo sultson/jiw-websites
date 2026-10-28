@@ -412,7 +412,7 @@ export const relocation: SectionContent = {
             },
             {
               q: 'Che cosa succede se sorge un problema di salute fuori orario?',
-              a: 'I Paesi Bassi hanno un servizio di medicina di base fuori orario, lo huisartsenpost, per i casi urgenti. E i nostri clienti possono sempre scriverci sulla linea WhatsApp personale a qualsiasi ora; abbiamo accompagnato più di un genitore preoccupato attraverso la sua prima febbre notturna olandese.',
+              a: 'I Paesi Bassi hanno un servizio di medicina di base fuori orario, lo huisartsenpost, per i casi urgenti. E i nostri clienti possono scriverci sulla linea WhatsApp personale per trovare rapidamente l\'assistenza giusta.',
             },
           ],
         },
@@ -705,7 +705,7 @@ export const relocation: SectionContent = {
         eyebrow: 'Arrivo',
         intro: [
           'Ogni trasferimento ha un momento zero: le porte della sala arrivi si aprono e la sua nuova vita comincia con il fuso orario, i bagagli e un paese che ancora non conosce. Come va quella prima ora colora tutto il trasloco. Non dovrebbe comportare il trascinare valigie fra un cambio di treno e l\'altro o spiegare un indirizzo a un tassista a mezzanotte.',
-          'La incontriamo in sala arrivi, cartello con il nome e tutto il resto, e la portiamo direttamente alla sua nuova porta di casa. Lungo la strada riceve l\'essenziale del primo giorno: come funziona la casa, dove si fa la spesa domani, che cosa succede questa settimana. E poiché i voli atterrano quando atterrano, la nostra linea WhatsApp è con lei a qualsiasi ora dal momento del decollo.',
+          'La incontriamo in sala arrivi, cartello con il nome e tutto il resto, e la portiamo direttamente alla sua nuova porta di casa. Lungo la strada riceve l\'essenziale del primo giorno: come funziona la casa, dove si fa la spesa domani, che cosa succede questa settimana. E poiché i voli atterrano quando atterrano, concordiamo in anticipo come raggiungerci il giorno stesso.',
         ],
         cardText: 'Accolto agli arrivi, accompagnato a casa e informato per la sua prima mattina olandese.',
         forWho: {

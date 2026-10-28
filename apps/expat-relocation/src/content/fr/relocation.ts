@@ -412,7 +412,7 @@ export const relocation: SectionContent = {
             },
             {
               q: 'Que se passe-t-il si une question de santé survient en dehors des horaires de bureau ?',
-              a: 'Les Pays-Bas disposent d’un service de garde, la huisartsenpost, pour les cas urgents. Et nos clients peuvent toujours nous écrire sur la ligne WhatsApp personnelle à toute heure ; nous avons accompagné plus d’un parent inquiet à travers sa première fièvre nocturne néerlandaise.',
+              a: 'Les Pays-Bas disposent d’un service de garde, la huisartsenpost, pour les cas urgents. Et nos clients peuvent nous écrire sur la ligne WhatsApp personnelle pour trouver rapidement les bons soins.',
             },
           ],
         },
@@ -705,7 +705,7 @@ export const relocation: SectionContent = {
         eyebrow: 'Arrivée',
         intro: [
           'Toute relocation a un instant zéro : les portes du hall des arrivées s’ouvrent et votre nouvelle vie commence avec le décalage horaire, les bagages et un pays que vous ne connaissez pas encore. La façon dont se passe cette première heure colore toute l’installation. Elle ne devrait pas consister à traîner des valises entre deux correspondances de train ou à expliquer une adresse à un chauffeur de taxi à minuit.',
-          'Nous vous attendons dans le hall, pancarte à votre nom comprise, et vous conduisons droit à votre nouvelle porte. En chemin, vous recevez l’essentiel du premier jour : comment fonctionne la maison, où faire les courses demain, ce qui se passe cette semaine. Et parce que les vols atterrissent quand ils atterrissent, notre ligne WhatsApp vous accompagne en continu dès le décollage.',
+          'Nous vous attendons dans le hall, pancarte à votre nom comprise, et vous conduisons droit à votre nouvelle porte. En chemin, vous recevez l’essentiel du premier jour : comment fonctionne la maison, où faire les courses demain, ce qui se passe cette semaine. Et parce que les vols atterrissent quand ils atterrissent, nous convenons à l’avance de la façon de nous joindre le jour même.',
         ],
         cardText: 'Accueilli aux arrivées, conduit chez vous et briefé pour votre premier matin néerlandais.',
         forWho: {

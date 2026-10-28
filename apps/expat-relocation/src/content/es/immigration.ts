@@ -29,7 +29,7 @@ export const immigration: SectionContent = {
         eyebrow: 'Visado de trabajo',
         intro: [
           'La vía del migrante altamente cualificado es la forma más rápida y limpia para que los profesionales internacionales trabajen en los Países Bajos. Su empleador debe ser un patrocinador reconocido por el IND, su salario debe alcanzar el umbral vigente del IND para su grupo de edad y la documentación debe estar correcta a la primera.',
-          'Ahí es donde entramos nosotros. Coordinamos directamente con el equipo de recursos humanos de su empleador, le preparamos a usted y a su familia para cada cita y permanecemos localizables en nuestra línea personal de WhatsApp 24/7 siempre que surja una pregunta, sea cual sea la zona horaria.',
+          'Ahí es donde entramos nosotros. Coordinamos directamente con el equipo de recursos humanos de su empleador, le preparamos a usted y a su familia para cada cita y permanecemos localizables en nuestra línea personal de WhatsApp siempre que surja una pregunta.',
         ],
         cardText: 'La vía laboral más rápida hacia los Países Bajos, coordinada entre usted, su empleador y el IND.',
         explainer: {

@@ -29,7 +29,7 @@ export const immigration: SectionContent = {
         eyebrow: 'Werkvisum',
         intro: [
           'De kennismigrantenroute is de snelste en meest overzichtelijke weg voor internationale professionals om in Nederland te werken. Uw werkgever moet erkend referent bij de IND zijn, uw salaris moet voldoen aan het actuele IND-normbedrag voor uw leeftijdsgroep, en het papierwerk moet in één keer kloppen.',
-          'Daar komen wij in beeld. Wij stemmen rechtstreeks af met de HR-afdeling van uw werkgever, bereiden u en uw gezin voor op elke afspraak en blijven bereikbaar via onze persoonlijke 24/7 WhatsApp-lijn wanneer er een vraag opkomt, in welke tijdzone dan ook.',
+          'Daar komen wij in beeld. Wij stemmen rechtstreeks af met de HR-afdeling van uw werkgever, bereiden u en uw gezin voor op elke afspraak en blijven bereikbaar via onze persoonlijke WhatsApp-lijn wanneer er een vraag opkomt.',
         ],
         cardText: 'De snelste werkroute naar Nederland, afgestemd tussen u, uw werkgever en de IND.',
         explainer: {

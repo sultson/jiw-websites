@@ -594,7 +594,7 @@ export const housing: SectionContent = {
       eyebrow: 'Temporary housing',
       intro: [
         'Most relocations have a gap: you have a start date at work but no home yet, or your household goods are somewhere on a ship while you are already here. Temporary housing bridges that gap, and doing it well makes the difference between arriving stressed and arriving settled.',
-        'We arrange short-stay apartments and serviced housing that are actually livable: furnished, connected, in a neighborhood you will enjoy, and wherever possible with the option to register your address. And because arrivals rarely happen between nine and five, our personal WhatsApp line stays open around the clock, so a delayed flight or a lockbox that will not open never leaves you stranded.',
+        'We arrange short-stay apartments and serviced housing that are actually livable: furnished, connected, in a neighborhood you will enjoy, and wherever possible with the option to register your address. And because arrivals rarely happen between nine and five, we agree in advance how to reach us on arrival day, so a delayed flight or a lockbox that will not open never leaves you stranded.',
       ],
       cardText: 'A comfortable, registered base for your first weeks while the real search runs.',
       forWho: {

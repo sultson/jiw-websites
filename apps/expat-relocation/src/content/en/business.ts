@@ -434,7 +434,7 @@ export const business: SectionContent = {
       eyebrow: 'Relocation',
       intro: [
         'An employee who relocates has an HR department. An entrepreneur who relocates has a to-do list that fights back: a permit that depends on a company, a company that needs an address, an address that needs a registration, and a family waiting on all of it. Standard relocation packages are not built for that circular puzzle.',
-        'Ours is. We run your move as one project with one owner, and because questions do not wait for business hours, you reach us on a personal WhatsApp line 24/7, from the first box packed to the last form signed.',
+        'Ours is. We run your move as one project with one owner, and you reach us directly on a personal WhatsApp line, from the first box packed to the last form signed.',
       ],
       cardText: 'The move, the permit, the company and the family, run as one project.',
       forWho: {

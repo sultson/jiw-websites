@@ -412,7 +412,7 @@ export const relocation: SectionContent = {
             },
             {
               q: 'Was passiert, wenn eine Gesundheitsfrage außerhalb der Bürozeiten aufkommt?',
-              a: 'Die Niederlande haben einen hausärztlichen Bereitschaftsdienst, die Huisartsenpost, für dringende Fälle. Und unsere Klienten können uns jederzeit über die persönliche WhatsApp-Linie schreiben; wir haben schon mehr als ein besorgtes Elternteil durch das erste niederländische Nachtfieber begleitet.',
+              a: 'Die Niederlande haben einen hausärztlichen Bereitschaftsdienst, die Huisartsenpost, für dringende Fälle. Und unsere Klienten können uns über die persönliche WhatsApp-Linie schreiben, um schnell die richtige Versorgung zu finden.',
             },
           ],
         },
@@ -705,7 +705,7 @@ export const relocation: SectionContent = {
         eyebrow: 'Ankunft',
         intro: [
           'Jeder Umzug hat einen Nullpunkt: Die Türen der Ankunftshalle gleiten auf, und Ihr neues Leben beginnt mit Jetlag, Gepäck und einem Land, das Sie noch nicht kennen. Wie diese erste Stunde verläuft, färbt den ganzen Umzug. Sie sollte nicht daraus bestehen, Koffer durch Umsteigebahnhöfe zu schleppen oder um Mitternacht einem Taxifahrer eine Adresse zu erklären.',
-          'Wir empfangen Sie in der Halle, mit Namensschild und allem, und fahren Sie direkt vor Ihre neue Haustür. Unterwegs bekommen Sie das Wichtigste für den ersten Tag: wie das Haus funktioniert, wo morgen die Einkäufe sind, was diese Woche passiert. Und weil Flüge landen, wann sie landen, ist unsere WhatsApp-Linie vom Moment Ihres Abflugs an rund um die Uhr bei Ihnen.',
+          'Wir empfangen Sie in der Halle, mit Namensschild und allem, und fahren Sie direkt vor Ihre neue Haustür. Unterwegs bekommen Sie das Wichtigste für den ersten Tag: wie das Haus funktioniert, wo morgen die Einkäufe sind, was diese Woche passiert. Und weil Flüge landen, wann sie landen, vereinbaren wir vorab, wie Sie uns am Tag selbst erreichen.',
         ],
         cardText: 'In der Ankunftshalle empfangen, nach Hause gefahren und für den ersten niederländischen Morgen gebrieft.',
         forWho: {

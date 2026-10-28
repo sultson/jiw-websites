@@ -448,7 +448,7 @@ export const business: SectionContent = {
         eyebrow: 'Trasferimento',
         intro: [
           'Un dipendente che si trasferisce ha un ufficio del personale. Un imprenditore che si trasferisce ha un elenco di cose da fare che si ribella: un permesso che dipende da una società, una società che ha bisogno di un indirizzo, un indirizzo che ha bisogno di un\'iscrizione e una famiglia in attesa di tutto questo. I pacchetti di trasferimento standard non sono costruiti per quel rompicapo circolare.',
-          'Il nostro sì. Conduciamo il suo trasloco come un unico progetto con un unico responsabile e, poiché le domande non aspettano gli orari d\'ufficio, ci raggiunge su una linea WhatsApp personale a qualsiasi ora, dal primo scatolone chiuso all\'ultimo modulo firmato.',
+          'Il nostro sì. Conduciamo il suo trasloco come un unico progetto con un unico responsabile, e ci raggiunge direttamente su una linea WhatsApp personale, dal primo scatolone chiuso all\'ultimo modulo firmato.',
         ],
         cardText: 'Il trasloco, il permesso, la società e la famiglia, condotti come un unico progetto.',
         forWho: {

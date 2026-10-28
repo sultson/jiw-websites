@@ -412,7 +412,7 @@ export const relocation: SectionContent = {
             },
             {
               q: 'O que acontece se surgir uma questão de saúde fora do horário de expediente?',
-              a: 'Os Países Baixos têm um serviço de médico de família fora de horas, o huisartsenpost, para casos urgentes. E os nossos clientes podem sempre escrever-nos na linha pessoal de WhatsApp a qualquer hora; já acompanhámos mais do que um pai preocupado durante a sua primeira febre noturna nos Países Baixos.',
+              a: 'Os Países Baixos têm um serviço de médico de família fora de horas, o huisartsenpost, para casos urgentes. E os nossos clientes podem escrever-nos na linha pessoal de WhatsApp para encontrar rapidamente os cuidados certos.',
             },
           ],
         },
@@ -705,7 +705,7 @@ export const relocation: SectionContent = {
         eyebrow: 'Chegada',
         intro: [
           'Cada relocalização tem um momento zero: as portas da sala de chegadas abrem-se e a sua nova vida começa com jet lag, bagagem e um país que ainda não conhece. A forma como corre essa primeira hora dá cor a toda a mudança. Não deveria incluir arrastar malas por transbordos de comboio nem explicar uma morada a um taxista à meia-noite.',
-          'Esperamo-lo na sala de chegadas, com placa de nome e tudo, e levamo-lo diretamente à porta da sua nova casa. Pelo caminho recebe o essencial do primeiro dia: como funciona a casa, onde fazer as compras de amanhã, o que acontece esta semana. E porque os voos aterram à hora a que aterram, a nossa linha de WhatsApp acompanha-o a toda a hora desde o momento em que levanta voo.',
+          'Esperamo-lo na sala de chegadas, com placa de nome e tudo, e levamo-lo diretamente à porta da sua nova casa. Pelo caminho recebe o essencial do primeiro dia: como funciona a casa, onde fazer as compras de amanhã, o que acontece esta semana. E porque os voos aterram à hora a que aterram, combinamos antecipadamente como nos contactar no próprio dia.',
         ],
         cardText: 'Recebido nas chegadas, levado a casa e preparado para a sua primeira manhã neerlandesa.',
         forWho: {

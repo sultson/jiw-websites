@@ -431,7 +431,7 @@ export const relocation: SectionContent = {
           },
           {
             q: 'What happens if a health question comes up outside office hours?',
-            a: 'The Netherlands has an after-hours GP service, the huisartsenpost, for urgent cases. And our clients can always message us on the personal WhatsApp line at any hour; we have talked more than one worried parent through their first Dutch night-time fever.',
+            a: 'The Netherlands has an after-hours GP service, the huisartsenpost, for urgent cases. And our clients can message us on the personal WhatsApp line to find the right care quickly.',
           },
         ],
       },
@@ -739,7 +739,7 @@ export const relocation: SectionContent = {
       eyebrow: 'Arrival',
       intro: [
         'Every relocation has a moment zero: the doors of the arrivals hall slide open and your new life begins with jet lag, luggage and a country you do not know yet. How that first hour goes colors the whole move. It should not involve dragging suitcases through train transfers or explaining an address to a taxi driver at midnight.',
-        'We meet you in the hall, name sign and all, and drive you straight to your new front door. Along the way you get the first-day essentials: how the house works, where tomorrow’s groceries are, what happens this week. And because flights land when they land, our WhatsApp line is with you around the clock from the moment you take off.',
+        'We meet you in the hall, name sign and all, and drive you straight to your new front door. Along the way you get the first-day essentials: how the house works, where tomorrow’s groceries are, what happens this week. And because flights land when they land, we agree in advance how to reach us on the day itself.',
       ],
       cardText: 'Met at arrivals, driven home, and briefed for your first Dutch morning.',
       forWho: {

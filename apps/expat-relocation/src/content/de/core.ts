@@ -87,7 +87,7 @@ export const core: CoreContent = {
         ctaPrimary: 'Unsere Pakete ansehen',
         ctaWhatsapp: 'Direkt auf WhatsApp schreiben',
         ctaSecondary: 'Starten Sie Ihre Relocation',
-        trust: 'Persönliche Begleitung durch Johanna, 24/7 erreichbar',
+        trust: 'Persönlich begleitet von Johanna, von der ersten Frage bis zum Ankommen',
         points: [
           'Persönliche Begleitung',
           'Immigration und Relocation in einem Plan',
@@ -396,8 +396,8 @@ export const core: CoreContent = {
             text: 'Zur Gemeinde, zur IND, zur Bank und zur Besichtigung. Sie bekommen bei uns nie eine Checkliste in die Hand gedrückt und viel Glück gewünscht.',
           },
           {
-            title: '24/7, persönlich',
-            text: 'Eine WhatsApp-Nummer, beantwortet von der Person, die Ihre Akte führt. Tag und Nacht, in der ersten Woche wie im ersten Jahr.',
+            title: 'Persönlich, von Anfang bis Ende',
+            text: 'Eine WhatsApp-Linie, beantwortet von der Person, die Ihre Akte führt. In der ersten Woche wie im ersten Jahr.',
           },
           {
             title: 'Die Einzige ihrer Art',
@@ -422,8 +422,8 @@ export const core: CoreContent = {
             label: 'Kundenzufriedenheit',
           },
           {
-            value: '24/7',
-            label: 'Persönlicher WhatsApp-Support',
+            value: 'Seit 2009',
+            label: 'Spezialisiert auf niederländische Immigration',
           },
         ],
       },
@@ -565,7 +565,7 @@ export const core: CoreContent = {
       },
       emergency: {
         heading: 'Dringende Relocation-Hilfe',
-        text: 'Frist morgen, Wohnung geplatzt, ein Termin, den Sie nicht verpassen dürfen? Schreiben Sie uns auf WhatsApp mit dem Wort URGENT, und wir reagieren sofort, Tag und Nacht.',
+        text: 'Frist morgen, Wohnung geplatzt, ein Termin, den Sie nicht verpassen dürfen? Schreiben Sie uns auf WhatsApp mit dem Wort URGENT, und Johanna behandelt es vorrangig.',
       },
       details: {
         heading: 'Kontaktdaten',

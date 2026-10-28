@@ -29,7 +29,7 @@ export const immigration: SectionContent = {
         eyebrow: 'Visa de travail',
         intro: [
           'La voie du migrant hautement qualifié est la manière la plus rapide et la plus nette pour un professionnel international de travailler aux Pays-Bas. Votre employeur doit être un sponsor reconnu par l’IND, votre salaire doit atteindre le seuil IND en vigueur pour votre tranche d’âge, et le dossier doit être irréprochable du premier coup.',
-          'C’est là que nous intervenons. Nous coordonnons directement avec l’équipe RH de votre employeur, vous préparons, vous et votre famille, à chaque rendez-vous, et restons joignables sur notre ligne WhatsApp personnelle 24h/24 et 7j/7 dès qu’une question surgit, quel que soit le fuseau horaire.',
+          'C’est là que nous intervenons. Nous coordonnons directement avec l’équipe RH de votre employeur, vous préparons, vous et votre famille, à chaque rendez-vous, et restons joignables sur notre ligne WhatsApp personnelle dès qu’une question surgit.',
         ],
         cardText: 'La voie de travail la plus rapide vers les Pays-Bas, coordonnée entre vous, votre employeur et l’IND.',
         explainer: {

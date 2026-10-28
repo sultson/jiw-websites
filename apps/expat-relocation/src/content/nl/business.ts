@@ -448,7 +448,7 @@ export const business: SectionContent = {
         eyebrow: 'Relocation',
         intro: [
           'Een werknemer die verhuist heeft een HR-afdeling. Een ondernemer die verhuist heeft een takenlijst die terugvecht: een vergunning die afhangt van een bedrijf, een bedrijf dat een adres nodig heeft, een adres dat een inschrijving nodig heeft, en een gezin dat op dat alles wacht. Standaard relocationpakketten zijn niet gebouwd voor die circulaire puzzel.',
-          'Het onze wel. Wij voeren uw verhuizing uit als één project met één eigenaar, en omdat vragen niet wachten op kantooruren, bereikt u ons 24/7 via een persoonlijke WhatsApp-lijn, van de eerste ingepakte doos tot het laatste getekende formulier.',
+          'Het onze wel. Wij voeren uw verhuizing uit als één project met één eigenaar, en u bereikt ons rechtstreeks via een persoonlijke WhatsApp-lijn, van de eerste ingepakte doos tot het laatste getekende formulier.',
         ],
         cardText: 'De verhuizing, de vergunning, het bedrijf en het gezin, uitgevoerd als één project.',
         forWho: {

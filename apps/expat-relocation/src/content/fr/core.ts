@@ -87,7 +87,7 @@ export const core: CoreContent = {
         ctaPrimary: 'Voir nos forfaits',
         ctaWhatsapp: 'Écrivez-nous sur WhatsApp',
         ctaSecondary: 'Commencer votre relocation',
-        trust: 'Accompagnement personnel par Johanna, joignable 24h/24',
+        trust: 'Accompagné personnellement par Johanna, de la première question à l’installation',
         points: [
           'Accompagnement personnel',
           'Immigration et relocation en un seul plan',
@@ -396,8 +396,8 @@ export const core: CoreContent = {
             text: 'À la municipalité, à l’IND, à la banque et aux visites. On ne vous remet jamais une simple checklist en vous souhaitant bonne chance.',
           },
           {
-            title: '24/7, personnellement',
-            text: 'Une seule ligne WhatsApp, tenue par la personne qui gère votre dossier. Jour et nuit, première semaine comme première année.',
+            title: 'Personnellement, du début à la fin',
+            text: 'Une seule ligne WhatsApp, tenue par la personne qui gère votre dossier. La première semaine comme la première année.',
           },
           {
             title: 'Unique en son genre',
@@ -422,8 +422,8 @@ export const core: CoreContent = {
             label: 'Taux de satisfaction client',
           },
           {
-            value: '24/7',
-            label: 'Assistance personnelle sur WhatsApp',
+            value: 'Depuis 2009',
+            label: 'Spécialisée en immigration néerlandaise',
           },
         ],
       },
@@ -565,7 +565,7 @@ export const core: CoreContent = {
       },
       emergency: {
         heading: 'Assistance relocation d’urgence',
-        text: 'Échéance demain, logement tombé à l’eau, rendez-vous impossible à manquer? Écrivez-nous sur WhatsApp avec le mot URGENT et nous répondons immédiatement, de jour comme de nuit.',
+        text: 'Échéance demain, logement tombé à l’eau, rendez-vous impossible à manquer? Écrivez-nous sur WhatsApp avec le mot URGENT et Johanna le traite en priorité.',
       },
       details: {
         heading: 'Coordonnées',

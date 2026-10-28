@@ -567,7 +567,7 @@ export const housing: SectionContent = {
         eyebrow: 'Alloggio temporaneo',
         intro: [
           'Quasi ogni trasferimento ha un vuoto: ha una data di inizio al lavoro ma non ancora una casa, oppure le sue cose sono su una nave mentre lei è già qui. L\'alloggio temporaneo colma quel vuoto, e farlo bene è la differenza fra arrivare stressati e arrivare sistemati.',
-          'Organizziamo appartamenti short-stay e alloggi con servizi che siano davvero vivibili: arredati, allacciati, in un quartiere che le piacerà e, ove possibile, con la possibilità di iscriversi all\'anagrafe a quell\'indirizzo. E poiché gli arrivi raramente avvengono fra le nove e le cinque, la nostra linea WhatsApp personale resta aperta a qualsiasi ora, così un volo in ritardo o una cassetta portachiavi che non si apre non la lasciano mai a piedi.',
+          'Organizziamo appartamenti short-stay e alloggi con servizi che siano davvero vivibili: arredati, allacciati, in un quartiere che le piacerà e, ove possibile, con la possibilità di iscriversi all\'anagrafe a quell\'indirizzo. E poiché gli arrivi raramente avvengono fra le nove e le cinque, concordiamo in anticipo come raggiungerci il giorno dell\'arrivo, così un volo in ritardo o una cassetta portachiavi che non si apre non la lasciano mai a piedi.',
         ],
         cardText: 'Una base comoda e registrabile per le sue prime settimane mentre corre la ricerca vera.',
         forWho: {

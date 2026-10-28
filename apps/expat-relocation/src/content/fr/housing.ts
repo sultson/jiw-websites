@@ -567,7 +567,7 @@ export const housing: SectionContent = {
         eyebrow: 'Logement temporaire',
         intro: [
           'La plupart des installations comportent un vide : vous avez une date de début au travail mais pas encore de logement, ou vos affaires sont quelque part sur un bateau alors que vous êtes déjà ici. Le logement temporaire comble ce vide, et le faire bien fait la différence entre arriver stressé et arriver posé.',
-          'Nous organisons des appartements de courte durée et des logements avec services réellement vivables : meublés, connectés, dans un quartier que vous apprécierez et, chaque fois que possible, avec la possibilité d’y enregistrer votre adresse. Et parce que les arrivées se produisent rarement entre neuf et dix-sept heures, notre ligne WhatsApp personnelle reste ouverte en continu : un vol retardé ou une boîte à clés récalcitrante ne vous laisse jamais à la rue.',
+          'Nous organisons des appartements de courte durée et des logements avec services réellement vivables : meublés, connectés, dans un quartier que vous apprécierez et, chaque fois que possible, avec la possibilité d’y enregistrer votre adresse. Et parce que les arrivées se produisent rarement entre neuf et dix-sept heures, nous convenons à l’avance de la façon de nous joindre le jour de l’arrivée : un vol retardé ou une boîte à clés récalcitrante ne vous laisse jamais à la rue.',
         ],
         cardText: 'Une base confortable et enregistrable pour vos premières semaines pendant que la vraie recherche avance.',
         forWho: {

@@ -567,7 +567,7 @@ export const housing: SectionContent = {
         eyebrow: 'Vivienda temporal',
         intro: [
           'Casi toda reubicación tiene un vacío: tiene fecha de inicio en el trabajo pero aún no tiene casa, o sus enseres van en un barco mientras usted ya está aquí. La vivienda temporal salva ese vacío, y hacerlo bien marca la diferencia entre llegar estresado y llegar instalado.',
-          'Organizamos apartamentos de corta estancia y viviendas con servicios realmente habitables: amueblados, conectados, en un barrio que disfrutará y, siempre que sea posible, con opción de empadronarse. Y como las llegadas rara vez ocurren de nueve a cinco, nuestra línea personal de WhatsApp permanece abierta a todas horas, para que un vuelo retrasado o una caja de llaves que no abre nunca le deje tirado.',
+          'Organizamos apartamentos de corta estancia y viviendas con servicios realmente habitables: amueblados, conectados, en un barrio que disfrutará y, siempre que sea posible, con opción de empadronarse. Y como las llegadas rara vez ocurren de nueve a cinco, acordamos de antemano cómo localizarnos el día de llegada, para que un vuelo retrasado o una caja de llaves que no abre nunca le deje tirado.',
         ],
         cardText: 'Una base cómoda y con empadronamiento para sus primeras semanas mientras avanza la búsqueda real.',
         forWho: {

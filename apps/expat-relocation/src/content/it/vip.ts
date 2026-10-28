@@ -10,7 +10,7 @@ export const vip: VipContent = {
     eyebrow: 'Servizi VIP',
     intro: [
       'Artisti con date di tournée. Atleti fra una stagione e l\'altra. Dirigenti con un solo fine settimana libero e fondatori senza nemmeno quello. I nostri pacchetti VIP esistono per chi ha un calendario che non si piega, così a piegarsi sono i Paesi Bassi.',
-      'Ogni pacchetto è seguito personalmente da Johanna: appuntamenti concentrati, porte aperte in anticipo e una linea attiva 24 ore su 24 a cui risponde chi conosce il suo fascicolo, non un centralino.',
+      'Ogni pacchetto è seguito personalmente da Johanna: appuntamenti concentrati, porte aperte in anticipo e una linea diretta con chi conosce il suo fascicolo, non un centralino, con reperibilità 24 ore su 24 ove concordato.',
     ],
     image: '/images/vip-hub.jpg?v=20260731',
     imageAlt: 'Addetto all\'accoglienza saluta una coppia che arriva in auto a un hotel sul canale',
@@ -73,7 +73,7 @@ export const vip: VipContent = {
             },
             {
               title: 'Assistenza via WhatsApp',
-              text: 'Una linea diretta con Johanna, a qualsiasi ora, per entrambi.',
+              text: 'Una linea diretta con Johanna, per entrambi.',
             },
           ],
         },
@@ -185,7 +185,7 @@ export const vip: VipContent = {
             },
             {
               title: 'Assistenza via WhatsApp',
-              text: 'Una linea per entrambi i genitori, con risposta a qualsiasi ora.',
+              text: 'Una linea diretta con Johanna, per entrambi i genitori.',
             },
           ],
         },
@@ -365,7 +365,7 @@ export const vip: VipContent = {
         name: 'VIP Relocation Concierge',
         tagline: 'Per vite che non si fermano per traslocare.',
         metaTitle: 'VIP Relocation Concierge nei Paesi Bassi | E & I',
-        metaDescription: 'Trasferimento concierge completo nei Paesi Bassi per artisti, atleti e dirigenti: una sola visita preparata, ogni appuntamento allineato, giornate con autista e assistenza personale 24 ore su 24.',
+        metaDescription: 'Trasferimento concierge completo nei Paesi Bassi per artisti, atleti e dirigenti: una sola visita preparata, ogni appuntamento allineato, giornate con autista e assistenza personale, 24 ore su 24 ove concordato.',
         investment: 'Su misura',
         intro: [
           'Un artista fra due date di tournée. Un atleta ingaggiato a stagione in corso. Un dirigente il cui calendario è già pianificato per l\'anno prossimo. Il livello concierge comprime un trasferimento nel tempo che lei ha davvero, a volte un solo fine settimana, e gestisce tutto ciò che è possibile gestire senza di lei.',
@@ -399,8 +399,8 @@ export const vip: VipContent = {
               text: 'Un modo di lavorare ereditato dal mondo delle ambasciate. Il suo trasferimento resta affare suo.',
             },
             {
-              title: 'Linea 24 ore su 24',
-              text: 'Johanna, direttamente, in qualunque fuso orario si trovi.',
+              title: 'Reperibilità estesa',
+              text: 'Johanna, direttamente, nel suo fuso orario, e 24 ore su 24 ove concordato.',
             },
           ],
         },

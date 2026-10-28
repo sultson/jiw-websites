@@ -87,7 +87,7 @@ export const core: CoreContent = {
         ctaPrimary: 'Ver nuestros paquetes',
         ctaWhatsapp: 'Escríbanos por WhatsApp',
         ctaSecondary: 'Comience su reubicación',
-        trust: 'Acompañamiento personal de Johanna, disponible 24/7',
+        trust: 'Con el acompañamiento personal de Johanna, desde la primera pregunta hasta estar instalado',
         points: [
           'Acompañamiento personal',
           'Inmigración y reubicación en un solo plan',
@@ -396,8 +396,8 @@ export const core: CoreContent = {
             text: 'Al ayuntamiento, al IND, al banco y a las visitas de vivienda. Nunca le entregamos una lista de tareas deseándole buena suerte.',
           },
           {
-            title: '24/7, personalmente',
-            text: 'Una línea de WhatsApp atendida por la persona que gestiona su expediente. De día o de noche, en la primera semana o en el primer año.',
+            title: 'Personalmente, de principio a fin',
+            text: 'Una sola línea de WhatsApp, atendida por la persona que gestiona su expediente. La primera semana o el primer año.',
           },
           {
             title: 'La única en su género',
@@ -422,8 +422,8 @@ export const core: CoreContent = {
             label: 'Índice de satisfacción de clientes',
           },
           {
-            value: '24/7',
-            label: 'Asistencia personal por WhatsApp',
+            value: 'Desde 2009',
+            label: 'Especializada en inmigración neerlandesa',
           },
         ],
       },
@@ -565,7 +565,7 @@ export const core: CoreContent = {
       },
       emergency: {
         heading: 'Asistencia de reubicación urgente',
-        text: '¿Un plazo que vence mañana, una vivienda que se cae, una cita que no puede perder? Escríbanos por WhatsApp con la palabra URGENTE y respondemos de inmediato, de día o de noche.',
+        text: '¿Un plazo que vence mañana, una vivienda que se cae, una cita que no puede perder? Escríbanos por WhatsApp con la palabra URGENTE y Johanna le da prioridad.',
       },
       details: {
         heading: 'Datos de contacto',

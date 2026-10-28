@@ -567,7 +567,7 @@ export const housing: SectionContent = {
         eyebrow: 'Tijdelijk wonen',
         intro: [
           'De meeste verhuizingen kennen een gat: u heeft een startdatum op het werk maar nog geen huis, of uw inboedel ligt ergens op een schip terwijl u al hier bent. Tijdelijke woonruimte overbrugt dat gat, en het goed regelen maakt het verschil tussen gestrest aankomen en gesetteld aankomen.',
-          'Wij regelen short-stay appartementen en serviced housing waar werkelijk te leven valt: gemeubileerd, aangesloten, in een buurt waar u zich prettig voelt, en waar mogelijk met de optie om uw adres in te schrijven. En omdat aankomsten zelden tussen negen en vijf plaatsvinden, blijft onze persoonlijke WhatsApp-lijn rond de klok open, zodat een vertraagde vlucht of een sleutelkluisje dat niet opengaat u nooit laat stranden.',
+          'Wij regelen short-stay appartementen en serviced housing waar werkelijk te leven valt: gemeubileerd, aangesloten, in een buurt waar u zich prettig voelt, en waar mogelijk met de optie om uw adres in te schrijven. En omdat aankomsten zelden tussen negen en vijf plaatsvinden, spreken wij vooraf af hoe u ons op de aankomstdag bereikt, zodat een vertraagde vlucht of een sleutelkluisje dat niet opengaat u nooit laat stranden.',
         ],
         cardText: 'Een comfortabele basis met inschrijfmogelijkheid voor uw eerste weken, terwijl de echte zoektocht loopt.',
         forWho: {

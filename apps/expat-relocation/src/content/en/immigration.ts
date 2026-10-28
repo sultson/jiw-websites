@@ -28,7 +28,7 @@ export const immigration: SectionContent = {
       eyebrow: 'Work visa',
       intro: [
         'The highly skilled migrant route is the fastest, cleanest way for international professionals to work in the Netherlands. Your employer must be an IND recognized sponsor, your salary must meet the current IND threshold for your age group, and the paperwork must be right the first time.',
-        'That is where we come in. We coordinate directly with your employer’s HR team, prepare you and your family for every appointment, and stay reachable on our 24/7 personal WhatsApp line whenever a question comes up, whatever the time zone.',
+        'That is where we come in. We coordinate directly with your employer’s HR team, prepare you and your family for every appointment, and stay reachable on our personal WhatsApp line whenever a question comes up.',
       ],
       cardText: 'The fastest work route to the Netherlands, coordinated between you, your employer and the IND.',
       explainer: {

@@ -10,7 +10,7 @@ export const vip: VipContent = {
     eyebrow: 'Serviços VIP',
     intro: [
       'Artistas com calendários de digressão. Atletas entre épocas. Quadros de direção com um único fim de semana livre e fundadores sem nenhum. Os nossos pacotes VIP existem para quem tem uma agenda que não se dobra, para que sejam os Países Baixos a dobrar-se.',
-      'Cada pacote é conduzido pessoalmente pela Johanna: marcações concentradas, portas abertas com antecedência e uma linha disponível 24 horas por dia atendida por quem conhece o seu processo, não por um serviço de apoio.',
+      'Cada pacote é conduzido pessoalmente pela Johanna: marcações concentradas, portas abertas com antecedência e uma linha direta com quem conhece o seu processo, não com um serviço de apoio, com disponibilidade 24 horas por dia quando acordado.',
     ],
     image: '/images/vip-hub.jpg?v=20260731',
     imageAlt: 'Anfitrião a receber um casal que chega de carro a um hotel junto ao canal',
@@ -73,7 +73,7 @@ export const vip: VipContent = {
             },
             {
               title: 'Apoio por WhatsApp',
-              text: 'Uma linha direta com a Johanna, a qualquer hora, para os dois.',
+              text: 'Uma linha direta com a Johanna, para os dois.',
             },
           ],
         },
@@ -185,7 +185,7 @@ export const vip: VipContent = {
             },
             {
               title: 'Apoio por WhatsApp',
-              text: 'Uma linha para ambos os pais, atendida a qualquer hora.',
+              text: 'Uma linha direta com a Johanna, para ambos os pais.',
             },
           ],
         },
@@ -365,7 +365,7 @@ export const vip: VipContent = {
         name: 'VIP Relocation Concierge',
         tagline: 'Para vidas que não param para se mudar.',
         metaTitle: 'VIP Relocation Concierge nos Países Baixos | E & I',
-        metaDescription: 'Relocalização concierge completa nos Países Baixos para artistas, atletas e quadros de direção: uma única visita preparada, todas as marcações alinhadas, dias com motorista e apoio pessoal 24 horas por dia.',
+        metaDescription: 'Relocalização concierge completa nos Países Baixos para artistas, atletas e quadros de direção: uma única visita preparada, todas as marcações alinhadas, dias com motorista e apoio pessoal, 24 horas por dia quando acordado.',
         investment: 'À medida',
         intro: [
           'Um artista entre datas de digressão. Um atleta contratado a meio da época. Um quadro cuja agenda já está planeada para o ano seguinte. O nível concierge comprime uma relocalização no tempo que realmente tem, por vezes um único fim de semana, e trata de tudo o que for possível tratar sem si.',
@@ -399,8 +399,8 @@ export const vip: VipContent = {
               text: 'Uma forma de trabalhar herdada do mundo das embaixadas. A sua mudança continua a ser assunto seu.',
             },
             {
-              title: 'Linha 24 horas',
-              text: 'A Johanna, diretamente, em qualquer fuso horário em que esteja.',
+              title: 'Disponibilidade alargada',
+              text: 'A Johanna, diretamente, no seu fuso horário, e 24 horas por dia quando acordado.',
             },
           ],
         },

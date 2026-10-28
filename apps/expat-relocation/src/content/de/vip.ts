@@ -10,7 +10,7 @@ export const vip: VipContent = {
     eyebrow: 'VIP-Services',
     intro: [
       'Künstler mit Tourneeplänen. Sportler zwischen zwei Saisons. Führungskräfte mit einem freien Wochenende und Gründer ohne ein einziges. Unsere VIP-Pakete existieren für Menschen, deren Kalender sich nicht biegen lässt, also biegen sich stattdessen die Niederlande.',
-      'Jedes Paket führt Johanna persönlich: Termine gebündelt, Türen im Voraus geöffnet, und eine 24/7-Nummer, an der die Person antwortet, die Ihre Akte kennt, kein Service-Desk.',
+      'Jedes Paket führt Johanna persönlich: Termine gebündelt, Türen im Voraus geöffnet, und ein direkter Draht zu der Person, die Ihre Akte kennt, kein Service-Desk, mit Erreichbarkeit rund um die Uhr, wo vereinbart.',
     ],
     image: '/images/vip-hub.jpg?v=20260731',
     imageAlt: 'Gastgeber begrüßt ein mit dem Auto ankommendes Paar vor einem Hotel an der Gracht',
@@ -73,7 +73,7 @@ export const vip: VipContent = {
             },
             {
               title: 'WhatsApp-Begleitung',
-              text: 'Eine direkte Nummer zu Johanna, rund um die Uhr, für Sie beide.',
+              text: 'Ein direkter Draht zu Johanna, für Sie beide.',
             },
           ],
         },
@@ -185,7 +185,7 @@ export const vip: VipContent = {
             },
             {
               title: 'WhatsApp-Support',
-              text: 'Eine Nummer für beide Eltern, rund um die Uhr beantwortet.',
+              text: 'Ein direkter Draht zu Johanna, für beide Eltern.',
             },
           ],
         },
@@ -365,7 +365,7 @@ export const vip: VipContent = {
         name: 'VIP Relocation Concierge',
         tagline: 'Für Leben, die für einen Umzug nicht innehalten.',
         metaTitle: 'VIP Relocation Concierge Niederlande | E & I',
-        metaDescription: 'Concierge-Relocation in die Niederlande für Künstler, Sportler und Führungskräfte: ein vorbereiteter Besuch, alle Termine gebündelt, Chauffeurtage und persönlicher 24/7-Support.',
+        metaDescription: 'Concierge-Relocation in die Niederlande für Künstler, Sportler und Führungskräfte: ein vorbereiteter Besuch, alle Termine gebündelt, Chauffeurtage und persönlicher Support, rund um die Uhr, wo vereinbart.',
         investment: 'Maßgeschneidert',
         intro: [
           'Eine Künstlerin zwischen Tourneeterminen. Ein Sportler, mitten in der Saison verpflichtet. Eine Führungskraft, deren Kalender bis ins nächste Jahr geplant ist. Die Concierge-Stufe verdichtet eine Relocation auf die Zeit, die Sie tatsächlich haben, manchmal ein einziges Wochenende, und erledigt alles, was sich ohne Sie erledigen lässt.',
@@ -399,8 +399,8 @@ export const vip: VipContent = {
               text: 'Eine Arbeitsweise aus der Welt der Botschaften. Ihr Umzug bleibt Ihre Angelegenheit.',
             },
             {
-              title: '24/7-Leitung',
-              text: 'Johanna, direkt, in welcher Zeitzone Sie sich auch befinden.',
+              title: 'Erweiterte Erreichbarkeit',
+              text: 'Johanna direkt, in Ihrer Zeitzone, und rund um die Uhr, wo vereinbart.',
             },
           ],
         },

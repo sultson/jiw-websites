@@ -29,7 +29,7 @@ export const immigration: SectionContent = {
         eyebrow: 'Arbeitsvisum',
         intro: [
           'Die Route als Highly Skilled Migrant ist der schnellste, sauberste Weg für internationale Fachkräfte, in den Niederlanden zu arbeiten. Ihr Arbeitgeber muss ein von der IND anerkannter Sponsor sein, Ihr Gehalt muss die aktuelle IND-Gehaltsgrenze für Ihre Altersgruppe erreichen, und die Unterlagen müssen beim ersten Mal stimmen.',
-          'Genau hier kommen wir ins Spiel. Wir koordinieren direkt mit der HR-Abteilung Ihres Arbeitgebers, bereiten Sie und Ihre Familie auf jeden Termin vor und bleiben über unsere persönliche 24/7 WhatsApp-Linie erreichbar, wann immer eine Frage aufkommt, ganz gleich in welcher Zeitzone.',
+          'Genau hier kommen wir ins Spiel. Wir koordinieren direkt mit der HR-Abteilung Ihres Arbeitgebers, bereiten Sie und Ihre Familie auf jeden Termin vor und bleiben über unsere persönliche WhatsApp-Linie erreichbar, wann immer eine Frage aufkommt.',
         ],
         cardText: 'Der schnellste Arbeitsweg in die Niederlande, koordiniert zwischen Ihnen, Ihrem Arbeitgeber und der IND.',
         explainer: {

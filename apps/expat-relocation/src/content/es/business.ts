@@ -448,7 +448,7 @@ export const business: SectionContent = {
         eyebrow: 'Reubicación',
         intro: [
           'Un empleado que se traslada tiene un departamento de recursos humanos. Un emprendedor que se traslada tiene una lista de tareas que se defiende: un permiso que depende de una empresa, una empresa que necesita una dirección, una dirección que necesita un empadronamiento y una familia que espera por todo ello. Los paquetes de reubicación estándar no están hechos para ese rompecabezas circular.',
-          'El nuestro sí. Llevamos su mudanza como un proyecto con un solo responsable, y como las preguntas no esperan al horario comercial, nos localiza en una línea personal de WhatsApp 24/7, desde la primera caja embalada hasta el último formulario firmado.',
+          'El nuestro sí. Llevamos su mudanza como un proyecto con un solo responsable, y nos localiza directamente en una línea personal de WhatsApp, desde la primera caja embalada hasta el último formulario firmado.',
         ],
         cardText: 'La mudanza, el permiso, la empresa y la familia, llevados como un solo proyecto.',
         forWho: {

@@ -448,7 +448,7 @@ export const business: SectionContent = {
         eyebrow: 'Relocation',
         intro: [
           'Ein Angestellter, der umzieht, hat eine HR-Abteilung. Ein Unternehmer, der umzieht, hat eine To-do-Liste, die sich wehrt: ein Titel, der von einer Firma abhängt, eine Firma, die eine Adresse braucht, eine Adresse, die eine Anmeldung braucht, und eine Familie, die auf all das wartet. Standard-Relocation-Pakete sind für dieses zirkuläre Puzzle nicht gebaut.',
-          'Unseres schon. Wir führen Ihren Umzug als ein Projekt mit einem Verantwortlichen, und weil Fragen nicht auf Geschäftszeiten warten, erreichen Sie uns rund um die Uhr über eine persönliche WhatsApp-Linie, vom ersten gepackten Karton bis zum letzten unterschriebenen Formular.',
+          'Unseres schon. Wir führen Ihren Umzug als ein Projekt mit einem Verantwortlichen, und Sie erreichen uns direkt über eine persönliche WhatsApp-Linie, vom ersten gepackten Karton bis zum letzten unterschriebenen Formular.',
         ],
         cardText: 'Der Umzug, der Titel, die Firma und die Familie, geführt als ein Projekt.',
         forWho: {

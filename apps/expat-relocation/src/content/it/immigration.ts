@@ -29,7 +29,7 @@ export const immigration: SectionContent = {
         eyebrow: 'Visto di lavoro',
         intro: [
           'Il percorso per lavoratori altamente qualificati è la via più rapida e lineare perché un professionista internazionale possa lavorare nei Paesi Bassi. Il suo datore di lavoro deve essere uno sponsor riconosciuto dall\'IND, la sua retribuzione deve raggiungere la soglia IND in vigore per la sua fascia d\'età e le pratiche devono essere corrette già la prima volta.',
-          'È qui che entriamo noi. Ci coordiniamo direttamente con le risorse umane del suo datore di lavoro, prepariamo lei e la sua famiglia a ogni appuntamento e restiamo raggiungibili sulla nostra linea WhatsApp personale attiva 24 ore su 24, ogni volta che sorge una domanda, in qualunque fuso orario.',
+          'È qui che entriamo noi. Ci coordiniamo direttamente con le risorse umane del suo datore di lavoro, prepariamo lei e la sua famiglia a ogni appuntamento e restiamo raggiungibili sulla nostra linea WhatsApp personale ogni volta che sorge una domanda.',
         ],
         cardText: 'La via di lavoro più rapida verso i Paesi Bassi, coordinata fra lei, il suo datore di lavoro e l\'IND.',
         explainer: {

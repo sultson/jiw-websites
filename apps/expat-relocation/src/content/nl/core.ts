@@ -87,7 +87,7 @@ export const core: CoreContent = {
         ctaPrimary: 'Bekijk onze pakketten',
         ctaWhatsapp: 'Stuur ons direct een WhatsApp',
         ctaSecondary: 'Start uw relocatie',
-        trust: 'Persoonlijke begeleiding door Johanna, 24/7 bereikbaar',
+        trust: 'Persoonlijk begeleid door Johanna, van eerste vraag tot thuis',
         points: [
           'Persoonlijke begeleiding',
           'Immigratie en relocatie in één plan',
@@ -396,8 +396,8 @@ export const core: CoreContent = {
             text: 'Naar de gemeente, de IND, de bank en de bezichtiging. U krijgt nooit een checklist in handen gedrukt met veel succes erbij.',
           },
           {
-            title: '24/7, persoonlijk',
-            text: 'Eén WhatsApp-lijn, beantwoord door degene die uw dossier beheert. Dag of nacht, eerste week of eerste jaar.',
+            title: 'Persoonlijk, van begin tot eind',
+            text: 'Eén WhatsApp-lijn, beantwoord door degene die uw dossier beheert. Eerste week of eerste jaar.',
           },
           {
             title: 'De enige in zijn soort',
@@ -422,8 +422,8 @@ export const core: CoreContent = {
             label: 'Klanttevredenheid',
           },
           {
-            value: '24/7',
-            label: 'Persoonlijke WhatsApp-ondersteuning',
+            value: 'Sinds 2009',
+            label: 'Gespecialiseerd in Nederlandse immigratie',
           },
         ],
       },
@@ -565,7 +565,7 @@ export const core: CoreContent = {
       },
       emergency: {
         heading: 'Spoedondersteuning bij relocatie',
-        text: 'Morgen een deadline, woning weggevallen, een afspraak die u niet kunt missen? Stuur ons een WhatsApp met het woord URGENT en wij reageren direct, dag en nacht.',
+        text: 'Morgen een deadline, woning weggevallen, een afspraak die u niet kunt missen? Stuur ons een WhatsApp met het woord URGENT en Johanna geeft het voorrang.',
       },
       details: {
         heading: 'Gegevens',

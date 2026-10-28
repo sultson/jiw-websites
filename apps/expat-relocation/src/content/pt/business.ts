@@ -448,7 +448,7 @@ export const business: SectionContent = {
         eyebrow: 'Relocalização',
         intro: [
           'Um trabalhador por conta de outrem que se relocaliza tem um departamento de recursos humanos. Um empresário que se relocaliza tem uma lista de tarefas que resiste: uma autorização que depende de uma empresa, uma empresa que precisa de uma morada, uma morada que precisa de um registo, e uma família à espera de tudo isso. Os pacotes de relocalização convencionais não foram construídos para esse quebra-cabeças circular.',
-          'O nosso foi. Conduzimos a sua mudança como um único projeto com um único responsável e, porque as dúvidas não esperam pelo horário de expediente, tem acesso a uma linha pessoal de WhatsApp 24/7, desde a primeira caixa embalada até ao último formulário assinado.',
+          'O nosso foi. Conduzimos a sua mudança como um único projeto com um único responsável, e contacta-nos diretamente numa linha pessoal de WhatsApp, desde a primeira caixa embalada até ao último formulário assinado.',
         ],
         cardText: 'A mudança, a autorização, a empresa e a família, conduzidas como um único projeto.',
         forWho: {

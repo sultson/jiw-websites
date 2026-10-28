@@ -90,7 +90,7 @@ export const core: CoreContent = {
       ctaPrimary: 'View our packages',
       ctaWhatsapp: 'WhatsApp us directly',
       ctaSecondary: 'Start your relocation',
-      trust: 'Personally guided by Johanna, reachable 24/7',
+      trust: 'Personally guided by Johanna, from first question to settled',
       points: ['Personal guidance', 'Immigration and relocation in one plan', 'Port region specialist'],
     },
     featured: {
@@ -299,8 +299,8 @@ export const core: CoreContent = {
           text: 'To the municipality, the IND, the bank and the viewing. You are never handed a checklist and wished good luck.',
         },
         {
-          title: '24/7, personally',
-          text: 'One WhatsApp line, answered by the person managing your file. Day or night, first week or first year.',
+          title: 'Personally, start to finish',
+          text: 'One WhatsApp line, answered by the person managing your file. First week or first year.',
         },
         {
           title: 'The only one of its kind',
@@ -315,7 +315,7 @@ export const core: CoreContent = {
         { value: 'Since 2016', label: 'Guiding arrivals in the Netherlands' },
         { value: '1200+', label: 'Expats and families helped' },
         { value: '98%', label: 'Client satisfaction score' },
-        { value: '24/7', label: 'Personal WhatsApp support' },
+        { value: 'Since 2009', label: 'Specialised in Dutch immigration' },
       ],
     },
     reviews: {
@@ -448,7 +448,7 @@ export const core: CoreContent = {
     },
     emergency: {
       heading: 'Emergency relocation support',
-      text: 'Deadline tomorrow, housing fallen through, appointment you cannot miss? Message us on WhatsApp with the word URGENT and we respond immediately, day or night.',
+      text: 'Deadline tomorrow, housing fallen through, appointment you cannot miss? Message us on WhatsApp with the word URGENT and Johanna gives it priority.',
     },
     details: {
       heading: 'Details',

@@ -10,7 +10,7 @@ export const vip: VipContent = {
     eyebrow: 'VIP-diensten',
     intro: [
       'Artiesten met tourschema’s. Sporters tussen twee seizoenen. Bestuurders met één vrij weekend en oprichters zonder. Onze VIP-pakketten bestaan voor mensen wier agenda niet meebuigt, dus buigt Nederland mee.',
-      'Elk pakket wordt persoonlijk geleid door Johanna: afspraken gebundeld, deuren vooraf geopend, en een 24/7-lijn die wordt beantwoord door degene die uw dossier kent, niet door een servicedesk.',
+      'Elk pakket wordt persoonlijk geleid door Johanna: afspraken gebundeld, deuren vooraf geopend, en een directe lijn met degene die uw dossier kent, niet met een servicedesk, met 24/7 bereikbaarheid waar afgesproken.',
     ],
     image: '/images/vip-hub.jpg?v=20260731',
     imageAlt: 'Gastheer verwelkomt een stel dat met de auto aankomt bij een hotel aan de gracht',
@@ -73,7 +73,7 @@ export const vip: VipContent = {
             },
             {
               title: 'WhatsApp-begeleiding',
-              text: 'Eén lijn naar Johanna, dag en nacht, voor u beiden.',
+              text: 'Eén directe lijn met Johanna, voor u allebei.',
             },
           ],
         },
@@ -185,7 +185,7 @@ export const vip: VipContent = {
             },
             {
               title: 'WhatsApp-ondersteuning',
-              text: 'Eén lijn voor beide ouders, dag en nacht beantwoord.',
+              text: 'Eén directe lijn met Johanna, voor beide ouders.',
             },
           ],
         },
@@ -365,7 +365,7 @@ export const vip: VipContent = {
         name: 'VIP Relocation Concierge',
         tagline: 'Voor levens die niet pauzeren om te verhuizen.',
         metaTitle: 'VIP Relocation Concierge Nederland | E & I',
-        metaDescription: 'Volledige concierge-relocatie naar Nederland voor artiesten, sporters en bestuurders: één voorbereid bezoek, elke afspraak gebundeld, dagen met chauffeur en 24/7 persoonlijke ondersteuning.',
+        metaDescription: 'Volledige concierge-relocatie naar Nederland voor artiesten, sporters en bestuurders: één voorbereid bezoek, elke afspraak gebundeld, dagen met chauffeur en persoonlijke ondersteuning, 24/7 waar afgesproken.',
         investment: 'Op maat',
         intro: [
           'Een artiest tussen twee tourdata. Een sporter die midden in het seizoen tekent. Een bestuurder wiens agenda tot volgend jaar volstaat. Het concierge-niveau comprimeert een relocatie tot de tijd die u werkelijk heeft, soms één enkel weekend, en regelt alles wat maar zonder u geregeld kan worden.',
@@ -399,8 +399,8 @@ export const vip: VipContent = {
               text: 'Een werkwijze meegenomen uit de ambassadewereld. Uw verhuizing blijft uw zaak.',
             },
             {
-              title: '24/7-lijn',
-              text: 'Johanna, rechtstreeks, in welke tijdzone u zich ook bevindt.',
+              title: 'Ruime bereikbaarheid',
+              text: 'Johanna rechtstreeks, in uw tijdzone, en 24/7 waar afgesproken.',
             },
           ],
         },

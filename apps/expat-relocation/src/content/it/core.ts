@@ -87,7 +87,7 @@ export const core: CoreContent = {
         ctaPrimary: 'Scopri i nostri pacchetti',
         ctaWhatsapp: 'Scrivici su WhatsApp',
         ctaSecondary: 'Inizia il tuo trasferimento',
-        trust: 'Seguita personalmente da Johanna, raggiungibile 24 ore su 24',
+        trust: 'Seguiti personalmente da Johanna, dalla prima domanda all\'arrivo a casa',
         points: [
           'Assistenza personale',
           'Immigrazione e relocation in un unico piano',
@@ -396,8 +396,8 @@ export const core: CoreContent = {
             text: 'Al comune, all\'IND, in banca e alla visita dell\'immobile. Non le viene mai consegnato un elenco di cose da fare con un augurio di buona fortuna.',
           },
           {
-            title: '24 ore su 24, di persona',
-            text: 'Una linea WhatsApp, a cui risponde la persona che segue il suo fascicolo. Giorno o notte, prima settimana o primo anno.',
+            title: 'Personalmente, dall\'inizio alla fine',
+            text: 'Una sola linea WhatsApp, a cui risponde chi gestisce il suo fascicolo. La prima settimana o il primo anno.',
           },
           {
             title: 'L\'unica nel suo genere',
@@ -422,8 +422,8 @@ export const core: CoreContent = {
             label: 'Indice di soddisfazione dei clienti',
           },
           {
-            value: '24/7',
-            label: 'Assistenza personale via WhatsApp',
+            value: 'Dal 2009',
+            label: 'Specializzata nell\'immigrazione olandese',
           },
         ],
       },
@@ -565,7 +565,7 @@ export const core: CoreContent = {
       },
       emergency: {
         heading: 'Assistenza urgente al trasferimento',
-        text: 'Scadenza domani, casa saltata, appuntamento che non può mancare? Ci scriva su WhatsApp con la parola URGENTE e rispondiamo subito, giorno o notte.',
+        text: 'Scadenza domani, casa saltata, appuntamento che non può mancare? Ci scriva su WhatsApp con la parola URGENTE e Johanna gli dà la priorità.',
       },
       details: {
         heading: 'Dati',

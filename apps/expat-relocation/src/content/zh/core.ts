@@ -87,7 +87,7 @@ export const core: CoreContent = {
         ctaPrimary: '查看我们的套餐',
         ctaWhatsapp: '直接通过 WhatsApp 联系我们',
         ctaSecondary: '开启您的搬迁',
-        trust: '由 Johanna 亲自陪同，24/7 随时可联系',
+        trust: '由 Johanna 亲自陪伴，从第一个问题到安顿下来',
         points: [
           '一对一陪同',
           '移民与搬迁一个计划完成',
@@ -396,8 +396,8 @@ export const core: CoreContent = {
             text: '去市政厅、去 IND、去银行、去看房。我们绝不会只递给您一张清单，然后祝您好运。',
           },
           {
-            title: '24/7，而且是本人',
-            text: '一条 WhatsApp 线路，由负责您档案的那个人亲自回复。无论白天黑夜，第一周还是第一年。',
+            title: '亲力亲为，从头到尾',
+            text: '一条 WhatsApp 专线，由负责您档案的人亲自回复。无论是第一周还是第一年。',
           },
           {
             title: '独此一家',
@@ -422,8 +422,8 @@ export const core: CoreContent = {
             label: '客户满意度',
           },
           {
-            value: '24/7',
-            label: '专属 WhatsApp 支持',
+            value: '始于 2009 年',
+            label: '专注荷兰移民事务',
           },
         ],
       },
@@ -565,7 +565,7 @@ export const core: CoreContent = {
       },
       emergency: {
         heading: '紧急搬迁支持',
-        text: '明天就是截止日期，住房临时告吹，有一场不能错过的预约？请通过 WhatsApp 发送 URGENT 一词，我们会立即回应，无论白天黑夜。',
+        text: '明天就是截止日期，住房临时告吹，有一场不能错过的预约？请通过 WhatsApp 发送 URGENT 一词，Johanna 会优先处理。',
       },
       details: {
         heading: '联系详情',

@@ -412,7 +412,7 @@ export const relocation: SectionContent = {
             },
             {
               q: 'Wat als er buiten kantooruren een zorgvraag opkomt?',
-              a: 'Nederland heeft een huisartsenpost voor spoedgevallen buiten kantooruren. En onze cliënten kunnen ons altijd berichten via de persoonlijke WhatsApp-lijn, op elk uur; wij hebben meer dan één ongeruste ouder door de eerste Nederlandse nachtkoorts heen gepraat.',
+              a: 'Nederland heeft een huisartsenpost voor spoedgevallen buiten kantooruren. En onze cliënten kunnen ons berichten via de persoonlijke WhatsApp-lijn om snel de juiste zorg te vinden.',
             },
           ],
         },
@@ -705,7 +705,7 @@ export const relocation: SectionContent = {
         eyebrow: 'Aankomst',
         intro: [
           'Elke relocation heeft een moment nul: de deuren van de aankomsthal schuiven open en uw nieuwe leven begint met een jetlag, bagage en een land dat u nog niet kent. Hoe dat eerste uur verloopt, kleurt de hele verhuizing. Het zou niet moeten bestaan uit koffers slepen door treinoverstappen of om middernacht een adres uitleggen aan een taxichauffeur.',
-          'Wij staan in de hal, naambord en al, en rijden u rechtstreeks naar uw nieuwe voordeur. Onderweg krijgt u de essentie van de eerste dag: hoe het huis werkt, waar morgen de boodschappen zijn, wat er deze week gebeurt. En omdat vluchten landen wanneer ze landen, is onze WhatsApp-lijn rond de klok bij u vanaf het moment dat u opstijgt.',
+          'Wij staan in de hal, naambord en al, en rijden u rechtstreeks naar uw nieuwe voordeur. Onderweg krijgt u de essentie van de eerste dag: hoe het huis werkt, waar morgen de boodschappen zijn, wat er deze week gebeurt. En omdat vluchten landen wanneer ze landen, spreken wij vooraf af hoe u ons op de dag zelf bereikt.',
         ],
         cardText: 'Opgewacht in de aankomsthal, naar huis gereden en gebrieft voor uw eerste Nederlandse ochtend.',
         forWho: {

@@ -448,7 +448,7 @@ export const business: SectionContent = {
         eyebrow: 'Relocation',
         intro: [
           'Un salarié qui s’expatrie a un service RH. Un entrepreneur qui s’expatrie a une liste de tâches qui se rebiffe : un permis qui dépend d’une société, une société qui a besoin d’une adresse, une adresse qui exige une inscription, et une famille qui attend tout cela. Les forfaits de relocation standard ne sont pas faits pour ce casse-tête circulaire.',
-          'Le nôtre, si. Nous menons votre installation comme un seul projet avec un seul responsable, et parce que les questions n’attendent pas les heures de bureau, vous nous joignez sur une ligne WhatsApp personnelle 24h/24 et 7j/7, du premier carton au dernier formulaire signé.',
+          'Le nôtre, si. Nous menons votre installation comme un seul projet avec un seul responsable, et vous nous joignez directement sur une ligne WhatsApp personnelle, du premier carton au dernier formulaire signé.',
         ],
         cardText: 'L’installation, le permis, la société et la famille, menés comme un seul projet.',
         forWho: {

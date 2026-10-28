@@ -8,7 +8,7 @@ export const vip: VipContent = {
   eyebrow: 'VIP services',
   intro: [
     'Artists on tour schedules. Athletes between seasons. Executives with one free weekend and founders with none. Our VIP packages exist for people whose calendars do not bend, so the Netherlands bends instead.',
-    'Every package is run personally by Johanna: appointments consolidated, doors opened in advance, and a 24/7 line that is answered by the person who knows your file, not a service desk.',
+    'Every package is run personally by Johanna: appointments consolidated, doors opened in advance, and a direct line to the person who knows your file, not a service desk, with 24/7 availability where agreed.',
   ],
   image: '/images/vip-hub.jpg?v=20260731',
   imageAlt: 'Host greeting a couple arriving by car at a canal-side hotel',
@@ -46,7 +46,7 @@ export const vip: VipContent = {
           { title: 'Bank account support', text: 'A Dutch account opened without the usual chicken-and-egg of address and BSN.' },
           { title: 'Municipality appointments', text: 'Every registration scheduled, prepared and accompanied.' },
           { title: 'Settling-in assistance', text: 'Utilities, internet, doctor, dentist and the small things that make a city yours.' },
-          { title: 'WhatsApp guidance', text: 'One line to Johanna, around the clock, for both of you.' },
+          { title: 'WhatsApp guidance', text: 'One direct line to Johanna, for both of you.' },
         ],
       },
       forWho: {
@@ -111,7 +111,7 @@ export const vip: VipContent = {
           { title: 'Municipality appointments', text: 'Scheduled around school hours and your working day.' },
           { title: 'Settling-in support', text: 'From utilities to sports clubs, the infrastructure of family life set up.' },
           { title: 'Neighbourhood orientation', text: 'A guided introduction to your area: routes, playgrounds, supermarkets, weekend life.' },
-          { title: 'WhatsApp support', text: 'One line for both parents, answered around the clock.' },
+          { title: 'WhatsApp support', text: 'One direct line to Johanna, for both parents.' },
         ],
       },
       forWho: {
@@ -223,7 +223,7 @@ export const vip: VipContent = {
       tagline: 'For lives that do not pause to move.',
       metaTitle: 'VIP Relocation Concierge Netherlands | E & I',
       metaDescription:
-        'Full concierge relocation to the Netherlands for artists, athletes and executives: one prepared visit, every appointment aligned, chauffeured days and 24/7 personal support.',
+        'Full concierge relocation to the Netherlands for artists, athletes and executives: one prepared visit, every appointment aligned, chauffeured days and personal support, 24/7 where agreed.',
       investment: 'Tailor-made',
       intro: [
         'An artist between tour dates. An athlete signed mid-season. An executive whose calendar is planned into next year. The concierge tier compresses a relocation into the time you actually have, sometimes a single weekend, and handles everything that can possibly be handled without you.',
@@ -238,7 +238,7 @@ export const vip: VipContent = {
           { title: 'Immigration, silently handled', text: 'Applications prepared, filed and chased while you are elsewhere.' },
           { title: 'Family included', text: 'Partners, children, schools and staff arrangements covered where needed.' },
           { title: 'Discretion', text: 'A way of working carried over from the embassy world. Your move stays your business.' },
-          { title: '24/7 line', text: 'Johanna, directly, in whichever time zone you happen to be.' },
+          { title: 'Extended availability', text: 'Johanna, directly, in your time zone, and 24/7 where agreed.' },
         ],
       },
       forWho: {

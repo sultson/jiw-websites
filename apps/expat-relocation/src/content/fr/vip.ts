@@ -10,7 +10,7 @@ export const vip: VipContent = {
     eyebrow: 'Services VIP',
     intro: [
       'Des artistes en tournée. Des athlètes entre deux saisons. Des dirigeants avec un seul week-end libre et des fondateurs qui n’en ont aucun. Nos forfaits VIP existent pour ceux dont l’agenda ne plie pas. Alors, ce sont les Pays-Bas qui plient.',
-      'Chaque forfait est piloté personnellement par Johanna : rendez-vous regroupés, portes ouvertes à l’avance, et une ligne 24/7 tenue par la personne qui connaît votre dossier, pas par un service client.',
+      'Chaque forfait est piloté personnellement par Johanna : rendez-vous regroupés, portes ouvertes à l’avance, et une ligne directe avec la personne qui connaît votre dossier, pas un service client, joignable 24h/24 lorsque cela est convenu.',
     ],
     image: '/images/vip-hub.jpg?v=20260731',
     imageAlt: 'Hôte accueillant un couple arrivant en voiture devant un hôtel au bord d’un canal',
@@ -73,7 +73,7 @@ export const vip: VipContent = {
             },
             {
               title: 'Accompagnement WhatsApp',
-              text: 'Une ligne directe vers Johanna, à toute heure, pour vous deux.',
+              text: 'Une ligne directe avec Johanna, pour vous deux.',
             },
           ],
         },
@@ -185,7 +185,7 @@ export const vip: VipContent = {
             },
             {
               title: 'Assistance WhatsApp',
-              text: 'Une seule ligne pour les deux parents, à toute heure.',
+              text: 'Une ligne directe avec Johanna, pour les deux parents.',
             },
           ],
         },
@@ -365,7 +365,7 @@ export const vip: VipContent = {
         name: 'Conciergerie Relocation VIP',
         tagline: 'Pour les vies qui ne s’arrêtent pas pour déménager.',
         metaTitle: 'Conciergerie Relocation VIP Pays-Bas | E & I',
-        metaDescription: 'Relocation en conciergerie complète vers les Pays-Bas pour artistes, athlètes et dirigeants : une visite préparée, tous les rendez-vous alignés, journées avec chauffeur et assistance personnelle 24/7.',
+        metaDescription: 'Relocation en conciergerie complète vers les Pays-Bas pour artistes, athlètes et dirigeants : une visite préparée, tous les rendez-vous alignés, journées avec chauffeur et assistance personnelle, 24h/24 lorsque cela est convenu.',
         investment: 'Sur mesure',
         intro: [
           'Un artiste entre deux dates de tournée. Un athlète recruté en pleine saison. Un dirigeant dont l’agenda est planifié jusqu’à l’année prochaine. Le niveau conciergerie condense une relocation dans le temps dont vous disposez réellement, parfois un seul week-end, et prend en charge tout ce qui peut l’être sans vous.',
@@ -399,8 +399,8 @@ export const vip: VipContent = {
               text: 'Une manière de travailler héritée du monde des ambassades. Votre déménagement reste votre affaire.',
             },
             {
-              title: 'Ligne 24/7',
-              text: 'Johanna, en direct, quel que soit votre fuseau horaire.',
+              title: 'Disponibilité étendue',
+              text: 'Johanna, directement, dans votre fuseau horaire, et 24h/24 lorsque cela est convenu.',
             },
           ],
         },

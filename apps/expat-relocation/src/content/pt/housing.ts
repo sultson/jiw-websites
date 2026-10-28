@@ -567,7 +567,7 @@ export const housing: SectionContent = {
         eyebrow: 'Habitação temporária',
         intro: [
           'A maioria das relocalizações tem um intervalo: já tem data de início no trabalho mas ainda não tem casa, ou os seus bens pessoais estão algures num navio enquanto já se encontra aqui. A habitação temporária preenche esse intervalo, e fazê-lo bem é a diferença entre chegar em stress e chegar instalado.',
-          'Tratamos de apartamentos de curta duração e de alojamento com serviços que são realmente habitáveis: mobilados, ligados à internet, num bairro de que vai gostar e, sempre que possível, com a opção de registar a morada. E porque as chegadas raramente acontecem entre as nove e as cinco, a nossa linha pessoal de WhatsApp mantém-se aberta a qualquer hora, para que um voo atrasado ou um cofre de chaves que não abre nunca o deixem desamparado.',
+          'Tratamos de apartamentos de curta duração e de alojamento com serviços que são realmente habitáveis: mobilados, ligados à internet, num bairro de que vai gostar e, sempre que possível, com a opção de registar a morada. E porque as chegadas raramente acontecem entre as nove e as cinco, combinamos antecipadamente como nos contactar no dia da chegada, para que um voo atrasado ou um cofre de chaves que não abre nunca o deixem desamparado.',
         ],
         cardText: 'Uma base confortável, onde pode registar-se, para as primeiras semanas enquanto decorre a verdadeira procura.',
         forWho: {

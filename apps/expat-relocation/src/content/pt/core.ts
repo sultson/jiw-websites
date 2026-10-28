@@ -87,7 +87,7 @@ export const core: CoreContent = {
         ctaPrimary: 'Ver os nossos pacotes',
         ctaWhatsapp: 'Escreva-nos no WhatsApp',
         ctaSecondary: 'Comece a sua mudança',
-        trust: 'Acompanhamento pessoal da Johanna, disponível 24 horas por dia',
+        trust: 'Acompanhamento pessoal da Johanna, da primeira pergunta à instalação',
         points: [
           'Acompanhamento pessoal',
           'Imigração e relocalização num só plano',
@@ -396,8 +396,8 @@ export const core: CoreContent = {
             text: 'À câmara municipal, ao IND, ao banco e à visita ao imóvel. Nunca lhe entregam uma lista de tarefas e lhe desejam boa sorte.',
           },
           {
-            title: '24 horas por dia, pessoalmente',
-            text: 'Uma linha de WhatsApp, atendida por quem trata do seu processo. De dia ou de noite, na primeira semana ou no primeiro ano.',
+            title: 'Pessoalmente, do início ao fim',
+            text: 'Uma única linha de WhatsApp, atendida por quem gere o seu processo. Na primeira semana ou no primeiro ano.',
           },
           {
             title: 'A única do género',
@@ -422,8 +422,8 @@ export const core: CoreContent = {
             label: 'Índice de satisfação dos clientes',
           },
           {
-            value: '24/7',
-            label: 'Apoio pessoal por WhatsApp',
+            value: 'Desde 2009',
+            label: 'Especializada em imigração neerlandesa',
           },
         ],
       },
@@ -565,7 +565,7 @@ export const core: CoreContent = {
       },
       emergency: {
         heading: 'Apoio urgente à relocalização',
-        text: 'Prazo amanhã, casa que caiu por terra, marcação que não pode falhar? Escreva-nos no WhatsApp com a palavra URGENTE e respondemos de imediato, de dia ou de noite.',
+        text: 'Prazo amanhã, casa que caiu por terra, marcação que não pode falhar? Escreva-nos no WhatsApp com a palavra URGENTE e a Johanna dá-lhe prioridade.',
       },
       details: {
         heading: 'Dados',

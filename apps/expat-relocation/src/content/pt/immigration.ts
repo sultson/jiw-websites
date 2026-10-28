@@ -29,7 +29,7 @@ export const immigration: SectionContent = {
         eyebrow: 'Visto de trabalho',
         intro: [
           'A via do trabalhador altamente qualificado é a forma mais rápida e limpa de um profissional internacional trabalhar nos Países Baixos. O seu empregador tem de ser um patrocinador reconhecido pelo IND, o seu salário tem de atingir o limiar do IND em vigor para o seu escalão etário, e a papelada tem de estar certa logo à primeira.',
-          'É aí que entramos. Coordenamos diretamente com os recursos humanos do seu empregador, preparamos o senhor e a sua família para cada marcação e continuamos contactáveis na nossa linha pessoal de WhatsApp 24 horas por dia, sempre que surja uma dúvida, em qualquer fuso horário.',
+          'É aí que entramos. Coordenamos diretamente com os recursos humanos do seu empregador, preparamos o senhor e a sua família para cada marcação e continuamos contactáveis na nossa linha pessoal de WhatsApp sempre que surja uma dúvida.',
         ],
         cardText: 'A via de trabalho mais rápida para os Países Baixos, coordenada entre si, o seu empregador e o IND.',
         explainer: {

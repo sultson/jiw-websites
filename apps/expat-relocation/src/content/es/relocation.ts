@@ -412,7 +412,7 @@ export const relocation: SectionContent = {
             },
             {
               q: '¿Qué pasa si surge una cuestión de salud fuera del horario de oficina?',
-              a: 'Los Países Bajos tienen un servicio de guardia del médico de cabecera, el huisartsenpost, para casos urgentes. Y nuestros clientes siempre pueden escribirnos a la línea personal de WhatsApp a cualquier hora; hemos acompañado a más de un padre preocupado durante su primera fiebre nocturna neerlandesa.',
+              a: 'Los Países Bajos tienen un servicio de guardia del médico de cabecera, el huisartsenpost, para casos urgentes. Y nuestros clientes pueden escribirnos a la línea personal de WhatsApp para encontrar rápidamente la atención adecuada.',
             },
           ],
         },
@@ -705,7 +705,7 @@ export const relocation: SectionContent = {
         eyebrow: 'Llegada',
         intro: [
           'Toda reubicación tiene un momento cero: las puertas de la sala de llegadas se abren y su nueva vida comienza con jet lag, equipaje y un país que aún no conoce. Cómo transcurre esa primera hora tiñe toda la mudanza. No debería incluir arrastrar maletas por transbordos de tren ni explicar una dirección a un taxista a medianoche.',
-          'Le esperamos en la sala, cartel con su nombre incluido, y le llevamos directo a su nueva puerta. Por el camino recibe lo esencial del primer día: cómo funciona la casa, dónde está la compra de mañana, qué ocurre esta semana. Y como los vuelos aterrizan cuando aterrizan, nuestra línea de WhatsApp le acompaña a todas horas desde el momento del despegue.',
+          'Le esperamos en la sala, cartel con su nombre incluido, y le llevamos directo a su nueva puerta. Por el camino recibe lo esencial del primer día: cómo funciona la casa, dónde está la compra de mañana, qué ocurre esta semana. Y como los vuelos aterrizan cuando aterrizan, acordamos de antemano cómo localizarnos ese mismo día.',
         ],
         cardText: 'Recibido en llegadas, llevado a casa y orientado para su primera mañana neerlandesa.',
         forWho: {

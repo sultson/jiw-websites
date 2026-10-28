@@ -567,7 +567,7 @@ export const housing: SectionContent = {
         eyebrow: 'Wohnen auf Zeit',
         intro: [
           'Die meisten Umzüge haben eine Lücke: Sie haben ein Startdatum bei der Arbeit, aber noch kein Zuhause, oder Ihr Hausrat ist irgendwo auf einem Schiff, während Sie schon hier sind. Wohnen auf Zeit überbrückt diese Lücke, und gut gemacht ist es der Unterschied zwischen gestresst ankommen und angekommen sein.',
-          'Wir organisieren Short-Stay-Apartments und Serviced Housing, die wirklich bewohnbar sind: möbliert, angeschlossen, in einem Viertel, das Ihnen gefallen wird, und wo immer möglich mit der Option, Ihre Adresse anzumelden. Und weil Ankünfte selten zwischen neun und fünf passieren, bleibt unsere persönliche WhatsApp-Linie rund um die Uhr offen, damit ein verspäteter Flug oder eine klemmende Schlüsselbox Sie nie stranden lässt.',
+          'Wir organisieren Short-Stay-Apartments und Serviced Housing, die wirklich bewohnbar sind: möbliert, angeschlossen, in einem Viertel, das Ihnen gefallen wird, und wo immer möglich mit der Option, Ihre Adresse anzumelden. Und weil Ankünfte selten zwischen neun und fünf passieren, vereinbaren wir vorab, wie Sie uns am Ankunftstag erreichen, damit ein verspäteter Flug oder eine klemmende Schlüsselbox Sie nie stranden lässt.',
         ],
         cardText: 'Eine komfortable, anmeldefähige Basis für die ersten Wochen, während die eigentliche Suche läuft.',
         forWho: {

@@ -10,7 +10,7 @@ export const vip: VipContent = {
     eyebrow: 'Servicios VIP',
     intro: [
       'Artistas con calendarios de gira. Deportistas entre temporadas. Ejecutivos con un solo fin de semana libre y fundadores sin ninguno. Nuestros paquetes VIP existen para personas cuyas agendas no se doblan, así que son los Países Bajos los que se doblan.',
-      'Cada paquete lo dirige personalmente Johanna: citas consolidadas, puertas abiertas de antemano y una línea 24/7 atendida por la persona que conoce su expediente, no por un centro de atención.',
+      'Cada paquete lo dirige personalmente Johanna: citas consolidadas, puertas abiertas de antemano y una línea directa con la persona que conoce su expediente, no con un centro de atención, con disponibilidad 24/7 cuando así se acuerde.',
     ],
     image: '/images/vip-hub.jpg?v=20260731',
     imageAlt: 'Anfitrión recibiendo a una pareja que llega en coche a un hotel junto a un canal',
@@ -73,7 +73,7 @@ export const vip: VipContent = {
             },
             {
               title: 'Acompañamiento por WhatsApp',
-              text: 'Una línea con Johanna, a cualquier hora, para los dos.',
+              text: 'Una línea directa con Johanna, para los dos.',
             },
           ],
         },
@@ -185,7 +185,7 @@ export const vip: VipContent = {
             },
             {
               title: 'Asistencia por WhatsApp',
-              text: 'Una línea para ambos padres, atendida a cualquier hora.',
+              text: 'Una línea directa con Johanna, para ambos padres.',
             },
           ],
         },
@@ -365,7 +365,7 @@ export const vip: VipContent = {
         name: 'Concierge de Reubicación VIP',
         tagline: 'Para vidas que no se detienen para mudarse.',
         metaTitle: 'Concierge de Reubicación VIP en los Países Bajos | E & I',
-        metaDescription: 'Reubicación concierge integral a los Países Bajos para artistas, deportistas y ejecutivos: una visita preparada, todas las citas alineadas, días con chófer y asistencia personal 24/7.',
+        metaDescription: 'Reubicación concierge integral a los Países Bajos para artistas, deportistas y ejecutivos: una visita preparada, todas las citas alineadas, días con chófer y asistencia personal, 24/7 cuando así se acuerde.',
         investment: 'A medida',
         intro: [
           'Un artista entre fechas de gira. Un deportista fichado a mitad de temporada. Un ejecutivo con la agenda planificada hasta el año próximo. El nivel concierge comprime una reubicación en el tiempo que usted realmente tiene, a veces un solo fin de semana, y se ocupa de todo lo que pueda resolverse sin usted.',
@@ -399,8 +399,8 @@ export const vip: VipContent = {
               text: 'Una forma de trabajar heredada del mundo de las embajadas. Su mudanza sigue siendo asunto suyo.',
             },
             {
-              title: 'Línea 24/7',
-              text: 'Johanna, directamente, en la zona horaria en la que usted se encuentre.',
+              title: 'Disponibilidad ampliada',
+              text: 'Johanna, directamente, en su zona horaria, y 24/7 cuando así se acuerde.',
             },
           ],
         },
