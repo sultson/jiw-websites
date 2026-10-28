@@ -108,6 +108,8 @@ function Header({ path }: { path: string }) {
             ],
             ["Jong & kanker", "/jong-en-kanker"],
             ["Voor naasten", "/voor-naasten"],
+            // Its own item since 23-10-2026, between Voor naasten and Kennis (Marcel, 28-10).
+            ["Nieuws", "/nieuws"],
             [
               "Kennis",
               "/kennis-en-wegwijzer",
@@ -135,8 +137,6 @@ function Header({ path }: { path: string }) {
                 ["Verantwoording", "/over-ons/organisatie-en-verantwoording"],
               ],
             ],
-            // Its own item since 23-10-2026 (Ron); it was under Over Toon.
-            ["Nieuws", "/nieuws"],
           ] as [string, string, string[][]?][]).map(([label, href, children]) => !children ? (
             <a className="nav-trigger nav-link" key={label} href={href} aria-current={path === href ? "page" : undefined}>{label}</a>
           ) : (
@@ -682,7 +682,11 @@ function SignupAction({ ctx, event }: { ctx: Context; event: Activiteit }) {
   if (event.volgeboekt) return <p className="notice">{copy.full}</p>;
   if (!event.aanmelden) return <><p className="notice">{copy.noSignup}</p><p><a className="textlink" href="/aanmelden?vraag">{copy.questionTitle} →</a></p></>;
   // An external page only where the organiser runs the signup; everything else uses our own registration page.
-  return <a className="btn" href={event.aanmeldUrl ? safeLink(event.aanmeldUrl) : eventPath(event, 'aanmelden')}>{copy.externalSignup} →</a>;
+  return <a className="btn" href={event.aanmeldUrl ? safeLink(eigenPad(event.aanmeldUrl)) : eventPath(event, 'aanmelden')}>{copy.externalSignup} →</a>;
+}
+/** The CMS only takes full https addresses; one of our own pages stays a path, so it works on every host (the Vraagbaak's dates). */
+function eigenPad(url: string) {
+  return url.replace(/^https:\/\/(www\.)?toonoverleven(\.jouwidealewebsite)?\.nl(?=\/|#|$)/, '') || '/';
 }
 /** The moments one can register for on our own registration page. */
 const registrable = (ctx: Context) => upcoming(ctx).filter((a) => a.aanmelden && !a.aanmeldUrl);

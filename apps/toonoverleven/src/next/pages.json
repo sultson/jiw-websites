@@ -4567,7 +4567,7 @@
                         "attrs": {},
                         "children": [
                           {
-                            "text": "Voor jongvolwassenen van 18 tot 39 jaar. Ben je ouder? Ook dan ben je welkom.",
+                            "text": "Voor jongvolwassenen van 18 tot 39 jaar. Ben je jonger of ouder? Ook dan ben je welkom.",
                             "key": "text-49"
                           }
                         ]
@@ -5438,7 +5438,7 @@
       {
         "_key": "text-49",
         "label": "Vragen over je studie, werk of toekomst?",
-        "text": "Voor jongvolwassenen van 18 tot 39 jaar. Ben je ouder? Ook dan ben je welkom."
+        "text": "Voor jongvolwassenen van 18 tot 39 jaar. Ben je jonger of ouder? Ook dan ben je welkom."
       },
       {
         "_key": "text-50",
@@ -8149,13 +8149,13 @@
       {
         "tag": "div",
         "attrs": {
-          "class": "hero-band reading-hero"
+          "class": "hero-band page-hero"
         },
         "children": [
           {
             "tag": "section",
             "attrs": {
-              "class": "wrap plain-hero"
+              "class": "wrap hero"
             },
             "children": [
               {
@@ -8271,6 +8271,25 @@
                         "linkKey": "link-3"
                       }
                     ]
+                  }
+                ]
+              },
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "hero-art"
+                },
+                "children": [
+                  {
+                    "tag": "img",
+                    "attrs": {
+                      "class": "hero-image",
+                      "src": "/img/approved/vraagbaak-gesprek.webp",
+                      "alt": "Een gesprek aan tafel bij de Vraagbaak Koers en Kanker",
+                      "loading": "eager"
+                    },
+                    "children": [],
+                    "imageKey": "image-0"
                   }
                 ]
               }
@@ -8532,7 +8551,7 @@
                     "attrs": {},
                     "children": [
                       {
-                        "text": "Ben je ouder en heb je vragen over studie, werk of je toekomst? Ook dan ben je welkom.",
+                        "text": "Ben je jonger of ouder en heb je vragen over studie, werk of je toekomst? Ook dan ben je welkom.",
                         "key": "text-29"
                       }
                     ]
@@ -8965,7 +8984,7 @@
       {
         "_key": "text-29",
         "label": "Voor wie?",
-        "text": "Ben je ouder en heb je vragen over studie, werk of je toekomst? Ook dan ben je welkom."
+        "text": "Ben je jonger of ouder en heb je vragen over studie, werk of je toekomst? Ook dan ben je welkom."
       },
       {
         "_key": "text-30",
@@ -9063,7 +9082,14 @@
         "text": ""
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "_key": "image-0",
+        "label": "Vraagbaak Koers en Kanker",
+        "src": "/img/approved/vraagbaak-gesprek.webp",
+        "alt": "Een gesprek aan tafel bij de Vraagbaak Koers en Kanker"
+      }
+    ],
     "links": [
       {
         "_key": "link-0",

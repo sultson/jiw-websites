@@ -77,6 +77,7 @@ const teksten: Teksten = {
       { naam: 'Helma Lodders', rol: 'oud-wethouder en oud-Tweede Kamerlid' },
       { naam: 'Mike Kastrop', rol: 'ondernemer in Zeewolde, eigenaar van Classic Mike' },
       { naam: 'Klaske Vriesinga', rol: 'notaris te Zeewolde' },
+      { naam: 'Harvey Portier', rol: 'opticien te Zeewolde' },
     ],
   },
   contact: {
