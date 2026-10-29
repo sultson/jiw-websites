@@ -261,6 +261,46 @@ klasse: heeft-hero
   </div>
 </section>
 
+<!-- Trustoo's own widget. The score and the count in the heading above come from the same
+     source but sit in the HTML: the widget only hangs its cards in with javascript, so
+     without that heading this would be an empty box to Google. -->
+<section class="sec sec--room2" id="beoordelingen">
+  <div class="wrap">
+    <header class="kop reveal">
+      <p class="eyebrow">Reviews</p>
+      <h2>{{trustooaantal}} reviews, averaging {{trustoocijfer}} out of 5</h2>
+      <p class="kop__p">
+        Our customers review us on Trustoo. That is somebody else's platform: we cannot add to it,
+        change it or take anything off it. Below is what is on Trustoo about us right now, fetched
+        straight from them. The reviews are in Dutch, because our customers are.
+      </p>
+    </header>
+
+    <div class="trustoo reveal">
+      <div
+        class="trustoo-review-widget"
+        data-id="{{trustooid}}"
+        data-language-code="en"
+        data-country-code="NL"
+        data-theme="light"
+        data-background="default"
+        data-border="default"
+        data-shadow="default"
+        data-dates="default"
+        data-reviews="recent"
+        data-logo="default"
+        data-badge="default"
+        data-show_sources="default"
+        data-collect_review_button="hidden"
+      ></div>
+      <p class="trustoo__terug">
+        <a href="{{trustooprofiel}}" target="_blank" rel="noopener">Read every review on Trustoo</a>
+      </p>
+    </div>
+  </div>
+  <script async src="https://static.trustoo.nl/widget/widget_review.js"></script>
+</section>
+
 <section class="sec">
   <div class="wrap">
     <header class="kop reveal">

@@ -75,6 +75,40 @@ en hoort niet in de sitemap. Cloudflare levert hem uit mét status 404
 (`not_found_handling: "404-page"`), want een onbekend pad dat de startpagina met status 200
 teruggeeft leest Google als een soft 404.
 
+## De beoordelingen van Trustoo
+
+Op `/` en `/contact` (en hun Engelse tweelingen) staat het blok `#beoordelingen`: de eigen
+review-widget van Trustoo, met een kop erboven die het cijfer en het aantal in gewone HTML herhaalt.
+
+Die twee helften zijn met opzet twee dingen.
+
+De widget is van Trustoo: `static.trustoo.nl/widget/widget_review.js` plus een leeg
+`<div class="trustoo-review-widget" data-id="705268">`. Dat `data-id` is het pro-id van Novera op
+Trustoo — hetzelfde getal als in het adres van de API, en het is gewoon het publieke id, geen
+sleutel. De `data-*` attributen eromheen zijn de knoppen van de widget (`theme`, `border`, `dates`,
+`logo`, `badge`, `collect_review_button`, …); staat er niets, dan pakt hij wat er in het Trustoo-
+dashboard is ingesteld. Die kaarten hangt hij er pas met javascript in, dus in de HTML staat er
+niets van: een zoekmachine en iemand zonder javascript zien daar een leeg vak.
+
+Daarom haalt `bouw.mjs` de stand zelf op bij
+`https://trustoo.nl/api/providers/widget/705268/0/1` en zet `{{trustoocijfer}}`,
+`{{trustooaantal}}`, `{{trustooid}}` en `{{trustooprofiel}}` in de pagina en een `aggregateRating`
+in het schema. Dat gebeurt bij elke build, dus het getal veroudert niet. Lukt de oproep niet, dan
+pakt de build `_ref/trustoo.json` — de laatste stand — en zegt dat erbij. Een build hoort niet om te
+vallen omdat Trustoo er even uit ligt.
+
+Het cijfer is `rating` uit die API: het gemiddelde van de losse beoordelingen, op een schaal van 5,
+precies wat de widget eronder toont. Bewust **niet** de "Trustoo-score" van 8,9 uit 10 die op het
+profiel staat: die weegt ook andere dingen mee, en dan spreekt de pagina zichzelf tegen in twee
+regels. `kijk.mjs` meet dat ook zo na — kop naast widget, en het aantal erbij.
+
+Twee dingen in `kijk.mjs` zijn hierop aangepast, en dat is geen uitzondering maar een verplaatsing.
+De tekstcontrole (bedragen, garantietermijnen, percentages, "beoordelingen") knipt `#beoordelingen`
+eruit voordat hij kijkt — die tekst is van klanten en van Trustoo, en wordt apart tegen de bron
+nagemeten. Zonder dat viel elke meting om op "6 beoordelingen" in de kop en op de `100%` en `45%`
+die in de css van de widget staan (`textContent` pakt `<style>` mee). En `static.trustoo.nl` plus
+`trustoo.nl` staan bij de toegestane hosts, naast de lettertypes en Cloudflare Insights.
+
 ## De meting: twee rondes
 
 `_ref/kijk.mjs` is de volle ronde: 30 pagina's in twee talen, op desktop én telefoon, plus een pas

@@ -2664,6 +2664,44 @@ p {
   opacity: 1;
 }
 
+/* ── beoordelingen van Trustoo ────────────────────────────
+   De kaarten binnen .trustoo-review-widget zijn van Trustoo en worden met javascript
+   ingehangen; die laten we met rust. Dat is met opzet: een beoordeling die eruitziet
+   alsof wij hem opgemaakt hebben, bewijst niets meer. Wat hier staat is alleen de ruimte
+   eromheen, en een hoogte zodat de rest van de pagina niet verspringt op het moment dat
+   de widget binnenkomt. */
+.trustoo {
+  margin-top: clamp(26px, 3.4vw, 40px);
+}
+
+.trustoo-review-widget {
+  min-height: 390px;
+}
+
+.trustoo__terug {
+  margin: clamp(18px, 2.4vw, 26px) 0 0;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.trustoo__terug a {
+  color: var(--grijs);
+  text-decoration-color: var(--salie);
+  text-underline-offset: 3px;
+}
+
+.trustoo__terug a:hover,
+.trustoo__terug a:focus-visible {
+  color: var(--accent-diep);
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 719px) {
+  .trustoo-review-widget {
+    min-height: 430px;
+  }
+}
+
 /* ── responsief ─────────────────────────────────────────── */
 @media (min-width: 720px) {
   .nav__tel {

@@ -282,6 +282,71 @@ function kop(bron) {
   return [uit, bron.slice(m[0].length).trim()]
 }
 
+/* ── de beoordelingen van Trustoo ──────────────────────────
+   Op de site staat de eigen widget van Trustoo (static.trustoo.nl/widget/widget_review.js).
+   Die hangt de reviews er met javascript in, dus in de HTML staat er niets van: een
+   zoekmachine en iemand zonder javascript zien een leeg vak. Daarom halen we de stand
+   hier bij de build op en zetten we het cijfer en het aantal als gewone tekst in de
+   pagina en in het schema. De widget eronder is het bewijs dat het van Trustoo komt en
+   niet van ons; de tekst eromheen is wat Google leest.
+
+   TRUSTOO_ID is het pro-id van Novera op Trustoo, hetzelfde getal als data-id op de
+   widget. Lukt de oproep niet (geen net, Trustoo plat), dan pakt de build de laatste
+   stand uit _ref/trustoo.json: een build hoort niet om te vallen omdat een derde er
+   even uit ligt, en dan staat er een cijfer van vorige week in plaats van geen cijfer. */
+const TRUSTOO_ID = '705268'
+const TRUSTOO_PROFIEL = 'https://trustoo.nl/zuid-holland/vlaardingen/tegelzetter/novera-bouw/'
+const TRUSTOO_CACHE = path.join(HIER, '_ref', 'trustoo.json')
+
+async function trustooStand() {
+  try {
+    const af = AbortSignal.timeout(8000)
+    const r = await fetch(`https://trustoo.nl/api/providers/widget/${TRUSTOO_ID}/0/1`, { signal: af })
+    if (!r.ok) throw new Error('status ' + r.status)
+    const d = await r.json()
+    const cijfer = Number(d.rating)
+    if (d.status !== 'success' || !(cijfer > 0) || !(d.nrReviews > 0)) throw new Error('antwoord zonder cijfer')
+    const stand = { cijfer, aantal: d.nrReviews, gemeten: new Date().toISOString().slice(0, 10) }
+    await writeFile(TRUSTOO_CACHE, JSON.stringify(stand, null, 2) + '\n')
+    return stand
+  } catch (e) {
+    const stand = JSON.parse(await readFile(TRUSTOO_CACHE, 'utf8'))
+    console.log(`let op   trustoo niet bereikt (${e.message}) — stand van ${stand.gemeten} gebruikt`)
+    return stand
+  }
+}
+
+const TRUSTOO = await trustooStand()
+// 5 -> "5,0" in het Nederlands en "5.0" in het Engels. Een punt leest een Engelsman
+// als een punt en een komma als een duizendtal, net als bij de bedragen.
+const trustooCijfer = (code) => TRUSTOO.cijfer.toFixed(1).replace('.', code === 'nl' ? ',' : '.')
+console.log(`ok   trustoo  ${TRUSTOO.cijfer.toFixed(1)}/5 uit ${TRUSTOO.aantal} beoordelingen (${TRUSTOO.gemeten})`)
+
+function trustooInvullen(html, code) {
+  return html
+    .replaceAll('{{trustooid}}', TRUSTOO_ID)
+    .replaceAll('{{trustooprofiel}}', TRUSTOO_PROFIEL)
+    .replaceAll('{{trustoocijfer}}', trustooCijfer(code))
+    .replaceAll('{{trustooaantal}}', String(TRUSTOO.aantal))
+}
+
+/* Het cijfer ook in het schema, zodat Google het als beoordeling leest en niet alleen
+   als tekst. ratingValue is het gemiddelde van de losse beoordelingen op Trustoo op een
+   schaal van 5 — hetzelfde getal dat de widget toont. Dat is met opzet niet de
+   "Trustoo-score" van 8,9 uit 10: die weegt ook andere dingen mee en zou tegenspreken
+   wat de bezoeker op dezelfde pagina in de widget ziet staan.
+   Zonder beoordelingen blijft dit leeg: een aggregateRating met reviewCount 0 is een
+   fout in de structured data, geen nul. */
+const schemaBeoordeling = TRUSTOO.aantal
+  ? `        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "${TRUSTOO.cijfer.toFixed(1)}",
+          "bestRating": "5",
+          "worstRating": "1",
+          "reviewCount": "${TRUSTOO.aantal}"
+        },`
+  : ''
+
 const schil = await readFile(path.join(PAG, '_schil.html'), 'utf8')
 const alle = []
 // pad -> datum van de laatste wijziging van de bron zelf. Daar komt lastmod in de
@@ -381,6 +446,7 @@ for (const taal of TALEN) {
       .replaceAll('{{actiepad}}', pad(taal, t.actieBestand))
       .replaceAll('{{schemaomschrijving}}', t.schemaOmschrijving)
       .replaceAll('{{schemaaanbod}}', aanbod)
+      .replaceAll('{{schemabeoordeling}}', schemaBeoordeling)
       .replaceAll('{{titel}}', meta.titel)
       .replaceAll('{{beschrijving}}', meta.beschrijving)
       .replaceAll('{{beeld}}', meta.beeld || 'img/hero.webp')
@@ -393,7 +459,10 @@ for (const taal of TALEN) {
       .replaceAll('{{site}}', SITE)
       .replaceAll('{{klasse}}', meta.klasse || '')
       .replaceAll('{{menu}}', menu)
-      .replaceAll('{{inhoud}}', body)
+      // De stand van Trustoo zit in de pagina zelf en niet in de schil, dus die plekken
+      // worden in body ingevuld voordat body in de schil gaat. Andersom staat er
+      // {{trustoocijfer}} letterlijk op de pagina: de schil is dan al klaar.
+      .replaceAll('{{inhoud}}', trustooInvullen(body, taal.code))
 
     if (/\{\{[a-z]+\}\}/.test(uit)) throw new Error(`${f}: onvervangen plek ${uit.match(/\{\{[a-z]+\}\}/)[0]}`)
 

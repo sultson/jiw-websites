@@ -49,6 +49,15 @@ Alles hieronder is gemeten op het live adres, niet aangenomen.
   (Albertine Agneslaan 350, 3136 NJ Vlaardingen), KvK 83882057 als `identifier`, `areaServed`
   Vlaardingen, `knowsLanguage` nl + en, en de negen diensten als `makesOffer`. De JSON-LD is op
   drie pagina's door een parser gehaald, dus het is geldige JSON en geen bijna-JSON.
+- **Beoordelingen staan in de HTML, niet alleen in de widget** (29-10-2026). Op `/` en `/contact`
+  staat de review-widget van Trustoo. Die hangt zijn kaarten er met javascript in, dus voor Google
+  zou dat een leeg vak zijn. Daarom haalt `bouw.mjs` het cijfer en het aantal bij de build op bij
+  Trustoo en zet ze als gewone tekst in de kop boven de widget, plus een `aggregateRating` in de
+  JSON-LD (`ratingValue` op een schaal van 5 — het gemiddelde van de losse beoordelingen, hetzelfde
+  getal dat de widget toont, en niet de Trustoo-score van 8,9 uit 10). Het getal veroudert niet: elke
+  build haalt het opnieuw op, met `_ref/trustoo.json` als terugval. De beoordelingen zelf komen van
+  een derde en staan daar ook — er staat een link naar het profiel onder het blok, ook zonder
+  javascript.
 - **Echte 404.** Een onbekend pad geeft `404.html` mét status 404, niet de startpagina met 200.
   Dat laatste leest Google als een soft 404.
 - **Twee oude adressen blijven omleiden.** `/airco` en `/en/air-conditioning` zijn op 30-09 van

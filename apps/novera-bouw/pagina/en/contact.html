@@ -121,3 +121,40 @@ beeld: img/w-badkamer.webp
     </form>
   </div>
 </section>
+
+<section class="sec sec--room2" id="beoordelingen">
+  <div class="wrap">
+    <header class="kop reveal">
+      <p class="eyebrow">Reviews</p>
+      <h2>What customers write about us</h2>
+      <p class="kop__p">
+        {{trustooaantal}} customers gave us an average of {{trustoocijfer}} out of 5 on Trustoo.
+        Those reviews live there and not here, so there is nothing we can change about them. They
+        are in Dutch, because our customers are.
+      </p>
+    </header>
+
+    <div class="trustoo reveal">
+      <div
+        class="trustoo-review-widget"
+        data-id="{{trustooid}}"
+        data-language-code="en"
+        data-country-code="NL"
+        data-theme="light"
+        data-background="default"
+        data-border="default"
+        data-shadow="default"
+        data-dates="default"
+        data-reviews="recent"
+        data-logo="default"
+        data-badge="default"
+        data-show_sources="default"
+        data-collect_review_button="hidden"
+      ></div>
+      <p class="trustoo__terug">
+        <a href="{{trustooprofiel}}" target="_blank" rel="noopener">Read every review on Trustoo</a>
+      </p>
+    </div>
+  </div>
+  <script async src="https://static.trustoo.nl/widget/widget_review.js"></script>
+</section>

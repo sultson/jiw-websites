@@ -262,7 +262,10 @@ for (const [naam, breed, hoog] of SNEL ? SCHERMEN.slice(0, 1) : SCHERMEN) {
       )
 
       // beeld: komt binnen, heeft alt, staat niet uitgerekt
-      const beeld = await pg.$$eval('img', (els) =>
+      // De sterretjes binnen de widget van Trustoo tellen niet mee: die markup is van
+      // hen, wij kunnen er geen alt in zetten en de maat is hun keuze. Alles wat wij
+      // zelf op de pagina zetten wordt wel gewoon gemeten.
+      const beeld = await pg.$$eval('img:not(.trustoo-review-widget img)', (els) =>
         els.map((i) => ({
           src: i.getAttribute('src'),
           alt: i.getAttribute('alt') || '',
@@ -536,7 +539,17 @@ for (const [naam, breed, hoog] of SNEL ? SCHERMEN.slice(0, 1) : SCHERMEN) {
       // Op /badkamer en op de home ook: dat komt uit PAKKET. Alle drie
       // worden hieronder per kaart nagemeten. In het Engels geldt
       // hetzelfde voor /en/products, /en/bathroom en /en/.
-      const tekst = await pg.textContent('body')
+      // Het blok met de beoordelingen van Trustoo gaat hier niet doorheen. Dat is geen
+      // uitzondering maar een verplaatsing: de tekst daarin is van klanten en van
+      // Trustoo, en wordt hieronder apart nagemeten tegen de bron zelf. Zou hij hier wel
+      // meelopen, dan viel elke meting om op "6 beoordelingen" in de kop en op de
+      // percentages die in de css van de widget staan (100%, 45%) — en dan leer je de
+      // meting af in plaats van de fout. textContent pakt namelijk ook <style> mee.
+      const tekst = await pg.evaluate(() => {
+        const kopie = document.body.cloneNode(true)
+        kopie.querySelectorAll('#beoordelingen').forEach((n) => n.remove())
+        return kopie.textContent
+      })
       const magBedrag = pad === taal.aanbod || pad === taal.badkamer || pad === taal.home
       for (const [re, wat] of [
         ...(magBedrag ? [] : [[/€\s?\d/, 'een bedrag']]),
@@ -560,6 +573,10 @@ for (const [naam, breed, hoog] of SNEL ? SCHERMEN.slice(0, 1) : SCHERMEN) {
       zeg(vreemdPct.length === 0, `${merk}: percentage dat niemand gaf: ${vreemdPct.join(', ')}`)
 
       // geen verzoek naar een ander bedrijf, op de lettertypes na
+      // trustoo.nl staat erbij sinds 29-10-2026: de beoordelingen op de start- en de
+      // contactpagina komen uit hun widget, en die haalt zijn script en zijn gegevens
+      // daar op. Dat is de hele bedoeling — een beoordeling die van onze eigen server
+      // komt bewijst niets. Komt er een vierde host bij, dan valt dit gewoon weer om.
       const vreemd = await pg.evaluate(() =>
         performance
           .getEntriesByType('resource')
@@ -570,7 +587,9 @@ for (const [naam, breed, hoog] of SNEL ? SCHERMEN.slice(0, 1) : SCHERMEN) {
               h !== location.host &&
               !h.endsWith('gstatic.com') &&
               !h.endsWith('googleapis.com') &&
-              h !== 'static.cloudflareinsights.com'
+              h !== 'static.cloudflareinsights.com' &&
+              h !== 'static.trustoo.nl' &&
+              h !== 'trustoo.nl'
           )
       )
       zeg(vreemd.length === 0, `${merk}: verzoek naar ${[...new Set(vreemd)].join(', ')}`)
@@ -637,6 +656,70 @@ for (const [naam, breed, hoog] of SNEL ? SCHERMEN.slice(0, 1) : SCHERMEN) {
         }
         const los = await pg.$$('.vn__los figure')
         zeg(los.length === 3, `${merk}: ${los.length} losse foto's onder het paar in plaats van 3`)
+      }
+
+      /* ── de beoordelingen van Trustoo ────────────────────
+         Twee dingen apart, want ze kunnen los van elkaar stukgaan.
+         1. De widget zelf: die is van Trustoo en hangt zijn kaarten er met javascript
+            in. Blijft het vak leeg, dan staat er een lege witte bak op de pagina en
+            ziet niemand dat, want de build gaat gewoon door.
+         2. Het cijfer en het aantal in de kop: die komen bij de build uit dezelfde
+            bron en staan wél in de HTML. Dat is het enige wat Google hier leest, en
+            het moet hetzelfde getal zijn als wat de widget eronder laat zien —
+            anders spreekt de pagina zichzelf tegen in twee regels. */
+      if (pad === taal.home || pad === taal.contact) {
+        const vak = await pg.$('.trustoo-review-widget')
+        zeg(!!vak, `${merk}: de widget van Trustoo staat niet op de pagina`)
+        if (vak) {
+          zeg(
+            (await vak.getAttribute('data-id')) === '705268',
+            `${merk}: de widget staat op een ander pro-id dan 705268`
+          )
+          const w = await pg.evaluate(() => {
+            const el = document.querySelector('.trustoo-review-widget')
+            return {
+              kaarten: el.querySelectorAll('[class*="review"]').length,
+              hoog: Math.round(el.getBoundingClientRect().height),
+              tekst: el.innerText || '',
+            }
+          })
+          zeg(w.hoog > 200, `${merk}: de widget van Trustoo is leeg gebleven (${w.hoog}px hoog)`)
+          zeg(w.kaarten > 0, `${merk}: de widget van Trustoo laat geen beoordelingen zien`)
+
+          // het cijfer uit de kop van de pagina (HTML) naast dat van de widget (javascript)
+          const uitKop = (await pg.innerText('#beoordelingen .kop')).match(/(\d)[.,](\d)/)
+          const uitWidget = w.tekst.match(/(\d)[.,](\d)/)
+          zeg(!!uitKop, `${merk}: er staat geen cijfer in de kop boven de widget`)
+          zeg(
+            !!uitKop && !!uitWidget && uitKop[1] === uitWidget[1] && uitKop[2] === uitWidget[2],
+            `${merk}: de kop zegt ${uitKop && uitKop[0]} en de widget ${uitWidget && uitWidget[0]}`
+          )
+
+          // en hetzelfde voor het aantal: in de kop als tekst, in de widget als "N reviews"
+          const nKop = (await pg.innerText('#beoordelingen .kop')).match(
+            /\b(\d+)\s+(beoordelingen|klanten|customers|reviews)/
+          )
+          const nWidget = w.tekst.match(/\b(\d+)\s+reviews?\b/i)
+          zeg(
+            !!nKop && !!nWidget && nKop[1] === nWidget[1],
+            `${merk}: de kop telt ${nKop && nKop[1]} beoordelingen en de widget ${nWidget && nWidget[1]}`
+          )
+
+          // de weg terug naar de bron hoort er altijd te staan, ook zonder javascript
+          zeg(
+            !!(await pg.$(`.trustoo__terug a[href*="trustoo.nl/zuid-holland/vlaardingen"]`)),
+            `${merk}: er staat geen link naar het profiel op Trustoo`
+          )
+        }
+
+        // het cijfer ook in het schema, met dezelfde waarde als in de kop
+        const schema = JSON.parse(await pg.innerText('script[type="application/ld+json"]'))
+        const ar = schema.aggregateRating
+        zeg(!!ar, `${merk}: geen aggregateRating in het schema`)
+        zeg(
+          !!ar && ar.bestRating === '5' && Number(ar.reviewCount) > 0,
+          `${merk}: aggregateRating staat niet op een schaal van 5 of telt nul beoordelingen`
+        )
       }
 
       if (naam === 'desktop') {
