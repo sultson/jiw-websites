@@ -138,6 +138,12 @@
     640,
     1024
   ],
+  "/img/chalet-herfst-erker.webp": [
+    1200,
+    1600,
+    640,
+    1024
+  ],
   "/img/chalet-herfst-inktzwam.webp": [
     1577,
     1600,
@@ -521,6 +527,18 @@
   "/img/jonkersweg65-7.webp": [
     1080,
     1440,
+    640,
+    1024
+  ],
+  "/img/jonkersweg65-haard-aan.webp": [
+    1244,
+    1600,
+    640,
+    1024
+  ],
+  "/img/jonkersweg65-haard-dichtbij.webp": [
+    1600,
+    1025,
     640,
     1024
   ],

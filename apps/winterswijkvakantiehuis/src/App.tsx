@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useRef, useState, type FormEvent} from 'react';
+import {useEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent} from 'react';
 import {
   Bike, Calendar, Trees, MapPin, Phone, Mail, Menu, X, Users, BedDouble,
   PawPrint, Wifi, Sun, Camera, ChevronRight, ChevronLeft, Star, Send, Globe,
@@ -1026,6 +1026,7 @@ const homes: Home[] = [
     location: 'Jonkersweg 65, 7104 AB Winterswijk Meddo, Recreatiepark Den Möllenhof',
     imgs: [
       '/img/jonkersweg65-1.webp', '/img/jonkersweg65-2.webp', '/img/jonkersweg65-3.webp',
+      '/img/jonkersweg65-haard-aan.webp', '/img/jonkersweg65-haard-dichtbij.webp',
       '/img/jonkersweg65-4.webp', '/img/jonkersweg65-5.webp', '/img/jonkersweg65-6.webp',
       '/img/jonkersweg65-7.webp',
     ],
@@ -1174,9 +1175,9 @@ const homes: Home[] = [
     id: 'finschalet', name: 'Fins chalet Kattenberg',
     location: 'Kattenbergweg 6, 7101 BM Winterswijk',
     imgs: [
-      /* The two October phone shots sit right behind the professional photo while
-         it is autumn; move them back when the season turns. */
-      '/img/chalet-1.webp', '/img/chalet-herfst-terras.webp', '/img/chalet-herfst-bomen.webp', '/img/chalet-2.webp', '/img/chalet-3.webp', '/img/chalet-4.webp',
+      /* The October phone shots sit right behind the professional photo while it
+         is autumn; move them back when the season turns. */
+      '/img/chalet-1.webp', '/img/chalet-herfst-erker.webp', '/img/chalet-herfst-terras.webp', '/img/chalet-herfst-bomen.webp', '/img/chalet-2.webp', '/img/chalet-3.webp', '/img/chalet-4.webp',
       '/img/chalet-17.webp', '/img/chalet-18.webp', '/img/chalet-5.webp', '/img/chalet-6.webp', '/img/chalet-7.webp', '/img/chalet-8.webp',
       '/img/chalet-9.webp', '/img/chalet-10.webp', '/img/chalet-11.webp', '/img/chalet-12.webp',
       '/img/chalet-13.webp', '/img/chalet-14.webp', '/img/chalet-15.webp', '/img/chalet-16.webp',
@@ -1213,36 +1214,47 @@ const iconMap: Record<string, any> = {bike: Bike, trees: Trees, calendar: Calend
 
 /* ------------------------------------------------------------------ */
 /*  Fresh from the park — the owner's latest phone photos, stacked in the
-    landing hero as proof the place is looked after right now. Replace the set
-    (and the date) when new ones arrive; keep it to the last batch only, so the
-    date never goes stale by more than a season.                       */
+    landing hero as proof the place is looked after right now. The first three
+    are the ones on the pile; the back two peek out at the edges, so pick ones with
+    colour there. Keep it to the current season, so no date goes stale. */
 /* ------------------------------------------------------------------ */
-const freshPhotos: {date: string; homeId: string; photos: {src: string; alt: Record<Lang, string>}[]} = {
-  date: '2026-10-14',
-  homeId: 'finschalet',
-  photos: [
-    {src: '/img/chalet-herfst-terras.webp', alt: {
-      nl: 'Het terras van het Fins chalet Kattenberg onder een boom in herfstkleuren',
-      en: 'The terrace of the Finnish chalet Kattenberg under a tree in autumn colours',
-      de: 'Die Terrasse des Finnischen Chalets Kattenberg unter einem Baum in Herbstfarben',
-    }},
-    {src: '/img/chalet-herfst-bomen.webp', alt: {
-      nl: 'Het Fins chalet Kattenberg tussen gele en rode herfstbomen onder een blauwe lucht',
-      en: 'The Finnish chalet Kattenberg between yellow and red autumn trees under a blue sky',
-      de: 'Das Finnische Chalet Kattenberg zwischen gelben und roten Herbstbäumen unter blauem Himmel',
-    }},
-    {src: '/img/chalet-herfst-inktzwammen.webp', alt: {
-      nl: 'Inktzwammen in het gras van de tuin van het Fins chalet',
-      en: 'Shaggy ink cap mushrooms in the grass of the Finnish chalet garden',
-      de: 'Schopftintlinge im Gras des Gartens am Finnischen Chalet',
-    }},
-    {src: '/img/chalet-herfst-inktzwam.webp', alt: {
-      nl: 'Een inktzwam van dichtbij, naast een herfstblad in de tuin van het Fins chalet',
-      en: 'A shaggy ink cap up close beside an autumn leaf in the Finnish chalet garden',
-      de: 'Ein Schopftintling aus der Nähe neben einem Herbstblatt im Garten des Finnischen Chalets',
-    }},
-  ],
-};
+const freshPhotos: {src: string; date: string; homeId: 'finschalet' | 'jonkersweg65'; alt: Record<Lang, string>}[] = [
+  {src: '/img/chalet-herfst-erker.webp', date: '2026-10-30', homeId: 'finschalet', alt: {
+    nl: 'Twee fauteuils in de erker van het Fins chalet Kattenberg, met door de ramen de tuin in herfstkleuren',
+    en: 'Two armchairs in the bay window of the Finnish chalet Kattenberg, with the garden in autumn colours beyond the glass',
+    de: 'Zwei Sessel im Erker des Finnischen Chalets Kattenberg, vor den Fenstern der Garten in Herbstfarben',
+  }},
+  {src: '/img/jonkersweg65-haard-dichtbij.webp', date: '2026-10-30', homeId: 'jonkersweg65', alt: {
+    nl: 'De houtblokken en gloeiende kooltjes in de gashaard van Jonkersweg 65',
+    en: 'The logs and glowing embers in the gas fireplace at Jonkersweg 65',
+    de: 'Die Holzscheite und glühende Kohlen im Gaskamin der Jonkersweg 65',
+  }},
+  {src: '/img/chalet-herfst-terras.webp', date: '2026-10-14', homeId: 'finschalet', alt: {
+    nl: 'Het terras van het Fins chalet Kattenberg onder een boom in herfstkleuren',
+    en: 'The terrace of the Finnish chalet Kattenberg under a tree in autumn colours',
+    de: 'Die Terrasse des Finnischen Chalets Kattenberg unter einem Baum in Herbstfarben',
+  }},
+  {src: '/img/jonkersweg65-haard-aan.webp', date: '2026-10-30', homeId: 'jonkersweg65', alt: {
+    nl: 'De gashaard van Jonkersweg 65 brandt',
+    en: 'The gas fireplace at Jonkersweg 65, lit',
+    de: 'Der brennende Gaskamin in der Jonkersweg 65',
+  }},
+  {src: '/img/chalet-herfst-bomen.webp', date: '2026-10-14', homeId: 'finschalet', alt: {
+    nl: 'Het Fins chalet Kattenberg tussen gele en rode herfstbomen onder een blauwe lucht',
+    en: 'The Finnish chalet Kattenberg between yellow and red autumn trees under a blue sky',
+    de: 'Das Finnische Chalet Kattenberg zwischen gelben und roten Herbstbäumen unter blauem Himmel',
+  }},
+  {src: '/img/chalet-herfst-inktzwammen.webp', date: '2026-10-14', homeId: 'finschalet', alt: {
+    nl: 'Inktzwammen in het gras van de tuin van het Fins chalet',
+    en: 'Shaggy ink cap mushrooms in the grass of the Finnish chalet garden',
+    de: 'Schopftintlinge im Gras des Gartens am Finnischen Chalet',
+  }},
+  {src: '/img/chalet-herfst-inktzwam.webp', date: '2026-10-14', homeId: 'finschalet', alt: {
+    nl: 'Een inktzwam van dichtbij, naast een herfstblad in de tuin van het Fins chalet',
+    en: 'A shaggy ink cap up close beside an autumn leaf in the Finnish chalet garden',
+    de: 'Ein Schopftintling aus der Nähe neben einem Herbstblatt im Garten des Finnischen Chalets',
+  }},
+];
 
 /* ------------------------------------------------------------------ */
 /*  Nature gallery — the owner's own photos from in and around the park */
@@ -4093,23 +4105,28 @@ function NatureCard({p, lang, L, hover = false}: {p: (typeof naturePhotos)[numbe
     season they were taken in. Sits to the right of the hero copy on desktop and under
     the "view the homes" button on a phone. A tap opens them full size in a
     native <dialog>, which brings focus trapping and Esc for free.     */
-const FRESH_TEXT: Record<Lang, {label: string; open: string; close: string; prev: string; next: string; view: string}> = {
-  nl: {label: 'Herfst 2026', open: "Bekijk de nieuwste foto's", close: 'Sluiten', prev: 'Vorige foto', next: 'Volgende foto', view: 'Bekijk het Fins chalet'},
-  en: {label: 'Autumn 2026', open: 'View the latest photos', close: 'Close', prev: 'Previous photo', next: 'Next photo', view: 'View the Finnish chalet'},
-  de: {label: 'Herbst 2026', open: 'Die neuesten Fotos ansehen', close: 'Schließen', prev: 'Vorheriges Foto', next: 'Nächstes Foto', view: 'Zum Finnischen Chalet'},
+const FRESH_TEXT: Record<Lang, {label: string; open: string; close: string; prev: string; next: string; view: Record<(typeof freshPhotos)[number]['homeId'], string>}> = {
+  nl: {label: 'Herfst 2026', open: "Bekijk de nieuwste foto's", close: 'Sluiten', prev: 'Vorige foto', next: 'Volgende foto', view: {finschalet: 'Bekijk het Fins chalet', jonkersweg65: 'Bekijk Jonkersweg 65'}},
+  en: {label: 'Autumn 2026', open: 'View the latest photos', close: 'Close', prev: 'Previous photo', next: 'Next photo', view: {finschalet: 'View the Finnish chalet', jonkersweg65: 'View Jonkersweg 65'}},
+  de: {label: 'Herbst 2026', open: 'Die neuesten Fotos ansehen', close: 'Schließen', prev: 'Vorheriges Foto', next: 'Nächstes Foto', view: {finschalet: 'Zum Finnischen Chalet', jonkersweg65: 'Zur Jonkersweg 65'}},
 };
 
 function FreshPhotoStack({lang, className = ''}: {lang: Lang; className?: string}) {
   const t = FRESH_TEXT[lang];
   const dialog = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState(0);
-  const {photos} = freshPhotos;
+  const photos = freshPhotos;
+  const photo = photos[index];
   const date = new Intl.DateTimeFormat(lang, {day: 'numeric', month: 'long', timeZone: 'UTC'})
-    .format(new Date(`${freshPhotos.date}T00:00:00Z`));
+    .format(new Date(`${photo.date}T00:00:00Z`));
   const step = (d: number) => setIndex((i) => (i + d + photos.length) % photos.length);
   const open = (i: number) => { setIndex(i); dialog.current?.showModal(); };
   /* Painted back-to-front, so the first photo of the set ends up on top. */
-  const fan = [{r: -9, x: -18, y: 6}, {r: 7, x: 16, y: 2}, {r: -3, x: -4, y: -2}];
+  const fan = [
+    {r: -9, x: -9, y: 6, openR: -14, openX: -46, openY: 10},
+    {r: 7, x: 8, y: 2, openR: 12, openX: 46, openY: 6},
+    {r: -3, x: -2, y: -2, openR: -1, openX: 0, openY: -8},
+  ];
   const stack = photos.slice(0, fan.length).reverse();
 
   return (
@@ -4118,12 +4135,17 @@ function FreshPhotoStack({lang, className = ''}: {lang: Lang; className?: string
         type="button" onClick={() => open(0)} aria-label={`${t.open}: ${t.label}`}
         className="group ml-2 lg:ml-0 flex items-center gap-6 lg:flex-col lg:gap-5 text-left lg:text-center"
       >
-        <span className="relative block w-[92px] h-[100px] lg:w-[224px] lg:h-[244px] shrink-0">
+        {/* Hovering loosens the pile. --k keeps the spread in proportion to the much
+            smaller phone-size pile, which a mouse can still reach in a narrow window. */}
+        <span className="relative block w-[92px] h-[100px] lg:w-[224px] lg:h-[244px] shrink-0 [--k:0.4] lg:[--k:1]">
           {stack.map((p, i) => (
             <span
               key={p.src}
-              className="absolute inset-0 bg-white p-1 pb-3 lg:p-2 lg:pb-6 rounded-[14px] lg:rounded-[22px] shadow-[0_10px_28px_-10px_rgba(0,0,0,0.55)] transition-transform duration-300"
-              style={{transform: `translate(${fan[i].x * 0.5}px, ${fan[i].y}px) rotate(${fan[i].r}deg)`}}
+              className="absolute inset-0 bg-white p-1 pb-3 lg:p-2 lg:pb-6 rounded-[14px] lg:rounded-[22px] shadow-[0_10px_28px_-10px_rgba(0,0,0,0.55)] transition-transform duration-300 ease-out motion-reduce:transition-none [transform:var(--fan)] group-hover:[transform:var(--open)] group-focus-visible:[transform:var(--open)]"
+              style={{
+                '--fan': `translate(${fan[i].x}px, ${fan[i].y}px) rotate(${fan[i].r}deg)`,
+                '--open': `translate(calc(${fan[i].openX}px * var(--k)), calc(${fan[i].openY}px * var(--k))) rotate(${fan[i].openR}deg)`,
+              } as CSSProperties}
             >
               <Photo src={p.src} alt="" hidden sizes="(min-width: 1024px) 240px, 100px" className="w-full h-full object-cover rounded-[10px] lg:rounded-[16px]" />
             </span>
@@ -4134,20 +4156,20 @@ function FreshPhotoStack({lang, className = ''}: {lang: Lang; className?: string
 
       <dialog
         ref={dialog}
-        aria-label={`${t.label}, ${date}`}
+        aria-label={t.label}
         onClick={(e) => { if (e.target === e.currentTarget) dialog.current?.close(); }}
         onKeyDown={(e) => { if (e.key === 'ArrowRight') step(1); if (e.key === 'ArrowLeft') step(-1); }}
         className="m-auto p-0 bg-transparent max-w-[min(92vw,1100px)] w-full backdrop:bg-brand-dark/85 backdrop:backdrop-blur-sm"
       >
         <figure className="relative">
           <Photo
-            src={photos[index].src} alt={photos[index].alt[lang]} sizes="92vw"
+            src={photo.src} alt={photo.alt[lang]} sizes="92vw"
             className="mx-auto max-h-[80vh] w-auto rounded-2xl object-contain shadow-2xl"
           />
           <figcaption className="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm text-brand-cream">
-            <span>{photos[index].alt[lang]} · {date} · {index + 1}/{photos.length}</span>
-            <a href={pathFor({kind: 'home', homeId: freshPhotos.homeId}, lang)} className="inline-flex items-center gap-1 font-medium text-white hover:underline">
-              {t.view} <ChevronRight size={15} />
+            <span>{photo.alt[lang]} · {date} · {index + 1}/{photos.length}</span>
+            <a href={pathFor({kind: 'home', homeId: photo.homeId}, lang)} className="inline-flex items-center gap-1 font-medium text-white hover:underline">
+              {t.view[photo.homeId]} <ChevronRight size={15} />
             </a>
           </figcaption>
           <button type="button" autoFocus onClick={() => dialog.current?.close()} aria-label={t.close} className="absolute top-3 right-3 w-10 h-10 rounded-full bg-white/90 text-brand-green-dark flex items-center justify-center hover:bg-white">
