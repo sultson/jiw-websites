@@ -1,7 +1,7 @@
 import { templates, activityTypes, template } from "./next/model";
 import old from "./next/legacy-paths.json";
 export const SITE_NAAM = "Toon over Leven";
-export const SITE_URL = "https://toonoverleven.jouwidealewebsite.nl";
+export const SITE_URL = "https://www.toonoverleven.nl";
 export const PAGINAS: Record<string, { titel: string; omschrijving: string }> =
   Object.fromEntries([
     ...templates
@@ -73,7 +73,50 @@ export const VERHUISD: Record<string, string> = {
   "/activiteiten/sponsordiner": "/activiteiten",
   "/aanmelden/sponsordiner": "/activiteiten",
   "/activiteit/sponsordiner-bij-classic-mike-zeewolde": "/activiteiten",
+  // De pagina's van de WordPress-site die nu op toonoverleven.nl staat, uit
+  // haar wp-sitemap.xml (30-10-2026). Bladwijzers, oude mails en folders.
+  "/wiezijnwij": "/over-ons",
+  "/missie-en-visie": "/over-ons",
+  "/bestuur": "/over-ons/organisatie-en-verantwoording",
+  "/financieel-2": "/over-ons/organisatie-en-verantwoording",
+  "/vacatures": "/over-ons/vrijwilliger-worden",
+  "/vrijwilligersbeleid": "/over-ons/vrijwilliger-worden",
+  "/locaties": "/praktisch",
+  "/privacybeleid": "/privacy",
+  "/nieuwsberichten-over-kanker": "/nieuws",
+  "/toon-over-leven-in-het-nieuws": "/nieuws",
+  "/klavertjevier-lotgenotencontact": "/leeftijdsgenoten",
+  "/training-mindful-mediteren": "/activiteiten/zenmeditatie",
+  "/categorieen": "/activiteiten",
+  "/tags": "/activiteiten",
 };
+
+/**
+ * Activiteiten uit de oude WordPress-agenda. Alleen gebruikt als het adres
+ * geen activiteit in het beheer is: een nieuwe activiteit met dezelfde slug
+ * gaat altijd voor.
+ */
+export const OUDE_ACTIVITEITEN: Record<string, string> = {
+  "/activiteit/zenmeditatie": "/activiteiten/zenmeditatie",
+  "/activiteit/mediteren-bij-toon-over-leven": "/activiteiten/zenmeditatie",
+  "/activiteit/workshop-mixed-media-7": "/activiteiten/mixed-media",
+  "/activiteit/workshop-junk-journaling-7": "/activiteiten/junk-journaling",
+  "/activiteit/encaustic-art-kerst": "/activiteiten/encaustic-art",
+  "/activiteit/kerstbal-stippen-mandala-stippen-voor-kerst": "/activiteiten/mandala-stippen",
+  "/activiteit/inloopochtend-69": "/activiteiten/inloopochtend",
+  "/activiteit/inloopochtend-70": "/activiteiten/inloopochtend",
+};
+
+/**
+ * Hele WordPress-takken zonder tegenhanger: tags, categorieën, auteurs, de
+ * agenda per dag of per categorie en de bladerpagina's. De WordPress-
+ * zoekparameters gaan eraf, die betekenen hier niets.
+ */
+export function oudeWordpressTak(pad: string): string | null {
+  if (/^\/(agenda|tag|category)\//.test(pad)) return "/activiteiten";
+  if (/^\/(author|page)\//.test(pad)) return "/";
+  return null;
+}
 export function slugify(waarde: string): string {
   const slug = waarde
     .normalize("NFKD")

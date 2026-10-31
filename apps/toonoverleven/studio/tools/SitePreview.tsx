@@ -17,7 +17,7 @@ import { Box, Button, Card, Flex, Text } from '@sanity/ui';
  * onbruikbaar.
  */
 
-const SITE = 'https://toonoverleven.jouwidealewebsite.nl';
+const SITE = 'https://www.toonoverleven.nl';
 const PREVIEW_KEY = 'iOn8UC59pa0hFXXd-pb8VWkN';
 
 type Displayed = { _id?: string; path?: string; slug?: { current?: string }; rubriek?: string };

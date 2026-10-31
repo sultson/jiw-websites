@@ -17,6 +17,8 @@ import {
   paginaTitel,
   schoonPad,
   slugify,
+  OUDE_ACTIVITEITEN,
+  oudeWordpressTak,
   VERHUISD,
 } from '../src/meta';
 
@@ -465,6 +467,17 @@ function sitemap(data: Doc | null): string {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    if (url.hostname === 'toonoverleven.nl') {
+      url.hostname = 'www.toonoverleven.nl';
+      return Response.redirect(url.toString(), 301);
+    }
+    // Het conceptadres blijft aan deze Worker hangen, zodat oude links naar
+    // het concept en naar /beheer werken, maar het is geen tweede site meer.
+    // Alleen https: wrangler dev geeft deze host over http door.
+    if (url.hostname === 'toonoverleven.jouwidealewebsite.nl' && url.protocol === 'https:') {
+      url.hostname = 'www.toonoverleven.nl';
+      return Response.redirect(url.toString(), 301);
+    }
     const indexeerbaar = env.SITE_INDEXABLE === 'true';
 
     if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
@@ -478,6 +491,12 @@ export default {
     const nieuwePlek = VERHUISD[schoonPad(url.pathname)];
     if (nieuwePlek) {
       url.pathname = nieuwePlek;
+      return Response.redirect(url.toString(), 301);
+    }
+    const tak = oudeWordpressTak(schoonPad(url.pathname));
+    if (tak) {
+      url.pathname = tak;
+      url.search = '';
       return Response.redirect(url.toString(), 301);
     }
 
@@ -572,6 +591,14 @@ export default {
     const inhoud = contentVan(data ? payload : null);
 
     const { meta, ontbreekt } = paginaMeta(pad, data, inhoud.teksten, projectId, dataset);
+
+    // Een activiteit die niet (meer) in het beheer staat, meestal een link naar
+    // de oude WordPress-agenda: naar de activiteit van nu, anders het overzicht.
+    if (ontbreekt && pad.startsWith('/activiteit/')) {
+      url.pathname = OUDE_ACTIVITEITEN[pad] ?? '/activiteiten';
+      url.search = '';
+      return Response.redirect(url.toString(), 301);
+    }
 
     let rewriter = new HTMLRewriter();
 

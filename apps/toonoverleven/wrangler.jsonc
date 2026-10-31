@@ -32,10 +32,9 @@
       "pattern": "toonoverleven.jouwidealewebsite.nl",
       "custom_domain": true
     },
-    // toonoverleven.nl blijft in het DNS van een externe partij. Het domein
-    // komt binnen als Cloudflare for SaaS custom hostname op onze zone (CNAME
-    // naar cname.jouwidealewebsite.nl), en deze routes sturen het naar deze
-    // Worker.
+    // toonoverleven.nl komt binnen als Cloudflare for SaaS custom hostname op
+    // onze zone (CNAME naar connect.jouwidealewebsite.nl). www is de site; de
+    // Worker stuurt het kale domein met een 301 door naar www.
     { "pattern": "toonoverleven.nl/*", "zone_name": "jouwidealewebsite.nl" },
     { "pattern": "www.toonoverleven.nl/*", "zone_name": "jouwidealewebsite.nl" }
   ],
@@ -53,10 +52,9 @@
   ],
   "vars": {
     "SITE_ID": "toonoverleven",
-    // "true" zodra dit toonoverleven.nl vervangt. Tot die tijd is elke pagina
-    // noindex en verbiedt robots.txt alles, zodat het concept nooit concurreert
-    // met de site waarvoor het een voorstel is.
-    "SITE_INDEXABLE": "false",
+    // De site is www.toonoverleven.nl. Terug op "false" en elke pagina is weer
+    // noindex en robots.txt verbiedt alles, in één deploy.
+    "SITE_INDEXABLE": "true",
     "LEAD_RECIPIENT": "info@toonoverleven.nl",
     "LEAD_SENDER": "contact@notify.jouwidealewebsite.nl",
     "TURNSTILE_SECRET_KEY": "dev",
