@@ -338,3 +338,10 @@
 .knowledge-choices .options > .option:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .vraagbaak-block .actions { margin-top: 8px; }
 .side-note .facts { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 8px; }
+
+/* The text column set the photo's height, so on a tablet a landscape photo became a narrow
+   portrait and lost half its width (Ron, iPad, 31-10-2026). Same fix as .home-hero. */
+@media (min-width: 700px) {
+  .approved-site .page-hero .hero-art { align-self: center; min-height: 0; display: block; padding: 0; }
+  .approved-site .page-hero .hero-image { height: auto; min-height: 0; max-height: none; aspect-ratio: 3 / 2; }
+}
