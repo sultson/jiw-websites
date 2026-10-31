@@ -6,7 +6,16 @@ const GRENS = 1220;
 // Sinds 10-10-2026 staat Puur Genieten in het menu; dat is een knop erbij en
 // dus de vraag of de rij nog past naast het merk en de taalkeuze.
 //   node bouw.mjs && node serveer.mjs   en dan   node meet-balk.mjs
+//
+// BASIS is waar het tegenaan meet. Op deze machine luistert op 4174 nog een
+// oude proefserver van de conceptversie uit claudius/playground/framemedia;
+// die antwoordt gewoon met 200 en een pagina die er bijna hetzelfde uitziet,
+// dus zonder dit mee je stilletjes het verkeerde. Draait serveer.mjs ergens
+// anders, geef dat dan mee:
+//   BASIS=http://localhost:4821 node meet-balk.mjs
 import { chromium } from 'playwright';
+const BASIS = (process.argv[2] || process.env.BASIS || 'http://localhost:4174').replace(/\/$/, '');
+console.log(`meet tegen ${BASIS}`);
 const b = await chromium.launch();
 const paginas = ['/', '/puurgenieten/', '/en/', '/de/'];
 const breedtes = [881, 900, 960, 1024, 1100, 1180, 1200, 1220, 1221, 1240, 1280, 1366, 1440, 1600];
@@ -18,7 +27,7 @@ let fout = 0;
     const ctx = await b.newContext({ viewport: { width: w, height: 900 } });
     const p = await ctx.newPage();
     for (const pad of paginas) {
-      await p.goto('http://localhost:4174' + pad, { waitUntil: 'load' });
+      await p.goto(BASIS + pad, { waitUntil: 'load' });
       await p.waitForTimeout(120);
       const r = await p.evaluate(() => {
         const d = document.documentElement;

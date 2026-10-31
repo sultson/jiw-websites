@@ -374,16 +374,95 @@ nu in `studioband` halverwege de startpagina en per ruimte op de studiopagina.
 Zet je hier ooit toch beeld terug, dan is een donker verloop over de boven- en
 onderrand nodig, anders valt REC weg tegen het lichtplafond.
 
-### De logo's (`maak-logo.mjs`)
+### Het nieuwe merk: goud (31-10-2026) — `tools/maak-merk.mjs`
+
+De klant leverde op 31-10-2026 een nieuw logo aan: goud met zilveren MEDIA en
+de regel *Producent in TV content* eronder. Dat vervangt het marine-en-rode
+woordmerk van de WordPress-site dat hier sinds de bouw stond. Twee uitvoeringen,
+allebei als png met een doorzichtige achtergrond, in `raw/merk-2026/` (met de
+aangeleverde zip ernaast):
+
+| Bron | Waar hij staat |
+|---|---|
+| `frame-media-logo-no-lens.png` (1921x819) | menubalk, bevestigingsmail |
+| `frame-media-logo-full-lens.png` (1734x907) | voettekst, foutpagina |
+
+**De menubalk krijgt de uitvoering zónder lens.** Dat was het verzoek van de
+klant en het klopt ook: die lens is een fotorealistisch stuk beeld van ruim een
+derde van de breedte, en op 48 beeldpunten hoog wordt dat een donkere vlek naast
+het goud. Groot werkt hij juist heel goed — in de voettekst en op de 404 staat
+hij er daarom wél op, met de lensflare en al.
+
+`node tools/maak-merk.mjs` rekent de maten uit. Drie dingen die daarin zitten en
+waar je overheen kunt kijken:
+
+1. **`trim()` is niet optioneel.** Allebei de bronbestanden hebben een royale
+   doorzichtige rand — bij de no-lens ruim 100 beeldpunten aan elke kant. Zonder
+   bijsnijden zweeft het logo in de balk op een ingebouwde marge en klopt geen
+   enkele uithoogte.
+2. **Twee en een half keer de weergavehoogte, niet drie.** Een goudverloop
+   comprimeert slecht: de menubalk op drie keer was 39 kB tegen 26 nu, en dat op
+   elke pagina. De voettekst laadt lui (`loading="lazy"`), de menubalk juist met
+   `fetchpriority="high"`.
+3. **De breedte en hoogte op de `<img>` komen uit het bestand**, niet uit een
+   gok — het script print ze aan het eind. Een verkeerde maat laat de pagina
+   tijdens het laden verspringen en dat telt mee in de Core Web Vitals.
+
+| Bestand | Maat | Waarvoor |
+|---|---|---|
+| `assets/merk/fm-woord.webp` | 329x120, 26 kB | menubalk, op 48 (telefoon 36) |
+| `assets/merk/fm-vol.webp` | 647x260, 58 kB | voettekst en 404, op 104 (404: 96) |
+| `assets/mail/framemedia-email.png` | 480x175, 34 kB | de bevestigingsmail |
+| `assets/download/frame-media-logo*.png` | 1708x623 / 1619x651 | om door te sturen |
+
+De mail heeft zijn eigen png omdat een mailprogramma geen webp tekent (Outlook
+op Windows niet, Gmail in de app wisselend). Die wordt bij elke bouw opnieuw
+gerekend door `tools/gen-mail-logo.mjs`, uit dezelfde bron. Hij staat daar op de
+lichte logobalk (`#F4F6F8`) en de achtergrond wordt op die kleur platgelegd in
+plaats van doorzichtig gelaten: een doorzichtige png op zwart in donkere
+weergave laat het zilver van MEDIA verdwijnen. Palet van 256 kleuren in plaats
+van de volle png — 133 kB wordt 38 kB, en dat scheelt in een mailbox met een
+limiet.
+
+De menubalk ging van 40 naar 48 beeldpunten hoog (36 op de telefoon, was 30).
+Het nieuwe logo is een stapel van drie regels waar het oude er één was; op 40
+werd de onderste regel een streepje. Het kost niets in de balk — het is ondanks
+die acht punten erbij nog ruim 50 beeldpunten smaller dan het oude, dat over de
+volle breedte liep. De grens waaronder de balk inklapt staat daarom nog gewoon
+op 1220.
+
+Het tabicoontje is mee om: `assets/favicon.svg` is nu de gouden `[F]` tussen de
+open haken die in hun merk om FRAME heen staan, in plaats van de witte F met het
+rode stipje. Het hele logo past daar niet — op 16 beeldpunten is *Producent in
+TV content* een halve lijn. Dat bestand staat met de hand geschreven in
+`inhoud/assets/`; `maak-logo.mjs` schrijft het oude icoontje naar
+`raw/merk-oud/` en niet meer daarheen, anders zet een herhaling van dat script
+het nieuwe stilletjes terug.
+
+**De vier oude svg's staan in `raw/merk-oud/` en niet meer in `inhoud/assets/`**,
+dus ze gaan niet mee in de bouw. Er wees niets meer naar — op één plek na, en
+die was alleen te vinden door echt te meten: `inhoud/404.html` had zijn eigen
+hardgecodeerde `logo-licht.svg` die niet via `merkGroot()` liep. `kijk.mjs`
+vond hem als kapotte afbeelding. Zie ook de waarschuwing hieronder bij
+*Wat `kijk.mjs` nameet*: die ronde liep eerst tegen een oude proefserver op
+poort 4174 aan en meldde nul fouten over een site die hier niet staat.
+
+De rest van dit hoofdstuk gaat over het oude merk en hoe dat in elkaar zat.
+Het staat er nog omdat `maak-logo.mjs` er nog is en je er dus terug kunt.
+Let op: de alinea hierboven over de hero zegt dat het insigne in de zoeker
+staat — dat is sinds oktober niet meer zo, daar draait de showreel.
+
+### De oude logo's (`maak-logo.mjs`, afgedankt 31-10-2026)
 
 Het bronbestand stuurt zijn kleuren via een `<style>`-blok met classes aan.
 Dat is onhandig in een `<img>` en gevaarlijk als je het inline zet: `.cls-1`
 botst dan met elk ander ingesloten svg-bestand op de pagina. Dus zet het script
 de vulling per pad als attribuut neer en gooit het blok weg.
 
-Vier bestanden uit een bron:
+Vier bestanden, sinds 31-10-2026 allemaal in `raw/merk-oud/` en niet meer in
+`inhoud/assets/` — ze gaan dus niet mee in de bouw en er wijst niets meer naar:
 
-| Bestand | Waarvoor |
+| Bestand | Waarvoor (tot 31-10-2026) |
 |---|---|
 | `logo.svg` | Het hele insigne, voor lichte achtergronden |
 | `logo-licht.svg` | Het hele insigne, donker - voettekst en 404, op 104 beeldpunten |
@@ -479,6 +558,26 @@ kent alleen 390 en ziet dit dus niet.
 
 Die ronde liep tot 11-10-2026 twee keer, een keer per weergave. De site is nu
 alleen donker, dus het is een ronde.
+
+**Kijk waar je tegenaan meet.** Op deze machine luistert op poort **4174** nog
+een oude proefserver van de conceptversie uit `claudius/playground/framemedia`.
+Die antwoordt gewoon met 200 en een site die er bijna hetzelfde uitziet. Start
+je `serveer.mjs` hier, dan faalt hij stil met `EADDRINUSE` en meet je vervolgens
+een halfjaar oude kopie. Dat gebeurde bij het nieuwe merk op 31-10-2026: drie
+scripts meldden samen nul fouten over een site waar het nieuwe logo helemaal
+niet op stond. Daarom nemen `meet-360.mjs` en `meet-balk.mjs` nu net als
+`kijk.mjs` een adres aan, en printen ze welk:
+
+```
+POORT=4821 node serveer.mjs
+node kijk.mjs      http://localhost:4821
+node meet-360.mjs  http://localhost:4821
+node meet-balk.mjs http://localhost:4821
+```
+
+Zonder dat adres pakken ze nog steeds 4174. Controleer dus even of daar het
+goede staat — `curl -s http://localhost:<poort>/index.html | grep merk/fm-woord`
+is genoeg.
 
 **De paginalijst staat met de hand in `kijk.mjs` en in `meet-360.mjs`**, dus
 zet een nieuwe pagina daar ook neer. Een taalmap die je vergeet wordt stil niet
@@ -964,10 +1063,13 @@ onthouden.
    hun eigen tekst zegt ("Interview in studio Hilversum"). Een straat en
    huisnummer staan nergens op hun site en die heb ik niet verzonnen. Ook geen
    KvK-nummer gevonden; dat hoort wel op een zakelijke site.
-5. **Het logo klein.** In de menubalk staat alleen hun woordmerk, want hun
-   insigne is op die hoogte onleesbaar (zie hierboven). Hebben zij zelf een
-   officiele liggende of compacte versie, dan is die beter - vervang dan
-   `logo-woord*.svg` en draai `maak-logo.mjs` niet opnieuw.
+5. ~~**Het logo klein.**~~ Opgelost op 31-10-2026: de klant leverde zijn
+   nieuwe merk aan in twee uitvoeringen, met en zonder de cameralens. De
+   menubalk heeft nu de uitvoering zonder lens, de voettekst en de 404 die
+   mét. Zie *Het nieuwe merk: goud*. Wat nog wel zou helpen: een **vector**
+   (ai, eps, pdf of svg). Deze twee zijn png op ongeveer 1900 breed, dus
+   groter dan dit wordt het niet — genoeg voor het web, krap zodra er iets
+   naar de drukker of groot in beeld moet.
 6. **"Million Euro Listing".** Op hun site staat "Milion Euro Listing", met een
    l. Hier staat het met twee, aangenomen dat het een tikfout is.
 7. **Beeldmateriaal.** De zes studiofoto's van hun eigen site (april 2023)

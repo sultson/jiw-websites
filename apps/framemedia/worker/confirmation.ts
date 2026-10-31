@@ -44,7 +44,7 @@ const SITE_URL = 'https://www.framemedia.tv';
 const TEL = '06 3486 1375';
 
 /** 480 breed voor een weergave op 240, zodat hij scherp blijft op een retina-scherm. */
-const LOGO_URL = `${SITE_URL}/assets/mail/framemedia-email.png`;
+const LOGO_URL = `${SITE_URL}/assets/mail/framemedia-email-2026-10.png`;
 
 /* De voetregel is hun eigen bedrijfsgegeven, zoals het ook boven de
    leveringsvoorwaarden staat: eenmanszaak, dus geen "statutair gevestigd". */

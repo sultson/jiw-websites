@@ -1,4 +1,16 @@
+// Meet of er op 360 breed niets over de rand van het scherm steekt.
+//   node bouw.mjs && node serveer.mjs   en dan   node meet-360.mjs
+//
+// BASIS is waar het tegenaan meet. Op deze machine luistert op 4174 nog een
+// oude proefserver van de conceptversie uit claudius/playground/framemedia;
+// die antwoordt gewoon met 200 en een pagina die er bijna hetzelfde uitziet,
+// dus zonder dit mee je stilletjes het verkeerde. Draait serveer.mjs ergens
+// anders, geef dat dan mee:
+//   BASIS=http://localhost:4821 node meet-360.mjs
+//   node meet-360.mjs https://www.framemedia.tv
 import { chromium } from 'playwright';
+const BASIS = (process.argv[2] || process.env.BASIS || 'http://localhost:4174').replace(/\/$/, '');
+console.log(`meet tegen ${BASIS}`);
 const b = await chromium.launch();
 // Alle drie de talen: een Duits knoplabel is langer dan het Nederlandse
 // ("Gespraech vereinbaren" tegen "Plan een gesprek"), dus de smalste maat van
@@ -12,7 +24,7 @@ let fout = 0;
 const ctx = await b.newContext({ viewport: { width: 360, height: 780 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true });
 const p = await ctx.newPage();
 for (const pad of paginas) {
-  await p.goto('http://localhost:4174' + pad, { waitUntil: 'load' });
+  await p.goto(BASIS + pad, { waitUntil: 'load' });
   await p.evaluate(() => window.scrollTo(0, document.body.scrollHeight * 0.75));
   await p.waitForTimeout(500);
   const r = await p.evaluate(() => {

@@ -1,5 +1,17 @@
+// AFGEDANKT op 31-10-2026 - staat hier alleen nog om terug te kunnen.
+//
+// Dit maakte het OUDE merk: het marine-en-rode woordmerk van de WordPress-site
+// (raw/framemedia-logo.svg). De klant leverde op 31-10-2026 een nieuw logo aan,
+// goud met zilver, als png. Dat wordt nu gemaakt door tools/maak-merk.mjs en
+// dat is het bestand dat je zoekt.
+//
+// De vier svg's die dit script schrijft staan niet meer in inhoud/assets/ maar
+// in raw/merk-oud/, dus ze gaan niet meer mee in de bouw en er wijst niets meer
+// naar. Draai dit alleen als je het oude merk echt terug wilt - dan moeten die
+// bestanden ook weer naar inhoud/assets/ en bouw.mjs weer om.
+//
 // Zet het echte Frame Media-logo (raw/framemedia-logo.svg) om naar twee
-// bruikbare varianten in inhoud/assets/, plus het tabicoontje.
+// bruikbare varianten, plus het tabicoontje.
 //   node maak-logo.mjs
 //
 // Het bronbestand stuurt zijn kleuren via een <style>-blok met classes aan.
@@ -79,14 +91,20 @@ function schrijf(pad, palet) {
   return svg.length;
 }
 
-mkdirSync('inhoud/assets', { recursive: true });
-const a = schrijf('inhoud/assets/logo.svg', null);          // origineel, voor lichte vlakken
-const b = schrijf('inhoud/assets/logo-licht.svg', LICHT);   // voor donkere vlakken
+mkdirSync('raw/merk-oud', { recursive: true });
+const a = schrijf('raw/merk-oud/logo.svg', null);          // origineel, voor lichte vlakken
+const b = schrijf('raw/merk-oud/logo-licht.svg', LICHT);   // voor donkere vlakken
 
 // --- 3. tabicoontje --------------------------------------------------------
 // Een logo van 311 bij 193 met een tagline erin is op 16 beeldpunten een vlek.
 // Dus een eigen vierkantje: het rode opnamestipje in een donkere tegel met een
 // witte F. Zelfde taal als de site, leesbaar op elke maat.
+//
+// Dit is het OUDE icoontje, in de kleuren van het oude merk. Het echte
+// inhoud/assets/favicon.svg is sinds 31-10-2026 de gouden [F] van het nieuwe
+// logo en staat met de hand in dat bestand. Dus schrijft dit script hem naar
+// raw/merk-oud/ en niet meer naar inhoud/assets/ - anders zet een herhaling
+// van dit script het nieuwe icoontje stilletjes terug op het oude.
 const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="13" fill="#11161d"/>
   <rect x="5.5" y="5.5" width="53" height="53" rx="9.5" fill="none" stroke="#2e3e50" stroke-width="2"/>
@@ -94,7 +112,7 @@ const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <circle cx="46" cy="44" r="5.5" fill="#ff4d57"/>
 </svg>
 `;
-writeFileSync('inhoud/assets/favicon.svg', favicon);
+writeFileSync('raw/merk-oud/favicon.svg', favicon);
 
 // --- 4. de kleine variant: alleen het woordmerk ----------------------------
 // Hun logo is een insigne van 311 bij 193: FRAME MEDIA loopt dwars door een
@@ -167,8 +185,8 @@ ${groep('regel', zet(r, regelX, w.h + REGEL_GAT))}
   return svg.length;
 }
 
-const c = schrijfWoord('inhoud/assets/logo-woord.svg', null);
-const d = schrijfWoord('inhoud/assets/logo-woord-licht.svg', LICHT);
+const c = schrijfWoord('raw/merk-oud/logo-woord.svg', null);
+const d = schrijfWoord('raw/merk-oud/logo-woord-licht.svg', LICHT);
 
 console.log(`logo.svg ${a} B, logo-licht.svg ${b} B (311x193)`);
 console.log(`logo-woord.svg ${c} B, logo-woord-licht.svg ${d} B (${w.w.toFixed(0)}x${hoogte.toFixed(0)})`);

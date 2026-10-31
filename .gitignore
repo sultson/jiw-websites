@@ -100,7 +100,20 @@ apps/dagmar-voss/shots/
 # framemedia: 242 MB bronmateriaal van de oude WordPress-site, de aangeleverde
 # clips, de brochure en de tussenbestanden van de beeldscripts. Alles wat de site
 # uitlevert staat gegenereerd in inhoud/assets/ en oud/.
-apps/framemedia/raw
+#
+# Uitzondering: raw/merk-2026/ is het logo dat de klant op 31-10-2026 aanleverde
+# en `pnpm build` leest het bij elke bouw (tools/gen-mail-logo.mjs). Dat mag dus
+# niet alleen op deze machine staan, anders bouwt een verse kloon niet. Daarom
+# `raw/*` met een uitzondering erop, en niet `raw` - git daalt een genegeerde
+# map niet in, dus een uitzondering onder `raw` zou niets doen.
+#
+# Van die map gaan alleen de twee png's mee, niet de zip en niet de webp's
+# ernaast: dat zijn dezelfde twee platen nog een keer (de png's zijn er byte
+# voor byte uit die zip gehaald), en die blijven lokaal staan.
+apps/framemedia/raw/*
+!apps/framemedia/raw/merk-2026/
+apps/framemedia/raw/merk-2026/*.webp
+apps/framemedia/raw/merk-2026/*.zip
 apps/framemedia/shots
 
 # hulskersschilderwerken: de schermafdrukken die proef.mjs (gedrag), shot.mjs en

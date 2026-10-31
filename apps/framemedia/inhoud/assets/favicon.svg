@@ -1,6 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Het tabicoontje. Sinds 31-10-2026 in het goud van het nieuwe logo; daarvoor
+       stond hier het marine (#2e3e50) en het wit van het oude woordmerk.
+       Het hele logo past hier niet: op 16 beeldpunten is "PRODUCENT IN TV CONTENT"
+       een halve lijn. Dus staat hier waar het logo mee begint - de F in de open
+       haken die in hun merk om FRAME heen staan. Het verloop is uitgemeten uit
+       het aangeleverde bestand (raw/merk-2026/). -->
+  <defs>
+    <linearGradient id="goud" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffee88"/>
+      <stop offset=".32" stop-color="#ffcc44"/>
+      <stop offset=".62" stop-color="#dd9922"/>
+      <stop offset="1" stop-color="#b87714"/>
+    </linearGradient>
+  </defs>
   <rect width="64" height="64" rx="13" fill="#11161d"/>
-  <rect x="5.5" y="5.5" width="53" height="53" rx="9.5" fill="none" stroke="#2e3e50" stroke-width="2"/>
-  <path d="M20 17h22v7H27.5v7.5H40v7H27.5V47H20z" fill="#ffffff"/>
-  <circle cx="46" cy="44" r="5.5" fill="#ff4d57"/>
+  <!-- De open haken: links en rechts een hoek, boven en onder open. -->
+  <path d="M15 11h9v4.5h-4.5v33H24V53h-9z" fill="url(#goud)"/>
+  <path d="M49 11h-9v4.5h4.5v33H40V53h9z" fill="url(#goud)"/>
+  <!-- De F ertussen. -->
+  <path d="M27.5 17.5h11.5v6.3h-6.1v5.4h5.6v6.2h-5.6v11.1h-5.4z" fill="url(#goud)"/>
 </svg>

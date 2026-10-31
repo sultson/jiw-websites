@@ -8,6 +8,7 @@
 // pagina een eigen vindbaar adres heeft en niet een vlag die met JavaScript de
 // tekst omwisselt. De drie verwijzen met hreflang naar elkaar.
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, copyFileSync, rmSync, existsSync } from 'fs';
+import { createHash } from 'crypto';
 import * as NL_DATA from './inhoud/data.mjs';
 import { BLOKKEN, zetTaal } from './inhoud/blokken.mjs';
 import nl from './inhoud/taal/nl.mjs';
@@ -124,21 +125,46 @@ function padNaar(taal, sleutel) {
 }
 const heeft = (taal, sleutel) => Boolean(taal.paden[sleutel]);
 
-// Twee maten van hetzelfde merk, allebei uit hun eigen logobestand (zie
-// maak-logo.mjs). Klein is het woordmerk met de regel eronder; het insigne
-// eromheen is bij 44 beeldpunten hoog een vlek, want daarin is de naam maar
-// zeven punten hoog. Groot is hun insigne zelf, ongewijzigd - dat staat in de
-// voettekst en op de foutpagina, waar de ruimte er wel is.
+// --- cachebrekers voor de drie bestanden die op hun plek blijven -----------
+// dist/_headers zet /assets/* op een jaar `immutable`. Dat is precies goed voor
+// beeld met een eigen naam, maar style.css, site.js en favicon.svg houden hun
+// naam en veranderen wel. Een terugkerende bezoeker hield daardoor tot een jaar
+// lang de oude opmaak - en bij een nieuw logo levert dat geen oud logo op maar
+// een kapot logo: de nieuwe plaat in de oude maat.
+//
+// Dus hangt de bouw een stukje van de inhoud zelf achter het adres. Verandert
+// het bestand niet, dan verandert het adres niet en blijft de cache staan.
+// Beeld hoeft dit niet: dat krijgt bij een nieuwe versie gewoon een nieuwe naam
+// (zie assets/merk/ en framemedia-email-2026-10.png).
+const versie = naam => {
+  const h = createHash('sha1').update(readFileSync(`inhoud/assets/${naam}`)).digest('hex').slice(0, 8);
+  return `/assets/${naam}?v=${h}`;
+};
+
+// Twee uitvoeringen van het merk, allebei uit het nieuwe logobestand dat de
+// klant op 31-10-2026 aanleverde (zie tools/maak-merk.mjs). Goud met zilver,
+// in plaats van het marine-en-rode woordmerk dat hier tot die dag stond.
+//
+// De klant leverde er twee: met en zonder de cameralens erachter. In de
+// menubalk staat de uitvoering zonder lens - zijn eigen verzoek, en terecht:
+// die lens is een fotorealistisch stuk beeld van ruim een derde van de
+// breedte en wordt op 48 beeldpunten hoog een donkere vlek naast het goud.
+// In de voettekst en op de foutpagina staat de volle uitvoering mét lens,
+// want daar is de ruimte er wel.
+//
 // Tot 11-10-2026 stond elk merk er twee keer in - de lichte uitvoering voor
 // een donkere ondergrond en de donkere voor de lichte weergave, met css die er
-// een van liet zien. De site is nu alleen donker, dus alleen de lichte
-// bestanden staan er nog en er wordt er precies een voorgelezen.
+// een van liet zien. De site is nu alleen donker, en het nieuwe logo is één
+// bestand met een doorzichtige achtergrond, dus die splitsing is er niet meer.
 const merk = taal => `<a class="brand" href="${padNaar(taal, 'home')}">
-      <img src="/assets/logo-woord-licht.svg" alt="FRAME MEDIA" width="311" height="66">
+      <img src="/assets/merk/fm-woord.webp" alt="FRAME MEDIA" width="329" height="120" fetchpriority="high" decoding="async">
     </a>`;
 
+// De voettekst staat onderaan elke pagina, dus deze mag wachten tot de bezoeker
+// er is - vandaar lazy. Op de foutpagina staat hij wel meteen in beeld, maar
+// dat is een pagina die bijna niemand ziet.
 const merkGroot = (taal, klasse = 'brand-groot') => `<a class="${klasse}" href="${padNaar(taal, 'home')}">
-      <img src="/assets/logo-licht.svg" alt="FRAME MEDIA - Producent in TV content" width="311" height="193">
+      <img src="/assets/merk/fm-vol.webp" alt="FRAME MEDIA - Producent in TV content" width="647" height="260" loading="lazy" decoding="async">
     </a>`;
 
 // --- losse teksten voor site.js --------------------------------------------
@@ -249,8 +275,8 @@ const ORGANISATIE = taal => ({
   name: 'FRAME MEDIA',
   legalName: 'Frame Productions & Management',
   url: ADRES + padNaar(taal, 'home'),
-  logo: `${ADRES}/assets/mail/framemedia-email.png`,
-  image: `${ADRES}/assets/mail/framemedia-email.png`,
+  logo: `${ADRES}/assets/mail/framemedia-email-2026-10.png`,
+  image: `${ADRES}/assets/mail/framemedia-email-2026-10.png`,
   telephone: MOBIEL,
   email: MAIL,
   identifier: { '@type': 'PropertyValue', propertyID: 'KvK', value: '85865346' },
@@ -302,8 +328,8 @@ ${alternates(sleutel)}${schema(taal, sleutel)}${kopScript(taal)}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="${FONTS}" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="${versie('style.css')}">
+<link rel="icon" href="${versie('favicon.svg')}" type="image/svg+xml">
 </head>
 <body>
 <a class="skip" href="#main">${taal.skip}</a>
@@ -410,7 +436,7 @@ ${contactLijst}
     </div>
   </div>
 </footer>
-<script src="/assets/site.js" defer></script>
+<script src="${versie('site.js')}" defer></script>
 </body>
 </html>
 `;
@@ -537,7 +563,10 @@ for (const taal of TALEN) {
 // niet door de bouwer heen en staat er dus maar in een taal; op een
 // Nederlandse server is dat het Nederlands.
 zetTaal({ data: {}, ui: nl.ui, basis: '' });
-writeFileSync('dist/404.html', lees('404.html'));
+// Hij gaat niet door kop()/voet() heen, dus de cachebrekers moeten hier met de
+// hand op. Staat in de bron zonder, zodat het bestand op zichzelf nog opent.
+writeFileSync('dist/404.html', ['style.css', 'site.js', 'favicon.svg'].reduce(
+  (h, naam) => h.split(`/assets/${naam}"`).join(`${versie(naam)}"`), lees('404.html')));
 n++;
 
 // Sitemap met de drie talen erin, elk met hreflang naar de andere twee. Zolang
