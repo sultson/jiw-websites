@@ -8284,7 +8284,7 @@
                     "tag": "img",
                     "attrs": {
                       "class": "hero-image",
-                      "src": "/img/approved/vraagbaak-gesprek.webp",
+                      "src": "/img/approved/vraagbaak-gesprek.webp?v=20261031",
                       "alt": "Een gesprek aan tafel bij de Vraagbaak Koers en Kanker",
                       "loading": "eager"
                     },
@@ -9086,7 +9086,7 @@
       {
         "_key": "image-0",
         "label": "Vraagbaak Koers en Kanker",
-        "src": "/img/approved/vraagbaak-gesprek.webp",
+        "src": "/img/approved/vraagbaak-gesprek.webp?v=20261031",
         "alt": "Een gesprek aan tafel bij de Vraagbaak Koers en Kanker"
       }
     ],

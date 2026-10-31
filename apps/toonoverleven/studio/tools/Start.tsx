@@ -13,7 +13,9 @@ import { useRouter } from 'sanity/router';
 // The site this Studio is served from: the concept address today, toonoverleven.nl after the move.
 const SITE = typeof window === 'undefined' ? 'https://toonoverleven.nl' : window.location.origin;
 
-const kaarten = [
+// Wat vrijwilligers bijhouden, en daaronder wat bij het bestuur hoort. Dezelfde
+// twee groepen als in het menu (sanity.config.ts).
+const wekelijks = [
   {
     pad: '/beheer/structure/agenda',
     titel: 'Agenda',
@@ -21,11 +23,20 @@ const kaarten = [
       'De maand met alles erop, zoals hij op de site komt te staan. Klik iets aan om het te wijzigen, of klik een lege dag om er iets op te zetten. Een wekelijkse inloop vult u één keer in met "elke week" en staat dan vanzelf op elke donderdag; valt een keer uit, dan zet u die keer uit in de lijst onderaan het formulier. Kies de vaste activiteit om het moment ook op de juiste bezoekroutes te tonen.',
   },
   {
+    pad: '/beheer/structure/activiteit',
+    titel: 'Alle agendapunten',
+    uitleg:
+      'Dezelfde agendapunten als een lijst. Handig om iets op naam te zoeken of om iets van lang geleden terug te vinden.',
+  },
+  {
     pad: '/beheer/structure/nieuws',
     titel: 'Nieuws & Blog',
     uitleg:
       'De berichten op de nieuwspagina. Elk bericht krijgt een eigen pagina, dus u kunt het hele verhaal kwijt en de link delen op Facebook en Instagram.',
   },
+];
+
+const bestuur = [
   {
     pad: '/beheer/structure/sitePage',
     titel: 'Pagina’s en vaste onderdelen',
@@ -58,6 +69,29 @@ export default function Start() {
     }
   };
 
+  const kaart = ({ pad, titel, uitleg }: { pad: string; titel: string; uitleg: string }) => (
+    <Card
+      key={pad}
+      as="a"
+      href={pad}
+      onClick={ga(pad)}
+      padding={4}
+      radius={2}
+      border
+      tone="default"
+      style={{ textDecoration: 'none', display: 'block', cursor: 'pointer' }}
+    >
+      <Stack space={3}>
+        <Text weight="semibold" size={2}>
+          {titel}
+        </Text>
+        <Text muted size={1}>
+          {uitleg}
+        </Text>
+      </Stack>
+    </Card>
+  );
+
   return (
     <Box padding={[4, 4, 5]} overflow="auto" height="fill">
       <Container width={2}>
@@ -70,30 +104,25 @@ export default function Start() {
             </Text>
           </Stack>
 
-          <Grid columns={[1, 1, 2]} gap={3}>
-            {kaarten.map((kaart) => (
-              <Card
-                key={kaart.pad}
-                as="a"
-                href={kaart.pad}
-                onClick={ga(kaart.pad)}
-                padding={4}
-                radius={2}
-                border
-                tone="default"
-                style={{ textDecoration: 'none', display: 'block', cursor: 'pointer' }}
-              >
-                <Stack space={3}>
-                  <Text weight="semibold" size={2}>
-                    {kaart.titel}
-                  </Text>
-                  <Text muted size={1}>
-                    {kaart.uitleg}
-                  </Text>
-                </Stack>
-              </Card>
-            ))}
-          </Grid>
+          <Stack space={3}>
+            <Heading size={1}>Agenda en nieuws</Heading>
+            <Text muted size={1}>
+              Wat vrijwilligers bijhouden. Als vrijwilliger werkt u alleen hier.
+            </Text>
+            <Grid columns={[1, 1, 3]} gap={3}>
+              {wekelijks.map(kaart)}
+            </Grid>
+          </Stack>
+
+          <Stack space={3}>
+            <Heading size={1}>Alleen voor het bestuur</Heading>
+            <Text muted size={1}>
+              De vaste pagina’s, de teksten en de sponsoren. Wijzigingen hier lopen via het bestuur.
+            </Text>
+            <Grid columns={[1, 1, 3]} gap={3}>
+              {bestuur.map(kaart)}
+            </Grid>
+          </Stack>
 
           <Card padding={4} radius={2} tone="transparent">
             <Stack space={3}>

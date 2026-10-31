@@ -27,11 +27,17 @@ const dataset = process.env.SANITY_STUDIO_DATASET || 'production';
  * is drie keer dezelfde inhoud met een ander filter. Nu is het een kalender:
  * de maand met alles erop, zoals de site hem uitrekent. De lijst eronder is er
  * voor zoeken en voor wat lang geleden was.
+ *
+ * Twee groepen onder een kopje: wat vrijwilligers wekelijks bijhouden, en wat
+ * bij het bestuur hoort. Een eigen rol per groep vraagt het Growth-abonnement,
+ * dus dit wijst de weg en houdt niemand tegen. Kopjes en geen mappen, zodat de
+ * adressen (/beheer/structure/sitePage enz.) blijven werken.
  */
 const structure = (S: StructureBuilder) =>
   S.list()
     .title('Toon over Leven')
     .items([
+      S.divider().title('Agenda en nieuws'),
       S.listItem()
         .title('Agenda')
         .id('agenda')
@@ -52,11 +58,11 @@ const structure = (S: StructureBuilder) =>
             .defaultOrdering([{ field: 'datum', direction: 'asc' }]),
         ),
       S.documentTypeListItem('nieuws').title('Nieuws & Blog').icon(EditIcon),
+      S.divider().title('Alleen voor het bestuur'),
       // De verhalen onder Ervaringen. Ze stonden in het schema en op de site,
       // maar niet in dit menu, en een document dat je niet kunt terugvinden
       // kun je ook niet intrekken. Dat is precies waar dat schema om draait.
       S.documentTypeListItem('sitePage').title('Pagina’s en vaste onderdelen').icon(DocumentTextIcon),
-      S.divider(),
       S.listItem()
         .title('Teksten op de site')
         .id('siteTeksten')
