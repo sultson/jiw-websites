@@ -19,10 +19,6 @@
       "custom_domain": true
     },
     {
-      "pattern": "www.adriaantotaalonderhoud.nl",
-      "custom_domain": true
-    },
-    {
       "pattern": "adriaantotaalonderhoud.jouwidealewebsite.nl",
       "custom_domain": true
     }
