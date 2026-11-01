@@ -1,12 +1,32 @@
-/* Het logo voor de bevestigingsmail, als png.
+/* De logoplaten voor de mail, als png. Er zijn er TWEE en dat is met opzet.
  *
  * De site gebruikt een svg. In een mail kan dat niet: Outlook en Gmail tonen een svg
  * niet, dus staat er een leeg vak waar zijn naam hoort. Daarom een png, en daarom in de
  * bouw gemaakt en niet een keer met de hand - dan loopt hij achter zodra het
  * merkbestand verandert.
  *
- * Twee keer de weergavebreedte (440 voor een weergave op 220, zie `logoWidth` in
- * worker/confirmation.ts), zodat hij op een retina-scherm scherp blijft.
+ *  - logo-mail.png, 440 breed voor een weergave op 220 (`logoWidth` in
+ *    worker/confirmation.ts). Twee keer de weergavemaat, zodat hij op een retina-scherm
+ *    scherp blijft. Dat MAG daar, want een bevestigingsmail wordt GELEZEN en elke lezer
+ *    (Gmail, Outlook, Mail) houdt zich aan de opgegeven breedte.
+ *
+ *  - logo-handtekening.png, precies even breed als hij getoond wordt (LOGO_BREED uit
+ *    handtekening.mjs, nu 110). Geen retina-plaat, en daar is een gemeten reden voor.
+ *
+ * Waarom die tweede plaat bestaat. Armando, 01-11-2026, met een schermafdruk uit Mail
+ * op de MacBook: logo enorm, en de tekst eronder in plaats van ernaast. Nagemeten in die
+ * schermafdruk (2x retina): het logo stond 154 css-px HOOG terwijl er `height="42"` op
+ * staat, en dat is op 13 px na de natuurlijke hoogte van de plaat van 440x167. De
+ * handtekening is dus niet verkeerd opgemaakt - Mail toont de plaat op zijn EIGEN
+ * pixelmaat en gooit de opgegeven breedte en hoogte weg. Een logovak van 440 past
+ * daarna niet meer naast de tekst, en dan valt de tabel om. Een handtekening gaat door
+ * de editor van Mail en die bewaart wat hij toont; een mail wordt alleen weergegeven.
+ *
+ * De reparatie is niet een andere opmaak maar de plaat zelf op de weergavemaat zetten.
+ * Dat werkt in beide werelden: houdt een programma zich wel aan width/height, dan komt
+ * er hetzelfde uit. Een opmaak die van de goede wil van de lezer afhangt is geen
+ * reparatie. De prijs is dat het logo op een retina-scherm iets zachter staat; dat is
+ * niet te vermijden zolang de maat uit het bestand komt.
  *
  * Op wit en NIET transparant. Een deel van de mailprogramma's zet zijn eigen
  * achtergrond onder een transparante png, en dan staat zijn donkerblauwe woordmerk op
@@ -22,12 +42,21 @@
  */
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import { LOGO_BREED } from '../handtekening.mjs';
 
-const BREED = 440;
 const WIT = { r: 255, g: 255, b: 255, alpha: 1 };
 
+/* De handtekeningplaat leest zijn maat uit handtekening.mjs en staat hier niet op
+   schrift: twee getallen voor dezelfde breedte lopen gegarandeerd uit de pas, en dan
+   staat het logo in zijn handtekening weer te groot zonder dat iemand het hier ziet.
+   handtekening.mjs toetst het bovendien andersom - die zakt als de plaat niet precies
+   LOGO_BREED breed is. */
+const PLATEN = [
+  { naam: 'logo-mail.png', breed: 440 },
+  { naam: 'logo-handtekening.png', breed: LOGO_BREED },
+];
+
 const bron = new URL('../public/logo.svg', import.meta.url);
-const doel = new URL('../public/logo-mail.png', import.meta.url);
 
 /* Geen `density` erbij. Het svg is van zichzelf 1420 breed, dus rasteren op de eigen
    maat en daarna terug naar 440 zit ruim boven de weergavebreedte; met een hoge density
@@ -37,10 +66,13 @@ const doel = new URL('../public/logo-mail.png', import.meta.url);
    sharp neemt geen URL aan zodra er ook opties meegaan, en op Windows is een
    file:///C:/... url als string niet hetzelfde als het pad - dat geeft "unsupported
    input". Dus fileURLToPath ertussen. */
-const plaat = await sharp(fileURLToPath(bron))
-  .resize({ width: BREED })
-  .flatten({ background: WIT })
-  .png({ compressionLevel: 9 })
-  .toFile(fileURLToPath(doel));
+for (const { naam, breed } of PLATEN) {
+  const doel = new URL(`../public/${naam}`, import.meta.url);
+  const plaat = await sharp(fileURLToPath(bron))
+    .resize({ width: breed })
+    .flatten({ background: WIT })
+    .png({ compressionLevel: 9 })
+    .toFile(fileURLToPath(doel));
 
-console.log(`logo-mail.png  ${plaat.width}x${plaat.height}, ${(plaat.size / 1024).toFixed(1)} kB`);
+  console.log(`${naam}  ${plaat.width}x${plaat.height}, ${(plaat.size / 1024).toFixed(1)} kB`);
+}

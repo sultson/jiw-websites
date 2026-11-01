@@ -29,7 +29,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { chromium } from 'playwright'
 import { dien } from '../dienen.mjs'
-import { handtekeningGegevens } from '../handtekening.mjs'
+import { LOGO_BESTAND, handtekeningGegevens } from '../handtekening.mjs'
 
 const HIER = path.dirname(fileURLToPath(import.meta.url))
 const PLAAT = process.argv.includes('--plaat')
@@ -61,7 +61,10 @@ try {
      */
     if (!LIVE) {
       await pagina.route(G.logo, (route) =>
-        route.fulfill({ contentType: 'image/png', body: fs.readFileSync(path.join(HIER, '..', 'dist', 'logo-mail.png')) }),
+        route.fulfill({
+          contentType: 'image/png',
+          body: fs.readFileSync(path.join(HIER, '..', 'dist', LOGO_BESTAND)),
+        }),
       )
     }
     await pagina.goto(`${basis}/handtekening/`, { waitUntil: 'domcontentloaded' })

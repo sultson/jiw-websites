@@ -47,8 +47,10 @@ const G = handtekeningGegevens()
 if (proef) {
   const [breed, maat] = proef.split(',').map(Number)
   if (breed) {
+    /* De verhouding komt uit G zelf en staat hier niet op schrift: zodra het merkbestand
+       verandert zou een getal hier een proef op een uitgerekt logo geven. */
+    G.hoog = Math.round((breed * G.hoog) / G.breed)
     G.breed = breed
-    G.hoog = Math.round((breed * 167) / 440)
   }
   if (maat) G.maatTekst = maat
 }

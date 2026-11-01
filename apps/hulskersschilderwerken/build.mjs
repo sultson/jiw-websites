@@ -2082,12 +2082,17 @@ fs.writeFileSync(path.join(DIST, 'logo-licht.svg'), licht)
 // verwijst naar /logo-mail.png, en zonder dat bestand krijgt de bezoeker een gebroken
 // plaatje in de enige mail die hij ooit van Pascal krijgt. Dat is precies het soort
 // fout dat niemand ziet, want wij lezen die mail niet.
-{
-  const mailLogo = path.join(PUBLIC, 'logo-mail.png')
-  if (!fs.existsSync(mailLogo)) {
-    throw new Error('build: public/logo-mail.png ontbreekt - draai eerst `node tools/gen-mail-logo.mjs`')
+//
+// logo-handtekening.png is de tweede plaat, precies zo breed als hij in de
+// mailhandtekening getoond wordt (zie de noot in handtekening.mjs). Zelfde reden om te
+// zakken: /handtekening/ verwijst ernaar met een volledig adres, dus zonder dat bestand
+// staat er bij IEDEREEN die een mail van Pascal krijgt een gebroken plaatje.
+for (const plaat of ['logo-mail.png', 'logo-handtekening.png']) {
+  const bestand = path.join(PUBLIC, plaat)
+  if (!fs.existsSync(bestand)) {
+    throw new Error(`build: public/${plaat} ontbreekt - draai eerst \`node tools/gen-mail-logo.mjs\``)
   }
-  fs.copyFileSync(mailLogo, path.join(DIST, 'logo-mail.png'))
+  fs.copyFileSync(bestand, path.join(DIST, plaat))
 }
 
 // De IndexNow-sleutel. Dat is een .txt in public/ waarvan de NAAM de sleutel is en de

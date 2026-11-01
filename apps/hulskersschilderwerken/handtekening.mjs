@@ -39,11 +39,19 @@
  *    krijgen; de weg die het wel doet is hem uit een ontvangen mail kopieren. Daarom
  *    staat die weg hier vooraan en de snelle weg erachter, en niet andersom.
  *
- * Het logo is /logo-mail.png: dezelfde plaat als in de bevestigingsmail, met een witte
- * achtergrond ingebakken (zie tools/gen-mail-logo.mjs). Een svg toont geen enkel
- * mailprogramma en een data:-beeld komt bij de ontvanger als bijlage mee of verdwijnt.
- * De maat wordt uit het bestand zelf gelezen, niet hier opgeschreven - anders staat de
- * verhouding scheef zodra het merkbestand verandert.
+ * Het logo is /logo-handtekening.png, met een witte achtergrond ingebakken (zie
+ * tools/gen-mail-logo.mjs). Een svg toont geen enkel mailprogramma en een data:-beeld
+ * komt bij de ontvanger als bijlage mee of verdwijnt. De hoogte wordt uit het bestand
+ * zelf gelezen, niet hier opgeschreven - anders staat de verhouding scheef zodra het
+ * merkbestand verandert.
+ *
+ * Het is NIET dezelfde plaat als in de bevestigingsmail (logo-mail.png, 440 breed voor
+ * een weergave op 220). Die was hij wel, en daar ging het op 01-11-2026 op stuk: Mail
+ * op de Mac toont een handtekeningplaat op zijn EIGEN pixelmaat en gooit de opgegeven
+ * width en height weg, dus er stond een logo van 440 px in een veld van 320 en de tabel
+ * viel om. Deze plaat is daarom precies LOGO_BREED breed. maatVanPng zakt als dat niet
+ * meer klopt - en dat is de hele reparatie, want een andere opmaak helpt niet tegen een
+ * programma dat de opmaak weggooit.
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -74,7 +82,7 @@ const HIER = path.dirname(fileURLToPath(import.meta.url))
  * tabel die niet past. Draai hem voordat je hier een getal omhoog zet: het mailadres is
  * 30 tekens en dat is de regel die alles bepaalt.
  */
-const LOGO_BREED = 110 /* was 174: 64 px eraf */
+export const LOGO_BREED = 110 /* was 174: 64 px eraf */
 const KIER = 14 /* ruimte links en rechts van de streep, was 18 */
 const MAAT = {
   naam: 15, /* was 16 */
@@ -191,6 +199,11 @@ export function handtekeningPlat(naam, G) {
  * en een uitgerekt logo in een mail ziet alleen de ontvanger.
  */
 function maatVanPng(bestand) {
+  /* Met zijn eigen melding: een kale ENOENT uit de bouw zegt niet dat er een script
+     naast ligt dat deze plaat maakt. */
+  if (!fs.existsSync(bestand)) {
+    throw new Error(`handtekening: ${path.basename(bestand)} ligt niet in public/ - draai \`node tools/gen-mail-logo.mjs\``)
+  }
   const b = fs.readFileSync(bestand)
   if (b.length < 24 || b.readUInt32BE(12) !== 0x49484452) {
     throw new Error(`handtekening: ${bestand} is geen png met een IHDR op de verwachte plek`)
@@ -198,10 +211,28 @@ function maatVanPng(bestand) {
   return { breed: b.readUInt32BE(16), hoog: b.readUInt32BE(20) }
 }
 
+export const LOGO_BESTAND = 'logo-handtekening.png'
+
 export function handtekeningGegevens() {
-  const echt = maatVanPng(path.join(HIER, 'public', 'logo-mail.png'))
+  const echt = maatVanPng(path.join(HIER, 'public', LOGO_BESTAND))
+  /*
+   * De plaat moet precies zo breed zijn als hij getoond wordt. Mail op de Mac negeert
+   * width en height op een handtekening en tekent de plaat op zijn eigen pixelmaat;
+   * stond hier 440 tegen een weergave van 110, dan is wat de ontvanger ziet vier keer
+   * te groot en staat de tekst eronder in plaats van ernaast (Armando, 01-11-2026).
+   * Daarom zakt dit en wordt het niet stil rechtgetrokken: een plaat van de verkeerde
+   * maat is hier geen schoonheidsfoutje maar een kapotte handtekening, en hij is op
+   * deze pagina niet te zien.
+   */
+  if (echt.breed !== LOGO_BREED) {
+    throw new Error(
+      `handtekening: ${LOGO_BESTAND} is ${echt.breed} px breed en wordt op ${LOGO_BREED} getoond. ` +
+        'Mail op de Mac gooit de opgegeven maat weg en tekent de plaat op zijn eigen pixelmaat, ' +
+        'dus de plaat moet precies de weergavemaat hebben. Draai `node tools/gen-mail-logo.mjs`.',
+    )
+  }
   return {
-    logo: `https://${BEDRIJF.domein}/logo-mail.png`,
+    logo: `https://${BEDRIJF.domein}/${LOGO_BESTAND}`,
     breed: LOGO_BREED,
     hoog: Math.round((LOGO_BREED * echt.hoog) / echt.breed),
     kier: KIER,

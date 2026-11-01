@@ -375,6 +375,13 @@ if (DEV) {
 // bezoeker een gebroken plaatje in de enige mail die hij ooit van Pascal krijgt.
 if (!existsSync('dist/logo-mail.png')) zak('vooraf: dist/logo-mail.png ontbreekt - de bevestigingsmail verwijst ernaar');
 
+// En de plaat van de mailhandtekening, een andere maat en dus een ander bestand (zie
+// handtekening.mjs). Die hangt onder ELKE mail die Pascal stuurt, dus een gebroken
+// plaatje daar ziet iedere klant en hij ziet het zelf nooit.
+if (!existsSync('dist/logo-handtekening.png')) {
+  zak('vooraf: dist/logo-handtekening.png ontbreekt - de mailhandtekening verwijst ernaar');
+}
+
 // ----------------------------------------- 19. het geprinte mailadres in de bevestiging
 //
 // worker/confirmation.ts print zijn mailadres onder de bevestigingsmail, en dat staat
