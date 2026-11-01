@@ -89,10 +89,20 @@ const formulier = createFormWorker({
  */
 const CANONIEKE_HOST = new URL(SITE_URL).hostname;
 
-/* Nog leeg: er hangt één adres aan deze Worker. Zodra het eigen domein
-   gekoppeld wordt, komt `guysa.jouwidealewebsite.nl` hier te staan en wordt
-   SITE_URL dat domein — dan stuurt dit adres door in plaats van een tweede
-   kopie van de site te zijn. */
+/**
+ * Nog leeg, en dat is een keuze — er hangt sinds 01-11-2026 wél een tweede
+ * adres aan deze Worker: `www.guysa-inboedels.be`, via het custom hostname.
+ *
+ * `www.guysa-inboedels.be` hoort hier niet in zolang SITE_URL nog het
+ * bureau-adres is. Hij zou dan de bezoeker van het eigen domein van de klant
+ * af sturen naar `guysa.jouwidealewebsite.nl`, en dat is het verkeerde adres om
+ * in de adresbalk te zetten. De canonical houdt de index ondertussen op één
+ * van de twee.
+ *
+ * Bij de verhuizing wisselen de rollen: SITE_URL wordt het eigen domein en hier
+ * komt `guysa.jouwidealewebsite.nl` te staan. Het stappenplan staat in
+ * site.config.mjs.
+ */
 const ANDERE_HOSTS: string[] = [];
 
 export default {

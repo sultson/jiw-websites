@@ -33,8 +33,25 @@
     // er wel omheen, die hebben er niets te halen.
     "run_worker_first": ["/*", "!/assets/*", "!/img/*", "!/fonts/*", "!/favicon.svg", "!/logo-email.png"]
   },
+  // LET OP: de twee regels hieronder zijn niet hetzelfde soort route.
+  //
+  // `custom_domain: true` hoort bij een host in een zone die wij beheren:
+  // Cloudflare maakt daar zelf het DNS-record en het certificaat bij.
+  //
+  // `zone_name` hoort bij een host die NIET van ons is maar via Cloudflare for
+  // SaaS aan onze zone hangt (het custom hostname dat op 01-11-2026 is
+  // aangezet). Het domein guysa-inboedels.be staat bij Nomeo; die zetten daar
+  // een CNAME naar onze fallback origin. Hier dus geen custom_domain — dat zou
+  // Cloudflare laten proberen een record te maken in een zone die wij niet
+  // hebben, en dat faalt bij de deploy.
+  //
+  // En met opzet GEEN route voor `guysa-inboedels.be/*` zonder www: Nomeo
+  // stuurt het blote domein met een 301 door naar www, dus dat verzoek komt
+  // nooit bij deze Worker langs. Een route erbij zetten verandert daar niets
+  // aan en suggereert alleen dat wij hem afhandelen.
   "routes": [
-    { "pattern": "guysa.jouwidealewebsite.nl", "custom_domain": true }
+    { "pattern": "guysa.jouwidealewebsite.nl", "custom_domain": true },
+    { "pattern": "www.guysa-inboedels.be/*", "zone_name": "jouwidealewebsite.nl" }
   ],
   "r2_buckets": [
     {
@@ -62,14 +79,14 @@
   // leunt op het verborgen veld in worker/index.ts, dus er is geen widget om
   // tegen te controleren.
   //
-  // De ontvanger is onze eigen inbox en niet die van GuySa, dus een
-  // testaanvraag mag hier gewoon. Dat verandert op de dag dat LEAD_RECIPIENT
-  // een adres van de klant wordt: vanaf dan komt elke test in hun mailbox
-  // terecht, en hoort het eerst terug op hallo@jouwidealewebsite.nl gezet te
-  // worden.
+  // LET OP: LEAD_RECIPIENT is sinds 01-11-2026 de mailbox van GuySa zelf en
+  // niet meer onze eigen inbox. Elke aanvraag die hier binnenkomt belandt dus
+  // bij de klant. Niet meer testen op dit adres: wie het formulier wil proeven
+  // zet LEAD_RECIPIENT eerst terug op hallo@jouwidealewebsite.nl, deployt,
+  // test, en zet hem daarna terug — en vergeet die laatste stap niet.
   "vars": {
     "SITE_ID": "guysa",
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_RECIPIENT": "info@guysa-inboedels.be",
     "LEAD_SENDER": "no-reply@notify.jouwidealewebsite.nl"
   }
 }

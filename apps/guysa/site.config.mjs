@@ -21,9 +21,42 @@
  * hoort erbij: er staan nu twee vindbare sites over hetzelfde bedrijf, en voor
  * dezelfde zoekwoorden. Zolang dit een voorstel is dat nog niet gewonnen is, is
  * dat een afweging en geen vergissing — maar ze mogen niet allebei blijven
- * staan. Neemt GuySa de site af, dan verhuist hij naar het eigen domein en
- * stuurt dit adres met een 301 door; gaat het niet door, dan hoort hier
- * `noindex` op.
+ * staan.
+ *
+ * ---
+ *
+ * DE VERHUIZING NAAR www.guysa-inboedels.be, stap voor stap.
+ *
+ * Nomeo zet het DNS om en laat het blote domein met een 301 naar www wijzen;
+ * de Worker hangt sinds 01-11-2026 aan `www.guysa-inboedels.be/*` via het
+ * custom hostname (zie de routes in wrangler.jsonc). Zodra dat DNS leeft
+ * serveert dit adres dus dezelfde site.
+ *
+ * In die tussentijd staat SITE_URL met opzet nog op het bureau-adres. De
+ * bezoeker blijft dan op het eigen domein van de klant — geen 301 die hem naar
+ * `guysa.jouwidealewebsite.nl` gooit, want dat is precies het adres dat een
+ * klant niet in zijn adresbalk hoort te zien — en de canonical zorgt dat er
+ * ondertussen maar één van de twee in de index komt. Dat is een nette, korte
+ * tussenstand, geen eindstand.
+ *
+ * Omzetten is dit, in deze volgorde, en alleen als www.guysa-inboedels.be al
+ * een 200 geeft:
+ *
+ *   1. SITE_URL hieronder → 'https://www.guysa-inboedels.be'
+ *   2. ANDERE_HOSTS in worker/index.ts → ['guysa.jouwidealewebsite.nl']
+ *      (vanaf dan 301't het bureau-adres naar het eigen domein in plaats van
+ *      een tweede kopie van de site te zijn)
+ *   3. `pnpm --filter @jiw/guysa ship` — de audit vergelijkt SITE_URL met de
+ *      routes in wrangler.jsonc en valt om als stap 1 zonder route gedaan is
+ *   4. `pnpm --filter @jiw/guysa indexnow`
+ *   5. Search Console: nieuwe property voor het eigen domein, sitemap erin, en
+ *      op de oude property de adreswijziging melden
+ *   6. Afzender verhuizen: LEAD_SENDER en allowed_sender_addresses naar
+ *      `no-reply@notify.guysa-inboedels.be`, met DKIM/SPF/DMARC in Cloudflare
+ *      Email Service. Dit is het enige stuk dat echt DNS-werk kost, en het kan
+ *      later — tot die tijd komt de bevestiging aan vanaf ons afzenderdomein.
+ *
+ * Gaat de deal niet door, dan hoort hier `noindex` op in plaats van dit lijstje.
  */
 export const SITE_URL = 'https://guysa.jouwidealewebsite.nl';
 

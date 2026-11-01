@@ -192,6 +192,40 @@ assert.equal(padInPagina, padInWorker,
   `Het formulier post naar ${padInPagina} maar de Worker luistert op ${padInWorker}`);
 
 /* ------------------------------------------------------------------ */
+/*  De adressen waarop de site te bereiken is                          */
+/* ------------------------------------------------------------------ */
+
+/* De canonical bepaalt op welk adres de site hoort te staan; de routes in
+   wrangler.jsonc bepalen op welke adressen hij te bereiken is. Lopen die
+   uiteen, dan wijst elke pagina naar een host waar niets staat, en dat is uit
+   de HTML zelf niet te zien. Dit is de val bij een domeinverhuizing: SITE_URL
+   omzetten is één regel, en de route eronder vergeten is één regel.
+
+   Hetzelfde voor ANDERE_HOSTS: een host die 301 moet geven maar niet in de
+   routes staat komt nooit bij de Worker langs, dus die omleiding doet niets. */
+const wranglerBron = readFileSync(path.join(APP, 'wrangler.jsonc'), 'utf8');
+/* Geen JSON.parse: dit bestand staat vol commentaar, en dat is de helft van
+   waarom het leesbaar is. De patronen zijn genoeg — er staat één sleutel
+   `pattern` per route. */
+const routeHosts = [...wranglerBron.matchAll(/"pattern":\s*"([^"]+)"/g)]
+  .map((m) => m[1].split('/')[0]);
+
+const canoniekeHost = new URL(SITE_URL).hostname;
+assert.ok(routeHosts.includes(canoniekeHost),
+  `De canonical staat op ${canoniekeHost}, maar geen enkele route in wrangler.jsonc ` +
+  `wijst dat adres naar deze Worker (routes: ${routeHosts.join(', ')})`);
+
+const omgeleid = [...worker.matchAll(/^const ANDERE_HOSTS[^=]*=\s*(\[[^\]]*\])/gms)]
+  .flatMap((m) => [...m[1].matchAll(/'([^']+)'/g)].map((h) => h[1]));
+for (const host of omgeleid) {
+  assert.ok(routeHosts.includes(host),
+    `${host} staat in ANDERE_HOSTS maar niet in de routes van wrangler.jsonc; ` +
+    'die omleiding wordt dus nooit uitgevoerd');
+  assert.notEqual(host, canoniekeHost,
+    `${host} is de canonieke host en staat ook in ANDERE_HOSTS; dat is een omleiding naar zichzelf`);
+}
+
+/* ------------------------------------------------------------------ */
 /*  Sitemap, robots en de rest van de build                            */
 /* ------------------------------------------------------------------ */
 
