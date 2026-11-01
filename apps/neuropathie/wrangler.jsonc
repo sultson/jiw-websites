@@ -1,0 +1,45 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "neuropathie",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Een onbekend adres hoort 404.html met een 404 te geven, niet de voorpagina met
+    // een 200 — dat laatste is een soft-404 en zet de verkeerde pagina in de index.
+    "not_found_handling": "404-page",
+    "html_handling": "drop-trailing-slash",
+    // run_worker_first, anders serveert Workers Assets het bestand direct en draait de
+    // host-redirect in de worker nooit.
+    "run_worker_first": true
+  },
+  "routes": [
+    {
+      "pattern": "neuropathie.jouwidealewebsite.nl",
+      "custom_domain": true
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["contact@notify.jouwidealewebsite.nl"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "neuropathie",
+    "LEAD_RECIPIENT": "lydiavanderbie-opleidingen@outlook.com",
+    "LEAD_SENDER": "contact@notify.jouwidealewebsite.nl",
+    "TURNSTILE_SECRET_KEY": "dev"
+  }
+}

@@ -191,6 +191,26 @@ apps/         client sites (almost all a Vite + React 19 + TS 5.8 + Tailwind v4 
                           the page. Photos go to R2 under the `guysa/` prefix (90-day
                           lifecycle rule added 01-11-2026). dev port 3076.
                           See its README + SEO.md.
+  neuropathie/            a normal Vite+React app, nieuw op 01-11-2026. Eén pagina over
+                          voetreflexologie bij neuropathie voor Lydia van der Bie, los van
+                          `apps/lydiavanderbie` omdat het een eigen publiek heeft (cliënten
+                          én therapeuten die zich bij haar netwerk aansluiten). Live op
+                          `neuropathie.jouwidealewebsite.nl` maar **op noindex** via
+                          `public/_headers` — nog niet goedgekeurd, en het
+                          therapeutenoverzicht is nog leeg. 2 pagina's (home + een echte 404)
+                          prerenderd door `scripts/prerender.mjs`; zonder die stap leest een
+                          crawler nul woorden, en juist gevonden worden op "voetreflexologie
+                          neuropathie" is het hele punt van de site. `not_found_handling`
+                          staat op `404-page` en niet op SPA, anders geeft elk fout adres de
+                          voorpagina met een 200. **De lopende tekst is van de klant zelf en
+                          drie passages staan er woordelijk in** (wat de behandeling niet
+                          doet, en "bespreek deze klachten altijd eerst met uw arts") — zie
+                          CONTENT.md voordat je aan de copy komt. De therapeutenlijst is
+                          `therapeuten` in `src/data/content.ts`: leeg toont een
+                          "netwerk in opbouw"-blok, gevuld schakelt dezelfde component over
+                          op kaartjes. Stuurt naar `lydiavanderbie-opleidingen@outlook.com`,
+                          haar eigen mailbox, dus **nooit een testbericht tegen de
+                          uitgerolde config**. dev port 3056. Zie CONTENT.md.
   my-kim-nails/        dev port 3000 — frontend-only
   nail-it-rosmalen/    dev port 3002 — frontend-only
   sgv-nails/           placeholder (INFO.md only, not yet scaffolded)

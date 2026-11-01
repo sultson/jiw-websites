@@ -1,0 +1,17 @@
+# Zolang de site nog niet door de klant is goedgekeurd en het therapeutenoverzicht
+# leeg is, hoort hij niet in Google. Eén regel weghalen (de X-Robots-Tag hieronder)
+# maakt hem indexeerbaar; robots.txt laat crawlers er al wel bij, anders zouden ze
+# deze header nooit lezen.
+/*
+  X-Robots-Tag: noindex, nofollow
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=604800
