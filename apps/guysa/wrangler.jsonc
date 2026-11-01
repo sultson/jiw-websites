@@ -1,0 +1,75 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  // Dezelfde naam als de Worker die het concept in jiw-concepts/guysa
+  // uitrolde, en met opzet: dat adres is het enige dat deze site heeft, en een
+  // tweede Worker zou het eerst van de eerste moeten afpakken. Nu is dit
+  // gewoon een nieuwe versie van dezelfde Worker en blijft het certificaat en
+  // het DNS-record staan.
+  //
+  // LET OP: jiw-concepts/guysa kan daarmee ook over deze versie heen
+  // deployen. Daar ligt sinds 01-11-2026 een VERHUISD.md en is de
+  // wrangler.toml weggehaald, zodat dat niet per ongeluk gebeurt.
+  "name": "guysa",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // De canonical en de sitemap noemen de startpagina met een schuine streep.
+    // Cloudflare moet dezelfde vorm serveren, anders wijst de canonical naar
+    // een adres dat eerst nog een omleiding is.
+    "html_handling": "force-trailing-slash",
+    // Elke pagina is als eigen bestand gebakken, dus er valt voor een
+    // SPA-terugval niets te doen behalve 200 antwoorden op een adres dat niet
+    // bestaat. Dat is een zachte 404, en die kost indexruimte.
+    "not_found_handling": "404-page",
+    // De Worker moet paginaverzoeken zien, niet alleen de API: anders krijgt
+    // de HTML zijn Cache-Control niet mee en draait een eventuele omleiding
+    // naar de canonieke host nooit. De bestanden met een hash in hun naam gaan
+    // er wel omheen, die hebben er niets te halen.
+    "run_worker_first": ["/*", "!/assets/*", "!/img/*", "!/fonts/*", "!/favicon.svg", "!/logo-email.png"]
+  },
+  "routes": [
+    { "pattern": "guysa.jouwidealewebsite.nl", "custom_domain": true }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  // Verstuurd vanaf het gedeelde afzenderdomein notify.jouwidealewebsite.nl.
+  // Dat is goed genoeg zolang de aanvragen bij ons binnenkomen; neemt GuySa de
+  // site af, dan hoort hier een `notify.`-subdomein van hun eigen domein te
+  // staan, met DKIM, SPF en DMARC in Cloudflare Email Service. Anders komt de
+  // bevestiging van GuySa aan vanaf het domein van het bureau, en dat is
+  // precies het soort verschil tussen afzender en inhoud waar een spamfilter
+  // op let.
+  //
+  // Het deel voor de @ is vrij: `no-reply@` veranderen is deze regel plus
+  // LEAD_SENDER hieronder, geen DNS-werk.
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["no-reply@notify.jouwidealewebsite.nl"]
+    }
+  ],
+  // Geen TURNSTILE_SECRET_KEY: dit formulier draait met `turnstile: false` en
+  // leunt op het verborgen veld in worker/index.ts, dus er is geen widget om
+  // tegen te controleren.
+  //
+  // De ontvanger is onze eigen inbox en niet die van GuySa, dus een
+  // testaanvraag mag hier gewoon. Dat verandert op de dag dat LEAD_RECIPIENT
+  // een adres van de klant wordt: vanaf dan komt elke test in hun mailbox
+  // terecht, en hoort het eerst terug op hallo@jouwidealewebsite.nl gezet te
+  // worden.
+  "vars": {
+    "SITE_ID": "guysa",
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    "LEAD_SENDER": "no-reply@notify.jouwidealewebsite.nl"
+  }
+}
