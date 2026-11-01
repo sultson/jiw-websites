@@ -47,7 +47,7 @@ const SITE = {
   phone: "06-15532711",
   phoneIntl: "+31615532711",
   email: "info@dagmarvoss.nl",
-  street: "Grote Houtstraat 144 R-bv",
+  street: "Grote Houtstraat 144 R BV",
   city: "Haarlem",
   zip: "2011 SW",
   price: "105,00",
@@ -181,7 +181,7 @@ function layout(page) {
         postalCode: SITE.zip,
         addressCountry: "NL",
       },
-      geo: { "@type": "GeoCoordinates", latitude: 52.377, longitude: 4.6335 },
+      geo: { "@type": "GeoCoordinates", latitude: SITE.lat, longitude: SITE.lng },
       areaServed: [
         { "@type": "City", name: "Haarlem" },
         { "@type": "AdministrativeArea", name: "Zuid-Kennemerland" },
@@ -478,7 +478,7 @@ const FAQ = [
   },
   {
     q: "Waar vinden de gesprekken plaats?",
-    a: "In mijn praktijk aan de Grote Houtstraat 144 R-bv in het centrum van Haarlem, op loopafstand van station Haarlem en goed bereikbaar vanuit Heemstede, Bloemendaal, Velsen, Zandvoort en de rest van Zuid-Kennemerland.",
+    a: "In mijn praktijk aan de Grote Houtstraat 144 R BV in het centrum van Haarlem, op loopafstand van station Haarlem en goed bereikbaar vanuit Heemstede, Bloemendaal, Velsen, Zandvoort en de rest van Zuid-Kennemerland.",
   },
 ];
 
