@@ -42,7 +42,7 @@
  */
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
-import { LOGO_BREED } from '../handtekening.mjs';
+import { LOGO_BREED, LOGO_SCHAAL } from '../handtekening.mjs';
 
 const WIT = { r: 255, g: 255, b: 255, alpha: 1 };
 
@@ -52,8 +52,8 @@ const WIT = { r: 255, g: 255, b: 255, alpha: 1 };
    handtekening.mjs toetst het bovendien andersom - die zakt als de plaat niet precies
    LOGO_BREED breed is. */
 const PLATEN = [
-  { naam: 'logo-mail.png', breed: 440 },
-  { naam: 'logo-handtekening.png', breed: LOGO_BREED },
+  { naam: 'logo-mail.png', breed: 440, dpi: 72 },
+  { naam: 'logo-handtekening.png', breed: LOGO_BREED * LOGO_SCHAAL, dpi: 72 * LOGO_SCHAAL },
 ];
 
 const bron = new URL('../public/logo.svg', import.meta.url);
@@ -66,13 +66,21 @@ const bron = new URL('../public/logo.svg', import.meta.url);
    sharp neemt geen URL aan zodra er ook opties meegaan, en op Windows is een
    file:///C:/... url als string niet hetzelfde als het pad - dat geeft "unsupported
    input". Dus fileURLToPath ertussen. */
-for (const { naam, breed } of PLATEN) {
+for (const { naam, breed, dpi } of PLATEN) {
   const doel = new URL(`../public/${naam}`, import.meta.url);
+  /* `withMetadata({density})` schrijft de pHYs-blok (dpi / 0,0254 pixels per meter).
+     Dat is de maat waar Mail op de Mac op afgaat voor de handtekeningplaat; voor
+     logo-mail.png doet hij niets, want die mail wordt alleen weergegeven en daar geldt
+     de opgegeven breedte. Zie LOGO_SCHAAL in handtekening.mjs. */
   const plaat = await sharp(fileURLToPath(bron))
     .resize({ width: breed })
     .flatten({ background: WIT })
+    .withMetadata({ density: dpi })
     .png({ compressionLevel: 9 })
     .toFile(fileURLToPath(doel));
 
-  console.log(`${naam}  ${plaat.width}x${plaat.height}, ${(plaat.size / 1024).toFixed(1)} kB`);
+  const weergave = Math.round(plaat.width / (dpi / 72));
+  console.log(
+    `${naam}  ${plaat.width}x${plaat.height} op ${dpi} dpi = ${weergave} px weergave, ${(plaat.size / 1024).toFixed(1)} kB`,
+  );
 }

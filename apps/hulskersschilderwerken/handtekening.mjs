@@ -49,9 +49,14 @@
  * een weergave op 220). Die was hij wel, en daar ging het op 01-11-2026 op stuk: Mail
  * op de Mac toont een handtekeningplaat op zijn EIGEN pixelmaat en gooit de opgegeven
  * width en height weg, dus er stond een logo van 440 px in een veld van 320 en de tabel
- * viel om. Deze plaat is daarom precies LOGO_BREED breed. maatVanPng zakt als dat niet
- * meer klopt - en dat is de hele reparatie, want een andere opmaak helpt niet tegen een
- * programma dat de opmaak weggooit.
+ * viel om.
+ *
+ * "Kan het echt niet scherper?" (Armando, 01-11-2026). Dat kon, en de reparatie van
+ * vanochtend - de plaat op precies LOGO_BREED zetten - was de botte helft van het
+ * antwoord. Zie LOGO_SCHAAL hieronder: wat Mail weggooit is de maat in de OPMAAK, niet
+ * de maat die de plaat zelf aandraagt, en een png draagt naast zijn pixels ook zijn
+ * pixeldichtheid (de pHYs-blok). Twee keer de pixels op twee keer de dichtheid is
+ * dezelfde maat op papier en twee keer zoveel beeld.
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -83,6 +88,26 @@ const HIER = path.dirname(fileURLToPath(import.meta.url))
  * 30 tekens en dat is de regel die alles bepaalt.
  */
 export const LOGO_BREED = 110 /* was 174: 64 px eraf */
+
+/*
+ * Hoeveel pixels de handtekeningplaat per weergavepixel draagt. 2 = 220x84 beeld in een
+ * vak van 110x42, en dat is wat een retina-scherm ook echt kan tonen.
+ *
+ * Waarom dat kan terwijl de plaat vanochtend juist op 110 moest. Mail gooit width en
+ * height uit de OPMAAK weg en vraagt de plaat zelf hoe groot hij is. Dat antwoord is
+ * niet "mijn pixels": een png draagt een pHYs-blok met zijn pixeldichtheid, en macOS
+ * rekent daarmee pixels naar punten (pixels / (dpi / 72)). Een plaat van 220 px op 144
+ * dpi is dus 110 punten breed - dezelfde maat als nu, met twee keer zoveel beeld erin.
+ * Zonder pHYs valt een png terug op 72 dpi, en dan IS 220 px ook 220 punten: precies de
+ * kapotte tabel van vorige week. Daarom is de dichtheid hier een eis en geen bijzaak.
+ *
+ * EEN knop, aan beide kanten vastgezet: gen-mail-logo.mjs maakt de plaat op
+ * LOGO_BREED * LOGO_SCHAAL met 72 * LOGO_SCHAAL dpi, en handtekeningGegevens zakt als de
+ * plaat die maat of die dichtheid niet heeft. Blijkt Mail de dichtheid toch te negeren,
+ * dan is dit getal terug op 1 de hele terugdraai - niet een plaat die ergens
+ * achterblijft bij een maat die hier veranderde.
+ */
+export const LOGO_SCHAAL = 2
 const KIER = 14 /* ruimte links en rechts van de streep, was 18 */
 const MAAT = {
   naam: 15, /* was 16 */
@@ -205,11 +230,59 @@ function maatVanPng(bestand) {
   if (!fs.existsSync(bestand)) {
     throw new Error(`handtekening: ${path.basename(bestand)} ligt niet in public/ - draai \`node tools/gen-mail-logo.mjs\``)
   }
-  const b = fs.readFileSync(bestand)
+  return maatVanPngBuffer(fs.readFileSync(bestand), path.basename(bestand))
+}
+
+/*
+ * Breedte, hoogte EN pixeldichtheid uit de png zelf. Die derde is hier geen bijzaak maar
+ * de maat waar Mail op afgaat (zie LOGO_SCHAAL), en hij staat in een blok dat optioneel
+ * is - dus ontbreken is een echte uitkomst en niet een leesfout.
+ *
+ * De blokken staan achter de acht bytes van de png-handtekening, elk als lengte (4),
+ * naam (4), inhoud, controlegetal (4). IHDR is altijd de eerste: breedte op 16, hoogte op
+ * 20. pHYs kan erachter overal staan en draagt pixels per eenheid in x en y plus de
+ * eenheid; eenheid 1 is de meter, en dan is dpi het aantal maal 0,0254.
+ */
+function maatVanPngBuffer(b, naam) {
   if (b.length < 24 || b.readUInt32BE(12) !== 0x49484452) {
-    throw new Error(`handtekening: ${bestand} is geen png met een IHDR op de verwachte plek`)
+    throw new Error(`handtekening: ${naam} is geen png met een IHDR op de verwachte plek`)
   }
-  return { breed: b.readUInt32BE(16), hoog: b.readUInt32BE(20) }
+  let dpi = null
+  for (let p = 8; p + 12 <= b.length; ) {
+    const len = b.readUInt32BE(p)
+    if (b.toString('ascii', p + 4, p + 8) === 'pHYs' && len === 9 && p + 8 + len <= b.length) {
+      if (b[p + 16] === 1) dpi = Math.round(b.readUInt32BE(p + 8) * 0.0254)
+      break
+    }
+    p += 12 + len
+  }
+  return { breed: b.readUInt32BE(16), hoog: b.readUInt32BE(20), dpi }
+}
+
+/*
+ * De twee eisen aan de handtekeningplaat bij elkaar, zodat ze niet uit elkaar kunnen
+ * lopen: de bouw toetst het bestand in public/, keurHandtekening toetst het beeld dat
+ * ECHT in de html staat. Dat zijn twee verschillende dingen - een plaat die na het
+ * inlezen vervangen wordt haalt de eerste en niet de tweede.
+ */
+function keurPlaat(m, wat) {
+  const moetBreed = LOGO_BREED * LOGO_SCHAAL
+  if (m.breed !== moetBreed) {
+    throw new Error(
+      `handtekening: ${wat} is ${m.breed} px breed en moet ${moetBreed} zijn (${LOGO_BREED} weergave x ${LOGO_SCHAAL}). ` +
+        'Mail op de Mac gooit de opgegeven maat weg en vraagt de plaat zelf hoe groot hij is. ' +
+        'Draai `node tools/gen-mail-logo.mjs`.',
+    )
+  }
+  const moetDpi = 72 * LOGO_SCHAAL
+  if (LOGO_SCHAAL !== 1 && m.dpi !== moetDpi) {
+    throw new Error(
+      `handtekening: ${wat} draagt ${m.dpi === null ? 'geen pixeldichtheid' : m.dpi + ' dpi'} en moet ${moetDpi} dpi dragen. ` +
+        `Zonder die dichtheid rekent Mail ${moetBreed} px als ${moetBreed} punten, en dan staat het logo ` +
+        `${LOGO_SCHAAL} keer te groot naast de tekst - de kapotte tabel van 01-11-2026. ` +
+        'Draai `node tools/gen-mail-logo.mjs`.',
+    )
+  }
 }
 
 export const LOGO_BESTAND = 'logo-handtekening.png'
@@ -217,21 +290,12 @@ export const LOGO_BESTAND = 'logo-handtekening.png'
 export function handtekeningGegevens() {
   const echt = maatVanPng(path.join(HIER, 'public', LOGO_BESTAND))
   /*
-   * De plaat moet precies zo breed zijn als hij getoond wordt. Mail op de Mac negeert
-   * width en height op een handtekening en tekent de plaat op zijn eigen pixelmaat;
-   * stond hier 440 tegen een weergave van 110, dan is wat de ontvanger ziet vier keer
-   * te groot en staat de tekst eronder in plaats van ernaast (Armando, 01-11-2026).
-   * Daarom zakt dit en wordt het niet stil rechtgetrokken: een plaat van de verkeerde
-   * maat is hier geen schoonheidsfoutje maar een kapotte handtekening, en hij is op
-   * deze pagina niet te zien.
+   * Zakken en niet stil rechttrekken: een plaat van de verkeerde maat of zonder
+   * pixeldichtheid is hier geen schoonheidsfoutje maar een kapotte handtekening, en hij
+   * is op deze pagina niet te zien - die toont de plaat op de maat uit de opmaak, en dat
+   * is precies de maat die Mail weggooit.
    */
-  if (echt.breed !== LOGO_BREED) {
-    throw new Error(
-      `handtekening: ${LOGO_BESTAND} is ${echt.breed} px breed en wordt op ${LOGO_BREED} getoond. ` +
-        'Mail op de Mac gooit de opgegeven maat weg en tekent de plaat op zijn eigen pixelmaat, ' +
-        'dus de plaat moet precies de weergavemaat hebben. Draai `node tools/gen-mail-logo.mjs`.',
-    )
-  }
+  keurPlaat(echt, LOGO_BESTAND)
   return {
     /*
      * Het logo gaat als data:-beeld MEE in de handtekening, niet als adres op onze
@@ -370,15 +434,7 @@ function keurHandtekening(html, G) {
     }
     const d = /^data:image\/png;base64,([A-Za-z0-9+/=]+)$/.exec(m[1])
     if (!d) throw new Error(`handtekening: ${m[1].slice(0, 40)} is geen data:image/png;base64 beeld`)
-    const b = Buffer.from(d[1], 'base64')
-    if (b.length < 24 || b.readUInt32BE(12) !== 0x49484452) {
-      throw new Error('handtekening: het ingesloten beeld is geen leesbare png')
-    }
-    if (b.readUInt32BE(16) !== LOGO_BREED) {
-      throw new Error(
-        `handtekening: het ingesloten beeld is ${b.readUInt32BE(16)} px breed en wordt op ${LOGO_BREED} getoond`,
-      )
-    }
+    keurPlaat(maatVanPngBuffer(Buffer.from(d[1], 'base64'), 'het ingesloten beeld'), 'het ingesloten beeld')
   }
   const rijen = (html.match(/<tr\b/g) || []).length
   const vakken = (html.match(/<td\b/g) || []).length
