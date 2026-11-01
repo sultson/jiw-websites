@@ -168,6 +168,29 @@ apps/         client sites (almost all a Vite + React 19 + TS 5.8 + Tailwind v4 
                           `FORM_PAD` and `INDEXEERBAAR_PADEN` live in `inhoud.mjs` because
                           three or four files have to agree on them and vooraf.mjs reads
                           the worker to check. dev port 3075. See its README + SEO.md.
+  guysa/                  a normal Vite+React app, graduated 01-11-2026 from
+                          jiw-concepts/guysa. Still on OUR address
+                          `guysa.jouwidealewebsite.nl` — GuySa is not a client yet and
+                          has its own live site on `guysa-inboedels.be`. The Worker kept
+                          the concept's name (`guysa`) and its hostname, so there was no
+                          custom domain to move; the price is that a `wrangler deploy` in
+                          the old concept folder would have replaced the live site with
+                          the old copy, which is why its `wrangler.toml` is gone and a
+                          `VERHUISD.md` sits there instead. 2 pages (home + a real 404)
+                          prerendered by `scripts/prerender.mjs` — the concept shipped an
+                          empty `<div id="root">`, so a crawler read zero words.
+                          **The canonical now points at itself instead of at
+                          `guysa-inboedels.be`**, which is what makes it indexable at all
+                          and also means two findable sites about the same business exist
+                          right now; that is a deliberate interim state, see its SEO.md.
+                          Sends from `no-reply@notify.jouwidealewebsite.nl` to
+                          `hallo@jouwidealewebsite.nl` — still our own inbox, so test
+                          submissions are fine. `scripts/audit-seo.mjs` gates `ship` and
+                          checks, among other things, that the form posts to the same path
+                          the worker listens on and that the FAQ markup matches the text on
+                          the page. Photos go to R2 under the `guysa/` prefix (90-day
+                          lifecycle rule added 01-11-2026). dev port 3076.
+                          See its README + SEO.md.
   my-kim-nails/        dev port 3000 — frontend-only
   nail-it-rosmalen/    dev port 3002 — frontend-only
   sgv-nails/           placeholder (INFO.md only, not yet scaffolded)
