@@ -39,11 +39,11 @@
  *    krijgen; de weg die het wel doet is hem uit een ontvangen mail kopieren. Daarom
  *    staat die weg hier vooraan en de snelle weg erachter, en niet andersom.
  *
- * Het logo is /logo-handtekening.png, met een witte achtergrond ingebakken (zie
- * tools/gen-mail-logo.mjs). Een svg toont geen enkel mailprogramma en een data:-beeld
- * komt bij de ontvanger als bijlage mee of verdwijnt. De hoogte wordt uit het bestand
- * zelf gelezen, niet hier opgeschreven - anders staat de verhouding scheef zodra het
- * merkbestand verandert.
+ * Het logo is logo-handtekening.png, met een witte achtergrond ingebakken (zie
+ * tools/gen-mail-logo.mjs), en het gaat als data:-beeld MEE in de handtekening in plaats
+ * van als adres op onze server - zie de noot bij `logo` in handtekeningGegevens. Een svg
+ * toont geen enkel mailprogramma. De hoogte wordt uit het bestand zelf gelezen, niet
+ * hier opgeschreven - anders staat de verhouding scheef zodra het merkbestand verandert.
  *
  * Het is NIET dezelfde plaat als in de bevestigingsmail (logo-mail.png, 440 breed voor
  * een weergave op 220). Die was hij wel, en daar ging het op 01-11-2026 op stuk: Mail
@@ -135,7 +135,8 @@ export const HT = {
     'Sneller, al lukt het op de telefoon lang niet altijd: open deze pagina op de iPhone, druk op Handtekening kopieren en plak meteen in dat veld. Komt het logo niet mee, neem dan de weg hierboven.',
   twee:
     'Mail op de Mac en Mail op de telefoon bewaren elk hun eigen handtekening. U zet hem dus twee keer, en na een wijziging ook twee keer opnieuw.',
-  voet: `Het logo wordt opgehaald van ${BEDRIJF.domein}, dus het blijft staan bij degene die de mail ontvangt.`,
+  voet:
+    'Het logo zit in de handtekening zelf en wordt nergens opgehaald. Het staat er dus ook bij een ontvanger die externe afbeeldingen blokkeert.',
 }
 
 /* ------------------------------------------------------------------ de handtekening
@@ -232,7 +233,28 @@ export function handtekeningGegevens() {
     )
   }
   return {
-    logo: `https://${BEDRIJF.domein}/${LOGO_BESTAND}`,
+    /*
+     * Het logo gaat als data:-beeld MEE in de handtekening, niet als adres op onze
+     * server. Gemeten op 01-11-2026, en het is de omgekeerde keuze van vanochtend.
+     *
+     * Wat er stond was `https://<domein>/logo-handtekening.png`. Het klembord van deze
+     * pagina draagt maar twee dingen - text/plain en text/html - en dus GEEN plaatje
+     * (`node tools/klembord-dump.mjs`). Wie dat plakt geeft Mail een adres, en Mail moet
+     * het er zelf bij halen. Lukt dat niet, dan zet hij een leeg vak van precies
+     * 110x42 in de handtekening en BEWAART dat: de editor legt vast wat hij op dat
+     * moment toont. Dat is wat Armando terugstuurde, en het is niet te repareren door
+     * nog eens te plakken.
+     *
+     * Een data:-beeld heeft dat moment niet. Er valt niets op te halen, dus het kan ook
+     * niet mislukken - niet bij het plakken, niet bij een mailprogramma dat externe
+     * beelden blokkeert, en niet bij de ontvanger. De prijs is ~5,6 kB base64 onder elke
+     * mail, en dat is dezelfde bijlage die een ingesloten logo toch al is.
+     *
+     * Hier stond eerder als reden tegen dat een data:-beeld "als bijlage meekomt of
+     * verdwijnt". Het eerste klopt en is de bedoeling; het tweede was een vermoeden, en
+     * het adres dat ervoor in de plaats kwam is wel aantoonbaar stukgegaan.
+     */
+    logo: `data:image/png;base64,${fs.readFileSync(path.join(HIER, 'public', LOGO_BESTAND)).toString('base64')}`,
     breed: LOGO_BREED,
     hoog: Math.round((LOGO_BREED * echt.hoog) / echt.breed),
     kier: KIER,
@@ -322,9 +344,40 @@ function keurHandtekening(html, G) {
   if (/\sclass=|<style/.test(html)) {
     throw new Error('handtekening: er staat een class of een <style> in - een mailprogramma leest geen stylesheet')
   }
-  for (const m of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
+  for (const m of html.matchAll(/href="([^"]+)"/g)) {
     if (!/^(?:https:\/\/|tel:|mailto:)/.test(m[1])) {
       throw new Error(`handtekening: ${m[1]} is geen volledig adres - bij de ontvanger wijst dat naar zijn eigen domein`)
+    }
+  }
+  /*
+   * Het logo mag NIET aan een adres hangen, ook niet aan een volledig adres op ons eigen
+   * domein. Dat was de vorm tot 01-11-2026 en daar ging hij op stuk: het klembord draagt
+   * geen plaatje, dus Mail moest het ophalen, en toen dat niet lukte bewaarde hij een
+   * leeg vak. Een mislukte fetch is hier geen tijdelijk probleem maar een handtekening
+   * die kapot in zijn Mail staat tot iemand hem opnieuw plakt.
+   *
+   * Vandaar beide kanten als eis, en niet alleen de goede vorm: zakken op een src die
+   * opgehaald moet worden, en eisen dat het een data:-beeld is dat ook echt een png van
+   * de weergavemaat bevat. Zonder dat tweede stuk is een lege of halve data-url ook een
+   * leeg vak, en dat ziet niemand op deze pagina.
+   */
+  for (const m of html.matchAll(/src="([^"]+)"/g)) {
+    if (/^https?:/.test(m[1])) {
+      throw new Error(
+        `handtekening: het logo hangt aan een adres (${m[1].slice(0, 60)}). Mail moet dat zelf ophalen en ` +
+          'bewaart een leeg vak als dat mislukt - het beeld hoort als data: in de handtekening zelf.',
+      )
+    }
+    const d = /^data:image\/png;base64,([A-Za-z0-9+/=]+)$/.exec(m[1])
+    if (!d) throw new Error(`handtekening: ${m[1].slice(0, 40)} is geen data:image/png;base64 beeld`)
+    const b = Buffer.from(d[1], 'base64')
+    if (b.length < 24 || b.readUInt32BE(12) !== 0x49484452) {
+      throw new Error('handtekening: het ingesloten beeld is geen leesbare png')
+    }
+    if (b.readUInt32BE(16) !== LOGO_BREED) {
+      throw new Error(
+        `handtekening: het ingesloten beeld is ${b.readUInt32BE(16)} px breed en wordt op ${LOGO_BREED} getoond`,
+      )
     }
   }
   const rijen = (html.match(/<tr\b/g) || []).length
