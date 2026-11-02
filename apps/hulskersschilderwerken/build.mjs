@@ -451,8 +451,17 @@ section{padding-block:clamp(50px,6.4vw,96px)}
 .vakman{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
   gap:clamp(22px,3.2vw,48px);align-items:center;background:#fff;border-radius:6px;
   overflow:hidden;box-shadow:0 18px 44px rgba(11,30,138,.09)}
-.vakman-foto{position:relative;align-self:stretch;min-height:260px}
-.vakman-foto img{width:100%;height:100%;object-fit:cover}
+/* De tekening staat HEEL in beeld en wordt niet bijgesneden. Tot 02-11-2026 stond
+   hier align-self:stretch met object-fit:cover: het fotovak rekte mee met de
+   tekstkolom ernaast (op 1280 was dat 621 px hoog terwijl de tekening er 399 wil
+   zijn) en cover sneed het verschil er links en rechts af - 36 procent van de
+   plaat, inclusief de ladder en de behangrollen. Dat steekt nergens buiten het
+   scherm, dus geen enkele breedte- of luchtmeting zag het; tools/meet-vakman.mjs
+   legt nu de getoonde verhouding naast die van het bestand. */
+.vakman-foto{align-self:center;display:grid;place-items:center;
+  padding:clamp(14px,1.8vw,26px)}
+.vakman-plaat{position:relative;width:100%;margin:auto}
+.vakman-plaat img{display:block;width:100%;height:auto;margin:auto;border-radius:4px}
 .vakman-foto .vlag{position:absolute;left:0;bottom:22px;background:var(--blauw);color:#fff;
   font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;padding:9px 16px}
 .vakman-tekst{padding:clamp(22px,3vw,40px) clamp(22px,3vw,44px) clamp(22px,3vw,40px) 0}
@@ -1519,8 +1528,13 @@ const htmlHome = hoofd({ titel: T.titel, omschrijving: T.omschrijving, pad: '/',
         ${/* Alt zegt sinds 02-11-2026 getekend portret: het IS een tekening, en een
              schermlezer die "foto" voorleest beschrijft dan iets anders dan er staat.
              Ook geen plamuurmes meer - in deze versie houdt hij een kwast vast. */''}
-        ${img('pascal-portret', 'Getekend portret van Pascal Hulskers met een kwast in zijn hand, tussen zijn verfemmers en behangrollen', '(max-width:1040px) 100vw, 46vw')}
-        <span class="vlag">${esc(T.vakman.boven)}</span>
+        ${/* De vlag hangt aan de PLAAT en niet aan de kolom: die kolom is hoger dan
+             de tekening (de tekst ernaast is langer), dus linksonder in de kolom is
+             niet linksonder in de tekening. */''}
+        <div class="vakman-plaat">
+          ${img('pascal-portret', 'Getekend portret van Pascal Hulskers met een kwast in zijn hand, tussen zijn verfemmers en behangrollen', '(max-width:1040px) calc(100vw - 2rem), 44vw')}
+          <span class="vlag">${esc(T.vakman.boven)}</span>
+        </div>
       </div>
       <div class="vakman-tekst">
         <h2>${esc(T.vakman.kop)}</h2>
