@@ -44,18 +44,36 @@ UITSNEDES = {
     # Hier stond 'werkwijze-kop', een eigen onderuitsnede van de rolsteigerfoto voor
     # de kop van /werkwijze/. Die kop gebruikt sinds 20-10-2026 gewoon
     # 'woonkeuken-groen' hierboven, dus er is geen tweede uitsnede meer nodig.
-    # Pascal zelf. Sinds 02-11-2026 de getekende versie die Armando aanleverde
-    # (pascal-tekening.jpg): dezelfde houding als de foto, maar als illustratie.
-    # De bron is al exact 4:3, dus er wordt hier niets afgesneden en de focus doet
-    # niets - die staat er voor het geval de foto terugkomt. Terugdraaien is dit
-    # bestandsnaampje weghalen; pascal-portret.jpg ligt er nog.
+    # Pascal zelf, in het vakmanblok. Sinds 02-11-2026 de getekende versie die Armando
+    # aanleverde (pascal-tekening.jpg) in plaats van de foto. De bron is al exact 4:3,
+    # dus er wordt hier niets afgesneden en de focus doet niets.
     #
-    # -schoon: het model had zijn woordmerk nageschreven en de onderregel op alle
-    # vijf de plekken verkeerd gespeld (schilderwerkobn, schilderwerknd, ...). Dat
-    # is weggepoetst met ../.aangeleverd-hulskers/poets-woordmerk.py, dat alleen die
-    # vijf vakken aanraakt. Opnieuw laten tekenen kon niet: dan tekent het model ook
-    # zijn gezicht opnieuw, en dat is zijn gezicht niet meer.
-    'pascal-portret':        (4 / 3, 0.60, 0.45, [1200, 800], 'pascal-tekening-schoon'),
+    # Die tekening is twee keer bewerkt en de volgorde is de uitleg:
+    #  -schoon  het model had zijn woordmerk op vijf plekken NAGESCHREVEN en de
+    #           onderregel elke keer anders verkeerd gespeld (schilderwerkobn,
+    #           schilderwerknd, ...). ../.aangeleverd-hulskers/poets-woordmerk.py
+    #           haalt die vijf weg en raakt verder geen pixel aan.
+    #  -merk    Armando wil het merk op de grote emmer juist WEL zien (02-11-2026),
+    #           dus daar zet tools/merk-emmer.mjs zijn ECHTE logo uit public/logo.svg
+    #           overheen. Goed gespeld per definitie, en het blijft goed als dat
+    #           merkbestand verandert.
+    # Terugdraaien is hier een achtervoegsel weghalen; alle drie de platen blijven
+    # liggen, en pascal-portret.jpg (de foto) ook.
+    'pascal-tekening':       (4 / 3, 0.60, 0.45, [1200, 800], 'pascal-tekening-merk'),
+    # Pascal zelf, als foto, naast het offerteformulier op beide pagina's. Dit is de
+    # foto die de tekening uit het vakmanblok verdrong; Armando stuurde hem op
+    # 02-11-2026 opnieuw op met de vraag de foto's elders op de site te zetten.
+    # Liggend 3:2 en niet 4:3: in dat smalle zijpaneel is een lage band genoeg om
+    # een gezicht te laten zien, en meer hoogte duwt zijn telefoonnummer uit beeld.
+    'pascal-foto':           (3 / 2, 0.62, 0.40, [760, 500], 'pascal-portret'),
+    # Pascal aan de plaktafel, onder de stappen op /werkwijze/. Breed, want het is
+    # een band over de volle kolom. De bron is 1178x642 en er wordt niet opgeschaald,
+    # dus 1600 komt er niet uit - het manifest regelt dat.
+    'pascal-plaktafel':      (16 / 9, 0.50, 0.50, BREED),
+    # Pascal aan het buitenwerk, als zevende kaart in de werkrail. Staande bron
+    # (1178x1549) in een liggende kaart, dus hier wordt echt gesneden: de focus ligt
+    # hoog, zodat zijn gezicht en de wand waar hij aan werkt erin blijven.
+    'pascal-buiten':         (4 / 3, 0.50, 0.34, KAART),
     # Kleurkaarten, staand 3:4. De slaapkamerfoto zat hier eerst bij, maar die is te
     # donker belicht om een kleur te laten zien: elk monster kwam onder #52 uit.
     'overloop-taupe':        (3 / 4, 0.55, 0.45, KAART),

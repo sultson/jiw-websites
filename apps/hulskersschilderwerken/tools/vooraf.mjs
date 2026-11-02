@@ -35,6 +35,8 @@
 //   18. de hulppagina's: precies HULP_PADEN, altijd noindex, geen canonical, niet in de
 //       sitemap, en geen enkele pagina linkt ernaartoe
 //   19. het adres dat de bevestigingsmail print is hetzelfde als dat van de site
+//   20. de drie foto's van Pascal staan elk op hun eigen plek, en de vlag "De vakman"
+//       staat nergens meer op de tekening (02-11-2026)
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { BEDRIJF, GBP, FORM_PAD, INDEXEERBAAR_PADEN, HULP_PADEN } from '../inhoud.mjs';
 
@@ -396,6 +398,49 @@ if (!existsSync('dist/logo-handtekening.png')) {
   if (!m) zak('vooraf: worker/confirmation.ts heeft geen contactEmail meer - print de mail nog wel een adres?');
   else if (m[1] !== BEDRIJF.mail) {
     zak(`vooraf: de bevestigingsmail print ${m[1]}, de site geeft ${BEDRIJF.mail} (inhoud.mjs)`);
+  }
+}
+
+// ------------------------------------------------- 20. de foto's van Pascal, en de vlag
+//
+// Drie foto's van hemzelf, elk op een eigen plek, aangeleverd door Armando op
+// 02-11-2026 met de vraag ze "op andere plekken van de website" te zetten. Dat is
+// precies het soort wijziging dat bij de volgende verbouwing stil verdwijnt: een foto
+// die uit een blok valt laat geen gat achter dat iemand opvalt, en geen enkele
+// breedte-, lucht- of contrastmeting mist hem. Vandaar een eis per plek, met het
+// bestand EN de pagina erbij - alle drie op de startpagina zetten zou ook door een
+// losse "staat hij in dist" heen komen.
+//
+// En in dezelfde ronde ging de blauwe vlag "De vakman" van de tekening af (hij lag over
+// het woordmerk op de grote emmer). Dit is de vierde doorgestreepte regel op deze site
+// die als CONTROLE terugkomt in plaats van als tekstwijziging, om dezelfde reden als de
+// vorige drie: wat er een keer uit moest, zet de volgende ronde er zo weer in.
+{
+  const HOORT = [
+    ['/', 'pascal-buiten', 'de werkrail op de startpagina'],
+    ['/', 'pascal-tekening', 'het vakmanblok op de startpagina'],
+    ['/werkwijze/', 'pascal-plaktafel', 'onder de stappen op /werkwijze/'],
+    // Het offerteblok staat op ALLEBEI de pagina's, dus deze foto hoort er twee keer
+    // te staan. Zo'n eis per pagina en niet een keer site-breed: het blok is een
+    // functie, en een foto die alleen in de ene aanroep belandt is precies de fout
+    // die je dan niet ziet.
+    ['/', 'pascal-foto', 'het offerteblok op de startpagina'],
+    ['/werkwijze/', 'pascal-foto', 'het offerteblok op /werkwijze/'],
+  ];
+  for (const [adres, naam, waar] of HOORT) {
+    const p = paginas.find((q) => q.adres === adres);
+    if (!p) {
+      zak(`vooraf: ${adres} bestaat niet meer, maar ${naam} hoort daar te staan`);
+      continue;
+    }
+    if (!new RegExp(`src="/f/${naam}-\\d+\\.webp"`).test(p.html)) {
+      zak(`vooraf: ${naam} staat niet meer in ${waar}`);
+    }
+  }
+  for (const p of paginas) {
+    if (/class="vlag"/.test(p.html)) {
+      zak(`vooraf: de vlag "De vakman" staat weer op ${p.adres || p.bestand} - die is er op 02-11-2026 afgehaald`);
+    }
   }
 }
 

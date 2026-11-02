@@ -403,7 +403,10 @@ export const TEKST = {
     },
 
     vakman: {
-      boven: 'De vakman',
+      // Hier stond `boven: 'De vakman'`, de blauwe vlag linksonder op de tekening.
+      // Weg op 02-11-2026 (Armando): hij lag precies over het woordmerk op de grote
+      // emmer, en dat merk is sinds diezelfde dag zijn ECHTE logo. Hij zei bovendien
+      // in kapitalen wat de kop er drie centimeter onder al zegt.
       kop: 'Aangebracht door Pascal zelf',
       b1:
         'Pascal Hulskers Schilderwerken is een eenmanszaak uit Coevorden. Wie belt, krijgt ' +
@@ -535,6 +538,13 @@ export const TEKST = {
       d: 'Witgelakte taatsdeuren in de woonkamer',
       e: 'Zwart geschilderde houten gevel',
       f: 'Voordeur en kozijnen, zwart geschilderd',
+      // Zevende kaart sinds 02-11-2026. De zes hierboven laten het RESULTAAT zien,
+      // deze laat hem er zelf bij zien - dat is geen breuk met de kop ("Werk van
+      // Pascal") maar wel iets anders, dus het bijschrift noemt het werk en niet
+      // hem. Armando stuurde de foto op 02-11-2026 met de vraag hem ergens op de
+      // site te zetten. Wat er te zien is en meer niet: buitenwerk aan een woning,
+      // met schuurmateriaal en een stofzuiger naast hem.
+      g: 'Buitenwerk aan de onderzijde van een gevel',
     },
 
     // Wie de startpagina leest ziet alleen renovlies en denkt dat Pascal verder niets
@@ -876,6 +886,12 @@ export const TEKST = {
       // Tot 25-10-2026 stond vliesbehang in deze opsomming, en dat is precies de fout
       // die het overleg aanwees: vliesbehang wordt niet getext.
       s5_b: 'Renovliesbehang of glasweefselbehang op de wand, daarna texen in uw kleur.',
+      // Bijschrift onder de foto die sinds 02-11-2026 onder deze stappen staat
+      // (Armando leverde hem die dag aan). Hij hoort bij stap 5, maar het nummer
+      // staat er met opzet NIET in: dan verwijst het bijschrift naar een telling
+      // die verschuift zodra er een stap bij of af gaat, en dat merkt niemand.
+      // Wat er staat is wat er te zien is, verder niets.
+      stapFoto: 'Plakken: een baan vlies op de plaktafel.',
       s6_t: 'Oplevering, daarna de rekening',
       s6_b: 'Geen betalingen vooruit, pas als de werkzaamheden zijn verricht.',
 

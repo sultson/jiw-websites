@@ -460,10 +460,8 @@ section{padding-block:clamp(50px,6.4vw,96px)}
    legt nu de getoonde verhouding naast die van het bestand. */
 .vakman-foto{align-self:center;display:grid;place-items:center;
   padding:clamp(14px,1.8vw,26px)}
-.vakman-plaat{position:relative;width:100%;margin:auto}
+.vakman-plaat{width:100%;margin:auto}
 .vakman-plaat img{display:block;width:100%;height:auto;margin:auto;border-radius:4px}
-.vakman-foto .vlag{position:absolute;left:0;bottom:22px;background:var(--blauw);color:#fff;
-  font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;padding:9px 16px}
 .vakman-tekst{padding:clamp(22px,3vw,40px) clamp(22px,3vw,44px) clamp(22px,3vw,40px) 0}
 .vakman h2{font-size:clamp(26px,3.3vw,40px)}
 .vakman p{margin-top:14px;font-size:16px;color:#4B5563}
@@ -594,6 +592,11 @@ blockquote cite{display:block;margin-top:7px;font-size:12.5px;font-style:normal;
 /* stappen: genummerde regels in plaats van kaarten. Armando vergeleek op 20-10-2026
    de lijst van de referentiesite met onze kaartjes: de lijst is duidelijker in
    structuur en minder leeswerk. Cijfer links, korte kop, een regel eronder. */
+/* De foto onder de stappen loopt precies zo breed als de rijen erboven (940),
+   anders staat er een band die uit de kolom steekt waar hij bij hoort. */
+.stapfoto{margin:clamp(26px,3vw,40px) 0 0;max-width:940px}
+.stapfoto img{display:block;width:100%;height:auto;border-radius:5px}
+.stapfoto figcaption{margin-top:10px;font-size:14px;color:var(--grijs)}
 .rijen{display:grid;max-width:940px;border-top:2px solid var(--navy)}
 .rijen>div{display:grid;grid-template-columns:clamp(52px,6.5vw,82px) minmax(0,1fr);
   gap:clamp(8px,1.6vw,20px);align-items:baseline;
@@ -641,6 +644,11 @@ button.knop[disabled]{opacity:.6;cursor:default}
 .uitkomst.bezig{color:var(--grijs)}
 .zijpaneel{background:var(--nacht);color:#DDE3F0;border-radius:6px;padding:clamp(22px,2.6vw,32px)}
 .zijpaneel h3{color:#fff;font-size:20px}
+/* Zijn foto bovenin het zwarte paneel. height:auto en geen vast vak met cover:
+   dan kan de foto niet stil bijgesneden raken zodra het paneel een andere maat
+   krijgt - dezelfde fout als in het vakmanblok, en die kostte een avond. */
+.zijfoto{margin:0 0 20px;border-radius:5px;overflow:hidden;line-height:0}
+.zijfoto img{display:block;width:100%;height:auto}
 .zijpaneel dl{margin:18px 0 0;display:grid;gap:14px}
 .zijpaneel dt{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8FA0C4;font-weight:700}
 .zijpaneel dd{margin:3px 0 0;font-size:16px;font-weight:600;color:#fff;overflow-wrap:anywhere}
@@ -966,6 +974,12 @@ const WERK = [
   ['stalen-deuren-wit', T.werk.d, 'Woonkamer met witgelakte taatsdeuren met glasvlakken naar de keuken'],
   ['buiten-gevel-riet', T.werk.e, 'Zwart geschilderde houten gevel met witte kozijnen onder een rieten dak'],
   ['buiten-voordeur', T.werk.f, 'Entree van een woning met zwart geschilderde voordeur, kozijnen en stoep'],
+  // De zevende sinds 02-11-2026. Dat de rail er een bij kan is geen toeval: dit is
+  // sinds 20-10-2026 een zijwaarts schuivende strook met een teller en duimnagels
+  // (feedback Armando) en geen raster van drie kolommen. In een raster had een
+  // zevende kaart twee cellen leeg gelaten, en een lege cel laat de achtergrond van
+  // het raster zien - zie de regel over het grijze vak in playground/CLAUDE.md.
+  ['pascal-buiten', T.werk.g, 'Pascal Hulskers werkt geknield aan de onderzijde van een witte gevel, met schuurmateriaal en een stofzuiger naast zich'],
 ]
 const WERK_KAARTEN = WERK.map(([naam, bijschrift, alt], i) =>
   `<figure class="werkkaart">${img(naam, alt, '(max-width:720px) 86vw, (max-width:1040px) 46vw, 31vw')}` +
@@ -1201,6 +1215,13 @@ function offerteBlok(pad) {
         <p class="kleine-regel heel">${esc(T.offerte.privacy)}</p>
       </form>
       <aside class="zijpaneel">
+        ${/* Zijn foto boven het nummer, sinds 02-11-2026. Dit is de foto die in het
+             vakmanblok door de tekening werd vervangen; Armando stuurde hem die dag
+             opnieuw met de vraag de foto's elders op de site te zetten, en dit is de
+             plek waar hij het meest doet: wie hier staat gaat bellen of een aanvraag
+             sturen, en dan is "wie krijg ik aan de lijn" precies de vraag. Hij staat
+             in het offerteblok en dus op BEIDE pagina's - een plek in de code. */''}
+        <figure class="zijfoto">${img('pascal-foto', 'Pascal Hulskers in zijn werkkleding met een plamuurmes in zijn hand, lachend tegen een pas gesausde wand', '(max-width:860px) 92vw, 330px')}</figure>
         <h3>${esc(T.offerte.bellen)}</h3>
         <dl>
           <div><dt>Telefoon</dt><dd><a href="tel:${BEDRIJF.telLink}">${esc(BEDRIJF.telWeergave)}</a></dd></div>
@@ -1527,13 +1548,17 @@ const htmlHome = hoofd({ titel: T.titel, omschrijving: T.omschrijving, pad: '/',
       <div class="vakman-foto">
         ${/* Alt zegt sinds 02-11-2026 getekend portret: het IS een tekening, en een
              schermlezer die "foto" voorleest beschrijft dan iets anders dan er staat.
-             Ook geen plamuurmes meer - in deze versie houdt hij een kwast vast. */''}
-        ${/* De vlag hangt aan de PLAAT en niet aan de kolom: die kolom is hoger dan
-             de tekening (de tekst ernaast is langer), dus linksonder in de kolom is
-             niet linksonder in de tekening. */''}
+             Ook geen plamuurmes meer - in deze versie houdt hij een kwast vast.
+
+             Hier hing tot 02-11-2026 een blauwe vlag "De vakman" linksonder over de
+             plaat. Armando: "Haal de vakman weg zodat je de tekst ziet die op die
+             emmer staat." Hij lag precies over het woordmerk op de grote emmer, en
+             dat merk is nu juist zijn echte logo (zie tools/merk-emmer.mjs). Een
+             bordje dat de kop drie centimeter lager woordelijk herhaalt
+             ("Aangebracht door Pascal zelf") verdient die plek ook niet.
+             controleer.mjs zakt zodra hij terugkomt. */''}
         <div class="vakman-plaat">
-          ${img('pascal-portret', 'Getekend portret van Pascal Hulskers met een kwast in zijn hand, tussen zijn verfemmers en behangrollen', '(max-width:1040px) calc(100vw - 2rem), 44vw')}
-          <span class="vlag">${esc(T.vakman.boven)}</span>
+          ${img('pascal-tekening', 'Getekende Pascal Hulskers met een kwast in zijn hand, tussen zijn verfemmers met het logo Hulskers Schilderwerken en zijn behangrollen', '(max-width:1040px) calc(100vw - 2rem), 44vw')}
         </div>
       </div>
       <div class="vakman-tekst">
@@ -1928,6 +1953,13 @@ ${/* De drie soorten staan BOVEN de stappen, en dat is geen opmaakkeuze. Wie hie
     <div class="rijen">
         ${wStappen}
     </div>
+    ${/* Zijn eigen plaktafel, onder de stappen en niet ernaast: de stappen zijn een
+         rij regels die je van boven naar beneden leest, en een foto in een tweede
+         kolom breekt die kolom doormidden. Hij hoort bij stap 5 (plakken en texen)
+         en staat daarom onder de hele rij en niet tussen twee regels in - dat laatste
+         zou de nummering opbreken. Armando leverde de foto aan op 02-11-2026. */''}
+    <figure class="stapfoto">${img('pascal-plaktafel', 'Pascal Hulskers vouwt een baan vlies op de plaktafel met lijmbak, in een kamer in aanbouw met de rollen ernaast', '(max-width:860px) 92vw, 940px')}
+      <figcaption>${esc(W.stapFoto)}</figcaption></figure>
   </div>
 </section>
 
