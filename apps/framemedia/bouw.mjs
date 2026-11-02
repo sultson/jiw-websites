@@ -51,9 +51,16 @@ const FORMULIEREN = {
 //
 // `website` is het lokvink: het staat er wel in de html (anders ziet een bot
 // het niet) maar buiten beeld en buiten de tabvolgorde. Een bot die het vult
-// krijgt {"ok":true} terug en er wordt niets opgeslagen en niets gemaild. Dat
-// scheelt een Turnstile, dus ook een extra verzoek naar Cloudflare voor iemand
-// die alleen een vraag wil stellen.
+// krijgt {"ok":true} terug en er wordt niets opgeslagen en niets gemaild.
+//
+// Het lokvink alleen hield het niet: vanaf eind oktober 2026 kwam er elke dag
+// een stroom Russische en Griekse spam door het contactformulier, van bots die
+// het verborgen veld gewoon leeg laten. Sinds 02-11-2026 zit er daarom ook een
+// Turnstile in elk formulier (widget "FRAME MEDIA formulieren", managed). Hij
+// staat op interaction-only: een gewone bezoeker ziet niets, alleen wie
+// Cloudflare niet vertrouwt krijgt een vinkje vlak boven de verstuurknop.
+// De geheime sleutel staat als TURNSTILE_SECRET_KEY op de worker (wrangler
+// secret), deze sitekey is openbaar.
 //
 // `__jiw_confirmation_locale` bepaalt in welke taal de bezoeker zijn eigen
 // bevestiging terugkrijgt. Die staat hier per pagina vast en wordt niet uit de
@@ -76,10 +83,21 @@ function vulFormulier(html, taal, sleutel) {
           <input type="hidden" name="__jiw_confirmation_locale" value="${taal.code}">
           <input type="hidden" name="lang" value="${taal.naam}">
           <input type="hidden" name="herkomst" value="${f.herkomst}">`;
+  const knoppen = html.match(/<button\b[^>]*type="submit"/g) || [];
+  if (knoppen.length !== 1) throw new Error(`${taal.code}/${sleutel}: ${knoppen.length} verstuurknoppen, Turnstile verwacht er precies 1`);
+  const wachter = `<div class="cf-turnstile" data-sitekey="${TURNSTILE_SITEKEY}" data-appearance="interaction-only" data-size="flexible" data-language="${taal.code}"></div>
+          `;
   formulierenGeraakt++;
-  return html.split('<form novalidate>').join(
-    `<form novalidate method="post" action="${f.pad}">${verborgen}`);
+  return html
+    .replace(/<button\b[^>]*type="submit"/, m => wachter + m)
+    .split('<form novalidate>').join(
+      `<form novalidate method="post" action="${f.pad}">${verborgen}`);
 }
+
+const TURNSTILE_SITEKEY = '0x4AAAAAAFwhQhacN8TURy08';
+// Alleen op een pagina met een formulier: de rest van de site haalt niets bij
+// Cloudflare op.
+const TURNSTILE_SCRIPT = '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>\n';
 
 const ADRES = PROD
   ? 'https://www.framemedia.tv'
@@ -549,8 +567,9 @@ for (const taal of TALEN) {
     if (!existsSync('inhoud/' + bron)) throw new Error(`${taal.code}: ${bron} bestaat niet`);
     const m = taal.meta[sleutel];
     if (!m) throw new Error(`${taal.code}: geen titel/omschrijving voor '${sleutel}'`);
-    const html = echteDankregels(kop(taal, sleutel, m) + header(taal, sleutel)
+    let html = echteDankregels(kop(taal, sleutel, m) + header(taal, sleutel)
       + vulFormulier(lees(bron).replace(/\s*$/, '\n'), taal, sleutel) + voet(taal, sleutel));
+    if (FORMULIEREN[sleutel]) html = html.replace('</head>', TURNSTILE_SCRIPT + '</head>');
     const pad = 'dist/' + uitPad(taal, sleutel);
     mkdirSync(pad.replace(/\/[^/]+$/, ''), { recursive: true });
     writeFileSync(pad, html);

@@ -65,8 +65,13 @@ async function verstuur(form, dank) {
 
   const knop = form.querySelector('[type="submit"]');
   const was = knop?.textContent;
+  const wachter = form.querySelector('.cf-turnstile');
   if (knop) { knop.disabled = true; knop.textContent = T.verstuurBezig || was; }
   try {
+    // Turnstile zet zijn token in een verborgen veld cf-turnstile-response. Wie
+    // sneller op versturen drukt dan de controle klaar is, wacht hier even in
+    // plaats van een "spamcontrole verlopen" terug te krijgen.
+    if (wachter) await tokenVan(wachter);
     const r = await fetch(adres, { method: 'POST', body: new FormData(form) });
     // De worker antwoordt {"ok":true} of {"ok":false,"message":"..."} met een
     // 4xx. Die message is de reden in de taal van het formulier, dus die is
@@ -86,9 +91,17 @@ async function verstuur(form, dank) {
       p.textContent = reden;
       form.append(p);
     }
+    // Een token geldt een keer. Na een mislukte poging is hij op, dus een tweede
+    // klik zou zonder reset altijd op de spamcontrole stranden.
+    if (wachter && window.turnstile) window.turnstile.reset(wachter);
   } finally {
     if (knop) { knop.disabled = false; knop.textContent = was; }
   }
+}
+
+async function tokenVan(wachter) {
+  const veld = () => wachter.querySelector('[name="cf-turnstile-response"]');
+  for (let i = 0; i < 60 && !veld()?.value; i++) await new Promise(r => setTimeout(r, 250));
 }
 
 document.querySelectorAll('.form-kaart form').forEach(form => {

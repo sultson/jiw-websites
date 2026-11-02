@@ -83,9 +83,13 @@ Twee dingen die `bouw.mjs` in elk formulier zet:
 
 - **Het lokvink** (`website`): staat wel in de html, maar buiten beeld en buiten
   de tabvolgorde (`.lokvink` in `style.css`). Een bot die het vult krijgt
-  `{"ok":true}` en er wordt niets opgeslagen en niets gemaild. Daarom geen
-  Turnstile: geen extra resource, geen secret, en geen verzoek naar een derde
-  voor iemand die alleen een vraag wil stellen.
+  `{"ok":true}` en er wordt niets opgeslagen en niets gemaild.
+- **Turnstile** (sinds 02-11-2026): het lokvink alleen hield de Russische en
+  Griekse spam van eind oktober niet tegen. Widget "FRAME MEDIA formulieren"
+  (managed, `interaction-only`) staat vlak boven elke verstuurknop; het script
+  laadt alleen op de pagina's met een formulier. De sitekey staat in `bouw.mjs`,
+  de geheime sleutel als `TURNSTILE_SECRET_KEY` op de worker
+  (`wrangler secret put`). Zonder die secret faalt elke inzending.
 - **`__jiw_confirmation_locale`**: de taal waarin de bezoeker zijn eigen
   bevestiging terugkrijgt. Die staat per pagina vast en wordt niet uit de browser
   gelezen - wie de Duitse pagina invult hoort Duits terug te krijgen, ook met een

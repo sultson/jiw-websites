@@ -26,10 +26,12 @@ export type Env = CloudflareFormsEnv & {
    bevestiging die de bezoeker krijgt volgt wel de taal van de pagina waar hij
    stond; zie confirmation.ts en `__jiw_confirmation_locale`.
 
-   Geen Turnstile maar een lokvink (`website`, buiten beeld, gezet door bouw.mjs).
-   Dat is geen extra resource, geen secret en geen verzoek naar een derde voor
-   iemand die alleen een vraag wil stellen. Een bot die dat veld vult krijgt
-   {"ok":true} en er wordt niets opgeslagen en niets gemaild.
+   Turnstile staat aan sinds 02-11-2026, naast het lokvink (`website`, buiten
+   beeld, gezet door bouw.mjs). Alleen het lokvink hield de Russische en Griekse
+   spam van eind oktober niet tegen: die bots laten het verborgen veld leeg. De
+   sleutel is de wrangler secret TURNSTILE_SECRET_KEY van widget "FRAME MEDIA
+   formulieren"; zonder die secret faalt elke inzending. Een bot die het lokvink
+   vult krijgt nog steeds {"ok":true} en er wordt niets opgeslagen of gemaild.
 
    `herkomst` en `lang` staan in leadOnlyEmailFields: wij moeten weten welk
    formulier het was en in welke taal we terugbellen. De bezoeker hoeft niet te
@@ -43,7 +45,7 @@ const GEDEELD = {
   requireFirstName: true,
   requireLastName: false,
   requireEmail: true,
-  turnstile: false,
+  turnstile: true,
   honeypotField: 'website',
   leadOnlyEmailFields: [
     { name: 'herkomst', label: 'Formulier' },
