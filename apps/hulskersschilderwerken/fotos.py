@@ -44,8 +44,12 @@ UITSNEDES = {
     # Hier stond 'werkwijze-kop', een eigen onderuitsnede van de rolsteigerfoto voor
     # de kop van /werkwijze/. Die kop gebruikt sinds 20-10-2026 gewoon
     # 'woonkeuken-groen' hierboven, dus er is geen tweede uitsnede meer nodig.
-    # Pascal zelf. Hij staat rechts in beeld, dus focus naar rechts.
-    'pascal-portret':        (4 / 3, 0.60, 0.45, [1200, 800]),
+    # Pascal zelf. Sinds 02-11-2026 de getekende versie die Armando aanleverde
+    # (pascal-tekening.jpg): dezelfde houding als de foto, maar als illustratie.
+    # De bron is al exact 4:3, dus er wordt hier niets afgesneden en de focus doet
+    # niets - die staat er voor het geval de foto terugkomt. Terugdraaien is dit
+    # bestandsnaampje weghalen; pascal-portret.jpg ligt er nog.
+    'pascal-portret':        (4 / 3, 0.60, 0.45, [1200, 800], 'pascal-tekening'),
     # Kleurkaarten, staand 3:4. De slaapkamerfoto zat hier eerst bij, maar die is te
     # donker belicht om een kleur te laten zien: elk monster kwam onder #52 uit.
     'overloop-taupe':        (3 / 4, 0.55, 0.45, KAART),

@@ -1473,8 +1473,40 @@ dat niemand opent; dat is een vraag aan hem.
 | `bron/maps.mjs` | staat hij in Maps vanaf zijn eigen deur, en op welke plek -> `bron/maps.json` (ronde 22) |
 | `bron/seo/kw.mjs` | zoekvolume + klikprijs voor renovlies en zijn buren (ronde 17) |
 | `bron/seo/serp.mjs` | wie staat er nu op die woorden, en wat voor pagina is dat (ronde 17) |
+| `tools/kijk-vakman.mjs` | uitsnede van alleen het vakmanblok op 1440 en 390 (ronde 23) |
 | `dienen.mjs` | kleine statische server voor de browserscripts |
 | `NALEZEN-PASCAL.md` | automatisch, wat Pascal moet nakijken |
 
 Originelen staan in `../.aangeleverd-hulskers/` en horen daar te blijven:
 `[assets] directory` uploadt alles wat in de projectmap ligt.
+
+## Ronde 23 (02-11-2026): het vakmanblok krijgt de getekende Pascal
+
+Armando leverde een illustratie aan van dezelfde foto (`pascal-tekening.jpg`) en
+vroeg die op de plek van `pascal-portret`. Drie dingen eromheen.
+
+**`fotos.py` was sinds de verhuizing stuk.** `BRON` wijst naar
+`<app>/../.aangeleverd-hulskers/fotos`, en die map was in de playground blijven
+liggen - dus elke draai eindigde op "bronmap bestaat niet". Niemand merkte het,
+want `public/f/` stond al vol. De originelen staan nu in
+`jiw-websites/apps/.aangeleverd-hulskers/fotos`, waar het script ze verwacht en
+waar een verse kloon ze ook vindt. Zelfde val als de MAPBOX_TOKEN bij dagmar-voss.
+
+**De oude foto blijft liggen.** De sleutel heet nog `pascal-portret`, alleen de
+bronbestandsnaam is een vijfde waarde geworden. Terugdraaien is die naam weghalen
+en `python fotos.py && pnpm build` - geen van de andere bestanden weet ervan.
+
+**Wat de poorten hier per definitie niet zien: de tekst IN de tekening.** Het
+model heeft zijn woordmerk vijf keer nageschreven en de onderregel is vijf keer
+fout: `schilderwerkoin` op de polo, `schilderwerknd` op de grote emmer linksonder,
+`schilderwerkeis` op de emmer midden onder, en nog twee op de rollen. "Hulskers"
+klopt overal, de tweede regel nergens. Een structuur- of breedtemeting ziet dit
+niet en de bronpoort ook niet: het is geen bewering, het is beeld. Dit staat hier
+omdat het een BESLISSING is en geen bug - Armando weet ervan (gemeld 02-11-2026)
+en de keuze om het zo te laten is aan hem. Zie de regel over foto's door een model
+in `playground/CLAUDE.md`: elke foto met leesbare tekst gaat met de hand langs.
+
+Op 1440 snijdt `object-fit: cover` het vak (529x625) uit een 4:3 beeld, dus de
+emmer linksonder en de rollen rechts vallen weg; wat overblijft is de polo. Op 390
+zie je juist de emmers wel. De twee uitsnedes zijn dus niet dezelfde tekening -
+daarom staat `tools/kijk-vakman.mjs` erbij in plaats van een fullPage-plaat.

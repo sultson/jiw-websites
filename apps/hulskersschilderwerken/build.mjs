@@ -1516,7 +1516,10 @@ const htmlHome = hoofd({ titel: T.titel, omschrijving: T.omschrijving, pad: '/',
   <div class="wrap">
     <div class="vakman">
       <div class="vakman-foto">
-        ${img('pascal-portret', 'Pascal Hulskers in werkkleding met een plamuurmes in zijn hand', '(max-width:1040px) 100vw, 46vw')}
+        ${/* Alt zegt sinds 02-11-2026 getekend portret: het IS een tekening, en een
+             schermlezer die "foto" voorleest beschrijft dan iets anders dan er staat.
+             Ook geen plamuurmes meer - in deze versie houdt hij een kwast vast. */''}
+        ${img('pascal-portret', 'Getekend portret van Pascal Hulskers met een kwast in zijn hand, tussen zijn verfemmers en behangrollen', '(max-width:1040px) 100vw, 46vw')}
         <span class="vlag">${esc(T.vakman.boven)}</span>
       </div>
       <div class="vakman-tekst">
