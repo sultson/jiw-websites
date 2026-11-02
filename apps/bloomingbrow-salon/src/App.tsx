@@ -136,7 +136,7 @@ const copy: Record<Lang, Copy> = {
       'Het afgelopen half jaar is voorbij gevlogen. Ik heb veel geleerd, mooie mensen ontmoet, en ik hoop nog lang door te groeien om nog meer mensen blij te maken.',
     ],
     aboutSignoff: 'Op naar nog veel meer mooie momenten en glans ✨ Liefs, Bloem',
-    aboutTags: ['Allround browstylist', 'Powderbrows basic course', 'PMU', 'Schagen'],
+    aboutTags: ['Allround browstylist', 'Powderbrows basic course', 'GGD-gecertificeerd', 'PMU', 'Schagen'],
     signatureKicker: 'Wat ik aanbied',
     signatureTitle: 'Vier behandelingen, één doel: jouw look in balans.',
     signatureSub:
@@ -175,6 +175,7 @@ const copy: Record<Lang, Copy> = {
     trainingItems: [
       { title: 'Allround browstylist', sub: 'Browmapping, shape, hybrid tint, browlamination' },
       { title: 'Powderbrows basic course', sub: 'PMU pigment, machine en huidkennis' },
+      { title: 'GGD-gecertificeerd', sub: 'Hygiënisch en veilig werken volgens de GGD-eisen' },
     ],
     galleryKicker: 'In de salon',
     galleryTitle: 'Een kijkje in Bloomingbrow.',
@@ -229,7 +230,7 @@ const copy: Record<Lang, Copy> = {
       'The past six months have flown by. I\'ve learned so much, met wonderful people, and I hope to keep growing so I can make many more clients smile.',
     ],
     aboutSignoff: 'Here\'s to many more lovely moments and glow ✨ Love, Bloem',
-    aboutTags: ['All-round brow stylist', 'Powder brows basic course', 'PMU', 'Schagen'],
+    aboutTags: ['All-round brow stylist', 'Powder brows basic course', 'GGD certified', 'PMU', 'Schagen'],
     signatureKicker: 'What I offer',
     signatureTitle: 'Four treatments, one goal: your look in balance.',
     signatureSub:
@@ -268,6 +269,7 @@ const copy: Record<Lang, Copy> = {
     trainingItems: [
       { title: 'All-round brow stylist', sub: 'Brow mapping, shape, hybrid tint, brow lamination' },
       { title: 'Powder brows basic course', sub: 'PMU pigment, machine and skin knowledge' },
+      { title: 'GGD certified', sub: 'Hygienic, safe practice to Dutch health authority (GGD) standards' },
     ],
     galleryKicker: 'Inside the salon',
     galleryTitle: 'A look inside Bloomingbrow.',
@@ -308,7 +310,7 @@ const copyZonderPmu: Record<Lang, Partial<Copy>> = {
       { value: '6 dagen', label: 'Per week open' },
     ],
     aboutKicker: 'Meet your brow artist',
-    aboutTags: ['Allround browstylist', 'Browmapping', 'Schagen'],
+    aboutTags: ['Allround browstylist', 'GGD-gecertificeerd', 'Browmapping', 'Schagen'],
     signatureTitle: 'Browstyling met één doel: jouw look in balans.',
     signatureSub:
       'Voor een strakke shape, frisse kleur en meer definitie. Kies wat bij jou past.',
@@ -318,6 +320,7 @@ const copyZonderPmu: Record<Lang, Partial<Copy>> = {
       'Je gezicht is geen oefenmateriaal. Bloem volgde haar opleiding bij een gecertificeerde academie en houdt haar werkwijze, kleurkennis en hygiëne actueel.',
     trainingItems: [
       { title: 'Allround browstylist', sub: 'Browmapping, shape, hybrid tint, browlamination' },
+      { title: 'GGD-gecertificeerd', sub: 'Hygiënisch en veilig werken volgens de GGD-eisen' },
     ],
     footer: 'Bloomingbrow salon · Browstyling en lashes in Schagen.',
   },
@@ -330,7 +333,7 @@ const copyZonderPmu: Record<Lang, Partial<Copy>> = {
       { value: '6 days', label: 'Open weekly' },
     ],
     aboutKicker: 'Meet your brow artist',
-    aboutTags: ['All-round brow stylist', 'Brow mapping', 'Schagen'],
+    aboutTags: ['All-round brow stylist', 'GGD certified', 'Brow mapping', 'Schagen'],
     signatureTitle: 'Brow styling with one goal: your look in balance.',
     signatureSub:
       'For a clean shape, fresh colour and more definition. Pick what suits you.',
@@ -340,6 +343,7 @@ const copyZonderPmu: Record<Lang, Partial<Copy>> = {
       'Your face is not practice material. Bloem trained at a certified academy and keeps her technique, colour knowledge and hygiene current.',
     trainingItems: [
       { title: 'All-round brow stylist', sub: 'Brow mapping, shape, hybrid tint, brow lamination' },
+      { title: 'GGD certified', sub: 'Hygienic, safe practice to Dutch health authority (GGD) standards' },
     ],
     footer: 'Bloomingbrow salon · Brow styling and lashes in Schagen.',
   },
