@@ -49,7 +49,13 @@ UITSNEDES = {
     # De bron is al exact 4:3, dus er wordt hier niets afgesneden en de focus doet
     # niets - die staat er voor het geval de foto terugkomt. Terugdraaien is dit
     # bestandsnaampje weghalen; pascal-portret.jpg ligt er nog.
-    'pascal-portret':        (4 / 3, 0.60, 0.45, [1200, 800], 'pascal-tekening'),
+    #
+    # -schoon: het model had zijn woordmerk nageschreven en de onderregel op alle
+    # vijf de plekken verkeerd gespeld (schilderwerkobn, schilderwerknd, ...). Dat
+    # is weggepoetst met ../.aangeleverd-hulskers/poets-woordmerk.py, dat alleen die
+    # vijf vakken aanraakt. Opnieuw laten tekenen kon niet: dan tekent het model ook
+    # zijn gezicht opnieuw, en dat is zijn gezicht niet meer.
+    'pascal-portret':        (4 / 3, 0.60, 0.45, [1200, 800], 'pascal-tekening-schoon'),
     # Kleurkaarten, staand 3:4. De slaapkamerfoto zat hier eerst bij, maar die is te
     # donker belicht om een kleur te laten zien: elk monster kwam onder #52 uit.
     'overloop-taupe':        (3 / 4, 0.55, 0.45, KAART),

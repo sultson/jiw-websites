@@ -1510,3 +1510,42 @@ Op 1440 snijdt `object-fit: cover` het vak (529x625) uit een 4:3 beeld, dus de
 emmer linksonder en de rollen rechts vallen weg; wat overblijft is de polo. Op 390
 zie je juist de emmers wel. De twee uitsnedes zijn dus niet dezelfde tekening -
 daarom staat `tools/kijk-vakman.mjs` erbij in plaats van een fullPage-plaat.
+
+## Ronde 24 (02-11-2026): het nageschreven woordmerk uit de tekening
+
+Armando: "kan die niet helemaal" - dus geen woordmerk meer op de polo en de
+emmers, niet de vijf foute onderregels afzonderlijk repareren.
+
+**Opnieuw laten tekenen kon niet.** Dat was de eerste poging: dezelfde tekening
+als referentie, met de opdracht alleen de letters weg te halen en man, houding,
+licht en kader te laten staan. Twee rondes gaven allebei een plaat zonder tekst
+en allebei een ANDER gezicht - smaller, andere kaaklijn, andere haargrens. Zelfde
+regel als bij de airco-foto's van woudenberg: een model bewerkt niet, het tekent
+opnieuw. Bij een portret van een echt mens is dat geen detail.
+
+**Dus alleen de merkpixels, met de rest van het bestand onaangeraakt.**
+`.aangeleverd-hulskers/poets-woordmerk.py` maskert per vak wat van de vlakke
+ondergrond afwijkt (`medianBlur 51` als schatting van emmerwand of polo, plus een
+blauwsleutel voor het kwastje) en vult dat met `cv2.inpaint`. Zes vakken: polo,
+drie emmers, de steel van het kwastje die boven de grote emmer uitstak, en de
+emmer rechtsonder.
+
+Drie dingen die dit script zelf bewaakt:
+
+1. **Buiten de vakken mag geen pixel veranderd zijn.** Dat is de hele belofte van
+   deze aanpak, dus het is een eis en geen aanname.
+2. **Na het poetsen mag er in geen vak nog merkblauw staan.** Een vak dat een paar
+   pixels te krap staat laat een letterstaart of een kwaststeel liggen, en dat is
+   precies wat er niet op de pagina mag. Getest door `emmer-midden` expres te
+   verkleinen: 5,4 procent blauw, gate gaat af.
+3. **`BLAUW_MAG` draagt de uitzondering met de reden.** De emmer rechtsonder heeft
+   een echte verfdruiper in de hoek van zijn vak, die hoort bij de tekening. De
+   uitzondering zakt zelf zodra hij niets meer raakt - ook getest.
+
+Op de kleur keuren alleen was niet genoeg: "Hulskers" is vol navy en verdween,
+maar de schuine onderregel heeft halfdoorzichtige randen en bleef als grijze schim
+staan. Dat zag je pas door na het poetsen naar de uitsnede te kijken, niet aan het
+percentage.
+
+De bron blijft `pascal-tekening.jpg`; `fotos.py` leest nu
+`pascal-tekening-schoon.jpg`. Terugdraaien is dat `-schoon` weghalen.
