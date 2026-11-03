@@ -56,6 +56,8 @@
     // noindex en robots.txt verbiedt alles, in één deploy.
     "SITE_INDEXABLE": "true",
     "LEAD_RECIPIENT": "info@toonoverleven.nl",
+    // Alleen het formulier op /vraagbaak-koers-en-kanker (Ron, 03-11-2026).
+    "VRAAGBAAK_RECIPIENT": "vraagbaak@toonoverleven.nl",
     "LEAD_SENDER": "contact@notify.jouwidealewebsite.nl",
     "TURNSTILE_SECRET_KEY": "dev",
     // Leeg zou betekenen dat de site zijn eigen tekst rendert, en dat is een

@@ -37,6 +37,8 @@ export type Env = CloudflareFormsEnv & {
    * site waarvoor het een voorstel is.
    */
   SITE_INDEXABLE?: string;
+  /** Alleen het Vraagbaak-formulier gaat hierheen (Ron, 03-11-2026); de rest naar LEAD_RECIPIENT. */
+  VRAAGBAAK_RECIPIENT?: string;
 };
 
 /**
@@ -115,7 +117,7 @@ const vraagbaakWorker = createFormWorker({
   emailFields: [{name:'voorkeursdatum',label:'Voorkeursdatum'}, {name:'telefoon',label:'Telefoonnummer'}],
   leadEmail: {heading:'Nieuwe aanvraag voor de Vraagbaak Koers en Kanker', messageHeading:'Waarover wil je sparren?', nameLabels: {firstName:'Naam', lastName:'Achternaam', email:'E-mailadres'}, includeAttachments:false},
   confirmationCopy: {subject:'Je aanvraag voor de Vraagbaak Koers en Kanker', openingSentence:'Bedankt voor je aanvraag voor de Vraagbaak Koers en Kanker. We nemen contact met je op om je afspraak te bevestigen.', detailsHeading:'Je aanvraag', messageHeading:'Waarover wil je sparren?'},
-  confirmationFollowUpSentence: 'Liever even overleggen? Bel ons op 036 845 02 65 of 06 38 52 90 60, of mail naar info@toonoverleven.nl.',
+  confirmationFollowUpSentence: 'Liever even overleggen? Bel ons op 036 845 02 65 of 06 38 52 90 60, of mail naar vraagbaak@toonoverleven.nl.',
   requireFirstName:true, requireLastName:false, requireEmail:true, honeypotField:'company',
 });
 
@@ -537,7 +539,9 @@ export default {
       return questionWorker.fetch!(request, env, ctx);
     }
     if (url.pathname === '/api/forms/vraagbaak') {
-      return vraagbaakWorker.fetch!(request, env, ctx);
+      // Eigen ontvanger, ook als antwoordadres op de bevestiging aan de bezoeker.
+      const vraagbaakEnv = { ...env, LEAD_RECIPIENT: env.VRAAGBAAK_RECIPIENT || env.LEAD_RECIPIENT };
+      return vraagbaakWorker.fetch!(request, vraagbaakEnv, ctx);
     }
     if (url.pathname === '/api/forms/nieuwsbrief') {
       return newsletterWorker.fetch!(request, env, ctx);
