@@ -596,7 +596,6 @@ blockquote cite{display:block;margin-top:7px;font-size:12.5px;font-style:normal;
    anders staat er een band die uit de kolom steekt waar hij bij hoort. */
 .stapfoto{margin:clamp(26px,3vw,40px) 0 0;max-width:940px}
 .stapfoto img{display:block;width:100%;height:auto;border-radius:5px}
-.stapfoto figcaption{margin-top:10px;font-size:14px;color:var(--grijs)}
 .rijen{display:grid;max-width:940px;border-top:2px solid var(--navy)}
 .rijen>div{display:grid;grid-template-columns:clamp(52px,6.5vw,82px) minmax(0,1fr);
   gap:clamp(8px,1.6vw,20px);align-items:baseline;
@@ -1958,8 +1957,11 @@ ${/* De drie soorten staan BOVEN de stappen, en dat is geen opmaakkeuze. Wie hie
          kolom breekt die kolom doormidden. Hij hoort bij stap 5 (plakken en texen)
          en staat daarom onder de hele rij en niet tussen twee regels in - dat laatste
          zou de nummering opbreken. Armando leverde de foto aan op 02-11-2026. */''}
-    <figure class="stapfoto">${img('pascal-plaktafel', 'Pascal Hulskers vouwt een baan vlies op de plaktafel met lijmbak, in een kamer in aanbouw met de rollen ernaast', '(max-width:860px) 92vw, 940px')}
-      <figcaption>${esc(W.stapFoto)}</figcaption></figure>
+    ${/* Geen bijschrift onder deze foto. Armando vroeg hem weg op 03-11-2026 met
+         "zoals ik altijd vraag": een regel die beschrijft wat je op de foto al
+         ziet, voegt niets toe. De alt-tekst blijft wel staan - die is voor een
+         schermlezer en voor Google, en die zien de foto niet. */''}
+    <figure class="stapfoto">${img('pascal-plaktafel', 'Pascal Hulskers vouwt een baan vlies op de plaktafel met lijmbak, in een kamer in aanbouw met de rollen ernaast', '(max-width:860px) 92vw, 940px')}</figure>
   </div>
 </section>
 

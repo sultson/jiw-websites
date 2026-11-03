@@ -442,6 +442,18 @@ if (!existsSync('dist/logo-handtekening.png')) {
       zak(`vooraf: de vlag "De vakman" staat weer op ${p.adres || p.bestand} - die is er op 02-11-2026 afgehaald`);
     }
   }
+
+  // Geen bijschrift onder de stapfoto. Armando vroeg hem weg op 03-11-2026 met
+  // "zoals ik altijd vraag", en dat is de reden dat dit een regel wordt en geen
+  // tekstwijziging: een regel die navertelt wat je op de foto ziet, schrijft de
+  // volgende ronde zo weer iemand erbij. De eis staat op de figure en niet op de
+  // zin die er stond - anders komt morgen dezelfde regel in andere woorden terug.
+  for (const p of paginas) {
+    const f = p.html.match(/<figure class="stapfoto">[\s\S]*?<\/figure>/i);
+    if (f && /<figcaption/i.test(f[0])) {
+      zak(`vooraf: er staat weer een bijschrift onder de stapfoto op ${p.adres || p.bestand} - die is er op 03-11-2026 afgehaald`);
+    }
+  }
 }
 
 // ----------------------------------------------------------------------------- uitslag

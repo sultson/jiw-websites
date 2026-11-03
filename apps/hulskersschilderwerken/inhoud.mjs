@@ -886,12 +886,11 @@ export const TEKST = {
       // Tot 25-10-2026 stond vliesbehang in deze opsomming, en dat is precies de fout
       // die het overleg aanwees: vliesbehang wordt niet getext.
       s5_b: 'Renovliesbehang of glasweefselbehang op de wand, daarna texen in uw kleur.',
-      // Bijschrift onder de foto die sinds 02-11-2026 onder deze stappen staat
-      // (Armando leverde hem die dag aan). Hij hoort bij stap 5, maar het nummer
-      // staat er met opzet NIET in: dan verwijst het bijschrift naar een telling
-      // die verschuift zodra er een stap bij of af gaat, en dat merkt niemand.
-      // Wat er staat is wat er te zien is, verder niets.
-      stapFoto: 'Plakken: een baan vlies op de plaktafel.',
+      // De foto die sinds 02-11-2026 onder deze stappen staat heeft met opzet GEEN
+      // bijschrift meer: Armando vroeg hem weg op 03-11-2026. De sleutel stapFoto
+      // is daarom verdwenen in plaats van leeggemaakt - een lege sleutel is precies
+      // hoe zo'n regel er over een maand weer in sluipt. De poort hieronder (zie
+      // tools/vooraf.mjs, "geen bijschrift onder de stapfoto") houdt dat tegen.
       s6_t: 'Oplevering, daarna de rekening',
       s6_b: 'Geen betalingen vooruit, pas als de werkzaamheden zijn verricht.',
 
