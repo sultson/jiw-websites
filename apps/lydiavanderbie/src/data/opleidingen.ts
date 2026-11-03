@@ -55,20 +55,6 @@ export const opleidingen: Opleiding[] = [
     },
   },
   {
-    id: 'stoelmassage',
-    name: 'Stoelmassage',
-    image: '/img/op-stoelmassage.webp',
-    price: { nl: '€ 395', en: '€ 395' },
-    desc: {
-      nl: 'Een complete professionele stoelmassage over de kleding heen, waarbij je werkt vanuit rust en ki in plaats van spierkracht. Je leert ook een stukje Dorn-techniek voor nek en schouders.',
-      en: 'A complete professional chair massage over clothing, working from calm and ki rather than muscle power. You also learn a piece of Dorn technique for the neck and shoulders.',
-    },
-    facts: {
-      nl: ['3 lesdagen', 'Groep van 4 cursisten', 'Certificaat van deelname', 'Optioneel examen voor diploma'],
-      en: ['3 class days', 'Group of 4 students', 'Certificate of attendance', 'Optional exam for diploma'],
-    },
-  },
-  {
     id: 'biotensor',
     name: 'Meten en behandelen met de biotensor',
     image: '/img/op-biotensor.webp?v=20260601',

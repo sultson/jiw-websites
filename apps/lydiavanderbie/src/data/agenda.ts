@@ -17,12 +17,9 @@ export const agenda: AgendaItem[] = [
   { date: '2026-06-04', title: { nl: 'Energie in balans', en: 'Energy in balance' }, tag: 'training' },
   { date: '2026-06-17', title: { nl: 'Biotensor: fases van het leven', en: 'Biotensor: life phases' }, tag: 'training' },
 
-  { date: '2026-09-16', title: { nl: 'Stoelmassage, lesdag 1', en: 'Chair massage, day 1' }, tag: 'opleiding' },
   { date: '2026-09-17', title: { nl: 'Chakra reflexologie', en: 'Chakra reflexology' }, tag: 'training' },
-  { date: '2026-09-30', title: { nl: 'Stoelmassage, lesdag 2', en: 'Chair massage, day 2' }, tag: 'opleiding' },
 
   { date: '2026-10-01', title: { nl: 'Acupressuur & ohm-stemvork', en: 'Acupressure & ohm tuning fork' }, tag: 'training' },
-  { date: '2026-10-07', title: { nl: 'Stoelmassage, lesdag 3', en: 'Chair massage, day 3' }, tag: 'opleiding' },
   { date: '2026-10-08', title: { nl: 'Chakra massage', en: 'Chakra massage' }, tag: 'training' },
   { date: '2026-10-13', title: { nl: 'Hotstone massage', en: 'Hot stone massage' }, tag: 'training' },
   { date: '2026-10-15', title: { nl: 'Meten met de biotensor', en: 'Measuring with the biotensor' }, tag: 'training' },
