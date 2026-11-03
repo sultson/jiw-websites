@@ -69,6 +69,19 @@ klasse: heeft-hero
   <!-- Hier stond een regeltje 'Badkamerspecialist uit Vlaardingen' boven de kop. Dat is
        eruit: op een telefoon was het eerste scherm vol tekst, en de kop zegt het al. -->
   <div class="wrap hero__in">
+    <!-- De stand van Trustoo, boven de kop. Het cijfer en het aantal staan hier als
+         gewone tekst in de HTML: ze komen bij de build uit dezelfde bron als het blok
+         onderaan, dus ze kunnen niet uit elkaar gaan lopen. De sterretjes zijn een vlak
+         met een masker en geen plaatje, zodat er geen beeld bij hoeft te laden in de
+         kop. Klik gaat naar de beoordelingen op de pagina zelf en niet naar Trustoo:
+         wie hier klikt wil ze lezen, niet de site verlaten. -->
+    <a class="keur" href="#beoordelingen">
+      <span class="keur__sterren" style="--vol: {{trustoovol}}" aria-hidden="true"></span>
+      <span class="keur__cijfer">{{trustoocijfer}}</span>
+      <span class="keur__uit">uit 5</span>
+      <span class="keur__tekst">{{trustooaantal}} beoordelingen<span class="keur__op"> op</span></span>
+      <img class="keur__logo" src="/img/merk/trustoo-wit.svg" alt="Trustoo" width="113" height="23" />
+    </a>
     <h1 class="kinetiek">Uw badkamer. <em>Één bedrijf.</em></h1>
     <p class="hero__p reveal">
       Van sloop tot kitwerk door dezelfde ploeg, in drie duidelijke pakketten. En als de rest van het

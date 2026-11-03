@@ -545,9 +545,12 @@ for (const [naam, breed, hoog] of SNEL ? SCHERMEN.slice(0, 1) : SCHERMEN) {
       // meelopen, dan viel elke meting om op "6 beoordelingen" in de kop en op de
       // percentages die in de css van de widget staan (100%, 45%) — en dan leer je de
       // meting af in plaats van de fout. textContent pakt namelijk ook <style> mee.
+      // Dat geldt sinds 03-11-2026 ook voor de pil in de kop van de startpagina
+      // (.keur): daar staat hetzelfde aantal, uit dezelfde bron, en die wordt verderop
+      // apart tegen de widget nagemeten.
       const tekst = await pg.evaluate(() => {
         const kopie = document.body.cloneNode(true)
-        kopie.querySelectorAll('#beoordelingen').forEach((n) => n.remove())
+        kopie.querySelectorAll('#beoordelingen, .keur').forEach((n) => n.remove())
         return kopie.textContent
       })
       const magBedrag = pad === taal.aanbod || pad === taal.badkamer || pad === taal.home
@@ -710,6 +713,42 @@ for (const [naam, breed, hoog] of SNEL ? SCHERMEN.slice(0, 1) : SCHERMEN) {
             !!(await pg.$(`.trustoo__terug a[href*="trustoo.nl/zuid-holland/vlaardingen"]`)),
             `${merk}: er staat geen link naar het profiel op Trustoo`
           )
+
+          /* en dezelfde stand in de pil boven de kop van de startpagina. Dat is een
+             derde plek waar hetzelfde getal staat, dus de derde plek waar de pagina
+             zichzelf kan tegenspreken. De sterretjes horen mee te lopen met het
+             cijfer: een 5,0 met vier volle sterren is erger dan geen sterren. */
+          if (pad === taal.home) {
+            const pil = await pg.$('.keur')
+            zeg(!!pil, `${merk}: de stand van Trustoo staat niet in de kop`)
+            if (pil) {
+              const k = await pg.evaluate(() => {
+                const el = document.querySelector('.keur')
+                const st = el.querySelector('.keur__sterren')
+                return {
+                  tekst: el.innerText || '',
+                  logo: !!el.querySelector('.keur__logo'),
+                  vol: getComputedStyle(st).getPropertyValue('--vol').trim(),
+                  breed: Math.round(st.getBoundingClientRect().width),
+                }
+              })
+              const cPil = k.tekst.match(/(\d)[.,](\d)/)
+              zeg(
+                !!cPil && !!uitWidget && cPil[1] === uitWidget[1] && cPil[2] === uitWidget[2],
+                `${merk}: de kop zegt ${cPil && cPil[0]} en de widget ${uitWidget && uitWidget[0]}`
+              )
+              const nPil = k.tekst.match(/\b(\d+)\s+(beoordelingen|reviews)/i)
+              zeg(
+                !!nPil && !!nWidget && nPil[1] === nWidget[1],
+                `${merk}: de pil telt ${nPil && nPil[1]} beoordelingen en de widget ${nWidget && nWidget[1]}`
+              )
+              zeg(k.logo, `${merk}: het logo van Trustoo staat niet in de pil`)
+              // 5,0 -> 100%, 4,6 -> 90%. Afronden op een halve ster doet de build.
+              const hoort = cPil ? `${Math.round((Number(`${cPil[1]}.${cPil[2]}`) / 5) * 10) * 10}%` : ''
+              zeg(k.vol === hoort, `${merk}: de sterretjes staan op ${k.vol} en het cijfer op ${hoort}`)
+              zeg(k.breed > 60, `${merk}: de sterretjes zijn ${k.breed}px breed, dat is geen vijf sterren`)
+            }
+          }
         }
 
         // het cijfer ook in het schema, met dezelfde waarde als in de kop

@@ -322,12 +322,20 @@ const TRUSTOO = await trustooStand()
 const trustooCijfer = (code) => TRUSTOO.cijfer.toFixed(1).replace('.', code === 'nl' ? ',' : '.')
 console.log(`ok   trustoo  ${TRUSTOO.cijfer.toFixed(1)}/5 uit ${TRUSTOO.aantal} beoordelingen (${TRUSTOO.gemeten})`)
 
+/* De vijf sterretjes in de kop van de startpagina zijn geen plaatje maar een vlak met
+   een sterrenmasker erover (zie .keur__sterren in styles.css). Hoeveel ervan vol staat,
+   is dit getal: 5,0 wordt 100%, een 4,6 wordt 92%. Afgerond op een halve ster, want
+   iemand ziet het verschil tussen 92% en 90% van een sterretje niet en een rand van een
+   paar pixels leest als een vlek. */
+const trustooVol = () => `${Math.round((TRUSTOO.cijfer / 5) * 10) * 10}%`
+
 function trustooInvullen(html, code) {
   return html
     .replaceAll('{{trustooid}}', TRUSTOO_ID)
     .replaceAll('{{trustooprofiel}}', TRUSTOO_PROFIEL)
     .replaceAll('{{trustoocijfer}}', trustooCijfer(code))
     .replaceAll('{{trustooaantal}}', String(TRUSTOO.aantal))
+    .replaceAll('{{trustoovol}}', trustooVol())
 }
 
 /* Het cijfer ook in het schema, zodat Google het als beoordeling leest en niet alleen
