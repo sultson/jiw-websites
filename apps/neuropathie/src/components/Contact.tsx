@@ -30,7 +30,7 @@ export default function Contact({ onOpen }: Props) {
           </div>
         </div>
 
-        <div className="card p-6 sm:p-7 shadow-[0_30px_70px_-45px_rgba(58,33,24,0.45)]">
+        <div className="card p-6 sm:p-7">
           <div className="flex flex-col gap-4">
             <Row icon={<Phone size={18} />} label="Telefoon">
               <a href={SITE.phoneHref} className="hover:text-terra transition-colors tnum">
@@ -59,7 +59,7 @@ export default function Contact({ onOpen }: Props) {
 function Row({ icon, label, children }: { icon: React.ReactNode; label: string; children: React.ReactNode }) {
   return (
     <div className="flex items-start gap-3.5">
-      <span className="mt-0.5 w-10 h-10 shrink-0 rounded-full bg-sand border border-line flex items-center justify-center text-terra">
+      <span className="mt-0.5 w-10 h-10 shrink-0 rounded-lg bg-sand border border-line flex items-center justify-center text-terra">
         {icon}
       </span>
       <div className="min-w-0">

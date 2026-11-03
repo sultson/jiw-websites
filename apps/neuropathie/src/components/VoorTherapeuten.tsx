@@ -5,10 +5,6 @@ import { SITE } from '../lib/site';
 export default function VoorTherapeuten() {
   return (
     <section id="therapeuten" className="section relative overflow-hidden bg-terra-ink text-cream/85">
-      <div className="absolute inset-0 opacity-[0.07]" aria-hidden>
-        <img src="/img/texture-linen.webp" alt="" className="w-full h-full object-cover" loading="lazy" />
-      </div>
-
       <div className="shell-wide relative grid lg:grid-cols-[0.95fr_1fr] gap-10 lg:gap-16 items-start">
         <div>
           <span className="kicker kicker-light">Voor therapeuten</span>
@@ -42,7 +38,7 @@ export default function VoorTherapeuten() {
           </p>
         </div>
 
-        <div className="bg-cream/[0.06] border border-cream/15 rounded-3xl p-6 sm:p-8">
+        <div className="bg-cream/[0.06] border border-cream/15 rounded-xl p-6 sm:p-8">
           <h3 className="font-display text-[21px] text-white">
             Tijdens deze specialisatie leer je onder andere:
           </h3>

@@ -22,7 +22,7 @@ export default function VoorClienten() {
             ))}
           </ul>
 
-          <div className="mt-7 flex items-start gap-3.5 bg-cream border border-terra/25 rounded-2xl px-5 py-4">
+          <div className="mt-7 flex items-start gap-3.5 bg-cream border border-terra/25 rounded-lg px-5 py-4">
             <Info size={19} strokeWidth={2.2} className="mt-0.5 shrink-0 text-terra" />
             <p className="text-[16px] font-semibold leading-relaxed text-ink">
               Bespreek deze klachten altijd eerst met uw arts.
@@ -54,11 +54,10 @@ export default function VoorClienten() {
         </div>
 
         <div className="relative max-w-sm mx-auto lg:mx-0 lg:ml-auto">
-          <div className="absolute -inset-4 sm:-inset-6 bg-sage-wash blob-a -z-10" aria-hidden />
           <img
             src="/img/beh-vertroetel-voet.webp"
             alt="Een voetreflexbehandeling"
-            className="w-full blob-a object-cover aspect-[4/5] shadow-[0_30px_70px_-40px_rgba(58,33,24,0.5)]"
+            className="w-full rounded-xl border border-line object-cover aspect-[4/5]"
             loading="lazy"
           />
         </div>

@@ -4,16 +4,11 @@ export default function Ontstaan() {
   return (
     <section id="ontstaan" className="section bg-canvas overflow-hidden">
       <div className="shell-wide grid lg:grid-cols-[0.8fr_1fr] gap-10 lg:gap-16 items-center">
-        <div className="relative max-w-sm mx-auto lg:mx-0">
-          <div className="absolute -inset-4 sm:-inset-6 bg-sage-wash arch -z-10" aria-hidden />
-          <div
-            className="absolute -bottom-5 -right-5 w-28 h-28 rounded-full bg-rose-soft -z-10 float-soft"
-            aria-hidden
-          />
+        <div className="relative max-w-xs mx-auto lg:mx-0">
           <img
             src="/lydia-portrait.png"
             alt="Lydia van der Bie"
-            className="w-full arch object-cover shadow-[0_30px_70px_-40px_rgba(58,33,24,0.5)]"
+            className="w-full rounded-xl border border-line object-cover"
             loading="lazy"
           />
           <div className="mt-5 text-center lg:text-left">

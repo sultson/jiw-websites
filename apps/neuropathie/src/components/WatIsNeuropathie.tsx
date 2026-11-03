@@ -20,7 +20,7 @@ export default function WatIsNeuropathie() {
         <div className="mt-12 grid gap-5 sm:grid-cols-3">
           {gevolgen.map((g) => (
             <div key={g.title} className="card p-6">
-              <span className="w-11 h-11 rounded-full bg-sage-wash text-sage-deep flex items-center justify-center">
+              <span className="w-11 h-11 rounded-lg bg-sage-wash text-terra flex items-center justify-center">
                 <g.icon size={20} strokeWidth={2} />
               </span>
               <h3 className="mt-4 font-display text-[20px] text-ink">{g.title}</h3>

@@ -63,7 +63,7 @@ export default function Overzicht({ onOpen }: Props) {
             ))}
           </div>
         ) : (
-          <div className="mt-10 card p-7 sm:p-9 max-w-2xl shadow-[0_30px_70px_-50px_rgba(58,33,24,0.4)]">
+          <div className="mt-10 card p-7 sm:p-9 max-w-2xl">
             <span className="chip chip-sage">Netwerk in opbouw</span>
             <p className="mt-5 text-[16.5px] leading-relaxed text-ink-soft">
               Het overzicht per plaats komt hier zodra het netwerk daar groot genoeg voor is. Zoekt u

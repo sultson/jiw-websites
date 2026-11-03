@@ -34,10 +34,8 @@ export default function Nav({ onOpen }: Props) {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-canvas/85 backdrop-blur-md border-b border-line'
-          : 'bg-transparent border-b border-transparent'
+      className={`sticky top-0 z-50 bg-canvas border-b transition-shadow duration-200 ${
+        scrolled ? 'border-line shadow-[0_1px_12px_rgba(20,32,42,0.06)]' : 'border-line'
       }`}
     >
       <div className="shell-wide flex items-center justify-between gap-4 h-[68px] lg:h-[80px]">

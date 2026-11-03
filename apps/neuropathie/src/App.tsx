@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
-import Marquee from './components/Marquee';
 import WatIsNeuropathie from './components/WatIsNeuropathie';
 import VoorClienten from './components/VoorClienten';
 import Overzicht from './components/Overzicht';
@@ -27,7 +26,6 @@ export default function App() {
 
       <main className="flex-1">
         <Hero />
-        <Marquee />
         <WatIsNeuropathie />
         <VoorClienten />
         <Overzicht onOpen={openModal} />

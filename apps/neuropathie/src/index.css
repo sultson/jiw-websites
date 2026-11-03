@@ -1,44 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
 
+/*
+ * Eigen richting, los van lydiavanderbie.nl: koel palet met petrol als accent,
+ * schreefloze koppen, grotere basisletter en rechte hoeken. Dit is geen
+ * praktijksite maar een informatiesite plus een register van therapeuten.
+ */
+
 @theme {
-  --font-sans: "Mulish", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
 
-  /* ── Surfaces — warm earthy neutrals ──────────── */
-  --color-canvas: #FBF7F0;       /* warm oatmeal page background */
-  --color-cream: #FFFDF9;        /* near-white card */
-  --color-sand: #F2EADC;         /* warm sand alternating section */
-  --color-sand-deep: #E9DDC9;    /* deeper sand for nested panels */
-  --color-oat: #EFE6D5;          /* soft oat band */
+  /* ── Surfaces — koele neutralen ────────────────── */
+  --color-canvas: #F6F8F9;       /* koel gebroken wit */
+  --color-cream: #FFFFFF;        /* kaart */
+  --color-sand: #EBEFF2;         /* lichte band (afwisselende secties) */
+  --color-sand-deep: #DEE4E9;
+  --color-oat: #E6EBEF;
 
-  /* ── Ink — warm near-black ────────────────────── */
-  --color-ink: #2C2722;          /* headings */
-  --color-ink-soft: #534B40;     /* body text */
-  --color-ink-mute: #8A8073;     /* muted / captions */
+  /* ── Ink — koel bijna-zwart ───────────────────── */
+  --color-ink: #14202A;          /* koppen */
+  --color-ink-soft: #3C4A56;     /* lopende tekst */
+  --color-ink-mute: #6B7A86;     /* bijschriften */
 
-  /* ── Terracotta — deep grounding accent (primary) ── */
-  --color-terra: #B15F3C;
-  --color-terra-bright: #C4724D;
-  --color-terra-deep: #8F4827;
-  --color-terra-ink: #3A2118;    /* deepest warm brown — dark sections */
-  --color-terra-ink-soft: #4D2E22;
+  /* ── Petrol — primair accent ──────────────────── */
+  --color-terra: #0E6B76;
+  --color-terra-bright: #14828F;
+  --color-terra-deep: #0A4B53;
+  --color-terra-ink: #0B2027;    /* diepe sectie-achtergrond */
+  --color-terra-ink-soft: #11313B;
 
-  /* ── Sage — muted green anchor (secondary) ─────── */
-  --color-sage: #879578;
-  --color-sage-deep: #5F6C52;
-  --color-sage-soft: #B6BFA6;
-  --color-sage-wash: #E6E9DC;    /* faint sage tint panel */
+  /* ── Slate — secundair anker ──────────────────── */
+  --color-sage: #637A89;
+  --color-sage-deep: #3E5260;
+  --color-sage-soft: #9EB0BC;
+  --color-sage-wash: #E2EAEE;    /* flauwe koele tint */
 
-  /* ── Dusty rose + lavender — gentle energy accents ── */
-  --color-rose: #C99A8F;
-  --color-rose-soft: #EBD7CF;
-  --color-lavender: #A99CB4;
-  --color-lavender-soft: #E2DAE6;
+  /* ── Lichte accenten (op donkere vlakken) ─────── */
+  --color-rose: #74BAC2;
+  --color-rose-soft: #CBE4E8;
+  --color-lavender: #8CA1AF;
+  --color-lavender-soft: #DDE5EA;
 
-  /* ── Lines ────────────────────────────────────── */
-  --color-line: #E7DBC8;         /* warm hairline on canvas/sand */
-  --color-line-soft: #EFE7D9;    /* faint hairline */
+  /* ── Lijnen ───────────────────────────────────── */
+  --color-line: #D9E0E5;
+  --color-line-soft: #E6EBEF;
 }
 
 @layer base {
@@ -50,22 +56,23 @@
   }
   body {
     @apply font-sans bg-canvas text-ink-soft antialiased;
-    font-size: 16.5px;
-    line-height: 1.6;
+    /* Doelgroep leest vaak met klachten: grotere letter, ruimere regelafstand. */
+    font-size: 17.5px;
+    line-height: 1.7;
   }
   h1, h2, h3, h4, h5 {
     @apply font-display text-ink;
-    font-weight: 500;
-    letter-spacing: -0.005em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
-  h1 { font-weight: 500; line-height: 1.02; }
+  h1 { font-weight: 700; line-height: 1.06; }
   p { text-wrap: pretty; }
   ::selection { background: var(--color-terra); color: #fff; }
   *:focus-visible {
     outline: 2px solid var(--color-terra);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 3px;
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -78,114 +85,103 @@
 }
 
 @layer components {
-  /* ── Buttons ──────────────────────────────────── */
+  /* ── Buttons — recht, groot raakvlak ─────────── */
   .btn,
   .btn-terra,
   .btn-sage,
   .btn-ink,
   .btn-outline,
   .btn-ghost-light {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-[15px] font-bold transition-all duration-200;
-    min-height: 52px;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-[16px] font-semibold transition-colors duration-150;
+    min-height: 54px;
   }
   .btn-terra {
-    @apply bg-terra text-white shadow-[0_12px_30px_-12px_rgba(177,95,60,0.65)] hover:bg-terra-deep hover:-translate-y-0.5;
+    @apply bg-terra text-white hover:bg-terra-deep;
   }
   .btn-sage {
-    @apply bg-sage-deep text-white shadow-[0_12px_30px_-12px_rgba(95,108,82,0.6)] hover:bg-sage-deep/90 hover:-translate-y-0.5;
+    @apply bg-sage-deep text-white hover:bg-ink;
   }
   .btn-ink {
-    @apply bg-ink text-white hover:bg-terra-ink hover:-translate-y-0.5;
+    @apply bg-ink text-white hover:bg-terra-ink;
   }
   .btn-outline {
-    @apply border border-ink/18 text-ink bg-transparent hover:border-terra hover:bg-terra hover:text-white;
+    @apply border border-ink/20 text-ink bg-cream hover:border-terra hover:text-terra;
   }
   .btn-ghost-light {
-    @apply border border-white/30 text-white bg-white/0 hover:bg-white hover:text-terra-ink;
+    @apply border border-white/35 text-white bg-white/0 hover:bg-white hover:text-terra-ink;
   }
 
   /* ── Eyebrow / kicker ─────────────────────────── */
   .kicker {
-    @apply inline-flex items-center gap-2.5 text-[12px] uppercase font-bold;
-    letter-spacing: 0.2em;
+    @apply inline-flex items-center gap-2.5 text-[12.5px] uppercase font-bold;
+    letter-spacing: 0.14em;
     color: var(--color-terra);
   }
   .kicker::before {
     content: "";
-    width: 1.6rem;
-    height: 1.5px;
-    background: var(--color-sage);
-    border-radius: 2px;
+    width: 1.4rem;
+    height: 2px;
+    background: var(--color-terra);
   }
-  .kicker-light { color: var(--color-rose-soft); }
+  .kicker-light { color: var(--color-rose); }
   .kicker-light::before { background: var(--color-rose); }
 
   /* ── Chips / badges ───────────────────────────── */
   .chip {
-    @apply inline-flex items-center gap-1.5 text-[11.5px] font-bold uppercase px-3 py-1.5 rounded-full;
-    letter-spacing: 0.1em;
+    @apply inline-flex items-center gap-1.5 text-[12.5px] font-semibold uppercase px-3 py-1.5 rounded-md;
+    letter-spacing: 0.08em;
   }
   .chip-terra { @apply bg-terra/10 text-terra-deep; }
   .chip-sage  { @apply bg-sage-wash text-sage-deep; }
-  .chip-rose  { @apply bg-rose-soft text-terra-deep; }
-  .chip-cream { @apply bg-cream/80 text-ink-soft border border-line; }
+  .chip-rose  { @apply bg-terra/10 text-terra-deep; }
+  .chip-cream { @apply bg-cream text-ink-soft border border-line; }
 
   /* ── Form fields ──────────────────────────────── */
   .field,
   .field-area {
-    @apply w-full px-4 py-3 rounded-xl border border-line bg-cream text-ink placeholder:text-ink-mute/65 focus:border-terra focus:bg-white focus:outline-none transition-colors;
-    min-height: 52px;
+    @apply w-full px-4 py-3 rounded-lg border border-line bg-cream text-ink placeholder:text-ink-mute/65 focus:border-terra focus:outline-none transition-colors;
+    min-height: 54px;
+    font-size: 17px;
   }
   .field-area {
-    min-height: 132px;
+    min-height: 140px;
     padding-top: 0.85rem;
   }
   .label {
-    @apply block text-[12px] font-bold uppercase text-ink-soft mb-2;
-    letter-spacing: 0.1em;
+    @apply block text-[12.5px] font-bold uppercase text-ink-soft mb-2;
+    letter-spacing: 0.08em;
   }
 
   /* ── Surface cards ────────────────────────────── */
   .card {
-    @apply bg-cream border border-line rounded-2xl;
+    @apply bg-cream border border-line rounded-xl;
   }
 }
 
 /* ── Section rhythm ─────────────────────────────── */
-.section { padding-block: clamp(4.5rem, 9vw, 8rem); }
+.section { padding-block: clamp(4rem, 7.5vw, 6.5rem); }
 section[id],
-footer[id] { scroll-margin-top: 88px; }
-.shell { max-width: 1200px; margin-inline: auto; padding-inline: 1.25rem; }
+footer[id] { scroll-margin-top: 84px; }
+.shell { max-width: 1140px; margin-inline: auto; padding-inline: 1.25rem; }
 @media (min-width: 640px) { .shell { padding-inline: 2rem; } }
-.shell-wide { max-width: 1320px; margin-inline: auto; padding-inline: 1.25rem; }
+.shell-wide { max-width: 1260px; margin-inline: auto; padding-inline: 1.25rem; }
 @media (min-width: 640px) { .shell-wide { padding-inline: 2rem; } }
 
-/* ── Display headline scale (serif) ─────────────── */
-.display-xl { font-size: clamp(2.7rem, 6.5vw, 5rem); line-height: 1.0; letter-spacing: -0.01em; }
-.display-lg { font-size: clamp(2.1rem, 4.6vw, 3.4rem); line-height: 1.04; letter-spacing: -0.008em; }
-.display-md { font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.12; letter-spacing: -0.005em; }
-.serif-italic { font-style: italic; font-weight: 400; }
+/* ── Display headline scale (schreefloos, strak) ── */
+.display-xl { font-size: clamp(2.3rem, 5vw, 3.7rem); line-height: 1.06; letter-spacing: -0.025em; }
+.display-lg { font-size: clamp(1.8rem, 3.6vw, 2.6rem); line-height: 1.12; letter-spacing: -0.022em; }
+.display-md { font-size: clamp(1.45rem, 2.6vw, 1.9rem); line-height: 1.2; letter-spacing: -0.018em; }
+/* Was cursief-serif op haar site; hier een normaal gewicht-accent. */
+.serif-italic { font-style: normal; font-weight: 600; }
 
-/* ── Marquee strip ──────────────────────────────── */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-.marquee-track {
-  animation: marquee 46s linear infinite;
-  width: max-content;
-  display: flex;
-}
-.marquee:hover .marquee-track { animation-play-state: paused; }
+/* ── Vormen: recht, geen organische blobs ───────── */
+.blob-a { border-radius: 12px; }
+.blob-b { border-radius: 12px; }
+.arch   { border-radius: 12px; }
 
-/* ── Organic blob mask for imagery ──────────────── */
-.blob-a { border-radius: 62% 38% 54% 46% / 56% 52% 48% 44%; }
-.blob-b { border-radius: 48% 52% 42% 58% / 60% 44% 56% 40%; }
-.arch   { border-radius: 999px 999px 18px 18px; }
-
-/* ── Soft grain / texture wash ──────────────────── */
-.wash-sage  { background: radial-gradient(120% 120% at 100% 0%, var(--color-sage-wash) 0%, transparent 60%); }
-.wash-rose  { background: radial-gradient(120% 120% at 0% 100%, var(--color-rose-soft) 0%, transparent 55%); }
+/* ── Flauwe wash achter secties ─────────────────── */
+.wash-sage  { background: radial-gradient(120% 120% at 100% 0%, var(--color-sage-wash) 0%, transparent 62%); }
+.wash-rose  { background: radial-gradient(120% 120% at 0% 100%, var(--color-sage-wash) 0%, transparent 58%); }
 
 /* ── Utilities ──────────────────────────────────── */
 .safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
