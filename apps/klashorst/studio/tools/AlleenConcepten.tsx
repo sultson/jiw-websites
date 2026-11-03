@@ -25,6 +25,14 @@ import { usePerspective, useSetPerspective, type LayoutProps } from 'sanity';
  * The reset runs as well as the hiding, and has to: a Studio that was left in
  * the published perspective would otherwise open read-only with no visible way
  * back out of it.
+ *
+ * Two more things go with the switcher, both of them Sanity selling rather than
+ * the museum editing. The lightning bolt in the navbar (and its twin in the user
+ * menu) is the Growth trial: it counts days down and opens a dialog, and a
+ * project on a trial lets you start using paid features that lock again when the
+ * trial ends. The same trial can open that dialog by itself on load
+ * (`#free-trial-modal`). Neither has a config switch, so they are hidden here;
+ * the bolt is matched by its icon because the button carries no id of its own.
  */
 export default function AlleenConcepten(props: LayoutProps) {
   const { selectedPerspectiveName } = usePerspective();
@@ -38,7 +46,12 @@ export default function AlleenConcepten(props: LayoutProps) {
 
   return (
     <>
-      <style>{`[data-ui="ReleasesNav"] { display: none !important; }`}</style>
+      <style>{`
+        [data-ui="ReleasesNav"],
+        button:has([data-sanity-icon="bolt"]),
+        #free-trial-modal,
+        :has(> #free-trial-modal) { display: none !important; }
+      `}</style>
       {props.renderDefault(props)}
     </>
   );

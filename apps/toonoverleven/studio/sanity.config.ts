@@ -13,6 +13,7 @@ import { schemaTypes } from './schemas';
 import Start from './tools/Start';
 import SitePreview from './tools/SitePreview';
 import AgendaPaneel from './tools/AgendaPaneel';
+import AlleenConcepten from './tools/AlleenConcepten';
 
 // Geen geheim: het project-id is openbaar en alleen-lezen, en het staat ook in
 // wrangler.jsonc. Hardcoded zodat een verse checkout bouwt zonder .env.
@@ -124,13 +125,31 @@ export default defineConfig({
       },
     ],
   },
+  // Alles wat Sanity 6.9 standaard aanzet en op de betaalde abonnementen
+  // verkoopt. Elk ervan is een knop die een upgradevenster opent, of die tijdens
+  // de proefperiode werkt en daarna op slot gaat met het werk van de vereniging
+  // erin. Releases en ingeplande concepten: er wordt niets op een datum
+  // klaargezet, een agendapunt staat er gewoon in. Taken en Canvas: niet in
+  // gebruik. Media Library, geavanceerd versiebeheer en varianten staan al uit.
+  releases: { enabled: false },
+  scheduledDrafts: { enabled: false },
+  scheduledPublishing: { enabled: false },
+  tasks: { enabled: false },
+  apps: { canvas: { enabled: false } },
+  // Het "Wat is er nieuw"-venster na een update van Sanity, vooral productnieuws.
+  announcements: { enabled: false },
+  studio: { components: { layout: AlleenConcepten } },
   // Het eerste gereedschap krijgt de landingsroute, dus /beheer opent op een
-  // welkomstscherm in plaats van op de lege rechterhelft van een lijst.
+  // welkomstscherm in plaats van op de lege rechterhelft van een lijst. Het
+  // tabblad Releases gaat mee met de schakelaar hierboven.
   tools: (previous) => [
     { name: 'start', title: 'Start', icon: HomeIcon, component: Start },
-    ...previous,
+    ...previous.filter((tool) => tool.name !== 'releases'),
   ],
   document: {
+    // Opmerkingen zijn een Growth-functie: op dit abonnement opent het icoon
+    // alleen een upgradevenster.
+    comments: { enabled: false },
     // Er is één tekstendocument en dat bestaat al. "Nieuw" aanbieden levert
     // alleen een tweede op dat door niets gelezen wordt.
     newDocumentOptions: (previous) => previous.filter((item) => !['siteTeksten','sitePage'].includes(item.templateId)),

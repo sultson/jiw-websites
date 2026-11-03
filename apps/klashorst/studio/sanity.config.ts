@@ -120,6 +120,17 @@ export default defineConfig({
   // switcher is only a way for the client to put their own Studio in read-only.
   releases: { enabled: false },
   scheduledDrafts: { enabled: false },
+  // The rest of what Sanity 6.9 switches on by default and sells on the paid
+  // plans. Each one is a button that either opens an upgrade dialog or works
+  // during the trial and locks afterwards, with the client's work inside it.
+  // None of it is something one editor needs: no schedule, no team to assign
+  // tasks or leave comments for, no Canvas. Media Library, advanced version
+  // control and variants are already off by default.
+  scheduledPublishing: { enabled: false },
+  tasks: { enabled: false },
+  apps: { canvas: { enabled: false } },
+  // The "What's new" pop-up after a Sanity update, mostly product news.
+  announcements: { enabled: false },
   studio: { components: { layout: AlleenConcepten } },
   // First tool wins the landing route, so /beheer opens on a welcome screen
   // rather than the structure list's empty right-hand pane. The Releases tab
@@ -129,6 +140,8 @@ export default defineConfig({
     ...previous.filter((tool) => tool.name !== 'releases'),
   ],
   document: {
+    // Comments are a Growth feature: on this plan the icon only opens an upsell.
+    comments: { enabled: false },
     // There is one texts document and it already exists. Offering "new" here
     // would only produce a second one that nothing reads.
     newDocumentOptions: (previous) => previous.filter((item) => item.templateId !== 'siteTeksten'),
