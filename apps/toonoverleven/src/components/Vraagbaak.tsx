@@ -5,9 +5,8 @@ import type { InterfaceCopy } from '../next/interface';
 /**
  * Een afspraak aanvragen bij de Vraagbaak Koers en Kanker (Marcel, 19-10-2026).
  *
- * Het vragenuur is iedere tweede en vierde dinsdag van 9.00 tot 10.00 uur. De
- * bezoeker kiest een voorkeursdatum; het huis bevestigt de afspraak zelf, dus
- * het formulier belooft niets.
+ * De bezoeker kiest een voorkeursdatum uit de Vraagbaak-momenten in de agenda;
+ * het huis bevestigt de afspraak zelf, dus het formulier belooft niets.
  */
 
 const AANTAL = 8;
@@ -28,10 +27,27 @@ export function vraagbaakDatums(vanaf = new Date(), aantal = AANTAL): Date[] {
 }
 
 const datumTekst = (d: Date) => d.toLocaleDateString('nl-NL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+const tijdTekst = (d: Date) => `${d.getHours()}.${String(d.getMinutes()).padStart(2, '0')}`;
 
-export default function Vraagbaak({ copy }: { copy: InterfaceCopy }) {
+/** Wat de bezoeker kiest: "dinsdag 8 december 2026, 9.00 tot 10.00 uur". */
+export type VraagbaakMoment = { start: Date; eind: Date };
+export const momentTekst = (m: VraagbaakMoment) => `${datumTekst(m.start)}, ${tijdTekst(m.start)} tot ${tijdTekst(m.eind)} uur`;
+
+/**
+ * De data komen uit de agenda (Ron, 03-11-2026): het huis zet de Vraagbaak daar
+ * als activiteit neer, met overgeslagen dinsdagen en al, en verwacht dat het
+ * formulier meeloopt. Alleen als de agenda geen Vraagbaak heeft, valt het terug
+ * op de vaste regel van de tweede en vierde dinsdag.
+ */
+export default function Vraagbaak({ copy, momenten }: { copy: InterfaceCopy; momenten?: VraagbaakMoment[] }) {
   const sleutel = useId();
-  const datums = useMemo(() => vraagbaakDatums().map(datumTekst), []);
+  const datums = useMemo(() => {
+    if (momenten?.length) return momenten.slice(0, AANTAL).map(momentTekst);
+    return vraagbaakDatums().map((d) => momentTekst({
+      start: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 9),
+      eind: new Date(d.getFullYear(), d.getMonth(), d.getDate(), 10),
+    }));
+  }, [momenten]);
   const [bezig, setBezig] = useState(false);
   const [klaar, setKlaar] = useState(false);
   const [fout, setFout] = useState<string | null>(null);
@@ -87,7 +103,7 @@ export default function Vraagbaak({ copy }: { copy: InterfaceCopy }) {
           <label htmlFor={`${sleutel}-datum`}>Voorkeursdatum *</label>
           <select id={`${sleutel}-datum`} name="voorkeursdatum" required defaultValue="">
             <option value="" disabled>Kies een dinsdag</option>
-            {datums.map((d) => <option key={d} value={d}>{d}, 9.00 tot 10.00 uur</option>)}
+            {datums.map((d) => <option key={d} value={d}>{d}</option>)}
           </select>
         </div>
         <div>

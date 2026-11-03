@@ -378,7 +378,7 @@ function Slot({
     case "newsletter":
       return <Nieuwsbrief />;
     case "vraagbaak":
-      return <section className="form-card"><Vraagbaak copy={copy} /></section>;
+      return <section className="form-card"><Vraagbaak copy={copy} momenten={vraagbaakMomenten(ctx)} /></section>;
     case "video": {
       const video = edit?.videos?.find(v => v._key === attrs.videoKey);
       return <Video id={video?.video ?? attrs.video} title={video?.title ?? attrs.title} text={video?.text ?? attrs.text} ctx={ctx} />;
@@ -688,6 +688,10 @@ function SignupAction({ ctx, event }: { ctx: Context; event: Activiteit }) {
 function eigenPad(url: string) {
   return url.replace(/^https:\/\/(www\.)?toonoverleven(\.jouwidealewebsite)?\.nl(?=\/|#|$)/, '') || '/';
 }
+/** Vraagbaak moments in the agenda: the ones whose sign-up link points at the Vraagbaak page. */
+const vraagbaakMomenten = (ctx: Context) => upcoming(ctx).filter((a) =>
+  !a.volgeboekt && !a.heleDag &&
+  (eigenPad(a.aanmeldUrl ?? '').startsWith('/vraagbaak-koers-en-kanker') || /vraagbaak/i.test(a.titel)));
 /** The moments one can register for on our own registration page. */
 const registrable = (ctx: Context) => upcoming(ctx).filter((a) => a.aanmelden && !a.aanmeldUrl);
 function ActivityPractical({ ctx, event, type }: { ctx: Context; event?: Activiteit; type?: string }) {
