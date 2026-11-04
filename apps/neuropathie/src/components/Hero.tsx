@@ -7,7 +7,7 @@ const feiten = [
 ];
 
 /**
- * Informatiesite, geen praktijksite: vlak donker petrol, geen sfeerfoto.
+ * Informatiesite, geen praktijksite: vlak warm donkerbruin, geen sfeerfoto.
  * De twee wegen (cliënt zoekt therapeut / therapeut sluit zich aan) staan hier naast elkaar.
  */
 export default function Hero() {

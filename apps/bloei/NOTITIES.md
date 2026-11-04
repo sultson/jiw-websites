@@ -7,8 +7,9 @@ domein <https://bloei-ouddorp.nl>** (zie `SEO.md` voor de nulmeting van die dag)
 
 Let op: dat de site op een eigen domein staat verandert niets aan de lijst
 hieronder. Het adres, het nummer en de openingstijden zijn bevestigd, maar er is
-nog steeds geen mailadres en geen vectorlogo, en de winkel heet voorlopig nog
-Vershal Ouddorp. Sinds 20-10-2026 is er wél een kerstfoto.
+nog steeds geen mailadres. Sinds 20-10-2026 is er wél een kerstfoto, sinds
+18-10-2026 een vectorlogo, en sinds begin november heet de winkel echt Bloei! —
+bij Google en op Facebook staat de oude naam nog, zie *De naam is om* onderaan.
 
 De opdracht: de eigenaren van Fleurig! (Oud-Beijerland, `apps/fleurig`, inmiddels
 `TIJDELIJK_GESLOTEN`) beginnen onder de naam Bloei! en waren tevreden over de site
@@ -404,6 +405,10 @@ beide kanten van de naad.
 
 ## De naam staat nog op Vershal Ouddorp — 16 oktober
 
+> **Achterhaald op 04-11-2026.** De naam is over; zie *De naam is om* onderaan dit
+> bestand. De melding bovenaan elke pagina is weg, de andere drie plekken staan er
+> nog maar nu in de verleden tijd.
+
 Doorgegeven door Armando: de winkel heet op dit moment nog **Vershal Ouddorp** en
 gaat pas over een paar weken over op Bloei!. Dat is precies de periode waarin
 deze site al Bloei! heet, dus een bezoeker die via Google of Facebook binnenkomt
@@ -496,3 +501,32 @@ is. Zie
 `SEO.md` voor wat er nog openstaat — Search Console en het Google
 Bedrijfsprofiel zijn de twee die er het meest uit halen, en die liggen beide
 buiten deze repo.
+
+## De naam is om — 4 november
+
+Doorgegeven door Armando: de winkel heet **sinds deze week Bloei!**. De melding
+bovenaan elke pagina beloofde dus iets in de toekomst dat al gebeurd is.
+
+Weg: `NaamMelding` uit `src/layout.tsx`, plus de aanroepen in `Hero` (App.tsx) en
+`PaginaKop` (layout.tsx). Dat was de regel "Wij heten nu nog Vershal Ouddorp" met
+de link *Wat verandert er?*, op alle vijf de pagina's.
+
+Blijft staan, nu in de verleden tijd:
+
+| Waar | Wat er nu staat |
+| --- | --- |
+| `NaamUitleg` bij "Waar u ons vindt" | Kopje *Eerder Vershal Ouddorp*. "De winkel heet sinds kort Bloei! Zoekt u ons op Google of op Facebook, dan kan het zijn dat we daar nog onder de oude naam staan." |
+| Veelgesteld, laatste vraag | "Heette deze winkel niet Vershal Ouddorp?" |
+| `index.html` | `"alternateName": "Vershal Ouddorp"` in het `GardenStore`-blok |
+
+Waarom die drie niet mee weg: bij Google en op Facebook staat de zaak nog onder
+de oude naam. Zolang dat zo is zoekt een bezoeker Vershal Ouddorp en komt hij uit
+bij een site die Bloei! heet — en dan is de eerste vraag of dit dezelfde winkel
+is. Weg zodra het bedrijfsprofiel en de Facebookpagina om zijn. `alternateName`
+mag daarna nog een maand of twee blijven, want dat is het enige dat Google de
+twee namen aan elkaar laat knopen.
+
+Wat hier niet bevestigd is: of het Bloei-bord inmiddels aan de gevel hangt. Op de
+foto op deze site hangt het er; of dat een opname of een proefbeeld is weten wij
+niet. Dat is wel waar Google bij een naamswijziging in het bedrijfsprofiel naar
+kijkt.

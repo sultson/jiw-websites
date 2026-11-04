@@ -133,10 +133,12 @@ apps/         client sites (almost all a Vite + React 19 + TS 5.8 + Tailwind v4 
                           for `GardenStore`, not `Florist` — the shop sells flowers but leans
                           on plants, garden and homeware). `pnpm indexnow` pings Bing/Yandex
                           off the built sitemap; the key is the filename in `public/`.
-                          **The shop is still called Vershal Ouddorp** and renames to Bloei!
-                          in a few weeks — that is why `alternateName` sits in the
-                          `GardenStore` block and a disclaimer runs on every page. dev port
-                          3065. See its NOTITIES.md + SEO.md.
+                          **The shop renamed from Vershal Ouddorp to Bloei! in the first week
+                          of November 2026** (04-11-2026). The per-page disclaimer about the
+                          coming rename is gone; the explanation at "Waar u ons vindt", the
+                          last FAQ question and `alternateName` in the `GardenStore` block
+                          stay — in past tense — because Google and Facebook still carry the
+                          old name. dev port 3065. See its NOTITIES.md + SEO.md.
   resq-protec/            Rescue Watercraft. Astro, static, nl/en/de (de added 22-10-2026),
                           60 pages. LIVE on rescuewatercraft.eu since 23-10-2026 (apex
                           canonical, www + concept hosts 301 there; rescuewatercraft.nl

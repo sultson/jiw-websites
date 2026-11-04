@@ -6,25 +6,26 @@ houden: wat er toen stond, wat we gedaan hebben, en wat er nog open staat.
 
 ## Het eigenaardige van deze site
 
-De winkel heet op dit moment nog **Vershal Ouddorp** en gaat over een paar weken
-verder als **Bloei!**. Dat is geen detail dat er bij komt, het is de hele
-zoekopgave. Alles wat Google en de kaartendiensten over dit adres weten staat
-onder de oude naam; alles wat deze site zegt staat onder de nieuwe. Wie daar niets
-aan doet, zet een nieuw merk neer zonder één van de signalen die het bestaande
-heeft opgebouwd.
+De winkel heette tot begin november 2026 **Vershal Ouddorp** en gaat sinds deze
+week verder als **Bloei!** (doorgegeven 04-11-2026). Dat is geen detail dat er bij
+komt, het is de hele zoekopgave. Alles wat Google en de kaartendiensten over dit
+adres weten staat nog onder de oude naam; alles wat deze site zegt staat onder de
+nieuwe. Wie daar niets aan doet, zet een nieuw merk neer zonder één van de
+signalen die het bestaande heeft opgebouwd.
 
 Wat er daarom in staat:
 
 - `alternateName: "Vershal Ouddorp"` in het `GardenStore`-blok op de home. Zonder
   dat kan Google twee winkels op hetzelfde adres lezen, en dan vechten die twee
-  om dezelfde plek.
-- Een regel bovenaan elke pagina ("Wij heten nu nog Vershal Ouddorp") met een link
-  naar de uitleg.
-- De uitleg zelf bij *Waar u ons vindt*, dat onder elke pagina staat.
-- Een vraag bij *Veelgesteld*: "Heet deze winkel niet Vershal Ouddorp?"
+  om dezelfde plek. Dit is het laatste dat eruit mag, niet het eerste.
+- De uitleg bij *Waar u ons vindt*, dat onder elke pagina staat: kopje *Eerder
+  Vershal Ouddorp*.
+- Een vraag bij *Veelgesteld*: "Heette deze winkel niet Vershal Ouddorp?"
 
-Vijf vermeldingen van de oude naam op de home, allemaal in die rol. Zodra de naam
-echt over is horen ze eruit; dat staat als los punt in `NOTITIES.md`.
+Drie vermeldingen van de oude naam op de home, allemaal in die rol. Op 04-11-2026
+is de vierde eruit gegaan: de regel bovenaan elke pagina ("Wij heten nu nog
+Vershal Ouddorp") beloofde een naamswijziging in de toekomst die al gebeurd was.
+De andere drie gaan eruit zodra het bedrijfsprofiel en de Facebookpagina om zijn.
 
 ## Eén adres per pagina
 
@@ -142,9 +143,12 @@ mail is te beantwoorden.
    site. Het profiel staat onder Vershal Ouddorp; daar hoort de naam om te gaan
    en `bloei-ouddorp.nl` als website in te staan. Een winkel in Ouddorp wordt via
    de kaart gevonden, niet via tien blauwe links.
-3. **De naamswijziging zelf.** Zodra de winkel echt Bloei! heet gaan de vier
-   plekken met de disclaimer eruit en blijft `alternateName` staan - dat laatste
-   nog een jaar, want zo lang blijven mensen op de oude naam zoeken.
+3. **De naamswijziging zelf.** De winkel heet sinds begin november echt Bloei!,
+   dus de melding bovenaan elke pagina is op 04-11-2026 weggehaald. De uitleg bij
+   *Waar u ons vindt* en de vraag bij *Veelgesteld* staan er nog, nu in de verleden
+   tijd, en gaan eruit zodra het bedrijfsprofiel en de Facebookpagina op Bloei!
+   staan. `alternateName` blijft daarna nog een jaar, want zo lang blijven mensen
+   op de oude naam zoeken.
 4. **Geen kerstfoto's.** De winkel heeft er geen aangeleverd, dus de kerstpagina
    staat er als kleur en vorm en haar `og:image` (1200x630, zoals elke pagina er
    een heeft) is een afbeelding van ons eigen ontwerp en niet van hun

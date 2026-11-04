@@ -2,8 +2,10 @@
 @import "tailwindcss";
 
 /*
- * Eigen richting, los van lydiavanderbie.nl: koel palet met petrol als accent,
- * schreefloze koppen, grotere basisletter en rechte hoeken. Dit is geen
+ * Eigen richting, los van lydiavanderbie.nl: warm palet met amber/cognac als
+ * accent en een diep teal-grijs als tweede anker — warm, maar niet haar
+ * oatmeal/terracotta/sage. Schreefloze koppen, grotere basisletter en rechte
+ * hoeken blijven: dat is wat het kopie-gevoel weghaalde. Dit is geen
  * praktijksite maar een informatiesite plus een register van therapeuten.
  */
 
@@ -11,40 +13,40 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
 
-  /* ── Surfaces — koele neutralen ────────────────── */
-  --color-canvas: #F6F8F9;       /* koel gebroken wit */
-  --color-cream: #FFFFFF;        /* kaart */
-  --color-sand: #EBEFF2;         /* lichte band (afwisselende secties) */
-  --color-sand-deep: #DEE4E9;
-  --color-oat: #E6EBEF;
+  /* ── Surfaces — warm linnen ────────────────────── */
+  --color-canvas: #FAF6F2;       /* warm gebroken wit */
+  --color-cream: #FFFDFB;        /* kaart */
+  --color-sand: #F2EBE4;         /* lichte band (afwisselende secties) */
+  --color-sand-deep: #E6DCD1;
+  --color-oat: #EFE7DE;
 
-  /* ── Ink — koel bijna-zwart ───────────────────── */
-  --color-ink: #14202A;          /* koppen */
-  --color-ink-soft: #3C4A56;     /* lopende tekst */
-  --color-ink-mute: #6B7A86;     /* bijschriften */
+  /* ── Ink — warm bijna-zwart ───────────────────── */
+  --color-ink: #231C16;          /* koppen */
+  --color-ink-soft: #4C443C;     /* lopende tekst */
+  --color-ink-mute: #7D7267;     /* bijschriften */
 
-  /* ── Petrol — primair accent ──────────────────── */
-  --color-terra: #0E6B76;
-  --color-terra-bright: #14828F;
-  --color-terra-deep: #0A4B53;
-  --color-terra-ink: #0B2027;    /* diepe sectie-achtergrond */
-  --color-terra-ink-soft: #11313B;
+  /* ── Amber / cognac — primair accent ──────────── */
+  --color-terra: #9A5A18;
+  --color-terra-bright: #B46E24;
+  --color-terra-deep: #77430F;
+  --color-terra-ink: #241A12;    /* diepe sectie-achtergrond */
+  --color-terra-ink-soft: #35271B;
 
-  /* ── Slate — secundair anker ──────────────────── */
-  --color-sage: #637A89;
-  --color-sage-deep: #3E5260;
-  --color-sage-soft: #9EB0BC;
-  --color-sage-wash: #E2EAEE;    /* flauwe koele tint */
+  /* ── Teal-grijs — secundair anker ─────────────── */
+  --color-sage: #5E7073;
+  --color-sage-deep: #3C4B4D;
+  --color-sage-soft: #9DADAE;
+  --color-sage-wash: #E7EAE7;    /* flauwe tint, warm doorschijnend */
 
   /* ── Lichte accenten (op donkere vlakken) ─────── */
-  --color-rose: #74BAC2;
-  --color-rose-soft: #CBE4E8;
-  --color-lavender: #8CA1AF;
-  --color-lavender-soft: #DDE5EA;
+  --color-rose: #E0A860;
+  --color-rose-soft: #F3DCBF;
+  --color-lavender: #BBA68E;
+  --color-lavender-soft: #EADFD2;
 
   /* ── Lijnen ───────────────────────────────────── */
-  --color-line: #D9E0E5;
-  --color-line-soft: #E6EBEF;
+  --color-line: #E4D9CD;
+  --color-line-soft: #EFE7DE;
 }
 
 @layer base {
@@ -181,7 +183,7 @@ footer[id] { scroll-margin-top: 84px; }
 
 /* ── Flauwe wash achter secties ─────────────────── */
 .wash-sage  { background: radial-gradient(120% 120% at 100% 0%, var(--color-sage-wash) 0%, transparent 62%); }
-.wash-rose  { background: radial-gradient(120% 120% at 0% 100%, var(--color-sage-wash) 0%, transparent 58%); }
+.wash-rose  { background: radial-gradient(120% 120% at 0% 100%, var(--color-oat) 0%, transparent 58%); }
 
 /* ── Utilities ──────────────────────────────────── */
 .safe-bottom { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
