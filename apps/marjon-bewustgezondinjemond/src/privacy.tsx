@@ -74,9 +74,13 @@ export function CookieMelding() {
     <aside
       role="dialog"
       aria-label="Cookies op deze website"
-      /* Op een telefoon boven de vaste balk met 'Neem contact op', op een
-         laptop rechtsonder: links staan de twee knoppen van de hero. */
-      className="melding-komt fixed inset-x-3 bottom-24 z-50 mx-auto max-w-md rounded-2xl bg-white p-4 shadow-xl ring-1 ring-zand-diep md:inset-x-auto md:right-5 md:bottom-5 md:max-w-sm"
+      /* Blijft boven de zwevende WhatsApp- en belknop, op allebei de formaten:
+         die staan onderaan op een telefoon en rechtsonder op een laptop,
+         precies waar deze melding anders zou liggen. Links kan niet, daar
+         staan de twee knoppen van de hero. Op een laptop staan ze gestapeld,
+         dus daar is meer ruimte nodig: nagemeten in de browser is die stapel
+         108 punten hoog en staat de onderste knop 24 punten van de rand. */
+      className="melding-komt fixed inset-x-3 bottom-24 z-50 mx-auto max-w-md rounded-2xl bg-white p-4 shadow-xl ring-1 ring-zand-diep md:inset-x-auto md:right-5 md:bottom-36 md:max-w-sm"
     >
       <div className="flex items-start gap-3">
         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-olijf/15 text-olijf-diep">
