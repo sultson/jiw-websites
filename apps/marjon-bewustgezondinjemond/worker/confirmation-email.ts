@@ -48,7 +48,7 @@ const COPY: ConfirmationEmailCopy = {
   contactPrompt: `Wil je er iets aan toevoegen? Beantwoord deze mail, of bel me op ${PRAKTIJK.telefoonWeergave}.`,
   ctaLabel: 'Terug naar de website',
   footerText:
-    `${SITE_NAAM} - Marjon Ooteman, integraal mondhygiënist, ${PRAKTIJK.plaats}. ` +
+    `${SITE_NAAM} - Marjon Ooteman, mondhygiënist, ${PRAKTIJK.plaats}. ` +
     'Je ontvangt deze mail omdat je het contactformulier op de website invulde.',
 };
 

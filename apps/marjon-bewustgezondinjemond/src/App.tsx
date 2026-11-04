@@ -29,12 +29,17 @@ import {
   VERKLARING_PAD,
 } from './privacy';
 import {REVIEWS_PAD, ReviewsPagina} from './reviews';
-import {Vergroot} from './vergroot';
 import {normaliseerPad, usePad} from './pad';
 
-const MERIDIANEN = '/img/tandmeridianen.svg?v=20261104';
-const MERIDIANEN_ALT =
-  'Kaart van het gebit waarop per tand en kies het bijbehorende orgaan, weefsel en de klachten staan die daarbij horen';
+/* De tandmeridianenkaart stond hier tot 04-11-2026 in het blok "De brug tussen
+   twee werelden", aanklikbaar om uit te vergroten. Op verzoek van Marjon van de
+   site af: ze stuurt hem voortaan zelf naar haar cliënten als pdf. De tekening
+   (public/img/tandmeridianen.svg, getekend door scripts/meridianen.mjs) en de
+   twee pdf's blijven bestaan en blijven bereikbaar:
+     /gebit-en-meridianen-bewust-gezond-in-je-mond.pdf      A4, om te mailen
+     /gebit-en-meridianen-bewust-gezond-in-je-mond-a3.pdf   A3, om te printen
+   Terugzetten is dit blok plus <Vergroot/> uit src/vergroot.tsx, die staat er
+   nog. */
 
 const TEL = '+31620594924';
 const TEL_TONEN = '06 20594924';
@@ -50,9 +55,9 @@ const MAIL = 'info@marjonooteman.nl';
    natrekken. Het vestigingsnummer zegt een bezoeker niets. Het adres
    Kievitlaan 99 blijft er bewust af, zie de toelichting in privacytekst.js. */
 const KVK = '37154226';
-/* Marjon is aangesloten bij NVM-mondhygienisten; klachten lopen via hun
-   klachtenregeling, niet via de praktijk. (Opgegeven door Marjon, 01-10-2026.) */
-const KLACHTEN_URL = 'https://www.mondhygienisten.nl/klacht-over-je-mondhygienist/';
+/* De link naar de klachtenregeling van NVM-mondhygienisten stond van 01-10 tot
+   04-11-2026 in de footer. Op verzoek van Marjon weg: die regeling hoort bij de
+   behandelpraktijk, en die is er sinds 10-10-2026 niet meer. */
 
 /* ---------- navigatie ---------- */
 
@@ -830,7 +835,6 @@ const WERELDEN: Wereld[] = [
 ];
 
 function Over() {
-  const [kaartOpen, setKaartOpen] = useState(false);
   return (
     <section id="over" className="bg-room py-20">
       <div className="mx-auto grid max-w-6xl items-start gap-12 px-5 lg:grid-cols-[0.9fr_1.1fr]">
@@ -938,45 +942,8 @@ function Over() {
             ))}
           </ul>
 
-          {/* De tandmeridianenkaart. Marjon stuurde een felroze, Engelstalige kaart
-              mee; die is hier opnieuw getekend in haar eigen kleuren en in het
-              Nederlands (scripts/meridianen.mjs). Het is een tekening met veel
-              kleine tekst, dus hij staat zo groot mogelijk en gaat bij een klik
-              uitvergroot over de pagina heen (zie vergroot.tsx). Het is een
-              vector, dus inzoomen blijft scherp.
-
-              Een knop en geen link: dit brengt je nergens heen, het vergroot wat
-              er al staat. Een link naar het bestand gooide je uit de site, op een
-              kale pagina met alleen het plaatje. */}
-          <figure className="mt-8 m-0">
-            <button
-              type="button"
-              onClick={() => setKaartOpen(true)}
-              aria-label="Meridianenkaart uitvergroten"
-              className="block w-full cursor-zoom-in rounded-2xl bg-white p-3 ring-1 ring-zand-diep transition hover:shadow-md"
-            >
-              <img
-                src={MERIDIANEN}
-                alt={MERIDIANEN_ALT}
-                loading="lazy"
-                decoding="async"
-                width={1600}
-                height={1800}
-                className="w-full"
-              />
-            </button>
-            <figcaption className="mt-2 text-xs text-inkt/55">
-              Elke tand en kies staat in verbinding met een orgaan, een weefsel en een meridiaan.
-              Klik om te vergroten.
-            </figcaption>
-          </figure>
-          <Vergroot
-            src={MERIDIANEN}
-            alt={MERIDIANEN_ALT}
-            onderschrift="Gebit en meridianen: elke tand en kies in verbinding met een orgaan, een weefsel en een meridiaan"
-            open={kaartOpen}
-            onSluit={() => setKaartOpen(false)}
-          />
+          {/* Hier stond de tandmeridianenkaart; zie de toelichting bovenin dit
+              bestand. Van de site af op 04-11-2026, de pdf's blijven. */}
           <p className="mt-5 leading-relaxed text-inkt/75">
             Geen ingewikkeld medisch jargon, geen opgeheven vingertjes. Wel een laagdrempelige, holistische benadering
             die je ogen opent.
@@ -1161,9 +1128,7 @@ function Footer() {
         {/* Een privacyverklaring, want er is er maar een: het aparte document
             over het patientendossier is vervallen met de behandelpraktijk.
             Daarnaast de knop om je cookiekeuze te wijzigen, want intrekken
-            moet even makkelijk zijn als geven. De laatste link wijst naar
-            buiten: klachten lopen via de beroepsvereniging
-            (NVM-mondhygienisten). Dus geen ga(), dat is de interne router. */}
+            moet even makkelijk zijn als geven. */}
         <div className="flex shrink-0 flex-wrap items-center gap-x-4 gap-y-1">
           <a
             href={PRIVACY_PAD}
@@ -1173,14 +1138,6 @@ function Footer() {
             Privacyverklaring
           </a>
           <CookieKeuzeKnop />
-          <a
-            href={KLACHTEN_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-4 transition hover:text-room"
-          >
-            Klachtenregeling
-          </a>
         </div>
       </div>
     </footer>

@@ -71,10 +71,13 @@ export const PAGINAS = [
     /* Een zoekresultaat laat ongeveer 60 tekens titel zien. De oude titel was
        er 84 en werd dus halverwege "Noord-Holland" afgekapt. De merknaam staat
        niet meer in de titel maar wel in het domein zelf, in de h1 en in
-       og:site_name: wie op de naam zoekt vindt hem daar. */
-    titel: `Integraal mondhygiënist in Noord-Holland | ${HAAR_NAAM}`,
+       og:site_name: wie op de naam zoekt vindt hem daar.
+
+       Het woord "integraal" stond hier tot 04-11-2026 voor "mondhygiënist";
+       Marjon wil die aanduiding niet meer gebruiken. */
+    titel: `Mondhygiënist in Noord-Holland | ${HAAR_NAAM}`,
     kort:
-      'Marjon Ooteman, integraal mondhygiënist in Noord-Holland. Over je mond, je voeding ' +
+      'Marjon Ooteman, mondhygiënist in Noord-Holland. Over je mond, je voeding ' +
       'en je leefstijl, en hoe die samen je gezondheid bepalen.',
     inSitemap: true,
   },

@@ -17,7 +17,7 @@ import {HAAR_NAAM, PRAKTIJK, SITE_NAAM, SITE_URL} from '../site.config.mjs';
  *  bewaren een deelkaartje lang, en een nieuw adres is de enige manier om ze
  *  het opnieuw te laten ophalen. */
 const DEEL_BEELD = `${SITE_URL}/img/hero-deelkaart.jpg?v=20261020`;
-const DEEL_BEELD_ALT = 'Marjon Ooteman, integraal mondhygiënist';
+const DEEL_BEELD_ALT = 'Marjon Ooteman, mondhygiënist';
 
 function teken(tekst) {
   return String(tekst)
@@ -40,13 +40,13 @@ const PERSOON = {
   '@type': 'Person',
   '@id': `${SITE_URL}/#marjon`,
   name: HAAR_NAAM,
-  jobTitle: 'Integraal mondhygiënist',
+  jobTitle: 'Mondhygiënist',
   url: `${SITE_URL}/`,
   image: DEEL_BEELD,
   telephone: PRAKTIJK.telefoon,
   email: `mailto:${PRAKTIJK.email}`,
   description:
-    'Integraal mondhygiënist, woonachtig in Schagen. Online coaching over mondgezondheid met ' +
+    'Mondhygiënist, woonachtig in Schagen. Online coaching over mondgezondheid met ' +
     'aandacht voor voeding, darmen, leefstijl en dagelijkse gewoontes.',
   knowsAbout: [
     'Mondhygiëne',
@@ -98,6 +98,11 @@ const SITE = {
  * omdat ze de moeite waard zijn als blok op de voorpagina. Komen ze daar als
  * echte tekst te staan, dan kan het FAQPage-blok hieronder er weer in en vangt
  * scripts/audit-seo.mjs het als ze weer uit elkaar lopen.
+ *
+ * LET OP bij hergebruik: de eerste vraag gebruikt nog het woord "integraal".
+ * Dat is op 04-11-2026 op haar verzoek van de hele site gehaald. Deze lijst
+ * staat nergens op een pagina, dus dat kon blijven staan, maar herschrijf die
+ * vraag voordat dit blok ooit echt in beeld komt.
  */
 export const VRAGEN_NOG_NIET_OP_DE_PAGINA = [
   [

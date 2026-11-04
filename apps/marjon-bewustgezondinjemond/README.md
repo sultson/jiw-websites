@@ -1,6 +1,6 @@
 # Marjon Ooteman - Bewust Gezond in je Mond
 
-Site van Marjon Ooteman, integraal mondhygiënist in Schagen.
+Site van Marjon Ooteman, mondhygiënist in Schagen.
 Live op **bewustgezondinjemond.nl**. Verhuisd uit `jiw-concepts/marjon` op 12-10-2026.
 
 ```
