@@ -339,9 +339,9 @@ uit.push(
    geprinte A4 ongeveer 5pt. Zo kan hij op 26, bijna twee keer zo groot als de
    tekst in de ringen zelf. De ringnaam dik, zodat je de drie los ziet. */
 const legenda = [
-  ['binnenste ring', 'klachten die op dit gebied kunnen wijzen'],
-  ['middelste ring', 'organen en weefsels die meelopen'],
-  ['buitenste ring', 'het orgaanpaar en zijn meridiaan'],
+  ['Binnenste ring', 'klachten die op dit gebied kunnen wijzen'],
+  ['Middelste ring', 'organen en weefsels die meelopen'],
+  ['Buitenste ring', 'het orgaanpaar en zijn meridiaan'],
 ];
 const LEG_FS = 26;
 uit.push(
