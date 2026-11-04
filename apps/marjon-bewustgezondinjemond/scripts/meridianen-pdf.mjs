@@ -56,7 +56,7 @@ const ROOM = '#f6f4ef';
 const OLIJF = '#7c8460';
 const INKT = '#2b4249';
 
-/* De kaart is bijna vierkant (1600 bij 1680) en een A4 is dat niet. Hij wordt
+/* De kaart is bijna vierkant (1600 bij 1800) en een A4 is dat niet. Hij wordt
    dus op de breedte gepast en er blijft hoogte over; die ruimte gaat naar de
    regel eronder, zodat wie de pdf doorstuurt ziet waar hij vandaan komt. */
 const pagina = (marge) => `<!doctype html><html lang="nl"><head><meta charset="utf-8">

@@ -83,7 +83,10 @@ const KWADRANTEN = [
 /* ---------- maten ---------- */
 
 const B = 1600;
-const H = 1680;
+/* 1800 en niet 1680: de legenda onderaan stond op een regel en moest daarom op
+   font-size 15 blijven. Op A4 is dat ongeveer 5pt en dus onleesbaar. Hij staat
+   nu op drie regels (een per ring) op 26, en die hebben deze hoogte nodig. */
+const H = 1800;
 const CX = 800;
 const CY = 800;
 
@@ -331,19 +334,28 @@ uit.push(
   `<text x="${CX}" y="${CY + 48}" text-anchor="middle" font-size="15" fill="${INKT}" opacity="0.75">een orgaan, een weefsel en een meridiaan.</text>`,
 );
 
-/* legenda voor de ringen, zodat de kaart ook los te lezen is */
+/* Legenda voor de ringen, zodat de kaart ook los te lezen is. Een regel per
+   ring: op een regel paste hij alleen op font-size 15, en dat wordt op een
+   geprinte A4 ongeveer 5pt. Zo kan hij op 26, bijna twee keer zo groot als de
+   tekst in de ringen zelf. De ringnaam dik, zodat je de drie los ziet. */
 const legenda = [
   ['binnenste ring', 'klachten die op dit gebied kunnen wijzen'],
   ['middelste ring', 'organen en weefsels die meelopen'],
   ['buitenste ring', 'het orgaanpaar en zijn meridiaan'],
 ];
+const LEG_FS = 26;
 uit.push(
-  `<text x="${CX}" y="${H - 42}" text-anchor="middle" font-size="15" fill="${INKT}" opacity="0.7">` +
-    legenda.map(([a, b]) => `${a}: ${b}`).join('   ·   ') +
+  `<text x="${CX}" y="${H - 200}" text-anchor="middle" font-size="${LEG_FS}" fill="${INKT}" opacity="0.8">` +
+    legenda
+      .map(
+        ([a, b], i) =>
+          `<tspan x="${CX}" y="${H - 200 + i * 38}"><tspan font-weight="700">${a}:</tspan> ${b}</tspan>`,
+      )
+      .join('') +
     `</text>`,
 );
 uit.push(
-  `<text x="${CX}" y="${H - 14}" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="19" letter-spacing="0.12em" fill="${OLIJF}">Bewust Gezond in je Mond</text>`,
+  `<text x="${CX}" y="${H - 52}" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="30" letter-spacing="0.12em" fill="${OLIJF}">Bewust Gezond in je Mond</text>`,
 );
 
 uit.push('</svg>');

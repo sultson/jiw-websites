@@ -32,7 +32,7 @@ import {REVIEWS_PAD, ReviewsPagina} from './reviews';
 import {Vergroot} from './vergroot';
 import {normaliseerPad, usePad} from './pad';
 
-const MERIDIANEN = '/img/tandmeridianen.svg';
+const MERIDIANEN = '/img/tandmeridianen.svg?v=20261104';
 const MERIDIANEN_ALT =
   'Kaart van het gebit waarop per tand en kies het bijbehorende orgaan, weefsel en de klachten staan die daarbij horen';
 
@@ -961,7 +961,7 @@ function Over() {
                 loading="lazy"
                 decoding="async"
                 width={1600}
-                height={1680}
+                height={1800}
                 className="w-full"
               />
             </button>

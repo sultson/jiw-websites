@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1680" width="1600" height="1680" font-family="'Quicksand', 'Trebuchet MS', system-ui, sans-serif" role="img" aria-label="Kaart van het gebit met per tand het bijbehorende orgaan, weefsel en de klachten die daarbij horen">
-<rect width="1600" height="1680" fill="#f6f4ef"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1800" width="1600" height="1800" font-family="'Quicksand', 'Trebuchet MS', system-ui, sans-serif" role="img" aria-label="Kaart van het gebit met per tand het bijbehorende orgaan, weefsel en de klachten die daarbij horen">
+<rect width="1600" height="1800" fill="#f6f4ef"/>
 <circle cx="800" cy="800" r="716" fill="none" stroke="#c9d3ce" stroke-width="3"/>
 <path d="M529.83 147.74 A706 706 0 0 1 800 94 L800 180 A620 620 0 0 0 562.74 227.19 Z" fill="#33606d" stroke="#f6f4ef" stroke-width="2"/>
 <path d="M565.8 234.59 A612 612 0 0 1 800 188 L800 360 A440 440 0 0 0 631.62 393.49 Z" fill="#d3dcdb" stroke="#f6f4ef" stroke-width="2"/>
@@ -128,6 +128,6 @@
 <text x="800" y="784" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="42" letter-spacing="0.05em" fill="#2b4249">Gebit &amp; meridianen</text>
 <text x="800" y="826" text-anchor="middle" font-size="15" fill="#2b4249" opacity="0.75">Elke tand en kies staat in verbinding met</text>
 <text x="800" y="848" text-anchor="middle" font-size="15" fill="#2b4249" opacity="0.75">een orgaan, een weefsel en een meridiaan.</text>
-<text x="800" y="1638" text-anchor="middle" font-size="15" fill="#2b4249" opacity="0.7">binnenste ring: klachten die op dit gebied kunnen wijzen   ·   middelste ring: organen en weefsels die meelopen   ·   buitenste ring: het orgaanpaar en zijn meridiaan</text>
-<text x="800" y="1666" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="19" letter-spacing="0.12em" fill="#7c8460">Bewust Gezond in je Mond</text>
+<text x="800" y="1600" text-anchor="middle" font-size="26" fill="#2b4249" opacity="0.8"><tspan x="800" y="1600"><tspan font-weight="700">binnenste ring:</tspan> klachten die op dit gebied kunnen wijzen</tspan><tspan x="800" y="1638"><tspan font-weight="700">middelste ring:</tspan> organen en weefsels die meelopen</tspan><tspan x="800" y="1676"><tspan font-weight="700">buitenste ring:</tspan> het orgaanpaar en zijn meridiaan</tspan></text>
+<text x="800" y="1748" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="30" letter-spacing="0.12em" fill="#7c8460">Bewust Gezond in je Mond</text>
 </svg>
