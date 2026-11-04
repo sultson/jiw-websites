@@ -343,7 +343,7 @@ uit.push(
     `</text>`,
 );
 uit.push(
-  `<text x="${CX}" y="${H - 14}" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="19" letter-spacing="0.12em" fill="${OLIJF}">&#8220;Bewust Gezond in je Mond&#8221;</text>`,
+  `<text x="${CX}" y="${H - 14}" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="19" letter-spacing="0.12em" fill="${OLIJF}">Bewust Gezond in je Mond</text>`,
 );
 
 uit.push('</svg>');

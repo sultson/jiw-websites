@@ -14,6 +14,8 @@
     "audit:seo": "node scripts/audit-seo.mjs",
     "mail-logo": "node scripts/mail-logo.mjs",
     "merk": "node scripts/merk-vector.mjs",
+    "meridianen": "node scripts/meridianen.mjs",
+    "meridianen-pdf": "node scripts/meridianen-pdf.mjs",
     "fotokeuze": "node scripts/fotokeuze.mjs",
     "merk-meet": "node scripts/merk-meet.mjs",
     "verklaring": "node scripts/verklaring-pdf.mjs",
