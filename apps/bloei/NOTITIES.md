@@ -189,11 +189,11 @@ van de gevel afgelezen, omdat er toen niets anders was; die hele reeks is weg.
 
 | | | rol |
 | --- | --- | --- |
-| Dennengroen | `#173F2B` | `ink` — balk bovenaan (gevraagd), voet, formulier, lopende tekst |
+| Dennengroen | `#173F2B` | `ink` — balk bovenaan (gevraagd), voet, formulier, lopende tekst, de zwevende belknop |
 | Saliegroen | `#4F784B` | `salie` — vullingen; verdiept als `accent-dark` voor tekst |
 | Lindegroen | `#B1C2A2` | `accent` — het accent op donker. Was tot 20-10-2026 ook letterlijk de bladkleur van het logo; het tweekleurige blad gebruikt `#4F784B` en `#A9C58D`, maar lindegroen blijft als accentkleur staan, want die staat zo in de aangeleverde reeks |
 | Ivoor | `#F3EEDC` | `ivoor` — spaarzaam: kerstkaarten en de lampjes in het snoer |
-| Zandbruin | `#B99D71` | `zand` — de zwevende belknop en de lampjes in het kerstsnoer |
+| Zandbruin | `#B99D71` | `zand` — de lampjes in het kerstsnoer (tot 04-11-2026 ook de zwevende belknop) |
 | Framboos | `#c22a5f` | `roze` — de hoofdknop; komt niet uit de reeks, zie hieronder |
 
 Vier dingen die niet letterlijk uit de reeks komen en waarom:
@@ -206,10 +206,15 @@ Vier dingen die niet letterlijk uit de reeks komen en waarom:
   Teruggezet op verzoek, 18-10-2026, na een halve dag in zandbruin. De winkel
   was bij Fleurig! tevreden over deze kleur. Wit erop haalt 5,4:1 en hover
   (`roze-diep` `#a81f4f`) 7,0:1, dus die gaat de gewone kant op: een slag dieper.
-- **De zwevende belknop is wél zandbruin, en die heeft dennengroene letters.**
-  Wit op zandbruin haalt 2,6:1, dennengroen 4,6:1. Om dezelfde reden gaat hover
-  daar omhóóg: indikken zakt naar 3,4:1, oplichten gaat naar 5,5:1. Zet de
-  letters daar niet op wit omdat het er in een ontwerp beter uitziet.
+- **De zwevende belknop is dennengroen met witte letters** (11,8:1), gevraagd op
+  04-11-2026: naast het WhatsApp-groen ging zandbruin als derde kleur staan.
+  Tussen 18-10 en 04-11 was hij zandbruin met dennengroene letters, en dat had
+  een reden — die knop zweeft over de hele pagina mee, en over het kerstvlak
+  (`#102c1e`) en over de voet is dennengroen op dennengroen een vorm zonder
+  rand. Daarom heeft hij nu een rand van 2 px in lindegroen
+  (`ring-2 ring-accent`): die haalt 7,9:1 op het kerstvlak. **Haal die rand er
+  niet af** zonder de knop over het kerstvlak en de voet te bekijken; zonder
+  rand verdwijnt hij daar.
 - **`accent-dark` is `#42653f`, saliegroen een slag verdiept.** Saliegroen zelf
   haalt alleen op de lichtste van de drie achtergronden de norm (4,6:1 op
   `cream`, maar 4,3:1 op `creme-diep` en 4,0:1 op de randkleur). De echte
@@ -217,7 +222,7 @@ Vier dingen die niet letterlijk uit de reeks komen en waarom:
   de blaadjes aan de hoofdknop en als `--color-salie`.
 
 **Het oranje van de belknop is weg** (`#c9741f`, naar het voorbeeld van
-winterswijkvakantiehuis.nl). Die knop staat nu in zandbruin. Het framboosroze
+winterswijkvakantiehuis.nl). Die knop staat nu in dennengroen. Het framboosroze
 ging er bij de huisstijl ook uit, maar is op verzoek dezelfde dag teruggezet op
 de hoofdknop — dat is nu de enige kleur op de site die niet uit de reeks komt.
 

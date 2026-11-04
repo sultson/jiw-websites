@@ -6,7 +6,7 @@ import Aanvraag from './Aanvraag';
 import KaartLazy from './KaartLazy';
 import {usePad} from './pad';
 import {
-  BEL_ZAND, Bullet, FACEBOOK, Kicker, Merk, PLAATS, ROUTE, STREEKKERNEN, Section, STRAAT, TEL,
+  BEL_GROEN, Bullet, FACEBOOK, Kicker, Merk, PLAATS, ROUTE, STREEKKERNEN, Section, STRAAT, TEL,
   TEL_DISPLAY, WA_DONKER, WA_GROEN, WHATSAPP, WhatsAppMerk, useFormKnopInBeeld, KNOP_HOOFD,
 } from './ui';
 
@@ -555,16 +555,17 @@ export function MobielBalk() {
  * dezelfde twee acties erin; die twee naast elkaar zijn vier knoppen op een
  * telefoonscherm die naar twee dingen wijzen.
  *
- * Allebei in een kleur die op elk vlak losstaat, en elk met hun eigen
- * tekstkleur: wit op het WhatsApp-groen, dennengroen op het zandbruin. Die
- * twee zweven over de hele pagina mee — over de kopfoto, over het lichte
- * groen, over het kerstvlak en over de voet — dus er is geen ondergrond
- * waarop ze mogen wegvallen. Een witte rand eromheen vangt het geval dat er
- * toevallig een vlak in bijna dezelfde kleur onder staat.
+ * Allebei met witte letters: op het WhatsApp-groen en op het dennengroen van
+ * de huisstijl. Die twee zweven over de hele pagina mee — over de kopfoto,
+ * over het lichte groen, over het kerstvlak en over de voet — dus er is geen
+ * ondergrond waarop ze mogen wegvallen. Vandaar twee verschillende randen:
+ * wit op WhatsApp, want dat groen staat overal los; lindegroen van 2 px op
+ * de belknop, want dennengroen op het kerstvlak en op de voet is dezelfde
+ * kleur op dezelfde kleur en zonder die rand blijft er niets over.
  */
 export function ZwevendeKnoppen() {
   const knop =
-    'inline-flex items-center gap-2.5 rounded-full px-5 py-3 text-sm font-bold ring-1 ring-white/35 ' +
+    'inline-flex items-center gap-2.5 rounded-full px-5 py-3 text-sm font-bold text-white ' +
     'shadow-[0_12px_30px_-10px_rgb(10_26_18_/_0.6)] transition hover:brightness-110';
   return (
     <div className="fixed bottom-6 right-6 z-40 hidden flex-col items-end gap-2.5 md:flex">
@@ -572,12 +573,16 @@ export function ZwevendeKnoppen() {
         href={WHATSAPP}
         target="_blank"
         rel="noreferrer"
-        className={`${knop} text-white`}
+        className={`${knop} ring-1 ring-white/35`}
         style={{backgroundColor: WA_GROEN}}
       >
         <WhatsAppMerk className="h-5 w-5" /> WhatsApp
       </a>
-      <a href={`tel:${TEL}`} className={`${knop} text-ink`} style={{backgroundColor: BEL_ZAND}}>
+      <a
+        href={`tel:${TEL}`}
+        className={`${knop} ring-2 ring-accent`}
+        style={{backgroundColor: BEL_GROEN}}
+      >
         <Phone className="h-5 w-5" /> Bellen
       </a>
     </div>

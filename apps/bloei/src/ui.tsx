@@ -490,19 +490,19 @@ export const WA_DONKER = '#128C7E';
  * dat oranje de enige kleur op de site die nergens meer uit de reeks komt, en
  * naast zandbruin wordt het een tweede warme tint die er net naast zit.
  *
- * Nu zandbruin met dennengroene letters (4,6:1). Eerst stond hier dennengroen
- * met wit, en op papier was dat de betere keuze — 11,8:1, en het vecht niet
- * met de zandbruine hoofdknop om aandacht. In beeld werkte het niet: deze
- * knop zweeft over de hele pagina mee, en over het kerstvlak en de voet (ook
- * dennengroen) bleef er een vorm zonder rand over. Een knop die onzichtbaar
- * wordt zodra je ver genoeg scrollt is geen knop.
+ * Sinds 04-11-2026 dennengroen met witte letters (11,8:1), de kleur die de
+ * balk en de voet ook dragen — gevraagd omdat zandbruin naast het
+ * WhatsApp-groen als een derde kleur ging staan.
  *
- * Zandbruin is de enige kleur in de reeks die zowel op de lichte als op de
- * donkere vlakken losstaat. Samen met het WhatsApp-groen ernaast leest het
- * als een paar contactknoppen; dat ze de kleur van de hoofdknop delen is
- * geen probleem, want ze wijzen naar hetzelfde soort actie.
+ * Tussen 18-10 en 04-11 stond hij in zandbruin, en dat had een reden: deze
+ * knop zweeft over de hele pagina mee, en over het kerstvlak (#102c1e) en de
+ * voet is dennengroen op dennengroen een vorm zonder rand. Vandaar de rand
+ * van 2 px in lindegroen (`ring-2 ring-accent` in layout.tsx): die haalt
+ * 7,9:1 op het kerstvlak, dus de knop houdt op elk vlak waar hij overheen
+ * komt een eigen omtrek. Een knop die onzichtbaar wordt zodra je ver genoeg
+ * scrollt is geen knop.
  */
-export const BEL_ZAND = '#B99D71';
+export const BEL_GROEN = '#173F2B';
 
 export function WhatsAppMerk({className = '', style}: {className?: string; style?: React.CSSProperties}) {
   return (
