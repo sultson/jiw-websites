@@ -46,6 +46,18 @@
   X-Robots-Tag: noindex, nofollow
   Cache-Control: public, max-age=3600
 
+# De goedkeuringspagina voor haar Google-bedrijfsprofiel (scripts/gbp.mjs). Om
+# dezelfde reden uit de zoekresultaten, en hier met een extra reden: deze pagina
+# toont een CONCEPTtekst voor Google zelf. Stond hij in de index, dan concurreert
+# een nog niet goedgekeurd concept met haar echte pagina's op precies die
+# woorden. Twee regels, zie /logo.
+/gbp
+  X-Robots-Tag: noindex, nofollow
+
+/gbp/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: public, max-age=3600
+
 # Een dag: lang genoeg om niet bij elk bezoek opgehaald te worden, kort genoeg
 # dat een nieuwe pagina binnen een dag in de sitemap staat.
 /robots.txt
