@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {
   ArrowRight, ChevronDown, Clock, Facebook, Flower2, Gift, Home, Leaf, MapPin, Navigation,
-  Phone, Repeat, Shovel, Sparkles, TreePine,
+  Phone, Repeat, Shovel, Sparkles,
 } from 'lucide-react';
 import {Bezoek, Footer, MobielBalk, Nav, VraagAan, ZwevendeKnoppen} from './layout';
 import {
@@ -428,14 +428,24 @@ function Kerstblok() {
           </div>
         </div>
 
-        {/* De boom staat in een cirkel met een warme gloed eromheen: zonder dat
-            is het een lijntekening van een boom op een groen vlak, en mét dat
-            lijkt er een lamp achter te staan. */}
-        <div className="rounded-2xl border border-white/15 bg-white/[0.05] p-8">
-          <span className="grid h-16 w-16 place-items-center rounded-full bg-kerstlicht/10 shadow-[0_0_40px_-6px_rgb(246_200_122_/_0.45)] ring-1 ring-kerstlicht/25">
-            <TreePine className="h-8 w-8 text-kerstlicht" strokeWidth={1.5} />
-          </span>
-          <p className="mt-5 text-lg font-semibold">Vanaf begin november</p>
+        {/* Hier stond tot 06-11-2026 een boom in een cirkel met een warme gloed
+            eromheen. Dat was de beste oplossing zolang er van kerst geen enkele
+            foto was: een lijntekening op een groen vlak met een lamp erachter.
+            Nu staat de winkel er zelf: de verlichte boom met de lichtbol en de
+            cadeaumanden. Een echte foto doet wat die gloed probeerde te doen.
+
+            De tekst eronder is niet veranderd. */}
+        <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/[0.05]">
+          <img
+            src="/img/kerst-home.webp"
+            alt="De kersthoek in de winkel: een verlichte besneeuwde kunstkerstboom met een verlichte lichtbol en gouden cadeaumanden ernaast"
+            loading="lazy"
+            width={900}
+            height={675}
+            className="aspect-[4/3] w-full object-cover"
+          />
+          <div className="p-8">
+          <p className="text-lg font-semibold">Vanaf begin november</p>
           <p className="mt-2 leading-relaxed text-white/65">
             De kerstafdeling bouwen we elk jaar opnieuw op. Wilt u weten wanneer de bomen binnen zijn?
             Bel ons of kijk op Facebook.
@@ -447,6 +457,7 @@ function Kerstblok() {
             <a href={FACEBOOK} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-2.5 text-sm font-semibold text-white/90 transition hover:border-kerstlicht hover:bg-white/10">
               <Facebook className="h-4 w-4 text-kerstlicht" /> Facebook
             </a>
+          </div>
           </div>
         </div>
       </div>

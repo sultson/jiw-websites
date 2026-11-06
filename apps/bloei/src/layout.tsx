@@ -383,8 +383,11 @@ export function Bezoek({streek = false, kraag = false}: {streek?: boolean; kraag
 
         <div>
           <img
-            src="/img/winkelpui.webp"
-            alt="De gevel van Bloei! aan het Hoge Pad, met het groene naambord en de planten ervoor"
+            /* Sinds 06-11-2026 de tweede gevelfoto, bij daglicht. De kop van de
+               homepage houdt de opname van het gouden uur; hier staat de foto
+               waarop te zien is wat de bezoeker straks voor zich heeft. */
+            src="/img/winkelpui.webp?v=20261106"
+            alt="De gevel van Bloei! aan het Hoge Pad, met het groene naambord op de gevel, de karren met planten eronder en de parkeerplaats ervoor"
             loading="lazy"
             width={1200}
             height={750}

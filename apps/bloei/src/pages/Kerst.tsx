@@ -51,6 +51,15 @@ const ONDERDELEN = [
   },
 ];
 
+/* De drie foto's onderaan de kerstsectie. Losse regel omdat ze in de JSX
+   anders midden in de opmaak staan en daar bij een vierde foto niet te vinden
+   zijn. */
+const FOTOS: [string, string][] = [
+  ['/img/kerst-1.webp', 'Een verlichte besneeuwde kunstkerstboom in de winkel, met een verlichte lichtbol en gouden cadeaumanden ernaast'],
+  ['/img/kerst-2.webp', 'Koperen en gouden glazen kerstboompjes op een houten tafel in de winkel'],
+  ['/img/kerst-3.webp', 'Dozen met besneeuwde popup kerstbomen naast een opgezette verlichte kerstboom'],
+];
+
 export default function Kerst() {
   return (
     <Pagina>
@@ -58,10 +67,10 @@ export default function Kerst() {
         kicker="November en december"
         titel="Kerst bij Bloei!"
         /* Stond op de najaarsfoto met chrysanten, omdat er van kerst geen
-           enkel beeld was. Sinds 20-10-2026 de eerste echte kerstfoto uit de
-           winkel: de verlichte kunstboom met de dozen ervoor. */
-        img="/img/kerst-bomen.webp"
-        alt="Een verlichte besneeuwde kunstkerstboom in de winkel, met de dozen ervoor en kerstverlichting ernaast"
+           enkel beeld was. Sinds 20-10-2026 een echte kerstfoto, sinds
+           06-11-2026 de afdeling zelf: de tafels met de glazen boompjes. */
+        img="/img/kerst-afdeling.webp"
+        alt="De kerstafdeling in de winkel: houten tafels vol koperen en gouden glazen kerstboompjes, kerstballen en zwarte kerstbomen"
       >
         <div className="mt-8 flex flex-wrap gap-3">
           <a href={`tel:${TEL}`} className={KNOP_HOOFD}>
@@ -137,6 +146,39 @@ export default function Kerst() {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Sinds 06-11-2026 staan hier foto's van de afdeling zelf. Tot die dag
+            had deze pagina alleen kleur en vorm — het lichtsnoer, de
+            vurentakken, de bomenrij — omdat er van kerst geen beeld was en een
+            gekochte sfeerfoto van een andere kerstafdeling een verwachting zet
+            die de winkel daarna moet waarmaken.
+
+            Drie naast elkaar, ook op de telefoon: het is één afdeling vanuit
+            drie hoeken en dat hoort als strook gelezen te worden.
+
+            Het bijschrift zegt erbij dat dit van dit seizoen is. Zonder die
+            regel leest iemand in december een foto van begin november als de
+            stand van vandaag, en dan staat hij voor een schap dat half leeg
+            verkocht is. */}
+        <div className="mt-12">
+          <ul className="grid grid-cols-3 gap-3 sm:gap-5">
+            {FOTOS.map(([src, alt]) => (
+              <li key={src}>
+                <img
+                  src={src}
+                  alt={alt}
+                  loading="lazy"
+                  width={700}
+                  height={875}
+                  className="aspect-[4/5] w-full rounded-2xl object-cover"
+                />
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm text-white/60">
+            Foto's uit de winkel, begin november. De afdeling verandert gedurende het seizoen.
+          </p>
         </div>
       </Section>
     </Pagina>

@@ -7,7 +7,7 @@ domein <https://bloei-ouddorp.nl>** (zie `SEO.md` voor de nulmeting van die dag)
 
 Let op: dat de site op een eigen domein staat verandert niets aan de lijst
 hieronder. Het adres, het nummer en de openingstijden zijn bevestigd, maar er is
-nog steeds geen mailadres. Sinds 20-10-2026 is er wél een kerstfoto, sinds
+nog steeds geen mailadres. Sinds 06-11-2026 zijn er drie kerstfoto's, sinds
 18-10-2026 een vectorlogo, en sinds begin november heet de winkel echt Bloei! —
 bij Google en op Facebook staat de oude naam nog, zie *De naam is om* onderaan.
 
@@ -137,18 +137,45 @@ erbij waar ze horen:
 | `planten-rij.jpg` | `kaart-planten` (tegel, blok Planten, keuze Plant of bak) |
 | `wonen-decoratie.jpg` | `kaart-wonen` (tegel, blok Wonen) |
 | `wonen-tafel.jpg`, `wonen-vaas.jpg`, `wonen-potten.jpg` | `wonen-1/2/3`, de strook van drie onder het blok Wonen |
-| `kerst-snowtree.jpg` | `kerst-bomen` (kop van `/kerst/`) en `og-kerst` |
+| `kerst-snowtree.jpg` | `kerst-3` (strook op `/kerst/`; stond tot 06-11 als `kerst-bomen` in de kop) |
 
 De bloemenfoto is de enige liggende van de zes. In de staande tegel blijft er een
 smalle strook van over; daarom staat er op de assortimentspagina een eigen
 uitsnede van 4:3.
 
-**Kerst is daarmee niet langer alleen tekst.** De pagina `/kerst/` stond op een
-najaarsfoto met chrysanten omdat er van kerst geen enkel beeld was; nu staat de
-verlichte kunstboom erop. Armando noemde die foto zelf bij "wonen" — hij is naar
-kerst verplaatst omdat het de eerste echte kerstfoto is, en dat is een keuze die
-teruggedraaid mag worden. Het kerstdecor in groen (lichtsnoer, gloed, vurenbomen)
-staat er ongewijzigd bij.
+**Op 06-11-2026 kwamen er drie bij**, door Armando aangeleverd met "alvast wat
+foto's voor de site; komende tijd zal ik er meer maken als de kerstspullen
+allemaal binnen zijn".
+
+| Bron | Waar hij staat |
+| --- | --- |
+| `kerst-tafel.jpg` | `kerst-afdeling` (kop van `/kerst/`), `kerst-2` (strook) en `og-kerst` (deelplaatje) |
+| `kerst-hoek.jpg` | `kerst-home` (de kaart in het kerstblok op de home) en `kerst-1` (strook) |
+| `pui-dag.jpg` | `winkelpui` (de foto bij *Waar u ons vindt*, op elke pagina) |
+
+**Kerst is daarmee niet langer alleen kleur en vorm.** Tot 20-10 stond `/kerst/`
+op een najaarsfoto met chrysanten omdat er van kerst geen enkel beeld was, daarna
+op de ene foto die er was. Nu draagt de pagina de afdeling zelf: de kop, plus een
+strook van drie onder de kaarten. Op de home is de lijntekening van een boom in
+een gloed vervangen door de foto van de verlichte hoek — die gloed probeerde te
+doen wat een echte foto gewoon doet. Het kerstdecor in groen (lichtsnoer, gloed,
+vurenbomen) staat er ongewijzigd bij.
+
+Onder de strook staat *Foto's uit de winkel, begin november. De afdeling verandert
+gedurende het seizoen.* Zonder die regel leest iemand in december deze foto's als
+de stand van vandaag, en staat hij voor een schap dat half leeg verkocht is.
+
+**De tweede gevelfoto staat bij *Waar u ons vindt*, niet in de kop.** De kop houdt
+`pui.jpg`, de opname van het gouden uur; twee keer dezelfde gevel op één pagina
+leest als een fout. Bij *Waar u ons vindt* telt juist het omgekeerde: daar moet te
+zien zijn wat de bezoeker straks voor zich heeft, en op de daglichtfoto staan de
+karren, het hek en de parkeerplaats er duidelijker op.
+
+**Het naambord hangt echt aan de gevel.** Dat was tot 06-11 een open vraag (op de
+eerdere foto stond het er al, maar of dat een opname of een proefbeeld was wist
+niemand). Op deze daglichtopname hangt het er onder een andere stand van de zon en
+met de najaarsvoorraad ervoor, dus het hangt er. Dat is wat Google bij een
+naamswijziging op het bedrijfsprofiel wil zien.
 
 Ontbreekt verder: een foto van de eigenaren, en een foto van een boeket dat zij
 zelf gemaakt hebben.
