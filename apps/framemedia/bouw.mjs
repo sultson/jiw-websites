@@ -153,36 +153,34 @@ const heeft = (taal, sleutel) => Boolean(taal.paden[sleutel]);
 // Dus hangt de bouw een stukje van de inhoud zelf achter het adres. Verandert
 // het bestand niet, dan verandert het adres niet en blijft de cache staan.
 // Beeld hoeft dit niet: dat krijgt bij een nieuwe versie gewoon een nieuwe naam
-// (zie assets/merk/ en framemedia-email-2026-10.png).
+// (zie assets/merk/ en de mail-png).
 const versie = naam => {
   const h = createHash('sha1').update(readFileSync(`inhoud/assets/${naam}`)).digest('hex').slice(0, 8);
   return `/assets/${naam}?v=${h}`;
 };
 
-// Twee uitvoeringen van het merk, allebei uit het nieuwe logobestand dat de
-// klant op 31-10-2026 aanleverde (zie tools/maak-merk.mjs). Goud met zilver,
-// in plaats van het marine-en-rode woordmerk dat hier tot die dag stond.
+// Twee maten van hetzelfde merk, allebei uit hun eigen logobestand (zie
+// maak-logo.mjs). Klein is het woordmerk met de regel eronder; het insigne
+// eromheen is bij 44 beeldpunten hoog een vlek, want daarin is de naam maar
+// zeven punten hoog. Groot is hun insigne zelf, ongewijzigd - dat staat in de
+// voettekst en op de foutpagina, waar de ruimte er wel is.
 //
-// De klant leverde er twee: met en zonder de cameralens erachter. In de
-// menubalk staat de uitvoering zonder lens - zijn eigen verzoek, en terecht:
-// die lens is een fotorealistisch stuk beeld van ruim een derde van de
-// breedte en wordt op 48 beeldpunten hoog een donkere vlek naast het goud.
-// In de voettekst en op de foutpagina staat de volle uitvoering mét lens,
-// want daar is de ruimte er wel.
+// Op 31-10-2026 stond hier het nieuwe gouden merk van de klant; op 07-11-2026
+// is dat op verzoek van Armando teruggedraaid naar dit marine-en-rode
+// woordmerk. Het gouden merk ligt klaar in raw/merk-2026/ met zijn eigen
+// script (tools/maak-merk.mjs) en de twee webp-bestanden staan nog in
+// inhoud/assets/merk/, dus terugzetten is een regel per merk hieronder.
 //
 // Tot 11-10-2026 stond elk merk er twee keer in - de lichte uitvoering voor
 // een donkere ondergrond en de donkere voor de lichte weergave, met css die er
-// een van liet zien. De site is nu alleen donker, en het nieuwe logo is één
-// bestand met een doorzichtige achtergrond, dus die splitsing is er niet meer.
+// een van liet zien. De site is nu alleen donker, dus alleen de lichte
+// bestanden gaan mee en er wordt er precies een voorgelezen.
 const merk = taal => `<a class="brand" href="${padNaar(taal, 'home')}">
-      <img src="/assets/merk/fm-woord.webp" alt="FRAME MEDIA" width="329" height="120" fetchpriority="high" decoding="async">
+      <img src="/assets/logo-woord-licht.svg" alt="FRAME MEDIA" width="311" height="66">
     </a>`;
 
-// De voettekst staat onderaan elke pagina, dus deze mag wachten tot de bezoeker
-// er is - vandaar lazy. Op de foutpagina staat hij wel meteen in beeld, maar
-// dat is een pagina die bijna niemand ziet.
 const merkGroot = (taal, klasse = 'brand-groot') => `<a class="${klasse}" href="${padNaar(taal, 'home')}">
-      <img src="/assets/merk/fm-vol.webp" alt="FRAME MEDIA - Producent in TV content" width="647" height="260" loading="lazy" decoding="async">
+      <img src="/assets/logo-licht.svg" alt="FRAME MEDIA - Producent in TV content" width="311" height="193">
     </a>`;
 
 // --- losse teksten voor site.js --------------------------------------------
@@ -293,8 +291,8 @@ const ORGANISATIE = taal => ({
   name: 'FRAME MEDIA',
   legalName: 'Frame Productions & Management',
   url: ADRES + padNaar(taal, 'home'),
-  logo: `${ADRES}/assets/mail/framemedia-email-2026-10.png`,
-  image: `${ADRES}/assets/mail/framemedia-email-2026-10.png`,
+  logo: `${ADRES}/assets/mail/framemedia-email.png`,
+  image: `${ADRES}/assets/mail/framemedia-email.png`,
   telephone: MOBIEL,
   email: MAIL,
   identifier: { '@type': 'PropertyValue', propertyID: 'KvK', value: '85865346' },

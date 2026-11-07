@@ -160,15 +160,10 @@ a:hover { color: #ff7078; }
   min-height: 74px;
 }
 .brand { display: block; flex-shrink: 0; text-decoration: none; }
-/* 48 en niet de 40 van het oude woordmerk: het nieuwe logo is een stapel van
-   drie regels (FRAME, MEDIA, de regel eronder) in plaats van een regel, dus op
-   40 was de onderste regel een streepje. Het kost niets in de balk - het is
-   ondanks die acht punten erbij nog altijd ruim 50 beeldpunten smaller dan het
-   oude, want dat liep over de volle breedte. */
-.brand img { height: 48px; width: auto; }
-/* De volle uitvoering mét de lens - alleen waar het groot mag staan. */
+.brand img { height: 40px; width: auto; }
+/* Het hele insigne - alleen waar het groot mag staan. */
 .brand-groot { display: block; text-decoration: none; }
-.brand-groot img { height: 104px; width: auto; max-width: 100%; object-fit: contain; object-position: left; }
+.brand-groot img { height: 104px; width: auto; }
 
 /* Acht knoppen plus de taalkeuze plus de contactknop (Puur Genieten erbij op
    10-10-2026, Programma idee op 17-10-2026). Dat past alleen als de ruimte om
@@ -1419,7 +1414,7 @@ table.vgl thead th, table.vgl tbody th { background: rgba(255, 255, 255, .035); 
   .veld-rij { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 1.8rem; }
   .cijfers { grid-template-columns: 1fr 1fr; }
-  .brand img { height: 36px; }
+  .brand img { height: 30px; }
   .extra { gap: .3rem 1rem; }
   .extra-prijs { text-align: left; min-width: 0; }
   .extra-naam { flex: 1 1 100%; }

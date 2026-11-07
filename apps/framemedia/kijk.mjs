@@ -86,9 +86,12 @@ for (const [tag, w, h, mobiel] of [['desk', 1440, 900, false], ['mob', 390, 844,
     // een fout die er geen is. Een bestand dat echt weg is geeft geen afbreking
     // maar een 404, en die telt hieronder gewoon mee.
     const eigenOpruiming = u =>
-      /youtube|ytimg|ggpht/.test(u) || /\.(mp4|webm)(\?|$)/.test(u);
+      /youtube|ytimg|ggpht|challenges\.cloudflare\.com/.test(u) || /\.(mp4|webm)(\?|$)/.test(u);
     p.on('requestfailed', r => {
       const waarom = r.failure()?.errorText || '';
+      // Turnstile zetten we hieronder zelf buiten de deur; dat afbreken komt
+      // hier terug als ERR_FAILED en is dus geen kapot bestand.
+      if (/challenges\.cloudflare\.com/.test(r.url())) return;
       if (waarom === 'net::ERR_ABORTED' && eigenOpruiming(r.url())) return;
       mislukt.push(`${r.url()} (${waarom})`);
     });
@@ -96,6 +99,18 @@ for (const [tag, w, h, mobiel] of [['desk', 1440, 900, false], ['mob', 390, 844,
 
     const naam = `${tag}_${route.replace(/[/.]/g, '_') || 'home'}`;
     console.log(`${tag} ${route}`);
+
+    // Turnstile houdt na het laden een verbinding met challenges.cloudflare.com
+    // open, dus `networkidle` komt op een pagina met een formulier nooit - sinds
+    // 02-11-2026 liep dit script daar in zijn timeout. Het vinkje staat op
+    // interaction-only en is voor een gewone bezoeker onzichtbaar, dus voor wat
+    // dit script meet (contrast, kapot beeld, overloop) doet het niet mee: we
+    // laten het hier buiten de deur.
+    // Niet afbreken maar met een leeg antwoord afdoen: een afgebroken verzoek
+    // schrijft nog steeds ERR_FAILED in de console, en de consolemelder
+    // hieronder telt dat als fout.
+    await p.route('**://challenges.cloudflare.com/**', r =>
+      r.fulfill({ status: 200, contentType: 'application/javascript', body: '' }));
 
     const res = await p.goto(adres(route), { waitUntil: 'networkidle', timeout: 45000 });
     metingen++;
