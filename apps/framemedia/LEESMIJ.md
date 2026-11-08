@@ -713,9 +713,41 @@ Geldt voor allebei de soorten kaarten: de acht branchekaarten (eigen mp4,
   sluit hij zodra je de bediening van de video aanraakt.
 - `node tools/meet-lichtbak.mjs [url]` meet het na: vijf schermbreedtes
   (waaronder 900x700, het lage venster) over zeven pagina's in drie talen.
-  420 metingen: komt hij open, staat er echt een speler in, valt niets buiten
-  het venster, vult hij minstens een vijfde van het scherm, staat de pagina op
-  slot, en sluiten Escape, kruisje en waas allemaal met de focus terug.
+  440 metingen: komt hij open, staat er echt een speler in, begint die ook te
+  spelen, valt niets buiten het venster, vult hij minstens een vijfde van het
+  scherm, staat de pagina op slot, en sluiten Escape, kruisje en waas allemaal
+  met de focus terug.
+
+### Hij start nu zelf (08-11-2026, later die dag)
+
+Armando: "je moet dan alsnog op play drukken". Dat klopte, en het had per soort
+kaart een eigen oorzaak.
+
+- **YouTube.** De kaart maakte een kale `<iframe>` met `autoplay=1` in het
+  adres. Voor een insluiting van een ander domein is dat een verzoek en geen
+  opdracht - YouTube laat dan het beeld met de afspeelpijl staan. Nu praat
+  `site.js` met de speler zelf via de **iframe-api** (`YT.Player`, host
+  `youtube-nocookie.com`) en zegt `playVideo()` in `onReady`. Dat script wordt
+  pas bij de eerste klik geladen (`laadYtApi()`), dus wie niets aanklikt haalt
+  het nooit op - dat was het hele punt van kaarten die eerst alleen een plaatje
+  zijn.
+- **Eigen clips.** `v.play()` stond er al, maar als een browser autoplay met
+  geluid tegenhoudt bleef het bij een stilstaand beeld met bediening.
+- **De terugval, voor allebei hetzelfde.** Lukt starten met geluid niet (bij
+  YouTube: de stand is een seconde na `playVideo()` nog geen 1 of 3; bij een
+  eigen clip: `play()` wordt afgewezen), dan start hij **gedempt** - dat mag
+  altijd - met de knop **Geluid aan** (`zetGeluidKnop`, `.lichtbak-geluid`,
+  linksboven in het beeld) erover. Eén klik en het geluid staat aan op het punt
+  waar hij al is. Dat is beter dan een stilstaand plaatje: er is altijd beweging
+  en het geluid kost één klik in plaats van twee. De tekst staat als `geluidAan`
+  in de drie taalbestanden.
+- `lichtbakSpeler` houdt de YouTube-speler bij en `destroy()`t hem bij sluiten
+  en bij het openen van een volgende kaart. Het weghalen van de iframe stopt het
+  geluid wel, maar laat de api met een speler zitten die niet meer bestaat.
+- Nagemeten met een browser die autoplay met geluid weigert (`play()`
+  overschreven zodat hij afwijst zolang de video niet gedempt staat): hij start
+  gedempt en loopt, de knop staat er in de goede taal, en een klik zet het
+  geluid aan zonder dat de clip opnieuw begint.
 
 ## De landingspagina /puurgenieten/
 

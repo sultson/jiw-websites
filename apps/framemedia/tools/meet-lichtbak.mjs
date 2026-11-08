@@ -46,8 +46,42 @@ for (const [breedte, hoogte] of BREEDTES) {
       mis(`${breedte} ${pad}: speler valt buiten het venster (${JSON.stringify(m)})`);
     }
     if (deel < 0.2) mis(`${breedte} ${pad}: speler vult maar ${(deel * 100).toFixed(0)}% van het scherm`);
-    const inhoud = await film.evaluate(e => e.firstElementChild?.tagName || '');
+    // De YouTube-speler komt uit de iframe-api en staat er dus niet op het
+    // moment van de klik, maar zodra dat script binnen is. Daarom wachten en
+    // niet eenmalig kijken - anders zag dit een leeg vakje en viel het om zodra
+    // het net wat langer duurde.
+    const inhoud = await film.evaluate(e => new Promise(klaar => {
+      const kijk = () => {
+        const t = e.firstElementChild?.tagName || '';
+        if (['VIDEO', 'IFRAME'].includes(t)) return klaar(t);
+        if (Date.now() - start > 8000) return klaar(t);
+        setTimeout(kijk, 100);
+      };
+      const start = Date.now();
+      kijk();
+    }));
     if (!['VIDEO', 'IFRAME'].includes(inhoud)) mis(`${breedte} ${pad}: geen speler in de lichtbak (${inhoud})`);
+
+    // 1b. en loopt hij ook, of staat er een stilstaand beeld met een afspeelpijl
+    // erop? Alleen te meten voor onze eigen clips; bij YouTube zit de speler in
+    // een insluiting van een ander domein en komt hij er van buiten niet bij.
+    if (inhoud === 'VIDEO') {
+      metingen++;
+      const stil = await film.evaluate(e => new Promise(klaar => {
+        const v = e.querySelector('video');
+        const start = Date.now();
+        const kijk = () => {
+          if (!v) return klaar('geen video');
+          if (!v.paused && v.currentTime > 0) return klaar('');
+          if (Date.now() - start > 6000) {
+            return klaar(`stil (paused=${v.paused}, t=${v.currentTime}, readyState=${v.readyState})`);
+          }
+          setTimeout(kijk, 100);
+        };
+        kijk();
+      }));
+      if (stil) mis(`${breedte} ${pad}: clip start niet van zichzelf - ${stil}`);
+    }
     const sluit = page.locator('.lichtbak-sluit');
     const s = await sluit.boundingBox();
     if (s.x < 0 || s.y < 0 || s.x + s.width > breedte || s.y + s.height > hoogte) {

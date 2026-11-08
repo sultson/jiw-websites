@@ -13,6 +13,7 @@ const T = Object.assign({
   reelPauze: 'Showreel pauzeren',
   reelSpeel: 'Showreel afspelen',
   videoSluiten: 'Video sluiten',
+  geluidAan: 'Geluid aan',
 }, window.FM_T || {});
 
 // Het menu op de telefoon, de meebewegende actiebalk, het formulier dat niets
@@ -304,8 +305,15 @@ function maakLichtbak() {
   return el;
 }
 
+// De YouTube-speler die nu open staat, als het een YouTube-kaart was. Die moet
+// netjes opgeruimd worden: het weghalen van de iframe stopt het geluid wel,
+// maar laat de api met een speler zitten die niet meer bestaat.
+let lichtbakSpeler = null;
+
 function sluitLichtbak() {
   if (!lichtbak || lichtbak.hidden) return;
+  try { lichtbakSpeler?.destroy?.(); } catch { /* al weg */ }
+  lichtbakSpeler = null;
   lichtbak.querySelector('.lichtbak-film').textContent = '';
   lichtbak.hidden = true;
   document.body.classList.remove('lichtbak-open');
@@ -320,6 +328,11 @@ function openLichtbak(inhoud, titel, verhouding, vanaf) {
   lichtbak ??= maakLichtbak();
   const film = lichtbak.querySelector('.lichtbak-film');
   lichtbak.querySelector('.lichtbak-vak').style.setProperty('--arn', String(verhouding));
+  // Stond er nog een YouTube-speler van een vorige kaart, dan gaat die er eerst
+  // netjes uit. Anders houdt de api een speler bij die niet meer in de pagina
+  // staat, en komt de volgende meting van getPlayerState van de verkeerde.
+  try { lichtbakSpeler?.destroy?.(); } catch { /* al weg */ }
+  lichtbakSpeler = null;
   film.textContent = '';
   film.appendChild(inhoud);
   lichtbak.querySelector('.lichtbak-titel').textContent = titel;
@@ -330,6 +343,26 @@ function openLichtbak(inhoud, titel, verhouding, vanaf) {
   document.body.classList.add('lichtbak-open');
   lichtbakVan = vanaf;
   lichtbak.querySelector('.lichtbak-sluit').focus();
+}
+
+// Een browser mag autoplay met geluid weigeren - dat is een regel van de
+// browser en daar kan een pagina niets tegen. Weigert hij, dan starten we
+// gedempt (dat mag altijd) en komt deze knop over het beeld: een klik en het
+// geluid staat aan, zonder dat de bezoeker de speler in hoeft. Beter dan een
+// stilstaand plaatje met een afspeelpijl erop.
+function zetGeluidKnop(aanzetten) {
+  if (!lichtbak || lichtbak.hidden) return;
+  const film = lichtbak.querySelector('.lichtbak-film');
+  if (film.querySelector('.lichtbak-geluid')) return;
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'lichtbak-geluid';
+  b.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">`
+    + `<path d="M4 9h3l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/>`
+    + `<path d="M19 6a8.5 8.5 0 0 1 0 12"/></svg><span></span>`;
+  b.querySelector('span').textContent = T.geluidAan;
+  b.addEventListener('click', () => { aanzetten(); b.remove(); });
+  film.appendChild(b);
 }
 
 // Escape sluit, en Tab blijft binnen de lichtbak: het kruisje en de bediening
@@ -350,16 +383,66 @@ document.addEventListener('keydown', e => {
 // van youtube-nocookie, met autoplay omdat de bezoeker er net zelf om heeft
 // gevraagd. Zo staat er geen YouTube-verkeer op een pagina die iemand alleen
 // maar doorbladert.
+//
+// Tot 08-11-2026 was dat een kale iframe met `autoplay=1` in het adres, en dan
+// moest je in de lichtbak alsnog op de afspeelpijl drukken: voor een insluiting
+// van een ander domein is autoplay een verzoek en geen opdracht. Nu praten we
+// met de speler zelf via de iframe-api van YouTube - die wordt pas bij de
+// eerste klik geladen, dus een bezoeker die niets aanklikt haalt hem nooit op -
+// en zeggen playVideo. Loopt hij een seconde later nog niet, dan is het de
+// geluidsregel van de browser: dan gedempt starten met de knop Geluid aan erbij
+// (zie zetGeluidKnop).
+let ytApi = null;
+function laadYtApi() {
+  ytApi ??= new Promise(klaar => {
+    if (window.YT?.Player) { klaar(window.YT); return; }
+    const vorige = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = () => { vorige?.(); klaar(window.YT); };
+    const s = document.createElement('script');
+    s.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(s);
+  });
+  return ytApi;
+}
+
 document.querySelectorAll('[data-video]').forEach(kaart => {
   kaart.addEventListener('click', () => {
     const id = kaart.dataset.video;
     const titel = kaart.dataset.titel || 'Video';
-    const frame = document.createElement('iframe');
-    frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&modestbranding=1`;
-    frame.title = titel;
-    frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
-    frame.allowFullscreen = true;
-    openLichtbak(frame, titel, 16 / 9, kaart);
+    // De api vervangt dit vakje door zijn eigen iframe. Het staat er meteen,
+    // zodat de lichtbak opengaat op het moment van de klik en niet pas als dat
+    // script binnen is.
+    const vak = document.createElement('div');
+    openLichtbak(vak, titel, 16 / 9, kaart);
+    laadYtApi().then(YT => {
+      // Alweer gesloten voordat de api binnen was: niets meer te doen.
+      if (!vak.isConnected) return;
+      lichtbakSpeler = new YT.Player(vak, {
+        videoId: id,
+        host: 'https://www.youtube-nocookie.com',
+        playerVars: { autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1 },
+        events: {
+          onReady: e => {
+            e.target.playVideo();
+            const speler = e.target;
+            setTimeout(() => {
+              if (lichtbakSpeler !== speler) return;
+              // 1 = speelt, 3 = aan het inladen. Al het andere betekent: hij
+              // staat stil ondanks playVideo.
+              const stand = speler.getPlayerState?.();
+              if (stand === 1 || stand === 3) return;
+              speler.mute();
+              speler.playVideo();
+              zetGeluidKnop(() => { speler.unMute(); speler.setVolume(100); speler.playVideo(); });
+            }, 1000);
+          },
+        },
+      });
+      // De api zet title en allowfullscreen niet altijd zelf; een speler zonder
+      // naam is voor een schermlezer een naamloos kader.
+      const frame = lichtbakSpeler.getIframe?.();
+      if (frame) { frame.title = titel; frame.allowFullscreen = true; }
+    });
   });
 });
 
@@ -385,10 +468,14 @@ document.querySelectorAll('[data-clip]').forEach(kaart => {
     v.preload = 'auto';
     v.setAttribute('title', titel);
     openLichtbak(v, titel, breed ? 16 / 9 : 9 / 16, kaart);
-    // Loopt hij niet (een browser die autoplay met geluid tegenhoudt), dan
-    // staat de bediening er en kan de bezoeker hem zelf starten. Niet stil
-    // dempen: dit zijn filmpjes met een voice-over.
-    v.play().catch(() => {});
+    // Eerst met geluid, want dit zijn filmpjes met een voice-over. Houdt de
+    // browser dat tegen, dan starten we gedempt met de knop Geluid aan erover -
+    // beter dan een stilstaand beeld waar de bezoeker zelf op play moet.
+    v.play().catch(() => {
+      v.muted = true;
+      v.play().catch(() => {});
+      zetGeluidKnop(() => { v.muted = false; v.play().catch(() => {}); });
+    });
   });
 });
 

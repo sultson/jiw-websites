@@ -824,6 +824,22 @@ table.vgl tbody tr:last-child th, table.vgl tbody tr:last-child td { border-bott
 @media (max-width: 700px), (max-height: 620px) {
   .lichtbak-sluit { top: .5rem; right: .5rem; transform: none; background: rgba(4, 6, 10, .8); }
 }
+/* Een browser mag autoplay met geluid weigeren. Weigert hij, dan start de clip
+   gedempt en komt deze knop over het beeld: een klik en het geluid staat aan.
+   Linksboven, want de bediening van de speler zit onderlangs en het kruisje
+   rechtsboven. */
+.lichtbak-geluid {
+  position: absolute; top: .6rem; left: .6rem; z-index: 2;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .85rem;
+  background: var(--rood-vast); border: 0; border-radius: 999px;
+  color: #fff; cursor: pointer;
+  font-family: var(--kop); font-weight: 700; font-size: .8rem; letter-spacing: -.01em;
+}
+.lichtbak-geluid svg {
+  width: 16px; height: 16px; fill: none; stroke: currentColor;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
 body.lichtbak-open { overflow: hidden; }
 
 .eerder-kop {

@@ -123,6 +123,7 @@ export default {
     reelPauze: 'Showreel anhalten',
     reelSpeel: 'Showreel abspielen',
     videoSluiten: 'Video schließen',
+    geluidAan: 'Ton an',
     verstuurBezig: 'Senden...',
     verstuurMis: 'Das Senden ist nicht gelungen. Versuchen Sie es noch einmal oder rufen Sie +31 6 3486 1375 an.',
   },
