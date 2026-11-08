@@ -85,8 +85,13 @@ for (const [tag, w, h, mobiel] of [['desk', 1440, 900, false], ['mob', 390, 844,
     // oogwenk klaar en zie je het nooit, over het net wel - en dan meldt hij
     // een fout die er geen is. Een bestand dat echt weg is geeft geen afbreking
     // maar een 404, en die telt hieronder gewoon mee.
+    // www.google.com/js/th/... hoort bij diezelfde speler van YouTube, en sinds
+    // de lichtbak hierboven met Escape gesloten wordt (08-11-2026) gaat de
+    // insluiting eruit terwijl dat bestand nog loopt. Zelfde opruiming, zelfde
+    // ERR_ABORTED.
     const eigenOpruiming = u =>
-      /youtube|ytimg|ggpht|challenges\.cloudflare\.com/.test(u) || /\.(mp4|webm)(\?|$)/.test(u);
+      /youtube|ytimg|ggpht|www\.google\.com\/js\/|challenges\.cloudflare\.com/.test(u)
+      || /\.(mp4|webm)(\?|$)/.test(u);
     p.on('requestfailed', r => {
       const waarom = r.failure()?.errorText || '';
       // Turnstile zetten we hieronder zelf buiten de deur; dat afbreken komt
@@ -431,14 +436,25 @@ for (const [tag, w, h, mobiel] of [['desk', 1440, 900, false], ['mob', 390, 844,
           .filter(r => /youtube|ytimg|ggpht/.test(r.name)).map(r => r.name));
       if (naarYoutube.length) fout(route, `${naarYoutube.length} verzoek(en) naar YouTube zonder klik: ${naarYoutube[0]}`);
 
-      // En na een klik moet er wel een speler staan.
+      // En na een klik moet er wel een speler staan, in de lichtbak over de
+      // pagina heen (sinds 08-11-2026, zie de .lichtbak in style.css).
       metingen++;
       await p.click('[data-video]');
       await p.waitForTimeout(400);
-      const speler = await p.$$eval('.video-speler iframe', fs =>
+      const speler = await p.$$eval('.lichtbak:not([hidden]) .lichtbak-film iframe', fs =>
         fs.map(f => f.getAttribute('src')));
       if (speler.length !== 1) fout(route, `na klik ${speler.length} spelers (moet er 1 zijn)`);
       else if (!speler[0].includes('youtube-nocookie.com')) fout(route, `speler gebruikt ${speler[0]}`);
+
+      // Escape moet hem sluiten, en de inhoud moet er echt uit - anders speelt
+      // het geluid door achter een pagina waar niets meer te zien is.
+      metingen++;
+      await p.keyboard.press('Escape');
+      await p.waitForTimeout(250);
+      const naSluiten = await p.$$eval('.lichtbak', ls =>
+        ls.map(l => ({ open: !l.hidden, inhoud: l.querySelector('.lichtbak-film').childElementCount })));
+      const nog = naSluiten.filter(l => l.open || l.inhoud);
+      if (nog.length) fout(route, `lichtbak blijft na Escape: ${JSON.stringify(nog)}`);
     }
 
     // --- de meters op de studiopagina -----------------------------------------

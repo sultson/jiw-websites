@@ -24,6 +24,7 @@ Drie talen: Nederlands op de wortel, Engels op `/en/`, Duits op `/de/`. Zie
 | `node meet-360.mjs` | Alleen de breedte en de actiebalk, op 360 in plaats van 390 |
 | `node maak-branches.mjs` | Zet de aangeleverde branche-clips om naar web (`--posters` = alleen de posterbeelden, `--breed`/`--staand` = een van de twee verhoudingen) |
 | `node tools/meet-branches.mjs [url]` | Controleert per breedte en taal welk posterbeeld en welke clip de branchekaarten pakken |
+| `node tools/meet-lichtbak.mjs [url]` | Controleert de lichtbak: open, maat, binnen het venster, Escape, kruisje, waas, focus terug |
 | `node maak-logo.mjs` | Maakt de vier logobestanden uit `raw/framemedia-logo.svg` |
 | `node tools/gen-mail-logo.mjs` | Het logo als png voor de bevestigingsmail |
 
@@ -665,16 +666,56 @@ Armando afgehaald - de kaarten zeggen het zelf al.
   gesneden, dus bij Massage hangt het ronde logo op 7 s halverwege de bovenrand
   en is 1,5 s het betere moment.
 - De kaart laadt alleen het posterbeeld. Pas na een klik komt er een `<video>`
-  met bediening in de plaats - een mp4 van een paar megabyte haal je niet op
-  voor iemand die langs scrolt. Dit zijn eigen bestanden, dus geen YouTube.
-  De speler krijgt `.breed` mee als de liggende clip geladen is; dat is een
-  klasse en geen media query, want wie zijn venster tijdens het kijken
-  versmalt moet de clip houden die al speelt.
+  met bediening - een mp4 van een paar megabyte haal je niet op voor iemand die
+  langs scrolt. Dit zijn eigen bestanden, dus geen YouTube. Sinds 08-11-2026
+  staat die speler in de lichtbak over de pagina heen (zie hieronder) en niet
+  meer in de kaart zelf.
 - De kaart draagt `.video-kaart` **en** `.branche-kaart`. De eerste levert de
   kaart zelf (achtergrond, rand, zweefstand), de tweede de beeldverhouding.
 - `node tools/meet-branches.mjs [url]` controleert het geheel: per breedte en
   per taal welk posterbeeld de browser echt koos en welke clip er na een klik
   in de speler staat. 512 metingen.
+
+## De lichtbak (08-11-2026)
+
+Tot 08-11-2026 kwam de speler in de plaats van de kaart waar je op klikte. Op
+de landingspagina en op de startpagina staan die kaarten in vier kolommen, dus
+dat was een filmpje van een kwart paginabreedte. Op verzoek van Armando klapt
+hij nu over de pagina open: donkere waas eronder, groot in het midden, kruisje
+of Escape om te sluiten - zoals op YouTube, dus niemand hoeft het te leren.
+
+Geldt voor allebei de soorten kaarten: de acht branchekaarten (eigen mp4,
+`[data-clip]`) en de YouTube-kaarten op formats en de startpagina
+(`[data-video]`). Aan de tekst van geen enkele pagina is iets veranderd.
+
+- Eén lichtbak per pagina, pas gemaakt bij de eerste klik (`maakLichtbak()` in
+  `site.js`). De kaart blijft staan, dus hij is opnieuw te openen - vroeger was
+  de kaart na een klik weg.
+- Bij sluiten gaat de inhoud er echt uit en niet alleen uit beeld. Dat stopt het
+  geluid en haalt de insluiting van YouTube weg; `hidden` alleen laat een
+  filmpje gewoon doorspelen achter een pagina waar niets te zien is.
+- **De maat komt uit `--arn` op `.lichtbak-vak`**: de breedte gedeeld door de
+  hoogte van de clip die er werkelijk in staat (1,78 liggend, 0,56 staand).
+  `site.js` zet dat getal, niet een media query - wie zijn venster tijdens het
+  kijken versmalt moet de clip houden die al speelt, in zijn eigen verhouding.
+  Die `--arn` verving `.branche-speler.breed`.
+- De breedte is `min(1180px, 100%, (100svh - 11rem) * --arn)`. Die 11 rem is
+  wat eromheen staat: het kruisje boven het vak, de titel eronder, de ruimte aan
+  de randen. Zonder die aftrek schoof het kruisje op een laag venster (een
+  laptop van 900 bij 700) boven de bovenrand uit. In `svh` en niet in `vh`, want
+  op een telefoon rekent `vh` de adresbalk mee.
+- Op een telefoon (of een venster lager dan 620) staat het kruisje in de hoek
+  van het beeld zelf: daarboven is dan geen ruimte.
+- Escape sluit, Tab blijft binnen de lichtbak, en de focus gaat bij het sluiten
+  terug naar de kaart waar hij vandaan kwam. `body.lichtbak-open` zet de pagina
+  eronder op slot, anders rolt de site weg achter een speler die blijft staan.
+- Een klik op de waas of het kruisje sluit, een klik in het vak niet - anders
+  sluit hij zodra je de bediening van de video aanraakt.
+- `node tools/meet-lichtbak.mjs [url]` meet het na: vijf schermbreedtes
+  (waaronder 900x700, het lage venster) over zeven pagina's in drie talen.
+  420 metingen: komt hij open, staat er echt een speler in, valt niets buiten
+  het venster, vult hij minstens een vijfde van het scherm, staat de pagina op
+  slot, en sluiten Escape, kruisje en waas allemaal met de focus terug.
 
 ## De landingspagina /puurgenieten/
 

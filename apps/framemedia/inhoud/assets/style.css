@@ -766,9 +766,65 @@ table.vgl tbody tr:last-child th, table.vgl tbody tr:last-child td { border-bott
   display: block; font-family: var(--kop); font-weight: 700; color: var(--wit);
   font-size: 1rem; letter-spacing: -.01em; line-height: 1.25;
 }
-/* De insluiting die na de klik in de plaats van de kaart komt. */
-.video-speler { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: var(--radius); overflow: hidden; }
-.video-speler iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+/* --- lichtbak --------------------------------------------------------------
+   Een klik op een videokaart zette de speler tot 08-11-2026 in het vakje van
+   de kaart zelf; in een rij van vier kolommen werd dat een filmpje van een
+   kwart paginabreedte. Nu klapt hij hierover open, met de pagina als donkere
+   waas eronder. Eén lichtbak voor de hele pagina, gemaakt en gevuld door
+   site.js.
+
+   De maat komt uit `--arn`: de breedte gedeeld door de hoogte van de clip die
+   er in staat (1,78 liggend, 0,56 staand). De breedte is het kleinste van wat
+   het venster toelaat en wat bij die verhouding past in de hoogte die overblijft
+   - zo wordt een staand filmpje nooit hoger dan het scherm en blijft er geen
+   zwarte balk naast staan. Geen media query, want de verhouding hangt aan de
+   clip en niet aan het venster.
+
+   Die 11rem die van de hoogte af gaat is wat eromheen staat: het kruisje boven
+   het vak, de titel eronder en de ruimte aan de randen. Zonder die aftrek
+   schoof het kruisje op een laag venster (een laptop van 900 bij 700) boven de
+   bovenrand uit. In svh en niet in vh, want op een telefoon rekent vh de
+   adresbalk mee en valt de onderkant dan weg.
+   ------------------------------------------------------------------------- */
+.lichtbak {
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; place-items: center; padding: clamp(.5rem, 2.5vw, 2rem);
+}
+.lichtbak[hidden] { display: none; }
+.lichtbak-waas { position: absolute; inset: 0; background: rgba(4, 6, 10, .94); cursor: pointer; }
+.lichtbak-vak {
+  position: relative;
+  width: min(1180px, 100%, calc((100vh - 11rem) * var(--arn, 1.7778)));
+  width: min(1180px, 100%, calc((100svh - 11rem) * var(--arn, 1.7778)));
+}
+.lichtbak-film {
+  position: relative; width: 100%; background: #000;
+  aspect-ratio: var(--arn, 1.7778);
+  border-radius: var(--radius); overflow: hidden;
+}
+.lichtbak-film iframe, .lichtbak-film video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  border: 0; display: block; object-fit: contain;
+}
+.lichtbak-titel {
+  margin: .7rem auto 0; text-align: center; color: var(--wit);
+  font-family: var(--kop); font-weight: 700; font-size: 1rem; letter-spacing: -.01em;
+}
+.lichtbak-sluit {
+  position: absolute; top: -.2rem; right: -.2rem; transform: translateY(-100%);
+  width: 42px; height: 42px; display: grid; place-items: center;
+  background: var(--inkt-2); border: 1px solid var(--lijn-sterk); border-radius: 50%;
+  color: var(--wit); cursor: pointer; padding: 0;
+  transition: background .18s ease, border-color .18s ease;
+}
+.lichtbak-sluit:hover { background: var(--rood-vast); border-color: var(--rood-vast); }
+.lichtbak-sluit svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; }
+/* Boven een staande clip op een telefoon is er geen ruimte boven het vak, dus
+   daar staat het kruisje in de hoek van het beeld zelf. */
+@media (max-width: 700px), (max-height: 620px) {
+  .lichtbak-sluit { top: .5rem; right: .5rem; transform: none; background: rgba(4, 6, 10, .8); }
+}
+body.lichtbak-open { overflow: hidden; }
 
 .eerder-kop {
   font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
@@ -822,12 +878,11 @@ table.vgl tbody tr:last-child th, table.vgl tbody tr:last-child td { border-bott
   display: block; color: var(--tekst-zacht); font-size: .88rem; line-height: 1.45;
   margin-top: .25rem;
 }
-.branche-speler { position: relative; aspect-ratio: 9 / 16; background: #000; border-radius: var(--radius); overflow: hidden; }
-/* site.js zet .breed als de liggende clip is geladen. Een media query zou
-   hier fout zijn: wie zijn venster na de klik versmalt houdt de clip die al
-   speelt, en die moet in zijn eigen verhouding blijven staan. */
-.branche-speler.breed { aspect-ratio: 16 / 9; }
-.branche-speler video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+/* De speler zelf staat in de lichtbak (zie hierboven), niet meer in de kaart.
+   site.js geeft die de verhouding van de clip die hij werkelijk heeft geladen
+   mee - een media query zou daar fout zijn, want wie zijn venster na de klik
+   versmalt houdt de clip die al speelt, en die moet in zijn eigen verhouding
+   blijven staan. */
 
 /* Het rondje van Puur Genieten naast de sectiekop. Het bronbestand heeft
    witte hoeken om de cirkel heen; die gaan er hier af. */

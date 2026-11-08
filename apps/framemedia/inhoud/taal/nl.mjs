@@ -142,6 +142,7 @@ export default {
     stap2: 'Stap 2 van 2',
     reelPauze: 'Showreel pauzeren',
     reelSpeel: 'Showreel afspelen',
+    videoSluiten: 'Video sluiten',
     // Alleen in gebruik als er een echte bestemming onder het formulier zit
     // (FM_FORM_ENDPOINT, zie bouw.mjs). Op het conceptadres wordt er niets
     // verstuurd en kan het dus ook niet mislukken.

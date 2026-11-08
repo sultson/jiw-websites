@@ -12,6 +12,7 @@ const T = Object.assign({
   stap2: 'Stap 2 van 2',
   reelPauze: 'Showreel pauzeren',
   reelSpeel: 'Showreel afspelen',
+  videoSluiten: 'Video sluiten',
 }, window.FM_T || {});
 
 // Het menu op de telefoon, de meebewegende actiebalk, het formulier dat niets
@@ -267,22 +268,98 @@ document.querySelectorAll('[data-marquee]').forEach(band => {
   new ResizeObserver(stel).observe(helft);
 });
 
+// --- lichtbak voor de videokaarten -----------------------------------------
+// Tot 08-11-2026 kwam de speler in de plaats van de kaart zelf. Op de
+// puurgenieten-pagina staan die kaarten in vier kolommen, dus dan keek je naar
+// een filmpje van een kwart paginabreedte. Nu klapt hij over de pagina open:
+// donkere waas eromheen, groot in het midden, kruisje of Escape om te sluiten.
+// Zo gaat het op YouTube en Netflix ook, dus niemand hoeft het te leren.
+//
+// Het is een voor de hele pagina, pas gemaakt bij de eerste klik, en de kaart
+// blijft staan - je kunt hem dus een tweede keer openen. Bij sluiten gaat de
+// inhoud eruit en niet alleen uit beeld: dat stopt het geluid en haalt de
+// insluiting van YouTube weg.
+let lichtbak = null;
+let lichtbakVan = null;
+
+function maakLichtbak() {
+  const el = document.createElement('div');
+  el.className = 'lichtbak';
+  el.hidden = true;
+  el.setAttribute('role', 'dialog');
+  el.setAttribute('aria-modal', 'true');
+  el.innerHTML = `
+    <div class="lichtbak-waas" data-sluit></div>
+    <div class="lichtbak-vak">
+      <div class="lichtbak-film"></div>
+      <p class="lichtbak-titel"></p>
+      <button class="lichtbak-sluit" type="button" data-sluit aria-label="${T.videoSluiten}">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>`;
+  // Een klik op de waas of op het kruisje sluit. Een klik in het vak zelf niet,
+  // anders sluit de speler zodra je de bediening van de video aanraakt.
+  el.addEventListener('click', e => { if (e.target.closest('[data-sluit]')) sluitLichtbak(); });
+  document.body.appendChild(el);
+  return el;
+}
+
+function sluitLichtbak() {
+  if (!lichtbak || lichtbak.hidden) return;
+  lichtbak.querySelector('.lichtbak-film').textContent = '';
+  lichtbak.hidden = true;
+  document.body.classList.remove('lichtbak-open');
+  lichtbakVan?.focus();
+  lichtbakVan = null;
+}
+
+// `verhouding` is de breedte gedeeld door de hoogte van de clip: 16/9 voor een
+// liggende, 9/16 voor een staande. style.css rekent daar de maat mee uit, zodat
+// een staand filmpje niet hoger wordt dan het venster.
+function openLichtbak(inhoud, titel, verhouding, vanaf) {
+  lichtbak ??= maakLichtbak();
+  const film = lichtbak.querySelector('.lichtbak-film');
+  lichtbak.querySelector('.lichtbak-vak').style.setProperty('--arn', String(verhouding));
+  film.textContent = '';
+  film.appendChild(inhoud);
+  lichtbak.querySelector('.lichtbak-titel').textContent = titel;
+  lichtbak.setAttribute('aria-label', titel);
+  lichtbak.hidden = false;
+  // De pagina eronder niet laten meescrollen - dan rolt de hele site weg
+  // achter een speler die blijft staan.
+  document.body.classList.add('lichtbak-open');
+  lichtbakVan = vanaf;
+  lichtbak.querySelector('.lichtbak-sluit').focus();
+}
+
+// Escape sluit, en Tab blijft binnen de lichtbak: het kruisje en de bediening
+// van de video zijn het enige wat er te bedienen valt zolang hij open staat.
+document.addEventListener('keydown', e => {
+  if (!lichtbak || lichtbak.hidden) return;
+  if (e.key === 'Escape') { e.preventDefault(); sluitLichtbak(); return; }
+  if (e.key !== 'Tab') return;
+  const bij = [...lichtbak.querySelectorAll('button, video[controls], iframe')];
+  if (!bij.length) return;
+  const eerste = bij[0], laatste = bij[bij.length - 1];
+  if (e.shiftKey && document.activeElement === eerste) { e.preventDefault(); laatste.focus(); }
+  else if (!e.shiftKey && document.activeElement === laatste) { e.preventDefault(); eerste.focus(); }
+});
+
 // --- videokaarten ----------------------------------------------------------
 // De kaart toont alleen een plaatje. Pas na een klik komt er een insluiting
-// van youtube-nocookie in de plaats, met autoplay omdat de bezoeker er net
-// zelf om heeft gevraagd. Zo staat er geen YouTube-verkeer op een pagina die
-// iemand alleen maar doorbladert.
+// van youtube-nocookie, met autoplay omdat de bezoeker er net zelf om heeft
+// gevraagd. Zo staat er geen YouTube-verkeer op een pagina die iemand alleen
+// maar doorbladert.
 document.querySelectorAll('[data-video]').forEach(kaart => {
   kaart.addEventListener('click', () => {
     const id = kaart.dataset.video;
     const titel = kaart.dataset.titel || 'Video';
-    const houder = document.createElement('div');
-    houder.className = 'video-speler kader';
-    houder.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&modestbranding=1"
-        title="${titel}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-        allowfullscreen loading="lazy"></iframe>`;
-    kaart.replaceWith(houder);
-    houder.querySelector('iframe')?.focus();
+    const frame = document.createElement('iframe');
+    frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&modestbranding=1`;
+    frame.title = titel;
+    frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+    frame.allowFullscreen = true;
+    openLichtbak(frame, titel, 16 / 9, kaart);
   });
 });
 
@@ -299,8 +376,6 @@ document.querySelectorAll('[data-clip]').forEach(kaart => {
     // posterbeeld). Niet elke branche heeft er een; dan blijft het de staande.
     const breed = kaart.dataset.clipBreed
       && window.matchMedia('(min-width: 901px)').matches;
-    const houder = document.createElement('div');
-    houder.className = `branche-speler kader${breed ? ' breed' : ''}`;
     const v = document.createElement('video');
     v.src = breed ? kaart.dataset.clipBreed : kaart.dataset.clip;
     v.poster = (breed ? kaart.dataset.posterBreed : kaart.dataset.poster) || '';
@@ -309,9 +384,7 @@ document.querySelectorAll('[data-clip]').forEach(kaart => {
     v.playsInline = true;
     v.preload = 'auto';
     v.setAttribute('title', titel);
-    houder.appendChild(v);
-    kaart.replaceWith(houder);
-    v.focus();
+    openLichtbak(v, titel, breed ? 16 / 9 : 9 / 16, kaart);
     // Loopt hij niet (een browser die autoplay met geluid tegenhoudt), dan
     // staat de bediening er en kan de bezoeker hem zelf starten. Niet stil
     // dempen: dit zijn filmpjes met een voice-over.

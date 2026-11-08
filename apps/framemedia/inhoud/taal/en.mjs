@@ -124,6 +124,7 @@ export default {
     stap2: 'Step 2 of 2',
     reelPauze: 'Pause showreel',
     reelSpeel: 'Play showreel',
+    videoSluiten: 'Close video',
     verstuurBezig: 'Sending...',
     verstuurMis: 'Sending failed. Please try again, or call +31 6 3486 1375.',
   },
