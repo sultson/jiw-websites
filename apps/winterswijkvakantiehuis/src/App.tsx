@@ -1708,7 +1708,7 @@ const curacaoRooms: {stay: 'fenya' | 'yeva'; src: string; cap: Record<Lang, stri
    prefixed. The slug is translated too, since it is part of what gets matched. */
 type PageKind = 'landing' | 'todo' | 'horses' | 'curacao' | TopicId | 'home' | 'notFound';
 type SluggedKind = 'todo' | 'horses' | 'curacao' | TopicId | 'home';
-const TOPIC_KINDS: TopicId[] = ['groups', 'dogs', 'hilgelo'];
+const TOPIC_KINDS: TopicId[] = ['groups', 'dogs', 'hilgelo', 'sauna'];
 const isTopic = (kind: PageKind): kind is TopicId => (TOPIC_KINDS as PageKind[]).includes(kind);
 
 const PAGE_SLUGS: Record<SluggedKind, Record<Lang, string>> = {
@@ -3348,9 +3348,14 @@ const TOPIC_HERO: Record<TopicId, {src: string; position: string; alt: Record<La
     nl: 'Hond aan de oever van het Hilgelo bij zonsondergang', en: 'A dog on the shore of Hilgelo lake at sunset', de: 'Hund am Ufer des Hilgelo bei Sonnenuntergang'}},
   hilgelo: {src: '/img/hilgelo-oever.webp', position: 'object-center', alt: {
     nl: 'Het Hilgelo in Winterswijk, gezien vanaf de oever tussen het riet en de berken', en: 'Hilgelo lake in Winterswijk, seen from the shore between reeds and birches', de: 'Der Hilgelo in Winterswijk, vom Ufer zwischen Schilf und Birken gesehen'}},
+  /* The owner's own sauna photos are 400 px portrait shots, too small for a
+     full-bleed hero, so they sit in the photo row and the hero is the owner's
+     misty-morning field: the weather you take a sauna for. */
+  sauna: {src: '/img/nature-mist.webp', position: 'object-center', alt: {
+    nl: 'Mist over de weilanden bij Winterswijk op een koude ochtend', en: 'Mist over the meadows near Winterswijk on a cold morning', de: 'Nebel über den Wiesen bei Winterswijk an einem kalten Morgen'}},
 };
 
-const TOPIC_ICON: Record<TopicId, typeof Users> = {groups: Users, dogs: PawPrint, hilgelo: Waves};
+const TOPIC_ICON: Record<TopicId, typeof Users> = {groups: Users, dogs: PawPrint, hilgelo: Waves, sauna: Flame};
 
 function TopicPage({topic, lang, L}: {topic: TopicId; lang: Lang; L: any}) {
   const copy = topicCopy[topic][lang];
@@ -4002,6 +4007,7 @@ function Footer({route, lang, L}: {route: Route; lang: Lang; L: any}) {
               {href: pathFor({kind: 'groups'}, lang), label: topicCopy.groups[lang].label},
               {href: pathFor({kind: 'dogs'}, lang), label: topicCopy.dogs[lang].label},
               {href: pathFor({kind: 'hilgelo'}, lang), label: topicCopy.hilgelo[lang].label},
+              {href: pathFor({kind: 'sauna'}, lang), label: topicCopy.sauna[lang].label},
               {href: pathFor({kind: 'home', homeId: 'kattenberg8'}, lang), label: L.footer.accessible},
               {href: pathFor({kind: 'horses'}, lang), label: L.nav.horses},
               {href: pathFor({kind: 'todo'}, lang), label: L.nav.area},

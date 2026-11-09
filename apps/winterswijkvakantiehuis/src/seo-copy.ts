@@ -221,6 +221,23 @@ export const seoCopy: Record<string, Record<string, {title: string; description:
       "h1": "Hilgelo lake in Winterswijk, around the corner from your holiday home"
     }
   },
+  "sauna": {
+    "nl": {
+      "title": "Vakantiehuis met sauna in Winterswijk | Eigen sauna in elk huis",
+      "description": "Alle tien onze vakantiehuizen in Winterswijk hebben een eigen sauna, drie ook een bubbelbad. Bij het Hilgelo of in het bos, hond welkom in vijf huizen.",
+      "h1": "Vakantiehuis met eigen sauna in Winterswijk"
+    },
+    "de": {
+      "title": "Ferienhaus Holland mit Sauna | Winterswijk, direkt an der Grenze",
+      "description": "Ferienhaus mit eigener Sauna in Winterswijk, direkt hinter der Grenze bei Bocholt: alle zehn Häuser mit Sauna, drei mit Whirlpool, Hund in fünf willkommen.",
+      "h1": "Ferienhaus mit eigener Sauna in Winterswijk, Holland"
+    },
+    "en": {
+      "title": "Holiday homes with a private sauna in Winterswijk",
+      "description": "All ten of our holiday homes in Winterswijk have a private sauna, and three also have a whirlpool bath. By Hilgelo lake or in the woods, dogs welcome in five.",
+      "h1": "Holiday homes with a private sauna in Winterswijk"
+    }
+  },
   "curacao": {
     "nl": {
       "title": "Aemilius Curaçao: verblijf in Barber",

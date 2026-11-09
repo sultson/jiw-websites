@@ -10,8 +10,14 @@
    the page is about the lake first and the three Jonkersweg homes second. Same
    rule as the others: only facts the site already states, plus the owner's own
    photos of the lake. */
+/* The sauna page is the fourth (Nov 2026): "ferienhaus holland sauna", "... mit
+   sauna" and "ferienhaus niederlande mit sauna" add up to ~1,800 searches a month
+   in DE, "wellness vakantiehuis" ~720 in NL, and the site had no page of its own
+   for it. Every home has a private sauna, which is the claim; the bubble baths
+   and gas fires are the per-home detail. Sauna type, size and temperature are
+   not stated anywhere by the owner, so the page does not state them either. */
 type Lang = 'nl' | 'en' | 'de';
-export type TopicId = 'groups' | 'dogs' | 'hilgelo';
+export type TopicId = 'groups' | 'dogs' | 'hilgelo' | 'sauna';
 
 export type TopicCopy = {
   kicker: string;
@@ -38,6 +44,7 @@ export const TOPIC_SLUGS: Record<TopicId, Record<Lang, string>> = {
   groups: {nl: 'groepsaccommodatie-winterswijk', de: 'gruppenunterkunft-winterswijk', en: 'group-accommodation-winterswijk'},
   dogs: {nl: 'vakantiehuis-met-hond-winterswijk', de: 'ferienhaus-mit-hund-winterswijk', en: 'dog-friendly-holiday-homes-winterswijk'},
   hilgelo: {nl: 'hilgelo-winterswijk', de: 'hilgelo-winterswijk', en: 'hilgelo-lake-winterswijk'},
+  sauna: {nl: 'vakantiehuis-met-sauna-winterswijk', de: 'ferienhaus-mit-sauna-winterswijk', en: 'holiday-homes-with-sauna-winterswijk'},
 };
 
 export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
@@ -75,6 +82,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
           {size: '18 personen', text: 'Jonkersweg 55, 57 en 65, bij het Hilgelo. Hond en paard welkom.'},
           {size: '24 personen', text: 'Alle vier de huizen aan de Jonkersweg, bij het Hilgelo. In 63 mag geen hond mee.'},
           {size: '14 personen', text: 'Boswoning Kattenberg XL met een boswoning ernaast, met een aangepaste slaapkamer beneden.'},
+          {size: '16 personen', text: 'Boswoning Kattenberg XL en het Fins chalet, elk voor acht. Geen huisdieren.'},
           {size: '24 personen', text: 'De vier boswoningen op de Kattenberg. In twee daarvan mag een hond mee.'},
           {size: '40 personen', text: 'Alle zes woningen op de Kattenberg, samen midden in het bos.'},
         ],
@@ -125,6 +133,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
           {size: '18 Personen', text: 'Jonkersweg 55, 57 und 65 beim Hilgelo. Hund und Pferd willkommen.'},
           {size: '24 Personen', text: 'Alle vier Häuser am Jonkersweg beim Hilgelo. In 63 darf kein Hund mit.'},
           {size: '14 Personen', text: 'Waldhaus Kattenberg XL mit einem Waldhaus daneben, mit angepasstem Schlafzimmer im Erdgeschoss.'},
+          {size: '16 Personen', text: 'Waldhaus Kattenberg XL und das finnische Chalet, je für acht. Keine Haustiere.'},
           {size: '24 Personen', text: 'Die vier Waldhäuser auf dem Kattenberg. In zweien darf ein Hund mit.'},
           {size: '40 Personen', text: 'Alle sechs Häuser auf dem Kattenberg, zusammen mitten im Wald.'},
         ],
@@ -175,6 +184,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
           {size: '18 guests', text: 'Jonkersweg 55, 57 and 65 by Hilgelo lake. Dogs and horses welcome.'},
           {size: '24 guests', text: 'All four Jonkersweg homes by Hilgelo lake. No dogs in 63.'},
           {size: '14 guests', text: 'Kattenberg XL plus a woodland home next door, with an adapted bedroom downstairs.'},
+          {size: '16 guests', text: 'Kattenberg XL and the Finnish chalet, each for eight. No pets.'},
           {size: '24 guests', text: 'The four woodland homes on the Kattenberg. Two of them take dogs.'},
           {size: '40 guests', text: 'All six homes on the Kattenberg, together in the woods.'},
         ],
@@ -357,7 +367,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       label: 'Het Hilgelo',
       intro: [
         'Het Hilgelo is de recreatieplas van Winterswijk: zo’n 36 hectare water met een zandstrand, ruime lig- en speelweiden en een route rondom het meer. In de zomer zwemt en zonnet u hier, buiten het seizoen heeft u de oevers vaak bijna voor uzelf.',
-        'Drie van onze vakantiehuizen staan aan de Jonkersweg in Winterswijk Meddo, op recreatiepark Den Möllenhof. De Jonkersweg komt uit aan de westkant van het meer, dus vanuit uw huis loopt u zo naar het water.',
+        'Vier van onze vakantiehuizen staan aan de Jonkersweg in Winterswijk Meddo, op recreatiepark Den Möllenhof. De Jonkersweg komt uit aan de westkant van het meer, dus vanuit uw huis loopt u zo naar het water.',
       ],
       photos: [
         {src: '/img/hilgelo-bord.webp', alt: 'Het Hilgelo-bord met een houten uil aan de rand van het bos'},
@@ -413,7 +423,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       label: 'Der Hilgelo',
       intro: [
         'Der Hilgelo ist der Badesee von Winterswijk: rund 36 Hektar Wasser mit Sandstrand, weiten Liege- und Spielwiesen und einem Weg rund um den See. Im Sommer wird hier gebadet und gesonnt, außerhalb der Saison haben Sie das Ufer oft fast für sich allein.',
-        'Drei unserer Ferienhäuser stehen am Jonkersweg in Winterswijk Meddo, im Ferienpark Den Möllenhof. Der Jonkersweg mündet an der Westseite des Sees, Sie sind also vom Haus aus gleich am Wasser. Winterswijk liegt direkt hinter der Grenze bei Bocholt und Vreden.',
+        'Vier unserer Ferienhäuser stehen am Jonkersweg in Winterswijk Meddo, im Ferienpark Den Möllenhof. Der Jonkersweg mündet an der Westseite des Sees, Sie sind also vom Haus aus gleich am Wasser. Winterswijk liegt direkt hinter der Grenze bei Bocholt und Vreden.',
       ],
       photos: [
         {src: '/img/hilgelo-bord.webp', alt: 'Das Hilgelo-Schild mit einer Holzeule am Waldrand'},
@@ -469,7 +479,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       label: 'Hilgelo lake',
       intro: [
         'The Hilgelo is Winterswijk’s recreational lake: some 36 hectares of water with a sandy beach, generous lawns to play and sunbathe on, and a route all the way round. In summer people come to swim and sunbathe; out of season you often have the shore almost to yourself.',
-        'Three of our holiday homes stand on Jonkersweg in Winterswijk Meddo, on the Den Möllenhof holiday park. Jonkersweg comes out on the west side of the lake, so from your door you are at the water in no time.',
+        'Four of our holiday homes stand on Jonkersweg in Winterswijk Meddo, on the Den Möllenhof holiday park. Jonkersweg comes out on the west side of the lake, so from your door you are at the water in no time.',
       ],
       photos: [
         {src: '/img/hilgelo-bord.webp', alt: 'The Hilgelo sign with a wooden owl at the edge of the woods'},
@@ -517,6 +527,155 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       cta: {
         title: 'Enquire about a home by the Hilgelo',
         text: 'Tell us your dates and the number of guests. We will let you know which home on Jonkersweg is free.',
+        button: 'Enquire now',
+      },
+    },
+  },
+  sauna: {
+    nl: {
+      kicker: 'Wellness in de Achterhoek',
+      label: 'Vakantiehuis met sauna',
+      intro: [
+        'Al onze tien vakantiehuizen in Winterswijk hebben een eigen sauna. Geen gedeelde wellness waar u een tijdslot voor reserveert, maar een sauna in uw eigen huis, die u gebruikt wanneer u wilt: na een fietstocht, een natte boswandeling of gewoon aan het eind van de dag.',
+        'In drie huizen hoort er ook een bubbelbad bij, en in een paar een gashaard. Hieronder ziet u per huis wat er is.',
+      ],
+      photos: [
+        {src: '/img/chalet-13.webp', alt: 'De houten sauna in het Fins chalet op de Kattenberg'},
+        {src: '/img/kattenberg8-12.webp', alt: 'Badkamer met ligbad en sauna in de Boswoning Kattenberg XL'},
+        {src: '/img/kattenberg6-10.webp', alt: 'De sauna in een boswoning op de Kattenberg'},
+      ],
+      sections: [
+        {
+          title: 'Sauna én bubbelbad bij het Hilgelo',
+          text: [
+            'Aan de Jonkersweg op recreatiepark Den Möllenhof hebben Jonkersweg 55 en 57 allebei een eigen sauna en een bubbelbad, met daarnaast een ligbad en een aparte douche. Jonkersweg 63 heeft een kleurentherapie sauna en een ligbad met whirlpool. Elk huis is voor zes personen, en het Hilgelo ligt om de hoek.',
+            'In 55 en 57 is uw hond welkom. In 63 zijn geen huisdieren toegestaan.',
+          ],
+          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg63'],
+        },
+        {
+          title: 'Sauna en gashaard voor de winter',
+          text: [
+            'Jonkersweg 65 heeft een eigen sauna, een gashaard in een zwart marmeren schouw en een overdekte veranda. Ook Jonkersweg 55 heeft een gashaard. Eerst de sauna, dan bij het vuur: zo is een herfst- of winterweekend in Winterswijk op z’n best. Uw hond is in beide huizen welkom.',
+          ],
+          homeIds: ['jonkersweg65'],
+        },
+        {
+          title: 'Sauna in het bos op de Kattenberg',
+          text: [
+            'Op de Kattenberg, midden in het bos bij Winterswijk, heeft elke woning een eigen sauna: de vier boswoningen voor zes personen, de Boswoning Kattenberg XL voor acht en het vrijstaande Fins chalet voor acht. De sauna ligt boven, bij de badkamer. Het bos begint achter de tuin.',
+          ],
+          homeIds: ['kattenberg6', 'kattenberg8', 'finschalet'],
+        },
+      ],
+      faq: [
+        {q: 'Hebben alle vakantiehuizen een eigen sauna?', a: 'Ja. Alle tien huizen, aan de Jonkersweg en op de Kattenberg, hebben een sauna die alleen voor u is. U deelt hem niet met andere gasten en hoeft geen tijd te reserveren.'},
+        {q: 'Welke huizen hebben ook een bubbelbad?', a: 'Jonkersweg 55 en 57 hebben een bubbelbad, Jonkersweg 63 een ligbad met whirlpool. Alle drie liggen op recreatiepark Den Möllenhof, vlak bij het Hilgelo.'},
+        {q: 'Kan ik een vakantiehuis met sauna en hond boeken?', a: 'Ja. Uw hond is welkom in Jonkersweg 55, 57 en 65 en in twee van de vier boswoningen op de Kattenberg. Elk van die huizen heeft een eigen sauna.'},
+        {q: 'Kunnen we met een groep komen en toch ieder een sauna hebben?', a: 'Ja. Omdat elk huis een eigen sauna heeft, boekt u met een groep gewoon meerdere huizen naast of vlak bij elkaar: tot 24 personen aan de Jonkersweg en tot 40 op de Kattenberg.'},
+        {q: 'Hoe boek ik?', a: 'Rechtstreeks bij ons, via het formulier, WhatsApp of telefoon, zonder tussenpersoon. Uw aanvraag is nog geen bevestigde reservering: we bespreken eerst de beschikbaarheid en uw wensen.'},
+      ],
+      cta: {
+        title: 'Vraag een vakantiehuis met sauna aan',
+        text: 'Geef uw periode en het aantal personen door, en of u een bubbelbad, gashaard of hond wilt meenemen in de keuze. We laten weten welk huis vrij is.',
+        button: 'Verblijf aanvragen',
+      },
+    },
+    de: {
+      kicker: 'Wellness im Achterhoek',
+      label: 'Ferienhaus mit Sauna',
+      intro: [
+        'Alle zehn Ferienhäuser, die wir in Winterswijk vermieten, haben eine eigene Sauna. Kein gemeinsamer Wellnessbereich mit festen Zeiten, sondern eine Sauna in Ihrem eigenen Haus, die Sie nutzen, wann Sie möchten: nach einer Radtour, einem nassen Waldspaziergang oder einfach am Abend.',
+        'Winterswijk liegt in Holland direkt hinter der Grenze bei Bocholt und Vreden. In drei Häusern gibt es zusätzlich eine Whirlpool-Badewanne, in einigen einen Gaskamin. Unten sehen Sie, was jedes Haus bietet.',
+      ],
+      photos: [
+        {src: '/img/chalet-13.webp', alt: 'Die Holzsauna im finnischen Chalet auf dem Kattenberg'},
+        {src: '/img/kattenberg8-12.webp', alt: 'Bad mit Badewanne und Sauna im Waldhaus Kattenberg XL'},
+        {src: '/img/kattenberg6-10.webp', alt: 'Die Sauna in einem Waldhaus auf dem Kattenberg'},
+      ],
+      sections: [
+        {
+          title: 'Sauna und Whirlpool am Hilgelo',
+          text: [
+            'Am Jonkersweg im Ferienpark Den Möllenhof haben Jonkersweg 55 und 57 beide eine eigene Sauna und eine Whirlpool-Badewanne, dazu eine Badewanne und eine separate Dusche. Jonkersweg 63 hat eine Farblicht-Sauna und eine Whirlpool-Badewanne. Jedes Haus ist für sechs Personen, und der Badesee Hilgelo liegt um die Ecke.',
+            'In 55 und 57 ist Ihr Hund willkommen. In 63 sind keine Haustiere erlaubt.',
+          ],
+          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg63'],
+        },
+        {
+          title: 'Sauna und Kamin für den Winter',
+          text: [
+            'Jonkersweg 65 hat eine eigene Sauna, einen Gaskamin in einer schwarzen Marmorumrandung und eine überdachte Veranda. Auch Jonkersweg 55 hat einen Gaskamin. Erst in die Sauna, dann ans Feuer: so ist ein Herbst- oder Winterwochenende in Winterswijk am schönsten. Ihr Hund ist in beiden Häusern willkommen.',
+          ],
+          homeIds: ['jonkersweg65'],
+        },
+        {
+          title: 'Sauna im Wald auf dem Kattenberg',
+          text: [
+            'Auf dem Kattenberg, mitten im Wald bei Winterswijk, hat jedes Haus eine eigene Sauna: die vier Waldhäuser für sechs Personen, das Waldhaus Kattenberg XL für acht und das freistehende finnische Chalet für acht. Die Sauna liegt oben, beim Bad. Der Wald beginnt hinter dem Garten.',
+          ],
+          homeIds: ['kattenberg6', 'kattenberg8', 'finschalet'],
+        },
+      ],
+      faq: [
+        {q: 'Haben alle Ferienhäuser eine eigene Sauna?', a: 'Ja. Alle zehn Häuser, am Jonkersweg und auf dem Kattenberg, haben eine Sauna nur für Sie. Sie teilen sie nicht mit anderen Gästen und müssen keine Zeit reservieren.'},
+        {q: 'Welche Häuser haben auch einen Whirlpool?', a: 'Jonkersweg 55 und 57 haben eine Whirlpool-Badewanne, ebenso Jonkersweg 63. Alle drei liegen im Ferienpark Den Möllenhof, ganz nah am Hilgelo.'},
+        {q: 'Gibt es ein Ferienhaus mit Sauna und Hund?', a: 'Ja. Ihr Hund ist in Jonkersweg 55, 57 und 65 willkommen und in zwei der vier Waldhäuser auf dem Kattenberg. Jedes dieser Häuser hat eine eigene Sauna.'},
+        {q: 'Wie weit ist es von Deutschland?', a: 'Winterswijk liegt direkt hinter der Grenze, in der Nähe von Bocholt und Vreden.'},
+        {q: 'Wie buche ich?', a: 'Direkt bei uns, per Formular, WhatsApp oder Telefon, ohne Vermittler. Ihre Anfrage ist noch keine bestätigte Buchung: Wir besprechen zuerst Verfügbarkeit und Wünsche.'},
+      ],
+      cta: {
+        title: 'Ferienhaus mit Sauna anfragen',
+        text: 'Nennen Sie uns Zeitraum und Personenzahl, und ob Whirlpool, Kamin oder Hund bei der Wahl eine Rolle spielen. Wir sagen Ihnen, welches Haus frei ist.',
+        button: 'Aufenthalt anfragen',
+      },
+    },
+    en: {
+      kicker: 'Wellness in the Achterhoek',
+      label: 'Homes with a sauna',
+      intro: [
+        'All ten of our holiday homes in Winterswijk have a private sauna. Not a shared spa you book a slot for, but a sauna in your own home that you use whenever you like: after a bike ride, a wet walk in the woods or simply at the end of the day.',
+        'Three homes also have a whirlpool bath, and a few have a gas fire. Below you can see what each home has.',
+      ],
+      photos: [
+        {src: '/img/chalet-13.webp', alt: 'The wooden sauna in the Finnish chalet on the Kattenberg'},
+        {src: '/img/kattenberg8-12.webp', alt: 'Bathroom with bath and sauna in the Kattenberg XL'},
+        {src: '/img/kattenberg6-10.webp', alt: 'The sauna in a woodland home on the Kattenberg'},
+      ],
+      sections: [
+        {
+          title: 'Sauna and whirlpool bath by the Hilgelo',
+          text: [
+            'On Jonkersweg, on the Den Möllenhof holiday park, numbers 55 and 57 both have a private sauna and a whirlpool bath, plus a bath and a separate shower. Jonkersweg 63 has a colour-therapy sauna and a whirlpool bath. Each home sleeps six, and Hilgelo lake is around the corner.',
+            'Dogs are welcome in 55 and 57. No pets are allowed in 63.',
+          ],
+          homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg63'],
+        },
+        {
+          title: 'Sauna and fireside for winter',
+          text: [
+            'Jonkersweg 65 has a private sauna, a gas fire in a black marble surround and a covered veranda. Jonkersweg 55 has a gas fire too. Sauna first, then the fire: that is an autumn or winter weekend in Winterswijk at its best. Dogs are welcome in both.',
+          ],
+          homeIds: ['jonkersweg65'],
+        },
+        {
+          title: 'Sauna in the woods on the Kattenberg',
+          text: [
+            'On the Kattenberg, in the middle of the woods near Winterswijk, every home has a private sauna: the four woodland homes for six, the Kattenberg XL for eight and the detached Finnish chalet for eight. The sauna is upstairs, by the bathroom. The forest starts behind the garden.',
+          ],
+          homeIds: ['kattenberg6', 'kattenberg8', 'finschalet'],
+        },
+      ],
+      faq: [
+        {q: 'Do all the holiday homes have a private sauna?', a: 'Yes. All ten homes, on Jonkersweg and on the Kattenberg, have a sauna that is yours alone. You do not share it with other guests and there is no slot to book.'},
+        {q: 'Which homes also have a whirlpool bath?', a: 'Jonkersweg 55, 57 and 63, all on the Den Möllenhof holiday park close to Hilgelo lake.'},
+        {q: 'Can I book a home with a sauna and bring my dog?', a: 'Yes. Dogs are welcome in Jonkersweg 55, 57 and 65 and in two of the four woodland homes on the Kattenberg. Each of those homes has a private sauna.'},
+        {q: 'Can a group come and still have a sauna each?', a: 'Yes. Because every home has its own sauna, a group simply books several homes next to or close to each other: up to 24 guests on Jonkersweg and up to 40 on the Kattenberg.'},
+        {q: 'How do I book?', a: 'Directly with us, by form, WhatsApp or phone, with no agency in between. An enquiry is not yet a confirmed booking: we first discuss availability and your wishes.'},
+      ],
+      cta: {
+        title: 'Enquire about a home with a sauna',
+        text: 'Tell us your dates and the number of guests, and whether a whirlpool bath, a fire or your dog matters for the choice. We will let you know which home is free.',
         button: 'Enquire now',
       },
     },

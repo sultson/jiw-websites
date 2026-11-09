@@ -81,7 +81,7 @@ export const homeReviewIds = (homeId: string) =>
   (Object.keys(reviews) as ReviewId[]).filter((id) => reviews[id].homeId === homeId);
 
 /** The topic pages each get the quote that speaks to their visitor. */
-export const TOPIC_REVIEWS: Partial<Record<'groups' | 'dogs' | 'hilgelo', ReviewId[]>> = {
+export const TOPIC_REVIEWS: Partial<Record<'groups' | 'dogs' | 'hilgelo' | 'sauna', ReviewId[]>> = {
   groups: ['marianne', 'chaletnote'],
   dogs: ['richard'],
   hilgelo: ['jansen', 'richard'],
