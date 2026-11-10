@@ -32,8 +32,8 @@ map, JSON-LD, sitemap, robots of het formulier niet klopt. Zie SEO.md.
 
 Een endpoint, `/api/forms/puurgenieten`, via `@jiw/cloudflare-forms` (`worker/form.ts`).
 
-- Melding naar `LEAD_RECIPIENT` = **hallo@jouwidealewebsite.nl** (ons postvak, Alfred
-  10-11-2026). Afzender `no-reply@notify.puurgenieten.tv`. De Email Service-records
+- Melding naar `LEAD_RECIPIENT` = **info@puurgenieten.tv** (Alfred, 10-11-2026; de eerste
+  proefaanmeldingen gingen nog naar hallo@jouwidealewebsite.nl). Afzender `no-reply@notify.puurgenieten.tv`. De Email Service-records
   staan op de zone onder `cf-bounce.notify.*` en `_dmarc.notify.*`, niet onder
   `notify.puurgenieten.tv` zelf.
 - Bevestiging aan de aanmelder in het merk van Puur Genieten, in de taal van de pagina

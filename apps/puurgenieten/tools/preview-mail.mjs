@@ -34,7 +34,7 @@ const sent = [];
 const worker = createFormWorker({ ...PG_FORM, turnstile: false });
 const env = {
   SITE_ID: 'puurgenieten',
-  LEAD_RECIPIENT: 'hallo@jouwidealewebsite.nl',
+  LEAD_RECIPIENT: 'info@puurgenieten.tv',
   LEAD_SENDER: 'no-reply@notify.puurgenieten.tv',
   LEAD_EMAIL: { async send(message) { sent.push(message); } },
   FORM_UPLOADS: { async put() {} },

@@ -48,11 +48,10 @@
   ],
   "vars": {
     "SITE_ID": "puurgenieten",
-    // Nog ons eigen postvak (Alfred, 10-11-2026). Dit is ook de reply-to op de
-    // bevestiging die de bezoeker krijgt. Gaat dit naar info@puurgenieten.tv of
-    // info@framemedia.tv, dan weigert tools/live.mjs vanzelf nog een proef te
-    // versturen zonder --naar-klant=<adres>.
-    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // Postvak van de klant (Alfred, 10-11-2026 11:28; was hallo@jouwidealewebsite.nl).
+    // Dit is ook de reply-to op de bevestiging die de bezoeker krijgt. Daardoor
+    // weigert tools/live.mjs een proef te versturen zonder --naar-klant=<adres>.
+    "LEAD_RECIPIENT": "info@puurgenieten.tv",
     // notify.puurgenieten.tv staat in Cloudflare Email Service; de records hangen
     // aan cf-bounce.notify.puurgenieten.tv en _dmarc.notify.puurgenieten.tv, NIET
     // aan notify.puurgenieten.tv zelf (een lookup daarop is leeg en dat is goed).
