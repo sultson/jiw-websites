@@ -52,10 +52,9 @@ precies zo gemeten). Proeven van 10-11-2026: nl en en, allebei 200 + bedankkaart
 
 ## Open
 
-- **framemedia.tv/puurgenieten/ (+ /en/, /de/) staat er nog**, met dezelfde inhoud. Twee
-  kopieen concurreren in Google. De oplossing is een 301 vanaf framemedia naar hier, maar
-  dat formulier gaat naar info@framemedia.tv en dit naar ons postvak — dus dat is een
-  besluit voor Armando/Alfred, niet iets voor een bouwstap.
+- framemedia.tv/puurgenieten/ (+ /en/, /de/) 301't sinds 10-11-2026 hierheen (Armando), in
+  dezelfde taal. Daarmee komen aanmeldingen van daar nu bij LEAD_RECIPIENT hier binnen
+  (ons postvak), niet meer bij info@framemedia.tv.
 - Search Console: property puurgenieten.tv aanmaken (DNS-TXT op de zone) en de sitemap
   indienen. Google heeft geen ping meer; IndexNow dekt alleen Bing c.s.
 - LEAD_RECIPIENT naar info@puurgenieten.tv of info@framemedia.tv zodra de klant dat wil.

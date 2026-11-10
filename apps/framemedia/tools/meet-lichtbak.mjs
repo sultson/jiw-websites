@@ -9,12 +9,11 @@ const basis = process.argv[2] || 'http://localhost:4174';
 // Een pagina met branchekaarten (eigen mp4) en een met YouTube-kaarten, in
 // alle drie de talen.
 const PADEN = [
-  ['/puurgenieten/', '.branche-kaart'],
   ['/', '.branche-kaart'],
   ['/formats', '[data-video]'],
-  ['/en/puur-genieten/', '.branche-kaart'],
+  ['/en/', '.branche-kaart'],
   ['/en/', '[data-video]'],
-  ['/de/puur-genieten/', '.branche-kaart'],
+  ['/de/', '.branche-kaart'],
   ['/de/', '[data-video]'],
 ];
 const BREEDTES = [[1600, 900], [1440, 900], [1100, 800], [900, 700], [390, 844]];

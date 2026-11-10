@@ -20,7 +20,10 @@ export default {
     formats: '/formats',
     over: '/over-ons',
     contact: '/contact',
-    puurgenieten: '/puurgenieten/',
+    // Sinds 10-11-2026 een eigen site (apps/puurgenieten). De pagina staat hier
+    // niet meer; menu, voettekst en de knop onder de branches wijzen erheen, en
+    // de oude adressen 301'en ernaartoe (zie REDIRECTS in bouw.mjs).
+    puurgenieten: { extern: 'https://puurgenieten.tv/' },
     // Zelfde adres als op hun eigen site (framemedia.tv/programma-idee/),
     // inclusief de slash: dat adres staat in Google en in hun eigen menu.
     programmaIdee: '/programma-idee/',
@@ -30,8 +33,8 @@ export default {
 
   nav: [
     ['home', 'Home'],
-    // Puur Genieten staat als tweede, net als op hun eigen site. Dit is de
-    // pagina waar verkeer naartoe moet, dus die hoort vooraan en niet weggestopt.
+    // Puur Genieten staat als tweede, net als op hun eigen site. Sinds
+    // 10-11-2026 is dat een link naar puurgenieten.tv, niet meer een pagina hier.
     ['puurgenieten', 'Puur Genieten'],
     ['branded', 'Branded content'],
     ['studio', 'Studio'],
@@ -176,10 +179,6 @@ export default {
     contact: {
       titel: 'Contact | FRAME MEDIA',
       omschrijving: 'Neem vrijblijvend contact op met FRAME MEDIA over branded content, studiohuur of een programma-idee.',
-    },
-    puurgenieten: {
-      titel: 'Puur Genieten op SBS 6 | uw bedrijf in het programma | FRAME MEDIA',
-      omschrijving: 'Puur Genieten is een lifestyleprogramma op SBS 6 en KIJK voor kijkers die bewust genieten van het leven. Presentatrice Roxanna komt met de filmcrew bij u op locatie voor een interview en een impressie van uw bedrijf. Uw item wordt twee keer uitgezonden, op zaterdag en op zondag, all-in vanaf 2990. Van reizen en second homes tot wellness, interieur en persoonlijke verzorging.',
     },
     // Titel en H1 beginnen met dezelfde woorden als op hun eigen pagina
     // ('Programma idee? - FrameMedia'), zodat het adres en de zoekwoorden

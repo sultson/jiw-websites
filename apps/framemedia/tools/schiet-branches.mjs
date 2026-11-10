@@ -7,7 +7,7 @@ const browser = await chromium.launch();
 for (const breedte of [1440, 1100, 940, 900, 390]) {
   const ctx = await browser.newContext({ viewport: { width: breedte, height: 1000 }, deviceScaleFactor: 1 });
   const page = await ctx.newPage();
-  await page.goto(basis + '/puurgenieten/', { waitUntil: 'networkidle' });
+  await page.goto(basis + '/', { waitUntil: 'networkidle' });
   await page.evaluate(async () => {
     for (let y = 0; y < document.body.scrollHeight; y += 500) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 60)); }
   });

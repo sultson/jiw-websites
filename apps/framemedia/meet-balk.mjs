@@ -17,7 +17,7 @@ import { chromium } from 'playwright';
 const BASIS = (process.argv[2] || process.env.BASIS || 'http://localhost:4174').replace(/\/$/, '');
 console.log(`meet tegen ${BASIS}`);
 const b = await chromium.launch();
-const paginas = ['/', '/puurgenieten/', '/en/', '/de/'];
+const paginas = ['/', '/en/', '/de/'];
 const breedtes = [881, 900, 960, 1024, 1100, 1180, 1200, 1220, 1221, 1240, 1280, 1366, 1440, 1600];
 let fout = 0;
 // Liep tot 11-10-2026 twee keer, een keer per weergave. De klant heeft

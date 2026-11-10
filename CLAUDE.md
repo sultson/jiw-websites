@@ -87,9 +87,10 @@ apps/         client sites (almost all a Vite + React 19 + TS 5.8 + Tailwind v4 
                           `includeMessage: false` (new package switch, the form has no text
                           field). `pnpm build` = gen-beeld (mail logo + og image) + bouw --prod
                           + tools/vooraf.mjs (fails on hreflang, og, lang, canonical, sitemap,
-                          robots, Turnstile). **framemedia.tv/puurgenieten/ still serves the
-                          same content** — the 301 from there is a business call (its form
-                          goes to the client). Apex has Purelymail records, leave them.
+                          robots, Turnstile). framemedia.tv/puurgenieten/ (+ /en/, /de/)
+                          301s here since 10-11-2026 (Armando); page removed from framemedia,
+                          its menu/footer link point here. Leads from there now land in our
+                          LEAD_RECIPIENT, not info@framemedia.tv. Apex has Purelymail records, leave them.
                           dev port 3077. See its LEESMIJ.md + SEO.md.
   velvet-cakes-by-anka/   same exception, graduated 18-10-2026 from
                           claudius/playground/velvet-cakes-2. `bouw.mjs` writes 31 static

@@ -208,20 +208,14 @@ const kopScript = taal => `<script>window.FM_T=${JSON.stringify(taal.js)};`
 const DANKREGELS = [
   ['Dit is een conceptversie, dus er is niets verstuurd. Op de echte site komt dit bericht binnen bij FRAME MEDIA.',
     'Uw bericht is verstuurd. Wij reageren binnen een werkdag.'],
-  ['Dit is een conceptversie, dus er is niets verstuurd. Op de echte site komt deze aanmelding binnen bij FRAME MEDIA.',
-    'Uw aanmelding is verstuurd. Wij reageren binnen een werkdag.'],
   ['Dit is een conceptversie, dus er is niets verstuurd. Op de echte site komt dit binnen bij FRAME MEDIA.',
     'Uw aanvraag is verstuurd. Wij reageren binnen een werkdag.'],
   ['This is a concept version, so nothing has been sent. On the live site this message reaches FRAME MEDIA.',
     'Your message has been sent. We will reply within one working day.'],
-  ['This is a concept version, so nothing has been sent. On the live site this application reaches FRAME MEDIA.',
-    'Your application has been sent. We will reply within one working day.'],
   ['This is a concept version, so nothing has been sent. On the live site this reaches FRAME MEDIA.',
     'Your enquiry has been sent. We will reply within one working day.'],
   ['Dies ist eine Konzeptversion, es wurde also nichts gesendet. Auf der echten Website geht diese Nachricht bei FRAME MEDIA ein.',
     'Ihre Nachricht wurde gesendet. Wir antworten innerhalb eines Werktags.'],
-  ['Dies ist eine Konzeptversion, es wurde also nichts gesendet. Auf der echten Website geht diese Anmeldung bei FRAME MEDIA ein.',
-    'Ihre Anmeldung wurde gesendet. Wir antworten innerhalb eines Werktags.'],
   ['Dies ist eine Konzeptversion, es wurde also nichts gesendet. Auf der echten Website geht das bei FRAME MEDIA ein.',
     'Ihre Anfrage wurde gesendet. Wir antworten innerhalb eines Werktags.'],
 ];
@@ -488,7 +482,6 @@ const PAGINAS = {
     ['formats', 'formats.html'],
     ['over', 'over-ons.html'],
     ['contact', 'contact.html'],
-    ['puurgenieten', 'puurgenieten.html'],
     ['programmaIdee', 'programma-idee.html'],
     ['vacature', 'vacature.html'],
     ['voorwaarden', 'voorwaarden.html'],
@@ -499,7 +492,6 @@ const PAGINAS = {
     ['studio', 'en/studio.html'],
     ['over', 'en/about-us.html'],
     ['contact', 'en/contact.html'],
-    ['puurgenieten', 'en/puur-genieten.html'],
   ],
   de: [
     ['home', 'de/index.html'],
@@ -507,7 +499,6 @@ const PAGINAS = {
     ['studio', 'de/studio.html'],
     ['over', 'de/ueber-uns.html'],
     ['contact', 'de/kontakt.html'],
-    ['puurgenieten', 'de/puur-genieten.html'],
   ],
 };
 
@@ -642,15 +633,24 @@ ${PROD ? '' : '  X-Robots-Tag: noindex, nofollow\n'}
 // anders verdwijnt de kracht die eraan hangt in een 404. Workers assets leest
 // dit bestand net als Cloudflare Pages.
 //
-// Twee regels uit de analyse staan hier bewust anders. /puurgenieten/ zou naar
-// /formats wijzen, maar dat adres is hier een echte pagina - een omleiding zou
-// de landingspagina wegvangen. En /algemene-leveringsvoorwaarden/ zou naar de
+// /puurgenieten/ was tot 10-11-2026 een echte pagina hier. Sindsdien staat die
+// landingspagina op een eigen domein (apps/puurgenieten, puurgenieten.tv) en
+// 301'en alle oude adressen ernaartoe, in de eigen taal. Een omleiding en geen
+// 404: het adres staat in Google, in hun oude menu en in links naar buiten.
+//
+// /algemene-leveringsvoorwaarden/ zou volgens de analyse naar de
 // startpagina gaan; die tekst staat hier op /voorwaarden, dus daar gaat hij
 // naartoe. Een omleiding naar de pagina die hetzelfde zegt houdt de kracht
 // vast, een omleiding naar de startpagina gooit hem weg.
 const REDIRECTS = `# Oude WordPress-adressen -> de pagina hier die hetzelfde doet.
-# /puurgenieten/ en /algemene-leveringsvoorwaarden/ staan hier niet: dat zijn
-# op deze site echte pagina's op hetzelfde adres (zie bouw.mjs).
+# Puur Genieten heeft sinds 10-11-2026 een eigen site.
+/puurgenieten           https://puurgenieten.tv/      301
+/puurgenieten/*         https://puurgenieten.tv/      301
+/en/puur-genieten       https://puurgenieten.tv/en/   301
+/en/puur-genieten/*     https://puurgenieten.tv/en/   301
+/de/puur-genieten       https://puurgenieten.tv/de/   301
+/de/puur-genieten/*     https://puurgenieten.tv/de/   301
+
 /over-frame-media/      /over-ons             301
 /referenties/           /over-ons#referenties 301
 /vacatures/             /vacature             301
@@ -721,8 +721,8 @@ if (PROD) {
   }
   // Een formulier dat na een verbouwing zonder action op de echte site staat
   // slikt elke aanvraag. Dus telt de bouw ze, en 10 is wat er horen te zijn:
-  // nl heeft vier formulieren (hero, contact, puurgenieten, programma-idee),
-  // en + de elk drie.
+  // nl heeft drie formulieren (hero, contact, programma-idee), en + de elk
+  // twee. Puur Genieten is sinds 10-11-2026 een eigen site.
   const hoort = TALEN.reduce((s, t) => s + PAGINAS[t.code].filter(([k]) => FORMULIEREN[k]).length, 0);
   if (formulierenGeraakt !== hoort) klachten.push(`${formulierenGeraakt} formulieren gevuld, ${hoort} verwacht`);
   if (klachten.length) {

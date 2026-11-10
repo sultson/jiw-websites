@@ -17,8 +17,7 @@ Wat er staat, en wat `tools/vooraf.mjs` bij elke bouw afdwingt:
 
 Niet te regelen vanuit de code:
 
-1. **Dubbele inhoud met framemedia.tv/puurgenieten/.** Zolang die pagina's een 200 geven
-   staat dezelfde tekst op twee domeinen en kiest Google er zelf een — waarschijnlijk het
-   oudere framemedia-adres. Een 301 vanaf framemedia neemt ook de links en de positie mee.
+1. ~~Dubbele inhoud met framemedia.tv/puurgenieten/~~ - opgelost 10-11-2026: die adressen
+   geven een 301 hierheen, in dezelfde taal.
 2. **Search Console** voor puurgenieten.tv, sitemap indienen, en de framemedia-property
    gebruiken om de verhuizing te volgen.

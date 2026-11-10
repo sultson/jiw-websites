@@ -5,7 +5,7 @@
 import { chromium } from 'playwright';
 
 const basis = process.argv[2] || 'http://localhost:4175';
-const PADEN = ['/puurgenieten/', '/en/puur-genieten/', '/de/puur-genieten/', '/'];
+const PADEN = ['/', '/en/', '/de/'];
 const browser = await chromium.launch();
 let fout = 0, metingen = 0;
 

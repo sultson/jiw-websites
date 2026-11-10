@@ -72,7 +72,7 @@ vier pagina's met een formulier, en + de elk drie).
 |---|---|---|
 | `/api/forms/snel` | Het snelformulier in de hero van de startpagina | `Snelformulier framemedia.tv` |
 | `/api/forms/contact` | `/contact`, `/en/contact`, `/de/kontakt` | `Contactformulier framemedia.tv` |
-| `/api/forms/puurgenieten` | De drie `puurgenieten`-landingspagina's | `Aanmelding Puur Genieten` |
+| `/api/forms/puurgenieten` | Geen pagina meer sinds 10-11-2026; blijft staan voor wie de oude pagina nog open had | `Aanmelding Puur Genieten` |
 | `/api/forms/programma-idee` | `/programma-idee/` | `Programma-idee via framemedia.tv` |
 
 Het zijn er vier en niet een, omdat de vier vragen ver uit elkaar liggen: "ik
@@ -159,7 +159,7 @@ pagina weg zonder dat je het merkt.
 | `formats.html` | Nu op RTL 4, eigen formats, eerdere programma's, en een korte aanloop naar programma-idee |
 | `over-ons.html` | Wat zij doen, waarom televisie, wat hen onderscheidt, ruim honderd referenties, vacature |
 | `contact.html` | Formulier, bereikbaarheid, waarvoor je kunt bellen |
-| `puurgenieten/index.html` | Landingspagina Puur Genieten: aanmeldformulier, het item, de acht branches, voor wie het is, de tarieven, de zes stappen, wat het oplevert |
+| ~~`puurgenieten/index.html`~~ | Weg sinds 10-11-2026: eigen site op puurgenieten.tv (`apps/puurgenieten`). Zie "De landingspagina /puurgenieten/". |
 | `programma-idee/index.html` | Formulier, het eerlijke verhaal over een format, de route in zes stappen |
 | `vacature.html` | De zzp-accountmanager |
 | `404.html` | Foutpagina, zonder menu en voettekst |
@@ -224,7 +224,7 @@ De bestandsnamen zijn per taal vertaald, want een Duitser zoekt niet op
 | studio | `/studio.html` | `/en/studio.html` | `/de/studio.html` |
 | over ons | `/over-ons.html` | `/en/about-us.html` | `/de/ueber-uns.html` |
 | contact | `/contact.html` | `/en/contact.html` | `/de/kontakt.html` |
-| Puur Genieten | `/puurgenieten/` | `/en/puur-genieten/` | `/de/puur-genieten/` |
+| Puur Genieten | 301 naar `puurgenieten.tv/` | 301 naar `puurgenieten.tv/en/` | 301 naar `puurgenieten.tv/de/` |
 | formats | `/formats.html` | - | - |
 | programma-idee | `/programma-idee/` | - | - |
 | vacature | `/vacature.html` | - | - |
@@ -750,6 +750,19 @@ kaart een eigen oorzaak.
   geluid aan zonder dat de clip opnieuw begint.
 
 ## De landingspagina /puurgenieten/
+
+**Sinds 10-11-2026 staat deze pagina hier niet meer** (Armando: "staat nu op
+puurgenieten.tv, dus die pagina kan van framemedia.tv"). De bronnen
+`inhoud/puurgenieten.html`, `inhoud/en|de/puur-genieten.html` en hun meta zijn
+weg; `_redirects` stuurt `/puurgenieten(/*)`, `/en/puur-genieten(/*)` en
+`/de/puur-genieten(/*)` met een 301 naar `https://puurgenieten.tv/` in dezelfde
+taal (ook `/optie-1/`). In `taal/*.mjs` is `paden.puurgenieten` nu een
+`{ extern }`, dus de menuknop (tweede plek), de voettekst en de knop "Mijn branche
+bespreken" onder de branches wijzen naar puurgenieten.tv. De branchekaarten op de
+startpagina en de Puur Genieten-kaart op formats blijven. Let op: aanmeldingen op
+puurgenieten.tv gaan naar `hallo@jouwidealewebsite.nl`, niet naar info@framemedia.tv
+(zie `apps/puurgenieten/wrangler.jsonc`). Wat hieronder staat is geschiedenis.
+
 
 Op verzoek van Armando (10-10-2026), op hetzelfde adres als bij hen:
 `framemedia.tv/puurgenieten/`. Daarom `inhoud/puurgenieten.html` dat naar

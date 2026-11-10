@@ -18,7 +18,7 @@ export default {
     studio: '/studio',
     over: '/about-us',
     contact: '/contact',
-    puurgenieten: '/puur-genieten/',
+    puurgenieten: { extern: 'https://puurgenieten.tv/en/' },
     // Deze twee bestaan alleen in het Nederlands, dus een absoluut pad buiten
     // deze taal om. De voorwaarden zijn een juridisch stuk: dat laten we niet
     // door een vertaling heen gaan.
@@ -150,10 +150,6 @@ export default {
     contact: {
       titel: 'Contact | FRAME MEDIA',
       omschrijving: 'Get in touch with FRAME MEDIA about branded content, studio hire or an idea for a programme. No obligations.',
-    },
-    puurgenieten: {
-      titel: 'Puur Genieten on SBS 6 | your company in the programme | FRAME MEDIA',
-      omschrijving: 'Puur Genieten is a lifestyle programme on SBS 6 and KIJK for viewers who enjoy life deliberately. Presenter Roxanna and the film crew come to your location for an interview and an impression of your company. Your item is broadcast twice, on Saturday and on Sunday, all-in from 2990. From travel and second homes to wellness, interiors and personal care.',
     },
   },
 

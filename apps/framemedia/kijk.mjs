@@ -24,12 +24,12 @@ const adres = route => `${BASE}${route}`;
 // omleiding in plaats van op het adres dat we zelf publiceren.
 const PAGINAS = [
   '/', '/branded-content', '/studio', '/formats',
-  '/over-ons', '/contact', '/puurgenieten/',
+  '/over-ons', '/contact',
   '/programma-idee/', '/vacature', '/voorwaarden', '/404.html',
   '/en/', '/en/branded-content', '/en/studio',
-  '/en/about-us', '/en/contact', '/en/puur-genieten/',
+  '/en/about-us', '/en/contact',
   '/de/', '/de/branded-content', '/de/studio',
-  '/de/ueber-uns', '/de/kontakt', '/de/puur-genieten/',
+  '/de/ueber-uns', '/de/kontakt',
 ];
 
 // VASTIP=<ip> omzeilt de naamserver, voor als de eigen router een net
@@ -89,8 +89,10 @@ for (const [tag, w, h, mobiel] of [['desk', 1440, 900, false], ['mob', 390, 844,
     // de lichtbak hierboven met Escape gesloten wordt (08-11-2026) gaat de
     // insluiting eruit terwijl dat bestand nog loopt. Zelfde opruiming, zelfde
     // ERR_ABORTED.
+    // Roboto is het lettertype van de YouTube-speler, niet van ons (wij laden
+    // Archivo en Inter); dat breekt bij het sluiten op dezelfde manier af.
     const eigenOpruiming = u =>
-      /youtube|ytimg|ggpht|www\.google\.com\/js\/|challenges\.cloudflare\.com/.test(u)
+      /youtube|ytimg|ggpht|www\.google\.com\/js\/|challenges\.cloudflare\.com|fonts\.gstatic\.com\/s\/roboto\//.test(u)
       || /\.(mp4|webm)(\?|$)/.test(u);
     p.on('requestfailed', r => {
       const waarom = r.failure()?.errorText || '';
@@ -440,7 +442,10 @@ for (const [tag, w, h, mobiel] of [['desk', 1440, 900, false], ['mob', 390, 844,
       // pagina heen (sinds 08-11-2026, zie de .lichtbak in style.css).
       metingen++;
       await p.click('[data-video]');
-      await p.waitForTimeout(400);
+      // Wachten op de speler zelf en niet een vaste 400 ms: sinds 08-11-2026
+      // komt de iframe pas na het ophalen van de YouTube-koppeling, en over het
+      // net is dat soms langer dan 400 ms (10-11-2026: /de/ meldde 0 spelers).
+      await p.waitForSelector('.lichtbak:not([hidden]) .lichtbak-film iframe', { timeout: 8000 }).catch(() => {});
       const speler = await p.$$eval('.lichtbak:not([hidden]) .lichtbak-film iframe', fs =>
         fs.map(f => f.getAttribute('src')));
       if (speler.length !== 1) fout(route, `na klik ${speler.length} spelers (moet er 1 zijn)`);

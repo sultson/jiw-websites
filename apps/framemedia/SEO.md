@@ -41,8 +41,9 @@ en wordt dus niet uitgeleverd).
 
 Twee regels uit die analyse staan er bewust **niet** in:
 
-- `/puurgenieten/` zou naar `/formats` wijzen. Dat adres is hier een echte
-  landingspagina op precies dat pad; een omleiding zou hem wegvangen.
+- `/puurgenieten/` zou naar `/formats` wijzen. Dat was tot 10-11-2026 een echte
+  landingspagina hier; sindsdien 301't hij (met `/en/` en `/de/`) naar
+  `https://puurgenieten.tv/` in dezelfde taal, de eigen site van het programma.
 - `/algemene-leveringsvoorwaarden/` zou naar de startpagina gaan. Die tekst staat
   hier op `/voorwaarden`, dus daar gaat hij heen. Een omleiding naar de pagina
   die hetzelfde zegt houdt de kracht vast; een omleiding naar de startpagina
@@ -136,7 +137,7 @@ pagina's staan die nu geindexeerd gaan worden:
    Mondzorg.TV-pagina en gelden daar voor dat ene format.
 2. Heet de presentatrice Roxanna of Roxana? De brochure doet het allebei. Haar
    naam staat nergens op de site, juist daarom.
-3. De landingspagina `/puurgenieten/` is de uitgebreide versie: daar staat ook in
+3. (Verhuisd naar puurgenieten.tv op 10-11-2026, geldt daar nog.) De landingspagina `/puurgenieten/` is de uitgebreide versie: daar staat ook in
    wat niet in de brochure van de klant stond (opname in de studio in Hilversum,
    de zes stappen, de regel onder elke branchenaam). Dat is een bewuste keuze van
    Armando van 11-10-2026, maar het is wel de pagina waar Frans het scherpst naar
