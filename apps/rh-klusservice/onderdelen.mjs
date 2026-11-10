@@ -13,6 +13,16 @@ export const WERKSPOT = 'https://www.werkspot.nl/profiel/rh-klusservice';
 export const GOOGLE = 'https://maps.google.com/?cid=7200455283029295339';
 export const SITE = 'https://rhklusservice.nl';
 
+/* Het aantal Werkspot-beoordelingen. Staat in reviews-stand.json en wordt
+   bijgewerkt door ~/dev/review-wacht (wekelijks, sinds 10-11-2026). Nergens
+   meer met de hand een getal typen: maak-reviews.mjs zet dit ook in de twee
+   handwerkpagina's. */
+import { readFileSync as _lees } from 'node:fs';
+export const STAND = JSON.parse(_lees(new URL('./reviews-stand.json', import.meta.url), 'utf8'));
+export const REVIEW_AANTAL = STAND.werkspot.aantal;
+const _ws = JSON.parse(_lees(new URL('./werkspot-reviews.json', import.meta.url), 'utf8'));
+const UIT_EINDHOVEN = _ws.filter((b) => (b.plaats || '').trim() === 'Eindhoven').length;
+
 /* Het endpoint van de eigen worker (worker/index.ts). Relatief, want hij zit op
    hetzelfde adres als de pagina; dat is ook de reden dat dit geen absolute URL
    meer hoeft te zijn zoals de `_next` van formsubmit dat wel moest. */
@@ -66,7 +76,7 @@ export const BEDRIJF = {
   address: { '@type': 'PostalAddress', addressLocality: 'Valkenswaard', addressCountry: 'NL' },
   vatID: 'NL004973060B79',
   openingHoursSpecification: OPENINGSTIJDEN,
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', reviewCount: '51', bestRating: '5' },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', reviewCount: String(REVIEW_AANTAL), bestRating: '5' },
   sameAs: [WERKSPOT, GOOGLE]
 };
 
@@ -85,7 +95,7 @@ export const PLAATSEN = [
     naam: 'Eindhoven', slug: 'timmerman-eindhoven', provincie: 'Noord-Brabant',
     nabij: ['Eindhoven', 'Veldhoven', 'Waalre', 'Best', 'Oirschot'],
     intro: 'Eindhoven ligt op een kwartier rijden van Valkenswaard. We werken er in woningen, bedrijfspanden en opslagruimtes, van losse klussen tot complete verbouwingen.',
-    bewijs: 'Van onze 51 beoordelingen op Werkspot komen er 17 uit Eindhoven. Geen enkele plaats staat er vaker tussen.'
+    bewijs: `Van onze ${REVIEW_AANTAL} beoordelingen op Werkspot komen er ${UIT_EINDHOVEN} uit Eindhoven. Geen enkele plaats staat er vaker tussen.`
   },
   {
     naam: 'Breda', slug: 'timmerman-breda', provincie: 'Noord-Brabant',

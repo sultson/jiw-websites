@@ -70,32 +70,33 @@ function kaart(b) {
 }
 
 /* Google (10-11-2026, via Armando): hij heeft daar 1 beoordeling, 5 sterren, van
-   "Wowwow" (Local Guide), rond 20 oktober 2026 ("3 weken geleden" op 10-11).
-   Bewust geen eigen blok of eigen cijfer: "5,0 uit 1 review" leest zwakker dan
-   niets. Hij staat als eerste kaart in dezelfde rij, met Google als bron eronder.
-   Het origineel is Engels; de tekst hieronder is de vertaling die Google er zelf
-   bij toont, en dat staat er op de kaart ook bij. Origineel:
-   "I am extremely satisfied with the work done by Robbin from RH Klusservice. He was
-   professional, reliable, and paid great attention to detail throughout the project.
-   The communication was smooth, and the final result exceeded my expectations. I
-   highly recommend RH Klusservice to anyone looking for quality craftsmanship!" */
-const GOOGLE_KAARTEN = [{
-  naam: 'Wowwow',
-  datum: '2026-10-20T12:00:00+00:00',
-  tekst: 'Ik ben buitengewoon tevreden over het werk dat Robbin van RH Klusservice heeft verricht. Hij was professioneel, betrouwbaar en besteedde gedurende het hele project veel aandacht aan details. De communicatie verliep soepel en het eindresultaat overtrof mijn verwachtingen. Ik beveel RH Klusservice van harte aan aan iedereen die op zoek is naar vakmanschap van hoge kwaliteit!',
-}];
+   "Wowwow" (Local Guide, 14-10-2026). Bewust geen eigen blok of eigen cijfer: "5,0
+   uit 1 review" leest zwakker dan niets. Google-kaarten staan vooraan in dezelfde
+   rij, met Google als bron eronder.
+   Bron is google-reviews.json, bijgehouden door ~/dev/review-wacht. Is een review
+   niet in het Nederlands geschreven, dan staat de vertaling van Google erin met
+   status "wacht": die komt pas op de site als iemand hem op "ok" zet (zie de
+   README van review-wacht). Anders citeren we een vertaling ongezien als klanttekst. */
+const TALEN = { en: 'het Engels', de: 'het Duits', fr: 'het Frans', es: 'het Spaans', pl: 'het Pools', tr: 'het Turks', ar: 'het Arabisch' };
+const GOOGLE_KAARTEN = JSON.parse(readFileSync(join(hier, 'google-reviews.json'), 'utf8'))
+  .filter((g) => g.status === 'ok' && (g.tekst || '').trim())
+  .sort((a, b) => new Date(b.datum) - new Date(a.datum));
 
 function googleKaart(g) {
-  const tekst = vlucht(g.tekst.trim());
+  const tekst = vlucht(g.tekst.trim()).replace(/\r?\n+/g, '<br>');
+  const vol = Math.round(g.score || 5);
+  const bron = g.taal && g.taal !== 'nl'
+    ? `Review op Google, vertaald uit ${TALEN[g.taal] || 'een andere taal'}`
+    : 'Review op Google';
   return `      <article class="review">
         <div class="review__top">
-          <span class="sterren" aria-hidden="true">${'&#9733;'.repeat(5)}</span>
+          <span class="sterren" aria-hidden="true">${'&#9733;'.repeat(vol) + '&#9734;'.repeat(5 - vol)}</span>
           <span class="review__datum">${maandJaar(g.datum)}</span>
         </div>
         <p>&ldquo;${tekst}&rdquo;</p>
         <footer>
           <span class="review__cirkel" aria-hidden="true">${g.naam[0].toUpperCase()}</span>
-          <span class="review__wie"><b>${vlucht(g.naam)}</b><small>${VINK} Review op Google, vertaald uit het Engels</small></span>
+          <span class="review__wie"><b>${vlucht(g.naam)}</b><small>${VINK} ${bron}</small></span>
         </footer>
       </article>`;
 }
@@ -117,6 +118,19 @@ if (stop === -1) throw new Error('einde van ws__lijst niet gevonden');
 
 html = html.slice(0, start) + '\n' + blok + html.slice(stop);
 writeFileSync(PAGINA, html);
+
+/* Het aantal in de twee handwerkpagina's: de regel onder de herofoto, de intro
+   van het reviewblok en reviewCount in het schema. Komt uit reviews-stand.json. */
+const { werkspot } = JSON.parse(readFileSync(join(hier, 'reviews-stand.json'), 'utf8'));
+for (const pad of ['dist/index.html', 'dist/projecten/index.html']) {
+  const vol = join(hier, pad);
+  const oud = readFileSync(vol, 'utf8');
+  const nieuw = oud
+    .replace(/(&middot; )\d+( beoordelingen)/g, `$1${werkspot.aantal}$2`)
+    .replace(/(gemiddeld uit )\d+( beoordelingen)/g, `$1${werkspot.aantal}$2`)
+    .replace(/("reviewCount":")\d+(")/g, `$1${werkspot.aantal}$2`);
+  if (nieuw !== oud) writeFileSync(vol, nieuw);
+}
 
 const naamloos = metTekst.filter((b) => !(b.naam || '').trim() && !NAMEN[b.id]).length;
 console.log(`${metTekst.length} beoordelingen geschreven (${alles.length - metTekst.length} zonder tekst overgeslagen, ${naamloos} zonder naam)`);

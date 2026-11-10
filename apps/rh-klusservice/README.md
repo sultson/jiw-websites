@@ -29,7 +29,7 @@ De build draait negen stappen, in deze volgorde:
 
 | stap | doet |
 | --- | --- |
-| `maak-reviews.mjs` | alle 41 beoordelingen met tekst in de schuifrij op `dist/index.html` |
+| `maak-reviews.mjs` | alle beoordelingen met tekst (Werkspot + Google) in de schuifrij op `dist/index.html`, en het aantal in de handwerkpagina's |
 | `maak-plaatspaginas.mjs` | de acht `dist/timmerman-<plaats>/` |
 | `maak-slotpagina.mjs` | `dist/slot-vervangen-valkenswaard/` |
 | `maak-404.mjs` | `dist/404.html` |
@@ -46,6 +46,25 @@ bewerkt in `dist/index.html` gewoon de `<img>` binnenin en de build maakt er wee
 
 `ship` vereist `CLOUDFLARE_API_TOKEN` uit de root `.env`; wrangler laadt die niet zelf, dus
 eerst `set -a && source .env && set +a` vanuit de repo-root.
+
+## Reviews worden automatisch bijgewerkt (sinds 10-11-2026)
+
+Op verzoek van Armando. `~/dev/review-wacht` (PM2 `review-wacht`, maandag 09:00) kijkt op zijn
+Werkspot-profiel en via DataForSEO op zijn Google-profiel, en schrijft nieuwe reviews in de drie
+databestanden hier. Daarna `ship`, `indexnow`, een commit op `main` en een melding in de groep
+"Claudius RH Klusservice".
+
+- `werkspot-reviews.json` alle Werkspot-reviews (ook die zonder tekst, die tellen mee maar krijgen geen kaart)
+- `google-reviews.json` Google-reviews; alleen `status: "ok"` komt op de site. Anderstalig (dan
+  is `tekst` de vertaling van Google) of minder dan 4 sterren staat op `"wacht"` tot iemand ja zegt:
+  `node ~/dev/review-wacht/wacht.mjs --keur=rh-klusservice:<begin van id>`
+- `reviews-stand.json` het totaal en gemiddelde zoals Werkspot ze zelf geeft. Elk getal "51
+  beoordelingen" op de site komt hieruit (`REVIEW_AANTAL` in `onderdelen.mjs`, en
+  `maak-reviews.mjs` zet het in `dist/index.html` + `dist/projecten/index.html`). Typ dat getal
+  dus nergens meer met de hand. Ook "17 uit Eindhoven" op de plaatspagina wordt nu geteld.
+
+"5,0" staat nog wel letterlijk op de site. Zakt het Werkspot-gemiddelde onder de 5, dan rolt
+review-wacht niet uit en meldt het dat die tekst eerst mee moet.
 
 ## Overgezet uit jiw-concepts (07-10-2026)
 
