@@ -1,5 +1,6 @@
 import { createFormWorker, type CloudflareFormsEnv, type LeadFormConfig } from '@jiw/cloudflare-forms';
 import { noveraConfirmationEmail, noveraConfirmationEmailEn } from './confirmation-email';
+import { metTrustoo } from './trustoo';
 
 export type Env = CloudflareFormsEnv & {
   ASSETS: Fetcher;
@@ -81,12 +82,13 @@ export default {
     const naar = OMLEIDING[url.pathname.replace(/\/$/, '')];
     if (naar) return Response.redirect(new URL(naar + url.search, url.origin).toString(), 301);
 
-    // De worker staat alleen voor /api/* en de twee airco-adressen vooraan
-    // (run_worker_first in wrangler.jsonc); de pagina's zelf komen rechtstreeks van
-    // de static assets aan de rand.
+    // Sinds 10-11-2026 staat de worker ook voor de pagina's zelf (run_worker_first in
+    // wrangler.jsonc), zodat de stand van Trustoo er vers in komt (zie trustoo.ts).
+    // Beeld, css, js en de sitemap komen nog steeds rechtstreeks van de rand.
     if (url.pathname.startsWith('/api/forms/en/')) return en.fetch!(request, env, ctx);
     if (url.pathname.startsWith('/api/forms/')) return nl.fetch!(request, env, ctx);
 
+    if (request.method === 'GET' || request.method === 'HEAD') return metTrustoo(request, env.ASSETS, ctx);
     return env.ASSETS.fetch(request);
   },
 } satisfies ExportedHandler<Env>;

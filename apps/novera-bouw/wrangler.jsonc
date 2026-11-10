@@ -19,7 +19,19 @@
     // Het formulier gaat door de worker, en de twee oude airco-adressen ook: die zijn
     // op 30-09-2026 van de site gehaald en moeten blijven omleiden. De pagina's zelf
     // komen van de rand, dus zonder worker-aanroep ertussen.
-    "run_worker_first": ["/api/*", "/airco", "/en/air-conditioning"]
+    // Sinds 10-11-2026 ook de pagina's zelf: de worker zet de actuele stand van
+    // Trustoo (aantal, cijfer, sterretjes, schema) in de HTML, zie worker/trustoo.ts.
+    // Alles wat geen pagina is blijft rechtstreeks van de rand komen.
+    "run_worker_first": [
+      "/*",
+      "!/img/*",
+      "!/styles.css",
+      "!/app.js",
+      "!/favicon.svg",
+      "!/robots.txt",
+      "!/sitemap.xml",
+      "!/17eeecafcf174a19797d8210381c537c.txt"
+    ]
   },
   "routes": [
     {

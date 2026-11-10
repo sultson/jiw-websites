@@ -97,6 +97,19 @@ in het schema. Dat gebeurt bij elke build, dus het getal veroudert niet. Lukt de
 pakt de build `_ref/trustoo.json` — de laatste stand — en zegt dat erbij. Een build hoort niet om te
 vallen omdat Trustoo er even uit ligt.
 
+**Maar een buildstand veroudert wél** zodra er een beoordeling bijkomt en niemand uitrolt: op
+10-11-2026 zei de widget 7 beoordelingen en een 4,9, de pil in de kop en de kop boven de widget nog
+6 en 5,0. Daarom staat de worker sinds die dag ook vóór de pagina's (`run_worker_first` in
+`wrangler.jsonc`, alles behalve beeld, css, js en sitemap) en zet `worker/trustoo.ts` bij elk
+verzoek de actuele stand in de HTML, met `HTMLRewriter`, dus voor de browser én voor Google:
+- de tekst van elk element met `data-trustoo="aantal"` of `data-trustoo="cijfer"` (komma in nl,
+  punt onder `/en`),
+- `--vol` op `data-trustoo="vol"` (de sterretjes in de pil),
+- `ratingValue` en `reviewCount` in het schema-blok, op alle 30 pagina's.
+De stand ligt een uur in de cache van de rand, dus Trustoo krijgt hooguit eens per uur een vraag.
+Antwoordt Trustoo niet, dan blijft de buildstand gewoon staan. **Een nieuwe plek waar het aantal
+of het cijfer staat krijgt zo'n `data-trustoo`**, anders blijft hij op de buildstand hangen.
+
 Het cijfer is `rating` uit die API: het gemiddelde van de losse beoordelingen, op een schaal van 5,
 precies wat de widget eronder toont. Bewust **niet** de "Trustoo-score" van 8,9 uit 10 die op het
 profiel staat: die weegt ook andere dingen mee, en dan spreekt de pagina zichzelf tegen in twee

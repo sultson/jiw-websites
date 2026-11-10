@@ -76,10 +76,10 @@ klasse: heeft-hero
          kop. Klik gaat naar de beoordelingen op de pagina zelf en niet naar Trustoo:
          wie hier klikt wil ze lezen, niet de site verlaten. -->
     <a class="keur" href="#beoordelingen">
-      <span class="keur__sterren" style="--vol: {{trustoovol}}" aria-hidden="true"></span>
-      <span class="keur__cijfer">{{trustoocijfer}}</span>
+      <span class="keur__sterren" data-trustoo="vol" style="--vol: {{trustoovol}}" aria-hidden="true"></span>
+      <span class="keur__cijfer" data-trustoo="cijfer">{{trustoocijfer}}</span>
       <span class="keur__uit">uit 5</span>
-      <span class="keur__tekst">{{trustooaantal}} beoordelingen<span class="keur__op"> op</span></span>
+      <span class="keur__tekst"><span data-trustoo="aantal">{{trustooaantal}}</span> beoordelingen<span class="keur__op"> op</span></span>
       <img class="keur__logo" src="/img/merk/trustoo-wit.svg" alt="Trustoo" width="113" height="23" />
     </a>
     <h1 class="kinetiek">Uw badkamer. <em>Één bedrijf.</em></h1>
@@ -287,7 +287,7 @@ klasse: heeft-hero
   <div class="wrap">
     <header class="kop reveal">
       <p class="eyebrow">Beoordelingen</p>
-      <h2>{{trustooaantal}} beoordelingen, gemiddeld een {{trustoocijfer}} uit 5</h2>
+      <h2><span data-trustoo="aantal">{{trustooaantal}}</span> beoordelingen, gemiddeld een <span data-trustoo="cijfer">{{trustoocijfer}}</span> uit 5</h2>
     </header>
 
     <div class="trustoo reveal">

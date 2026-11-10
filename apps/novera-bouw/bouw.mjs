@@ -293,7 +293,13 @@ function kop(bron) {
    TRUSTOO_ID is het pro-id van Novera op Trustoo, hetzelfde getal als data-id op de
    widget. Lukt de oproep niet (geen net, Trustoo plat), dan pakt de build de laatste
    stand uit _ref/trustoo.json: een build hoort niet om te vallen omdat een derde er
-   even uit ligt, en dan staat er een cijfer van vorige week in plaats van geen cijfer. */
+   even uit ligt, en dan staat er een cijfer van vorige week in plaats van geen cijfer.
+
+   Sinds 10-11-2026 is dit alleen nog de terugval. De worker (worker/trustoo.ts) zet bij
+   elk verzoek de actuele stand over alles met data-trustoo="aantal|cijfer|vol" en over
+   het schema heen, want een stand van de laatste build liep achter zodra er een
+   beoordeling bijkwam (de widget zei 7, de kop nog 6). Een nieuwe plek met het cijfer
+   of het aantal krijgt dus zo'n data-trustoo, anders blijft hij op de buildstand. */
 const TRUSTOO_ID = '705268'
 const TRUSTOO_PROFIEL = 'https://trustoo.nl/zuid-holland/vlaardingen/tegelzetter/novera-bouw/'
 const TRUSTOO_CACHE = path.join(HIER, '_ref', 'trustoo.json')
