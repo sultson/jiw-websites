@@ -760,7 +760,7 @@ taal (ook `/optie-1/`). In `taal/*.mjs` is `paden.puurgenieten` nu een
 `{ extern }`, dus de menuknop (tweede plek), de voettekst en de knop "Mijn branche
 bespreken" onder de branches wijzen naar puurgenieten.tv. De branchekaarten op de
 startpagina en de Puur Genieten-kaart op formats blijven. Let op: aanmeldingen op
-puurgenieten.tv gaan naar `hallo@jouwidealewebsite.nl`, niet naar info@framemedia.tv
+puurgenieten.tv gaan naar `info@puurgenieten.tv`, niet naar info@framemedia.tv
 (zie `apps/puurgenieten/wrangler.jsonc`). Wat hieronder staat is geschiedenis.
 
 

@@ -54,7 +54,7 @@ precies zo gemeten). Proeven van 10-11-2026: nl en en, allebei 200 + bedankkaart
 
 - framemedia.tv/puurgenieten/ (+ /en/, /de/) 301't sinds 10-11-2026 hierheen (Armando), in
   dezelfde taal. Daarmee komen aanmeldingen van daar nu bij LEAD_RECIPIENT hier binnen
-  (ons postvak), niet meer bij info@framemedia.tv.
+  (info@puurgenieten.tv), niet meer bij info@framemedia.tv.
 - Search Console: property puurgenieten.tv aanmaken (DNS-TXT op de zone) en de sitemap
   indienen. Google heeft geen ping meer; IndexNow dekt alleen Bing c.s.
 - LEAD_RECIPIENT naar info@puurgenieten.tv of info@framemedia.tv zodra de klant dat wil.
