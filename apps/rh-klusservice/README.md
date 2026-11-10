@@ -586,7 +586,9 @@ Nog niet bevestigd — eerst voorleggen:
   kaart; met 41 kaarten was dat anders 40 keer klikken (`stap()` in `dist/site.js`).
   De acht plaatspagina's houden hun drie beoordelingen uit die hoek van het land.
   De regelafbrekingen van Tom en Marianne staan er nog, letterlijk zoals op Werkspot.
-  `werkspot-reviews.json` is de volledige set van 04-10-2026: alle 49 beoordelingen, met
+  `werkspot-reviews.json` is de volledige set van 04-10-2026 plus de twee van oktober (bijgewerkt
+  10-11-2026, 51 in totaal; Werkspot blokkeert curl, een zichtbare Playwright-Chromium komt er wel
+  door en de JSON-LD op de profielpagina heeft de nieuwste). Oorspronkelijk: alle 49 beoordelingen, met
   datum, plaats en het soort klus. Daar zitten de enige reviews in die iets anders dan deuren
   bewijzen:
   Guido & Ester (twee dakramen plus lood), Kees uit Esch (boeiboorden), Bert Schellekens
