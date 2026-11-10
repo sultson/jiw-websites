@@ -21,6 +21,7 @@
 //   7. geen link naar een intern adres dat niet bestaat
 //   8. de sitemap dekt precies de pagina's die indexeerbaar zijn
 import { readFileSync, readdirSync, existsSync } from 'fs';
+import { HULP_PADEN } from '../handtekening.mjs';
 
 const CONCEPT = process.argv.includes('--concept');
 
@@ -76,6 +77,15 @@ for (const pad of bestanden) {
   const is404 = pad === 'dist/404.html';
   const zeg = t => klachten.push(`${adres}: ${t}`);
 
+  // Een hulppagina (de mailhandtekening) keurt anders: noindex altijd, geen
+  // canonical, niet in de sitemap, en geen enkele andere pagina linkt ernaar.
+  if (HULP_PADEN.includes(adres)) {
+    if (!/name="robots"[^>]*noindex/i.test(html)) zeg('hulppagina zonder noindex');
+    if (/rel="canonical"/i.test(html)) zeg('hulppagina met een canonical');
+    if (!/<title>[^<]+<\/title>/.test(html)) zeg('geen <title>');
+    continue;
+  }
+
   const titel = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim();
   if (!titel) zeg('geen <title>');
   const omschrijving = html.match(/<meta name="description" content="([^"]*)"/i)?.[1]?.trim();
@@ -128,6 +138,15 @@ for (const pad of bestanden) {
     if (!adressen.has(h.replace(/\/$/, '') || '/') && !adressen.has(h) && !adressen.has(h + '/')) {
       if (existsSync('dist' + h)) continue;
       zeg(`link naar ${h}, dat adres bestaat niet`);
+    }
+  }
+}
+
+for (const pad of bestanden) {
+  const html = readFileSync(pad, 'utf8');
+  for (const h of HULP_PADEN) {
+    if (!HULP_PADEN.includes(adresVan(pad)) && new RegExp(`href="${h}"`).test(html)) {
+      klachten.push(`${adresVan(pad)}: linkt naar de hulppagina ${h}`);
     }
   }
 }

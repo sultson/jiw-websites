@@ -31,3 +31,19 @@ await sharp(png).toFile(UIT);
 
 const m = await sharp(UIT).metadata();
 console.log(`${UIT}: ${m.width}x${m.height}, ${(png.length / 1024).toFixed(1)} kB`);
+
+// De plaat voor de mailhandtekening (/handtekening/, zie handtekening.mjs).
+// Een andere plaat dan die van de bevestigingsmail, en met opzet: Mail op de
+// Mac toont een handtekeningplaat op zijn eigen maat en gooit width/height uit
+// de opmaak weg. Dus precies LOGO_BREED x LOGO_SCHAAL pixels, met de dpi in de
+// pHYs-blok zodat Mail hem op LOGO_BREED punten zet. Wit plat, niet doorzichtig:
+// in donkere weergave zet een mailprogramma doorzichtig op zwart.
+const { LOGO_BREED, LOGO_SCHAAL, LOGO_BESTAND } = await import('../handtekening.mjs');
+const HT_UIT = `inhoud/${LOGO_BESTAND}`;
+const ht = await sharp('inhoud/assets/logo.svg', { density: 600 })
+  .resize({ width: LOGO_BREED * LOGO_SCHAAL })
+  .flatten({ background: '#ffffff' })
+  .withMetadata({ density: 72 * LOGO_SCHAAL })
+  .png({ compressionLevel: 9 })
+  .toFile(HT_UIT);
+console.log(`${HT_UIT}: ${ht.width}x${ht.height} op ${72 * LOGO_SCHAAL} dpi, ${(ht.size / 1024).toFixed(1)} kB`);

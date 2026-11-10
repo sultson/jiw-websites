@@ -1208,3 +1208,21 @@ mee. Gaat het eraf, dan is dat een regel in `bouw.mjs` plus de `robots.txt`. Het
 rode lint bovenaan elke pagina is er op verzoek afgehaald (27-09-2026); dat het
 een concept is staat nog in de onderste voetregel en in de bevestiging van het
 contactformulier.
+
+## Mailhandtekening op /handtekening/ (10-11-2026)
+
+Armando: "hetzelfde als hulskersschilderwerken.nl/handtekening/ voor zowel iphone als
+airmail". `handtekening.mjs` bouwt de pagina, `bouw.mjs` schrijft hem naar
+`dist/handtekening/index.html`. Een hulppagina: noindex ook in productie, geen
+canonical, niet in de sitemap, en `tools/vooraf.mjs` zakt als een pagina ernaar linkt.
+
+- Zaakgegevens komen uit `inhoud/zaak.mjs`, dezelfde bron als de site.
+- Plakken: logo als data:-beeld in de handtekening (`inhoud/assets/mail/handtekening-logo.png`,
+  224 px op 144 dpi = 112 punten; gemaakt door `tools/gen-mail-logo.mjs`). Zie de kop van
+  `handtekening.mjs` voor waarom (lessen van Hulskers).
+- Airmail krijgt een tweede knop die de html-CODE kopieert; daar hangt het logo aan
+  `https://www.framemedia.tv/assets/mail/handtekening-logo.png`, omdat Gmail data:-beelden
+  niet toont. Dat bestand dus niet hernoemen of weghalen: het hangt onder verstuurde mails.
+- `node tools/handtekening-kijk.mjs [adres]`: breedte op 360/390/1280, logo niet uitgerekt,
+  velden, en wat de twee knoppen echt op het klembord zetten.
+- Airmail zelf is niet getest (geen Mac hier). De iPhone-route is dezelfde als bij Hulskers.

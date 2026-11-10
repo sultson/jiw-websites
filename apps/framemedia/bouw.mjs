@@ -14,6 +14,8 @@ import { BLOKKEN, zetTaal } from './inhoud/blokken.mjs';
 import nl from './inhoud/taal/nl.mjs';
 import en from './inhoud/taal/en.mjs';
 import de from './inhoud/taal/de.mjs';
+import { ZAAK } from './inhoud/zaak.mjs';
+import { paginaHandtekening, HULP_PADEN } from './handtekening.mjs';
 
 const TALEN = [nl, en, de];
 
@@ -108,9 +110,10 @@ const FONTS = 'https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700
 // Het 020-nummer is er op 10-10-2026 af: dat heeft FRAME MEDIA niet meer. Het
 // mobiele nummer is nu het enige telefoonnummer op de site, en ook het nummer
 // achter de WhatsApp-knop.
-const MOBIEL = '+31634861375';
-const MOBIEL_TEKST = '06 3486 1375';
-const MAIL = 'info@framemedia.tv';
+// Sinds 10-11-2026 uit inhoud/zaak.mjs, die ook de mailhandtekening voedt.
+const MOBIEL = ZAAK.mobiel;
+const MOBIEL_TEKST = ZAAK.mobielTekst;
+const MAIL = ZAAK.mail;
 const WA_TEKST = {
   nl: 'Hallo FRAME MEDIA, ik heb een vraag over een item op televisie.',
   en: 'Hello FRAME MEDIA, I have a question about an item on television.',
@@ -586,6 +589,18 @@ writeFileSync('dist/404.html', ['style.css', 'site.js', 'favicon.svg'].reduce(
   (h, naam) => h.split(`/assets/${naam}"`).join(`${versie(naam)}"`), lees('404.html')));
 n++;
 
+// De hulppagina's. Geen pagina van de site: noindex ook in productie, niet in
+// de sitemap, en geen link ernaartoe. Wie hem niet krijgt toegestuurd vindt hem
+// niet. Nu een: de mailhandtekening (handtekening.mjs).
+const HULPPAGINAS = [['dist/handtekening/index.html', '/handtekening/', paginaHandtekening()]];
+if (HULPPAGINAS.map(h => h[1]).sort().join('|') !== [...HULP_PADEN].sort().join('|')) {
+  throw new Error('hulppaginas en HULP_PADEN in handtekening.mjs lopen uit elkaar');
+}
+for (const [bestand, , html] of HULPPAGINAS) {
+  mkdirSync(bestand.replace(/\/[^/]+$/, ''), { recursive: true });
+  writeFileSync(bestand, html);
+}
+
 // Sitemap met de drie talen erin, elk met hreflang naar de andere twee. Zolang
 // de site op noindex staat doet een zoekmachine hier niets mee, maar dan staat
 // het in orde zodra het lint eraf gaat.
@@ -693,6 +708,8 @@ if (PROD) {
       // De foutpagina hoort op noindex te staan: die geeft een 404 terug en
       // hoort niet in de zoekresultaten.
       if (pad === 'dist/404.html') continue;
+      // De hulppaginas ook: die staan bewust op noindex (zie hierboven).
+      if (HULPPAGINAS.some(([b]) => b === pad)) continue;
       const t = readFileSync(pad, 'utf8');
       const m = t.match(niet);
       if (m) klachten.push(`${pad}: ${m[0]}`);
