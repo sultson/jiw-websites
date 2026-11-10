@@ -1,0 +1,27 @@
+{
+  "name": "@jiw/puurgenieten",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/gen-beeld.mjs && node bouw.mjs --prod && node tools/vooraf.mjs",
+    "build:concept": "node tools/gen-beeld.mjs && node bouw.mjs && node tools/vooraf.mjs --concept",
+    "dev": "pnpm build && wrangler dev --port=3077",
+    "ship": "pnpm build && wrangler deploy",
+    "ship:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "lint": "tsc --noEmit -p tsconfig.worker.json",
+    "serveer": "node serveer.mjs",
+    "mail": "node --experimental-strip-types tools/preview-mail.mjs",
+    "live": "node tools/live.mjs",
+    "indexnow": "node tools/indexnow.mjs"
+  },
+  "dependencies": {
+    "@jiw/cloudflare-forms": "workspace:*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260424.1",
+    "playwright": "^1.62.1",
+    "sharp": "^0.35.4",
+    "typescript": "~5.8.2"
+  }
+}

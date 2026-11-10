@@ -124,6 +124,14 @@ export type LocalizedConfirmationEmailConfig = {
    * message quoted beneath it.
    */
   includeSubmission?: boolean;
+  /**
+   * Whether the read-back carries the message block. Default true. A form with
+   * no free-text field (Puur Genieten's sign-up: company, contact, phone,
+   * email, sector) otherwise mails every visitor a heading "Your message" over
+   * a lone "-". Same switch `leadEmail.includeMessage` gives the owner's
+   * notification. Only applies while `includeSubmission` is on.
+   */
+  includeMessage?: boolean;
 };
 
 export type ConfirmationEmailCopy = {
@@ -774,9 +782,7 @@ function renderLocalizedConfirmationTextEmail(
           '',
           copy.detailsHeading,
           ...rows.map(([label, value]) => `${label}: ${value || '-'}`),
-          '',
-          `${copy.messageHeading}:`,
-          message || '-',
+          ...(emailConfig.includeMessage === false ? [] : ['', `${copy.messageHeading}:`, message || '-']),
         ];
 
   return [
@@ -855,13 +861,13 @@ function renderLocalizedConfirmationHtmlEmail(
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; border: 1px solid ${c.border}; background-color: ${c.surfaceAlt};">${detailRows}
                 </table>
               </td>
-            </tr>
+            </tr>${emailConfig.includeMessage === false ? '' : `
             <tr>
               <td style="padding: 16px 36px; background-color: ${c.surface};">
                 <h2 style="margin: 0 0 10px; color: ${c.ink}; font-size: 18px; line-height: 26px;">${escapeHtml(copy.messageHeading)}</h2>
                 <p style="margin: 0; padding: 16px; border-left: 3px solid ${c.accent}; background-color: ${c.surfaceAlt}; color: ${c.inkSoft}; font-size: 15px; line-height: 23px;">${escapeHtml(message).replace(/\n/g, '<br>')}</p>
               </td>
-            </tr>` : ''}
+            </tr>`}` : ''}
             <tr>
               <td style="padding: ${toont ? '2px' : '4px'} 36px 0; background-color: ${c.surface};">
                 <p style="margin: 0; color: ${c.muted}; font-size: 12px; line-height: 18px;">${escapeHtml(copy.referenceLabel)}: ${escapeHtml(manifest.submissionId)}</p>

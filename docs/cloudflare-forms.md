@@ -121,3 +121,7 @@ set, nothing changes — it stays a mailto link under the prompt.
    into a single field before posting.
 7. Add or update the R2 lifecycle rule for the app prefix.
 8. Verify the sender domain in Cloudflare Email Service before live cutover.
+
+The branded renderer also takes `includeMessage: false` on the `LocalizedConfirmationEmailConfig`
+for a form with no free-text field: it drops the "Your message" block (html and text) that
+would otherwise quote a lone "-". Default unchanged. `tests/confirmation-include-message.test.mjs`.

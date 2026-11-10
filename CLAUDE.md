@@ -75,6 +75,22 @@ apps/         client sites (almost all a Vite + React 19 + TS 5.8 + Tailwind v4 
                           gate: it refuses to finish if any concept wording or `noindex`
                           survives into dist/, or if the number of wired-up forms is not 10.
                           Four form endpoints, not one. dev port 3073. See its LEESMIJ.md + SEO.md.
+  puurgenieten/           same exception, graduated 10-11-2026 from
+                          claudius/playground/puurgenieten: the Puur Genieten landing page
+                          lifted out of framemedia (its bouw.mjs, one page in nl/en/de + 404).
+                          LIVE on puurgenieten.tv (apex canonical; www, http and the old
+                          concept host 301 via ANDERE_HOSTS in the worker, so
+                          `run_worker_first: true`). One endpoint `/api/forms/puurgenieten`,
+                          Turnstile on (own widget), sends from no-reply@notify.puurgenieten.tv
+                          to hallo@jouwidealewebsite.nl (ours, so `pnpm live` may test; it
+                          refuses once that changes). Branded confirmation with
+                          `includeMessage: false` (new package switch, the form has no text
+                          field). `pnpm build` = gen-beeld (mail logo + og image) + bouw --prod
+                          + tools/vooraf.mjs (fails on hreflang, og, lang, canonical, sitemap,
+                          robots, Turnstile). **framemedia.tv/puurgenieten/ still serves the
+                          same content** — the 301 from there is a business call (its form
+                          goes to the client). Apex has Purelymail records, leave them.
+                          dev port 3077. See its LEESMIJ.md + SEO.md.
   velvet-cakes-by-anka/   same exception, graduated 18-10-2026 from
                           claudius/playground/velvet-cakes-2. `bouw.mjs` writes 31 static
                           pages into dist/ — 10 nl on /, 10 en on /en/, 10 ro on /ro/, plus a

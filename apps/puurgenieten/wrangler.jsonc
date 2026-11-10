@@ -1,0 +1,61 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "puurgenieten",
+  "account_id": "aec64586d4d04a644f4f9b8225d7ca28",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-04-24",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Drie pagina's: /, /en/ en /de/. Die eindigen alle drie op een slash, en dat
+    // is wat elke canonical, hreflang en sitemap-regel zegt.
+    "html_handling": "auto-trailing-slash",
+    // Een onbekend pad krijgt dist/404.html MET status 404, niet de startpagina
+    // met een 200 - dat tweede leest Google als een soft 404.
+    "not_found_handling": "404-page",
+    // De worker draait voor ELK verzoek, niet alleen voor /api/*: hij moet www en
+    // het oude conceptadres omleiden naar de apex. Met een padlijst levert Workers
+    // Assets een bestand dat in dist/ staat zelf uit en wordt de worker nooit
+    // aangeroepen - dan geven alle drie de hosts een 200 met de hele site, precies
+    // de kopieen die de omleiding moest voorkomen (playground/CLAUDE.md, cdlf).
+    "run_worker_first": true
+  },
+  // De apex is canoniek: het domein had nog nooit een site (alleen de
+  // Purelymail-records voor info@puurgenieten.tv), dus de huisregel geldt en niet
+  // de framemedia-uitzondering. www en het conceptadres hangen eraan om ze met een
+  // 301 naar de apex te sturen (worker/index.ts, ANDERE_HOSTS). Het conceptadres
+  // is van de playground-worker puurgenieten-concept hierheen verhuisd, zodat
+  // gedeelde links blijven werken en er geen tweede kopie online staat.
+  "routes": [
+    { "pattern": "puurgenieten.tv", "custom_domain": true },
+    { "pattern": "www.puurgenieten.tv", "custom_domain": true },
+    { "pattern": "puurgenieten-concept.jouwconcept.app", "custom_domain": true }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "FORM_UPLOADS",
+      "bucket_name": "jiw-form-uploads-prod"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+      "allowed_sender_addresses": ["no-reply@notify.puurgenieten.tv"]
+    }
+  ],
+  "vars": {
+    "SITE_ID": "puurgenieten",
+    // Nog ons eigen postvak (Alfred, 10-11-2026). Dit is ook de reply-to op de
+    // bevestiging die de bezoeker krijgt. Gaat dit naar info@puurgenieten.tv of
+    // info@framemedia.tv, dan weigert tools/live.mjs vanzelf nog een proef te
+    // versturen zonder --naar-klant=<adres>.
+    "LEAD_RECIPIENT": "hallo@jouwidealewebsite.nl",
+    // notify.puurgenieten.tv staat in Cloudflare Email Service; de records hangen
+    // aan cf-bounce.notify.puurgenieten.tv en _dmarc.notify.puurgenieten.tv, NIET
+    // aan notify.puurgenieten.tv zelf (een lookup daarop is leeg en dat is goed).
+    "LEAD_SENDER": "no-reply@notify.puurgenieten.tv"
+  }
+}
