@@ -77,6 +77,7 @@ for (const pad of [...gevonden]) {
    alleen voor schermvullend en hebben er een nodig. */
 function breedtes(naam, breed) {
   if (HERO[naam]) return [440, 640, 880, 1050].filter((b) => b <= breed);
+  if (naam === 'bus-rh-klusservice.jpg') return [540, 800, 1050].filter((b) => b <= breed);
   if (naam === 'werkspot.png') return [187, 359].filter((b) => b <= breed);
   if (/-klein\./.test(naam)) return [...new Set([Math.round(breed * 0.55), breed])].filter((b) => b >= 120);
   return [Math.min(breed, 1400)];

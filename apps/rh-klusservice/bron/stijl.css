@@ -480,6 +480,8 @@ h3+p{margin-top:9px}
   display:flex;align-items:center;gap:16px;transition:background .15s;
 }
 .contact__blok a:hover{background:#141414}
+/* De bus onder de contactrijen: bewijs dat er een echt bedrijf achter zit (10-11-2026). */
+.contact__bus img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:var(--rond-m)}
 .contact__blok svg{width:22px;height:22px;flex:none;fill:var(--wit)}
 .contact__blok .rij--wa svg{fill:var(--wa)}
 .contact__blok small{display:block;font-size:.82rem;color:var(--op-zwart-zacht);margin-bottom:2px}

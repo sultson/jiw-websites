@@ -654,6 +654,51 @@
   "mobielTot": 980,
   "groot": "/foto/buitendeur-gevel-880.webp"
  },
+ "/foto/bus-rh-klusservice.jpg": {
+  "breed": 1050,
+  "hoog": 788,
+  "varianten": [
+   {
+    "pad": "/foto/bus-rh-klusservice-540.avif",
+    "ext": "avif",
+    "breed": 540,
+    "hoog": 405
+   },
+   {
+    "pad": "/foto/bus-rh-klusservice-540.webp",
+    "ext": "webp",
+    "breed": 540,
+    "hoog": 405
+   },
+   {
+    "pad": "/foto/bus-rh-klusservice-800.avif",
+    "ext": "avif",
+    "breed": 800,
+    "hoog": 600
+   },
+   {
+    "pad": "/foto/bus-rh-klusservice-800.webp",
+    "ext": "webp",
+    "breed": 800,
+    "hoog": 600
+   },
+   {
+    "pad": "/foto/bus-rh-klusservice-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 788
+   },
+   {
+    "pad": "/foto/bus-rh-klusservice-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 788
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/bus-rh-klusservice-1050.webp"
+ },
  "/foto/dak-dakkapel-boven-klein.jpg": {
   "breed": 570,
   "hoog": 760,

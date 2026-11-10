@@ -44,6 +44,7 @@ const MATEN = [
   ['lok__beeld', '(min-width:1180px) 520px, (min-width:981px) 45vw, 100vw'],
   ['over__beeld', '(min-width:1180px) 500px, (min-width:861px) 43vw, 100vw'],
   ['inzicht__beeld', '(min-width:861px) 280px, 46vw'],
+  ['contact__bus', '(min-width:1180px) 540px, (min-width:861px) 46vw, calc(100vw - 48px)'],
   ['galerij', '(min-width:1180px) 370px, (min-width:861px) 32vw, calc(100vw - 48px)'],
 ];
 const MAAT_LOGO = '110px';
