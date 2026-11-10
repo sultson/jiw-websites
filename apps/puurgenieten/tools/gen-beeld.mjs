@@ -46,3 +46,19 @@ const o = await sharp(achter)
   .png({ compressionLevel: 9 })
   .toFile(OG);
 console.log(`${OG}: ${o.width}x${o.height}, ${(o.size / 1024).toFixed(1)} kB`);
+
+// 3. De plaat voor de mailhandtekening (/handtekening/, zie handtekening.mjs).
+//    Precies LOGO_BREED x LOGO_SCHAAL pixels met de dpi in de pHYs-blok, zodat
+//    Mail op de Mac hem op LOGO_BREED punten zet en niet twee keer zo groot.
+//    Wit plat, niet doorzichtig: in donkere weergave zet een mailprogramma
+//    doorzichtig op zwart. Dit bestand hangt onder verstuurde mails (Airmail
+//    haalt hem op van puurgenieten.tv): niet hernoemen of weghalen.
+const { LOGO_BREED, LOGO_SCHAAL, LOGO_BESTAND } = await import('../handtekening.mjs');
+const HT = `inhoud/${LOGO_BESTAND}`;
+const ht = await sharp(BRON)
+  .resize({ width: LOGO_BREED * LOGO_SCHAAL })
+  .flatten({ background: '#ffffff' })
+  .withMetadata({ density: 72 * LOGO_SCHAAL })
+  .png({ compressionLevel: 9 })
+  .toFile(HT);
+console.log(`${HT}: ${ht.width}x${ht.height} op ${72 * LOGO_SCHAAL} dpi, ${(ht.size / 1024).toFixed(1)} kB`);

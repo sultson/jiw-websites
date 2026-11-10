@@ -66,3 +66,21 @@ precies zo gemeten). Proeven van 10-11-2026: nl en en, allebei 200 + bedankkaart
 - Woordmerk linksboven (letters uit het rondje, `tools/maak-woordmerk.py`), rondje in de voet.
 - Zwevend WhatsApp/bel-paar 1:1 Winterswijk, bellen in het rood van de site.
 - `tools/los-van-framemedia.mjs` en `tools/talen-los.mjs`: eenmalig, bewaard als verslag.
+
+## Mailhandtekening op /handtekening/ (10-11-2026)
+
+Armando: "hetzelfde als framemedia.tv/handtekening/ voor iphone en airmail, eigenaar
+Frans, 06 is hetzelfde". `handtekening.mjs` is een kopie van die van framemedia met het
+merk van Puur Genieten (oranje rondje, inkt, oranje streep). Hulppagina: noindex ook in
+productie, geen canonical, niet in de sitemap; `tools/vooraf.mjs` zakt als een pagina
+ernaar linkt, en de productiepoort in `bouw.mjs` slaat hem over voor het woord noindex.
+
+- Gegevens uit `inhoud/zaak.mjs`, dat ook de site voedt (nummer, mail).
+- Plaat `inhoud/assets/mail/handtekening-logo.png` (200 px op 144 dpi = 100 punten),
+  gemaakt door `tools/gen-beeld.mjs`. Airmail-code haalt hem op van
+  `https://puurgenieten.tv/assets/mail/handtekening-logo.png`: niet hernoemen of
+  weghalen, hij hangt onder verstuurde mails.
+- Onderregel "Een productie van FRAME MEDIA" in plaats van studio + KvK: een programma,
+  geen bedrijf.
+- `node tools/handtekening-kijk.mjs [adres]`: breedte op 360/390/1280, logo niet
+  uitgerekt, wat de twee knoppen op het klembord zetten. Live nagemeten: nul fouten.

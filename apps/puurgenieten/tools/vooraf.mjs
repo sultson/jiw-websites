@@ -26,6 +26,7 @@
 // En voor de site: de sitemap dekt precies de indexeerbare pagina's, robots.txt
 // opent en noemt de sitemap.
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { HULP_PADEN } from '../handtekening.mjs';
 
 const CONCEPT = process.argv.includes('--concept');
 const ENDPOINTS = new Set(['/api/forms/puurgenieten']);
@@ -68,6 +69,16 @@ for (const pad of bestanden) {
   const adres = adresVan(pad);
   const is404 = pad === 'dist/404.html';
   const zeg = t => klachten.push(`${adres}: ${t}`);
+
+  // Een hulppagina (de mailhandtekening) keurt anders: noindex altijd, geen
+  // canonical, niet in de sitemap, en geen enkele andere pagina linkt ernaar.
+  if (HULP_PADEN.includes(adres)) {
+    if (!/name="robots"[^>]*noindex/i.test(html)) zeg('hulppagina zonder noindex');
+    if (/rel="canonical"/i.test(html)) zeg('hulppagina met een canonical');
+    if (!/<title>[^<]+<\/title>/.test(html)) zeg('geen <title>');
+    continue;
+  }
+  for (const h of HULP_PADEN) if (html.includes(`href="${h}"`)) zeg(`linkt naar de hulppagina ${h}`);
 
   const titel = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim();
   if (!titel) zeg('geen <title>');
