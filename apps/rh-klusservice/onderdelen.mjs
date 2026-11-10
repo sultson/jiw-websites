@@ -10,7 +10,7 @@ export const TEL_TOON = '06 31 29 51 56';
 export const WA = 'https://wa.me/31631295156';
 export const MAIL = 'rhklusservice@outlook.com';
 export const WERKSPOT = 'https://www.werkspot.nl/profiel/rh-klusservice';
-export const GOOGLE = 'https://share.google/A8lQXq9hEHgqI43vI';
+export const GOOGLE = 'https://maps.google.com/?cid=7200455283029295339';
 export const SITE = 'https://rhklusservice.nl';
 
 /* Het endpoint van de eigen worker (worker/index.ts). Relatief, want hij zit op
@@ -66,7 +66,7 @@ export const BEDRIJF = {
   address: { '@type': 'PostalAddress', addressLocality: 'Valkenswaard', addressCountry: 'NL' },
   vatID: 'NL004973060B79',
   openingHoursSpecification: OPENINGSTIJDEN,
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', reviewCount: '49', bestRating: '5' },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', reviewCount: '51', bestRating: '5' },
   sameAs: [WERKSPOT, GOOGLE]
 };
 
@@ -85,7 +85,7 @@ export const PLAATSEN = [
     naam: 'Eindhoven', slug: 'timmerman-eindhoven', provincie: 'Noord-Brabant',
     nabij: ['Eindhoven', 'Veldhoven', 'Waalre', 'Best', 'Oirschot'],
     intro: 'Eindhoven ligt op een kwartier rijden van Valkenswaard. We werken er in woningen, bedrijfspanden en opslagruimtes, van losse klussen tot complete verbouwingen.',
-    bewijs: 'Van onze 49 beoordelingen op Werkspot komen er 17 uit Eindhoven. Geen enkele plaats staat er vaker tussen.'
+    bewijs: 'Van onze 51 beoordelingen op Werkspot komen er 17 uit Eindhoven. Geen enkele plaats staat er vaker tussen.'
   },
   {
     naam: 'Breda', slug: 'timmerman-breda', provincie: 'Noord-Brabant',

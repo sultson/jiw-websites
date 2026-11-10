@@ -285,7 +285,7 @@ ${BALK(TITEL)}
         <a class="hero__cijfer" href="${WERKSPOT}" rel="noopener">
           <span class="sterren" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
           <b>5,0</b>
-          <span class="tel">&middot; 49 beoordelingen<span class="tel__op"> op</span></span>
+          <span class="tel">&middot; 51 beoordelingen<span class="tel__op"> op</span></span>
           <img class="ws__mark" src="/logo/werkspot.png" alt="Werkspot" width="359" height="64">
         </a>
         <div class="bewijs">
@@ -346,7 +346,7 @@ ${WERK.map((w) => `      <div>
           <img src="/logo/werkspot.png" alt="Werkspot" width="359" height="64" loading="lazy">
         </a>
       </div>
-      <p class="ws__intro">5,0 gemiddeld uit 49 beoordelingen. Deze ${REVIEW_IDS.length} gaan over snel reageren, deuren, kozijnen en hang-en-sluitwerk.
+      <p class="ws__intro">5,0 gemiddeld uit 51 beoordelingen. Deze ${REVIEW_IDS.length} gaan over snel reageren, deuren, kozijnen en hang-en-sluitwerk.
         <a href="${WERKSPOT}" rel="noopener">Alle beoordelingen bekijken</a></p>
       <div class="ws__nav">
         <button type="button" class="ws__pijl" data-ws="terug" aria-label="Vorige beoordelingen">

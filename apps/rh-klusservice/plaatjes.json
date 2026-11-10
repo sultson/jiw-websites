@@ -964,6 +964,60 @@
   "mobielTot": null,
   "groot": "/foto/dakraam-badkamer-1050.webp"
  },
+ "/foto/dakraam-betimmerd-plafond-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-betimmerd-plafond-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-betimmerd-plafond-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-betimmerd-plafond-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/dakraam-betimmerd-plafond-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-betimmerd-plafond-1050.webp"
+ },
+ "/foto/dakraam-betimmerd-plafond.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-betimmerd-plafond-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/dakraam-betimmerd-plafond-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-betimmerd-plafond-1050.webp"
+ },
  "/foto/dakraam-dubbel-klein.jpg": {
   "breed": 570,
   "hoog": 760,
@@ -1071,6 +1125,60 @@
   "mobiel": [],
   "mobielTot": null,
   "groot": "/foto/dakraam-nis-1050.webp"
+ },
+ "/foto/dakraam-pannendak-buiten-klein.jpg": {
+  "breed": 570,
+  "hoog": 760,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-pannendak-buiten-klein-314.avif",
+    "ext": "avif",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-pannendak-buiten-klein-314.webp",
+    "ext": "webp",
+    "breed": 314,
+    "hoog": 419
+   },
+   {
+    "pad": "/foto/dakraam-pannendak-buiten-klein-570.avif",
+    "ext": "avif",
+    "breed": 570,
+    "hoog": 760
+   },
+   {
+    "pad": "/foto/dakraam-pannendak-buiten-klein-570.webp",
+    "ext": "webp",
+    "breed": 570,
+    "hoog": 760
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-pannendak-buiten-1050.webp"
+ },
+ "/foto/dakraam-pannendak-buiten.jpg": {
+  "breed": 1050,
+  "hoog": 1400,
+  "varianten": [
+   {
+    "pad": "/foto/dakraam-pannendak-buiten-1050.avif",
+    "ext": "avif",
+    "breed": 1050,
+    "hoog": 1400
+   },
+   {
+    "pad": "/foto/dakraam-pannendak-buiten-1050.webp",
+    "ext": "webp",
+    "breed": 1050,
+    "hoog": 1400
+   }
+  ],
+  "mobiel": [],
+  "mobielTot": null,
+  "groot": "/foto/dakraam-pannendak-buiten-1050.webp"
  },
  "/foto/dakraam-pannendak-klein.jpg": {
   "breed": 570,

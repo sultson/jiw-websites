@@ -69,13 +69,44 @@ function kaart(b) {
       </article>`;
 }
 
+/* Google (10-11-2026, via Armando): hij heeft daar 1 beoordeling, 5 sterren, van
+   "Wowwow" (Local Guide), rond 20 oktober 2026 ("3 weken geleden" op 10-11).
+   Bewust geen eigen blok of eigen cijfer: "5,0 uit 1 review" leest zwakker dan
+   niets. Hij staat als eerste kaart in dezelfde rij, met Google als bron eronder.
+   Het origineel is Engels; de tekst hieronder is de vertaling die Google er zelf
+   bij toont, en dat staat er op de kaart ook bij. Origineel:
+   "I am extremely satisfied with the work done by Robbin from RH Klusservice. He was
+   professional, reliable, and paid great attention to detail throughout the project.
+   The communication was smooth, and the final result exceeded my expectations. I
+   highly recommend RH Klusservice to anyone looking for quality craftsmanship!" */
+const GOOGLE_KAARTEN = [{
+  naam: 'Wowwow',
+  datum: '2026-10-20T12:00:00+00:00',
+  tekst: 'Ik ben buitengewoon tevreden over het werk dat Robbin van RH Klusservice heeft verricht. Hij was professioneel, betrouwbaar en besteedde gedurende het hele project veel aandacht aan details. De communicatie verliep soepel en het eindresultaat overtrof mijn verwachtingen. Ik beveel RH Klusservice van harte aan aan iedereen die op zoek is naar vakmanschap van hoge kwaliteit!',
+}];
+
+function googleKaart(g) {
+  const tekst = vlucht(g.tekst.trim());
+  return `      <article class="review">
+        <div class="review__top">
+          <span class="sterren" aria-hidden="true">${'&#9733;'.repeat(5)}</span>
+          <span class="review__datum">${maandJaar(g.datum)}</span>
+        </div>
+        <p>&ldquo;${tekst}&rdquo;</p>
+        <footer>
+          <span class="review__cirkel" aria-hidden="true">${g.naam[0].toUpperCase()}</span>
+          <span class="review__wie"><b>${vlucht(g.naam)}</b><small>${VINK} Review op Google, vertaald uit het Engels</small></span>
+        </footer>
+      </article>`;
+}
+
 const metTekst = alles
   .filter((b) => (b.tekst || '').trim())
   .sort((a, b) => new Date(b.datum) - new Date(a.datum));
 
 const BEGIN = '      <!-- beoordelingen:begin (node maak-reviews.mjs) -->';
 const EINDE = '      <!-- beoordelingen:einde -->';
-const blok = [BEGIN, ...metTekst.map(kaart), EINDE].join('\n');
+const blok = [BEGIN, ...GOOGLE_KAARTEN.map(googleKaart), ...metTekst.map(kaart), EINDE].join('\n');
 
 let html = readFileSync(PAGINA, 'utf8');
 const open = html.indexOf('<div class="ws__lijst"');
