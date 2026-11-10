@@ -897,6 +897,7 @@ const amenityDef: Record<string, {icon: any; label: Record<Lang, string>}> = {
   pets: {icon: PawPrint, label: {nl: 'Huisdier welkom', en: 'Pets welcome', de: 'Haustiere willkommen'}},
   fireplace: {icon: Flame, label: {nl: 'Houtkachel', en: 'Wood stove', de: 'Holzofen'}},
   garden: {icon: TreePine, label: {nl: 'Grote tuin', en: 'Large garden', de: 'Großer Garten'}},
+  fencedGarden: {icon: TreePine, label: {nl: 'Omheinde tuin', en: 'Fenced garden', de: 'Eingezäunter Garten'}},
   terrace: {icon: Sun, label: {nl: 'Terras op het zuiden', en: 'South-facing terrace', de: 'Südterrasse'}},
   hottub: {icon: Waves, label: {nl: 'Hot tub', en: 'Hot tub', de: 'Hot Tub'}},
   sauna: {icon: Sparkles, label: {nl: 'Privé sauna', en: 'Private sauna', de: 'Private Sauna'}},
@@ -963,7 +964,7 @@ const homes: Home[] = [
       '/img/jonkersweg-9.webp', '/img/jonkersweg-10.webp', '/img/jonkersweg-11.webp',
     ],
     area: 'lake', guests: 6, bedrooms: 3, pets: true, calId: 21470,
-    amenities: ['wifi', 'pets', 'sauna', 'hottub', 'gasfire', 'bath', 'shower', 'terrace', 'garden', 'lake', 'park', 'parking'],
+    amenities: ['wifi', 'pets', 'sauna', 'hottub', 'gasfire', 'bath', 'shower', 'terrace', 'fencedGarden', 'lake', 'park', 'parking'],
     tagline: {
       nl: 'Vrijstaand huis met sauna en bubbelbad',
       en: 'Detached home with sauna and hot tub',
@@ -998,7 +999,7 @@ const homes: Home[] = [
       '/img/jonkersweg57-4.webp', '/img/jonkersweg57-5.webp', '/img/jonkersweg57-6.webp',
     ],
     area: 'lake', guests: 6, bedrooms: 3, pets: true, calId: 21471,
-    amenities: ['wifi', 'pets', 'sauna', 'hottub', 'bath', 'shower', 'terrace', 'garden', 'lake', 'park', 'parking'],
+    amenities: ['wifi', 'pets', 'sauna', 'hottub', 'bath', 'shower', 'terrace', 'fencedGarden', 'lake', 'park', 'parking'],
     tagline: {
       nl: 'Villa Winterswijk 57, buurhuis met sauna en bubbelbad',
       en: 'Villa Winterswijk 57, the house next door, with sauna and hot tub',

@@ -216,6 +216,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
           text: [
             'Op recreatiepark Den Möllenhof in Winterswijk Meddo mag uw hond mee in Jonkersweg 55, 57 en 65. Elk huis is voor zes personen, met een eigen sauna en een terras aan het groen.',
             'Rond het Hilgelo loopt een hondenroute die het hele jaar open is, en vanaf het park stapt u zo het coulisselandschap in, met beken, houtwallen en zandpaden. Komt u met meer honden of een grotere groep? Jonkersweg 55 en 57 staan naast elkaar.',
+            'Jonkersweg 55 en 57 hebben allebei een omheinde tuin.',
           ],
           homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg65'],
         },
@@ -246,6 +247,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       },
       faq: [
         {q: 'In welke vakantiehuizen mag mijn hond mee?', a: 'In Jonkersweg 55, 57 en 65 op Den Möllenhof, en in twee van de vier boswoningen op de Kattenberg. In de XL en het Fins chalet zijn geen huisdieren toegestaan.'},
+        {q: 'Welke huizen met hond hebben een omheinde tuin?', a: 'Jonkersweg 55 en 57 hebben allebei een omheinde tuin, en in beide is uw hond welkom.'},
         {q: 'Mag er meer dan één hond mee?', a: 'Vermeld in uw aanvraag hoeveel honden u meeneemt, dan laten we weten wat er in het gekozen huis kan.'},
         {q: 'Waar kan ik wandelen met de hond?', a: 'Op de hondenroute rond het Hilgelo, die het hele jaar open is, en op het omheinde losloopveld aan de Parallelweg in Winterswijk. In het Korenburgerveen zijn honden niet toegestaan, ook niet aangelijnd. In andere natuurgebieden gelden eigen regels; kijk daarvoor op de borden ter plekke.'},
         {q: 'Kunnen hond en paard allebei mee?', a: 'Ja, aan de Jonkersweg. Op recreatiepark Den Möllenhof zijn ook stallen en weides voor uw paard.'},
@@ -268,6 +270,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
           text: [
             'Im Ferienpark Den Möllenhof in Winterswijk Meddo darf Ihr Hund in Jonkersweg 55, 57 und 65 mit. Jedes Haus ist für sechs Personen, mit eigener Sauna und einer Terrasse im Grünen.',
             'Rund um den Hilgelo führt eine Hunderoute, die das ganze Jahr offen ist, und vom Park aus sind Sie direkt in der Heckenlandschaft mit Bächen, Wallhecken und Sandwegen. Mit mehreren Hunden oder einer größeren Gruppe unterwegs? Jonkersweg 55 und 57 stehen nebeneinander.',
+            'Jonkersweg 55 und 57 haben beide einen eingezäunten Garten.',
           ],
           homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg65'],
         },
@@ -298,6 +301,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       },
       faq: [
         {q: 'In welchen Ferienhäusern darf mein Hund mit?', a: 'In Jonkersweg 55, 57 und 65 im Ferienpark Den Möllenhof und in zwei der vier Waldhäuser auf dem Kattenberg. Im XL und im finnischen Chalet sind keine Haustiere erlaubt.'},
+        {q: 'Welche Häuser mit Hund haben einen eingezäunten Garten?', a: 'Jonkersweg 55 und 57 haben beide einen eingezäunten Garten, und in beiden ist Ihr Hund willkommen.'},
         {q: 'Darf mehr als ein Hund mit?', a: 'Nennen Sie in Ihrer Anfrage, wie viele Hunde Sie mitbringen, dann sagen wir Ihnen, was im gewählten Haus möglich ist.'},
         {q: 'Wo kann ich mit dem Hund spazieren gehen?', a: 'Auf der Hunderoute rund um den Hilgelo, die das ganze Jahr offen ist, und auf der eingezäunten Freilauffläche an der Parallelweg in Winterswijk. Im Korenburgerveen sind Hunde nicht erlaubt, auch nicht angeleint. In anderen Naturgebieten gelten eigene Regeln; achten Sie auf die Schilder vor Ort.'},
         {q: 'Können Hund und Pferd beide mit?', a: 'Ja, am Jonkersweg. Im Ferienpark Den Möllenhof gibt es auch Ställe und Weiden für Ihr Pferd.'},
@@ -320,6 +324,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
           text: [
             'On the Den Möllenhof holiday park in Winterswijk Meddo your dog can come to Jonkersweg 55, 57 and 65. Each home sleeps six, with a private sauna and a terrace facing the greenery.',
             'A dog route runs around Hilgelo lake all year round, and from the park you step straight into the hedgerow landscape of streams, wooded banks and sandy tracks. Travelling with several dogs or a bigger group? Jonkersweg 55 and 57 stand side by side.',
+            'Jonkersweg 55 and 57 both have a fenced garden.',
           ],
           homeIds: ['jonkersweg55', 'jonkersweg57', 'jonkersweg65'],
         },
@@ -350,6 +355,7 @@ export const topicCopy: Record<TopicId, Record<Lang, TopicCopy>> = {
       },
       faq: [
         {q: 'Which holiday homes accept dogs?', a: 'Jonkersweg 55, 57 and 65 on Den Möllenhof, and two of the four woodland homes on the Kattenberg. No pets are allowed in the XL or the Finnish chalet.'},
+        {q: 'Which dog-friendly homes have a fenced garden?', a: 'Jonkersweg 55 and 57 both have a fenced garden, and both welcome dogs.'},
         {q: 'Can I bring more than one dog?', a: 'Tell us in your enquiry how many dogs you are bringing and we will let you know what is possible in the home you chose.'},
         {q: 'Where can I walk the dog?', a: 'On the dog route around Hilgelo lake, which is open all year, and in the fenced off-lead field on Parallelweg in Winterswijk. Dogs are not allowed in the Korenburgerveen, not even on a lead. Other nature reserves have their own rules; check the signs on site.'},
         {q: 'Can both the dog and a horse come?', a: 'Yes, on Jonkersweg. The Den Möllenhof holiday park also has stables and paddocks for your horse.'},
