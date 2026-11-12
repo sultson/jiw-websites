@@ -44,6 +44,7 @@ const FORMULIEREN = {
   contact: { pad: '/api/forms/contact', herkomst: 'Contactpagina' },
   puurgenieten: { pad: '/api/forms/puurgenieten', herkomst: 'Landingspagina Puur Genieten' },
   programmaIdee: { pad: '/api/forms/programma-idee', herkomst: 'Pagina programma-idee' },
+  singYourselfUp: { pad: '/api/forms/sing-yourself-up', herkomst: 'Pagina Sing Yourself Up' },
 };
 
 // Elk formulier krijgt hier zijn adres, zijn taal en zijn lokvink. Dat gebeurt
@@ -483,6 +484,7 @@ const PAGINAS = {
     ['over', 'over-ons.html'],
     ['contact', 'contact.html'],
     ['programmaIdee', 'programma-idee.html'],
+    ['singYourselfUp', 'singyourselfup.html'],
     ['vacature', 'vacature.html'],
     ['voorwaarden', 'voorwaarden.html'],
   ],
@@ -721,7 +723,7 @@ if (PROD) {
   }
   // Een formulier dat na een verbouwing zonder action op de echte site staat
   // slikt elke aanvraag. Dus telt de bouw ze, en 10 is wat er horen te zijn:
-  // nl heeft drie formulieren (hero, contact, programma-idee), en + de elk
+  // nl heeft vier formulieren (hero, contact, programma-idee, singyourselfup), en + de elk
   // twee. Puur Genieten is sinds 10-11-2026 een eigen site.
   const hoort = TALEN.reduce((s, t) => s + PAGINAS[t.code].filter(([k]) => FORMULIEREN[k]).length, 0);
   if (formulierenGeraakt !== hoort) klachten.push(`${formulierenGeraakt} formulieren gevuld, ${hoort} verwacht`);

@@ -166,7 +166,8 @@ a:hover { color: #ff7078; }
 .brand-groot img { height: 104px; width: auto; }
 
 /* Acht knoppen plus de taalkeuze plus de contactknop (Puur Genieten erbij op
-   10-10-2026, Programma idee op 17-10-2026). Dat past alleen als de ruimte om
+   10-10-2026, Programma idee op 17-10-2026, op 12-11-2026 Puur Genieten
+   vervangen door het langere Sing Yourself Up - padding .46 -> .38rem). Dat past alleen als de ruimte om
    de woorden heen krapper is dan daarvoor; onder 1180 klapt de balk in. De
    maten hier zijn nagemeten met meet-balk.mjs op twaalf schermbreedtes - ga je
    eraan zitten, meet dan opnieuw, want een knop die niet afbreekt bepaalt hoe
@@ -180,7 +181,7 @@ a:hover { color: #ff7078; }
   text-decoration: none;
   font-size: .86rem;
   font-weight: 500;
-  padding: .55rem .46rem;
+  padding: .55rem .38rem;
   border-radius: var(--radius);
   white-space: nowrap;
   position: relative;
@@ -188,7 +189,7 @@ a:hover { color: #ff7078; }
 .nav > a:not(.btn):hover { color: var(--wit); background: rgba(149, 164, 163, .08); }
 .nav > a[aria-current="page"] { color: var(--wit); }
 .nav > a[aria-current="page"]::after {
-  content: ''; position: absolute; left: .46rem; right: .46rem; bottom: .16rem;
+  content: ''; position: absolute; left: .38rem; right: .38rem; bottom: .16rem;
   height: 2px; background: var(--rood);
 }
 .nav .btn { margin-left: .4rem; }

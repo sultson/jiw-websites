@@ -74,6 +74,7 @@ vier pagina's met een formulier, en + de elk drie).
 | `/api/forms/contact` | `/contact`, `/en/contact`, `/de/kontakt` | `Contactformulier framemedia.tv` |
 | `/api/forms/puurgenieten` | Geen pagina meer sinds 10-11-2026; blijft staan voor wie de oude pagina nog open had | `Aanmelding Puur Genieten` |
 | `/api/forms/programma-idee` | `/programma-idee/` | `Programma-idee via framemedia.tv` |
+| `/api/forms/sing-yourself-up` | `/singyourselfup` (sinds 12-11-2026) | `Sing Yourself Up via framemedia.tv` |
 
 Het zijn er vier en niet een, omdat de vier vragen ver uit elkaar liggen: "ik
 wil mijn bedrijf op televisie", "meld mij aan voor Puur Genieten", "ik heb een
@@ -160,6 +161,7 @@ pagina weg zonder dat je het merkt.
 | `over-ons.html` | Wat zij doen, waarom televisie, wat hen onderscheidt, ruim honderd referenties, vacature |
 | `contact.html` | Formulier, bereikbaarheid, waarvoor je kunt bellen |
 | ~~`puurgenieten/index.html`~~ | Weg sinds 10-11-2026: eigen site op puurgenieten.tv (`apps/puurgenieten`). Zie "De landingspagina /puurgenieten/". |
+| `singyourselfup.html` | Sinds 12-11-2026 (Armando): de promo (YouTube `pj_uK1nDh6g`) en een contactformulier. Alleen NL. Staat als tweede in het menu, op de plek van Puur Genieten; dat staat nog in de voettekst en de 301's blijven. Geen tekst over het format verzonnen: alleen wat Armando gaf plus feiten die elders op de site staan. |
 | `programma-idee/index.html` | Formulier, het eerlijke verhaal over een format, de route in zes stappen |
 | `vacature.html` | De zzp-accountmanager |
 | `404.html` | Foutpagina, zonder menu en voettekst |

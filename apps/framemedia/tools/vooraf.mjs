@@ -33,6 +33,7 @@ const ENDPOINTS = new Set([
   '/api/forms/snel',
   '/api/forms/puurgenieten',
   '/api/forms/programma-idee',
+  '/api/forms/sing-yourself-up',
 ]);
 
 // De tekstvloer per pagina. Lager dan dit en er staat iets niet in de html.

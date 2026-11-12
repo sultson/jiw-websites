@@ -27,7 +27,6 @@ export default {
 
   nav: [
     ['home', 'Home'],
-    ['puurgenieten', 'Puur Genieten'],
     ['branded', 'Branded content'],
     ['studio', 'Studio'],
     ['over', 'About us'],

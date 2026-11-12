@@ -15,7 +15,7 @@ const b = await chromium.launch();
 // Alle drie de talen: een Duits knoplabel is langer dan het Nederlandse
 // ("Gespraech vereinbaren" tegen "Plan een gesprek"), dus de smalste maat van
 // de pagina kan per taal ergens anders zitten.
-const paginas = ['/','/branded-content','/studio','/formats','/over-ons','/contact','/programma-idee/','/vacature','/voorwaarden','/404.html',
+const paginas = ['/','/branded-content','/studio','/formats','/over-ons','/contact','/programma-idee/','/singyourselfup','/vacature','/voorwaarden','/404.html',
   '/en/','/en/branded-content','/en/studio','/en/about-us','/en/contact',
   '/de/','/de/branded-content','/de/studio','/de/ueber-uns','/de/kontakt'];
 let fout = 0;

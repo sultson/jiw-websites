@@ -172,11 +172,36 @@ const programmaIdee = createFormWorker({
   confirmationEmail: programmaIdeeConfirmationEmail,
 });
 
+/* Het formulier op /singyourselfup (12-11-2026). Geen bedrijfsnaam verplicht:
+   wie zich voor dit format meldt is niet per se een bedrijf. Gaat met de gewone
+   contactbevestiging terug, want die belooft niets over het format zelf. */
+const singYourselfUp = createFormWorker({
+  ...GEDEELD,
+  formPath: '/api/forms/sing-yourself-up',
+  subjectPrefix: 'Sing Yourself Up via framemedia.tv',
+  subjectFields: ['firstName'],
+  messageField: 'bericht',
+  requiredFields: [
+    { name: 'tel', label: 'telefoonnummer', message: 'Vul uw telefoonnummer in.' },
+  ],
+  emailFields: [
+    { name: 'tel', label: 'Telefoonnummer' },
+  ],
+  leadEmail: {
+    heading: 'Nieuwe vraag over Sing Yourself Up',
+    messageHeading: 'Vraag',
+    nameLabels: { firstName: 'Naam', email: 'E-mail' },
+    includeAttachments: false,
+  },
+  confirmationEmail: contactConfirmationEmail,
+});
+
 const FORMULIEREN: Record<string, ExportedHandler<CloudflareFormsEnv>> = {
   '/api/forms/contact': contact,
   '/api/forms/snel': snel,
   '/api/forms/puurgenieten': puurGenieten,
   '/api/forms/programma-idee': programmaIdee,
+  '/api/forms/sing-yourself-up': singYourselfUp,
 };
 
 export default {

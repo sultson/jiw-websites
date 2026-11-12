@@ -25,7 +25,7 @@ const adres = route => `${BASE}${route}`;
 const PAGINAS = [
   '/', '/branded-content', '/studio', '/formats',
   '/over-ons', '/contact',
-  '/programma-idee/', '/vacature', '/voorwaarden', '/404.html',
+  '/programma-idee/', '/singyourselfup', '/vacature', '/voorwaarden', '/404.html',
   '/en/', '/en/branded-content', '/en/studio',
   '/en/about-us', '/en/contact',
   '/de/', '/de/branded-content', '/de/studio',
