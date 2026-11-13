@@ -38,7 +38,7 @@ export default {
     ['home', 'Home'],
     // Hier stond tot 12-11-2026 Puur Genieten (link naar puurgenieten.tv). Op
     // verzoek van Armando uit het menu; de voettekst en de 301's blijven.
-    ['singYourselfUp', 'Sing Yourself Up'],
+    ['singYourselfUp', 'Sign Yourself Up'],
     ['branded', 'Branded content'],
     ['studio', 'Studio'],
     ['formats', 'Formats'],
@@ -194,8 +194,8 @@ export default {
       omschrijving: 'Goede programma-idee&euml;n zijn goud waard. FRAME MEDIA beoordeelt uw tv-idee op inhoud en op sponsoring, werkt het uit tot een format en presenteert het aan de commerci&euml;le zenders. Alle idee&euml;n vertrouwelijk.',
     },
     singYourselfUp: {
-      titel: 'Sing Yourself Up | FRAME MEDIA',
-      omschrijving: 'Bekijk de promo van Sing Yourself Up van FRAME MEDIA en neem contact op voor meer informatie.',
+      titel: 'Sign Yourself Up | FRAME MEDIA',
+      omschrijving: 'Bekijk de promo van Sign Yourself Up van FRAME MEDIA en neem contact op voor meer informatie.',
     },
     vacature: {
       titel: 'Vacature: zelfstandig accountmanager | FRAME MEDIA',

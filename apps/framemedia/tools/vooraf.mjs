@@ -40,6 +40,9 @@ const ENDPOINTS = new Set([
 // De getallen zijn de gemeten stand bij de verhuizing, met ruimte eronder zodat
 // een redactieronde die een alinea inkort niet meteen de bouw stilzet.
 const WOORDVLOER = 180;
+// /singyourselfup is op verzoek van Armando (12-11-2026) bewust kaal: kop, promo, formulier.
+// Geen tekst bijschrijven om deze vloer te halen; deze pagina keurt op 120.
+const WOORDVLOER_PER_PAGINA = { '/singyourselfup': 120 };
 
 const bestanden = [];
 (function loop(map) {
@@ -120,7 +123,8 @@ for (const pad of bestanden) {
   }
 
   const woorden = tekstVan(html).length;
-  if (!is404 && woorden < WOORDVLOER) zeg(`${woorden} woorden in de html, minstens ${WOORDVLOER} verwacht`);
+  const vloer = WOORDVLOER_PER_PAGINA[adres] ?? WOORDVLOER;
+  if (!is404 && woorden < vloer) zeg(`${woorden} woorden in de html, minstens ${vloer} verwacht`);
 
   for (const f of html.matchAll(/<form\b([^>]*)>/gi)) {
     const action = f[1].match(/action="([^"]*)"/)?.[1];

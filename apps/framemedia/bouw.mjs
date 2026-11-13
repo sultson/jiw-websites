@@ -44,7 +44,7 @@ const FORMULIEREN = {
   contact: { pad: '/api/forms/contact', herkomst: 'Contactpagina' },
   puurgenieten: { pad: '/api/forms/puurgenieten', herkomst: 'Landingspagina Puur Genieten' },
   programmaIdee: { pad: '/api/forms/programma-idee', herkomst: 'Pagina programma-idee' },
-  singYourselfUp: { pad: '/api/forms/sing-yourself-up', herkomst: 'Pagina Sing Yourself Up' },
+  singYourselfUp: { pad: '/api/forms/sing-yourself-up', herkomst: 'Pagina Sign Yourself Up' },
 };
 
 // Elk formulier krijgt hier zijn adres, zijn taal en zijn lokvink. Dat gebeurt
