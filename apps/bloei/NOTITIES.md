@@ -557,3 +557,12 @@ Wat hier niet bevestigd is: of het Bloei-bord inmiddels aan de gevel hangt. Op d
 foto op deze site hangt het er; of dat een opname of een proefbeeld is weten wij
 niet. Dat is wel waar Google bij een naamswijziging in het bedrijfsprofiel naar
 kijkt.
+
+### 14-11-2026, kransen en boompjes op stam
+
+Drie foto's van de winkel: Nobilis kransen, Nordmann kransen (blauwgroen = Nobilis,
+donkerder groen = Nordmann) en Nobilis boompjes op stam. Bron in `raw/`
+(`kerst-kransen-nobilis.jpg`, `kerst-kransen-nordmann.jpg`, `kerst-nobilis-stam.jpg`),
+op `/kerst/` als eerste rij van de fotostrook, nu met een label onder elke foto.
+`kerst-stam` is schuin van boven genomen en gaat via `uitknip` door `maak-beelden.mjs`.
+"Nobilis boompjes op stam" staat ook als punt bij Kerstbomen.

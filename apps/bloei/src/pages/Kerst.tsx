@@ -33,6 +33,7 @@ const ONDERDELEN = [
     punten: [
       'Nordmann kerstbomen op stam of in pot',
       'Nobilis kerstbomen',
+      'Nobilis boompjes op stam',
       'Picea bomen',
       'Besneeuwde popup kerstbomen van kunststof',
     ],
@@ -54,10 +55,15 @@ const ONDERDELEN = [
 /* De drie foto's onderaan de kerstsectie. Losse regel omdat ze in de JSX
    anders midden in de opmaak staan en daar bij een vierde foto niet te vinden
    zijn. */
-const FOTOS: [string, string][] = [
-  ['/img/kerst-1.webp', 'Een verlichte besneeuwde kunstkerstboom in de winkel, met een verlichte lichtbol en gouden cadeaumanden ernaast'],
-  ['/img/kerst-2.webp', 'Koperen en gouden glazen kerstboompjes op een houten tafel in de winkel'],
-  ['/img/kerst-3.webp', 'Dozen met besneeuwde popup kerstbomen naast een opgezette verlichte kerstboom'],
+const FOTOS: [string, string, string][] = [
+  /* 14-11-2026: buiten op de tafels, eerste rij omdat dit is waar iemand in
+     november op zoekt. */
+  ['/img/kerst-krans-nobilis.webp', 'Nobilis kransen', 'Een tafel vol Nobilis kerstkransen, blauwgroen, buiten voor de winkel'],
+  ['/img/kerst-krans-nordmann.webp', 'Nordmann kransen', 'Een tafel vol Nordmann kerstkransen, donkergroen, buiten voor de winkel'],
+  ['/img/kerst-stam.webp', 'Nobilis boompjes op stam', 'Een lange tafel vol kleine Nobilis kerstboompjes op stam, buiten voor de winkel'],
+  ['/img/kerst-1.webp', 'Binnen in de winkel', 'Een verlichte besneeuwde kunstkerstboom in de winkel, met een verlichte lichtbol en gouden cadeaumanden ernaast'],
+  ['/img/kerst-2.webp', 'Glazen boompjes', 'Koperen en gouden glazen kerstboompjes op een houten tafel in de winkel'],
+  ['/img/kerst-3.webp', 'Popup kerstbomen', 'Dozen met besneeuwde popup kerstbomen naast een opgezette verlichte kerstboom'],
 ];
 
 export default function Kerst() {
@@ -162,8 +168,8 @@ export default function Kerst() {
             stand van vandaag, en dan staat hij voor een schap dat half leeg
             verkocht is. */}
         <div className="mt-12">
-          <ul className="grid grid-cols-3 gap-3 sm:gap-5">
-            {FOTOS.map(([src, alt]) => (
+          <ul className="grid grid-cols-3 gap-x-3 gap-y-5 sm:gap-x-5 sm:gap-y-7">
+            {FOTOS.map(([src, label, alt]) => (
               <li key={src}>
                 <img
                   src={src}
@@ -173,11 +179,12 @@ export default function Kerst() {
                   height={875}
                   className="aspect-[4/5] w-full rounded-2xl object-cover"
                 />
+                <p className="mt-2 text-xs text-white/75 sm:text-sm">{label}</p>
               </li>
             ))}
           </ul>
           <p className="mt-4 text-sm text-white/60">
-            Foto's uit de winkel, begin november. De afdeling verandert gedurende het seizoen.
+            Foto's uit de winkel, november. De afdeling verandert gedurende het seizoen.
           </p>
         </div>
       </Section>
